@@ -9,7 +9,9 @@
   "scripts": {
     "ingest": "tsx src/ingest.ts",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "cleanup": "tsx src/cleanup.ts",
+    "site": "tsx src/site.ts"
   },
   "dependencies": {
     "cheerio": "^1.2.0",
