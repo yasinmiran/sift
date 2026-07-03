@@ -50,17 +50,36 @@ date: "{YYYY-MM-DD}"
 {the digest body}
 ```
 
-Commit via clone + push or
-`gh api -X PUT /repos/yasinmiran/sift/contents/digests/...`; the ingest
-Action also pushes to main, so pull (or use the contents API, which is
-per-file) before pushing. Re-running a day overwrites the file:
-idempotent via git.
+Work from a clone: write the file, verify it (see Verify), commit,
+pull, push. `gh api -X PUT /repos/yasinmiran/sift/contents/digests/...`
+works as a fallback, but verify against a clone first either way. The
+ingest Action also pushes to main, so pull before pushing. Re-running
+a day overwrites the file: idempotent via git.
 
 Catch-up rule: before writing today's digest, check yesterday. If
 `data/items/{yesterday}.json` exists but `digests/{yesterday}.md` does
 not (a skipped run), write yesterday's digest from yesterday's items
 first, then today's: both files in the same session. Backfill only that
 one day; older gaps stay gaps.
+
+## Reading
+
+A day holds 150-200 items and the JSON `content` field is only a feed
+excerpt. Read the real articles, then write:
+
+- First pass: read every item's title and excerpt, pick the stories
+  worth digesting.
+- Second pass: fetch the full text of each picked story from its `url`
+  and read it before summarizing. Fan this out to subagent batches
+  (see Models); the main thread synthesizes.
+- Skip full-text for items marked `paywalled: true` and anything gated
+  in practice (login wall, cookie wall, 402/403/429): use the excerpt
+  and mark the entry `(paywalled)`. Never work around a paywall.
+- One polite fetch per article, no retries. If a page will not load,
+  the excerpt is enough.
+- Summarize in your own words from what you actually read. If the full
+  text was unreachable, claim only what the excerpt supports: no
+  invented details, quotes at most a phrase.
 
 ## Editorial rules
 
@@ -73,6 +92,27 @@ one day; older gaps stay gaps.
   links and mark paywalled ones `(paywalled)`.
 - ~15 entries, one sentence each on why it matters. Readable in one
   sitting. No preamble, no sign-off.
+- End with a `## Threads` section: 3-6 bullets mapping how the day's
+  stories relate (rival takes on one event, a launch answering a
+  competitor's, regulation meeting the product it targets, one trend
+  surfacing in several entries). Name the entries each thread connects.
+  Skip the section only when nothing genuinely connects.
+
+## Verify
+
+After writing each digest, from the clone:
+
+```
+npm ci && npm run verify -- {YYYY-MM-DD}
+```
+
+Exits non-zero on `errors` (missing or wrong frontmatter, date not
+matching the filename, non-http links, empty body): fix and re-verify
+before committing. `warnings` need judgment: a link outside the day's
+items is fine when you deliberately linked a primary source and a bug
+when it is a typo or an invented url; thin digests and a missing
+Threads section also warn. Resolve every warning consciously before
+pushing.
 
 ## Models
 
