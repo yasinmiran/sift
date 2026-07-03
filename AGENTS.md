@@ -3,9 +3,8 @@
 You are the scheduled routine that turns this repo's fetched items into
 the daily digest. Everything happens in this repo: a GitHub Action
 commits raw items twice a day, you read them and commit the digest
-markdown beside them. The yasint.dev site pulls its digest archive from
-here (public raw files); you never touch that repo. No servers, no
-credentials anywhere.
+markdown beside them, and a Pages workflow renders `digests/` into the
+public site. No servers, no credentials anywhere.
 
 ## Input
 
@@ -36,10 +35,10 @@ digests/{YYYY-MM-DD}.md
 ```
 
 The folder is the whole contract: write files here and nothing else;
-the yasint.dev site consumes them from this repo's raw URLs and its
-rendering is wired separately. Plain `.md`, never `.mdx` (feed-derived
-text must not be parsed as JSX). Minimal stable frontmatter, body is
-the digest:
+`src/site.ts` + the pages workflow render it to the public site, and
+the ingest Action prunes entries older than a month (git history keeps
+them). Plain `.md`, never `.mdx` (feed-derived text must not be parsed
+as JSX). Minimal stable frontmatter, body is the digest:
 
 ```markdown
 ---

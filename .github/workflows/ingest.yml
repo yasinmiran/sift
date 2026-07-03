@@ -25,10 +25,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run ingest
+      - run: npm run cleanup
       - name: commit new data
         run: |
           git config user.name "sift ingest"
           git config user.email "ingest@users.noreply.github.com"
-          git add data
+          git add data digests
           git diff --cached --quiet || git commit -m "chore(data): ingest run"
           git push
