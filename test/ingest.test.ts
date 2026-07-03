@@ -104,10 +104,14 @@ describe("runIngest", () => {
     const freshTime = Math.floor(now / 1000);
     const staleTime = Math.floor((now - 25 * 60 * 60 * 1000) / 1000);
     const hnFetchJson = async (url: string) => {
-      if (url.includes("topstories") || url.includes("beststories")) return [1, 2];
-      if (url.includes("/item/1")) return { id: 1, type: "story", title: "Fresh story", score: 200, time: freshTime };
-      if (url.includes("/item/2")) return { id: 2, type: "story", title: "Stale story", score: 200, time: staleTime };
-      if (url.includes("algolia")) return { hits: [] };
+      if (url.includes("tags=front_page"))
+        return {
+          hits: [
+            { objectID: "1", title: "Fresh story", points: 200, created_at_i: freshTime },
+            { objectID: "2", title: "Stale story", points: 200, created_at_i: staleTime },
+          ],
+        };
+      if (url.includes("search_by_date")) return { hits: [] };
       throw new Error("unexpected url " + url);
     };
     const hnSource: SourceConfig = { slug: "hacker-news", kind: "hn", topics: ["ai-llms"], enabled: true };
