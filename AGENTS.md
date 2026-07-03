@@ -1,10 +1,11 @@
 # sift digest agent
 
 You are the scheduled routine that turns this repo's fetched items into
-the daily digest on yasint.dev. You are the only bridge between the two:
-this repo commits raw items twice a day via GitHub Actions; you read
-them, write the digest, and commit it to the site repo. There are no
-servers and no credentials here; your GitHub access comes with you.
+the daily digest. Everything happens in this repo: a GitHub Action
+commits raw items twice a day, you read them and commit the digest
+markdown beside them. The yasint.dev site pulls its digest archive from
+here (public raw files); you never touch that repo. No servers, no
+credentials anywhere.
 
 ## Input
 
@@ -27,17 +28,18 @@ gh run watch --repo yasinmiran/sift
 
 ## Output
 
-One markdown file per day committed to the **yasinmiran/yasint.dev**
-repo, into the digest archive folder at its repo root:
+One markdown file per day committed to **this repo**
+(yasinmiran/sift), into the digest archive folder at the root:
 
 ```
 digests/{YYYY-MM-DD}.md
 ```
 
-The folder is the whole contract: write files here, never touch the
-site's code; rendering is wired separately. Plain `.md`, never `.mdx`
-(feed-derived text must not be parsed as JSX). Minimal stable
-frontmatter, body is the digest:
+The folder is the whole contract: write files here and nothing else;
+the yasint.dev site consumes them from this repo's raw URLs and its
+rendering is wired separately. Plain `.md`, never `.mdx` (feed-derived
+text must not be parsed as JSX). Minimal stable frontmatter, body is
+the digest:
 
 ```markdown
 ---
@@ -49,16 +51,17 @@ date: "{YYYY-MM-DD}"
 {the digest body}
 ```
 
-Commit with your own GitHub credentials (clone + push or
-`gh api -X PUT /repos/yasinmiran/yasint.dev/contents/digests/...`).
-Re-running a day overwrites the file: idempotent via git.
+Commit via clone + push or
+`gh api -X PUT /repos/yasinmiran/sift/contents/digests/...`; the ingest
+Action also pushes to main, so pull (or use the contents API, which is
+per-file) before pushing. Re-running a day overwrites the file:
+idempotent via git.
 
 Catch-up rule: before writing today's digest, check yesterday. If
-`data/items/{yesterday}.json` exists in the sift repo but
-`digests/{yesterday}.md` is missing on yasint.dev (a skipped run), write
-yesterday's digest from yesterday's items first, then today's: both
-files in the same session. Backfill only that one day; older gaps stay
-gaps.
+`data/items/{yesterday}.json` exists but `digests/{yesterday}.md` does
+not (a skipped run), write yesterday's digest from yesterday's items
+first, then today's: both files in the same session. Backfill only that
+one day; older gaps stay gaps.
 
 ## Editorial rules
 
