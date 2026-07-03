@@ -11,6 +11,32 @@ type FeedItem = ParsedFeed["items"][number] & {
 
 const parser = new Parser();
 
+// XML only defines five named entities; feeds routinely leak html ones
+// (tldrsec's &nbsp; kills the whole parse). Map the common ones to numeric
+// refs and neutralize the rest so one sloppy entity never costs a feed.
+const XML_NATIVE = new Set(["amp", "lt", "gt", "quot", "apos"]);
+const HTML_ENTITIES: Record<string, string> = {
+  nbsp: "&#160;",
+  mdash: "&#8212;",
+  ndash: "&#8211;",
+  lsquo: "&#8216;",
+  rsquo: "&#8217;",
+  ldquo: "&#8220;",
+  rdquo: "&#8221;",
+  hellip: "&#8230;",
+  bull: "&#8226;",
+  middot: "&#183;",
+  copy: "&#169;",
+  reg: "&#174;",
+  trade: "&#8482;",
+};
+
+function sanitizeEntities(xml: string): string {
+  return xml.replace(/&([a-zA-Z][a-zA-Z0-9]{1,31});/g, (whole, name: string) =>
+    XML_NATIVE.has(name) ? whole : (HTML_ENTITIES[name] ?? `&amp;${name};`),
+  );
+}
+
 const log = (msg: string, fields: Record<string, unknown>): void =>
   console.log(JSON.stringify({ level: "info", msg, ...fields }));
 
@@ -23,7 +49,7 @@ export function createRssAdapter(opts: {
     slug: opts.slug,
     mode: "body",
     async parse(body: string, since: Date): Promise<RawItem[]> {
-      const feed = await parser.parseString(body);
+      const feed = await parser.parseString(sanitizeEntities(body));
       const out: RawItem[] = [];
       let dropped = 0;
       for (const e of feed.items as FeedItem[]) {
