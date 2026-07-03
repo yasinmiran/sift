@@ -1,6 +1,10 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { marked } from "marked";
+
+const BASE_URL = "https://sift.yasint.dev";
+const SITE_DESCRIPTION =
+  "The day's tech, sifted: a twice-daily digest of AI, devtools, security and industry news, one readable page per day.";
 
 interface Digest {
   day: string;
@@ -61,13 +65,19 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
   const digests = days.map((d) => parseDigest(d, readFileSync(join(dir, `${d}.md`), "utf8")));
 
   mkdirSync(outDir, { recursive: true });
+  const pub = join(rootDir, "public");
+  if (existsSync(pub)) cpSync(pub, outDir, { recursive: true });
+
   for (const d of digests) {
     const body = `
       <p class="crumbs"><a href="index.html">&larr; all days</a></p>
       <h1>${escapeHtml(d.title)}</h1>
       <p class="meta">${formatDay(d.day)}</p>
       <article class="prose">${marked.parse(d.body) as string}</article>`;
-    writeFileSync(join(outDir, `${d.day}.html`), page(d.title, body));
+    writeFileSync(
+      join(outDir, `${d.day}.html`),
+      page({ title: d.title, description: d.description, path: `${d.day}.html`, type: "article" }, body),
+    );
   }
 
   const list =
@@ -84,18 +94,57 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
           .join("")}</ul>`;
   writeFileSync(
     join(outDir, "index.html"),
-    page("sift.", `<h1>sift<span class="dot">.</span></h1><p class="tag">the day's tech, sifted</p>${list}`),
+    page(
+      { title: "sift: the day's tech, sifted", description: SITE_DESCRIPTION, path: "", type: "website" },
+      `<h1>sift<span class="dot">.</span></h1><p class="tag">the day's tech, sifted</p>${list}`,
+    ),
   );
+
+  const urls = [
+    { loc: `${BASE_URL}/`, lastmod: days[0] },
+    ...days.map((d) => ({ loc: `${BASE_URL}/${d}.html`, lastmod: d })),
+  ];
+  writeFileSync(
+    join(outDir, "sitemap.xml"),
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
+      .map((u) => `  <url><loc>${u.loc}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ""}</url>`)
+      .join("\n")}\n</urlset>\n`,
+  );
+  writeFileSync(join(outDir, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${BASE_URL}/sitemap.xml\n`);
+
   return { pages: digests.length + 1 };
 }
 
-function page(title: string, body: string): string {
+interface PageMeta {
+  title: string;
+  description: string;
+  path: string;
+  type: "website" | "article";
+}
+
+function page({ title, description, path, type }: PageMeta, body: string): string {
+  const canonical = `${BASE_URL}/${path}`;
+  const head = `<title>${escapeHtml(title)}</title>
+<meta name="description" content="${escapeHtml(description)}">
+<link rel="canonical" href="${canonical}">
+<meta property="og:site_name" content="sift">
+<meta property="og:type" content="${type}">
+<meta property="og:title" content="${escapeHtml(title)}">
+<meta property="og:description" content="${escapeHtml(description)}">
+<meta property="og:url" content="${canonical}">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0d0c0b">
+<link rel="icon" type="image/svg+xml" href="favicons/favicon.svg">
+<link rel="icon" type="image/x-icon" href="favicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">`;
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapeHtml(title)}</title>
+${head}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Karla:wght@300..700&family=Space+Mono&display=swap">
