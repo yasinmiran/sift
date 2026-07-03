@@ -21,6 +21,19 @@ type MinimalResponse = {
 };
 export type FetchImpl = (url: string, headers: Record<string, string>) => Promise<MinimalResponse>;
 
+const RETRY_DELAY_MS = 300;
+
+/** One retry after a short pause: enough for the transient network blips and
+ *  5xx hiccups the live runs actually hit, without turning into a backoff loop. */
+export async function withRetry<T>(fn: () => Promise<T>): Promise<T> {
+  try {
+    return await fn();
+  } catch {
+    await new Promise((r) => setTimeout(r, RETRY_DELAY_MS));
+    return fn();
+  }
+}
+
 const liveFetch: FetchImpl = async (url, headers) => {
   const res = await fetch(url, {
     headers: { "user-agent": "sift/1.0", ...headers },
@@ -46,7 +59,11 @@ export async function fetchIfChanged(
   if (prev.etag) headers["if-none-match"] = prev.etag;
   if (prev.lastModified) headers["if-modified-since"] = prev.lastModified;
 
-  const res = await fetchImpl(url, headers);
+  const res = await withRetry(async () => {
+    const r = await fetchImpl(url, headers);
+    if (r.statusCode >= 500) throw new Error(`fetch ${url} failed: ${r.statusCode}`);
+    return r;
+  });
   if (res.statusCode === 304) {
     return {
       changed: false,

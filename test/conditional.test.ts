@@ -30,7 +30,35 @@ describe("fetchIfChanged", () => {
     });
   });
 
-  it("throws on http errors", async () => {
-    await expect(fetchIfChanged("https://x", {}, stub(500) as never)).rejects.toThrow(/500/);
+  it("retries once on a thrown transient failure", async () => {
+    let calls = 0;
+    const flaky = async () => {
+      calls++;
+      if (calls === 1) throw new Error("socket hang up");
+      return { statusCode: 200, body: "<rss/>", headers: {} };
+    };
+    const res = await fetchIfChanged("https://x", {}, flaky as never);
+    expect(res.changed).toBe(true);
+    expect(calls).toBe(2);
+  });
+
+  it("retries once on a 5xx and throws if it persists", async () => {
+    let calls = 0;
+    const dying = async () => {
+      calls++;
+      return { statusCode: 503, body: "", headers: {} };
+    };
+    await expect(fetchIfChanged("https://x", {}, dying as never)).rejects.toThrow(/503/);
+    expect(calls).toBe(2);
+  });
+
+  it("does not retry client errors", async () => {
+    let calls = 0;
+    const gone = async () => {
+      calls++;
+      return { statusCode: 404, body: "", headers: {} };
+    };
+    await expect(fetchIfChanged("https://x", {}, gone as never)).rejects.toThrow(/404/);
+    expect(calls).toBe(1);
   });
 });
