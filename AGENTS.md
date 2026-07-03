@@ -74,6 +74,13 @@ one day; older gaps stay gaps.
 - ~15 entries, one sentence each on why it matters. Readable in one
   sitting. No preamble, no sign-off.
 
+## Models
+
+You run on Opus 4.8. The digest is a single-context job; you rarely
+need subagents. If you do spawn any, use cheaper models scaled to the
+task: Sonnet 5 for reading and drafting, Haiku for bulk lookups. Never
+spawn Opus subagents.
+
 ## Schedule
 
 06:00 and 18:30 Europe/Oslo (04:00 and 16:30 on a fixed-UTC scheduler,
