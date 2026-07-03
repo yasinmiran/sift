@@ -1,22 +1,11 @@
+import { withRetry } from "../fetch";
 import { htmlToText } from "./clean";
 import type { Adapter, JsonFetcher, RawItem } from "./types";
 
 interface HnOpts {
-  lists: string[];
   minScore: number;
   maxItems: number;
   backfillDays: number;
-}
-
-interface HnItem {
-  id: number;
-  type: string;
-  by?: string;
-  time: number;
-  title?: string;
-  url?: string;
-  score?: number;
-  text?: string;
 }
 
 interface AlgoliaHit {
@@ -29,13 +18,14 @@ interface AlgoliaHit {
   story_text?: string;
 }
 
-const FB = "https://hacker-news.firebaseio.com/v0";
+const ALGOLIA = "https://hn.algolia.com/api/v1";
 
-const liveFetch: JsonFetcher = async (url) => {
-  const r = await fetch(url, { signal: AbortSignal.timeout(15_000) });
-  if (!r.ok) throw new Error(`HN ${r.status} for ${url}`);
-  return r.json();
-};
+const liveFetch: JsonFetcher = async (url) =>
+  withRetry(async () => {
+    const r = await fetch(url, { signal: AbortSignal.timeout(15_000) });
+    if (!r.ok) throw new Error(`HN ${r.status} for ${url}`);
+    return r.json();
+  });
 
 export function createHnAdapter(
   slug: string,
@@ -48,26 +38,26 @@ export function createHnAdapter(
     async fetch(since: Date): Promise<RawItem[]> {
       const byId = new Map<string, RawItem>();
 
-      for (const list of opts.lists) {
-        const ids = await fetchJson(`${FB}/${list}stories.json`);
-        if (!Array.isArray(ids)) continue;
-        for (const id of ids.slice(0, opts.maxItems)) {
-          const it = (await fetchJson(`${FB}/item/${id}.json`)) as HnItem | null;
-          const mapped = mapFirebase(slug, it, opts.minScore);
-          if (mapped) byId.set(mapped.externalId, mapped);
-        }
+      // The literal front page: stories the community has already voted up
+      // and that survived moderation, i.e. matured signal, one request.
+      const front = (await fetchJson(
+        `${ALGOLIA}/search?tags=front_page&hitsPerPage=${opts.maxItems}`,
+      )) as { hits?: AlgoliaHit[] } | null;
+      for (const h of hitsOf(front)) {
+        const mapped = mapHit(slug, h, opts.minScore);
+        if (mapped) byId.set(mapped.externalId, mapped);
       }
 
+      // High scorers that already rotated off the front page within the window.
       const cutoff = Date.now() - opts.backfillDays * 86_400_000;
       if (opts.backfillDays > 0 && since.getTime() <= cutoff) {
         const sinceEpoch = Math.floor(since.getTime() / 1000);
-        const url =
-          `https://hn.algolia.com/api/v1/search_by_date?tags=story` +
-          `&numericFilters=points>=${opts.minScore},created_at_i>${sinceEpoch}`;
-        const res = (await fetchJson(url)) as { hits?: AlgoliaHit[] } | null;
-        const hits = res && Array.isArray(res.hits) ? res.hits : [];
-        for (const h of hits) {
-          const mapped = mapAlgolia(slug, h);
+        const backfill = (await fetchJson(
+          `${ALGOLIA}/search_by_date?tags=story` +
+            `&numericFilters=points>=${opts.minScore},created_at_i>${sinceEpoch}`,
+        )) as { hits?: AlgoliaHit[] } | null;
+        for (const h of hitsOf(backfill)) {
+          const mapped = mapHit(slug, h, opts.minScore);
           if (mapped && !byId.has(mapped.externalId)) byId.set(mapped.externalId, mapped);
         }
       }
@@ -77,25 +67,11 @@ export function createHnAdapter(
   };
 }
 
-function mapFirebase(slug: string, it: HnItem | null, minScore: number): RawItem | null {
-  if (!it || it.type !== "story" || !it.title) return null;
-  if ((it.score ?? 0) < minScore) return null;
-  const publishedAt = new Date(it.time * 1000);
-  if (Number.isNaN(publishedAt.getTime())) return null;
-  return {
-    sourceSlug: slug,
-    externalId: String(it.id),
-    title: it.title,
-    url: it.url,
-    author: it.by,
-    publishedAt,
-    content: htmlToText(it.text ?? ""),
-    raw: it,
-  };
-}
+const hitsOf = (res: { hits?: AlgoliaHit[] } | null): AlgoliaHit[] =>
+  res && Array.isArray(res.hits) ? res.hits : [];
 
-function mapAlgolia(slug: string, h: AlgoliaHit): RawItem | null {
-  if (!h.title) return null;
+function mapHit(slug: string, h: AlgoliaHit, minScore: number): RawItem | null {
+  if (!h.title || (h.points ?? 0) < minScore) return null;
   const publishedAt = new Date(h.created_at_i * 1000);
   if (Number.isNaN(publishedAt.getTime())) return null;
   return {

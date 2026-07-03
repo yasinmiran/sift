@@ -10,9 +10,10 @@ export interface Fetchers {
   fetchHtml?: HtmlFetcher;
 }
 
-// HN carries no per-source tuning in the config; the rolling window supplies
-// recency, so one day of Algolia backfill is enough on a cold source.
-const HN_DEFAULTS = { lists: ["top", "best"], minScore: 100, maxItems: 60, backfillDays: 1 };
+// HN carries no per-source tuning in the config; the front page supplies the
+// matured, community-vetted set, and one day of backfill covers high scorers
+// that already rotated off it.
+const HN_DEFAULTS = { minScore: 100, maxItems: 60, backfillDays: 1 };
 
 /** Resolve a source config to its adapter, keyed by the source slug. */
 export function adapterFor(cfg: SourceConfig, fetchers: Fetchers = {}): Adapter {
