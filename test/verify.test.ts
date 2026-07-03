@@ -89,6 +89,14 @@ describe("verifyDigest", () => {
     expect(r.warnings).toContainEqual(expect.stringContaining("2 links"));
   });
 
+  it("warns on em and en dashes in the body", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith({ threads: "\n## Threads\n\n- story-0 — story-1, via – a vendor.\n" }));
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(true);
+    expect(r.warnings).toEqual([expect.stringContaining("em/en dashes")]);
+  });
+
   it("warns when the items file is missing instead of failing", () => {
     writeDigest(digestWith());
     const r = verifyDigest(root, DAY);

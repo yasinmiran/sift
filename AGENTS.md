@@ -92,6 +92,9 @@ excerpt. Read the real articles, then write:
   links and mark paywalled ones `(paywalled)`.
 - ~15 entries, one sentence each on why it matters. Readable in one
   sitting. No preamble, no sign-off.
+- No em or en dashes anywhere in the digest, including inside your own
+  summaries: use a comma, colon, or parentheses instead. Quoted titles
+  are the only exception, and quote sparingly.
 - End with a `## Threads` section: 3-6 bullets mapping how the day's
   stories relate (rival takes on one event, a launch answering a
   competitor's, regulation meeting the product it targets, one trend
