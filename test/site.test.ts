@@ -47,4 +47,32 @@ describe("buildSite", () => {
     expect(pages).toBe(1);
     expect(readFileSync(join(out, "index.html"), "utf8")).toContain("nothing sifted yet");
   });
+
+  it("emits seo head tags, sitemap, robots and copies public assets", () => {
+    digest("2026-07-03", "body");
+    digest("2026-07-04", "body");
+    mkdirSync(join(root, "public", "favicons"), { recursive: true });
+    writeFileSync(join(root, "public", "favicons", "favicon.svg"), "<svg/>");
+    buildSite(root, out);
+
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).toContain('<link rel="canonical" href="https://sift.yasint.dev/">');
+    expect(index).toContain('<meta property="og:type" content="website">');
+    expect(index).toContain('<meta name="description"');
+    expect(index).toContain('href="favicons/favicon.svg"');
+
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain('<link rel="canonical" href="https://sift.yasint.dev/2026-07-04.html">');
+    expect(day).toContain('<meta property="og:type" content="article">');
+    expect(day).toContain('content="top story of 2026-07-04"');
+
+    expect(readFileSync(join(out, "favicons", "favicon.svg"), "utf8")).toBe("<svg/>");
+
+    const map = readFileSync(join(out, "sitemap.xml"), "utf8");
+    expect(map).toContain("<loc>https://sift.yasint.dev/</loc>");
+    expect(map).toContain("<loc>https://sift.yasint.dev/2026-07-03.html</loc>");
+    expect(readFileSync(join(out, "robots.txt"), "utf8")).toContain(
+      "Sitemap: https://sift.yasint.dev/sitemap.xml",
+    );
+  });
 });
