@@ -53,6 +53,13 @@ Commit with your own GitHub credentials (clone + push or
 `gh api -X PUT /repos/yasinmiran/yasint.dev/contents/digests/...`).
 Re-running a day overwrites the file: idempotent via git.
 
+Catch-up rule: before writing today's digest, check yesterday. If
+`data/items/{yesterday}.json` exists in the sift repo but
+`digests/{yesterday}.md` is missing on yasint.dev (a skipped run), write
+yesterday's digest from yesterday's items first, then today's: both
+files in the same session. Backfill only that one day; older gaps stay
+gaps.
+
 ## Editorial rules
 
 - The same news event covered by several sources is ONE entry.
