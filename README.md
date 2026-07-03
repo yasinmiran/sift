@@ -1,7 +1,8 @@
 # sift
 
-Personal daily tech digest pipeline: 46 of 49 configured sources fetched
-twice a day by a GitHub Action, committed here as JSON, turned into a digest on
+Personal daily tech digest pipeline: the curated sources in
+`config/sources.json` are fetched twice a day by a GitHub Action,
+committed here as JSON, and turned into a digest on
 [yasint.dev](https://yasint.dev) by a scheduled Claude routine.
 
 - `data/items/YYYY-MM-DD.json`: the day's fetched items (the archive is
