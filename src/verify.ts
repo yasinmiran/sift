@@ -72,6 +72,11 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     }
   }
 
+  const dashes = (raw.match(/[–—]/g) ?? []).length;
+  if (dashes > 0) {
+    warnings.push(`${dashes} em/en dashes; rewrite with commas, colons or parentheses`);
+  }
+
   if (body && !/^##\s+Threads\b/m.test(body)) {
     warnings.push("no Threads section; add one unless nothing genuinely connects today");
   }
