@@ -89,6 +89,10 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     warnings.push("no Threads section; add one unless nothing genuinely connects today");
   }
 
+  if (body && !/^##\s+Hacker News\b/m.test(body)) {
+    warnings.push("no Hacker News section; the digest carries a front-page summary (see AGENTS.md)");
+  }
+
   return { ok: errors.length === 0, errors, warnings };
 }
 

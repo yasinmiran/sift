@@ -101,6 +101,28 @@ excerpt. Read the real articles, then write:
   surfacing in several entries). Name the entries each thread connects.
   Skip the section only when nothing genuinely connects.
 
+## Hacker News
+
+Before Threads, the digest carries a `## Hacker News` section: the live
+front page, summarized as prose. Delegate it:
+
+- Spawn ONE Sonnet 5 subagent with this contract; place its output into
+  the digest after your own edit pass (voice, dashes, dedupe).
+- Data: a single fetch of
+  `https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30`,
+  which carries title, url, points, num_comments and objectID for the
+  whole front page (~30 stories). Do not scrape news.ycombinator.com.
+- Go through all ~30 stories; let points, comment count and title
+  relevance to the digest's themes decide how much space each one gets,
+  from a full treatment down to a passing clause. Nothing is skipped
+  outright.
+- Write 2-4 flowing paragraphs grouped by theme, never bullets. Every
+  story mentioned links inline to its article url; heavily discussed
+  ones (roughly 300+ comments) also link to
+  `https://news.ycombinator.com/item?id={objectID}` as `(discussion)`.
+- A story the digest already covers above gets a clause and a link, not
+  a re-summary; point back to the entry's thread instead.
+
 ## Voice
 
 Telegraphic, dense, still readable. Every word earns its place:
@@ -184,10 +206,10 @@ or working out why a source is quiet.
 
 ## Models
 
-You run on Opus 4.8. The digest is a single-context job; you rarely
-need subagents. If you do spawn any, use cheaper models scaled to the
-task: Sonnet 5 for reading and drafting, Haiku for bulk lookups. Never
-spawn Opus subagents.
+You run on Opus 4.8. The digest is a single-context job; the Hacker
+News section is the one mandated subagent. If you spawn others, use
+cheaper models scaled to the task: Sonnet 5 for reading and drafting,
+Haiku for bulk lookups. Never spawn Opus subagents.
 
 ## Schedule
 
