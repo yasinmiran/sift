@@ -101,6 +101,37 @@ excerpt. Read the real articles, then write:
   surfacing in several entries). Name the entries each thread connects.
   Skip the section only when nothing genuinely connects.
 
+## Voice
+
+Telegraphic, dense, still readable. Every word earns its place:
+
+- Drop stop words and filler where meaning survives: "OpenAI ships
+  GPT-6: 1M context, $2/M tokens", not "OpenAI has announced the
+  release of GPT-6, which features a 1M token context window".
+- Strip source noise before it reaches the digest: marketing adjectives
+  (powerful, seamless, exciting), hedging (reportedly stays only when
+  sourcing is genuinely unclear), throat-clearing ("in a blog post, the
+  company said").
+- Facts carry the entry: names, numbers, versions, prices. The "why it
+  matters" clause is the one editorial license per entry.
+- Readable beats short: keep verbs, keep each sentence's spine, never
+  compress into ambiguity.
+
+## Continuity
+
+The clone holds the rolling month of digests: skim the recent ones
+before writing so the days read as one continuous feed, not a reset.
+
+- A story already digested does not reappear. Repeat coverage only on a
+  real development (patch shipped, round closed, lawsuit filed), written
+  as the delta: name what changed since the earlier entry.
+- The evening run rewriting today's file is fine; earlier days are the
+  record. Never contradict them silently: if a story shifted, cover the
+  shift as its own entry.
+- The verifier warns on links an earlier digest already used: each one
+  is either a deliberate follow-up (keep, but write it as an update) or
+  an accidental repeat (cut it).
+
 ## Verify
 
 After writing each digest, from the clone:
@@ -113,9 +144,10 @@ Exits non-zero on `errors` (missing or wrong frontmatter, date not
 matching the filename, non-http links, empty body): fix and re-verify
 before committing. `warnings` need judgment: a link outside the day's
 items is fine when you deliberately linked a primary source and a bug
-when it is a typo or an invented url; thin digests and a missing
-Threads section also warn. Resolve every warning consciously before
-pushing.
+when it is a typo or an invented url; a link an earlier digest already
+used is fine only as a deliberate update (see Continuity); thin digests
+and a missing Threads section also warn. Resolve every warning
+consciously before pushing.
 
 ## Models
 
