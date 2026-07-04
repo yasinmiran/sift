@@ -45,6 +45,19 @@ test("stamps mediaType video when configured", async () => {
   expect(items.every((i) => i.mediaType === "video")).toBe(true);
 });
 
+test("strips zero-width watermark characters from titles and content", async () => {
+  const feed = `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
+    <item><title>Zero​width‌ title﻿</title><guid>e1</guid>
+    <link>https://example.com/1</link><pubDate>${new Date().toUTCString()}</pubDate>
+    <description>body​text</description></item>
+  </channel></rss>`;
+  const a = createRssAdapter({ slug: "stackoverflow-blog", url: "https://x" });
+  if (a.mode !== "body") throw new Error("rss adapter must be body-mode");
+  const items = await a.parse(feed, new Date(0));
+  expect(items[0]!.title).toBe("Zerowidth title");
+  expect(items[0]!.content).toBe("bodytext");
+});
+
 test("tolerates html-named entities that are not valid xml", async () => {
   const feed = `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
     <item><title>Security&nbsp;news: what&rsquo;s new &wibble;</title><guid>e1</guid>
