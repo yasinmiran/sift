@@ -51,9 +51,15 @@ export async function fetchIfChanged(
   if (prev.etag) headers["if-none-match"] = prev.etag;
   if (prev.lastModified) headers["if-modified-since"] = prev.lastModified;
 
+  // 403/415/429 come from edge/WAF hiccups often enough (css-tricks served a
+  // one-off 415) that they earn the same single retry as a 5xx; real client
+  // errors (404, 410) stay fatal on first sight.
+  const TRANSIENT_4XX = new Set([403, 408, 415, 429]);
   const res = await withRetry(async () => {
     const r = await fetchImpl(url, headers);
-    if (r.statusCode >= 500) throw new Error(`fetch ${url} failed: ${r.statusCode}`);
+    if (r.statusCode >= 500 || TRANSIENT_4XX.has(r.statusCode)) {
+      throw new Error(`fetch ${url} failed: ${r.statusCode}`);
+    }
     return r;
   });
   if (res.statusCode === 304) {
