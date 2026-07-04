@@ -113,8 +113,36 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
       .join("\n")}\n</urlset>\n`,
   );
   writeFileSync(join(outDir, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${BASE_URL}/sitemap.xml\n`);
+  writeFileSync(join(outDir, "404.html"), notFoundPage());
 
   return { pages: digests.length + 1 };
+}
+
+// GitHub Pages serves 404.html for every missing path, most often a day page
+// that is not written yet (linked as "today") or one pruned from the rolling
+// month. The script tells those two apart from the requested path.
+function notFoundPage(): string {
+  const body = `
+      <p class="crumbs"><a href="/">&larr; all days</a>${BYLINE}</p>
+      <h1>404<span class="dot">.</span></h1>
+      <p class="tag">nothing sifted here</p>
+      <section id="why" class="today-note">this page does not exist. head back to <a href="/">all days</a>.</section>
+<script>
+(() => {
+  const m = /^\\/(\\d{4}-\\d{2}-\\d{2})\\.html$/.exec(location.pathname);
+  if (!m) return;
+  const day = m[1];
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  const why = document.getElementById("why");
+  why.innerHTML = day >= today
+    ? "the <strong>" + day + "</strong> digest is not sifted yet. digests land around <strong>06:00</strong> and <strong>18:30</strong> Oslo time; come back then, or <a href=\\"/\\">read the recent days</a>."
+    : "the <strong>" + day + "</strong> digest rolled out of the month archive; it lives on in <a href=\\"https://github.com/yasinmiran/sift/commits/main/digests\\">git history</a>.";
+})();
+</script>`;
+  return page(
+    { title: "sift: page not found", description: SITE_DESCRIPTION, path: "404.html", type: "website", noindex: true },
+    body,
+  );
 }
 
 // Visitors clicking "read today's digest" land on the index with ?today=1.
@@ -145,12 +173,13 @@ interface PageMeta {
   description: string;
   path: string;
   type: "website" | "article";
+  noindex?: true;
 }
 
-function page({ title, description, path, type }: PageMeta, body: string): string {
+function page({ title, description, path, type, noindex }: PageMeta, body: string): string {
   const canonical = `${BASE_URL}/${path}`;
   const head = `<title>${escapeHtml(title)}</title>
-<meta name="description" content="${escapeHtml(description)}">
+${noindex ? '<meta name="robots" content="noindex">\n' : ""}<meta name="description" content="${escapeHtml(description)}">
 <link rel="canonical" href="${canonical}">
 <meta property="og:site_name" content="sift">
 <meta property="og:type" content="${type}">
@@ -159,11 +188,11 @@ function page({ title, description, path, type }: PageMeta, body: string): strin
 <meta property="og:url" content="${canonical}">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0d0c0b">
-<link rel="icon" type="image/svg+xml" href="favicons/favicon.svg">
-<link rel="icon" type="image/x-icon" href="favicons/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">`;
+<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">`;
   return `<!doctype html>
 <html lang="en">
 <head>

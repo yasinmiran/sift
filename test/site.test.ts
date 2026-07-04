@@ -88,7 +88,7 @@ describe("buildSite", () => {
     expect(index).toContain('<link rel="canonical" href="https://sift.yasint.dev/">');
     expect(index).toContain('<meta property="og:type" content="website">');
     expect(index).toContain('<meta name="description"');
-    expect(index).toContain('href="favicons/favicon.svg"');
+    expect(index).toContain('href="/favicons/favicon.svg"');
 
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).toContain('<link rel="canonical" href="https://sift.yasint.dev/2026-07-04.html">');
@@ -100,8 +100,25 @@ describe("buildSite", () => {
     const map = readFileSync(join(out, "sitemap.xml"), "utf8");
     expect(map).toContain("<loc>https://sift.yasint.dev/</loc>");
     expect(map).toContain("<loc>https://sift.yasint.dev/2026-07-03.html</loc>");
+    expect(map).not.toContain("404");
     expect(readFileSync(join(out, "robots.txt"), "utf8")).toContain(
       "Sitemap: https://sift.yasint.dev/sitemap.xml",
     );
+  });
+
+  it("writes a noindex 404 page that explains missing day pages", () => {
+    digest("2026-07-03", "body");
+    buildSite(root, out);
+    const nf = readFileSync(join(out, "404.html"), "utf8");
+    expect(nf).toContain('<meta name="robots" content="noindex">');
+    expect(nf).toContain("nothing sifted here");
+    expect(nf).toContain('href="/"');
+    expect(nf).toContain('href="/favicons/favicon.svg"');
+    expect(nf).toContain('timeZone: "Europe/Oslo"');
+    expect(nf).toContain("06:00");
+    expect(nf).toContain("18:30");
+    expect(nf).toContain("https://github.com/yasinmiran/sift");
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).not.toContain('<meta name="robots" content="noindex">');
   });
 });
