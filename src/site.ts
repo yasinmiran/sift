@@ -3,6 +3,7 @@ import { join, resolve } from "node:path";
 import { marked } from "marked";
 
 const BASE_URL = "https://sift.yasint.dev";
+const BYLINE = '<span class="byline">by <a href="https://yasint.dev" data-backlink>yasin</a></span>';
 const SITE_DESCRIPTION =
   "The day's tech, sifted: a twice-daily digest of AI, devtools, security and industry news, one readable page per day.";
 
@@ -70,7 +71,7 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
 
   for (const d of digests) {
     const body = `
-      <p class="crumbs"><a href="index.html">&larr; all days</a></p>
+      <p class="crumbs"><a href="index.html">&larr; all days</a>${BYLINE}</p>
       <h1>${escapeHtml(d.title)}</h1>
       <p class="meta">${formatDay(d.day)}</p>
       <article class="prose">${marked.parse(d.body) as string}</article>`;
@@ -96,7 +97,8 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
     join(outDir, "index.html"),
     page(
       { title: "sift: the day's tech, sifted", description: SITE_DESCRIPTION, path: "", type: "website" },
-      `<h1>sift<span class="dot">.</span></h1><p class="tag">the day's tech, sifted</p>${list}`,
+      `<h1>sift<span class="dot">.</span> ${BYLINE}</h1><p class="tag">the day's tech, sifted</p>` +
+        `<section id="today" class="today-note" hidden></section>${list}${todayScript()}`,
     ),
   );
 
@@ -113,6 +115,29 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
   writeFileSync(join(outDir, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${BASE_URL}/sitemap.xml\n`);
 
   return { pages: digests.length + 1 };
+}
+
+// Visitors clicking "read today's digest" land on the index with ?today=1.
+// The site is static, so today's page may not exist yet; decide client-side:
+// jump to it when it is in the list, otherwise say when the next one lands
+// (digests are written around 06:00 and 18:30 Europe/Oslo).
+function todayScript(): string {
+  return `<script>
+(() => {
+  const now = new Date();
+  const day = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+  const clock = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Oslo", hour: "2-digit", minute: "2-digit", hour12: false }).format(now);
+  const todayLink = document.querySelector('.days a[href="' + day + '.html"]');
+  if (todayLink) {
+    if (new URLSearchParams(location.search).has("today")) location.replace(todayLink.getAttribute("href") + location.search);
+    return;
+  }
+  const next = clock < "06:00" ? "around 06:00 today" : clock < "18:30" ? "around 18:30 today" : "around 06:00 tomorrow";
+  const slot = document.getElementById("today");
+  slot.innerHTML = "today's digest is still being sifted. the next one lands <strong>" + next + "</strong> (Oslo time); come back then, or read the recent days below.";
+  slot.hidden = false;
+})();
+</script>`;
 }
 
 interface PageMeta {
@@ -157,7 +182,9 @@ h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:2.1rem;letter-
 .tag{color:var(--muted);margin:0 0 2.5rem}
 .mono{font-family:"Space Mono",ui-monospace,monospace;font-size:.85em}
 .meta{color:var(--muted);font-size:.9rem;margin:.15rem 0 0}
-.crumbs{margin:0 0 2rem}
+.crumbs{margin:0 0 2rem;display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.byline{font-family:"Karla",ui-sans-serif,system-ui,sans-serif;font-weight:400;font-size:.9rem;letter-spacing:0;color:var(--muted)}
+.byline a{color:#b8b0a3}
 a{color:var(--accent);text-decoration:none}
 a:hover{color:var(--accent-hover);text-decoration:underline}
 .days{list-style:none;margin:0;padding:0}
@@ -168,12 +195,12 @@ a:hover{color:var(--accent-hover);text-decoration:underline}
 .prose li{margin:.45rem 0}
 .prose blockquote{margin:1rem 0;padding:.5rem 1rem;border-left:2px solid var(--accent);color:#b8b0a3}
 .prose code{font-family:"Space Mono",ui-monospace,monospace;font-size:.85em;background:var(--surface);padding:.1em .35em;border-radius:4px}
-.foot{margin-top:4rem;padding-top:1.25rem;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem}
+.today-note{margin:0 0 1.5rem;padding:.85rem 1.1rem;border:1px solid var(--border);border-radius:var(--radius);color:#b8b0a3;font-size:.92rem}
+.today-note strong{color:var(--accent);font-weight:600}
 </style>
 </head>
 <body>
 ${body}
-<footer class="foot">sift, by <a href="https://yasint.dev" data-backlink>yasin</a></footer>
 <script>
 // Visitors arriving from yasint.dev carry ?from=<path>; remember it for the
 // tab so the backlink returns them to the page they left, not the homepage.

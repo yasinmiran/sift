@@ -48,14 +48,32 @@ describe("buildSite", () => {
     expect(readFileSync(join(out, "index.html"), "utf8")).toContain("nothing sifted yet");
   });
 
-  it("renders a backlink footer that upgrades to the visitor's origin page", () => {
+  it("gives the index a today slot that redirects or reports the next drop", () => {
+    digest("2026-07-03", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).toContain('<section id="today" class="today-note" hidden></section>');
+    expect(index).toContain('timeZone: "Europe/Oslo"');
+    expect(index).toContain("location.replace");
+    expect(index).toContain("06:00");
+    expect(index).toContain("18:30");
+    const day = readFileSync(join(out, "2026-07-03.html"), "utf8");
+    expect(day).not.toContain('id="today"');
+  });
+
+  it("carries a byline backlink in the title area that upgrades to the visitor's origin", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);
-    for (const file of ["index.html", "2026-07-04.html"]) {
-      const html = readFileSync(join(out, file), "utf8");
-      expect(html).toContain('<a href="https://yasint.dev" data-backlink>yasin</a>');
+    const byline = '<span class="byline">by <a href="https://yasint.dev" data-backlink>yasin</a></span>';
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).toContain(`sift<span class="dot">.</span> ${byline}`);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain(byline);
+    expect(day.indexOf(byline)).toBeLessThan(day.indexOf("<h1>"));
+    for (const html of [index, day]) {
       expect(html).toContain('sessionStorage.setItem("sift-from"');
       expect(html).toContain('"https://yasint.dev" + back');
+      expect(html).not.toContain('class="foot"');
     }
   });
 
