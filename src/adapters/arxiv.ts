@@ -1,4 +1,5 @@
 import Parser from "rss-parser";
+import { info } from "../log";
 import type { Adapter, RawItem } from "./types";
 
 // arXiv category feeds (rss.arxiv.org/rss/cat.A+cat.B) per
@@ -22,9 +23,6 @@ type ArxivItem = {
 const parser = new Parser({
   customFields: { item: [["arxiv:announce_type", "announceType"], ["description", "description"]] },
 });
-
-const log = (msg: string, fields: Record<string, unknown>): void =>
-  console.log(JSON.stringify({ level: "info", msg, ...fields }));
 
 export function createArxivAdapter(opts: { slug: string; url: string; maxItems?: number }): Adapter {
   const maxItems = opts.maxItems ?? 25;
@@ -60,7 +58,7 @@ export function createArxivAdapter(opts: { slug: string; url: string; maxItems?:
           mediaType: "text",
         });
       }
-      log("arxiv parsed", { source: opts.slug, kept: out.length, skipped });
+      info("arxiv parsed", { source: opts.slug, kept: out.length, skipped });
       return out;
     },
   };

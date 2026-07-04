@@ -1,6 +1,7 @@
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { marked } from "marked";
+import { parseFrontmatter } from "./frontmatter";
 
 const BASE_URL = "https://sift.yasint.dev";
 const BYLINE = '<span class="byline">by <a href="https://yasint.dev" data-backlink>yasin</a></span>';
@@ -28,20 +29,13 @@ marked.use({
   },
 });
 
-const FRONT = /^---\n([\s\S]*?)\n---\n?/;
-
 function parseDigest(day: string, raw: string): Digest {
-  const front = FRONT.exec(raw);
-  const meta: Record<string, string> = {};
-  for (const line of (front?.[1] ?? "").split("\n")) {
-    const kv = /^(\w+):\s*"?(.*?)"?\s*$/.exec(line);
-    if (kv) meta[kv[1]!] = kv[2]!;
-  }
+  const { meta, body } = parseFrontmatter(raw);
   return {
     day,
-    title: meta.title ?? `sift: ${day}`,
-    description: meta.description ?? "",
-    body: raw.slice(front?.[0].length ?? 0),
+    title: meta?.title ?? `sift: ${day}`,
+    description: meta?.description ?? "",
+    body,
   };
 }
 
