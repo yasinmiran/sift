@@ -1,4 +1,4 @@
-import { withRetry } from "../fetch";
+import { withRetry } from "../retry";
 import { htmlToText } from "./clean";
 import type { Adapter, JsonFetcher, RawItem } from "./types";
 

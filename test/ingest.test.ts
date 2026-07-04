@@ -2,10 +2,11 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { mkdtempSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { runIngest } from "../src/ingest";
+import { runIngest } from "../src/pipeline/ingest";
 import { today } from "../src/day";
-import { loadDay, loadState, saveState } from "../src/store";
-import type { SourceConfig } from "../src/sources";
+import { loadDay } from "../src/pipeline/day-file";
+import { loadState, saveState } from "../src/pipeline/state";
+import type { SourceConfig } from "../src/pipeline/sources";
 
 // Fabricated feed with fresh pubDates: the ingest window drops anything older
 // than 24h, so recorded fixtures (frozen in June) would come back empty here.

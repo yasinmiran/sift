@@ -29,7 +29,7 @@ digests/{day}.md                                 committed
         |
         v
 [pages Action]  on push to digests/, src/        .github/workflows/pages.yml
-   src/site.ts renders markdown -> html
+   src/site/ renders markdown -> html
         |
         v
 https://sift.yasint.dev
@@ -40,22 +40,22 @@ can be re-run, inspected, or replayed from history independently.
 
 ## The ingest pipeline
 
-`npm run ingest` (src/ingest.ts) makes one pass over the enabled
+`npm run ingest` (src/pipeline/) makes one pass over the enabled
 sources in `config/sources.json`:
 
-1. **Fetch.** Feed sources go through `src/fetch.ts`: conditional GET
+1. **Fetch.** Feed sources go through `fetch.ts`: conditional GET
    with ETag, then Last-Modified, then a body hash for feeds that send
    neither. An unchanged feed costs one request and no parse. Sources
    that need their own fetching (HN's JSON API, newsletter archive
    pages) pull for themselves.
 2. **Parse.** The adapter for the source's `kind` maps the payload to
-   plain items (src/adapters/): `rss` for feeds, `arxiv` for arXiv's
+   plain items (adapters/): `rss` for feeds, `arxiv` for arXiv's
    announce-typed category feeds (only announce type "new" is news),
    `hn` for the Algolia front page plus a high-score backfill, and
    `web` for per-site HTML extractors.
 3. **Filter.** Items older than 24h are dropped (feeds replay old
-   entries; the digest only wants today). `src/classify.ts` drops
-   sponsored inventory and flags paywalled domains and subscriber-only
+   entries; the digest only wants today). `promo.ts` drops sponsored
+   inventory; `paywall.ts` flags paywalled domains and subscriber-only
    stubs so the digest can prefer links readers can open.
 4. **Dedupe.** Item identity is `sourceSlug:externalId`. The seen index
    in `data/state.json` remembers identities for 7 days, so nothing
@@ -78,14 +78,14 @@ mapping how the stories relate, and no repeats of stories a previous
 day already covered. The morning run writes the day's first digest; the
 evening run rewrites it with the full day.
 
-`npm run verify -- {day}` (src/verify.ts) is the agent's self-check
+`npm run verify -- {day}` (src/digest/verify.ts) is the agent's self-check
 before committing: frontmatter shape, links against the day's items,
 links against earlier digests (repeat detection), em/en dashes, and the
 Threads section. Errors exit non-zero; warnings need judgment.
 
 ## The site
 
-`npm run site` (src/site.ts) renders `digests/` into `site/`: one page
+`npm run site` (src/site/) renders `digests/` into `site/`: one page
 per day, an index, sitemap, robots.txt, and a 404 page that tells
 visitors when a not-yet-written digest lands. The pages workflow
 deploys it on every push that touches digests or the renderer. The
@@ -104,19 +104,32 @@ digests/{day}.md        ---\ntitle, description, date\n--- + markdown
 
 ## Source layout
 
+One concern per file, one directory per actor:
+
 ```
-src/day.ts         the one canonical "day": Oslo calendar date
-src/sources.ts     config loader + validation
-src/fetch.ts       conditional GET with retry
-src/classify.ts    promo drop + paywall flag
-src/store.ts       day files, state, seen index
-src/ingest.ts      the pipeline pass (CLI: npm run ingest)
-src/cleanup.ts     rolling-month pruning (CLI: npm run cleanup)
-src/frontmatter.ts digest file format, shared by verify + site
-src/verify.ts      digest self-check (CLI: npm run verify -- {day})
-src/site.ts        static site renderer (CLI: npm run site)
-src/log.ts         one-line JSON logs
-src/adapters/      registry + rss / arxiv / hn / web (+ extractors)
+src/day.ts                the one canonical "day": Oslo calendar date
+src/log.ts                one-line JSON logs
+src/pipeline/             the ingest write path
+  sources.ts              config loader + validation
+  retry.ts                one-retry policy
+  fetch.ts                conditional GET (etag / last-modified / hash)
+  promo.ts                sponsored-inventory drop policy
+  paywall.ts              paywall flag policy
+  day-file.ts             data/items/{day}.json read/write
+  state.ts                data/state.json: validators + seen index
+  ingest.ts               the pass wiring it all (CLI: npm run ingest)
+  cleanup.ts              rolling-month pruning (CLI: npm run cleanup)
+  adapters/               registry + rss / arxiv / hn / web (+ extractors)
+src/digest/               the digest contract's tooling
+  frontmatter.ts          digest file format, shared by verify + site
+  verify.ts               digest self-check (CLI: npm run verify -- {day})
+src/site/                 the static renderer
+  build.ts                digests/ -> site/ (CLI: npm run site)
+  page.ts                 html shell, SEO head, design tokens
+  markdown.ts             digest markdown -> safe html
+  html.ts                 text escaping
+  today.ts                today-redirect script for the index
+  not-found.ts            the day-aware 404 page
 ```
 
 Tests (`npm test`) are vitest against fixtures, never the network;
@@ -132,6 +145,6 @@ repo). The handshake both sides rely on, pinned by
   upgrades the `data-backlink` byline to return the visitor to that page.
 - Its callout links `/?today=1`; the index jumps to today's digest when
   it exists, otherwise reports the next drop (06:00 / 18:30 Oslo).
-- The design tokens in `src/site.ts` mirror yasint.dev's
+- The design tokens in `src/site/page.ts` mirror yasint.dev's
   `tailwind.config.mjs` (the canonical copy) and its `global.css`
   substrate. Retune there first, then sync here and update both tests.

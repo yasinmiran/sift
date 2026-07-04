@@ -1,6 +1,6 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { today } from "./day";
+import { today } from "../day";
 import { parseFrontmatter } from "./frontmatter";
 
 export interface VerifyResult {

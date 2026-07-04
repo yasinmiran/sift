@@ -3,6 +3,7 @@
 // validator (or ignore them). An unchanged feed costs one request and no
 // parse; the validators round-trip through data/state.json between runs.
 import { createHash } from "node:crypto";
+import { withRetry } from "./retry";
 
 const sha256 = (s: string): string => createHash("sha256").update(s).digest("hex");
 
@@ -24,19 +25,6 @@ type MinimalResponse = {
   headers: Record<string, string | undefined>;
 };
 export type FetchImpl = (url: string, headers: Record<string, string>) => Promise<MinimalResponse>;
-
-const RETRY_DELAY_MS = 300;
-
-/** One retry after a short pause: enough for the transient network blips and
- *  5xx hiccups the live runs actually hit, without turning into a backoff loop. */
-export async function withRetry<T>(fn: () => Promise<T>): Promise<T> {
-  try {
-    return await fn();
-  } catch {
-    await new Promise((r) => setTimeout(r, RETRY_DELAY_MS));
-    return fn();
-  }
-}
 
 const liveFetch: FetchImpl = async (url, headers) => {
   const res = await fetch(url, {

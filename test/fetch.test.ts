@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fetchIfChanged } from "../src/fetch";
+import { fetchIfChanged } from "../src/pipeline/fetch";
 
 const stub = (status: number, body = "", headers: Record<string, string> = {}) =>
   async () => ({ statusCode: status, body, headers });

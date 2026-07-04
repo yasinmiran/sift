@@ -1,6 +1,6 @@
 import { existsSync, readdirSync, rmSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { daysBefore, today } from "./day";
+import { daysBefore, today } from "../day";
 
 // The browsable archive is a rolling month; git history keeps everything.
 const MAX_AGE_DAYS = 31;

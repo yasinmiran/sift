@@ -1,5 +1,5 @@
 import Parser from "rss-parser";
-import { info } from "../log";
+import { info } from "../../log";
 import { htmlToText } from "./clean";
 import type { Adapter, RawItem } from "./types";
 

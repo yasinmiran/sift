@@ -7,12 +7,12 @@
     "node": "22.x"
   },
   "scripts": {
-    "ingest": "tsx src/ingest.ts",
+    "ingest": "tsx src/pipeline/ingest.ts",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "cleanup": "tsx src/cleanup.ts",
-    "site": "tsx src/site.ts",
-    "verify": "tsx src/verify.ts"
+    "cleanup": "tsx src/pipeline/cleanup.ts",
+    "site": "tsx src/site/build.ts",
+    "verify": "tsx src/digest/verify.ts"
   },
   "dependencies": {
     "cheerio": "^1.2.0",

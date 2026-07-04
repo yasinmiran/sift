@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect, test } from "vitest";
-import { createArxivAdapter } from "../../src/adapters/arxiv";
+import { createArxivAdapter } from "../../src/pipeline/adapters/arxiv";
 
 const xml = (p: string) => readFileSync(join(__dirname, "../fixtures/arxiv", p), "utf8");
 

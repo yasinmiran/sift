@@ -9,27 +9,26 @@
 // files are only rewritten when their content actually changed (so the
 // Action's commit step stays a no-op on quiet runs).
 import { resolve } from "node:path";
+import { today } from "../day";
+import { warn } from "../log";
 import { adapterFor, type Fetchers } from "./adapters/registry";
 import { safeHttpUrl } from "./adapters/clean";
 import type { RawItem } from "./adapters/types";
-import { isPaywalled, isPromotional } from "./classify";
-import { today } from "./day";
+import { loadDay, saveDay, type StoredItem } from "./day-file";
 import { fetchIfChanged, type FetchImpl } from "./fetch";
-import { warn } from "./log";
+import { isPaywalled } from "./paywall";
+import { isPromotional } from "./promo";
 import { loadSources, type SourceConfig } from "./sources";
 import {
   isSeen,
   itemKey,
-  loadDay,
   loadState,
   markSeen,
   pruneSeen,
-  saveDay,
   saveState,
   type IngestState,
   type SourceState,
-  type StoredItem,
-} from "./store";
+} from "./state";
 
 const WINDOW_MS = 24 * 60 * 60 * 1000;
 

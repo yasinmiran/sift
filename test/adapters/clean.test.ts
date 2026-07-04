@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { htmlToText, truncate } from "../../src/adapters/clean";
+import { htmlToText, truncate } from "../../src/pipeline/adapters/clean";
 
 test("htmlToText strips tags and collapses whitespace", () => {
   expect(htmlToText("<p>Hello   <b>world</b></p>\n<p>x</p>")).toBe("Hello world x");
