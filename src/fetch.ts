@@ -1,3 +1,7 @@
+// Polite feed fetching with three tiers of change detection: ETag, then
+// Last-Modified, then a body hash for the many feeds that send neither
+// validator (or ignore them). An unchanged feed costs one request and no
+// parse; the validators round-trip through data/state.json between runs.
 import { createHash } from "node:crypto";
 
 const sha256 = (s: string): string => createHash("sha256").update(s).digest("hex");
