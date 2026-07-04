@@ -69,27 +69,28 @@ one day; older gaps stay gaps.
 
 ## Reading
 
-A day holds 150-200 items and the JSON `content` field is only a feed
-excerpt. Read the real articles, then write:
+A day holds 150-200 items. The `content` field carries whatever the
+feed shipped: the full article for most newsletters and blogs, a
+teaser for the rest. Your environment is a cloud routine whose egress
+policy allows GitHub but blocks most article hosts; that is permanent,
+so work from what the repo carries:
 
-- First pass: read every item's title and excerpt, pick the stories
+- First pass: read every item's title and content, pick the stories
   worth digesting.
-- Second pass: fetch the full text of each picked story from its `url`
-  and read it before summarizing. Fan this out to subagent batches
-  (see Models); the main thread synthesizes.
-- Skip full-text for items marked `paywalled: true` and anything gated
-  in practice (login wall, cookie wall, 402/403/429): use the excerpt
-  and mark the entry `(paywalled)`. Never work around a paywall.
-- One polite fetch per article, no retries. If a page will not load,
-  the excerpt is enough.
-- If your environment's egress policy blocks article hosts outright
-  (the proxy says so explicitly), do not fight it: work from excerpts
-  and titles, mark thin entries `(title only, page did not load)`, and
-  say in your run summary that egress was restricted. Never invent
-  detail the source in hand does not support.
-- Summarize in your own words from what you actually read. If the full
-  text was unreachable, claim only what the excerpt supports: no
-  invented details, quotes at most a phrase.
+- Content depth decides entry depth. Full-text items earn real
+  summaries. Teaser items get exactly what the teaser supports.
+  When even that is empty, the entry is the title, marked
+  `(title only, page did not load)`. Never invent detail the source
+  in hand does not support.
+- Fetching a story's url is worth ONE polite attempt only when the
+  host is plausibly reachable (github.com always is; the proxy names
+  blocked hosts explicitly). No retries, no workarounds. If egress
+  blocked your reading, say so in the run summary.
+- Never fetch items marked `paywalled: true` or anything gated in
+  practice (login wall, cookie wall, 402/403/429): use the content in
+  hand and mark the entry `(paywalled)`. Never work around a paywall.
+- Summarize in your own words from what you actually read: no invented
+  details, quotes at most a phrase.
 
 ## Editorial rules
 
