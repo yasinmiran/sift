@@ -1,6 +1,6 @@
 import Parser from "rss-parser";
 import { info } from "../../log";
-import { htmlToText } from "./clean";
+import { htmlToText, stripInvisibles } from "./clean";
 import type { Adapter, RawItem } from "./types";
 
 type ParsedFeed = Awaited<ReturnType<Parser["parseString"]>>;
@@ -64,7 +64,7 @@ export function createRssAdapter(opts: {
         out.push({
           sourceSlug: opts.slug,
           externalId,
-          title: e.title,
+          title: stripInvisibles(e.title),
           url: e.link,
           author: e.creator ?? e.author,
           publishedAt,
