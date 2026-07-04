@@ -1,6 +1,6 @@
+import { info } from "../../log";
 import { tldrExtract, tldrResolveLatest } from "./web-extractors/tldr";
 import { anthropicExtract } from "./web-extractors/anthropic";
-import { alphasignalExtract } from "./web-extractors/alphasignal";
 import { hfPapersExtract } from "./web-extractors/hf-papers";
 import type { Adapter, HtmlFetcher, RawItem } from "./types";
 
@@ -10,7 +10,6 @@ export type LatestResolver = (indexHtml: string, baseUrl: string) => string | un
 export const extractors: Record<string, Extractor> = {
   tldr: tldrExtract,
   "anthropic-news": anthropicExtract,
-  alphasignal: alphasignalExtract,
   "hf-daily-papers": hfPapersExtract,
 };
 
@@ -41,7 +40,11 @@ export function createWebAdapter(
       const indexHtml = await fetchHtml(opts.url);
       const issueUrl = resolve?.(indexHtml, opts.url);
       const html = issueUrl ? await fetchHtml(issueUrl) : indexHtml;
-      return extract(html, opts.slug);
+      const items = extract(html, opts.slug);
+      // A silent zero from a markup change looks identical to a quiet day;
+      // the kept count makes extractor breakage visible in the run logs.
+      info("web extracted", { source: opts.slug, kept: items.length });
+      return items;
     },
   };
 }

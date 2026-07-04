@@ -7,7 +7,6 @@ const read = (p: string) => readFileSync(join(__dirname, "../fixtures/web", p), 
 const archives = read("tldr-archives.html");
 const issue = read("tldr-issue.html");
 const anthropicNews = read("anthropic-news.html");
-const alphasignalLatest = read("alphasignal-latest.html");
 const hfPapers = read("hf-daily-papers.html");
 
 const validRaw = (items: { title: string; url?: string; publishedAt: Date }[]) =>
@@ -51,19 +50,6 @@ test("anthropic web adapter extracts dated news cards", async () => {
   expect(validRaw(items)).toBe(true);
   expect(items.every((i) => i.sourceSlug === "anthropic-news")).toBe(true);
   expect(items.every((i) => i.url!.includes("anthropic.com/news/"))).toBe(true);
-  expect(new Set(items.map((i) => i.externalId)).size).toBe(items.length); // deduped
-});
-
-test("alphasignal web adapter extracts story headlines", async () => {
-  const a = web(
-    { slug: "alphasignal", url: "https://alphasignal.ai", extractor: "alphasignal" },
-    async () => alphasignalLatest,
-  );
-  const items = await a.fetch(new Date(0));
-  expect(items.length).toBeGreaterThan(0);
-  expect(validRaw(items)).toBe(true);
-  expect(items.every((i) => i.sourceSlug === "alphasignal")).toBe(true);
-  expect(items.every((i) => i.url!.includes("alphasignal.ai/news/"))).toBe(true);
   expect(new Set(items.map((i) => i.externalId)).size).toBe(items.length); // deduped
 });
 
