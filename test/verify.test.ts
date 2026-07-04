@@ -103,4 +103,17 @@ describe("verifyDigest", () => {
     expect(r.ok).toBe(true);
     expect(r.warnings).toEqual([expect.stringContaining("cannot cross-check")]);
   });
+
+  it("warns on links already used by an earlier digest, ignoring later ones", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith({ links: [urls[0]!] }), "2026-07-02");
+    writeDigest(digestWith({ links: [`${urls[1]}/`] }), "2026-07-03");
+    writeDigest(digestWith({ links: [urls[2]!] }), "2026-07-05");
+    writeDigest(digestWith());
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(true);
+    expect(r.warnings).toContainEqual(expect.stringContaining(`already digested on 2026-07-02: ${urls[0]}`));
+    expect(r.warnings).toContainEqual(expect.stringContaining(`already digested on 2026-07-03: ${urls[1]}`));
+    expect(r.warnings).not.toContainEqual(expect.stringContaining(urls[2]!));
+  });
 });

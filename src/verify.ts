@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { today } from "./day";
 
@@ -70,6 +70,19 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
         warnings.push(`link not found in the day's items (primary source or typo?): ${url}`);
       }
     }
+  }
+
+  const earlier = readdirSync(join(rootDir, "digests"))
+    .filter((f) => /^\d{4}-\d{2}-\d{2}\.md$/.test(f) && f < `${day}.md`)
+    .sort();
+  const digested = new Map<string, string>();
+  for (const file of earlier) {
+    const text = readFileSync(join(rootDir, "digests", file), "utf8");
+    for (const m of text.matchAll(LINK)) digested.set(normalize(m[1]!), file.slice(0, 10));
+  }
+  for (const url of links) {
+    const usedOn = digested.get(normalize(url));
+    if (usedOn) warnings.push(`already digested on ${usedOn}: ${url}`);
   }
 
   const dashes = (raw.match(/[–—]/g) ?? []).length;
