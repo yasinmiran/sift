@@ -25,15 +25,16 @@ const writeItems = (day: string, itemUrls: string[]) =>
     }),
   );
 
-const digestWith = (opts: { front?: string; links?: string[]; threads?: string } = {}) => {
+const digestWith = (opts: { front?: string; links?: string[]; threads?: string; hn?: string } = {}) => {
   const front =
     opts.front ??
     `---\ntitle: "The day's tech, sifted: Jul 4, 2026"\ndescription: "one line"\ndate: "${DAY}"\n---`;
   const links = opts.links ?? urls;
+  const hn = opts.hn ?? "\n## Hacker News\n\nThe front page argued about [Story 0](https://example.com/story-0).\n";
   const threads = opts.threads ?? "\n## Threads\n\n- story-0 and story-1 share a vendor.\n";
   return `${front}\n\nWhat matters today.\n\n## AI / LLMs\n\n${links
     .map((u, i) => `- [Story ${i}](${u}) matters.`)
-    .join("\n")}\n${threads}`;
+    .join("\n")}\n${hn}${threads}`;
 };
 
 const writeDigest = (content: string, day = DAY) =>
@@ -80,12 +81,13 @@ describe("verifyDigest", () => {
     expect(r.warnings).toEqual([expect.stringContaining("https://elsewhere.org/primary")]);
   });
 
-  it("warns when the Threads section is missing and when the digest is thin", () => {
+  it("warns when the Threads or Hacker News section is missing and when the digest is thin", () => {
     writeItems(DAY, urls.slice(0, 2));
-    writeDigest(digestWith({ links: urls.slice(0, 2), threads: "" }));
+    writeDigest(digestWith({ links: urls.slice(0, 2), threads: "", hn: "" }));
     const r = verifyDigest(root, DAY);
     expect(r.ok).toBe(true);
     expect(r.warnings).toContainEqual(expect.stringContaining("Threads"));
+    expect(r.warnings).toContainEqual(expect.stringContaining("Hacker News"));
     expect(r.warnings).toContainEqual(expect.stringContaining("2 links"));
   });
 
@@ -106,9 +108,9 @@ describe("verifyDigest", () => {
 
   it("warns on links already used by an earlier digest, ignoring later ones", () => {
     writeItems(DAY, urls);
-    writeDigest(digestWith({ links: [urls[0]!] }), "2026-07-02");
-    writeDigest(digestWith({ links: [`${urls[1]}/`] }), "2026-07-03");
-    writeDigest(digestWith({ links: [urls[2]!] }), "2026-07-05");
+    writeDigest(digestWith({ links: [urls[0]!], hn: "" }), "2026-07-02");
+    writeDigest(digestWith({ links: [`${urls[1]}/`], hn: "" }), "2026-07-03");
+    writeDigest(digestWith({ links: [urls[2]!], hn: "" }), "2026-07-05");
     writeDigest(digestWith());
     const r = verifyDigest(root, DAY);
     expect(r.ok).toBe(true);
