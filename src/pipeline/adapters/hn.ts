@@ -1,3 +1,4 @@
+import { info } from "../../log";
 import { withRetry } from "../retry";
 import { htmlToText } from "./clean";
 import type { Adapter, JsonFetcher, RawItem } from "./types";
@@ -62,7 +63,9 @@ export function createHnAdapter(
         }
       }
 
-      return [...byId.values()].slice(0, opts.maxItems);
+      const items = [...byId.values()].slice(0, opts.maxItems);
+      info("hn fetched", { source: slug, kept: items.length });
+      return items;
     },
   };
 }
