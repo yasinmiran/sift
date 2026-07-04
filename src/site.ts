@@ -168,10 +168,21 @@ a:hover{color:var(--accent-hover);text-decoration:underline}
 .prose li{margin:.45rem 0}
 .prose blockquote{margin:1rem 0;padding:.5rem 1rem;border-left:2px solid var(--accent);color:#b8b0a3}
 .prose code{font-family:"Space Mono",ui-monospace,monospace;font-size:.85em;background:var(--surface);padding:.1em .35em;border-radius:4px}
+.foot{margin-top:4rem;padding-top:1.25rem;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem}
 </style>
 </head>
 <body>
 ${body}
+<footer class="foot">sift, by <a href="https://yasint.dev" data-backlink>yasin</a></footer>
+<script>
+// Visitors arriving from yasint.dev carry ?from=<path>; remember it for the
+// tab so the backlink returns them to the page they left, not the homepage.
+const from = new URLSearchParams(location.search).get("from");
+if (from && from.startsWith("/") && !from.startsWith("//")) sessionStorage.setItem("sift-from", from);
+const back = sessionStorage.getItem("sift-from");
+const link = document.querySelector("[data-backlink]");
+if (link && back) link.href = "https://yasint.dev" + back;
+</script>
 </body>
 </html>
 `;
