@@ -48,6 +48,17 @@ describe("buildSite", () => {
     expect(readFileSync(join(out, "index.html"), "utf8")).toContain("nothing sifted yet");
   });
 
+  it("renders a backlink footer that upgrades to the visitor's origin page", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    for (const file of ["index.html", "2026-07-04.html"]) {
+      const html = readFileSync(join(out, file), "utf8");
+      expect(html).toContain('<a href="https://yasint.dev" data-backlink>yasin</a>');
+      expect(html).toContain('sessionStorage.setItem("sift-from"');
+      expect(html).toContain('"https://yasint.dev" + back');
+    }
+  });
+
   it("emits seo head tags, sitemap, robots and copies public assets", () => {
     digest("2026-07-03", "body");
     digest("2026-07-04", "body");
