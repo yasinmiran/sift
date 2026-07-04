@@ -72,23 +72,25 @@ one day; older gaps stay gaps.
 A day holds 150-200 items. The `content` field carries whatever the
 feed shipped: the full article for most newsletters and blogs, a
 teaser for the rest. Your environment is a cloud routine whose egress
-policy allows GitHub but blocks most article hosts; that is permanent,
-so work from what the repo carries:
+policy blocks direct fetches of most article hosts, but the Parallel
+Search MCP (search + extract tools) fetches server-side and is your
+article reader when connected:
 
 - First pass: read every item's title and content, pick the stories
   worth digesting.
-- Content depth decides entry depth. Full-text items earn real
-  summaries. Teaser items get exactly what the teaser supports.
-  When even that is empty, the entry is the title, marked
-  `(title only, page did not load)`. Never invent detail the source
-  in hand does not support.
-- Fetching a story's url is worth ONE polite attempt only when the
-  host is plausibly reachable (github.com always is; the proxy names
-  blocked hosts explicitly). No retries, no workarounds. If egress
-  blocked your reading, say so in the run summary.
-- Never fetch items marked `paywalled: true` or anything gated in
-  practice (login wall, cookie wall, 402/403/429): use the content in
-  hand and mark the entry `(paywalled)`. Never work around a paywall.
+- Second pass: pull the full text of each picked story through the
+  Parallel extract tool, one call per story, and read it before
+  summarizing. Use its search only to locate the primary source
+  behind an aggregator link, not to pad entries with extra results.
+- Fall back gracefully: if the MCP is absent or an extract comes back
+  empty, the feed content in hand decides entry depth, down to
+  `(title only, page did not load)` when only the title survived.
+  Never invent detail the source in hand does not support, and say in
+  the run summary which reading path you had.
+- The paywall rule covers the MCP too: never extract items marked
+  `paywalled: true`, and if an extract returns a subscription stub or
+  gate, mark the entry `(paywalled)` and move on. An extraction
+  service is not a license to work around a paywall.
 - Summarize in your own words from what you actually read: no invented
   details, quotes at most a phrase.
 
@@ -123,9 +125,11 @@ front page, summarized as prose. Delegate it:
   `https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30`,
   which carries title, url, points, num_comments and objectID for the
   whole front page (~30 stories). Do not scrape news.ycombinator.com.
-  If egress blocks Algolia, fall back to the day file's `hacker-news`
-  items: they carry `points` and `comments` from ingest (the 100+ point
-  slice of the front page, which is the part worth summarizing anyway).
+  If the direct fetch is blocked, try the Algolia url through the
+  Parallel extract tool; failing that, fall back to the day file's
+  `hacker-news` items, which carry `points` and `comments` from ingest
+  (the 100+ point slice of the front page, the part worth summarizing
+  anyway).
 - Go through all ~30 stories; let points, comment count and title
   relevance to the digest's themes decide how much space each one gets,
   from a full treatment down to a passing clause. Nothing is skipped
