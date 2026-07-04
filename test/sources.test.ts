@@ -17,7 +17,16 @@ describe("source registry", () => {
   it("rejects a malformed entry", () => {
     const dir = mkdtempSync(join(tmpdir(), "sift-src-"));
     const bad = join(dir, "sources.json");
-    writeFileSync(bad, JSON.stringify([{ slug: "x", kind: "carrier-pigeon", topics: [], enabled: true }]));
+    writeFileSync(bad, JSON.stringify([{ slug: "x", kind: "carrier-pigeon", topics: ["general"], enabled: true }]));
     expect(() => loadSources(bad)).toThrow(/invalid source entry/);
+  });
+
+  it("rejects unknown topics and empty topic lists", () => {
+    const dir = mkdtempSync(join(tmpdir(), "sift-src-"));
+    for (const topics of [[], ["ai-lms"]]) {
+      const bad = join(dir, "sources.json");
+      writeFileSync(bad, JSON.stringify([{ slug: "x", kind: "rss", url: "https://x", topics, enabled: true }]));
+      expect(() => loadSources(bad)).toThrow(/invalid source entry/);
+    }
   });
 });

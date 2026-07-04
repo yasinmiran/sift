@@ -11,12 +11,24 @@ export interface SourceConfig {
 }
 
 const KINDS = new Set(["hn", "rss", "web", "arxiv"]);
+// Must stay in step with the digest sections in AGENTS.md.
+const TOPICS = new Set([
+  "ai-llms",
+  "devtools-infra",
+  "security-privacy",
+  "startups-industry",
+  "research",
+  "frontend",
+  "general",
+]);
 const defaultPath = fileURLToPath(new URL("../../config/sources.json", import.meta.url));
 
 export function loadSources(path: string = defaultPath): SourceConfig[] {
   const sources = JSON.parse(readFileSync(path, "utf8")) as SourceConfig[];
   for (const s of sources) {
-    if (!s.slug || !KINDS.has(s.kind) || !Array.isArray(s.topics) || typeof s.enabled !== "boolean") {
+    const topicsValid =
+      Array.isArray(s.topics) && s.topics.length > 0 && s.topics.every((t) => TOPICS.has(t));
+    if (!s.slug || !KINDS.has(s.kind) || !topicsValid || typeof s.enabled !== "boolean") {
       throw new Error(`invalid source entry: ${JSON.stringify(s)}`);
     }
   }
