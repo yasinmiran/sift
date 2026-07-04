@@ -9,7 +9,7 @@ describe("source registry", () => {
     const sources = loadSources();
     expect(sources.length).toBeGreaterThanOrEqual(40);
     for (const s of sources) {
-      expect(["hn", "rss", "web"]).toContain(s.kind);
+      expect(["hn", "rss", "web", "arxiv"]).toContain(s.kind);
       expect(s).not.toHaveProperty("lane");
     }
   });
