@@ -61,4 +61,19 @@ describe("fetchIfChanged", () => {
     await expect(fetchIfChanged("https://x", {}, gone as never)).rejects.toThrow(/404/);
     expect(calls).toBe(1);
   });
+
+  it("retries once on a transient edge 4xx (403/415/429) and succeeds", async () => {
+    for (const status of [403, 415, 429]) {
+      let calls = 0;
+      const flaky = async () => {
+        calls++;
+        return calls === 1
+          ? { statusCode: status, body: "", headers: {} }
+          : { statusCode: 200, body: "<rss/>", headers: {} };
+      };
+      const res = await fetchIfChanged("https://x", {}, flaky as never);
+      expect(res.changed).toBe(true);
+      expect(calls).toBe(2);
+    }
+  });
 });
