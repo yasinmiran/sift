@@ -82,6 +82,5 @@ function mapHit(slug: string, h: AlgoliaHit, minScore: number): RawItem | null {
     author: h.author,
     publishedAt,
     content: htmlToText(h.story_text ?? ""),
-    raw: h,
   };
 }

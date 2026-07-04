@@ -8,7 +8,6 @@ export interface RawItem {
   content: string;
   paywalled?: boolean;
   mediaType?: "text" | "video";
-  raw?: unknown;
 }
 
 /** rss adapters parse a body the ingest layer fetched conditionally; hn and
