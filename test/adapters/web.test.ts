@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect, test } from "vitest";
-import { createWebAdapter } from "../../src/adapters/web";
+import { createWebAdapter } from "../../src/pipeline/adapters/web";
 
 const read = (p: string) => readFileSync(join(__dirname, "../fixtures/web", p), "utf8");
 const archives = read("tldr-archives.html");

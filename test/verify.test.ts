@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { verifyDigest } from "../src/verify";
+import { verifyDigest } from "../src/digest/verify";
 
 const DAY = "2026-07-04";
 

@@ -1,8 +1,8 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect, test } from "vitest";
-import { createHnAdapter } from "../../src/adapters/hn";
-import type { JsonFetcher } from "../../src/adapters/types";
+import { createHnAdapter } from "../../src/pipeline/adapters/hn";
+import type { JsonFetcher } from "../../src/pipeline/adapters/types";
 
 const F = (p: string) => JSON.parse(readFileSync(join(__dirname, "../fixtures/hn", p), "utf8"));
 

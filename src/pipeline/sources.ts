@@ -11,7 +11,7 @@ export interface SourceConfig {
 }
 
 const KINDS = new Set(["hn", "rss", "web", "arxiv"]);
-const defaultPath = fileURLToPath(new URL("../config/sources.json", import.meta.url));
+const defaultPath = fileURLToPath(new URL("../../config/sources.json", import.meta.url));
 
 export function loadSources(path: string = defaultPath): SourceConfig[] {
   const sources = JSON.parse(readFileSync(path, "utf8")) as SourceConfig[];

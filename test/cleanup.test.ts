@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { existsSync, mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { cleanup } from "../src/cleanup";
+import { cleanup } from "../src/pipeline/cleanup";
 
 let root: string;
 beforeEach(() => {

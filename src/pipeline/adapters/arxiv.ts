@@ -1,5 +1,5 @@
 import Parser from "rss-parser";
-import { info } from "../log";
+import { info } from "../../log";
 import type { Adapter, RawItem } from "./types";
 
 // arXiv category feeds (rss.arxiv.org/rss/cat.A+cat.B) per

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isPromotional } from "../src/classify";
+import { isPromotional } from "../src/pipeline/promo";
 
 describe("isPromotional", () => {
   it("drops tagged and label-prefixed inventory", () => {

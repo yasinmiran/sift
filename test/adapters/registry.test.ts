@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect, test } from "vitest";
-import { adapterFor, type Fetchers } from "../../src/adapters/registry";
-import type { SourceConfig } from "../../src/sources";
-import type { JsonFetcher } from "../../src/adapters/types";
+import { adapterFor, type Fetchers } from "../../src/pipeline/adapters/registry";
+import type { SourceConfig } from "../../src/pipeline/sources";
+import type { JsonFetcher } from "../../src/pipeline/adapters/types";
 
 const rssXml = (p: string) => readFileSync(join(__dirname, "../fixtures/rss", p), "utf8");
 const webHtml = (p: string) => readFileSync(join(__dirname, "../fixtures/web", p), "utf8");

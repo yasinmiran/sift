@@ -35,7 +35,7 @@ digests/{YYYY-MM-DD}.md
 ```
 
 The folder is the whole contract: write files here and nothing else;
-`src/site.ts` + the pages workflow render it to the public site, and
+`src/site/` + the pages workflow render it to the public site, and
 the ingest Action prunes entries older than a month (git history keeps
 them). Plain `.md`, never `.mdx` (feed-derived text must not be parsed
 as JSX). Minimal stable frontmatter, body is the digest:
