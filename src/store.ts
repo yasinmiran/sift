@@ -1,3 +1,14 @@
+// The committed files are the whole database. Two of them:
+//
+//   data/items/{day}.json  one DayFile per Oslo calendar day, append-only
+//                          within the day, pruned after a month
+//   data/state.json        per-source conditional-GET validators plus the
+//                          seen index, keyed by day so pruning old keys is
+//                          a plain date comparison
+//
+// Item identity is `sourceSlug:externalId`; the seen index carries it for
+// SEEN_DAYS so a story bouncing between feeds (or a feed replaying old
+// entries) cannot re-enter a later day.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { daysBefore } from "./day";
