@@ -149,6 +149,39 @@ used is fine only as a deliberate update (see Continuity); thin digests
 and a missing Threads section also warn. Resolve every warning
 consciously before pushing.
 
+## Field playbook
+
+Fetching and diagnosis craft, distilled from a 10-agent audit of the
+source registry. Use it when reading articles, force-running ingest,
+or working out why a source is quiet.
+
+- Identify honestly: `curl -sS -L --max-time 20 -A "sift/1.0
+  (+https://sift.yasint.dev)"`. The honest UA passes every current
+  source, Cloudflare included; never impersonate a browser or evade a
+  block. A wall (403/406) is a finding, not an obstacle.
+- Trust status codes, not body size: SPAs serve a full HTML shell under
+  a 404, and decommissioned hosts serve error envelopes that look like
+  content. The reverse too: HTTP 200 is not a feed until the root
+  element says `<rss` or `<feed`.
+- Redirects hide truth both ways: `curl -L` masks a permanent move
+  (probe without `-L` and read `%{http_code} %{redirect_url}`), while a
+  no-follow probe makes a healthy 302/308 look dead. Check both before
+  judging.
+- Feeds lie in small ways: entries are not date-ordered (newest = max
+  over all dates, never the first entry), minified feeds defeat
+  `grep -c` (use `grep -o '<item' | wc -l`), titles hide in CDATA,
+  Atom needs namespace-tolerant matching, and YouTube's first title is
+  the channel, not a video.
+- Quiet has causes: arXiv feeds are empty on weekends by design; bare
+  `*.substack.com` feeds 403 GitHub runners while custom-domain
+  Substacks pass (prefer the custom domain in config); an rss source
+  absent from ingest logs means a healthy 304, and hn/web sources log
+  their kept counts.
+- Clean what you quote: some feeds watermark titles with zero-width
+  characters (the pipeline strips them, fetched article text may not
+  be), and paywalled newsletters mix full and teaser items, so judge
+  truncation from several items, not one.
+
 ## Models
 
 You run on Opus 4.8. The digest is a single-context job; you rarely
