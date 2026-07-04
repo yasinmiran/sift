@@ -1,3 +1,4 @@
+import { createArxivAdapter } from "./arxiv";
 import { createHnAdapter } from "./hn";
 import { createRssAdapter } from "./rss";
 import { createWebAdapter } from "./web";
@@ -22,6 +23,8 @@ export function adapterFor(cfg: SourceConfig, fetchers: Fetchers = {}): Adapter 
       return createHnAdapter(cfg.slug, HN_DEFAULTS, fetchers.fetchJson);
     case "rss":
       return createRssAdapter({ slug: cfg.slug, url: requireUrl(cfg), mediaType: cfg.mediaType });
+    case "arxiv":
+      return createArxivAdapter({ slug: cfg.slug, url: requireUrl(cfg) });
     case "web":
       return createWebAdapter(
         { slug: cfg.slug, url: requireUrl(cfg), extractor: cfg.slug },

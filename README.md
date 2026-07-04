@@ -9,9 +9,9 @@ committed here as JSON; a scheduled Claude routine turns them into
 - `data/items/YYYY-MM-DD.json`: the day's fetched items.
 - `digests/`: one markdown digest per day (the browsable archive is a
   rolling month; git history keeps everything).
-- `src/`: the pipeline (adapters for rss/hn/web sources, conditional
-  fetch, promo/paywall classification, file store, site generator,
-  digest verifier).
+- `src/`: the pipeline (adapters for rss/hn/web/arxiv sources,
+  conditional fetch, promo/paywall classification, file store, site
+  generator, digest verifier).
 - `.github/workflows/`: `ingest.yml` (the schedule; `gh workflow run
   ingest` forces a fetch) and `pages.yml` (renders `digests/` on push).
 
