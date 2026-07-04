@@ -15,6 +15,10 @@ export interface StoredItem {
   topics: string[];
   paywalled: boolean;
   mediaType: "text" | "video";
+  // hn only: front-page metrics, so the digest can weigh discussions
+  // even when its environment cannot reach the Algolia API.
+  points?: number;
+  comments?: number;
 }
 
 export interface DayFile {

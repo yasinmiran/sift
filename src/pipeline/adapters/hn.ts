@@ -15,6 +15,7 @@ interface AlgoliaHit {
   url?: string;
   author?: string;
   points?: number;
+  num_comments?: number;
   created_at_i: number;
   story_text?: string;
 }
@@ -85,5 +86,7 @@ function mapHit(slug: string, h: AlgoliaHit, minScore: number): RawItem | null {
     author: h.author,
     publishedAt,
     content: htmlToText(h.story_text ?? ""),
+    points: h.points,
+    comments: h.num_comments,
   };
 }

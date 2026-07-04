@@ -18,6 +18,7 @@ const frontPage = {
       url: "https://example.com/gpt6",
       author: "pg",
       points: 328,
+      num_comments: 214,
       created_at_i: now - 3600,
     },
     {
@@ -48,6 +49,8 @@ test("reads the front page and filters out below-threshold and score-less entrie
   const a = hn({ minScore: 100, maxItems: 60, backfillDays: 0 });
   const items = await a.fetch(new Date());
   expect(items.map((i) => i.externalId)).toEqual(["48689028"]);
+  expect(items[0]!.points).toBe(328);
+  expect(items[0]!.comments).toBe(214);
   const top = items[0]!;
   expect(top.sourceSlug).toBe("hacker-news");
   expect(top.title).toContain("GPT");

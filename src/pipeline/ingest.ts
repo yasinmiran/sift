@@ -122,6 +122,8 @@ function toStored(raw: RawItem, topics: string[]): StoredItem {
     topics,
     paywalled: raw.paywalled ?? isPaywalled(raw),
     mediaType: raw.mediaType ?? "text",
+    ...(raw.points !== undefined && { points: raw.points }),
+    ...(raw.comments !== undefined && { comments: raw.comments }),
   };
 }
 

@@ -56,6 +56,11 @@ works as a fallback, but verify against a clone first either way. The
 ingest Action also pushes to main, so pull before pushing. Re-running
 a day overwrites the file: idempotent via git.
 
+If your harness requires a feature branch instead of pushing main,
+finish the job yourself: push the branch, `gh pr create`, then
+`gh pr merge --rebase --delete-branch`. The digest needs no review;
+never leave it stranded on an unmerged branch.
+
 Catch-up rule: before writing today's digest, check yesterday. If
 `data/items/{yesterday}.json` exists but `digests/{yesterday}.md` does
 not (a skipped run), write yesterday's digest from yesterday's items
@@ -77,6 +82,11 @@ excerpt. Read the real articles, then write:
   and mark the entry `(paywalled)`. Never work around a paywall.
 - One polite fetch per article, no retries. If a page will not load,
   the excerpt is enough.
+- If your environment's egress policy blocks article hosts outright
+  (the proxy says so explicitly), do not fight it: work from excerpts
+  and titles, mark thin entries `(title only, page did not load)`, and
+  say in your run summary that egress was restricted. Never invent
+  detail the source in hand does not support.
 - Summarize in your own words from what you actually read. If the full
   text was unreachable, claim only what the excerpt supports: no
   invented details, quotes at most a phrase.
@@ -112,6 +122,9 @@ front page, summarized as prose. Delegate it:
   `https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30`,
   which carries title, url, points, num_comments and objectID for the
   whole front page (~30 stories). Do not scrape news.ycombinator.com.
+  If egress blocks Algolia, fall back to the day file's `hacker-news`
+  items: they carry `points` and `comments` from ingest (the 100+ point
+  slice of the front page, which is the part worth summarizing anyway).
 - Go through all ~30 stories; let points, comment count and title
   relevance to the digest's themes decide how much space each one gets,
   from a full treatment down to a passing clause. Nothing is skipped
