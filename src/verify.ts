@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { today } from "./day";
+import { parseFrontmatter } from "./frontmatter";
 
 export interface VerifyResult {
   ok: boolean;
@@ -8,7 +9,6 @@ export interface VerifyResult {
   warnings: string[];
 }
 
-const FRONT = /^---\n([\s\S]*?)\n---\n?/;
 const LINK = /\]\(([^)\s]+)\)/g;
 
 const normalize = (url: string): string => url.replace(/\/+$/, "");
@@ -27,15 +27,10 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
   }
   const raw = readFileSync(path, "utf8");
 
-  const front = FRONT.exec(raw);
-  if (!front) {
+  const { meta, body: rawBody } = parseFrontmatter(raw);
+  if (!meta) {
     errors.push("missing frontmatter block");
   } else {
-    const meta: Record<string, string> = {};
-    for (const line of front[1]!.split("\n")) {
-      const kv = /^(\w+):\s*"?(.*?)"?\s*$/.exec(line);
-      if (kv) meta[kv[1]!] = kv[2]!;
-    }
     for (const key of ["title", "description", "date"]) {
       if (!meta[key]) errors.push(`frontmatter is missing ${key}`);
     }
@@ -44,7 +39,7 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     }
   }
 
-  const body = raw.slice(front?.[0].length ?? 0).trim();
+  const body = rawBody.trim();
   if (!body) errors.push("digest body is empty");
 
   const links = [...body.matchAll(LINK)].map((m) => m[1]!);

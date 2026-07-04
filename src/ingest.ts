@@ -1,3 +1,13 @@
+// The pipeline's write path, one pass per run:
+//
+//   sources.json -> fetch (conditional GET where the adapter allows it)
+//   -> adapter parse -> 24h publishedAt window -> promo filter -> 7-day
+//   dedup -> append to data/items/{day}.json + mark seen in state.json
+//
+// Idempotent by design: the Action runs it twice a day and anyone can run
+// it again; unchanged feeds are skipped, seen items never duplicate, and
+// files are only rewritten when their content actually changed (so the
+// Action's commit step stays a no-op on quiet runs).
 import { resolve } from "node:path";
 import { adapterFor, type Fetchers } from "./adapters/registry";
 import { safeHttpUrl } from "./adapters/clean";
@@ -5,6 +15,7 @@ import type { RawItem } from "./adapters/types";
 import { isPaywalled, isPromotional } from "./classify";
 import { today } from "./day";
 import { fetchIfChanged, type FetchImpl } from "./fetch";
+import { warn } from "./log";
 import { loadSources, type SourceConfig } from "./sources";
 import {
   isSeen,
@@ -91,9 +102,6 @@ export async function runIngest(
   if (JSON.stringify(state) !== stateSnapshot) saveState(dataDir, state);
   return stats;
 }
-
-const warn = (msg: string, fields: Record<string, unknown>): void =>
-  console.error(JSON.stringify({ level: "warn", msg, ...fields }));
 
 function sourceState(state: IngestState, slug: string): SourceState {
   return (state.sources[slug] ??= {
