@@ -1,4 +1,5 @@
 import Parser from "rss-parser";
+import { info } from "../log";
 import { htmlToText } from "./clean";
 import type { Adapter, RawItem } from "./types";
 
@@ -37,9 +38,6 @@ function sanitizeEntities(xml: string): string {
   );
 }
 
-const log = (msg: string, fields: Record<string, unknown>): void =>
-  console.log(JSON.stringify({ level: "info", msg, ...fields }));
-
 export function createRssAdapter(opts: {
   slug: string;
   url: string;
@@ -72,10 +70,9 @@ export function createRssAdapter(opts: {
           publishedAt,
           content: htmlToText(e["content:encoded"] ?? e.content ?? e.contentSnippet ?? ""),
           mediaType: opts.mediaType ?? "text",
-          raw: e,
         });
       }
-      log("rss parsed", { source: opts.slug, kept: out.length, dropped });
+      info("rss parsed", { source: opts.slug, kept: out.length, dropped });
       return out;
     },
   };
