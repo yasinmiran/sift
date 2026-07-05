@@ -1,11 +1,11 @@
-import { BYLINE, page, SITE_DESCRIPTION } from "./page";
+import { page, SITE_DESCRIPTION } from "./page";
 
 // GitHub Pages serves 404.html for every missing path, most often a day page
 // that is not written yet (linked as "today") or one pruned from the rolling
 // month. The script tells those two apart from the requested path.
 export function notFoundPage(): string {
   const body = `
-      <p class="crumbs"><a href="/">&larr; all days</a>${BYLINE}</p>
+      <p class="crumbs"><a href="/">&larr; all days</a></p>
       <h1>404<span class="dot">.</span></h1>
       <p class="tag">nothing sifted here</p>
       <section id="why" class="today-note">this page does not exist. head back to <a href="/">all days</a>.</section>
