@@ -107,6 +107,7 @@ if (from && from.startsWith("/") && !from.startsWith("//")) sessionStorage.setIt
 const back = sessionStorage.getItem("sift-from");
 const link = document.querySelector("[data-backlink]");
 if (link && back) link.href = "https://yasint.dev" + back;
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
 </script>
 <script data-goatcounter="${GOATCOUNTER_URL}/count" async src="//gc.zgo.at/count.js"></script>
 </body>

@@ -149,4 +149,15 @@ describe("buildSite", () => {
     expect(day).toContain('<link rel="manifest" href="/manifest.webmanifest">');
     expect(readFileSync(join(out, "manifest.webmanifest"), "utf8")).toContain('"name":"sift"');
   });
+
+  it("emits a push-only service worker and registers it in the shell", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const sw = readFileSync(join(out, "sw.js"), "utf8");
+    expect(sw).toContain('addEventListener("push"');
+    expect(sw).toContain('addEventListener("notificationclick"');
+    expect(sw).not.toContain('addEventListener("fetch"');
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain('serviceWorker.register("/sw.js")');
+  });
 });
