@@ -5,6 +5,9 @@ import { escapeHtml } from "./html";
 export const BASE_URL = "https://sift.yasint.dev";
 export const REPO_URL = "https://github.com/yasinmiran/sift";
 export const GOATCOUNTER_URL = "https://yasin.goatcounter.com";
+export const PUSH_URL = "https://sift-push.netlify.app";
+export const VAPID_PUBLIC_KEY =
+  "BOof2eUjrc1IGkMGlqiRdfB39JYdGHUK-D5GKt1TkxuaO169sUgmgpOWbdilWLVRhBufODdaBgluq3QDS-Bk9AY";
 const BYLINE =
   '<span class="byline">by <a href="https://yasint.dev" data-backlink>yasin</a></span>';
 const OCTOCAT =
@@ -93,6 +96,9 @@ a:hover{color:var(--accent-hover)}
 .prose code{font-family:"Space Mono",ui-monospace,monospace;font-size:.85em;background:var(--surface);color:var(--accent);padding:.1em .35em;border:1px solid var(--border);border-radius:4px}
 .today-note{margin:0 0 1.5rem;padding:.85rem 1.1rem;border:1px solid var(--border);border-radius:var(--radius);color:var(--body);font-size:.92rem}
 .today-note strong{color:var(--accent);font-weight:600}
+.notify{margin:0 0 1.5rem;font-size:.9rem;color:var(--muted)}
+.notify-btn{font:inherit;font-size:.9rem;color:var(--body);background:none;border:1px solid var(--border);border-radius:var(--radius);padding:.4rem .8rem;cursor:pointer;transition:border-color .2s,color .2s}
+.notify-btn:hover{border-color:var(--accent);color:var(--bold)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>

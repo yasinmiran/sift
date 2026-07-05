@@ -6,6 +6,7 @@ import { parseFrontmatter } from "../digest/frontmatter";
 import { escapeHtml } from "./html";
 import { renderMarkdown } from "./markdown";
 import { notFoundPage } from "./not-found";
+import { notifyBlock } from "./notify";
 import { BASE_URL, GOATCOUNTER_URL, page, SITE_DESCRIPTION } from "./page";
 import { SW_SOURCE } from "./sw";
 import { todayScript } from "./today";
@@ -91,7 +92,7 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
     page(
       { title: "sift: the day's tech, sifted", description: SITE_DESCRIPTION, path: "", type: "website" },
       `<h1>sift<span class="dot">.</span></h1><p class="tag">the day's tech, sifted</p>` +
-        `<section id="today" class="today-note" hidden></section>${list}${todayScript()}`,
+        `<section id="today" class="today-note" hidden></section>${notifyBlock()}${list}${todayScript()}`,
     ),
   );
 
