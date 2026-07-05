@@ -4,6 +4,7 @@ import { escapeHtml } from "./html";
 
 export const BASE_URL = "https://sift.yasint.dev";
 export const REPO_URL = "https://github.com/yasinmiran/sift";
+export const GOATCOUNTER_URL = "https://yasin.goatcounter.com";
 const BYLINE =
   '<span class="byline">by <a href="https://yasint.dev" data-backlink>yasin</a></span>';
 const OCTOCAT =
@@ -106,6 +107,7 @@ const back = sessionStorage.getItem("sift-from");
 const link = document.querySelector("[data-backlink]");
 if (link && back) link.href = "https://yasint.dev" + back;
 </script>
+<script data-goatcounter="${GOATCOUNTER_URL}/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
 `;
