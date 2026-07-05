@@ -139,4 +139,14 @@ describe("buildSite", () => {
     const index = readFileSync(join(out, "index.html"), "utf8");
     expect(index).not.toContain('<meta name="robots" content="noindex">');
   });
+
+  it("links the web app manifest in the shell and ships it with the site", () => {
+    digest("2026-07-04", "body");
+    mkdirSync(join(root, "public"), { recursive: true });
+    writeFileSync(join(root, "public", "manifest.webmanifest"), '{"name":"sift"}');
+    buildSite(root, out);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain('<link rel="manifest" href="/manifest.webmanifest">');
+    expect(readFileSync(join(out, "manifest.webmanifest"), "utf8")).toContain('"name":"sift"');
+  });
 });
