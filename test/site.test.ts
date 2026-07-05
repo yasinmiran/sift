@@ -160,4 +160,15 @@ describe("buildSite", () => {
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).toContain('serviceWorker.register("/sw.js")');
   });
+
+  it("offers push notifications on the index only", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).toContain('id="notify"');
+    expect(index).toContain("PushManager");
+    expect(index).toContain("applicationServerKey");
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).not.toContain('id="notify"');
+  });
 });
