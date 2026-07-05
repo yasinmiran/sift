@@ -61,19 +61,21 @@ describe("buildSite", () => {
     expect(day).not.toContain('id="today"');
   });
 
-  it("carries a byline backlink in the title area that upgrades to the visitor's origin", () => {
+  it("carries the byline backlink and a github link in a shared footer", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);
     const byline = '<span class="byline">by <a href="https://yasint.dev" data-backlink>yasin</a></span>';
     const index = readFileSync(join(out, "index.html"), "utf8");
-    expect(index).toContain(`sift<span class="dot">.</span> ${byline}`);
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
-    expect(day).toContain(byline);
-    expect(day.indexOf(byline)).toBeLessThan(day.indexOf("<h1>"));
+    expect(index).toContain("sift<span class=\"dot\">.</span></h1>");
+    expect(day.indexOf(byline)).toBeGreaterThan(day.indexOf("</article>"));
     for (const html of [index, day]) {
+      expect(html).toContain('class="foot"');
+      expect(html).toContain(byline);
+      expect(html).toContain('href="https://github.com/yasinmiran/sift"');
+      expect(html.indexOf('class="foot"')).toBeGreaterThan(html.indexOf("<h1>"));
       expect(html).toContain('sessionStorage.setItem("sift-from"');
       expect(html).toContain('"https://yasint.dev" + back');
-      expect(html).not.toContain('class="foot"');
     }
   });
 

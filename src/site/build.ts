@@ -6,7 +6,7 @@ import { parseFrontmatter } from "../digest/frontmatter";
 import { escapeHtml } from "./html";
 import { renderMarkdown } from "./markdown";
 import { notFoundPage } from "./not-found";
-import { BASE_URL, BYLINE, page, SITE_DESCRIPTION } from "./page";
+import { BASE_URL, page, SITE_DESCRIPTION } from "./page";
 import { todayScript } from "./today";
 
 interface Digest {
@@ -52,7 +52,7 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
 
   for (const d of digests) {
     const body = `
-      <p class="crumbs"><a href="index.html">&larr; all days</a>${BYLINE}</p>
+      <p class="crumbs"><a href="index.html">&larr; all days</a></p>
       <h1>${escapeHtml(d.title)}</h1>
       <p class="meta">${formatDay(d.day)}</p>
       <article class="prose">${renderMarkdown(d.body)}</article>`;
@@ -78,7 +78,7 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
     join(outDir, "index.html"),
     page(
       { title: "sift: the day's tech, sifted", description: SITE_DESCRIPTION, path: "", type: "website" },
-      `<h1>sift<span class="dot">.</span> ${BYLINE}</h1><p class="tag">the day's tech, sifted</p>` +
+      `<h1>sift<span class="dot">.</span></h1><p class="tag">the day's tech, sifted</p>` +
         `<section id="today" class="today-note" hidden></section>${list}${todayScript()}`,
     ),
   );
