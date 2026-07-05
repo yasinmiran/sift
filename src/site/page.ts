@@ -72,7 +72,7 @@ h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:2.1rem;letter-
 .foot .gh{display:inline-flex;color:var(--muted)}
 .foot .gh:hover{color:var(--accent-hover)}
 .foot .gh svg{width:20px;height:20px;fill:currentColor}
-.foot-note{margin:.4rem 0 0;font-size:.7rem;color:var(--faint)}
+.foot-note{margin:.4rem 0 0;max-width:60%;font-size:.7rem;color:var(--faint)}
 .foot-note a{color:var(--muted)}
 a{color:var(--accent);text-decoration:none;transition:color .2s}
 a:hover{color:var(--accent-hover)}
