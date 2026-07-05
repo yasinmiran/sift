@@ -73,6 +73,8 @@ describe("buildSite", () => {
       expect(html).toContain('class="foot"');
       expect(html).toContain(byline);
       expect(html).toContain('href="https://github.com/yasinmiran/sift"');
+      expect(html).toContain('class="foot-note"');
+      expect(html).toContain('href="https://github.com/yasinmiran/sift/blob/main/AGENTS.md"');
       expect(html.indexOf('class="foot"')).toBeGreaterThan(html.indexOf("<h1>"));
       expect(html).toContain('sessionStorage.setItem("sift-from"');
       expect(html).toContain('"https://yasint.dev" + back');
