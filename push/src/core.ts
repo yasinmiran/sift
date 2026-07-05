@@ -65,6 +65,8 @@ export async function runNotify(deps: NotifyDeps): Promise<{ day: string | null;
       if (status === 404 || status === 410) {
         await deps.subscriptions.remove(key);
         pruned++;
+      } else {
+        console.error(`push send failed (${status ?? "?"}) for ${key}`, err);
       }
     }
   }
