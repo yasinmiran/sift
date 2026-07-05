@@ -122,6 +122,12 @@ article reader when connected:
 - No em or en dashes anywhere in the digest, including inside your own
   summaries: use a comma, colon, or parentheses instead. Quoted titles
   are the only exception, and quote sparingly.
+- Model claims are embarrassment-grade if wrong. Double-check release
+  and availability dates, benchmark scores, rankings, and any
+  "first/new/launch/coming out" framing against the vendor's
+  announcement (a quick search if it is not in the sources in hand)
+  before asserting them. A burst of stories about a model on one day
+  is not evidence it launched that day.
 - End with a `## Threads` section: 3-6 bullets mapping how the day's
   stories relate (rival takes on one event, a launch answering a
   competitor's, regulation meeting the product it targets, one trend
