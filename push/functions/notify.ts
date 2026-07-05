@@ -17,7 +17,7 @@ export default async (): Promise<void> => {
       return res.text();
     },
     lastNotified: {
-      get: () => state.get("last-notified") as unknown as Promise<string | null>,
+      get: () => state.get("last-notified", { type: "text" }),
       set: async (day) => { await state.set("last-notified", day); },
     },
     subscriptions: {
