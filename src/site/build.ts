@@ -7,6 +7,7 @@ import { escapeHtml } from "./html";
 import { renderMarkdown } from "./markdown";
 import { notFoundPage } from "./not-found";
 import { BASE_URL, GOATCOUNTER_URL, page, SITE_DESCRIPTION } from "./page";
+import { SW_SOURCE } from "./sw";
 import { todayScript } from "./today";
 
 interface Digest {
@@ -105,6 +106,7 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
       .join("\n")}\n</urlset>\n`,
   );
   writeFileSync(join(outDir, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${BASE_URL}/sitemap.xml\n`);
+  writeFileSync(join(outDir, "sw.js"), SW_SOURCE);
   writeFileSync(join(outDir, "404.html"), notFoundPage());
 
   return { pages: digests.length + 1 };
