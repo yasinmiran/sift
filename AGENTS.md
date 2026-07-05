@@ -82,6 +82,14 @@ article reader when connected:
   Parallel extract tool, one call per story, and read it before
   summarizing. Use its search only to locate the primary source
   behind an aggregator link, not to pad entries with extra results.
+- For a story that came in via Hacker News, the comment thread is part
+  of the source: pull it from
+  `https://hn.algolia.com/api/v1/items/{objectID}` and weigh the room
+  before summarizing. A flagged or dead story, credible debunking,
+  prior-art callouts, or benchmark numbers commenters show don't add
+  up can outweigh the headline: cover the dispute instead of the
+  claim, or drop the story. Never repeat as fact a number or "novel"
+  claim the story's own thread has taken apart.
 - If the MCP is absent or an extract comes back empty or title-only,
   retry the url through the WebFetch tool, and verify what came back
   is real article text (not an error page or a cookie/subscription
@@ -140,6 +148,10 @@ front page, summarized as prose. Delegate it:
   relevance to the digest's themes decide how much space each one gets,
   from a full treatment down to a passing clause. Nothing is skipped
   outright.
+- Points are not the verdict: before giving a story real space, skim
+  its thread via `items/{objectID}` and fold what the room concluded
+  into the framing. A story the community flagged or picked apart is
+  named as disputed (or dropped), not amplified.
 - Write 2-4 flowing paragraphs grouped by theme, never bullets. Every
   story mentioned links inline to its article url; heavily discussed
   ones (roughly 300+ comments) also link to
