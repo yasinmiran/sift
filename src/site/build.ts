@@ -6,7 +6,7 @@ import { parseFrontmatter } from "../digest/frontmatter";
 import { escapeHtml } from "./html";
 import { renderMarkdown } from "./markdown";
 import { notFoundPage } from "./not-found";
-import { BASE_URL, page, SITE_DESCRIPTION } from "./page";
+import { BASE_URL, GOATCOUNTER_URL, page, SITE_DESCRIPTION } from "./page";
 import { todayScript } from "./today";
 
 interface Digest {
@@ -54,8 +54,19 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
     const body = `
       <p class="crumbs"><a href="index.html">&larr; all days</a></p>
       <h1>${escapeHtml(d.title)}</h1>
-      <p class="meta">${formatDay(d.day)}</p>
-      <article class="prose">${renderMarkdown(d.body)}</article>`;
+      <p class="meta">${formatDay(d.day)}<span id="views" hidden></span></p>
+      <article class="prose">${renderMarkdown(d.body)}</article>
+<script>
+fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".json")
+  .then((r) => (r.ok ? r.json() : null))
+  .then((c) => {
+    if (!c) return;
+    const views = document.getElementById("views");
+    views.textContent = " \\u00b7 " + c.count.replace(/[\\u2009\\u202f]/g, ",") + " views";
+    views.hidden = false;
+  })
+  .catch(() => {});
+</script>`;
     writeFileSync(
       join(outDir, `${d.day}.html`),
       page({ title: d.title, description: d.description, path: `${d.day}.html`, type: "article" }, body),

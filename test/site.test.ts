@@ -81,6 +81,20 @@ describe("buildSite", () => {
     }
   });
 
+  it("counts views via goatcounter and shows them on day pages only", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    for (const html of [index, day]) {
+      expect(html).toContain('data-goatcounter="https://yasin.goatcounter.com/count"');
+      expect(html).toContain("gc.zgo.at/count.js");
+    }
+    expect(day).toContain('id="views"');
+    expect(day).toContain("yasin.goatcounter.com/counter/");
+    expect(index).not.toContain('id="views"');
+  });
+
   it("emits seo head tags, sitemap, robots and copies public assets", () => {
     digest("2026-07-03", "body");
     digest("2026-07-04", "body");
