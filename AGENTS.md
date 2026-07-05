@@ -82,10 +82,16 @@ article reader when connected:
   Parallel extract tool, one call per story, and read it before
   summarizing. Use its search only to locate the primary source
   behind an aggregator link, not to pad entries with extra results.
-- Fall back gracefully: if the MCP is absent or an extract comes back
-  empty, the feed content in hand decides entry depth, down to
-  `(title only, page did not load)` when only the title survived.
-  Never invent detail the source in hand does not support, and say in
+- If the MCP is absent or an extract comes back empty or title-only,
+  retry the url through the WebFetch tool, and verify what came back
+  is real article text (not an error page or a cookie/subscription
+  shell) before summarizing from it.
+- Never publish load-failure parentheticals like `(title only, page
+  did not load)`; readers don't care which tool failed. When every
+  reading path fails, write the entry from the title and feed content
+  alone, sized to what they support, and record the failed urls in
+  the run summary instead.
+- Never invent detail the source in hand does not support, and say in
   the run summary which reading path you had.
 - The paywall rule covers the MCP too: never extract items marked
   `paywalled: true`, and if an extract returns a subscription stub or
