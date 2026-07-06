@@ -6,6 +6,8 @@ const INSTALL_ICON =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
 const CHECK_ICON =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+const SPIN_ICON =
+  '<svg class="spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.2-8.56"/></svg>';
 
 // iOS Safari only exposes PushManager to installed home-screen apps, so its
 // absence gets the install hint rather than a dead button. All failures
@@ -87,7 +89,9 @@ export function notifyBlock(): string {
   btn.className = "notify-btn";
   slot.prepend(btn);
   const render = (sub) => {
-    btn.innerHTML = label(${JSON.stringify(BELL_ICON)}, sub ? "on" : "notify me");
+    btn.innerHTML = sub
+      ? ${JSON.stringify(BELL_ICON)} + "<span>on</span>" + ${JSON.stringify(CHECK_ICON)}
+      : label(${JSON.stringify(BELL_ICON)}, "notify me");
     btn.title = sub ? "tap to stop notifications" : "get a push when a new digest lands";
     slot.hidden = false;
   };
@@ -97,6 +101,8 @@ export function notifyBlock(): string {
     if (btn.disabled) return;
     btn.disabled = true;
     btn.classList.add("busy");
+    const span = btn.querySelector("span");
+    btn.innerHTML = label(${JSON.stringify(SPIN_ICON)}, span ? span.textContent : "");
     try {
       const reg = await ready;
       const existing = await reg.pushManager.getSubscription();
@@ -106,7 +112,10 @@ export function notifyBlock(): string {
         render(null);
         return;
       }
-      if ((await Notification.requestPermission()) !== "granted") return;
+      if ((await Notification.requestPermission()) !== "granted") {
+        render(null);
+        return;
+      }
       const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64ToBytes("${VAPID_PUBLIC_KEY}") });
       const res = await fetch("${PUSH_URL}/subscribe", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(sub) });
       if (!res.ok) throw new Error("subscribe failed");
