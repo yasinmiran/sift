@@ -99,6 +99,9 @@ a:hover{color:var(--accent-hover)}
 .notify-btn:disabled{cursor:default;color:var(--muted)}
 .notify-btn:disabled:hover{border-color:var(--border)}
 .notify-btn.busy{opacity:.55;cursor:progress}
+.notify-btn .spin{animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.notify-btn .spin{animation:none}}
 .notify-btn:hover{border-color:var(--accent);color:var(--bold)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
