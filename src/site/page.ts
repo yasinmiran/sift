@@ -90,6 +90,8 @@ a:hover{color:var(--accent-hover)}
 .prose blockquote{margin:1rem 0;padding:.5rem 1rem;border-left:2px solid var(--accent);color:var(--bold)}
 .prose code{font-family:"Space Mono",ui-monospace,monospace;font-size:.85em;background:var(--surface);color:var(--accent);padding:.1em .35em;border:1px solid var(--border);border-radius:4px}
 .today-note{margin:0 0 1.5rem;padding:.85rem 1.1rem;border:1px solid var(--border);border-radius:var(--radius);color:var(--body);font-size:.92rem}
+.refresh-note{margin:1.4rem 0 0;transition:opacity .6s ease}
+@media (prefers-reduced-motion:reduce){.refresh-note{transition:none}}
 .today-note strong{color:var(--accent);font-weight:600}
 .notify{margin:0;font-size:.9rem;color:var(--muted);display:flex;align-items:center;flex-wrap:wrap;gap:.6rem}
 .notify[hidden]{display:none}

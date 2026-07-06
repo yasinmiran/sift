@@ -25,7 +25,7 @@ export function todayScript(): string {
 // Today's day page is only half a day until the evening run; tell readers
 // when the other half lands. No-op on past days and after the evening drop.
 export function refreshNote(): string {
-  return `<p id="refresh-note" class="today-note" hidden></p>
+  return `<p id="refresh-note" class="today-note refresh-note" hidden></p>
 <script>
 (() => {
   const m = /(\\d{4}-\\d{2}-\\d{2})\\.html$/.exec(location.pathname);
@@ -40,6 +40,16 @@ export function refreshNote(): string {
   const slot = document.getElementById("refresh-note");
   slot.innerHTML = "this is the morning half of the day. the evening update lands <strong>around 18:45</strong> (Oslo time), " + when + "; notifications ping you in case you have them on.";
   slot.hidden = false;
+  if ("PushManager" in window) {
+    navigator.serviceWorker.ready
+      .then((reg) => reg.pushManager.getSubscription())
+      .then((sub) => {
+        if (!sub) return;
+        slot.style.opacity = "0";
+        setTimeout(() => { slot.hidden = true; }, 700);
+      })
+      .catch(() => {});
+  }
 })();
 </script>`;
 }
