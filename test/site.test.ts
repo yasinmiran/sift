@@ -111,6 +111,7 @@ describe("buildSite", () => {
     expect(index).toContain('<meta property="og:image:width" content="1200">');
     expect(index).toContain('<meta property="og:image:height" content="630">');
     expect(index).toContain('<meta name="twitter:card" content="summary_large_image">');
+    expect(index).toContain('<meta name="twitter:image" content="https://sift.yasint.dev/og.png">');
 
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).toContain('<link rel="canonical" href="https://sift.yasint.dev/2026-07-04.html">');
