@@ -26,12 +26,19 @@ export function notifyBlock(): string {
     install.hidden = true;
     slot.append(install);
     let deferred = null;
-    // localStorage remembers the install across tab visits; it cannot go
-    // stale in the installed direction because beforeinstallprompt firing
-    // is the browser's authoritative "not installed" and clears it.
+    // localStorage remembers the install across tab visits. Two guards keep
+    // it from lying after an uninstall: beforeinstallprompt (the browser's
+    // authoritative "not installed") clears it, and the stamp decays after
+    // 7 days unless a launch of the installed app refreshes it.
     const FLAG = "sift-installed";
-    const flag = (on) => { try { on ? localStorage.setItem(FLAG, "1") : localStorage.removeItem(FLAG); } catch {} };
-    const hasFlag = () => { try { return !!localStorage.getItem(FLAG); } catch { return false; } };
+    const FLAG_TTL = 7 * 864e5;
+    const flag = (on) => { try { on ? localStorage.setItem(FLAG, String(Date.now())) : localStorage.removeItem(FLAG); } catch {} };
+    const hasFlag = () => {
+      try {
+        const at = Number(localStorage.getItem(FLAG));
+        return at > 0 && Date.now() - at < FLAG_TTL;
+      } catch { return false; }
+    };
     const markInstalled = () => {
       flag(true);
       install.innerHTML = label(${JSON.stringify(CHECK_ICON)}, "installed");

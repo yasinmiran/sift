@@ -199,6 +199,8 @@ describe("buildSite", () => {
     expect(index).toContain("getInstalledRelatedApps");
     expect(index).toContain('"installed"');
     expect(index).toContain("20 6 9 17 4 12");
+    expect(index).toContain("sift-installed");
+    expect(index).toContain("FLAG_TTL");
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).not.toContain("beforeinstallprompt");
   });
