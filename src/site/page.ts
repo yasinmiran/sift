@@ -96,8 +96,10 @@ a:hover{color:var(--accent-hover)}
 .prose code{font-family:"Space Mono",ui-monospace,monospace;font-size:.85em;background:var(--surface);color:var(--accent);padding:.1em .35em;border:1px solid var(--border);border-radius:4px}
 .today-note{margin:0 0 1.5rem;padding:.85rem 1.1rem;border:1px solid var(--border);border-radius:var(--radius);color:var(--body);font-size:.92rem}
 .today-note strong{color:var(--accent);font-weight:600}
-.notify{margin:0 0 1.5rem;font-size:.9rem;color:var(--muted)}
-.notify-btn{font:inherit;font-size:.9rem;color:var(--body);background:none;border:1px solid var(--border);border-radius:var(--radius);padding:.4rem .8rem;cursor:pointer;transition:border-color .2s,color .2s}
+.notify{margin:0 0 1.5rem;font-size:.9rem;color:var(--muted);display:flex;align-items:center;flex-wrap:wrap;gap:.6rem}
+.notify[hidden]{display:none}
+.notify-btn{font:inherit;font-size:.9rem;color:var(--body);background:none;border:1px solid var(--border);border-radius:var(--radius);padding:.4rem .8rem;cursor:pointer;transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:.45rem}
+.notify-btn svg{width:15px;height:15px}
 .notify-btn:hover{border-color:var(--accent);color:var(--bold)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
