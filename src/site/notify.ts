@@ -4,6 +4,8 @@ const BELL_ICON =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>';
 const INSTALL_ICON =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+const CHECK_ICON =
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
 
 // iOS Safari only exposes PushManager to installed home-screen apps, so its
 // absence gets the install hint rather than a dead button. All failures
@@ -23,19 +25,29 @@ export function notifyBlock(): string {
     install.hidden = true;
     slot.append(install);
     let deferred = null;
+    const markInstalled = () => {
+      install.innerHTML = label(${JSON.stringify(CHECK_ICON)}, "installed");
+      install.disabled = true;
+      install.hidden = false;
+      slot.hidden = false;
+    };
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       deferred = e;
       install.hidden = false;
       slot.hidden = false;
     });
-    window.addEventListener("appinstalled", () => { install.hidden = true; });
+    window.addEventListener("appinstalled", markInstalled);
+    if ("getInstalledRelatedApps" in navigator) {
+      navigator.getInstalledRelatedApps().then((apps) => { if (apps.length) markInstalled(); }).catch(() => {});
+    }
     install.addEventListener("click", async () => {
       if (!deferred) return;
       deferred.prompt();
-      await deferred.userChoice.catch(() => {});
+      const choice = await deferred.userChoice.catch(() => null);
       deferred = null;
-      install.hidden = true;
+      if (choice && choice.outcome === "accepted") markInstalled();
+      else install.hidden = true;
     });
   }
   if (!("PushManager" in window)) {

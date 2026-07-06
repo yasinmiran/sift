@@ -54,10 +54,16 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
 
   for (const d of digests) {
     const body = `
-      <p class="crumbs"><a href="index.html">&larr; all days</a></p>
+      <nav class="crumbs"><a href="index.html">&larr; all days</a></nav>
+      <main>
+      <article>
+      <header>
       <h1>${escapeHtml(d.title)}</h1>
       <p class="meta">${formatDay(d.day)}<span id="views" hidden></span></p>
-      <article class="prose">${renderMarkdown(d.body)}</article>
+      </header>
+      <div class="prose">${renderMarkdown(d.body)}</div>
+      </article>
+      </main>
 <script>
 fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".json")
   .then((r) => (r.ok ? r.json() : null))
@@ -91,8 +97,8 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
     join(outDir, "index.html"),
     page(
       { title: "sift: the day's tech, sifted", description: SITE_DESCRIPTION, path: "", type: "website" },
-      `<h1>sift<span class="dot">.</span></h1><p class="tag">the day's tech, sifted</p>` +
-        `<section id="today" class="today-note" hidden></section>${notifyBlock()}${list}${todayScript()}`,
+      `<header class="head"><div><h1>sift<span class="dot">.</span></h1><p class="tag">the day's tech, sifted</p></div>${notifyBlock()}</header>` +
+        `<main><section id="today" class="today-note" hidden></section>${list}</main>${todayScript()}`,
     ),
   );
 
