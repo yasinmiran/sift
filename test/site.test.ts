@@ -55,8 +55,8 @@ describe("buildSite", () => {
     expect(index).toContain('<section id="today" class="today-note" hidden></section>');
     expect(index).toContain('timeZone: "Europe/Oslo"');
     expect(index).toContain("location.replace");
-    expect(index).toContain("06:00");
-    expect(index).toContain("18:30");
+    expect(index).toContain("06:45");
+    expect(index).toContain("18:45");
     const day = readFileSync(join(out, "2026-07-03.html"), "utf8");
     expect(day).not.toContain('id="today"');
   });
@@ -133,8 +133,8 @@ describe("buildSite", () => {
     expect(nf).toContain('href="/"');
     expect(nf).toContain('href="/favicons/favicon.svg"');
     expect(nf).toContain('timeZone: "Europe/Oslo"');
-    expect(nf).toContain("06:00");
-    expect(nf).toContain("18:30");
+    expect(nf).toContain("06:45");
+    expect(nf).toContain("18:45");
     expect(nf).toContain("https://github.com/yasinmiran/sift");
     const index = readFileSync(join(out, "index.html"), "utf8");
     expect(index).not.toContain('<meta name="robots" content="noindex">');
@@ -170,6 +170,15 @@ describe("buildSite", () => {
     expect(index).toContain("applicationServerKey");
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).not.toContain('id="notify"');
+  });
+
+  it("tells today's readers when the evening half lands", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain('id="refresh-note"');
+    expect(day).toContain("18:45");
+    expect(day).toContain("in case you have them on");
   });
 
   it("uses semantic landmarks with the buttons in the index masthead", () => {
