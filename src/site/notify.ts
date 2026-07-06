@@ -26,7 +26,14 @@ export function notifyBlock(): string {
     install.hidden = true;
     slot.append(install);
     let deferred = null;
+    // localStorage remembers the install across tab visits; it cannot go
+    // stale in the installed direction because beforeinstallprompt firing
+    // is the browser's authoritative "not installed" and clears it.
+    const FLAG = "sift-installed";
+    const flag = (on) => { try { on ? localStorage.setItem(FLAG, "1") : localStorage.removeItem(FLAG); } catch {} };
+    const hasFlag = () => { try { return !!localStorage.getItem(FLAG); } catch { return false; } };
     const markInstalled = () => {
+      flag(true);
       install.innerHTML = label(${JSON.stringify(CHECK_ICON)}, "installed");
       install.disabled = true;
       install.hidden = false;
@@ -35,9 +42,13 @@ export function notifyBlock(): string {
     if (standalone) {
       markInstalled();
     } else {
+      if (hasFlag()) markInstalled();
       window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
+        flag(false);
         deferred = e;
+        install.innerHTML = label(${JSON.stringify(INSTALL_ICON)}, "install app");
+        install.disabled = false;
         install.hidden = false;
         slot.hidden = false;
       });
