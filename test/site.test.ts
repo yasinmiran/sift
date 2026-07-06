@@ -171,4 +171,16 @@ describe("buildSite", () => {
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).not.toContain('id="notify"');
   });
+
+  it("gives the notify and install buttons icons and an install prompt hook", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).toContain("M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9");
+    expect(index).toContain("beforeinstallprompt");
+    expect(index).toContain("install app");
+    expect(index).toContain("display-mode: standalone");
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).not.toContain("beforeinstallprompt");
+  });
 });

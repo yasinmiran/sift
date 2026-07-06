@@ -1,16 +1,45 @@
 import { PUSH_URL, VAPID_PUBLIC_KEY } from "./page";
 
+const BELL_ICON =
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>';
+const INSTALL_ICON =
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+
 // iOS Safari only exposes PushManager to installed home-screen apps, so its
 // absence gets the install hint rather than a dead button. All failures
-// degrade silently back to the idle state.
+// degrade silently back to the idle state. The install button appears only
+// when the browser offers beforeinstallprompt and the app is not standalone.
 export function notifyBlock(): string {
   return `<p id="notify" class="notify" hidden></p>
 <script>
 (() => {
   const slot = document.getElementById("notify");
   if (!("serviceWorker" in navigator)) return;
+  const label = (icon, text) => icon + "<span>" + text + "</span>";
+  if ("onbeforeinstallprompt" in window && !matchMedia("(display-mode: standalone)").matches) {
+    const install = document.createElement("button");
+    install.className = "notify-btn";
+    install.innerHTML = label(${JSON.stringify(INSTALL_ICON)}, "install app");
+    install.hidden = true;
+    slot.append(install);
+    let deferred = null;
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferred = e;
+      install.hidden = false;
+      slot.hidden = false;
+    });
+    window.addEventListener("appinstalled", () => { install.hidden = true; });
+    install.addEventListener("click", async () => {
+      if (!deferred) return;
+      deferred.prompt();
+      await deferred.userChoice.catch(() => {});
+      deferred = null;
+      install.hidden = true;
+    });
+  }
   if (!("PushManager" in window)) {
-    slot.textContent = "install sift to your home screen to get notified of new digests.";
+    slot.insertAdjacentText("afterbegin", "install sift to your home screen to get notified of new digests.");
     slot.hidden = false;
     return;
   }
@@ -21,9 +50,9 @@ export function notifyBlock(): string {
   };
   const btn = document.createElement("button");
   btn.className = "notify-btn";
-  slot.append(btn);
+  slot.prepend(btn);
   const render = (sub) => {
-    btn.textContent = sub ? "notifications on \\u00b7 tap to stop" : "notify me on new digests";
+    btn.innerHTML = label(${JSON.stringify(BELL_ICON)}, sub ? "notifications on \\u00b7 tap to stop" : "notify me");
     slot.hidden = false;
   };
   const ready = navigator.serviceWorker.ready;
