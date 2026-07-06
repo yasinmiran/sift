@@ -43,7 +43,7 @@ export function notifyBlock(): string {
     };
     const markInstalled = () => {
       flag(true);
-      install.innerHTML = label(${JSON.stringify(CHECK_ICON)}, "installed");
+      install.innerHTML = "<span>installed</span>" + ${JSON.stringify(CHECK_ICON)};
       install.disabled = true;
       install.hidden = false;
       slot.hidden = false;
