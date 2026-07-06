@@ -18,7 +18,8 @@ export function notifyBlock(): string {
   const slot = document.getElementById("notify");
   if (!("serviceWorker" in navigator)) return;
   const label = (icon, text) => icon + "<span>" + text + "</span>";
-  if ("onbeforeinstallprompt" in window && !matchMedia("(display-mode: standalone)").matches) {
+  const standalone = matchMedia("(display-mode: standalone)").matches;
+  if (standalone || "onbeforeinstallprompt" in window) {
     const install = document.createElement("button");
     install.className = "notify-btn";
     install.innerHTML = label(${JSON.stringify(INSTALL_ICON)}, "install app");
@@ -31,24 +32,28 @@ export function notifyBlock(): string {
       install.hidden = false;
       slot.hidden = false;
     };
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferred = e;
-      install.hidden = false;
-      slot.hidden = false;
-    });
-    window.addEventListener("appinstalled", markInstalled);
-    if ("getInstalledRelatedApps" in navigator) {
-      navigator.getInstalledRelatedApps().then((apps) => { if (apps.length) markInstalled(); }).catch(() => {});
+    if (standalone) {
+      markInstalled();
+    } else {
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferred = e;
+        install.hidden = false;
+        slot.hidden = false;
+      });
+      window.addEventListener("appinstalled", markInstalled);
+      if ("getInstalledRelatedApps" in navigator) {
+        navigator.getInstalledRelatedApps().then((apps) => { if (apps.length) markInstalled(); }).catch(() => {});
+      }
+      install.addEventListener("click", async () => {
+        if (!deferred) return;
+        deferred.prompt();
+        const choice = await deferred.userChoice.catch(() => null);
+        deferred = null;
+        if (choice && choice.outcome === "accepted") markInstalled();
+        else install.hidden = true;
+      });
     }
-    install.addEventListener("click", async () => {
-      if (!deferred) return;
-      deferred.prompt();
-      const choice = await deferred.userChoice.catch(() => null);
-      deferred = null;
-      if (choice && choice.outcome === "accepted") markInstalled();
-      else install.hidden = true;
-    });
   }
   if (!("PushManager" in window)) {
     slot.insertAdjacentText("afterbegin", "install sift to your home screen to get notified of new digests.");
