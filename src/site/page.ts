@@ -102,6 +102,14 @@ a:hover{color:var(--accent-hover)}
 .notify-btn .spin{animation:spin .9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.notify-btn .spin{animation:none}}
+.notify-hint{font:inherit;font-size:.9rem;color:var(--muted);background:none;border:none;padding:0;cursor:pointer;text-align:left;text-decoration:underline dotted var(--faint);text-underline-offset:3px}
+.notify-hint:hover{color:var(--body)}
+.install-help{background:var(--surface);color:var(--body);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:22rem;font-size:.95rem}
+.install-help::backdrop{background:rgba(0,0,0,.6)}
+.install-help h2{font-family:"Fraunces",Georgia,serif;font-weight:600;color:var(--text);font-size:1.15rem;margin:0 0 .8rem}
+.install-help ol{margin:0 0 1rem;padding-left:1.2rem}
+.install-help li{margin:.4rem 0}
+.help-note{font-size:.85rem;color:var(--muted);margin:0 0 1.2rem}
 .notify-btn:hover{border-color:var(--accent);color:var(--bold)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>

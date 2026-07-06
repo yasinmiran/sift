@@ -15,6 +15,17 @@ const SPIN_ICON =
 // when the browser offers beforeinstallprompt and the app is not standalone.
 export function notifyBlock(): string {
   return `<p id="notify" class="notify" hidden></p>
+<dialog id="install-help" class="install-help">
+<h2>get sift on your home screen</h2>
+<ol>
+<li>tap the share button in your browser's toolbar</li>
+<li>choose "Add to Home Screen" (in chrome it can sit further down the share sheet)</li>
+<li>open sift from the new home screen icon</li>
+<li>tap the bell there to turn on notifications</li>
+</ol>
+<p class="help-note">on iphone, notifications only work from the installed app, never from a browser tab; that is an apple rule, not ours.</p>
+<button id="install-help-close" class="notify-btn">got it</button>
+</dialog>
 <script>
 (() => {
   const slot = document.getElementById("notify");
@@ -76,7 +87,13 @@ export function notifyBlock(): string {
     }
   }
   if (!("PushManager" in window)) {
-    slot.insertAdjacentText("afterbegin", "install sift to your home screen (share, then add to home screen) to get notified of new digests.");
+    const hint = document.createElement("button");
+    hint.className = "notify-hint";
+    hint.textContent = "install sift to your home screen (share, then add to home screen) to get notified of new digests.";
+    slot.prepend(hint);
+    const help = document.getElementById("install-help");
+    hint.addEventListener("click", () => help.showModal());
+    document.getElementById("install-help-close").addEventListener("click", () => help.close());
     slot.hidden = false;
     return;
   }
