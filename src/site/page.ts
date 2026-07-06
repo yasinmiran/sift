@@ -44,6 +44,7 @@ ${noindex ? '<meta name="robots" content="noindex">\n' : ""}<meta name="descript
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="sift: the day's tech, sifted">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${BASE_URL}/og.png">
 <meta name="theme-color" content="#0d0c0b">
 <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
