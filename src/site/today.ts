@@ -7,9 +7,15 @@ export function todayScript(): string {
   return `<script>
 (() => {
   const now = new Date();
-  const day = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+  const oslo = (t) => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" }).format(t);
+  const day = oslo(now);
+  const yesterday = oslo(new Date(now.getTime() - 864e5));
+  for (const el of document.querySelectorAll("[data-day]")) {
+    const label = el.dataset.day === day ? "today" : el.dataset.day === yesterday ? "yesterday" : "";
+    if (label) el.querySelector(".when").textContent = label;
+  }
   const clock = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Oslo", hour: "2-digit", minute: "2-digit", hour12: false }).format(now);
-  const todayLink = document.querySelector('.days a[href="' + day + '.html"]');
+  const todayLink = document.querySelector('main a[href="' + day + '.html"]');
   if (todayLink) {
     if (new URLSearchParams(location.search).has("today")) location.replace(todayLink.getAttribute("href") + location.search);
     return;
