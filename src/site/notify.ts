@@ -87,12 +87,16 @@ export function notifyBlock(): string {
   btn.className = "notify-btn";
   slot.prepend(btn);
   const render = (sub) => {
-    btn.innerHTML = label(${JSON.stringify(BELL_ICON)}, sub ? "notifications on \\u00b7 tap to stop" : "notify me");
+    btn.innerHTML = label(${JSON.stringify(BELL_ICON)}, sub ? "on" : "notify me");
+    btn.title = sub ? "tap to stop notifications" : "get a push when a new digest lands";
     slot.hidden = false;
   };
   const ready = navigator.serviceWorker.ready;
   ready.then((reg) => reg.pushManager.getSubscription()).then(render).catch(() => {});
   btn.addEventListener("click", async () => {
+    if (btn.disabled) return;
+    btn.disabled = true;
+    btn.classList.add("busy");
     try {
       const reg = await ready;
       const existing = await reg.pushManager.getSubscription();
@@ -111,6 +115,9 @@ export function notifyBlock(): string {
       const sub = await (await ready).pushManager.getSubscription().catch(() => null);
       if (sub) await sub.unsubscribe().catch(() => {});
       render(null);
+    } finally {
+      btn.disabled = false;
+      btn.classList.remove("busy");
     }
   });
 })();

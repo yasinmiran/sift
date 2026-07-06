@@ -95,8 +95,10 @@ a:hover{color:var(--accent-hover)}
 .notify[hidden]{display:none}
 .notify-btn{font:inherit;font-size:.9rem;color:var(--body);background:none;border:1px solid var(--border);border-radius:var(--radius);padding:.4rem .8rem;cursor:pointer;transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:.45rem}
 .notify-btn svg{width:15px;height:15px}
+.notify-btn:active{transform:translateY(1px);border-color:var(--accent)}
 .notify-btn:disabled{cursor:default;color:var(--muted)}
 .notify-btn:disabled:hover{border-color:var(--border)}
+.notify-btn.busy{opacity:.55;cursor:progress}
 .notify-btn:hover{border-color:var(--accent);color:var(--bold)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
