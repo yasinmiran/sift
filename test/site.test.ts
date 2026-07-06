@@ -161,13 +161,13 @@ describe("buildSite", () => {
     expect(day).toContain('serviceWorker.register("/sw.js")');
   });
 
-  // Inverted while the notify button is withheld from the index (push
-  // sidecar deploy broken); restore the original assertions with it.
-  it("withholds the push notify button everywhere for now", () => {
+  it("offers push notifications on the index only", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);
     const index = readFileSync(join(out, "index.html"), "utf8");
-    expect(index).not.toContain('id="notify"');
+    expect(index).toContain('id="notify"');
+    expect(index).toContain("PushManager");
+    expect(index).toContain("applicationServerKey");
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).not.toContain('id="notify"');
   });
