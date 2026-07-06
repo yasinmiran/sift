@@ -197,7 +197,7 @@ describe("buildSite", () => {
     expect(index).toContain("install app");
     expect(index).toContain("display-mode: standalone");
     expect(index).toContain("getInstalledRelatedApps");
-    expect(index).toContain('"installed"');
+    expect(index).toContain("<span>installed</span>");
     expect(index).toContain("20 6 9 17 4 12");
     expect(index).toContain("sift-installed");
     expect(index).toContain("FLAG_TTL");
