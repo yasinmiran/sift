@@ -131,6 +131,15 @@ const back = sessionStorage.getItem("sift-from");
 const link = document.querySelector("[data-backlink]");
 if (link && back) link.href = "https://yasint.dev" + back;
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
+// Installed apps resume from a snapshot with no refresh affordance; reload
+// on foreground when the copy is likely stale. Browser tabs keep their state.
+if (matchMedia("(display-mode: standalone)").matches || navigator.standalone === true) {
+  let hiddenAt = 0;
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") { hiddenAt = Date.now(); return; }
+    if (hiddenAt && Date.now() - hiddenAt > 15 * 60000) location.reload();
+  });
+}
 </script>
 <script data-goatcounter="${GOATCOUNTER_URL}/count" async src="//gc.zgo.at/count.js"></script>
 </body>
