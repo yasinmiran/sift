@@ -45,8 +45,13 @@ export function refreshNote(): string {
       .then((reg) => reg.pushManager.getSubscription())
       .then((sub) => {
         if (!sub) return;
-        slot.style.opacity = "0";
-        setTimeout(() => { slot.hidden = true; }, 700);
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          slot.hidden = true;
+          return;
+        }
+        slot.classList.add("draining");
+        setTimeout(() => { slot.style.opacity = "0"; }, 5500);
+        setTimeout(() => { slot.hidden = true; }, 6200);
       })
       .catch(() => {});
   }
