@@ -1,7 +1,26 @@
 {
   "day": "2026-07-06",
-  "generatedAt": "2026-07-06T04:36:47.509Z",
+  "generatedAt": "2026-07-06T07:22:11.303Z",
   "items": [
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "48793542",
+      "title": "Show HN: KiCad in the Browser",
+      "url": "https://demo.pcbjam.com/",
+      "author": "ViktorEE",
+      "publishedAt": "2026-07-05T12:06:57.000Z",
+      "content": "KiCad, a PCB EDA suite is now working in a browser, you can try it at the link, there's a demo project or you can bring your own. Firefox is best, Chrome is good, Safari is \"working\".We’re Emergence Engineering, a dev shop from Hungary, mostly working with rich text editors, CRDTs. PCBJam started as my (Viktor, CTO, ex-electrical engineer) hobby project but as time went on I put more and more energy into it, and a product started shaping up in my head, in the last few months we’ve started to focus on this project a bit more, and this is the first MVP~ish result.This project is a ton of fun, ton of learning, ton of improvements over improvements:- I thought there must be ways to emulate the PCB canvas OpenGL code on the web. And yes, there are a lot of ways, all of them very buggy. Turns out it’s faster to just write WebGL code that works with KiCad’s Graphics Abstraction Layer if you add the right intermediate debugging steps. I (with Claude) implemented the features and compared them to native at every step, then the app loaded up the first time and just worked. I spent weeks hunting weird emulation bugs before that.- There was an old wxWidgets web port as a starting point that helped a lot, bringing it up to the level KiCad needed is a long (and still ongoing) task. Thanks ahilss!- Pthreads on the web: with Emscripten it’s possible to port multithreaded apps (used by DRC, software 3D renderer). A lot of Emscripten features (Asyncify, Pthreads, native exceptions) are in a war with each other, but it’s possible.- Asyncify with native exceptions: Asyncify (used to make the WASM code suspend then call into the JS land, emulating blocking C++ calls by rewriting the WASM directly) is not compatible with native exceptions, even on the latest Binaryen version it can’t suspend inside catch arms. If you write a new Binaryen pass then it can, making the bundle 30-40% smaller and the app load in a second instead of 10.- Optimizing bundle size is a fun game. We just moved Open CASCADE into a separate lazy-loaded WASM module, moving from 180 to 130 MB (24 MB brotli), still on -O1. -O2 / -Oz etc will be more work than it looks.And a ton more problems like these above on a daily basis.A few months ago I had a barely loading laggy pcbnew that crashed when you looked at it wrong, now we have the whole application working. I should say with quite a few bugs still, but now it feels pretty close to native.There’s a lot of built up knowledge / code that we want to release as blogposts, mainline our changes to Binaryen / KiCad / wxWidgets, but I want to focus on the release first. Our wxWidgets port is quite close to the core, the KiCad is ~150 changed core files (mostly build scripts, some code changes too). The goal is to keep as close to the mainline as possible, and merge eventually.We’ll have a free tier for sure and something around $30/mo for bigger/closed projects, optional paid AI integration / self hosting / enterprise features / native & mobile version down the line.The goal is to build a product on top of KiCad (collaboration, AI integration, sharing, integrations), kind of like what Red Hat did with Linux back then. We’re heads down making it functional and have the first version up in a ~month or so.And of course we’re standing on the shoulders of the people who made KiCad & wxWidgets and we want to give back and contribute as much as possible, if you have an idea on how to do that best let me know, I released a few moderately successful open source projects, but I’ve never been a contributor. All of the front-end code is GPL (it has to be) and you can run this project if you want.You can find the sources at: https://github.com/emergence-engineering/pcbjam.Our company site is at: https://emergence-engineering.com/Our crappy LP is at: https://www.pcbjam.com/",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 32
+    },
     {
       "sourceSlug": "hacker-news",
       "externalId": "48794302",
@@ -202,6 +221,25 @@
       "comments": 68
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "48797141",
+      "title": "Delta flight hit by firework while landing at Midway Airport on Fourth of July",
+      "url": "https://www.nbcchicago.com/news/local/delta-flight-hit-by-firework-while-landing-at-midway-airport-on-fourth-of-july/3957451/",
+      "author": "randycupertino",
+      "publishedAt": "2026-07-05T19:22:51.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 116,
+      "comments": 178
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260705/p9#a260705p9",
       "title": "ByteDance's Doubao and Alibaba's Qwen will disable humanlike and user-created agents before July 15, as China's anthropomorphic AI interaction rules take effect (Wency Chen/South China Morning Post)",
@@ -299,6 +337,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "48798815",
+      "title": "Does code cleanliness affect coding agents? A controlled minimal-pair study",
+      "url": "https://arxiv.org/abs/2605.20049",
+      "author": "softwaredoug",
+      "publishedAt": "2026-07-05T23:03:55.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 48
     },
     {
       "sourceSlug": "hacker-news",
@@ -506,6 +563,62 @@
       "author": null,
       "publishedAt": "2026-07-06T04:36:40.011Z",
       "content": "AGE: Adaptive-masking for Graph Embedding in Graph Retrieval-Augmented Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260706/p2#a260706p2",
+      "title": "Shanghai-based AI chipmaker Biren raises ~$892.5M in a new share sale to boost GPU production; Biren's stock is up 150%+ since its January Hong Kong IPO (Ann Cao/South China Morning Post)",
+      "url": "https://www.techmeme.com/260706/p2#a260706p2",
+      "author": null,
+      "publishedAt": "2026-07-06T05:05:01.000Z",
+      "content": "Ann Cao / South China Morning Post: Shanghai-based AI chipmaker Biren raises ~$892.5M in a new share sale to boost GPU production; Biren's stock is up 150%+ since its January Hong Kong IPO — Chinese artificial intelligence chipmaking champion Shanghai Biren Technology is raising HK$7 billion (US$892.5 million) …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260706/p3#a260706p3",
+      "title": "SemiAnalysis: Nvidia delays its next-gen AI rack system Kyber NVL144 by 12+ months to 2028 due to PCB manufacturing issues, and cancels its NVL72x2 architecture (Anniek Bao/CNBC)",
+      "url": "https://www.techmeme.com/260706/p3#a260706p3",
+      "author": null,
+      "publishedAt": "2026-07-06T05:35:01.000Z",
+      "content": "Anniek Bao / CNBC: SemiAnalysis: Nvidia delays its next-gen AI rack system Kyber NVL144 by 12+ months to 2028 due to PCB manufacturing issues, and cancels its NVL72x2 architecture — NVIDIA's next marquee product — the Kyber rack-scale architecture designed to house its 2027 Rubin Ultra chips …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Jul/6/sqlite-utils/#atom-everything",
+      "title": "sqlite-utils 4.0rc3",
+      "url": "https://simonwillison.net/2026/Jul/6/sqlite-utils/#atom-everything",
+      "author": null,
+      "publishedAt": "2026-07-06T05:40:08.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.01804",
+      "title": "VLA-Corrector: Lightweight Detect-and-Correct Inference for Adaptive Action Horizon",
+      "url": "https://huggingface.co/papers/2607.01804",
+      "author": null,
+      "publishedAt": "2026-07-06T07:22:03.320Z",
+      "content": "VLA-Corrector: Lightweight Detect-and-Correct Inference for Adaptive Action Horizon",
       "topics": [
         "research"
       ],
