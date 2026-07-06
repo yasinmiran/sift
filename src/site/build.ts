@@ -9,7 +9,7 @@ import { notFoundPage } from "./not-found";
 import { notifyBlock } from "./notify";
 import { BASE_URL, GOATCOUNTER_URL, page, SITE_DESCRIPTION } from "./page";
 import { SW_SOURCE } from "./sw";
-import { todayScript } from "./today";
+import { refreshNote, todayScript } from "./today";
 
 interface Digest {
   day: string;
@@ -61,6 +61,7 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
       <h1>${escapeHtml(d.title)}</h1>
       <p class="meta">${formatDay(d.day)}<span id="views" hidden></span></p>
       </header>
+      ${refreshNote()}
       <div class="prose">${renderMarkdown(d.body)}</div>
       </article>
       </main>
