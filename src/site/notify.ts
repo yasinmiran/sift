@@ -76,7 +76,7 @@ export function notifyBlock(): string {
     }
   }
   if (!("PushManager" in window)) {
-    slot.insertAdjacentText("afterbegin", "install sift to your home screen to get notified of new digests.");
+    slot.insertAdjacentText("afterbegin", "install sift to your home screen (share, then add to home screen) to get notified of new digests.");
     slot.hidden = false;
     return;
   }
