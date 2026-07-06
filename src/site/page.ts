@@ -65,7 +65,8 @@ body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
 h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:2.1rem;letter-spacing:-.02em;margin:0 0 .25rem;color:var(--text)}
 .dot{color:var(--accent)}
-.tag{color:var(--muted);margin:0 0 2.5rem}
+.head{display:flex;justify-content:space-between;align-items:center;gap:1rem 1.5rem;flex-wrap:wrap;margin:0 0 2.5rem}
+.tag{color:var(--muted);margin:0}
 .mono{font-family:"Space Mono",ui-monospace,monospace;font-size:.85em}
 .meta{color:var(--muted);font-size:.9rem;margin:.15rem 0 0}
 .crumbs{margin:0 0 2rem}
@@ -96,10 +97,12 @@ a:hover{color:var(--accent-hover)}
 .prose code{font-family:"Space Mono",ui-monospace,monospace;font-size:.85em;background:var(--surface);color:var(--accent);padding:.1em .35em;border:1px solid var(--border);border-radius:4px}
 .today-note{margin:0 0 1.5rem;padding:.85rem 1.1rem;border:1px solid var(--border);border-radius:var(--radius);color:var(--body);font-size:.92rem}
 .today-note strong{color:var(--accent);font-weight:600}
-.notify{margin:0 0 1.5rem;font-size:.9rem;color:var(--muted);display:flex;align-items:center;flex-wrap:wrap;gap:.6rem}
+.notify{margin:0;font-size:.9rem;color:var(--muted);display:flex;align-items:center;flex-wrap:wrap;gap:.6rem}
 .notify[hidden]{display:none}
 .notify-btn{font:inherit;font-size:.9rem;color:var(--body);background:none;border:1px solid var(--border);border-radius:var(--radius);padding:.4rem .8rem;cursor:pointer;transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:.45rem}
 .notify-btn svg{width:15px;height:15px}
+.notify-btn:disabled{cursor:default;color:var(--muted)}
+.notify-btn:disabled:hover{border-color:var(--border)}
 .notify-btn:hover{border-color:var(--accent);color:var(--bold)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>

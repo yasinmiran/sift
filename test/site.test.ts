@@ -172,6 +172,22 @@ describe("buildSite", () => {
     expect(day).not.toContain('id="notify"');
   });
 
+  it("uses semantic landmarks with the buttons in the index masthead", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).toContain('<header class="head">');
+    expect(index).toContain("<main>");
+    expect(index.indexOf('id="notify"')).toBeLessThan(index.indexOf("<main>"));
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain('<nav class="crumbs">');
+    expect(day).toContain("<article>");
+    expect(day.indexOf("<header>")).toBeLessThan(day.indexOf('class="prose"'));
+    const nf = readFileSync(join(out, "404.html"), "utf8");
+    expect(nf).toContain('<nav class="crumbs">');
+    expect(nf).toContain("<main>");
+  });
+
   it("gives the notify and install buttons icons and an install prompt hook", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);
@@ -180,6 +196,9 @@ describe("buildSite", () => {
     expect(index).toContain("beforeinstallprompt");
     expect(index).toContain("install app");
     expect(index).toContain("display-mode: standalone");
+    expect(index).toContain("getInstalledRelatedApps");
+    expect(index).toContain('"installed"');
+    expect(index).toContain("20 6 9 17 4 12");
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).not.toContain("beforeinstallprompt");
   });

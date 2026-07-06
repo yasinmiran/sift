@@ -5,10 +5,11 @@ import { page, SITE_DESCRIPTION } from "./page";
 // month. The script tells those two apart from the requested path.
 export function notFoundPage(): string {
   const body = `
-      <p class="crumbs"><a href="/">&larr; all days</a></p>
-      <h1>404<span class="dot">.</span></h1>
-      <p class="tag">nothing sifted here</p>
+      <nav class="crumbs"><a href="/">&larr; all days</a></nav>
+      <header class="head"><div><h1>404<span class="dot">.</span></h1><p class="tag">nothing sifted here</p></div></header>
+      <main>
       <section id="why" class="today-note">this page does not exist. head back to <a href="/">all days</a>.</section>
+      </main>
 <script>
 (() => {
   const m = /^\\/(\\d{4}-\\d{2}-\\d{2})\\.html$/.exec(location.pathname);
