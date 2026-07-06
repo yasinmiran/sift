@@ -82,14 +82,22 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
     );
   }
 
+  const [newest, ...rest] = digests;
+  const hero = newest
+    ? `<a class="hero" href="${newest.day}.html" data-day="${newest.day}">
+        <p class="when"><span class="mono">${newest.day}</span> &middot; ${formatDay(newest.day)}</p>
+        <p class="desc">${escapeHtml(newest.description)}</p>
+        <span class="read">read the digest &rarr;</span>
+      </a>`
+    : `<p class="meta">nothing sifted yet.</p>`;
   const list =
-    digests.length === 0
-      ? `<p class="meta">nothing sifted yet.</p>`
-      : `<ul class="days">${digests
+    rest.length === 0
+      ? ""
+      : `<ul class="days">${rest
           .map(
             (d) => `
         <li>
-          <a href="${d.day}.html"><span class="mono">${d.day}</span> &middot; ${formatDay(d.day)}</a>
+          <a href="${d.day}.html" data-day="${d.day}"><span class="when"><span class="mono">${d.day}</span> &middot; ${formatDay(d.day)}</span></a>
           <p class="meta">${escapeHtml(d.description)}</p>
         </li>`,
           )
@@ -97,9 +105,15 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
   writeFileSync(
     join(outDir, "index.html"),
     page(
-      { title: "sift: the day's tech, sifted", description: SITE_DESCRIPTION, path: "", type: "website" },
+      {
+        title: "sift: the day's tech, sifted",
+        description: SITE_DESCRIPTION,
+        path: "",
+        type: "website",
+        footNote: "this page keeps a rolling month of days; older ones live on in the repo's git history.",
+      },
       `<header class="head"><div><h1>sift<span class="dot">.</span></h1><p class="tag">the day's tech, sifted</p></div>${notifyBlock()}</header>` +
-        `<main><section id="today" class="today-note" hidden></section>${list}</main>${todayScript()}`,
+        `<main><section id="today" class="today-note" hidden></section>${hero}${list}</main>${todayScript()}`,
     ),
   );
 

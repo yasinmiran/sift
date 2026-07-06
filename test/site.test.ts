@@ -197,6 +197,40 @@ describe("buildSite", () => {
     expect(nf).toContain("<main>");
   });
 
+  it("features the newest day as a hero above the older days", () => {
+    digest("2026-07-03", "body");
+    digest("2026-07-04", "body");
+    digest("2026-07-05", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).toContain('class="hero"');
+    expect(index).toContain('data-day="2026-07-05"');
+    expect(index.match(/href="2026-07-05\.html"/g)).toHaveLength(1);
+    expect(index.indexOf('class="hero"')).toBeLessThan(index.indexOf('class="days"'));
+    expect(index.indexOf('class="hero"')).toBeGreaterThan(index.indexOf("<main>"));
+    expect(index).toContain("top story of 2026-07-05");
+  });
+
+  it("relabels the current and previous day client-side", () => {
+    digest("2026-07-04", "body");
+    digest("2026-07-05", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).toContain('class="when"');
+    expect(index).toContain('"yesterday"');
+    expect(index).toContain("864e5");
+  });
+
+  it("ends the day list without a rule and notes retention on the index", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).toContain(".days li:last-child{border-bottom:none}");
+    expect(index).toContain("rolling month");
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).not.toContain("rolling month");
+  });
+
   it("gives the notify and install buttons icons and an install prompt hook", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);

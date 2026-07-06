@@ -10,10 +10,10 @@ export const VAPID_PUBLIC_KEY =
   "BOof2eUjrc1IGkMGlqiRdfB39JYdGHUK-D5GKt1TkxuaO169sUgmgpOWbdilWLVRhBufODdaBgluq3QDS-Bk9AY";
 const BYLINE =
   '<span class="byline">by <a href="https://yasint.dev" data-backlink>yasin</a></span>';
-const FOOTER = `<footer class="foot">
+const footer = (note?: string) => `<footer class="foot">
 ${BYLINE}
 <p class="foot-note">curated daily with help of AI; mistakes are unlikely, but possible. see <a href="${REPO_URL}/blob/main/AGENTS.md">AGENTS.md</a> for how it works.</p>
-</footer>`;
+${note ? `<p class="foot-note">${note}</p>\n` : ""}</footer>`;
 export const SITE_DESCRIPTION =
   "The day's tech, sifted: a twice-daily digest of AI, devtools, security and industry news, one readable page per day.";
 
@@ -23,9 +23,13 @@ export interface PageMeta {
   path: string;
   type: "website" | "article";
   noindex?: true;
+  footNote?: string;
 }
 
-export function page({ title, description, path, type, noindex }: PageMeta, body: string): string {
+export function page(
+  { title, description, path, type, noindex, footNote }: PageMeta,
+  body: string,
+): string {
   const canonical = `${BASE_URL}/${path}`;
   const head = `<title>${escapeHtml(title)}</title>
 ${noindex ? '<meta name="robots" content="noindex">\n' : ""}<meta name="description" content="${escapeHtml(description)}">
@@ -75,8 +79,14 @@ h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:2.1rem;letter-
 .foot-note a{color:var(--muted)}
 a{color:var(--accent);text-decoration:none;transition:color .2s}
 a:hover{color:var(--accent-hover)}
+.hero{display:block;margin:0 0 1.5rem;padding:0 0 2rem;border-bottom:1px solid var(--border)}
+.hero .when{margin:0 0 .5rem;font-family:"Space Mono",ui-monospace,monospace;font-size:.8rem;color:var(--accent)}
+.hero .desc{margin:0;font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:1.35rem;line-height:1.45;letter-spacing:-.01em;color:var(--text);transition:color .2s}
+.hero:hover .desc{color:var(--accent-hover)}
+.hero .read{display:inline-block;margin:.8rem 0 0;font-size:.9rem;color:var(--accent)}
 .days{list-style:none;margin:0;padding:0}
 .days li{padding:1rem 0;border-bottom:1px solid var(--border)}
+.days li:last-child{border-bottom:none}
 .days a{font-size:1.05rem}
 .prose{margin-top:2rem;line-height:1.72}
 .prose p{margin:1.5em 0}
@@ -121,7 +131,7 @@ a:hover{color:var(--accent-hover)}
 </head>
 <body>
 ${body}
-${FOOTER}
+${footer(footNote)}
 <script>
 // Visitors arriving from yasint.dev carry ?from=<path>; remember it for the
 // tab so the backlink returns them to the page they left, not the homepage.
