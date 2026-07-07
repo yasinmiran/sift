@@ -50,6 +50,25 @@ describe("verifyDigest", () => {
     expect(r.ok).toBe(true);
   });
 
+  it("allows yaml quote escapes but fails on ones the site renders literally", () => {
+    writeItems(DAY, urls);
+    writeDigest(
+      digestWith({
+        front: `---\ntitle: "The day's tech, sifted: Jul 4, 2026"\ndescription: "thinks \\"blackmail\\" quietly"\ndate: "${DAY}"\n---`,
+      }),
+    );
+    expect(verifyDigest(root, DAY).errors).toEqual([]);
+    writeDigest(
+      digestWith({
+        front: `---\ntitle: "The day's tech, sifted: Jul 4, 2026"\ndescription: "line one\\nline two"\ndate: "${DAY}"\n---`,
+      }),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(false);
+    expect(r.errors[0]).toContain("description");
+    expect(r.errors[0]).toContain("escape");
+  });
+
   it("fails when the digest file does not exist", () => {
     const r = verifyDigest(root, DAY);
     expect(r.ok).toBe(false);
