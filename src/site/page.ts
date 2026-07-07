@@ -11,7 +11,7 @@ export const VAPID_PUBLIC_KEY =
 const BYLINE =
   '<span class="byline">by <a href="https://yasint.dev" data-backlink>yasin</a></span>';
 const footer = (note?: string) => `<footer class="foot">
-${BYLINE}
+${BYLINE} &middot; <a class="feed" href="/feed.xml">rss</a>
 <p class="foot-note">curated daily with help of AI; mistakes are unlikely, but possible. see <a href="${REPO_URL}/blob/main/AGENTS.md">AGENTS.md</a> for how it works.</p>
 ${note ? `<p class="foot-note">${note}</p>\n` : ""}</footer>`;
 export const SITE_DESCRIPTION =
@@ -24,10 +24,12 @@ export interface PageMeta {
   type: "website" | "article";
   noindex?: true;
   footNote?: string;
+  published?: string;
+  jsonLd?: Record<string, unknown>;
 }
 
 export function page(
-  { title, description, path, type, noindex, footNote }: PageMeta,
+  { title, description, path, type, noindex, footNote, published, jsonLd }: PageMeta,
   body: string,
 ): string {
   const canonical = `${BASE_URL}/${path}`;
@@ -45,13 +47,16 @@ ${noindex ? '<meta name="robots" content="noindex">\n' : ""}<meta name="descript
 <meta property="og:image:alt" content="sift: the day's tech, sifted">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="${BASE_URL}/og.png">
-<meta name="theme-color" content="#0d0c0b">
+${published ? `<meta property="article:published_time" content="${published}">\n` : ""}<meta name="theme-color" content="#0d0c0b">
 <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-<link rel="manifest" href="/manifest.webmanifest">`;
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="sift" href="/feed.xml">${
+    jsonLd ? `\n<script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, "\\u003c")}</script>` : ""
+  }`;
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -79,6 +84,7 @@ h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:2.1rem;letter-
 .crumbs{margin:0 0 2rem}
 .byline{font-size:.9rem;color:var(--muted)}
 .byline a{color:var(--body)}
+.feed{font-size:.9rem}
 .foot{margin-top:4.5rem}
 .foot-note{margin:.4rem 0 0;max-width:60%;font-size:.7rem;color:var(--faint)}
 .foot-note a{color:var(--muted)}
