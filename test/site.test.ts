@@ -202,6 +202,19 @@ describe("buildSite", () => {
     expect(nf).toContain("<main>");
   });
 
+  it("unescapes yaml quote escapes and keeps quotes attribute-safe", () => {
+    writeFileSync(
+      join(root, "digests", "2026-07-04.md"),
+      `---\ntitle: "sift: 2026-07-04"\ndescription: "it thinks \\"blackmail\\" quietly"\ndate: "2026-07-04"\n---\n\nbody\n`,
+    );
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).toContain("it thinks &quot;blackmail&quot; quietly");
+    expect(index).not.toContain("\\&quot;");
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain('<meta name="description" content="it thinks &quot;blackmail&quot; quietly">');
+  });
+
   it("features the newest day as a hero above the older days", () => {
     digest("2026-07-03", "body");
     digest("2026-07-04", "body");

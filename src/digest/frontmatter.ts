@@ -16,7 +16,7 @@ export function parseFrontmatter(raw: string): DigestFile {
   const meta: Record<string, string> = {};
   for (const line of front[1]!.split("\n")) {
     const kv = /^(\w+):\s*"?(.*?)"?\s*$/.exec(line);
-    if (kv) meta[kv[1]!] = kv[2]!;
+    if (kv) meta[kv[1]!] = kv[2]!.replace(/\\(["\\])/g, "$1");
   }
   return { meta, body: raw.slice(front[0].length) };
 }
