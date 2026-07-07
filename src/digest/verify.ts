@@ -37,6 +37,13 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     if (meta.date && meta.date !== day) {
       errors.push(`frontmatter date ${meta.date} does not match the filename day ${day}`);
     }
+    for (const key of ["title", "description"]) {
+      if (meta[key]?.includes("\\")) {
+        errors.push(
+          `frontmatter ${key} has an escape sequence the site renders literally; only \\" and \\\\ are understood, rewrite the rest in plain words`,
+        );
+      }
+    }
   }
 
   const body = rawBody.trim();
