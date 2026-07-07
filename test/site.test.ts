@@ -129,6 +129,36 @@ describe("buildSite", () => {
     );
   });
 
+  it("emits structured data for the site and each day", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).toContain('<script type="application/ld+json">');
+    expect(index).toContain('"@type":"WebSite"');
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain('"@type":"NewsArticle"');
+    expect(day).toContain('"datePublished":"2026-07-04"');
+    expect(day).toContain('"headline":"The day\'s tech, sifted: 2026-07-04"');
+    expect(day).toContain('<meta property="article:published_time" content="2026-07-04">');
+    expect(index).not.toContain("article:published_time");
+  });
+
+  it("writes an rss feed and links it from every page", () => {
+    digest("2026-07-03", "body");
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const feed = readFileSync(join(out, "feed.xml"), "utf8");
+    expect(feed).toContain("<rss version=\"2.0\"");
+    expect(feed).toContain("<title>sift</title>");
+    expect(feed).toContain("<link>https://sift.yasint.dev/2026-07-04.html</link>");
+    expect(feed).toContain("top story of 2026-07-03");
+    expect(feed.indexOf("2026-07-04.html")).toBeLessThan(feed.indexOf("2026-07-03.html"));
+    expect(feed).toContain("04 Jul 2026");
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    expect(index).toContain('<link rel="alternate" type="application/rss+xml" title="sift" href="/feed.xml">');
+    expect(index).toContain('class="feed" href="/feed.xml"');
+  });
+
   it("writes a noindex 404 page that explains missing day pages", () => {
     digest("2026-07-03", "body");
     buildSite(root, out);

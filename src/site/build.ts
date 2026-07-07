@@ -37,6 +37,14 @@ function formatDay(day: string): string {
   return `${WEEKDAY[date.getUTCDay()]}, ${MONTH[m - 1]} ${d}`;
 }
 
+// The morning digest lands right after the 04:34 UTC run.
+function feedDate(day: string): string {
+  const [y, m, d] = day.split("-").map(Number) as [number, number, number];
+  return new Date(Date.UTC(y, m - 1, d, 4, 34)).toUTCString();
+}
+
+const AUTHOR = { "@type": "Person", name: "Yasin", url: "https://yasint.dev" };
+
 export function buildSite(rootDir: string, outDir: string): { pages: number } {
   const dir = join(rootDir, "digests");
   const days = existsSync(dir)
@@ -78,7 +86,27 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
 </script>`;
     writeFileSync(
       join(outDir, `${d.day}.html`),
-      page({ title: d.title, description: d.description, path: `${d.day}.html`, type: "article" }, body),
+      page(
+        {
+          title: d.title,
+          description: d.description,
+          path: `${d.day}.html`,
+          type: "article",
+          published: d.day,
+          jsonLd: {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            headline: d.title,
+            description: d.description,
+            datePublished: d.day,
+            dateModified: d.day,
+            author: AUTHOR,
+            image: `${BASE_URL}/og.png`,
+            mainEntityOfPage: `${BASE_URL}/${d.day}.html`,
+          },
+        },
+        body,
+      ),
     );
   }
 
@@ -111,6 +139,14 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
         path: "",
         type: "website",
         footNote: "this page keeps a rolling month of days; older ones live on in the repo's git history.",
+        jsonLd: {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "sift",
+          url: `${BASE_URL}/`,
+          description: SITE_DESCRIPTION,
+          author: AUTHOR,
+        },
       },
       `<header class="head"><div><h1>sift<span class="dot">.</span></h1><p class="tag">the day's tech, sifted</p></div>${notifyBlock()}</header>` +
         `<main><section id="today" class="today-note" hidden></section>${hero}${list}</main>${todayScript()}`,
@@ -126,6 +162,31 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
       .map((u) => `  <url><loc>${u.loc}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ""}</url>`)
       .join("\n")}\n</urlset>\n`,
+  );
+  writeFileSync(
+    join(outDir, "feed.xml"),
+    `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>sift</title>
+<link>${BASE_URL}/</link>
+<atom:link href="${BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
+<description>${escapeHtml(SITE_DESCRIPTION)}</description>
+<language>en</language>
+${digests
+  .map(
+    (d) => `<item>
+<title>${escapeHtml(d.title)}</title>
+<link>${BASE_URL}/${d.day}.html</link>
+<guid>${BASE_URL}/${d.day}.html</guid>
+<description>${escapeHtml(d.description)}</description>
+<pubDate>${feedDate(d.day)}</pubDate>
+</item>`,
+  )
+  .join("\n")}
+</channel>
+</rss>
+`,
   );
   writeFileSync(join(outDir, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${BASE_URL}/sitemap.xml\n`);
   writeFileSync(join(outDir, "sw.js"), SW_SOURCE);
