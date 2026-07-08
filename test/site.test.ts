@@ -218,13 +218,15 @@ describe("buildSite", () => {
     expect(day).not.toContain('id="notify"');
   });
 
-  it("tells today's readers when the evening half lands", () => {
+  it("tells today's readers when the evening half lands, in their own time zone", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).toContain('id="refresh-note"');
     expect(day).toContain("18:45");
     expect(day).toContain("in case you have them on");
+    expect(day).toContain("your time");
+    expect(day).toContain("left * 60000");
   });
 
   it("uses semantic landmarks with the buttons in the index masthead", () => {

@@ -43,8 +43,10 @@ export function refreshNote(): string {
   if (clock >= "18:45" || clock < "06:45") return;
   const left = 18 * 60 + 45 - (Number(clock.slice(0, 2)) * 60 + Number(clock.slice(3)));
   const when = left <= 60 ? "in under an hour" : "in about " + Math.round(left / 60) + " hours";
+  const local = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date(now.getTime() + left * 60000));
+  const yours = local === "18:45" ? "" : ", around <strong>" + local + "</strong> your time";
   const slot = document.getElementById("refresh-note");
-  slot.innerHTML = "this is the morning half of the day. the evening update lands <strong>around 18:45</strong> (Oslo time), " + when + "; notifications ping you in case you have them on.";
+  slot.innerHTML = "this is the morning half of the day. the evening update lands <strong>around 18:45</strong> (Oslo time), " + when + yours + "; notifications ping you in case you have them on.";
   slot.hidden = false;
   if ("PushManager" in window) {
     navigator.serviceWorker.ready
