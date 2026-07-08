@@ -43,6 +43,9 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
           `frontmatter ${key} has an escape sequence the site renders literally; only \\" and \\\\ are understood, rewrite the rest in plain words`,
         );
       }
+      if (meta[key] && /==|\(\(/.test(meta[key])) {
+        errors.push(`frontmatter ${key} carries a pen mark; marks belong in the body only`);
+      }
     }
   }
 
@@ -91,6 +94,15 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
   if (dashes > 0) {
     warnings.push(`${dashes} em/en dashes; rewrite with commas, colons or parentheses`);
   }
+
+  const MARK_U = /==[^=\n]+?==/g;
+  const MARK_O = /\(\([^()\n]+?\)\)/g;
+  const prose = body.replace(/\]\([^)\s]+\)/g, "]()");
+  const marks = (prose.match(MARK_U) ?? []).length + (prose.match(MARK_O) ?? []).length;
+  const unmarked = prose.replace(MARK_U, "").replace(MARK_O, "");
+  if (unmarked.includes("==")) errors.push("unclosed == pen mark; close it or drop the markers");
+  if (unmarked.includes("((")) errors.push("unclosed (( pen mark; close it or drop the markers");
+  if (marks > 3) warnings.push(`${marks} pen marks; marks lose punch past 2-3 a day`);
 
   if (body && !/^##\s+Threads\b/m.test(body)) {
     warnings.push("no Threads section; add one unless nothing genuinely connects today");

@@ -50,6 +50,41 @@ describe("verifyDigest", () => {
     expect(r.ok).toBe(true);
   });
 
+  it("fails on unclosed pen marks but not on prose parens", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith({ threads: "\n## Threads\n\n- a ==real (nested (parens)) deal== here.\n" }));
+    expect(verifyDigest(root, DAY).errors).toEqual([]);
+    writeDigest(digestWith({ threads: "\n## Threads\n\n- an ==unclosed mark here.\n" }));
+    expect(verifyDigest(root, DAY).errors[0]).toContain("==");
+    writeDigest(digestWith({ threads: "\n## Threads\n\n- a ((dangling circle here.\n" }));
+    expect(verifyDigest(root, DAY).errors[0]).toContain("((");
+  });
+
+  it("warns when marks are overused and ignores == inside link urls", () => {
+    writeItems(DAY, urls);
+    writeDigest(
+      digestWith({
+        threads:
+          "\n## Threads\n\n- ==one== ==two== ==three== ((four)) connect via [x](https://e.com/?t=YWJjZA==).\n",
+      }),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.errors).toEqual([]);
+    expect(r.warnings.some((w) => w.includes("marks"))).toBe(true);
+  });
+
+  it("fails on pen marks in the frontmatter", () => {
+    writeItems(DAY, urls);
+    writeDigest(
+      digestWith({
+        front: `---\ntitle: "The day's tech, sifted: Jul 4, 2026"\ndescription: "a ==marked== line"\ndate: "${DAY}"\n---`,
+      }),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(false);
+    expect(r.errors[0]).toContain("description");
+  });
+
   it("allows yaml quote escapes but fails on ones the site renders literally", () => {
     writeItems(DAY, urls);
     writeDigest(

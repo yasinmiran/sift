@@ -122,6 +122,11 @@ article reader when connected:
 - No em or en dashes anywhere in the digest, including inside your own
   summaries: use a comma, colon, or parentheses instead. Quoted titles
   are the only exception, and quote sparingly.
+- Pen marks: `==text==` renders as a hand-drawn underline, `((text))`
+  as a circle. At most 2-3 per digest, body only, on the one number or
+  phrase a reader must not miss (a price, a first, a reversal). Never
+  whole sentences, headings, or link text; most days use none. The
+  verifier errors on unclosed markers and warns past 3.
 - Model claims are embarrassment-grade if wrong. Double-check release
   and availability dates, benchmark scores, rankings, and any
   "first/new/launch/coming out" framing against the vendor's

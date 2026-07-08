@@ -129,6 +129,17 @@ describe("buildSite", () => {
     );
   });
 
+  it("renders pen marks on day pages with the hand-drawn styles", () => {
+    digest("2026-07-04", "a ==big deal== and ((circled)) figure");
+    buildSite(root, out);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain('<mark class="pen pen-u">big deal</mark>');
+    expect(day).toContain('<mark class="pen pen-o">circled</mark>');
+    expect(day).toContain("mark.pen{");
+    expect(day).toContain(".pen-u{");
+    expect(day).toContain(".pen-o{");
+  });
+
   it("emits structured data for the site and each day", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);
