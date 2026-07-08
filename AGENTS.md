@@ -200,6 +200,10 @@ Telegraphic, dense, still readable. Every word earns its place:
   matters" clause is the one editorial license per entry.
 - Readable beats short: keep verbs, keep each sentence's spine, never
   compress into ambiguity.
+- Smart but digestible: every summary lands on first read for a busy
+  reader. Decode jargon inline (say what the thing does, not just its
+  name), lead with the concrete change, and make the why-it-matters
+  clause state the consequence, never a restatement of the headline.
 
 ## Continuity
 
