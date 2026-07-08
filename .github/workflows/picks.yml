@@ -1,0 +1,39 @@
+name: picks
+
+on:
+  issues:
+    types: [opened]
+
+concurrency:
+  group: picks
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  pick:
+    if: github.event.issue.user.login == 'yasinmiran' && startsWith(github.event.issue.title, 'pick:')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: record the pick
+        id: pick
+        run: echo "result=$(npx tsx src/pipeline/pick-issue.ts "$GITHUB_EVENT_PATH")" >> "$GITHUB_OUTPUT"
+      - name: commit the pick
+        run: |
+          git config user.name "sift picks"
+          git config user.email "picks@users.noreply.github.com"
+          git add data/picks
+          git diff --cached --quiet || (git commit -m "chore(data): record pick" && git pull --rebase && git push)
+      - name: close the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >
+          gh issue close ${{ github.event.issue.number }}
+          --comment "picked for ${{ fromJSON(steps.pick.outputs.result).day }}"

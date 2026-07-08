@@ -87,6 +87,9 @@ data/items/{day}.json   { day, generatedAt, items: [ { sourceSlug,
                           content, topics[], paywalled, mediaType } ] }
 data/state.json         { sources: { slug: { etag, lastModified,
                           feedHash } }, seen: { day: [keys] } }
+data/picks/{day}.json   { day, summary, items: [ { url, title, note,
+                          addedAt } ] }   hand-found links, written by
+                          the picks workflow from "pick:" issues
 digests/{day}.md        ---\ntitle, description, date\n--- + markdown
 ```
 

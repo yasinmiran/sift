@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { today } from "../day";
+import { readPicks } from "../pipeline/picks";
 import { parseFrontmatter } from "./frontmatter";
 
 export interface VerifyResult {
@@ -64,17 +65,31 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     warnings.push(`${links.length} links; the digest should be readable in one sitting`);
   }
 
+  let pickUrls: string[] = [];
+  try {
+    pickUrls = readPicks(rootDir, day)?.items.map((i) => i.url) ?? [];
+  } catch (e) {
+    errors.push(e instanceof Error ? e.message : String(e));
+  }
+
   const itemsPath = join(rootDir, "data", "items", `${day}.json`);
   if (!existsSync(itemsPath)) {
     warnings.push(`data/items/${day}.json is missing; cannot cross-check links`);
   } else {
     const items = JSON.parse(readFileSync(itemsPath, "utf8")).items as { url?: string }[];
-    const known = new Set(items.map((i) => i.url).filter(Boolean).map((u) => normalize(u!)));
+    const known = new Set(
+      [...items.map((i) => i.url).filter(Boolean), ...pickUrls].map((u) => normalize(u!)),
+    );
     for (const url of links) {
       if (/^https?:\/\//.test(url) && !known.has(normalize(url))) {
         warnings.push(`link not found in the day's items (primary source or typo?): ${url}`);
       }
     }
+  }
+
+  const linked = new Set(links.map(normalize));
+  for (const url of pickUrls) {
+    if (!linked.has(normalize(url))) warnings.push(`pick not covered: ${url}`);
   }
 
   const earlier = readdirSync(join(rootDir, "digests"))

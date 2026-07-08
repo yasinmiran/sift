@@ -17,7 +17,22 @@ https://raw.githubusercontent.com/yasinmiran/sift/main/data/items/{YYYY-MM-DD}.j
      author, publishedAt, content, topics[], paywalled, mediaType } ] }
 ```
 
-If the file is missing or thin, force a fetch and re-read once it
+Yasin's own finds, when the day has any (404 means none):
+
+```
+https://raw.githubusercontent.com/yasinmiran/sift/main/data/picks/{YYYY-MM-DD}.json
+-> { day, summary?, items: [ { url, title?, note?, addedAt } ] }
+```
+
+Picks are hand-chosen by Yasin (a `pick:` issue becomes this file via
+the picks workflow). Read each like any other source and cover every
+one: picks digest into the same themed sections as fetched items, a
+story arriving via both is still ONE entry, and an entry sourced from
+a pick carries the tag `(one of yasin's picks today)` after its link.
+`note` and `summary` are Yasin's framing: weave it in. The verifier
+warns on any pick the digest does not link.
+
+If the items file is missing or thin, force a fetch and re-read once it
 finishes:
 
 ```

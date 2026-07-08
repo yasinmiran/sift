@@ -41,6 +41,36 @@ const writeDigest = (content: string, day = DAY) =>
   writeFileSync(join(root, "digests", `${day}.md`), content);
 
 describe("verifyDigest", () => {
+  it("treats pick urls as known links and warns when one is not covered", () => {
+    writeItems(DAY, urls);
+    mkdirSync(join(root, "data", "picks"), { recursive: true });
+    writeFileSync(
+      join(root, "data", "picks", `${DAY}.json`),
+      JSON.stringify({
+        day: DAY,
+        items: [
+          { url: "https://found.example/a", addedAt: "2026-07-04T09:00:00Z" },
+          { url: "https://found.example/missing", addedAt: "2026-07-04T09:00:00Z" },
+        ],
+      }),
+    );
+    writeDigest(digestWith({ links: [...urls, "https://found.example/a"] }));
+    const r = verifyDigest(root, DAY);
+    expect(r.errors).toEqual([]);
+    expect(r.warnings.some((w) => w.includes("found.example/a"))).toBe(false);
+    expect(r.warnings.some((w) => w.includes("pick not covered: https://found.example/missing"))).toBe(true);
+  });
+
+  it("fails on a malformed picks file", () => {
+    writeItems(DAY, urls);
+    mkdirSync(join(root, "data", "picks"), { recursive: true });
+    writeFileSync(join(root, "data", "picks", `${DAY}.json`), JSON.stringify({ day: DAY, items: "nope" }));
+    writeDigest(digestWith());
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(false);
+    expect(r.errors[0]).toContain("picks");
+  });
+
   it("passes a well-formed digest whose links all come from the day's items", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith());
