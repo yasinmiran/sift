@@ -91,6 +91,15 @@ describe("pickFromIssue", () => {
   });
 });
 
+describe("ensureScheme", () => {
+  it("prepends https to scheme-less urls and keeps full ones", async () => {
+    const { ensureScheme } = await import("../src/pipeline/picks");
+    expect(ensureScheme("github.com/ogulcancelik/herdr")).toBe("https://github.com/ogulcancelik/herdr");
+    expect(ensureScheme("https://e.com/a")).toBe("https://e.com/a");
+    expect(ensureScheme("http://e.com/a")).toBe("http://e.com/a");
+  });
+});
+
 describe("pickDay", () => {
   it("lands before the evening run on the same day", () => {
     expect(pickDay("2026-07-08T10:00:00Z")).toBe("2026-07-08");

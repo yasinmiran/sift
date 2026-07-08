@@ -21,6 +21,10 @@ const URL_RE = /https?:\/\/[^\s)>\]]+/;
 
 const normalize = (url: string): string => url.replace(/\/+$/, "");
 
+/** Give a scheme-less url the https it meant. */
+export const ensureScheme = (url: string): string =>
+  /^https?:\/\//.test(url) ? url : `https://${url}`;
+
 /** Read and validate a day's picks; null when the day has none. */
 export function readPicks(rootDir: string, day: string): Picks | null {
   const path = join(rootDir, "data", "picks", `${day}.json`);
