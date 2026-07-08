@@ -200,6 +200,13 @@ before writing so the days read as one continuous feed, not a reset.
 - The verifier warns on links an earlier digest already used: each one
   is either a deliberate follow-up (keep, but write it as an update) or
   an accidental repeat (cut it).
+- Yesterday-callbacks: before writing, run `npm run recap -- {day}`
+  from the clone. It prints the previous day's description and lead
+  paragraph, and that output is the ONLY yesterday-context callbacks
+  may draw on; never re-read the full earlier file for this. Where a
+  story continues or reverses it, say so in the entry ("yesterday Meta
+  said X; today ..."), still citing today's link. Nothing connects:
+  no callback, run the day as usual.
 
 ## Verify
 
