@@ -78,6 +78,15 @@ works as a fallback, but verify against a clone first either way. The
 ingest Action also pushes to main, so pull before pushing. Re-running
 a day overwrites the file: idempotent via git.
 
+Subscribers are notified by a push service that polls the live site
+every 15 minutes and sends when a new day page appears or the newest
+day's digest content changed (it compares the hash in `latest.json`).
+After your push, once the pages deploy is green
+(`gh run watch --repo yasinmiran/sift`), you may
+`curl -s https://sift-push.netlify.app/.netlify/functions/notify` to
+deliver that notification immediately instead of on the next poll.
+The call is idempotent, cannot double-send, and needs no credentials.
+
 If your harness requires a feature branch instead of pushing main,
 finish the job yourself: push the branch, `gh pr create`, then
 `gh pr merge --rebase --delete-branch`. The digest needs no review;

@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
+import { createHash } from "node:crypto";
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -168,6 +169,16 @@ describe("buildSite", () => {
     const index = readFileSync(join(out, "index.html"), "utf8");
     expect(index).toContain('<link rel="alternate" type="application/rss+xml" title="sift" href="/feed.xml">');
     expect(index).toContain('class="feed" href="/feed.xml"');
+  });
+
+  it("publishes latest.json carrying the newest day's digest hash", () => {
+    digest("2026-07-03", "old body");
+    digest("2026-07-04", "new body");
+    buildSite(root, out);
+    const latest = JSON.parse(readFileSync(join(out, "latest.json"), "utf8"));
+    expect(latest.day).toBe("2026-07-04");
+    const raw = readFileSync(join(root, "digests", "2026-07-04.md"));
+    expect(latest.digest).toBe(createHash("sha256").update(raw).digest("hex"));
   });
 
   it("writes a noindex 404 page that explains missing day pages", () => {

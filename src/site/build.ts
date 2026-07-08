@@ -1,5 +1,6 @@
 // Renders digests/ into the static site: one page per day, the index,
 // sitemap, robots and the 404 page (CLI: npm run site).
+import { createHash } from "node:crypto";
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { parseFrontmatter } from "../digest/frontmatter";
@@ -188,6 +189,15 @@ ${digests
 </rss>
 `,
   );
+  if (newest) {
+    // latest.json lets the push service notice same-day rewrites: the hash
+    // only changes when the digest file itself does, never on code deploys.
+    const raw = readFileSync(join(dir, `${newest.day}.md`));
+    writeFileSync(
+      join(outDir, "latest.json"),
+      `${JSON.stringify({ day: newest.day, digest: createHash("sha256").update(raw).digest("hex") })}\n`,
+    );
+  }
   writeFileSync(join(outDir, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${BASE_URL}/sitemap.xml\n`);
   writeFileSync(join(outDir, "sw.js"), SW_SOURCE);
   writeFileSync(join(outDir, "404.html"), notFoundPage());

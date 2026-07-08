@@ -19,14 +19,27 @@ const SITEMAP = `<?xml version="1.0"?><urlset>
 <url><loc>https://sift.yasint.dev/2026-07-05.html</loc></url>
 </urlset>`;
 
-function fakeDeps(overrides: Partial<{ last: string | null; subs: Record<string, PushSubscriptionJson>; failWith: Record<string, number> }> = {}) {
+function fakeDeps(
+  overrides: Partial<{
+    last: string | null;
+    latest: { day: string; digest: string } | null;
+    subs: Record<string, PushSubscriptionJson>;
+    failWith: Record<string, number>;
+  }> = {},
+) {
   const store: Record<string, PushSubscriptionJson> = { ...(overrides.subs ?? { k1: sub("https://push.example/1") }) };
   const failWith = overrides.failWith ?? {};
   const state = { last: overrides.last ?? null as string | null };
   const sent: string[] = [];
   const deps: NotifyDeps = {
-    fetchText: async (url) =>
-      url.endsWith("sitemap.xml") ? SITEMAP : "<html><head><title>The day&#39;s tech, sifted: Jul 05, 2026</title></head></html>",
+    fetchText: async (url) => {
+      if (url.endsWith("sitemap.xml")) return SITEMAP;
+      if (url.endsWith("latest.json")) {
+        if (!overrides.latest) throw new Error("404 on latest.json");
+        return JSON.stringify(overrides.latest);
+      }
+      return "<html><head><title>The day&#39;s tech, sifted: Jul 05, 2026</title></head></html>";
+    },
     lastNotified: {
       get: async () => state.last,
       set: async (day) => { state.last = day; },
@@ -70,15 +83,15 @@ describe("newestDay / pageTitle", () => {
 
 describe("runNotify", () => {
   it("records without sending on first ever run", async () => {
-    const { deps, state, sent } = fakeDeps({ last: null });
+    const { deps, state, sent } = fakeDeps({ last: null, latest: { day: "2026-07-05", digest: "aaa" } });
     const r = await runNotify(deps);
     expect(r).toEqual({ day: "2026-07-05", sent: 0, pruned: 0 });
-    expect(state.last).toBe("2026-07-05");
+    expect(JSON.parse(state.last!)).toEqual({ day: "2026-07-05", digest: "aaa" });
     expect(sent).toEqual([]);
   });
 
   it("does nothing when the newest day was already notified", async () => {
-    const { deps, sent } = fakeDeps({ last: "2026-07-05" });
+    const { deps, sent } = fakeDeps({ last: '{"day":"2026-07-05","digest":"aaa"}', latest: { day: "2026-07-05", digest: "aaa" } });
     const r = await runNotify(deps);
     expect(r.sent).toBe(0);
     expect(sent).toEqual([]);
@@ -86,14 +99,49 @@ describe("runNotify", () => {
 
   it("sends to every subscription on a new day and records it", async () => {
     const { deps, state, sent } = fakeDeps({
-      last: "2026-07-04",
+      last: '{"day":"2026-07-04","digest":"old"}',
+      latest: { day: "2026-07-05", digest: "aaa" },
       subs: { k1: sub("https://push.example/1"), k2: sub("https://push.example/2") },
     });
     const r = await runNotify(deps);
     expect(r).toEqual({ day: "2026-07-05", sent: 2, pruned: 0 });
-    expect(state.last).toBe("2026-07-05");
+    expect(JSON.parse(state.last!)).toEqual({ day: "2026-07-05", digest: "aaa" });
     const payload = JSON.parse(sent[0]!);
     expect(payload).toEqual({ title: "sift", body: "The day's tech, sifted: Jul 05, 2026", url: "/2026-07-05.html" });
+  });
+
+  it("sends an update when the notified day's digest hash changes", async () => {
+    const { deps, state, sent } = fakeDeps({
+      last: '{"day":"2026-07-05","digest":"morning"}',
+      latest: { day: "2026-07-05", digest: "evening" },
+    });
+    const r = await runNotify(deps);
+    expect(r).toEqual({ day: "2026-07-05", sent: 1, pruned: 0 });
+    expect(JSON.parse(state.last!)).toEqual({ day: "2026-07-05", digest: "evening" });
+    const payload = JSON.parse(sent[0]!);
+    expect(payload.body).toBe("The day's tech, sifted: Jul 05, 2026 (updated)");
+    expect(payload.url).toBe("/2026-07-05.html");
+  });
+
+  it("adopts the hash silently when upgrading from day-only state", async () => {
+    const { deps, state, sent } = fakeDeps({
+      last: "2026-07-05",
+      latest: { day: "2026-07-05", digest: "aaa" },
+    });
+    const r = await runNotify(deps);
+    expect(r.sent).toBe(0);
+    expect(sent).toEqual([]);
+    expect(JSON.parse(state.last!)).toEqual({ day: "2026-07-05", digest: "aaa" });
+  });
+
+  it("falls back to day-only behavior without latest.json or on a day mismatch", async () => {
+    const noLatest = fakeDeps({ last: '{"day":"2026-07-05","digest":"aaa"}', latest: null });
+    expect((await runNotify(noLatest.deps)).sent).toBe(0);
+    const stale = fakeDeps({
+      last: '{"day":"2026-07-05","digest":"aaa"}',
+      latest: { day: "2026-07-04", digest: "bbb" },
+    });
+    expect((await runNotify(stale.deps)).sent).toBe(0);
   });
 
   it("prunes gone subscriptions and keeps sending to the rest", async () => {
