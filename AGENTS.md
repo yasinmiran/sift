@@ -29,8 +29,12 @@ the picks workflow). Read each like any other source and cover every
 one: picks digest into the same themed sections as fetched items, a
 story arriving via both is still ONE entry, and an entry sourced from
 a pick carries the tag `(one of yasin's picks today)` after its link.
-`note` and `summary` are Yasin's framing: weave it in. The verifier
-warns on any pick the digest does not link.
+`note` and `summary` are Yasin's own words, verbatim and unedited:
+never paste them raw into the entry. Weave the point in naturally,
+and when you quote or echo his phrasing keep it first person (it is
+him speaking: yasin's take: "i can see all my agents at once"),
+never recast as a third-party review. The verifier warns on any pick
+the digest does not link.
 
 If the items file is missing or thin, force a fetch and re-read once it
 finishes:
@@ -170,18 +174,21 @@ front page, summarized as prose. Delegate it:
   `hacker-news` items, which carry `points` and `comments` from ingest
   (the 100+ point slice of the front page, the part worth summarizing
   anyway).
-- Go through all ~30 stories; let points, comment count and title
-  relevance to the digest's themes decide how much space each one gets,
-  from a full treatment down to a passing clause. Nothing is skipped
-  outright.
+- Be selective, not exhaustive: read all ~30 stories, then feature
+  only the 6-10 genuinely notable ones (points, discussion heat,
+  relevance to the day's themes), a sentence or two each. The long
+  tail is dropped silently, never name-checked; a single catch-all
+  clause for one coherent cluster is fine, link-dump inventories are
+  not. The section earns its place by judgment, not coverage.
 - Points are not the verdict: before giving a story real space, skim
   its thread via `items/{objectID}` and fold what the room concluded
   into the framing. A story the community flagged or picked apart is
   named as disputed (or dropped), not amplified.
-- Write 2-4 flowing paragraphs grouped by theme, never bullets. Every
-  story mentioned links inline to its article url; heavily discussed
-  ones (roughly 300+ comments) also link to
-  `https://news.ycombinator.com/item?id={objectID}` as `(discussion)`.
+- Write 1-2 flowing paragraphs, roughly 150-200 words total, grouped
+  by theme, never bullets. Every story mentioned links inline to its
+  article url; heavily discussed ones (roughly 300+ comments) also
+  link to `https://news.ycombinator.com/item?id={objectID}` as
+  `(discussion)`.
 - A story the digest already covers above gets a clause and a link, not
   a re-summary; point back to the entry's thread instead.
 
@@ -236,13 +243,15 @@ npm ci && npm run verify -- {YYYY-MM-DD}
 ```
 
 Exits non-zero on `errors` (missing or wrong frontmatter, date not
-matching the filename, non-http links, empty body): fix and re-verify
+matching the filename, non-http links, unclosed pen marks, marks in
+frontmatter, a malformed picks file, empty body): fix and re-verify
 before committing. `warnings` need judgment: a link outside the day's
 items is fine when you deliberately linked a primary source and a bug
 when it is a typo or an invented url; a link an earlier digest already
-used is fine only as a deliberate update (see Continuity); thin digests
-and a missing Threads section also warn. Resolve every warning
-consciously before pushing.
+used is fine only as a deliberate update (see Continuity); an
+uncovered pick, more than 3 pen marks, thin digests and a missing
+Threads section also warn. Resolve every warning consciously before
+pushing.
 
 ## Field playbook
 
@@ -286,10 +295,11 @@ Haiku for bulk lookups. Never spawn Opus subagents.
 
 ## Schedule
 
-06:00 and 18:30 Europe/Oslo (04:00 and 16:30 on a fixed-UTC scheduler,
-which stays 45+ minutes behind the ingest crons at 03:15 / 15:45 UTC in
-both DST phases). The morning run writes the day's first digest; the
-evening run rewrites it with the full day.
+04:34 and 16:34 UTC on a fixed-UTC scheduler (digests land around
+06:45 and 18:45 Oslo time in summer), staying 45+ minutes behind the
+ingest crons at 03:15 / 15:45 UTC in both DST phases. The morning run
+writes the day's first digest; the evening run rewrites it with the
+full day.
 
 ## If you are here to change the pipeline instead
 
