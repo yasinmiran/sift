@@ -24,9 +24,8 @@ https://raw.githubusercontent.com/yasinmiran/sift/main/data/picks/{YYYY-MM-DD}.j
 -> { day, summary?, items: [ { url, title?, note?, addedAt } ] }
 ```
 
-Picks are hand-chosen by Yasin (a `pick:` issue becomes this file via
-the picks workflow). Read each like any other source and cover every
-one: picks digest into the same themed sections as fetched items, a
+Picks are hand-chosen by Yasin (recorded with `npm run pick`). Read
+each like any other source and cover every one: picks digest into the same themed sections as fetched items, a
 story arriving via both is still ONE entry, and an entry sourced from
 a pick carries the tag `(one of yasin's picks today)` after its link.
 `note` and `summary` are Yasin's own words, verbatim and unedited:
@@ -70,7 +69,11 @@ date: "{YYYY-MM-DD}"
 ```
 
 Work from a clone: write the file, verify it (see Verify), commit,
-pull, push. `gh api -X PUT /repos/yasinmiran/sift/contents/digests/...`
+pull, push. Before committing, set the git identity to
+`Yasin <wytm97@protonmail.com>` (`git config user.name` /
+`user.email` in the clone): digests are published under Yasin's name,
+never an AI or bot identity, and `@users.noreply.github.com`
+addresses are off-limits since GitHub maps them to real accounts. `gh api -X PUT /repos/yasinmiran/sift/contents/digests/...`
 works as a fallback, but verify against a clone first either way. The
 ingest Action also pushes to main, so pull before pushing. Re-running
 a day overwrites the file: idempotent via git.

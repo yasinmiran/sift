@@ -2,8 +2,8 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { daysBefore } from "../day";
 
-// Yasin's hand-found items: data/picks/{day}.json, written by the picks
-// workflow from `pick:` issues and read by the digest routine and verify.
+// Yasin's hand-found items: data/picks/{day}.json, written by npm run pick
+// and read by the digest routine and verify.
 export interface Pick {
   url: string;
   title?: string;
@@ -69,26 +69,3 @@ export function pickDay(createdAtUtc: string): string {
   return createdAtUtc.slice(11, 16) < "16:34" ? date : daysBefore(date, -1);
 }
 
-export interface IssueLike {
-  title: string;
-  body?: string | null;
-  created_at: string;
-}
-
-/** Map a `pick:` issue to a pick plus its digest day. */
-export function pickFromIssue(issue: IssueLike): Pick & { day: string } {
-  const title = issue.title.replace(/^pick:\s*/i, "").trim();
-  const body = (issue.body ?? "").trim();
-  const fromTitle = URL_RE.exec(title)?.[0];
-  const url = fromTitle ?? URL_RE.exec(body)?.[0];
-  if (!url) throw new Error("pick issue carries no url in its title or body");
-  const rest = (fromTitle ? title.replace(fromTitle, "") : title).trim();
-  const note = body.replace(url, "").trim();
-  return {
-    url,
-    ...(rest ? { title: rest } : {}),
-    ...(note ? { note } : {}),
-    addedAt: issue.created_at,
-    day: pickDay(issue.created_at),
-  };
-}

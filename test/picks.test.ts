@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { applyPick, pickDay, pickFromIssue, readPicks } from "../src/pipeline/picks";
+import { applyPick, pickDay, readPicks } from "../src/pipeline/picks";
 
 const DAY = "2026-07-08";
 
@@ -55,39 +55,6 @@ describe("applyPick", () => {
     const { picks, added } = applyPick(existing, DAY, { ...pick, url: "https://e.com/a/" });
     expect(added).toBe(false);
     expect(picks).toBe(existing);
-  });
-});
-
-describe("pickFromIssue", () => {
-  it("takes the url from the title and the note from the body", () => {
-    const p = pickFromIssue({
-      title: "pick: https://e.com/read",
-      body: "found while scrolling",
-      created_at: "2026-07-08T09:00:00Z",
-    });
-    expect(p).toEqual({
-      url: "https://e.com/read",
-      note: "found while scrolling",
-      addedAt: "2026-07-08T09:00:00Z",
-      day: "2026-07-08",
-    });
-  });
-
-  it("keeps a text title and finds the url in the body", () => {
-    const p = pickFromIssue({
-      title: "pick: neat wasm trick",
-      body: "https://e.com/wasm worth a read",
-      created_at: "2026-07-08T09:00:00Z",
-    });
-    expect(p.title).toBe("neat wasm trick");
-    expect(p.url).toBe("https://e.com/wasm");
-    expect(p.note).toBe("worth a read");
-  });
-
-  it("rejects an issue without a url", () => {
-    expect(() =>
-      pickFromIssue({ title: "pick: just words", body: "", created_at: "2026-07-08T09:00:00Z" }),
-    ).toThrow(/url/);
   });
 });
 

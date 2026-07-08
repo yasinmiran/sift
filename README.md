@@ -88,8 +88,8 @@ data/items/{day}.json   { day, generatedAt, items: [ { sourceSlug,
 data/state.json         { sources: { slug: { etag, lastModified,
                           feedHash } }, seen: { day: [keys] } }
 data/picks/{day}.json   { day, summary, items: [ { url, title, note,
-                          addedAt } ] }   hand-found links, written by
-                          the picks workflow from "pick:" issues
+                          addedAt } ] }   hand-found links, recorded
+                          with `npm run pick -- <url> [note]`
 digests/{day}.md        ---\ntitle, description, date\n--- + markdown
 ```
 
