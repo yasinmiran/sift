@@ -110,6 +110,40 @@ export function slideCards(digest: DigestInput): SlideCard[] {
   return [{ kind: "cover", day: digest.day, hook: coverHook(digest.description) }, ...stories, { kind: "cta" }];
 }
 
+const stripMarks = (s: string): string => s.replace(/==/g, "").replace(/\(\(|\)\)/g, "");
+
+const MAX_ALT = 100;
+
+/** Screen-reader text for a rendered card, capped to instagram's alt length. */
+export function altText(card: SlideCard): string {
+  if (card.kind === "cover") return truncate(`sift, ${formatDay(card.day)}: ${card.hook}`, MAX_ALT);
+  if (card.kind === "story") {
+    return truncate(stripMarks(`${card.headline}: ${card.why} (${card.source})`), MAX_ALT);
+  }
+  return "sift.yasint.dev: the day's tech, sifted twice daily";
+}
+
+export interface SlideMeta {
+  day: string;
+  caption: string | null;
+  hashtags: string[];
+  cards: { file: string; alt: string }[];
+}
+
+/** The posting companion published beside a day's rendered pngs. */
+export function slideMeta(
+  day: string,
+  cards: SlideCard[],
+  social: { caption: string; hashtags: string[] } | null,
+): SlideMeta {
+  return {
+    day,
+    caption: social?.caption ?? null,
+    hashtags: social?.hashtags ?? [],
+    cards: cards.map((card, i) => ({ file: `card-${i + 1}.png`, alt: altText(card) })),
+  };
+}
+
 // Fonts ride inside every card as base64 woff2 so rendering never depends
 // on the network and never falls back to a system serif.
 let fontCss: string | null = null;

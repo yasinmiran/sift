@@ -1,5 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { renderSheetHtml, renderSlideHtml, slideCards, type CoverCard, type StoryCard } from "../src/slides/cards";
+import {
+  altText,
+  renderSheetHtml,
+  renderSlideHtml,
+  slideCards,
+  slideMeta,
+  type CoverCard,
+  type StoryCard,
+} from "../src/slides/cards";
 
 const DIGEST = {
   day: "2026-07-11",
@@ -128,6 +136,50 @@ describe("slideCards", () => {
     const story = cards2[1] as StoryCard;
     expect(story.headline.length).toBeLessThanOrEqual(121);
     expect(story.headline.endsWith("…")).toBe(true);
+  });
+});
+
+describe("altText", () => {
+  const cards = slideCards(DIGEST);
+
+  it("describes each card kind in plain text, pen marks stripped", () => {
+    expect(altText(cards[0]!)).toBe("sift, Sat, Jul 11: OpenAI ships GPT-6 and the margin war begins");
+    expect(altText(cards[1]!)).toBe("GPT-6 lands at $2/M tokens: a 5x cut with real margin pain for rivals (example.com)");
+    expect(altText(cards[3]!)).toBe("Chat Control returns: with mandatory scanning on the table. (heise.de)");
+    expect(altText(cards[5]!)).toBe("sift.yasint.dev: the day's tech, sifted twice daily");
+  });
+
+  it("caps alt text at instagram's 100 characters", () => {
+    const long = slideCards({
+      ...DIGEST,
+      body: `## AI / LLMs\n\n- [${"word ".repeat(30).trim()}](https://e.com/a): a why clause that adds length.\n`,
+    })[1]!;
+    const alt = altText(long);
+    expect(alt.length).toBeLessThanOrEqual(100);
+    expect(alt.endsWith("…")).toBe(true);
+  });
+});
+
+describe("slideMeta", () => {
+  const cards = slideCards(DIGEST);
+
+  it("pairs each png with its alt text and carries the caption", () => {
+    const meta = slideMeta("2026-07-11", cards, {
+      caption: "gpt-6 lands. full digest at sift.yasint.dev (link in bio)",
+      hashtags: ["#tech", "#ai", "#devtools"],
+    });
+    expect(meta.day).toBe("2026-07-11");
+    expect(meta.cards.map((c) => c.file)).toEqual([1, 2, 3, 4, 5, 6].map((n) => `card-${n}.png`));
+    expect(meta.cards[1]!.alt).toContain("GPT-6");
+    expect(meta.caption).toContain("link in bio");
+    expect(meta.hashtags).toEqual(["#tech", "#ai", "#devtools"]);
+  });
+
+  it("degrades to a null caption when the day has no social file", () => {
+    const meta = slideMeta("2026-07-11", cards, null);
+    expect(meta.caption).toBeNull();
+    expect(meta.hashtags).toEqual([]);
+    expect(meta.cards).toHaveLength(6);
   });
 });
 
