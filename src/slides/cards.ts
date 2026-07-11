@@ -30,6 +30,8 @@ const MAX_HOOK = 120;
 const MAX_TITLE = 120;
 const MAX_DESC = 110;
 
+const stripMarks = (s: string): string => s.replace(/==/g, "").replace(/\(\(|\)\)/g, "");
+
 // A truncated pair of pen markers would leak literal == onto the card.
 const dropUnpairedMarks = (s: string): string => {
   let out = s;
@@ -40,26 +42,29 @@ const dropUnpairedMarks = (s: string): string => {
   return out;
 };
 
-const stripMarks = (s: string): string => s.replace(/==/g, "").replace(/\(\(|\)\)/g, "");
-
 function truncate(s: string, max: number): string {
   if (s.length <= max) return s;
   const cut = s.slice(0, max);
   const comma = cut.lastIndexOf(", ");
-  const base = comma > max * 0.4 ? cut.slice(0, comma) : cut.slice(0, cut.lastIndexOf(" "));
+  const space = cut.lastIndexOf(" ");
+  const base = comma > max * 0.4 ? cut.slice(0, comma) : space > 0 ? cut.slice(0, space) : cut.slice(0, -1);
   return `${base.trimEnd()}…`;
 }
+
+// Marks render with no width, so a string fits when its visible text does.
+const fit = (s: string, max: number): string =>
+  stripMarks(s).length <= max ? s : dropUnpairedMarks(truncate(s, max));
 
 /** The renderable cards for one post; the caps are a defensive net, verify gates first. */
 export function buildCards(day: string, post: SlidePost): SlideCard[] {
   return [
-    { kind: "cover", day, slot: post.slot, hook: truncate(post.hook, MAX_HOOK) },
+    { kind: "cover", day, slot: post.slot, hook: stripMarks(truncate(post.hook, MAX_HOOK)) },
     ...post.slides.map(
       (slide): StoryCard => ({
         kind: "story",
-        category: slide.category,
-        title: dropUnpairedMarks(truncate(slide.title, MAX_TITLE)),
-        desc: dropUnpairedMarks(truncate(slide.desc, MAX_DESC)),
+        category: truncate(slide.category, 28),
+        title: fit(slide.title, MAX_TITLE),
+        desc: fit(slide.desc, MAX_DESC),
       }),
     ),
     { kind: "cta" },
@@ -164,7 +169,7 @@ function ctaBody(counter: string): string {
 <div style="width:120px;height:120px;border-radius:50%;background:#d4976a;margin:0 auto 64px"></div>
 <p class="wordmark" style="font-size:72px;margin-bottom:40px">the full day, every day</p>
 <p style="font-size:44px;color:#d4976a;margin-bottom:28px">sift.yasint.dev</p>
-<p class="mono muted" style="font-size:30px">@sifted.dev &middot; twice daily &middot; 06:45 &amp; 18:45 oslo</p>
+<p class="mono muted" style="font-size:30px">@sifted.dev &middot; new digest every morning &amp; evening</p>
 </div>
 <div class="bottom"><span style="font-size:30px" class="muted">free &middot; rss &middot; push notifications</span></div>`;
 }

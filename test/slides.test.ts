@@ -44,8 +44,30 @@ describe("buildCards", () => {
       ...POST,
       slides: [{ ...POST.slides[0]!, title: "very long headline words ".repeat(8).trim() }],
     })[1] as StoryCard;
-    expect(long.title.length).toBeLessThanOrEqual(121);
+    expect(long.title.length).toBeLessThanOrEqual(120);
     expect(long.title.endsWith("…")).toBe(true);
+    const unbroken = buildCards(DAY, {
+      ...POST,
+      slides: [{ ...POST.slides[0]!, title: "x".repeat(200) }],
+    })[1] as StoryCard;
+    expect(unbroken.title.length).toBeLessThanOrEqual(120);
+    expect(unbroken.title.endsWith("…")).toBe(true);
+  });
+
+  it("keeps a marked title whole when its visible length fits the cap", () => {
+    const marked = `==${"t".repeat(20)}== ${"u".repeat(97)}`;
+    const card = buildCards(DAY, { ...POST, slides: [{ ...POST.slides[0]!, title: marked }] })[1] as StoryCard;
+    expect(card.title).toBe(marked);
+  });
+
+  it("strips stray marks from the hook and caps runaway categories", () => {
+    const cards = buildCards(DAY, {
+      ...POST,
+      hook: "a ==marked== hook",
+      slides: [{ ...POST.slides[0]!, category: "a very long category label that wraps" }],
+    });
+    expect((cards[0] as CoverCard).hook).toBe("a marked hook");
+    expect((cards[1] as StoryCard).category.length).toBeLessThanOrEqual(28);
   });
 
   it("never leaves an unpaired pen marker after truncation", () => {
