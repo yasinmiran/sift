@@ -4,12 +4,19 @@ import { join } from "node:path";
 // The digest agent's carousel script for a day (data/slides/{day}.json):
 // the morning run writes the am post, the evening run appends pm and never
 // edits am. The renderer and verify both read it.
+export interface SlideTerm {
+  abbr: string;
+  gloss: string;
+}
+
 export interface SlideSpec {
   number: number;
   category: string;
   title: string;
   desc: string;
   url: string;
+  /** Footnote glosses for abbreviations a general reader won't know. */
+  terms?: SlideTerm[];
 }
 
 export interface SlidePost {
@@ -65,6 +72,16 @@ export function readSlidePosts(rootDir: string, day: string): DayPosts | null {
       }
       if (typeof slide.url !== "string" || !/^https?:\/\//.test(slide.url)) {
         throw new Error(`${at}: slide ${i + 1} needs an http(s) url`);
+      }
+      if (slide.terms !== undefined) {
+        if (!Array.isArray(slide.terms)) throw new Error(`${at}: slide ${i + 1} terms must be an array`);
+        for (const term of slide.terms) {
+          for (const key of ["abbr", "gloss"] as const) {
+            if (typeof term?.[key] !== "string" || !term[key].trim()) {
+              throw new Error(`${at}: slide ${i + 1} terms need abbr and gloss`);
+            }
+          }
+        }
       }
       if (slide.number !== i + 1) throw new Error(`${at}: slide numbers must run 1..n in order`);
     });

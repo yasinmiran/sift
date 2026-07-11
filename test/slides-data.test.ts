@@ -59,6 +59,47 @@ describe("readSlidePosts", () => {
     expect(() => readSlidePosts(root, DAY)).toThrow(/hashtags/);
   });
 
+  it("accepts optional terms and rejects malformed ones", () => {
+    write({
+      day: DAY,
+      posts: [
+        post({
+          slides: [
+            {
+              number: 1,
+              category: "security & privacy",
+              title: "A CISA leak",
+              desc: "d",
+              url: "https://e.com/a",
+              terms: [{ abbr: "CISA", gloss: "the US government's civilian cyber-defense agency" }],
+            },
+          ],
+        }),
+      ],
+    });
+    expect(readSlidePosts(root, DAY)?.posts[0]?.slides[0]?.terms?.[0]?.abbr).toBe("CISA");
+    write({
+      day: DAY,
+      posts: [
+        post({
+          slides: [
+            { number: 1, category: "x", title: "t", desc: "d", url: "https://e.com/a", terms: [{ abbr: "X" }] },
+          ],
+        }),
+      ],
+    });
+    expect(() => readSlidePosts(root, DAY)).toThrow(/gloss/);
+    write({
+      day: DAY,
+      posts: [
+        post({
+          slides: [{ number: 1, category: "x", title: "t", desc: "d", url: "https://e.com/a", terms: "CISA" }],
+        }),
+      ],
+    });
+    expect(() => readSlidePosts(root, DAY)).toThrow(/terms/);
+  });
+
   it("throws on incomplete slides, bad urls and broken numbering", () => {
     write({ day: DAY, posts: [post({ slides: [] })] });
     expect(() => readSlidePosts(root, DAY)).toThrow(/slides/);

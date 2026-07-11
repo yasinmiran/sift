@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { formatDay } from "../site/day-format";
 import { escapeHtml } from "../site/html";
-import type { SlidePost } from "./data";
+import type { SlidePost, SlideTerm } from "./data";
 
 // The instagram carousel model: cover + the post's story slides + cta,
 // rendered from the agent-scripted post in data/slides/{day}.json.
@@ -18,6 +18,7 @@ export interface StoryCard {
   category: string;
   title: string;
   desc: string;
+  terms: SlideTerm[];
 }
 
 export interface CtaCard {
@@ -65,6 +66,7 @@ export function buildCards(day: string, post: SlidePost): SlideCard[] {
         category: truncate(slide.category, 28),
         title: fit(slide.title, MAX_TITLE),
         desc: fit(slide.desc, MAX_DESC),
+        terms: slide.terms ?? [],
       }),
     ),
     { kind: "cta" },
@@ -131,6 +133,8 @@ display:flex;flex-direction:column;padding:88px}
 .top{display:flex;justify-content:space-between;align-items:baseline}
 .bottom{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto}
 .count{font-family:"Space Mono",monospace;font-size:28px;color:#5c564e}
+.terms{margin-top:44px}
+.terms p{font-family:"Space Mono",monospace;font-size:26px;line-height:1.5;color:#5c564e}
 .label{font-family:"Space Mono",monospace;font-size:30px;letter-spacing:.08em;color:#d4976a}
 .muted{color:#7a7268}
 `;
@@ -155,10 +159,16 @@ function coverBody(card: CoverCard, counter: string): string {
 }
 
 function storyBody(card: StoryCard, counter: string): string {
+  const terms = card.terms.length
+    ? `<div class="terms">${card.terms
+        .map((t) => `<p>${escapeHtml(t.abbr)} &middot; ${escapeHtml(t.gloss)}</p>`)
+        .join("\n")}</div>`
+    : "";
   return `<div class="top"><span class="label">${escapeHtml(card.category)}</span>${counter}</div>
 <div style="margin:auto 0">
 <h1 class="display" style="font-size:${fontSize(card.title, 78, 68, 58)}px;line-height:1.2;margin-bottom:48px">${inline(card.title)}${card.title.endsWith("…") ? "" : '<span class="dot">.</span>'}</h1>
 <p style="font-size:38px;line-height:1.5;color:#9a9184;max-width:820px;text-wrap:pretty">${inline(card.desc)}</p>
+${terms}
 </div>
 <div class="bottom"><span></span><span class="wordmark" style="font-size:40px">sift<span class="dot">.</span></span></div>`;
 }

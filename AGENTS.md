@@ -135,7 +135,10 @@ render slides yourself.
           "category": "{lowercase label, usually the entry's section, max 28 chars}",
           "title": "{the story in one line, max 120 chars}",
           "desc": "{why it matters, max 110 chars}",
-          "url": "{the entry's link in today's digest}"
+          "url": "{the entry's link in today's digest}",
+          "terms": [
+            { "abbr": "{as it appears on the slide}", "gloss": "{what it is or does, plain words, max 70 chars}" }
+          ]
         }
       ]
     }
@@ -182,6 +185,15 @@ Selection and voice (the verifier hard-gates the mechanical rules):
   "full digest at sift.yasint.dev (link in bio)".
 - Hashtags: 3-6 from the pool in `config/social.json`, matching the
   day's actual content; never invent one.
+- Terms (optional, max 2 per slide): when a title or desc leans on an
+  abbreviation or name a general instagram reader won't know (CISA,
+  SAML, Chat Control), add a footnote gloss saying what the thing IS
+  or DOES in plain lowercase words, never the bureaucratic full name
+  ("the US government's civilian cyber-defense agency", not
+  "cybersecurity and infrastructure security agency"). Household
+  abbreviations (AI, API, GPU, CEO) get none; a slide needing three
+  glosses is too dense, simplify it instead. The verifier errors when
+  the abbr is not on the slide or a gloss passes 70 chars.
 
 Catch-up rule: before writing today's digest, check yesterday. If
 `data/items/{yesterday}.json` exists but `digests/{yesterday}.md` does

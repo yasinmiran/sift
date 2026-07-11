@@ -426,6 +426,41 @@ describe("verifyDigest", () => {
     expect(r.errors).toContainEqual(expect.stringContaining("category must be lowercase"));
   });
 
+  it("gates term footnotes: on-slide abbr, gloss length, plain words, max 2", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    writeSlides(
+      post({
+        slides: [
+          slide(1, { title: "A CISA leak", terms: [{ abbr: "CISA", gloss: "the US government's civilian cyber-defense agency" }] }),
+          slide(2),
+          slide(3),
+        ],
+      }),
+    );
+    expect(verifyDigest(root, DAY).errors).toEqual([]);
+    writeSlides(
+      post({
+        slides: [
+          slide(1, {
+            terms: [
+              { abbr: "SAML", gloss: "x" },
+              { abbr: "Story", gloss: "y".repeat(71) },
+              { abbr: "Story", gloss: "has ==marks==" },
+            ],
+          }),
+          slide(2),
+          slide(3),
+        ],
+      }),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.errors).toContainEqual(expect.stringContaining("3 terms"));
+    expect(r.errors).toContainEqual(expect.stringContaining("SAML does not appear"));
+    expect(r.errors).toContainEqual(expect.stringContaining("footnotes fit 70"));
+    expect(r.errors).toContainEqual(expect.stringContaining("plain words only"));
+  });
+
   it("fails pen marks in the hook and posts outside 3-8 slides, warns past 3 slide marks", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith());

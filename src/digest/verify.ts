@@ -178,6 +178,17 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
         }
         const text = `${slide.title} ${slide.desc}`;
         if (/\]\(|\*\*/.test(text)) errors.push(`${where}: markdown syntax; slides are plain text plus pen marks`);
+        const terms = slide.terms ?? [];
+        if (terms.length > 2) errors.push(`${where}: ${terms.length} terms; a slide explains at most 2 abbreviations`);
+        for (const term of terms) {
+          if (!text.includes(term.abbr)) errors.push(`${where}: term ${term.abbr} does not appear on the slide`);
+          if (term.gloss.length > 70) {
+            errors.push(`${where}: gloss for ${term.abbr} is ${term.gloss.length} chars; footnotes fit 70`);
+          }
+          if (/==|\(\(|\]\(|\*\*/.test(term.gloss)) {
+            errors.push(`${where}: gloss for ${term.abbr} carries marks or markdown; plain words only`);
+          }
+        }
         const unmarked = text.replace(MARK_U, "").replace(MARK_O, "");
         if (unmarked.includes("==") || unmarked.includes("((")) errors.push(`${where}: unclosed pen mark`);
         markCount += (text.match(MARK_U) ?? []).length + (text.match(MARK_O) ?? []).length;
