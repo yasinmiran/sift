@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { renderSlideHtml, slideCards, type StoryCard } from "../src/slides/cards";
+import { renderSheetHtml, renderSlideHtml, slideCards, type CoverCard, type StoryCard } from "../src/slides/cards";
 
 const DIGEST = {
   day: "2026-07-11",
@@ -48,8 +48,18 @@ describe("slideCards", () => {
     expect(cards.map((c) => c.kind)).toEqual(["cover", "story", "story", "story", "story", "cta"]);
   });
 
-  it("carries the description verbatim as the cover hook", () => {
-    expect(cards[0]).toEqual({ kind: "cover", day: "2026-07-11", hook: DIGEST.description });
+  it("hooks the cover with the description's first clause, unpunctuated", () => {
+    expect(cards[0]).toEqual({ kind: "cover", day: "2026-07-11", hook: "OpenAI ships GPT-6 and the margin war begins" });
+    const long = slideCards({
+      ...DIGEST,
+      description: "Apple sues OpenAI over alleged systemic trade secret theft, the same day two other things happen.",
+    })[0] as CoverCard;
+    expect(long.hook).toBe("Apple sues OpenAI over alleged systemic trade secret theft");
+    const short = slideCards({
+      ...DIGEST,
+      description: "JadePuffer, the first agent-run ransomware, lands.",
+    })[0] as CoverCard;
+    expect(short.hook).toBe("JadePuffer, the first agent-run ransomware");
   });
 
   it("takes the first entry of the first four non-empty sections", () => {
@@ -87,9 +97,19 @@ describe("slideCards", () => {
       body: `## AI / LLMs\n\n- [Long one](https://e.com/a): ${why}\n`,
     });
     const story = cards2[1] as StoryCard;
-    expect(story.why.length).toBeLessThanOrEqual(141);
+    expect(story.why.length).toBeLessThanOrEqual(111);
     expect(story.why.endsWith("…")).toBe(true);
     expect(story.why).not.toMatch(/\s…$/);
+  });
+
+  it("caps a runaway headline", () => {
+    const cards2 = slideCards({
+      ...DIGEST,
+      body: `## AI / LLMs\n\n- [${"very long headline words ".repeat(8).trim()}](https://e.com/a): short why.\n`,
+    });
+    const story = cards2[1] as StoryCard;
+    expect(story.headline.length).toBeLessThanOrEqual(121);
+    expect(story.headline.endsWith("…")).toBe(true);
   });
 });
 
@@ -103,6 +123,20 @@ describe("renderSlideHtml", () => {
     expect(html).toContain("Fraunces");
     expect(html).toContain("Karla");
     expect(html).toContain("2/6");
+  });
+
+  it("embeds the fonts so cards render offline with no fallback", () => {
+    const html = renderSlideHtml(cards[0]!, 0, cards.length);
+    expect(html.match(/data:font\/woff2;base64,/g)?.length).toBe(3);
+    expect(html).not.toContain("fonts.googleapis.com");
+  });
+
+  it("renders a scrollable preview sheet framing every card", () => {
+    const html = renderSheetHtml("2026-07-11", 6);
+    expect(html).toContain('src="card-1.html"');
+    expect(html).toContain('src="card-6.html"');
+    expect(html).toContain("2026-07-11");
+    expect(html).toContain("scale(");
   });
 
   it("escapes html in digest-derived text", () => {

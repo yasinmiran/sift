@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { escapeHtml } from "../site/html";
 
 // The instagram carousel model: cover + up to four stories + cta, derived
@@ -32,7 +34,9 @@ export interface DigestInput {
 const SKIP_SECTIONS = new Set(["Hacker News", "Threads"]);
 const ENTRY = /^- \[([^\]]+)\]\(([^)\s]+)\)(.*)$/;
 const MAX_STORIES = 4;
-const MAX_WHY = 140;
+const MAX_WHY = 110;
+const MAX_HEADLINE = 120;
+const MAX_HOOK = 120;
 
 const stripMarkup = (s: string): string =>
   s
@@ -46,6 +50,14 @@ function truncate(s: string, max = MAX_WHY): string {
   if (s.length <= max) return s;
   const cut = s.slice(0, max);
   return `${cut.slice(0, cut.lastIndexOf(" ")).trimEnd()}…`;
+}
+
+// One thing on the cover: the description's first clause (two when the
+// first is a short name), no trailing punctuation.
+function coverHook(description: string): string {
+  const parts = description.split(", ");
+  const hook = parts[0]!.length < 40 && parts.length > 1 ? `${parts[0]!}, ${parts[1]!}` : parts[0]!;
+  return truncate(hook.replace(/[.,;]\s*$/, ""), MAX_HOOK);
 }
 
 function source(url: string): string {
@@ -78,13 +90,27 @@ export function slideCards(digest: DigestInput): SlideCard[] {
     stories.push({
       kind: "story",
       section,
-      headline: stripMarkup(entry[1]!),
+      headline: truncate(stripMarkup(entry[1]!), MAX_HEADLINE),
       why: truncate(why),
       source: source(entry[2]!),
     });
   }
-  return [{ kind: "cover", day: digest.day, hook: digest.description }, ...stories, { kind: "cta" }];
+  return [{ kind: "cover", day: digest.day, hook: coverHook(digest.description) }, ...stories, { kind: "cta" }];
 }
+
+// Fonts ride inside every card as base64 woff2 so rendering never depends
+// on the network and never falls back to a system serif.
+let fontCss: string | null = null;
+const fontFace = (family: string, file: string, weight: string): string => {
+  const data = readFileSync(fileURLToPath(new URL(`fonts/${file}`, import.meta.url))).toString("base64");
+  return `@font-face{font-family:'${family}';src:url(data:font/woff2;base64,${data}) format('woff2');font-weight:${weight};font-style:normal}`;
+};
+const fonts = (): string =>
+  (fontCss ??= [
+    fontFace("Fraunces", "fraunces.woff2", "500 600"),
+    fontFace("Karla", "karla.woff2", "400"),
+    fontFace("Space Mono", "space-mono.woff2", "400"),
+  ].join("\n"));
 
 // Fraunces for display, Karla for text, Space Mono for labels: the site's
 // own pairing at poster scale.
@@ -105,19 +131,22 @@ display:flex;flex-direction:column;padding:88px}
 `;
 
 const fontSize = (text: string, big: number, mid: number, small: number): number =>
-  text.length > 180 ? small : text.length > 110 ? mid : big;
+  text.length > 100 ? small : text.length > 60 ? mid : big;
 
 function coverBody(card: CoverCard, counter: string): string {
   return `<div class="top"><span class="wordmark" style="font-size:88px">sift<span class="dot">.</span></span><span class="mono muted" style="font-size:30px">${card.day}</span></div>
-<p class="wordmark" style="font-size:${fontSize(card.hook, 66, 58, 50)}px;line-height:1.3;margin:auto 0;font-weight:500">${escapeHtml(card.hook)}</p>
+<div style="margin:auto 0">
+<p class="wordmark" style="font-size:${fontSize(card.hook, 78, 68, 58)}px;line-height:1.25;font-weight:500">${escapeHtml(card.hook)}</p>
+<p class="mono muted" style="font-size:30px;margin-top:64px">swipe for the day's stories &rarr;</p>
+</div>
 <div class="bottom"><span style="font-size:32px" class="muted">the day's tech, sifted</span>${counter}</div>`;
 }
 
 function storyBody(card: StoryCard, counter: string): string {
   return `<div class="top"><span class="label">${escapeHtml(card.section.toLowerCase())}</span>${counter}</div>
 <div style="margin:auto 0">
-<h1 class="wordmark" style="font-size:${fontSize(card.headline, 68, 58, 50)}px;line-height:1.2;margin-bottom:44px">${escapeHtml(card.headline)}</h1>
-<p style="font-size:40px;line-height:1.5">${escapeHtml(card.why)}</p>
+<h1 class="wordmark" style="font-size:${fontSize(card.headline, 72, 62, 52)}px;line-height:1.22;margin-bottom:48px">${escapeHtml(card.headline)}</h1>
+<p style="font-size:38px;line-height:1.5;color:#9a9184;max-width:820px">${escapeHtml(card.why)}</p>
 </div>
 <div class="bottom"><span class="mono muted" style="font-size:28px">${escapeHtml(card.source)}</span><span class="wordmark" style="font-size:40px">sift<span class="dot">.</span></span></div>`;
 }
@@ -142,11 +171,39 @@ export function renderSlideHtml(card: SlideCard, index: number, total: number): 
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600&family=Karla:wght@400&family=Space+Mono&display=block">
-<style>${SHELL_CSS}</style>
+<style>${fonts()}${SHELL_CSS}</style>
 </head>
 <body>
 ${body}
+</body>
+</html>
+`;
+}
+
+/** A scrollable browser preview of the whole carousel at thumbnail scale. */
+export function renderSheetHtml(day: string, count: number): string {
+  const frames = Array.from(
+    { length: count },
+    (_, i) => `<div class="card"><iframe src="card-${i + 1}.html" loading="lazy"></iframe></div>`,
+  ).join("\n");
+  return `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>sift slides ${day}</title>
+<style>
+body{margin:0;background:#1a1816;color:#b8b0a3;font-family:system-ui;padding:32px}
+h1{font-size:18px;font-weight:500;margin:0 0 24px}
+.grid{display:flex;flex-wrap:wrap;gap:24px}
+.card{width:378px;height:473px;overflow:hidden;border:1px solid #2a2622;border-radius:10px}
+iframe{width:1080px;height:1350px;transform:scale(.35);transform-origin:0 0;border:0;pointer-events:none}
+</style>
+</head>
+<body>
+<h1>sift slides &middot; ${day} &middot; ${count} cards</h1>
+<div class="grid">
+${frames}
+</div>
 </body>
 </html>
 `;

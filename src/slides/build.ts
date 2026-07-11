@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { parseFrontmatter } from "../digest/frontmatter";
-import { renderSlideHtml, slideCards } from "./cards";
+import { renderSheetHtml, renderSlideHtml, slideCards } from "./cards";
 
 // Emits one html file per carousel card for a day's digest; the slides
 // skill renders them to png (CLI: npm run slides -- {day}, default newest).
@@ -24,5 +24,6 @@ if (invokedDirectly) {
   cards.forEach((card, i) => {
     writeFileSync(join(out, `card-${i + 1}.html`), renderSlideHtml(card, i, cards.length));
   });
+  writeFileSync(join(out, "sheet.html"), renderSheetHtml(day, cards.length));
   console.log(JSON.stringify({ day, cards: cards.length, dir: `slides/${day}` }));
 }
