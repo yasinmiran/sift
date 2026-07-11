@@ -3,7 +3,7 @@ name: pages
 on:
   push:
     branches: [main]
-    paths: ["digests/**", "public/**", "src/**", ".github/workflows/pages.yml"]
+    paths: ["digests/**", "data/social/**", "public/**", "src/**", ".github/workflows/pages.yml"]
   workflow_dispatch:
 
 permissions:
@@ -26,6 +26,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run site
+      - run: npm run slides
+      - run: npx playwright install --with-deps chromium
+      - run: npm run slides:render
+      - run: mkdir -p site/slides && cp -R slides/. site/slides/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

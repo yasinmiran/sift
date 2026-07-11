@@ -15,7 +15,8 @@
     "verify": "tsx src/digest/verify.ts",
     "recap": "tsx src/digest/recap.ts",
     "pick": "tsx src/pipeline/pick.ts",
-    "slides": "tsx src/slides/build.ts"
+    "slides": "tsx src/slides/build.ts",
+    "slides:render": "tsx src/slides/render.ts"
   },
   "dependencies": {
     "cheerio": "^1.2.0",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@types/node": "^26.0.1",
+    "playwright": "^1.61.1",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
     "vitest": "^4.1.9"
