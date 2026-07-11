@@ -30,10 +30,15 @@ export function readSlidePosts(rootDir: string, day: string): DayPosts | null {
   const path = join(rootDir, "data", "slides", `${day}.json`);
   if (!existsSync(path)) return null;
   const file = `data/slides/${day}.json`;
-  const parsed = JSON.parse(readFileSync(path, "utf8")) as DayPosts;
+  let parsed: DayPosts;
+  try {
+    parsed = JSON.parse(readFileSync(path, "utf8")) as DayPosts;
+  } catch (e) {
+    throw new Error(`${file}: invalid json: ${e instanceof Error ? e.message : String(e)}`);
+  }
   if (parsed.day !== day) throw new Error(`${file}: day ${parsed.day} does not match the filename`);
   if (!Array.isArray(parsed.posts) || parsed.posts.length < 1 || parsed.posts.length > 2) {
-    throw new Error(`${file}: posts must hold the am post and optionally the pm post`);
+    throw new Error(`${file}: posts must hold one or two posts with unique am/pm slots`);
   }
   const slots = parsed.posts.map((p) => p?.slot);
   if (slots.some((s) => s !== "am" && s !== "pm") || new Set(slots).size !== slots.length) {
@@ -69,8 +74,15 @@ export function readSlidePosts(rootDir: string, day: string): DayPosts | null {
 
 /** The curated hashtag pool a caption may draw from (config/social.json). */
 export function readHashtagPool(rootDir: string): Set<string> {
-  const parsed = JSON.parse(readFileSync(join(rootDir, "config", "social.json"), "utf8")) as {
-    hashtags: string[];
-  };
-  return new Set(parsed.hashtags);
+  const file = "config/social.json";
+  let parsed: { hashtags?: unknown };
+  try {
+    parsed = JSON.parse(readFileSync(join(rootDir, "config", "social.json"), "utf8")) as { hashtags?: unknown };
+  } catch (e) {
+    throw new Error(`${file}: unreadable: ${e instanceof Error ? e.message : String(e)}`);
+  }
+  if (!Array.isArray(parsed.hashtags) || parsed.hashtags.some((h) => typeof h !== "string")) {
+    throw new Error(`${file}: hashtags must be an array of strings`);
+  }
+  return new Set(parsed.hashtags as string[]);
 }

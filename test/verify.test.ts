@@ -273,11 +273,109 @@ describe("verifyDigest", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith());
     writeSlides(post({ caption: `${"a".repeat(500)}. full digest at sift.yasint.dev (link in bio)` }));
-    expect(verifyDigest(root, DAY).errors).toEqual([expect.stringContaining("500")]);
+    expect(verifyDigest(root, DAY).errors).toEqual([expect.stringContaining("546")]);
     writeSlides(post({ hashtags: "nope" }));
     const r = verifyDigest(root, DAY);
     expect(r.ok).toBe(false);
     expect(r.errors).toEqual([expect.stringContaining("data/slides")]);
+  });
+
+  it("names the file on json syntax errors instead of a bare parse error", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    writeFileSync(join(root, "data", "slides", `${DAY}.json`), '{"day": "2026-07-04",}');
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(false);
+    expect(r.errors).toEqual([expect.stringMatching(/data\/slides\/2026-07-04\.json: invalid json/)]);
+  });
+
+  it("errors on an unreadable items file instead of crashing", () => {
+    writeFileSync(join(root, "data", "items", `${DAY}.json`), "not json");
+    writeDigest(digestWith());
+    writeSlides();
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(false);
+    expect(r.errors).toEqual([expect.stringContaining(`data/items/${DAY}.json`)]);
+  });
+
+  it("errors on a corrupt hashtag pool instead of blaming the caption", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    writeSlides();
+    writeFileSync(join(root, "config", "social.json"), JSON.stringify({ pool: ["#tech"] }));
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(false);
+    expect(r.errors).toEqual([expect.stringContaining("config/social.json")]);
+    expect(r.errors[0]).not.toContain("never invent one");
+  });
+
+  it("fails a url repeated within one post", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    writeSlides(post({ slides: [slide(1), slide(2), slide(3, { url: `${urls[0]}/` })] }));
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(false);
+    expect(r.errors).toEqual([expect.stringContaining("already on this post")]);
+  });
+
+  it("measures title and desc length with pen-mark syntax stripped", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    const visible118 = `${"t".repeat(100)} ${"u".repeat(17)}`;
+    writeSlides(post({ slides: [slide(1, { title: `==${visible118.slice(0, 20)}== ${visible118.slice(21)}` }), slide(2), slide(3)] }));
+    expect(verifyDigest(root, DAY).errors).toEqual([]);
+    writeSlides(post({ slides: [slide(1, { title: "t".repeat(121) }), slide(2), slide(3)] }));
+    expect(verifyDigest(root, DAY).errors).toEqual([expect.stringContaining("amputated past 120")]);
+  });
+
+  it("does not flag emails or version pins as @-mentions", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    writeSlides(
+      post({ caption: "questions to me@yasint.dev, node@24 ships. full digest at sift.yasint.dev (link in bio)" }),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.errors).toEqual([]);
+  });
+
+  it("does not warn on .js product names in the caption", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    writeSlides(post({ caption: "node.js turns 20. full digest at sift.yasint.dev (link in bio)" }));
+    expect(verifyDigest(root, DAY).warnings).toEqual([]);
+  });
+
+  it("downgrades an orphaned am slide url to a warning once pm exists", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    const orphan = { number: 1, category: "ai / llms", title: "Gone story", desc: "dropped by the rewrite", url: "https://gone.example/x" };
+    writeSlides(post({ slides: [orphan, slide(2), slide(3)] }));
+    expect(verifyDigest(root, DAY).ok).toBe(false);
+    writeSlides(
+      post({ slides: [orphan, slide(2), slide(3)] }),
+      post({ slot: "pm", slides: [slide(1, { url: urls[3] }), slide(2, { url: urls[4] }), slide(3, { url: urls[5] })] }),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.errors).toEqual([]);
+    expect(r.warnings).toContainEqual(expect.stringContaining("am slide url no longer linked"));
+  });
+
+  it("fails an over-long category and warns on dashes or emoji on cards", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    writeSlides(
+      post({
+        slides: [
+          slide(1, { category: "a very long category label that wraps" }),
+          slide(2, { desc: "a dash — here" }),
+          slide(3, { desc: "an emoji 🚨 here" }),
+        ],
+      }),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.errors).toEqual([expect.stringContaining("header fits 28")]);
+    expect(r.warnings).toContainEqual(expect.stringContaining("em/en dash on the card"));
+    expect(r.warnings).toContainEqual(expect.stringContaining("emoji on the card"));
   });
 
   it("fails a slide whose url the digest never linked", () => {

@@ -44,7 +44,7 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     for (const key of ["title", "description"]) {
       if (meta[key]?.includes("\\")) {
         errors.push(
-          `frontmatter ${key} has an escape sequence the site renders literally; only \\" and \\\\ are understood, rewrite the rest in plain words`,
+          `frontmatter ${key} has an escape sequence the site renders literally; only \\" is understood, rewrite the rest in plain words`,
         );
       }
       if (meta[key] && /==|\(\(/.test(meta[key])) {
@@ -79,13 +79,22 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
   if (!existsSync(itemsPath)) {
     warnings.push(`data/items/${day}.json is missing; cannot cross-check links`);
   } else {
-    const items = JSON.parse(readFileSync(itemsPath, "utf8")).items as { url?: string }[];
-    const known = new Set(
-      [...items.map((i) => i.url).filter(Boolean), ...pickUrls].map((u) => normalize(u!)),
-    );
-    for (const url of links) {
-      if (/^https?:\/\//.test(url) && !known.has(normalize(url))) {
-        warnings.push(`link not found in the day's items (primary source or typo?): ${url}`);
+    let items: { url?: string }[] | null = null;
+    try {
+      items = JSON.parse(readFileSync(itemsPath, "utf8")).items as { url?: string }[];
+      if (!Array.isArray(items)) throw new Error("no items array");
+    } catch {
+      items = null;
+      errors.push(`data/items/${day}.json is unreadable; force a fresh ingest run and re-verify`);
+    }
+    if (items) {
+      const known = new Set(
+        [...items.map((i) => i.url).filter(Boolean), ...pickUrls].map((u) => normalize(u!)),
+      );
+      for (const url of links) {
+        if (/^https?:\/\//.test(url) && !known.has(normalize(url))) {
+          warnings.push(`link not found in the day's items (primary source or typo?): ${url}`);
+        }
       }
     }
   }
@@ -106,13 +115,22 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
   }
   if (!dayPosts) {
     if (!existsSync(join(rootDir, "data", "slides", `${day}.json`))) {
-      warnings.push(`data/slides/${day}.json is missing; the carousel script ships with the digest (see AGENTS.md)`);
+      warnings.push(
+        `data/slides/${day}.json is missing; the carousel script ships with the digest (see AGENTS.md); expected only for backfilled days and days before the carousel launched`,
+      );
     }
   } else {
-    const pool = readHashtagPool(rootDir);
+    let pool: Set<string> | null = null;
+    try {
+      pool = readHashtagPool(rootDir);
+    } catch (e) {
+      errors.push(e instanceof Error ? e.message : String(e));
+    }
+    const pmExists = dayPosts.posts.some((p) => p.slot === "pm");
     const amUrls = new Set(
       (dayPosts.posts.find((p) => p.slot === "am")?.slides ?? []).map((s) => normalize(s.url)),
     );
+    const visible = (s: string): string => s.replace(/==|\(\(|\)\)/g, "");
     for (const post of dayPosts.posts) {
       const at = `${post.slot} post`;
       const { caption, hashtags, hook, slides } = post;
@@ -125,7 +143,9 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
       if (/https?:\/\//.test(caption)) {
         errors.push(`${at}: caption carries a raw url; instagram does not link captions, name sift.yasint.dev bare`);
       }
-      if (/@[a-z0-9_.]/i.test(caption)) errors.push(`${at}: caption @-mentions an account; never reference real accounts`);
+      if (/(?<![\w.])@[a-z0-9_.]/i.test(caption)) {
+        errors.push(`${at}: caption @-mentions an account; never reference real accounts`);
+      }
       if (caption.includes("\\")) errors.push(`${at}: caption has a backslash escape; rewrite in plain words`);
       if (hashtags.length < 3 || hashtags.length > 6) {
         errors.push(`${at}: ${hashtags.length} hashtags; pick 3-6 from config/social.json`);
@@ -133,7 +153,9 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
       if (new Set(hashtags).size !== hashtags.length) errors.push(`${at}: duplicate hashtags`);
       for (const tag of hashtags) {
         if (!/^#[a-z0-9]+$/.test(tag)) errors.push(`${at}: hashtag ${tag} is not lowercase #alphanumeric`);
-        else if (!pool.has(tag)) errors.push(`${at}: hashtag ${tag} is not in the config/social.json pool; never invent one`);
+        else if (pool && !pool.has(tag)) {
+          errors.push(`${at}: hashtag ${tag} is not in the config/social.json pool; never invent one`);
+        }
       }
       if (/==|\(\(/.test(hook) || /==|\(\(/.test(caption)) {
         errors.push(`${at}: hook and caption render as plain text; pen marks belong on slides only`);
@@ -143,29 +165,50 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
         errors.push(`${at}: ${slides.length} slides; a post carries 3-8 stories (cover and cta ride along)`);
       }
       let markCount = 0;
+      const seenInPost = new Set<string>();
       for (const slide of slides) {
         const where = `${at}, slide ${slide.number}`;
-        if (slide.title.length > 120) errors.push(`${where}: title is ${slide.title.length} chars; it renders amputated past 120`);
-        if (slide.desc.length > 110) errors.push(`${where}: desc is ${slide.desc.length} chars; it renders amputated past 110`);
+        const titleLen = visible(slide.title).length;
+        const descLen = visible(slide.desc).length;
+        if (titleLen > 120) errors.push(`${where}: title is ${titleLen} chars; it renders amputated past 120`);
+        if (descLen > 110) errors.push(`${where}: desc is ${descLen} chars; it renders amputated past 110`);
         if (slide.category !== slide.category.toLowerCase()) errors.push(`${where}: category must be lowercase`);
+        if (slide.category.length > 28) {
+          errors.push(`${where}: category is ${slide.category.length} chars; the header fits 28`);
+        }
         const text = `${slide.title} ${slide.desc}`;
         if (/\]\(|\*\*/.test(text)) errors.push(`${where}: markdown syntax; slides are plain text plus pen marks`);
         const unmarked = text.replace(MARK_U, "").replace(MARK_O, "");
         if (unmarked.includes("==") || unmarked.includes("((")) errors.push(`${where}: unclosed pen mark`);
         markCount += (text.match(MARK_U) ?? []).length + (text.match(MARK_O) ?? []).length;
-        if (!linked.has(normalize(slide.url))) {
-          errors.push(`${where}: url is not a link in the digest; slides only carry digested stories: ${slide.url}`);
+        if (/[–—]/.test(text)) warnings.push(`${where}: em/en dash on the card; use a comma or colon`);
+        if (/\p{Extended_Pictographic}/u.test(text)) warnings.push(`${where}: emoji on the card; the cards do not use them`);
+        const url = normalize(slide.url);
+        if (seenInPost.has(url)) errors.push(`${where}: repeats a url already on this post: ${slide.url}`);
+        seenInPost.add(url);
+        if (!linked.has(url)) {
+          if (post.slot === "am" && pmExists) {
+            warnings.push(
+              `${where}: am slide url no longer linked in the digest; the evening rewrite keeps am stories linked (see AGENTS.md): ${slide.url}`,
+            );
+          } else {
+            errors.push(`${where}: url is not a link in the digest; slides only carry digested stories: ${slide.url}`);
+          }
         }
-        if (post.slot === "pm" && amUrls.has(normalize(slide.url))) {
+        if (post.slot === "pm" && amUrls.has(url)) {
           errors.push(`${where}: repeats an am story; the pm post covers only what the evening added: ${slide.url}`);
         }
       }
       if (markCount > 3) warnings.push(`${at}: ${markCount} pen marks; marks lose punch past 2-3`);
-      for (const domain of caption.match(/\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,}\b/g) ?? []) {
-        if (domain !== "sift.yasint.dev") warnings.push(`${at}: caption names a domain other than sift.yasint.dev: ${domain}`);
+      for (const domain of caption.match(/\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,}\b/gi) ?? []) {
+        const named = domain.toLowerCase();
+        if (named === "sift.yasint.dev" || named.endsWith(".js")) continue;
+        warnings.push(`${at}: caption names a domain other than sift.yasint.dev: ${domain}`);
       }
       if (/[A-Z]/.test(caption)) warnings.push(`${at}: caption has uppercase; yasin writes lowercase`);
-      if (/\p{Extended_Pictographic}/u.test(caption)) warnings.push(`${at}: caption has emoji; the voice does not use them`);
+      if (/\p{Extended_Pictographic}/u.test(`${caption} ${hook}`)) {
+        warnings.push(`${at}: caption or hook has emoji; the voice does not use them`);
+      }
       if (/[–—]/.test(`${caption} ${hook}`)) warnings.push(`${at}: em/en dash in caption or hook; use a comma or colon`);
     }
   }
@@ -178,8 +221,8 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     const text = readFileSync(join(rootDir, "digests", file), "utf8");
     for (const m of text.matchAll(LINK)) digested.set(normalize(m[1]!), file.slice(0, 10));
   }
-  for (const url of links) {
-    const usedOn = digested.get(normalize(url));
+  for (const url of new Set(links.map(normalize))) {
+    const usedOn = digested.get(url);
     if (usedOn) warnings.push(`already digested on ${usedOn}: ${url}`);
   }
 

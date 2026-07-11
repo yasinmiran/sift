@@ -30,7 +30,12 @@ export function readPicks(rootDir: string, day: string): Picks | null {
   const path = join(rootDir, "data", "picks", `${day}.json`);
   if (!existsSync(path)) return null;
   const file = `data/picks/${day}.json`;
-  const parsed = JSON.parse(readFileSync(path, "utf8")) as Picks;
+  let parsed: Picks;
+  try {
+    parsed = JSON.parse(readFileSync(path, "utf8")) as Picks;
+  } catch (e) {
+    throw new Error(`${file}: invalid json: ${e instanceof Error ? e.message : String(e)}`);
+  }
   if (parsed.day !== day) throw new Error(`${file}: day ${parsed.day} does not match the filename`);
   if (parsed.summary !== undefined && typeof parsed.summary !== "string") {
     throw new Error(`${file}: summary must be a string`);
