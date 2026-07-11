@@ -92,6 +92,37 @@ finish the job yourself: push the branch, `gh pr create`, then
 `gh pr merge --rebase --delete-branch`. The digest needs no review;
 never leave it stranded on an unmerged branch.
 
+## Instagram caption
+
+Beside each digest, write the day's instagram caption to
+`data/social/{YYYY-MM-DD}.json` and commit it together with the digest
+(the evening rewrite overwrites it like the digest itself):
+
+```json
+{
+  "day": "{YYYY-MM-DD}",
+  "caption": "{2-3 of the day's hooks, comma-chained}. full digest at sift.yasint.dev (link in bio)",
+  "hashtags": ["#tech", "#ai", "#infosec"]
+}
+```
+
+The pages workflow renders the day's carousel from the digest and
+publishes it at `sift.yasint.dev/slides/{day}/` with this caption and
+derived alt texts in its `meta.json`; you never render slides
+yourself. Caption rules (the verifier hard-gates the mechanical ones):
+
+- Report, never promote: what happened, no hype, no emoji, no
+  engagement bait ("like if", "tag someone", "follow for more").
+  Lowercase throughout, Yasin's voice, under ~400 characters.
+- Nothing the digest does not say. Security stories are news: name the
+  event, never credentials, victim data, exploit steps or where to
+  find them. Legal claims keep the digest's alleged/claims discipline.
+- No @-mentions, no urls, no domain other than sift.yasint.dev, which
+  appears bare in the closing line
+  "full digest at sift.yasint.dev (link in bio)".
+- Hashtags: 3-6 from the pool in `config/social.json`, matching the
+  day's actual content; never invent one.
+
 Catch-up rule: before writing today's digest, check yesterday. If
 `data/items/{yesterday}.json` exists but `digests/{yesterday}.md` does
 not (a skipped run), write yesterday's digest from yesterday's items
@@ -256,14 +287,17 @@ npm ci && npm run verify -- {YYYY-MM-DD}
 
 Exits non-zero on `errors` (missing or wrong frontmatter, date not
 matching the filename, non-http links, unclosed pen marks, marks in
-frontmatter, a malformed picks file, empty body): fix and re-verify
-before committing. `warnings` need judgment: a link outside the day's
-items is fine when you deliberately linked a primary source and a bug
-when it is a typo or an invented url; a link an earlier digest already
-used is fine only as a deliberate update (see Continuity); an
-uncovered pick, more than 3 pen marks, thin digests and a missing
-Threads section also warn. Resolve every warning consciously before
-pushing.
+frontmatter, a malformed picks file, empty body, and any broken
+instagram caption rule: missing pointer home, raw urls, @-mentions,
+out-of-pool or miscounted hashtags, over 500 characters): fix and
+re-verify before committing. `warnings` need judgment: a link outside
+the day's items is fine when you deliberately linked a primary source
+and a bug when it is a typo or an invented url; a link an earlier
+digest already used is fine only as a deliberate update (see
+Continuity); an uncovered pick, more than 3 pen marks, thin digests, a
+missing Threads section, a missing social file and caption voice
+slips (uppercase, emoji, foreign domains) also warn. Resolve every
+warning consciously before pushing.
 
 ## Field playbook
 
