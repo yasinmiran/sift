@@ -133,7 +133,8 @@ display:flex;flex-direction:column;padding:88px}
 .bottom{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto}
 .count{font-family:"Space Mono",monospace;font-size:28px;color:#5c564e}
 .terms{margin-top:48px;max-width:820px}
-.terms p{font-family:"Space Mono",monospace;font-size:26px;line-height:1.5;color:#7a7268;padding-left:1.2em;text-indent:-1.2em}
+.terms p{font-size:28px;line-height:1.5;color:#7a7268;padding-left:1.2em;text-indent:-1.2em}
+.terms .abbr{font-family:"Space Mono",monospace;font-size:26px}
 .label{font-family:"Space Mono",monospace;font-size:30px;letter-spacing:.08em;color:#d4976a}
 .muted{color:#7a7268}
 `;
@@ -161,7 +162,7 @@ function coverBody(card: CoverCard, counter: string): string {
 function storyBody(card: StoryCard, counter: string): string {
   const terms = card.terms.length
     ? `<div class="terms">${card.terms
-        .map((t) => `<p>${escapeHtml(t.abbr)} &middot; ${escapeHtml(t.gloss)}</p>`)
+        .map((t) => `<p><span class="abbr">${escapeHtml(t.abbr)}</span> &middot; ${escapeHtml(t.gloss)}</p>`)
         .join("\n")}</div>`
     : "";
   return `<div class="top"><span class="label">${escapeHtml(card.category)}</span>${counter}</div>

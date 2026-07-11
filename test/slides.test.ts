@@ -162,9 +162,11 @@ describe("renderSlideHtml", () => {
     expect(html).not.toContain("example.com");
   });
 
-  it("renders term footnotes small and dim, only when a slide has them", () => {
+  it("renders term footnotes with a mono abbr and a karla gloss, only when a slide has them", () => {
     const withTerms = renderSlideHtml(cards[2]!, 2, cards.length);
-    expect(withTerms).toContain('<p>Chat Control &middot; the EU proposal to scan private messages</p>');
+    expect(withTerms).toContain(
+      '<p><span class="abbr">Chat Control</span> &middot; the EU proposal to scan private messages</p>',
+    );
     expect(withTerms).toContain('class="terms"');
     const without = renderSlideHtml(cards[1]!, 1, cards.length);
     expect(without).not.toContain('class="terms"');
