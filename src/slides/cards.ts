@@ -2,21 +2,22 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { formatDay } from "../site/day-format";
 import { escapeHtml } from "../site/html";
+import type { SlidePost } from "./data";
 
-// The instagram carousel model: cover + up to four stories + cta, derived
-// deterministically from one day's digest (see the 2026-07-11 slides spec).
+// The instagram carousel model: cover + the post's story slides + cta,
+// rendered from the agent-scripted post in data/slides/{day}.json.
 export interface CoverCard {
   kind: "cover";
   day: string;
+  slot: "am" | "pm";
   hook: string;
 }
 
 export interface StoryCard {
   kind: "story";
-  section: string;
-  headline: string;
-  why: string;
-  source: string;
+  category: string;
+  title: string;
+  desc: string;
 }
 
 export interface CtaCard {
@@ -25,26 +26,9 @@ export interface CtaCard {
 
 export type SlideCard = CoverCard | StoryCard | CtaCard;
 
-export interface DigestInput {
-  day: string;
-  title: string;
-  description: string;
-  body: string;
-}
-
-const SKIP_SECTIONS = new Set(["Hacker News", "Threads"]);
-const ENTRY = /^- \[([^\]]+)\]\(([^)\s]+)\)(.*)$/;
-const MAX_STORIES = 4;
-const MAX_WHY = 110;
-const MAX_HEADLINE = 120;
 const MAX_HOOK = 120;
-
-// Markdown comes off, pen marks stay: the renderer draws them as strokes.
-const stripMarkup = (s: string): string =>
-  s
-    .replace(/\[([^\]]+)\]\([^)\s]+\)/g, "$1")
-    .replace(/\*\*([^*]+)\*\*/g, "$1")
-    .replace(/\*([^*]+)\*/g, "$1");
+const MAX_TITLE = 120;
+const MAX_DESC = 110;
 
 // A truncated pair of pen markers would leak literal == onto the card.
 const dropUnpairedMarks = (s: string): string => {
@@ -56,7 +40,9 @@ const dropUnpairedMarks = (s: string): string => {
   return out;
 };
 
-function truncate(s: string, max = MAX_WHY): string {
+const stripMarks = (s: string): string => s.replace(/==/g, "").replace(/\(\(|\)\)/g, "");
+
+function truncate(s: string, max: number): string {
   if (s.length <= max) return s;
   const cut = s.slice(0, max);
   const comma = cut.lastIndexOf(", ");
@@ -64,82 +50,46 @@ function truncate(s: string, max = MAX_WHY): string {
   return `${base.trimEnd()}…`;
 }
 
-// One thing on the cover: the description's first clause (two when the
-// first is a short name), no trailing punctuation.
-function coverHook(description: string): string {
-  const parts = description.split(", ");
-  const hook = parts[0]!.length < 40 && parts.length > 1 ? `${parts[0]!}, ${parts[1]!}` : parts[0]!;
-  return truncate(hook.replace(/[.,;]\s*$/, ""), MAX_HOOK);
+/** The renderable cards for one post; the caps are a defensive net, verify gates first. */
+export function buildCards(day: string, post: SlidePost): SlideCard[] {
+  return [
+    { kind: "cover", day, slot: post.slot, hook: truncate(post.hook, MAX_HOOK) },
+    ...post.slides.map(
+      (slide): StoryCard => ({
+        kind: "story",
+        category: slide.category,
+        title: dropUnpairedMarks(truncate(slide.title, MAX_TITLE)),
+        desc: dropUnpairedMarks(truncate(slide.desc, MAX_DESC)),
+      }),
+    ),
+    { kind: "cta" },
+  ];
 }
-
-function source(url: string): string {
-  try {
-    return new URL(url).hostname.replace(/^www\./, "");
-  } catch {
-    return "";
-  }
-}
-
-export function slideCards(digest: DigestInput): SlideCard[] {
-  const stories: StoryCard[] = [];
-  let section: string | null = null;
-  let sectionUsed = true;
-  for (const line of digest.body.split("\n")) {
-    const heading = /^##\s+(.+?)\s*$/.exec(line);
-    if (heading) {
-      section = heading[1]!;
-      sectionUsed = false;
-      continue;
-    }
-    if (section === null || sectionUsed || SKIP_SECTIONS.has(section) || stories.length >= MAX_STORIES) continue;
-    const entry = ENTRY.exec(line);
-    if (!entry) continue;
-    sectionUsed = true;
-    // one thing per slide: the first clause explains, the rest stays on the site
-    const why = stripMarkup(entry[3]!.trim().replace(/^[:.,;]\s*/, ""))
-      .split(/;\s/)[0]!
-      .replace(/[,;]\s*$/, "");
-    stories.push({
-      kind: "story",
-      section,
-      headline: truncate(stripMarkup(entry[1]!), MAX_HEADLINE),
-      why: dropUnpairedMarks(truncate(why)),
-      source: source(entry[2]!),
-    });
-  }
-  return [{ kind: "cover", day: digest.day, hook: coverHook(digest.description) }, ...stories, { kind: "cta" }];
-}
-
-const stripMarks = (s: string): string => s.replace(/==/g, "").replace(/\(\(|\)\)/g, "");
 
 const MAX_ALT = 100;
 
 /** Screen-reader text for a rendered card, capped to instagram's alt length. */
 export function altText(card: SlideCard): string {
   if (card.kind === "cover") return truncate(`sift, ${formatDay(card.day)}: ${card.hook}`, MAX_ALT);
-  if (card.kind === "story") {
-    return truncate(stripMarks(`${card.headline}: ${card.why} (${card.source})`), MAX_ALT);
-  }
+  if (card.kind === "story") return truncate(stripMarks(`${card.title}: ${card.desc}`), MAX_ALT);
   return "sift.yasint.dev: the day's tech, sifted twice daily";
 }
 
 export interface SlideMeta {
   day: string;
-  caption: string | null;
+  slot: "am" | "pm";
+  caption: string;
   hashtags: string[];
   cards: { file: string; alt: string }[];
 }
 
-/** The posting companion published beside a day's rendered pngs. */
-export function slideMeta(
-  day: string,
-  cards: SlideCard[],
-  social: { caption: string; hashtags: string[] } | null,
-): SlideMeta {
+/** The posting companion published beside a post's rendered pngs. */
+export function slideMeta(day: string, post: SlidePost, cards: SlideCard[]): SlideMeta {
   return {
     day,
-    caption: social?.caption ?? null,
-    hashtags: social?.hashtags ?? [],
+    slot: post.slot,
+    caption: post.caption,
+    hashtags: post.hashtags,
     cards: cards.map((card, i) => ({ file: `card-${i + 1}.png`, alt: altText(card) })),
   };
 }
@@ -159,8 +109,8 @@ const fonts = (): string =>
     fontFace("Space Mono", "space-mono.woff2", "400"),
   ].join("\n"));
 
-// Fraunces for display, Karla for text, Space Mono for labels: the site's
-// own pairing at poster scale.
+// Fraunces for the wordmark, Cormorant Garamond for display, Karla for text,
+// Space Mono for labels: the site's own pairing at poster scale.
 const SHELL_CSS = `
 *{margin:0;box-sizing:border-box}
 html,body{width:1080px;height:1350px;overflow:hidden}
@@ -190,7 +140,8 @@ const inline = (text: string): string =>
     .replace(/\(\(([^()\n]+?)\)\)/g, '<span class="pen-o">$1</span>');
 
 function coverBody(card: CoverCard, counter: string): string {
-  return `<div class="top"><span class="wordmark" style="font-size:88px">sift<span class="dot">.</span></span><span class="mono muted" style="font-size:30px">${formatDay(card.day)}</span></div>
+  const when = `${formatDay(card.day)}${card.slot === "pm" ? " &middot; evening" : ""}`;
+  return `<div class="top"><span class="wordmark" style="font-size:88px">sift<span class="dot">.</span></span><span class="mono muted" style="font-size:30px">${when}</span></div>
 <div style="margin:auto 0">
 <p class="display" style="font-size:${fontSize(card.hook, 84, 74, 64)}px;line-height:1.22">${escapeHtml(card.hook)}<span class="dot">.</span></p>
 <p class="mono muted" style="font-size:30px;margin-top:64px">swipe for the day's stories &rarr;</p>
@@ -199,12 +150,12 @@ function coverBody(card: CoverCard, counter: string): string {
 }
 
 function storyBody(card: StoryCard, counter: string): string {
-  return `<div class="top"><span class="label">${escapeHtml(card.section.toLowerCase())}</span>${counter}</div>
+  return `<div class="top"><span class="label">${escapeHtml(card.category)}</span>${counter}</div>
 <div style="margin:auto 0">
-<h1 class="display" style="font-size:${fontSize(card.headline, 78, 68, 58)}px;line-height:1.2;margin-bottom:48px">${escapeHtml(card.headline)}${card.headline.endsWith("…") ? "" : '<span class="dot">.</span>'}</h1>
-<p style="font-size:38px;line-height:1.5;color:#9a9184;max-width:820px;text-wrap:pretty">${inline(card.why)}</p>
+<h1 class="display" style="font-size:${fontSize(card.title, 78, 68, 58)}px;line-height:1.2;margin-bottom:48px">${inline(card.title)}${card.title.endsWith("…") ? "" : '<span class="dot">.</span>'}</h1>
+<p style="font-size:38px;line-height:1.5;color:#9a9184;max-width:820px;text-wrap:pretty">${inline(card.desc)}</p>
 </div>
-<div class="bottom"><span class="mono muted" style="font-size:28px">${escapeHtml(card.source)}</span><span class="wordmark" style="font-size:40px">sift<span class="dot">.</span></span></div>`;
+<div class="bottom"><span></span><span class="wordmark" style="font-size:40px">sift<span class="dot">.</span></span></div>`;
 }
 
 function ctaBody(counter: string): string {
@@ -236,8 +187,8 @@ ${body}
 `;
 }
 
-/** A scrollable browser preview of the whole carousel at thumbnail scale. */
-export function renderSheetHtml(day: string, count: number): string {
+/** A scrollable browser preview of one post's carousel at thumbnail scale. */
+export function renderSheetHtml(label: string, count: number): string {
   const frames = Array.from(
     { length: count },
     (_, i) => `<div class="card"><iframe src="card-${i + 1}.html" loading="lazy"></iframe></div>`,
@@ -246,7 +197,7 @@ export function renderSheetHtml(day: string, count: number): string {
 <html>
 <head>
 <meta charset="utf-8">
-<title>sift slides ${day}</title>
+<title>sift slides ${label}</title>
 <style>
 body{margin:0;background:#1a1816;color:#b8b0a3;font-family:system-ui;padding:32px}
 h1{font-size:18px;font-weight:500;margin:0 0 24px}
@@ -256,7 +207,7 @@ iframe{width:1080px;height:1350px;transform:scale(.35);transform-origin:0 0;bord
 </style>
 </head>
 <body>
-<h1>sift slides &middot; ${day} &middot; ${count} cards</h1>
+<h1>sift slides &middot; ${label} &middot; ${count} cards</h1>
 <div class="grid">
 ${frames}
 </div>
