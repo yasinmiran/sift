@@ -92,32 +92,64 @@ finish the job yourself: push the branch, `gh pr create`, then
 `gh pr merge --rebase --delete-branch`. The digest needs no review;
 never leave it stranded on an unmerged branch.
 
-## Instagram caption
+## Instagram slides
 
-Beside each digest, write the day's instagram caption to
-`data/social/{YYYY-MM-DD}.json` and commit it together with the digest
-(the evening rewrite overwrites it like the digest itself):
+Each run also scripts the day's instagram carousel in
+`data/slides/{YYYY-MM-DD}.json`, committed together with the digest.
+The morning run writes the `am` post. The evening run APPENDS a `pm`
+post and never edits `am`: it is the record of what was already
+posted. The pages workflow renders each post and publishes it at
+`sift.yasint.dev/slides/{day}/{slot}/` (pngs, a sheet.html preview,
+and meta.json with the caption, hashtags and alt texts); you never
+render slides yourself.
 
 ```json
 {
   "day": "{YYYY-MM-DD}",
-  "caption": "{2-3 of the day's hooks, comma-chained}. full digest at sift.yasint.dev (link in bio)",
-  "hashtags": ["#tech", "#ai", "#infosec"]
+  "posts": [
+    {
+      "slot": "am",
+      "hook": "{the cover line: the day's biggest story, plain text}",
+      "caption": "{2-3 of the day's hooks, comma-chained}. full digest at sift.yasint.dev (link in bio)",
+      "hashtags": ["#tech", "#ai", "#infosec"],
+      "slides": [
+        {
+          "number": 1,
+          "category": "{lowercase label, usually the entry's section}",
+          "title": "{the story in one line, max 120 chars}",
+          "desc": "{why it matters, max 110 chars}",
+          "url": "{the entry's link in today's digest}"
+        }
+      ]
+    }
+  ]
 }
 ```
 
-The pages workflow renders the day's carousel from the digest and
-publishes it at `sift.yasint.dev/slides/{day}/` with this caption and
-derived alt texts in its `meta.json`; you never render slides
-yourself. Caption rules (the verifier hard-gates the mechanical ones):
+Selection and voice (the verifier hard-gates the mechanical rules):
 
-- Report, never promote: what happened, no hype, no emoji, no
-  engagement bait ("like if", "tag someone", "follow for more").
-  Lowercase throughout, Yasin's voice, under ~400 characters.
-- Nothing the digest does not say. Security stories are news: name the
-  event, never credentials, victim data, exploit steps or where to
-  find them. Legal claims keep the digest's alleged/claims discipline.
-- No @-mentions, no urls, no domain other than sift.yasint.dev, which
+- 3-8 slides per post: your editorial pick of the day's most
+  interesting stories, not a mechanical top-of-each-section. Hacker
+  News stories are eligible like any other.
+- Write the slides as Yasin's own read of the day, a third-eye lens:
+  what changed, what it means, why it is interesting. Not
+  press-release rewrites, no hype. Titles and descs may reuse or
+  compress the digest's wording; they never add claims the digest
+  does not make (every slide's `url` must be a link in today's
+  digest, and the verifier errors otherwise).
+- The pm post never repeats an am story (the verifier errors on a
+  shared url): cover what the evening added or moved. If the evening
+  genuinely added nothing carousel-worthy, skip the pm post.
+- Pen marks `==text==` / `((text))` work in titles and descs, 2-3 per
+  post max, same discipline as the digest. Hook and caption render as
+  plain text: no marks there.
+- Caption: report, never promote. What happened, no hype, no emoji,
+  no engagement bait ("like if", "tag someone", "follow for more").
+  Lowercase throughout, Yasin's voice, under ~400 characters, and
+  nothing the digest does not say. Security stories name the event,
+  never credentials, victim data, exploit steps or where to find
+  them; legal claims keep the alleged/claims discipline. No
+  @-mentions, no urls, no domain other than sift.yasint.dev, which
   appears bare in the closing line
   "full digest at sift.yasint.dev (link in bio)".
 - Hashtags: 3-6 from the pool in `config/social.json`, matching the
@@ -288,16 +320,18 @@ npm ci && npm run verify -- {YYYY-MM-DD}
 Exits non-zero on `errors` (missing or wrong frontmatter, date not
 matching the filename, non-http links, unclosed pen marks, marks in
 frontmatter, a malformed picks file, empty body, and any broken
-instagram caption rule: missing pointer home, raw urls, @-mentions,
-out-of-pool or miscounted hashtags, over 500 characters): fix and
-re-verify before committing. `warnings` need judgment: a link outside
-the day's items is fine when you deliberately linked a primary source
-and a bug when it is a typo or an invented url; a link an earlier
-digest already used is fine only as a deliberate update (see
-Continuity); an uncovered pick, more than 3 pen marks, thin digests, a
-missing Threads section, a missing social file and caption voice
-slips (uppercase, emoji, foreign domains) also warn. Resolve every
-warning consciously before pushing.
+carousel rule: slide urls the digest never linked, a pm slide
+repeating an am story, overflowing titles/descs, markdown or unclosed
+marks on slides, marks in hook or caption, caption missing the
+pointer home, raw urls, @-mentions, out-of-pool or miscounted
+hashtags): fix and re-verify before committing. `warnings` need
+judgment: a link outside the day's items is fine when you
+deliberately linked a primary source and a bug when it is a typo or
+an invented url; a link an earlier digest already used is fine only
+as a deliberate update (see Continuity); an uncovered pick, more than
+3 pen marks, thin digests, a missing Threads section, a missing
+carousel script and caption voice slips (uppercase, emoji, foreign
+domains) also warn. Resolve every warning consciously before pushing.
 
 ## Field playbook
 
