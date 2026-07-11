@@ -11,7 +11,7 @@ beforeEach(() => {
   root = mkdtempSync(join(tmpdir(), "sift-verify-"));
   mkdirSync(join(root, "digests"), { recursive: true });
   mkdirSync(join(root, "data", "items"), { recursive: true });
-  mkdirSync(join(root, "data", "social"), { recursive: true });
+  mkdirSync(join(root, "data", "slides"), { recursive: true });
   mkdirSync(join(root, "config"), { recursive: true });
   writeFileSync(
     join(root, "config", "social.json"),
@@ -46,15 +46,28 @@ const digestWith = (opts: { front?: string; links?: string[]; threads?: string; 
 const writeDigest = (content: string, day = DAY) =>
   writeFileSync(join(root, "digests", `${day}.md`), content);
 
-const writeSocial = (over: Record<string, unknown> = {}) =>
+const slide = (n: number, over: Record<string, unknown> = {}) => ({
+  number: n,
+  category: "ai / llms",
+  title: `Story ${n - 1} does a thing`,
+  desc: "why it matters in one line",
+  url: urls[n - 1],
+  ...over,
+});
+
+const post = (over: Record<string, unknown> = {}) => ({
+  slot: "am",
+  hook: "apple sues openai over trade secrets",
+  caption: "apple sues openai over trade secrets. full digest at sift.yasint.dev (link in bio)",
+  hashtags: ["#tech", "#ai", "#infosec"],
+  slides: [slide(1), slide(2), slide(3)],
+  ...over,
+});
+
+const writeSlides = (...posts: Record<string, unknown>[]) =>
   writeFileSync(
-    join(root, "data", "social", `${DAY}.json`),
-    JSON.stringify({
-      day: DAY,
-      caption: "apple sues openai over trade secrets. full digest at sift.yasint.dev (link in bio)",
-      hashtags: ["#tech", "#ai", "#infosec"],
-      ...over,
-    }),
+    join(root, "data", "slides", `${DAY}.json`),
+    JSON.stringify({ day: DAY, posts: posts.length > 0 ? posts : [post()] }),
   );
 
 describe("verifyDigest", () => {
@@ -91,7 +104,7 @@ describe("verifyDigest", () => {
   it("passes a well-formed digest whose links all come from the day's items", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith());
-    writeSocial();
+    writeSlides();
     const r = verifyDigest(root, DAY);
     expect(r.errors).toEqual([]);
     expect(r.warnings).toEqual([]);
@@ -178,7 +191,7 @@ describe("verifyDigest", () => {
   it("warns on links that match no item url, tolerating trailing slashes", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith({ links: [...urls.slice(1), `${urls[0]}/`, "https://elsewhere.org/primary"] }));
-    writeSocial();
+    writeSlides();
     const r = verifyDigest(root, DAY);
     expect(r.ok).toBe(true);
     expect(r.warnings).toEqual([expect.stringContaining("https://elsewhere.org/primary")]);
@@ -197,7 +210,7 @@ describe("verifyDigest", () => {
   it("warns on em and en dashes in the body", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith({ threads: "\n## Threads\n\n- story-0 — story-1, via – a vendor.\n" }));
-    writeSocial();
+    writeSlides();
     const r = verifyDigest(root, DAY);
     expect(r.ok).toBe(true);
     expect(r.warnings).toEqual([expect.stringContaining("em/en dashes")]);
@@ -205,24 +218,24 @@ describe("verifyDigest", () => {
 
   it("warns when the items file is missing instead of failing", () => {
     writeDigest(digestWith());
-    writeSocial();
+    writeSlides();
     const r = verifyDigest(root, DAY);
     expect(r.ok).toBe(true);
     expect(r.warnings).toEqual([expect.stringContaining("cannot cross-check")]);
   });
 
-  it("warns when the day has no social caption", () => {
+  it("warns when the day has no carousel script", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith());
     const r = verifyDigest(root, DAY);
     expect(r.ok).toBe(true);
-    expect(r.warnings).toContainEqual(expect.stringContaining("data/social"));
+    expect(r.warnings).toContainEqual(expect.stringContaining("data/slides"));
   });
 
   it("fails a caption that skips the pointer home, links raw or @-mentions", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith());
-    writeSocial({ caption: "apple sues openai, see https://example.com and thanks @openai" });
+    writeSlides(post({ caption: "apple sues openai, see https://example.com and thanks @openai" }));
     const r = verifyDigest(root, DAY);
     expect(r.ok).toBe(false);
     expect(r.errors).toContainEqual(expect.stringContaining("point home"));
@@ -233,12 +246,12 @@ describe("verifyDigest", () => {
   it("fails hashtags outside the pool, bad format, wrong count or duplicates", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith());
-    writeSocial({ hashtags: ["#Tech!", "#notinpool"] });
+    writeSlides(post({ hashtags: ["#Tech!", "#notinpool"] }));
     let r = verifyDigest(root, DAY);
     expect(r.errors).toContainEqual(expect.stringContaining("not lowercase"));
     expect(r.errors).toContainEqual(expect.stringContaining("never invent one"));
     expect(r.errors).toContainEqual(expect.stringContaining("pick 3-6"));
-    writeSocial({ hashtags: ["#tech", "#tech", "#ai"] });
+    writeSlides(post({ hashtags: ["#tech", "#tech", "#ai"] }));
     r = verifyDigest(root, DAY);
     expect(r.errors).toEqual([expect.stringContaining("duplicate hashtags")]);
   });
@@ -246,7 +259,9 @@ describe("verifyDigest", () => {
   it("warns on uppercase, emoji and foreign domains in the caption", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith());
-    writeSocial({ caption: "Apple sues OpenAI 🚨 via bloomberg.com. full digest at sift.yasint.dev (link in bio)" });
+    writeSlides(
+      post({ caption: "Apple sues OpenAI 🚨 via bloomberg.com. full digest at sift.yasint.dev (link in bio)" }),
+    );
     const r = verifyDigest(root, DAY);
     expect(r.ok).toBe(true);
     expect(r.warnings).toContainEqual(expect.stringContaining("uppercase"));
@@ -254,15 +269,84 @@ describe("verifyDigest", () => {
     expect(r.warnings).toContainEqual(expect.stringContaining("bloomberg.com"));
   });
 
-  it("fails an over-long caption and surfaces a malformed social file", () => {
+  it("fails an over-long caption and surfaces a malformed slides file", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith());
-    writeSocial({ caption: `${"a".repeat(500)}. full digest at sift.yasint.dev (link in bio)` });
+    writeSlides(post({ caption: `${"a".repeat(500)}. full digest at sift.yasint.dev (link in bio)` }));
     expect(verifyDigest(root, DAY).errors).toEqual([expect.stringContaining("500")]);
-    writeSocial({ hashtags: "nope" });
+    writeSlides(post({ hashtags: "nope" }));
     const r = verifyDigest(root, DAY);
     expect(r.ok).toBe(false);
-    expect(r.errors).toEqual([expect.stringContaining("data/social")]);
+    expect(r.errors).toEqual([expect.stringContaining("data/slides")]);
+  });
+
+  it("fails a slide whose url the digest never linked", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    writeSlides(post({ slides: [slide(1), slide(2), slide(3, { url: "https://invented.example/x" })] }));
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(false);
+    expect(r.errors).toEqual([expect.stringContaining("slides only carry digested stories")]);
+  });
+
+  it("fails a pm slide that repeats an am story but passes a fresh pm post", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    writeSlides(
+      post(),
+      post({ slot: "pm", slides: [slide(1, { number: 1, url: urls[3] }), slide(2, { url: urls[4] }), slide(3, { url: urls[0] })] }),
+    );
+    let r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(false);
+    expect(r.errors).toEqual([expect.stringContaining("repeats an am story")]);
+    writeSlides(
+      post(),
+      post({ slot: "pm", slides: [slide(1, { url: urls[3] }), slide(2, { url: urls[4] }), slide(3, { url: urls[5] })] }),
+    );
+    r = verifyDigest(root, DAY);
+    expect(r.errors).toEqual([]);
+  });
+
+  it("fails slide text that would render broken: overflow, markdown, unclosed marks, cased category", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    writeSlides(
+      post({
+        slides: [
+          slide(1, { title: "x".repeat(130) }),
+          slide(2, { desc: `see [the docs](https://e.com) for **more** ${"y".repeat(80)}` }),
+          slide(3, { desc: "an ==unclosed mark here", category: "AI / LLMs" }),
+        ],
+      }),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(false);
+    expect(r.errors).toContainEqual(expect.stringContaining("amputated past 120"));
+    expect(r.errors).toContainEqual(expect.stringContaining("amputated past 110"));
+    expect(r.errors).toContainEqual(expect.stringContaining("markdown"));
+    expect(r.errors).toContainEqual(expect.stringContaining("unclosed pen mark"));
+    expect(r.errors).toContainEqual(expect.stringContaining("category must be lowercase"));
+  });
+
+  it("fails pen marks in the hook and posts outside 3-8 slides, warns past 3 slide marks", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    writeSlides(post({ hook: "a ==marked== hook", slides: [slide(1), slide(2)] }));
+    let r = verifyDigest(root, DAY);
+    expect(r.errors).toContainEqual(expect.stringContaining("pen marks belong on slides only"));
+    expect(r.errors).toContainEqual(expect.stringContaining("3-8 stories"));
+    writeSlides(
+      post({
+        slides: [
+          slide(1, { desc: "==one== and ==two==" }),
+          slide(2, { desc: "((three)) circled" }),
+          slide(3, { desc: "==four== underlined" }),
+        ],
+      }),
+    );
+    r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(true);
+    expect(r.warnings).toContainEqual(expect.stringContaining("4 pen marks"));
   });
 
   it("warns on links already used by an earlier digest, ignoring later ones", () => {

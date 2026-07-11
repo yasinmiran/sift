@@ -1,31 +1,38 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { parseFrontmatter } from "../digest/frontmatter";
-import { readSocial } from "../pipeline/social";
-import { renderSheetHtml, renderSlideHtml, slideCards, slideMeta } from "./cards";
+import { buildCards, renderSheetHtml, renderSlideHtml, slideMeta } from "./cards";
+import { readSlidePosts } from "./data";
 
-// Emits one html file per carousel card for a day's digest; the slides
-// skill renders them to png (CLI: npm run slides -- {day}, default newest).
+// Emits one html file per carousel card for each of a day's posts, plus a
+// sheet.html preview and meta.json per post (CLI: npm run slides -- {day},
+// default newest digest day).
 const invokedDirectly = process.argv[1]?.endsWith("build.ts") && process.argv[1]!.includes("slides");
 if (invokedDirectly) {
   const root = resolve(".");
-  const dir = join(root, "digests");
   const day =
     process.argv[2] ??
-    readdirSync(dir)
+    readdirSync(join(root, "digests"))
       .filter((f) => /^\d{4}-\d{2}-\d{2}\.md$/.test(f))
       .sort()
       .at(-1)
       ?.slice(0, 10);
-  if (!day || !existsSync(join(dir, `${day}.md`))) throw new Error(`no digest for ${day ?? "any day"}`);
-  const { meta, body } = parseFrontmatter(readFileSync(join(dir, `${day}.md`), "utf8"));
-  const cards = slideCards({ day, title: meta?.title ?? "", description: meta?.description ?? "", body });
-  const out = join(root, "slides", day);
-  mkdirSync(out, { recursive: true });
-  cards.forEach((card, i) => {
-    writeFileSync(join(out, `card-${i + 1}.html`), renderSlideHtml(card, i, cards.length));
+  if (!day || !existsSync(join(root, "digests", `${day}.md`))) {
+    throw new Error(`no digest for ${day ?? "any day"}`);
+  }
+  const dayPosts = readSlidePosts(root, day);
+  if (!dayPosts) {
+    throw new Error(`no data/slides/${day}.json; the digest agent scripts the carousel there (see AGENTS.md)`);
+  }
+  const written = dayPosts.posts.map((post) => {
+    const out = join(root, "slides", day, post.slot);
+    mkdirSync(out, { recursive: true });
+    const cards = buildCards(day, post);
+    cards.forEach((card, i) => {
+      writeFileSync(join(out, `card-${i + 1}.html`), renderSlideHtml(card, i, cards.length));
+    });
+    writeFileSync(join(out, "sheet.html"), renderSheetHtml(`${day} ${post.slot}`, cards.length));
+    writeFileSync(join(out, "meta.json"), `${JSON.stringify(slideMeta(day, post, cards), null, 2)}\n`);
+    return { slot: post.slot, cards: cards.length };
   });
-  writeFileSync(join(out, "sheet.html"), renderSheetHtml(day, cards.length));
-  writeFileSync(join(out, "meta.json"), `${JSON.stringify(slideMeta(day, cards, readSocial(root, day)), null, 2)}\n`);
-  console.log(JSON.stringify({ day, cards: cards.length, dir: `slides/${day}` }));
+  console.log(JSON.stringify({ day, posts: written, dir: `slides/${day}` }));
 }

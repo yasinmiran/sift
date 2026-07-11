@@ -2,7 +2,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { today } from "../day";
 import { readPicks } from "../pipeline/picks";
-import { readHashtagPool, readSocial } from "../pipeline/social";
+import { readHashtagPool, readSlidePosts } from "../slides/data";
 import { parseFrontmatter } from "./frontmatter";
 
 export interface VerifyResult {
@@ -12,6 +12,8 @@ export interface VerifyResult {
 }
 
 const LINK = /\]\(([^)\s]+)\)/g;
+const MARK_U = /==[^=\n]+?==/g;
+const MARK_O = /\(\([^()\n]+?\)\)/g;
 
 const normalize = (url: string): string => url.replace(/\/+$/, "");
 
@@ -93,46 +95,79 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     if (!linked.has(normalize(url))) warnings.push(`pick not covered: ${url}`);
   }
 
-  // The instagram caption ships beside the digest; mechanical guideline
-  // checks live here, tone and safety stay in the AGENTS.md contract.
-  let social = null;
+  // The agent-scripted carousel ships beside the digest; mechanical
+  // guideline checks live here, tone and safety stay in the AGENTS.md
+  // contract.
+  let dayPosts = null;
   try {
-    social = readSocial(rootDir, day);
+    dayPosts = readSlidePosts(rootDir, day);
   } catch (e) {
     errors.push(e instanceof Error ? e.message : String(e));
   }
-  if (!social) {
-    if (!existsSync(join(rootDir, "data", "social", `${day}.json`))) {
-      warnings.push(`data/social/${day}.json is missing; the instagram caption ships with the digest (see AGENTS.md)`);
+  if (!dayPosts) {
+    if (!existsSync(join(rootDir, "data", "slides", `${day}.json`))) {
+      warnings.push(`data/slides/${day}.json is missing; the carousel script ships with the digest (see AGENTS.md)`);
     }
   } else {
-    const { caption, hashtags } = social;
-    if (caption.length > 500) {
-      errors.push(`caption is ${caption.length} chars; it is a hook, not the digest (max 500)`);
-    }
-    if (!caption.includes("sift.yasint.dev") || !caption.includes("link in bio")) {
-      errors.push('caption must point home: "full digest at sift.yasint.dev (link in bio)"');
-    }
-    if (/https?:\/\//.test(caption)) {
-      errors.push("caption carries a raw url; instagram does not link captions, name sift.yasint.dev bare");
-    }
-    if (/@[a-z0-9_.]/i.test(caption)) errors.push("caption @-mentions an account; never reference real accounts");
-    if (caption.includes("\\")) errors.push("caption has a backslash escape; rewrite in plain words");
-    if (hashtags.length < 3 || hashtags.length > 6) {
-      errors.push(`${hashtags.length} hashtags; pick 3-6 from config/social.json`);
-    }
-    if (new Set(hashtags).size !== hashtags.length) errors.push("duplicate hashtags");
     const pool = readHashtagPool(rootDir);
-    for (const tag of hashtags) {
-      if (!/^#[a-z0-9]+$/.test(tag)) errors.push(`hashtag ${tag} is not lowercase #alphanumeric`);
-      else if (!pool.has(tag)) errors.push(`hashtag ${tag} is not in the config/social.json pool; never invent one`);
+    const amUrls = new Set(
+      (dayPosts.posts.find((p) => p.slot === "am")?.slides ?? []).map((s) => normalize(s.url)),
+    );
+    for (const post of dayPosts.posts) {
+      const at = `${post.slot} post`;
+      const { caption, hashtags, hook, slides } = post;
+      if (caption.length > 500) {
+        errors.push(`${at}: caption is ${caption.length} chars; it is a hook, not the digest (max 500)`);
+      }
+      if (!caption.includes("sift.yasint.dev") || !caption.includes("link in bio")) {
+        errors.push(`${at}: caption must point home: "full digest at sift.yasint.dev (link in bio)"`);
+      }
+      if (/https?:\/\//.test(caption)) {
+        errors.push(`${at}: caption carries a raw url; instagram does not link captions, name sift.yasint.dev bare`);
+      }
+      if (/@[a-z0-9_.]/i.test(caption)) errors.push(`${at}: caption @-mentions an account; never reference real accounts`);
+      if (caption.includes("\\")) errors.push(`${at}: caption has a backslash escape; rewrite in plain words`);
+      if (hashtags.length < 3 || hashtags.length > 6) {
+        errors.push(`${at}: ${hashtags.length} hashtags; pick 3-6 from config/social.json`);
+      }
+      if (new Set(hashtags).size !== hashtags.length) errors.push(`${at}: duplicate hashtags`);
+      for (const tag of hashtags) {
+        if (!/^#[a-z0-9]+$/.test(tag)) errors.push(`${at}: hashtag ${tag} is not lowercase #alphanumeric`);
+        else if (!pool.has(tag)) errors.push(`${at}: hashtag ${tag} is not in the config/social.json pool; never invent one`);
+      }
+      if (/==|\(\(/.test(hook) || /==|\(\(/.test(caption)) {
+        errors.push(`${at}: hook and caption render as plain text; pen marks belong on slides only`);
+      }
+      if (hook.length > 120) errors.push(`${at}: hook is ${hook.length} chars; the cover fits 120`);
+      if (slides.length < 3 || slides.length > 8) {
+        errors.push(`${at}: ${slides.length} slides; a post carries 3-8 stories (cover and cta ride along)`);
+      }
+      let markCount = 0;
+      for (const slide of slides) {
+        const where = `${at}, slide ${slide.number}`;
+        if (slide.title.length > 120) errors.push(`${where}: title is ${slide.title.length} chars; it renders amputated past 120`);
+        if (slide.desc.length > 110) errors.push(`${where}: desc is ${slide.desc.length} chars; it renders amputated past 110`);
+        if (slide.category !== slide.category.toLowerCase()) errors.push(`${where}: category must be lowercase`);
+        const text = `${slide.title} ${slide.desc}`;
+        if (/\]\(|\*\*/.test(text)) errors.push(`${where}: markdown syntax; slides are plain text plus pen marks`);
+        const unmarked = text.replace(MARK_U, "").replace(MARK_O, "");
+        if (unmarked.includes("==") || unmarked.includes("((")) errors.push(`${where}: unclosed pen mark`);
+        markCount += (text.match(MARK_U) ?? []).length + (text.match(MARK_O) ?? []).length;
+        if (!linked.has(normalize(slide.url))) {
+          errors.push(`${where}: url is not a link in the digest; slides only carry digested stories: ${slide.url}`);
+        }
+        if (post.slot === "pm" && amUrls.has(normalize(slide.url))) {
+          errors.push(`${where}: repeats an am story; the pm post covers only what the evening added: ${slide.url}`);
+        }
+      }
+      if (markCount > 3) warnings.push(`${at}: ${markCount} pen marks; marks lose punch past 2-3`);
+      for (const domain of caption.match(/\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,}\b/g) ?? []) {
+        if (domain !== "sift.yasint.dev") warnings.push(`${at}: caption names a domain other than sift.yasint.dev: ${domain}`);
+      }
+      if (/[A-Z]/.test(caption)) warnings.push(`${at}: caption has uppercase; yasin writes lowercase`);
+      if (/\p{Extended_Pictographic}/u.test(caption)) warnings.push(`${at}: caption has emoji; the voice does not use them`);
+      if (/[–—]/.test(`${caption} ${hook}`)) warnings.push(`${at}: em/en dash in caption or hook; use a comma or colon`);
     }
-    for (const domain of caption.match(/\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,}\b/g) ?? []) {
-      if (domain !== "sift.yasint.dev") warnings.push(`caption names a domain other than sift.yasint.dev: ${domain}`);
-    }
-    if (/[A-Z]/.test(caption)) warnings.push("caption has uppercase; yasin writes lowercase");
-    if (/\p{Extended_Pictographic}/u.test(caption)) warnings.push("caption has emoji; the voice does not use them");
-    if (/[–—]/.test(caption)) warnings.push("caption has an em/en dash; use a comma or colon");
   }
 
   const earlier = readdirSync(join(rootDir, "digests"))
@@ -153,8 +188,6 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     warnings.push(`${dashes} em/en dashes; rewrite with commas, colons or parentheses`);
   }
 
-  const MARK_U = /==[^=\n]+?==/g;
-  const MARK_O = /\(\([^()\n]+?\)\)/g;
   const prose = body.replace(/\]\([^)\s]+\)/g, "]()");
   const marks = (prose.match(MARK_U) ?? []).length + (prose.match(MARK_O) ?? []).length;
   const unmarked = prose.replace(MARK_U, "").replace(MARK_O, "");
