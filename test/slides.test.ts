@@ -73,10 +73,10 @@ describe("slideCards", () => {
     expect(stories[3]?.headline).toBe("Meta faces $1.4T penalties");
   });
 
-  it("keeps only the first clause of the why text, marks and markdown stripped", () => {
-    expect(stories[0]?.why).toBe("a 5x cut with real margin pain for rivals");
+  it("keeps only the first clause of the why text, markdown stripped, pen marks kept", () => {
+    expect(stories[0]?.why).toBe("a 5x cut with ==real margin pain== for rivals");
     expect(stories[1]?.why).toBe("(one of yasin's picks today), gives each agent a pane.");
-    expect(stories[2]?.why).toBe("with mandatory scanning on the table.");
+    expect(stories[2]?.why).toBe("with ((mandatory scanning)) on the table.");
   });
 
   it("derives the source from the url hostname without www", () => {
@@ -102,6 +102,24 @@ describe("slideCards", () => {
     expect(story.why).not.toMatch(/\s…$/);
   });
 
+  it("prefers a comma boundary when truncating", () => {
+    const why = `a complete leading thought that runs fairly long here, then a trailing clause that pushes the whole thing far over the cap and beyond`;
+    const cards2 = slideCards({
+      ...DIGEST,
+      body: `## AI / LLMs\n\n- [Long one](https://e.com/a): ${why}\n`,
+    });
+    expect((cards2[1] as StoryCard).why).toBe("a complete leading thought that runs fairly long here…");
+  });
+
+  it("never leaves an unpaired pen marker after truncation", () => {
+    const why = `short lead then ==a marked phrase that is definitely long enough to straddle the one hundred and ten character cap==`;
+    const cards2 = slideCards({
+      ...DIGEST,
+      body: `## AI / LLMs\n\n- [Long one](https://e.com/a): ${why}\n`,
+    });
+    expect((cards2[1] as StoryCard).why).not.toContain("==");
+  });
+
   it("caps a runaway headline", () => {
     const cards2 = slideCards({
       ...DIGEST,
@@ -123,6 +141,18 @@ describe("renderSlideHtml", () => {
     expect(html).toContain("Fraunces");
     expect(html).toContain("Karla");
     expect(html).toContain("2/6");
+    expect(html).toContain("text-wrap:balance");
+  });
+
+  it("draws pen marks as hand-drawn strokes and shows a human date", () => {
+    const story = renderSlideHtml(cards[1]!, 1, cards.length);
+    expect(story).toContain('<span class="pen-u">real margin pain</span>');
+    expect(story).not.toContain("==real margin pain==");
+    const circled = renderSlideHtml(cards[3]!, 3, cards.length);
+    expect(circled).toContain('<span class="pen-o">mandatory scanning</span>');
+    const cover = renderSlideHtml(cards[0]!, 0, cards.length);
+    expect(cover).toContain("Sat, Jul 11");
+    expect(cover).not.toContain("2026-07-11</span>");
   });
 
   it("embeds the fonts so cards render offline with no fallback", () => {

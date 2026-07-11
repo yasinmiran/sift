@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { formatDay } from "../site/day-format";
 import { escapeHtml } from "../site/html";
 
 // The instagram carousel model: cover + up to four stories + cta, derived
@@ -38,18 +39,29 @@ const MAX_WHY = 110;
 const MAX_HEADLINE = 120;
 const MAX_HOOK = 120;
 
+// Markdown comes off, pen marks stay: the renderer draws them as strokes.
 const stripMarkup = (s: string): string =>
   s
-    .replace(/==([^=\n]+?)==/g, "$1")
-    .replace(/\(\(([^()\n]+?)\)\)/g, "$1")
     .replace(/\[([^\]]+)\]\([^)\s]+\)/g, "$1")
     .replace(/\*\*([^*]+)\*\*/g, "$1")
     .replace(/\*([^*]+)\*/g, "$1");
 
+// A truncated pair of pen markers would leak literal == onto the card.
+const dropUnpairedMarks = (s: string): string => {
+  let out = s;
+  if (((out.match(/==/g) ?? []).length & 1) === 1) out = out.replace(/==/g, "");
+  if ((out.match(/\(\(/g) ?? []).length !== (out.match(/\)\)/g) ?? []).length) {
+    out = out.replace(/\(\(|\)\)/g, "");
+  }
+  return out;
+};
+
 function truncate(s: string, max = MAX_WHY): string {
   if (s.length <= max) return s;
   const cut = s.slice(0, max);
-  return `${cut.slice(0, cut.lastIndexOf(" ")).trimEnd()}…`;
+  const comma = cut.lastIndexOf(", ");
+  const base = comma > max * 0.4 ? cut.slice(0, comma) : cut.slice(0, cut.lastIndexOf(" "));
+  return `${base.trimEnd()}…`;
 }
 
 // One thing on the cover: the description's first clause (two when the
@@ -91,7 +103,7 @@ export function slideCards(digest: DigestInput): SlideCard[] {
       kind: "story",
       section,
       headline: truncate(stripMarkup(entry[1]!), MAX_HEADLINE),
-      why: truncate(why),
+      why: dropUnpairedMarks(truncate(why)),
       source: source(entry[2]!),
     });
   }
@@ -121,7 +133,9 @@ body{position:relative;background:#0d0c0b;color:#b8b0a3;font-family:Karla,sans-s
 background-image:radial-gradient(circle,rgba(168,159,147,.06) 1.4px,transparent 1.9px);background-size:24px 24px;
 display:flex;flex-direction:column;padding:88px}
 .wordmark{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.02em;color:#e8e2d9}
-.display{font-family:Fraunces,Georgia,serif;font-weight:500;font-variation-settings:'opsz' 84;letter-spacing:-.015em;color:#e8e2d9}
+.display{font-family:Fraunces,Georgia,serif;font-weight:500;font-variation-settings:'opsz' 84;letter-spacing:-.015em;color:#e8e2d9;text-wrap:balance}
+.pen-u{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8 C 20 4, 38 10, 58 7 S 95 9, 117 5' fill='none' stroke='%23d4976a' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% .5em;background-position:0 103%;padding-bottom:.1em}
+.pen-o{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 44' preserveAspectRatio='none'%3E%3Cpath d='M60 3 C 94 1, 118 11, 117 22 C 116 34, 90 42, 56 41 C 24 40, 2 33, 2 21 C 2 10, 28 2, 76 3' fill='none' stroke='%23d4976a' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% 100%;padding:.2em .5em;margin:0 .08em}
 .dot{color:#d4976a}
 .mono{font-family:"Space Mono",monospace}
 .top{display:flex;justify-content:space-between;align-items:baseline}
@@ -134,8 +148,14 @@ display:flex;flex-direction:column;padding:88px}
 const fontSize = (text: string, big: number, mid: number, small: number): number =>
   text.length > 100 ? small : text.length > 60 ? mid : big;
 
+// Escape first, then let surviving pen marks become hand-drawn strokes.
+const inline = (text: string): string =>
+  escapeHtml(text)
+    .replace(/==([^=\n]+?)==/g, '<span class="pen-u">$1</span>')
+    .replace(/\(\(([^()\n]+?)\)\)/g, '<span class="pen-o">$1</span>');
+
 function coverBody(card: CoverCard, counter: string): string {
-  return `<div class="top"><span class="wordmark" style="font-size:88px">sift<span class="dot">.</span></span><span class="mono muted" style="font-size:30px">${card.day}</span></div>
+  return `<div class="top"><span class="wordmark" style="font-size:88px">sift<span class="dot">.</span></span><span class="mono muted" style="font-size:30px">${formatDay(card.day)}</span></div>
 <div style="margin:auto 0">
 <p class="display" style="font-size:${fontSize(card.hook, 78, 68, 58)}px;line-height:1.25">${escapeHtml(card.hook)}<span class="dot">.</span></p>
 <p class="mono muted" style="font-size:30px;margin-top:64px">swipe for the day's stories &rarr;</p>
@@ -147,7 +167,7 @@ function storyBody(card: StoryCard, counter: string): string {
   return `<div class="top"><span class="label">${escapeHtml(card.section.toLowerCase())}</span>${counter}</div>
 <div style="margin:auto 0">
 <h1 class="display" style="font-size:${fontSize(card.headline, 72, 62, 52)}px;line-height:1.22;margin-bottom:48px">${escapeHtml(card.headline)}${card.headline.endsWith("…") ? "" : '<span class="dot">.</span>'}</h1>
-<p style="font-size:38px;line-height:1.5;color:#9a9184;max-width:820px">${escapeHtml(card.why)}</p>
+<p style="font-size:38px;line-height:1.5;color:#9a9184;max-width:820px;text-wrap:pretty">${inline(card.why)}</p>
 </div>
 <div class="bottom"><span class="mono muted" style="font-size:28px">${escapeHtml(card.source)}</span><span class="wordmark" style="font-size:40px">sift<span class="dot">.</span></span></div>`;
 }
