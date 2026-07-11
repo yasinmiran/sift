@@ -121,6 +121,7 @@ body{position:relative;background:#0d0c0b;color:#b8b0a3;font-family:Karla,sans-s
 background-image:radial-gradient(circle,rgba(168,159,147,.06) 1.4px,transparent 1.9px);background-size:24px 24px;
 display:flex;flex-direction:column;padding:88px}
 .wordmark{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.02em;color:#e8e2d9}
+.display{font-family:Fraunces,Georgia,serif;font-weight:500;font-variation-settings:'opsz' 84;letter-spacing:-.015em;color:#e8e2d9}
 .dot{color:#d4976a}
 .mono{font-family:"Space Mono",monospace}
 .top{display:flex;justify-content:space-between;align-items:baseline}
@@ -136,7 +137,7 @@ const fontSize = (text: string, big: number, mid: number, small: number): number
 function coverBody(card: CoverCard, counter: string): string {
   return `<div class="top"><span class="wordmark" style="font-size:88px">sift<span class="dot">.</span></span><span class="mono muted" style="font-size:30px">${card.day}</span></div>
 <div style="margin:auto 0">
-<p class="wordmark" style="font-size:${fontSize(card.hook, 78, 68, 58)}px;line-height:1.25;font-weight:500">${escapeHtml(card.hook)}</p>
+<p class="display" style="font-size:${fontSize(card.hook, 78, 68, 58)}px;line-height:1.25">${escapeHtml(card.hook)}<span class="dot">.</span></p>
 <p class="mono muted" style="font-size:30px;margin-top:64px">swipe for the day's stories &rarr;</p>
 </div>
 <div class="bottom"><span style="font-size:32px" class="muted">the day's tech, sifted</span>${counter}</div>`;
@@ -145,7 +146,7 @@ function coverBody(card: CoverCard, counter: string): string {
 function storyBody(card: StoryCard, counter: string): string {
   return `<div class="top"><span class="label">${escapeHtml(card.section.toLowerCase())}</span>${counter}</div>
 <div style="margin:auto 0">
-<h1 class="wordmark" style="font-size:${fontSize(card.headline, 72, 62, 52)}px;line-height:1.22;margin-bottom:48px">${escapeHtml(card.headline)}</h1>
+<h1 class="display" style="font-size:${fontSize(card.headline, 72, 62, 52)}px;line-height:1.22;margin-bottom:48px">${escapeHtml(card.headline)}${card.headline.endsWith("…") ? "" : '<span class="dot">.</span>'}</h1>
 <p style="font-size:38px;line-height:1.5;color:#9a9184;max-width:820px">${escapeHtml(card.why)}</p>
 </div>
 <div class="bottom"><span class="mono muted" style="font-size:28px">${escapeHtml(card.source)}</span><span class="wordmark" style="font-size:40px">sift<span class="dot">.</span></span></div>`;
