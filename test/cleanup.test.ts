@@ -9,20 +9,31 @@ beforeEach(() => {
   root = mkdtempSync(join(tmpdir(), "sift-clean-"));
   mkdirSync(join(root, "digests"), { recursive: true });
   mkdirSync(join(root, "data", "items"), { recursive: true });
+  mkdirSync(join(root, "data", "picks"), { recursive: true });
+  mkdirSync(join(root, "data", "slides"), { recursive: true });
 });
 
 const touch = (p: string) => writeFileSync(join(root, p), "x");
 
 describe("cleanup", () => {
-  it("removes digests and item files older than the horizon, keeps the rest", () => {
+  it("removes dated files older than the horizon in every archive dir, keeps the rest", () => {
     touch("digests/2026-05-01.md");
     touch("digests/2026-06-20.md");
     touch("data/items/2026-05-01.json");
     touch("data/items/2026-06-20.json");
+    touch("data/picks/2026-05-01.json");
+    touch("data/slides/2026-05-01.json");
+    touch("data/slides/2026-06-20.json");
     const { removed } = cleanup(root, "2026-07-04", 31);
-    expect(removed.sort()).toEqual(["data/items/2026-05-01.json", "digests/2026-05-01.md"]);
+    expect(removed.sort()).toEqual([
+      "data/items/2026-05-01.json",
+      "data/picks/2026-05-01.json",
+      "data/slides/2026-05-01.json",
+      "digests/2026-05-01.md",
+    ]);
     expect(existsSync(join(root, "digests/2026-06-20.md"))).toBe(true);
     expect(existsSync(join(root, "data/items/2026-06-20.json"))).toBe(true);
+    expect(existsSync(join(root, "data/slides/2026-06-20.json"))).toBe(true);
   });
 
   it("ignores non-dated files and missing folders", () => {

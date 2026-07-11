@@ -13,7 +13,7 @@ export function cleanup(
 ): { removed: string[] } {
   const cutoff = daysBefore(todayDay, maxAgeDays);
   const removed: string[] = [];
-  for (const dir of ["digests", join("data", "items")]) {
+  for (const dir of ["digests", join("data", "items"), join("data", "picks"), join("data", "slides")]) {
     const abs = join(rootDir, dir);
     if (!existsSync(abs)) continue;
     for (const name of readdirSync(abs)) {

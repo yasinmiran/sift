@@ -3,7 +3,7 @@ name: ingest
 on:
   schedule:
     # ~05:15 and ~17:45 Oslo in summer (Actions cron is UTC and can jitter);
-    # both land before the agent's 06:00 / 18:30 runs year-round.
+    # both land before the digest agent's 04:34 / 16:34 UTC runs.
     - cron: "15 3 * * *"
     - cron: "45 15 * * *"
   workflow_dispatch:
@@ -33,4 +33,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data digests
           git diff --cached --quiet || git commit -m "chore(data): ingest run"
+          git pull --rebase origin main
           git push
