@@ -25,11 +25,12 @@ data/items/{day}.json + data/state.json       committed
    read items -> read articles -> write -> verify
         |
         v
-digests/{day}.md                              committed
+digests/{day}.md + data/slides/{day}.json     committed
         |
         v
 [pages Action]   on push                      .github/workflows/pages.yml
    render markdown -> static html
+   render carousel cards -> png (best effort)
         |
         v
 https://sift.yasint.dev
@@ -55,8 +56,8 @@ sources in `config/sources.json`:
    Europe/Oslo calendar date, never the server's zone.
 
 Runs are idempotent and quiet runs commit nothing. `npm run cleanup`
-prunes items and digests older than a month; git history keeps
-everything.
+prunes items, picks, slide scripts and digests older than a month; git
+history keeps everything.
 
 ## Digest
 
@@ -66,8 +67,20 @@ items, fetches and reads the underlying articles, and commits
 mapping how the stories relate. The morning run writes the day's first
 half; the evening run rewrites it with the full day.
 `npm run verify -- {day}` is the agent's self-check before committing:
-frontmatter shape, link validity, and repeat detection against earlier
-digests.
+frontmatter shape, link validity, repeat detection against earlier
+digests, and the carousel rules below.
+
+## Slides
+
+The agent also scripts an instagram carousel per run in
+`data/slides/{day}.json` (morning post + evening post; every slide is
+keyed to a link in the day's digest, and the evening post never
+repeats a morning story). `npm run slides` renders the script into
+1080x1350 html cards, `npm run slides:render` screenshots them with
+playwright, and the pages workflow publishes the result, best effort,
+under `/slides/{day}/{slot}/` with a `meta.json` carrying the
+caption, hashtags and alt texts. A missing or broken script never
+blocks the site deploy.
 
 ## Site
 
@@ -76,8 +89,9 @@ page per day, an index featuring the newest day, sitemap, and a
 day-aware 404. It is an installable PWA with push notifications: the
 service worker handles push only (no offline), and a small Netlify
 sidecar (`push/`) stores subscriptions in Netlify Blobs, polls the
-sitemap on a 15-minute schedule, and fans out a web push when a new day
-appears. The site never calls the sidecar except to subscribe.
+site's `latest.json` on a 15-minute schedule, and fans out a web push
+when a new day appears or the newest day's digest was rewritten. The
+site never calls the sidecar except to subscribe.
 
 ## Data contracts
 
@@ -90,6 +104,9 @@ data/state.json         { sources: { slug: { etag, lastModified,
 data/picks/{day}.json   { day, summary, items: [ { url, title, note,
                           addedAt } ] }   hand-found links, recorded
                           with `npm run pick -- <url> [note]`
+data/slides/{day}.json  { day, posts: [ { slot, hook, caption,
+                          hashtags[], slides: [ { number, category,
+                          title, desc, url } ] } ] }
 digests/{day}.md        ---\ntitle, description, date\n--- + markdown
 ```
 
