@@ -2,6 +2,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { today } from "../day";
 import { readPicks } from "../pipeline/picks";
+import { readHashtagPool, readSocial } from "../pipeline/social";
 import { parseFrontmatter } from "./frontmatter";
 
 export interface VerifyResult {
@@ -90,6 +91,48 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
   const linked = new Set(links.map(normalize));
   for (const url of pickUrls) {
     if (!linked.has(normalize(url))) warnings.push(`pick not covered: ${url}`);
+  }
+
+  // The instagram caption ships beside the digest; mechanical guideline
+  // checks live here, tone and safety stay in the AGENTS.md contract.
+  let social = null;
+  try {
+    social = readSocial(rootDir, day);
+  } catch (e) {
+    errors.push(e instanceof Error ? e.message : String(e));
+  }
+  if (!social) {
+    if (!existsSync(join(rootDir, "data", "social", `${day}.json`))) {
+      warnings.push(`data/social/${day}.json is missing; the instagram caption ships with the digest (see AGENTS.md)`);
+    }
+  } else {
+    const { caption, hashtags } = social;
+    if (caption.length > 500) {
+      errors.push(`caption is ${caption.length} chars; it is a hook, not the digest (max 500)`);
+    }
+    if (!caption.includes("sift.yasint.dev") || !caption.includes("link in bio")) {
+      errors.push('caption must point home: "full digest at sift.yasint.dev (link in bio)"');
+    }
+    if (/https?:\/\//.test(caption)) {
+      errors.push("caption carries a raw url; instagram does not link captions, name sift.yasint.dev bare");
+    }
+    if (/@[a-z0-9_.]/i.test(caption)) errors.push("caption @-mentions an account; never reference real accounts");
+    if (caption.includes("\\")) errors.push("caption has a backslash escape; rewrite in plain words");
+    if (hashtags.length < 3 || hashtags.length > 6) {
+      errors.push(`${hashtags.length} hashtags; pick 3-6 from config/social.json`);
+    }
+    if (new Set(hashtags).size !== hashtags.length) errors.push("duplicate hashtags");
+    const pool = readHashtagPool(rootDir);
+    for (const tag of hashtags) {
+      if (!/^#[a-z0-9]+$/.test(tag)) errors.push(`hashtag ${tag} is not lowercase #alphanumeric`);
+      else if (!pool.has(tag)) errors.push(`hashtag ${tag} is not in the config/social.json pool; never invent one`);
+    }
+    for (const domain of caption.match(/\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,}\b/g) ?? []) {
+      if (domain !== "sift.yasint.dev") warnings.push(`caption names a domain other than sift.yasint.dev: ${domain}`);
+    }
+    if (/[A-Z]/.test(caption)) warnings.push("caption has uppercase; yasin writes lowercase");
+    if (/\p{Extended_Pictographic}/u.test(caption)) warnings.push("caption has emoji; the voice does not use them");
+    if (/[–—]/.test(caption)) warnings.push("caption has an em/en dash; use a comma or colon");
   }
 
   const earlier = readdirSync(join(rootDir, "digests"))
