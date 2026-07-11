@@ -33,15 +33,23 @@ never paste them raw into the entry. Weave the point in naturally,
 and when you quote or echo his phrasing keep it first person (it is
 him speaking: yasin's take: "i can see all my agents at once"),
 never recast as a third-party review. The verifier warns on any pick
-the digest does not link.
+the digest does not link. Also fetch yesterday's picks file: a pick
+recorded after yesterday's evening run was never digested, so cover
+it today like one of today's picks.
 
 If the items file is missing or thin, force a fetch and re-read once it
 finishes:
 
 ```
 gh workflow run ingest --repo yasinmiran/sift
-gh run watch --repo yasinmiran/sift
+sleep 15
+gh run watch $(gh run list --repo yasinmiran/sift -w ingest -L1 --json databaseId -q '.[0].databaseId') --repo yasinmiran/sift
 ```
+
+(`gh run watch` needs the run id when not running interactively.) The
+evening run also checks `generatedAt` inside the day file: if it
+predates the 15:45 UTC ingest, the file is morning-stale and silently
+missing the afternoon; force a fetch the same way and re-read.
 
 ## Output
 
@@ -52,10 +60,11 @@ One markdown file per day committed to **this repo**
 digests/{YYYY-MM-DD}.md
 ```
 
-The folder is the whole contract: write files here and nothing else;
-`src/site/` + the pages workflow render it to the public site, and
-the ingest Action prunes entries older than a month (git history keeps
-them). Plain `.md`, never `.mdx` (feed-derived text must not be parsed
+This folder plus the day's carousel script are your whole write
+surface: the digest md here, `data/slides/{day}.json` beside it (see
+Instagram slides), and nothing else; `src/site/` + the pages workflow
+render both to the public site, and the ingest Action prunes entries
+older than a month (git history keeps them). Plain `.md`, never `.mdx` (feed-derived text must not be parsed
 as JSX). Minimal stable frontmatter, body is the digest:
 
 ```markdown
@@ -68,15 +77,17 @@ date: "{YYYY-MM-DD}"
 {the digest body}
 ```
 
-Work from a clone: write the file, verify it (see Verify), commit,
-pull, push. Before committing, set the git identity to
+Work from a clone: write the files, verify them (see Verify), commit,
+`git pull --rebase`, push. A rejected push means the remote moved:
+pull --rebase again and retry (a plain `git pull` refuses divergent
+branches on a fresh clone). Before committing, set the git identity to
 `Yasin <wytm97@protonmail.com>` (`git config user.name` /
 `user.email` in the clone): digests are published under Yasin's name,
 never an AI or bot identity, and `@users.noreply.github.com`
 addresses are off-limits since GitHub maps them to real accounts. `gh api -X PUT /repos/yasinmiran/sift/contents/digests/...`
 works as a fallback, but verify against a clone first either way. The
-ingest Action also pushes to main, so pull before pushing. Re-running
-a day overwrites the file: idempotent via git.
+ingest Action also pushes to main, so always pull --rebase before
+pushing. Re-running a day overwrites the file: idempotent via git.
 
 Subscribers are notified by a push service that polls the live site
 every 15 minutes and sends when a new day page appears or the newest
@@ -98,7 +109,13 @@ Each run also scripts the day's instagram carousel in
 `data/slides/{YYYY-MM-DD}.json`, committed together with the digest.
 The morning run writes the `am` post. The evening run APPENDS a `pm`
 post and never edits `am`: it is the record of what was already
-posted. The pages workflow renders each post and publishes it at
+posted. Slot follows time, not trigger: a run before 16:34 UTC writes
+`am`, a later one `pm`, and a re-run rewrites its own slot's post
+only, idempotent like the digest. A day whose morning run was skipped
+gets its single post as `pm`, covering the full day; a day never gets
+an `am` retroactively. Appending `pm` means rewriting the file with
+the `am` object unchanged, 2-space indent, keys in schema order,
+trailing newline. The pages workflow renders each post and publishes it at
 `sift.yasint.dev/slides/{day}/{slot}/` (pngs, a sheet.html preview,
 and meta.json with the caption, hashtags and alt texts); you never
 render slides yourself.
@@ -109,13 +126,13 @@ render slides yourself.
   "posts": [
     {
       "slot": "am",
-      "hook": "{the cover line: the day's biggest story, plain text}",
+      "hook": "{the cover line: the day's biggest story, plain text, max 120 chars}",
       "caption": "{2-3 of the day's hooks, comma-chained}. full digest at sift.yasint.dev (link in bio)",
       "hashtags": ["#tech", "#ai", "#infosec"],
       "slides": [
         {
           "number": 1,
-          "category": "{lowercase label, usually the entry's section}",
+          "category": "{lowercase label, usually the entry's section, max 28 chars}",
           "title": "{the story in one line, max 120 chars}",
           "desc": "{why it matters, max 110 chars}",
           "url": "{the entry's link in today's digest}"
@@ -138,11 +155,22 @@ Selection and voice (the verifier hard-gates the mechanical rules):
   does not make (every slide's `url` must be a link in today's
   digest, and the verifier errors otherwise).
 - The pm post never repeats an am story (the verifier errors on a
-  shared url): cover what the evening added or moved. If the evening
-  genuinely added nothing carousel-worthy, skip the pm post.
+  shared url; the same story under a different link is still a repeat
+  and on you to catch): cover what the evening added or moved. If the
+  evening genuinely added nothing carousel-worthy, skip the pm post.
+  A story from an earlier day returns to a carousel only as a real
+  development, framed as the update, same as the digest's Continuity
+  rule.
+- The evening rewrite keeps every am slide's story linked in the
+  digest: if the story moved, write the update; if it collapsed
+  (retraction, debunk), cover the dispute, which keeps a link. The
+  verifier downgrades an orphaned am url to a warning once pm exists,
+  but an orphan is still a miss.
 - Pen marks `==text==` / `((text))` work in titles and descs, 2-3 per
   post max, same discipline as the digest. Hook and caption render as
-  plain text: no marks there.
+  plain text: no marks there. Prose that needs a literal double
+  equals spells it out ("double equals"): adjacent == pairs silently
+  read as one phantom mark.
 - Caption: report, never promote. What happened, no hype, no emoji,
   no engagement bait ("like if", "tag someone", "follow for more").
   Lowercase throughout, Yasin's voice, under ~400 characters, and
@@ -159,7 +187,9 @@ Catch-up rule: before writing today's digest, check yesterday. If
 `data/items/{yesterday}.json` exists but `digests/{yesterday}.md` does
 not (a skipped run), write yesterday's digest from yesterday's items
 first, then today's: both files in the same session. Backfill only that
-one day; older gaps stay gaps.
+one day; older gaps stay gaps. Backfilled days get no carousel: the
+posting moment has passed, so the missing-carousel warning on a
+backfilled day is expected; resolve it as such.
 
 ## Reading
 
@@ -317,21 +347,29 @@ After writing each digest, from the clone:
 npm ci && npm run verify -- {YYYY-MM-DD}
 ```
 
-Exits non-zero on `errors` (missing or wrong frontmatter, date not
-matching the filename, non-http links, unclosed pen marks, marks in
-frontmatter, a malformed picks file, empty body, and any broken
-carousel rule: slide urls the digest never linked, a pm slide
-repeating an am story, overflowing titles/descs, markdown or unclosed
-marks on slides, marks in hook or caption, caption missing the
-pointer home, raw urls, @-mentions, out-of-pool or miscounted
-hashtags): fix and re-verify before committing. `warnings` need
-judgment: a link outside the day's items is fine when you
-deliberately linked a primary source and a bug when it is a typo or
-an invented url; a link an earlier digest already used is fine only
-as a deliberate update (see Continuity); an uncovered pick, more than
-3 pen marks, thin digests, a missing Threads section, a missing
-carousel script and caption voice slips (uppercase, emoji, foreign
-domains) also warn. Resolve every warning consciously before pushing.
+Exits non-zero on `errors`, including: missing or wrong frontmatter,
+date not matching the filename, non-http links, unclosed pen marks,
+marks in frontmatter, a malformed picks/slides/config file (json
+errors name the file to fix), an unreadable items file, empty body,
+and the carousel gates: slide urls the digest never linked, a url
+repeated on one post, a pm slide repeating an am story, overflowing
+titles/descs/categories (measured on visible text, mark syntax does
+not count), markdown on slides, marks in hook or caption, captions
+missing the pointer home or past 500 chars, raw urls, @-mentions,
+out-of-pool or miscounted hashtags. Fix and re-verify before
+committing. If a carousel error resists fixing, shrink the post to
+its 3 strongest slides rather than shipping a broken script: the site
+deploys carousel-less when the script is MISSING, but a malformed one
+must never be committed. `warnings` need judgment: a link outside the
+day's items is fine when you deliberately linked a primary source and
+a bug when it is a typo or an invented url; a link an earlier digest
+already used is fine only as a deliberate update (see Continuity); an
+uncovered pick, more than 3 pen marks, thin digests, a missing
+Threads section, a missing carousel script (expected only for
+backfilled days), an am slide url orphaned by the evening rewrite
+(keep am stories linked, see Instagram slides), caption voice slips
+(uppercase, emoji, foreign domains) and em/en dashes or emoji on
+cards also warn. Resolve every warning consciously before pushing.
 
 ## Field playbook
 
