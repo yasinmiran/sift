@@ -157,7 +157,8 @@ describe("renderSlideHtml", () => {
 
   it("embeds the fonts so cards render offline with no fallback", () => {
     const html = renderSlideHtml(cards[0]!, 0, cards.length);
-    expect(html.match(/data:font\/woff2;base64,/g)?.length).toBe(3);
+    expect(html.match(/data:font\/woff2;base64,/g)?.length).toBe(4);
+    expect(html).toContain("Cormorant Garamond");
     expect(html).not.toContain("fonts.googleapis.com");
   });
 

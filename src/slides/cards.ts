@@ -120,6 +120,7 @@ const fontFace = (family: string, file: string, weight: string): string => {
 const fonts = (): string =>
   (fontCss ??= [
     fontFace("Fraunces", "fraunces.woff2", "500 600"),
+    fontFace("Cormorant Garamond", "cormorant.woff2", "500"),
     fontFace("Karla", "karla.woff2", "400"),
     fontFace("Space Mono", "space-mono.woff2", "400"),
   ].join("\n"));
@@ -133,7 +134,7 @@ body{position:relative;background:#0d0c0b;color:#b8b0a3;font-family:Karla,sans-s
 background-image:radial-gradient(circle,rgba(168,159,147,.06) 1.4px,transparent 1.9px);background-size:24px 24px;
 display:flex;flex-direction:column;padding:88px}
 .wordmark{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.02em;color:#e8e2d9}
-.display{font-family:Fraunces,Georgia,serif;font-weight:500;font-variation-settings:'opsz' 84;letter-spacing:-.015em;color:#e8e2d9;text-wrap:balance}
+.display{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.005em;color:#e8e2d9;text-wrap:balance}
 .pen-u{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8 C 20 4, 38 10, 58 7 S 95 9, 117 5' fill='none' stroke='%23d4976a' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% .5em;background-position:0 103%;padding-bottom:.1em}
 .pen-o{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 44' preserveAspectRatio='none'%3E%3Cpath d='M60 3 C 94 1, 118 11, 117 22 C 116 34, 90 42, 56 41 C 24 40, 2 33, 2 21 C 2 10, 28 2, 76 3' fill='none' stroke='%23d4976a' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% 100%;padding:.2em .5em;margin:0 .08em}
 .dot{color:#d4976a}
@@ -157,7 +158,7 @@ const inline = (text: string): string =>
 function coverBody(card: CoverCard, counter: string): string {
   return `<div class="top"><span class="wordmark" style="font-size:88px">sift<span class="dot">.</span></span><span class="mono muted" style="font-size:30px">${formatDay(card.day)}</span></div>
 <div style="margin:auto 0">
-<p class="display" style="font-size:${fontSize(card.hook, 78, 68, 58)}px;line-height:1.25">${escapeHtml(card.hook)}<span class="dot">.</span></p>
+<p class="display" style="font-size:${fontSize(card.hook, 84, 74, 64)}px;line-height:1.22">${escapeHtml(card.hook)}<span class="dot">.</span></p>
 <p class="mono muted" style="font-size:30px;margin-top:64px">swipe for the day's stories &rarr;</p>
 </div>
 <div class="bottom"><span style="font-size:32px" class="muted">the day's tech, sifted</span>${counter}</div>`;
@@ -166,7 +167,7 @@ function coverBody(card: CoverCard, counter: string): string {
 function storyBody(card: StoryCard, counter: string): string {
   return `<div class="top"><span class="label">${escapeHtml(card.section.toLowerCase())}</span>${counter}</div>
 <div style="margin:auto 0">
-<h1 class="display" style="font-size:${fontSize(card.headline, 72, 62, 52)}px;line-height:1.22;margin-bottom:48px">${escapeHtml(card.headline)}${card.headline.endsWith("…") ? "" : '<span class="dot">.</span>'}</h1>
+<h1 class="display" style="font-size:${fontSize(card.headline, 78, 68, 58)}px;line-height:1.2;margin-bottom:48px">${escapeHtml(card.headline)}${card.headline.endsWith("…") ? "" : '<span class="dot">.</span>'}</h1>
 <p style="font-size:38px;line-height:1.5;color:#9a9184;max-width:820px;text-wrap:pretty">${inline(card.why)}</p>
 </div>
 <div class="bottom"><span class="mono muted" style="font-size:28px">${escapeHtml(card.source)}</span><span class="wordmark" style="font-size:40px">sift<span class="dot">.</span></span></div>`;
