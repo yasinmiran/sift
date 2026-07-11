@@ -127,7 +127,6 @@ display:flex;flex-direction:column;padding:88px}
 .wordmark{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.02em;color:#e8e2d9}
 .display{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.005em;color:#e8e2d9;text-wrap:balance}
 .pen-u{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8 C 20 4, 38 10, 58 7 S 95 9, 117 5' fill='none' stroke='%23d4976a' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% .5em;background-position:0 103%;padding-bottom:.1em}
-.pen-o{white-space:nowrap;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 44' preserveAspectRatio='none'%3E%3Cpath d='M60 3 C 94 1, 118 11, 117 22 C 116 34, 90 42, 56 41 C 24 40, 2 33, 2 21 C 2 10, 28 2, 76 3' fill='none' stroke='%23d4976a' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% 100%;padding:.2em .35em;margin:0 .08em}
 .dot{color:#d4976a}
 .mono{font-family:"Space Mono",monospace}
 .top{display:flex;justify-content:space-between;align-items:baseline}
@@ -142,11 +141,12 @@ display:flex;flex-direction:column;padding:88px}
 const fontSize = (text: string, big: number, mid: number, small: number): number =>
   text.length > 100 ? small : text.length > 60 ? mid : big;
 
-// Escape first, then let surviving pen marks become hand-drawn strokes.
+// Escape first, then let surviving underlines become hand-drawn strokes;
+// circle marks are digest ink and render as plain text if they sneak in.
 const inline = (text: string): string =>
   escapeHtml(text)
     .replace(/==([^=\n]+?)==/g, '<span class="pen-u">$1</span>')
-    .replace(/\(\(([^()\n]+?)\)\)/g, '<span class="pen-o">$1</span>');
+    .replace(/\(\(([^()\n]+?)\)\)/g, "$1");
 
 function coverBody(card: CoverCard, counter: string): string {
   const when = `${formatDay(card.day)}${card.slot === "pm" ? ' <span class="dot">&middot; evening</span>' : ""}`;

@@ -178,6 +178,9 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
         }
         const text = `${slide.title} ${slide.desc}`;
         if (/\]\(|\*\*/.test(text)) errors.push(`${where}: markdown syntax; slides are plain text plus pen marks`);
+        if (/\(\(|\)\)/.test(text)) {
+          errors.push(`${where}: circle marks are digest ink; slides underline with ==text== only`);
+        }
         const terms = slide.terms ?? [];
         if (terms.length > 2) errors.push(`${where}: ${terms.length} terms; a slide explains at most 2 abbreviations`);
         for (const term of terms) {
@@ -189,18 +192,11 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
             errors.push(`${where}: gloss for ${term.abbr} carries marks or markdown; plain words only`);
           }
         }
-        const unmarked = text.replace(MARK_U, "").replace(MARK_O, "");
-        if (unmarked.includes("==") || unmarked.includes("((")) errors.push(`${where}: unclosed pen mark`);
-        for (const circled of text.match(MARK_O) ?? []) {
-          const phrase = circled.slice(2, -2);
-          if (phrase.length > 28) {
-            errors.push(`${where}: circled phrase "${phrase}" is ${phrase.length} chars; a circle cannot wrap, keep it under 28`);
-          }
-        }
+        if (text.replace(MARK_U, "").includes("==")) errors.push(`${where}: unclosed pen mark`);
         if (slide.title.trim().toLowerCase() === hook.trim().toLowerCase()) {
           warnings.push(`${at}: hook duplicates slide ${slide.number}'s title; the hook reframes the lead, never copies it`);
         }
-        markCount += (text.match(MARK_U) ?? []).length + (text.match(MARK_O) ?? []).length;
+        markCount += (text.match(MARK_U) ?? []).length;
         if (/[–—]/.test(text)) warnings.push(`${where}: em/en dash on the card; use a comma or colon`);
         if (/\p{Extended_Pictographic}/u.test(text)) warnings.push(`${where}: emoji on the card; the cards do not use them`);
         const url = normalize(slide.url);

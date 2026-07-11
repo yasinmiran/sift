@@ -426,21 +426,17 @@ describe("verifyDigest", () => {
     expect(r.errors).toContainEqual(expect.stringContaining("category must be lowercase"));
   });
 
-  it("fails a circled phrase too long to stay on one line and warns on a copied hook", () => {
+  it("fails circle marks on slides and warns on a copied hook", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith());
     writeSlides(
       post({
         hook: "Story 0 does a thing",
-        slides: [
-          slide(1, { desc: "((a circled phrase far too long to sit on a single rendered line))" }),
-          slide(2),
-          slide(3),
-        ],
+        slides: [slide(1, { desc: "up for ((six months))" }), slide(2), slide(3)],
       }),
     );
     const r = verifyDigest(root, DAY);
-    expect(r.errors).toEqual([expect.stringContaining("a circle cannot wrap")]);
+    expect(r.errors).toEqual([expect.stringContaining("circle marks are digest ink")]);
     expect(r.warnings).toContainEqual(expect.stringContaining("hook duplicates slide 1"));
   });
 
@@ -490,7 +486,7 @@ describe("verifyDigest", () => {
       post({
         slides: [
           slide(1, { desc: "==one== and ==two==" }),
-          slide(2, { desc: "((three)) circled" }),
+          slide(2, { desc: "==three== underlined" }),
           slide(3, { desc: "==four== underlined" }),
         ],
       }),

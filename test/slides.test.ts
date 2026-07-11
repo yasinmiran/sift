@@ -132,12 +132,14 @@ describe("renderSlideHtml", () => {
     expect(html).toContain("text-wrap:balance");
   });
 
-  it("draws pen marks as hand-drawn strokes in titles and descs", () => {
+  it("draws underlines as hand-drawn strokes and flattens stray circle marks", () => {
     const marked = renderSlideHtml(cards[1]!, 1, cards.length);
     expect(marked).toContain('<span class="pen-u">real margin pain</span>');
     expect(marked).not.toContain("==real margin pain==");
     const circled = renderSlideHtml(cards[2]!, 2, cards.length);
-    expect(circled).toContain('<span class="pen-o">mandatory scanning</span>');
+    expect(circled).toContain("mandatory scanning is back on the table");
+    expect(circled).not.toContain("pen-o");
+    expect(circled).not.toContain("((");
     const titleMarked = renderSlideHtml(
       buildCards(DAY, { ...POST, slides: [{ ...POST.slides[0]!, title: "the ==$50,000== bounty" }] })[1]!,
       1,

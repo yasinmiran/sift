@@ -173,12 +173,13 @@ Selection and voice (the verifier hard-gates the mechanical rules):
   (retraction, debunk), cover the dispute, which keeps a link. The
   verifier downgrades an orphaned am url to a warning once pm exists,
   but an orphan is still a miss.
-- Pen marks `==text==` / `((text))` work in titles and descs, 2-3 per
-  post max, same discipline as the digest. Hook and caption render as
-  plain text: no marks there. A circled phrase stays under 28 chars
-  (the circle cannot wrap; the verifier errors). Prose that needs a
-  literal double equals spells it out ("double equals"): adjacent ==
-  pairs silently read as one phantom mark.
+- Pen marks on slides are underlines only: `==text==` works in titles
+  and descs, 2-3 per post max, same discipline as the digest. Circle
+  marks `((text))` are digest ink and never appear on slides (the
+  verifier errors). Hook and caption render as plain text: no marks
+  there. Prose that needs a literal double equals spells it out
+  ("double equals"): adjacent == pairs silently read as one phantom
+  mark.
 - Caption: report, never promote. What happened, no hype, no emoji,
   no engagement bait ("like if", "tag someone", "follow for more").
   Lowercase throughout, Yasin's voice, under ~400 characters, and
