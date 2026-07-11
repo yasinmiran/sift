@@ -25,6 +25,7 @@ function fakeDeps(
     latest: { day: string; digest: string } | null;
     subs: Record<string, PushSubscriptionJson>;
     failWith: Record<string, number>;
+    paused: boolean;
   }> = {},
 ) {
   const store: Record<string, PushSubscriptionJson> = { ...(overrides.subs ?? { k1: sub("https://push.example/1") }) };
@@ -32,6 +33,7 @@ function fakeDeps(
   const state = { last: overrides.last ?? null as string | null };
   const sent: string[] = [];
   const deps: NotifyDeps = {
+    paused: async () => overrides.paused ?? false,
     fetchText: async (url) => {
       if (url.endsWith("sitemap.xml")) return SITEMAP;
       if (url.endsWith("latest.json")) {
@@ -153,6 +155,26 @@ describe("runNotify", () => {
     const r = await runNotify(deps);
     expect(r).toEqual({ day: "2026-07-05", sent: 1, pruned: 1 });
     expect(Object.keys(store)).toEqual(["k2"]);
+  });
+
+  it("swallows everything silently while paused, recording what it saw", async () => {
+    const newDay = fakeDeps({
+      paused: true,
+      last: '{"day":"2026-07-04","digest":"old"}',
+      latest: { day: "2026-07-05", digest: "aaa" },
+    });
+    const r = await runNotify(newDay.deps);
+    expect(r).toEqual({ day: "2026-07-05", sent: 0, pruned: 0, paused: true });
+    expect(newDay.sent).toEqual([]);
+    expect(JSON.parse(newDay.state.last!)).toEqual({ day: "2026-07-05", digest: "aaa" });
+    const rewrite = fakeDeps({
+      paused: true,
+      last: '{"day":"2026-07-05","digest":"morning"}',
+      latest: { day: "2026-07-05", digest: "evening" },
+    });
+    await runNotify(rewrite.deps);
+    expect(rewrite.sent).toEqual([]);
+    expect(JSON.parse(rewrite.state.last!)).toEqual({ day: "2026-07-05", digest: "evening" });
   });
 
   it("keeps subscriptions on non-gone send errors", async () => {

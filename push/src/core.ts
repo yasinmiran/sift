@@ -26,6 +26,8 @@ export function pageTitle(html: string): string | null {
 
 export interface NotifyDeps {
   fetchText: (url: string) => Promise<string>;
+  /** Kill switch (state blob "paused"): swallow notifications silently. */
+  paused?: () => Promise<boolean>;
   lastNotified: {
     get: () => Promise<string | null>;
     set: (day: string) => Promise<void>;
@@ -70,11 +72,18 @@ async function latestDigest(deps: NotifyDeps, day: string): Promise<string | nul
   }
 }
 
-export async function runNotify(deps: NotifyDeps): Promise<{ day: string | null; sent: number; pruned: number }> {
+export async function runNotify(
+  deps: NotifyDeps,
+): Promise<{ day: string | null; sent: number; pruned: number; paused?: true }> {
   const day = newestDay(await deps.fetchText(`${SITE}/sitemap.xml`));
   if (!day) return { day: null, sent: 0, pruned: 0 };
   const digest = await latestDigest(deps, day);
   const record = JSON.stringify({ day, digest });
+  if (await deps.paused?.()) {
+    // record what happened while paused so unpausing never fires stale pushes
+    await deps.lastNotified.set(record);
+    return { day, sent: 0, pruned: 0, paused: true };
+  }
   const state = parseState(await deps.lastNotified.get());
   if (state === null) {
     // first run: record the current state so an old digest never notifies late

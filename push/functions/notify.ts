@@ -16,6 +16,7 @@ export default async (): Promise<void> => {
       if (!res.ok) throw new Error(`${res.status} on ${url}`);
       return res.text();
     },
+    paused: async () => ["1", "true"].includes(((await state.get("paused", { type: "text" })) ?? "").trim()),
     lastNotified: {
       get: () => state.get("last-notified", { type: "text" }),
       set: async (day) => { await state.set("last-notified", day); },
