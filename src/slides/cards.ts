@@ -122,19 +122,19 @@ const SHELL_CSS = `
 *{margin:0;box-sizing:border-box}
 html,body{width:1080px;height:1350px;overflow:hidden}
 body{position:relative;background:#0d0c0b;color:#b8b0a3;font-family:Karla,sans-serif;
-background-image:radial-gradient(circle,rgba(168,159,147,.06) 1.4px,transparent 1.9px);background-size:24px 24px;
+background-image:radial-gradient(circle,rgba(168,159,147,.08) 1.4px,transparent 1.9px);background-size:24px 24px;
 display:flex;flex-direction:column;padding:88px}
 .wordmark{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.02em;color:#e8e2d9}
 .display{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.005em;color:#e8e2d9;text-wrap:balance}
-.pen-u{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8 C 20 4, 38 10, 58 7 S 95 9, 117 5' fill='none' stroke='%23d4976a' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% .5em;background-position:0 103%;padding-bottom:.1em}
-.pen-o{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 44' preserveAspectRatio='none'%3E%3Cpath d='M60 3 C 94 1, 118 11, 117 22 C 116 34, 90 42, 56 41 C 24 40, 2 33, 2 21 C 2 10, 28 2, 76 3' fill='none' stroke='%23d4976a' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% 100%;padding:.2em .5em;margin:0 .08em}
+.pen-u{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8 C 20 4, 38 10, 58 7 S 95 9, 117 5' fill='none' stroke='%23d4976a' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% .5em;background-position:0 103%;padding-bottom:.1em}
+.pen-o{white-space:nowrap;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 44' preserveAspectRatio='none'%3E%3Cpath d='M60 3 C 94 1, 118 11, 117 22 C 116 34, 90 42, 56 41 C 24 40, 2 33, 2 21 C 2 10, 28 2, 76 3' fill='none' stroke='%23d4976a' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% 100%;padding:.2em .35em;margin:0 .08em}
 .dot{color:#d4976a}
 .mono{font-family:"Space Mono",monospace}
 .top{display:flex;justify-content:space-between;align-items:baseline}
 .bottom{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto}
 .count{font-family:"Space Mono",monospace;font-size:28px;color:#5c564e}
-.terms{margin-top:44px}
-.terms p{font-family:"Space Mono",monospace;font-size:26px;line-height:1.5;color:#5c564e}
+.terms{margin-top:48px;max-width:820px}
+.terms p{font-family:"Space Mono",monospace;font-size:26px;line-height:1.5;color:#7a7268;padding-left:1.2em;text-indent:-1.2em}
 .label{font-family:"Space Mono",monospace;font-size:30px;letter-spacing:.08em;color:#d4976a}
 .muted{color:#7a7268}
 `;
@@ -149,13 +149,13 @@ const inline = (text: string): string =>
     .replace(/\(\(([^()\n]+?)\)\)/g, '<span class="pen-o">$1</span>');
 
 function coverBody(card: CoverCard, counter: string): string {
-  const when = `${formatDay(card.day)}${card.slot === "pm" ? " &middot; evening" : ""}`;
-  return `<div class="top"><span class="wordmark" style="font-size:88px">sift<span class="dot">.</span></span><span class="mono muted" style="font-size:30px">${when}</span></div>
+  const when = `${formatDay(card.day)}${card.slot === "pm" ? ' <span class="dot">&middot; evening</span>' : ""}`;
+  return `<div class="top"><span class="wordmark" style="font-size:88px">sift<span class="dot">.</span></span><span class="mono muted" style="font-size:30px;text-transform:lowercase">${when}</span></div>
 <div style="margin:auto 0">
-<p class="display" style="font-size:${fontSize(card.hook, 84, 74, 64)}px;line-height:1.22">${escapeHtml(card.hook)}<span class="dot">.</span></p>
-<p class="mono muted" style="font-size:30px;margin-top:64px">swipe for the day's stories &rarr;</p>
+<p class="display" style="font-size:${fontSize(card.hook, 92, 78, 66)}px;line-height:1.22">${escapeHtml(card.hook)}<span class="dot">.</span></p>
+<p class="mono" style="font-size:30px;margin-top:64px;color:#d4976a">swipe for the day's stories &rarr;</p>
 </div>
-<div class="bottom"><span style="font-size:32px" class="muted">the day's tech, sifted</span>${counter}</div>`;
+<div class="bottom"><span style="font-size:30px" class="muted">the day's tech, sifted</span>${counter}</div>`;
 }
 
 function storyBody(card: StoryCard, counter: string): string {
@@ -165,7 +165,7 @@ function storyBody(card: StoryCard, counter: string): string {
         .join("\n")}</div>`
     : "";
   return `<div class="top"><span class="label">${escapeHtml(card.category)}</span>${counter}</div>
-<div style="margin:auto 0">
+<div style="margin:192px 0 auto">
 <h1 class="display" style="font-size:${fontSize(card.title, 78, 68, 58)}px;line-height:1.2;margin-bottom:48px">${inline(card.title)}${card.title.endsWith("…") ? "" : '<span class="dot">.</span>'}</h1>
 <p style="font-size:38px;line-height:1.5;color:#9a9184;max-width:820px;text-wrap:pretty">${inline(card.desc)}</p>
 ${terms}
@@ -176,10 +176,9 @@ ${terms}
 function ctaBody(counter: string): string {
   return `<div class="top"><span class="wordmark" style="font-size:56px">sift<span class="dot">.</span></span>${counter}</div>
 <div style="margin:auto 0;text-align:center">
-<div style="width:120px;height:120px;border-radius:50%;background:#d4976a;margin:0 auto 64px"></div>
-<p class="wordmark" style="font-size:72px;margin-bottom:40px">the full day, every day</p>
+<p class="display" style="font-size:78px;margin-bottom:40px">the full day, every day<span class="dot">.</span></p>
 <p style="font-size:44px;color:#d4976a;margin-bottom:28px">sift.yasint.dev</p>
-<p class="mono muted" style="font-size:30px">@sifted.dev &middot; new digest every morning &amp; evening</p>
+<p class="mono muted" style="font-size:30px">follow @sifted.dev &middot; link in bio</p>
 </div>
 <div class="bottom"><span style="font-size:30px" class="muted">free &middot; rss &middot; push notifications</span></div>`;
 }

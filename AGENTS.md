@@ -151,6 +151,10 @@ Selection and voice (the verifier hard-gates the mechanical rules):
 - 3-8 slides per post: your editorial pick of the day's most
   interesting stories, not a mechanical top-of-each-section. Hacker
   News stories are eligible like any other.
+- The hook reframes or teases the lead ("Apple just took OpenAI to
+  court"), it NEVER copies a slide's title verbatim: the first swipe
+  must add something, and the verifier warns when hook and title
+  match.
 - Write the slides as Yasin's own read of the day, a third-eye lens:
   what changed, what it means, why it is interesting. Not
   press-release rewrites, no hype. Titles and descs may reuse or
@@ -171,9 +175,10 @@ Selection and voice (the verifier hard-gates the mechanical rules):
   but an orphan is still a miss.
 - Pen marks `==text==` / `((text))` work in titles and descs, 2-3 per
   post max, same discipline as the digest. Hook and caption render as
-  plain text: no marks there. Prose that needs a literal double
-  equals spells it out ("double equals"): adjacent == pairs silently
-  read as one phantom mark.
+  plain text: no marks there. A circled phrase stays under 28 chars
+  (the circle cannot wrap; the verifier errors). Prose that needs a
+  literal double equals spells it out ("double equals"): adjacent ==
+  pairs silently read as one phantom mark.
 - Caption: report, never promote. What happened, no hype, no emoji,
   no engagement bait ("like if", "tag someone", "follow for more").
   Lowercase throughout, Yasin's voice, under ~400 characters, and

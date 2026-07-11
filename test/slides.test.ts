@@ -146,12 +146,13 @@ describe("renderSlideHtml", () => {
     expect(titleMarked).toContain('<span class="pen-u">$50,000</span>');
   });
 
-  it("shows a human date on the cover and flags the evening post", () => {
+  it("shows a lowercased date on the cover and flags the evening post in amber", () => {
     const cover = renderSlideHtml(cards[0]!, 0, cards.length);
     expect(cover).toContain("Sat, Jul 11");
+    expect(cover).toContain("text-transform:lowercase");
     expect(cover).not.toContain("evening");
     const pm = renderSlideHtml(buildCards(DAY, { ...POST, slot: "pm" })[0]!, 0, 4);
-    expect(pm).toContain("Sat, Jul 11 &middot; evening");
+    expect(pm).toContain('<span class="dot">&middot; evening</span>');
   });
 
   it("carries no source hostname on story cards", () => {

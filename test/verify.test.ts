@@ -426,6 +426,24 @@ describe("verifyDigest", () => {
     expect(r.errors).toContainEqual(expect.stringContaining("category must be lowercase"));
   });
 
+  it("fails a circled phrase too long to stay on one line and warns on a copied hook", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    writeSlides(
+      post({
+        hook: "Story 0 does a thing",
+        slides: [
+          slide(1, { desc: "((a circled phrase far too long to sit on a single rendered line))" }),
+          slide(2),
+          slide(3),
+        ],
+      }),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.errors).toEqual([expect.stringContaining("a circle cannot wrap")]);
+    expect(r.warnings).toContainEqual(expect.stringContaining("hook duplicates slide 1"));
+  });
+
   it("gates term footnotes: on-slide abbr, gloss length, plain words, max 2", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith());

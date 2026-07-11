@@ -191,6 +191,15 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
         }
         const unmarked = text.replace(MARK_U, "").replace(MARK_O, "");
         if (unmarked.includes("==") || unmarked.includes("((")) errors.push(`${where}: unclosed pen mark`);
+        for (const circled of text.match(MARK_O) ?? []) {
+          const phrase = circled.slice(2, -2);
+          if (phrase.length > 28) {
+            errors.push(`${where}: circled phrase "${phrase}" is ${phrase.length} chars; a circle cannot wrap, keep it under 28`);
+          }
+        }
+        if (slide.title.trim().toLowerCase() === hook.trim().toLowerCase()) {
+          warnings.push(`${at}: hook duplicates slide ${slide.number}'s title; the hook reframes the lead, never copies it`);
+        }
         markCount += (text.match(MARK_U) ?? []).length + (text.match(MARK_O) ?? []).length;
         if (/[–—]/.test(text)) warnings.push(`${where}: em/en dash on the card; use a comma or colon`);
         if (/\p{Extended_Pictographic}/u.test(text)) warnings.push(`${where}: emoji on the card; the cards do not use them`);
