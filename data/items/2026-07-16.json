@@ -1,6 +1,6 @@
 {
   "day": "2026-07-16",
-  "generatedAt": "2026-07-16T16:38:30.851Z",
+  "generatedAt": "2026-07-16T16:54:25.634Z",
   "items": [
     {
       "sourceSlug": "openai",
@@ -3480,6 +3480,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "bytebytego",
+      "externalId": "https://blog.bytebytego.com/p/a-guide-to-multi-tenancy-benefits",
+      "title": "A Guide to Multi-Tenancy: Benefits and Challenges",
+      "url": "https://blog.bytebytego.com/p/a-guide-to-multi-tenancy-benefits",
+      "author": "ByteByteGo",
+      "publishedAt": "2026-07-16T16:37:08.000Z",
+      "content": "Every software company that builds an application serving more than one customer has to answer this question.Should each customer get a separate copy of the system, or should they all share one?Running a dedicated copy per customer is easy to reason about, but the cost of maintaining hundreds of separate copies increases with every new customer. On the other hand, sharing a single system across all customers is far cheaper. This is why most of the software we use every day is built to be shared rather than duplicated. Such systems are known as multi-tenant systems, where each customer is a tenant that shares resources with other tenants.However, sharing is also where the difficulty begins.Once many customers rely on the same database, the same servers, and the same background jobs, their fortunes become linked. For example, one customer running a heavy report can slow the service for everyone alongside them. A single faulty deployment can impact all of them at once instead of just the customer. And the most serious risk is around data leaks, where one customer is shown data that belongs to another. All of these situations have to be actively handled by a multi-tenant system.In this article, we will understand multi-tenant architecture from the basics, along with its various benefits and challenges. Here’s a quick overview of what we will cover:What a tenant really is.Where each customer’s data can physically live, from one shared set of tables to a database of its own, and what each of those options costs.Why the same choice between isolating and sharing also includes the compute layer and beyond, not only in the database.The noisy neighbor problem, and why sharing can impact fairness and force a team to rebuild it with quotas and limits.The role of blast radius in such an architecture.The concept of tenant context that runs through every part of the system.Tenants and Users Read more",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "hf-daily-papers",
       "externalId": "https://huggingface.co/papers/2605.16147",
       "title": "Registers Matter for Pixel-Space Diffusion Transformers",
@@ -3813,6 +3827,63 @@
         "startups-industry"
       ],
       "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260716/p42#a260716p42",
+      "title": "Fora, which connects travel agents with travelers and offers agents AI tools, raised a $60M Series D at a $1B valuation led by Forerunner and Tactile Ventures (Dominic-Madori Davis/TechCrunch)",
+      "url": "https://www.techmeme.com/260716/p42#a260716p42",
+      "author": null,
+      "publishedAt": "2026-07-16T16:45:02.000Z",
+      "content": "Dominic-Madori Davis / TechCrunch: Fora, which connects travel agents with travelers and offers agents AI tools, raised a $60M Series D at a $1B valuation led by Forerunner and Tactile Ventures — Travel agency Fora announced a $60 million Series D round led by Forerunner and Tactile Ventures, valuing the company at $1 billion.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=966589",
+      "title": "Roblox will let people use AI to make games on their phone",
+      "url": "https://www.theverge.com/games/966589/roblox-build-ai-phone-moblie-games",
+      "author": "Jay Peters",
+      "publishedAt": "2026-07-16T16:45:29.000Z",
+      "content": "Roblox is about to let people make games with AI right inside its mobile app, which could make a platform that's already filled with content of questionable quality feel even more overloaded. The company has embraced AI with open arms, including a preview of an ambitious take on AI world models similar to Google's Project Genie, an AI foundation model that developers can use to generate 3D game assets, and an AI assistant chatbot that can help developers while they're building games. The tools announced today will make using AI for Roblox game development far more accessible, though the company is starting small at first. The new feature is … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "pragmatic-engineer",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/the-pulse-groks-cli-caught-uploading",
+      "title": "The Pulse: Grok’s CLI caught uploading all your local files to the cloud",
+      "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-groks-cli-caught-uploading",
+      "author": "Gergely Orosz",
+      "publishedAt": "2026-07-16T16:48:53.000Z",
+      "content": "The Pulse is a series covering events, insights, and trends within Big Tech and startups. Notice an interesting event or trend? Hit reply and share it with me.Today, we cover:Grok’s CLI uploaded all your local files to the cloud, then got caught. Just as devs were starting to use the Grok CLI – thanks to the capable Grok 4.5 coding model – they discover… Read more",
+      "topics": [
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.06701",
+      "title": "SPEAR: A Simulator for Photorealistic Embodied AI Research",
+      "url": "https://huggingface.co/papers/2607.06701",
+      "author": null,
+      "publishedAt": "2026-07-16T16:54:19.658Z",
+      "content": "SPEAR: A Simulator for Photorealistic Embodied AI Research",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
       "mediaType": "text"
     }
   ]
