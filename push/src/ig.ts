@@ -80,17 +80,20 @@ function isSlotMeta(value: unknown, day: string, slot: string): value is SlotMet
 
 async function publishSlot(deps: IgDeps, token: string, day: string, meta: SlotMeta): Promise<void> {
   const base = `${SITE}/slides/${day}/${meta.slot}`;
-  const children: string[] = [];
-  for (const card of meta.cards) {
-    const child = await deps.post(`${GRAPH}/${deps.env.userId}/media`, {
-      image_url: `${base}/${card.file}`,
-      is_carousel_item: "true",
-      alt_text: card.alt,
-      access_token: token,
-    });
-    if (!child.id) throw new Error(`no container id for ${card.file}`);
-    children.push(child.id);
-  }
+  // Meta fetches each image server-side (seconds per card); create the
+  // child containers concurrently, order preserved by position.
+  const children = await Promise.all(
+    meta.cards.map(async (card) => {
+      const child = await deps.post(`${GRAPH}/${deps.env.userId}/media`, {
+        image_url: `${base}/${card.file}`,
+        is_carousel_item: "true",
+        alt_text: card.alt,
+        access_token: token,
+      });
+      if (!child.id) throw new Error(`no container id for ${card.file}`);
+      return child.id;
+    }),
+  );
   const caption = meta.hashtags?.length ? `${meta.caption}\n\n${meta.hashtags.join(" ")}` : meta.caption;
   const carousel = await deps.post(`${GRAPH}/${deps.env.userId}/media`, {
     media_type: "CAROUSEL",
