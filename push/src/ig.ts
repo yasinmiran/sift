@@ -78,7 +78,7 @@ function isSlotMeta(value: unknown, day: string, slot: string): value is SlotMet
   );
 }
 
-async function publishSlot(deps: IgDeps, token: string, day: string, meta: SlotMeta): Promise<void> {
+async function prepareSlot(deps: IgDeps, token: string, day: string, meta: SlotMeta): Promise<string> {
   const base = `${SITE}/slides/${day}/${meta.slot}`;
   // Meta fetches each image server-side (seconds per card); create the
   // child containers concurrently, order preserved by position.
@@ -110,10 +110,7 @@ async function publishSlot(deps: IgDeps, token: string, day: string, meta: SlotM
     await deps.sleep(3000);
   }
   if (status !== "FINISHED") throw new Error(`carousel container ${carousel.id} stuck (${status})`);
-  await deps.post(`${GRAPH}/${deps.env.userId}/media_publish`, {
-    creation_id: carousel.id,
-    access_token: token,
-  });
+  return carousel.id;
 }
 
 /**
@@ -140,14 +137,23 @@ export async function runIgPost(
     if (posted.slots.includes(slot)) continue;
     const meta = await deps.fetchJson(`${SITE}/slides/${day}/${slot}/meta.json`);
     if (!isSlotMeta(meta, day, slot)) continue;
+    let claimed = false;
     try {
-      await publishSlot(deps, token, day, meta);
+      const creationId = await prepareSlot(deps, token, day, meta);
+      // claim BEFORE publishing: a crash after media_publish must never
+      // let a retry double-post; a claimed-but-failed slot is manual-review
+      // territory (unclaim by editing the ig-posted blob), never auto-retried
       posted.slots.push(slot);
       await deps.state.set("ig-posted", JSON.stringify(posted));
+      claimed = true;
+      await deps.post(`${GRAPH}/${deps.env.userId}/media_publish`, {
+        creation_id: creationId,
+        access_token: token,
+      });
       done.push(slot);
     } catch (err) {
-      console.error(`ig publish failed for ${day}/${slot}`, err);
-      failed.push(slot);
+      console.error(`ig publish failed for ${day}/${slot} (claimed: ${claimed})`, err);
+      failed.push(claimed ? `${slot} (claimed, needs manual review)` : slot);
     }
   }
   return failed.length ? { day, posted: done, failed } : { day, posted: done };

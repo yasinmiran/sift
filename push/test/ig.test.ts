@@ -19,6 +19,7 @@ function fakeDeps(
     tokenBlob: string | null;
     paused: boolean;
     failPublishFor: string[];
+    failChildrenFor: string[];
     refreshFails: boolean;
   }> = {},
 ) {
@@ -48,6 +49,12 @@ function fakeDeps(
       calls.push({ method: "POST", url, params });
       if (url.endsWith("/media_publish") && overrides.failPublishFor?.some((id) => params.creation_id === id)) {
         throw new Error("publish failed");
+      }
+      if (
+        params.is_carousel_item === "true" &&
+        overrides.failChildrenFor?.some((slot) => params.image_url?.includes(`/${slot}/`))
+      ) {
+        throw new Error("image fetch failed");
       }
       return { id: String(nextId++) };
     },
@@ -113,10 +120,21 @@ describe("runIgPost", () => {
     expect(state["ig-posted"]).toBeUndefined();
   });
 
-  it("keeps a failed slot unrecorded so the next run retries, without blocking the other slot", async () => {
+  it("claims a slot before publishing so a crashed publish can never double-post", async () => {
     const { deps, state } = fakeDeps({
       metas: { am: meta("am"), pm: meta("pm") },
       failPublishFor: ["102"],
+    });
+    const r = await runIgPost(deps);
+    expect(r.posted).toEqual(["pm"]);
+    expect(r.failed).toEqual(["am (claimed, needs manual review)"]);
+    expect(JSON.parse(state["ig-posted"]!)).toEqual({ day: DAY, slots: ["am", "pm"] });
+  });
+
+  it("leaves a slot unclaimed and retryable when container creation fails before the claim", async () => {
+    const { deps, state } = fakeDeps({
+      metas: { am: meta("am"), pm: meta("pm") },
+      failChildrenFor: ["am"],
     });
     const r = await runIgPost(deps);
     expect(r.posted).toEqual(["pm"]);
