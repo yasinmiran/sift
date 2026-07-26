@@ -1,0 +1,446 @@
+{
+  "day": "2026-07-26",
+  "generatedAt": "2026-07-26T04:40:20.466Z",
+  "items": [
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49045446",
+      "title": "MouthPad: A Tongue-Controlled Touchpad",
+      "url": "https://www.augmental.tech/",
+      "author": "ZaninAndrea",
+      "publishedAt": "2026-07-25T07:51:19.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 171,
+      "comments": 38
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49046525",
+      "title": "The Fedora 45 Sausage Factory",
+      "url": "https://supakeen.com/weblog/the-fedora-45-sausage-factory/",
+      "author": "6581",
+      "publishedAt": "2026-07-25T11:04:57.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 140,
+      "comments": 39
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49047365",
+      "title": "Bitchat is now on Radicle",
+      "url": "https://radicle.network/nodes/rosa.radicle.network/rad%3Az2v9tRJz1oknFAqCSY5W5c76nVvm6",
+      "author": "h1watt",
+      "publishedAt": "2026-07-25T13:18:49.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 222,
+      "comments": 128
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49048034",
+      "title": "Open-weight AI is having its Kubernetes moment",
+      "url": "https://tobi.knaup.me/2026-07-25-open-weight-ai-is-having-its-kubernetes-moment/",
+      "author": "tknaup",
+      "publishedAt": "2026-07-25T14:49:49.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 339,
+      "comments": 273
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49048212",
+      "title": "Engineering management after the cost of code collapsed",
+      "url": "https://karimjedda.com/engineering-management-after-cost-of-code-collapse/",
+      "author": "kiyanwang",
+      "publishedAt": "2026-07-25T15:10:51.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 125,
+      "comments": 180
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49048681",
+      "title": "The Dark Night of Mathematics",
+      "url": "https://kirwinhampshire.substack.com/p/the-dark-night-of-mathematics",
+      "author": "rmdmphilosopher",
+      "publishedAt": "2026-07-25T15:54:59.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 179,
+      "comments": 212
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49049693",
+      "title": "Show HN: Brolly, a plain-text weather forecast site",
+      "url": "https://brolly.sh/forecast/RWFP2qW8",
+      "author": "jsax",
+      "publishedAt": "2026-07-25T17:34:34.000Z",
+      "content": "The UK MET office recently redesigned their site, adding a lot of additional whitespace, scrolling, and animations. This significantly reduced its usability for me, and left me wanting an ‘at a glance’ weather site.I made https://brolly.sh, a minimalist, plain text weather forecasting site. You can use it to view weather from around the world, with: 7 day forecast; Previous day log (so you can confirm it definitely was cooler / hotter / wetter / drier yesterday!); Hourly rain, wind, temperature, conditions; Hourly UV, air quality and pollen, including pollen type specific forecasts within the EU / UK; Location search and last 5 locations; Location specific units.I mostly made the site for myself, if anyone else also benefits from it that’s an added advantage.You can check out the weather in York, UK at https://brolly.sh/forecast/RWFP2qW8, or search for a location at https://brolly.shThe site is deliberately styled as a single long scrollable column, to work on mobile phones. You can view it on desktop too, there's just a lot of horizontal padding. I naturally took a lot of inspiration from plaintextsports.com. Despite not being a sports fan, I love its aesthetic. But, you'll hopefully see that this site isn't a rip off, and has its own deliberate look and feel.Visualisations are really important to showing information at a glance. I spent a lot of time designing the different visualisations and making them work with only characters. My favourite is the hourly heat map used for pollen count.It's also frustrating to have an interactive site, where you can't share a page with a friend and have them see what you're seeing. To solve this, all page state (i.e. location, selected day, expanded / collapsed sections), is stored in the URL. You can share or bookmark the specific view, and know that you'll always be able to come back to it.The site uses PocketBase. It’s written in Go and plain HTML/JavaScript/CSS. All pages are backend rendered, with light JavaScript to handle re-loading content without page jumps when using interactive features like next / previous day navigation. Weather forecasts are fetched from open-meteo.com, which has a very generous free tier. However, I also built a custom LRU cache on top of PocketBase’s SQLite DB to cache forecasts for 5 minutes, and avoid putting unnecessary pressure on the open-meteo API.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 151,
+      "comments": 46
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/07/spacex-eyes-tower-catch-for-next-starship-after-auspicious-end-to-13th-flight/",
+      "title": "SpaceX eyes tower catch for next Starship after auspicious end to 13th flight",
+      "url": "https://arstechnica.com/space/2026/07/spacex-eyes-tower-catch-for-next-starship-after-auspicious-end-to-13th-flight/",
+      "author": "\n                    Stephen Clark\n                ",
+      "publishedAt": "2026-07-25T17:47:22.000Z",
+      "content": "SpaceX was more than lucky Friday, sending its 13th full-scale Starship test flight halfway around the world from South Texas to an on-target, intact splashdown in a remote section of the Indian Ocean. Starship has made precise splashdowns before. This time, however, the ship gently tipped over and came to rest floating in a remote stretch of ocean west of Australia. Previous splashdowns ended with conflagrations, an outcome SpaceX officials have come to expect with each water landing of Starship. The buoyant Starship looked to be in fine shape after reaching the Indian Ocean. SpaceX engineers flew drones over the vehicle to inspect its heat shield, getting their best look yet at how more than 18,000 ceramic tiles insulating the ship's stainless steel airframe weathered the trip to space and back. The tiles withstood temperatures up to 2,600° Fahrenheit (1,430° Celsius) as Starship streaked back into the atmosphere at the end of its hour-long flight from Starbase, Texas. Encouraged by the picture-perfect end to Friday's flight, SpaceX is likely to take the next leap with Starship on the next launch, according to the company's founder and CEO, Elon Musk. That would entail hurling Starship on a longer-range trajectory, perhaps into low-Earth orbit, to bring the vehicle back to the launch site. Mechanical arms on the launch tower will attempt to capture the ship as it slows to a hover. SpaceX has already done this with the rocket's massive Super Heavy booster, which is larger and heavier than Starship itself, but comes back at a fraction of the speed. \"Unless we discover problems after mission data review, SpaceX will attempt to catch the ship with the tower on next flight,\" Musk wrote on X Friday evening. Starship's six Raptor engines afloat in the Indian Ocean. Credit: SpaceX Hungry for data Engineers have long identified the performance and durability of the heat shield as one of the toughest challenges for the Starship program. SpaceX's ambition for Starship includes rapid turnarounds, and eventually multiple flights per day. If this is to be achievable, the heat shield has to be robust against the vibrations and extreme temperatures it sees during launch and reentry. It can't be refurbished or replaced after every flight. \"This is the first time we’ve put an intact Starship in the water,\" said Dan Huot, a SpaceX communications manager providing commentary on the company's live webcast. \"This is a dream scenario for the team that’s trying to get this heat shield data.\" The intact splashdown Friday also opens up the possibility for SpaceX to tow the rocket back to shore, probably somewhere in Australia, for more detailed inspections. Starship is designed for reuse, but not after exposure to salt water. \"This is so critical for refining the heat shield and everything else. The really good news is … you’re looking at a pretty intact-looking heat shield,\" Huot said. \"We were flying at a significantly higher dynamic pressure, so putting way more stress on this vehicle on the way uphill, and it's sitting there in the water.\" SpaceX continued receiving signals from Starship after splashdown through the company's Starlink satellite broadband network. A camera onboard Starship showed no signs of external damage to the vehicle's six Raptor engines as water lapped against the lens. Friday's test flight was the 13th launch of SpaceX's Starship on top of its massive Super Heavy booster, and the second flight of the latest iteration of the world's most powerful rocket—Starship Version 3. Starship and its Super Heavy booster lift off from SpaceX's launch site in South Texas at 5:51 pm CDT on July 24, 2026. Credit: Reginald Mathalone/NurPhoto via Getty Images The 408-foot-tall (124-meter) rocket lifted off from Starbase, Texas, a few miles north of the US-Mexico border, at 5:51 pm CDT (6:51 pm EDT; 22:51 UTC). Thirty-three methane-fueled Raptor engines on the Super Heavy booster steered the rocket east over the Gulf of Mexico and into the upper atmosphere, where the booster separated from Starship's upper stage after burning most of its cryogenic propellant. The only thing left incomplete on SpaceX's checklist for Flight 13 was the controlled splashdown of the Super Heavy booster. It was supposed to relight its engines for a landing burn off the coast of Texas, simulating maneuvers required to return the booster back to the launch pad for recovery and reuse. But some of the Raptor engines failed to restart for the landing burn, and the booster fell into the ocean at high speed. SpaceX also had trouble with the booster splashdown on the last flight in May. Friday's flight showed some progress, but engineers have more work to do on recovering this version the Super Heavy booster. SpaceX previously recovered and re-flew Super Heavy boosters two times with the Starship Version 2 design, but not with Version 3. \"The booster successfully completed the high thrust portion of the boostback burn with all 33 engines, the first time with a Super Heavy V3, before ending the burn early,\" SpaceX officials wrote in an update on the company's website. \"It attempted to relight its engines for the landing burn, with a subset successfully igniting before experiencing a hard splashdown in the Gulf.\" Success in space Starship continued accelerating into space as the Super Heavy booster descended toward the Gulf, firing its six engines more than five minutes before beginning a half-hour coast over the Caribbean Sea, Atlantic Ocean, and South Africa. A few minutes after engine shutdown, Starship opened its payload bay door and started deploying a stack of 20 Starlink satellites. The satellites are the first of SpaceX's upgraded Starlink V3 model, with significant improvements in throughput and power. They are also larger and heavier than Starlink V2s, meaning they will not fit on SpaceX's smaller, workhorse Falcon 9 rocket. Starship released the Starlink V3s using its Pez-like deployer, tossing them overboard through a slit-like opening on the side of the spacecraft. The flat-panel satellites did not stay in space for long. They flew on the same arcing suborbital trajectory as Starship, and were designed to burn up as they fell back into the atmosphere less than an hour after launch. In little time, SpaceX ground teams established contact with each of the satellites through radio and laser communication links, and \"downloaded key telemetry\" before their fiery demise. This provided engineers with their first look at the performance of Starlink V3s in space. Powered by six Raptor engines, Starship is seen accelerating toward space Friday in this view captured by a camera on the Super Heavy booster moments after stage separation. Credit: SpaceX With the satellite deployments complete, attention turned to a brief restart of one of the ship's Raptor engines, something engineers forewent on the last flight. The burn lasted approximately 14 seconds, and was visible to observers in South Africa. SpaceX hailed the demonstration as \"core capability for future orbital missions.\" Gravity then pulled Starship back to Earth. The next steps for Starship are getting to orbit and returning the ship to the launch site. Those achievements will give SpaceX the capability to begin launching operational Starlink V3 satellites, unlocking higher-speed direct-to-device connectivity for consumers and the US military, and the revenue to go along with it. For NASA, an orbital flight puts SpaceX on a path toward orbital refueling. This demonstration is vital for any Starship flight beyond low-Earth orbit, including missions to the Moon in support of NASA's Artemis program. NASA is working with SpaceX and Blue Origin to develop human-rated versions of Starship and the Blue Moon lander to ferry astronauts to and from the lunar surface. \"Excited for what will be learned from this mission,\" NASA Administrator Jared Isaacman wrote on X after the launch of Flight 13. \"When Starship comes online, its capabilities will be game-changing, not least of which will be ensuring we never give up the Moon again!\" SpaceX has one active launch pad in Texas, and a second Starship pad undergoing renovations there. Two Starship launch sites are under construction at Kennedy Space Center and Cape Canaveral Space Force Station in Florida. The orbital refueling demonstration will include two Starship launches, allowing the vehicles to rendezvous and dock with one another in orbit. One ship will then transfer methane and liquid oxygen propellants to the other through automated couplers. It will take multiple refueling runs in rapid succession to refill a Starship with enough propellant to reach the Moon, requiring rapid reuse of Starships and the Super Heavy boosters at multiple launch pads. With Friday's test flight, SpaceX seems poised to embark on the next phase of Starship's iterative development program. It won't be easy.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260725/p15#a260725p15",
+      "title": "Several universities including Yale, Johns Hopkins, and the University of Waterloo have restricted or disabled their use of AI detectors over accuracy concerns (Ima Jackson-Obot/Financial Times)",
+      "url": "https://www.techmeme.com/260725/p15#a260725p15",
+      "author": null,
+      "publishedAt": "2026-07-25T18:05:01.000Z",
+      "content": "Ima Jackson-Obot / Financial Times: Several universities including Yale, Johns Hopkins, and the University of Waterloo have restricted or disabled their use of AI detectors over accuracy concerns — Some institutions are overhauling assessment and trying to move away from the emphasis on surveillance",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=971041",
+      "title": "Google basically confirms the Pixel 11 is getting a price hike",
+      "url": "https://www.theverge.com/tech/971041/google-confirms-pixel-11-price-hike",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-07-25T18:13:36.000Z",
+      "content": "Google's Vice President of Devices and Services, Shakil Barkat, all but confirmed in an interview with 9to5 Google that its next Pixel phone would cost more than the Pixel 10. Considering the ongoing RAM supply issues due to the explosion of AI data centers, the rumored price hike is not a complete surprise. Companies from Apple to Nintendo, Microsoft to Roku, have all raised their prices in response to the soaring cost of memory. Barkat said that Google had \"shielded our consumers from supply fluctuations for as long as possible,\" but that the \"economics have fundamentally shifted and we're not immune to that.\" He went on to tell 9to5 tha … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49050152",
+      "title": "Tile's security is so bad it's a feature for stalkers",
+      "url": "https://blog.adafruit.com/2026/03/05/tiles-security-is-so-bad-its-a-feature-for-stalkers/",
+      "author": "sambellll",
+      "publishedAt": "2026-07-25T18:18:42.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 151,
+      "comments": 42
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49050512",
+      "title": "Running a 28.9M parameter LLM on an $8 microcontroller",
+      "url": "https://github.com/slvDev/esp32-ai",
+      "author": "boveyking",
+      "publishedAt": "2026-07-25T18:59:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 109,
+      "comments": 25
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49050538",
+      "title": "The growing vigilante movement to knock out Flock surveillance cameras",
+      "url": "https://www.theguardian.com/us-news/ng-interactive/2026/jul/25/flock-surveillance-cameras",
+      "author": "bookofjoe",
+      "publishedAt": "2026-07-25T19:02:17.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 213,
+      "comments": 125
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49050735",
+      "title": "Producing ammonia and fertiliser using wind power in Morris, Minnesota",
+      "url": "https://ammoniaenergy.org/articles/flexible-renewable-ammonia-demonstrator-now-operational-in-minnesota/",
+      "author": "gritzko",
+      "publishedAt": "2026-07-25T19:30:24.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 110,
+      "comments": 77
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49050859",
+      "title": "LLM Usage in Debian: Three Proposals",
+      "url": "https://www.debian.org/vote/2026/vote_002",
+      "author": "zdw",
+      "publishedAt": "2026-07-25T19:44:39.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 111,
+      "comments": 97
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49051120",
+      "title": "Did They Ghost You?",
+      "url": "https://didtheyghostyou.com/",
+      "author": "mooreds",
+      "publishedAt": "2026-07-25T20:18:03.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 336,
+      "comments": 151
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260725/p16#a260725p16",
+      "title": "China's market regulator says it had fined and confiscated ~$770M from Trip.com for abusing its dominant position in the domestic online hotel-booking market (Reuters)",
+      "url": "https://www.techmeme.com/260725/p16#a260725p16",
+      "author": null,
+      "publishedAt": "2026-07-25T20:35:00.000Z",
+      "content": "Reuters: China's market regulator says it had fined and confiscated ~$770M from Trip.com for abusing its dominant position in the domestic online hotel-booking market — China's market regulator said on Saturday it had fined and confiscated a total of 5.2 billion yuan ($770 million) from Trip.com Group …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49051361",
+      "title": "The new rules of context engineering for Claude 5 generation models",
+      "url": "https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models",
+      "author": "mellosouls",
+      "publishedAt": "2026-07-25T20:42:35.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 219,
+      "comments": 139
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49051369",
+      "title": "Turn And Face The Strange",
+      "url": "https://fly.io/blog/kurt-scott-money-sprites/",
+      "author": "subarctic",
+      "publishedAt": "2026-07-25T20:43:11.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 163,
+      "comments": 117
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/culture/2026/07/sdcc-teaser-gives-us-our-first-good-look-at-blade-runner-2099/",
+      "title": "SDCC teaser gives us our first good look at Blade Runner 2099",
+      "url": "https://arstechnica.com/culture/2026/07/sdcc-teaser-gives-us-our-first-good-look-at-blade-runner-2099/",
+      "author": "\n                    Jennifer Ouellette\n                ",
+      "publishedAt": "2026-07-25T20:52:30.000Z",
+      "content": "It's been nearly five years since Ridley Scott first announced his plans for a TV spinoff of his sci-fi masterpiece Blade Runner (1982) and the 2017 sequel Blade Runner 2049. It's finally here—or almost, anyway. Prime Video debuted the first teaser for the new ten-episode series, Blade Runner 2099, at San Diego Comic-Con on Friday. We also got a teaser for the third season of Prime Video's Rings of Power and a new trailer for HBO's Lanterns. Yeoh and Schafer joined show runner Silka Luisa (Shining Girls) onstage for the big reveal, which also included an exclusive clip shown to the audience. Luisa told Entertainment Weekly that the series stays true to the original's \"noir principles... and there's a mystery at the heart of the show that looks both forwards and backwards in terms of mythology.\" An uprising has occurred and the humans lost, which means they are now the hunted second-class citizens. \"The show is really imagining what comes after us, and what does it mean to be human in a world where humanity is no longer relevant,\" said Luisa. Per the official synopsis:Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49051816",
+      "title": "A 77-year-old Republican man is staging a solo protest against Flock cameras",
+      "url": "https://www.cltampa.com/news/a-77-year-old-republican-man-is-staging-a-solo-protest-against-st-petes-flock-cameras/",
+      "author": "UmYeahNo",
+      "publishedAt": "2026-07-25T21:32:08.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 136,
+      "comments": 73
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49051947",
+      "title": "GM Backs Sodium Ion Batteries for U.S. Grid Storage",
+      "url": "https://spectrum.ieee.org/sodium-ion-battery-peak-energy",
+      "author": "rbanffy",
+      "publishedAt": "2026-07-25T21:48:22.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 152,
+      "comments": 61
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Jul/25/ruff/#atom-everything",
+      "title": "Ruff v0.16.0",
+      "url": "https://simonwillison.net/2026/Jul/25/ruff/#atom-everything",
+      "author": null,
+      "publishedAt": "2026-07-25T22:44:05.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49052912",
+      "title": "DeepSeek pause fundraise after comments on compute gap to US leaked (transcript) [pdf]",
+      "url": "https://github.com/demo-zexuan/liang-wenfeng-investor-meeting-2026-7-22/blob/master/%E6%A2%81%E6%96%87%E9%94%8B%E6%8A%95%E8%B5%84%E8%80%85%E4%BA%A4%E6%B5%81%E4%BC%9A-%E6%96%87%E5%AD%97%E7%A8%BF_1_18_translate_20260723201651.pdf",
+      "author": "oliculipolicula",
+      "publishedAt": "2026-07-25T23:32:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 113,
+      "comments": 77
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260725/p17#a260725p17",
+      "title": "A look at China's bid to build an alternative global order in AI by making open models widely available and training people in developing countries to use them (Financial Times)",
+      "url": "https://www.techmeme.com/260725/p17#a260725p17",
+      "author": null,
+      "publishedAt": "2026-07-26T02:55:01.000Z",
+      "content": "Financial Times: A look at China's bid to build an alternative global order in AI by making open models widely available and training people in developing countries to use them — Beijing makes most ambitious offer yet to build alternative global order — China's President Xi Jinping has set …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    }
+  ]
+}
