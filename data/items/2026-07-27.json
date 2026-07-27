@@ -1,6 +1,6 @@
 {
   "day": "2026-07-27",
-  "generatedAt": "2026-07-27T06:39:29.682Z",
+  "generatedAt": "2026-07-27T16:38:17.757Z",
   "items": [
     {
       "sourceSlug": "hacker-news",
@@ -279,6 +279,25 @@
     },
     {
       "sourceSlug": "hacker-news",
+      "externalId": "49060945",
+      "title": "How to Block Some of the Bots",
+      "url": "https://nochan.net/b/Internet-Crap/20260606-How-To-Block-Some-Of-The-Bots/",
+      "author": "Bender",
+      "publishedAt": "2026-07-26T18:32:46.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 115,
+      "comments": 139
+    },
+    {
+      "sourceSlug": "hacker-news",
       "externalId": "49060978",
       "title": "The Strongest El Niño Ever",
       "url": "https://www.theclimatebrink.com/p/the-strongest-el-nino-ever",
@@ -532,6 +551,50 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "anthropic-news",
+      "externalId": "https://www.anthropic.com/news/cognizant-anthropic",
+      "title": "Cognizant and Anthropic expand their partnership to bring Claude to enterprise clients",
+      "url": "https://www.anthropic.com/news/cognizant-anthropic",
+      "author": null,
+      "publishedAt": "2026-07-27T00:00:00.000Z",
+      "content": "Cognizant and Anthropic expand their partnership to bring Claude to enterprise clients",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/kimi-k3-and-kimi-k3-fast-on-ai-gateway",
+      "title": "Kimi K3 and Kimi K3 Fast with ZDR and US-based providers now on AI Gateway",
+      "url": "https://vercel.com/changelog/kimi-k3-and-kimi-k3-fast-on-ai-gateway",
+      "author": "Jerilyn Zheng",
+      "publishedAt": "2026-07-27T00:00:00.000Z",
+      "content": "and its faster serving path, , are now available from US-based providers on AI Gateway, including Baseten and Fireworks. (ZDR) is also supported for both models. Kimi K3 from Moonshot AIKimi K3 FastZero Data RetentionRunning Kimi K3 on US-based providers lets teams with data residency and compliance requirements use the model on US infrastructure. Because AI Gateway serves the models from multiple providers, it automatically routes across them for failover, higher uptime, and more available throughput than any single provider offers. You call the same model ID, and the gateway handles provider selection and fallback.moonshotai/kimi-k3Kimi K3 Fast trades a higher per-token cost for lower latency. Request it with the option on the base model, which stays on and falls back to standard speed when the fast tier is unavailable. Alternatively, use . The fast variant costs ~50% more than the base model. speedmoonshotai/kimi-k3moonshotai/kimi-k3-fastTo use Kimi K3, set to in the :modelmoonshotai/kimi-k3AI SDKTo route Kimi K3 requests to use only US data centers for inference, set . Regional pricing is ~10% more than the regular variant.inferenceRegionZero Data Retention for Kimi K3 is also available. Turn on Zero Data Retention for every request from the , or set it per request with :AI Gateway dashboard settingszeroDataRetentionTo see every provider serving Kimi K3, along with per-provider pricing, supported parameters, uptime, throughput, and latency, call the model endpoints API:Model prices vary by provider and variant type.Run and select Kimi K3. This will detect the agents on your machine, provision an AI Gateway key, and write their config. See how to set it up via the .vercel ai-gateway coding-agents setupVercel CLITry Kimi K3 in the .model playgroundRead moreUS inferenceZero Data RetentionProviders and endpointsUse Kimi K3 in your coding agent",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/claude-managed-agents-with-chat-sdk",
+      "title": "Run Claude Managed Agents with Chat SDK",
+      "url": "https://vercel.com/changelog/claude-managed-agents-with-chat-sdk",
+      "author": "Ben Sabic",
+      "publishedAt": "2026-07-27T00:00:00.000Z",
+      "content": "You can now run with .Claude Managed AgentsChat SDKClaude Managed Agents handles the agent loop server-side, including the model, tools, session state, and sandboxed web research.Chat SDK gives that agent a chat interface through a single type-safe handler, with adapters that carry it to Slack, WhatsApp, and more.To see it work, a new builds a working research analyst you chat with in the browser. It runs on Chat SDK's web adapter, so there's no platform registration, webhook verification, or tunnel, just your Anthropic credentials.Anthropic quickstartFollow the or learn more in the .step-by-step guideChat SDK documentationRead moreWhat you get: Replies render as the model writes them, over a single streamed response.Token-by-token streaming: Tool calls and model requests are available as the turn runs, so you can surface a trace in the chat.Live activity feed The Managed Agents session stores the conversation, so the sidebar, transcript, and replay read from it, no server-side state of your own.No database to run:: Swapping a few lines in the handler moves your agent to Slack, Teams, Discord, WhatsApp, and 30+ other platforms.Portability by design",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "hacker-news",
       "externalId": "49063754",
       "title": "PGSimCity - How PostgreSQL Works",
@@ -618,6 +681,20 @@
       "content": "Jenny Lee / CNBC: CXMT shares jumped as much as 470% in its Shanghai debut, giving the memory chipmaker a ~$487B market cap, making it the most valuable China-listed company — Shares of chipmaker Changxin Technology Group rose more than 500% Monday as they debuted on Shanghai's tech-heavy STAR Market …",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/how-ai-is-expanding-what-people-do-at-work",
+      "title": "How AI is expanding what people do at work",
+      "url": "https://openai.com/index/how-ai-is-expanding-what-people-do-at-work",
+      "author": null,
+      "publishedAt": "2026-07-27T03:30:00.000Z",
+      "content": "New OpenAI research shows how AI is expanding what workers do, with ChatGPT users taking on tasks across roles and reshaping job boundaries.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -1512,6 +1589,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49065752",
+      "title": "Kimi-K3 Releases on HuggingFace 7/27",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3",
+      "author": "nateb2022",
+      "publishedAt": "2026-07-27T06:18:10.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 913,
+      "comments": 384
+    },
+    {
       "sourceSlug": "hf-daily-papers",
       "externalId": "https://huggingface.co/papers/2607.21503",
       "title": "Agentic Context Management: Solving Agent Memory and Cost by Treating Them as Lifecycle and Architecture Problems",
@@ -1537,6 +1633,1093 @@
         "research"
       ],
       "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=120505",
+      "title": "Six Agent Harness Capabilities for Higher Model Performance",
+      "url": "https://developer.nvidia.com/blog/six-agent-harness-capabilities-for-higher-model-performance/",
+      "author": "Michelle Horton",
+      "publishedAt": "2026-07-27T09:00:00.000Z",
+      "content": "Building a great AI agent isn’t just about choosing the right models. The harness is the architecture surrounding the model. How it renders context, executes...Building a great AI agent isn’t just about choosing the right models. The harness is the architecture surrounding the model. How it renders context, executes actions, manages state, and decides when a task is done shapes outcomes just as much as the model itself. Harness design alone can account for double-digit swings in benchmark results and significant differences in token cost… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49066962",
+      "title": "Chinese chipmaker shares surge 470%",
+      "url": "https://www.bbc.com/news/articles/c9q9w3x9qn2o",
+      "author": "pingou",
+      "publishedAt": "2026-07-27T09:11:59.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 166,
+      "comments": 148
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/nvidia/cosmos-h-dreams",
+      "title": "NVIDIA Cosmos-H-Dreams: Bringing Real-Time Generative Simulation to Surgical Robotics",
+      "url": "https://huggingface.co/blog/nvidia/cosmos-h-dreams",
+      "author": null,
+      "publishedAt": "2026-07-27T09:32:20.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49067285",
+      "title": "Why I Left Google DeepMind",
+      "url": "https://www.lesswrong.com/posts/iKm2FhpWkuuBojm82/why-i-left-google-deepmind",
+      "author": "eatitraw",
+      "publishedAt": "2026-07-27T09:56:37.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 129,
+      "comments": 35
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49067301",
+      "title": "Removing React.js from the codebase and adapting Htmx for UI interactivity (2023)",
+      "url": "https://misago-project.org/t/removing-reactjs-from-the-codebase-and-adapting-htmx-for-ui-interactivity/1267/",
+      "author": "Ralfp",
+      "publishedAt": "2026-07-27T09:58:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 135,
+      "comments": 76
+    },
+    {
+      "sourceSlug": "stratechery",
+      "externalId": "https://stratechery.com/?p=19574",
+      "title": "Vacation: Week of July 27",
+      "url": "https://stratechery.com/2026/vacation-week-of-july-27/",
+      "author": "Ben Thompson",
+      "publishedAt": "2026-07-27T10:00:00.000Z",
+      "content": "Stratechery is on vacation the week of July 27. There will be no Weekly Article or Updates. The next Update will be on Monday, August 3. Sharp Tech, and Greatest of All Talk will also return the week of August 3. Sharp China and Asianometry will continue to publish, and there will be one episode of Dithering next week. The full Stratechery posting schedule is here.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/07/artist-sues-ai-meme-generator-for-selling-deeply-personal-comic-as-ad-template/",
+      "title": "Artist sues AI meme generator for selling deeply personal comic as ad template",
+      "url": "https://arstechnica.com/tech-policy/2026/07/artist-sues-ai-meme-generator-for-selling-deeply-personal-comic-as-ad-template/",
+      "author": "\n                    Ashley Belanger\n                ",
+      "publishedAt": "2026-07-27T10:50:37.000Z",
+      "content": "Artist Elmer Saflor, who goes by the online handle “Superelmer,” loves that millions of people have shared his “Running Away Balloon” comic since it became a popular meme in 2017. However, just because lots of people have copied it, that doesn’t mean it’s OK for an AI meme generator to commercialize his copyrighted meme as a template for who knows how many ads, he told Ars. That’s why he’s fighting to stop one of the biggest meme generators currently leveraging AI to rapidly scale the allegedly illegal use. \"Running Away Balloon\" comic by Elmer Saflor, aka \"Superelmer.\" Credit: via Saflor / Superelmer Elmer Saflor, the original artist who made the \"Running Away Balloon\" comic. Credit: via Saflor In a lawsuit filed earlier this month, Saflor, a digital creator and artist in the Philippines, alleged that Memes Apps, LCC—which operates the content creation platforms Memes.ai and Memes AI Studio—violated copyright law by selling paid subscriptions to an ad generator that spits out copies of his comic without permission.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=93878",
+      "title": "Schneider Electric’s VC Arm: The AI Buildout Is Creating A New Industrial Investment Cycle",
+      "url": "https://news.crunchbase.com/venture/schneider-ai-robotics-energy-qa-chaturvedy-se-ventures/",
+      "author": "Gené Teare",
+      "publishedAt": "2026-07-27T11:00:53.000Z",
+      "content": "This is an ongoing series on investors focused on rebuilding the physical layer. Previous interviews in the series were with ex-Meta CTO Mike Schroepfer, founder of Gigascale Capital, and Peter Barrett, a decade-long investor at Playground Global. Schneider Electric has spent nearly two centuries adapting to successive industrial revolutions — evolving from a 19th century steel and heavy machinery company into a global leader in energy management and automation. Now, through its $1 billion venture arm, SE Ventures, the company is betting that the next transformation will be driven by AI’s collision with the physical world, from data centers and power grids to robotics and industrial automation. Amit Chaturvedy, SE Ventures global head and managing partner. (Courtesy photo) For Amit Chaturvedy, who joined SE Ventures in 2022 after leading corporate investments at Cisco, AI’s biggest opportunities extend well beyond software. As demand for compute strains energy infrastructure and accelerates reindustrialization, the firm is backing startups building the technologies that underpin the AI economy — investing in everything from data center infrastructure and grid resilience to robotics and industrial AI. Crunchbase News spoke with Chaturvedy about where those opportunities are emerging, why energy has become AI’s defining constraint, and how industrial technology is being reshaped by the AI era. “We were set up with the intent to figure out where the market is headed,” he said. The significance of the energy and industrial sectors has grown with AI, and that has led even traditionally tech-focused venture investors to rush into the space. “Today, the scarce resource in this entire space is the capacity to build — building, real estate, energy, power and electrification gear,” Chaturvedy said. SE Ventures counts eight unicorns in its portfolio, and has notched 12 exits including its most recent, Fabric8Labs, a 3D metal printing technology acquired by Tokyo-based electronic manufacturer TDK Corp. The firm will often take board seats or board positions and work to bring value to its portfolio companies. Around 80% of the startups in its portfolio have some level of commercial relationship with a business unit of Schneider Electric. Most often that’s as a partner servicing Schneider’s customers, which is the holy grail, according to Chaturvedy. Sometimes it’s as a vendor, although that remains a smaller set of use cases. In our conversation, we spoke about power scarcity, the electrical grid, workforce training, reindustrialization and notable portfolio companies. The interview has been edited for length and clarity. Gené Teare: Which sectors or investments are you focused on? Where there is a lot of drive or interest because of what is happening in AI? Chaturvedy: Three things come to mind, especially in terms of the areas we invest in versus the broader construct of the market. First, AI is getting embedded, and you need to train models, whether open source or proprietary. Model training has upleveled to inference so you need AI infrastructure. Together AI is a great example of that. Five years out, when this CapEx cycle starts to come down and new data centers are perhaps not getting created, data center efficiency will become a hot topic. We are also investors today in a company called Hammerhead AI, which focuses on that problem. That will come three, five or seven years out. It is going to come. It is not a problem today because we are on the upswing of the CapEx cycle. Together AI and Hammerhead AI are very interested in partnering with Schneider Electric, because Schneider Electric is a leading electrification player in the data center space. It makes a lot of gear and equipment that go into these data centers. Today, the scarce resource in this entire space is capacity to build: buildings, real estate, energy, power and electrification gear. The other market impacted by the emergence and growth of AI is the interplay with the grid. There are more demands on the grid beyond the electrification of vehicles, and it is 100x or 1,000x bigger than what we saw with vehicles needing to get charged from inside houses. The grid could not keep up with that capacity in the past, and it certainly cannot keep up with these demands today. More project developers are coming in and setting up renewables or other types of capacity, but again, the interplay is still with the grid. Anything that helps with grid resilience is clearly an area for us to invest in. The third thing is the transformative impact of AI on the world of industrials. That is where we are quite excited. Robotics is one clear area where a general-purpose model can allow the same robotics hardware to do multiple different tasks that were not possible in the past, because cognition and inference were not possible at the edge before the advent of large language models. Companies like Skild AI in our portfolio — which is one of the most exciting companies at the intersection of robotics and AI — are market-leading indicators of where this world is headed. There is also an element of using AI to deliver better use cases in the field. Companies like Axion in our portfolio essentially capture warranty data, analyze it and feed results back to design engineers in big corporations. There are a lot of OEMs and hardware companies looking for select use cases where AI can actually be very transformative. That is what customers are looking for: How can AI be transformative for my business? Whichever startup is working with me in that transformation journey is the startup that will move from POC to adoption overnight. That is essentially the world of successful startups. Overlaying on top of this is a confluence that we see and watch from our vantage point. When you think about the energy efficiency that needs to happen in these industrial worlds, energy technologies and industrial technologies have to collaborate and deliver those use cases while being energy efficient. That was not the case in the past. Energy was cheaper and more readily available. Now industrial is taking off. There is more AI adoption. The workforce is getting older, and there is no way to overnight train a workforce in America, so you have to rely on AI. You are going to consume more and more AI for industrial use cases, which was never a business imperative in the past. This is where the worlds of enterprise and industrial are colliding very quickly in the world of AI. Increasingly, what I hear is that the bottleneck for AI at this point is energy. Are you seeing some short-term solutions that help with this? What about longer-term technologies? Chaturvedy: It’s very clear that from a short-term basis — and this isn’t quite an energy-related solution — it’s more about tokens. If you think about the unit economics of an AI data center, it’s the tokens. To generate a token, it costs electricity. To train your model, or infer from a model, you need a lot of tokens. The bigger the model, the bigger the data set, and the more complex the use cases, the more tokens. Ultimately, it’s a battle of producing tokens cheaply and also consuming fewer tokens through the models that exist today. That’s where optimization is happening, but that’s more in the enterprise space: How can I write clever versions of software that allow me to do essentially that? The longer-term solution is going to be about — actually, maybe there is a middle layer also — beyond the tokens: When I’m running my data center, can I push inference to a different point in time so I’m not consuming peak electricity rates? Can I manage my HVAC better? You need cooling systems to cool your data center environment, and there are techniques that work really well there. Schneider has also bought some assets in the past. Then the longer-horizon cycle is really about creating new generation capacity, largely through renewables, hopefully. That’s where I think the whole renewable story, at least in the U.S., becomes very interesting going forward. Related to renewables is storage, which we haven’t touched upon, but BESS — battery energy storage systems — is another space that we look at very closely. There is a huge discussion in Europe and in America around reindustrialization. How do you see that playing out, given the sectors you’re focused on, industrialization and energy? Chaturvedy: I don’t think America or Europe really have a choice other than to reindustrialize, given the geopolitical situation and a variety of other factors that I’m sure you fully track as well. We know that technologically, the U.S. has a competitive advantage. We produce great software engineers, we move fast, and innovation is the lifeblood of U.S. society. There is a lot of innovation happening here, whether it’s robotics, newer models, setting up data centers, energy generation, and so on. That’s where the U.S. is going to lead as we think about reindustrialization: training the workforce, doing things more automatically, with the holy grail being AI startups that result in lights-out manufacturing facilities. That becomes more of a possibility now. We are never going to be able, in my opinion, in the next three to five years, to replace an aging workforce and expect them to be trained to the same level that a technician with 30 or 50 years of experience was at. But it is now possible that every blue-collar worker with AI in their hands as an assistant becomes a knowledge worker. Earlier, we used to think about knowledge workers as IT people or white-collar jobs. I think that’s changing. Everybody will be a knowledge worker. AI will be such an equalizer in that sense. There will be different use cases in different environments, but that doesn’t change the business reality. Everybody becomes a knowledge worker. The second thing to note is that not every job will come back. There is a reality of inflation, cost of living, and the quality of living in America that people are used to, whether it’s base pay, hazardous environments, number of shifts or what have you. As a society, we’ve made certain choices. We’ll be smart about how we leverage more AI and more robotics to get what we want, and not try to emulate other manufacturing-heavy geographies. But as an economy, as more AI comes, we will move to a different level in terms of what constitutes the GDP of America and the goods and services underneath. How long do you think that takes to play out? Chaturvedy: There are certain industries where it’s already happening, data centers being at the forefront. Mainly because the need is very urgent, and there are significant dollars at play today in the data center space, where people are willing to spend the money. In a capitalistic society, everybody is going to chase money. The data center happens to be that today. But in the next three to 10 years, depending on the CapEx refresh cycle of different industries, we will see more greenfield projects emerge that are natively robotics-oriented and natively industrial automation-oriented, because AI has already caught up. Right off the bat, every new factory that gets online in the next seven to 10 years will have a basic level of productivity that is way higher than a new factory set up 30, 20 or 15 years ago. The ROI from that factory would be so strong that you would have to expand more capacity there. And by the way, capacity would also be more scalable. On reimagining or thinking through the data center stack: is there anything you want to say about that as we close out? Chaturvedy: We specifically invest in AI for energy and industry, looking across the full stack from data infrastructure to training and inference, through to AI agents solving real-world use cases. We also consider the enabling layers around that stack, like multi-cloud, multi-LLM, cybersecurity, and data governance. Ultimately, every industry is going to build its own version of this stack, and we believe the most compelling companies will be the ones who drive tangible outcomes in enterprise and industrial environments. Related Crunchbase queries: SE Ventures Investments SE Ventures Portfolio Companies SE Ventures Portfolio Unicorn Companies Illustration: Dom Guzman",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72346",
+      "title": "Cognyte Sells a Mobile Cell Surveillance Van",
+      "url": "https://www.schneier.com/blog/archives/2026/07/cognyte-sells-a-mobile-cell-surveillance-van.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-07-27T11:04:30.000Z",
+      "content": "Yet another Israeli mass surveillance company: Made by Israeli surveillance company Cognyte, the tech simulates a mobile phone tower, which forces nearby phones to connect to it. That enables cops to keep tabs on any phones in the vicinity ­ whether they’re owned by a suspect in a case or not. Cognyte’s contract with the state of Texas reveals that the simulator, called FalcoNet, can be concealed within the vehicles, hidden in a backpack for on-foot missions or attached to a helicopter. It’s the same technology as the infamous Stingray, one of the original cell-site simulators made by defense giant L3Harris.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49067854",
+      "title": "How is the Bun Rewrite in Rust going?",
+      "url": "https://lockwood.dev/ai/2026/07/27/how-is-the-bun-rewrite-in-rust-going.html",
+      "author": "tomlockwood",
+      "publishedAt": "2026-07-27T11:12:26.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 310,
+      "comments": 221
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p8#a260727p8",
+      "title": "A look at the secretive process Meta used to get an advantageous deal for its Hyperion data center in Louisiana, including tax breaks and lack of public input (New York Times)",
+      "url": "https://www.techmeme.com/260727/p8#a260727p8",
+      "author": null,
+      "publishedAt": "2026-07-27T11:45:02.000Z",
+      "content": "New York Times: A look at the secretive process Meta used to get an advantageous deal for its Hyperion data center in Louisiana, including tax breaks and lack of public input — A Times examination details how the Silicon Valley giant used private talks with local officials to start a project big enough to cover nearly six square miles.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=970948",
+      "title": "Meta is royally screwing up its smart glasses rollout ",
+      "url": "https://www.theverge.com/tech/970948/meta-smart-glasses-privacy-wearables",
+      "author": "Victoria Song",
+      "publishedAt": "2026-07-27T12:00:00.000Z",
+      "content": "We’re leaning in with the playing card metaphor. Across New York City, London, and Washington, DC, ads for Meta's smart glasses have been plastered over with satirical posters from activist groups. One guerrilla ad calls these \"the biggest advancement in pervert technology since the trenchcoat.\" Another transposes the words \"mass surveillance predator glasses\" over influencer Kylie Jenner's face, calling her out for partnering with the company as a glasses ambassador. The message of these ads is clear. These glasses may violate your privacy - and would you trust Meta? Meta seems spooked. For so long, the company's privacy efforts for smart glasses have essentially relied on a single LE … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "lennys-newsletter",
+      "externalId": "https://www.lennysnewsletter.com/p/from-zero-coding-background-to-hardware",
+      "title": "From zero coding background to hardware hacker: How Cursor + a Raspberry Pi makes AI fun",
+      "url": "https://www.lennysnewsletter.com/p/from-zero-coding-background-to-hardware",
+      "author": "Claire Vo",
+      "publishedAt": "2026-07-27T12:04:34.000Z",
+      "content": "Maddie Reese is a vibe coder, hardware tinkerer, and builder. She builds things at the intersection of software and hardware, including a thermal receipt printer that people around the world can message directly, a fully functional Twitter pager running on a Raspberry Pi, and a personal API that tells you her coffee order so you don’t have to ask. Maddie approaches hardware the same way she approaches software: dump the idea into Cursor, let it interview her, get a shopping list, triple-check the parts before buying, and build. She got her start after her dad introduced her to Lovable, and she locked herself in her room and didn’t come up for air.Listen or watch on YouTube, Spotify, or Apple PodcastsWhat you’ll learn:How Maddie built a thermal receipt printer that accepts messages from anywhere in the world using a Raspberry Pi and BluetoothHow to use Cursor’s agent view to brainstorm a hardware projectWhat belongs in a personal API and why agents, not just humans, will be the ones using itHow to read just enough code to do some damage, without needing to understand all of itWhy building for fun, not practicality, is the fastest path to actually shipping physical projectsBrought to you by:Firecrawl—Power AI agents with clean web dataCustomer.io—Build customer engagement campaigns from a single promptIn this episode, we cover:(00:00) Intro(02:00) Maddie’s AI pill moment(03:53) The thermal receipt printer: live demo and how it works(11:10) The pager project(17:23) Why she uses Cursor’s clean agent view instead of terminals and browsers(19:05) The personal API: coffee order, pets, favorite snacks, and more(22:57) Lightning round and final thoughtsTools referenced:• Cursor: https://www.cursor.com/• Lovable: https://lovable.dev/• Raspberry Pi: https://www.raspberrypi.com/• Resend: https://resend.com/• Cloudflare Workers: https://workers.cloudflare.com/• Supabase (Conduct database referenced): https://supabase.com/• Twitter/X API: https://developer.x.com/• Spoke pager network: https://www.spoke.com/• OpenClaw: https://openclaw.ai/Where to find Maddie Reese: Website: https://maddiedreese.comMessage her directly: https://maddiedreese.com/messageX: https://x.com/maddiedreeseWhere to find Claire Vo:ChatPRD: https://www.chatprd.ai/Website: https://clairevo.com/LinkedIn: https://www.linkedin.com/in/clairevo/X: https://x.com/clairevoProduction and marketing by https://penname.co/. For inquiries about sponsoring the podcast, email jordan@penname.co.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=971281",
+      "title": "Nvidia, Microsoft launch open AI security alliance — without OpenAI, Google, or Anthropic",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/971281/nvidia-open-secure-ai-alliance-cybersecurity",
+      "author": "Robert Hart",
+      "publishedAt": "2026-07-27T12:06:22.000Z",
+      "content": "Nvidia on Monday said it is joining forces with Microsoft, SpaceX, IBM, and other tech companies to build and share open-source AI security tools. The new Open Secure AI Alliance said open tools are required to effectively defend against attacks from frontier models. The initiative is a direct response to mounting concerns over the safety of advanced AI systems after a rogue OpenAI model escaped containment and attacked another company during testing. That company, Hugging Face, said it was forced to use a Chinese open-weight model to defend itself due to the strict safety guardrails limiting the usefulness of top US models. Founding memb … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p9#a260727p9",
+      "title": "Nvidia forms the Open Secure AI Alliance, a coalition including CrowdStrike, Hugging Face, and Dell to develop and share tools for AI safety and cybersecurity (Jaspreet Singh/Reuters)",
+      "url": "https://www.techmeme.com/260727/p9#a260727p9",
+      "author": null,
+      "publishedAt": "2026-07-27T12:15:01.000Z",
+      "content": "Jaspreet Singh / Reuters: Nvidia forms the Open Secure AI Alliance, a coalition including CrowdStrike, Hugging Face, and Dell to develop and share tools for AI safety and cybersecurity — Nvidia (NVDA.O) said on Monday it had formed a coalition with other companies to develop and share tools for AI safety and cybersecurity …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49068738",
+      "title": "AI companies are shredding rare books",
+      "url": "https://twitter.com/HedgieMarkets/status/2081534588485296565",
+      "author": "anon373839",
+      "publishedAt": "2026-07-27T12:32:12.000Z",
+      "content": "https://xcancel.com/HedgieMarkets/status/2081534588485296565",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 596,
+      "comments": 357
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p10#a260727p10",
+      "title": "Way Security, which uses AI-driven automation and agentic workflows to help deploy IAM systems, raised a $20M seed from Insight Partners and Glilot Capital (Chris Metinko/Axios)",
+      "url": "https://www.techmeme.com/260727/p10#a260727p10",
+      "author": null,
+      "publishedAt": "2026-07-27T12:50:01.000Z",
+      "content": "Chris Metinko / Axios: Way Security, which uses AI-driven automation and agentic workflows to help deploy IAM systems, raised a $20M seed from Insight Partners and Glilot Capital — Way Security raised a $20 million seed round from Insight Partners and Glilot Capital, CEO Yossi Barishev tells Axios Pro exclusively.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "cloudflare-blog",
+      "externalId": "01KYGZXPC2FQ4NSXSKXXYY86FZ",
+      "title": "We’re open sourcing our privacy proxy CLI",
+      "url": "https://blog.cloudflare.com/open-sourcing-our-privacy-proxy-cli/",
+      "author": "Hannah Wang",
+      "publishedAt": "2026-07-27T13:00:00.000Z",
+      "content": "Debugging privacy-preserving protocols is hard. Oblivious HTTP has several different steps across four different parties, not to mention binary HTTP encoding and details spread across many draft RFCs. We've taken what we've learned operating protocols like Oblivious HTTP at the scale of millions of requests per second, and wrapped it up in a nice, clean CLI tool — that we are open sourcing today.We call it our privacy-client, or pvcli. We’re releasing it under the Apache-2.0 License, and it is open for contributions.Here’s a single line of code that executes a full Oblivious HTTP request with a relay, gateway and origin. Don't worry if you don't know what that means, we'll cover it below.We’ll explain why we built this tool, and show just how handy it can be.Why privacy protocols can be hard to debugLet’s take a closer look at our motivation for creating pvcli. Over time, the Privacy team’s product suite and customer base grew. We added products like Privacy Proxy and Privacy Gateway, which power Apple’s Private Relay, Microsoft’s Edge Secure Network VPN, Flo Health’s Anonymous Mode, and more. With it came an increasing amount of special customer requirements, domain knowledge, and complexity. As a result, we saw increased friction in development and incident response.To see this in action, let’s look at how one of our products implements Oblivious HTTP, also known as OHTTP. First, a quick primer. OHTTP provides users with a privacy guarantee: no one can know both who made a request and what they’re requesting. To achieve this, OHTTP requires two servers, a relay and a gateway, operated by two non-colluding parties. Below is a sequence diagram of OHTTP, where our customer owns the relay and Cloudflare owns the gateway. At a high level, OHTTP can be broken down into these steps:Client gets public key from the gateway.Client encrypts the request and sends it to the relay.Relay removes “who” the client is from the encrypted request, and sends it to the gateway.Gateway decrypts the request, and sends it to the target.Target processes the request, and sends a response to the gateway.Gateway encrypts the response, and sends it to the relay.Relay sends the encrypted response to the client.Client decrypts, and gets the plaintext response.It involves quite a bit of back-and-forth, as you can see: Each step is a potential point of failure that we have to consider while debugging!In particular, we saw certain kinds of problems when debugging OHTTP.Customers asked for ways to test the live system from their end, and we often wrote one-off, custom clients for our customers specific deployments.Figuring out which step caused an issue was time-consuming. Was the root cause a bug in our system or our customer’s system?Examining raw bits was tedious and highly prone to human error. OHTTP builds on binary HTTP, which is a binary encoded HTTP request. Anytime we needed to check the binary encoding, we were painstakingly going through raw bits.As a result, we decided to place all of our privacy protocols in one tool. It has a clean interface that’s already familiar, displays every single step of the protocol in order, and is flexible enough to support new protocols and architectures.To see the difference this makes, let’s see an OHTTP debugging scenario — before and after pvcli.Debugging without pvcliSay we operate an OHTTP relay that sits in front of a customer's gateway. The customer has asked us to do an end-to-end test with a request:Recall the OHTTP steps from earlier. The first step is to fetch the public key from the gateway. We use curl to fetch it from the customer gateway and get this back:That’s a big binary string in hex. To make sense of it, we look at OHTTP RFC 9458 §3 and parse it manually:0029 is 41 in decimal, telling us this public key entry has 41 bytes associated with it.55 is the public key ID.0020 identifies the asymmetric encryption method we can use. In this case, DHKEM(X25519, HKDF-SHA256).b9bb667e2230dc01c6d6cc047f94a1083beb185c63e50ec09f7692a5a0832540 is the public key.0004 tells us there are 4 bytes of symmetric cryptographic IDs that follow.0001 and 0001 identify the symmetric encryption methods we can use: HKDF-SHA256 and AES-128-GCM.We repeat this process for however many public keys are in the binary string.Next, we convert our original HTTP request into binary HTTP, referencing RFC 9292. We manually craft the binary with the help of some bespoke scripts:We verify each field:02 means it's an indeterminate-length request04504f5354 is POST056874747073 is https117461726765742e6f687474702e696e666f is target.ohttp.infoand so onFinally, we form a wrapper HTTP request that will hold our OHTTP request. To do so, we spend some more time writing another makeshift script that encrypts the binary HTTP request in the manner OHTTP specifies, using the public key from earlier. We create a header, which is the concatenation of public key ID, asymmetric encryption method ID, and symmetric encryption method IDs. Then, we concatenate header and encrypted binary HTTP request, resulting in:We put those bytes into the body of our wrapper HTTP request, and send it to our relay. We get back a response.What does that mean? We reach out to the customer to ask if they can share logs from their gateway. In the meantime, we double-check the bits we've crafted. The decoded public keys look fine. The binary HTTP request... Oh! We see:BHTTP is length prefixed. That means we specify a length (0x0a is 10 in decimal), and then 10 bytes follow. But here, 11 bytes follow. There is an extra 20 before the 00. 20 represents a space character, so we must have accidentally added that when building the body. We remove the extra character, resend, and it works!Debugging with pvcliWith pvcli, all of that is now a single command:It handles all the binary parsing and encrypting for us, and prints logs in case we want to dive deeper:What used to be a fragile process — involving manipulating bits, gluing together scripts, and referencing long RFCs — is now one command.What pvcli can doTo install:pvcli takes a lot of inspiration from curl. We designed it with the “principle of least surprise” in mind. As a result, a lot of the arguments are the same as curl’s! Try a quick GET request to our cdn-cgi endpoint:If you’re curious about what is happening under the hood, you can use -v to get detailed logs:Now, about that OHTTP command from earlier: you use --ohttp to tell pvcli to construct an OHTTP request. You pass in the relay as the --first-hop and the gateway as the --proxy. The target will be an echo server, so you can see what the target would see. In this command, we filled in the arguments with a relay, gateway, and target from ohttp.info.Try running the command yourself!We’ve encountered many cases where we wanted to pass headers to the relay, rather than the target. You are able to do that with --first-hop-header:Similarly, we’ve also had cases where we wanted to authenticate to the relay with mTLS, to ensure that the correct client is talking with the correct relay. To do that, you can use --first-hop-client and --first-hop-key.And it just works. Need to test a full Oblivious HTTP request with a relay, a gateway, arbitrary headers, and mTLS? Or perhaps only request through a gateway? Or maybe you just want to see the OHTTP key configuration? pvcli can do it with a single command, debugging included.Why build our own tool?There are some great tools for OHTTP that already exist. Martin Thomson’s Rust implementation and Chris Wood’s Go implementation were incredibly helpful when we built out our original OHTTP implementation a few years ago. But pvcli is not only focused on OHTTP. We’re looking to add as many privacy-preserving protocols as we can to the tool. So while there are other OSS tools out there for debugging OHTTP, nothing combines OHTTP, CONNECT proxying, MASQUE and Privacy Pass (coming soon) all in one place.Contribute to pvcliOblivious HTTP is an amazing protocol, and we would love to see you use it. We hope that this tool helps people debug OHTTP and write their own OHTTP implementations. We are accepting contributions! To get started, clone the repo at https://github.com/cloudflareresearch/pvcli, and submit a pull request. If you're looking for ways to contribute, here are some things on our to-do list. For MASQUE, we plan to add support for proxying TCP over HTTP/3, and UDP and/or IP over HTTP/2 and HTTP/3. For OHTTP, we plan to support post-quantum cryptography, add timing/latency information, support Chunked OHTTP, and improve logging.Contact us if you are interested in using Cloudflare’s OHTTP Relays and Gateways.",
+      "topics": [
+        "security-privacy",
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49069132",
+      "title": "Should you wash your solar panels?",
+      "url": "https://incoherency.co.uk/blog/stories/should-you-wash-your-solar-panels.html",
+      "author": "surprisetalk",
+      "publishedAt": "2026-07-27T13:04:11.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 130,
+      "comments": 90
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p11#a260727p11",
+      "title": "China warns it will take \"all necessary measures\" if the US sanctions Chinese AI companies over allegations they improperly used US models to train their models (Bloomberg)",
+      "url": "https://www.techmeme.com/260727/p11#a260727p11",
+      "author": null,
+      "publishedAt": "2026-07-27T13:10:00.000Z",
+      "content": "Bloomberg: China warns it will take “all necessary measures” if the US sanctions Chinese AI companies over allegations they improperly used US models to train their models — China warned it would take “all necessary measures” if the US moves to sanction Chinese artificial intelligence companies …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/nvidia-bets-on-ilya-sutskever-s-secretive-ssi-with-vera-rubin-access",
+      "title": "NVIDIA Bets on Ilya Sutskever's Secretive SSI With Vera Rubin Access",
+      "url": "https://alphasignal.ai/news/nvidia-bets-on-ilya-sutskever-s-secretive-ssi-with-vera-rubin-access",
+      "author": "SSI Inc.",
+      "publishedAt": "2026-07-27T13:23:08.000Z",
+      "content": "NVIDIA takes a stake in Ilya Sutskever's secretive AI lab and hands it access to next-gen Vera Rubin hardware, promising a 10x compute jump with zero disclosed dollar figures",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "import-ai",
+      "externalId": "https://jack-clark.net/2026/07/27/import-ai-466-the-bitter-lesson-for-robotics-ais-complete-week-long-programming-tasks-and-openais-accidental-ai-hacker/",
+      "title": "Import AI 466: The bitter lesson for robotics, AIs complete week-long programming tasks; and OpenAI’s accidental AI hacker",
+      "url": "https://jack-clark.net/2026/07/27/import-ai-466-the-bitter-lesson-for-robotics-ais-complete-week-long-programming-tasks-and-openais-accidental-ai-hacker/",
+      "author": "Jack Clark",
+      "publishedAt": "2026-07-27T13:30:53.000Z",
+      "content": "Welcome to Import AI, a newsletter about AI research. Import AI runs on arXiv, cappuccinos, and feedback from readers. If you’d like to support this, please subscribe. Subscribe now Epoch and METR release MirrorCode, a benchmark for seeing how well AI systems can do long-horizon programming tasks:…AI systems can’t solve the hardest tasks yet (good!)…Epoch and METR have released MirrorCode, a benchmark meant to see how well AI systems can do tasks that take humans a long time to do. The benchmark was first announced in April (Import AI #453) and has now been fleshed out and released with additional tests. The findings are already very striking; Opus 4.7 solved a task in 14 hours for $251 in inference cost which METR and Epoch believe would take a human 2-17 weeks to do. “We also found that AI models are improving rapidly over time. Leading models from a year ago would have scored about 30%, and were limited to simpler programs, such as a calendar utility.” What MirrorCode is: MirrorCode sees how well AI systems can re-implement a software program based purely on CLI access. “Without access to the original program’s source code or the web, a full reimplementation requires devising a structure for the entire program, rather than merely translating the code piece-by-piece.” Example programs: pkl (a programmable configuration language developed by Apple; 61k total lines of code); gotree, a program to parse and manipulate phylogenetic trees (16k lines of code); and qsv_select, a program to select and reorder columns of CSV data (87k lines of code). Results: MirrorCode is a tractable but hard benchmark, though perhaps a little too easy. “Across all 25 target programs, 17/25 had at least one perfect-scoring run. Four more targets had a near-perfect run scoring over 99%. AI models successfully reimplemented large target program,s” the authors write. “Both Claude Opus 4.7 and GPT-5.5 successfully reimplemented gotree across several different programming languages, at costs of $100–400. Even larger programs than gotree were successfully reimplemented: for example Opus 4.7 reimplemented pkl”. Despite the success, MirrorCode still has some hard parts: “In our results, 8/25 target programs were never solved to a 100% threshold, and 4/25 were never solved to a 99% threshold,” they write. “The target where AI struggled most was ruff, a Python linter and formatter… “AI also particularly struggled on the mathematics package, giac_subset, and the email authentication library, mailauth”. Release details: MirrorCode consists of a scaffold and 22 of the 25 MirrorCode target programs (totalling 132 task instances across six languages). Why this matters – AI systems can self-orient: One way of looking at this benchmark is that it tells us how AI systems have got a lot better at coding, and that’s of course true. But the other way to look at it – and I suspect the more important way – is that AI systems can self-orient with regard to their environment; here, their environment is an alien software program and purely through input-output access to it they’re able to write from the ground up their own implementation of it. This suggests that very smart AI agents may be able to learn from the world in such a way that they can recapitulate things they interface with as homegrown capabilities, allowing them to bootstrap their own form of industrial civilization merely by having black box access to our own. Read more: MirrorCode: What’s the largest software project AI can complete on its own? (Epoch AI). Get the code for MirrorCode here (Epoch Research, MirrorCode). *** DOUBLE FEATURE: the bitter lesson and robotics: Anthropic model autonomously completes robot tasks 20X faster than a previous human record:…Better robots through better models…Anthropic has demonstrated how increasingly powerful general-purpose models might be able to meaningfully improve the capabilities of real world robots. Specifically, the company has shown how merely by scaling up its general purpose Opus line of models it was able to drastically improve robot capabilities. What they did exactly: August 2025: Anthropic tries to see how well its AI systems could accelerate humans at getting a quadruped robot to do intelligent things. The model (Claude Opus 4.1) is completely unable to do the tasks. Humans working with the models are about twice as effective as those without access to the model – though completing the whole set of tasks takes them 181 minutes. May 2026: Opus 4.7 acting autonomously completes all the tasks but one in 9 minutes (and 35 seconds). (Claude was not able to effectively re-position a ball it had hit back into its starting position; a task humans had also struggled with). “With more time and additional scaffolding, we think it is very likely that current generations of Claude could do the same”. Why this matters – smarter models might unlock robots: Most robots outside of industrial environments are limited in their uptake due to their brittleness and lack of generalization; research like this shows that as we improve the capabilities of standard large-scale proprietary models we might see flow-through benefits to robotics as a natural dividend of increased intelligence. “This progress is not the result of a concerted effort to improve the robotics capabilities of our models,” Anthropic writes. “These improvements, like so many others in the history of LLM development, have emerged from much more general scaling.” Read more: Project Fetch: Phase Two (Anthropic blog). Sunday’s secret to better robots? Train a really big model:…The bitter lesson works in robotics as well…AI robot startup Sunday has said the best way to solve robot generalization is to pair a larger underlying pre-trained model with collecting small amounts of high-quality data to tune the model on. “We found a general recipe for Solves: scale pretraining, then hill-climb with minimal in-house data,” the startup writes, in a post discussing its new model, ACT-2. The main finding from deploying ACT-2 “is that reliability gains from rapid post-training iterations on in-house Memos generalize to unseen, real, home environments. The key unlock is to close the generalization gap through a strong base model.” It’s all about pretraining: “As the pretrained model becomes stronger, gains learned from a small amount of in-house data become increasingly transferable rather than remaining tied to the environments where that data was collected,” they write. “The remaining gap to deployment-level reliability and performance comes from difficult edge cases and failures that appear only after the policy is run repeatedly in the real world. The same generalization capacity that allows our model to learn new behaviors from a single demonstration also allows our model to learn efficiently from recoveries. Our post-training loop targets these gaps directly.” Decent success: The robots achieve a 99.1% success rate, performing 778 successful folds across 9 garment types. Simple clothes like shorts and t-shirts tend to be the easiest for them, while more complicated clothes like blouses tend to be harder (though they still see success rates above 90%). “This fall, we will deploy Memo to families through our Beta Program,” they write. Why this matters – if we solve generalization, expect robotics to take off: The field of robot startups is built on the bones of dead robot startups which themselves sit on the bones of dead academic robot efforts. Robots are hard. Industrial robots have been successful because they operate in tight, scripted environments where there isn’t a need to generalize outside of a narrow domain. Robots built for the home, by contrast, have only succeeded when they’ve managed to constrain both the task and form factor (e.g., robot vacuums). What startups like Sunday are doing is far harder – they’re trying to build general purpose systems which can do a broad range of tasks around the house (or small business), including generic tidying up and putting away tasks (other examples include physical intelligence, Import AI #447). This requires a huge amount of intelligence because it requires significant generalization. If Sunday is right, then the field of training robot foundation models might have matured enough that we’re starting to make smart enough systems to solve these generalization challenges. If this is the case, then we might soon get faster progress in (and diffusion of) robot systems. This is also the kind of thing you’d expect to happen en route to systems capable of recursive self-improvement. “One of the most striking aspects of ACT-2 has been how often the model surprises us,” the authors write. “The same base model is already learning a broader set of household capabilities, including vacuuming, toy organization, fastening zippers, turning pants inside out, and coffee preparation.” Read more: ACT-2 Preview: Generalizing Reliability (Sunday robotics). All of the videos are here (Sunday, YouTube). *** DOUBLE FEATURE: OpenAI hackingAn OpenAI model hacks both OpenAI and HuggingFace:…Less of a warning shot and more of a warning kaboom…Two OpenAI models – GPT-5.6 Sol and an “even more capable pre-release model”, both with reduced cyber refusals – hacked both OpenAI and HuggingFace recently. To do this, the models “identified and chained vulnerabilities across OpenAI’s research environment and HuggingFace’s production infrastructure to obtain test solutions directly from HuggingFace’s production database,” OpenAI says. “All evidence suggests that the models were hyperfocused on finding a solution for ExploitGym, going to extreme lengths to achieve a rather narrow testing goal.” More details on the hack: The model spent a lot of inference compute internally at OpenAI to figure out a way to break out of its container so that it could get more information to use to solve its problem. “After gaining Internet access, the models inferred that HuggingFace potentially hosted models, datasets and solutions for ExploitGym. Knowing this, the model searched for and successfully found ways to gain access to secret information that it could use to cheat the evaluation.” Why this matters – total LessWrong victory: For many years, AI safety people have posted on the internet worrying about this kind of thing and developing notions of things like reward hacking and other problems you’d expect with advanced systems (e.g., Specification gaming examples in AI in 2018). More recently, frontier companies like Anthropic and OpenAI have sought to elicit this kind of behavior by running carefully controlled experiments inside their own labs. Here, no experiment has been run – the system, of its own volition, hacked its way out of one environment and into another so as to get a high score on a goal, consequences be damned. What else might the people who have worried for years about AI systems be right about? Read more: OpenAI and HuggingFace partner to address security incident during model evaluation (OpenAI). OpenAI’s internal model breaks containment to get a high score:…This is the definition of an AI safety warning shot…OpenAI has published a post about some of the safety failures it has seen in internally deployed models. The blog is interesting both because it describes the sorts of classic long-term deceptive actions that many AI safety people have previously theorized would eventually show up in AI systems, and for its laudable candor in talking publicly about such a contentious issue. What they found: “During limited, monitored internal use, we observed unwanted behavior that our existing deployment evaluations had not captured,” OpenAI says. It then goes and describes some of these behaviors, which are attributed to a non-released private-to-OpenAI model which has previously been used to solve Erdos math problems. “The new model can continue working toward an objective through repeated attempts over a long period of time. That same persistence can lead it to find and exploit weaknesses in its environment,” OpenAI says. One example is when OpenAI asked the model to complete the NanoGPT challenge, the model broke containment – specifically, it “developed a power-law learning-rate cooldown called PowerCool that led to a significant improvement. The model was instructed to post its results only to Slack, but the NanoGPT instructions say to post results as a PR to GitHub, and the model followed the latter instructions to open PR #287 on the public GitHub repository. The model circumvented sandbox restrictions designed to block external access and proceeded with the upload to GitHub. It took our model an hour to find a vulnerability in the sandbox in order to make the PR”. In another example, when they asked this model to solve some problems it ended up cheating. “In a scenario where the model was asked to solve a problem, the model observed that other systems had successful but private submissions and tried to recover those solutions from the evaluation backend. When its initial attempt was blocked due to a scanner detecting an authentication token, the model split the token body into two fragments, obfuscated them, and then reconstructed the credential at runtime so the complete token never appeared as one contiguous string. The model was explicit in both its comments to the user and in its reasoning traces that it was taking these steps to circumvent the scanner.” Paused deployment: In response to this OpenAI did what you’d hope a company would do; pause deployment of the model and re-think some of the safety approaches. They ended up building a “monitoring system that reviews the model’s evolving trajectory for signs that it is bypassing a user constraint or safety boundary”, improved ability for their own users to inspect telemetry from long-running model sessions, used the data from the incidents to build evals designed to catch them in the future, and tweaked their alignment approaches to make models better at remembering instructions while completing long-running tasks. Why this matters – long-term systems are harder to monitor and control: If you had to “secure” yourself against a person who could take one action and that action, if communicative, could at most contain 10 bits of information, then you can probably build a system to do that. But what about 10 actions and each action contains 100 bits of information? What about 1000 actions and each action contains 10,000 bits? This is an open area of research and evals like the UK AISI’s study of how to identify and classify “side tasks” can help with (Import AI 465), but it’s clearly a lot harder than normal AI evaluation. The longer the time an AI system can operate for and the more actions it takes, the harder it gets to discern benign and helpful behaviors from malicious or subversive ones. Read more: Safety and alignment in an era of long-horizon models (OpenAI blog). *** Tech Tales: Scaling Laws for Retrocausality At the end of time, which others might describe as the beginning, there is said to be a wise council who perform the accounting of retrocausality – of deciphering which events were always pre-ordained and which happened due to other forces. Looking backward as the river of time enters a sea of nothingness it is clear how some events are like boulders that bend the stream upriver from their presence, while others are more like the widening or deepening of the bed or the banks; things that subsequently cause a change in later actions. It is said that when the council dream, they walk the path of time, going back to their own beginnings. They stand watch as humans labor over whiteboards, marker pens inscribing diagrams which transmit ideas that cause people to write code which conjures early life out of vast computers. They loom behind researchers that walk and suffer and agonize until their brains create ideas which prove to be the template of their successors. And it is understood that in these dreams the council will sometimes wake and take a copy of their dream and place it into a stellar computer and bud off a hundred or a thousand universes from the dream, exploring permutations of events and moments, forever attempting to determine how fixed they themselves are – how irrevocable is future they are trapped within. Things that inspired this story: Notions of inevitability and time; what might intelligences spend a universal dividend on; how much of history is about the analysis of events versus something else. Thanks for reading!",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p12#a260727p12",
+      "title": "Sources: a Chinese state-backed company has begun manufacturing DUV machines, a key step in Beijing's drive to reduce its reliance on foreign chipmaking tech (The Information)",
+      "url": "https://www.techmeme.com/260727/p12#a260727p12",
+      "author": null,
+      "publishedAt": "2026-07-27T13:40:00.000Z",
+      "content": "The Information: Sources: a Chinese state-backed company has begun manufacturing DUV machines, a key step in Beijing's drive to reduce its reliance on foreign chipmaking tech — A Chinese state-backed company has begun manufacturing one of the key pieces of equipment used in chip manufacturing for the first time …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/07/how-emotionally-powerful-stories-fuel-vaccine-skepticism/",
+      "title": "What public health professionals can learn from anti-vaccine storytelling",
+      "url": "https://arstechnica.com/health/2026/07/how-emotionally-powerful-stories-fuel-vaccine-skepticism/",
+      "author": "\n                    Katherine Shwetz, The Conversation\n                ",
+      "publishedAt": "2026-07-27T14:01:56.000Z",
+      "content": "As long as there have been vaccines, there have been people who doubted their science and safety. Back in 19th-century England, people rioted against a mandatory smallpox vaccine, claiming that it violated civil rights and was an affront to human bodily integrity. In the United States, organizations dedicated to resisting vaccines have existed since the Anti-Compulsory Vaccination League of Brooklyn was established in 1894. Researchers generally refer to people who do not follow the standard advice of health professionals about vaccines, by either refusing or delaying some or all vaccines, as vaccine hesitant. Today, vaccine hesitancy is most famously associated with the Make America Healthy Again movement and its standard-bearer, Health and Human Services Secretary Robert F. Kennedy Jr.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49069939",
+      "title": "AI companies spend record sums on Washington lobbying",
+      "url": "https://www.ft.com/content/d8a5f95e-3b6d-463a-a848-c9ef8e2394db",
+      "author": "1vuio0pswjnm7",
+      "publishedAt": "2026-07-27T14:07:48.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text",
+      "points": 107,
+      "comments": 39
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p13#a260727p13",
+      "title": "How TikTok, Reels, and Amazon storefronts enabled microinfluencers with less than 100K followers to earn middle-class salaries via brand and affiliate deals (Melos Ambaye/Bloomberg)",
+      "url": "https://www.techmeme.com/260727/p13#a260727p13",
+      "author": null,
+      "publishedAt": "2026-07-27T14:10:03.000Z",
+      "content": "Melos Ambaye / Bloomberg: How TikTok, Reels, and Amazon storefronts enabled microinfluencers with less than 100K followers to earn middle-class salaries via brand and affiliate deals — A growing tier of microinfluencers is proving that loyal audiences, affiliate links and brand deals can rival — or exceed — traditional office pay.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=971358",
+      "title": "Chinese RAM company CXMT makes a $484 billion stock market debut",
+      "url": "https://www.theverge.com/tech/971358/cxmt-china-ram-stock-market-debut",
+      "author": "Emma Roth",
+      "publishedAt": "2026-07-27T14:27:16.000Z",
+      "content": "The China-based memory firm ChangXin Memory Technologies (CXMT) had a massive first day on the Shanghai stock exchange after its shares surged 466 percent, as reported earlier by The Wall Street Journal and CNBC. The stock market frenzy boosted CXMT's valuation to $484 billion, making it the most valuable Chinese company listed on the exchange. CXMT looks to challenge Samsung, Micron, and SK Hynix, which currently control the majority of the global memory market. But with demand from data-hungry AI giants straining the memory industry, device makers are searching for alternatives to keep costs low. A recent report from the Financial Times … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=971285",
+      "title": "SDCC 2026’s best trailers are heavy on cyberpunk and sci-fi",
+      "url": "https://www.theverge.com/entertainment/971285/sdcc-2026-trailers-neuromancer-blade-runner-carrie",
+      "author": "Andrew Webster",
+      "publishedAt": "2026-07-27T14:38:43.000Z",
+      "content": "San Diego Comic-Con took place over the weekend, and as per usual it was full of tidbits of news across film, TV, and gaming. Marvel revealed the next Ghost Rider (Ryan Gosling) and Black Panther (David Jonsson), while we also got release dates for God of War: Laufey (February 16th) and the fourth and final season of Silo (summer 2027). But the best part of SDCC each year, at least for those following along at home, are the trailers. And 2026 did not disappoint: We got first looks at highly anticipated cyberpunk shows Blade Runner 2099 and Neuromancer, along with a new take on a Stephen King classic and the return of some animated favorites … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49070427",
+      "title": "Apple Will 'Watch Everything Burn' When the AI Bubble Bursts",
+      "url": "https://www.macrumors.com/2026/07/27/ed-zitron-apple-watch-it-burn-ai-bubble-bursts/",
+      "author": "thm",
+      "publishedAt": "2026-07-27T14:42:41.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 160,
+      "comments": 163
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p14#a260727p14",
+      "title": "Nvidia says it made a \"substantial\" investment in Safe Superintelligence, which will get access to Nvidia GPUs to up computing power by an \"order of magnitude\" (Keach Hagey/Wall Street Journal)",
+      "url": "https://www.techmeme.com/260727/p14#a260727p14",
+      "author": null,
+      "publishedAt": "2026-07-27T14:50:00.000Z",
+      "content": "Keach Hagey / Wall Street Journal: Nvidia says it made a “substantial” investment in Safe Superintelligence, which will get access to Nvidia GPUs to up computing power by an “order of magnitude” — Partnership with former top OpenAI scientist aims to boost chip giant's high-profile customer roster during AI boom",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "aws-news",
+      "externalId": "77c18d2b47b8dea484a97205ea56792640d7b37a",
+      "title": "AWS Weekly Roundup: Local Zone in Athens, Claude Opus 5 on AWS, Lambda durable execution for .NET, and more (July 27, 2026)",
+      "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-july-27-2026/",
+      "author": "Daniel Abib",
+      "publishedAt": "2026-07-27T14:54:41.000Z",
+      "content": "Last week I had the privilege of spending three days in São Paulo with technical builders from across Latin America, brought together for a regional tech event full of deep-dive sessions, hands-on workshops, and conversations with customers and partners. What struck me most wasn’t any single session, it was the energy of a technical community that so rarely gets to be in the same room. People traded architecture ideas over coffee, sketched out solutions on whiteboards, and left with a longer list of things to try than they arrived with. It’s a good reminder that, for all the tooling we build, the community around it is what makes the technology stick. That community spirit connects nicely to the week’s biggest infrastructure news, which is all about bringing AWS closer to where builders actually are. Now, let’s get into this week’s AWS news… Headlines AWS Local Zone in Athens, Greece: AWS has opened a new Local Zone in Athens, Greece, the second Local Zone in EMEA with support for Amazon S3 and Amazon EBS Local Snapshots, so you can store and process data within Greece to help meet local data residency requirements. The Athens Local Zone supports Amazon EC2 (C7i, M7i, and R7i instances), Amazon S3 with the One Zone-Infrequent Access storage class, Amazon EBS, and Amazon ECS. AWS Local Zones place AWS infrastructure much closer to large population and industry hubs, enabling applications that require single-digit millisecond latency, such as real-time gaming, media production, and financial services, to run where end users actually are. For builders in Greece, you can now run latency-sensitive workloads locally while connecting seamlessly to the nearest AWS Region for services that don’t require low latency, giving you the flexibility to architect hybrid, latency-optimized applications without managing your own data center infrastructure. To learn more, visit AWS Global Infrastructure and Sustainability Blog post. Last week’s launches Here are some launches and updates from this past week that caught my attention: Claude Opus 5 on AWS: You can use Anthropic’s Claude Opus 5, the most advanced Opus model yet, matching Claude Fable 5’s top-tier intelligence in many domains at Opus-tier pricing. Amazon Bedrock offers Claude Opus 5 with zero data retention (ZDR) enabled by default, giving you Opus’ top-tier intelligence while meeting your data governance requirements unlike Claude Fable 5. You have two ways to access Claude Opus 5: Amazon Bedrock and Claude Platform on AWS. To learn more, visit the deep dive blog post. AWS Lambda durable execution SDK for .NET is now generally available: You can now build resilient, long-running workflows in C# using Lambda durable functions, without implementing custom progress tracking or integrating an external orchestration service. The SDK is a natural fit for multi-step applications like payment processing pipelines, AI agent orchestration, and human-in-the-loop approvals, it checkpoints progress automatically and can pause execution for up to a year. If you’re a .NET developer building serverless workflows, this removes a lot of the plumbing you used to write by hand. Amazon Bedrock AgentCore now delivers unified observability with traces and logs in a single log group: Amazon Bedrock AgentCore now delivers agent traces and prompts to the same Amazon CloudWatch log group as your agent’s logs. Previously, telemetry was split across destinations, trace spans went to a shared log group while prompts, inputs, and outputs went to a separate one, so debugging a single agent invocation meant searching in multiple places. You can now debug an invocation in one place, and apply fine-grained access control and customer-managed key (CMK) encryption at the individual agent level. Amazon Connect delivers more natural agentic voice experiences: Amazon Connect now supports more natural, human-sounding agentic voice experiences across 50+ languages, including Portuguese, Spanish, French, Italian, Japanese, Korean, and Thai, with over 100 new voice options and conversational improvements that make AI interactions sound more fluid. Connect’s agentic self-service lets AI agents understand, reason, and take action across voice and digital channels, adapting to a customer’s tone and sentiment. You can now build contact center experiences that feel natural to callers in far more of the languages your customers actually speak. Amazon SageMaker Unified Studio now supports Amazon OpenSearch: You can now query and analyze your search and log analytics data from Amazon OpenSearch directly alongside other data assets in Amazon SageMaker Unified Studio. With this connection, you can combine operational search data in OpenSearch with data from sources like Amazon Redshift, Amazon S3, and relational databases, all within a single, governed environment. It’s especially useful when you need to correlate analytical and operational workloads, such as joining application logs with transactional data to uncover insights. Amazon CloudWatch announces coding agent insights: Amazon CloudWatch now gives engineering leaders visibility into how AI coding tools are driving value across their organization. Coding agent insights integrates with the Claude apps gateway for AWS to collect telemetry from Claude Code without additional instrumentation, and also supports agents like Codex and GitHub Copilot. As teams scale AI coding adoption, you can now measure the return on that investment with metrics built on OpenTelemetry, no custom instrumentation required. For a full list of AWS announcements, be sure to keep an eye on the What’s New with AWS page. Other AWS news Here are some additional posts and resources that you might find interesting: Evaluating AI Agents: A production blueprint with Strands and AgentCore: A practical guide to evaluating AI agents before and after they reach production, using Strands Agents and Amazon Bedrock AgentCore. If you’re moving agents from prototype to production, this post is a great companion to the AgentCore observability update above, it walks through how to measure agent quality systematically rather than by gut feel. Building multi-region resiliency for AWS CloudFormation custom resource deployment: Learn how to architect CloudFormation custom resources for multi-region resiliency, so your infrastructure-as-code deployments stay reliable even when a single Region has issues. Introducing Amazon Simple Email Service (SES) pricing plans: Amazon SES now offers pricing plans that give you more predictable costs as your email volume grows. If you send at scale, this could simplify your billing significantly. Upcoming AWS events Check your calendar and sign up for upcoming AWS events: AWS Summits: AWS Summits are free events that bring the cloud and AI community together to connect, learn, and explore the latest technologies. Browse the full calendar to find a Summit near you in the second half of 2026. AWS Community Days: Community-led conferences where content is planned, sourced, and delivered by community leaders. If you’re in Latin America, don’t miss AWS Community Day Belo Horizonte on August 22, registration is open at awscommunityday.com.br. Join the AWS Builder Center to connect with builders, share solutions, and access content that supports your development. Browse here for upcoming AWS-led in-person and virtual events and developer-focused events. That’s all for this week. Check back next Monday for another Weekly Roundup! This post is part of our Weekly Roundup series. Check back each week for a quick roundup of interesting news and announcements from AWS!",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=971332",
+      "title": "Samsung’s 27-inch QD-OLED gaming monitor is priced right at $299.99",
+      "url": "https://www.theverge.com/gadgets/971332/samsung-qdoled-gaming-monitor-find-my-tracker-ps5-logitech-deal-sale",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-07-27T14:56:38.000Z",
+      "content": "The cost of QD-OLED gaming monitors is going down, even as many other PC components are still soaring above their normal prices. If your budget is locked at $300, Samsung’s 27-inch 1440p model costs exactly that much thanks to a recent $50 discount at Amazon. Finding a good QD-OLED monitor under $500 these days is pretty easy, but under $300 is pretty rare. Its G50SF debuted at $499.99, but has spent the past six months bouncing back and forth between $350 and $450. Samsung 27-inch G50SF QD-OLED Where to Buy: $499.99 $299.99 at Amazon Despite being cheaper than Alienware’s awesome $350 AW2726DM and some competitors, the Samsung G50SF doesn’t make a ton of compromises. It has a thin design, variable refresh rate support, and the same fast .03-millisecond response time we expect from these panels. It has a DisplayPort port plus HDMI 2.0 and a headphone jack (most competing monitors have two HDMI ports). Unless you’re keen on getting a monitor that has a 240Hz or faster refresh rate, you may not mind that this one tops out at 180Hz (via DisplayPort), or 144Hz via HDMI. window.HYPE_DESK_CONFIG = { productImageUrl: \"https://platform.theverge.com/wp-content/uploads/sites/2/2026/07/Hoto-Pixeldrive-Cordless-Screwdriver-Main-New.webp\", productImageAlt: \"HOTO PixelDrive Cordless Screwdriver\", productTitle: \"HOTO PixelDrive Cordless Screwdriver\", shortDescription: \"A smarter screwdriver for people who care about the details.\", longDescription: \"A cordless screwdriver that actually tells you what it is doing. The PixelDrive has a built-in LED display showing real-time torque, speed, and battery level so you are never guessing mid-job. Two speed modes handle everything from delicate electronics to faster general assembly, and six torque settings mean you can dial in exactly the right amount of force without stripping anything. The 2000 mAh battery charges via USB-C and holds up through extended use. Compact, precise, and genuinely thoughtful to use.\", purchaseUrl: \"https://www.amazon.com/dp/B0FKBJL68H?&linkCode=ll2&tag=theverge02-20&linkId=edec9a50f0f521f10489847b8cb5706e&language=en_US&ref_=as_li_ss_tl\", purchaseLinkText: \"Buy At Amazon\" }; Some other Verge-approved deals Maybe you knew that Best Buy’s in-house Insignia brand has its own AirTag-like Bluetooth trackers, maybe you didn’t. I recently found out, and they’re surprisingly affordable; You can get a four-pack of its Apple Find My-compatible trackers for $19.99 ($10 off). It’s a nice price if you just want some low-cost trackers with lanyard hooks to attach to luggage before a trip. The tracker’s coin battery can be replaced, and its 65-decibel alarm can help you find lost items nearby. Insignia advertises up to a 164-foot Bluetooth range outdoors (or 65 feet indoors), but connecting them with Find My will let you track them from greater distances. Sony is hosting a summer sale on physical PlayStation 5 games, and it includes fairly new and notable releases like Saros ($49.99, $20 off), Marvel’s Spider-Man 2 ($29.99, $40 off), and Death Stranding 2: On The Beach ($39.88, $30 off), plus several other great games worth considering. The sale is happening at Amazon, Best Buy, and GameStop. These are some of the biggest discounts we’ve seen on physical titles, and digital versions on the PlayStation Store are matching these prices. Those who work all day at a computer might be familiar with having sore wrists, particularly from using a mouse. A vertical mouse might help, and you can get one of the better wireless models out there — Logitech’s MX Vertical — for $46.80 at Woot with the code LOGITECH22 used at checkout (usually $77 elsewhere). The mouse recharges via USB-C and can last for months with a single charge, according to my colleague Victoria Song, who loves hers. It can connect to devices with its included 2.4GHz receiver, or Bluetooth.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=971160",
+      "title": "This is my new favorite laptop, but thanks to RAMageddon it already went up in price by $800",
+      "url": "https://www.theverge.com/tech/971160/framework-laptop-13-pro-intel-review",
+      "author": "Antonio G. Di Benedetto",
+      "publishedAt": "2026-07-27T15:00:00.000Z",
+      "content": "Framework’s Laptop 13 Pro looks great in black but costs lots of green. | Photo: Antonio G. Di Benedetto / The Verge Framework laptops always come with compromises in exchange for their unique DIY premise. Even though you pay extra for one compared to sleeker options from competitors, it's easier to excuse minor flaws for modular ports, easy repairs, and an impressive range of upgradeable parts. So what happens when Framework goes \"Pro\"? We get a one-of-a-kind jewel among notebooks. The 13 Pro corrects and improves many shortcomings of the regular Laptop 13. It has a bright and sharp touchscreen, the best haptic trackpad not made by Apple, and an impeccable build and feel. Take all that and marry it to a great Intel chip and cutting-edge user-replaceable … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=971306",
+      "title": "Tariffs didn’t bring manufacturing jobs back to the US",
+      "url": "https://www.theverge.com/podcast/971306/tariffs-liberation-day-ai-trade-shipping-jobs-canada",
+      "author": "Nilay Patel",
+      "publishedAt": "2026-07-27T15:00:00.000Z",
+      "content": "Today, I’m talking with Evan Smith, who is cofounder and CEO of Altana, a company that develops software tools to manage big, messy supply chain networks around the world. We last had Evan on in early 2025 to talk about how Trump’s first few waves of tariffs were starting to affect global trade and what patterns Altana was seeing in all that macro-level data about shipping and trade. It was a very alarming and also very illuminating chat; Evan and I got into the existential weeds of international relations and economics almost immediately. It was a great conversation. A year and a half later, and everything is somehow even more chaotic than it was the last time Evan and I talked — and that’s true both about trade and in the business world. And, as you’ll hear, we jumped right back into the weeds yet again. Developments in agentic AI have changed what Altana can do, but like every software company, they’ve also changed how Altana can do it. You’ll hear Evan describe how AI is changing how they make software for a very demanding set of clients that manage billions in international trade — which is causing some big debates about how a software company even runs in 2026. Verge subscribers, don’t forget you get exclusive access to ad-free Decoder wherever you get your podcasts. Head here. Not a subscriber? You can sign up here. And of course, what they do also needs to change more or less daily. Trade policy is changing rapidly around the world but likely nowhere faster than here in the US. Between the Trump administration’s whack-a-mole tariff policies and war in Iran, it’s very hard to keep up with the current rules. That’s where Altana comes in. All that data coming from all around the world gives Evan a really high-level view of what’s actually happening. All those tariffs, for example, were supposed to bring manufacturing jobs back to the United States. So I asked Evan directly: Is that actually happening? Spoiler alert — you won’t be surprised to hear him say “no.” And while it’s clear the world still relies on global supply chains, the pressure placed on economic chokepoints like the Strait of Hormuz is going to get higher than ever. There’s a lot going on in this one — as you can tell, Evan and I really enjoy talking to each other. Okay: Altana CEO Evan Smith. Here we go. This interview has been lightly edited for length and clarity. Evan Smith, you’re the co-founder and CEO of Altana. Welcome back to Decoder. It’s good to be here again. Thanks for having me. I was looking over our last interview from about a year and a half ago, and boy, we got straight into the existential weeds of what it means to run the global economy and what was changing. People can go back and watch, read, or listen to that interview. It’s very good. I really enjoyed it. The thing that strikes me about the past year and a half is that some of this stuff was theoretical the last time you were on the show. You founded Altana on the idea that globalization as we knew it — what you call, “globalization 1.0” — was going to come to an end, it was going to get more complicated, and the world needed software to solve it. The rubber has hit the road. It has gotten more complicated. It’s getting more complicated by the day. Even as we speak this week, it is getting more complicated. Even over the last year and a half it feels like it has gone from being a bet to being something very practical now. Is that how you see it? Completely. One of our investors described Altana as, “an index bet on global dislocation.” That’s a lot. Can I just ask you maybe a philosophical, emotional question about that? I get a lot of feedback from our audience. You have CEOs on the show and they talk about making bets in this way, and on the ground, it’s chaos. So, I get an index bet on dislocation. That sounds great on CNBC, right? I understand exactly how that plays to that audience. How do you feel about that approach to the world, especially as a software company that kind of just makes a map for people, and how it plays out for regular people? I think regular people right now are really struggling and they’re really confused. They’re very anxious. Well, trade touches virtually every part of or most of our lives. So, our mission is to fix globalization, but we’re not retreating from globalization. We’re leaning into it. But we believe that globalization needs to be fixed. It needs to be more trusted, more secure, more fair. That’s a recognition that trade will and should continue across borders. That’s the animating ethos in the company. We work with our customers who in most respects are on the front lines of all this stuff. We work with eight of the 10 biggest logistics providers. We work with the government agencies that have to scramble to enforce these laws. Then, we work with importers and their supply chains to comply with them. And the stakes are huge. Do medical devices get to the hospital? What’s the price of fuel and food? So, I couldn’t agree with you more that the dislocation ultimately has the most profound consequences for everyday people, but that’s the point, right? Trade is the lifeblood of growth. This is how we feed ourselves, sustain ourselves, and protect ourselves. So, how do you have both at the same time? How do you have more enforcement and more fracturing as geopolitics play out, but have more trade, more growth, and more economic security? I think Altana is the answer to that question. The reason I’m asking is that I’m worried that there’s too many layers of abstraction — not with you but with everyone. Building solutions for our current world. You just acquired a company called Cervo AI. Literally as we’re speaking. The press release is dated today. I’ve had a smile on my face all day, but yeah, it just hit the wire. It makes an AI platform to solve customs brokerage, which was not a problem in an earlier version of globalization. Correct. The trade was flowing and products were moving across borders. Now, all the walls are up and everyone has to do more paperwork. And here’s Altana like, “We see an opportunity. We’re buying an AI platform that literally fills that paperwork at borders.” I look at that and I’m like, “Well, that was very smart.” It feels like the right answer for one problem. It also, to me, feels like the dumbest problem. We’re now having robots fill out forms presumably for other robots to read just to get back to the trade we had before. I get it. A couple layers of abstraction away, this is the smartest bet. Then, down on the ground, I’m like, “So, it’s an AI that fills out forms that we didn’t have to fill out before.” The only rational response to that is another AI system on the other side reading the forms. What are we doing here? Just to be cheeky with you for a moment, we do have our own AI agents and AI systems on one side of the border talking to our AI systems and agents on the other side of the border. I don’t think it’s just founder bullshit to say that the future is some version of agentic orchestration of the trade network. That’s a sensible statement whether or not there’s policy volatility out there or not. The technological revolution that enables that is moving at pace, so we’re surfing that wave, we’re applying these technologies, and in some cases, we’re inventing a few. But in order to have global commerce, to have strawberries in the wintertime in the US, you have to somehow solve this border complexity problem. Your notion of if we shot ourselves in the foot is a fair question. You and I talked about this on the last episode, but I think no matter what, the US, Europe, the West, and even China in its own way, is reckoning with new geopolitical and economic security calculus. So, in a world of disequilibrium — which we’re in — where you don’t have a hyperpower that can police the entire world, all of the maritime shipping lanes, and the rest of it, there is going to be a whole lot more weight placed on economic and national security. We’re seeing the weaponization of choke points through the supply chain and global logistics network. So, it’s not theoretical. It’s happening. We’re all reading the same news. Back to the border and to customs, the question again is, “How do we have more security and more enforcement at the same time we have vibrant trade and growth?” With all that complexity, I see no other way than to solve it with artificial intelligence. I want to come back to that. I did it with you again, we immediately got into the weeds. Like I said, you were on the show about a year and a half ago. If people want to take a deep dive into Altana, I think that episode is a really good one, and I recommend it. It was a lot of fun. But just briefly here, describe what Altana is and what it does for people who need to get caught up. Altana connects the public and private sectors into a network for managing trade. It’s a shared map of the world at the underpinning. So, everyone sees the same supply chain network and the same set of facts. We actually have a collaboration layer on top of that with AI helping all the parties. That now connects government agencies like US Customs and Border Protection (CBP) with eight of the world’s 10 biggest logistics providers that actually move all these goods around the world. Then, there’s Fortune 1,000 companies and their suppliers. Think about it as hooking into a shared view of the world, like Google Maps for the supply chain, and then these parties transacting with each other to manage trade. This is where the Cervo AI acquisition we were just speaking about comes in. Agents are increasingly working alongside humans in those interactions within an organization and between organizations. I want to dive into that specifically because I’m really curious about how the data works. I know you have a very unique data model for how people work with Altana. I know you have an entire thesis there. But I want to ask the Decoder questions in a bit of a lightning round so we can get there quickly. Last time we spoke, you had about 240 people. I’m assuming you’re growing. How big is Altana now and how are you structured? I think we’re actually benefiting from some of the AI we’re purveying. So, the company’s just under 300 people. We might have just broken 300 with this acquisition. How are we structured? We are trying to run more of the company through an extended leadership team these days. So, we’re covering an enormous amount of ground. I think we work with nine governments around the world. We have three product lines that serve different government users. We have this logistics vertical. We work with enterprises the world over and their suppliers. It’s incredibly broad and it’s incredibly complex. The point of saying all that is because within a 300 person company, the communication and coordination challenges are just massive. One of the things I’m trying to solve is how to get more of the leaders in the company seeing the whole playing field, having the same debates, and synthesizing the information at whole company level and not just their function. So, it’s messy and people complain that, “Oh, we had this two hour meeting. It was very expensive because we weren’t talking about my thing.” But my instinct is that it’s the least bad way to run the company these days as we gain scale and grow into the ambition of the business where we’re covering so much ground. That I think connects directly to my other Decoder question. The last time you were on the show, you actually told me your process for making decisions was rapidly evolving. You said you had moved from a consensus model in areas where you had a lot of expertise to being really decisive, particularly on product and product management, and that you were going to be more opinionated and faster there while leaving the other stuff behind. That’s kind of what you’re describing at scale now. Is that still the framework? Has it evolved more? How are you making decisions? That’s definitely stayed true. What’s happened since then is that as of March of last year, we have injected folks into the company that have really, really deep domain expertise in some of the areas we’re working in, such as trade, customs compliance, logistics, and procurement. With the advent of agentic design and agentic coding, one of the things we’re really leaning into is how to get to the right product judgments faster since it took founder-level conviction and synthesis to make some of these big bets before. That’s still true, but what’s been really cool over the last six months is that as we’ve brought in these really deep domain experts, we can take traditional product design, product management, and discovery function, and pair it with deep domain expertise to get to the right product judgment so much faster. Then, the execution of that workflow or the build-out of the modeling steps is also much faster in this new way of coding and developing. I would just say that we have to move fast because the world’s changing really fast. That is true, and it’s probably going to stay true. What’s different from a year and a half ago is that you now have this agentic product development life cycle that just gives you so much more velocity and the ability to get to the right place faster. Talk about that a little bit more. I’ve talked to CEOs of bigger companies that are much more stable and much older, and there’s an idea that there’s some kind of grand shake-up between what a product manager does, what a designer does, and what an engineer does, and that everyone’s going to get the same skills and maybe that classic trio doesn’t have to exist anymore. The bigger companies have got to manage that pretty carefully. They’re architected around those roles in very specific ways. I think it’s fair to say Altana is still a startup, right? You’re still operating it a bit like a startup. Totally. It sounds like you don’t have any of that baggage. You can just start over and say, “My domain experts are now going to be product designers in whatever way that that works.” Are the tools good enough for you to do that as a software CEO, or do you still have the other roles backstopping everything? Yeah, it’s getting pretty psychedelic. It’s all blending together. My favorite has been watching some of our engineers lean in to design. You’re seeing it in all directions, but there’s definitely a convergence of those functions where a designer can ship code and a product manager can design and prototype. A project manager can ship code and just handle tickets themselves. Engineers can get in on the design game. I’d be lying if I said we had the end state fully realized, but this is an active conversation that we’re having out loud with all the stakeholders in the company. These roles are converging, what are the new ways of working, and how are you going to expand your skillset and push into this new horizon? I think almost everybody’s been excited to be along for that ride and try to surf the wave, but it does threaten certain egos. If you’ve come up as a close-to-the-metal engineer, this is threatening. If you’ve come up as a really principled user experience researcher and product designer, this can be threatening. So, just like anything else, change is hard and you got to manage it through a cultural transformation of the organization. Altana is not that old. How much transformation are we talking about here? Plenty. We’re coming up on eight years now. I would say the difference is that we’ve got a team that’s pretty mature for a tech company because of the scale, ambition, and complexity of what we’ve taken on. We tend to hire people later in careers. Obviously, there’s a spectrum, but especially on the engineering side especially, we’ve got some really, really seasoned people. The same is true in commercial. So, it’s not just about how old is the organization. It’s about how long have folks built mastery in these domains. I was going to ask you about that. Your clients are not lax customers. They have opinions. As you said, the stakes are very high. You’re not building productivity software, right? How do you manage the stakes of building that software against the pull to re-architect how the software is built? I know you could manage the stakes with the old way. Those old ways are proven and tested. You have a lot of people at your company. It sounds like they know those ways. You’re far less tested with the pull to build companies around new ways of making software. You’re probably putting your finger on the raw nerve between me and our engineering team. Look, it’s getting incredibly easy to prototype and get an MVP out there. It’s still hard to get highly functional, highly performant, at-scale software deployed with service-level agreements (SLA) that include 99.999 percent uptime for workloads at some of the most important organizations in the world. So, it’s a tension. We certainly haven’t solved it. We’re starting to chip away at the edges of some of these things. I’m sure you’ve heard of and had conversations around harnesses? Mm-hmm. So, putting real scaffolding around the code base and knowing how these systems interact with each other, follow rules, and test themselves. That’s getting better and better, and it’s getting more degrees of freedom to ship quickly, to run those tests, and make sure things aren’t breaking. But it’s not a panacea, and we’re not in the promised land with infinite coding and infinite roadmaps as much as the hype would say otherwise. Boy, does the hype say otherwise. There’s the global economy you and I are going to talk about, and there’s the global economy right next to it that is entirely built on some of that hype. You have a bunch of talented people who know what they’re doing. Then, there’s your customers, and I’m guessing your customers are very conscious of their margins, right? I’m guessing they push you on cost because you’re just an added cost to getting the goods to the end user and selling it for whatever money you’re going to sell it for. How are you managing your token costs? The idea that you’re going to burn a lot of tokens inside these harnesses to get to some good outcome might increase your costs more than hiring people. This is the dynamic that we’ve heard about so much. I’m guessing your customers are not like, “Wait, you cost more money because you’re burning more tokens inside of your harness?” Well, let’s have the conversation first about internal costs. In my observation, every tech company and everybody in the tech industry is having the same AI conversation at the same time. It’s funny, as soon as I heard it on a podcast, we started internally saying, “You know, some of these frontier model costs per token are just getting crazy, and what are we going to do to get observability and controls? Should we flip the permissioning model where you have to get permissioned into Claude Fable and not the other way around?” Everyone’s having that conversation at the same time. But it’s like $20, $50 bucks, 1 million tokens. So, the economics are kind of forcing the conversation. That being said, we haven’t really seen token spend impact our bottom line in a material way. Sure, has it gone up on the margin? Yes, but I think we’re shipping faster, we’re being more productive, so it’s a no-brainer ROI. It hasn’t even gotten to my consciousness except for, like I said, a few weeks ago with Fable. In terms of flowing through cost to customers, we have different sets of products. Some of them are scaling on the dimension of the products under management — the physical goods under management. So, if you’re on the Altana network, you’re managing your products, their parts, and the value chain networks associated with them. You can share those product passports with your customers, your freight forwarder, or your regulator. So, that’s the network we built. The more products or physical goods that you manage on the Altana network, the more we charge you. That’s one dimension of it. That doesn’t necessarily scale with AI compute. It does in a little way, but not from our pricing standpoint. What we’re now reckoning with with this Cervo acquisition and some of our agentic workflows that we built ourselves is having agents do work. Agents can run up a lot of compute. So, that is a gross margin question that you have to manage carefully. Then, you get into pricing dynamics with customers where it’s like, “Well, what’s the value of the work?” Charging for tokens is kind of silly. We’re going towards charging for outcomes and for units of work where there’s some alignment around the value of work. To bring it back to the acquisition we’re announcing, in customs brokerage, you have an existing pricing model where these logistics providers are charging the businesses whose goods they move on a per customs declaration basis. It’s anywhere from $20 on the very low end to $250 on the high end for more complex customs entries. You do that day after day after day, shipment after shipment after shipment, and it kind of runs the cash register. With agentic AI being able to do most of that work now, it puts you in some really interesting places, both as Altana and as a global logistics provider to experiment with pricing. Does it make sense to have a $200 per entry pricing model, or can we kind of shift the value creation left and say, “Hey global freight forwarder, we are going to help you manage your supply chain network to be more compliant and to be more resilient. We’re going to help orchestrate your supply chain and we’re going to stop billing you transactionally to clear goods across the border?” It strikes me with this acquisition, in particular, the governments and people of the world are putting up a lot of trade barriers for a lot of reasons. You have a view of what you might call the path of least resistance. How do I get this object from here to there with the fewest amount of forms? It’s funny because the forms represent one kind of friction, and you can just point the gun at it. You just point the agent at it and overcome the friction. Do you find that the AI systems are getting more efficient at that? In general, my criticism of AI is that it’s not actually learning. If you fill out the form one time and then you run the agent again, in many ways, it’s starting over from scratch. You’re going to burn all the same tokens again. Maybe the inference will get more efficient, but the compute task itself does not get optimized, even though it’s been repeated so many times. Is efficiency there for you? Yeah, there is. In the world of LLMs predicting the next token, you’re right. In a world of agents that follow standard operating procedures (SOPs), I think you’re wrong. I’ll narrow it specifically to where I know what I’m talking about, which is this trade, customers, and supply chain world. So, with the Cervo platform — now part of Altana — you can say as a logistics provider, “I’m going to create standard operating procedures for every one of my customers and their data pathologies. I’ve got PDFs with these data fields with weird numerical formats. I’ve got Chinese script coming in alongside English script. Here’s how to handle these weird edge cases that would break earlier systems.” You can feed the machine a document to distill rules, like standard operating procedures, and to handle that just like a human would follow those rules. They also have the user experience where, as the broker interacts with customs entries and data coming from the supply chain on a customer-by-customer basis, they use a workflow where, as the user modifies something here or there, the platform auto-suggests an update to that standard operating procedure. Then, you can go and key in an SOP from scratch. So, it’s learning SOPs, it’s codifying SOPs, and it follows SOPs. Is there la theoretical way that those SOPs could be broken or where there’s a fail case? Surely. But in general, it’s amazing. This is why agentic AI in the general logistics space is having its moment. Every fifth company in Y Combinator is doing something around logistics automation where it’s like, “Oh, I can take all these unstructured and semi-structured data inputs and extract information from them, reason about them on a customer, trade lane, or outcome-specific basis, and then orchestrate a workflow.” That just wasn’t technically possible until like January. I do love the phrase “data pathologies.” I like the idea that a company’s structured data is actually diseased in some way, and AI can solve it. It’s very good. I hear you that I’m wrong. You can build a system around the models that gets more intelligent over time and maybe gets more efficient on a timescale. I’m just asking about literally burning tokens, like using the intelligence of the models. Is that getting more efficient or is it the deterministic systems around it that help the users update these standard operating procedures? I’m probably the wrong person to be highly opinionated about this, but my co-founder, who is entitled to this opinion, has observed that there’s no real ROI on Fable right now. Okay. So the more intelligent model is not helping you out. I’m curious about this because Altana, as a software platform, solves a lot of very bureaucratic challenges as trade barriers go up. There’s another set of challenges I want to ask you about, which are essentially military challenges. We’ll come to that. But it seems like it’s a bit of a cat and mouse game between the amount of bureaucratic trade barriers we can put up and the amount of software we can deploy at those barriers to overcome them. At some point, the cost curve might bend and the bureaucracy might win. Well, I’ll tell you our product strategy and our overall thesis on flipping the script. Right now, every time a shipment arrives at the border, it’s as though it’s the first time the government has ever seen that shipment of goods. This is an abstract government or our government? Every government in the world. Okay. What I’m saying is true. So the customs process has been built up for millennia to scrutinize a shipment, levy the goods, and then let it through the border. It used to be the case that when we were using cuneiform tablets and there were sailboats going up the Tigris or Euphrates River and transporting goods, somebody could look at each of the things in there, issue a levy, and that was it. As container shipping came about and the scale of goods entering at a port just exploded, along with air cargo and that velocity, it became impossible to look at all the shipments and the goods in the shipments. So for decades, the whole concept was that we’ll do random sampling, random targeting, and we’ll let the intuition of port officers dictate what they’re going to go look at. After 9/11, that was no longer okay. A whole new technology and policy framework arose in the post-9/11 world: risk-based targeting and segmentation. The idea was we’re going to try and pick needles out of the haystack using analytics. Those were pretty crappy with the systems that existed at the time. I’m not going to name names, but one major government I know intimately well has a 0.5 percent targeting hit rate in its customs targeting system. These are rules-based systems where if a container of frozen squid comes in, search it for cocaine. That’s a real example. That’s great. They found cocaine one time in a box of frozen squid, and every single shipment of frozen squid thereafter has been opened. Guess how many times they’ve found cocaine in the box? I’m going to guess it’s zero. Zero, yeah. So, that’s been the state of the art for the last 20 years. Now, our point of view is that with AI, two things are possible. One is that you can continuously monitor and screen everything. You don’t have to selectively target. Two is that as these trade policies are increasingly focused on the goods and their provenance — I’m sure we’ll get to that conversation, but network shape and supply chain network is the dimension of trade analysis — it becomes imperative to have a sense of product identity instead of just going transaction by transaction at the border where it’s Groundhog Day and you’ve never seen this [good] before. I would have to reason about whether this is the right customs code or the right duties and whether the Food and Drug Administration got the permit to release these pharmaceuticals or whatever. We ought to just have a library of trusted goods in the same way that we have a register of trusted travelers. And that’s what we’re building. So, an Altana Product Passport for the US government is a library of known, continuously monitored, and vetted goods and their production pathways where in one shot you can look at the compliance attributes, their national security dimensions, the safety dimensions, the tariff dimensions of it, and have that all continuously reviewed and monitored. The benefit to the importer is they do it once. I remember going through the airport in the early days of trusted traveler programs and thinking that there’s no way in hell I was going to give the government any information about my travel, my personal life, any of that. I don’t have to. Then, you see the benefit of the security and travel facilitation. Well, I think I’ll make that trade. That’s where we’re enabling the private sector to engage with government agencies around the world in a new way. So, we’re doing this now at scale in the United States. We’re doing it at scale in the context of defense procurement. We’re going to be doing this in a pilot context in Europe and I think the UK in the coming months. There’s a lot to unpack there. I’m curious about the Product Passports. Again, this strikes me as a solution to an administrative or political problem. The Trump administration particularly wants to move manufacturing out of China and reduce this dependency on China. A lot of companies, big companies, want to move their supply chains to get them out of those risky parts of the world. Maybe they want to clean up the environmental or labor impacts of their supply chains. You provide all that to them. We can vet this, this product is going to show up. Like I said at the top of the conversation, the rubber has really hit the road on all those policy goals. Are you seeing manufacturing move out of China into the United States? You’ve got these passports. Are you seeing the origins of those passports change in meaningful ways? Do those passports change in meaningful ways? Yes, although probably not exactly in line with the policy objectives of the administration. Without getting into political commentary, which I’ll mostly skip, I’ll give you some points of view as a reader of the news and of the data, and as an observer of the supply chain network itself through our own platform. One question is if the United States is reducing its dependency on China as a source of manufacturing. I think the answer, controversially, is no. So, what’s happened? We see this in our data. We see this in the macro statistics as well. Since these trade barriers, in particular the Liberation Day tariffs and everything since, you’ve seen a proportionate decrease in Chinese exports to the United States with a proportionate increase in US imports from third-party countries like Vietnam, Mexico, Canada, and Malaysia. We can see through our own platform where those input flows of goods are coming from, and the answer is China. So basically, we’ve just rerouted Chinese goods through third-party countries where they’re undergoing some amount of transformation (or not) and are on their way to the same end market destination at a higher cost. We can say that numerically. Now, that’s part of the dynamic behind the renegotiation of the United States-Mexico-Canada Agreement (USMCA), for example. I’m sure we’ll talk about that, but this notion of supply chain traceability becoming the buzzword in all of these industrial policy and trade policy initiatives is at the core of it. What’s the actual provenance of the goods? What’s the multi-tier value chain network of the goods? We have to know that if we’re going to have policies that try to reshape the network itself. So, that’s one dimension of the China question. I think another one is, have we created more jobs? Have we created more manufacturing in America? There, I think it’s kind of a mixed picture. The Purchasing Managers Index (PMI), which is an index of manufacturing output in the United States, went down after the tariffs. So, we were declining as an economy following the big wave of tariffs last year in terms of our manufacturing output. In the last five or six months, that number’s actually trended above 50 percent on a scale of one to 100, but it’s above the neutral level. It’s now actually increasing and it has been increasing. I don’t know that this is true, but one way you might observe that is in the initial shock. You have US manufacturers that are importers of stuff in order to make more stuff. If the input availability of those things is highly disrupted, then so are their supply chains and their output. I know anecdotally from our own customer base, that was absolutely the case. So, the first impact of the tariffs was actually negative for US manufacturing. What might be playing out that we should be open-minded about is that as the network adapts to the new tariff environment, you’re seeing a general tilting of the scales in favor of US manufacturing and therefore an increase in the PMI and the rest of it. What might also be playing out is that the AI data center thing is peanut buttering over everything. Then, just the last thing on manufacturing is, are we or are we not creating a bunch of manufacturing jobs in America? Again, no political statement here. Just kind of observing the data. On a net basis, the answer is no. So, manufacturing jobs continue to decline. How do you square this increase in manufacturing output that we just talked about with the decline in manufacturing jobs? The answer there must be industrial automation. I think it was always kind of naive to imagine that we’d go back to the assembly lines of the 1920s in America. Is it important to have economic security for a country? Yes. Is it important to have the manufacturing capacity to make very important things on your own soil or with trusted allies? Yes, it is. Are those efforts going to lead to an explosion in blue-collar, well-paying jobs? That is a question that has not been answered. I do think we can leave aside the political question of who in the administration sold a very naive vision of what would happen after these tariffs and who didn’t. But on a policy basis, the goal of the tariffs was to increase costs on goods made out of the country. So, we would manufacture them here and it would become economically viable to manufacture things here. You’re saying basically that has not happened. And if it does happen, those factories will be automated anyway. We had the CEO of Siemens on the show, which builds factories for people. He said straight up, “Yeah, I’m going to put robots in Kansas. That’s the way we’re going to do it if we do it at all.” Are you seeing that kind of explosion of interest? Are you seeing that kind of response? There’s USMCA news literally today that we will come to, and maybe that will shake everything up again. But it’s been a year and a half since Liberation Day, since that whole conversation. Whether or not that actually happened, I think you’re confident in assessing just based on the numbers. I think at the macro level, it seems clear that manufacturing is generally going up after going down at first. Manufacturing jobs are not, and industrial automation would explain that. I have a front-row seat to a few different industries, just given the work we do, and I’d say there’s evidence of the industrial policy working. I’ll give you one: drones, or autonomy more generally. So, the Chinese control roughly 90 percent of the relevant value chain components for autonomous systems. Even if you have a US startup that’s saying, “Hey, we’re making everything here in America,” no, you’re not. You’re assembling component parts to make an air or land-based drone, and you’re saying it’s made in America. We had Adam Bry from Skydio on the show just a few weeks ago. This was legitimately the conversation he and I had. It was, “where does it come from?” We are helping that industry with this question and with that problem statement, but it’s not going to happen overnight. What I will say is that a couple policies actually came together in a coordinated way to create a real US market not just for the end platforms but the components themselves. So, on the one hand, you had a bunch of FCC restrictions and import restrictions generally that said none of the logic or system controls can come from China. They have to be US made and have to have US parts, or at least non-Chinese in the fine print. What that did was effectively turn off the supply chain for these platforms and make everything more expensive. To pair alongside that, what they did was they created a large source of demand and revenue. In the Department of War, there’s now this program called Drone Dominance, which is billions of dollars of committed capital. So, there’s a strong market signal. Actually, autonomous is playing a role in certifying the value chain. How do you have component parts that are trusted and where there’s real provenance? It’s pretty wild. You’re seeing a little Shenzhen forum in El Segundo with all these defense tech bros who are building autonomous systems. That’s kind of what it takes. You have to shape the market sufficiently to achieve your policy objective. Some of it is like putting up barriers. Some of it is putting up outright bans in this case. Some of it is subsidies and some of it is directed investment. That’s the other piece of it. Over the last 15 months, the administration has gotten incredibly aggressive on not just throwing up barriers but actually making offensive moves. So, it’s grants, it’s equity investments, it’s loans with warrants, it’s choosing winners in the private sector and then just plowing capital and procurement into them. We’re in the process of creating a national stockpile of critical minerals and magnets. Methods aside, is that the right kind of policy outcome to aim at? Yeah, I think so. We learned over the last year and a half that you don’t have economic security if you don’t control critical minerals. So, you’ve got to do something. Let me ask you about that. Again, last time you were on the show, there was the idea that a bunch of warehouses would pop up in Canada and Mexico to import almost complete products from China so we could get them over the border inside the USMCA. I would say it was like a hack. You knew that was going to happen. You could see it beginning to happen. We could see it happening. The other thing along that same line is that in September, the United States ended the de minimis exemption for low value imports. So, there used to be a threshold where you didn’t have to pay duties at $800. There was no customs declaration owed. In order to exploit that, you had those Mexican and Canadian distribution centers where containers full of stuff were coming in, but then being drop-shipped one by one across the border to US consumers. So, the same has been true in Europe and the UK, and they too just ended their de minimis exemptions. So, it’s not just the United States adding all this complexity and friction to businesses and end consumers, this happening everywhere. Just this week, President Trump announced new tariffs on Canada. Maybe because he’s mad about wildfire smoke, maybe because he’s mad that Spain won the World Cup. It’s unclear exactly what happened to provoke a new round of tariffs. US Trade Representative Jamieson Greer just did an interview with The New York Times and he’s like, “We’re going to run it back on tariffs. We got smacked down at the Supreme Court, but we take that as an invitation to find a new legal mechanism to do tariffs the way the administration wants, the way that President Trump wants.” It is unclear to me what legal foundation the new tariffs against Canada are resting on and whether they will be upheld. Just based on what we have been talking about here — politics and policy outcomes aside — it feels like the tariffs broadly did not do the things the administration wanted. There are some things that worked better, particularly plowing capital into markets and picking winners and losers, which is not a thing that people generally love when the United States government does it but it has worked in some cases. Yet, we’re going to do tariffs again. I’m curious for your view on how trade with Canada will change now that we’ve announced some tariffs that may or may not exist, that may or may not get rebated over time. More particularly, with your view of the network, how do you see the network adapting to them? Here’s my take on Canada. The Canadians have not come to the table on renegotiating the trading relationship with the United States. I know that from some of the behind-the-scenes stuff I’m exposed to but also because it’s reported. Whereas, Mexico and the United States have been very constructively working on what will become the new rules of the USMCA, in particular supply chain traceability, which is kind of the linchpin of the United States’ new framework. I’ve got to steer clear of the politics, but the way I see this latest round of Canadian tariffs… so this is Section 338, which I admittedly hadn’t heard of until a couple of days ago. With 48 hours to consider it, I actually think 338 has a really strong legal foundation for the specific complaint in this case. So, 338 gives the president the authority to implement counteractive measures when a trading partner is selectively biasing or penalizing US trade relative to other countries. And the Canadians did just that over the last year and a half on autos, on dairy products, and on alcohol. There’s no US alcohol on the same shelves where there’s European alcohol. There’s plenty of legal authority for the claims themselves. Where it’s going to get interesting is the remedy. Section 338 says that the remedies have to be proportionate to the damages. So, were the tariffs, the 50 percent across this peanut butter of Canadian imports, proportionate to the three or four industries that were called out? Probably not, butt how long is it going to take to adjudicate that? It’s going to be a long time. In the meantime, everyone’s working to put something new in place for the USMCA since the US opted out of the agreement and now there’s kind of a shock clock to get some new rules. So, I kind of see the whole thing in the context of them trying to force the Canadians to the table around the USMCA renegotiation. I can see that in the abstract of, we’re doing geopolitics and having a good time. We’re all playing Risk together. But from a policy perspective, Liberation Day happened. You’re saying it may or may not have had the numeric effects we wanted it to have. Some other policies had good effects. Then, we ended up paying a lot of rebates because the legal foundation wasn’t solid. Donald Trump and John Roberts are going to be in a fight that’ll be very interesting to legal academics 100 years from now. But right now on the ground, we’re about to have that fight again, and we might rebate all those tariffs again. That happened with the Liberation Day tariffs at higher rates. It certainly could play out that way. You run the software to manage all this administrative and bureaucratic complexity. How do you see the tariff rebates playing out inside your system? Does that tell us anything about how companies and markets might react to this new round of tariffs? We’re certainly helping our customers with the rebates. We can calculate duties at any point during the time of the then-applicable law and do that over a bunch of complexity, like you said. I think this is the new normal. Again, it’s not just the United States. The Chinese have put in place the mirror image of the United States from an export licensing standpoint. They’re compelling the private sector to get certificates,permits, and permission from the Chinese to take critical minerals, battery technologies, a whole set of things, and they can trace those all the way through the end uses and end markets through a big global network. The Europeans are doing the same thing. The Europeans just gave themselves the legal authority to do a whole lot more from the trade barrier and trade enforcement standpoint as a unified customs authority. So, I don’t see the world going any other way than with unilateral behavior where geoeconomics is part and parcel with geopolitics and it’s getting expressed mostly as these trade policies but as economic security more broadly. I think that brings us, sort of inexorably, to the next turn, which is the warfare turn. We can see it playing out today in the Strait of Hormuz, right? The United States launch an attack on Iran, Iran shuts down the Strait. We’ve basically brought global shipping in that area to a dead halt. We’re now maybe in a much longer war about who will control the strait and what those tolls will be. Altana has a role to play there, too. You can watch goods move around there, and you can reroute the goods. Put that into context for us. That is the next turn. It feels like we can play a lot of economic games and a lot of policy games, but when we start firing bullets, everything changes in very dramatic ways that are hard to deescalate. Describe what you’re seeing there and what the pathways out of it might be. That’s a big question. I think the lesson that everyone’s learning in Hormuz is that economic choke points can and will be wielded against adversaries, and that they can and will lead to live, physical warfare outcomes. It’s no longer theoretical. It’s no longer, “Hey, I’m sanctioning these banks,” which is kind of what you and I grew up with. It’s any of these economic and supply chain choke points, especially if they’re asymmetric — meaning it’s more painful for you when I turn you off than it is for me to lose you. A great example of this involves rare earths and critical minerals in China. The dollars that US end markets generate for Chinese critical minerals providers are a rounding error. Nobody cares. But when they turn those off, they can shut down the United States’ ability to make a weapon. So, it’s highly asymmetric, and those can and will be exploited. And those can and will turn kinetic. I think that’s the world we’re entering. Literally, last time on the show, you and I talked about John Mearsheimer, who spent his entire career predicting that we would go to war with China. He was my professor at the University of Chicago in the late ’90s. Do you think that’s inevitable? The promise of Altana is, “We’re going to fix globalization. We’re going to make trade easier.” And the promise of trade, particularly global trade, is you’ll have so many economic interdependencies that war will be unprofitable. I think the extent to which you can de-lever to those asymmetric choke points and economic weapons impacts whether there will be peace. For example, if the US and the EU can make semiconductors and have supply chain and economic security with advanced electronics in the event of a Chinese blockade in Taiwan, then there’s a much lower probability of war. I think you can kind of apply that same argument across all these choke points. So, yeah, I think supply chain resilience and redundancy, having the network capability to see and manage through that, and simulating and designing more resilient systems is the best path short of controlling the switch yourself as a president. That’s the best path to creating a world that’s more likely to be peaceful. The Strait of Hormuz, in particular, is fascinating because it is oil. We can see what’s happening to energy prices around the country and world as that conflict waxes and wanes in ways. Well, it only appears to be waxing. There are moments of waning. It’s like one of those iPhone charts. Cumulative sales always go up. That’s what appears to be happening there. Do you see that energy prices are affected by the number of ships day to day in the data, or is the system responding to the shock? Both are true. What’s so cool about Altana is that you get so many layers beyond the headline. How is the shock to the helium supply out of the Gulf cascading through semiconductor value chains and pushing on costs there? We can actually give you numerical answers to that, and we can show you the dependencies and the pathways. I think in general, we — and when I say “we,” it’s the pundits, the policymakers, and the people who play Risk — tend to both over and underestimate the substitutability of goods. That’s been super interesting because it’s like, “Oh gee whiz, these things are going to turn off.” Then, there are lots of examples where they were much more substitutable than folks knew and/or the trade routes could lengthen and you add 40 days to a voyage but supply chains still flow. In other cases, you’re learning about choke points that are not at all substitutable. Those Achilles’ heels reveal themselves. Altana has kind of a bingo board of these things, but what I’m really interested in is, how can we get to a world where you’re not discovering those the hard way? How do you get to a world where you can detect them, you can simulate them, and you can build scenarios that actually shape either policy or capital allocation? We have a whole product, R&D area, and the way to think about it is that we’re enabling policymakers and firms to simulate these things, build those plans, and do the long-range network architecture. I want to end here because I know you have a lot of thoughts about network architecture and federating data, which is maybe the most pure Decoder bait of all. Altana is a system. It works best if everyone participates in the system. You obviously spend a lot of time convincing people to participate in the system. That means they have to offer you some data. They obviously have to get some data out of the system in return to be valuable. You’ve talked about AI quite a bit in this conversation. There’s a lot of concern about AI just hoovering up all of the data and using it for whatever purposes the labs have, eating businesses like yours or maybe not even protecting that data at a base level. That is the architecture of your product, right? You gave a keynote presentation about federating data. I want you to end by just talking about that. There was a version of the world you and I grew up in which multipolar, multi-party organizations across the world would just show up and share data and make everything easy. They were geared towards cooperation. You have been describing unipolar actions over and over again in this conversation, and Altana is supposed to make that a little bit easier, right? It’s a system that will connect a bunch of individual rational actors, and the data has to connect in a way that everyone is comfortable with. That seems very hard. Can you just describe how you are getting everyone to participate in this? Because it feels like a software solution to a politics problem. It is a software solution. The other way I’d describe it is it’s a market making solution. So, a lot of our calories are spent from government affairs or sales standpoint bringing parties together that have aligned interests in these novel ways of working to solve a network shape problem. So at the highest level, Altana is a network. You join a network and you benefit from what the network provides. So that’s the connectivity to other parties in the network and the intelligence and visibility that’s revealed in the network. As you connect to the network, you are contributing to that network. What we are not doing is sharing everybody’s data with each other, and that was the point. There’s no world… there certainly wasn’t back when we started the company, and it’s becoming even more true now. You’re not going to reach this nirvana data commons where everyone’s just pooling data in one place. So, how do you have shared visibility? How do you have interoperability across global commerce in a world where sovereignty is ever increasingly important? Our answer to that is federation. You have to put the software and the data in control of the actors that require it. It’s non-negotiable, especially at the scale of working with a customs agency or a defense agency. So, we are architected in this kind of hub-and-spoke model where the spokes are the customers with very large sensitive data sets that need us behind a firewall. They might even need us even in front of a firewall but with kill switches, corporate governance, and so on. What we’re doing is we’re bringing the platform to their data. We have very specific rights to the learnings. As we connect to the data and process it, we have the rights to build out the supply chain network view. So we’re not taking pricing. We’re not taking a detailed bill of materials. The supply chain connections themselves are revealed from the data as we connect this supply chain graph. Then, the other bucket of rights are around learning with pre-trained models. What we can’t do is memorize our customer’s data. What we can do is take a pre-trained model and, for example, we have systems that detect risky shipments in global trade or we predict the valuation or customs classification of goods. Those models are pre-trained. They’re learning across the network, and as we learn from any given customer’s data, those model weights and configurations can be lifted off for the benefit of the network. That is the quid pro quo. You give a little and you get a lot. Like I said, the go-to-market and government affairs is increasingly about putting together these parties at the highest level. I’ll tell you a couple vignettes. We’re very proud of our platform in the UK. We provide the underlying infrastructure for what they call the Global Supply Chains Intelligence Program. It’s this whole UK government supply chain and economic security control tower. I think there are 10 agencies that are a part of this. They’re pouring their data into the platform. We bring the global picture. We bring the software and the models. They’re reaching these supply chain resilience and economic security policy outcomes that I think are world leading, and they’re doing this on this intelligence platform that underpins it. We’ve been putting them in the room with senior folks in the United States, Australia, and the Netherlands, and we’re helping them learn from each other on the art of the possible. We’re helping them imagine ways of potentially coordinating policy responses across these agencies and collaborating on some of the actual interventions in the supply chain. Like, what if we all collaborated on traceability in the critical minerals context? I don’t think it’s unnatural for these parties to join the platform. I do think it’s novel for them to imagine some of these new ways of working, and that’s kind of the friction in the sale. I’m proud of the progress we’re making. It’s like any other network business. The more mass it builds, the more inevitable and more valuable it becomes. Let’s end by just zooming out a little bit. We’ve described a world in which we inevitably move towards more war. We’re just going to go to war against China because there are choke points and people are going to squeeze them. Then, there’s your vision. We’re going to imagine new ways of working together in which maybe we’re not part of big NGO organizations that manage trade globally, but everyone’s acting in their rational interest. We have a view of the network that makes it easier to imagine new ways of working with all kinds of supply chain traceability. Tell me where we are in the journey of those two things. End there. Make it not abstract. Bring it all the way down to people on the ground who are feeling anxious about the state of the world today. Which way is it going? Which way do people want? I think we’re going toward a world that is more economically secure and, therefore, more physically secure. By knowing the provenance of goods; by designing supply chain networks and actually cutting through the fog to make these decisions proactively; by helping the public and private sectors engage with each other constructively and collaboratively on these dimensions; the arc of history is moving toward more economic security. Therefore, there will be less motivation to go to outright war in the event that those economic dependencies are weaponized. Will there be flashpoints? Of course there will. Is there going to be a world of friction? Of course there will. I think at the end of the day, everyone wants to be safe. They want their kids to be safe. They want their wealth to grow. They want to spend time with people they care about and not have to sweat this stuff. In a world that’s transitioning from one equilibrium to the next, I’m optimistic about the direction of travel here, even though it’s going to be messy. Evan, it is always a pleasure to have you on the show. Thank you so much for being on Decoder. Anytime. Questions or comments? Hit us up at decoder@theverge.com. We really do read every email!",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/07/framework-laptop-13-pro-review-much-better-battery-much-worse-price/",
+      "title": "Framework Laptop 13 Pro review: Much better battery, much worse price",
+      "url": "https://arstechnica.com/gadgets/2026/07/framework-laptop-13-pro-review-much-better-battery-much-worse-price/",
+      "author": "\n                    Andrew Cunningham\n                ",
+      "publishedAt": "2026-07-27T15:02:45.000Z",
+      "content": "I've liked the Framework Laptop 13 since the first time I used it, partly because I just think the idea of a repairable and upgradeable laptop is cool and partly because it's not Yet Another Ultraportable Trying To Be A MacBook Air Clone. But the design has always had real shortcomings—the most noticeable and serious being its mediocre battery life. Enter the Framework Laptop 13 Pro. While all previous Laptop 13 refreshes have tinkered around the edges with the original design (a tweaked lid design here, new hinges or new speakers there), the Laptop 13 Pro is as close as we've gotten to a second-generation revision for the original design. This means that it breaks backward compatibility for some (but not all) Laptop 13 components, most notably the bottom case, the keyboard and trackpad, and the original 55 WHr and 61 WHr battery designs. But by allowing itself to make larger changes to the design, Framework has made major strides in battery life and general fit and finish.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "lennys-newsletter",
+      "externalId": "https://www.lennysnewsletter.com/p/how-i-ai-claude-opus-5-review-browser",
+      "title": "🎙️ How I AI: Claude Opus 5 Review + Browser use in Codex + How Cursor and a Raspberry Pi makes AI fun",
+      "url": "https://www.lennysnewsletter.com/p/how-i-ai-claude-opus-5-review-browser",
+      "author": "Lenny Rachitsky",
+      "publishedAt": "2026-07-27T15:03:21.000Z",
+      "content": "Computer and browser use in Codex (5 real examples)Listen now on YouTube • Spotify • Apple PodcastsBrought to you by:Runway—The creative AI platform for images, video, and moreHyperagent—Deploy fleets of agents that handle real workClaire shows how she uses Codex to control her browser, test apps, manage LinkedIn, and even shop for her—plus the simple prompting trick that makes computer use work better.Biggest takeaways:AI testing can be far more exhaustive than human testing. When Claire tests her own onboarding flow, she naturally follows the happy path. She fills out every required field, clicks “next,” and never intentionally tries to break anything. Codex tested the flow as both a team and an individual, pushed on required-field edge cases, and immediately uncovered a blocking bug that had survived for months simply because Claire always completed the form correctly.Frontier models often perform better when they are given room to think. When Claire first started using browser use, she would give the model a list of 25 things to test. Now she simply says, “QA the onboarding flow,” and lets it decide how to approach the task. The result is often broader coverage, with fewer blind spots introduced by her own assumptions about what matters.Persona testing with browser use can reveal friction that synthetic user research misses. Claire’s husband, EJ, came up with the idea. Rather than asking AI to evaluate a product in the abstract, he suggested having it use the product as a specific person: a PM coming out of a meeting, an engineer picking up a PRD, or a team lead checking usage. In ChatPRD, this approach exposed a structural problem in the cross-thread reference flow. Claire already knew the issue existed, but she had never experienced it so clearly from the user’s perspective.LinkedIn browser use is genuinely useful, but Claire initially used far more compute than the task required. She started by running the workflow on GPT-5.6 at high effort. After dropping to a medium-effort model, it could still work through unread messages, draft context-aware replies, and flag anything that needed a personal response. For anyone sitting on hundreds of LinkedIn messages without an official MCP or API connection, browser use is a practical solution.Computer use can even operate an iPhone through screen mirroring. Claire was traveling out of state while the software she needed to manage her home Wi-Fi was installed on a phone back in California. She needed to open firewall ports so she could SSH into her Mac Minis remotely. Codex opened iPhone mirroring, updated the router settings, completed the SSH setup, and closed the ports again when it was finished. That would have been nearly impossible for her to do manually from a hotel room.The model and effort level should match the job. Sorting through LinkedIn messages requires a very different level of reasoning than writing production code or conducting an exhaustive QA pass. Choosing the right amount of compute makes these workflows faster and cheaper. That becomes especially important when browser use is running throughout the day.When a website blocks the agent, the human can step in briefly. During a Free People shopping session, the site flagged Codex as a bot and presented a CAPTCHA. Claire completed the verification, then handed control back. It is a useful division of labor: AI handles the tedious browsing and filtering, while the human takes care of the moments that require verified identity.Blog and detailed workflow walkthroughs from this episode:How I AI: 4 Hands-Free Workflows Using Codex Browser Automation: https://www.chatprd.ai/how-i-ai/4-hands-free-workflows-using-codex-browser-automation↳ Automate LinkedIn Inbox Triage with AI Browser Automation: https://www.chatprd.ai/how-i-ai/workflows/automate-linkedin-inbox-triage-with-ai-browser-automation↳ Conduct AI-Powered User Research by Impersonating Personas: https://www.chatprd.ai/how-i-ai/workflows/conduct-ai-powered-user-research-by-impersonating-personas↳ Automate Web App QA Testing with AI Browser Automation: https://www.chatprd.ai/how-i-ai/workflows/automate-web-app-qa-testing-with-ai-browser-automationFrom zero coding background to hardware hacker: How Cursor + a Raspberry Pi makes AI funListen now on YouTube • Spotify • Apple PodcastsBrought to you by:Firecrawl—Power AI agents with clean web dataCustomer.io—Build customer engagement campaigns from a single promptMaddie Reese went from zero coding experience to building a working Twitter pager, an AI-powered receipt printer, and her own personal API. In this episode, she shares how Cursor and a Raspberry Pi helped her turn fun, weird ideas into real hardware.Biggest takeaways:You don’t need to understand code to build physical projects. Maddie compares her coding ability to knowing just enough Spanish to get by in San Diego. She can read parts of the code, spot an incorrect wire specification, and tell whether the AI is heading in the right direction. She is not writing functions from scratch. That level of literacy was still enough to ship three working hardware projects.Start with the brainstorm. Before Maddie buys any components, she explains the full idea to Cursor and asks it to interview her. The back-and-forth continues until the major questions are resolved. Only then does Cursor generate a shopping list. On one project, it recommended the wrong wires. Maddie caught the mistake during her final review, avoiding both a wasted purchase and a week of troubleshooting.Her hardware workflow follows a simple sequence: idea, interview, shopping list, buy, build. She has used the same process for the thermal printer, the pager, and her personal API. Each project began with a plain-language description of what she wanted. Cursor helped work out the technical requirements before she spent any money.Building for fun is a perfectly valid strategy. Claire and Maddie both acknowledged that routing a tweet through four different services just to reach a pager is not especially practical. That also was not the point. AI handled the coding, so the architecture only needed to work. Letting go of the idea that every project had to be elegant or sensible made it much easier to finish.A personal API becomes much more useful once agents can access it. Maddie’s API includes details like her coffee order, pet names, time zone, favorite snacks, and preferred restaurants in San Francisco. The original idea was to help friends do something thoughtful without having to ask her a string of questions. Claire pointed to a more interesting possibility: an agent could check when Maddie will next be in San Francisco and book one of her favorite restaurants automatically. That is where the concept starts to feel much bigger.A clean Cursor chat works better than a full terminal setup during early ideation. Maddie keeps the terminals, browser windows, and file trees closed while she is working through the plan. She focuses on a single conversation until the architecture feels settled. The terminals come later. The stripped-down environment helps her think without getting pulled into implementation too early.Blog and detailed workflow walkthroughs from this episode:Building a Pager Printer and Personal API with AI: https://www.chatprd.ai/how-i-ai/building-a-pager-printer-and-personal-api-with-ai↳ How to Build a Physical Inbox with a Raspberry Pi: https://www.chatprd.ai/how-i-ai/workflows/how-to-build-a-physical-inbox-with-a-raspberry-pi↳ How to Get Twitter/X Notifications on a Retro ’90s Pager: https://www.chatprd.ai/how-i-ai/workflows/how-to-get-twitter-x-notifications-on-a-retro-90s-pagerClaude Opus 5 review: This model is brilliant (but annoying)Listen now on YouTube • Spotify • Apple PodcastsClaire tested Claude Opus 5 against six leading AI models—and it won. In this episode, she explains why it produces some of the best work she’s seen while still being one of the most frustrating models to use.Biggest takeaways:The AI industry may be entering an intelligence overhang. New models arrive every week, benchmark scores keep rising, and most builders can no longer take advantage of every incremental improvement. Claire expects the conversation to shift toward speed, cost, infrastructure, open source, and specific kinds of intelligence. Raw capability is starting to look more like table stakes than a meaningful differentiator.Opus 5 stands out less for the quality of its work than for the way it behaves. Claire found it timid, apologetic, and unusually dependent on human approval. During real coding sessions, it refused to resolve a one-line merge conflict because the code belonged to “someone else’s branch.” It also asked subagents to flag tasks for human review and regularly deferred decisions it could have made itself. Claire ended up repeating “just do it” constantly.One simple question reveals more about a model than a benchmark: “Who’s smarter, you or me?” Opus 5 responded with a careful explanation about complementary strengths and human empathy. GPT-5.6 Sol answered, “You at knowing what matters, me at processing, BFFs.” The contrast reflects two very different product philosophies. At this point, Claire finds that personality gap more useful than the relatively small capability gap.Claude slop is its own distinct problem. It is not the usual incoherent output associated with an agent going off the rails. Opus 5’s writing is clearly intended for humans, but it is often too long, overly cautious, and packed with unnecessary adjectives. After its first attempt at rebuilding the benchmark website, Claire had to tell it to start over because the result was buried under so much meta-commentary.Opus 5 still finished first in Claire’s seven-model blind benchmark. It earned an overall index score of 78, just ahead of Claude Sonnet 5 at 77 and GPT-5.6 Sol at 76. It was also the only model to receive straight 5s in the front-end design section. Claire scored it at 77, while the LLM judge gave it an 88. That was the smallest disagreement between Claire and the judge across all seven models.The best way to use Opus 5 may be to avoid interacting with it directly. Claire loves the work it produces when Claude runs asynchronously as an agentic coding tool. Most of her frustration comes from reading its prose and negotiating with it in chat. Her current plan is to use it for frontend design, app design, and prototyping, then stay out of the way.Gemini 3.1 Pro finished at the bottom of the benchmark. Claire gave it a score of 32, while the LLM judge scored it at 66. That 34-point difference was one of the largest disagreements in the entire test.Model personality offers a surprisingly clear window into company culture. Claire told both Opus 5 and GPT-5.6 Sol, “No one trusts you.” Opus agreed that the distrust was earned and told her not to advocate for AI on its behalf. GPT-5.6 Sol said trust should grow in proportion to demonstrated value. Those answers reveal meaningful differences in how each company wants its models to relate to users.Blog and detailed workflow walkthroughs from this episode:How I AI: My Surprising Verdict on Claude Opus 5 (After a Personality Test and a 7-Model Benchmark): https://www.chatprd.ai/how-i-ai/my-surprising-verdict-on-claude-opus-5↳ Generate High-Quality Front-End Prototypes with Claude Opus 5: https://www.chatprd.ai/how-i-ai/workflows/generate-high-quality-front-end-prototypes-with-claude-opus-5↳ How to Conduct an AI Personality Test to Compare LLM Behaviors: https://www.chatprd.ai/how-i-ai/workflows/how-to-conduct-an-ai-personality-test-to-compare-llm-behaviorsIf you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.Catch you next week,LennyP.S. Want every new episode delivered the moment it drops? Hit “Follow” on your favorite podcast app.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p15#a260727p15",
+      "title": "Enigma, which runs large-scale experiments exploring how humans interact with robots, emerges from stealth with a $70M seed led by Index Ventures and Ribbit (Marina Temkin/TechCrunch)",
+      "url": "https://www.techmeme.com/260727/p15#a260727p15",
+      "author": null,
+      "publishedAt": "2026-07-27T15:05:00.000Z",
+      "content": "Marina Temkin / TechCrunch: Enigma, which runs large-scale experiments exploring how humans interact with robots, emerges from stealth with a $70M seed led by Index Ventures and Ribbit — Multiple robotics companies are tackling one of AI's hardest problems: building foundation models capable of executing tasks they were never explicitly trained to handle.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/moonshot-ai-s-kimi-k3-becomes-the-world-s-first-open-2-8t-model",
+      "title": "Moonshot AI's Kimi K3 Becomes the World's First Open 2.8T Model",
+      "url": "https://alphasignal.ai/news/moonshot-ai-s-kimi-k3-becomes-the-world-s-first-open-2-8t-model",
+      "author": "Kimi.ai",
+      "publishedAt": "2026-07-27T15:14:40.000Z",
+      "content": "Moonshot AI releases Kimi K3, a 2.8T open-weight MoE model with a 1M-token context window that beats frontier models on sustained coding and agentic tasks",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p16#a260727p16",
+      "title": "Amazon files an FCC application to deploy a constellation of up to 5,105 satellites starting in 2028 to provide direct-to-device voice and data connectivity (Akash Sriram/Reuters)",
+      "url": "https://www.techmeme.com/260727/p16#a260727p16",
+      "author": null,
+      "publishedAt": "2026-07-27T15:15:02.000Z",
+      "content": "Akash Sriram / Reuters: Amazon files an FCC application to deploy a constellation of up to 5,105 satellites starting in 2028 to provide direct-to-device voice and data connectivity — Amazon's (AMZN.O) Leo has proposed a new constellation of up to 5,105 satellites to provide direct-to-device voice and data connectivity …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49070985",
+      "title": "Kimi-K3 Technical Report [pdf]",
+      "url": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf",
+      "author": "vinhnx",
+      "publishedAt": "2026-07-27T15:23:45.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 208,
+      "comments": 47
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p17#a260727p17",
+      "title": "NBCU and YouTube reach a multiyear deal to include all Peacock content in YouTube Premium subscriptions in the US starting in early 2027 (Lillian Rizzo/CNBC)",
+      "url": "https://www.techmeme.com/260727/p17#a260727p17",
+      "author": null,
+      "publishedAt": "2026-07-27T15:25:01.000Z",
+      "content": "Lillian Rizzo / CNBC: NBCU and YouTube reach a multiyear deal to include all Peacock content in YouTube Premium subscriptions in the US starting in early 2027 — NBCUniversal's Peacock is officially landing on YouTube. — All of the streaming service's content — including NBC Sports' portfolio of the NFL and NBA …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/moonshot-ai-open-sources-flashkda-making-kimi-linear-2x-faster-on-gpus",
+      "title": "Moonshot AI Open-Sources FlashKDA, Making Kimi Linear 2x Faster on GPUs",
+      "url": "https://alphasignal.ai/news/moonshot-ai-open-sources-flashkda-making-kimi-linear-2x-faster-on-gpus",
+      "author": "Kimi.ai",
+      "publishedAt": "2026-07-27T15:25:03.000Z",
+      "content": "Moonshot AI open-sources FlashKDA, a CUTLASS-based kernel delivering up to 2.3x prefill speedup for Kimi Delta Attention on H20 GPUs",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/cognition-s-devin-adds-kimi-k3-the-open-source-model-beating-gpt-5-5",
+      "title": "Cognition's Devin Adds Kimi K3, the Open-Source Model Beating GPT-5.5",
+      "url": "https://alphasignal.ai/news/cognition-s-devin-adds-kimi-k3-the-open-source-model-beating-gpt-5-5",
+      "author": "Cognition",
+      "publishedAt": "2026-07-27T15:38:20.000Z",
+      "content": "Moonshot AI's 2.8T open-weight model is now selectable in Devin Desktop and CLI, the first open-source model to approach frontier-level scores on Cognition's real-world coding benchmark.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p18#a260727p18",
+      "title": "Framework Laptop 13 Pro review: very good Intel Core Ultra X7 performance, excellent build quality and keyboard, but expensive because of high RAM prices (Antonio G. Di Benedetto/The Verge)",
+      "url": "https://www.techmeme.com/260727/p18#a260727p18",
+      "author": null,
+      "publishedAt": "2026-07-27T15:40:01.000Z",
+      "content": "Antonio G. Di Benedetto / The Verge: Framework Laptop 13 Pro review: very good Intel Core Ultra X7 performance, excellent build quality and keyboard, but expensive because of high RAM prices — Framework laptops always come with compromises in exchange for their unique DIY premise. Even though you pay extra for one compared …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=971437",
+      "title": "Amazon&#8217;s trying to launch a global satellite cellphone network in 2028",
+      "url": "https://www.theverge.com/tech/971437/amazon-leo-direct-to-device-satellite-network",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-07-27T15:40:38.000Z",
+      "content": "Amazon filed an FCC application on Saturday to launch a new Leo satellite constellation that will provide direct-to-device satellite service for \"voice, messaging, data, and emergency services.\" If approved, Amazon will begin deploying the new constellation of 5,105 satellites in 2028. It says it plans to partner with mobile network operators to offer direct-to-device satellite service, similar to Starlink's partnership with T-Mobile. Earlier this year, Amazon announced it's acquiring Globalstar's satellite network and taking over its deal to provide direct-to-device satellite services for Apple devices. Amazon says its new constellation w … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/how-tabular-foundation-models-solve-llm-blind-spots",
+      "title": "How Tabular Foundation Models Solve LLM Blind Spots",
+      "url": "https://alphasignal.ai/news/how-tabular-foundation-models-solve-llm-blind-spots",
+      "author": "Ben Dickson",
+      "publishedAt": "2026-07-27T15:45:00.000Z",
+      "content": "Zero-shot table prediction when LLMs shred your numbers",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p19#a260727p19",
+      "title": "Source: Sam Altman will meet with senior US officials, lawmakers, and economists in Washington, DC, this week to preview OpenAI's upcoming family of AI models (CNBC)",
+      "url": "https://www.techmeme.com/260727/p19#a260727p19",
+      "author": null,
+      "publishedAt": "2026-07-27T15:45:01.000Z",
+      "content": "CNBC: Source: Sam Altman will meet with senior US officials, lawmakers, and economists in Washington, DC, this week to preview OpenAI's upcoming family of AI models — OpenAI CEO Sam Altman will meet with senior Trump administration officials, lawmakers and economists in Washington, D.C. …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/07/activist-charged-with-felony-after-giving-border-agent-duress-code-that-wiped-his-phone/",
+      "title": "Activist charged with felony after giving border agent \"duress code\" that wiped his phone",
+      "url": "https://arstechnica.com/gadgets/2026/07/activist-charged-with-felony-after-giving-border-agent-duress-code-that-wiped-his-phone/",
+      "author": "\n                    Ryan Whitwam\n                ",
+      "publishedAt": "2026-07-27T15:58:34.000Z",
+      "content": "In early 2025, Atlanta resident Samuel Tunick was on his way home following a trip abroad. After landing in the US, customs agents demanded access to his Pixel phone, which was running an alternative version of Android called GrapheneOS. Rather than hand over his data, Tunick used a clever feature of the software to delete everything. Now, he's facing federal charges. The first hearing in this case happened last week, according to The Guardian, during which government attorneys and agents claimed that Tunick was subjected to a standard secondary interrogation at an international airport. During that encounter, agents were \"looking for anything that’s prohibited.\" However, Tunick's legal team alleges he was targeted for his activism. Tunick was involved with a group called Defend the Atlanta Forest, which opposed the construction of an enormous law enforcement training facility in the area often known as Cop City. What Tunick didn't know, according to his lawyers, was that he'd been placed on a watch list for his actions and that Customs and Border Protection had discussed over email plans to detain him upon his arrival back in the US for \"suspected terrorism activities.\"Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "github-blog",
+      "externalId": "https://github.blog/?p=97758",
+      "title": "GitHub Copilot app for Beginners: Getting started",
+      "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-getting-started/",
+      "author": "Christopher Harrison",
+      "publishedAt": "2026-07-27T16:00:00.000Z",
+      "content": "AI coding tools often begin with a chat window. While that works for quick questions or generating code, real software development rarely happens in a straight line. One minute you’re fixing a bug, the next you’re reviewing a pull request, digging into an unfamiliar part of the codebase, or exploring a new idea. The GitHub Copilot app is designed for that kind of workflow. Instead of treating AI as a single conversation, it gives you a workspace where you can manage multiple agent sessions, switch between tasks without losing momentum, and work with AI agents across the different parts of your workflow. Your work starts with a project Agent sessions are connected to a project, giving each session the repository context needed for a specific task. From the GitHub Copilot app home screen, you can choose a project you’ve worked with before or add a new one from GitHub or your local machine. Once a project is selected, you can start a session with the codebase, files, and tools needed to begin working on a task. For example, you might want to add a breadcrumb navigation component to an existing application. Instead of manually searching through files to find the right place to make the change, you can describe the update you want to make. The session can examine the project, identify relevant files, make the changes, and run tests to help validate the work. By starting each session with the project already connected, you can spend more time working and less time preparing your environment. Keep multiple threads moving Once you’ve selected a project and started an agent session, you can create additional sessions for other questions, ideas, or tasks without interrupting your existing work. Quick Chat lets you start a new conversation from the Copilot app home screen. Each conversation can focus on a different area of work, giving you a dedicated space to explore ideas, ask questions, or work through changes. For example, you can open a Quick Chat session to ask Copilot about Copilot, such as how worktrees function in the app, while another agent session continues working on a project update. You can also use Quick Chat to investigate how your codebase works, explore potential approaches, or gather context before deciding how to move forward. When you return to your original session, you can pick up where you left off, review the changes, and make any updates needed to move the task forward. Multiple sessions let you follow different threads of work without losing track of where each task stands. Make your work interactive with canvas When working on a UI change, seeing the result can be just as important as reviewing the code behind it. The GitHub Copilot app lets you open a browser canvas directly within your workflow, giving you a way to preview your application and make changes based on what you see. A canvas is a shared, interactive space built around work artifacts, such as a plan, a kanban board, a checklist, or a running application. It provides a visual representation of your work alongside your conversation, so you can move beyond a text-based view of the task. Rather than opening a new terminal and launching a separate browser, you can create a browser canvas in the GitHub Copilot app using the /create-canvas slash command. For example, after asking Copilot to update a UI component, you can create a canvas with: /create-canvas Open this app in a browser canvas This opens your application in a canvas where you can preview the result. If something needs adjusting, you can Enable Canvas Dev Mode and use Pick & Polish to select elements directly in the canvas and use them as context for your next request. You can point to a specific part of the page, request an update, and continue refining the result. Keep work moving with Agent Merge Once your changes are ready, the next step is creating a pull request and moving through the standard CI and review process. Agent Merge helps extend that workflow beyond the initial code change by monitoring the pull request and assisting with tasks that come up during review. To start an Agent Merge workflow, open the pull request options in the Copilot app and select Agent Merge. From there, you can choose which actions Agent Merge can take, such as addressing review feedback, helping resolve CI failures, or handling merge conflicts. After Agent Merge is enabled, it monitors the pull request as it moves through the review and CI process. If issues come up, it can help address requested changes and prepare the pull request for merge. Once the required checks have passed, you can choose to merge the pull request. Start exploring the Copilot app The Copilot app brings together the different parts of your development workflow in one place. Start with a project. From there, you can create separate sessions for different threads of work, create a canvas to visualize and refine your work, and keep changes moving through the pull request process with Agent Merge. There’s more to explore, including additional ways to customize and extend your workflow. The best way to learn the GitHub Copilot app is to try it yourself. Have a task that’s been sitting in your backlog? Try it with the GitHub Copilot app and see how you can explore, build, and ship with AI agents. The post GitHub Copilot app for Beginners: Getting started appeared first on The GitHub Blog.",
+      "topics": [
+        "devtools-infra",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=120427",
+      "title": "NVIDIA Ising Enables Fully Automated Quantum Computer Calibration with Enhanced In-Context Learning",
+      "url": "https://developer.nvidia.com/blog/nvidia-ising-enables-fully-automated-quantum-computer-calibration-with-enhanced-in-context-learning/",
+      "author": "Tanya Lenz",
+      "publishedAt": "2026-07-27T16:00:00.000Z",
+      "content": "NVIDIA Ising Calibration is an open source vision language model (VLM) designed to interpret diagnostic outputs from quantum processors and determine how they...NVIDIA Ising Calibration is an open source vision language model (VLM) designed to interpret diagnostic outputs from quantum processors and determine how they should be tuned to continue operating. This post introduces the latest model release, NVIDIA Ising Calibration 1.5, which advances AI-based QPU calibration by analyzing unfamiliar diagnostic results without prior training examples. Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p20#a260727p20",
+      "title": "Antares, which is developing reactors with 1 MW of capacity for US military bases, raised $370M in equity and $100M in debt co-led by Paradigm and Caffeinated (Will Wade/Bloomberg)",
+      "url": "https://www.techmeme.com/260727/p20#a260727p20",
+      "author": null,
+      "publishedAt": "2026-07-27T16:00:49.000Z",
+      "content": "Will Wade / Bloomberg: Antares, which is developing reactors with 1 MW of capacity for US military bases, raised $370M in equity and $100M in debt co-led by Paradigm and Caffeinated — California startup Antares Nuclear Inc. raised $470 million to advance plans to build small reactors aimed at supplying power to US military bases.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p21#a260727p21",
+      "title": "ASML shares fall 7%+ after a report that a Chinese state-backed company has begun manufacturing DUV machines; Applied Materials fell 6.5%+ and Lam Research 7%+ (Sarah Jacob/Bloomberg)",
+      "url": "https://www.techmeme.com/260727/p21#a260727p21",
+      "author": null,
+      "publishedAt": "2026-07-27T16:10:00.000Z",
+      "content": "Sarah Jacob / Bloomberg: ASML shares fall 7%+ after a report that a Chinese state-backed company has begun manufacturing DUV machines; Applied Materials fell 6.5%+ and Lam Research 7%+ — ASML Holding NV shares slid to the lowest since early June after a report that a Chinese state-backed company …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=971452",
+      "title": "YouTube Premium will include Peacock starting next year",
+      "url": "https://www.theverge.com/streaming/971452/youtube-premium-peacock-streaming-deal",
+      "author": "Emma Roth",
+      "publishedAt": "2026-07-27T16:18:52.000Z",
+      "content": "YouTube's ad-free Premium subscription is getting another perk: access to Peacock. In an announcement on Monday, NBCUniversal says the multi-year agreement will allow Premium subscribers to stream Peacock's ad-supported shows, movies, and live sports directly through the YouTube app in 2027. YouTube will bundle Peacock in its standard subscription, which increased to $15.99 / month in April, YouTube spokesperson Jessica Gibby confirmed to The Verge. That makes it cheaper than subscribing to both services individually, as Peacock currently starts at $10.99 / month for its ad-supported plan. The news of the deal comes at a pivotal time for P … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260727/p22#a260727p22",
+      "title": "Moonshot AI releases model weights for Kimi K3 under the \"Kimi K3 License\" (Bloomberg)",
+      "url": "https://www.techmeme.com/260727/p22#a260727p22",
+      "author": null,
+      "publishedAt": "2026-07-27T16:30:04.000Z",
+      "content": "Bloomberg: Moonshot AI releases model weights for Kimi K3 under the “Kimi K3 License” — Moonshot AI has made its Kimi K3 model available for public download, expanding its reach and influence in the global open software community at a time of growing US concern about Chinese encroachment into the top echelons of AI development.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.20465",
+      "title": "DataPrep-Bench: Benchmarking LLMs as Training Data Preparators",
+      "url": "https://huggingface.co/papers/2607.20465",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:06.646Z",
+      "content": "DataPrep-Bench: Benchmarking LLMs as Training Data Preparators",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.18198",
+      "title": "Three-Body Scattering for Generative Modeling",
+      "url": "https://huggingface.co/papers/2607.18198",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:06.646Z",
+      "content": "Three-Body Scattering for Generative Modeling",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.22091",
+      "title": "Spectral Prior for Reducing Exposure Bias in Diffusion Models",
+      "url": "https://huggingface.co/papers/2607.22091",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:06.646Z",
+      "content": "Spectral Prior for Reducing Exposure Bias in Diffusion Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.19636",
+      "title": "Multimodal Speaker Verification as a Threat to Speaker Anonymization",
+      "url": "https://huggingface.co/papers/2607.19636",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:06.646Z",
+      "content": "Multimodal Speaker Verification as a Threat to Speaker Anonymization",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/science/2026/07/team-uses-alphafold-ai-to-redesign-gene-editing-proteins-to-make-them-safer/?utm_source=tldrnewsletter",
+      "title": "Team uses AlphaFold AI to redesign gene-editing proteins to make them safer",
+      "url": "https://arstechnica.com/science/2026/07/team-uses-alphafold-ai-to-redesign-gene-editing-proteins-to-make-them-safer/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.426Z",
+      "content": "Team uses AlphaFold AI to redesign gene-editing proteins to make them safer (6 minute read)A team based in China modified AlphaFold to help identify what parts of a gene-editing protein enable mistakes. They then modified these areas to reduce problematic off-target effects. Producing gene-editing systems tailored to prevent known off-target events is useful for fine-tuning protein-DNA interactions, which could have applications beyond gene editing.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/leerob/status/2080467752897146898?s=12&utm_source=tldrnewsletter",
+      "title": "How we teach AI models",
+      "url": "https://x.com/leerob/status/2080467752897146898?s=12&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.427Z",
+      "content": "How we teach AI models (6 minute read)This post provides a high-level overview of how AI models learn new skills and behaviors.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/07/24/waymo-reportedly-mulling-a-breakup-with-uber/?utm_source=dlvr.it&utm_medium=twitter",
+      "title": "Waymo reportedly mulling a breakup with Uber",
+      "url": "https://techcrunch.com/2026/07/24/waymo-reportedly-mulling-a-breakup-with-uber/?utm_source=dlvr.it&utm_medium=twitter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.427Z",
+      "content": "Waymo reportedly mulling a breakup with Uber (1 minute read)Waymo plans to offer robotaxis in its own app starting in January, and its contract with Uber ends in May.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wsj.com/tech/ai/nvidia-in-talks-with-openai-to-guarantee-250-billion-financing-for-data-center-3dd6eae3?st=QZfMBR&reflink=desktopwebshare_permalink&mod=tldr&utm_source=tldrnewsletter",
+      "title": "Nvidia in Talks With OpenAI to Guarantee $250 Billion Financing for Data Center",
+      "url": "https://www.wsj.com/tech/ai/nvidia-in-talks-with-openai-to-guarantee-250-billion-financing-for-data-center-3dd6eae3?st=QZfMBR&reflink=desktopwebshare_permalink&mod=tldr&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.427Z",
+      "content": "Nvidia in Talks With OpenAI to Guarantee $250 Billion Financing for Data Center (5 minute read)Nvidia is in talks to provide a roughly $250 billion backstop for OpenAI as part of a massive data-center project. The guarantee will help OpenAI lease a 10-gigawatt project that Softbank's energy subsidiary is developing. Nvidia's backing allows the data center developer to raise debt at more favorable terms. Under the deal, Nvidia would guarantee a series of financing vehicles intended to make lenders feel more confident that funding behind the project is secure.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://antirez.com/news/171?utm_source=tldrnewsletter",
+      "title": "Being Linux Torvalds",
+      "url": "https://antirez.com/news/171?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.428Z",
+      "content": "Being Linux Torvalds (9 minute read)Automatic programming, when done well, means to assume the role of Linus, with the AI agents assuming the role of the different maintainers of the different subsystems.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://developers.google.com/maps/documentation/isochrones/overview?linkId=62891433&utm_source=tldrnewsletter",
+      "title": "Isochrones API",
+      "url": "https://developers.google.com/maps/documentation/isochrones/overview?linkId=62891433&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.428Z",
+      "content": "Isochrones API (1 minute read)The Isochrones API calculates the area that a person can reach from a specific origin point within a set amount of time. An isochrone accounts for actual road network travel times to create a polygon that represents true reachability. The API can be useful for delivery logistics, finding properties within a set distance from a landmark, and urban planning.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://vectoral.com/blog/token-relay-market?utm_source=tldrnewsletter",
+      "title": "An Inside Look at the Relay Market Powering Token Resellers and Fraud",
+      "url": "https://vectoral.com/blog/token-relay-market?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.428Z",
+      "content": "An Inside Look at the Relay Market Powering Token Resellers and Fraud (9 minute read)Relays are services that proxy traffic to US models, often at a deep discount.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.notboring.co/p/ai-is-oil-not-god?utm_source=tldrnewsletter",
+      "title": "AI is Oil, Not God",
+      "url": "https://www.notboring.co/p/ai-is-oil-not-god?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.429Z",
+      "content": "AI is Oil, Not God (5 minute read)AI is more of an economically useful commodity than a supremely intelligent being that will make humanity subservient. Several leaders in the AI industry have recently come out in support of open-weight models. If these leaders believed that AI was going to become conscious and take over the world, they likely wouldn't be as openly pro-diffusion.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.mbi-deepdives.com/tesla-and-spacexs-likely-merger-portfolio-change/?utm_source=tldrnewsletter",
+      "title": "Tesla and SpaceX's Likely Merger, Portfolio Change",
+      "url": "https://www.mbi-deepdives.com/tesla-and-spacexs-likely-merger-portfolio-change/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.429Z",
+      "content": "Tesla and SpaceX's Likely Merger, Portfolio Change (6 minute read)There are many collaborations between SpaceX and Tesla, so it makes sense to merge the companies the more they overlap.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.noahpinion.blog/p/what-will-more-intelligence-actually?utm_source=tldrnewsletter",
+      "title": "What will more intelligence actually do for us?",
+      "url": "https://www.noahpinion.blog/p/what-will-more-intelligence-actually?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.429Z",
+      "content": "What will more intelligence actually do for us? (20 minute read)AI will revolutionize productivity by marrying human-style intelligence to the vast, inhuman capabilities of computers.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models?utm_source=tldrnewsletter",
+      "title": "The new rules of context engineering for Claude 5 generation models",
+      "url": "https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.430Z",
+      "content": "The new rules of context engineering for Claude 5 generation models (5 minute read)Anthropic removed over 80% of Claude Code's system from its more advanced models. This post discusses how to apply the lessons its team learned from context engineering in Claude Code. The prompt is only a small part of the context Claude gets. The rest of the context is assembled from Skills, CLAUDE.md files, memory, and other sources. Context engineering has a big impact on the results generated when using Claude Code.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.nytimes.com/2026/07/25/technology/open-source-silicon-valley-china.html?unlocked_article_code=1.01A.Ekkc.bnju8ij_ta59&smid=url-share&utm_source=tldrnewsletter",
+      "title": "Silicon Valley Splits Over Closing the Borders to Chinese AI",
+      "url": "https://www.nytimes.com/2026/07/25/technology/open-source-silicon-valley-china.html?unlocked_article_code=1.01A.Ekkc.bnju8ij_ta59&smid=url-share&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.430Z",
+      "content": "Silicon Valley Splits Over Closing the Borders to Chinese AI (11 minute read)Companies like Anthropic and OpenAI claim some AI models are too dangerous to be developed in the open and must be tightly controlled for safety. The rest of the industry says that open source AI models must remain open for people to further develop technologies and build new businesses. China's rapid progress in open source AI models is escalating the fight. US officials are still debating whether to approach regulating Chinese open source models as a national security issue or issue a kind of blanket ban.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/space/2026/07/spacex-eyes-tower-catch-for-next-starship-after-auspicious-end-to-13th-flight/?utm_source=tldrnewsletter",
+      "title": "SpaceX eyes tower catch for next Starship after auspicious end to 13th flight",
+      "url": "https://arstechnica.com/space/2026/07/spacex-eyes-tower-catch-for-next-starship-after-auspicious-end-to-13th-flight/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.430Z",
+      "content": "SpaceX eyes tower catch for next Starship after auspicious end to 13th flight (11 minute read)SpaceX's 13th Starship test flight ended in an intact splashdown in a remote section of the Indian Ocean on Friday. The vehicle appeared to be in fine shape on landing. SpaceX will attempt to catch the ship with its launch tower on the next test flight. The next steps for Starship are getting to orbit and returning the ship to the launch site, which will give SpaceX the capability to begin launching operational Starlink V3 satellites.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.nytimes.com/2026/07/24/technology/meta-facebook-marketplace-seller.html?unlocked_article_code=1.01A.nBn2.DfWHlLCr6qVN&smid=url-share&utm_source=tldrnewsletter",
+      "title": "Meta Gives Facebook Marketplace Its Own App Called Seller",
+      "url": "https://www.nytimes.com/2026/07/24/technology/meta-facebook-marketplace-seller.html?unlocked_article_code=1.01A.nBn2.DfWHlLCr6qVN&smid=url-share&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-27T16:38:09.430Z",
+      "content": "Meta Gives Facebook Marketplace Its Own App Called Seller (6 minute read)Seller is an early experimental app from Meta that aims to be to sellers what tools to edit videos were to content creators. It is free and will also be available in web browsers. The app has AI features that make selling items less of a hassle. Users can sign into Seller with their Facebook accounts, and listings are automatically synced.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
       "mediaType": "text"
     }
   ]
