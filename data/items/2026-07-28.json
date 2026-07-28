@@ -1,6 +1,6 @@
 {
   "day": "2026-07-28",
-  "generatedAt": "2026-07-28T04:41:00.290Z",
+  "generatedAt": "2026-07-28T06:02:17.179Z",
   "items": [
     {
       "sourceSlug": "hacker-news",
@@ -119,6 +119,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49072462",
+      "title": "Show HN: FeyNoBg – Automatic background removal model and training library",
+      "url": "https://usefeyn.com/blog/feynobg/",
+      "author": "snyy",
+      "publishedAt": "2026-07-27T16:59:08.000Z",
+      "content": "Hey HN, I’m Shreyash from Feyn. We help companies build custom models from their data.Today, we’re releasing FeyNoBg, an automatic background removal model. Alongside it, we're open-sourcing NoBg, the Python library we built to train and run it.Try the model here: https://huggingface.co/spaces/feyninc/feynobg. Check out the library here: https://github.com/feyninc/nobgSome sample outputs:(1) Soccer Freekick: https://drive.google.com/file/d/1MZkAGLwbhNVOZ0Oi7XvpCfSEu9Q...(2) Hair in wind: https://drive.google.com/file/d/1Odc2m0XMVH9uZtvI_KjaRbXzhLL...(3) Bicycle with visible spokes: https://drive.google.com/file/d/1h99ahjfrtS1MFQJJgiKE2fuM3HZ...(4) Live Demo video: https://youtu.be/b1heHPvY8BMBackground removal separates an image's subject from its surrounding. We've all tried it at some point. Often it is to reuse the subject in a different artifact. Nowadays, it is common to make chat stickers out of it. It is one of the most common but under-appreciated uses of AI. It is also surprisingly complex. Models can be easily confused by camouflage, motion blur, or fine structures like hair.The task requires two skills. First, a model has to identify the foreground. Second, it has to trace the foreground’s boundary and estimate an opacity value for each pixel. Generally, these skills are taught with different datasets. That creates a failure point. A poor training mix can improve one skill at the expense of the other. We saw this in our controlled evaluation. A training run with just the MaskFactory dataset improved on the CAMO benchmark but regressed on DIS5K.For FeyNoBg, we took an interpretability-first approach to training. We first studied how BiRefNet’s stages contribute to finding the foreground and reconstructing its boundary. We discovered that the third stage of it's feature extractor holds a lot of information. Both localization and boundary reconstruction depend heavily on the feature map produced here.This led us to expand this stage from 18 to 24 blocks while preserving the pre-trained weights. We then trained FeyNoBg on 26.1K diverse examples assembled from 10 datasets. The goal was to improve foreground identification and boundary precision without sacrificing either one.Across eight benchmarks, FeyNoBg achieves the best published score on four and comes within 2% of the leader on the rest.Building FeyNoBg also exposed a tooling problem. Image matting models are usually released as isolated repositories with incompatible preprocessing, training, and evaluation code. We built NoBg to solve this. NoBg puts these workflows behind one Python interface. It supports BiRefNet today, with more architectures coming. We hope you build something exciting with it!Happy to answer any questions!",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 101,
+      "comments": 22
     },
     {
       "sourceSlug": "vercel-blog",
@@ -757,6 +776,20 @@
       "content": "Zac Hall / 9to5Mac: Apple releases updates for iOS, macOS, iPadOS, watchOS, tvOS, and visionOS with a huge number of security fixes; macOS Tahoe 26.6 alone addresses 155 CVEs — Following the release of iOS 26.6, iPadOS 26.6, and related software updates, Apple has detailed a huge number of security fixes included in today's new OS versions.",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/epoch-s-frontiermath-benchmark-cracks-a-40-year-old-math-problem-using-fable-5",
+      "title": "Epoch's FrontierMath Benchmark Cracks a 40-Year-Old Math Problem Using Fable 5",
+      "url": "https://alphasignal.ai/news/epoch-s-frontiermath-benchmark-cracks-a-40-year-old-math-problem-using-fable-5",
+      "author": "Epoch AI",
+      "publishedAt": "2026-07-28T00:09:15.000Z",
+      "content": "Epoch AI announces AI has cracked a 40-year-old open problem in number theory, the second solved on its FrontierMath: Open Problems benchmark.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -1860,6 +1893,48 @@
       "author": null,
       "publishedAt": "2026-07-28T04:40:49.648Z",
       "content": "Leveraging External Knowledge for Historical Document Restoration via Retrieval-Augmented Large Language Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260728/p2#a260728p2",
+      "title": "Cursor introduces Cursor Start, a ~$7 monthly subscription exclusive to India, its third-largest market, priced below its standard $20 Pro monthly subscription (Jagmeet Singh/TechCrunch)",
+      "url": "https://www.techmeme.com/260728/p2#a260728p2",
+      "author": null,
+      "publishedAt": "2026-07-28T04:45:01.000Z",
+      "content": "Jagmeet Singh / TechCrunch: Cursor introduces Cursor Start, a ~$7 monthly subscription exclusive to India, its third-largest market, priced below its standard $20 Pro monthly subscription — Weeks before its expected acquisition by SpaceX closes, AI coding startup Cursor is making its biggest push into India yet …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/cursor-launches-india-only-7-plan-targeting-3-million-developers",
+      "title": "Cursor Launches India-Only $7 Plan Targeting 3 Million Developers",
+      "url": "https://alphasignal.ai/news/cursor-launches-india-only-7-plan-targeting-3-million-developers",
+      "author": "Cursor",
+      "publishedAt": "2026-07-28T05:41:11.000Z",
+      "content": "Cursor launches a ₹649/month India-only plan with cloud agents and Grok 4.5 access, as its SpaceX acquisition nears close",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.22561",
+      "title": "Codifying the Judge: Scalable Evaluation via Program Distillation",
+      "url": "https://huggingface.co/papers/2607.22561",
+      "author": null,
+      "publishedAt": "2026-07-28T06:02:08.996Z",
+      "content": "Codifying the Judge: Scalable Evaluation via Program Distillation",
       "topics": [
         "research"
       ],
