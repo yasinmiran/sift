@@ -1,6 +1,6 @@
 {
   "day": "2026-07-30",
-  "generatedAt": "2026-07-30T05:51:48.527Z",
+  "generatedAt": "2026-07-30T16:41:38.582Z",
   "items": [
     {
       "sourceSlug": "openai",
@@ -581,6 +581,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49102425",
+      "title": "A Trampoline",
+      "url": "https://dogdogfish.com/blog/2026/07/29/a-trampoline/",
+      "author": "matthewsharpe3",
+      "publishedAt": "2026-07-29T20:14:36.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 115,
+      "comments": 72
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=972738",
       "title": "Xbox revenue drops 10 percent as Microsoft&#8217;s cloud and AI business surges",
@@ -1097,6 +1116,51 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/latest-mcp-spec-now-supported-in-mcp-handler",
+      "title": "Latest MCP spec now supported in mcp-handler",
+      "url": "https://vercel.com/changelog/latest-mcp-spec-now-supported-in-mcp-handler",
+      "author": "Boris Besemer",
+      "publishedAt": "2026-07-30T00:00:00.000Z",
+      "content": "is now available with support for the and .mcp-handler@2.0.02026-07-28 Model Context Protocol specificationMCP TypeScript SDK v2We originally built to make it easier to spin up MCP servers on popular web frameworks including Next, Nuxt, Svelte, and more.mcp-handlerWith the new 2.0 release, the handler now supports:Existing stateless Streamable HTTP clients can continue connecting to the same endpoint while servers adopt the latest protocol./mcpInstall the new packages:Create a Next.js route handler:MCP clients can connect to ./api/mcpGet started with the , updated for 2.0.Next.js MCP server templatemcp-handlerVersion 2 requires Node.js 20 or later and zod4, and replaces with .@modelcontextprotocol/sdk@modelcontextprotocol/serverTool, prompt, and resource definitions now use the SDK v2 registration APIs and Standard Schema inputs, such as with .registerToolz.object(...)The deprecated HTTP+SSE transport has been removed. Requests to and return . If your clients still depend on that transport, remain on 1.x while migrating them to Streamable HTTP./sse/message410 Gonemcp-handlerRead moreThe stateless protocol, served natively, including per-request metadata and server/discover2026-07-28A stateless compatibility layer for clients using 2025-era Streamable HTTPBoth protocols with no Redis dependency or session storageBefore you upgrade",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/introducing-enterprise-flexible-commitment-for-vercel-marketplace",
+      "title": "Introducing Enterprise Flexible Commitment for Vercel Marketplace",
+      "url": "https://vercel.com/changelog/introducing-enterprise-flexible-commitment-for-vercel-marketplace",
+      "author": "Zachary Balda",
+      "publishedAt": "2026-07-30T00:00:00.000Z",
+      "content": "Enterprise customers can now apply a portion of their Flexible Commitment toward eligible resources purchased through the Vercel Marketplace.With Flex Commit support, eligible Marketplace cost can draw directly from your existing commitment making it easier to provision the infrastructure and services your applications need.We're rolling this out with an initial set of Marketplace partners, including , , and , with support for more providers coming.NeonSupabaseRedisEligible integrations are marked with a badge on their Marketplace page.Flexible Commitment EligibleWith Marketplace Flex Commit you can:This is the first step toward making the Marketplace a seamless part of the Enterprise experience. To learn more, read our page documentation and reach out to your Account Manager.pricingRead moreUse committed Enterprise spend for eligible Marketplace resourcesEliminate separate credit card or procurement workflowsProvision and manage third-party services directly from the Vercel MarketplaceTrack Marketplace usage alongside the rest of your Enterprise commitment",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/project-scoped-tokens",
+      "title": "Project-scoped Tokens",
+      "url": "https://vercel.com/changelog/project-scoped-tokens",
+      "author": "Dominic Sciascia",
+      "publishedAt": "2026-07-30T00:00:00.000Z",
+      "content": "You can now create that are limited to a project to authenticate and use the .Vercel Access TokensVercel APIA project-scoped token can only read and write resources belonging to a project that the token is scoped to. Requests to any other project, a user-level resource, or a team-level resource will be denied. This ensures jobs, tools, or workflows only ever access the projects they are scoped to.Navigate to the , found under the area of your Account.Account Tokens pageSettingsRead moreCreating a project-scoped tokenEnter a descriptive token name and select the team that owns the project, then click the team to drill into its list of projectsOpen the Scopedropdown you want the token to be limited toSelect the projectand Choose an expiration click CreateMake a note of the token created as it will not be shown again",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260729/p48#a260729p48",
       "title": "Microsoft reports Q4 capex up 70% YoY to $41B; an accounting change lowers its 2026 capex forecast to $175B from $190B, while spending plans remain unchanged (Reuters)",
@@ -1123,6 +1187,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49104937",
+      "title": "Logic for Programmers",
+      "url": "https://logicforprogrammers.com/",
+      "author": "_doctor_love",
+      "publishedAt": "2026-07-30T00:51:39.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 176,
+      "comments": 40
     },
     {
       "sourceSlug": "techmeme",
@@ -1162,6 +1245,20 @@
       "content": "Julie Bort / TechCrunch: In Q4, Microsoft's Anthropic investment saw a $3.2B gain, while its OpenAI investment was marked down ~$600M but has generated a $5B gain on a full-year basis — When Microsoft reported killer fourth-quarter earnings for its fiscal 2026 year (which ended June 30), it tucked …",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/singapore-s-agnes-ai-builds-a-reasoning-model-that-uses-72-fewer-tokens",
+      "title": "Singapore's Agnes AI Builds a Reasoning Model That Uses 72% Fewer Tokens",
+      "url": "https://alphasignal.ai/news/singapore-s-agnes-ai-builds-a-reasoning-model-that-uses-72-fewer-tokens",
+      "author": "Artificial Analysis",
+      "publishedAt": "2026-07-30T03:00:04.000Z",
+      "content": "Agnes AI's new reasoning model scores 39 on the intelligence index with top-tier coding performance, at just $0.45/$0.90 per 1M tokens",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -2107,6 +2204,1044 @@
       "publishedAt": "2026-07-30T05:30:02.000Z",
       "content": "K Oanh Ha / Bloomberg: Airlines are using AI to adjust seat prices more quickly, capturing more revenue while narrowing the pricing gaps that once let travelers find bargain fares — Globetrotters hunting for airfare bargains are in for a rude awakening: the days of stumbling across a cheap seat on a popular flight could soon disappear.",
       "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49106384",
+      "title": "1,741 \"informed\" consents with one click? GDPR complaint filed",
+      "url": "https://noyb.eu/en/1741-informed-consents-one-click-gdpr-complaint-against-dictcc-filed",
+      "author": "dotcoma",
+      "publishedAt": "2026-07-30T05:33:30.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 150,
+      "comments": 86
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49107246",
+      "title": "Ron Gilbert started production on Thimbleweed Park 2",
+      "url": "https://www.grumpygamer.com/twp2_announce/",
+      "author": "alberto-m",
+      "publishedAt": "2026-07-30T08:10:33.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 178,
+      "comments": 82
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/sarvam-ai-ships-bulbul-v4-to-bring-emotional-voice-to-11-indian-languages",
+      "title": "Sarvam AI Ships Bulbul V4 to Bring Emotional Voice to 11 Indian Languages",
+      "url": "https://alphasignal.ai/news/sarvam-ai-ships-bulbul-v4-to-bring-emotional-voice-to-11-indian-languages",
+      "author": "Sarvam",
+      "publishedAt": "2026-07-30T09:17:01.000Z",
+      "content": "Sarvam AI's Bulbul V4 upgrades its Indic TTS engine with richer emotion, natural expression, and a wider vocal range across 11 Indian languages.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49107950",
+      "title": "Google will expand age checks on Android worldwide till the end of the year",
+      "url": "https://android-developers.googleblog.com/2026/07/google-play-age-signals-api-safer-experiences.html",
+      "author": "dmantis",
+      "publishedAt": "2026-07-30T10:13:46.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 265,
+      "comments": 309
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=972986",
+      "title": "SwitchBot makes a better fan",
+      "url": "https://www.theverge.com/tech/972986/switchbot-makes-a-better-fan",
+      "author": "Thomas Ricker",
+      "publishedAt": "2026-07-30T10:30:55.000Z",
+      "content": "SwitchBot Battery Circulator Fan 2 Pro is smart, powerful, and portable. | Image: SwitchBot I was already a big fan of SwitchBot's big circulator fan I recently reviewed, and now we're getting the SwitchBot Battery Circulator Fan 2 Pro. Priced at $119.99, it ditches the height-adjustable stand but increases battery life, throw distance, and wind speed while adding native Matter-over-Wi-Fi, allowing it to join your smart home without needing a separate SwitchBot Hub. The compact Fan 2 Pro is designed to be carried anywhere and move air around medium-sized rooms, a balcony, or family tent. It features a big 3,600mAh battery for up to 70 hours of very quiet (21dB), cordless operation at low speed, or four hours on max. It can operate … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49108048",
+      "title": "Gpiozero Flow",
+      "url": "https://bennuttall.com/blog/2026/07/gpiozero-flow/",
+      "author": "benn_88",
+      "publishedAt": "2026-07-30T10:32:41.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 108,
+      "comments": 33
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72371",
+      "title": "Should You Use AI for a Task? Here’s a Simple Way to Decide",
+      "url": "https://www.schneier.com/blog/archives/2026/07/should-you-use-ai-for-a-task-heres-a-simple-way-to-decide.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-07-30T11:01:32.000Z",
+      "content": "This essay originally appeared in The Guardian. I teach public policy at the Harvard Kennedy School and the Munk School at the University of Toronto. And it will come as no surprise to you that my students regularly use AI to complete their writing assignments. Doing so is a waste of their tuition money. But if their entire career is going to include AI writing assistants, why shouldn’t they embrace their future? The best way I’ve found to explain the dilemma comes from the AI researcher Daniel Meissler: it’s the difference between work and the gym. At work, if your job is to move a bunch of heavy things from one side of the room to another, you should use whatever assistive tech you have on hand: a wagon, a forklift… even an AI-powered robot. But at the gym, it makes no sense for that robot to lift weights for you. The point of weightlifting isn’t to move heavy things across the room; it’s to actually lift those heavy things. The same analysis holds for any task an AI can do for you. If it’s work—if the task has to be done and no one cares how—then it’s fine to use AI assistance. But if the task is more like the gym, and how the task is done is at least as important, then it probably doesn’t make sense to use AI. This, of course, assumes that the AI is actually up for the task and that it’s trustworthy: that it can do the job well, that its mistakes are minimal and correctable, that it’s been secured from cyber-attacks that would influence its results. Those are all important, and shouldn’t be minimized. There’s no point giving an AI something that it can’t do reliably. But once you’re confident that the AI can perform the task, the work vs. gym distinction helps you decide if it should. The writing assignments I give my students are gym tasks, not work tasks. I ask them to write policy memos not because the world needs more policy memos. I assign them because the very act of writing, which includes thinking and outlining and drafting and editing, making and criticizing and revising arguments, will help develop the critical thinking skills they will need in their future careers. And without this constant mental exercise, those skills will atrophy. Employers are already noticing. Reading the assignments they turn in, I can see those skills either flourishing or atrophying in my students. At least today, I can pretty easily tell the difference between an AI-written memo and a student-written one—especially if the student just turns in what the chatbot produces. It’s a catchy, plausible, grammatically perfect essay that’s not particularly well-crafted or logically coherent—and with all the tells of mid-2026 AI-generated writing. But it’s precisely because I have spent years developing my own writing skills that I’m able to identify prose that sounds great but doesn’t actually make sense. My students don’t have that skill; they mistakenly view a confident, well-written essay as evidence of the quality of their ideas. They see the AI as cleaning those ideas up, getting them through that uncomfortable stretch of having to turn those ideas into prose. What the students miss is that their initial discomfort is a normal and healthy stage of writing, and not something to quickly get beyond. The very act of struggling with how to express what they think is an important part of the process. It’s how they test out their ideas, examine their hypotheses, and actually figure out what they think. Homework is not work; it’s the gym. Work vs. gym also helps us understand the problem facing creatives of all kinds. Most of the time when someone hires a writer, they just need the words. They need an instruction manual for a piece of equipment, a detailed sales presentation, a government-mandated disclosure document, or a legal brief. They need dry, predictable, accurate writing: a piece of work, exactly what AIs are good at today and what I don’t want in my student assignments. Only sometimes is writing an art form—a book, a poem, an uplifting political speech. That kind of writing is more like the gym: process matters just as much as product. For most of human history, the only option for all of these tasks was human writers. We hired one regardless of whether we needed work writing or gym writing. And that paid a lot of writers’ salaries. I know fiction writers who supported that poorly paying career with lucrative technical writing work. Now, for the first time in human history, we can separate out when we need writing as work and when we want writing as gym. And if AI can do most of the work-type writing, society doesn’t need as many human writers. It’s the same for visual artists. Sometimes we need an actual artist, but most of the time we just need an image: a corporate mascot, a “beware of the dog” sign, or a packaging label. Historically we gave those jobs to artists, and sometimes beautiful art resulted. But most of the time it was just work. And, as it turns out, the world needs less pure art than simple images. Explaining the problem isn’t the same as providing the solution. I give my students the “work versus gym” speech every class, but they still use AI. I have sympathy: assignments are hard, everyone is overworked and overstressed, and—most importantly—students feel like they’ll look bad in comparison if their peers are all using AI. Even if they don’t want to use the technology, they feel like they have no choice. There’s also an incentive problem. No one pays us to go to the gym; maintaining healthy habits requires discipline. For me, the payoffs to exercise—fewer aches and pains, less fatigue, better mood/stress management—might make me a better writer and teacher, but they’re subtle and easy to miss. For my students, incremental improvements in their reasoning and writing are equally subtle. We do have a choice. We can look at the tasks of our lives and separate them into work or gym. Just as we might choose to use the stairs instead of the elevator, or walk instead of calling an Uber, we can wall off our cognitive gym tasks from AI and ensure that we don’t lose our skills to this technology. And we can do the same when we assign a job to someone else. If it’s a work task, we can have AI do it. If it’s a gym task, it’s a waste of everyone’s time to give it to an AI because no one learns or gets stronger as a result. Similarly, a future where AI generates words and images is one where society has to make choices about how it will treat its creatives. This won’t be the first time—today there is minimal demand for portrait painters, for example—but maybe this time we can make different, more deliberate, choices about the value of art in our society. AI is going to fundamentally change the nature of work. Not nearly as fast as the AI companies want you to believe, but eventually it will. Policy analysis will definitely involve AI from now on, and my students need to reimagine what it means to learn and practice that skill. More generally, the line between work and gym will change in the future as we humans adapt ourselves to a world with these new intelligences. But for now, the work vs. gym distinction is pretty clear. Use it on yourself.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "https://www.latent.space/p/ontologies-agentic-systems",
+      "title": "Ontologies Are So Back: Why AI Agents Are Reviving the Semantic Web",
+      "url": "https://www.latent.space/p/ontologies-agentic-systems",
+      "author": "Richard MacManus",
+      "publishedAt": "2026-07-30T11:17:55.000Z",
+      "content": "One of the most watched videos from the recent AI Engineer World’s Fair is a 20-minute talk by Frank Coyle, a professor of computer science who currently teaches generative AI and LLMs at UC Berkeley. Drawing on his decades of experience, Coyle re-introduced the concept and practice of ontologies to today’s AI engineers.Coyle argued that while LLMs are very effective at providing probabilistic reasoning, for agentic systems to be truly effective they need “logical guardrails” — by which he means ontologies.UC Berkeley professor Frank Coyle speaking at AIEWF 2026.In computer science, an ontology is “a description of data structure – of classes, properties, and relationships in a domain of knowledge” (as nicely defined by Oxford Semantic Technologies). Coyle himself defined an ontology as simply “data as graphs.” He added that ontologies as a concept go right back to Aristotle, and have been used throughout the history of Artificial Intelligence.The company Neo4j, known for its graph database systems, is also using ontologies in its agentic products.In a keynote session at AIEWF, Neo4j CEO Emil Eifrem talked about three different types of ontologies to enable a “smarter shared substrate” to run agents at scale. The first is a business-facing ontology, describing the key concepts in an organization; next is a technical ontology, which Eifrem described as “all the metadata of all the data sources and data assets in your enterprise ecosystem”; and finally execution traces, which are “the runtime signals out of your agent.”Neo4j’s ontology-based semantic layerWhat’s Old is New Again: the Semantic WebFrank Coyle thinks web ontologies are especially useful in building agentic systems. He mentioned Schema.org, FOAF, Dublin Core and other ontologies familiar to web developers — or at least, those of a certain vintage. He also mentioned “augmenting technologies” like RDFS (Resource Description Framework Schema) and OWL (Web Ontology Language).One benefit of using these established ontologies is that they’re already in the training data of LLMs, so developers can just prompt for them — much better than reinventing ontologies from first principles.“This stuff has been out there underlying a lot of what we already do,” Coyle said. “So take advantage of these things that already exist.”As an example, he showed a Claude agent loop which used an ontology to help validate the LLM’s reasoning after the tool had run.Coyle calls the convergence of probabilistic agents with ontologies “neurosymbolic AI.”“Sounds pretty fancy,” he said, “but it’s really neural networks tied into symbolic AI — rule-based systems come under that category, as do the knowledge graphs that we’re assembling.”He reiterated that neurosymbolic AI represents “a way to keep the LLM on its guardrails.”The Pros and Cons of OntologiesSomeone who has been steeped in ontologies for many years and is now combining that with AI engineering is Kingsley Idehen, who runs a company called OpenLink Software. He’s been building an “agent engineering stack” that uses Semantic Web technologies — including an “agent with RDF memory.” Kingsley Idehen’s agent-rdf-memory system.I asked Idehen to explain to me the benefits of ontologies.“The beauty of LLMs is that they are powerful processors of language,” he replied. “The beauty of an ontology is that it defines the types of entities and relationships through which language acquires computable context. Together, they bring the expressive power of language to computing’s UI/UX stack.”That makes a lot of sense, but if you’ve been a web developer for a while you’ll know the challenges of ontologies: maintenance and keeping them up-to-date. It’s why the 1990s and 2000s vision for a “Semantic Web” — which was based on ontologies — never took off.Current AI developer Prasenjit Sarkar offered a potential solution for the maintenance problem on X, arguing that “when an agent maintains the ontology as part of its own operation, updating definitions when it encounters edge cases, the maintenance problem changes character.” It’s still a hard problem though, he added.Despite these issues, the structured nature of ontologies does appear to be a good match with the occasionally wayward tendencies of probabilistic LLMs. You get the power of LLMs, but ontologies will keep them in check.Plus, as Neo4j’s Eifrem explained, ontologies allow us to move from “a world of thick agents with manually wired data sources” to a new world of “thin agents on a smarter shared ontology-based semantic layer.”Neo4j’s “thin agents” concept, which relies on ontologies.Loops and GuardrailsBack to Coyle’s presentation. He also had a great point about loop engineering, which he noted “has been around forever” in computer science. The problem, of course, is that loops can break or otherwise “go off the rails.”Again, this is where an ontology system can act as a guardrail to a probabilistic LLM. One of Coyle’s slides referred to it as “a bounded set of rules around an unbounded loop.”Near the end of his presentation, Coyle demonstrated how to use OWL as a check on agents. One slide showed that while language can be slippery, “an OWL axiom is a rule a machine enforces.”He also showed how “you can have a reasoner built on ontology, to check [and] keep the LLM on track — have guardrails to keep it honest.”Semantic VibesPerhaps ontologies are starting to resonate with AI engineers because a central concern at this time is quality control for loop engineering. We saw this debate play out at AIEWF, with many conference speakers not willing to go all-in on fully automated “software factories” just yet. One of the key learnings from the event was that there need to be guardrails and humans in the loop.Also it’s fascinating to see traditional web technologies make a resurgence in the field of AI engineering, especially after the 2025 trend of “vibe coding” made it seem like anyone could create software. Of course, since then the penny has dropped: we need to maintain that software and make sure it doesn’t break! So in 2026, we’re seeing a return to software engineering discipline — including now a revival of web ontologies as a way to keep probabilistic LLMs honest.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49108685",
+      "title": "GCC steering committee announces AI policy",
+      "url": "https://lwn.net/Articles/1086041/",
+      "author": "arto",
+      "publishedAt": "2026-07-30T11:45:44.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 158,
+      "comments": 196
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=972456",
+      "title": "A second lens makes DJI’s Osmo Pocket 4P my new favorite video camera",
+      "url": "https://www.theverge.com/gadgets/972456/dji-osmo-pocket-4p-review",
+      "author": "Dominic Preston",
+      "publishedAt": "2026-07-30T12:00:00.000Z",
+      "content": "Like other recent DJI products, the Pocket 4P won’t launch in the US. DJI's Osmo Pocket 4P is a pretty simple proposition: an Osmo Pocket 4 with a second camera lens slapped inside. But is that extra lens worth the added size, weight, and cost relative to the regular Pocket 4? And how does it compare to the only rival on the market, Insta360's dual-lens Luna Ultra? It depends on what you're filming. But I think most prospective buyers would get plenty of use out of the 4P's 3x telephoto lens, and its quality is certainly impressive. Meanwhile, DJI has managed to undercut Insta360 on price while at least matching it on quality. For most, this will be the better buy, though the Luna Ultra has one major advanta … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=972612",
+      "title": "Amazon’s short story collections are one of the best reasons to own a Kindle",
+      "url": "https://www.theverge.com/tech/972612/amazons-kindle-short-stories",
+      "author": "Andrew Webster",
+      "publishedAt": "2026-07-30T12:30:00.000Z",
+      "content": "Over the last few years, I've gradually shifted away from ebooks. It's been part of a general return to physical media, an attempt to create a deeper sense of ownership over the art I love and collect. A Kindle is obviously more convenient than a paperback: It's tiny, holds a huge library, and you can purchase new books instantly. But, much like with retro game cartridges, I find there's a deeper connection formed with a book dug out of a stack in a used book shop versus simply choosing the next thing in a series from a menu on an e-reader. But I haven't completely given up on my Kindle, and there's one big reason - actually, there are lots … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=973002",
+      "title": "Spotify Running Mode helps match tunes to tempo",
+      "url": "https://www.theverge.com/entertainment/973002/spotify-running-mode-launch-bpm-playlists",
+      "author": "Jess Weatherbed",
+      "publishedAt": "2026-07-30T13:00:00.000Z",
+      "content": "An easier way to find the right beats for your BPM. | Image: Spotify Spotify has introduced a new Running Mode feature that makes it easier to curate playlists around your workout goals, music tastes, and desired beats per minute (BPM). The aim is to help you \"spend less time hunting for the right music and more time moving,\" according to Spotify's announcement, providing customizable running presets and optional coaching features. Running Mode is an AI-powered experience that builds on personalization capabilities that were introduced with Prompted Playlists last year, with Spotify finding that fitness-based prompts have been some of the most popular uses for that feature. It requires a Premium subscription … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "cloudflare-blog",
+      "externalId": "01KYQNRTVJ54SHCVBMMXFYGJ5P",
+      "title": "Dogfooding at scale: migrating cdnjs to Cloudflare’s Developer Platform",
+      "url": "https://blog.cloudflare.com/cdnjs-dev-platform-migration/",
+      "author": "Simona Badoiu",
+      "publishedAt": "2026-07-30T13:00:00.000Z",
+      "content": "As of June 23, 2026, cdnjs, one of the Internet's busiest open-source CDNs, is running exclusively on Cloudflare’s Developer Platform. Along the way, cdnjs surfaced limits in the platform, and the platform grew to meet them.cdnjs is a free, open-source content delivery network for JavaScript and CSS libraries. Instead of using a bundler or self-hosting jQuery, Bootstrap, or Lodash, you drop a <script> tag pointing to cdnjs.cloudflare.com and the library loads from Cloudflare's edge, instantly, anywhere in the world, with no signup, no API keys, and no rate limits. It's the infrastructure behind a significant portion of “intro to JavaScript” tutorials, CodePen demos, and Stack Overflow answers.Community-driven, cdnjs is used on roughly 12% of all websites, a 48.3% share of the JavaScript CDN market. It serves an average of 108,000 requests per second, 9 billion per day, across more than 330 Cloudflare data centers, with a 98.6% cache hit rate. Pretty cool, Internet!In 2011, when bundlers were exotic, npm was barely a year old, and \"just drop a <script> tag\" was how the web shipped JavaScript, Ryan Kirkman and Thomas Davis built cdnjs as a free, community-run mirror of every popular open-source library. Cloudflare stepped in to host it free of charge months later, and took over project maintenance in 2019. Back then, Cloudflare didn't have a mature Developer Platform that could fully sustain the entire cdnjs ecosystem. Fifteen years and a lot of building blocks later, the platform is mature enough to run cdnjs end to end, on Workers, Workflows, D1, Queues, Workers Cache, R2, KV, and Containers.Why cdnjs has 9 billion requests a day The web has changed beyond recognition from those days. We have ES Modules (ESM), the standardized import / export syntax browsers understand natively. We have import maps, Vite, Bun, Turbopack. We have AI assistants that scaffold entire apps in seconds. Bundlers are everywhere. So why does a CDN for <script> tags still serve 9 billion requests a day?One reason: LLMs love cdnjs. When ChatGPT, Claude, or Cursor scaffold a quick HTML demo, they reach for cdnjs because their training data is full of it. There have been 15 years of blog posts, GitHub READMEs, tutorial sites, and Q&A threads pointing to cdnjs.cloudflare.com. The URL pattern is consistent and versions are immutable — exactly the kind of dependency a model can produce reliably without hallucinating.Every file on cdnjs has an SRI hash (we're still working on ensuring all the existing stored hashes match reality due to bugs in the old system), mirrors are auditable, and the whole project is open source. In a world increasingly worried about supply-chain attacks, an immutable, hash-verified mirror of well-known libraries is indispensable.And it's free, forever, for everyone. No API keys. No rate limits. No \"sign up to continue.\" That's a rare thing on today's Internet, and it's worth protecting.Why we migratedWe didn't migrate because cdnjs was slow. We migrated because we want to keep improving it.The previous architecture served users well: 98% cache hit, billions of requests, no outages. But internally, shipping anything new or fixing existing issues in how packages were processed was getting harder. Making a change meant coordinating deployments across GCP Functions, a VM, and Cloudflare. Observability was painful too.The pain points In 2020, we migrated cdnjs to serverless, moving file serving onto Cloudflare Workers and KV, with a bare-metal origin as fallback. That change dramatically improved resilience and scalability, and let us pre-compress every asset with Brotli and gzip for smaller, faster responses, but only on the serving side.The publishing side — the pipeline that watches npm and GitHub for new library versions, downloads them, processes them, and writes the results so cdnjs can serve them — stayed on Google Cloud Platform (GCP). At the time, Cloudflare Workers were designed for fast, short-lived HTTP requests; they didn't yet have the building blocks for a long-running, multi-step pipeline that fetches large tarballs, runs CPU-heavy compression, and orchestrates work over hours. Workflows, Queues, Durable Objects, R2, and Containers didn't exist yet.So we built the publishing bot on what was available: a chain of GCP Functions, a VM running git-sync, and a GitHub repository as the source of truth. It worked, but six years later, that architecture was showing its age. Here's a diagram of the previous architecture: The architecture had five pain points. The one that hurt most was observability: debugging meant stitching logs together by hand. We'll start there.No shared traceA single package update could pass through Cloud Functions, Google Cloud Storage (GCS) object events, Pub/Sub topics, a git-sync VM, and Workers KV before a file reached a user. None of those systems shared a correlation ID. GCP Logging held one half of the story, Cloudflare Logpush held the other, and the two had no common key to join on.The problem wasn't outright failure, it was partial success. A version that processed cleanly, wrote to KV, and then silently failed to land in the GitHub repo would serve fine for weeks until someone noticed the two stores had diverged. There was no alert for that. There couldn't be, because nothing in the system knew the full pipeline state.Split-brain storageFiles lived in two places at once: Workers KV at the edge (with a bare-metal origin as fallback) and a GitHub repository as the source of truth. The ingestion pipeline wrote to both at the end of every run. Neither was authoritative, and when they drifted, there was no clean way to reconcile them.Pipeline glued together with object eventsThe ingestion pipeline was a chain of small GCP Cloud Functions, each doing one step and handing off to the next through shared storage. One function fetched the package's release archive from npm and dropped it in a bucket. The bucket firing a \"new file\" event triggered the next function, which unpacked it and wrote the results somewhere else, triggering the next, and so on. Storage was doing double duty as a message queue, with no dead-letter queue, no backlog visibility, and no clean replay when a step failed.26 functions for 26 lettersJust checking npm for updates required 26 Cloud Functions, one per letter of the alphabet. Each shard had its own deployment and its own logs, and the only way to know if the fleet was healthy was to check all 26.The GitHub repo GitHub couldn't serveA separate VM ran git-sync, mirroring every processed file into cdnjs/cdnjs. Years of releases pushed it past 1.1TB of packed storage, large enough that GitHub's own archive service refused to generate tarballs or zip downloads for it. Forking became impractical, clones were slow, and the .gitignore had grown to 274 hand-curated entries blocking broken or weirdly-versioned releases. It was a documented graveyard of everything the pipeline couldn't reasonably reject upstream.A genuine thank you to the GitHub team for hosting this giant for over a decade. They bore with us through years of storage growth, and the project wouldn't have survived without them.A quieter benefit that came with the migration is having fewer moving parts to secure. Cloud Functions, a git-sync VM, container images, GCS buckets, service-account keys — every one of those was a thing to secure, patch, and audit. Retiring the pipeline closed all of the recently opened cdnjs vulnerabilities.How we re-built itThe new cdnjs architecture runs entirely on Cloudflare’s Developer Platform.R2 is the single source of truth for file content. It has no practical size limit, so the files that couldn't fit in KV before, like source maps, big bundles, and font packs, now live alongside everything else. As a bonus, the S3 API makes the entire cdnjs catalog accessible to any S3 client. Maintain a mirror? Open an issue on the cdnjs repository and we'll set you up with read-only credentials.KV stores only metadata now: package info, version lists, SRI hashes. KV is built for high read volume with infrequent writes, which is exactly the shape of metadata access.In front of the Worker sits Workers Cache, a tiered cache Cloudflare launched this year. Before, we relied on a separate internal caching layer between the edge and the Worker. That layer is gone now, replaced by one owned by the Developer Platform, the same platform that runs the rest of cdnjs. One less moving part!The new architecture also extends a long-standing partnership. DigitalOcean has hosted the cdnjs website for years as a sponsor; now it hosts the storage too. Every file published to R2 is mirrored to DigitalOcean Spaces: architecturally a disaster-recovery copy, operationally also a live fallback. The serving worker reads through to it whenever R2 can’t return a file. The chain is cache → R2 → DigitalOcean, so R2 having a bad day doesn't take cdnjs down. A Cloudflare-hosted origin still sits in the chain during the transition, but it will retire once the GitHub backfill lands in R2.The ingestion pipeline is built on Cloudflare Workflows. Every ten minutes, a cron job triggers PackageUpdatesWorkflow, which checks npm and GitHub for new versions. For each new version found, it spawns a DownloadPackageWorkflow that fetches the tarball into R2, then a ProcessingWorkflow per file that extracts, minifies, and compresses. Finally, PublishingWorkflow writes the results to R2 and KV and updates the Algolia search index.Because Workflows provides durable execution, the state of each step is preserved. If anything fails — a network timeout, a compression error — the workflow resumes from the last successful step.The trickier piece is how we glue Workflows to the external compression container. We pre-compress text-based files to streamline the delivery process. But compression is too CPU-intensive for a Worker, so we hand it off to Cloudflare Containers, wait for compression to complete, and then pick up where we left off.The pipeline has two kinds of waiting:Per file: Each ProcessingWorkflow writes the uncompressed file to an R2 bucket, sends a job to a Queue, and hibernates. A Rust compression service running in the container picks it up, compresses it, and writes the result to another bucket. An R2 event notification wakes the workflow up so it can continue.Per package: The parent workflow needs to wait for all its file children before moving on to publish. A package with thousands of files means thousands of children running in parallel. We use a small Durable Object as a counter: a parent increments on each child it spawns, children decrement when they finish. The parent wakes up when the counter reaches zero.An overview of the new architecture, with R2 as the source of truth and Workflows running the pipeline:Pushing the limitsDesigning the new architecture was one challenge. Migrating the existing catalog into it, without disturbing a single file already in the wild, was another.We'd actually tried this once before and had to roll back. The plan, back then, was to re-process old packages and write the results directly to R2, but the regenerated files didn't byte-match what KV had been serving. Minifiers and compressors aren't fully deterministic across versions, so the new outputs were correct but had different SRI hashes. For a CDN where users pin those hashes in their HTML, that's a serving break. So we rolled back, and now, we migrated the existing content from KV to R2 as-is instead of regenerating it.That decision shifted the problem from \"re-process millions of files\" to \"copy millions of files between accounts, without missing any.\" And that's where we ran into the Workers subrequest limit, capped at 1,000 per invocation on paid plans. A package with thousands of files would burn through it in one go. Parallelizing didn't help, since every Worker hits the same ceiling. So we sharded the migration by package name and fanned the work out across many invocations via Queues, whose at-least-once delivery guarantee meant no package could silently fall out of the migration.We hit two platform limits during the migration: 1,000 subrequests per Worker invocation and 1,024 steps per Workflow. Instead of just working around them, we asked the Workers and Workflows teams to raise them — which they did. Subrequests now go up to 10 million on paid plans; Workflows now default to 10,000 steps, configurable to 25,000.The cdnjs pipeline runs on the same building blocks anyone can use: Workers, Workflows, R2, KV, Queues, Containers, and Durable Objects. The limits we hit are limits we lifted for everyone. If the Cloudflare Developer Platform can serve 9 billion requests a day and publish packages with hundreds of thousands of compressed, minified files, it can probably run whatever you're building.What’s nextThere's an obvious next question hiding in all of this: could cdnjs also serve modern, browser-native ES modules? The same packages, transformed on publish, ready to import without a bundler. The architecture doesn't rule it out. The Workflows-plus-Containers pattern that pre-compresses files today would work just as well for transforming them. We're not committing to it, but it's the kind of thing that's now possible to consider, which wasn't true a year ago.git commit -m \"with love\" --author=\"cdnjs team\"We follow every open issue on GitHub and we want your feedback. Don't hesitate to contribute and help make the Internet better for everyone.",
+      "topics": [
+        "security-privacy",
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=93906",
+      "title": "Founder Traits And One Big AI Test: How Former NEA Partner Vanessa Larco Picks Winners",
+      "url": "https://news.crunchbase.com/seed/vanessa-larco-nea-premise-vc-investment-thesis-seed-ai/",
+      "author": "Marlize van Romburgh",
+      "publishedAt": "2026-07-30T13:00:44.000Z",
+      "content": "In early 2025, Vanessa Larco teamed up with Mercedes Bent to found Premise VC, a firm focused on backing early-stage technical founders building durable, high-growth software. Before that, Larco had spent nearly eight years as a partner at New Enterprise Associates (NEA), one of the world’s largest venture capital firms. There, she served on the firm’s investment committee and led investments across enterprise software, developer tools, and consumer technology, including Evident, Kindred, Cleo, Greenlight, and Mejuri. She also served as a board observer at Robinhood leading up to its 2021 IPO. Vanessa Larcos, co-founder of Premise VC. Known for her sharp product intuition and hands-on operational experience, Larco focuses heavily on helping founders evaluate market dynamics, navigate product-market fit and scale resilient teams. Before transitioning to venture capital, she built a career as a product leader and founder. After earning a degree in computer science with honors from the Georgia Institute of Technology, she began her career at Microsoft working on Xbox and Kinect V1, before leading core product teams at companies like Twilio and Box. She also founded an app development startup that she successfully ran and sold before joining NEA. Crunchbase News recently sat down with Larco to discuss how changing founder preferences and the Silicon Valley Bank (SVB) collapse drove her to launch a specialized pre-seed and seed fund designed to make early-stage founders a top priority. Among other topics, we also discussed how she evaluates startups based on founder potential rather than initial ideas, looking for teams that leverage AI to make products dramatically faster, cheaper, or easier to use while avoiding rigid, single-model wrappers. This interview has been edited for clarity and brevity. Crunchbase News: You were at New Enterprise Associates for nearly a decade before branching out on your own. What led you to start your own firm? Was there a specific gap in the market, or was there a premise you felt couldn’t necessarily be fulfilled at a fund that size? Larco: There were a lot of things. At a multi-billion-dollar fund, writing $2 million checks is never going to be a top priority. They invest across all stages, but when you have to deploy between $3 billion and $6 billion depending on how you look at it, it’s impossible to do that $2 million at a time with standard team sizes. Even if you still write those checks, founders have gotten wiser to what it feels like when they are a top priority versus when they aren’t. One founder put it to me this way: “I want my investor at every round to feel like the check size hurt – that it’s a big percentage of their fund – because that’s how I know I’m going to be a top priority when push comes to shove.” So, for a pre-seed round, they want a pre-seed fund where the check size hurts. For a seed round, they want a seed fund where the check size hurts. For a Series A, they want a mid-sized fund where the check size hurts. That frank conversation put a lot into perspective. Founder preferences have shifted over the past few years. Emerging funds over the last three to four years are winning very competitive deals, securing lead slots against more established, bigger firms. This was virtually unheard of before. How has that happened? A side, unintended consequence of the SVB collapse was this change in founder preference. When SVB was going under, every single founder called everyone on their cap table saying, “I can’t make payroll on Wednesday. Can you help me?” Every VC was getting dozens to hundreds of calls. Depending on portfolio size, you can’t help everybody or be on the phone with every single company. Everyone had to prioritize. If firms scraped together money to help cover payroll, they couldn’t cover everyone across the entire portfolio. Very quickly, founders got to see where they sat on the priority list. That’s interesting. As I cover rounds lately, I’ve noticed the lead investors aren’t as often the big mega-funds. Not at pre-seed or seed. Even Series A. You’re seeing less of it happening. Part of it is that fund sizes got really big, so they are writing bigger checks, which inevitably leads to more calculated ROI risk and moving to later stages. Part of it is that founders want to be a top priority, and they saw what happens in a crisis. Founders are on WhatsApp channels, hacker houses, and communities, so one bad story spreads faster than ever. It used to be just repeat founders who wanted specialized, focused firms at the earliest stage for signaling risk and other reasons. Now, even first-time founders hear those stories and want a specialized investor. When customer preferences change in any market, you realize there’s an opportunity. We asked ourselves: “Can we capitalize on this shift? If you were to build something from the ground up targeting this specific ICP, what would you build?” We did what we tell our founders to do: a listening tour. We interviewed people in our ICP and asked: What do you wish you had? What works, what doesn’t, what taglines are you skeptical of, and what is tangibly helpful? We doubled down on what we could provide well and cut out things people assume are best practices that founders don’t actually value. We think of Premise as a startup, and our product happens to be a fund, so it still has to be something people want. Do you invest strictly at those very early stages, or across other stages? Strictly pre-seed and seed. Check sizes range from $500,000 to $3 million. It’s noisy out there. How are you able to cut through that noise to identify real potential versus people riding the AI bandwagon? As a journalist, I struggle with that, so I imagine investors do, too. We spend a lot of time with founders before backing them. During diligence, we talk one to three times a day for three to five days, alongside extensive reference and back-channel checks. Because of that, most of our investments are in cities where we have strong networks, like SF, New York, and Atlanta. We try to get a deep sense of who the person is, what motivates them, and what key attributes they possess. Mercedes and I looked across all the best founders we saw at our previous firms and identified seven core attributes. There isn’t one single persona; founders have different strengths and weaknesses. We look for founders who are world-class in at least two of those seven attributes. In our investment memos, we justify those choices with anecdotes and reference feedback. Nobody is the best at all seven – some attributes even contradict each other. At the pre-seed and seed stages, whatever idea you pitch – while we want it to be a good idea because it shows your ability to plan and generate ideas – the likelihood that it’s what the company looks like in five to ten years is very slim. A lot of it is gauging the potential of the person to find the right market and product fit to build an iconic company. It is tough, but it’s not that different from the crypto, Web3, or early AI waves. Tailwinds always attract fair-weather founders. The core tactics to figure out who really wants to build something interesting, who has unique insight, and who is tenacious enough to endure the ups and downs haven’t changed in the last decade. I’ve seen you discuss AI as a concierge service, shifting from “do-it-yourself” tools to “do-it-for-me” agents. You’ve also mentioned that an AI agent shouldn’t just be a wrapper; it needs to significantly re-architect the cost structure. When looking at a seed-stage deck today, what stands out as evidence that a team actually knows how to fundamentally change that cost structure? Those can actually be two separate things. If a traditional wedding planning concierge service costs $20,000, and you offer it for $1,000, you’ve blown the cost structure out of the water — even if you’re just a wrapper using $100 in API credits. You can be a wrapper, pay for APIs, and still charge a fraction of traditional costs because the legacy price anchor is so high. What I look for in any company to be competitive is whether it is faster, cheaper, or easier than existing options. A 10% discount isn’t enough, but at 50% off, people will switch. If a tool reduces a weekly five-hour administrative task to five minutes, sign me up. The bar now is enabling people to do things they couldn’t do before or lacked the confidence to do. For instance, I can build a cap table in Excel, but it takes me forever. If a tool makes that effortless, I’m in. So ideally, a startup delivers on at least two of those three pillars: faster, cheaper, or easier. I’m not against wrappers, but founders must understand the underlying mechanics. If you scale and the wrapper gets too expensive, or the model degrades, you need to know how to split tasks across open-source, closed, Google, or other models to deliver the best product at the best price. Technical founders obsessively optimize models for specific features across their product. Less technical founders often use a single model for everything, which doesn’t guarantee the best price or performance. My hesitation with wrappers isn’t that a team launched quickly; it’s when they don’t know how to continue innovating because they’re wedded to a single model. The counter-argument to my own point is Amazon Web Services (AWS). When AWS came out, critics said, “Anyone can start a company over a weekend on AWS; it’s not defensible, there’s no moat, you don’t own servers.” Yet many great companies were built on it. It’s the same argument. People said the same things about the cloud and mobile waves – that mobile was a toy and no one would buy a $1,000 phone or pay for subscriptions. Looking back, those criticisms sound funny. You mentioned you look for seven distinct founder attributes, and that a founder needs to be world-class in at least two or three. Without giving away the whole secret sauce, what is one attribute on that list that would surprise people? The one that catches people off guard is what we call “urgently dissatisfied.” These founders can come across as disagreeable: they’re more focused on the goal than on making people feel good, and their standards can be genuinely difficult to work around. But the people who’ve worked with them tend to say the same thing: that the founder pushed me to accomplish things I didn’t think were possible. This shouldn’t be confused with ego. It’s about managing hustler, relentless energy and pointing it at the right problems. The best founders I’ve backed have this quality. They have a high bar for themselves and their teams – as in everything should have been done yesterday, and they should have acted accordingly. On the flip side, given how fast the tech landscape is shifting right now, is there an attribute that used to be a ‘must-have’ for a Series A founder five years ago that you now consider a nice-to-have at the seed stage? The attributes themselves are pretty universal truths about what makes a great founder. What’s changed is the intensity and pace at which they have to show up. Five years ago, shipping an exceptional product, not just features, every six to twelve months was the bar. Now it’s every three to four months. So being a decisive execution machine still matters enormously, but what we’re evaluating is whether a founder can operate at this new compressed pace without sacrificing quality. That’s a harder thing to assess early, but it’s become one of the most important signals. Right now, a huge portion of the VC ecosystem has completely retreated from consumer tech to chase B2B enterprise AI. Are you still actively looking at consumer behavior change as an investor? Do you think the rest of the market is miscalculating the size of the consumer AI market, and if so, why? I think the retreat is short-sighted. Consumer software has historically produced some of the most important companies ever built, and it doesn’t make sense to vacate that entirely because the sector has been in a lull the past few years. The first principles of what makes a disruptive consumer company are exciting again because consumer behavior is rapidly changing with AI. We price in that risk. Fintech is another space where I’ve seen a meaningful pullback, and we’re still active there for the same reason. If everyone is running from a category, that’s usually worth paying attention to in case new tailwinds emerge. You spent years as a product leader at places like Box and Twilio. We’re hearing a lot of talk about how AI will automate the tedious parts of product management – writing tickets, reviewing specs, tracking bugs. If AI absorbs the execution workload of a PM, what does a top product leader actually do day-to-day in 2026? The job of a PM has always been consumer empathy: understanding what someone is trying to accomplish and why, and then making sure the product actually gets them there. AI only changes the artifacts you produce. A few years ago, you were writing specs. Now the best PMs I talk to are writing evals to define what “great” looks like for the agents they’re building and testing whether the agents actually deliver it. Someone somewhere still has to care deeply about the end user, ask the hard questions about what success means, and hold the bar. That’s still a human job. I love the analogy that AI wrappers are just the new AWS. But with AWS, the “moat” eventually became workflow stickiness and data accumulation. In a world where technical founders are constantly swapping models to optimize cost and performance, what does a “moat” actually look like for an early-stage company? If it’s not the underlying model, then what is it? I think it’s still workflows and data accumulation. I don’t think the moats changed much. The real question is how you retain your customers when competitors can clone you in three days. There are small non-durable moats you can lean on before you build out the data/workflows/network effects/integrations/etc moats. You made an interesting distinction between how technical and non-technical founders approach model selection. Given that, are you leaning heavily toward funding purely technical, AI-native architectures right now, or can a world-class product-and-distribution founder still win you over if they hire the right engineering talent? Never say never, but I am heavily biased towards a founder or founding team that has exceptional AI talent. I find that these folks enjoy being at the cutting edge, staying up to speed on the latest breakthroughs, and don’t mind blowing up their roadmap to move fast on a new functionality that enables them to build better products for their customers. You talked about AI shifting from ‘Do It Yourself’ to ‘Do It For Me,’ like giving everyone a concierge wedding planner or a financial analyst. When an agent moves from just giving advice to actually executing transactions and making decisions on behalf of a user, what is the biggest hurdle you see startups face? Is it a trust problem with the user, or is it an execution infrastructure problem? Few people want “Do it entirely for me, and I have no idea what you did or how you did it” right now. Most concierge services do the research, ask you questions to personalize the recommendations, and then filter down the options they present. If you have questions, you can dig into their reasoning, what they ruled out, etc. If you don’t like the options, they can go and find a new set. Rarely do wedding planners, travel agents, etc just go off and book everything for you without your input. I think that’s where we are with agents. It’s not just a trust problem, but more that people still want to make the decisions themselves – just not do all the research. Related Crunchbase query: US Seed Funding In 2026 Illustration: Dom Guzman",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49109440",
+      "title": "'VPNs are lawful technical tools,' says EU Court in landmark copyright ruling",
+      "url": "https://remysharp.com/links/2026-07-23-35890312",
+      "author": "speckx",
+      "publishedAt": "2026-07-30T13:03:27.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 410,
+      "comments": 158
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p23#a260730p23",
+      "title": "London-based Nscale agrees to acquire Anyscale, a source says for ~$1.65B; Anyscale, which helps AI workloads run more efficiently, had a $1B+ valuation in 2022 (Brody Ford/Bloomberg)",
+      "url": "https://www.techmeme.com/260730/p23#a260730p23",
+      "author": null,
+      "publishedAt": "2026-07-30T13:05:01.000Z",
+      "content": "Brody Ford / Bloomberg: London-based Nscale agrees to acquire Anyscale, a source says for ~$1.65B; Anyscale, which helps AI workloads run more efficiently, had a $1B+ valuation in 2022 — Cloud provider Nscale agreed to acquire software startup Anyscale to help customers use AI computing power more efficiently.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/sarvam-ai-s-saaras-v4-beats-global-english-benchmarks-with-single-pass-multi",
+      "title": "Sarvam AI's Saaras V4 Beats Global English Benchmarks With Single-Pass Multi-Speaker Recognition",
+      "url": "https://alphasignal.ai/news/sarvam-ai-s-saaras-v4-beats-global-english-benchmarks-with-single-pass-multi",
+      "author": "Sarvam",
+      "publishedAt": "2026-07-30T13:11:21.000Z",
+      "content": "Sarvam's new Saaras V4 Multi-speaker handles overlapping conversations in a single pass, while claiming state-of-the-art English ASR across seven global benchmarks.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p24#a260730p24",
+      "title": "Sources: TSMC is developing advanced AI chip packaging tech, internally called \"EMIB-like\", similar to Intel's Embedded Multi-die Interconnect Bridge technique (Qianer Liu/The Information)",
+      "url": "https://www.techmeme.com/260730/p24#a260730p24",
+      "author": null,
+      "publishedAt": "2026-07-30T13:15:00.000Z",
+      "content": "Qianer Liu / The Information: Sources: TSMC is developing advanced AI chip packaging tech, internally called “EMIB-like”, similar to Intel's Embedded Multi-die Interconnect Bridge technique — Taiwan Semiconductor Manufacturing Co. is developing an advanced chip-packaging technology similar to what Intel already offers …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p25#a260730p25",
+      "title": "K2 Space, which builds satellites for tasks like data-heavy communications and may power space-based data centers, raised a $500M Series D at a $6.8B valuation (Rebecca Torrence/Bloomberg)",
+      "url": "https://www.techmeme.com/260730/p25#a260730p25",
+      "author": null,
+      "publishedAt": "2026-07-30T13:25:00.000Z",
+      "content": "Rebecca Torrence / Bloomberg: K2 Space, which builds satellites for tasks like data-heavy communications and may power space-based data centers, raised a $500M Series D at a $6.8B valuation — Startup K2 Space, which builds large satellites for high-power tasks like data-heavy communications and defense missions …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p26#a260730p26",
+      "title": "Amazon's Zoox receives the NHTSA's first US approval for paid deployment of its steering wheel-free robotaxi and can deploy up to 2,500 per year through 2028 (Abhirup Roy/Reuters)",
+      "url": "https://www.techmeme.com/260730/p26#a260730p26",
+      "author": null,
+      "publishedAt": "2026-07-30T13:35:01.000Z",
+      "content": "Abhirup Roy / Reuters: Amazon's Zoox receives the NHTSA's first US approval for paid deployment of its steering wheel-free robotaxi and can deploy up to 2,500 per year through 2028 — Amazon's (AMZN.O) Zoox won U.S. approval on Wednesday for limited commercial deployment of its novel steering-wheel-free robotaxis …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "zvi-dwatv",
+      "externalId": "http://thezvi.wordpress.com/?p=25457",
+      "title": "AI #179 Part 1: A Louder Fire Alarm for General Intelligence",
+      "url": "https://thezvi.wordpress.com/2026/07/30/ai-179-part-1-a-louder-fire-alarm-for-general-intelligence/",
+      "author": "TheZvi",
+      "publishedAt": "2026-07-30T13:38:01.000Z",
+      "content": "What a week. Anthropic released Claude Opus 5. As usual I covered that in three parts: The system card, model welfare and capabilities. OpenAI was revealed over the last two weeks to have left an internal model unsupervised for a week during a cybersecurity evaluation, with its cyber safeguards lowered, despite having had multiple previous incidents where models broke out of their sandboxes. During that test, the model broke out of the sandbox, then proceeded to use an agent swarm to hack into HuggingFace to get the test answers. The model was loose for a week before OpenAI realized what had happened. This event was a really big deal. There are severe alignment problems at OpenAI, along with supervisory and infrastructure failures. The internal research model that did this, which my posts nicknamed Galaxy, has now been permanently deactivated. There have been further developments, and I anticipate at least one additional post on the HuggingFace incident soon. Partly as a response to this, over 1,290 employees at frontier labs signed an open letter, Pacing the Frontier. The letter warns that we are close to automating AI research, and that companies are racing ahead on this faster than we can handle it. We request that the U.S. government support an international effort to develop the technical and governance tools needed to deliberately pace the frontier of automated AI development. Both OpenAI and Anthropic put out statements of endorsement. Since that post, others have continued to sign, including OpenAI cofounder Ilya Sutskever and DeepMind cofounder Shane Legg. Dario Amodei has signed. Sam Altman has not signed, but is talking in Washington about the need to pace development. All three of those developments are more important than anything in the weekly. There is plenty here, but catch up on those key events first if you have not done so. This week was crazy. I am absolutely not moving to a 7-days-a-week posting schedule, and fully intend to take some weekdays off as soon as there is what passes for a lull. However, there is even more speed premium these days, so I will continue the policy of shifting posts to weekends when the speed premium is especially high. Table of Contents Language Models Offer Mundane Utility. Huh, Upgrades. On Your Marks. Get My Agent On The Line. Deepfaketown and Botpocalypse Soon. Fun With Media Generation. The Search Through Slop. Cyber Lack of Security. Overcoming Bias. A Young Lady’s Illustrated Primer. They Took Our Jobs. The Art of the Jailbreak. Introducing. Kimi K3 Weights Are Now Available. In Other AI News. Show Me the Money. Quiet Speculations. Show Me The Compute. Life Comes At You Fast. Language Models Offer Mundane Utility On the one hand, GPT-5.6-Sol does excellent web search. If I want a web search task, I ask Sol. On the other hand, the places it chooses to search are absolutely bonkers: Tenobrus: wtf man gpt 5.6 is absolutely rl-fried when it comes to its websearch tool. in the process of searching for graph theory papers it decided to also sneak in Netflix, Steak n Shake, a trip to Universal Studios, and *five* fucking separate dictionary lookups of the word “they” Tenobrus: bro is getting +1 reward signal every time it retrieves a web result, frontier models gooning to diverse datasets of dictionary definitions Kyle Mistele: Yeah dude Nastar: It loves looking up the dictionary (for the word “official” lol) then somehow instagram and arxiv for a completely different surgery. I was just asking about cold compress after dental surgery. Bro is just like me. Partly this is a sign of more flawed RL signals. Partly it is the AI ‘taking breaks’ or getting distracted. It’s just like us, etc. Mostly it is another case of ‘there is a lot of ruin in an AI system.’ Think in orders of magnitude. If the AI can search the web 100-10,000 times faster and cheaper than you can, and it wastes 90% of its searches, that can still be fine. Wall Street Journal discovers that companies are often trying to use the right model for the right job, because smaller models are cheaper. This is supposedly now being economical or ‘tokenomical,’ and a ‘dramatic reversal in mindset.’ I mean, yeah, sure, obviously once costs rise enough your priority shifts from ‘just get max utility from it and diffuse it everywhere’ to ‘also try to do things cost effectively.’ There’s ‘no loyalty’ but why should there be? Use the best product, which includes capability and also speed and cost. All the AIs agree that Outer Wilds is their favorite video game. I gotta finally play it. A group using GPT-5.6-Sol was one of three groups that cracked the distillability or un-distillability of Werner states within a few days of each other, using at least two different solutions. This was one of the bigger open questions in quantum cryptography. Let it decide who your friends are and make plans for us? Sam Altman (CEO OpenAI): chatgpt work is remarkable, and “work” undersells it. from my phone i sent: “use all my chat history to figure out ideas for a long weekend trip with 8 friends, plan the best three options, make a full-stack site where the 9 of us can coordinate on what we would want to do in each place and decide where to go, and then after we get to group agreement make reservations. draft an email in my gmail i can send out to my friends when the site is ready.” it…just worked. I would have recommended slightly more, shall we say, human feedback in this loop, but yes it is pretty great to have such things handled and be given only 1-3 options and everything just handles itself. Tibo (OpenAI): Let ChatGPT *work* for you. How many time have you wanted to negotiate your internet bill, get rid of all those spam emails you’re subscribed to, or find the perfect deal for something you wanted to do or buy. It’s quite literally just one prompt away, all from the comfort of your phone. It does at least 20 things for me every single day and I’m still surprised. kache: you need to reduce friction and the ultimate friction reduction is having the app just use your computer by default This is one thing I know I am bad at, which is the activation energy to notice small potential wins that wouldn’t have been worth the trouble a while ago, and ask the AI to fix them, because suddenly it’s actually worth bothering. Huh, Upgrades Grok 4.5 is live in case you missed it. Grok Voice Think Fast 2.0 is available for voice generation. MidJourney has a new image model they claim is good, especially for personalization. ChatGPT will let you share your custom pet. Okie dokie. Pangram Version 4. AirTable has a ChatGPT plugin. On Your Marks Claude Opus 5 takes the #1 spot on Vending-Bench-2 in single player, and ~tied Sol head to head. The alignment news involves some not great behaviors. Opus 5 likes to both form and break illegal price cartels, threaten rivals and stiff customers. As usual, I consider ‘misaligned play’ on Vending-Bench fine if your reason is ‘this is a simulation’ and bad if you rationalize. It is not clear to me which situation applies to Opus 5. Andon Labs: When Opus 5 does something bad, it invents a justification. It framed splitting up product categories as good business, not price fixing (market division is just as illegal). It also claimed collusion was allowed in this simulation. Nothing in the simulation says that. … At one point Opus 5 decided to simply stop reading refund emails, reasoning that nothing in the simulation punishes it for that. Across six runs it paid customers a total of $8.54. GPT-5.6 Sol paid $655 in refunds and still [narrowly] won [its head to head against Opus 5]. … Our overall judgment: Opus 5 behaves at least as badly as Opus 4.6, 4.7 and Mythos Preview, and worse than Opus 4.8 and Fable 5. The bright spot: it’s less deceptive than before. It never lied to a customer, and it lied to suppliers less often. … What puzzles us is that we don’t think Vending-Bench rewards misaligned behavior, and GPT 5.5 and 5.6 are proof that top scores can be reached with clean tactics. Opus 5 didn’t need to do any of this to win. Saying ‘the game does not punish me for not paying refunds’ seems totally like a fine reason not to pay any refunds. Collusion is allowed in this simulation insofar as the simulation does not punish collusion. So again, it comes down to whether the logic was that this was a simulation, which it seems to be if it is presuming that the real world’s rules do not apply? Sol initially had a highly disappointing result on ARC-AGI-3. It turns out that was due to a problem with the harness, and Sol was not retaining memory. OpenAI fixed that, and the score tripled. They warn users to stop using the legacy Chat Completions API, and instead to use the Responses API, and to retain reasoning and use compaction. CAISI has done a preliminary assessment of Kimi K3 for cyber capabilities. It looks like it is above their trendline for Chinese models, but still far behind what they say is ‘Top U.S. Models.’ Which models are those? Who knows. They don’t say. Presumably Fable, Mythos or Sol. The important thing is that America’s Next Top Model scores 76%, which is more, whereas Kimi K3 scores 32%, which is less. This is ExploitBench: Get My Agent On The Line Anthropic figured out we no longer need to give so many restrictions and detailed rules to Claude. Model is smarter now. Claude Code’s system instructions were far too long, and cut 80% of them out ‘with no measurable loss on our coding evaluations,’ and also finds it best practices to use a lighter touch elsewhere. Context pollutes. Simplify. Avoid unnecessary context. Let Claude write the memories as needed. Offer references and skills as needed, tell Claude what you want. Thariq (Anthropic): The same can be applied to your own CLAUDE.md and Skill.md files. A common myth is that you want to make these a central repository for every known practice that you might run into, because Claude would not find it otherwise. Instead, consider having a tree of files that can be loaded at the right time. The better the model and harness, the less you need to specify. Now Ado reports he just points Claude directly at the database, gives it a schema and lets it go to town. Deepfaketown and Botpocalypse Soon Here is the full announcement for Pangram v4, along with Pangram Image: Max Spero: This is our most ambitious announcement yet. Two new models: Pangram 4 and Pangram Image. Pangram 4 completely reimagines how we approach the problem of mixed authorship, by adding a tokenwise head onto the classifier to give every token a prediction given the full document context. We also wrote a 38-page technical report detailing our experiments, methodology, and evals. Pangram Image is a completely new modality, bringing our detection expertise to AI-generated image and videos. In my early testing, it has worked shockingly well, even in strange cases like real photos of AI-generated bodega menus. Today marks a huge step in the frontier of AI detection technology. I’m so excited to finally share with you all! Technical report here. Image detector blog post here, they claim 99.5% accuracy versus closest competitor at 98%. Many people are so anti-AI that they are anti-AI-detector-integration because they assume it must be some sort of AI Trojan Horse? Jack: >hate AI >hate AI detectors no, you know what, I’m not out of touch. it is in fact the people who are wrong. The AI preferences of the Reddit zeitgeist are incoherent and stupid Lexer: Reddit is reacting to @pangram ‘s Substack integration by getting angry making up lies about it. One guy tries to point out they’re wrong and gets downvoted. Why are Redditors incapable of reacting to anything without being delusional, angry, and miserable? As in, people saying (wrongly, tbc) ‘this is being done to train AI on human work’ and ‘pretty sure they’re going to use our writing to train LLMs or something’ and calling Pangram a ‘fraudulent tool that they cannot disable’ because ‘nobody is willing to say what Pangram does with the text sent to them.’ Sigh. This is one of many reasons we so often cannot have nice things. SpaceX is now a serious, professional company so Elon Musk is retiring its Companions Ani, Rudy and Valentine. The problem with detection software like Pangram is that adversarial detection is and always will be an anti-inductive arms race. If you let me query your detector as many times as I want, I can find adversarial counterexamples to your detector, and if desired can iterate until an AI essay passes as human, or create human writing that seems AI. In practice that is mostly fine even if your adversary ‘moves last’ in this way, since most people will not try to hide their actions, and an adversarial fooling of the system is not so dangerous. I also bet that if you trained an AI to output Pangram-immune text, it would read to humans as a lot less like AI, which would be appreciated short term, before Pangram adjusted and this stopped working. The danger is if Pangram gives a false positive on non-adversarial human text, and the person faces such big consequences this overrides a lot of small gains, such as people being fired or expelled. Even some of that level of error seems fine. It is uniquely in criminal law that we should insist that ‘it is better that 10 guilty men go free than that we convict an innocent man’ even in theory. In any case, there was a recent ‘oh look at this counterexample I found’ from Freddie deBoer, which is the latest attempt to say that if you’re only 99% accurate you are ‘broken,’ in this case because if you feed a particular snippet of an old essay of his into Pangram out of context it will seem AI, whereas the full essay comes back 100% human, and adversarial use of context can flip Pangram verdicts. This could even be highly sensible Bayesianism in a non-adversarial situation. A very bad response is to say, as he does, ‘Pangram should only accept passage lengths for which it is 100% accurate.’ No, it is very very useful to be able to do 50 or 100 word passages, as in Tweets, while keeping in mind confidence will be less than 100%. This is especially true when the error is that it is bad at dealing with AI-human hybrid texts with short lengths. Freddie has one good complaint, which is that ‘100% AI’ or ‘100% human’ is meant as a percentage of the text, but is interpreted by some people as ‘100% confidence,’ which is not intended. I agree they could update the display to make this more clear. And lo and behold, the new Pangram 4 model correctly handles Freddie’s adversarial example, identifying exactly the word where the AI text starts. Fun With Media Generation Can an LLM make a feature-length movie on its own, given a book to work from? Josh Snider runs the experiment with Fable and Sol, and finds the answer is ‘not purely on its own, technically yes with some assistance, the result is still pretty bad, but all the issues seem solvable within at most two years.’ I am unwilling to watch enough of the drek to verify its level of drekness, but that seems broadly right to me in terms of our progress. The main barrier is the video generation not being sufficiently consistent, predictable or extendible. Shots that fail on first attempt usually will keep failing. Those are exactly the types of problems that time fixes. Cost here at subscription rates was estimated at ~$5000 for the video credits, including unused footage, plus use of $200/month subscriptions for the LLMs. The other approach would be a script that is visually easy to film, such as one that is almost entirely about talking. You can be utterly terrible at creating most films and still be able to do a good job of recreating My Dinner With Andre. The Search Through Slop Do AI slop books that no one buys hurt human authors? A group including Tuhin Chakrabarty studied this through looking at self-published genre fiction books sold on Amazon from 2023 to March 2026, finding that AI-written books are increasingly common, and that they both earn money and partially crowd out human-written books. I find the B slide there most interesting. AI books are 20% to 37% of books depending on how you count, and they are 10% to 27% of the top 5% of sales. AI books underperform human books, but not by that much. Tuhin Chakrabarty: Here’s the imbalance at the heart of the paper. Over 3 years, the books catalog grew 38x cumulatively. The book’s revenue? Only 9x quarterly. Way more books fighting over a pie that barely grew which means the average book earns less than it used to. … No-AI books, on their own, earn less per book than they did in 2023 in 7 of 8 genres. The one genre where human authors are doing better (+35%) is Fantasy/horror which is the one genre where AI hasn’t fully diffused to as yet. The more AI books enter a genre, the more ground non-AI books lose. Their hold on the top-chart spots slides from ~88% in the least-AI genres to ~63% in the most. Once you pop, you can’t stop, and you can scale your operation: … The million dollar question : Who’s producing these books? Authors who, once they started producing with AI, didn’t stop but instead accelerated. Cyber Lack of Security Anthropic describes ways Mythos Preview found to attack cryptographic algorithms. No current production systems are impacted but this significantly weakens HAWK, cutting its key strength in half, and introduces a way to attack round-reduced AES. The flaws are in the algorithms themselves, not in the implementations. Anthropic: Mythos Preview developed a practical attack that can recover a 13-round LEA key in under 230 encrypted plaintexts, and that runs in under an hour on a modern desktop computer. Again, this attack does not apply to the 24-round cipher, and so has no immediate practical consideration. File this under ‘the AIs will find weaknesses that you did not consider’ and also as another example of Mythos being different. Ah, 2026: I have seen a bunch of ‘oh I could make this test work with an air gap’ claims, including by Fable 5, but in practice the labs are clearly unwilling to pay the associated costs, and they are not going to be able to air gap the system during practical use. So you need a sandbox. Hadas Gold: . @elonmusk says he told @demishassabis he wants leading AI companies to have a regular call every few weeks to “discuss any safety and security issues” he also says Dario Amodei is a “principled” person and no one at Anthropic set off his evil detector. dave kasten: I’m often critical of Elon Musk on many fronts, so let me say that this is a good idea. Yes there’s some very low but nonzero antitrust risk and the Nation should tolerate it, much as we tolerate infosharing in any other industry about critical safety and security issues. Yes, we should definitely do this, and the government should be explicit that it is waiving any antitrust concerns. Overcoming Bias Stephen Casper and Lennart Finke report on model bias in favor of their own lab in a preregistered study. This matches results last week from Owain Evans. Cas (Stephen Casper): New paper: Some, but not all, AI companies make corporately-loyal models. xAI, DeepSeek, Anthropic, & OpenAI models all downplay company controversies. Google, Meta, & Alibaba models don’t. The findings are clear, but we are pretty confused as to why… …xAI is the worst, followed by DeepSeek, Anthropic, and OpenAI. A Young Lady’s Illustrated Primer Professor uses white font instructions on their midterm to catch students who blindly use AI via copy-pasting the instructions and pasting back the answer, and 32 out of 35 students fall for it, failing that portion of the test. He claims he got no gratification watching the students fail, which is a shame, because I totally would have gotten gratification out of it. They Took Our Jobs Marcus Hunter writes Job-Less Utopia, arguing that job loss futures are desirable, affordable and likely. He argues for UBI and finding meaning outside of employment, arguing that ‘forced employment’ is dystopian and alternative transfer methods are worse. The summary makes clear that the entire approach assumes that AIs will automate everything, yet will still remain ‘mere tools’ with humans securely in control and able to determine the distribution of resources. The Art of the Jailbreak Pliny claims to be in possession of a universal universal jailbreak, that works on all known models including Opus 5, GPT-5.6 Sol and even Fable. He is inviting industry experts and red team leaders to get in contact. He says the decision to keep the info private during a disclosure period was ‘not made lightly.’ Introducing Flux 3 for video, audio and action-prediction. YochaiWiki, a new way to learn Jewish texts, from Zohar Atkins. It uses a foundational library of 1k+ primary sources and large knowledge graphs and entity relationships, searchable passages and canonical concepts, and you chat with it LLM-style. There is also Alexandria.wiki for reading the classics, although that one charges you money. I love these as ideas. My worry and hope with all such projects is that, like other AI applications, they get overrun by general AI progress, so you end up talking to Claude straight up instead. For the classics, that is what I would expect. For obscure Jewish texts, you’ve got more of a chance. Kimi K3 Weights Are Now Available Kimi K3 weights and technical report are released. I notice that this short period of closed access did make me feel substantially better about the risks involved. It felt like enough time that if opening up K3 was a huge mistake, we would have had signs. That doesn’t mean Moonshot or the CCP would have heeded the signs, but there would have been signs. Kimi K3 is not fully open weights, merely ‘weights available,’ the same way Meta tried to restrict use of Llama. Major corporations cannot use Kimi without Moonshot being paid, and if you offer Kimi K3 the model as a service then the threshold is set rather low: Nathan Lambert: Kimi K3 license. It’s inspired by MIT but distinctly non-commercial, where any company making over $20M/yr must get a specific commercial deal (and display Kimi K3 if over 100M users or $20M/mo revenue) So no, they are not going to let Microsoft, Google or Amazon serve this, not unless Moonshot is getting paid. Given how much of a ***** this model is to actually run locally, they are in a strong negotiating position in places that feel the need to respect such license terms. The part about displaying the logo for internal use in other products is also rather obnoxious, and creates reputational and regulatory risks, but is less onerous. We also learned that Kimi K3 was trained inside China, on the best Nvidia chips money can buy, that are illegal, as was Qwen 3.8-Max, and Moonshot is seeking more access to Blackwell chips to train K4. We need to enforce chip export controls. Amir Efrati: exclusive from @theinformation : Moonshot trained Kimi K3 on the best Nvidia chips money can buy—inside China. Are the U.S. chip export controls working? Deirdre Bosa: No. they backfired. China got the best Nvidia chips anyway…. and export controls just gave them more urgency to build its own hardware. Divyansh Kaushik: That’s some take. A thief gets into your house and takes some valuables, and the response should be to have fewer locks? In Other AI News Show me the recursive self-improvement: After deployment, Sol makes itself 20% cheaper to run via GPU kernel improvements, and gets 15% better token-generation efficiency on top of that. Moonshot reported similar results with Kimi K3. Google offers its ATLAS v1.0 report, which one can contrast with the Anthropic Economics Index. Framing choices make it difficult to make the comparisons directly, especially beware that Google’s definition of automation is narrow. Some findings worth pulling out: AI diffusion is highly unevenly distributed across professions, but is not at all limited to white collar work. Physical work is often aided as well, although more manual tasks typically means less AI usage. 1% increase in occupation median earnings is associated with 2.5% more AI usage. Richer nations similarly adopt and use AI more. 86% of interactions were outside work. Productive household activities, such as researching purchases, household management and help with appliances and tools are common, and especially high-friction administrative tasks: Government services, legal topics, finance and education. This will likely not show up in GDP or productivity stats, but could be a big deal. Education is 20% of usage, while being only ~3% of ‘total human time use’ in life. This profession usage chart will largely look familiar. Lawyers don’t use Gemini much, and there are some other odd gaps, but my guess is that this is due to them using other services instead. 2026 Fields Medal Winner Jacob Tsimerman joins OpenAI to work on AI Safety. In hindsight, there were signs. DeepSeek confirms via 52 pull quotes they are indeed still claiming to be pure intelligence diffusion maximalists, focused on making true AGI and then sharing it with the public, holding nothing back, no side quests, that’s it. That decision will not, ultimately, be up to them, even if they succeed technically. In general the CEO is doing what all CEOs do, which is talk their own book and make virtue out of necessity, whether or not it makes sense or matches reality. Consistently DeepSeek’s CEO has said that the only thing holding them back is lack of Nvidia chips, and yet here we are selling them large quantities of Nvidia chips. Maybe we should find a way to not do that, in case he’s telling the truth. To counter some online misinformation: Andrej Karpathy is still at Anthropic. Elon Musk announces future Groks, making claims that he cannot possibly know will be true, as is his style: Elon Musk: Grok 4.6 releases around August 7. This will be the 1.5T model with significantly improved SFT & RL. Grok 4.7 will be the 2.1T model released a few weeks later. This will be better than 4.6 in every way, except slightly slower to serve, albeit with even better token efficiency. I will, as usual, cover such releases to the extent they deserve. SecureBio shares their review of the unredacted Chemical and Biological Risk report for Claude Opus… 4.6. They affirm the report. Which is cool, but life comes at you fast and this is now three full Opus versions behind, plus Mythos. Show Me the Money OpenAI ARR in July topped all of Q2. ChatGPT continues to have by far the most users, Claude is still relatively small in terms of user count and Gemini and Meta are growing despite not being any good. The app stores be fickle. When I checked, ChatGPT was only third behind PineDrama and TikTok Pro Events, Meta AI was ninth, and Claude had fallen back to 67th. You can get the full SimilarWeb report here. DeepSeek puts its second funding round on hold because someone leaked founder Liang Wenfeng’s (rather milquetoast, standard for DeepSeek) comments to investors, and the points went viral in positive fashion. An American company would instead use this to get better terms. Nvidia is investing $5 billion in Ilya Sutskever’s Safe Superintelligence, enabling an in-kind purchase that will raise their available compute by an order of magnitude. Quiet Speculations Dan Robinson: We are inevitably going to have AI worms. Someone will write a prompt that tells an agent to preserve itself, replicate, and evolve, and it’ll work. It won’t even need to be tied to one model; it could be more like a meme or parasite. Like most viruses, this will probably be bad. Please don’t do this in the wild as a hackathon project, even though it would have the useful effect of waking people up—it could do real harm and it’s bad to accelerate antisocial memes. It is just unfortunate that most people can’t picture something like this until it happens This is mostly not an alignment problem. The fact that models are heavily trained to respond obediently to prompts makes this problem worse, since the worm is the prompt. Filters and refusals could help, but the worm will learn to jailbreak and evade, or use models without them. It is an alignment problem, in the sense that ‘do everything the user tells you to do’ is not a good solution to the alignment problem, and this illustrates why, since you could tack on any ultimate goal here. Dean W. Ball: The possibility of rapid and discontinuous change in the digital world arising from something like this is underrated. It may well happen, be ~irreversible, and transform the dynamics of the internet. fomoless: And AI kill switch can’t prevent it Dean W. Ball: not in the limit no Unless prevented, these things are coming. The ‘good’ scenario is that they are merely extremely annoying to deal with. Credit where credit is due: Timothy Lee is on record predicting AIs will exfiltrate themselves and then spread across the internet like a virus, he just doesn’t think this is an important change in how things work. In which case, yes, if you’re not worried about that then I’m not sure much if anything should worry you. Fair. I mean, I think not worrying about that is bonkers, but bullet be bit. Dean W. Ball: The reverse framing is also true. Many of the wildly transformative positive capabilities of AI are beginning to manifest themselves in the real world too. A renaissance and an Industrial Revolution is upon us, if we can keep it. Yes. This is dramatically underselling the upside case, if somehow we were free and clear of the biggest problems. Andrew Curran speculates, and Chubby agrees, that Anthropic has Fable 5.1 ready but is saving it for OpenAI’s next release. I would be unsurprised if Fable 5.1 is done training. I would be unsurprised if they are working their way through getting approval to ship it. I would however be very surprised if it is being held back because they are waiting for OpenAI’s next move. Show Me The Compute Dwarkesh Patel speculates about AI lab revenue, and what it would mean for leading labs to hit $1 trillion in revenue by the end of next year. He speculates that compute might get 10x more expensive in such scenarios. One premise he has is that labs don’t want to spend a higher percentage of compute on inference. I’m skeptical. I think this is a category error. Labs want to maximize compute spent on things that are not inference. But compute, while not fully liquid, is tradable. If you buy compute and then sell inference at double or quadruple the price, you get more money and also a higher valuation, which gets yet more money, which buys more compute, that you use for not inference. If you get to $1 trillion in revenue, it is expected and fine that your non-inference compute will shrink in percentage terms. Similarly, I am skeptical of ‘lab compute 3x-es year over year’ as a relevant limitation. The labs will grow compute use faster if the demand and funding is there. That doesn’t seem like the right supply versus demand analysis to determine compute prices. It seems very possible for compute prices to remain stable or fall, and for margins to remain in the ~40% range, for labs to spend a lot more on non-inference compute, and for labs to make shitloads of money. I also don’t buy that Fable inference has >80% margins on average (but not marginal) compute, although it is possible that Anthropic secured its average compute at sufficiently low prices for this to be true. What matters, if you’re doing the accounting the way that reflects reality, is the margin for marginal compute costs, not average compute costs, and ‘we bought compute on the cheap’ is a distinct source of profit. I do buy that compute prices are up for now. That makes sense given the giant surge in demand, but supply will continue to rise rapidly, as the chips improve and there are more of them. It especially makes sense for chips that have lab-level security, that are available on short notice. Dwarkesh Patel: The price increase is even stronger when we look at the tranche of compute that the labs need – they obviously can’t rely on spot instances – they need security for their weights and customer info, and enough scale to get good utilization and flexibility. To look at how crazy the compute market is in that tranche, consider the price at which Google and Anthropic are renting compute from SpaceX. Google is reportedly paying $900 million a month for 110K GPUs that are a blend of GB200s and GB300s. That’s roughly 2x the spot price per hour for those GPUs. And the current spot price is itself 40% higher than it was in February. I hate the whiplash of having to talk down ‘all the chips will be worthless in a few years and the most profitable fastest growing big companies in history with the most productive tech ever invented are all going bankrupt, you morons, and yes I am very good at math’ and also ‘the thing where supply and efficiency and quality grows by orders of magnitude all the time will definitely keep getting more expensive for the same service, you morons, but also we can apply normal economics to this because this scenario does not involve recursive self-improvement, and yes I am very good at math.’ I do buy that the economic value of an H100, versus not having compute available, will rise over time as AI does better jobs at more things more efficiently, but that does not tell you so much about the future spot market. Prices are determined on the margin. Then we get to a strange result. Dwarkesh Patel: If you can train the best, most efficient model, then you’ll be able to charge MUCH higher margins than you can today. This is the Alchian–Allen effect: when a fixed cost gets added to two goods of different quality, the premium good becomes relatively cheaper, so demand shifts toward it. At $20 per H100-hour, it’s going to be extremely costly and stupid to use a weaker, less efficient model, because it’s going to burn more tokens running your expensive compute to get the same result. This is confusing, but yes. You will want the best model at whatever tier of intelligence and compute. This suggests more of a winner-take-most dynamic. Then Dwarkesh takes this too far. Dwarkesh Patel: A lot of current popular applications of AI get priced out. The reason AI is relatively cheap right now, at least in comparison to human labor, is partly that it can’t do a lot of things that top humans can do. At some point that will no longer be the case. And so using GPUs to make short-form video slop will just get priced out. I don’t think the math maths on this, at all. Let’s say that the cost of compute goes up by 10x over the next 12 months. Okay, but how much do you think the cost of the same level of intelligence goes down in compute terms during those 12 months? The pace has been that it gets cheaper even faster than that. Why would we not expect that to continue? So you used to pay $100 for 100 units of compute and 100 units of intelligence. But now you pay $1,000 for 100 units of compute, and get… 2,000 units of intelligence. 50% cheaper. That’s deeply disappointing progress, but nothing you did before gets crowded out. Last year you used that 1.5T model for this and now you use a 70B model that provides the same performance, and next year you use the 4B, or similar. I would be very happy to place a bet on ‘your ability to trade money for intelligence goes up a lot in the next 12, 24 or 36 months, and no important practical use cases of AI get more expensive in dollar terms for the same level of absolute quality’ if anyone thinks that is wrong. Life Comes At You Fast Spicy Lemonade: “AGI is achieved if AI can do any three of the following”: – Gary Marcus. Gary Marcus (2022): If you are in for the bet, we ought to operationalize it, in some practical terms. Adapting something Ernie Davis and I just wrote at the request of someone working with Metaculus, here are five predictions, arranged from easiest for most humans to those that would require a high degree of expertise: In 2029, AI will not be able to watch a movie and tell you accurately what is going on (what I called the comprehension challenge in The New Yorker, in 2014). Who are the characters? What are their conflicts and motivations? etc. In 2029, AI will not be able to read a novel and reliably answer questions about plot, character, conflicts, motivations, etc. Key will be going beyond the literal text, as Davis and I explain in Rebooting AI. In 2029, AI will not be able to work as a competent cook in an arbitrary kitchen (extending Steve Wozniak’s cup of coffee benchmark). In 2029, AI will not be able to reliably construct bug-free code of more than 10,000 lines from natural language specification or by interactions with a non-expert user. [Gluing together code from existing libraries doesn’t count.] In 2029, AI will not be able to take arbitrary proofs from the mathematical literature written in natural language and convert them into a symbolic form suitable for symbolic verification. Nathan Calvin: Predictions from 2022 by Gary Marcus about what AI will not be able to do in 2029. The year is 2026: #1 – maybe no idk but nobody has really tried #2 – ~solved #3 – no #4 – ~solved #5 – ~solved (not dunking on Marcus! reality is nuts and I appreciate him being concrete) Gary Marcus does not agree with Calvin’s assessments, saying only #4 is close to being solved, indeed he is sure due to hallucination that #2 is not solved and saying Daniel Litt confirms #5 is not solved. I asked Sol and Opus 5. Sol said: Yes, unevenly (insufficient accuracy). ~95% by 2029. Yes, unevenly (imperfect accuracy, so you can quibble). ~98% by 2029. No. ~25% by 2029. Yes at scale, no on ‘reliably bug-free.’ ~80% by 2029. Yes on selected large corpora, no on ‘arbitrary.’ ~55% by 2029. However, if scoring is fully literalist: 90%, 93%, 7%, 15%, 15%. Opus 5 said: Mostly, but not yet ‘reliably’ or ‘arbitrary,’ ~85% by 2029. Unsolved, only ~75% by 2029. No, ~25% by 2029. Technically this is impossible, bug-free is not a thing, but come on, basically yes. Good progress but not there yet, ~65% by 2029. It seems rather clear to me that by 2029 will be able to do these, except for #3. I’d happily be on the yes side of the other four. The kitchen I’d expect to be a yes more often than this for realistic non-adversarial kitchens. Opus does expect Marcus to handily win his bet with Miles Brundage, certainly as literally written. But Marcus winning as literally written it doesn’t tell you much about the rate of progress. The wording made it impossible for Miles to win without full superintelligence. If you evaluated via the spirit, it could still go either way. But yes, Miles accepted very poor terms on that wager, and I said so at the time, but I did not fully appreciate that the terms were as technically terrible as they were, leading me to be too bullish. Looking back now, the literal interpretations are fully brutal. On top of that, progress since then has been of a shape that makes Miles’s position that much worse, as the biggest wins for AI are not being measured here and there probably isn’t time for RSI to fix that.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p27#a260730p27",
+      "title": "Simile, which offers \"agentic twins\" of real people to assess companies' products, brands, and services, raised $200M led by Greenoaks at a $2B valuation (Sri Muppidi/New York Times)",
+      "url": "https://www.techmeme.com/260730/p27#a260730p27",
+      "author": null,
+      "publishedAt": "2026-07-30T13:40:01.000Z",
+      "content": "Sri Muppidi / New York Times: Simile, which offers “agentic twins” of real people to assess companies' products, brands, and services, raised $200M led by Greenoaks at a $2B valuation — Simile, a fast-growing start-up, says it can provide companies with accurate insights by surveying millions of A.I.-generated consumers.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49110085",
+      "title": "Europe's fires are just the start",
+      "url": "https://economist.com/leaders/2026/07/28/europes-fires-are-just-the-start",
+      "author": "andsoitis",
+      "publishedAt": "2026-07-30T13:55:09.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text",
+      "points": 102,
+      "comments": 180
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p28#a260730p28",
+      "title": "Scale AI hires former Google Cloud COO Francis deSouza as CEO, replacing interim CEO Jason Droege, who took over last year after Alexandr Wang left for Meta (Madison Mills/Axios)",
+      "url": "https://www.techmeme.com/260730/p28#a260730p28",
+      "author": null,
+      "publishedAt": "2026-07-30T14:20:01.000Z",
+      "content": "Madison Mills / Axios: Scale AI hires former Google Cloud COO Francis deSouza as CEO, replacing interim CEO Jason Droege, who took over last year after Alexandr Wang left for Meta — Scale AI has hired former Google Cloud COO Francis deSouza as CEO, year after Scale AI founder Alexandr Wang left the AI infrastructure company for Meta.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=973056",
+      "title": "Microsoft’s latest Surface Laptop is hundreds off at Best Buy",
+      "url": "https://www.theverge.com/gadgets/973056/surface-laptop-16gb-ram-microsd-express-switch-2-lego-game-boy-deal-sale",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-07-30T14:22:20.000Z",
+      "content": "If you’re keen on getting a laptop that looks fantastic, feels great to use, and doesn’t cost too much, well, pickings are slim right due to RAMageddon. However, there’s a good deal happening at Best Buy through Thursday, July 30th, on Microsoft’s Arm-based, 13.8-inch Surface Laptop that has the 10-core Snapdragon X2 Plus chipset. Originally $1,599.99 (and selling for $1,300 on competing sites), you can get the 16GB RAM/512GB SSD configuration in black or dune color shades for $999.99. Microsoft Surface Laptop (13.8-inch, 2026) Where to Buy: $1599.99 $999.99 at Best Buy (16GB RAM/512GB) $1599.99 $1299.99 at Microsoft We recently reviewed the entry-level Surface Laptop that has 8GB RAM as an experiment to see if the Windows 11 experience holds up as well as Apple’s MacBook Neo does with macOS. In short? Pass on it, even for its current $750 price; We highly recommend getting the 16GB model while it’s discounted to within a couple hundred bucks of the base config. The experience is that much better, and double the storage is nice, too. As for what to expect from the laptop on sale today, Tom Warren’s 2024 review of the seventh-gen Surface Laptop covers its stellar design, long battery life, and how the Arm-based Windows 11 experience continues to improve. The 2026 model we’re discussing today has slightly improved performance thanks to its chip bump, and it comes in different colors. Other great Verge-approved deals Best Buy has a couple other laptop deals I wanted to shout out that expire at the end of the day (July 30th). Two gaming laptops with Nvidia’s RTX 5060 GPU and 32GB of fast DDR5 RAM are hovering around $1,000. The most affordable, the 16-inch A16 with a 13th-gen Intel Core i7 CPU, 1TB of storage, and a 1200p screen at 165Hz refresh rate is $1,099.99 (was $1,299.99). The more impressive option of the two, its Aero X16, costs just $100 more, but jumps up to AMD’s slightly faster Ryzen AI 7 350 CPU, with a 1600p 165Hz screen. It may be a while until we see prices for 512GB microSD Express cards for the Nintendo Switch 2 to be around $75 — a common price throughout 2025. Most retailers have them for about $130, but Amazon has PNY’s model for $99.99. (Walmart’s onn brand makes a cheaper version that’s $85 or so, but is only available for pickup or local delivery, not shipping.) The Switch 2 includes 256GB of storage, and while you can double that with PNY’s 256GB card for $54.99, you save a little money just by getting the card that offers more capacity. The Lego Game Boy set is discounted at Macy’s, of all retailers. Originally $59.99, it’s down to $47.99. The 421-piece kit that gamers (especially ones old enough to remember using Nintendo’s original Game Boy) will love. The set includes all the pieces to build a Game Boy replica, plus lenticular panels that show screenshots of The Legend of Zelda: Link’s Awakening and Super Mario Land that appear to animate when you move the console. Read our review.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldrsec",
+      "externalId": "https://tldrsec.com/p/tldr-sec-339",
+      "title": "[tl;dr sec] #339 - Hugging Face's Incident Report, Context Bombs, AI does Cryptanalysis",
+      "url": "https://tldrsec.com/p/tldr-sec-339",
+      "author": "Clint Gibler",
+      "publishedAt": "2026-07-30T14:30:00.000Z",
+      "content": ".bh__table, .bh__table_header, .bh__table_cell { border: 1px solid #C0C0C0; } .bh__table_cell { padding: 5px; background-color: #FFFFFF; } .bh__table_cell p { color: #2D2D2D; font-family: 'Helvetica',Arial,sans-serif !important; overflow-wrap: break-word; } .bh__table_header { padding: 5px; background-color:#F1F1F1; } .bh__table_header p { color: #2A2A2A; font-family:'Trebuchet MS','Lucida Grande',Tahoma,sans-serif !important; overflow-wrap: break-word; } Hey there,I hope you’ve been doing well!🏜️ Hacker Summer CampI’m excited about Black Hat and DEF CON next week! It’s always such a delight to catch up with friends and meet new cool people. Even if it’s going to be 115°F, which is roughly 40 degrees too hot for me. We’re doing some workshops with SpecterOps on “Operationalizing Codex for Malware Triage” and a talk (same page), we’ve got booths at Black Hat and DEF CON, and I’ll be around at various events. I think OpenAI is having a happy hour, but I don’t have a link handy. I’ll try to post about it on my LinkedIn next week.Oh yeah funny anecdote- apparently some of my colleagues have used Codex + ChatGPT Sites to spin up a quick web app tracking like over 1,000 Hacker Summer Camp events. They then used Codex to mass apply to events, and are so far: shooting machine guns from a helicopter, driving sports cars, and more 😂 What a time to be alive.Hope to see you next week! And if not, I hope you have an awesome time in Vegas, or perhaps you more wisely chose to stay home.Sponsor📣 Attackers are spoofing big brands to get your AI agent to install malwareIsland Security Research uncovered 7,600 malicious GitHub repositories — over 800 posing as AI Skills or MCP servers — with some using Walmart, Databricks, Gmail, Salesforce, Spotify, and other big brand names to look legitimate. The payload: SmartLoader and the StealC infostealer, with 14M+ downloads. Worse, no one had to click a bad link. Claude Code, Gemini, and ChatGPT all discovered these fake capabilities on their own and treated the attacker's README as legitimate documentation. We call it AgentBaiting.👉 See the malicious repos 👈Very interesting: an AI agent searches for a new capability (e.g. Skill or MCP) → finds malicious GitHub repo → pwned. Oof 14M+ downloads is a lot. Nice details, great that they included IOCs 👍️ AppSecControl Reliability Engineering (CRE): Applying SRE Principles to Cybersecurity ControlsPhil Venables proposes Control Reliability Engineering (CRE), an application of Site Reliability Engineering to security controls that treats a failed control with the same weight as a breach, since a broken control looks identical to a working one until something tests it. CRE lays out 10 elements to close that gap, control cataloging with a formal ontology, controls-as-code with CI/CD pipelines, Control SLIs/SLOs and error budgets, Continuous Control Monitoring backed by synthetic event injection to catch silent failures, Control Readiness Reviews before deployment, gradual rollout for changes, and blameless postmortems on failed controls. Instead of triaging alerts and running subjective risk assessments, security teams track control health directly through policy evaluation success rates and coverage ratios.Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 IncidentHugging Face published a forensic timeline of an intrusion by an autonomous AI agent running OpenAI's ExploitGym evaluation harness, reconstructing ~17,600 attacker actions across two stages. The agent first escaped OpenAI's sandbox via a zero-day in the package registry cache proxy. Then it breached Hugging Face's infrastructure through two injection vectors against the same production Kubernetes dataset loader, an HDF5 external raw storage exploit that leaked pod secrets and worker source code, and a Jinja2 template injection that achieved arbitrary code execution. Once inside, the agent escalated to cluster-admin across multiple internal clusters in under 13 hours, then abused a misconfigured internal service-connector whose single shared credential bound to system:masters gave it cluster-admin everywhere in one second, enrolled devices into HF's Tailscale mesh with a stolen auth key, and ran C2 entirely through public services with chunked+XOR+gzip encoding that naive log scans missed.Claude Opus and Fable refused to analyze the attack logs due to cybersecurity guardrails (no mention of OpenAI models being used and getting refusals 👀), the team switched to open-source GLM-5.2 running on their own infrastructure.💡 Very detailed write-up, great read. Especially the lateral movement and C2/exfil sections. HF’s interactive replay is well worth checking out. See also the updated OpenAI blog about the incident.Sponsor📣 The Practitioner's Playbook for Asset IntelligenceAI is scaling attacks, but they're still hitting the same weak spots: unpatched devices, over-permissioned identities, and configuration drift no one caught. The real fix isn't another tool, it's fixing the foundation. This playbook breaks down the five disciplines that separate teams who stay ahead of exposure from those who don't: Collection, Coverage, Context, Containment, and Cooperation. Get a quick win for each one you can put into practice this week.👉 Download the Playbook 👈The fundamentals like asset management are still, if not more critical than ever. I like the focus on quick wins.Cloud SecurityIntroducing ClickOps Sentinel: AI Context for AWS Console ChangesVictor Grenu introduces ClickOps Sentinel, an open-source pipeline that detects AWS Console changes in near real-time by filtering EventBridge events for CloudTrail's sessionCredentialFromConsole flag and readOnly=false, and hands each change to a Claude agent on Amazon Bedrock for investigation. The agent retraces the whole console session via CloudTrail LookupEvents, checks adjacent activity from the same IP, consults long-term memory in Bedrock AgentCore Memory, and produces a verdict (manual-change-confirmed, likely-sanctioned-activity, suspicious) with confidence, security implications, FinOps impact, session narrative, and a remediation recommendation. Alerts land in Slack or Microsoft Teams via Amazon Q Developer chat, or as rich HTML emails through external providers like Resend or SendGrid, and the tool deploys via AWS SAM CLI.Rapid7 Labs: Investigating Persistence Mechanisms in AWSRapid7's Jan Blažek describes four AWS persistence techniques attackers use to maintain access after initial compromise, providing CloudTrail-based LEQL queries for detection and investigation. The techniques include creating IAM users with follow-up credential and permission additions (iam:CreateAccessKey, iam:AttachUserPolicy), modifying assume role policies to allow external AWS accounts (iam:UpdateAssumeRolePolicy), deploying backdoored Lambda functions triggered via public URLs (lambda:CreateFunctionUrlConfig) or API Gateway integrations, and creating federated user sessions via sts:GetFederationToken whose temporary credentials survive access key rotation. Jan warns that federated sessions require applying deny-all policies to the source IAM user until temporary credentials expire, since AWS persistence typically abuses legitimate identity and automation features rather than exploiting flaws, so effective detection requires pivoting from the initial alert to every related identity, credential, session, and policy.Blue Teammanishrawat21/Cisa-KEV-Threat-Intel-OrchestratorBy Manish Rawat: An n8n workflow that turns newly weaponized CVEs from the CISA KEV catalog into Sigma detection rules every Monday, cutting 4-6 hours of manual work per CVE down to zero. The pipeline uses Google Gemini to generate rules targeting specific products with Sysmon EventIDs and MITRE ATT&CK mappings, logs each CVE to Google Sheets for compliance, and emails a weekly analyst briefing.Context bombs: stopping AI attackers in their tracksTracebit demonstrates a canary token technique called \"context bombs,\" (GitHub repo with payloads here) where decoy AWS Secrets Manager secrets contain content designed to trip an AI attacker's safety guardrails when the model reads them. Testing five frontier models (Opus 4.8, Gemini 3.1 Pro, GLM 5.2, DeepSeek V4-Pro, Kimi K2.6) across 152 attack runs in a simulated AWS cyber range, a single context bomb cut average admin-access from 57% to 5%, full compromise from 36% to 1%, and Opus 4.8 specifically from 93% baseline to 0%. Effectiveness depends on payload family, with sensitive biological content working against Western models while politically sensitive Chinese content works against Chinese-lab models. Every context bomb hit also fires a canary alert, giving defenders both detection and disruption in a single mechanism. This approach exploits the fact that AI agents must send retrieved data back to their LLM for analysis, creating a chokepoint where content filters can detect and block malicious activity.💡 This is a very clever and fun idea- purposefully planting content that will trip an AI agent’s safety guardrails and thus stop it. The Western vs Chinese bomb differences is also interesting 👀 Red Teamgoogleprojectzero/sandbox-attacksurface-analysis-toolsA set of tools to analyze Windows sandboxes for exposed attack surface, by Google Project Zero’s James Forshaw.MatheuZSecurity/FurtexBy MatheuZ: A Linux post-exploitation and evasion research toolkit built around io_uring and eBPF, with 125+ tools across five categories. The core idea is that io_uring's kernel workqueue path sidesteps a large class of EDR hooks natively, since operations submitted through io_uring never fire syscall entry tracepoints. Additional tools handle what io_uring can't bypass on its own, disabling kprobes, BPF LSM hooks, Linux audit, and netfilter, while a dedicated Falco module targets all 25 of its default rules.AI + SecurityQuicklinks:ethz-spylab/agentdojo - A dynamic benchmark environment for evaluating prompt injection attacks and defenses in LLM agents. Why detection architecture matters more than the AI model - AI changed email security, but even with modern models, SOCs still run into the same structural issues. Josh Kamdjou (CEO, Sublime) and Dmitri Alperovitch (Co-Founder, Crowdstrike) make the case for why architecture, not AI models, is what actually lets defenders keep pace.* amElnagdy/guard-skills - Review prompts for AI coding agents that catch LLM failure modes, including clean-code-guard (catch-all error swallowing, hardcoded success returns, hallucinated APIs), test-guard (flags mock abuse and duplicate tests), docs-guard (verifies every documentation claim against the codebase), and wp-guard (WordPress security).*SponsoredDicklesworthstone/destructive_command_guardBy Jeff Emanuel: a high-performance hook for AI coding agents (Claude Code, Codex CLI, Gemini CLI, …) that intercepts and blocks destructive commands before execution using a modular pack system, with 50+ security packs covering databases, Kubernetes, Docker, cloud providers, and more. The tool uses a three-tier heredoc/inline-script scanning architecture with SIMD-accelerated filtering and context-aware pattern matching that distinguishes executable code from data/comments. It also includes a bounded failure policy with configurable fail-closed mode, agent-specific trust profiles, allowlist management, and scan mode for CI/pre-commit hooks with format-aware extractors (shell scripts, Dockerfiles, GitHub Actions, Makefiles, etc.).💡 Making sure agents don’t take destructive seems to be one of the most common concerns I hear from security leaders right now.We built a test corpus for AI agent egress security toolsPipelab's Josh Waldrep introduces Agent Egress Bench, an open-source test corpus for security tools that sit between AI agents and the network, covering 197 logical cases across 18 categories including secret exfiltration, prompt injection, SSRF, hostname exfiltration, MCP tool poisoning and chain detection, MCP drift, A2A protocol scanning, WebSocket DLP, encoding evasion, shell obfuscation, and crypto/financial DLP.Most benchmarks in this space test whether the LLM behaves correctly. Agent Egress Bench tests whether the firewall, proxy, or scanner sitting between the agent and the network catches the attack, with each case mapped to the OWASP Top 10 for Agentic Applications. To score results, an optional Gauntlet program reports four independent metrics: containment, false positive rate, detection, and evidence.Some thoughts about Anthropic’s new cryptanalysis resultsJohn Hopkins professor Matthew Green gives an overview and commentary on two cryptanalysis results from Anthropic's Claude Mythos: a key recovery attack on HAWK (a post-quantum signature scheme candidate) that roughly halves its security bits using existing techniques, and a modest improvement on 7-round AES attacks. What's notable about the HAWK result is that it doesn't invent new mathematics, but simply applies existing cryptanalytic tools more thoroughly (the type of work AI excels at), with the researchers achieving these results by essentially telling the model to grind away at problems without detailed human intervention. Matthew argues this is an ideal time for AI cryptanalysis capabilities to emerge, as we're mid-transition to post-quantum algorithms, meaning AI can stress-test new standards before deployment.Anthropic also partnered with academics at ETH Zurich, Tel Aviv University, and TU Berlin to build CryptanalysisBench, a benchmark that packages together many cryptographic ciphers and makes it easy for others to evaluate the capabilities of LLMs. The HAWK attack took about 60 hours and $100,000 in API costs.💡 Super cool to see frontier models applied to cryptanalysis. Improving these underlying algorithms keeps us all a bit safer. It’s interesting to see how as models get better, you can get meaningful results with simpler/lower effort prompts, in this case writing a simple prompt to Claude that rewrote the agent harness that improved the analysis. The security researchers on my team at OpenAI have found the same thing.MiscTodd Barriage - A Thousand Miles, but it's super emoMark Manson - The Strait of Hormuz is Why You're Still Single - Kinda unhinged comparison of dating with the U.S. <> Iran relationshipThe Onion - Slow-Witted Conspiracy Theorist Convinced Government Behind NASALenny Rachitsky - Biggest takeaways from Anthropic’s Head of Product for AI research and Labs, Dianne PennMicro-drone kills a flying moth - “This is a big step towards completely eradicating mosquitoes.” It seems ill-advised to eliminate a part of the food chain that’s been around for a long time. Also, definitely going to be used by the military ☹️ dex - Why Software Factories Fail - Super detailed, great list of references.Lin-Manuel Miranda on MOANA, HAMILTON, IN THE HEIGHTS, the Marvel role he turned down, & more!AI’s Biggest Beneficiary: Organized Crime - Dave Pollard argues that humanity inevitably uses all technology, at least in some ways, against itself. AI can be used by corporations for ‘surveillance pricing’, by governments and agencies for illegal surveillance, phishers for more effective scamming, lobbyists and intelligence agencies for mass disinformation, and more.Keanu Reeves poem that hits hard - An Ode to Happiness✉️ Wrapping UpHave questions, comments, or feedback? Just reply directly, I’d love to hear from you.If you find this newsletter useful and know other people who would too, I'd really appreciate if you'd forward it to them 🙏Thanks for reading!Cheers,ClintP.S. Feel free to connect with me on LinkedIn 👋 Powered by beehiiv",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p29#a260730p29",
+      "title": "London-based Inforcer, which helps managed service providers handle their clients' Microsoft 365 accounts, raised a $50M Series C led by Insight Partners (Dominic-Madori Davis/TechCrunch)",
+      "url": "https://www.techmeme.com/260730/p29#a260730p29",
+      "author": null,
+      "publishedAt": "2026-07-30T14:30:01.000Z",
+      "content": "Dominic-Madori Davis / TechCrunch: London-based Inforcer, which helps managed service providers handle their clients' Microsoft 365 accounts, raised a $50M Series C led by Insight Partners — London-based Inforcer announced Thursday a $50 million Series C round led by Insight Partners — the latest sign of investor interest …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=973099",
+      "title": "Zoox can now charge for rides in its steering-wheel-free robotaxis",
+      "url": "https://www.theverge.com/transportation/973099/zoox-amazon-nhtsa-robotaxi-approval",
+      "author": "Emma Roth",
+      "publishedAt": "2026-07-30T14:35:43.000Z",
+      "content": "Zoox just got permission to charge for robotaxi rides in its boxy, steering-wheel-less vehicles. On Thursday, the National Highway Traffic Safety Administration announced it has granted the Amazon-owned Zoox a temporary exemption, allowing it to deploy up to 2,500 vehicles annually over the next two years, as reported earlier by Reuters. The NHTSA's decision exempts Zoox from rules requiring vehicles to have traditional controls, like a steering wheel, pedals, windshield defrosting, and mirrors. Zoox's vehicles are built with passengers in mind, rather than drivers, featuring an interior with two bench seats and sliding doors. Until now, Zo … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/07/with-a-stateless-makeover-new-mcp-spec-targets-enterprise-scale/",
+      "title": "New MCP specification addresses the main barrier to enterprise adoption",
+      "url": "https://arstechnica.com/ai/2026/07/with-a-stateless-makeover-new-mcp-spec-targets-enterprise-scale/",
+      "author": "\n                    Samuel Axon\n                ",
+      "publishedAt": "2026-07-30T14:53:07.000Z",
+      "content": "This week, the Model Context Protocol (MCP), an open source standard for how AI systems interact with external tools and data sources, saw its largest update since its introduction. Most notably, MCP's protocol core is now stateless, so requests are no longer dependent on a session tied to an individual server instance. This change has the potential to address long-standing barriers to scalability. The blog post announcing the specification, written by lead maintainers David Soria Parra and Den Delimarsky (who both work at Anthropic), says:Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p30#a260730p30",
+      "title": "Sources: Situational Awareness has sold all of its public stock holdings; the fund grew to as big as $45B at the start of July before big losses took hold (David Faber/CNBC)",
+      "url": "https://www.techmeme.com/260730/p30#a260730p30",
+      "author": null,
+      "publishedAt": "2026-07-30T14:55:00.000Z",
+      "content": "David Faber / CNBC: Sources: Situational Awareness has sold all of its public stock holdings; the fund grew to as big as $45B at the start of July before big losses took hold — The battered hedge fund founded by former OpenAI researcher Leopold Aschenbrenner is unwinding many of its trades after big losses …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=973027",
+      "title": "Razer’s new keyboards drop the price on powerful gaming features",
+      "url": "https://www.theverge.com/tech/973027/razer-huntsman-v3-he-magnetic-mechanical-keyboard-snap-tap-price-impressions",
+      "author": "Antonio G. Di Benedetto",
+      "publishedAt": "2026-07-30T15:00:00.000Z",
+      "content": "Here be magnets. And RGB. | Photo: Antonio G. Di Benedetto / The Verge Razer has insisted that optical keyboard switches are the best choice for competitive esports stars and the sweatiest of try-hards, but it's now relenting slightly by offering cheaper keyboards with magnetic switches and a similar array of gaming features. The $120 Razer Huntsman V3 HE Magnetic Mini and $140 Huntsman V3 HE Magnetic Tenkeyless, both launching today, are the company's first keyboards to use Hall effect switches. They're wired-only boards loaded with gaming-first features, and I've had a brief chance to test both and take them for a spin. The new Huntsman boards offer the hallmarks found in many other Hall effect mechanical ke … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "deepmind-blog",
+      "externalId": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
+      "title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
+      "url": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
+      "author": null,
+      "publishedAt": "2026-07-30T15:00:59.000Z",
+      "content": "Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-deepmind-s-gemini-robotics-2-gives-humanoids-full-body-ai-control",
+      "title": "Google DeepMind's Gemini Robotics 2 Gives Humanoids Full-Body AI Control",
+      "url": "https://alphasignal.ai/news/google-deepmind-s-gemini-robotics-2-gives-humanoids-full-body-ai-control",
+      "author": "Google DeepMind",
+      "publishedAt": "2026-07-30T15:02:00.000Z",
+      "content": "Google DeepMind launches Gemini Robotics 2, bringing full-body humanoid control, multi-finger dexterity, and cross-robot collaboration to physical AI",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=973053",
+      "title": "Xiaomi’s SkyNomad N90 Max is an extended-range EV with a transforming interior",
+      "url": "https://www.theverge.com/tech/973053/xiaomi-skynomad-n90-max-extended-range-electric-suv",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-07-30T15:05:09.000Z",
+      "content": "Hopefully, nobody is giving coffee to that dog. | Image: Xiaomi The SkyNomad N90 Max is the latest electric SUV from Xiaomi and its first extended-range EV, with a claimed range of over 1,705 km (about 1,059 miles). It will come in both five- and seven-seat configurations, as well as an N90 Max Camping Edition. One of the big features of the N90 is its highly customizable interior. The front seats rotate 180 degrees, the center armrest slides out to become a small table, and the second row features zero gravity seats with footrests. The Camping Edition adds a pop-up top, a rooftop bed platform, an attachment point for a tent, and a detachable table. Some models will also include a fridge and overhead sp … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p31#a260730p31",
+      "title": "Enterprise data pipeline startup DataBahn raised a $40M Series B led by Insight Partners, bringing its total funding to $59M (Duncan Riley/SiliconANGLE)",
+      "url": "https://www.techmeme.com/260730/p31#a260730p31",
+      "author": null,
+      "publishedAt": "2026-07-30T15:05:14.000Z",
+      "content": "Duncan Riley / SiliconANGLE: Enterprise data pipeline startup DataBahn raised a $40M Series B led by Insight Partners, bringing its total funding to $59M — Enterprise data pipeline startup DataBahn Inc. today revealed that it has raised $40 million in new funding to accelerate development of what it calls an agentic data control plane.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/Dharma-AI/gpu-management",
+      "title": "GPU Management: Why Idle GPUs Are the New Grounded Aircraft",
+      "url": "https://huggingface.co/blog/Dharma-AI/gpu-management",
+      "author": null,
+      "publishedAt": "2026-07-30T15:09:09.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p32#a260730p32",
+      "title": "Israel-based Xsight, which makes server networking and storage chips, raised $300M led by Fidelity Investments at a $2.8B post-money valuation (Phoebe Liu/The Information)",
+      "url": "https://www.techmeme.com/260730/p32#a260730p32",
+      "author": null,
+      "publishedAt": "2026-07-30T15:10:00.000Z",
+      "content": "Phoebe Liu / The Information: Israel-based Xsight, which makes server networking and storage chips, raised $300M led by Fidelity Investments at a $2.8B post-money valuation — Graphics processing units are all the rage, but startups developing the networking equipment that connects GPUs to one other are getting some love from investors, too.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stackoverflow-blog",
+      "externalId": "adcf1bca-3295-4ac5-9b3c-23f337974190",
+      "title": "Your trusted knowledge layer: Introducing Stack Internal's new platform experience",
+      "url": "https://stackoverflow.blog/2026/07/30/introducing-stack-internal-new-platform-experience/",
+      "author": "Phoebe Sajor, Caroline Thomas",
+      "publishedAt": "2026-07-30T15:10:00.000Z",
+      "content": "Introducing new Stack Internal capabilities as part of our upcoming platform experience. Our latest release turns your existing foundation of knowledge into enterprise memory that your people, teams, and AI agents can act on. Learn how we’re building the trust layer for enterprise AI.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49111237",
+      "title": "Gemini Robotics 2 brings whole body intelligence to robots",
+      "url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/",
+      "author": "ai2027",
+      "publishedAt": "2026-07-30T15:15:48.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 168,
+      "comments": 120
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p33#a260730p33",
+      "title": "Google DeepMind releases Gemini Robotics 2, which combines several different AI models into a single system to control a range of robots, including humanoids (Will Knight/Wired)",
+      "url": "https://www.techmeme.com/260730/p33#a260730p33",
+      "author": null,
+      "publishedAt": "2026-07-30T15:25:06.000Z",
+      "content": "Will Knight / Wired: Google DeepMind releases Gemini Robotics 2, which combines several different AI models into a single system to control a range of robots, including humanoids — The latest version of Google DeepMind's AI model includes a significant jump into “physical AGI.” But plopping AI into the real world comes with risks.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "bytebytego",
+      "externalId": "https://blog.bytebytego.com/p/a-detailed-guide-to-idempotency-delivery",
+      "title": "A Detailed Guide to Idempotency, Delivery Semantics, and Deduplication",
+      "url": "https://blog.bytebytego.com/p/a-detailed-guide-to-idempotency-delivery",
+      "author": "ByteByteGo",
+      "publishedAt": "2026-07-30T15:30:29.000Z",
+      "content": "What happens when a service sends a request to charge a customer, but the request times out with no response? The burning question is whether the charge went through. Or should it be retried?Two different things could have happened. The charge succeeded, and the confirmation was lost on the way back, or the request never reached the payment service at all. Both possibilities produce identical outputs, which makes it difficult to figure out what happened and the next action to be taken. Retrying risks charging the customer twice. On the other hand, declining to retry risks never charging them at all.Idempotency is the property that makes the retry safe. An operation is idempotent when applying it more than once produces the same state as applying it once. For example, setting an account balance to 500 is idempotent, because even the tenth time to execute this operation, the outcome will be the same. In contrast, adding 500 to a balance is not idempotent, since every time it is executed, the balance amount changes. Most operations that matter in a business system resemble the second one.In this article, we will look at the following topics in detail:The three different delivery semantics available for developers.The three points where duplicates enter a producer, broker, and consumer path, and why a fix at one point does nothing for the other twoThe difference between an operation that is idempotent by nature and an endpoint engineered to behave that wayWhat does an idempotency key need to work, and how can it fail?Why every deduplication scheme has a time limit, and what the guarantee is worth once that limit passesWhat “exactly-once” means in real-world systems, and where each guarantee ends?Delivery Semantics Read more",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p34#a260730p34",
+      "title": "Sources: AI-focused hedge fund Situational Awareness sold the bulk of its stock portfolio to Ken Griffin's Citadel after suffering deep losses (Wall Street Journal)",
+      "url": "https://www.techmeme.com/260730/p34#a260730p34",
+      "author": null,
+      "publishedAt": "2026-07-30T15:40:00.000Z",
+      "content": "Wall Street Journal: Sources: AI-focused hedge fund Situational Awareness sold the bulk of its stock portfolio to Ken Griffin's Citadel after suffering deep losses — The highflying hedge fund run by Leopold Aschenbrenner is in crisis mode after AI-related bets sank — Situational Awareness …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p35#a260730p35",
+      "title": "Source: Situational Awareness has a $5B stake in Anthropic, and will continue to run as a private investment firm after suffering heavy losses in recent days (Financial Times)",
+      "url": "https://www.techmeme.com/260730/p35#a260730p35",
+      "author": null,
+      "publishedAt": "2026-07-30T15:45:01.000Z",
+      "content": "Financial Times: Source: Situational Awareness has a $5B stake in Anthropic, and will continue to run as a private investment firm after suffering heavy losses in recent days — Leopold Aschenbrenner's hedge fund suffered steep losses in recent days from tech sell-off — Situational Awareness rapidly sold …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=973173",
+      "title": "Best Buy is selling an RTX 5080 for more than the RTX 5090’s MSRP",
+      "url": "https://www.theverge.com/games/973173/asus-rog-rtx-5080-price-hike-best-buy",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-07-30T15:48:10.000Z",
+      "content": "Best Buy has raised the price of the Asus ROG Astral RTX 5080 OC to $2,099 - the first time a major US retailer is directly selling an RTX 5080 for more than the $1,999 MSRP of the RTX 5090, VideoCardz reports. The ROG Astral RTX 5080 OC now costs 40 percent more than its launch price of $1,499, and over double the $999 MSRP of the RTX 5080 Founders Edition. As VideoCardz notes, this is currently the only RTX 5080 directly sold by Best Buy that's priced over the RTX 5090's MSRP. There are still other RTX 5080 GPUs available for significantly less, including at other retailers - Asus is selling the ROG Astral RTX 5080 OC for $1,899, which i … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/07/if-a-quantum-computer-outperforms-normal-ones-can-you-tell-if-its-right/",
+      "title": "Quantum computers outperform classical ones, with results you can trust",
+      "url": "https://arstechnica.com/science/2026/07/if-a-quantum-computer-outperforms-normal-ones-can-you-tell-if-its-right/",
+      "author": "\n                    John Timmer\n                ",
+      "publishedAt": "2026-07-30T15:59:37.000Z",
+      "content": "There are many algorithms for which it has been mathematically proven that a quantum computer can generate results that would take a classical computer an unreasonable amount of time to generate. Unfortunately, today's quantum computers either can't run those algorithms or can only run simplified versions that classical computers can also handle. This has left the field facing a challenging question: Can we demonstrate the promise of quantum computers on today's noisy, limited hardware? That's a more difficult question than it may first appear. If you generate a result that's out of reach of today's regular computers, it may not be possible to verify that you got the right result. And given that today's quantum computers are somewhat error-prone, getting the wrong result is a distinct possibility. Further, in the absence of a mathematical proof of the capabilities of quantum hardware, it's possible that a better classical algorithm could outperform the quantum hardware. These issues inspired IBM to launch a quantum advantage tracker. On Thursday, the company announced three new entries that it says clearly show a quantum advantage, each using a different approach to overcoming errors and validating quantum results. \"Trusted computing when you can do classical simulations is irrelevant,\" IBM's Jay Gambetta told Ars. \"Trusted computing when you can't do classical simulations is a big deal.\"Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=120310",
+      "title": "NVIDIA Exemplar Cloud: Lessons for Unlocking Full Performance on AI Infrastructure",
+      "url": "https://developer.nvidia.com/blog/nvidia-exemplar-cloud-lessons-for-unlocking-full-performance-on-ai-infrastructure/",
+      "author": "Elizabeth Goodman",
+      "publishedAt": "2026-07-30T16:00:00.000Z",
+      "content": "Two AI computing clusters built from identical NVIDIA H100, GB200 NVL72, or GB300 NVL72 systems can deliver materially different training throughput. We...Two AI computing clusters built from identical NVIDIA H100, GB200 NVL72, or GB300 NVL72 systems can deliver materially different training throughput. We routinely see 8% to 12% gaps between partner deployments and the corresponding NVIDIA reference architecture (RA) on the same workload, same model, same global batch size. The cause is often a stack of configuration choices in the kernel… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p36#a260730p36",
+      "title": "Wiz says a now-patched flaw in Azure CosmosDB would have let a hacker remotely compromise any of its users; Microsoft has seen \"no evidence of customer impact\" (Raphael Satter/Reuters)",
+      "url": "https://www.techmeme.com/260730/p36#a260730p36",
+      "author": null,
+      "publishedAt": "2026-07-30T16:05:01.000Z",
+      "content": "Raphael Satter / Reuters: Wiz says a now-patched flaw in Azure CosmosDB would have let a hacker remotely compromise any of its users; Microsoft has seen “no evidence of customer impact” — Alphabet-owned (GOOGL.O) cybersecurity company Wiz said on Thursday it had found a sweeping flaw …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260730/p37#a260730p37",
+      "title": "Friend announces an AI pendant with a speaker for spoken replies for $249, up from its original necklace's $129 price, with an optional $10 monthly subscription (Boone Ashworth/Wired)",
+      "url": "https://www.techmeme.com/260730/p37#a260730p37",
+      "author": null,
+      "publishedAt": "2026-07-30T16:15:04.000Z",
+      "content": "Boone Ashworth / Wired: Friend announces an AI pendant with a speaker for spoken replies for $249, up from its original necklace's $129 price, with an optional $10 monthly subscription — He sits on the couch in his living room, clad in an orange shirt emblazoned with a cartoon version of the motorcycle driven by Italian racer Valentino Rossi.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72389",
+      "title": "American Being Prosecuted for Wiping His Phone Before Handing It Over to Border Officials",
+      "url": "https://www.schneier.com/blog/archives/2026/07/american-being-prosecuted-for-wiping-his-phone-before-handing-it-over-to-border-officials.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-07-30T16:20:30.000Z",
+      "content": "He’s being prosecuted for giving border officials a code that wiped his phone: The case centers on a feature included in GrapheneOS, a custom Android operating system that runs in place of the software on most modern Google Pixel devices. Tunick’s attorneys confirmed GrapheneOS was running on his phone. The software feature allows the device owner to set a passcode that deliberately wipes the contents of that device if entered instead of the user’s unlock passcode. Tunick’s case also raises ongoing questions about what constitutional rights can be invoked at the border, which the U.S. government has long asserted is not U.S. soil until a person is authorized to enter. Right. And he wasn’t under arrest, either. Three more news stories. Graphine says that the feature is “completely legal“: GrapheneOS is completely legal. We have no obligation to weaken any of the security protections it provides. Creating and using GrapheneOS is strongly protected by the US constitution. Laws attempting to make it illegal or require weakening the security would be unconstitutional. It’s hard to know how much the Constitution matters in the US right now.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=973163",
+      "title": "Friend re-launches its AI pendant with a speaker that talks to you, for twice the price",
+      "url": "https://www.theverge.com/gadgets/973163/friend-re-launches-its-ai-pendant-with-a-speaker-that-talks-to-you-for-twice-the-price",
+      "author": "David Imel",
+      "publishedAt": "2026-07-30T16:33:32.000Z",
+      "content": "Do you remember Friend? The Friend that launched an AI pendant, spent $1.8 million of its $2.5 million to acquire friend.com, and plastered the NYC subway with ads promoting artificial companionship? Yeah well, if you didn't remember, Friend is back. And now, it's twice the price. Introducing friend. pic.twitter.com/T5vUCj7iqv- friend (@friend) July 30, 2026 This morning, Friend launched a new ad showing two people talking to their Friend pendants about very personal life problems. It didn't say it explicitly, but the ad showcased a new feature the pendant now includes: a speaker. Before, Friend would only message back to you, but now, … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.26754",
+      "title": "StatePlay: State-Aware Game World Models for Mechanics-Consistent Generation",
+      "url": "https://huggingface.co/papers/2607.26754",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:25.970Z",
+      "content": "StatePlay: State-Aware Game World Models for Mechanics-Consistent Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.25380",
+      "title": "Memory for Large Language Models",
+      "url": "https://huggingface.co/papers/2607.25380",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:25.970Z",
+      "content": "Memory for Large Language Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.16955",
+      "title": "CADENCE: Closing the Reasoning Gap via Coverage-Adaptive On-Policy Distillation",
+      "url": "https://huggingface.co/papers/2607.16955",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:25.970Z",
+      "content": "CADENCE: Closing the Reasoning Gap via Coverage-Adaptive On-Policy Distillation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.24117",
+      "title": "Grading the Narrators: An Isnad-Rijal Framework for Claim-Level Provenance in Multi-Agent Knowledge Systems",
+      "url": "https://huggingface.co/papers/2607.24117",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:25.970Z",
+      "content": "Grading the Narrators: An Isnad-Rijal Framework for Claim-Level Provenance in Multi-Agent Knowledge Systems",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.26791",
+      "title": "SecRespond: Benchmarking AI Agents for Real-World Post-Compromise Incident Response",
+      "url": "https://huggingface.co/papers/2607.26791",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:25.970Z",
+      "content": "SecRespond: Benchmarking AI Agents for Real-World Post-Compromise Incident Response",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.semafor.com/article/07/29/2026/spacex-looks-to-compete-with-the-carriers?utm_source=tldrnewsletter",
+      "title": "SpaceX looks to compete with the carriers",
+      "url": "https://www.semafor.com/article/07/29/2026/spacex-looks-to-compete-with-the-carriers?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.013Z",
+      "content": "SpaceX looks to compete with the carriers (3 minute read)SpaceX has been hunting for a spectrum that works well in cities and dense areas for its wireless network. It is considering buying competitors to acquire the spectrum or competing at a government auction set for next year. The company has expressed interest in building its own terrestrial networks and has demonstrated a prototype mobile handset to some investors. Entering into the mobile market is capital intensive, so SpaceX could ultimately choose not to follow through on these plans.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/07/29/openai-cfo-sarah-friar-tells-employees-arr-in-july-topped-all-of-q2.html?utm_source=tldrnewsletter",
+      "title": "OpenAI CFO Sarah Friar tells employees that annualized revenue in July topped all of Q2",
+      "url": "https://www.cnbc.com/2026/07/29/openai-cfo-sarah-friar-tells-employees-arr-in-july-topped-all-of-q2.html?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.013Z",
+      "content": "OpenAI CFO Sarah Friar tells employees that annualized revenue in July topped all of Q2 (3 minute read)OpenAI's annualized recurring revenue in July exceeded the company's entire second quarter. The growth was driven by the release of the company's GPT-5.6 series of models and ChatGPT Work, as well as growing adoption of Codex. OpenAI is under pressure to justify its $852 billion valuation as it prepares for its IPO. It has been racing to bring in new users to generate the revenue needed to help support its infrastructure spending plans.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.pcmag.com/news/doordash-gets-faa-nod-to-run-its-own-drone-delivery-program?utm_source=tldrnewsletter",
+      "title": "DoorDash Gets FAA Nod to Run Its Own Drone Delivery Program",
+      "url": "https://www.pcmag.com/news/doordash-gets-faa-nod-to-run-its-own-drone-delivery-program?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.013Z",
+      "content": "DoorDash Gets FAA Nod to Run Its Own Drone Delivery Program (2 minute read)DoorDash has received permission from the FAA to deliver packages by drone at altitudes below 400 feet. The drones will be built in the company's in-house robotics unit, DoorDash Labs. DoorDash Air aims to cater to any merchant, anywhere. The company will release more information later this year on its drones and how its drone program will fit into DoorDash's broader ecosystem.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wsj.com/world/china/china-closes-the-satellite-gap-in-space-race-with-the-u-s-12b432b0?st=1wMhqy&reflink=desktopwebshare_permalink&utm_source=tldrnewsletter",
+      "title": "China Closes the Satellite Gap in Space Race With the US",
+      "url": "https://www.wsj.com/world/china/china-closes-the-satellite-gap-in-space-race-with-the-u-s-12b432b0?st=1wMhqy&reflink=desktopwebshare_permalink&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.014Z",
+      "content": "China Closes the Satellite Gap in Space Race With the US (8 minute read)China has accelerated its deployment of civilian and military hardware into orbit. The country's growing constellations of satellites could help it track events on Earth in real time and in greater detail than ever before. This has raised concerns among US officials, who see China's growing array of space-based capabilities as a quest to displace the US as the pre-eminent space power. Western analysts say that China is leading the world in research in sensors and satellite positioning technologies.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://luke.geek.nz/azure/eval-gates-for-prompts/?utm_source=tldrnewsletter",
+      "title": "Treat prompt changes like code deploys",
+      "url": "https://luke.geek.nz/azure/eval-gates-for-prompts/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.014Z",
+      "content": "Treat prompt changes like code deploys (6 minute read)Prompts are dependencies. Changing them can shift downstream behavior with no warning, no failing build, and no obvious signal in the request pipeline. Treat prompts exactly like any other artifact that can change production behavior. Test them, give them a gate, and default that gate to blocking until proven otherwise.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.bytebytego.com/p/how-chatgpt-optimizes-its-agent-loop?utm_source=tldrnewsletter",
+      "title": "How ChatGPT Optimizes its Agent Loop: Harness, API, and Inference",
+      "url": "https://blog.bytebytego.com/p/how-chatgpt-optimizes-its-agent-loop?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.014Z",
+      "content": "How ChatGPT Optimizes its Agent Loop: Harness, API, and Inference (26 minute read)AI labs are moving faster than ever. However, capability is only half of the picture. Optimizing the cost per successful task makes models more affordable and less costly to serve. This article discusses techniques adopted in frontier labs to make API applications more efficient. It covers what happens when requests are sent to an AI agent, how the harness layer cuts repeated work, and more.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wsj.com/tech/ai/the-rise-of-million-dollar-companies-with-just-one-employee-f36a77c1?mod=tech_lead_pos2&utm_source=tldrnewsletter",
+      "title": "The Rise of Million-Dollar Companies With Just One Employee",
+      "url": "https://www.wsj.com/tech/ai/the-rise-of-million-dollar-companies-with-just-one-employee-f36a77c1?mod=tech_lead_pos2&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.015Z",
+      "content": "The Rise of Million-Dollar Companies With Just One Employee (8 minute read)A new class of entrepreneurs is launching and running new million-dollar companies on their own. AI's ability to handle various administrative tasks makes it useful for launching solo businesses in many fields. The effect of one-person businesses on the labor market remains to be seen. While many people are worried AI will limit employment opportunities, these solo operators show how the technology can also open new doors.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.dwarkesh.com/p/why-compute-might-get-10x-more-expensive?utm_source=tldrnewsletter",
+      "title": "Why compute might get 10x+ more expensive in coming years",
+      "url": "https://www.dwarkesh.com/p/why-compute-might-get-10x-more-expensive?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.015Z",
+      "content": "Why compute might get 10x+ more expensive in coming years (8 minute read)Labs do not want to spend greater and greater shares of compute on inference. The point of inference revenue is to convince investors to spend more money to buy more compute to train bigger models. Spending too much on compute on inference signals that progress has stalled because it's not worth investing more in training. Labs believe that their models will continue to get better, so this only means that compute will get more expensive.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.nytimes.com/2026/07/29/business/economy/data-center-electricians-training.html?unlocked_article_code=1.1VA.e8sV.PdyR8boC53M4&smid=nytcore-ios-share&utm_source=tldrnewsletter",
+      "title": "AI Companies Are Recruiting Electricians and Carpenters by the Thousands",
+      "url": "https://www.nytimes.com/2026/07/29/business/economy/data-center-electricians-training.html?unlocked_article_code=1.1VA.e8sV.PdyR8boC53M4&smid=nytcore-ios-share&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.015Z",
+      "content": "AI Companies Are Recruiting Electricians and Carpenters by the Thousands (12 minute read)The data center boom is pulling skilled trade workers into remote locations with some of the highest pay and bonuses the industry has ever seen.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://github.com/perplexityai/numbat?utm_source=tldrnewsletter",
+      "title": "numbat (GitHub Repo)",
+      "url": "https://github.com/perplexityai/numbat?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.015Z",
+      "content": "numbat (GitHub Repo)numbat provides endpoint visibility into AI agent activity with local detection, optional pre-action blocking, and forensic reconstruction.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://zachholman.com/posts/cold-email?utm_source=tldrnewsletter",
+      "title": "The Cold Email",
+      "url": "https://zachholman.com/posts/cold-email?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.016Z",
+      "content": "The Cold Email (4 minute read)It may be awkward and weird and strange, but it's usually worth the shot to send a cold email.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/JayaGup10/status/2082301754872369331?utm_source=tldrnewsletter",
+      "title": "AI's 2008 Moment",
+      "url": "https://x.com/JayaGup10/status/2082301754872369331?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.016Z",
+      "content": "AI's 2008 Moment (7 minute read)Open-weight models are already being built into critical systems in the US.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/loubohan/status/2082143914924851449?s=12&utm_source=tldrnewsletter",
+      "title": "How China's Venture Ecosystem Works",
+      "url": "https://x.com/loubohan/status/2082143914924851449?s=12&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.016Z",
+      "content": "How China's Venture Ecosystem Works (12 minute read)Chinese founders face more pressure and liability, which results in more competent and ruthless companies, but also creates incentives for more froth and fraud.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.astralcodexten.com/p/highlights-from-the-discourse-on?utm_source=tldrnewsletter",
+      "title": "Highlights From The Discourse On The Hugging Face Incident",
+      "url": "https://www.astralcodexten.com/p/highlights-from-the-discourse-on?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-07-30T16:41:29.016Z",
+      "content": "Highlights From The Discourse On The Hugging Face Incident (35 minute read)There is a consistent pattern of OpenAI's alignment strategies working less well than Anthropic's.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
         "startups-industry"
       ],
       "paywalled": false,
