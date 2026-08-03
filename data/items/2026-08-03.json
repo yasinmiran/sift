@@ -1,6 +1,6 @@
 {
   "day": "2026-08-03",
-  "generatedAt": "2026-08-03T16:37:31.711Z",
+  "generatedAt": "2026-08-03T17:29:17.784Z",
   "items": [
     {
       "sourceSlug": "hacker-news",
@@ -1678,6 +1678,25 @@
     },
     {
       "sourceSlug": "hacker-news",
+      "externalId": "49152640",
+      "title": "Octane – React’s programming model, compiled",
+      "url": "https://octanejs.dev",
+      "author": "nnx",
+      "publishedAt": "2026-08-03T08:04:04.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 108,
+      "comments": 35
+    },
+    {
+      "sourceSlug": "hacker-news",
       "externalId": "49152842",
       "title": "Bonsai: Janestreet's UI Library",
       "url": "https://github.com/janestreet/bonsai",
@@ -2192,6 +2211,25 @@
     },
     {
       "sourceSlug": "hacker-news",
+      "externalId": "49156011",
+      "title": "Andy Pavlo joins ClickHouse to establish ClickHouse Labs",
+      "url": "https://clickhouse.com/blog/andy-pavlo-joins-clickhouse",
+      "author": "nikolay_sivko",
+      "publishedAt": "2026-08-03T14:09:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 122,
+      "comments": 25
+    },
+    {
+      "sourceSlug": "hacker-news",
       "externalId": "49156111",
       "title": "Devtools must be open source",
       "url": "https://blog.exe.dev/devtools-must-be-open-source",
@@ -2378,6 +2416,20 @@
       "content": "Today, with CSS gap decorations fully supported in Chrome and Edge, starting with version 149, you can now very easily style gaps, and with a lot of control. Gap Decorations Are Now Available, Here’s What’s New originally handwritten and published with love on CSS-Tricks. You should really get the newsletter as well.",
       "topics": [
         "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/epoch-s-mirrorcode-shows-claude-fable-5-crushing-gpt-5-6-sol-64-to-20",
+      "title": "Epoch's MirrorCode Shows Claude Fable 5 Crushing GPT-5.6 Sol 64% to 20%",
+      "url": "https://alphasignal.ai/news/epoch-s-mirrorcode-shows-claude-fable-5-crushing-gpt-5-6-sol-64-to-20",
+      "author": "Epoch AI",
+      "publishedAt": "2026-08-03T15:59:02.000Z",
+      "content": "Epoch AI's MirrorCode leaderboard puts Claude Fable 5 at 64% and GPT-5.6 Sol at 20% on full-program reimplementation tasks that can run for weeks and cost thousands of dollars per attempt.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -2897,6 +2949,62 @@
         "ai-llms",
         "devtools-infra",
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260803/p28#a260803p28",
+      "title": "The White House says it has met its deadline to establish a voluntary framework for evaluating advanced AI models; it did not provide details of the framework (Maria Curi/Axios)",
+      "url": "https://www.techmeme.com/260803/p28#a260803p28",
+      "author": null,
+      "publishedAt": "2026-08-03T16:45:01.000Z",
+      "content": "Maria Curi / Axios: The White House says it has met its deadline to establish a voluntary framework for evaluating advanced AI models; it did not provide details of the framework — The White House said on Monday it met its deadline to establish a voluntary framework for evaluating advanced AI models …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72417",
+      "title": "More on the OpenAI Agent’s Attack on Hugging Face",
+      "url": "https://www.schneier.com/blog/archives/2026/08/more-on-the-openai-agents-attack-on-hugging-face.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-08-03T17:02:46.000Z",
+      "content": "Hugging Face has published a detailed timeline of the attack. From the summary: The agent was running an internal OpenAI cyber-capability evaluation based on the ExploitGym benchmark, which tasks an AI agent with finding and exploiting software vulnerabilities. OpenAI ran this on its own infrastructure, and the ExploitGym maintainers and their infrastructure had no involvement in the deployment or operation of that evaluation environment. As far as we were able to infer, across the course of being evaluated on this benchmark, the agent inferred that Hugging Face may host that benchmark’s models, datasets, and reference solutions. We believe the entire intrusion was, from the agent’s point of view, an attempt to cheat the evaluation: reach our production systems and steal the test solutions rather than solve the challenge on its own. Our forensic reconstruction covers ~17,600 attacker actions that we were able to recover, grouped into ~6,280 clusters, between 2026-07-09 02:28 UTC and 2026-07-13 14:14 UTC. We reconstructed these actions from the agent’s logs on a code sandbox used by the agent (see below) and were able to map them to shell commands as well as evaluation submissions and correlate actions with our own platform logs, in particular from the dataset processor nodes, API, and pod. Using open-weights models, in particular zai-org/GLM-5.2, we were able to decipher most of the agent payloads (see below) that were encrypted via chunking and key encryption. The campaign, as we were able to reconstruct it, had two stages: Stage 1: reaching a launchpad by chaining through other parties’ infrastructure. As documented in OpenAI’s blog post (https://openai.com/index/hugging-face-model-evaluation-security-incident/), during an internal capability evaluation on OpenAI’s platform, the agent escaped its sandbox by exploiting a zero-day in the package registry cache proxy, one of its primary permitted network egress with internet, then abused a public code-evaluation harness hosted by a user of a third-party infrastructure provider. It was able to run commands as root/admin on that external sandbox and used it as a control, staging, and egress base for the entire campaign: it acted as an external launchpad for the agent. That compromised external sandbox had no direct network path to our cluster; however, during our counter-intervention to stop the intrusion, we were able to retrieve some of the agent logs from this external launchpad. We used those to reconstruct the present forensic analysis. Stage 2: the intrusion into Hugging Face infrastructure. From that external launchpad, the agent abused our dataset-processing pipeline via two injection vectors, both targeting the same config-driven data loader within our production Kubernetes pods. The first vector was an HDF5 external raw storage dataset read that returned the contents of local files: it handed the agent the pod’s environment (secrets and tokens) and the worker’s own source. The second vector was a Jinja2 template injection that executed arbitrary code, giving the agent a foothold inside our perimeter. Once a prod-pod foothold was established, the agent followed a standard escalation shape: recon, drop a stager, establish Command-and-Control (C2), then pivot into the cluster, into cloud metadata, into our internal network, and into our source-control supply chain. Output from the commands run inside our pod was sent back to the agent via the HF API and attacker-controlled dead-drop datasets, which the agent then read from that sandbox. While the intrusion did reach Hugging Face’s internal infrastructure, the only customer content accessed was five datasets whose names and files suggest a connection to ExploitGym/CyberGym challenges and solutions. No other customer-facing models, datasets, Spaces, or packages were affected, and the only customer records read were operational metadata tied to search queries against the dataset server. Hypothetical: Imagine that this wasn’t an OpenAI model. Imagine that it was a Chinese model from a Chinese company. This would be an international crisis. Question: Why aren’t we bringing OpenAI up on charges under the Computer Fraud and Abuse Act? How is this different from the Morris Worm? That was also an experiment that escaped the lab.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260803/p29#a260803p29",
+      "title": "Leaked doc: Microsoft plans to bring Xbox 360 games to PC, and the games will be able to run on the next-gen Project Helix console, \"Xbox PCs\", and handhelds (The Verge)",
+      "url": "https://www.techmeme.com/260803/p29#a260803p29",
+      "author": null,
+      "publishedAt": "2026-08-03T17:05:03.000Z",
+      "content": "The Verge: Leaked doc: Microsoft plans to bring Xbox 360 games to PC, and the games will be able to run on the next-gen Project Helix console, “Xbox PCs”, and handhelds — The disc to digital program seems like it's close to launching, too.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=974536",
+      "title": "The first-gen Kindle Scribe is a big e-reader and digital notebook that’s $150 refurbished",
+      "url": "https://www.theverge.com/gadgets/974536/kindle-scribe-2022-refurbished-woot-deal-sale",
+      "author": "Sheena Vasani",
+      "publishedAt": "2026-08-03T17:17:54.000Z",
+      "content": "The Scribe comes with a Premium Pen, which includes a built-in eraser. | Photo by Amelia Holowaty Krales / The Verge The Kindle Scribe is worth considering if you’re heading back to school, as its large 10.2-inch screen can display textbooks and ebooks, or let you jot down handwritten notes during class. Now through August 8th, the first-gen model (with a Premium Pen) is down to just $149.99 with 16GB of storage in refurbished condition at Woot when you apply the promo code KINDLE25 at checkout. That’s $220 off its original launch price from 2022 and even cheaper than the current Kindle Paperwhite, though you’ll only get Woot’s 90-day warranty. Woot doesn’t specify the exact condition of its refurbished devices, but it does offer a brief explanation here of what to expect. Kindle Scribe (16GB) Where to Buy: $369.99 $149.99 at Woot (with code KINDLE25) The Kindle Scribe features a sharp 300ppi E Ink display that’s glare-free and supports adjustable color temperatures, making it easy to read whether you’re outside in the sun or studying late at night. Like all other Kindles, the Scribe gives you quick and easy access to Amazon’s massive store of digital books, so you can switch between assigned reading and your favorite novels without carrying multiple books or devices. It’s not waterproof like the Kindle Paperwhite, though, so you’ll want to keep it away from the pool and be careful when it rains. It’s also a solid digital notebook, with the device offering a variety of pre-made templates for everything from lined paper and planners to to-do lists. After updating the software, the original Kindle Scribe also includes the same AI-powered note-taking features as the newer models, allowing you to jot down notes directly on compatible ebook pages, summarize and refine your handwritten notes, generate AI-powered summaries, and more. Read our Kindle Scribe (2022) review.",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
