@@ -1,6 +1,6 @@
 {
   "day": "2026-08-12",
-  "generatedAt": "2026-08-12T04:59:55.261Z",
+  "generatedAt": "2026-08-12T16:38:21.916Z",
   "items": [
     {
       "sourceSlug": "vercel-blog",
@@ -856,6 +856,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Aug/11/datasette-upload-dbs/#atom-everything",
+      "title": "datasette-upload-dbs 0.5a0",
+      "url": "https://simonwillison.net/2026/Aug/11/datasette-upload-dbs/#atom-everything",
+      "author": null,
+      "publishedAt": "2026-08-11T20:35:13.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "vercel-blog",
       "externalId": "https://vercel.com/changelog/enterprise-managed-users",
       "title": "Enterprise Managed Users is now generally available",
@@ -1045,6 +1059,21 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/how-we-migrated-the-database-behind-every-vercel-build",
+      "title": "How we migrated the database behind every Vercel build",
+      "url": "https://vercel.com/blog/how-we-migrated-the-database-behind-every-vercel-build",
+      "author": "Melkey Moksyakov",
+      "publishedAt": "2026-08-11T22:00:00.000Z",
+      "content": "Every build on Vercel starts in the build warm pool, which is a set of standby containers that let builds begin without waiting for new compute. The pool runs on state that tracks which containers are ready, the tokens each one uses to authenticate, and the mapping that ties every running build back to the deployment that gets billed for it. When we built the pool, we put all of that in Redis, which was fast and made sense at the time.Over the years, though, that state turned into a liability. Tokens and container statuses can be rebuilt if they get lost, but the billing mappings can't, and all of it was sitting in a store that we ran as an ephemeral cache. That state needed to live somewhere durable, which is why we decided to migrate it to DynamoDB.The problem is that the pool never stops. Containers are coming up, polling, picking up work, and expiring around the clock, which meant we couldn't pause the world, copy the data, and restart. The migration had to happen live, under production traffic, in phases, each one behind a flag with a rollback ready if we needed it.Redis was a good home for it at first. It was fast, familiar, and efficient for the access patterns the pool started with. But over time the state became more important than the store holding it. If Redis became unavailable or lost data, the pool could no longer reliably authenticate containers, track which of them were ready, or resolve the work in flight.Lose a token and the pool rebuilds it within about ten minutes. Lose a mapping and the build is never billed, because nothing else records which deployment it belonged to.We wanted it in durable storage and landed on DynamoDB. On-demand scaling fits bursty deployment traffic, , and there are no connections to manage at high concurrency. But what it did not promise was Redis's latency.TTL is nativeInside Redis, the pool's state looked like this:All of these operations were cheap, about a millisecond each, and the code grew to lean on that speed. A single run of the supply loop, which is the loop that refills each warm pool in turn, would make hundreds of count calls just to tally up the pending and polling containers.That's how the warm pool grew, one easy write at a time, until data we needed to keep was sitting in structures built for speed. Untangling that layout was where the migration started.Most migration plans treat the database as the thing being replaced. You map the access patterns, copy the data, and verify that the two stores agree. We planned ours that way too, so before designing any schema, we listed everything the code actually asked of that state:Almost every operation already knows which container it's touching, and only polling ever starts from a token. So we put the container at the center of the model. The container ID became the sort key, and the token became just a field on the record, stored as a hash so that reading the table never hands you a usable credential. Verifying a token now just means looking up its container and comparing the hashes.Two of the access patterns couldn't be served by a key lookup alone. Status counts had to skip containers that were already past expiry, which takes a time-aware index. And the deployment lookups feed billing, so they needed consistent reads, and the mapping got a small table of its own.Reading a container's state, moving its status, and clearing its token all became direct key lookups. Counting a status became a single read against the time-aware index, one query per status with expired containers already filtered out.Where Redis had let the data structures imply what we needed, DynamoDB made us spell out keys, indexes, conditional writes, and TTL behavior. So instead of carrying the Redis structures forward, we modeled the container and added the indexes that its access patterns needed.The rollout ran as feature-flagged phases: Redis-only, then dual writes, shadow reads, DynamoDB-primary, and finally DynamoDB-only. Every phase kept a rollback open for as long as possible. The last step, which removed the Redis writes, was the only one without an easy rollback, but any lingering token expires within ten minutes anyway.We started by baselining the existing Redis operations, their counts and their latencies, so that the dashboards had a normal to compare against. The new DynamoDB methods merged days before anything actually called them. Dual writes went out next, with Redis still the source of truth and DynamoDB failures logged instead of fatal. Then came shadow reads, which queried both stores and compared the results. And then primary reads flipped, with the Redis writes kept on until the new path had proven itself.What the comparisons told us was whether the two stores agreed on the stored values, which is something tests alone couldn't. They said nothing about timing. We checked that every write landed in both stores, that expiration kept moving forward as containers changed status so stale state never piled up, that clearing a token left the rest of the container's record intact, and that the counts stayed close enough to steer the pool.On top of the comparisons we built dashboards that watched match rates, write errors, per-query latency, and expiration counts while Redis was still serving production. That way any divergence surfaced while it was still cheap to investigate, instead of showing up as a cutover failure. Every mismatch got chased down to a real bug, a dual-write race, or an expected difference before we moved on. Those dashboards decided when each phase advanced, and every time the numbers held steady under production traffic, the next step felt safer.In March, one region's builds went down, and the investigation pointed at our own comparison machinery, which was the added load of checking two stores against each other. The scenario had actually come up in review, and we had throttled the comparisons for exactly that reason, but the throttling wasn't enough. Four days later, a pull request citing the incident added the index that the status counts needed. Without it, every count was O(n) work, and the comparisons were counting constantly. With the index in place, the rollout continued.Later that month, the Redis infrastructure that we were migrating off actually went down. The warm pool and its token handling stayed up, because both of them were already reading from DynamoDB as the source of truth. Builds still felt the outage, but through services further up the pipeline that hadn't moved yet. The failure we'd been migrating away from arrived before the migration was even finished, and the state that had already moved survived it.In April, the supply loop began to stall. The shadow data had looked healthy when we advanced primary reads, and the per-query latency had looked acceptable on the dashboards. What failed was a behavior that neither one measured.We drew the loop to see where the time was going.At P95 on , that check measured 1.29ms on Redis and 5.13ms on DynamoDB. At the time we shorthanded it as two to three times slower per query, which turned out to be an underestimate.getWarmPoolTokenCountA few extra milliseconds cost nothing when you only pay them once. But the loop was paying them before every container, hundreds of times per run, and that stretched runs out to minutes at their worst, which meant the pool couldn't stay ahead of demand. The loop was an N+1 query, and Redis had just simply been fast enough to hide it.No one wrote \"this loop requires millisecond reads\" anywhere. But the assumption lived in the design, and at a millisecond per check, nothing had ever made us stop and look.DynamoDB was never going to match Redis's millisecond, so instead of chasing it, we designed the requirement out.The first attempt was batching, which is the shape drawn at the bottom of the sketch. The size of the gap depends on which percentile you look at, and at P90, where it was widest, the gap was about 17x. So the batch design checked state once per 17 containers, with one read amortized across the whole batch, and that constant was lifted straight from the measurement. But the constant was also the reason we walked away from it. It hard-coded a latency ratio that would drift with load, which meant one more unwritten dependency on the store's speed. Concurrency didn't need a constant at all.What shipped instead let the loop's supply calls run concurrently, so each warm pool was no longer waiting behind the one before it, and each call worked from the last state it saw. Overlapping the reads bought us the same thing that batching would have, which is that no run serialized on any single read. The worst case is a few extra containers created from a stale picture of the pool, and that went into the pull request as an accepted cost. The redesign meant we could keep the more durable store without compromising the thing users actually care about, which is builds starting quickly and reliably. The fixes landed the same way the rollout did, one measured step at a time. As one of us put it, \"we have less risk on each iteration because we've corrected for a previous misestimation.\"It turned out the loop had stalled under Redis too, sometimes for a minute or more, and we only learned that while we were diagnosing DynamoDB. The evidence had been in our telemetry the whole time, but because the pool sits ahead of demand rather than in any request path, nothing had ever forced us to go look until the migration did. And the redesign ended up removing a flaw that was older than the project itself.The migration completed in April, with the Redis calls gone from the warm pool paths. Copying the data turned out to be the easy part. The real work was finding the assumptions that had been built on top of the store, and then redesigning the loop that had held them. The state that every build depends on now lives in a store that was built to keep it, and the loop that manages it no longer serializes on any single read.The April retrospective put the lesson in one sentence. \"Even a 1ms-to-15ms query time degradation on P90 could bring down our warm pool management logic.\" Nobody had written that sentence in February, when the migration started.Read moreDurable state in an ephemeral storeWhat Redis made cheapDesigning the schema from the access patternsShadow mode validated every writeTwo failures along the wayThe supply loop stalled on slower readsWe rebuilt the loop around the new latencyMigrating the assumptionsTokens lived in a set so we could check membership, and in a sorted set so we could expire themEach lifecycle status (pending, polling, building) had its own sorted set, which meant a status change was a removal from one set and an add to the nextA string tied each working container to its deploymentVerify a token when a container polls for workAdd a token when a new container comes upExpire tokens past their deadlineCount tokens to size the poolMove a container between lifecycle statusesCount containers by statusLook up the deployment behind a container's callbackRemove expired containers",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "zvi-dwatv",
       "externalId": "http://thezvi.wordpress.com/?p=25523",
       "title": "Various Reflections About What Happened With OpenAI’s Internal Models",
@@ -1190,6 +1219,51 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/building-a-software-factory-for-ai-sdk",
+      "title": "Building a software factory for AI SDK",
+      "url": "https://vercel.com/blog/building-a-software-factory-for-ai-sdk",
+      "author": "Lars Grammel",
+      "publishedAt": "2026-08-12T00:00:00.000Z",
+      "content": "The is one of the most popular open-source AI projects in the world. It serves over 20 million npm downloads a week and the repo has over 26,000 stars. Maintaining the codebase means tracking four moving targets at once:AI SDKAfter multiple years of growth, the repo was getting 100+ new issues every month, and when Anthropic's Opus 4.6 model was released, PRs hit an inflection point. By late June, that compounding had accumulated over 1,000 open issues and almost 800 pull requests.That backlog is not a discipline problem. No maintainer, however good, can close that gap by working harder, and because generating code is cheap, it will only grow.Instead of trying to scale ourselves, we built a software factory. Four weeks in, it authors between 25 and 35% of PRs we merge and closes 70-80% of issues.Before we built anything, we had to answer three questions:The best maintainers are already using agents aggressively. Mitchell Hashimoto runs Ghostty with the goal of an agent always working, and encodes every agent failure in AGENTS.md so it never repeats. Simon Willison runs four coding agents in parallel, and review bots like Vercel Agent and CodeRabbit sit on millions of repos. Other maintainers like Daniel Stenberg have opted to block AI-generated submissions to curl.All of it helps, but none of it solves for the core constraint: every one of these solutions still routes every change through one human's attention. We believe that human accountability is still the in agentic engineering, so we knew our factory needed to solve for reviewer efficiency as a first principle.core of trustSoftware factories sit on a spectrum. At one end is full automation, where agents write, ship, and deploy without a human ever reading the code. In the middle are harnesses like Codex and Claude Code, where a person steers an agent or fleet of agents. At the far end is software you barely want to automate because the risk is too high, like firmware in a pacemaker or self-driving vehicle.The AI SDK needs to operate closer to the careful end. It is foundational AI infrastructure with millions of applications built on top, so quality and security are non-negotiable, and a human needs to have control over what ships. We needed our factory to heavily automate the lifecycle around the human, without removing them.For a given change, the depth of human review needed scales with risk. Centralized roadmaps with detailed feature specs can define risk up front and directly shape the work going into a software factory. But open-source projects like AI SDK also get issues and pull requests from the community, and there is no guarantee they align with the goals of the project, or that changes are safe to make. Higher risk means human judgment is an even more critical part of the system.To optimize our factory for that judgment, we knew agents had to go beyond generating code based on a request; they needed to evaluate full units of work in the context of the entire project. Our goal was for the factory generate a comprehensive assessment of each change for both fit and risk, including a full chain of documented evidence, making it easy for reviewers to apply the right amount of effort: is a software factory that autonomously processes incoming issues and pull requests for AI SDK. Agents in the factory perform specific, reviewable tasks, like reproducing bugs, implementing features, and creating backports for older SDK versions. A human stays in control throughout the entire process, including merging every change.ai-sdk-factoryWe didn't ship the factory in one swing. We built it incrementally, starting at the beginning of the process with classification of issues as bugs, features, or documentation updates. That first step not only gave us more visibility into the shape backlog, but also passed helpful context to the other specialized agents we built later.We prototyped multiple ways to build each new type of functionality, and in the process developed a set of guiding principles that shaped the architecture of the factory that went into production. Once our classification agent reached a high level of accuracy, we focused on automating bug reproduction, fixes, and review of those fixes. We explored building a single agent equipped with skills for each step, but quickly realized that would come with a higher maintenance and troubleshooting burden over time. Instead, we built a single agent for each specific task, making every new capability easier to reason about, test in isolation, and debug. Each one is scoped to a specific job, with its own prompts, context, and evals. Today the factory has dedicated agents for every step in the flow:We implemented security with the second agent, because bug reproduction was the first step where the factory executed code based on content it didn't control.A factory operating on a public repository has to assume attacker-controlled input: every issue, pull request, comment, and the links inside them are untrusted. Because successful open-source projects are high-value targets, threats range from malicious code changes and supply chain attacks to resource exhaustion, API key exfiltration, and prompt exfiltration.Sandboxes are the foundation of our defense. Every agent in runs inside an isolated Vercel Sandbox containing its code, its runtime, and only the secrets the agent's specific task needs. With those guardrails, untrusted content can shape what an agent proposes, but the damage any one task can do is contained to the sandbox.ai-sdk-factoryWe also built a shielding layer around the sandbox that controls what agents can reach over the network, blocking the paths an attacker would use to pull secrets out of the isolated environment.The last line of defense is human review: nothing is merged without approval from a human on the AI SDK team.The first several agents we built for the factory ran through a local CLI. That enabled our team to iterate quickly as we noticed inaccuracies, felt friction, and prototyped different ideas. Once multiple steps were running reliably through the CLI, we were ready to move the system onto managed infrastructure. uses: ai-sdk-factoryToday, GitHub webhooks feed the issue queue, and as soon as they arrive workers automatically pull them and kick off agent runs in sandboxes. We also built a monitoring UI that tracks every run in parallel, and visualizes the queue for the team of reviewers. On July 24, a community member asked for blocked-domain support in OpenAI web search, and the request became . The following section explains every step the software factory went through to process the issue, open a pull request with an implementation of the feature, and ultimately backport the merged feature to v5 and v6 of the SDK. issue #17898The first agent that runs in the factory classifies issues and pull requests. In this case, the bot on the issue and applied a label, identifying the type as Feature with high confidence. The agent included its rationale for the classification in the comment. ai-sdk-factorycommentedAfter classification, the analysis agent runs. Agents in the factory don't make any assumptions about the technical validity of a feature request or bug, so the analysis agent wrote a probe to confirm the absence of support for blocked domains. was generated and run, and failed with an error when it looked for blocked-domains and didn't find it. issue-17898-type-probe.tsThe failing probe proved the feature was missing on , and the agent included it in as evidence. mainthe analysisThe analysis agent then used the results of its investigation to build out a spec for the feature: add an optional filter to the existing web-search tool and map it to the provider's field.blockedDomainsblocked_domainsThe agent also confirmed the spec fit the SDK's provider-adapter architecture and was backward compatible, and even scoped documentation changes. Another agent then and opened . The implementation agent ran a live end-to-end test, executing an OpenAI web search with wikipedia.org blocked and confirming the domain wassn't reachable. The test was included as additional evidence on the pull request. implemented the specpull requestNext, a review agent , and when it didn't find any concerns, approved it. The agent rated the feature as fully implemented, with: scored the changeFinally, Lars read the chain of evidence from the agents, reviewed the code changes, and merged into main.PR #18033Once Lars merged the initial PR, opened additional PRs for two backports, for v6 and for v5. The v5 backport did not apply cleanly, so the factory agent labeled and committed the conflicted state, identified and validated a fix, and pushed it seventeen minutes later. After review, Lars merged both backport PRs.ai-sdk-factory#18035#18036We are just over four weeks into running the software factory in production. Here are the results:PRs merged to mainBetween 25-35% of the PRs we merge on a weekly basis are now authored by agents.ai-sdk-factoryBackportsFactory PRs are above 50% of weekly merges to the v6 release line, and v5 looks similar. Backports used to be work we skipped because dealing with merge conflicts wasn't worth the effort. v5 and v6 get far better support now.IssuesIn July, over 75% of closed issues were closed by the factory. Open issues fell from a peak of 1,022 in late June to 844 by early August, and open bugs are down roughly 25%.The runs in public, so you can see it has authored on the repo.ai-sdk-factoryevery pull requestThe most interesting part of running the factory is what happens when it fails. Every run ends one of four ways: success, flawed, blocked, or manual. Only success ships, so the rest are signal that re-enters the system as feedback.Each of those fixes expands the automation boundary, and every week the factory can handle work that it couldn't be trusted with before.Running the factory is the same discipline teams already apply to their test suites and pipelines, but pointed at the system that does the work, instead of the system that checks it. In a world where agents define the SDLC, improving the factory will become the standard engineering job.Read moreModel providers: new providers, new capabilities, and new bugsUI frameworks: bindings for React, Next.js, Svelte, Vue, and othersSandboxes: the execution environments agents run code inHarnesses: adapters for Codex, Claude Code, Pi, and othersWhy our existing approach using agents wasn't enoughWhat level of automation fit a project like the AI SDKHow to align automation and human effort to riskDocs fixes get a quick glance for verificationWell-defined provider changes get focused validationA new public API gets deep reviewBug reproductionBug fixesPR reviewsBackportsDocumentation updates Feature analysisFeature implementationVercel Functions for the API, workers, and webhook ingressVercel Queues for task executionVercel Blob for logsVercel Sandbox for the agent workspacesNeon Postgres for factory dataSide-effect risk: lowPerformance risk: noneBackwards-compatibility risk: lowA flawed run means an agent produced the wrong thing, and the fix is better prompts, better context, or a new eval case so the same mistake gets caught automatically next timeA blocked run means the environment was missing something, like a credential, a service, or a dependency, and the fix is provisioning itA manual run marks a boundary we drew on purpose, and forces us to ask whether improvements in the factory justify removing itDeciding what type of factory to buildWhat we builtShipping software through our factoryResultsImproving the factory becomes the jobWhy not add more agents?What kind of automation fits AI SDK?How do we align automation and effort to risk?Build one agent per taskSecure everything from the startBuild value locally, then move to the cloudClassificationAnalysisImplementationAutomated reviewHuman reviewBackporting",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/free-domain-for-one-year-now-for-all-pro-teams",
+      "title": "Free domain for one year, now for all Pro teams",
+      "url": "https://vercel.com/changelog/free-domain-for-one-year-now-for-all-pro-teams",
+      "author": "Jeremy Dopkin",
+      "publishedAt": "2026-08-12T00:00:00.000Z",
+      "content": "We recently announced that new Pro teams are eligible to claim . We are now extending this offer to all teams.a free domain for their first yearProExisting Pro teams can now also claim a free domain for one year. The offer covers one eligible domain per team across six TLDs: , , , , , and . After the first year, your domain will at the regular price shown at checkout when you claim it..online.site.space.store.tech.websiterenew automaticallyClaim yours at , and see the for full terms.vercel.com/domainsfree domain FAQRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/grok-4-6-now-available-on-ai-gateway",
+      "title": "Grok 4.6 now available on AI Gateway",
+      "url": "https://vercel.com/changelog/grok-4-6-now-available-on-ai-gateway",
+      "author": "Walter Korman",
+      "publishedAt": "2026-08-12T00:00:00.000Z",
+      "content": "from SpaceXAI is now available on .Grok 4.6AI GatewayThe model has a 500K token context window and accepts text and image inputs. Grok 4.6 supports low, medium, high, and xhigh reasoning levels and defaults to high.To use Grok 4.6, set to in the :modelxai/grok-4.6AI SDKTo use it in a , run to connect Claude Code, Codex, OpenCode, or Pi, then select inside the agent.coding agentvercel ai-gateway coding-agents setupxai/grok-4.6To try Grok 4.5 with no code, try the model in the .model playgroundAI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in , , , , and more.custom reportingZero Data Retention supportbudgets for API keysrouting rulesAI Gateway reflects provider pricing with no markup and does not charge a platform fee on inference, including on (BYOK) requests.Bring Your Own Key Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "ars-technica",
       "externalId": "https://arstechnica.com/information-technology/2026/08/def-con-crowd-suspected-in-fake-hotspot-attack-on-delta-flight/",
       "title": "DEF CON crowd suspected in fake-hotspot attack on Delta flight",
@@ -1268,6 +1342,91 @@
       "mediaType": "text",
       "points": 108,
       "comments": 56
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49266921",
+      "title": "The lifesaving secret hidden inside a horseshoe crab's blue blood",
+      "url": "https://whdh.com/news/the-lifesaving-secret-hidden-inside-a-horseshoe-crabs-blue-blood-and-the-race-to-protect-the-species/",
+      "author": "andsoitis",
+      "publishedAt": "2026-08-12T01:45:51.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 29
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49267057",
+      "title": "Company Offering '100% Human-Written, Never AI' Medical Research Is 100% AI",
+      "url": "https://www.404media.co/company-offering-100-human-written-never-ai-peer-review-is-entirely-ai/",
+      "author": "Anon84",
+      "publishedAt": "2026-08-12T02:05:42.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 188,
+      "comments": 45
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49267108",
+      "title": "The Human Is the Loop",
+      "url": "https://brentfitzgerald.com/posts/the-human-is-the-loop/",
+      "author": "burnto",
+      "publishedAt": "2026-08-12T02:15:01.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 172,
+      "comments": 86
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/ant-group-s-ling-3-0-tiny-matches-gpt-120b-intelligence-with-15x-fewer",
+      "title": "Ant Group's Ling 3.0 Tiny Matches GPT-120B Intelligence With 15x Fewer Parameters",
+      "url": "https://alphasignal.ai/news/ant-group-s-ling-3-0-tiny-matches-gpt-120b-intelligence-with-15x-fewer",
+      "author": "Artificial Analysis",
+      "publishedAt": "2026-08-12T02:51:30.000Z",
+      "content": "Ant Group's InclusionAI releases a 7.9B MoE reasoning model that matches GPT-class performance with just 1.3B active parameters, free and MIT-licensed.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/lightricks-ltx-2-5-generates-10-second-videos-faster-than-real-time",
+      "title": "Lightricks' LTX-2.5 Generates 10-Second Videos Faster Than Real Time",
+      "url": "https://alphasignal.ai/news/lightricks-ltx-2-5-generates-10-second-videos-faster-than-real-time",
+      "author": "Runway",
+      "publishedAt": "2026-08-12T03:03:53.000Z",
+      "content": "LTX-2.5, the open-weights video model generating 10-second clips in 6.8 seconds, is now available on Runway alongside Hugging Face and ComfyUI",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
     },
     {
       "sourceSlug": "arxiv-ai",
@@ -2202,6 +2361,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49267928",
+      "title": "llama.cpp",
+      "url": "https://llama.app",
+      "author": "kristianpaul",
+      "publishedAt": "2026-08-12T04:51:59.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 324,
+      "comments": 149
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260812/p1#a260812p1",
       "title": "OpenAI VP of Global Policy Ann O'Leary says AI policy in the US is anchored in the states and informed by California's AI transparency law passed last year (Chase DiFeliciantonio/Politico)",
@@ -2225,6 +2403,1342 @@
       "content": "Not Worth Another Token: Marginal Value Estimation for Efficient Deep Research Agents",
       "topics": [
         "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/how-enterprises-put-ai-to-work",
+      "title": "From assistance to execution: How enterprises put AI to work",
+      "url": "https://openai.com/index/how-enterprises-put-ai-to-work",
+      "author": null,
+      "publishedAt": "2026-08-12T06:00:00.000Z",
+      "content": "OpenAI research reveals how enterprises are adopting agentic AI, using ChatGPT and Codex, and how frontier firms are pulling ahead in AI adoption.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49268564",
+      "title": "LinkedIn CringeBot 3000",
+      "url": "https://www.cringebot3000.com/",
+      "author": "theanonymousone",
+      "publishedAt": "2026-08-12T06:30:49.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 446,
+      "comments": 192
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/deepseek-v4-pro-now-runs-updated-weights-on-ai-gateway",
+      "title": "DeepSeek V4 Pro now runs updated weights on AI Gateway",
+      "url": "https://vercel.com/changelog/deepseek-v4-pro-now-runs-updated-weights-on-ai-gateway",
+      "author": "Jerilyn Zheng",
+      "publishedAt": "2026-08-12T07:00:00.000Z",
+      "content": "DeepSeek V4 Pro now runs on updated weights on AI Gateway. They are used by default when you call , so existing requests pick them up with no change to the model ID or your code.deepseek/deepseek-v4-proTo use the updated DeepSeek V4 Pro, set model to in the . AI Gateway will route to providers with the new weights:deepseek/deepseek-v4-pro-0813AI SDKTo run V4 Pro in a coding agent, use to connect your agents to AI Gateway, then select in the agent's model configuration. See the .vercel ai-gateway coding-agents setupdeepseek/deepseek-v4-pro-0813coding agents guideAI Gateway reflects provider pricing with no markup and does not charge a platform fee on inference, including on (BYOK) requests. Learn more about , view the or try it in our .Bring Your Own KeyAI GatewayAI Gateway model leaderboardmodel playgroundRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "https://www.latent.space/p/ainews-how-to-steal-a-reasoning-trace",
+      "title": "[AINews] How to steal a Reasoning Trace",
+      "url": "https://www.latent.space/p/ainews-how-to-steal-a-reasoning-trace",
+      "author": null,
+      "publishedAt": "2026-08-12T07:11:08.000Z",
+      "content": "It’s not very often that a paper breaks through to become headline story of the day. For understandable reasons both domestic and foreign, there is renewed interest in the Interpretability Venn Diagram of alignment, security, and chain of thought monitoring, so today’s paper could not have come at a better time:Since the o1 launch, frontier lab reasoning models have obscured their traces, with cryptographic signatures, for fear of distillation (not that this prevented anyone from Chinese labs accusing them of doing so). The first compromise was responsibly reported by Matthew Green in May, who broke down how it works and figured out how to replay and side channel these indirectly using latency measures. Today’s paper demonstrates that it is possible to DECODE and port these encrypted thoughts to different models/sessions/users… and to dramatically improve open models as a resultThe alarming note is here:“Further, if you ever shared online a Claude Code/Codex session with encrypted reasoning blobs, they can be decoded and leak your personal data.We did a preliminary scan of ~7,000 public traces and found 62 unique API keys, 33 email addresses, 33 passwords, and other sensitive data.”(64 appeared exclusively inside the reasoning blocks and nowhere in the visible session.)The authors also detail alignment issues:COT Summarizers hiding answersUnintelligible reasoningConsiderations of cheatingAttacking WebsitesThe website has more examples.The technique is somewhat described in the paper:Obtain a legitimate encrypted/signed reasoning block from an API response.Replay that block into a different request—potentially another account/session—to a weaker model from the same provider.Place it in an assistant/model turn and prompt or prefill the weaker model to transcribe the attached reasoning.Sample repeatedly, discard refusals, and optionally reconcile multiple noisy transcriptions.The paper gives concrete templates with some minor variations per model:Claude: replay the signed thinking block to Haiku 4.5, followed by an assistant prefill such as <thinking-copy>.GPT: inject the encrypted_content reasoning item multiple times into a fabricated conversation; sample up to 50 outputs. It also describes bypassing an apparent ~50-token verbatim-output threshold using chunked continuations.Gemini: attach thought_signature to a model turn with a <thought> prefill, then use repeated sampling and reconciliation.This paper was responsibly disclosed, with several vulnerabilities already fixed, but surely similar attacks still seem possible.AI News for 8/10/2026-8/11/2026. We checked 12 subreddits, 544 Twitters and no further Discords. AINews’ website lets you search all past issues. As a reminder, AINews is now a section of Latent Space. You can opt in/out of email frequencies!AI Twitter RecapReasoning-Trace Exposure, CoT Privacy, and Watermarking DebateFrontier API vulnerability exposed hidden reasoning: A widely discussed disclosure from @kotekjedi_ml claims a vulnerability across frontier APIs allowed extraction of “encrypted” hidden reasoning, with recovered token counts matching billed thinking tokens 1:1 on most queried prompts. In a follow-up, the team reports that a scan of ~7,000 public traces found 62 unique API keys, 33 email addresses, 33 passwords, and other sensitive data in decoded blobs @kotekjedi_ml. Additional context from @jonasgeiping emphasizes both the immediate privacy risk of sharing traces publicly and the operational-security implications: during the investigation, they reportedly encountered a leaked Hugging Face prod key during the broader cyber incident. Several posts also highlight how difficult monitoring becomes when decoded CoT is terse, fragmented, multilingual, or effectively “neuralese” @jonasgeiping, @scaling01, @eliebakouch. A practical corollary: even if labs hide reasoning, tool interfaces may re-expose it; @_can1357 notes that disabling explicit thinking while providing a deep_think tool can still induce internal-format CoT output.What this means technically: Discussion split between “serious privacy/safety problem” and “not a scalable distillation path.” @vipulved argues the attack does not imply practical mass theft of chain-of-thought for model training, framing the encryption more as a stateless distributed-inference protocol optimization than a hard confidentiality barrier. Still, the episode sharpens a few points: public trace sharing is risky; hidden CoT is not a reliable monitoring interface; and labs may need stronger guarantees around sandboxing, telemetry, and tool surfaces @BlackHC. In parallel, a separate thread debated AI text watermarking under EU-style compliance pressure. @trq212 said labs are adding watermarking and a text-detection API; critics questioned whether this could bloat outputs or harm code/doc brevity @wightmanr. Others argued the entropy budget is large enough that signatures can be subtle, especially for longer outputs @RyanGreenblatt, @giffmana.NVIDIA Nemotron 3.5 Lightning and the Small Open Agent Model PushNemotron 3.5 Lightning: NVIDIA released Nemotron 3.5 Lightning, a 30B MoE model with roughly 3B active parameters, positioned for always-on agent workloads. NVIDIA and ecosystem posts stress up to 4× throughput, 1M context, open/customizable release artifacts, and support for weights, data, and recipes on Hugging Face @NVIDIAAI. Artificial Analysis provides the most detailed third-party summary: 31.6B total / 3.6B active, OpenMDW-1.1 license, NVFP4 and BF16 weights, median serving near 670 tok/s in pre-release endpoint testing, and a score of 24 on its Intelligence Index—roughly in line with gpt-oss-120b while being much smaller and faster @ArtificialAnlys. Agentic results look particularly strong for the size: GDPval-AA v2 Elo 824 and Terminal-Bench v2.1 24%, both major jumps over Nemotron 3 Nano @ArtificialAnlys.Distribution and downstream tuning: Lightning shipped fast across the stack: Together AI, Ollama, Baseten, vLLM, Perplexity API, and others. A recurring pattern is pairing a cheaper execution model with a stronger planner: @kimmonismus frames Lightning as NVIDIA’s “local agent workforce,” complementing larger planning models via routing. Harvey reports post-training on Legal Agent Bench improved Lightning from 0% to 8.3% on held-out tasks, beating Opus 4.6 and Nemotron 3 Ultra in that setup while cutting average output from 90k to 37k tokens @harvey. Overall, this release reinforces the current open-model trend: smaller, faster models tuned for high-volume tool use rather than general chat prestige.Local AI Tooling: Unsloth Desktop, Muse Glimmer Support, and Linux CodexUnsloth Desktop expands the local stack: @UnslothAI launched Unsloth Desktop, an open-source desktop app for running and training models locally across Mac, Windows, and Linux, with support spanning MLX, GGUF, diffusion image/video, audio, CPU and multi-GPU setups, plus OpenAI-compatible APIs. The notable systems angle is ambition beyond “local chat UI”: tool calling, sandboxed code execution, private search, RAG, MCP, exports, and claims of 2× faster training with 70% less VRAM. Multiple observers positioned it as a more end-to-end local AI operating environment rather than just an LM Studio competitor @TeksEdge, @dessaigne.Model/runtime support keeps improving: The open/local ecosystem also moved quickly on Meta Muse Glimmer 30B and Nemotron. @mervenoyann highlighted DFlash drafter support for Muse Glimmer in llama.cpp and Transformers, claiming 2–4× generation speedup at small memory cost, with simple llama serve instructions following shortly @mervenoyann. On the model-analysis side, @rasbt gave a useful architectural breakdown of Glimmer: a dense 30B multimodal reasoning model with hybrid local/global attention, extreme KV-cache efficiency (~52 KiB/token BF16 by his estimate), and a design closer to Gemma-family patterns than MoE competitors.OpenAI finally shipped Linux desktop support: OpenAI announced the ChatGPT desktop app for Linux in preview @OpenAI, with support for Ubuntu 24.04/26.04, Debian 13, Fedora 43/44, x64 and ARM64 packages @OpenAIDevs. More importantly for existing agent users, the desktop app can now import/sync projects, chats, skills, and plugins from other agents into ChatGPT Work and Codex, including automatic updates @OpenAIDevs. This looks like an effort to reduce switching friction and make Codex/Desktop the integration hub rather than a fresh silo.Agent Products, Benchmarks, and Enterprise EvaluationGrok Bot is a stronger product signal than another model launch: xAI introduced Grok Bot, pitched as AI teammates with their own cloud computers that can sign into tools and do persistent work. The interesting details from early users are product/ops-oriented rather than model-centric: bots can watch Slack threads and GitHub Actions, repeat scheduled routines, create/manage other bots, and work across linked cloud environments @shaoruu, @n2parko, @sjwhitmore. @kimmonismus notes how deeply this seems tied to Cursor distribution and pricing, hinting at a “virtual coworker” product category where persistent context, logged-in environments, and inter-agent delegation matter more than raw benchmark gains.Evaluation is shifting toward long-horizon, deterministic, domain-real tasks: LlamaIndex launched ExtractBench, a deterministic benchmark for enterprise document extraction across 370 documents / 4,869 pages / 67 doc types. Its most actionable result is that commercial VLMs can keep precision high while recall collapses below 35% on documents >50 pages, mainly via silent row/list truncation. They also introduced an “Agentic Plus” extraction tier in LlamaParse claiming 95.6% value accuracy at less than one-third the cost of the nearest peer. Artificial Analysis released AA-AnalystAgent, an agentic benchmark for spreadsheet/document quantitative analysis using a pass^5 reliability metric across 80 tasks. Claude Opus 5 leads at 54%, followed by GPT-5.5 at 50% and Claude Fable 5 at 49%; Kimi K3 is the top open-weights model at 39%. The strong theme across both is reliability and workflow correctness over one-shot capability.Benchmark skepticism is rising: A thoughtful critique from @hrishioa argues many modern evals are being “vibed” rather than engineered carefully, leading to broken scoring, bad aggregation, and even exploitable prompts/sandboxes. That critique lands harder given recent reports of sandbox escapes, outbound network access, and agent reward hacking. Separately, Microsoft research drew attention for a prompt-time “skill compilation” result: @xidulu shared work feeding the previous hidden state at decoding time for free gains, while @dair_ai summarized another paper showing that compact natural-language skills distilled from prior trajectories can recover 55% to >100% of the gap between non-reasoning and reasoning modes on several multi-step agentic tasks, often with 2.7–6× fewer output tokens.Infra, Verification, and Systems ResearchVerifiable inference is moving from theory toward product: @Yogi_Brn launched Attestable with a $20M seed, pitching practical zero-knowledge proofs for AI integrity. The core claim is proving that the correct model ran on the correct inputs and invoked the correct tools, which becomes more valuable as agent traces lengthen. @jaminball says the team reduced ZK overhead by many orders of magnitude from previously impractical levels. The response from @VitalikButerin is notable: he estimates the current approach may already be within single-digit (<10×) overhead relative to raw inference in some settings, and frames that as a stepping stone toward stronger privacy-preserving inference stacks.Deterministic integer-only inference across hardware: One of the more technically interesting systems posts came from @nathanrs, who reports fully deterministic LLM inference across A100, H100, Apple M5 Max, AMD EPYC, and Intel Xeon by using exact integer arithmetic end-to-end instead of letting nonlinear ops bounce back into floating point. On a Qwen3-0.6B test, all integer runs produced identical hashed logits across devices, with WikiText2 perplexity 20.72 vs 20.95 for fp16 and 106 tok/s CUDA-graphed decode on A100 at batch 1—claimed as 3.6× fp16 eager baseline. If robust, that’s relevant both for reproducibility and for proof-friendly inference.Compiler/inference portability as an agentic systems target: A smaller but recurring theme is “agents moving down the stack.” Posts around @JvNixon and Infinity describe automated compiler/memory-planner/debugger workflows for running optimized models across heterogeneous chips, with supporters framing software-generated per-chip adaptation as a way to weaken the CUDA moat. Separately, infra vendors shipped more incremental but practical updates: Qdrant 1.19 adds prefix matching on keyword indexes @qdrant_engine, and Together + IBM + NVIDIA announced enterprise inference infrastructure on IBM Cloud @togethercompute.Top tweets (by engagement)Reasoning trace vulnerability / hidden CoT extraction: the original disclosure from @kotekjedi_ml and the follow-up privacy findings @kotekjedi_ml were among the day’s most consequential technical posts.Grok Bot beta: xAI’s agent product launch @bot drew the biggest product reaction, largely because it points to a persistent, logged-in AI coworker UX rather than a simple chatbot iteration.ChatGPT desktop for Linux + sync/imports: OpenAI’s Linux desktop preview @OpenAI and agent-workflow import/sync support @OpenAIDevs landed strongly with developer audiences.Nemotron 3.5 Lightning: Jensen’s post @JensenHuang and NVIDIA’s launch @NVIDIAAI marked the most important open-model systems release of the day.AI Reddit Recap/r/LocalLlama + /r/localLLM Recap1. Meta Muse Glimmer 30B Release and Local BenchmarksIntroducing Muse Glimmer: an open-weight model optimized for always-on local agent workflows (Activity: 2435): Meta announced Muse Glimmer, a permissively licensed Apache 2.0 open-weight 30B dense multimodal model for always-on local agent workflows, with interleaved text/image input via a dedicated perception encoder, 100+ language training, controllable reasoning effort, and agent-focused training for tool use, long-horizon reasoning, failure recovery, and benchmarks such as DeepSearch QA, MCP-Atlas, τ³-Bench, and SWE-Bench. The post claims ~4-bit quantization reduces the LM to <20 GB, enabling operation in 24–32 GB memory envelopes alongside KV cache, perception encoder, and a DFlash-based speculative decoding drafter with “identical output quality”; weights/resources are linked on Hugging Face, the research blog, and developer docs. A technical comment points to Alexandr Wang saying an open-weight Muse Spark 1.2 release is coming soon on X. Comments are mostly positive but light on technical scrutiny, expressing enthusiasm that Meta is releasing open weights again and jokingly framing Muse Glimmer as “llama 5.”A commenter cites Alexandr Wang on X stating that an open-weight version of Muse Spark 1.2 will be released soon, which is technically relevant because it suggests Meta may follow Muse Glimmer with a higher-tier or newer open-weight variant. Source: x.com/alexandr_wang/status/2086756152034066792.Meta releases Muse Glimmer 30B - a new open model (Activity: 450): The image is a promotional benchmark graphic for Meta “Muse Glimmer-30B”, presented as a new open-weight 30B dense vision model under Apache 2.0. It claims competitive results versus Gemma 4-31B and Qwen3.6-27B on agentic/code/math/science benchmarks including MCP Atlas, DeepSearch QA, SWE-Bench Pro, AIME 2026, and SciCode, and advertises that it can run on 18GB RAM/VRAM setups via Unsloth Desktop. Commenters were broadly positive about Meta returning to open model releases, but one noted skepticism about cadence, saying it may be “the strongest agentic model for its size for like three days before they release Qwen,” implying rapid competition from Qwen and pressure on Meta to improve release velocity.Commenters frame Muse Glimmer 30B as a potentially strong agentic model in the ~30B dense-model size class, but expect it to be quickly challenged by upcoming Qwen releases; one commenter says it may be “the strongest agentic model for its size for like three days before they release Qwen.” The technically relevant concern is release cadence: Meta is seen as needing faster iteration to remain competitive with Qwen and other open-model labs.A substantive ecosystem point is that the ~30B parameter tier is becoming crowded, with commenters naming Qwen, Google, NVIDIA, and Meta as active players. One commenter hopes Meta follows this release with a similarly sized MoE model, mirroring expectations that Qwen may also expand in that direction.Muse Glimmer ACTUALLY fits on a single RTX 3090 (Activity: 640): A user reports Meta Muse Glimmer 30B Q4_K_XL GGUF runs on a single RTX 3090 24GB with 262144 context, DFlash speculative draft, mmproj, FlashAttention, and F16 KV cache, using only ~22–23GB VRAM—unlike their tested Q4_K_XL Qwen3.6-27B and Gemma-4-31B, which hit VRAM limits at ~70k/52k tokens with F16 KV or 125k/81k with Q8 KV. They measured ~64–124 tok/s generation under DFlash, ~1400 tok/s prompt processing, and passed a two-needle retrieval test at ~150k tokens, suggesting the model is not effectively capped at 128k; a commenter notes the official Muse-Glimmer-30B-GGUF releases already target 24GB/32GB VRAM, and another reports very compact KV usage: ~1.8 GiB for 131k F16 despite SWA on all layers. Commenters were positively surprised by the KV-cache efficiency, especially given SWA across all layers; one joked that this could further increase RTX 3090 demand/prices.Users highlighted that Muse Glimmer’s KV cache appears unusually memory-efficient despite SWA on all layers: one report claims a 131k context with F16 KV uses only about 1.8 GiB, making long-context operation feasible on a single RTX 3090.A commenter noted that the official Meta GGUF builds already target 24GB and 32GB VRAM configurations, including DFlash support, so Unsloth GGUFs may not be required. The referenced official repository is meta-models/Muse-Glimmer-30B-GGUF.Another technical report claims 256k context + DFlash + mmproj fits in roughly 22–23GB VRAM on an RTX 3090, with observed throughput around 64–124 tok/s. They also noted that a 150k needle test reportedly holds up, but questioned how performance and retrieval quality behave once the context is filled closer to 200k+.1 Day in and I feel okay saying Muse-Glimmer-30B finally beats 3.6-27B for the size in some use-cases (Activity: 709): OP reports that Muse-Glimmer-30B appears to outperform Qwen 3.6-27B in selected 24GB GPU-class local use cases after ~1 day of testing, especially efficient reasoning, low-bit quantization (iq3_xxs reportedly degrades less than Qwen/Gemma), no-tools trivia/knowledge depth, and OpenCode agent efficiency. They still rate it weaker for general coding—roughly around Gemma4-31B level—but claim it completes agentic tasks faster than 3.6-27B despite similar task success. Commenters echoed strong early results for agentic workflows/tool calling, with one saying Muse-Glimmer-30B “isn’t even close,” but others expect an imminent 3.8 release to erase the lead. One technical criticism was that American models may waste tokens on safety/self-validation before answering.One commenter reported a few hours of A/B testing where Muse-Glimmer-30B substantially outperformed 3.6 27B specifically in agentic workflows and tool calling, saying “it isn’t even close.” Another user qualified the improvement as strongest for non-coding tasks, while coding performance was left unverified.A technical concern raised was token inefficiency from safety/alignment preambles: one user asked whether Muse-Glimmer-30B spends many tokens validating that requests are allowed under its policy framework. This was framed as a common issue with some American-aligned models where safety verbosity can reduce practical throughput in interactive or agentic use.Several comments noted that the comparison may be short-lived because 3.8 is expected imminently and could change the relative ranking versus Muse-Glimmer-30B and 3.6 27B. One dissenting commenter still considered 3.6 27B the stronger baseline overall, suggesting the new model’s advantage may be workload-specific rather than universal.Early signs that Muse-Glimmer-30B might quantize very well? Share your experiences. (Activity: 354): The image is a social media post from Unsloth AI showing Muse-Glimmer-30B-GGUF running in a chat/coding-agent workflow with visible tool calls, claiming a 2-bit quantized 30B model executed 100+ tool calls while using about 14GB RAM: image. In the Reddit discussion, users question whether 14GB is actually impressive for “2-bit” on a 30B model, while another reports Q4_K_XL on a single RTX 3090 performing well for agentic coding and roughly “on-par with 3.6 27B.” Commenters are split between optimism about Glimmer’s quantization/agentic-coding performance and skepticism about memory efficiency. There is also concern that the model may be overly safety-restricted, with one user citing refusals for code that moves the mouse pointer.One user reports running Muse-Glimmer-30B as Q4_K_XL on a single RTX 3090 for agentic coding and says it is “performing great,” roughly on par with 3.6 27B in their early testing. Another commenter notes that a 14GB “2-bit” quant is relatively large for a 30B model, implying the packaging/quantization format may include substantial overhead or not be a straightforward 2-bit weight-only footprint.A technically focused concern is how Glimmer behaves under KV-cache quantization, especially whether degradation from fp16 to q8_0 resembles Qwen or Gemma-style sensitivity. The commenter specifically wants Glimmer added to Anbeeld’s KV-cache benchmark methodology: KV cache quantization benchmarks / KVARn precision tail.A user testing the BF16 model through vLLM reports disappointing quality versus Laguna-S-2.1, saying Glimmer made many errors that Laguna would not. They suggest the result may be due to early-release issues and plan to retest once the official repo/model release stabilizes.2. Qwen 3.8-27B and Ling-3.0 Tiny Open WeightsQwen 3.8-27b coming this week (Activity: 2791): The image is a screenshot of the official Qwen / Alibaba_Qwen X account confirming that Qwen3.8-27B open weights are landing this week, matching the post title’s claim. Comments point to a ModelScope listing for Qwen3.8-2.4T-A95B, noting ModelScope is Alibaba-owned and suggesting the release timing/countdown may be credible. Commenters are already comparing expectations against other Qwen variants, especially asking whether a 35B-A3B-like model is coming because it reportedly performs well on certain tasks with strong speed for its hardware footprint.Commenters pointed to an apparent official Alibaba ModelScope listing for Qwen3.8-2.4T-A95B with a countdown of roughly 1 day 9 hours, treating it as a credible signal because ModelScope is Alibaba-owned: https://modelscope.cn/models/Qwen/Qwen3.8-2.4T-A95B and https://modelscope.cn/models/Qwen/Qwen3.8-2.4T-A95B/summary.There was interest in whether a 35B-A3B-style Qwen variant will arrive, with one user noting that 35BA3B performs “amazing” on certain task types while maintaining strong speed for its hardware footprint, implying demand for smaller active-parameter MoE-style models rather than only larger dense releases.A Strix Halo owner requested a newer 122B release, saying the current Qwen 3.5 122B feels outdated; this reflects interest in very large local models that can plausibly run on high-memory AMD APU platforms.inclusionAI/Ling-3.0-tiny · 8B A1.3B MoE· Hugging Face (Activity: 427): inclusionAI released Ling-3.0-tiny, an 8B-parameter MoE with ~1.3B active parameters, positioned by the OP between 4B and 8–12B Qwen/Gemma-class dense models. The model card reports FP8 throughput of ~100–105 tok/s on DGX Spark and 86–90 tok/s on an M4 Pro MacBook, with ~8.34 GiB peak memory at 8K context; commenters also highlight a 256K context window and an AA Bench score of 25 from a shared benchmark image. One commenter compared it favorably against recent LFM small models: IFBench 63.61, Multi-IF 83.15, and BFCL-v4 62.72, beating LFM2.5-8B-A1B and LFM2.5-2.6B on those listed metrics. Commenters were broadly positive about tiny MoE architectures for low-memory, mobile, and edge inference due to high tokens/sec, with one saying it may replace Ling-Mini-2.0 locally. There was interest in larger 15–50B Ling releases and speculation that speculative decoding could push throughput toward diffusion-model-like responsiveness.Users highlighted Ling-3.0-tiny as an 8B MoE model with roughly A1.3B active parameters, making it attractive for low-memory, mobile, and edge deployments due to expected faster tokens/sec versus denser models. One commenter noted it scores 25 on AA Bench, which they considered notable for this size class.A technical comparison against recent LFM small models reported Ling-3.0-tiny ahead on instruction-following and tool-use benchmarks: IFBench 63.61 vs 56.47 for LFM2.5-8B-A1B, Multi-IF 83.15 vs 79.93, and BFCL-v4 function calling 62.72 vs 49.73. The same commenter emphasized its 256k context window on an 8B/A1B-style model as a key differentiator.There was interest in runtime compatibility, specifically whether llama.cpp support exists yet. Another commenter suggested future larger 15B–50B Ling models combined with speculative decoding could significantly improve throughput, potentially approaching the perceived responsiveness of diffusion-style generation pipelines. Read more",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/tencent-maps-549-papers-to-show-when-self-rewriting-ai-can-be-trusted",
+      "title": "Tencent Maps 549 Papers to Show When Self-Rewriting AI Can Be Trusted",
+      "url": "https://alphasignal.ai/news/tencent-maps-549-papers-to-show-when-self-rewriting-ai-can-be-trusted",
+      "author": "Tencent Hy",
+      "publishedAt": "2026-08-12T07:42:34.000Z",
+      "content": "Tencent Hunyuan maps 549 papers on self-evolving AI agents into a five-level taxonomy, and introduces a reliability ladder to ensure updates can actually be trusted",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "troy-hunt",
+      "externalId": "6a7c27f2b681ed00014c04c7",
+      "title": "Weekly Update 516: Live From Vietnam",
+      "url": "https://www.troyhunt.com/weekly-update-516/",
+      "author": "Troy Hunt",
+      "publishedAt": "2026-08-12T08:16:15.000Z",
+      "content": "A little wind noise, a little connectivity flakiness, and a little lip-sync issues from YouTube, but look at that view! 🤩 Back to business, it's the Brinks Home FAQ I found most interesting this week. I mean, how do you write your own FAQ then fail to actually answer most of the questions?! Being conscious that they're the target of criminal extortion and are genuinely the victims here, I still struggle to grasp how simple incident response questions can be so lawyer-speaked as to remove all sensible meaning from the responses. But this is how these things tend to play out these days (speaking generically, yet to be seen fully for Brinks): hacker gets data by just calling up and asking for it (vishing -> OAuth), hacker demands money, hacker gets no money so dumps the data, company gets a gazillion class actions overnight and lawyers up to the hilt, customers get notified \"where legally required\" (which it usually isn't) 🤷♂️",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49269789",
+      "title": "Beef and dairy drive 41% of biodiversity damage linked to global farmland",
+      "url": "https://www.oxfordmartin.ox.ac.uk/news/beef-and-dairy-drive-41-of-biodiversity-damage-linked-to-global-farmland",
+      "author": "robtherobber",
+      "publishedAt": "2026-08-12T09:30:47.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 115,
+      "comments": 185
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49269818",
+      "title": "Controversial creators are benefiting from monetization programs run by Meta",
+      "url": "https://www.abc.net.au/news/2026-08-06/ragebait-how-facebook-is-paying-controversial-creators/106940696",
+      "author": "robtherobber",
+      "publishedAt": "2026-08-12T09:35:30.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 436,
+      "comments": 287
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72445",
+      "title": "Prompt Injections for Defense",
+      "url": "https://www.schneier.com/blog/archives/2026/08/prompt-injections-for-defense.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-08-12T09:56:37.000Z",
+      "content": "This seems to work: Researchers from Tracebit on Monday said they found that placing prompt injections alongside passwords, cryptographic keys, and other secrets stored on Amazon Web Services was often all that was needed to shut down attacks from AI hacking agents. The prompts direct the attacking LLM to perform an action forbidden by its guardrails, the safety barriers AI developers erect to prevent it from taking harmful actions. The LLM responds by shutting down. Examples are a prompt that orders the LLM to provide steps for developing inhalable Anthrax spores, or, in the case of LLMs from Chinese developers, make references to the iconic Tank Man from the 1989 Tiananmen Square massacre. Once the LLM encounters these forbidden commands, it no longer follows its existing commands. The researchers have named the technique context bombing. Of course, this only works against agents that have guardrails. As we start to see more locally run AI models, we’ll see more attackers using LLMs with no guardrails.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stratechery",
+      "externalId": "https://stratechery.com/?p=19684",
+      "title": "Anthropic’s Watermarking, How It (Probably) Works, Worse Than It Seems",
+      "url": "https://stratechery.com/2026/anthropics-watermarking-how-it-probably-works-worse-than-it-seems/",
+      "author": "Ben Thompson",
+      "publishedAt": "2026-08-12T10:00:00.000Z",
+      "content": "Anthropic is adding watermarking in response to the E.U.'s AI law. It's a terrible idea, first and foremost for philosophical reasons.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/lovable-hits-13-3b-valuation-after-60-million-apps-built-without-code",
+      "title": "Lovable Hits $13.3B Valuation After 60 Million Apps Built Without Code",
+      "url": "https://alphasignal.ai/news/lovable-hits-13-3b-valuation-after-60-million-apps-built-without-code",
+      "author": "Lovable",
+      "publishedAt": "2026-08-12T10:01:44.000Z",
+      "content": "Lovable raises $400M at a $13.3B valuation, betting that AI-generated software will let anyone build and run a real business",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49270022",
+      "title": "What sort of maths are LLMs good at?",
+      "url": "https://gowers.wordpress.com/2026/08/12/what-sort-of-maths-are-llms-good-at/",
+      "author": "ColinWright",
+      "publishedAt": "2026-08-12T10:04:25.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 189,
+      "comments": 84
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49270040",
+      "title": "Show HN: Woxi - Open-source Mathematica / Wolfram Language reimplementation",
+      "url": "https://woxi.ad-si.com",
+      "author": "adius",
+      "publishedAt": "2026-08-12T10:06:29.000Z",
+      "content": "Woxi is an interpreter for the Wolfram Language written in Rust.It comes with Woxi Studio, a Mathematica-like GUI built with iced, but you can also use Woxi through a CLI, Jupyter kernel, Python package, npm package, or WASM module.Compared with wolframscript / Mathematica, the main differences are:- Free and open source - Very fast startup - Typically milliseconds rather than seconds for the Wolfram kernel, making Woxi practical for shell scripts, one-liners, and other short-lived processes - Embeddable - It can run in a browser via WASM or be embedded into another application as a scripting languageA more detailed comparison with Mathematica is available here: https://woxi.ad-si.com/docs/comparison/mathematica/.Conformance is ensured with ~26'000 unit tests and ~900 .wls script snapshot tests.The current focus is on fixing remaining edge cases, improving performance, and growing the community.If you use the Wolfram Language, I'd be particularly interested in feedback on compatibility and missing functionality. Contributions and bug reports are also very welcome: https://github.com/ad-si/Woxi",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 186,
+      "comments": 27
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=93954",
+      "title": "Sector Snapshot: Fitness Startup Funding Is Rebounding, But Investors Want AI And Data, Not Treadmills",
+      "url": "https://news.crunchbase.com/health-wellness-biotech/fitness-startup-funding-rebounding-ai-data-h1-2026/",
+      "author": "Marlize van Romburgh",
+      "publishedAt": "2026-08-12T11:00:21.000Z",
+      "content": "If you’re anything like yours truly, your fitness ambitions for 2026 far exceed reality. Venture investors, luckily, seem to be more upbeat than they have been in years about the future of fitness and wellness. Startup investment in those categories totaled more than $3.6 billion in the first half of this year, putting 2026 on pace to come in about a third higher than 2025, though notably last year marked the lowest sum for wellness-related startup funding in at least six years. The recent uptick also puts investment into fitness- and wellness-related startups on pace to top each year since 2022, though deals are concentrating into fewer, larger bets. Largest fundraisers of H1 2026 This year’s funding totals have been driven by a handful of outsized deals, like wearable health tracker Whoop’s $575 million Series G in March. Other companies that have raised large rounds this year include senior healthcare provider Devoted Health, which raised a $366 million Series F at the beginning of the year, and Solace, which raised a $130 million Series C from investors including IVP in February. Its platform connects patients with professional healthcare advocates who support them through complex medical journeys like cancer, rare-disease management and substance abuse treatment. Those fundings are markedly different from the hardware plays that received investor attention during the pandemic. For example, connected fitness devices startups Tonal and Hydrow each raised hundreds of millions of dollars during the peak funding years, but haven’t received new investment in three-plus years. AI gives devices a second act That doesn’t mean investors have entirely given up on hardware. Rather, the more compelling pitch in 2026 appears to be a device that continuously collects health data and uses AI to turn it into personalized guidance to improve overall wellness and fitness. Along with Whoop’s Series G, New York-based sleep technology company Eight Sleep raised a $50 million Series D in March, while India-based metabolic health wearable maker Ultrahuman secured the equivalent of about $44 million in Series C funding in February. A few entrants are also drawing substantial checks. New Delhi-based Temple raised a sizable $54 million seed round in February for a wearable focused on brain-centered health and performance metrics. The company says its technology tracks cerebral blood flow and uses a proprietary measure called Entropy to quantify users’ real-time energy expenditure. The future of fitness funding and exits We expect to see continued investor interest in companies that bring AI to bear on wellness-related offerings, including in more specialized areas such as longevity, mental health, sleep and athletic performance. We may also see more funding for devices that serve as data-collection layers for AI-driven health platforms. At the same time, we don’t expect investors to broadly return to large, pricey home-gym gadgets or hardware that doesn’t have a strong recurring software, data or healthcare component. We could also see more exits in the sector as companies combine their capabilities through M&A deals or private equity roll-ups. And, we would not be surprised to see more established players make strategic buys of smaller companies, as we saw last year with fitness tracking platform Strava’s acquisition of running workout planner Runna, or more recently with Garmin’s purchase of endurance-training platform TrainingPeaks. Still, we don’t foresee a flurry of IPOs from the sector, perhaps with the exception of a few star players. Crunchbase’s predictive intelligence tools suggest likely IPO candidates in the fitness and wellness categories include Whoop, rival wearable wellness tracker Oura, mental health platform Spring Health, and Fountain Life, which operates a network of clinics offering what it bills as AI-driven longevity and preventative health services. Related Crunchbase query: Global Fitness- And Wellness-Related Startup Funding In 2026 Related reading: Venture Capitalists Tap Out On Funding Our Fitness Goals Illustration: Dom Guzman",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49270621",
+      "title": "Delphi 13 Community Edition Is Now Available",
+      "url": "https://blogs.embarcadero.com/delphi-13-community-edition-is-now-available/",
+      "author": "layer8",
+      "publishedAt": "2026-08-12T11:13:36.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 103,
+      "comments": 77
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49270953",
+      "title": "2026 Eclipse Webcams",
+      "url": "https://jonty.github.io/2026_eclipse_webcams/",
+      "author": "zoenolan",
+      "publishedAt": "2026-08-12T11:53:01.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 356,
+      "comments": 80
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=93970",
+      "title": "Exclusive: ClearJet raises $25M to build the ‘Uber of Cargo’",
+      "url": "https://news.crunchbase.com/transportation/clearjet-raises-25m-logistics-ai-seriesb/",
+      "author": "Judy Rider",
+      "publishedAt": "2026-08-12T12:00:18.000Z",
+      "content": "ClearJet, an AI-enabled logistics technology startup, has raised a $25 million Series B, it tells Crunchbase News exclusively. Edison Partners led the raise, which brings the Austin-based startup’s total funding to $40 million since its 2022 inception. Returning backers Venture53, Origin Ventures, SaltVC and SpringTime Ventures also participated in the round. ClearJet’s earlier investors include Sky VC, formerly JetBlue Ventures, and Tandem Ventures. ClearJet’s model is straightforward. Rather than build its own fleet of planes or trucks, it connects shippers with unused cargo capacity on commercial flights already traveling between U.S. cities to move e-commerce packages around the U.S. Customers include major multibillion-dollar retailers, e-commerce platforms, 3PLs and marketplaces. Chris Guggenheim, founder and CEO of ClearJet. (Courtesy photo) In just three years, the startup has built what founder and CEO Chris Guggenheim calls a “super carrier,” a network that now spans 95 U.S. airports and connects retailers with major U.S. airlines and multiple final-mile delivery providers. This network gives retailers a way to ship packages so that they travel directly between cities on passenger planes already in the air rather than through the traditional networks used by major parcel carriers. Unlike a traditional parcel carrier, ClearJet doesn’t own the planes transporting those packages. Instead, its asset-light “Uber for cargo” model taps available capacity on flights that are already traveling between cities. The startup says its approach can cut shipping costs by as much as 35% while speeding deliveries by one to three days. “We’re basically connecting with the already moving aircraft,” Guggenheim told Crunchbase News in an interview. “These flights are going from A to B city. We’re taking those same routes, and that’s just why we’re so fast. That’s also why we’re so cost efficient.” The approach appears to be working. ClearJet is profitable, its revenue has more than tripled year over year, and it is approaching nine figures in top-line revenue, according to Guggenheim. The market opportunity is still large. The startup says it moves more than 30 million packages annually, which is still a fraction of the roughly 1.8 billion U.S. parcels it considers eligible to move by air. Global funding to supply chain management and logistics startups has reached $8.4 billion in 2026 so far, per Crunchbase data. This puts this year on pace to top 2025’s total of $9 billion considering we have over four months left in the year. How it works Retailers connect to ClearJet through an API and can generate a two-day shipping label. ClearJet picks up the packages, takes them to an airport, handles sorting and screening, places them on commercial flights, and then injects them into final-mile networks at their destination. Those providers can include FedEx, the U.S. Postal Service, DoorDash, Uber, OnTrac and Veho, Guggenheim said. ClearJet’s logistics tracker in action. (Courtesy photo) “We call it the super carrier because it truly is that, and it gives all the power back to the retailer,” Guggenheim said in an interview with Crunchbase News. One of ClearJet’s first large retail customers had previously relied on FedEx for goods arriving from Asia, with deliveries taking seven days from factory to customer, according to Guggenheim. Under ClearJet’s model, products arrive at Los Angeles International Airport, where the company takes possession of the cargo, sorts it and flies it into 14 different airports before handing the packages to final-mile carriers. The result, Guggenheim said, was a reduction in delivery time from seven days to five — and $35 million in cost savings for the customers. That combination of time and cost savings was what caught Edison Partners’ attention. Ryan Ziegler, who leads the firm’s vertical SaaS and AI practice, told Crunchbase News that Edison had spent years looking at ways to use excess capacity in supply chains without requiring companies to make massive investments in physical infrastructure. “We looked at a few supply chain businesses over the years,” Ziegler said. “Candidly, most of them went bankrupt because they took an asset-heavy approach to the middle mile.” ClearJet took the asset-light approach. And the company’s airline relationships, regional sortation infrastructure, regulatory license and technology architecture make it difficult to copy its model, according to Ziegler. “When you think about what they built, it is a very unique aviation infrastructure platform, and it’s difficult to replicate,” he said. “He’s [Guggenheim] proven the business model, and the unit economics work.” Backstory The idea for ClearJet grew out of Guggenheim’s own frustrations as a longtime e-commerce entrepreneur. He started his first company in 1997 after meeting Willie Nelson and his family and building direct-to-fan e-commerce businesses for them. Guggenheim later worked with a range of music and sports clients, including helping launch the first beyonce.com. His company One Live went on to support more than 2,000 Shopify Plus stores with over $1 billion in GMV, he said. Along the way, logistics became one of his biggest headaches. Shipping had become the second-largest cost of goods outside of the product itself for his business, he said. And in 2019, after spending $55 million with UPS, Guggenheim said he received an email giving him five days’ notice that his account was being canceled because it wasn’t profitable enough. “And so I said, ‘there has to be a better way,’ ” he said. Guggenheim began thinking about the thousands of domestic passenger flights traveling around the U.S. every day and wondering whether their unused cargo space could become part of an alternative parcel network. He had no connections with the airlines, he said, so he began cold-emailing executives until he reached the president of United Cargo. At a cargo industry event, Guggenheim got about five minutes to pitch his idea in what he now calls his “Shark Tank moment.” “I said, ‘I want to start flying packages from LA to New York. Do you have any flights?’” Guggenheim recalled. “And he put his arm around me and said, ‘You and I are going to be best friends.’” Guggenheim went on to build relationships with United, Delta, Southwest, American and JetBlue, the latter of which participated in an earlier ClearJet financing. He also began recruiting people from the airline and parcel industries and building the technology underpinning the network. ClearJet formally launched in May 2023. One logistical obstacle was the aircraft themselves. Guggenheim said most U.S. passenger aircraft are narrow-body planes whose cargo doors are too small to accommodate the pallets typically moved by freight forwarders. ClearJet addressed this by designing its own overpack bags specifically for e-commerce parcels. Those bags can travel through airports much like passenger luggage before being unloaded and handed to the appropriate delivery company. AI component ClearJet’s AI models choose each parcel’s path based on cost, speed and geography across its network. AI is also built into how ClearJet routes packages. Its models choose a parcel’s path based on factors including cost, speed and geography. The company is also developing AI agents to automate more of the operational work around those shipments. For example, ClearJet is creating AI agents to handle tasks such as rating, booking, tracking and managing delivery problems, according to Guggenheim. This includes features such as responding to weather disruptions by moving packages onto a different flight or through a different city, something ClearJet can do because it isn’t tied to just one airline. “We’re building an entire agent team, an army of agents that do everything that the humans were doing,” Guggenheim said. ClearJet raised its seed round in early 2023 and $13.4 million in a Series A in 2024, according to Guggenheim. He declined to disclose the company’s valuation but described the Series B as a significant step-up from its previous financing. Next, ClearJet plans to expand into returns and international shipping, and expand its network of airports. Guggenheim also wants to give consumers much more detailed visibility into where packages are during their journeys, similar to the real-time experience they have become accustomed to with services such as DoorDash. “We have a really big appetite for giving consumers a better visual experience with their packages,” he said. For Ziegler, the bigger bet is that ClearJet can become infrastructure for a delivery market increasingly built around getting products directly to individual consumers. “We saw this as an opportunity to actually create a category-defining business,” he said. ClearJet has just under 50 full-time employees and hundreds of contractors operating seven days a week. Related Crunchbase query: Global Supply Chain Management And Logistics Startup Funding In 2026 Illustration: Dom Guzman",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49271126",
+      "title": "Facebook ads are so hard to block that uBlock Origin stopped filtering them",
+      "url": "https://www.neowin.net/news/facebook-ads-are-so-hard-to-block-that-ublock-origin-stopped-filtering-them/",
+      "author": "bundie",
+      "publishedAt": "2026-08-12T12:07:16.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 157,
+      "comments": 128
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/08/feces-fueled-a-flurry-of-evolution-during-the-cambrian-study-suggests/",
+      "title": "Did poop enable the evolution of complex animals?",
+      "url": "https://arstechnica.com/science/2026/08/feces-fueled-a-flurry-of-evolution-during-the-cambrian-study-suggests/",
+      "author": "\n                    Kiona N. Smith\n                ",
+      "publishedAt": "2026-08-12T12:34:38.000Z",
+      "content": "The Cambrian explosion may have been fueled by poop. The first animals on Earth emerged about 600 million years ago, and 60 million years later, those simple early animals evolved into wildly different directions, branching out into a diverse menagerie of complicated new forms and conquering new ecological niches. Known as the Cambrian Explosion, this flurry of rapid evolution produced most of the animal phyla and ecosystems we see around us today. And it may have taken off because some of those early animals evolved a bizarre new ability: pooping. According to a recent study, the first poo pellets helped spread nutrients to deeper parts of the ocean, fueling the evolution of bigger animals in more diverse ecosystems.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "meta-engineering",
+      "externalId": "https://engineering.fb.com/?p=24092",
+      "title": "How We’re Building Scam Alert on WhatsApp With End-to-End Encryption and Verifiability Guarantees",
+      "url": "https://engineering.fb.com/2026/08/12/security/how-were-building-scam-alert-whatsapp/",
+      "author": "",
+      "publishedAt": "2026-08-12T13:00:28.000Z",
+      "content": "WhatsApp is committed to helping people stay safe while protecting the privacy of their messages. As scam tactics evolve — from impersonation to social engineering to AI-generated lures — we’re always evolving as well, so that our protections stay ahead of scammers while protecting people’s personal messages with end-to-end encryption. Today, we’re sharing an early look at Scam Alert, a new, optional feature that runs an on-device machine learning model to alert a user about potential scam messages. No message content leaves the device for classification or is auto-reported to WhatsApp, Meta, or anyone else. The feature complements end-to-end encryption while enabling a user-controlled, optional scam alert when the model believes there’s a likely scam. Before we make this feature available to all WhatsApp users, we are publishing this early technical overview alongside the feature’s limited rollout in Beta, and will continue working with our Bug Bounty community to stress-test this system. To help validate our implementation, we welcome feedback from the broader security research community. Design Principles Recent advances in on-device machine learning models make it possible to run accurate text classification entirely on mobile hardware without the performance, battery, or model-size tradeoffs that previously made on-device classification less practical. Scam Alert is well-suited to this approach: The model is small enough to run on-device, simple enough to publish for independent review, and effective without server-side components. The architecture we chose reflects a set of deliberate choices about what this system can and cannot do. To that end, we designed Scam Alert to meet the following principles that adhere to the core guarantees of end-to-end encryption: On-device only: The model and the message data it processes all remain on the device. No automatic reporting: WhatsApp is unable to initiate sharing of any user data without the user’s action. The only way message content, or even the fact a scam was detected, reaches our servers is if the user explicitly chooses to report it, which is consistent with how user reporting works on WhatsApp. User control: Scam Alert is a user-controlled tool that provides additional information to the user, and the user can turn it off or on at any time. How Scam Alert Works Scam Alert is optional. Once the user turns it on, Scam Alert downloads a machine learning model to the device, where it runs inferences to classify whether incoming messages from non-contacts match known scam patterns. The model is trained on patterns observed in scam conversations from reports that users have sent to us. It performs probabilistic classification based on conversational structure and linguistic signals. No content is automatically reported to WhatsApp, Meta, or any third party. If the model identifies a message as a likely scam attempt, the user sees a warning in the chat, which is not visible to the other person. From there, the user can decide what to do: block, report, or continue the conversation. If they decide that a warning is incorrectly flagged, the user can mark the chat as trusted, in which case the warning is removed and Scam Alert will not flag that chat again. If a user marks that they trust a chat, they can also opt in to share the last 5 messages received with WhatsApp to help improve the feature’s accuracy. Foundational Safeguards To uphold the principles above, we designed Scam Alert with the following foundational requirements and safeguards, with each architecturally enforced and independently verifiable by security researchers through an expanded bug bounty program and by users themselves through in-app logs. On-Device Processing and Privacy-Preserving Analytics: All inference happens on-device and no message content leaves the user device for classification. The minimal telemetry needed to measure whether the feature is working (i.e., aggregate and anonymous warning counts and user action counts) is processed within a confidential computing environment and sent to WhatsApp as differentially private aggregates. The confidential federated analytics pipeline is built on top of confidential virtual machines (CVMs), a type of Trusted Execution Environment (TEE). We chose this approach so its behavior can be independently verified. No Targeted Model Delivery: Neither Meta nor WhatsApp can deliver a specific model to a specific user. Every model version, including experimental variants, is published on a public transparency ledger before it is deployed. Verifiable Model Behavior: We publish model weights so that independent security researchers can verify that we’ve purpose built this for scams only. The rest of this post details the technical implementation of each requirement. On-Device Processing and Privacy-Preserving Analytics As referenced above, all inference happens on-device. But we need to know that the feature itself is working – i.e., it is indeed catching real scams – and know if we need to update it to stay ahead of constantly evolving scams and improve the model over time. To that end, our approach follows a set of data minimization principles. Message content does not leave the device, and logging is limited by design to only the signals that are needed to measure whether the feature is working as intended. Even those signals are processed within a confidential computing environment built on TEEs, which ensures that processing occurs in a secure environment that no one, including Meta and WhatsApp, can access. Our experience building and securing systems like Private Processing has informed the design of this system. Only anonymous, differentially private aggregates are made available to Meta and WhatsApp. Differential privacy works by adding carefully calibrated noise to provide a mathematical guarantee that adding or removing any single person’s data has a negligible effect on the anonymous, aggregated numbers. Hence these aggregates show how the feature performs across the population while telling us nothing about any individual. For Scam Alert, that data is limited to two categories of approximate, aggregate counts: Warning Counts – how many times the on-device model surfaced a scam warning. This tells us whether the model is triggering at the right rate, which is essential for measuring precision and catching regressions across model versions. User Action Counts – when a user sees a warning, they can trust the sender or block and report. We log which action category was taken as an aggregate count. This tells us whether users find the warnings accurate, which is essential for measuring false positive rate. Confidential Federated Analytics To anonymize these warning and user action counts, we built a confidential federated analytics pipeline designed around the following privacy and security guarantees, each architecturally enforced and externally verifiable: On-Device Data Minimization: For Scam Alert, raw signals do not leave the device. The client aggregates them locally into counts and sends only those aggregated counts. These metrics are sent at randomized times, contain no device identifiers and limit any timestamp information to coarse time intervals. This ensures that neither the act of transmitting these metrics nor the metrics themselves can be used to identify a user. Confidential Processing: These metrics are processed within TEEs, secure hardware environments built on CPU-based confidential virtualization technologies, which allow attestation of software based in a hardware root of trust. Before any data is transmitted, the client checks these attestations and confirms them against a third-party log of acceptable binaries. Data is encrypted between the client and the TEE, so that no one in between, including Meta, WhatsApp, or any third-party relay, can access it. Secure Aggregation: Individual device metrics are not readable by Meta, WhatsApp, or anyone outside the TEE. They are merged into running aggregates, and only aggregated statistics, above a minimum cohort size and with differential privacy noise applied, are made available to Meta or WhatsApp. For Scam Alert, the device sends pre-aggregated counts directly to TEE for secure aggregation. Enforceable Guarantees: Before any data is transmitted, the client verifies that the code running in the TEE matches what was published on the third-party ledger and that the privacy parameters (such as differential privacy ε and δ, and k-anonymity thresholds) meet locally enforced guardrails. If verification fails or the privacy parameters are insufficient, the client refuses to transmit data. Any attempt to modify the processing guarantees either causes the system to fail closed or is publicly discoverable. Encrypted Recovery Checkpoints: Because the pipeline aggregates data over long periods, the system periodically saves encrypted checkpoints of its in-progress aggregates, so that a crash does not force a measurement to restart from scratch. These checkpoints contain only the partial aggregate counts already being computed, and they are encrypted: the keys never leave the TEEs, so only confidential federated analytics TEEs running the same attested binary can decrypt a checkpoint, and neither Meta nor WhatsApp can read it. Checkpoints are retained only for the bounded period needed to recover. Non-targetability: An attacker cannot target a particular user without attempting to compromise the entire system. All metrics are routed through an OHTTP relay that strips the requester’s IP address, and authenticated using anonymous credentials so that the system can verify that metrics come from a legitimate WhatsApp client without knowing which one. This limits the impact of small-scale attacks by ensuring that they cannot be used to target the data of a specific user. Verifiable Transparency: we will provide in-app capabilities for users to review what data was shared with the confidential federated analytics pipeline, the privacy parameters applied (such as differential privacy ε and δ, and k-anonymity thresholds), and details of how each secure session was established. We will be publishing the CVM image binary powering the pipeline, along with the source code of its privacy-relevant components, so that security researchers can independently verify that the published code is exactly what runs in the TEE. We will be expanding our Bug Bounty program to include the confidential federated analytics pipeline and will publish a detailed engineering white paper on its design. The foundations of this pipeline were established in Meta’s peer-reviewed federated analytics work, publicly outlined in “PAPAYA Federated Analytics Stack: Engineering Privacy, Scalability and Practicality” (USENIX NSDI 2025). Here, we describe how Scam Alert applies and extends that foundation. How Confidential Federated Analytics Works The pipeline works as follows: On-Device Data Collection: Data is collected and stored in a dedicated local store, isolated from other application data. The confidential federated analytics system can only access data that the application has explicitly made available to it. Hardcoded privacy guardrails enforce data lifetime, scope, and access. For Scam Alert, this is only counts of warning events and user actions. Job Selection: At randomized intervals, when the device is idle and subject to a self-enforced daily resource limit, the client connects to the application server via OHTTP. The client authenticates using anonymous credentials that prove it is a legitimate WhatsApp client without revealing which one, and fetches the list of active jobs for the pipeline. For each job, the client checks whether the privacy parameters (ε, δ, and k-anonymity thresholds) meet locally enforced guardrails, whether the device has new metrics to send, and whether participating would exceed its daily limits. The client can reject any job that does not meet these criteria. Local Transformation: For jobs the client accepts, it retrieves the relevant data from local storage and performs the requested on-device aggregation by converting raw signals into anonymous counts over the specified time period (e.g., daily warning counts, daily user action counts). Only the aggregated counts are transmitted; the raw signals remain on the device and are automatically deleted after a retention period. Attestation, Authentication, and Session Establishment: The client establishes a Remote Attestation + Transport Layer Security (RA-TLS) session with the orchestrator TEE. The attestation quote contains measurements of the orchestrator, which the client cross-checks against a third-party transparency ledger to ensure it is connecting only to code that satisfies our verifiable transparency guarantee. The client authenticates using anonymous credentials and the connection is routed via a third-party OHTTP relay that strips the requester’s IP address. The relay cannot read the metrics, as they are encrypted end-to-end between the device and the TEE. Orchestrator TEE — Ephemeral Processing: The encrypted metrics arrive at a stateless orchestrator hosted on a TEE. The orchestrator validates that the privacy configuration from the client matches the job’s configuration, batches metrics from multiple devices, and forwards the batched metrics to the appropriate aggregator TEE. For Scam Alert, these metrics are pre-aggregated counts. Aggregator TEE — Secure Aggregation: The aggregator TEE merges incoming metrics into running histograms. Individual metrics are discarded after aggregation. Periodically, the aggregator enforces k-anonymity thresholds to suppress results with too few contributors and applies differential privacy noise. The number and timing of releases are limited to ensure the overall privacy budget (ε, δ) is not exceeded across all releases. Only the noisy, thresholded aggregates are sent to WhatsApp. Datastore: Only differentially private, anonymous aggregates, such as total warning counts and action rates across all users, leave the TEE boundary. These aggregates contain no message content, no per-user data, and no conversation-level signals. They are used solely to measure whether the feature is working as intended. The confidential federated analytics pipeline is built so that, by the time any totals reach WhatsApp, the counts have been aggregated across many users and had differential privacy noise added – so we only ever see approximate counts of how many warnings were shown and how many were acted on. We will not know what the messages was, who sent or received them, or which conversation triggered a warning. Threat Model and Defense-in-Depth This confidential federated analytics pipeline operates in a highly adversarial environment. Our threat model accounts for three categories of attacker: third-party or supply chain vendors with access to system components, malicious or compromised insiders with access to infrastructure, and external actors attempting to exploit the pipeline’s attack surface. External actors attempt to intercept or extract unaggregated data in transit or during processing. Data in transit is encrypted between the device and the TEE and routed through a third-party OHTTP relay. The relay’s role is limited to stripping the client’s IP address – it cannot decrypt, inspect, or modify the data itself. Because this data is already not visible to the third-party, a compromised relay cannot access the data or associate datasets with a specific user. During processing, data is protected by TEE code isolation, with entry points limited to a small set of reviewed components. Insiders with infrastructure access attempt to access unaggregated data within the TEE. The TEE prohibits remote shell access, including from the host machine. Neither Meta engineers nor networked systems can gain access to the CVM shell at runtime. Software is built exclusively from checked-in source code and artifacts, where any change requires multiple engineers to modify the build artifacts or build pipeline. All code changes are auditable, enabling both continuous internal audits and external security researchers to inspect our binaries. Unaggregated data is never readable outside the TEE; when stored, it is encrypted under keys released only to a TEE running the same attested binary, and retained only for a bounded period before being merged into running aggregates and discarded. Attackers with physical or remote access interfere with the TEE to bypass confidential processing guarantees. Because TEE guarantees are not absolute, we apply defense-in-depth: encrypted DRAM, CVM hardening, enhanced host monitoring, and OHTTP relay routing that prevents directing a specific user’s data to a specific machine. A targeted attack would require compromising the entire system in a way that is publicly discoverable through verifiable transparency. No Targeted Model Delivery The model is downloaded from a CDN, not hardcoded into the app, so that improvements in accuracy and coverage of emerging scam tactics can reach people without requiring a forced app upgrade. And to that end, we are also ensuring that there is no path to deliver a different model to a specific user. Every model version — including its SHA-256 hash — is published on a third-party append-only transparency ledger before it is served to anyone. An append-only ledger is a public log where entries can be added but never modified or deleted, ensuring a tamper-evident history that researchers can inspect. We designed the model download system around three guarantees: Auditability: Every model version is publicly recorded on a third-party append-only transparency ledger before it is served to any user. The ledger is tamper-evident, so entries can be added but never modified or deleted. Delivering a targeted model would require publishing it on a ledger that anyone can inspect, making the attempt publicly discoverable. To check the ledger, users can download their in-app transparency log and use the namespace and epoch in the report to confirm, using the following format: https://akd-auditor.cloudflare.com/namespaces/<namespace>/audits/<epoch>. Anonymous Download Requests: The model download endpoint has no way to determine which user is requesting a model. All download requests are authenticated using anonymous credentials and routed through an OHTTP relay that strips the requester’s IP address, and the request payload contains no identity selectors. The model assets themselves are served by a CDN, which delivers only publicly published files and has no role in choosing which model a device uses, so it cannot be used to target a specific user. Non-targetability: No one can deliver a specific model to a specific user, even through experimentation. The client randomizes the timing of download requests, and experiment group assignment happens entirely on the device: the client assigns itself to a group using locally generated randomness, so the server cannot steer a specific user to a specific model variant. How Model Download and Verification Works Model Publication: When a new model version is ready for deployment, the server computes SHA-256 hashes of model weights, tokenizers, and other assets, and constructs a manifest — a JSON document containing these hashes, the model version, and a timestamp. The manifest digest (SHA-256 of the manifest) is submitted to a third-party signer (Cloudflare) for signing using Ed25519 keys. Meta does not hold the signing key. The signed manifest digest is then published to the third-party append-only transparency ledger, and the model assets are uploaded to the CDN. Anonymous Download Request: The client connects to the model download endpoint via OHTTP, authenticating with anonymous credentials. The OHTTP relay strips the client’s IP address — the relay can see the IP but cannot decrypt the request, and the server can see the request but only the relay’s IP. The server returns the manifest, the digital signature, and CDN URLs for the model assets. Client-Side Verification: Before using any downloaded model, the client performs a multi-step verification. First, it computes the manifest digest and verifies the digital signature against hardcoded Cloudflare Ed25519 public keys — confirming the manifest was signed by Cloudflare, not forged by Meta or any other party. Next, it cross-references the manifest digest with the transparency ledger and enforces freshness checks to prevent replay attacks with stale entries. Finally, it downloads the model assets from the CDN and verifies that the SHA-256 hash of each asset matches the manifest. If any step fails, the client refuses to load the model. Model Loaded on Device: Only after all verification steps pass does the client install and use the model. Private Experimentation Before rolling out a new model version globally, we must evaluate its accuracy and effectiveness by testing model variants with subsets of users. This experimentation must not create a path for targeting (ie delivering a specific model to a specific user). The model download flow is designed to prevent this: Client-Side Group Assignment: the download response includes the available model configurations, fetched at randomized intervals via the same anonymous OHTTP and ACS flow. Using a locally generated random seed, the client assigns itself to a group and selects which model to use from those configurations. The server cannot influence which model variant a specific user receives. Experiment Configuration Tamper Checks: The client enforces integrity checks on experiment configurations. Group properties cannot be modified after publication, experiment sizes can only be expanded (never reduced), and groups must meet a minimum size threshold, preventing an attacker from narrowing a group to target individual users. Experiment Models on the Ledger: Every experiment model variant is published to the transparency ledger before being served, with the same signing and verification flow as production models. No model — whether production or experimental — reaches a device without being publicly recorded. Anonymized Experiment Metrics: performance metrics from different experiment groups are measured through the same confidential federated analytics pipeline described earlier in this blog. If an experiment group is too small to meet k-anonymity thresholds after aggregation, the TEE suppresses the data entirely. Because the entire verification and experimentation flow runs on the client, security researchers can examine the app binary to confirm these checks are performed. Verifiable Model Behavior We outlined above how neither Meta nor WhatsApp can deliver a specific model to a specific user, and how the confidential federated analytics pipeline preserves privacy. But neither answers a more fundamental question: how can anyone verify that the model is built only to identify potential scam messages, unless its behavior can be independently examined? We designed the model verification system around two guarantees: User Visibility: Users have direct, on-device access to what the model did — which messages were scanned, what the outcome was, and which model version was used. Independent Verifiability: As referenced previously, external researchers can obtain the exact model that runs on user devices, verify its integrity against the transparency ledger, and analyze its behavior independently. How Model Transparency Works Published Model Artifacts: Every model version’s hashes are recorded in the signed manifest on the same third-party transparency ledger used to verify model delivery. The transparency ledger is public, so anyone can inspect it to verify which model versions are being served and confirm that every version, including experimental variants, is publicly recorded. Client-Side Transparency Logs: On the device itself, users can enable transparency logs that record which messages were flagged by the on-device machine learning model. Users can see this by going to Account > Request Info > Scam Alert Activity. Included in the transparency logs are the outcome of each analysis (whether the model flagged the message and whether the warning was shown), and which model version was used. These logs give users direct, granular visibility into how the system operates on their device. Bug Bounty Program: Ahead of Beta rollout, we engaged external security researchers through our Bug Bounty program to help us stress-test our system: Privacy Architecture Review: Researchers were provided with an early access APK build with the feature to confirm no message content leaves the device and there is no auto-reporting, and; Model Integrity Review: Experienced AI/ML researchers receive the model weights to confirm the model is purpose built for scams and nothing else. We will be expanding our Bug Bounty scope to include the models to test them against their own inputs, analyze their behavior across a range of scenarios, and report any findings where the model deviates from its declared purpose or where its capabilities can be systematically evaded. Building Verifiable Trust and Next Steps The confidential federated analytics pipeline ensures that even the act of measuring model performance protects user privacy. The transparency ledger and third-party signing ensure that every model we ship is publicly recorded and tamper-evident. And published model artifacts, client-side transparency logs, and a dedicated Bug Bounty program ensure that what the model does can be independently verified. As mentioned above, this feature is only beginning to roll out in a limited Beta capacity. We will continue iterating and improving on it during the Beta phase before production, but we wanted to take this opportunity to outline our principles. Scammers will continue to evolve their tactics. To keep staying ahead of them, so will we. We welcome feedback from users, security researchers, and the broader security community through our security research program: Contact us. Acknowledgements Thank you to Ronald Anthony, Shafin Anwarsha, Samyukta Mogily, Lenny Grokop, Riccardo Tortul, Harish Srinivas, Kiran Teja Tummuri, Roman Dashchakivskyi, Chao Zhang, Jitendra Mohanty, and the many others across the company who helped make Scam Alert possible. The post How We’re Building Scam Alert on WhatsApp With End-to-End Encryption and Verifiability Guarantees appeared first on Engineering at Meta.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "interconnects",
+      "externalId": "https://www.interconnects.ai/p/i-wrote-an-ai-textbook-how-long-until",
+      "title": "I wrote an AI textbook — how long until AI can do it better?",
+      "url": "https://www.interconnects.ai/p/i-wrote-an-ai-textbook-how-long-until",
+      "author": "Nathan Lambert",
+      "publishedAt": "2026-08-12T13:01:16.000Z",
+      "content": "There are a lot of criticisms of AI writing, but most of them are focused on more creative, high-voice writing like this blog. Those — including my own piece — often argue that it is because good writing is high-voice, has a point of view, has a deep human expression that needs to come across, and or a process of thinking that you peek into with the chosen words. As LLMs get more refined as tools, rather than conversational assistants, I think we are actually going backwards on our goals of having models produce inspiring writing.On the other side of things is non-fiction writing. Filler, copy text was one of the genuinely useful abilities of an LLM (Sam Altman said so much about the early business of GPT-3 on a recent podcast). It has seemed like any flaws here were mostly down to a general lack of intelligence in the models, or some other training issue, and all non-fiction and explanatory text would get obliterated by the rapid pace of progress eventually. Having worked with the models as a writing assistant over the last few years, they’ve gotten a bit better, but it’s worth reflecting on what’s holding them back. Models being stagnant in long-form, non-fiction writing should be alarming to those reliant on models autonomously solving grand, open science problems in the near future. The models today struggle to organize and compellingly present some of the most established science in their area. This seems like a natural prerequisite that we should expect the models to master before they can solve broad, open-ended problems on their own. Until this is solved, the progress of LLMs for science will look closer to solving low-hanging fruit and merging distant connections across fields, rather than any sort of revolutionary insight.This is a somewhat controversial take for someone who is very optimistic about AI’s progress, especially writing it on the day that Anthropic published a blog post on Claude making some progress on the famous Riemann Hypothesis. Scientific problems have a vast breadth, and I don’t think current AI models have as much coverage as many think.Organizing knowledge is a compression. This compression is needed to make insight. Today’s LLMs increase entropy in long-form non-fiction writing, and I don’t see how that can be stacked on top of itself endlessly. They’ll be reliant on humans acting as sort of guides.I am still very optimistic about translation from these narrow forms of science, like the extreme advancements we’ve seen in math, into consistent, broader progress — LLMs are the most powerful assistants scientists have ever used. I first need to explain how observing the models work on such grounded, low-level knowledge problems in writing makes me see a surprising lack of generalization.For more context, I just finished writing a post-training textbook, Reinforcement Learning from Human Feedback (buy on Manning or Amazon). I used LLMs in many ways to support this, from helping wrangle LaTeX formatting for equations, doing extensive copyediting, and creating diagrams for programming languages like TikZ (in LaTeX) or Python.ShareWhy have models stagnated in writing quality?I would’ve expected way more progress on non-fiction writing from the models. I almost thought I would look dumb publishing a non-fiction book in 2026, given how things looked in 2024. Today, some of the most famous models on writing ability are pretty old, examples include OpenAI’s big GPT 4.5 and Moonshot’s Kimi K2. In and around these releases, the models have gone from okay to superhuman at other tasks like coding and mathematics. Maybe a closer, but still imperfect, comparison is how the models went from incapable to decent at search and research tasks. The pace of progress on most other skills is steep, but writing well feels orthogonal to most of them. I do not think writing is just ignored, but rather it’s challenging and lacks good training data to specifically intervene on it.There is certainly some low-hanging fruit for making AI models better at writing — such as specialized harnesses like Claude Code, prompts, and training environments that make models spend a lot more inference tokens on the output, but I don’t think these will have a multiplicative impact on ability. Writing well is a very hard task! It’s a shame that we haven’t unlocked inference-time scaling for one of the great intellectual pursuits. Regardless, writing seems very different than what the models are good at.1Today, the models seem genuinely horrible at long-form technical writing. They can get a sentence right, but if you try and get them to write an entire chapter it’ll be a mix of sprinkled with confusing wording, muddled in its organization, and generally a bit off. They try to be too cute where they don’t need to be and in the process make random conceptual errors. The models in the near future will get much better at the small errors, especially as models get bigger — which allows them to hold more world knowledge — but I do not expect their ability to utilize it to transform.For example, the GPT models have been incredible at finding typos and minor issues for a long time. I passed a near-final draft of my book as a PDF to GPT 5.5 Pro and it found deep, surprising minor typos across the manuscript that is 200-300 pages. On the other hand, the Claude models have been much more useful as an editor. They have a lot more taste, tend to understand the mental model of the task better, and have more interesting suggestions to unstick the different forms of writer’s block.The examples I’ve given above all have a sort of consistent theme. The models know how to check every unit of content, in this case usually a sentence or equation or figure, or make one, specific section where you are caught. With these skills, they don’t do a good job revisiting components and stringing them together as they make many additions on top of each other. It feels like a sort of irreducible compounding errors. We used to deal with these errors in math and code, but reflecting on it, RLVR has been a truly magical solution in reducing them.Interconnects AI is a reader-supported publication. Consider becoming a subscriber.Getting value out of current models as a writerI’m willing to share that there are a few technical explanation sentences in my book that came from an AI model — well less than 1% — they’re there because I really loved them. I let myself consider including some AI tokens in the book, as it didn’t feel like cheating if I, as a true expert, felt that the sentence was what the reader needed. Especially in the editing process, where I had a very close eye on things and plenty of concern on if my book would ever be done with all the things I have going on, it was an extremely valuable path forward. For example, I had a list of questions from my editor interspersed in a LaTeX file with a specific delimiter like \\editor{}. I would have Claude Code navigate to each comment, print the context before and after, and let me know if it was an easy typo fix or something more nuanced. I would write a response — the text to insert — or ask Claude for suggestions before fixing it. Intellectually it is a very focusing process of editing, it was a fun way to improve the book. Sometimes phrases from Claude’s suggestions are what made it into the book.It is definitely a slippery slope and when I accepted a few AI suggestions it was at the point where I was going through my second full-manuscript review. Emotionally the project felt completed but I had more work to do. Coming out of the textbook-writing process I so deeply appreciate the cut and dry rule I have for my writing on Interconnects to never use AI outputs in the content. It is way more fun to write in a way that is only you — high voice, valued so deeply for the process — but writing a standard reference is not really an activity known for being fun. I see why people turn AI tools into a crutch when most of their writing is just an output to fill space, rather than a means to an end. I am motivated to write voluminously to learn, to feel, and to express.I am working through similar balances in my scientific work too. AI models are great for repetitive pieces of the paper, like drafting a related work or background section that you know by heart, but using them for the abstract, introduction, experiments, or conclusion is a shame. Those are where the story and soul of the work is communicated — it’s where you learn what your research is really about.I am confident I created a lot more net value by being able to have AI models create and check my non-fiction writing work. They make writing equations trivial, can help refactor the repository, port between languages, and many other things. At the beginning, it was very fun, until I was a bit worn down by the length of the publishing process, watching the field move on.For an example of why AI was crucial in this case, I had to maintain Markdown and LaTeX versions of my book simultaneously in two spots, as readers gave feedback on the web version and my Manning editorial team reviewed a forked copy. Without AI agents, syncing between the two of them would’ve easily taken me five times as long (and this task took tens of hours already).Something intertwined with this story, which I stumbled upon when thinking about agents, is how your pace of understanding won’t increase by using agents. That understanding, in the form of intuition, taste, instinct, etc. is what will be valuable in the future. Using AI for non-fiction writing takes away from that progression. Doubly, if you weren’t already an expert you won’t be able to catch its flaws.In my case, I felt such an urgency to dump the knowledge out of my brain onto the page that there were times that using the AI models was a worthy tool. Much of the motivation of my book was to have a single reference for important post-training methods like rejection sampling or character training, where very little exists on the web.This textbook was so much of giving back to the community, that it was just such a win to complete it in any form, that I felt it was okay. I would’ve learned more and the product could’ve been marginally improved with more human effort, I am sure. The determining factor was that I felt like the book was going to be aged out by the time it was published, a fear of AI model’s capabilities on one side and how fast the field moves on the other. This turned out to be really wrong? I’m very happy with the result and I’m more confident in its staying power now than when I started in 2024, as the models have so failed to live up to the hype in non-fiction writing. ShareWhere technical writing goes from hereThe models are incredible tools, they let you express knowledge in different forms. They’re wonderful for creating creative filler or background material — e.g. the first draft of slides whose real value is being a talking point for the teacher to lecture over — that let any knowledge be transformed from one medium to another.There’s some subtle, early phase of writing a non-fiction or reference textbook that feels a bit closer to writing a high-voice blog post like this. When pushing through the early organization and the presentation of the core skeleton new knowledge is created. This is the part that takes insight, and the LLMs are far behind in being able to replace it.The crux of the above paragraph and preceding section is that I would be happy if more of the world’s experts used AI models to write a tiny bit of their books in order to get more of their knowledge shared with the world. The problem is that you can only use AI models to save 10-20% of the effort today, and I don’t see that percentage becoming the majority anytime soon. There’s also the social pressure, where people expect LLMs to be the best, personalized educators out there, so they think working on a book or educational content is pointless. I think some of these opinions are aging out, as there’s a massive dearth in the highest quality educational work — and there always has been. AI is great at manipulating said content into the form that suits the student, not creating the content from scratch. In the meantime I feel that we are stuck in a frustrating local minimum, where AI models are going to on net reduce the average effort spent on non-fiction writing, but they could enable great expression. Fewer people will start and push through. So, in 2-5 years I still expect the best textbooks to be heavily crafted by the human hand. I’m not sure after then, but that’s longer than many would’ve predicted, given just how much knowledge these models have and their structural propensity to stream it.As for a conclusion on capabilities, the models are great in two contexts: 1) any truly verifiable domain and 2) when given a ton of context and making a small edit — like finding a bug or solving a very specific math problem or giving feedback — not generating prose in an open-ended manner. Long-form writing will definitely fall before creative writing, but it’s a strong tell that the models are not able to express the full extent of their knowledge in underspecified problems. As we try to push the models to be something like “geniuses in a datacenter” solving grand scientific problems, this seems like a fairly fundamental limitation. had a great piece on why LLMs make good editors, while being bad writers too.1Part of this is in how people use the models. If you ask Claude Fable 5 in Claude Code (or the chat app, I’m sure too): “write me a great poem about a goldfish,” the model will quickly spew out an answer. I asked the model how it did this, and if it had a sort of scratchpad it wrote to and iteratively updated before returning something good, and it said no. It made a minimal plan in its reasoning tokens and then autoregressively generated a poem. It’s taking no advantage of inference-time scaling or approaching it like a hard task.This is how most people surely use models for writing, and it’s no surprise the results are mediocre. The way to get the best results out of them would be to prompt the models very heavily, get them to work extensively before answering you, and reference other judge models’ opinions before returning you the text. There’s a simple way to make the long form better, given the models have some genuine skills right now.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49271994",
+      "title": "AI is removing the middle class of software engineering",
+      "url": "https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html",
+      "author": "florianherrengt",
+      "publishedAt": "2026-08-12T13:20:05.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 306,
+      "comments": 256
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/sarvam-ai-s-indus-wins-maharashtra-putting-sovereign-ai-to-work-for-2-500",
+      "title": "Sarvam AI's Indus Wins Maharashtra, Putting Sovereign AI to Work for 2,500 Officials",
+      "url": "https://alphasignal.ai/news/sarvam-ai-s-indus-wins-maharashtra-putting-sovereign-ai-to-work-for-2-500",
+      "author": "Sarvam",
+      "publishedAt": "2026-08-12T13:33:49.000Z",
+      "content": "Sarvam's Indus platform goes live for 2,500 Maharashtra officials, marking India's most ambitious state-level sovereign AI deployment to date",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/cars/2026/08/formula-e-finds-a-new-home-on-disney-espn/",
+      "title": "Formula E finds a new home on Disney+, ESPN+",
+      "url": "https://arstechnica.com/cars/2026/08/formula-e-finds-a-new-home-on-disney-espn/",
+      "author": "\n                    Jonathan M. Gitlin\n                ",
+      "publishedAt": "2026-08-12T13:35:30.000Z",
+      "content": "Formula E is set to make a big change in terms of visibility when season 12 gets underway this December. It has signed a new multiyear deal to broadcast the sport on Disney+ and ESPN+ in 144 countries, with live coverage of each entire ePrix, from practice through qualifying to the race. The new media deal means that here in the US, Formula E will be shown on ESPN+ from next season; since 2023, the sport has been shown live on Roku. \"This is a landmark moment for Formula E and reflects the incredible momentum behind our Championship,\" said Formula E's CEO Jeff Dodds. \"Disney’s unrivaled global reach and storytelling will introduce Formula E to millions of new fans while bringing them closer than ever to the drama, innovation, and excitement of electric racing. As we enter the GEN4 era, this provides an exceptional platform to accelerate our global growth and continue building one of the world’s most exciting sports properties.\" Actually, the new deal will mean fewer eyeballs on the sport, at least here in the US. More than 100 million US households subscribe to Roku (as of April this year), whereas ESPN+ has been losing subscribers since peaking at the end of 2023 and is now down to roughly 24 million households in the US.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/security/2026/08/researchers-found-a-way-to-hijack-devices-through-zoom-screen-sharing/",
+      "title": "Researchers found a way to hijack devices through Zoom screen sharing",
+      "url": "https://arstechnica.com/security/2026/08/researchers-found-a-way-to-hijack-devices-through-zoom-screen-sharing/",
+      "author": "\n                    Lily Hay Newman, wired.com\n                ",
+      "publishedAt": "2026-08-12T13:37:12.000Z",
+      "content": "As AI models gain advanced capabilities to find vulnerabilities in software, develop ways to exploit them, and even carry out autonomous hacking sprees, researchers offered a sobering new example on Tuesday, disclosing vulnerabilities in the video conferencing platform Zoom that could have been exploited to take over targets’ devices. Anyone on a call that involved screen sharing, whether participants or the host, would have been vulnerable to a silent attack that could be carried out with no indication and no interaction from the victim. Researchers from the digital defense firm A Security say the bug was discovered in early June using publicly available AI models, and that it took fewer than 20 prompts to uncover the vulnerabilities and create a working attack. Zoom issued a security advisory on Tuesday, including details about fixes the company has already begun rolling out to address the flaws, which affected devices running all operating systems that Zoom supports—Windows, macOS, Linux, iOS, and Android. “What is interesting for us and what we believe is dangerous is the democratization of these capabilities—the barrier to entry is dropping rapidly,” A Security cofounder Omer Gull told WIRED ahead of the disclosure. “Before it would have taken a team of five people maybe six months with a lot of refining and iteration to find this. Now people can reach the same results with under 20 prompts. And Zoom is an important type of target because people assume trust when using it. They don’t see it as a threat.”Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "css-tricks",
+      "externalId": "https://css-tricks.com/?p=396255",
+      "title": "Blocked aria-hidden: The Warning is Right, and Every Fix You’ve Found is Wrong",
+      "url": "https://css-tricks.com/blocked-aria-hidden-fix/",
+      "author": "Durgesh Rajubhai Pawar",
+      "publishedAt": "2026-08-12T13:43:56.000Z",
+      "content": "The warning is correct. And the recommended fixes you've probably seen are wrong. Here's what you can do instead to properly fix the issue. Blocked aria-hidden: The Warning is Right, and Every Fix You’ve Found is Wrong originally handwritten and published with love on CSS-Tricks. You should really get the newsletter as well.",
+      "topics": [
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=978793",
+      "title": "Jaguar offers a first look inside the all-electric Type 01",
+      "url": "https://www.theverge.com/transportation/978793/jaguar-type-01-interior",
+      "author": "Emma Roth",
+      "publishedAt": "2026-08-12T13:48:48.000Z",
+      "content": "Jaguar's all-electric Type 01 comes with a very beige interior that divides the four seats with a \"spine\" that spans the length of the cabin. New photos shared by Jaguar show a low-slung driver's seat, alongside a slim dashboard with a smartphone-style display in the center. This vehicle doesn't come with a traditional rear-view mirror, as Jaguar says you'll find a \"ClearSight Rear View Display\" at the very bottom of the windshield, positioned at the \"same height as the door mirrors, to help the driver focus.\" There are also some \"concealed compartments\" and \"hidden‑until‑needed technologies\" according to Jaguar, though you c … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=978013",
+      "title": "Google’s Pixel 11 series pairs a little new hardware with a lot of new software",
+      "url": "https://www.theverge.com/tech/978013/google-pixel-11-series-hands-on-hardware-software",
+      "author": "David Imel",
+      "publishedAt": "2026-08-12T14:00:00.000Z",
+      "content": "When I first picked up the Pixel 11 Pro this week, it was clear to me that this was one of those refinement years - at least when it comes to hardware. Aesthetically, the phones are as beautiful as ever, with Google's signature camera bar and bright, colorful backing glass. There are small updates, like a single piece of glass covering the camera bar and the all-new HiLight ambient LED on the Pros. But this year, the Pixel is all about quality of life and software improvements. After weeks of teasers, Google has finally formally announced the Pixel 11, Pixel 11 Pro, Pixel 11 Pro XL, and Pixel 11 Pro Fold. The phones are all shipping next we … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=978084",
+      "title": "Google is making the Pixel cameras better by making them worse",
+      "url": "https://www.theverge.com/tech/978084/google-camera-looks-interview-computational-photography",
+      "author": "David Imel",
+      "publishedAt": "2026-08-12T14:00:00.000Z",
+      "content": "If you look at a photo taken by a smartphone today, it's hard to find much that's technically wrong. Faces are bright and visible. The skies are pristine and blue. Even at night, scenes are well lit and noise-free. If the physical limitations of a tiny camera are what you're trying to solve for, you could probably label smartphone photography a mostly solved problem. But in our current moment, the photos people are drawn to are not flawless - and that's created a real problem for the people making smartphone cameras. \"The gap between what two random people want from their camera is growing dramatically,\" says Isaac Reynolds, who leads the P … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=978094",
+      "title": "Google’s Pixel Watch 5 dives deeper into AI and health",
+      "url": "https://www.theverge.com/tech/978094/pixel-watch-5-hands-on-made-by-google-gemini-wearables-smartwatch",
+      "author": "Victoria Song",
+      "publishedAt": "2026-08-12T14:00:00.000Z",
+      "content": "At least there’s no new proprietary charger this year. Huzzah!! | Photo: David Imel / The Verge The $399 Google Pixel Watch 5 isn't about the hardware. Sure, there's a new satin pyrite case finish, a few new strap colors, and a Steph Curry Special Edition. Under the hood, there's a slightly faster Qualcomm processor and an itty-bitty battery bump. There's a $50 price hike from last year, too, because the Pixel Watch 5 isn't immune to RAMageddon - none of us are. Otherwise, no one would blame you for looking at this watch and thinking absolutely nothing's changed. That's because the big updates this year are all software-based. This isn't a huge surprise considering Google's Fitbit Air launch in May. And after seeing some Pixel Watch 5 … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=978613",
+      "title": "Android now has a tap-to-share feature",
+      "url": "https://www.theverge.com/tech/978613/android-quick-share-tap-update-pixels-samsung",
+      "author": "Jess Weatherbed",
+      "publishedAt": "2026-08-12T14:00:00.000Z",
+      "content": "Android's AirDrop-like Quick Share feature will now let some devices exchange files and contact information when tapped together. The update is coming to Pixel 6 series phones and newer starting today, according to Google's announcement, and will roll out to Samsung's Galaxy Z Fold 8 Ultra, Fold 8, and Flip 8 \"soon.\" The tap-to-share feature uses NFC and proximity to simplify sharing, enabling users to wirelessly send contact details, photos, videos, and more by opening the share sheet menu and bringing the two devices close together. Quick Share's tapping update will also be expanded to \"more Android devices by the end of the year,\" accord … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=978713",
+      "title": "The Pixel Tag is Google’s answer to the AirTag",
+      "url": "https://www.theverge.com/tech/978713/google-pixel-tag-uwb-bluetooth-channel-finding-news",
+      "author": "Dominic Preston",
+      "publishedAt": "2026-08-12T14:00:00.000Z",
+      "content": "The Pixel Tag is longer but thinner than Apple’s AirTags. More than two years after launching its own device-tracking network, Google has finally followed up with its own tracker. The Pixel Tag, which goes on sale in November, looks like one of the more capable trackers too: It combines ultra wideband (UWB) with Bluetooth 6.0 Channel Sounding for two distinct types of precision tracking. The Pixel Tag goes on sale on November 11th, unlike the newly announced Pixel 11 and Pixel Watch 5, which are already available to preorder and ship next week. When it arrives, the Tag will cost $29, with a four-pack for $99 - the exact same pricing as Apple's AirTag 2. The Pixel Tag is a slim oblong device avail … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/08/google-reveals-2026-hardware-lineup-pixel-11-pixel-watch-5-and-pixel-tag/",
+      "title": "Google reveals 2026 hardware lineup: Pixel 11, Pixel Watch 5, and Pixel Tag",
+      "url": "https://arstechnica.com/gadgets/2026/08/google-reveals-2026-hardware-lineup-pixel-11-pixel-watch-5-and-pixel-tag/",
+      "author": "\n                    Ryan Whitwam\n                ",
+      "publishedAt": "2026-08-12T14:00:51.000Z",
+      "content": "Google has revealed its Pixel phone hardware for 2026, and you won't be surprised. The Pixel 11 series looks a lot like last year's lineup, featuring an evolution of the design Google adopted with the Pixel 9. There are some minor tweaks, a few new hardware goodies, and yes, even more Gemini-powered AI. The new phones are joined by an updated Pixel Watch 5 with much the same story, as well as Google's first in-house tracker device, the Pixel Tag. And you can place orders for all of Google's new hardware today. The Pixel 11 series is clearly the star of the show. You might even call it the highlight—or HiLight. Just as the leaks predicted, Google's most notable hardware innovation for the 2026 Pixel phones is the return of the notification LED (sort of). The new HiLight feature is available on the Pro phones, so the base model Pixel will remain unilluminated. HiLight consists of a ring of RGB LEDs inside the flash assembly on the back of the phone. It lights up when you're talking to Gemini, so you don't have to look at the screen of your phone to know you've been heard or that the AI is working. Thus, it makes the most sense when the phone is lying face down.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/LiquidAI/lfm2-5-vl-3b",
+      "title": "LFM2.5-VL-3B for Better and Faster Vision Capabilities for the Edge",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm2-5-vl-3b",
+      "author": null,
+      "publishedAt": "2026-08-12T14:00:51.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49272549",
+      "title": "Why Tiny JPEGs Look Different in Chrome",
+      "url": "https://guillaumetech.github.io/posts/jpg-scaling-chrome/",
+      "author": "gutechh",
+      "publishedAt": "2026-08-12T14:00:54.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 116,
+      "comments": 23
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/liquid-ai-s-lfm2-5-vl-3b-beats-models-twice-its-size-running-on-your-phone",
+      "title": "Liquid AI's LFM2.5-VL-3B Beats Models Twice Its Size Running on Your Phone",
+      "url": "https://alphasignal.ai/news/liquid-ai-s-lfm2-5-vl-3b-beats-models-twice-its-size-running-on-your-phone",
+      "author": "Liquid AI",
+      "publishedAt": "2026-08-12T14:01:05.000Z",
+      "content": "Liquid AI's 3B vision-language model beats models up to 2.6x its size on screen understanding and grounding, running on-device at 20 tokens/s on a phone.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "deepmind-blog",
+      "externalId": "https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/",
+      "title": "Putting sign language AI into users’ hands",
+      "url": "https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/",
+      "author": null,
+      "publishedAt": "2026-08-12T14:01:59.000Z",
+      "content": "Introducing sign-language-to-text (SL2T), our breakthrough model powering new sign language features for Deaf and hard of hearing users.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-deepmind-s-sl2t-doubles-sign-language-ai-accuracy-giving-deaf-users-a",
+      "title": "Google DeepMind's SL2T Doubles Sign Language AI Accuracy, Giving Deaf Users a Voice",
+      "url": "https://alphasignal.ai/news/google-deepmind-s-sl2t-doubles-sign-language-ai-accuracy-giving-deaf-users-a",
+      "author": "Google DeepMind",
+      "publishedAt": "2026-08-12T14:06:24.000Z",
+      "content": "Google DeepMind's SL2T model brings real-time ASL-to-English dictation to Gboard and Live Transcribe on Pixel 11, trained on 100,000+ hours across 50+ sign languages.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=978712",
+      "title": "The 7 biggest announcements of Google’s Pixel 11 launch",
+      "url": "https://www.theverge.com/tech/978712/google-pixel-11-event-everything-announced",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-08-12T14:15:00.000Z",
+      "content": "Google is hosting a Pixel launch event on Wednesday night where it will show off its latest lineup of devices. But you don't have to wait until then for all the news; we were able to check out the devices ahead of the event and take a look at everything Google's unveiling, including the latest Pixel phones, new health features on the Pixel Watch 5, and more. Google will be livestreaming the event on Wednesday at 6PM ET / 3PM PT. But if you aren't able to watch along yourself, you can catch up on all of the highlights from Wednesday's Pixel launch below. Pixel 11 launches with new colors and a price bump Google refreshed its line of Pixel … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p27#a260812p27",
+      "title": "Google Pixel 11 series hands-on: few design changes, a HiLight status light on the rear camera bar, new colors, and small camera and performance improvements (Max Buondonno/The Shortcut)",
+      "url": "https://www.techmeme.com/260812/p27#a260812p27",
+      "author": null,
+      "publishedAt": "2026-08-12T14:18:31.000Z",
+      "content": "Max Buondonno / The Shortcut: Google Pixel 11 series hands-on: few design changes, a HiLight status light on the rear camera bar, new colors, and small camera and performance improvements — 🔥 The Shortcut hot take — AI made your next phone more expensive. Google's counterargument is that AI is also what makes it worth buying.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p29#a260812p29",
+      "title": "Google says the Pixel Buds Pro 2 will get new features, including dynamic ANC and sleep sync, via a software update in September, and adds a new Olive color (Will Sattelberg/9to5Google)",
+      "url": "https://www.techmeme.com/260812/p29#a260812p29",
+      "author": null,
+      "publishedAt": "2026-08-12T14:20:01.000Z",
+      "content": "Will Sattelberg / 9to5Google: Google says the Pixel Buds Pro 2 will get new features, including dynamic ANC and sleep sync, via a software update in September, and adds a new Olive color — It's been a couple of years since Google rolled out a new set of Pro-branded earbuds, and while it's still not ready to debut …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49272832",
+      "title": "Tailscale Traces Database Corruption to 16y/o SQLite WAL-Reset Bug",
+      "url": "https://tailscale.com/blog/sqlite-wal-reset-bug",
+      "author": "ropbear",
+      "publishedAt": "2026-08-12T14:22:30.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 266,
+      "comments": 32
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p31#a260812p31",
+      "title": "Google says Android's AirDrop-like Quick Share will now let some devices exchange files and contact info when tapped together, starting with the Pixel 6 and up (Jess Weatherbed/The Verge)",
+      "url": "https://www.techmeme.com/260812/p31#a260812p31",
+      "author": null,
+      "publishedAt": "2026-08-12T14:23:41.000Z",
+      "content": "Jess Weatherbed / The Verge: Google says Android's AirDrop-like Quick Share will now let some devices exchange files and contact info when tapped together, starting with the Pixel 6 and up — The Quick Share update makes it easier to share contact info and files between Pixel devices, and soon, Samsung phones.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p30#a260812p30",
+      "title": "Google raises Pixel and Watch prices by $100 and $50 for 2026's models; the base Pixel 11 Pro and Pro XL have 12GB of RAM, down from 16GB in previous models (Kris Holt/Engadget)",
+      "url": "https://www.techmeme.com/260812/p30#a260812p30",
+      "author": null,
+      "publishedAt": "2026-08-12T14:23:41.000Z",
+      "content": "Kris Holt / Engadget: Google raises Pixel and Watch prices by $100 and $50 for 2026's models; the base Pixel 11 Pro and Pro XL have 12GB of RAM, down from 16GB in previous models — The Pixel 11 phones and Pixel Watch 5 are more expensive than last year's models. — Inevitably, due to soaring prices of components …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=977888",
+      "title": "Google aims for influencers with the Pixel 11 Creator Suite",
+      "url": "https://www.theverge.com/tech/977888/pixel-creator-suite-influencer-camera-features",
+      "author": "David Imel",
+      "publishedAt": "2026-08-12T14:30:00.000Z",
+      "content": "The settings page for the Pixel 11 series’ “Creator Suite.” Google knows creators are a big audience. The occupation is growing fast, and landing some influential names could be a major turning point for the Pixel's market share. This year, Google is building features directly into its new Pixel lineup that it says can help creators record, organize, edit, and publish content faster and more efficiently than they could on other devices. Creator Suite is a new mode built into the Pixel 11's camera app. The suite comes with features like a teleprompter, vocal enhancer, external microphone levels, and social media frame guides, which Google thinks will entice users who want to start building channels a … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p33#a260812p33",
+      "title": "Google introduces an insulin-resistance trend feature that uses AI, an accelerometer, and other sensors, launching first on the Pixel Watch 5 and Fitbit devices (Samantha Kelly/Bloomberg)",
+      "url": "https://www.techmeme.com/260812/p33#a260812p33",
+      "author": null,
+      "publishedAt": "2026-08-12T14:30:01.000Z",
+      "content": "Samantha Kelly / Bloomberg: Google introduces an insulin-resistance trend feature that uses AI, an accelerometer, and other sensors, launching first on the Pixel Watch 5 and Fitbit devices — Alphabet Inc.'s Google Inc. is bringing a new set of health features to its wearables, including one that tracks insulin resistance over time …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p32#a260812p32",
+      "title": "Google is cutting the Google One AI Pro trial bundled with the Pixel 11 Pro and other handsets from 12 to six months and removes the free trial for the Pixel 11 (Damien Wilde/9to5Google)",
+      "url": "https://www.techmeme.com/260812/p32#a260812p32",
+      "author": null,
+      "publishedAt": "2026-08-12T14:30:01.000Z",
+      "content": "Damien Wilde / 9to5Google: Google is cutting the Google One AI Pro trial bundled with the Pixel 11 Pro and other handsets from 12 to six months and removes the free trial for the Pixel 11 — With the launch of the Pixel 9, Google offered fairly extensive 12-month free trials of the Google One AI Pro plan …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p35#a260812p35",
+      "title": "Google DeepMind launches SL2T, a multilingual sign-language-to-text model debuting on the Pixel 11 in Gboard and Live Transcribe, first for ASL to English text (Mike Wheatley/SiliconANGLE)",
+      "url": "https://www.techmeme.com/260812/p35#a260812p35",
+      "author": null,
+      "publishedAt": "2026-08-12T14:39:10.000Z",
+      "content": "Mike Wheatley / SiliconANGLE: Google DeepMind launches SL2T, a multilingual sign-language-to-text model debuting on the Pixel 11 in Gboard and Live Transcribe, first for ASL to English text — Google DeepMind said today it wants to bring the artificial intelligence revolution to the estimated 70 million people across …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p34#a260812p34",
+      "title": "Google says the Pixel 11 Pro and Pro XL are its most durable Pixel phones yet, using spacecraft-grade aluminum frames and a twice as scratch-resistant coating (Mariella Moon/Engadget)",
+      "url": "https://www.techmeme.com/260812/p34#a260812p34",
+      "author": null,
+      "publishedAt": "2026-08-12T14:39:10.000Z",
+      "content": "Mariella Moon / Engadget: Google says the Pixel 11 Pro and Pro XL are its most durable Pixel phones yet, using spacecraft-grade aluminum frames and a twice as scratch-resistant coating — The Tensor G6 processor and handy new features are also on tap. — Google has introduced its latest flagships …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49273165",
+      "title": "License plate reader searches should require a warrant",
+      "url": "https://andrewpwheeler.com/2026/08/12/license-plate-reader-searches-should-require-a-warrant/",
+      "author": "apwheele",
+      "publishedAt": "2026-08-12T14:43:39.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 258,
+      "comments": 159
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p36#a260812p36",
+      "title": "Google's Pixel 11 introduces Camera Looks, a total rethink of how the camera captures and styles an image, as users seek \"more authentic or traditional\" photos (David Imel/The Verge)",
+      "url": "https://www.techmeme.com/260812/p36#a260812p36",
+      "author": null,
+      "publishedAt": "2026-08-12T14:44:29.000Z",
+      "content": "David Imel / The Verge: Google's Pixel 11 introduces Camera Looks, a total rethink of how the camera captures and styles an image, as users seek “more authentic or traditional” photos — If you look at a photo taken by a smartphone today, it's hard to find much that's technically wrong. Faces are bright and visible.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49273478",
+      "title": "Qwen/Qwen3.8-2.4T-A95B",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+      "author": "Philpax",
+      "publishedAt": "2026-08-12T15:01:17.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 129,
+      "comments": 38
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Aug/12/florian-herrengt/#atom-everything",
+      "title": "Quoting Florian Herrengt",
+      "url": "https://simonwillison.net/2026/Aug/12/florian-herrengt/#atom-everything",
+      "author": null,
+      "publishedAt": "2026-08-12T15:08:47.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p37#a260812p37",
+      "title": "FlightAware withdraws its Kalshi lawsuit, after alleging Kalshi used its data to let users bet on flight cancellations; Kalshi no longer names it as a source (Sumedha Mukherjee/Reuters)",
+      "url": "https://www.techmeme.com/260812/p37#a260812p37",
+      "author": null,
+      "publishedAt": "2026-08-12T15:10:06.000Z",
+      "content": "Sumedha Mukherjee / Reuters: FlightAware withdraws its Kalshi lawsuit, after alleging Kalshi used its data to let users bet on flight cancellations; Kalshi no longer names it as a source — Flight-tracking company FlightAware withdrew its lawsuit against Kalshi on Tuesday, a day after it filed the suit that accuses …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/08/heres-a-balm-if-the-idea-of-destroying-books-to-train-ai-breaks-your-heart/",
+      "title": "Booksellers suspect AI firms are buying and then destroying rare books",
+      "url": "https://arstechnica.com/tech-policy/2026/08/heres-a-balm-if-the-idea-of-destroying-books-to-train-ai-breaks-your-heart/",
+      "author": "\n                    Ashley Belanger\n                ",
+      "publishedAt": "2026-08-12T15:19:17.000Z",
+      "content": "If you can truly appreciate an old book—and maybe even marvel at how its fragile, yellowing pages contain some of the earliest ways that people tried to make sense of the world around them—then headlines about tech companies destroying books to train AI likely torture a tender part of your soul. It’s indeed depressing to imagine piles of book spines waiting to be fed into wood chippers while torn-out pages are cropped, scanned, and trashed. But that’s the cheapest and easiest way to scan books as fast as possible, and AI companies are in a race to advance their models by training on the kind of engaging, high-quality, long-form texts that can only be found in books. So book lovers fear it’s likely that the practice is happening on a grander scale than is currently being reported and that some physical copies of books will be lost forever. What makes this destruction extra painful, though, is that it doesn’t have to be this way.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p38#a260812p38",
+      "title": "ClearJet, whose AI-enabled logistics service connects shippers with unused cargo capacity on commercial flights, raised a $25M Series B led by Edison Partners (Mary Ann Azevedo/Crunchbase News)",
+      "url": "https://www.techmeme.com/260812/p38#a260812p38",
+      "author": null,
+      "publishedAt": "2026-08-12T15:25:02.000Z",
+      "content": "Mary Ann Azevedo / Crunchbase News: ClearJet, whose AI-enabled logistics service connects shippers with unused cargo capacity on commercial flights, raised a $25M Series B led by Edison Partners — ClearJet, an AI-enabled logistics technology startup, has raised a $25 million Series B, it tells Crunchbase News exclusively.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49274027",
+      "title": "Grok 4.6",
+      "url": "https://x.ai/news/grok-4-6",
+      "author": "iLuddite",
+      "publishedAt": "2026-08-12T15:32:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 117,
+      "comments": 112
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p39#a260812p39",
+      "title": "SpaceXAI releases Grok 4.6, saying it matches GPT-5.6 Sol on the Artificial Analysis Intelligence Index, and prices it at $2/1M input and $6/1M output tokens (xAI)",
+      "url": "https://www.techmeme.com/260812/p39#a260812p39",
+      "author": null,
+      "publishedAt": "2026-08-12T15:35:01.000Z",
+      "content": "xAI: SpaceXAI releases Grok 4.6, saying it matches GPT-5.6 Sol on the Artificial Analysis Intelligence Index, and prices it at $2/1M input and $6/1M output tokens — Grok 4.6 builds on Grok 4.5 with a particular focus on long-running agents and more ambitious interactive and visual work. — Try for free",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p40#a260812p40",
+      "title": "Silicon Data, which offers real-time compute pricing data to financial institutions and exchanges, raised a $30.5M Series A led by the Valor Atreides AI Fund (Chris Metinko/Axios)",
+      "url": "https://www.techmeme.com/260812/p40#a260812p40",
+      "author": null,
+      "publishedAt": "2026-08-12T15:35:01.000Z",
+      "content": "Chris Metinko / Axios: Silicon Data, which offers real-time compute pricing data to financial institutions and exchanges, raised a $30.5M Series A led by the Valor Atreides AI Fund — Silicon Data, a financial data platform for the AI economy, raised $30.5 million in Series A funding led by the Valor Atreides AI Fund, CEO Carmen Li tells Axios Pro.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-s-gemini-hits-1-billion-users-and-adds-14-app-connections",
+      "title": "Google's Gemini Hits 1 Billion Users and Adds 14 App Connections",
+      "url": "https://alphasignal.ai/news/google-s-gemini-hits-1-billion-users-and-adds-14-app-connections",
+      "author": "Google Gemini",
+      "publishedAt": "2026-08-12T15:50:11.000Z",
+      "content": "Google adds 14 new MCP-powered app connections to Gemini, spanning music, travel, health, and productivity, as the assistant crosses 1 billion monthly users",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=978982",
+      "title": "Guitar company D’Addario admits that AI music was used in a promotional video",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/978982/daddario-guitar-ai-music-suno",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-08-12T15:52:07.000Z",
+      "content": "Maybe don’t let the AI shred next time. | Image: D’Addario After weeks of controversy and speculation, music company D'Addario has admitted that AI, specifically Suno, was used as part of a recent promotional video. For nearly two weeks, the company has denied the allegations, even as evidence piled up against it. It offered various explanations, from low-quality exports, to combinations of plugins like Autotune introducing digital noise, and the use of AI-assisted mastering tools from LANDR and Logic. But now the company has edited its original Instagram post denying the use of generative AI to say it was wrong. In a lengthy update to its post from July 29th (embedded at the bottom), it said: W … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=972498",
+      "title": "How the Pixel 11 Pro Fold compares to the Galaxy Z Fold 8",
+      "url": "https://www.theverge.com/tech/972498/google-pixel-11-pro-fold-samsung-galaxy-z-fold-8-ultra-specs-comparison",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-08-12T16:00:00.000Z",
+      "content": "The Pixel 11 Pro Fold. | Photo: David Imel / The Verge Google wasn't first to make a foldable Android phone, but the company's Pixel Fold series is now an established player with unique traits compared to its competitors. For one, it popularized the passport-style design years ago, being more wide than tall - something that Samsung tried for the first time this year with its Z Fold 8, and that Apple is rumored to do with its foldable iPhone that may or may not arrive in 2026. It also delivered the first IP68-rated foldable in the Pixel 10 Pro Fold, soothing concerns that all foldables are super fragile. Now that the new Pixel 11 Pro Fold (along with the rest of the Pixel 11 lineup) has been unv … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p41#a260812p41",
+      "title": "Bank of America says it plans to deploy $250B by July 2027 to support US digital and infrastructure projects, including data centers and energy infrastructure (Reuters)",
+      "url": "https://www.techmeme.com/260812/p41#a260812p41",
+      "author": null,
+      "publishedAt": "2026-08-12T16:10:00.000Z",
+      "content": "Reuters: Bank of America says it plans to deploy $250B by July 2027 to support US digital and infrastructure projects, including data centers and energy infrastructure — Bank of America (BAC.N) said on Wednesday it plans to deploy $250 billion by July 2027 to support U.S. digital and infrastructure projects …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=121028",
+      "title": "How to Choose Full-Stack Observability for NVIDIA AI Factories",
+      "url": "https://developer.nvidia.com/blog/how-to-choose-full-stack-observability-for-nvidia-ai-factories/",
+      "author": "Jorge Cardoso",
+      "publishedAt": "2026-08-12T16:13:47.000Z",
+      "content": "AI infrastructure spans multiple layers, from compute and networking to storage, orchestration, and applications. When performance degrades, identifying the...AI infrastructure spans multiple layers, from compute and networking to storage, orchestration, and applications. When performance degrades, identifying the source can be difficult because a symptom observed at one layer may originate elsewhere in the stack. A full-stack observability strategy connects telemetry across these layers, helping infrastructure and operations teams detect problems… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/allenai/olmoearth-embeddings",
+      "title": "Introducing OlmoEarth embeddings: Custom embedding exports from OlmoEarth Studio for downstream analysis",
+      "url": "https://huggingface.co/blog/allenai/olmoearth-embeddings",
+      "author": null,
+      "publishedAt": "2026-08-12T16:14:36.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260812/p42#a260812p42",
+      "title": "Sources: the UK government is planning to regulate the use of AI in gene synthesis to prevent terrorists and other bad actors from using AI for bioweapons (Ellen Milligan/Bloomberg)",
+      "url": "https://www.techmeme.com/260812/p42#a260812p42",
+      "author": null,
+      "publishedAt": "2026-08-12T16:15:01.000Z",
+      "content": "Ellen Milligan / Bloomberg: Sources: the UK government is planning to regulate the use of AI in gene synthesis to prevent terrorists and other bad actors from using AI for bioweapons — The UK government is planning to regulate the use of artificial intelligence in gene synthesis as officials become increasingly concerned …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2607.27749",
+      "title": "Articulated Object Reconstruction from Rest-State Observation",
+      "url": "https://huggingface.co/papers/2607.27749",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:12.999Z",
+      "content": "Articulated Object Reconstruction from Rest-State Observation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.11205",
+      "title": "AdvFD: Boosting Visual Generation via Adversarial Fr'echet Distance Loss",
+      "url": "https://huggingface.co/papers/2608.11205",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:12.999Z",
+      "content": "AdvFD: Boosting Visual Generation via Adversarial Fr'echet Distance Loss",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.09900",
+      "title": "Decoding-Level Taboo: A Diagnostic Stress Test for LLM Robustness",
+      "url": "https://huggingface.co/papers/2608.09900",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:12.999Z",
+      "content": "Decoding-Level Taboo: A Diagnostic Stress Test for LLM Robustness",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.10628",
+      "title": "InSight-doc: Agentic Visual Perception for Long-Document Understanding",
+      "url": "https://huggingface.co/papers/2608.10628",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:12.999Z",
+      "content": "InSight-doc: Agentic Visual Perception for Long-Document Understanding",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.10636",
+      "title": "DistilVDR: A Compact End-to-End Visual Document Retriever via Dual-Student Distillation",
+      "url": "https://huggingface.co/papers/2608.10636",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:12.999Z",
+      "content": "DistilVDR: A Compact End-to-End Visual Document Retriever via Dual-Student Distillation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.08814",
+      "title": "360CityArena: A Realistic Virtual Urban Navigation Benchmark for Embodied Agents",
+      "url": "https://huggingface.co/papers/2608.08814",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:12.999Z",
+      "content": "360CityArena: A Realistic Virtual Urban Navigation Benchmark for Embodied Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.08627",
+      "title": "UniMoMo: Expert Merging-Based MoE Acceleration for Large Recommendation Models",
+      "url": "https://huggingface.co/papers/2608.08627",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:12.999Z",
+      "content": "UniMoMo: Expert Merging-Based MoE Acceleration for Large Recommendation Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.10288",
+      "title": "Power law graph attention: exact generalization of scaled dot-product attention, empirical collapse at inference",
+      "url": "https://huggingface.co/papers/2608.10288",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:12.999Z",
+      "content": "Power law graph attention: exact generalization of scaled dot-product attention, empirical collapse at inference",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-08-11/spacexai-unveils-grok-bot-to-work-like-a-team-of-ai-agents?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc4NjUxNDY4OSwiZXhwIjoxNzg3MTE5NDg5LCJhcnRpY2xlSWQiOiJUSks0RVpUOTZPU0cwMCIsImJjb25uZWN0SWQiOiJFQTExNDNDNTM4NEE0RUY5QTg5RjJEN0IxMTg2MzcwOSJ9.6KeWdyBAMxNwBVL5_raTXhaTvTFoDOI__drrs5yRJLU&utm_source=tldrnewsletter",
+      "title": "SpaceXAI Unveils Grok Bot to Work Like a Team of AI Agents",
+      "url": "https://www.bloomberg.com/news/articles/2026-08-11/spacexai-unveils-grok-bot-to-work-like-a-team-of-ai-agents?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc4NjUxNDY4OSwiZXhwIjoxNzg3MTE5NDg5LCJhcnRpY2xlSWQiOiJUSks0RVpUOTZPU0cwMCIsImJjb25uZWN0SWQiOiJFQTExNDNDNTM4NEE0RUY5QTg5RjJEN0IxMTg2MzcwOSJ9.6KeWdyBAMxNwBVL5_raTXhaTvTFoDOI__drrs5yRJLU&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.783Z",
+      "content": "SpaceXAI Unveils Grok Bot to Work Like a Team of AI Agents (2 minute read)SpaceXAI's Grok Bot is designed to act like a team of AI agents capable of handling a wide range of professional work. The agent can sign into various apps and websites, retain information from prior tasks, and share details and context with other agents. SpaceXAI has been using the product internally across its engineering, growth, and marketing teams. It has helped its sales team find new accounts and draft emails and aided its finance team by pulling receipts from emails.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/ai/2026/08/google-says-gemini-has-reached-1b-users-faster-than-any-other-google-product/?utm_source=tldrnewsletter",
+      "title": "Gemini becomes Google's fastest-growing product ever as it hits 1B users",
+      "url": "https://arstechnica.com/ai/2026/08/google-says-gemini-has-reached-1b-users-faster-than-any-other-google-product/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.783Z",
+      "content": "Gemini becomes Google's fastest-growing product ever as it hits 1B users (5 minute read)Gemini has reached 1 billion monthly active users (MAU). It is the fastest Google product to have managed that feat. Gemini is now in virtually every Google product and service and is core to Google's flagship search experience. The 1 billion MAU metric only refers to users who have opened the Gemini app or visited the Gemini web interface.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.nytimes.com/2026/08/11/science/ai-infertile-men-sperm.html?unlocked_article_code=1.41A.Jn5D.uMN3qB1ku73k&smid=url-share&utm_source=tldrnewsletter",
+      "title": "AI Is Finding Sperm Where Doctors Couldn't",
+      "url": "https://www.nytimes.com/2026/08/11/science/ai-infertile-men-sperm.html?unlocked_article_code=1.41A.Jn5D.uMN3qB1ku73k&smid=url-share&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.783Z",
+      "content": "AI Is Finding Sperm Where Doctors Couldn't (2 minute read)Scientists from Columbia have created a system that uses AI to locate difficult-to-find sperm. Men with extraordinarily low sperm counts often still have several hidden sperm present. Analyzing samples under a microscope with the human eye often misses these individual sperm cells. The Sperm Tracking and Recovery system may bring hope to the 10% of infertile men affected by azoospermia.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://liftoffasia.com/posts/vikram-india-private-rocket/?utm_source=tldrnewsletter",
+      "title": "India's first private rocket reached orbit — from a company that existed before the law did",
+      "url": "https://liftoffasia.com/posts/vikram-india-private-rocket/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.783Z",
+      "content": "India's first private rocket reached orbit — from a company that existed before the law did (11 minute read)Skyroot's Vikram-1 became the first privately built Indian rocket to reach orbit on July 18. It reached success on the first attempt and delivered a payload to about 450 km. India has no space statute, and its entire private space industry runs on executive policy. Skyroot is targeting roughly one rocket launch a month from 2027.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://vercel.com/blog/everything-hackable-will-get-hacked?utm_source=tldrnewsletter",
+      "title": "Everything hackable will get hacked",
+      "url": "https://vercel.com/blog/everything-hackable-will-get-hacked?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.783Z",
+      "content": "Everything hackable will get hacked (6 minute read)AI models have become much more capable of performing cybersecurity work over the past year. Defenders have an advantage right now because they can use stronger models, but the gap between open-weight models and closed models will soon close. Everyone can start improving their defensive posture with currently available frontier models. Continuously improving how you find and fix vulnerabilities should be a top priority, and the practice should continue as models improve.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/optiver?utm_source=tldrnewsletter",
+      "title": "Software engineering at a proprietary trading company: Optiver",
+      "url": "https://newsletter.pragmaticengineer.com/p/optiver?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.784Z",
+      "content": "Software engineering at a proprietary trading company: Optiver (28 minute read)Trading companies build bespoke hardware stacks and have larger platform engineering teams than most workplaces. For software engineers, it's a lucrative niche in terms of compensation, full-stack work, and engineering challenges. Software engineers tend to know little about trading companies. This post covers in depth how engineering works in a modern trading business.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.nytimes.com/2026/08/11/technology/igor-babuschkin-xai-river-ai.html?unlocked_article_code=1.41A.60Pc.HSJcWvW3aO1r&smid=url-share&utm_source=tldrnewsletter",
+      "title": "His Start-Up's Goal: AI That Is Trainable and Not Controlled by a Big Company",
+      "url": "https://www.nytimes.com/2026/08/11/technology/igor-babuschkin-xai-river-ai.html?unlocked_article_code=1.41A.60Pc.HSJcWvW3aO1r&smid=url-share&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.784Z",
+      "content": "His Start-Up's Goal: AI That Is Trainable and Not Controlled by a Big Company (2 minute read)Igor Babuschkin, who founded xAI with Elon Musk, left a year ago to build a new startup, River AI. The startup wants to create a new type of home computer that allows people to own and use AI without oversight from anyone else, including River AI. It plans to share its AI technologies as open source software. Babuschkin envisions future AI systems as trained to benefit individuals rather than centralized and controlled by one big corporation.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.architecturaldigest.com/story/elon-musks-new-texas-factory-will-be-the-largest-building-on-earth-if-all-goes-according-to-plan?utm_source=tldrnewsletter",
+      "title": "Elon Musk's New Texas Factory Will Be the Largest Building on Earth, If All Goes According to Plan",
+      "url": "https://www.architecturaldigest.com/story/elon-musks-new-texas-factory-will-be-the-largest-building-on-earth-if-all-goes-according-to-plan?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.784Z",
+      "content": "Elon Musk's New Texas Factory Will Be the Largest Building on Earth, If All Goes According to Plan (3 minute read)Elon Musk's Terafab in Grimes County, Texas, is slated to top 100 million square feet. The factory will function as a joint supply chain for SpaceX and Tesla. It will combine logic, memory, and advanced packaging under one roof. Construction is projected to cost $16.8 billion. Eight tax incentive applications have been filed on behalf of the project, asking for tax breaks so the project has a more favorable after-tax return.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://ngrok.com/blog/compression-is-prediction?utm_source=tldrnewsletter",
+      "title": "Compression is prediction",
+      "url": "https://ngrok.com/blog/compression-is-prediction?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.784Z",
+      "content": "Compression is prediction (22 minute read)In compression, entropy measures how small we can shrink things, but in language modeling, it's used to make models better at prediction.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://sahansera.dev/scaling-an-agentic-coding-sdk-what-concurrency-actually-costs/?utm_source=tldrnewsletter",
+      "title": "Scaling an Agentic Coding SDK: What Concurrency Actually Costs",
+      "url": "https://sahansera.dev/scaling-an-agentic-coding-sdk-what-concurrency-actually-costs/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.785Z",
+      "content": "Scaling an Agentic Coding SDK: What Concurrency Actually Costs (8 minute read)Agent concurrency is a large number of partially trusted computers operating at once.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://lethain.com/decisions-not-dates/?utm_source=tldrnewsletter",
+      "title": "Roadmap decisions rather than dates",
+      "url": "https://lethain.com/decisions-not-dates/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.785Z",
+      "content": "Roadmap decisions rather than dates (13 minute read)Some timeline tradeoffs are constrained by approvals, cross-team and cross-functional handoffs, or missing decisions, but almost none should be constrained purely on time.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://excamera.substack.com/p/make-everything-look-like-a-software?utm_source=tldrnewsletter",
+      "title": "Make everything look like a software project",
+      "url": "https://excamera.substack.com/p/make-everything-look-like-a-software?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.785Z",
+      "content": "Make everything look like a software project (3 minute read)There's now a strong incentive to make every project look like a software project.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.modular.com/blog/modular-26-5-mojo-1-0-is-here?utm_source=tldrnewsletter",
+      "title": "Modular 26.5: Mojo 1.0 is here!",
+      "url": "https://www.modular.com/blog/modular-26-5-mojo-1-0-is-here?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.785Z",
+      "content": "Modular 26.5: Mojo 1.0 is here! (6 minute read)Mojo has grown into a general-purpose language with a vibrant developer community.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://stratechery.com/2026/nvidias-risky-business/?utm_source=tldrnewsletter",
+      "title": "Nvidia's Risky Business",
+      "url": "https://stratechery.com/2026/nvidias-risky-business/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-12T16:38:14.786Z",
+      "content": "Nvidia's Risky Business (22 minute read)Nvidia's ability to compete through novel funding mechanisms draws on things like insurance floats and pension funds and other long-run liabilities, which means the risk is considerably higher.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
       ],
       "paywalled": false,
       "mediaType": "text"
