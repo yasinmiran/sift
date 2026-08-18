@@ -1,0 +1,1284 @@
+{
+  "day": "2026-08-18",
+  "generatedAt": "2026-08-18T03:55:58.711Z",
+  "items": [
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.13606v2",
+      "title": "MobileMem: Learning from a Year of Mobile Experiences",
+      "url": "https://arxiv.org/abs/2608.13606",
+      "author": "Xinle Deng, Yida Xue, Xiangyuan Ru, Yijun Chen, Buqiang Xu, Mingjun Mao, Xinjie Liu, Haoming Xu, Shuofei Qiao, Mengru Wang, Chen Jiang, Yuchen Eleanor Jiang, Lizhong Wang, Jason Wang, Li Zeng, Haofen Wang, Guilin Qi, Huajun Chen, Ningyu Zhang",
+      "publishedAt": "2026-08-17T04:00:00.000Z",
+      "content": "The next generation of AI agents is increasingly moving beyond systems that answer isolated questions toward persistent personal assistants that can understand, remember, and continuously learn from users' experiences. Such assistants require long-term memory to accumulate and leverage user-specific experiences over time, yet existing benchmarks remain inadequate for realistic mobile settings, where experiences are heterogeneous, multimodal, evolving, and deeply personal. We introduce MobileMem, a benchmark and framework for studying on-device long-term memory, grounded in a year-scale collection of mobile experiences. MobileMem employs a knowledge-grounded synthesis pipeline to construct coherent and temporally consistent long-horizon trajectories from user-app sessions. It provides complementary text and multimodal settings covering multi-hop and temporal reasoning, knowledge updating, and implicit preference inference. Specifically, MobileMem enables agents to remember the past, understand the present, and adapt to the future. By modeling experiences rather than isolated facts, MobileMem moves memory beyond information retrieval toward experiential intelligence for continuous personal learning.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.13948v2",
+      "title": "Exposing SIMD Parallelism in SQIsign: An AVX-512 Implementation",
+      "url": "https://arxiv.org/abs/2608.13948",
+      "author": "Weize Wang, Chutong Wang, Yu Wu, Qifan Xue, Jieyu Zheng, Yunlei Zhao",
+      "publishedAt": "2026-08-17T04:00:00.000Z",
+      "content": "Modern isogeny-based cryptosystems spend much of their running time in finite-field, elliptic-curve, and higher-dimensional isogeny arithmetic. Exploiting SIMD parallelism is nontrivial: routines such as Montgomery ladders contain loop-carried dependencies, while point, pairing, and theta-coordinate formulas expose only irregular fine-grained parallelism. We show that substantial SIMD parallelism can be recovered by reorganizing the arithmetic dependency graphs of higher-level primitives rather than vectorizing field multiplication in isolation. We develop an end-to-end AVX-512IFMA implementation of SQIsign in which data remain in a radix-$2^{51}$ vector representation across most of the curve-side computation. Our redesign includes projective xDBLADD schedules, batched point doubling in several coordinate systems, a vectorized biscalar ladder, fused cubical-arithmetic pairing steps, and batched one- and two-dimensional isogeny evaluation. Relative to the reference C implementation, we achieve end-to-end speedups of $1.76\\times$, $1.71\\times$, and $3.18\\times$ for key generation, signing, and verification at NIST level~I; combined with Qlapoti, key-generation and signing speedups rise to $2.90\\times$ and $2.69\\times$. We further apply the same backend and methodology to CORAL, a recent isogeny group action for post-quantum non-interactive key exchange based on two-dimensional $2$-isogenies. Across five parameter sets, this yields $1.28$--$1.40\\times$ speedups for key generation and $1.92$--$2.46\\times$ for shared-key computation. These results provide cross-scheme evidence that algorithm-level SIMD scheduling is a reusable optimization dimension for higher-dimensional isogeny cryptography.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.14065v2",
+      "title": "Rethinking Automated Program Repair: The Impact of Bug Complexity, Fault Localization, and LLM Cost-efficiency",
+      "url": "https://arxiv.org/abs/2608.14065",
+      "author": "Junchi Liu, Ali Bigdeli, Roya Daneshi, Atu Ambala, Sudipto Ghosh, Fabio Santos",
+      "publishedAt": "2026-08-17T04:00:00.000Z",
+      "content": "Background: Software bugs remain a critical challenge in development, necessitating effective Automated Program Repair (APR) techniques. While Large Language Model (LLM)-based APR systems have shown promise, prior studies primarily focus on overall repair effectiveness. The effects of bug complexity, fault localization, reasoning settings, and repair cost-effectiveness remain insufficiently explored. Aims: This study presents a comprehensive empirical analysis of LLM-based APR, focusing on how repair performance is shaped by bug complexity, fault localization, reasoning settings, and costs. Method: We evaluate two APR techniques (ChatRepair and CodeCorrector) using three LLMs (DeepSeek, GPT, and Llama), and examine their performance across diverse levels of bug complexity and localization strategies through a multi-dimensional empirical framework and statistical analysis. Results: Although structurally complex bugs and imprecise fault localization make repair more challenging, LLM-based APR techniques still achieve competitive repair effectiveness. Imprecise fault localization can substantially enlarge the performance gap between APR techniques. Furthermore, higher-cost LLMs and stronger reasoning settings do not consistently yield better cost-efficiency, revealing a nontrivial trade-off between repair effectiveness and computational cost. Conclusions: Over 50% of moderately complex bugs can be repaired by low-cost LLM-based APR techniques. The repair effectiveness gap between APR techniques becomes larger as fault localization becomes less precise. GPT-5 repairs 7 and 39 more complex bugs than DeepSeek-V4-pro and DeepSeek-V3.2, respectively; whereas the total repair cost of DeepSeek-V3.2 shows the best cost-efficiency performance.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "google-research",
+      "externalId": "https://research.google/blog/seeing-beyond-bmi-estimating-cardiometabolic-risk-with-smartphone-imagery/",
+      "title": "Seeing beyond BMI: Estimating cardiometabolic risk with smartphone imagery",
+      "url": "https://research.google/blog/seeing-beyond-bmi-estimating-cardiometabolic-risk-with-smartphone-imagery/",
+      "author": null,
+      "publishedAt": "2026-08-17T10:34:00.000Z",
+      "content": "General Science",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49331220",
+      "title": "How to disable or avoid intrusive AI",
+      "url": "https://www.librarian.net/notoai/",
+      "author": "ColinWright",
+      "publishedAt": "2026-08-17T14:07:56.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 265,
+      "comments": 163
+    },
+    {
+      "sourceSlug": "css-tricks",
+      "externalId": "https://css-tricks.com/?p=396545",
+      "title": "Dark mode toggles: two states are enough",
+      "url": "https://css-tricks.com/dark-mode-toggles-two-states-are-enough/",
+      "author": "Geoff Graham",
+      "publishedAt": "2026-08-17T14:15:50.000Z",
+      "content": "Lea's pushing back on light/dark mode implementations that display three state options for visitors: light, dark, and system. Dark mode toggles: two states are enough originally handwritten and published with love on CSS-Tricks. You should really get the newsletter as well.",
+      "topics": [
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49331423",
+      "title": "AI-Generated GitHub Copilot “Autofix” Allowed Compromise of Snowflake's Jira",
+      "url": "https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug",
+      "author": "galnagli",
+      "publishedAt": "2026-08-17T14:18:38.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 329,
+      "comments": 127
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49331474",
+      "title": "How to put 170 atoms in an atom",
+      "url": "https://signoregalilei.com/2026/08/02/how-to-put-170-atoms-in-an-atom/",
+      "author": "surprisetalk",
+      "publishedAt": "2026-08-17T14:21:25.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 105,
+      "comments": 26
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49332495",
+      "title": "Ask HN: GitHub employees what's going on? Why?",
+      "url": null,
+      "author": "sharts",
+      "publishedAt": "2026-08-17T15:19:31.000Z",
+      "content": "Pretty self explanatory. Could you folks shed some light on why these issues keep happening?I’ve noticed most posts and replies are just people coming to their own conclusions based on whatever published data.I think it would be helpful to get some actual, non-corporate/marketing information on the goings-on by those that actually see what’s happening on the inside.ThanksCan",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 78
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49332564",
+      "title": "Anthropic's War on open source AI",
+      "url": "https://twitter.com/TheAhmadOsman/status/2065307070044234186",
+      "author": "bilsbie",
+      "publishedAt": "2026-08-17T15:24:34.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 137,
+      "comments": 57
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49332981",
+      "title": "Universal Health Coverage Could Save $1T and 114k Lives a Year, Yale Study",
+      "url": "https://ysph.yale.edu/news-article/universal-health-coverage-could-save-one-trillion-dollars-and-114000-lives-every-year/",
+      "author": "karakoram",
+      "publishedAt": "2026-08-17T15:49:57.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 389,
+      "comments": 522
+    },
+    {
+      "sourceSlug": "aws-news",
+      "externalId": "e0eaa8dc02bf3dada9e373bdf284e82bd4d4e86c",
+      "title": "AWS Weekly Roundup: EC2 application status checks, IAM role manager, OpenAI Daybreak on Bedrock, and more (August 17, 2026)",
+      "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-ec2-application-status-checks-iam-role-manager-openai-daybreak-on-bedrock-and-more-august-17-2026/",
+      "author": "Channy Yun (윤석찬)",
+      "publishedAt": "2026-08-17T16:02:36.000Z",
+      "content": "Last week, AWS contributors joined the OpenSearch and Valkey communities at Open Source Summit Korea 2026 and MCP DevSummit Seoul 2026 to meet open source developers and contributors. At the four-day event, community leaders and users of these Linux Foundation open source projects gathered to share knowledge, collaborate on solutions, and push the projects forward. Leaders of the Korean OpenSearch communities volunteered to participate in the booth, and also had time to network and interact in the user group meetup. OpenSearch is an open source, enterprise-grade search and observability suite that brings order to unstructured data at scale. On June 9, 2026, OpenSearch 3.7 introduced new tools designed to query, alert, and track SLOs across logs, traces, and metrics through a single interface and retrieve vectors up to 5.5x faster for improved search performance. Since July 30, 2026, you can run OpenSearch version 3.7 on Amazon OpenSearch Service for improvements in vector search performance, search relevance, and Query Insights. Valkey is an open source high-performance key/value datastore that supports a variety of workloads such as caching, message queues, and it can act as a primary database. On May 19, 2026, Valkey 9.1 introduced a redesigned I/O threading model that improves throughput by up to 17% and reduces memory usage for strings under 128 bytes by up to 20%. Since June 23, 2026, you can run Valkey 9.1 in Amazon ElastiCache for node-based clusters, delivering higher throughput, improved memory efficiency, and stronger access control for multi-tenant workloads. You can connect with AWS contributors at upcoming OpenSearch and Valkey community events. Last week’s launches Here are some launches that got my attention: Amazon EC2 application status checks: Amazon EC2 introduces a new status check that helps you detect and respond to application-level issues on your EC2 instances. With application status checks, EC2 monitors applications to detect issues such as a web server that has stopped accepting requests, a Docker daemon that is not running, an incorrect networking configuration, or a network interface that is no longer passing traffic. To learn more, visit the Application status checks documentation. AWS IAM role manager to set up IAM roles automatically: You can use a new role manager that automatically sets up the IAM roles your AWS services need. When you set up a supported service in the console, role manager creates a default role on your behalf, or reuses one that already exists in your account if it matches the required permissions. Role manager supports six AWS service consoles at launch. To learn more, read How AWS IAM role manager rethinks the starting point for IAM roles. OpenAI Daybreak available to eligible customers on Amazon Bedrock: Daybreak is the cyber defense initiative from OpenAI that gives defenders governed access to frontier AI for cybersecurity work. For most security teams, Daybreak Blue, powered by GPT-5.6 Sol, serves as the starting point across defensive workflows including vulnerability discovery, detection engineering, and incident response. Daybreak Red, powered by a new GPT-5.6 Cyber, is designed for advanced, authorized tasks such as vulnerability research, exploit reproduction, and mitigation development. To enroll, contact OpenAI or reach out to your AWS account team for guidance on eligibility. To learn more, read the AI Blog post. New foundation models in Amazon SageMaker JumpStart: We’re expanding the portfolio of foundation models available to AWS customers. These models address different enterprise AI challenges with specialized capabilities: NVIDIA’s Nemotron 3.5 Lightning model NVIDIA’s Nemotron-Nano-12B-v2, Z.ai’s GLM-5.2 FP8, and GLM-OCR models NVIDIA’s LocateAnything-3B, Qwen-AgentWorld-35B-A3B, and Qwen3.5-122B-A10B models Black Forest Labs’ FLUX.2-small-decoder and Google’s gemma-4-12B-it models Redis’s langcache-embed-v3-small, JetBrains’ Mellum2-12B-A2.5B-Thinking, and LightOn’s LightOnOCR-2-1B models For a full list of AWS announcements, be sure to keep an eye on the What’s New with AWS page. Other AWS news Here are some additional projects and news items you may find interesting: The deprecation of email validation in AWS Certificate Manager: ACM will discontinue support for email-validated public certificates by September 30, 2027. If you use email validation for your ACM public certificates, you need to migrate to DNS validation before that date. For Amazon CloudFront distributions, HTTP validation is also available. The next-generation AWS VPN Client with CLI support and admin controls: You can use a new AWS VPN Client built on OpenVPN3. With the new client, you get full backward compatibility with existing AWS Client VPN endpoints while delivering the automation capabilities and security posture that enterprise networking teams have been asking for. Oracle Exadata on Exascale for Oracle AI Database@AWS: ExaDB-XS brings Exadata-class performance and availability through a consumption-based model. With ExaDB-XS, you can scale compute and storage independently in small increments and pay only for what you consume. For a full list of AWS blog posts, be sure to keep an eye on the AWS Blogs page. Learn more about AWS, browse and join upcoming AWS-led in-person and virtual events, startup events, and developer-focused events including AWS Summits and AWS Community Days. Join the AWS Builder Center to connect with builders, share solutions, and access content that supports your development. That is all for this week. Check back next Monday for another Weekly Roundup! — Channy",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49333344",
+      "title": "Judge sets framework for Nine PBS to retrieve archival data",
+      "url": "https://current.org/2026/08/judge-sets-framework-for-nine-pbs-to-retrieve-archival-data/",
+      "author": "qingcharles",
+      "publishedAt": "2026-08-17T16:11:37.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 144,
+      "comments": 58
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=980933",
+      "title": "Trump’s dumb border wall",
+      "url": "https://www.theverge.com/report/980933/trump-border-wall-big-bend-arizona-cottonwood-tree-sit",
+      "author": "Gaby Del Valle",
+      "publishedAt": "2026-08-17T16:30:00.000Z",
+      "content": "A bulldozer plows through land during construction for a section of border wall near Santa Elena Canyon on August 14, 2026 in Big Bend National Park, Texas. | Photo: Brandon Bell via Getty Images About 22 miles south of the former mining town of Patagonia, Arizona, down a winding, unpaved mountain road that passes cows grazing on open range, stands a cottonwood tree believed to be at least 200 years old. The \"grandmother\" tree, as some locals call it, is imperiled and already showing signs of stress, almost as if it knows its fate. The leaves are yellowing prematurely, falling to the ground at the height of summer. On July 27th, a construction crew felled three neighboring trees to build an extension of President Donald Trump's wall along the US-Mexico border. An activist climbed up the last tree standing two days later and ever sin … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49333824",
+      "title": "Sun Clock",
+      "url": "https://sunclock.net/",
+      "author": "Gecko4072",
+      "publishedAt": "2026-08-17T16:37:54.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 187,
+      "comments": 57
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981008",
+      "title": "Sonos finally added Live Activities controls for your iPhone lockscreen",
+      "url": "https://www.theverge.com/tech/981008/sonos-mobile-ios-iphone-app-live-activities",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-08-17T16:38:35.000Z",
+      "content": "Sonos released an update to its mobile app that finally introduces support for iOS' Live Activities, giving iPhone users quick access to playback controls on their lockscreen. The added functionality is a \"much requested, anticipated, and needed feature,\" according to a post Sonos shared to Reddit today that was spotted by 9to5Mac. While some features like displaying album art are not available, the Sonos Live Activity provides basic details and controls when listening to music or podcasts through a Sonos system without having to fully unlock your iPhone and open the app. Support for Live Activities and lockscreen controls similar to wha … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981054",
+      "title": "The Analogue Pocket gets a Supreme makeover in red or gold",
+      "url": "https://www.theverge.com/games/981054/analogue-pocket-supreme-red-gold-fall-winter-2026-collection",
+      "author": "Jay Peters",
+      "publishedAt": "2026-08-17T16:40:32.000Z",
+      "content": "Analogue and Supreme are teaming up to release metallic versions of the Analogue Pocket handheld in red and gold as part of Supreme's fall / winter 2026 collection. Here's how they're described on Supreme's website: Metallic portable handheld multi-video-game-system. Unibody aluminum with 24K Gold-plated and custom red glossy finishes. They also have a Supreme logo on the front and the back. I dig the colors, but not the logos. (But I'm not really a Supreme guy.) No price is currently listed on the website for the handhelds. We've asked Analogue and Supreme how much they'll cost. A standard Pocket costs $239.99. Supreme's fall / winte … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49333932",
+      "title": "Buy Your Friends Batteries",
+      "url": "https://domenkozar.com/2026/08/17/buy-your-friends-batteries/",
+      "author": "domenkozar",
+      "publishedAt": "2026-08-17T16:45:11.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 132,
+      "comments": 146
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49334209",
+      "title": "Cursor launches Origin, GitHub alternative",
+      "url": "https://cursor.com/changelog/origin-code-hosting",
+      "author": "tomasreimers",
+      "publishedAt": "2026-08-17T17:02:44.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 117,
+      "comments": 72
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981105",
+      "title": "YouTube is changing how it counts views to give the numbers a boost",
+      "url": "https://www.theverge.com/streaming/981105/youtube-video-view-counting-update",
+      "author": "Emma Roth",
+      "publishedAt": "2026-08-17T17:13:03.000Z",
+      "content": "YouTube will soon count a view as soon as a video starts to play, lining up with the system used by Instagram, TikTok, and its Shorts videos. The update will go into effect on August 24th, \"which means creators will likely see their total view counts increase faster moving forward,\" the platform says. Instagram and TikTok similarly add a view to a video when it starts to play or replay, while X counts a view when a user watches a video for at least two seconds. YouTube applied Instagram and TikTok's view-counting method to Shorts last year. YouTube says it's going to keep its original view-counting method under an \"engaged views\" metric in … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49334409",
+      "title": "An update on leaving Gmail for Fastmail",
+      "url": "https://moddedbear.com/an-update-on-leaving-gmail-for-fastmail/",
+      "author": "neogodless",
+      "publishedAt": "2026-08-17T17:15:20.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 140,
+      "comments": 106
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/the-three-layers-of-ai-agent-security-from-sandboxes-to-network-proxies",
+      "title": "The three layers of AI agent security: from sandboxes to network proxies",
+      "url": "https://alphasignal.ai/news/the-three-layers-of-ai-agent-security-from-sandboxes-to-network-proxies",
+      "author": "Ben Dickson",
+      "publishedAt": "2026-08-17T17:17:57.000Z",
+      "content": "How the industry is shifting from prompt engineering to systems engineering to secure the autonomous stack.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p26#a260817p26",
+      "title": "Google wins a bankruptcy auction with a $10M bid to acquire deidentified business data, software code, and more from Spirit Airlines to improve its AI models (James Nani/Bloomberg Law)",
+      "url": "https://www.techmeme.com/260817/p26#a260817p26",
+      "author": null,
+      "publishedAt": "2026-08-17T17:20:00.000Z",
+      "content": "James Nani / Bloomberg Law: Google wins a bankruptcy auction with a $10M bid to acquire deidentified business data, software code, and more from Spirit Airlines to improve its AI models — Google LLC won a bankruptcy auction for a trove of deindentified business data, software code, and operations records …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p27#a260817p27",
+      "title": "YouTube will start counting a view as soon as a video starts to play, from August 24, lining up with the system used by Instagram, TikTok, and its Shorts videos (Emma Roth/The Verge)",
+      "url": "https://www.techmeme.com/260817/p27#a260817p27",
+      "author": null,
+      "publishedAt": "2026-08-17T17:25:04.000Z",
+      "content": "Emma Roth / The Verge: YouTube will start counting a view as soon as a video starts to play, from August 24, lining up with the system used by Instagram, TikTok, and its Shorts videos — By tracking views from the instant a video starts to play, YouTube's new counter works more like TikTok, X, and Instagram.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49334544",
+      "title": "Qwen3.8 27B scores 52 on Artificial Analysis",
+      "url": "https://artificialanalysis.ai/models/qwen3-8-27b",
+      "author": "anana_",
+      "publishedAt": "2026-08-17T17:25:17.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 317,
+      "comments": 142
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p28#a260817p28",
+      "title": "Cursor says it is rolling out its code hosting service Origin in early beta on all paid plans, featuring support for repos, pull requests, GitHub sync, and more (Cursor)",
+      "url": "https://www.techmeme.com/260817/p28#a260817p28",
+      "author": null,
+      "publishedAt": "2026-08-17T17:30:01.000Z",
+      "content": "Cursor: Cursor says it is rolling out its code hosting service Origin in early beta on all paid plans, featuring support for repos, pull requests, GitHub sync, and more — Cursor can now host your code. — Origin begins rolling out today in early beta on all paid plans.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p29#a260817p29",
+      "title": "Sources: the US DOJ has been investigating a16z for nearly a year over whether its partners are improperly serving on the boards of competing AI companies (Bloomberg)",
+      "url": "https://www.techmeme.com/260817/p29#a260817p29",
+      "author": null,
+      "publishedAt": "2026-08-17T17:35:01.000Z",
+      "content": "Bloomberg: Sources: the US DOJ has been investigating a16z for nearly a year over whether its partners are improperly serving on the boards of competing AI companies — Venture capital firm Andreessen Horowitz is the focus of a Justice Department antitrust probe over whether its investment partners …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49334991",
+      "title": "GPU Offload in Rust: Portable, Safe, and Fast",
+      "url": "https://arxiv.org/abs/2608.13759",
+      "author": "linggen",
+      "publishedAt": "2026-08-17T17:54:59.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 172,
+      "comments": 36
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=121323",
+      "title": "Developing Nemotron 3.5 Lightning NVFP4 with QAD Using NVIDIA Model Optimizer",
+      "url": "https://developer.nvidia.com/blog/developing-nemotron-3-5-lightning-nvfp4-with-qad-using-nvidia-model-optimizer/",
+      "author": "Tanya Lenz",
+      "publishedAt": "2026-08-17T18:12:48.000Z",
+      "content": "Teams customize their models to hit their targets for latency, speed, memory, and compute. With the open NVIDIA Nemotron family of models, developers can find...Teams customize their models to hit their targets for latency, speed, memory, and compute. With the open NVIDIA Nemotron family of models, developers can find the right-sized model for their needs. The new Nemotron 3.5 Lightning NVFP4 checkpoint, for example, preserves accuracy while unlocking up to 4x faster throughput. It’s compressed down to 22 GB from the 66 GB full precision checkpoint… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/08/hidden-airtag-reveals-amazon-is-trashing-rare-books-to-train-ai/",
+      "title": "Hidden Airtag reveals Amazon is trashing rare books to train AI",
+      "url": "https://arstechnica.com/tech-policy/2026/08/hidden-airtag-reveals-amazon-is-trashing-rare-books-to-train-ai/",
+      "author": "\n                    Ashley Belanger\n                ",
+      "publishedAt": "2026-08-17T18:13:47.000Z",
+      "content": "For the past year or so, booksellers have suspected that AI firms are buying up huge lots of rare books, then destroying them after scanning them to train AI. But this was hard to prove until now, as 404 Media reports that an Airtag hidden in a rare book shows that at least one tech giant, in the race to advance its frontier models, is behind some of the bulk orders: Amazon. On Monday, 404 Media revealed that it had connected with a bookseller who agreed to plant an Airtag in a rare book that was part of a bulk order. That Airtag was then tracked to an Amazon AI training facility in Las Vegas that housed a team focused on tearing books from their spines and scanning pages, 404 Media reported. Apparently tone-deaf to the escalating backlash over destructive book scanning, a logo on the door of that team’s warehouse, VGT3, showed a Tyrannosaurus rex preparing to devour a book, 404 Media documented. Amazon deflects Amazon declined to comment on 404 Media’s findings, only providing Ars with the same statement it gave to 404 Media, which does not mention AI training specifically.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49335600",
+      "title": "Los Puesteros, solitary men who look after ranches and livestock in Patagonia",
+      "url": "https://www.newyorker.com/culture/photo-booth/the-lonely-men-at-the-end-of-the-world",
+      "author": "bookofjoe",
+      "publishedAt": "2026-08-17T18:34:09.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text",
+      "points": 117,
+      "comments": 43
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/08/petlibro-accused-of-gaslighting-users-over-smart-pet-feeder-outage/",
+      "title": "Petlibro accused of “gaslighting” users over smart pet feeder outage",
+      "url": "https://arstechnica.com/gadgets/2026/08/petlibro-accused-of-gaslighting-users-over-smart-pet-feeder-outage/",
+      "author": "\n                    Scharon Harding\n                ",
+      "publishedAt": "2026-08-17T18:43:51.000Z",
+      "content": "Petlibro founder and CEO York Wu provided more information about an outage that left users unable to control their smart pet feeders through the companion app and, in some reported cases, left them with hungry pets. Petlibro, a company owned by Shenzhen, China-headquartered firm Shenzhen Libro Technology Co., first acknowledged the outage on Tuesday at 5 am PT. At 7 pm PT on Wednesday, Petlibro said the outage was resolved. Notably, some people online reported different information at the time, and some claimed to still have problems as of August 13. In a blog post on Saturday that included an apology and acknowledgement of the “frustration and concern” the outage caused, Wu confirmed that problems with Petlibro’s cloud server caused the outage:Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981014",
+      "title": "Wordle meets Clippy in this new word game",
+      "url": "https://www.theverge.com/entertainment/981014/dartwords-clippy-word-game",
+      "author": "Andrew Webster",
+      "publishedAt": "2026-08-17T19:03:41.000Z",
+      "content": "Like many of us, Sam Rosenthal plays games like Wordle every day, chasing after good scores and sharing the results with friends and family. But he's also a game designer, the creative director at Blaseball developer The Game Band, and so this regular habit got him thinking about what else could be done in the space. \"When I was a kid and I played word games with my family, they weren't the New York Times puzzle games,\" Rosenthal explains. \"We were sitting in a car on a road trip playing these really loose games that couldn't be made digitally before. Things like the alphabet game or our own riffs on 20 questions. That felt like a really int … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p30#a260817p30",
+      "title": "African defense tech company Terra Industries, founded in 2024, raised a $52M seed round from 8VC and others, and says it's on track to book $100M in contracts (Dominic-Madori Davis/TechCrunch)",
+      "url": "https://www.techmeme.com/260817/p30#a260817p30",
+      "author": null,
+      "publishedAt": "2026-08-17T19:05:01.000Z",
+      "content": "Dominic-Madori Davis / TechCrunch: African defense tech company Terra Industries, founded in 2024, raised a $52M seed round from 8VC and others, and says it's on track to book $100M in contracts — African defense tech company Terra Industries on Monday announced an additional $18 million in funding, bringing its seed round to $52 million.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49336050",
+      "title": "AirTag reveals Amazon is trashing rare books to train AI",
+      "url": "https://arstechnica.com/tech-policy/2026/08/hidden-airtag-reveals-amazon-is-trashing-rare-books-to-train-ai/",
+      "author": "jefurii",
+      "publishedAt": "2026-08-17T19:06:11.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 126,
+      "comments": 6
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49336304",
+      "title": "India has paved the way for charging merchants a fee on UPI transactions",
+      "url": "https://www.bbc.com/news/articles/c8xnwqe00v1o",
+      "author": "monkey_monkey",
+      "publishedAt": "2026-08-17T19:25:11.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 108,
+      "comments": 118
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981134",
+      "title": "This compact Glorious mechanical keyboard is just $35",
+      "url": "https://www.theverge.com/gadgets/981134/glorious-gmmk-3-mechanical-keyboard-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-08-17T19:27:49.000Z",
+      "content": "The discounted GMMK 3 doesn’t include the pictured wrist rest. | Image: Glorious Are you curious about custom mechanical keyboards, but don’t want to spend hundreds just to get started without being sure you’ll enjoy the hobby? You can grab the 65-percent Glorious GMMK 3 mechanical keyboard at Woot for $34.99 (usually $139.99) by entering the coupon code WOOTGAMING at checkout, and first-time Woot customers will get an extra $5 off when using the same code. It’s a well-equipped keyboard out of the box, particularly for this price, and with its support for swappable switches, it’s a great platform for exploring keycap and switch options from different makers. It’s wired only, includes a full set of double-shot PBT keycaps for both Windows and macOS, and comes with linear Glorious Fox switches pre-installed. Glorious GMMK 3 65 Percent Where to Buy: $139.99 $34.99 at Woot (with coupon code WOOTGAMING) As a 65 percent mechanical keyboard, the layout favors just the essentials to keep a compact footprint. That means dropping the row of dedicated function keys, and limiting the extra buttons to standard modifiers, plus a couple of spare buttons for page up and down. There are still arrow keys for gaming and OS navigation, and a customizable knob for volume or media controls. Under the hood, the aluminum plate and gasket system are modifiable and upgradeable, letting you dial in the typing experience and sound.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
+      "title": "Same Cluster, 33 Points More Utilization: What Changed Was the Order",
+      "url": "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
+      "author": null,
+      "publishedAt": "2026-08-17T19:46:21.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49336573",
+      "title": "AI;DR (AI; Didn't Read)",
+      "url": "https://www.rickmanelius.com/p/aidr-ai-didnt-read",
+      "author": "mooreds",
+      "publishedAt": "2026-08-17T19:47:15.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 672,
+      "comments": 424
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/08/supreme-court-rejects-verizon-bid-for-47-million-refund-of-fcc-fine/",
+      "title": "Supreme Court rejects Verizon bid for $47 million refund of FCC fine",
+      "url": "https://arstechnica.com/tech-policy/2026/08/supreme-court-rejects-verizon-bid-for-47-million-refund-of-fcc-fine/",
+      "author": "\n                    Jon Brodkin\n                ",
+      "publishedAt": "2026-08-17T20:00:20.000Z",
+      "content": "The Supreme Court today rejected Verizon's attempt to get a $47 million refund from the Federal Communications Commission. In a list of orders issued by the court, Verizon's petition was denied without explanation. The denial apparently ends any possibility of Verizon asking a lower court to review the fine and order the FCC to issue a refund. However, AT&T and T-Mobile are continuing to challenge similar fines on grounds that selling device-location data did not violate US telecom law. AT&T, T-Mobile, and Verizon were fined a total of $196 million in 2024 for selling mobile users’ real-time location data without their customers' consent. The carriers sold device-location information to data aggregators, who resold it to other firms.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p31#a260817p31",
+      "title": "Sources: Anthropic's revenue run rate reached $65B by the end of July, up from $47B in May and $9B in late 2025 (Bloomberg)",
+      "url": "https://www.techmeme.com/260817/p31#a260817p31",
+      "author": null,
+      "publishedAt": "2026-08-17T20:00:55.000Z",
+      "content": "Bloomberg: Sources: Anthropic's revenue run rate reached $65B by the end of July, up from $47B in May and $9B in late 2025 — Anthropic PBC is on track to generate annualized revenue of more than $65 billion based on its current performance, according to people familiar with the matter …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/08/as-wisconsin-cities-flee-flock-its-shared-camera-network-loses-value/",
+      "title": "As Wisconsin cities flee Flock, its shared camera network loses value",
+      "url": "https://arstechnica.com/tech-policy/2026/08/as-wisconsin-cities-flee-flock-its-shared-camera-network-loses-value/",
+      "author": "\n                    Nate Anderson\n                ",
+      "publishedAt": "2026-08-17T20:14:23.000Z",
+      "content": "Perhaps it's the local summer diet of deep-fried cheese curds, corn on the cob, and Spotted Cow, but Wisconsin residents have been feeling pretty dyspeptic about Flock's automated license plate cameras. Over the past few months, a spate of Wisconsin towns and cities have withdrawn from Flock deals over privacy and trust concerns. As they did so, another issue revealed itself: With each city that leaves, the Flock network becomes less useful to the cities that remain. And cities are starting to notice. Consider Dane County, which includes the city of Madison. It's one of the most populous counties in Wisconsin. It was also a significant Flock user, with a contract for 24 license plate cameras. But after complaints from citizens and privacy experts, the Dane County Board of Supervisors on April 16 voted to cut the $80,000 in county funding for Flock cameras and banned \"further expenditures on the system.\"Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/08/the-moons-shadow-raced-across-the-heart-of-spain-and-i-was-there-to-see-it/",
+      "title": "The Moon's shadow raced across the heart of Spain, and I was there to see it",
+      "url": "https://arstechnica.com/space/2026/08/the-moons-shadow-raced-across-the-heart-of-spain-and-i-was-there-to-see-it/",
+      "author": "\n                    Stephen Clark\n                ",
+      "publishedAt": "2026-08-17T20:23:09.000Z",
+      "content": "DURATÓN, Spain—I'll say it: I'm hooked. Standing in the shadow of the Moon is one of the rarest opportunities to directly sense the mechanics of our Solar System, when the dance between three celestial bodies slides into perfect alignment. It's a mathematical miracle whose rarity and grandeur are made possible by the relative sizes and distances of the Moon and the Sun from Earth. Not every planet is so lucky. The Moon's shadow crisscrossed the American heartland twice in less than seven years, first in 2017 and again in 2024. I was fortunate to witness both. The experiences left me too impatient to wait for the next total solar eclipse in the continental United States in far-off 2044. That's what pulled me to the plains of north-central Spain last week. This land of wide open spaces, ancient churches and castles, and vast sunflower fields, all baking under the blinding August Sun, seemed like the perfect location to enter the path of totality. The ongoing drought in Spain has turned the country's fields and forests into a tinderbox, but those conditions made for ideal eclipse viewing.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49337392",
+      "title": "Israel creates fake think tank in likely attempt to dupe AI chatbots",
+      "url": "https://responsiblestatecraft.org/israel-influence-chatgpt/",
+      "author": "DeepLogin",
+      "publishedAt": "2026-08-17T20:46:10.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 199,
+      "comments": 84
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981209",
+      "title": "ABC&#8217;s livestreamed news show is powered by trending topics",
+      "url": "https://www.theverge.com/streaming/981209/abc-news-searched-livestreamed-show",
+      "author": "Emma Roth",
+      "publishedAt": "2026-08-17T20:59:23.000Z",
+      "content": "ABC News has officially introduced Searched, a livestreamed show that highlights stories people are discussing on social media and searching on the web, as reported earlier by Variety. Though the network just announced the show now, Searched began airing on the ABC News Live streaming channel in April, which appears on both Disney Plus and Hulu. In the press release, ABC News says Searched \"pulls real-time data from the top search engines and social media platforms to provide topical news for the audience.\" A recent episode of Searched highlighted an Illinois Powerball winner, NBA star Russell Westbrook's retirement, and Tropical Storm Lala … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p32#a260817p32",
+      "title": "BNPL lenders like Flex, Zip, and Affirm are now pitching loans for basic household needs; Americans spent $160B through pay-later loans in 2025, up 2x from 2023 (Stacy Cowley/New York Times)",
+      "url": "https://www.techmeme.com/260817/p32#a260817p32",
+      "author": null,
+      "publishedAt": "2026-08-17T21:00:15.000Z",
+      "content": "Stacy Cowley / New York Times: BNPL lenders like Flex, Zip, and Affirm are now pitching loans for basic household needs; Americans spent $160B through pay-later loans in 2025, up 2x from 2023 — The rapid growth of pay-later loans raises questions about whether their popularity is driven by consumer preference or desperation.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49337602",
+      "title": "GPT-5.6 Sol Pricing Cut by 50%",
+      "url": "https://openrouter.ai/openai/gpt-5.6-sol",
+      "author": "Topfi",
+      "publishedAt": "2026-08-17T21:03:18.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 210,
+      "comments": 122
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p33#a260817p33",
+      "title": "Opening arguments begin Tuesday in the state AGs' social media addiction lawsuit against Meta; New Mexico AG says the consequences could be \"astronomical\" (Jonathan Vanian/CNBC)",
+      "url": "https://www.techmeme.com/260817/p33#a260817p33",
+      "author": null,
+      "publishedAt": "2026-08-17T21:05:01.000Z",
+      "content": "Jonathan Vanian / CNBC: Opening arguments begin Tuesday in the state AGs' social media addiction lawsuit against Meta; New Mexico AG says the consequences could be “astronomical” — If New Mexico created the blueprint for taking on Meta, California could determine the company's fate when it comes to critical changes at Facebook and Instagram.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/08/former-spacex-engineers-are-building-a-robotic-factory-for-making-steel-parts/",
+      "title": "Former SpaceX engineers are building a robotic factory for making steel parts",
+      "url": "https://arstechnica.com/ai/2026/08/former-spacex-engineers-are-building-a-robotic-factory-for-making-steel-parts/",
+      "author": "\n                    Jeremy Hsu\n                ",
+      "publishedAt": "2026-08-17T21:18:49.000Z",
+      "content": "Three former SpaceX engineers have switched their attention from making rocket engines to manufacturing steel parts by using AI-driven software and robots. Their immediate goal involves establishing a prototype factory that can automate most of the steel fabrication process for crucial infrastructure components by 2027. The startup, called 1872, officially launched on July 22 with a ribbon-cutting ceremony at its Factory One facility in Cincinnati, Ohio. The company is initially focused on automating the manufacturing of steel skids—rectangular steel frames that can provide a moveable foundation for modular buildings—with the goal of supplying customers who are developing AI data centers or small modular nuclear reactors. “We're building towards autonomy, but we're not necessarily building in a dogmatic fashion towards full autonomy,” Dan Summers, CEO of 1872, told Ars. “We may achieve 80 percent autonomous operations, and we may decide that it makes sense to stop there because there's just diminishing returns to go to full 100 percent.”Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p34#a260817p34",
+      "title": "Sources: Crusoe is in IPO talks with at least four Wall Street banks, including JPMorgan, which is advising on its $3B pre-IPO fundraise set to value it at $35B (Alan Neuhauser/Axios)",
+      "url": "https://www.techmeme.com/260817/p34#a260817p34",
+      "author": null,
+      "publishedAt": "2026-08-17T21:20:00.000Z",
+      "content": "Alan Neuhauser / Axios: Sources: Crusoe is in IPO talks with at least four Wall Street banks, including JPMorgan, which is advising on its $3B pre-IPO fundraise set to value it at $35B — Crusoe, a data center developer and power supplier, is in IPO talks with at least four Wall Street banks, Axios Pro has learned.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p35#a260817p35",
+      "title": "Pornhub's parent company, Aylo, will pay $120M to settle two 2021 class action lawsuits in California and Alabama alleging it profited from child abuse material (Samantha Cole/404 Media)",
+      "url": "https://www.techmeme.com/260817/p35#a260817p35",
+      "author": null,
+      "publishedAt": "2026-08-17T21:40:23.000Z",
+      "content": "Samantha Cole / 404 Media: Pornhub's parent company, Aylo, will pay $120M to settle two 2021 class action lawsuits in California and Alabama alleging it profited from child abuse material — The deal settles class action lawsuits claiming Mindgeek's sites hosted and profited from abuse videos of minors.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49338328",
+      "title": "Quake Shareware, a CD-ROM just a little too full",
+      "url": "https://fabiensanglard.net/quake_shareware_cd/index.html",
+      "author": "shdon",
+      "publishedAt": "2026-08-17T22:06:14.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 195,
+      "comments": 84
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/08/us-vaccination-rates-fall-again-as-exemptions-continue-to-rise-cdc-data-shows/",
+      "title": "US vaccination rates fall again as exemptions continue to rise, CDC data shows",
+      "url": "https://arstechnica.com/health/2026/08/us-vaccination-rates-fall-again-as-exemptions-continue-to-rise-cdc-data-shows/",
+      "author": "\n                    Beth Mole\n                ",
+      "publishedAt": "2026-08-17T22:08:47.000Z",
+      "content": "The Centers for Disease Control and Prevention on Monday released data on the vaccination rates of US kindergarteners in the 2025–2026 school year, revealing that rates have once again decreased from the previous school year. Vaccination rates have been slipping since the 2019–2020 school year, when the US had obtained rates of around 95 percent, the threshold needed to keep outbreaks of vaccine-preventable diseases from spreading in communities. The latest data shows the US is moving further away from that target. Nationally, only 92.4 percent of kindergartners were vaccinated with the measles, mumps, and rubella (MMR) vaccine in the 2025–2026 school year, down from 92.5 percent last year. Coverage with the DTaP vaccine, which covers diphtheria, tetanus, and acellular pertussis (whooping cough), similarly fell from 92.1 percent to 92.0 percent.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49338459",
+      "title": "How Bluesky draws its logo on screenshots",
+      "url": "https://timmarinin.net/2026/bluesky-screenshots/",
+      "author": "gavide",
+      "publishedAt": "2026-08-17T22:20:40.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 290,
+      "comments": 215
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p36#a260817p36",
+      "title": "David Sacks says \"Dario Amodei believes frontier AI is too powerful to distribute; we believe it is too powerful to centralize\" after Amodei shared policy ideas (David Sacks/@davidsacks)",
+      "url": "https://www.techmeme.com/260817/p36#a260817p36",
+      "author": null,
+      "publishedAt": "2026-08-17T22:25:22.000Z",
+      "content": "David Sacks / @davidsacks: David Sacks says “Dario Amodei believes frontier AI is too powerful to distribute; we believe it is too powerful to centralize” after Amodei shared policy ideas — Some thoughts on Dario's post: 1. Dario does not actually address Gavin Baker's account of what he said - something he could easily deny if it were inaccurate. 2. Dario claims his critics live in a “bubble” where all regulation equals regulatory capture. He calls this an overly",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "https://www.latent.space/p/ainews-stripe-buys-openrouter-for",
+      "title": "[AINews] Stripe buys OpenRouter for $7B",
+      "url": "https://www.latent.space/p/ainews-stripe-buys-openrouter-for",
+      "author": null,
+      "publishedAt": "2026-08-17T23:13:41.000Z",
+      "content": "TheInformation had the scoop last month, but OpenRouter’s acquisition by Stripe for $7B was seems all but closed this weekend, 90 days after their $1.3B Series B. Their last revenue number out there was $140m annualized, so this represents a “standard” 50x multiple for a top tier AI company. What’s incredible is the profitability: Although much smaller than Cursor, OpenRouter likely has better economics. Its costs to serve its model-routing product were recently about $40 million on an annualized basis, or 28.5% of its revenue, meaning it was generating $100 million in annualized gross profit. With a roughly 70% gross profit margin, OpenRouter was near the level of high-performing, publicly traded software firms in that regard…. … Overall, OpenRouter is facilitating AI model usage at a rate of 250 trillion tokens per month, up from 50 trillion tokens per month in February.A 70x P/E ratio is possibly cheap for a high growth (5x in 6 months) startup with a broad (8 million developers) base. Certainly a good outcome for new billionaire Alex Atallah, and good for fellow router startups, but certainly there are a lot of implications on Stripe’s AI strategy and where value accrues in AI infra (much less GPU infra, much less Agent Labs, much less Frontier Model Labs).You can catch Alex’s last public appearance on the AIE State of Model Routing panel.AI News for 8/15/2026-8/17/2026. We checked 12 subreddits, 544 Twitters and no further Discords. AINews’ website lets you search all past issues. As a reminder, AINews is now a section of Latent Space. You can opt in/out of email frequencies!AI Twitter RecapAI Infrastructure, Compute, and the Platform StackOpenAI’s power-and-compute strategy is getting very literal: Two related posts suggest OpenAI is moving beyond “GPU supply” narratives into long-horizon control of the full infrastructure stack. @markchen90 described a 4+ GW NVIDIA capacity commitment; @kimmonismus added detail on an 8 GW Ohio campus, with SB Energy building and operating the site, NVIDIA backing the initial 4.25 GW, and a multi-year buildout through 2032. For infra engineers, the notable point is not just scale, but vertical coupling across power, data centers, chips, and long-dated access.The model access/routing layer is being repriced in real time: The reported Stripe–OpenRouter deal crystallizes how valuable the aggregation/routing API layer has become, but reaction from @kimmonismus also underscored how fragile that position could be if markup compresses to zero. In parallel, OpenRouter cut GPT-5.6 Sol pricing while Vercel did the same on AI Gateway, reinforcing that model brokerage is becoming a pricing battlefield rather than a stable tollbooth.Developer Platforms, Coding Agents, and Agentic ToolingCursor’s Origin points toward the AI-native IDE becoming the system of record: Origin’s launch is more than a GitHub competitor headline. It suggests Cursor wants first-party control over the full loop: repository, agent, review surface, and deployment hooks. @kimmonismus notes GitHub remains syncable and source-of-truth-compatible, but the strategic direction is clear: agentic coding products are trying to absorb the surrounding platform, not just autocomplete against it.Multi-agent orchestration is shifting from demoware toward operating patterns: Several posts converged on the same motif. @tonbistudio showed Hermes Desktop bots self-assigning game-dev work based on inferred specialties; @Teknium formally reintroduced Bot Mode, where agents maintain distinct memory, skills, tools, and inter-bot communication; and @omarsar0 recommended material on orchestrating multiple agents in Codex. The common thread is specialization plus persistent context, not generic “agents talking to agents.”Evaluation and harness work remains the real leverage point: Hamel Husain’s updated eval-skills plugin adds an error-discovery workflow that turns model outputs/traces into annotated failure modes and clustered review surfaces. That pairs well with Agent Arena’s new cost-per-task and category filters, which are based on 1.7M+ real-world sessions. The field is slowly moving from model-level evals to harness-level measurement: routing, decomposition, memory, verifier loops, and total completion cost.Computer-use and sandboxing are getting productized: Vanta’s new computer-use capability for its TrustVanta agent addresses a real enterprise workflow gap: screenshot evidence capture when there is no API surface. Likewise, LangChain’s monday.com case study highlights isolated workspaces via LangSmith Sandboxes for agents doing iterative work like CSV analysis or map generation. “Agent” product quality is increasingly about permissioning and execution isolation, not just reasoning quality.Model Efficiency, Post-Training, and Small/Open Model ProgressOpen models continue to compress the capability frontier: The strongest signal here was @cline’s note that Qwen3.8-27B now scores at DeepSeek V4-Pro / GPT-5.6 Luna territory on the Artificial Analysis Intelligence Index, described as the first time a local model has reached that capability tier. Ollama immediately positioned deployment paths for local users, and anecdotal reports like @rishdotblog’s suggest the model is already practical for long-context local coding setups.Inference efficiency is becoming architecture-level, not just quantization-level: @cwolferesearch’s discussion of Nemotron 3.5 Lightning is a good example: a 30B MoE with 3B active, trained for high-throughput agent execution, with multi-token prediction support for speculative decoding and additional drafters/quantized checkpoints. Similarly, @PandaAshwinee reported RL for large MoEs with zero train-infer mismatch, highlighting open ablations around post-training sparse models.Latent reasoning and memory are emerging as a separate scaling track: The BDH-CQ writeup shared by @TheTuringPost is notable less for raw benchmark strength than for the recipe: a 150M model doing latent-space reasoning with temporary memory, hitting 29.5% pass@2 on ARC-AGI-1 at around $0.0007 per task. In parallel, OpenAI Devs reported that with retained reasoning and compaction, GPT-5.6 Sol improved from 13.3% to 38.3% on ARC-AGI-3 while using roughly 6× fewer output tokens. The shared idea is that memory/compaction strategy is now a first-class capability multiplier.Retrieval, Skills, Memory, and Research ToolingSearch/retrieval people are questioning the “retrieve more, rerank more” reflex: The Weaviate podcast episode with Mathew Jacob revisits “Drowning in Documents”, phantom hits, listwise reranking, and ranking cascades. The practical implication for RAG systems is that naively increasing retrieved set size can degrade final quality, and future systems likely need per-query effort prediction and smarter scoring cascades rather than brute-force retrieval volume.Agent skills are being demystified and operationalized: @omarsar0’s summary of “Demystifying Agent Skills” is useful because it quantifies a common intuition: skills help mostly through procedural anchoring (65.7%), not factual knowledge injection (4.5%). Precision also collapses as skill pools expand. Related posts on the “skills” paper and GitSkills dataset mining ~3.8M SKILL.md files point to a maturing ecosystem around discoverability, packaging, and trigger management for agent skill libraries.Native memory is becoming a research object, not just a product feature: Engram Lab’s first research blog frames a future where agents are trained with native memory, while @jxmnop emphasizes the hard parts: memory calibration, self-generated training data, and getting models to actually exploit remembered information efficiently. This lines up with the broader move from stateless prompt engineering toward persistent internal/external memory systems.Multimodal Models: Video, Audio, and SpeechSpeech/TTS quality is moving fast, with Cartesia now leading key public leaderboards: Artificial Analysis reported Sonic 3.6 at #1 on both Provider Voice and Controlled Voice leaderboards, with Cartesia’s launch post claiming improved naturalness across 44 languages. The technical takeaway is the combination of quality and throughput: AA cites 136.1 chars/sec, materially faster than several competing premium systems.Video generation is becoming more production-usable for narrow workflows: Multiple posts highlighted MiniMax H3 as a practical asset-generation model rather than just a demo model. @victormustar described a low-cost pipeline for generating game sprite atlases from short clips; @multimodalart demonstrated image+audio-to-video lipsync through diffusers; and MiniMax’s own account amplified game-sprite use cases. Separately, Video Arena showed Dreamina Seedance-2.5 reaching #1 in Video Edit, suggesting the leaderboard fragmentation by subtask is starting to matter.Watermarking, Trust, and the AI Content LayerAnthropic’s Claude watermarking rollout triggered a serious technical-policy debate: The most substantive synthesis came from @random_walker, arguing that quality-preserving text watermarking is technically feasible and has precedent, but that Anthropic’s rollout failed on communications, verifier transparency, and user-trust framing. Supporting commentary from @dbreunig, @suchenzang, and @SamuelFitouss10 shows the fault line clearly: not just “can this work,” but whether mandatory invisible provenance marks alter writing norms, authorship expectations, and user autonomy.The deeper issue is trust in the content market, not just model output: Several posts implicitly converged on the same question: what happens to mixed human/AI text ecosystems when provenance is unclear? @SamuelFitouss10 cast the issue in “market for lemons” terms, while @random_walker raised the unresolved gray area of AI-assisted editing versus AI-authored prose. For engineers building content systems, this is drifting out of abstract policy into product architecture: verifier access, provenance semantics, and what exactly counts as authored output.Top Tweets (by engagement)Cursor launches its own code hosting platform: The highest-signal product launch in the set was Cursor’s Origin, a repository hosting product integrated directly into Cursor for repo management, PRs, review, and deploy integrations, with GitHub sync. The launch landed in the middle of a major GitHub outage, which amplified discussion from @kimmonismus and @Yuchenj_UW about timing and the strategic move toward vertically integrated AI-native dev environments.OpenRouter acquisition report: Bloomberg-reported news that Stripe agreed to acquire OpenRouter for over $7B dominated business/infra chatter. Follow-on commentary from @kimmonismus framed it as a striking monetization outcome for a routing layer taking ~5% of spend, and raised the obvious question of margin durability as zero-markup competitors emerge.OpenAI’s Ohio compute buildout: OpenAI’s large-scale infrastructure push drew major attention, with @markchen90 highlighting a 4+ GW NVIDIA capacity commitment and @kimmonismus summarizing an 8 GW Ohio agreement under a long-term SB Energy lease, with first 800 MW expected in 2028.Qwen ecosystem scale and local model progress: Alibaba’s “3,000,000,000 downloads” milestone for Qwen paired with growing evidence that local/open models are closing capability gaps. @cline pointed to Qwen3.8-27B reaching frontier-tier placement on the Artificial Analysis Intelligence Index, while @skalskip92 showed emerging multimodal/vision utility such as instance segmentation via JSON polygon outputs.AI Reddit Recap/r/LocalLlama + /r/localLLM Recap1. Qwen 3.8 27B Benchmarks and Reasoning TradeoffsArtificial Analysis’ Qwen3.8-27B benchmarks put it neck and neck with DeepSeek V4 and GPT-5.6 Luna Max (Activity: 1192): Artificial Analysis benchmarked Qwen3.8-27B on its Intelligence Index v4.1.1, an aggregate of 9 evals: GDPval-AA v2, τ³-Banking, Terminal-Bench v2.1, SciCode, Humanity’s Last Exam, GPQA Diamond, CritPt, AA-Omniscience, and AA-LCR. The Reddit post highlights that the 27B model is reportedly scoring roughly in the same band as DeepSeek V4 and GPT-5.6 Luna Max, with the page also tracking openness, AA-Omniscience hallucination/knowledge reliability, cost per benchmark task, output-token usage, full index run cost, token pricing, context length, and open-weight parameter counts. Comments were mostly surprise that a relatively small model can be discussed alongside frontier-scale systems at all, while one commenter preemptively mocked the common “overthinking” criticism and noted the result was tested at q2.A commenter highlighted Artificial Analysis’ open-source Pareto frontier chart for intelligence index vs. total parameters, implying Qwen3.8-27B is unusually efficient for its size and competitive with much larger frontier models. Source chart/model comparison: Artificial Analysis open-source models.One technical deployment point raised was that larger models may perform better qualitatively—especially at “reading between the lines” and avoiding simple mistakes—but org-scale evaluation should include tokens consumed per task, not just benchmark score. The commenter suggested DeepSeek v4 Flash 0731 may be preferable at scale despite weaker local usability tradeoffs.A local inference report for DeepSeek v4 Flash 0731 noted it was “slow as shit” when run with CPU offloading, highlighting that practical throughput can diverge sharply from benchmark attractiveness when the model cannot fit fully in GPU memory.Long Review: Qwen 3.8 27B is VERY good at tapping into it’s real-world knowledge. It’s “overthinking” brings it to Sonnet level performance with the potential for Opus level results. (Activity: 536): The post reports qualitative local testing of Qwen 3.8 27B via Unsloth UD-Q8_K_XL on 3× RTX 3090 + 1× Tesla P40 + 128 GB RAM, using single-file HTML/Tailwind/JS arcade-game recreation as a knowledge/coding stress test. Compared with Qwen 3.6 27B, Qwen 3.8 produced a much more faithful Galaga clone, including bitmap-like dynamic sprites, two-frame animations, CRT/power-on effects, sound, enemy swooping/shooting, attract/insert-coin screens, and a partial capture mechanic; however xHigh reasoning took ~15 min versus Qwen 3.6’s ~8 s. The author found medium reasoning (~3 min, output speed rising from ~62 to 91 tok/s) delivered ~90% of xHigh quality and could add missing capture behavior with a follow-up, while tool-style prompting with a Python image-analysis script let Qwen extract reference sprites nearly 1:1, approaching the tool-assisted behavior observed from Claude Opus 5. Commenters pushed back that “make Galaga/Pac-Man/Flappy Bird” may overestimate competence because these tasks are heavily represented in training data and test memorization/replication more than novel game design. Others summarized it as “Opus at home” and one user said Qwen 3.8 27B feels like a major size-class jump, matching their non-coding agent evals against full GLM-5.2 even with a Q4 quant and Q8 KV cache.A commenter cautioned that demos like “make Flappy Bird / Space Invaders / Pac-Man” may overstate model competence because these are high-frequency training targets with abundant public reference implementations and assets. They argue such prompts test retrieval/reconstruction of known artifacts more than creative generalization, analogous to concerns from the Suno lawsuit where prompts reportedly reproduced Boney M – Daddy Cool lyrics/output rather than generating novel music.One user reported that on their non-coding agent evals, Qwen 3.8 27B feels like a major jump for its size, performing similarly to full GLM-5.2 despite being run as a Q4 quant with a Q8 KV cache. The key technical claim is that strong agentic/non-coding performance is being retained under aggressive quantization, suggesting useful local deployment efficiency.Another commenter contrasted Qwen with Claude Opus/Sonnet-style behavior, arguing that Opus-like models distinguish themselves by taking useful initiative—e.g. writing a Python script without being explicitly asked—whereas Qwen can often do comparable work only when directly prompted. This frames the remaining gap as less about raw task ability and more about autonomous planning/default behavior in agent workflows.Qwen3.8 27B reasoning effort low/medium/xhigh comparison (Activity: 404): A quick SVG-generation benchmark compared Qwen3.8 27B quantized as unsloth/Qwen3.8-27B-UD-IQ3_XXS across reasoning-effort settings on an RTX 5080 Laptop GPU 16GB using llama.cpp build 10451 / commit 10bf611e5, 65,536 context, Q8_0 KV cache, Flash Attention, and MTP speculative decoding. For the prompt “Create a polished SVG graphic of a pelican riding a bicycle”, xhigh produced the highest Codex-rated visual score (24.0/25 vs 22.5/25 medium and 21.8/25 low) but used 39,398 reasoning tokens and took 717.8s, roughly 6.4× low’s 111.6s; low and medium were close in output quality and latency. MTP acceptance also declined with effort: 62.1% low, 58.3% medium, 52.7% x-high. Commenters questioned the benchmark’s validity, arguing that common prompts like pelicans/SVGs may be overrepresented in training data and that tests should target less likely memorized tasks. Another notable complaint was that Qwen needs an intermediate mode between medium and x-high because the latency/token gap is disproportionately large.Several commenters questioned the benchmark validity, arguing that common prompts like “pelicans” / “one shot games” are likely overexposed in training or community testing, making them poor measures of generalization. The suggested improvement was to use novel, less-contaminated tasks where the model is unlikely to have memorized patterns.A technical concern was raised about Qwen3.8 27B’s reasoning-effort presets: the jump from medium to xhigh was described as roughly a 10x difference, with users suggesting an intermediate mode would be more practical for latency/cost tradeoffs.One commenter noted that repeated runs on the same model and prompt can produce different outputs unless decoding is made deterministic, e.g. by setting temperature=0. They also pointed out that generation speed looked unusually strong, implying throughput should be reported alongside reasoning-effort comparisons.2. Qwen 3.8 Local Deployment and DistillsAfter pushing 1M+ tokens through Qwen 3.8 27B, here is my optimal llama.cpp config for 16GB VRAM (73k Context, Agentic Coding) (Activity: 914): A user reports running Qwen3.8-27B-UD-Q3_K_XL.gguf on an RTX 5060 Ti 16GB + Intel N100 via llama.cpp with ctx-size = 73728, cache-type-k/v = q4_1, FlashAttention, and native MTP speculative decoding (spec-type = ngram-mod,draft-mtp, spec-draft-n-max = 2). They claim an agentic coding workflow processed 1M+ total tokens across only 3 prompts, using OpenCode to build a NestJS REST API + MCP server for a legacy vBulletin forum, with autonomous execution for ~2 hours, context-shift summarization, tests/linting, and only one minor automated edge-case fix. Key implementation detail: fit = off on the 27B profile was used to avoid llama.cpp auto-fit misplacing layers onto CPU, while reduced batch-size = 1024 / ubatch-size = 512 mitigated VRAM spikes during long-prefill workloads. Commenters focused on the surprising feasibility of 73k context on 16GB VRAM, attributing it mainly to the aggressive Q3_K_XL weight quant plus q4_1 KV cache. One commenter was skeptical of Q3 quality for serious use, preferring q6-quantized/offloaded MoE models despite similar VRAM limits.A commenter highlights that the reported 16GB VRAM fit depends heavily on aggressive quantization: Qwen3.8-27B-UD-Q3_K_XL.gguf plus KV cache quantization using q4_1 for the main context and q5_1 for the MTP draft context. Another 16GB user expressed reluctance to trust q3 model quality, preferring q6 offloaded MoE setups despite the higher memory cost.One technical question focused on why the run used sampling parameters different from the official Qwen3.8-27B Hugging Face recommendations: Thinking mode uses temperature=1.0, top_p=0.95, top_k=20, presence_penalty=0.0, while instruct/non-thinking uses temperature=0.7, top_p=0.80, top_k=20, presence_penalty=1.5. The commenter links the official model card: https://huggingface.co/Qwen/Qwen3.8-27B.An AMD Radeon 6800 user shared a full llama-server config for Qwen3.8-27B-IQ4-MIX.gguf via Vulkan/ROCm, reporting Vulkan max context 86,784 with MTP n=2 at 39.91 tok/s, and ROCm max context 84,480 at 40.58 tok/s. They note major differences between patched and unpatched llama.cpp: Vulkan unpatched max context 78,080, while ROCm unpatched drops to 31,488; their config uses q5_1 KV cache, MTP/ngram speculative decoding, --fit-target 30, --ctx-checkpoints 96, and --cache-ram 6000.Qwen 3.8 distillations (Activity: 764): The image is a screenshot of an X announcement for “Qwen 3.8 distillations”, claiming Empero distilled Qwen3.8-2.4T-A95B into 9B, 4B, and 2B models with reported MMLU CoT gains over base models: 9B 54.6→75.1, 4B 35.4→55.3, and 2B 28.3→54.8. The Reddit OP explicitly says it was “Not tested by me in any way,” so the benchmark claims should be treated as unverified; the screenshot also indicates Hugging Face/GGUF availability, including a preview for empero-ai/Qwen3.8-9B. Commenters were mainly concerned that naming the distilled model exactly like an official Qwen3.8-9B release is misleading and likely to cause namespace/model-identity confusion; one commenter also questioned whether using that name is legally allowed. Another comment suggested the model may still be useful, but possibly “benchmaxxed.”Commenters raised concerns that the distillation is named too similarly to an apparent official Qwen3.8-9B model, creating provenance ambiguity and possible model-card/search-index confusion. One user noted the previewed benchmark image suggests it “does something” but is not “benchmaxxed,” while another criticized the model card for reporting only 2 weak benchmarks, implying insufficient evaluation coverage for judging the distillation’s actual performance.3. Open-Model Scaling and Reasoning EfficiencyBased on an accelerating frontier -> local trajectory, expect a ~30b param ‘Mythos at home’ by as soon as Jan 2027 (rationalisation below) (Activity: 956): The image is a timeline chart supporting the post’s claim that the lag between frontier proprietary LLMs and locally runnable ~27–34B open models is shrinking, with examples such as GPT‑3 → LLaMA‑33B at ~33 months, GPT‑3.5 → Yi‑34B at ~12 months, GPT‑4 → Qwen2.5‑32B at ~18 months, and GPT‑4o/Claude 3.5 → Qwen3‑32B at ~12 months. The chart extends this trend to speculative tiers—Claude/GPT‑5-class → Qwen3.6‑27B, Opus 4.5-class → Qwen3.8‑27B—using benchmark comparisons like SWE-bench, GPQA, MMMU, NL2Repo, and LiveCodeBench, then projects a ~30B “Mythos at home” model around Jan–May 2027. The image is technical/speculative rather than a meme: its significance is as an argument about model efficiency, open-weight catch-up speed, and consumer-hardware feasibility, not as a verified forecast. Commenters pushed back on benchmark-based equivalence, arguing that Arena/GPQA/SWE-style scores may miss qualitative failures, benchmark contamination, or product-level gaps such as multimodality and tool use. Another debate centered on information-theoretic limits: some users questioned whether 1–10T-parameter frontier behavior can really be compressed into 27–35B parameters without major architectural changes, sparsity, or large redundancy in frontier models.Several commenters challenged the post’s benchmark-based equivalences, arguing that aggregate scores can obscure unbalanced or poorly designed benchmark contents and miss failure modes in real use. The core technical objection was that benchmark parity between smaller and frontier models does not necessarily imply equivalent behavior, reasoning robustness, or deployment quality.One technical rebuttal argued that compressing a 1–10T parameter frontier model into a 27B–35B local model would require either major architecture/encoding improvements, exploitable sparsity, or large redundancy in the bigger model. The commenter framed this as an information-theoretic constraint: a model’s weights encode a world model, and even seemingly unrelated training facts can subtly affect token probabilities and reasoning behavior.A detailed model-comparison comment disputed the proposed frontier-to-local timeline: they claimed Qwen2.5 32B is far from GPT-4, with Qwen2.5 72B and Llama 3.3 70B closer to GPT-3.5. They suggested GPT-4-level local/open performance emerged only around Mistral Large 123B and DeepSeek R1, Claude 3.5/3.7/4-level around later Qwen3.x releases, and that even Qwen3.8 is not truly Opus 4.5-level despite benchmark results.Paper claims RL for reasoning only changes 1-3% of tokens, and they replicate the gains without RL at ~1000x less compute (Activity: 710): A paper by Akgül (2026), ReasonMaxxer, claims RL-based reasoning improvements in LLMs mostly come from sparse policy corrections rather than newly learned reasoning: token-level analyses across model families/RL algorithms reportedly find only ~1–3% of token positions change, concentrated at high-entropy “decision points.” It further claims the RL-promoted token is always already within the base model’s top-5 alternatives, and proposes ReasonMaxxer, an RL-free contrastive/entropy-gated method using a few hundred base-model rollouts that allegedly matches or exceeds full RL on math benchmarks at roughly 1000x lower compute. Commenters found the result potentially important but debated the interpretation: one argued this supports the view that LLMs are primarily language models lacking an explicit decision mechanism, while another strongly doubted the paper’s claim that RL-promoted tokens always come from the base model’s top-5, calling it implausible under high-entropy distributions.One commenter focused on the paper’s central claim that RL improvements are sparse: only 1–3% of token positions change, concentrated at high-entropy “decision points,” with promoted tokens allegedly always within the base model’s top-5 alternatives. They argued the “always top-5” assertion is statistically implausible for high-entropy distributions where ranks 6–10 can have near-identical probabilities, implying the paper may be overclaiming or using a constrained measurement setup.Several commenters framed the result as evidence that RL for reasoning may be acting less like broad capability learning and more like a sparse token-level reranker over existing base-model alternatives. One technical interpretation was that LLMs are fundamentally language models rather than decision models, suggesting that explicit decision mechanisms—or even separate latent decision modules such as spiking neural networks—might better target the “branch selection” behavior RL appears to modify.A commenter distinguished RL for reasoning from RL for alignment, arguing that even if reasoning gains can be replicated through supervised or token-level correction, alignment may still require learning policy-like judgments over novel situations. They used the example of self-harm queries to argue that curated data can hard-code known responses, but may fail when users introduce unseen problematic contexts, whereas RL-style training can shape behavior around broader decision boundaries.Less Technical AI Subreddit Recap/r/Singularity, /r/Oobabooga, /r/MachineLearning, /r/OpenAI, /r/ClaudeAI, /r/StableDiffusion, /r/ChatGPT, /r/ChatGPTCoding, /r/aivideo, /r/aivideo1. AI-Accelerated Science and Medicine Claims Read more",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981289",
+      "title": "Reddit’s AI is turning posts into podcasts and short videos",
+      "url": "https://www.theverge.com/tech/981289/reddit-ai-text-video-posts",
+      "author": "Jay Peters",
+      "publishedAt": "2026-08-17T23:46:01.000Z",
+      "content": "Reddit is trying out a new way for people to take in content on Reddit: by turning text posts into audio / video content. As part of an experiment, some posts are being adapted into videos that use AI voices to read the text of the main post and some comments. The video highlights the text as it's read by the AI voice, and under the video, a note says that it's a \"Real conversation voiced by AI.\" An old post in r/boardgames from eight years ago with 101 responses to a request for good road trip games that adults will like is an example of Reddit's AI at work. Instead of the usual text thread, it has the main question above a three-minute vi … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Aug/17/qwen-38-27b-scores-52/",
+      "title": "Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index",
+      "url": "https://simonwillison.net/2026/Aug/17/qwen-38-27b-scores-52/",
+      "author": null,
+      "publishedAt": "2026-08-17T23:58:14.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p37#a260817p37",
+      "title": "Sources: Situational Awareness offered part of its $5B Anthropic stake at a 20% discount as it scrambled for cash; word of its trouble left it \"being hunted\" (Wall Street Journal)",
+      "url": "https://www.techmeme.com/260817/p37#a260817p37",
+      "author": null,
+      "publishedAt": "2026-08-18T00:45:01.000Z",
+      "content": "Wall Street Journal: Sources: Situational Awareness offered part of its $5B Anthropic stake at a 20% discount as it scrambled for cash; word of its trouble left it “being hunted” — From whispers of an Anthropic stake sale to strange options moves, traders sensed trouble and swung into action",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49340013",
+      "title": "Ask HN: Does anyone else feel like nothing matters anymore?",
+      "url": null,
+      "author": "ramesh31",
+      "publishedAt": "2026-08-18T01:28:48.000Z",
+      "content": "New software releases? Who cares. Learning new CS concepts? Whatever. Studying for the next interview? Job probably won't even exist in a year. Working on that side project? No one will care because it's just another addition to the mountain of slop, and the guy bagging your groceries can do it. Everything is done and cooked with AI now.It's exactly like that feeling once you enable cheats in a game; sure you can do anything, but everything is meaningless now. Our entire purpose and joy in life has been taken from us.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 107,
+      "comments": 84
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p38#a260817p38",
+      "title": "A video found in the macOS Tahoe 26.7 release candidate appears to show a man demoing camera-equipped AirPods using Visual Intelligence (Juli Clover/MacRumors)",
+      "url": "https://www.techmeme.com/260817/p38#a260817p38",
+      "author": null,
+      "publishedAt": "2026-08-18T01:55:35.000Z",
+      "content": "Juli Clover / MacRumors: A video found in the macOS Tahoe 26.7 release candidate appears to show a man demoing camera-equipped AirPods using Visual Intelligence — Apple is working on camera-equipped AirPods that appear to be nearly ready to launch, based on a video MacRumors found in the macOS Tahoe 26.7 release candidate.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p39#a260817p39",
+      "title": "Sources: Google has told suppliers it plans to move all Pixel phone, smartwatch, and wireless earbud manufacturing out of China in 2027 amid US-China tensions (Lauly Li/Nikkei Asia)",
+      "url": "https://www.techmeme.com/260817/p39#a260817p39",
+      "author": null,
+      "publishedAt": "2026-08-18T02:50:01.000Z",
+      "content": "Lauly Li / Nikkei Asia: Sources: Google has told suppliers it plans to move all Pixel phone, smartwatch, and wireless earbud manufacturing out of China in 2027 amid US-China tensions — TAIPEI — Google has told suppliers it plans to have all of its Pixel smartphones, watches and wireless earbuds produced outside …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260817/p40#a260817p40",
+      "title": "Discord suspends livestreams in Brazil, after the country's data protection authority ordered it last week, saying Discord failed to protect children and teens (Associated Press)",
+      "url": "https://www.techmeme.com/260817/p40#a260817p40",
+      "author": null,
+      "publishedAt": "2026-08-18T03:20:00.000Z",
+      "content": "Associated Press: Discord suspends livestreams in Brazil, after the country's data protection authority ordered it last week, saying Discord failed to protect children and teens — Discord, the popular platform for gamers to communicate online, said on Monday it suspended its livestreams in Brazil after criticism …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "troy-hunt",
+      "externalId": "6a83d281aead6f000109106d",
+      "title": "Weekly Update 517: Cyber Ransoms",
+      "url": "https://www.troyhunt.com/weekly-update-517/",
+      "author": "Troy Hunt",
+      "publishedAt": "2026-08-18T03:44:58.000Z",
+      "content": "The current ransomware situation is a bit of a kludge (deep breath): a lot of ransomware (which often doesn't even involve \"ware\", it's just extortion) is carried out by kids who successfully make a truckload of money but can't spend it without getting caught and the companies they breach rapidly get piled onto by class action lawyers that keeps them busy fighting and being cautious not to say anyting to customers lest that then gets used against them in litigation. That's mostly it; more in this week's video:",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.15265",
+      "title": "VibeWorlding: Can Multimodal Agents Construct 3D Open Worlds End-to-End?",
+      "url": "https://huggingface.co/papers/2608.15265",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "VibeWorlding: Can Multimodal Agents Construct 3D Open Worlds End-to-End?",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.13900",
+      "title": "Agentic Transaction: Towards ACID-Compliant Agent Systems",
+      "url": "https://huggingface.co/papers/2608.13900",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "Agentic Transaction: Towards ACID-Compliant Agent Systems",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16721",
+      "title": "GenRouter: Unified Workflow Routing for Agentic Image Generation",
+      "url": "https://huggingface.co/papers/2608.16721",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "GenRouter: Unified Workflow Routing for Agentic Image Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16798",
+      "title": "ClawGym II: Exploring Black-Box RL on Agent Harness",
+      "url": "https://huggingface.co/papers/2608.16798",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "ClawGym II: Exploring Black-Box RL on Agent Harness",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.15304",
+      "title": "Understanding Cognition-Induced Risks in Agentic AI Systems",
+      "url": "https://huggingface.co/papers/2608.15304",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "Understanding Cognition-Induced Risks in Agentic AI Systems",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.14783",
+      "title": "MegaParts: Scaling Part-Aware 3D Object Generation to 300 Parts via Token-Efficient Autoregressive Modeling",
+      "url": "https://huggingface.co/papers/2608.14783",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "MegaParts: Scaling Part-Aware 3D Object Generation to 300 Parts via Token-Efficient Autoregressive Modeling",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16033",
+      "title": "R^3-Bench: LLMs Struggle with Resource-Rational Reasoning under Shared Budgets",
+      "url": "https://huggingface.co/papers/2608.16033",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "R^3-Bench: LLMs Struggle with Resource-Rational Reasoning under Shared Budgets",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.15930",
+      "title": "UI-Mate: Advancing Open-Weight Foundation GUI Agents with In-Context Demonstrations",
+      "url": "https://huggingface.co/papers/2608.15930",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "UI-Mate: Advancing Open-Weight Foundation GUI Agents with In-Context Demonstrations",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16887",
+      "title": "An Empirical Study of Training Pixel-Space Text-to-Image Diffusion Models",
+      "url": "https://huggingface.co/papers/2608.16887",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "An Empirical Study of Training Pixel-Space Text-to-Image Diffusion Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.12898",
+      "title": "NaviDC-OCR: Navigating Document Parsing Across Digital and Camera-Captured Documents",
+      "url": "https://huggingface.co/papers/2608.12898",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "NaviDC-OCR: Navigating Document Parsing Across Digital and Camera-Captured Documents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.14718",
+      "title": "VideoGAIA: A Benchmark for General AI Assistants on Agentic Video Understanding",
+      "url": "https://huggingface.co/papers/2608.14718",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "VideoGAIA: A Benchmark for General AI Assistants on Agentic Video Understanding",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.14441",
+      "title": "PACE-Bench: Benchmarking Physics Adaptation via Code Evolution in Dynamic Environments",
+      "url": "https://huggingface.co/papers/2608.14441",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "PACE-Bench: Benchmarking Physics Adaptation via Code Evolution in Dynamic Environments",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16859",
+      "title": "HarnessEval-W: Agentifying the Evaluation of Visual Worlds",
+      "url": "https://huggingface.co/papers/2608.16859",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "HarnessEval-W: Agentifying the Evaluation of Visual Worlds",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.15698",
+      "title": "ConceptFormer: Learning Adaptive Latent Concepts for Query-Document Alignment in Visual Document Retrieval",
+      "url": "https://huggingface.co/papers/2608.15698",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "ConceptFormer: Learning Adaptive Latent Concepts for Query-Document Alignment in Visual Document Retrieval",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16391",
+      "title": "Ventor-QTest: Threat-Model-Driven Verification of Vendor-Hosted LLM APIs",
+      "url": "https://huggingface.co/papers/2608.16391",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "Ventor-QTest: Threat-Model-Driven Verification of Vendor-Hosted LLM APIs",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.10679",
+      "title": "ENTLORE: A Graph-Grounded Benchmark for Latent Organizational Reasoning in Enterprise Question Answering",
+      "url": "https://huggingface.co/papers/2608.10679",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "ENTLORE: A Graph-Grounded Benchmark for Latent Organizational Reasoning in Enterprise Question Answering",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.06947",
+      "title": "When Context Bites: Detecting RAG Poisoning via Document-Level Attention Collapse",
+      "url": "https://huggingface.co/papers/2608.06947",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "When Context Bites: Detecting RAG Poisoning via Document-Level Attention Collapse",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16884",
+      "title": "Improving the matrix multiplication exponent with modern optimization and AlphaEvolve",
+      "url": "https://huggingface.co/papers/2608.16884",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "Improving the matrix multiplication exponent with modern optimization and AlphaEvolve",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.14667",
+      "title": "Position: AI Agents in Scientific Teams Should Be Studied as Human-Agent Systems",
+      "url": "https://huggingface.co/papers/2608.14667",
+      "author": null,
+      "publishedAt": "2026-08-18T03:55:50.056Z",
+      "content": "Position: AI Agents in Scientific Teams Should Be Studied as Human-Agent Systems",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    }
+  ]
+}
