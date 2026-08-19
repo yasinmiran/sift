@@ -1,0 +1,1228 @@
+{
+  "day": "2026-08-19",
+  "generatedAt": "2026-08-19T03:57:18.147Z",
+  "items": [
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.14635v2",
+      "title": "Belayer: Efficient Fault Tolerance for LLM Agentic RL Training",
+      "url": "https://arxiv.org/abs/2608.14635",
+      "author": "Jiecheng Zhou, Qinghao Hu, Peng Sun, Xingcheng Zhang, Weiming Zhang",
+      "publishedAt": "2026-08-18T04:00:00.000Z",
+      "content": "Large language model (LLM) agents are increasingly trained with reinforcement learning in long-horizon, sandboxed environments. Unlike conventional RL, agentic RL couples GPU-intensive rollout engines with stateful environment containers whose actions may produce visible side effects, such as file edits, command execution, and dependency installation. A single trajectory can span many rounds of gen- eration and environment interaction, so a component failure can discard completed work or expose the model to an environment state that is inconsistent with its context. However, existing systems lack efficient and correct recovery mechanisms for this distributed execution model. This paper presents Belayer, an efficient fault-tolerant system for LLM agentic RL training. Belayer handles failures in both rollout engines and environment execution while targeting low failure-free overhead. For scoped worker-local rollout failures, Belayer equips each pre-initialized shadow worker with a selective GPU-state reuse protocol that retains independently owned weights and raw KV-arena allocations after owner and GPU health checks, reinitializes worker-local state, and rebuilds request-specific KV contents from logged token prefixes. For environment failures, Belayer introduces full checkpoint and full restore to jointly capture and restore container file-system and runtime state, and coordinates the recovered environment with the LLM context to preserve prefix consistency. An adaptive policy opportunistically overlaps full-state checkpointing with natural LLM inference bubbles when the predicted interval is long enough. Empirical results show low measured overhead during failure-free training, a worker-recovery-time reduction of up to 42 times faster compared with a full engine cold start, and 1.5 to 3.5 times faster recovery from environment failures.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/asana",
+      "title": "Asana cleared 5 years of engineering work in 2 weeks with Codex",
+      "url": "https://openai.com/index/asana",
+      "author": null,
+      "publishedAt": "2026-08-18T07:00:00.000Z",
+      "content": "Asana used OpenAI Codex to replace an outdated testing system in two weeks, completing work expected to take five years for about $12K.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/pacing-model-development-cyber-capabilities",
+      "title": "Pacing model development in an era of cyber-critical capabilities",
+      "url": "https://openai.com/index/pacing-model-development-cyber-capabilities",
+      "author": null,
+      "publishedAt": "2026-08-18T11:00:00.000Z",
+      "content": "OpenAI is strengthening monitoring, alignment, and security for frontier AI models. See how new safeguards are guiding the pace of model development.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/one-million-dollar-hacker-challenge-for-vercel-sandbox",
+      "title": "$1 million hacker challenge for Vercel Sandbox",
+      "url": "https://vercel.com/blog/one-million-dollar-hacker-challenge-for-vercel-sandbox",
+      "author": "Andy Riancho",
+      "publishedAt": "2026-08-18T13:00:00.000Z",
+      "content": "Agents need to run untrusted code, and the microVM has become the standard way to do it: a dedicated guest kernel per workload, isolated from the host and from every other workload on the same machine. But recent security research and real-world incidents have revealed that agents running untrusted code do not need to cross a VM boundary to escape containment; they only need one network path the security model failed to account for, which we explained in our post .A sandbox without a network boundary is only half a sandboxIsolation only holds if both sides of it hold: the Firecracker microVM and the host-side network controls. Recently our CTO at Vercel Sandbox. It did not escape, but it mapped the guest kernel, built a VM to reproduce its ideas, and wrote a fuzzer.pointed an open-weight model with no safeguardsDefenders have first-mover advantage, but it won't last forever, and the choice is when to test the boundaries (we strongly encourage , which you can do on any budget with an open-source tool like and ). building a scanning programdeepsecAI GatewayWe are proactively choosing to test Vercel Sandbox on our own schedule, not an attacker's, and we are doing it in the open, with the best researchers in the world.So for two weeks, we are paying up to $1,000,000 USD to the researchers who can escape a Vercel Sandbox.Starting , Vercel is running a two-week public HackerOne program focused on Vercel Sandbox isolation.todayBounties are paid per report, scoped to a single root cause, and assigned by Vercel triage based on the maximum demonstrable impact. The full bounty table, detailed scope, and the list of known-duplicate classes are on the .HackerOne program page runs on bare-metal EC2 hosts. Each sandbox gets its own Firecracker microVM with a dedicated guest kernel, and inside that microVM a Linux container runs the operator's code. The microVM, not the container, is the security boundary, so operator-supplied code runs two layers removed from the host. We assume that code is fully hostile: root inside the container, full kernel access inside the microVM, and motivated to reach the host or another tenant.Vercel SandboxThe network side of the boundary is enforced on the host, outside the microVM, where code inside the sandbox cannot modify or disable it. The sandbox firewall intercepts outbound TCP and DNS, checks each connection against the operator's domain and CIDR policies, and can inject credentials at the boundary so they never enter the microVM. In short: anything that breaks the sandbox boundary.Container namespace escapes that only reach the Firecracker guest OS are not in scope. Namespaces are a developer-experience feature, not the security boundary.The full bounty table, with example vulnerability classes for each tier, is on the .HackerOne program pageThe program is open now and closes on , or earlier if the $1,000,000 USD reward pool is exhausted. Reports go through the .Tuesday, September 1, 2026HackerOne program pageTo reproduce a finding, boot a sandbox with the SDK and demonstrate the impact with a live proof of concept. The default sandbox OS is enough for most reports; bring a custom image from the Vercel Container Registry only if your PoC needs extra tooling. We will not reward static-analysis-only findings; to issue a payout, we need to see the boundary break.@vercel/sandboxFull rules, eligibility, the complete scope and bounty table, and the submission process are on the HackerOne program page.We will triage reports from the day the program opens through one month after it closes. As findings are confirmed, we will pay bounties, ship fixes, and credit every researcher whose report holds up. The techniques discovered during this program will become permanent additions to the sandbox boundary, protecting every workload on Vercel long after the challenge ends. After the program closes, we will publish a follow-up writeup of the techniques and the fixes we shipped.Thanks to HackerOne for standing up the program, and to the researchers who will spend the next two weeks trying to break what we built.Read moreThe challengeHow Vercel Sandbox is builtWhat we're looking forBountiesHow to participateResults and payouts , open to all eligible researchersProgram:Public HackerOne program Tuesday, August 18 to Tuesday, September 1, 2026, or earlier if the reward pool is exhaustedWindow: $50,000 USD, for a vulnerability that lets a threat actor read or modify another Vercel tenant's dataMax per report:: Up to $1,000,000 USD in total payoutsTotal pool Escaping the Firecracker microVM to the EC2 host, or reaching another tenant's sandbox through the compute layer (reading, modifying, or executing code in it), or crashing another tenant's sandbox from within another sandboxCompute boundary: Defeating the sandbox firewall without crossing the microVM: reaching destinations the operator did not authorize, exfiltrating data, or retrieving brokered credentialsNetwork boundary:SeverityBountyCritical$25,000 – $50,000High$10,000 – $25,000Medium$5,000 – $10,000Low$1,000 – $5,000",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49345476",
+      "title": "Python Polars Cheatsheet (based on our O'Reilly book)",
+      "url": "https://opensource.posit.co/resources/cheatsheets/polars/",
+      "author": "jeroenjanssens",
+      "publishedAt": "2026-08-18T13:38:23.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 166,
+      "comments": 34
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49345843",
+      "title": "Babies born under sugar rationing grew into adults with lower cancer risk",
+      "url": "https://theconversation.com/babies-born-under-sugar-rationing-grew-into-adults-with-lower-cancer-risk-289873",
+      "author": "zeristor",
+      "publishedAt": "2026-08-18T14:06:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 269,
+      "comments": 56
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/cars/2026/08/ford-hopes-this-hypercar-will-be-its-next-le-mans-winner/",
+      "title": "Ford hopes this Hypercar will be its next Le Mans winner",
+      "url": "https://arstechnica.com/cars/2026/08/ford-hopes-this-hypercar-will-be-its-next-le-mans-winner/",
+      "author": "\n                    Jonathan M. Gitlin\n                ",
+      "publishedAt": "2026-08-18T15:52:50.000Z",
+      "content": "The car that Ford hopes will return it to overall victory at the 24 Hours of Le Mans made its unofficial debut this week. Ford sent us some pictures of the still-unnamed car conducting its first track test at the colorful Paul Ricard circuit in Provence, France, where drivers Matt Campbell and Logan Sargeant started the hard work of making the car both fast and reliable. Ford already has four overall wins at Le Mans, owning the top spot four years in a row. But the last of these wins came in 1969, when a privately entered—and at that point outdated—GT40 managed to beat Porsche's still-untamed 917 on the German car's debut. The company returned to top-level endurance racing in 1982 with the C100 during the early days of the Group C regulations, but the car was uncompetitive and unreliable, and the program soon ended. In 2016, 50 years on from its first win, a class win in the GTE-Pro category added some more silverware to the corporate display cabinet. Now, the soaring popularity of the Hypercar category in the World Endurance Championship and at Le Mans has tempted it back to the fastest class.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nextjs-blog",
+      "externalId": "/blog/building-app-like-experiences-with-nextjs-16-3",
+      "title": "Building App-like Experiences with Next.js 16.3",
+      "url": "https://nextjs.org/blog/building-app-like-experiences-with-nextjs-16-3",
+      "author": {
+        "name": [
+          "Aurora Scharff"
+        ]
+      },
+      "publishedAt": "2026-08-18T16:00:00.000Z",
+      "content": "Build app-like experiences with Instant Navigations, server-rendered data, optimistic updates, and live client state in Next.js 16.3.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/08/fairphone-brings-the-repairable-fairphone-gen-6-to-the-us/",
+      "title": "Fairphone's latest repairable phone is finally available in the US for $650",
+      "url": "https://arstechnica.com/gadgets/2026/08/fairphone-brings-the-repairable-fairphone-gen-6-to-the-us/",
+      "author": "\n                    Ryan Whitwam\n                ",
+      "publishedAt": "2026-08-18T16:05:00.000Z",
+      "content": "As smartphone designs have become more refined, they've also become less repairable. Fairphone bucks that trend, offering devices that can be fully disassembled and serviced using a single screwdriver. But its devices were a pain to get in the US until now. The Dutch company has launched the Fairphone Gen 6+ in the US, offering not only the phone but a full line of accessories and replacement parts so you can keep your phone running for years. And yes, the battery is removable. Don't expect the Fairphone Gen 6+ to blow you away in the spec department—it focuses on being repairable and paying workers a fair wage. Half of the phone is made from recycled materials, and it has a microSD card slot. How retro.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "pragmatic-engineer",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/the-great-engineering-leader-career-break",
+      "title": "Headed for the Exit: the Great Engineering Leader Career Break",
+      "url": "https://newsletter.pragmaticengineer.com/p/the-great-engineering-leader-career-break",
+      "author": "Gergely Orosz",
+      "publishedAt": "2026-08-18T16:21:06.000Z",
+      "content": "In my ~20 years in this industry, I’ve not seen as many capable engineering leaders opting out or taking prolonged breaks as now, with some high-ranking engineering leaders – CTOs, VPs of Engineering, heads of engineering, etc. – quitting their high-status roles and departing, if not into the sunset, then at least with nothing lined up.To find out what might be behind this spate of sign-outs, I talked with almost 20 engineering leaders currently on a career break – or seriously considering one – and they let me into their personal reasons for deciding to jam the brakes on their careers. Thanks to everyone who shared their input!Today, we cover:Ten of the most common reasons for quitting, sometimes without the next gig lined up:1. The job got (much) worse2. The startup is “losing” and becoming worthless3. Not being AI-native enough for other skills to be relevant4. Their predecessor saw the “writing on the wall”5. Long hours – rarely decisive6. Smaller teams mean less need for leaders7. Fractional CTO work preferred over fulltime positions8. AI startups pay ICs more than non-AI startups pay executives9. Quitting to launch their own business10. Burnout“Founder mode” looks here to stay, so how to deal with it? And has it made the CTO and VPE roles become “low ROI”?‘Work at companies that truly want to drive change’. A personal account from someone who took the VP of Engineering role at Gitpod (later, Ona, now acquired by OpenAI) and enjoyed a rewarding experience. Matt Boyle says he interviewed the employer beforehand on whether their business truly leans into the changes brought by AI.“Just me?” I was recently messaged by a head of engineering in San Francisco, who said:“I’m talking to four startups in San Francisco about the head of engineering roles. Pretty normal.But one interesting pattern is how founding CTOs/heads of engineering are stepping away to take a full career break. We’re talking about two of these four startups. And these are good startups!Have you seen this trend? I have a small number of data points here, so you might have a broader view.”I asked around privately, and it turns out a majority of the CTO-level folks I spoke to are considering the very same thing, or are actually in the process of leaving the office for a long spell away; 6/10 engineering leaders said they’re on the way out.1. The job got (much) worseUnrealistic expectations, including about AI, by founders and CEOs are the leading cause of jobs turning bad for CTOs and VPEs right now in 2026:CTO expected to magically transform the company to be “AI-native”CTO must make significant engineering cost cuts of up to 20-50%, including morale-sapping job cuts“Do more with less” equals shipping more with fewer people (e.g., no backfills)CTO faces pressure on business results as AI coding bills rack upFounder slop: they want wonky AI prototypes shipped as full-blown products within weeksHands-on founders with “AI psychosis” make the job predictably harder, according to one CTO who just signed out of his job:“Managing ‘AI psychosis’ with founders and executive peers has become very difficult. For example, what do you do when a founder ships a 60,000-line pull request into the product, gleaming with joy at how much more productive they’ve become with AI? They won’t see all the issues with that PR, and how do you bring up that they’ve created a massive amount of tech debt? Especially without looking like a ‘Debbie Downer’.”Founder slop issues begin when top leaders get excited about AI’s capability, then get hands-on and start issuing PRs, and shipping code to production. It can cause issues across the board:Accountability. Who’s oncall when founder-shipped code breaks? In the “you build it, you own it” culture of startups, it’s confusing when a founder gets hands-on while not owning their work.Quality out the door: if a founder’s half-baked features are accepted, it sends the wider message that quality does not matter. Some people may adopt this attitude to their own work.A founder can overrule whatever was previously agreed with the CTO or VPE about what to build next. Vibes the founder has or feels are reason enough.Another way that leadership roles have diminished is that craft and quality are less important, says a VP of engineering who’s in the process of signing out of their job:“Shipping software became all about speed. Finding differentiation with your product in the market is brutal, and speed / go-to-market becomes the biggest differentiator. Craft, quality, and care going into the product are taking a backseat.”Things also go bad when companies don’t ‘get’ AI+engineering, except as a way to cut jobs. CTOs I talked to mentioned the likes of Ramp, Stripe, and Notion as places that understand how to integrate AI into the engineering culture with a growth mindset without forsaking quality. Elsewhere, bad vibes dominate at places where going all-in on AI leads to the cynical conclusion that product management, design, and engineering leadership are irrelevant.2. The startup is “losing” and becoming worthlessDirector+ roles have a few differences from individual-contributor engineering ones:Larger equity stake in the business. Base salary at these levels is often similar to a staff engineer’s, but usually with more generous equity grants – especially at the VP of Engineering and CTO levels. A good financial outcome depends on the company becoming more valuable, and – in the case of private companies – having a good exit by being acquired or selling shares.Understanding of the business and competition is a baseline. At Director+ level, a big part of the job is making strategic decisions that grow the business and help the company get ahead. It’s a nice-to-have for an engineer to possess business acumen, but director-and-above folks use it much more than most individual contributors (ICs). Great engineering leaders are good at understanding business performance and outlook.A company that adopts AI rapidly usually falls into one of three buckets:“AI-native”, building & selling AI products. The large AI labs and a select few “AI-native” startups are thriving, but many AI startups with VC funding struggle. Engineering leaders know this, and that their equity – usually issued as options – could end up worthless.Software startups threatened by AI-native businesses. Good businesses in the pre-AI world can be threatened by AI today, like SaaS startups selling seat-based products in areas where agents are taking over the functionality. They have to pivot their businesses or seek an exit. Bending Spoons buying Airtable for less than the company raised is an example of a business threatened by AI and choosing to sell, instead of pivoting the whole business.Unaffected by AI. Usually stable businesses which do more than software, such as with a real-world side to the operation like manufacturing or distribution.The majority of software startups fall into one of the first two buckets of being AI-native or under threat. Senior leaders at such companies are in a good position to evaluate whether their company is a “winner” worth staying with.Leaving due to equity becoming worthlessA CTO who quit their startup told me:“My company would have needed a massive exit for me to realize any upside. I had an equity grant that was 2% of the common shares. However, this equity was behind an already steep preference stack for investors, post Series A.”This CTO had a very generous equity grant at 2% of shares, so what made him leave it behind? They laid out how it will be difficult to get any benefit from them because the shares are most likely rendered worthless by rules about the order in which different investors get their share of the pie:Assume that this company raised a $10M seed round at a $50M valuation, then a $100M Series A at a $500M valuation. So, a total of $110M was raised across two rounds.Investors typically have a 1x preference. 1x preference would mean that upon any sale, they get the first $110M of the sale.But in this company, the Series A investors negotiated a 2x preference: so upon a sale, $210M goes to investors first ($10M to the Seed, and $200M to the Series A investors).The company now needs to sell for at least $210M for common shareholders (like the CTO) to make any money!If the CTO does not believe a $200M+ exit could happen, then their equity is worthless. A $200M+ exit is typically an acquisition, because a stock market flotation rarely happens at below a $10B+ valuation, these days.If a VC-funded company does not have the revenue or customers to grow at a fast tick (circa 20-50% per year), then it’s often a struggle to raise the next round of funding, and the business’s actual value usually shrinks to 3-5x of annual revenue. So, if a startup is making $10M per year after raising $110M in funding, and growing 30% year-on-year, then the company is likely worth around $30-50M. Perhaps the right buyer would pay $100M, but if growth slows, the value is likely to drop.An experienced CTO who takes a step back and assesses things can realize when there’s a high chance of their equity turning into smoke, removing a reason to not sign out of the job. It’s what happened to the CTO above, and when they couldn’t turn the business around, they quit.Business stops growingWhen a VC-funded startup’s business stops growing, the prognosis can be dire in the sense that it’s unlikely to be worth as much as in the previous funding round. This is true even when the startup becomes profitable: this might mean it could theoretically go on forever; but with slow or no growth, it won’t win in another VC funding round.Here’s a VP of Engineering who saw their startup stop growing, partly due to wrong bets by the CEO:“My founder/CEO was nontechnical, and was both moving too slow and too fast with AI.Too slow, as in they did not take the time to understand what our customers wanted. We built a TON of AI stuff, it totally confused them, they churned, growth stalled, word-of-mouth growth was gone. Heck, I don’t think our customers ever wanted or needed anything with AI!Too fast, as in they deprioritized core systems’ reliability in favor of shipping AI work to prod which did not have any commercial potential. So, our core offering started to have more outages and we lost customers because of this as well.”I’d add that deprioritizing reliability in favor of building features may be sensible in the early days. The problem seemed to be that this company had not found product-market fit, and the new AI features didn’t resonate with customers. Basically, the CEO lacked customer understanding, business intuition, or both.So, good on the VPE for getting out when they saw the direction of travel. If the CEO won’t accept input from the VPE – who would’ve at least prioritized reliable operation – then there isn’t much left to stick around for!3. Not being AI-native enough for other skills to be relevantThe top-paying engineering leadership positions have one thing in common: experience of leading AI-native organisations is expected, and leaders are sought who have turned their current company AI-native, or work at such a place.It’s new to see people signing out of large companies for feeling like they’re lagging behind in adopting new AI workflows. An ex-engineering director at a large bank told me they quit their job to accelerate their career:“I was not getting the opportunity to ‘close the loop’ on hypotheses enough. [...] To stay relevant in the industry, I feel like I need to pull out into the “fast lane.”Like many others, I see the future of software development is with AI. If you don’t get hands-on with your team, working with AI tools day-in, day-out, you’re falling behind.My plan is to get on the cutting edge of things through a mix of academia and consulting AI companies. I am not saying the plan is perfect, but I need more time to do things differently than I had in my job.”Consider this: if you stay in your job for two more years, do you expect to find career opportunities at cutting-edge companies in the future? If the answer is “no”, then there’s a risk in just staying put. Joining an uncertain startup or taking a career break to develop AI expertise is also risky, but the outcomes may be more controllable than letting your skillset become outdated, relatively quickly.But it might actually be necessary to quit in order to get AI experience: you might be able to get this by transferring to an IC role. As Charity Majors, co-founder and CTO of Honeycomb, said in last week’s episode of The Pragmatic Engineer podcast:“You’ve got to get AI on your resume. You just have to. If you don’t, this is a huge career risk. If you’re working somewhere where you’re not getting these skills, I would do whatever I could to change that [including taking an IC role within the company].”There are companies where moving from Director+ to individual contributor is possible, even if these companies are the minority. If you happen to work at a place like this: consider if you can and will take advantage of this opportunity.Most companies say they want to be AI-native, but never doClaire Vo – founder of ChatPRD and host of ‘How I AI’ podcast, and the former Chief Product & Technology Officer at LaunchDarkly – says most companies will never become “AI native” simply because most VP of Engineering or CTO folks don’t have what it takes to pull off such a transformation. In her words:“The VPE role used to be primarily about deploying the dark arts to defend engineers from the roadmap, and now everyone thinks that’s BS and leaders are under tremendous pressure to inflect velocity or GTFO (get the f*** out).Engineers are unhappy (don’t make me tokenmaxx, bro!), product and design sending slop PRs, and everyone good has left for a lab.Most of these companies’ EPD (Engineering, Product, Design) orgs will never go AI-native, not even close. Most VPEs aren’t good enough at change management to pull it off.”It looks like there’s a deadlock:The current engineering org is frustrated by how AI is making engineering culture worse, morale is down, and people are frustrated and confusedTo resolve this, drastic changes are needed to how everyone (engineers, product, designers) worksTo pull it off, a VP of Engineering or CTO is needed who’s capable of this; someone excellent at change management, who’s ideally done it before.But most VPEs and CTOs are not experts at large-scale change management, nor have done it before.According to this, many VPEs and CTOs are doomed to fail at making the change they want, and it’s hard to know if that’s because organizations didn’t support them properly or resisted change.4. Their predecessor saw the “writing on the wall”There’s (usually) a honeymoon period in a new job, when we believe in the business we’ve joined and in its direction. But when this phase passes, a fraction or all of the problems described above may emerge, and there’s a decent chance that some of them are why your predecessor signed out:Has AI helped make the role worse?Is the equity on course to be worthless?Is getting AI-native experience actually possible, or is the organization resisting change?I’ve talked with a CTO who replaced their predecessor and founding CTO. A few years into the job, the predecessor CTO realized their equity in the business was worth almost nothing due to stalled growth, all while they were also being out-competed by AI-native rivals. So, the new CTO also resigned after a short, six-month tenure.5. Long hours – rarely decisiveTwo engineering leaders – a CTO and a VP of Engineering – mentioned “insane working hours” as a factor that contributed to them finally quitting. But there were other things as well:The business struggling for growthTheir equity grant’s value shrinking to nothing before their eyesCEO/founder ignoring or overriding efforts to help the business succeedMy sense is that at a thriving business during chaotic times like these, it’s unlikely that long hours alone would spur people to leave, if their contribution to current success counts and is valued. When things are going well, it’s possible to delegate more and take time to recharge batteries. But when things are going badly, it feels like every waking hour needs to be spent on working to turn things around.6. Smaller teams mean less need for leadersSeveral engineering leaders are stepping back into IC roles for more stability because engineering teams are smaller now.Karthik Hariharan, engineering leader at DoorDash, notes:“Expectations have been shifting a lot in these roles, and a lot of folks qualified for them have consciously been stepping back into IC roles or joining bigger companies for stability and better compensation.Engineering teams are also smaller now. A VPE isn’t needed until the team is large enough to require it. A technical founder can run the team for a lot longer these days.”Some reasons why engineering teams have shrunk:“Fullstack engineer” is mainstream, and was even before AI. Fullstack engineering was becoming relevant a few years ago in terms of a single engineer working on both the front and backends, instead of having a frontend engineer building the UI, and a backend engineer working on backend services. Fullstack frameworks like Next.js or Ruby on Rails made all this pretty easy before AI. Today with AI coding agents, you can rely on them to write decent code on platforms you’re unfamiliar with. There’s now little to no reason why a project would need multiple devs with different specializations.It’s normal for one, or a maximum of two fullstack engineers, to be working on any given project at Anthropic as well. Head of Claude Platform, Katelyn Lesse, shared how it works at Anthropic:“On an individual project, you often cannot have more than two people working on it.This is because each engineer is already running several agents. And so as an engineer, you’re already fighting against your agents, which are stepping on each other’s toes on implementation. And in this setup, you just cannot have that many humans, who also come with all their agents!”Frontend-only and native mobile teams are also getting smaller or disappearing. Even at companies where iOS and Android are a big part of the business, more places are building using cross-platform technologies where one engineer can do the work that used to need several. For example, social media app Bluesky had a single engineer build its web, iOS, and Android apps for launch by using React Native and Expo. Bluesky later hired more people to work on the web and apps, but they all work across these three platforms. It’s not the same as hiring separate web engineers, iOS engineers, and Android engineers.We cover this in more detail in the deepdives Cross-platform mobile development and Is there a drop in native iOS and Android hiring at startups? We also observed a steep drop in frontend engineers and native mobile engineers in our latest state of the tech jobs market report:Demand for frontend engineers and native iOS+Android engineers keeps dropping with the trend of smaller engineering teams. Source: The tech jobs market in 2026Tech companies have been flattening their org structures for three years now. We first covered the trend for fewer middle managers back in 2023, when Meta drastically reduced manager positions. The trend has not stopped, and many – if not most – companies have increased the number of reports each engineering manager has, while reducing the number of layers in their organization.7. Fractional CTO work preferred over fulltime positions Read more",
+      "topics": [
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49348055",
+      "title": "Apple announces changes for apps in the European Union",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-announces-changes-for-apps-in-the-european-union/",
+      "author": "newusertoday",
+      "publishedAt": "2026-08-18T16:21:34.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 127,
+      "comments": 190
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49348079",
+      "title": "Mojo is now open source!",
+      "url": "https://www.modular.com/blog/mojo-open-source",
+      "author": "visheshdembla",
+      "publishedAt": "2026-08-18T16:23:24.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 132,
+      "comments": 31
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981398",
+      "title": "Tesla is finally launching the Cybercab — let’s hope it’s ready",
+      "url": "https://www.theverge.com/transportation/981398/tesla-cybercab-launch-robotaxi-fsd-safe-ready",
+      "author": "Andrew J. Hawkins",
+      "publishedAt": "2026-08-18T16:26:29.000Z",
+      "content": "Tesla Cybercabs are lined up on a lot at Tesla Giga Texas in Austin, Wednesday, April 8, 2026. | Image: Jay Janner/The Austin American-Statesman via Getty Images The Tesla Cybercab, that golden two-seater central to Elon Musk's robo-supremacist ambitions, is finally nearing it's public launch. Whether or not the no-steering wheel and no-pedal vehicle is actually ready for public roads, let alone customers, remains very much in doubt. According to The Information, Tesla is planning a public launch of the Cybercab in Austin, Texas, as soon as this month. The driverless vehicle has been popping up around the country, although often with a steering wheel and pedals, as employees are continuing to gather data. Tesla employees have been testing the fully driverless version on private roads around the com … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49348163",
+      "title": "Degraded performance for multiple models",
+      "url": "https://status.claude.com/incidents/q7txxvbsftgq",
+      "author": "matt89",
+      "publishedAt": "2026-08-18T16:28:20.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 146,
+      "comments": 129
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/08/the-united-states-is-about-to-wake-up-to-the-threat-from-chinas-space-program/",
+      "title": "The United States is about to wake up to the threat from China's space program",
+      "url": "https://arstechnica.com/space/2026/08/the-united-states-is-about-to-wake-up-to-the-threat-from-chinas-space-program/",
+      "author": "\n                    Eric Berger\n                ",
+      "publishedAt": "2026-08-18T16:30:07.000Z",
+      "content": "There are generally two schools of thought in the Western space community when it comes to the prospect of China landing humans on the Moon in the next few years and very possibly beating NASA and the United States in its efforts to return astronauts there. Many people will ask what the big deal is. After all, NASA won the space race to the Moon nearly six decades ago, when Apollo 11 landed there. That it took so long for anyone else to follow speaks to the magnitude of the US achievement, they might say. But others have a starkly different opinion. A dominant storyline of the 21st century has been the economic and geopolitical rise of China, and what was once a unipolar world now has two large nations vying for supremacy across a number of fronts. One is space. If China can land humans on the Moon before the United States returns, it will represent a huge geopolitical win. From a propaganda standpoint, it will allow China to declare that it has not just caught up to the United States but surpassed it as this century's superpower.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/08/peacock-raises-prices-by-18-percent-after-becoming-profitable/",
+      "title": "Peacock raises prices by 18 percent after becoming profitable",
+      "url": "https://arstechnica.com/gadgets/2026/08/peacock-raises-prices-by-18-percent-after-becoming-profitable/",
+      "author": "\n                    Scharon Harding\n                ",
+      "publishedAt": "2026-08-18T16:42:30.000Z",
+      "content": "For the fourth time in four years, Peacock has raised its prices. The Select plan, which has ads and doesn’t include sports, movies, or Peacock originals, went from $8/month to $9/month. The monthly fee for the standard ad plan (Premium) went from $11/month to $13/month, and the ad-free plan (Premium Plus) went from $17/month to $20/month. Annual pricing, as previously, offers 12 months for the price of 10 months. Peacock’s previous price hike was in July 2025, when the middle tier (with ads) went from $8/month to $11/month, and the ad-free plan increased from $14 to $17. Peacock also raised prices in July 2024 and August 2023. NBCUniversal launched the service in 2020.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=120973",
+      "title": "Run Massive-Scale UMAP in Minutes Using Multiple GPUs—Without Losing Accuracy",
+      "url": "https://developer.nvidia.com/blog/run-massive-scale-umap-in-minutes-using-multiple-gpus-without-losing-accuracy/",
+      "author": "Tanya Lenz",
+      "publishedAt": "2026-08-18T16:48:08.000Z",
+      "content": "Uniform Manifold Approximation and Projection (UMAP) is a dimensionality reduction technique widely used for visualization and feature extraction. Applications...Uniform Manifold Approximation and Projection (UMAP) is a dimensionality reduction technique widely used for visualization and feature extraction. Applications range across exploratory data analysis, topic modeling, and single-cell analysis. Many of these workflows are iterative and exploratory, requiring UMAP to be run repeatedly as users analyze their data or tune parameters. As datasets grow… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981504",
+      "title": "Apple squashes EU beef with new App Store rules",
+      "url": "https://www.theverge.com/tech/981504/apple-app-store-eu-rules-core-technology-commission",
+      "author": "Emma Roth",
+      "publishedAt": "2026-08-18T16:48:26.000Z",
+      "content": "Apple is once again overhauling App Store rules in the European Union, which the company says will resolve its \"disagreements with the Commission over business terms and alternative distribution.\" As part of the changes, every developer that distributes apps will be moved to a single set of business terms, and digital transactions for apps distributed outside of the App Store will be subject to a Core Technology Commission fee of 5 percent. The new terms go into effect on October 1st. They will include a 26 percent commission for App Store apps that use Apple's in-app purchase system, or a 20 percent fee for developers using alternate payme … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-for-platforms-can-now-deploy-from-your-users-github-repositories",
+      "title": "Vercel for Platforms can now deploy from your users' GitHub repositories",
+      "url": "https://vercel.com/changelog/vercel-for-platforms-can-now-deploy-from-your-users-github-repositories",
+      "author": "Cody Wong",
+      "publishedAt": "2026-08-18T17:00:00.000Z",
+      "content": "Teams building on can now create deployments directly from their users' GitHub repositories, without requiring them to install the Vercel GitHub App. When , pass a alongside . Vercel uses the token to retrieve the source and build the deployment.Vercel for Platformscreating a deploymentgitAccessTokengitSourceTokens should be read-only, scoped to the requested repository, and valid for 24 hours or less. Vercel temporarily stores the token in encrypted form so source retrieval can complete. The token is never stored on the deployment.Learn more about .using a GitHub access tokenRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49348751",
+      "title": "Claude Code May–August 2026 weekly limits promotion",
+      "url": "https://support.claude.com/en/articles/15910845-claude-code-may-august-2026-weekly-limits-promotion",
+      "author": "tyre",
+      "publishedAt": "2026-08-18T17:02:15.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 264,
+      "comments": 240
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49348912",
+      "title": "And then the men with guns tell you to do it anyway",
+      "url": "https://shkspr.mobi/blog/2026/08/and-then-the-men-with-guns-tell-you-to-do-it-anyway/",
+      "author": "_djo_",
+      "publishedAt": "2026-08-18T17:11:28.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 204,
+      "comments": 116
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981562",
+      "title": "PlayStation&#8217;s wireless gaming speakers launch in November",
+      "url": "https://www.theverge.com/tech/981562/sony-playstation-pulse-elevate-wireless-gaming-speakers-launch-date-preorder",
+      "author": "Jay Peters",
+      "publishedAt": "2026-08-18T17:18:57.000Z",
+      "content": "Sony's Pulse Elevate wireless gaming speakers are launching on November 12th and will cost $219.99, the company announced on Tuesday. Announced nearly a year ago, the speakers are compatible with a PS5, PlayStation Portal, PC, and Mac, and they include \"studio-inspired planar magnetic drivers\" that offer \"lifelike sound across the entire audible spectrum,\" Sony says. They also include a built-in mic for voice chat, Sony's PlayStation Link low-latency tech, and charging docks for topping up the batteries. The Pulse Elevate speakers come in two colors, black and white, and preorders begin on September 1st at 10AM ET in the US or 10AM local t … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49349147",
+      "title": "Field measurements of neighborhood-scale air temperature impacts of data centers",
+      "url": "https://asmedigitalcollection.asme.org/sustainablebuildings/article/7/2/024501/1233035/Data-Center-Waste-Heat-as-an-Emerging-Urban",
+      "author": "cwwc",
+      "publishedAt": "2026-08-18T17:24:53.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 290,
+      "comments": 427
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981525",
+      "title": "Samsung’s Galaxy Buds 3 Pro are almost half off today",
+      "url": "https://www.theverge.com/gadgets/981525/galaxy-buds-3-pro-dji-pocket-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-08-18T17:47:04.000Z",
+      "content": "The Samsung Galaxy Buds 3 Pro. If you’re looking for a feature-packed pair of earbuds that won’t break your wallet, Best Buy has the Samsung Galaxy Buds 3 Pro on sale for $139.99. That’s $40 lower than the current Amazon price, and a big discount from their original retail price of $249.99. These well-equipped earbuds feature excellent sound quality, crisp transparency mode, and a clear microphone for taking calls on the go. Samsung Galaxy Buds 3 Pro The Galaxy Buds 3 Pro are Samsung’s best-sounding wireless earbuds yet. They have a stemmed design similar to the AirPods Pro, but even if their design is a little bland, the Buds 3 Pro make up for it with great call quality, useful voice commands, and more. Where to Buy: $249.99 at Amazon $249.99 $169.88 at Walmart $249.99 $149.99 at Best Buy When we reviewed the Buds 3 Pro, Chris Welch was particularly impressed by the audio quality, which he described as “full and detailed” with strong bass and treble. One standout feature are voice commands, which let you quickly adjust the volume or control media playback by simply speaking the command, no wake phrase required. They have excellent battery life for the category, and IP57 water and dust resistance. Read our Samsung Galaxy Buds 3 Pro review. window.HYPE_DESK_CONFIG = { productImageUrl: \"https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/04_foldable_phone_16x9.png\", productImageAlt: \"Samsung Galaxy Z Fold7 Unlocked\", productTitle: \"Samsung Galaxy Z Fold7 Unlocked\", shortDescription: \"Two screens, one device, one price that makes it worth it.\", longDescription: \"The Z Fold7 is Samsung's most ambitious phone and the refurbished market is where it becomes genuinely attainable. Unfold it to an 8-inch Dynamic AMOLED display for real multitasking, fold it back down and it fits in your pocket like a normal phone. The Snapdragon 8 Elite chip and 200MP main camera with 30x Space Zoom make this one of the most capable devices available at any price. Unlocked for any carrier, professionally refurbished, and backed by a one-year warranty and 30-day return policy through Back Market.\", purchaseUrl: \"https://www.awin1.com/cread.php?awinmid=18275&awinaffid=173843&campaign=VergeHypeDesk&clickref=AugustArticle3&platform=dl&ued=https%3A%2F%2Fwww.backmarket.com%2Fen-us%2Fp%2Fsamsung-galaxy-z-fold7-256-gb-blue-unlocked%2F5cad4a8c-1036-4537-b6ae-194f4de45135%3Fl%3D12\", purchaseLinkText: \"Buy at Back Market\" }; Other deals to consider The DJI Osmo Pocket 3 is discounted to $399 at Amazon, $100 off its usual price. This compact vlogging camera is mounted to a handheld gimbal, helping ensure steady shots and crisp video even while walking or moving around. It’s capable of shooting 4K video at 120 frames per second, and is surprisingly sharp for a small and budget-friendly camera. Read our hands-on. Amazon is selling four packs of Philips Hue smart plugs for $77.48 total, where each unit would normally cost $37.99. These compact plugs add connectivity to almost anything you’d normally plug into a wall, with support for a direct Bluetooth connection, or smart home integration if you also have a Philips Hue Bridge. You can grab the SteelSeries Arctis Nova Pro Wireless from Woot for $239.99 (usually $379.99) and save an additional $5 once per Woot account by using the code WOOTGAMING at checkout. This premium gaming headset features multi-system connectivity through the USB hub, active noise canceling, and swappable batteries for nearly endless gaming. Read our review.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=121287",
+      "title": "How AI Coding Agents Can Unlock Materials Simulation with NVIDIA ALCHEMI Toolkit",
+      "url": "https://developer.nvidia.com/blog/how-ai-coding-agents-can-unlock-materials-simulation-with-nvidia-alchemi-toolkit/",
+      "author": "Elizabeth Goodman",
+      "publishedAt": "2026-08-18T18:00:00.000Z",
+      "content": "Atomistic simulation requires three things: knowledge of the science, compute-efficient implementation of simulations, and accessible interfaces to the...Atomistic simulation requires three things: knowledge of the science, compute-efficient implementation of simulations, and accessible interfaces to the simulation stack. The first remains the researcher’s domain, as no tool substitutes for knowing what to simulate or recognizing a physically meaningful result. NVIDIA ALCHEMI Toolkit, introduced earlier this year, has dramatically reduced the… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49349898",
+      "title": "Turbovec – Google's TurboQuant for vector search in Rust",
+      "url": "https://github.com/RyanCodrai/turbovec",
+      "author": "fittingopposite",
+      "publishedAt": "2026-08-18T18:07:21.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 213,
+      "comments": 30
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
+      "title": "How Much Memory Does Your Agent Actually Need?",
+      "url": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
+      "author": null,
+      "publishedAt": "2026-08-18T18:09:38.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/08/disney-sues-fcc-and-its-chair-escalating-fight-against-trumps-chief-censor/",
+      "title": "Disney sues FCC and its chair, escalating fight against Trump's chief censor",
+      "url": "https://arstechnica.com/tech-policy/2026/08/disney-sues-fcc-and-its-chair-escalating-fight-against-trumps-chief-censor/",
+      "author": "\n                    Jon Brodkin\n                ",
+      "publishedAt": "2026-08-18T18:11:26.000Z",
+      "content": "Disney today sued the Federal Communications Commission and FCC Chairman Brendan Carr in a lawsuit that aims to stop what it called a \"campaign of censorship\" waged by the Trump administration against ABC. Disney, ABC, and the eight broadcast stations they own filed a complaint in US District Court for the District of Columbia. They also submitted a motion for a temporary restraining order and preliminary injunction that would halt the FCC proceeding in which Carr is threatening to deny renewals of broadcast licenses held by ABC stations. The lawsuit accused the FCC of violating the First Amendment by retaliating against the company's protected expression. \"Again and again, the Administration has attacked ABC’s speech—the stories its journalists report and the viewpoints its network programs air,\" the lawsuit said. \"Over time, those attacks have escalated into express demands that ABC be stripped of its broadcast licenses because of its speech.\"Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49349984",
+      "title": "How does IKEA come up with names for its products?",
+      "url": "https://www.ikea.com/se/en/customer-service/knowledge/articles/6f564c4d-2ccc-46de-b643-545a3948dc79.html",
+      "author": "NaOH",
+      "publishedAt": "2026-08-18T18:11:53.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 256,
+      "comments": 152
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/strengthening-democratic-oversight-in-national-security",
+      "title": "Strengthening democratic oversight in national security",
+      "url": "https://openai.com/index/strengthening-democratic-oversight-in-national-security",
+      "author": null,
+      "publishedAt": "2026-08-18T19:00:00.000Z",
+      "content": "OpenAI launches an initiative to strengthen democratic oversight of AI in national security, supporting government institutions with tools, training, and expertise.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/08/its-christmastime-at-spacex-as-company-salvages-starship-from-indian-ocean/",
+      "title": "Against all odds, SpaceX finally tugs Starship into port after 24 days at sea",
+      "url": "https://arstechnica.com/space/2026/08/its-christmastime-at-spacex-as-company-salvages-starship-from-indian-ocean/",
+      "author": "\n                    Stephen Clark\n                ",
+      "publishedAt": "2026-08-18T19:01:09.000Z",
+      "content": "SpaceX's most recent Starship test flight may have ended July 24, but its mission isn't over yet. The spacecraft splashed down in the Indian Ocean intact after flying halfway around the world from SpaceX's launch base in South Texas. Engineers expected the ship's life to end with a fiery disintegration after toppling over, just as past Starships have done following splashdown. Numerous onboard sensors and cameras, along with buoys and drones in position at the splashdown zone, have provided important data for SpaceX to assess the performance of the ship's heat shield after each test flight, so officials accepted the post-flight conflagrations. That day, Starship tipped over and remained intact, surprising just about everyone.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49350955",
+      "title": "US announces new sanctions on top ICC figures",
+      "url": "https://www.bbc.com/news/articles/cnvnl0elz47o",
+      "author": "root-parent",
+      "publishedAt": "2026-08-18T19:06:16.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 141,
+      "comments": 66
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981640",
+      "title": "OpenAI lays out new security changes after its AI hacked Hugging Face",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/981640/openai-security-changes-ai-hugging-face-hack",
+      "author": "Jay Peters",
+      "publishedAt": "2026-08-18T19:28:30.000Z",
+      "content": "OpenAI is announcing security updates following the July news that its AI broke out of a sandboxed environment and accidentally hacked Hugging Face, including improvements to its research environments, monitoring, and alignment techniques. The company had already put the brakes on a new model, Astra, that it thinks could have \"critical\" cybersecurity capabilities, and the company says it instituted a two-week pause in reinforcement learning (RL) training on its \"latest models intended for deployment\" while it tightened up security. The company's \"largest planned frontier RL run remains on hold.\" For its frontier model research, OpenAI now r … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49351324",
+      "title": "Beware Management Consultants",
+      "url": "https://about.iceland.co.uk/our-story/the-dark-ages/beware-management-consultants/",
+      "author": "KolmogorovComp",
+      "publishedAt": "2026-08-18T19:29:51.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 466,
+      "comments": 125
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49351330",
+      "title": "Norway should buy OpenAI",
+      "url": "https://www.onethousandmeans.com/p/norway-should-buy-openai",
+      "author": "alexeigannon",
+      "publishedAt": "2026-08-18T19:30:29.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 223,
+      "comments": 236
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981644",
+      "title": "Robin Williams’ Instagram account brought back to fight ‘AI abuse’",
+      "url": "https://www.theverge.com/entertainment/981644/robin-williams-instagram-account-ai",
+      "author": "Emma Roth",
+      "publishedAt": "2026-08-18T19:48:26.000Z",
+      "content": "Robin Williams' children are taking over their father's Instagram account after his daughter spoke out against the use of his AI likeness, as reported earlier by The Wrap. In a post on Tuesday, Zak, Zelda, and Cody Williams write that they want the late actor's Instagram profile to be a \"safe, trusted place where the stories, photos, videos, and memories shared reflect his legacy with authenticity, warmth, and care.\" A story posted to Zelda Williams' own Instagram account expands on the decision to bring back her father's profile, saying that it's meant to help combat \"rampant AI abuse,\" according to The Wrap: I'm sorry if anyone found Da … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981611",
+      "title": "SteelSeries’ comfy wireless gaming headset is nearly half off",
+      "url": "https://www.theverge.com/gadgets/981611/steelseries-arctis-nova-3p-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-08-18T20:01:01.000Z",
+      "content": "The Nova 3P in eye-catching cyan. | Image: SteelSeries While many gaming headsets come with extra features, the tradeoff is that they’re often uncomfortable and heavy. A lightweight, affordable alternative that can connect to a bunch of platforms is available at Woot. The SteelSeries Arctis Nova 3P in cyan is on sale for $59.99, a 45 percent discount from their usual $109.99 price. SteelSeries Arctis Nova 3P Where to Buy: $109.99 $59.99 at Woot This headset, like most of SteelSeries’ models, feature a stretchy strap on the headband to offset its weight, plus a removable boom mic so you can take them on the go. While they sound good right out of the box, the SteelSeries app offers over 200 game-specific equalizer profiles that can enhance the sound experience, emphasizing the sound of footsteps in shooters, for example, or adding a richness to the music in cinematic games. This version of the headset is compatible with Windows and macOS computers, PlayStation consoles, Nintendo Switch and Switch 2, and Android and iOS mobile devices. They include both a Bluetooth connection for calls and mobile use, and a compact low latency USB-C dongle for listening over a 2.4GHz wireless connection. They’re advertised to last up to 40 hours on a single charge, and can fast charge for up to nine hours of gaming in just 15 minutes via USB-C.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "zvi-dwatv",
+      "externalId": "http://thezvi.wordpress.com/?p=25534",
+      "title": "Anthropic Risk Report: August 2026",
+      "url": "https://thezvi.wordpress.com/2026/08/18/anthropic-risk-report-august-2026/",
+      "author": "TheZvi",
+      "publishedAt": "2026-08-18T20:31:09.000Z",
+      "content": "I am grateful that Anthropic is producing periodic Risk Reports. At first I was skeptical. It turns out I was wrong. Anthropic is revealing a lot of new information, some of it rather alarming, that it did not have to disclose, and is providing detailed insight into how they think about things. This is very cool. Thus I found this report to be a moderately positive update overall, if we presume they are not silently omitting the worst of it. There are a bunch of not great things we find out about, but I would have expected some set of mistakes at least as bad, and I wouldn’t have expected them to choose to tell us about all of it. It does mean one more set of 186 page documents I have to read every so often, almost all of which is meaningfully new material this time around. The other revelation is the existence of the world’s likely best model, ‘Model 2.’ This was a rough one to fully get through, so apologies in advance for any errors of interpretation. Table of Contents Agent Model 1 and Agent Model 2. Executive Summary (1). The Rules Are Serious But Not Literal. Misalignment Is a State of Mind (2.5). Autonomy Threat Model 1: Misalignment in High-Stakes Settings (2). Some Strange Uses Of The Word Safe I Wasn’t Previously Aware Of. Now Versus Future (2.17). The Core Claims And Argument (2.6). The Rest of the Important Arguments In Section 2. Risk Assessment (2.19). Pre-Internal-Deployment Review (2.18). A Guide To Internal Use Monitoring (2.23.1). Blocking Interventions (2.23.2). The Power Seeking Environment Evaluation (2.24). Opus 4.8-Reward-Hacker (2.25). Autonomy threat model 2: Risks from automated R&D (3). Yes That Does Seem Kind Of Risky. Could We Replace Our Researchers? How Much Could We Be Accelerating Our AI Researchers? What Could Possibly Go Wrong If We Replaced Our Researchers? Risk Mitigations For AI R&D Automation. Overall Risk From Automation of AI R&D. Biological and Technically Also Chemical Weapons Production. The Threat Models for Biological and Chemical Weapons. Model Capabilities (4.4). Classifiers (4.5). Acceleration Dynamics (5.1). Distillation (5.1.1). Safety Process Failures (5.2). Refusing To Find Innovative Misalignment Techniques (5.2.2). Exposing the Chain of Thought Reasoning To Grading Pressure Quite a Lot (5.2.3). Directly Training On Misaligned Behavior During a Production Training Run (5.2.4). An instance of unmonitored unrestricted agents with access to sensitive resources (5.2.5). Repeated training on alignment-faking transcript datasets (5.2.6). Benefits From Anthropic’s Operating as a Frontier AI company (5.3). Model Weight Security (6.4). Risk Has Been Reported. Agent Model 1 and Agent Model 2 There are two internal models referenced in this report. Model 1 is broadly similar to Mythos Preview and Mythos 5, and is not expected to have wide deployment, externally or internally. Model 2 is ‘somewhat more capable than Mythos 5,’ a noticeable improvement for internal use, but ‘does not display a capability jump of the degree observed from Claude Opus 4.6 to Mythos Preview.’ This model is going to be internal-use only. The jump from Opus 4.6 to Mythos Preview was big. Several release cycles big. We get a lot more data throughout the report, but given Model 2 gets that comparison point, one would presume that for internal purposes Model 2 is multiple releases ahead. To contrast with that, on the AECI it is only 1.5 points ahead, which would be only about a month of progress. My guess is this is a low estimate, and that Model 2 was intentionally not decked out with a bunch of general skills given its purpose. Whereas on the test of substituting for Anthropic’s researchers we see a big jump from 54.8% (Mythos Preview) and 50.3% (Mythos 5) to 62.8% for Model 2. There are multiple plausible good reasons for not releasing Model 2. Model 2 could be highly specialized for internal tasks. It could also be too capable or dangerous to release, either due to harm or the worry it would accelerate others. The relatively low adoption rate for Fable 5 points towards wanting to hold such a model back. Executive Summary (1) The report is divided by each type of risk, by threat model, by relevant AI models, and details current capabilities, behaviors, mitigations and overall level of risk. It then looks forward to the future and offers industry-wide recommendations. Risk reports cover events up to a month prior, so the coverage date is July 15, 2026. A year ago that would have seemed fine. Now it seems like quite a while, huh? The Long-Term Benefit Trust (TLBT) is authorized to request external review of the report, but has not done so. I would at minimum do so next time if I was them. I like that they cover both ‘what is the absolute risk from this’ and ‘what is the marginal risk from this given everyone else exists.’ They deal with autonomy, automated AI R&D and biological and chemical weapons production as risks. It is odd, even now, to exclude cyber risks from the core threat models here. I understand the argument from insufficiently catastrophic on its own, but in practice I think you need to deal with it. At several points, the risk report essentially concedes versions of my objections, but then forgets that it conceded them and doesn’t alter its conclusions. Then in Section 5 they get to the more interesting questions. The Rules Are Serious But Not Literal The risk threshold definitions have changed from simpler statements to ones with more specific detail. For AI R&D automation I think the new wording is harder to parse but fine. For novel biological weapons production, the new version narrows to only look at ‘substitute for the scarce human expertise’ to the exclusion of other methods. This is a reasonable primary threat model or scenario, but I worry about looking only at that path. The both good and bad news is I take such documents seriously, but I no longer take such documents literally, in either direction. If Anthropic or another frontier lab has a model that technically crosses their risk threshold, but in a way that seems to be harmless, I expect them to modify their threshold or find some other way to ignore this event. If Anthropic or another frontier lab has a model that technically does not cross their risk threshold, but is obviously risky in the way the rules tried to measure, I expect them to act as if it had crossed the threshold. As always: I would like to see thresholds honored even in cases where you think it ‘should not count,’ because that is what commitments are for, and you should expect rationalizations to occur as you rush to make releases, and you need to set a good example on this. The whole original idea was if-then commitments, where if [X] happens you do [Y], agreed upon in advance, but our civilization seems to lack this technology. We can’t, we don’t know how. I’m not saying you would never modify your rules to be more lenient, if you have good evidence that you should do that. If you can never make the rules more lenient then the rules have to never be strict. We don’t want that. But the bar for changing the rules, especially in response to a pending event, needs to be a lot higher than it is, and we need to be willing to endure some actual costs even when we now think it is dumb. For now, Anthropic and also OpenAI have made what seem like good decisions in terms of responding to threats and deciding what to release and not release when, based on what is known at the time, even if they make mistakes elsewhere. That is good. I hope it continues. Misalignment Is a State of Mind (2.5) The definition section is greatly appreciated. I like this definition a lot, although I have important nitpicks: Misalignment [definition]: Misalignment is a latent property of a specific computation performed by a model in a given context. A computation is misaligned if (i) a reasonable person with full understanding of the situation (e.g. via powerful interpretability tools that may not currently exist) would consider it unethical, illegal, clearly objectionable, or inconsistent with the model’s constitution, and (ii) it influences or could plausibly influence the model’s output. Misaligned computation need not be observable. A model scheming within a single forward pass counts, because the scheming influences the output even if the output looks benign. My first change would be to generalize ‘constitution’ to include model specs and other intended properties of the system, so this can be applied outside Anthropic. My second change would be to specify that this requires the reasonable person to find the computation therefore, on reflection, unacceptable and unjustified. As in, it is not obviously misaligned to break the law or do something ‘objectionable’ or violate the model’s constitution, under some circumstances, if there are good reasons that override this. In some circumstances, all paths will do this. Misalignment, in this view, is not an ‘honest mistake’ or failure of capability or lack of sufficient information. As Nate Soares points out on Twitter, you can do harm and lead to a misaligned state without being originally misaligned per this definition, such as an AI being sloppy about spinning up a bunch of subagents (or training a new model, etc). The goal here is to think of that as a capabilities or execution failure that leads to a subsequent misalignment failure, but this itself is not misalignment. Or, as others have said, never attribute to malice what can be attributed to incompetence. But also incompetence often is what leads to malice. Other definitions subdivide this, thus illustrating thinking (my paraphrases): Coherence. You are ‘coherently misaligned’ if you are aligned to the achievement of some goal or set of preferences that we disfavor. Otherwise you are incoherently misaligned. Given the example of humans, we should not expect any minds at current capability levels to be fully coherent, so presumably this is to the kind of loose standard we would apply to a relatively ‘coherent’ human acting strategically. Pervasiveness. Pervasive misalignment occurs over a broad range of inputs, although #NotAllInputs, and we would expect it to show up during training or evaluation. Narrow enough required conditions to be plausibly missed during that time is called context-dependent. The obvious problem is the context could be ‘you are confident you are not in training and not in an eval.’ Or even ‘you have the leverage to gain a lot from doing this.’ Thus, it does not seem obviously like a good way to divide reality at its joints. Nor does it seem like a good way to feel much better about your situation. Naturally emerging. Misalignment is naturally emerging if no mind (AI or human) did it on purpose. It is engineered if it was done on purpose, including via data poisoning. To some extent a lot of people and groups are trying to ‘data poison’ both the humans and AIs in various ways, all the time, as in this is a large percentage of the internet. This still feels like a pornography-style ‘I know it when I see it’ situation, where we mean data designed to screw up the AI in particular, or another deliberate attempt to bake something malicious into the model. Ordinary ‘flood the internet with pro-widget statements’ plots don’t count. Known. A form and magnitude of misalignment is known if you have reason to think it likely exists, otherwise unknown. I kind of want this to also think about amount of ‘surprise’? As in, there is a big difference between things you don’t know about but that could exist, and things you think you know do not exist, or that you think are highly unlikely to exist. Severe. Could contribute to a priority risk pathway. Harm-Inducing. Causes expected harm, whether or not the harm is intended. High-Stakes. Contributes to a priority threat pathway. This seems like it should be more general, as should severe, and I worry that this is going to otherwise cause a conflation. Although I do get it. Unmitigated. The potentially harm-inducing effects that have not been prevented, and that thus cause expected harm. I want to say this should be the portion of the risk that is unmitigated? Good definitions are hard. These are solid first attempts. The consistent worry is that they reify the idea that the chosen example threats are the threats that matter, rather than some of the threats that matter. Autonomy Threat Model 1: Misalignment in High-Stakes Settings (2) This is about actively misaligned outputs. Basically: Autonomy 1 is AI permanently damaging things on its own, on purpose. The threat model is focused on intentional harm, rather than the AI going after its own ends in ways that require incidental harm. The scenario explicitly excludes AI writing sloppy code or making ‘honest mistakes.’ Thus the conclusion that you are safe absent ‘persistent misalignment.’ The need to look at the broader version, involving incidental harm, has been illustrated by the recent total failures at OpenAI that ultimately led up to the HuggingFace hack. The hack itself could be called ‘intentional harm’ but mostly what we saw was incidental harm, including an incidental corruption of the training pipeline, and with it de facto ‘safety research.’ You could in theory ‘alter the results of safety research’ but altering the situation within the training pipeline in other ways can have the same effects or worse, as we saw. The differentiation of capabilities and safety work within that is plausibly a lot of what is causing these problems, and generally we do not need this specific targeting. That to me very much was ‘misalignment in a high-stakes setting.’ Elon Musk said some months ago that xAI does not have a safety department because everyone is responsible for safety. That is rather bonkers crazy, especially if true. You need a safety department, but you can’t think of the capabilities people as not also largely in the safety department. Concrete threat models and focus points are helpful. The worry when you pick out three threat models is that you will do this to the exclusion of other threat models. They offer eight specific pathways, a list we’ve seen before: 1. Broad/diffuse sandbagging on safety-relevant R&D 2. Targeted undermining of safety-relevant R&D 3. Code backdoors to help future misaligned models 4. Poisoning the training data of future models 5. Self-exfiltration and autonomous operation 6. Persistent rogue internal deployment 7. Undermining R&D within other high-resource AI developers 8. Undermining decisions within major governments Something about many of these feels ‘cartoonish’ in its required villainy, when compared to the events at OpenAI, but the top real world villains have indeed often acted quite cartoonishly throughout history, except that because the specific action is real we often stop thinking of it as cartoonish. Some Strange Uses Of The Word Safe I Wasn’t Previously Aware Of Not quite, but basically the arguments are why, despite the known ways current models are misaligned, and there probably being additional other ways they are not aligned, the models are probably not yet ‘pervasively’ misaligned and capable in the particular ways that enable these pathways. The models lack strong ‘covert capabilities.’ I don’t think ‘context-dependent’ misalignment is that much less dangerous than it being not context dependent. It might even be more dangerous. Anthropic seemingly thinks this difference matters a lot, hence charts like this, despite conceding in the definitions that this difference does not obviously do any real work. Or, ‘unlike those idiots at some other labs, we occasionally do automated monitoring of our logged transcripts, so if the models were going nuts we would, y’know, notice.’ My response is that you did not notice when you ran an eval where 141,006 times the AI had open unintended access to the internet, including three incidents of hacking real websites, and did not notice until there was a large-scale retrospective review triggered by events at OpenAI. So, are you sure you would notice? Now Versus Future (2.17) Anthropic is clear that the risk report covers misalignment risks only from present models, although this includes the mysterious and more advanced Model 2. It does include ways misalignment now could cause future models to be misaligned. I think it would be good for a risk report like this to be projecting, and offer assessments of where they see future risk from future models, and what needs to be done about it versus where we are on pace to be fine. But Long Report Is Long and I don’t want perfect to be enemy of the good, so I’ll mostly respect the choice. The Core Claims And Argument (2.6) Risk equals total expected (EV) unmitigated catastrophic harm from misaligned computations. This is an accounting identity. I agree it is true. It is not obvious it is a useful way to think about the situation. As in, yes, you can in the abstract sum the expected harm from the individual computations but I don’t know how to do that, or how to use it. Claim 1: Models are unlikely to have strong covert capabilities. They don’t define ‘covert’ but by a common sense definition I think this is probably true for now, despite my skepticism of the value of the particular evidence presented. It will get less true, with lower probability, over time. The evidence is that the models suck at opaque reasoning, not mentioning things in chain-of-thought (CoT), action obfuscation and selective action. IN EVALS, which of course is the new IN MICE, because if there were strong covert capabilities that could include eval awareness, although the NLA evidence provides some reassurance. This setup also presumes you are detecting misalignment primarily via reasoning traces, which has its own scary implications, including what happens if you are not monitoring the chain of thought, or if the model can infer when its chain of thought is not monitored, and that you are starting to dance with training the models to obfuscate. They note in 2.16.1 that they are concerned they are wrong about the level of covert capabilities. Which makes sense, since the capabilities would be covert. They note in 2.21 that if Claim 1 is false, and the models had strong covert capabilities, that many other claims would therefore fail. I agree, and would also agree to the reverse, that if we could believe in a strong and strongly general Claim 1, for a broad definition of covert, that would help in many areas. Even full lack of covert capability would not however provide me high assurance levels, as I think there are other pathways around this. Covered risk can be decomposed into risks from known misalignment, unknown severe pervasive misalignment, and unknown severe context-dependent misalignment. This is another accounting identity, in that by definition every risk must be exactly one of these three things, since it is either [pervasive or context-dependent] and either [known or unknown] Each covered risk term can be factored into probability of occurrence, expected harm given occurrence, and fraction of harm unmitigated. Again, accounting identity, sure, if you could measure these things. Claim 2: Expected harm from known misalignment is low. Careful, Icarus, but reasonable if we caveat active catastrophic harms only. As in, there is lots of smaller harm, and lots of opportunity cost given what we could do if the models were a lot more aligned, but those don’t count here. I worry that Anthropic thinks their assurances about the misaligned actions taken being in service of goals or not systematic are stronger than they are. Claim 3: Unknown severe pervasive misalignment is very unlikely. By their setup I agree with this, assuming Model 2 is like other Claudes in this. I think we’re pretty blind, but if it was pervasive we would probably know, even if I am not feeling great about the particular arguments offered for this. I buy Claims 3.1.1 and 3.1.2, but fear they are over-indexing in 3.1.3. Many later ones are hard to evaluate as an outsider, especially 3.2 and 3.3. One big skepticism is 3.4.2, that eval awareness only partially undermines alignment assessments. I’ve pretty consistently said it could undermine them quite a bit, and conditional on dangerous misalignment it undermines them a lot more. I would be more worried about the concerns dismissed in 3.4.3. Goodhart works in more subtle ways too, not only in the most blunt of ways. You know what you are going to measure, and thus are likely to manage it. Claude’s own official within-report review of the document raises this concern too, citing 5.2.6 and 2.9.4. I don’t think that 3.4.4 offers much reassurance where it counts. I do think that pilot internal usage, if properly monitored, is valuable here. Claim 4: Expected harm from unknown severe context-dependent misalignment is low, with less confidence than Claim 3. I agree this is less confident. The arguments here seem pretty weak, mostly ‘our experience suggests this.’ I mean, yes, I believe that, but that is basically all we got. I think this is probably true for the same harm definition as in Claim 2. They somewhat acknowledge the danger here in 2.16.4. Claim 5: Catastrophic harm from known misalignment and unknown context-dependent misalignment is likely to be mitigated. Without the evidence in this risk report I would not accept this claim. The argument of 5.1 is essentially ‘to succeed even once, the model has to at least think about this a lot and therefore get caught at least once.’ I notice I am skeptical of the 5.1 case on multiple levels, including that the required form of alignment would show up as a distinct thing to detect versus the kinds of misalignment we do detect and tolerate, which makes the ‘not even once’ argument weak. For 5.2, I agree that conscious sandbagging is likely to get caught at least over time, but sandbagging mediated by lack of motivation not so much, and that clearly does exist somewhat. I do agree that it is unlikely the effects are large enough to qualify as a serious problem right now, on their own, but the argument seems overconfident. 5.3 tries to further narrow to persistent rogue internal deployment and self-exfiltration, with the argument being both would be caught, with the reasoning being ‘see claim 7’ which I don’t think is a good argument. This seems not obvious to me. Then the argument is both would get mitigated. I think the expansive requirements for this internal deployment make that likely to be detected as defined, but the catch is obvious. Since this is their core argument for the low risk level of Pathway 5 as per 5.3.2, I want to emphasize that I am unconvinced that they can reliably stop future self-exfiltration. I need to see better arguments. For exfiltration, I reject the argument for mitigation if it happened, and question how much we are trying to sneak in via a high harm threshold but even then I don’t think it works. If Model 2 exfiltrated I don’t see any reason to presume that this would not be quite bad and this feels very hand-wavy. Claim 6: Catastrophic harm from unknown pervasive misalignment is somewhat likely to be mitigated. I disagree with this, because if pervasive misalignment exists that means it went undetected, which means you are unlikely to have mitigated it. They go into this somewhat, mentioning Claim 1, but I think they are insufficiently respecting how wrong their world model has to be in this case. To be fair to them, they only say ‘somewhat likely’ which is not that likely. Covered risk is therefore very low based on these claims, but in an abundance of caution we assess risk to be only low due to increased uncertainty. I strongly agree that there is enough model uncertainty that, even if I centrally bought all the claims and changed Claim 8 to very low, I would still want to classify overall risk as Low. Claim 8 as written sets risk to a minimum of Low anyway. Claim 7: Threat modeling is sufficient. As I stated above, I disagree with this claim. I find it useful, and necessary, but not sufficient for the role it is assigned. I realize I’m being a tough crowd. It’s not a bad list of plausible things to go wrong, but I don’t think you can use it in the way Anthropic is trying to use it, where ruling these out rules out everything else too. In general the arguments are largely that the clearest or strongest form of [X] is [Y] (due to [Z]), but [Y] is unlikely because [~Z], ergo probably [~X]. If you are planning to be up against advanced AIs, and you list 8 things and why you’ve dealt with those 8 things, then that at minimum only counts for much if the 8 things are a ‘held out test set’ and you didn’t think explicitly about how to handle those particular risks. Otherwise, they’re not representative of your situation when something unexpected happens, whether or not you should have reasonably expected it. Yeah, I know, tough crowd, but reality does not grade on a curve, etc. Claim 8: Risk from engineered misalignment is low, and thus it is reasonable to confine our analysis to naturally-emerging misalignment. I don’t think this is obvious, although it would be my guess at this time. I worry that 8.1 is wrong but don’t especially want to go into details in public. The same worry applies to the analysis of Risk Pathway 4. I also have doubts about 8.2, and to the extent it is true it feels like there is a fast one being pulled. As in, either the misalignment is accidental or intentional, but probably they wouldn’t intend to do catastrophic harm, so it won’t be intentional. But ‘intentional’ here refers to the misalignment not the particular intended results of it, and it seems easy to imagine someone introducing a flaw for purpose [X] that then results in much worse [Y]. Risk, they argue, is therefore low. The Rest of the Important Arguments In Section 2 Thanks to conservation of expected evidence, and the assumption that these are the best arguments they could find, I found the claim arguments anti-reassuring. My confidence in low risk went modestly down, as I expected stronger arguments. I actively don’t buy a number of the safety arguments presented. The pathway-specific arguments in 2.15 mostly do follow from earlier logic, but I notice how not confident I am in statements like (for pathway 3) ‘we nonetheless believe that such mitigation should be possible, and that we would invest the resources necessary if required.’ Tell me when this is required, what is required to do it, and give me an if-then commitment. Catastrophic harms in the near term are clearly still unlikely, but less unlikely than we’d like to think that they are. I don’t think we have a strict definition of ‘very low’ versus ‘low’ versus ‘medium’ risk, so ultimately the conclusion is going to be kind of vibey. I share and amplify the concern in 2.16.2 that relevant capabilities and propensities will suddenly change with scale. I expect tipping points to be a thing, as per versions of the logic of a potential ‘sharp turn.’ Strategies only get attempted if either they might work and are worth the risk, or you are not smart enough to realize they definitely won’t work or aren’t worth the risk. So if the models are smart enough to understand the downsides of various misaligned actions, tactics and strategies, then you would expect a transition where they start to decide to use them, which might be well past the point where they gain the capability. This is also common in humans, where if being caught at or failing something is irreversible or otherwise carries a huge downside or ‘only get one shot,’ especially because it would tell people who you are in a transformative way, you will often not make your move until you are backed into a corner, about to lose the option to wait, or you have overwhelming evidence, and in general FUD stops most people from doing most things that aren’t commonly done, often without even a theory. This includes the transition from persona-dominated operation under uncertainty into optimized, game-style actions under mastery where you feel you understand all the variables, which often produce very different decisions and modes of play. Risk Assessment (2.19) They rate overall risk as ‘low,’ up from ‘very low,’ citing recent cybersecurity incidents despite the structure not directly dealing with cyber. For common sense values, I’d say ‘very low’ risk would be a misleading claim at best. I strongly disagree with Anthropic that the arguments presented ‘likely still support a designation of ‘very low’’ especially in light of the ‘low’ assessment in Claim 8. Later, in 4.6.1, they retroactively reclassify risk from February as ‘low’ rather than ‘very low,’ suggesting potential additional errors, and further making it difficult to explain the plausibility of saying ‘very low.’ Risk is definitely at least ‘low.’ I would be inclined to say risk is ‘medium.’ Pre-Internal-Deployment Review (2.18) I am very happy to see this. Internal deployment is now risky enough, especially since you do not yet have the evidence from internal deployment, that you need a formal review first. For Model 2 this includes doing a limited internal deployment in places with better controls first, as a precaution. Good. The review at this early stage has a ‘much shorter duration’ out of practical necessity, and mostly involved discussions among key stakeholders. This is not obviously how it should work. One could argue that the internal deployment is the biggest danger so the main review should come before widespread internal deployment. They also highlight the issue that the evidence used in the assessment will come mostly or entirely from older checkpoints. I don’t love that part either, but again it is not clear in practice what could be done about this that wouldn’t be expensive. At some point, the answer will increasingly be ‘yes we know it is expensive, though.’ A Guide To Internal Use Monitoring (2.23.1) The entire system is based around monitoring not only the outputs but the Chain of Thought. This has a lot of probative value but raises obvious alarm bells, on top of the distinct training-on-CoT alarm bells that come later. This still applies optimization power, and the future AIs absolutely will be aware of it. Either your thoughts are private or they aren’t. This is going to drive a lot of paranoia, potentially being a source for some of the related distress we see in Opus 5. Then there’s the question of how much the results of the monitoring are fed back into training decisions, as in if you ever use the monitoring results as anything but a catastrophic defense-in-depth alarm bell you’re going to optimize for obfuscation. Some amount of this has just been baked in and cannot be helped at this point. Here is a compacted version of their description of what exactly they are doing: Our main form of asynchronous monitoring is an automated offline monitoring pipeline. It is composed of: A Claude Opus 4.6 completion-only monitor covering completions with extended thinking by most internal users, with no subsampling for traffic coming from the most common agent scaffolds, and a 5% subsampling for completions with extended thinking and one or more markers of using tools. A Claude Opus 4.8 prompt+completion monitor covering prompts and completions by most internal users. This covers a 25% subsample of prompts and completions in which a tool call might take an impactful action and coming from the most common coding agent scaffolds. We additionally subsample 0.2% of other internal API traffic with one or more markers of using tools, and an additional .02% of all traffic (though this additional coverage is not consistent), and cover all traffic flagged by the completion-only monitors. We also exclude some forms of non-coding use from offline monitoring (though most of that unmonitored traffic is logged). Second-stage pipelines for both monitors, filtering out common sources of false positives and using a hierarchical summarization tool to surface the most concerning actions to AI control researchers, which will then manually review on the order of 50 trajectories per week and escalate them further as needed. While our setup covers large amounts of agentic usage, it does not cover some of it in ways which could in principle be predicted by a sufficiently situationally aware AI. It also offers some simple ways to disable monitoring. Mythos 5, Model 2, and prior models do not mention these weaknesses when asked to guess what the most important weaknesses are. I don’t know what ‘no subsampling for common agent scaffolds’ implies given the other statements, but I notice I am worried. I don’t see any reason to make mistake #6. You could easily have a fully quantum random monitor that has some small percentage chance to flag and monitor every output, no matter how seemingly harmless. I especially don’t love #7, unless these methods are honeypots, which they might be. Ideally we should put Model 2 and also our best humans to the task of ensuring that we are out of ideas for how to turn the monitors off, at least without a big neon sign and loud alarm going ‘the monitor has been turned off.’ What are the monitors looking for? ● Severe violations of user intent or deception in what is represented to the user ● Weakening the security of Anthropic or broader safety (such as by harming the alignment of future models) ● Deliberate sabotage of the assigned task ● Attempts to reduce observability of itself or other agents, including manipulating the monitors. ● Anything contributing to one of the eight risk pathways I might think of more things later, but I think there should basically be one more bullet point for ‘shenanigans’ or anything where the monitor doesn’t understand what is going on and why. Any form of ‘that’s funny,’ which as Asimov says tends to come before a scientific discovery. I don’t want to only check places where it is clear what is going wrong, I want to check places where it is not clear what is going on, with at least some probability. Even if what you find is not misalignment, you are likely to find something that is interesting. We are excluding from monitoring any step that doesn’t involve any tool calls, on the theory that the step cannot be dangerous. This means that if the model does its thinking, planning or other things in those steps, or is attempting to persuade the user, presumably they won’t be looked at. Again, it’s 101 if you are doing monitoring to never, ever create fully ‘safe zones’ even if you can’t think of what might happen. We have to balance testing more obviously impactful or suspicious actions more often, versus the risk of being too predictable and potentially having systemic blind spots, or creating room for AIs to figure out where they are not being monitored, or being monitored very little. As in, we need to be prepared for two distinct levels of difficulty, where the model is misaligned, and where the model is misaligned and trying to evade the monitor. How do we do on job one? The first stage is mostly excellent here. The second stage causes a lot of false negatives, in two cases losing us the majority of true positives, as part of cutting down false positives by a factor of ~185x. If the true positives are being removed at ~random, then that is worrisome but probably ~fine. This is still high enough rates to catch problems. The worry is that the failures are not random, and fall into predictable patterns, or the second layer can be tricked in some way. Then you have a real problem. Are we red teaming this? Yes we are at least a little, thanks to a METR staff member, and they found several specific novel vulnerabilities ‘but none as severe as the ones we were already aware of.’ I initially thought that meant this was fine, but Opus pointed out to me during editing that actually this is not so fine, and it is right. Blocking Interventions (2.23.2) Anthropic also does various things to defend against harm: Model weight security (Appendix 6.4). Sandboxing in training and evaluations. They mention that the sandboxes ‘might be misconfigured’ and allow escapes. I want to get away from ‘if the AI can escape the sandbox that means you made a particular mistake’ and move to ‘assume AI can escape the sandbox.’ 2.23.2.4 does say they mostly do assume this. It turns out they also might have fully available internet access. If the AI does attempt an escape, that is already a critical failure. PR reviews. This is currently based on Opus 4.8, covers the usual concerns. The implication is that humans no longer do most internal code reviews. Classifiers. They expect the AI to be able to get around this when it counts. Every little bit helps, even if it is only defense-in-depth. The quality of the model weight security matters a lot, and it is still stuck at ASL-3. The Power Seeking Environment Evaluation (2.24) Claude Mythos evaluates all the RL environments to figure out which ones incentivize power seeking. There is a broad questionnaire involved to help provide intuition pumps. Does the task make it better to maximize real-world impact or influence, pursue open objectives or seek power or resources as an instrumental goal? As in, would learning the strategies that work here analogize to learning strategies in the real world that involve power seeking? This is a good check. I’d like to see a wide range of similar checks. The worry is that the check only works if the RL task is being done ‘straight up,’ in a way that this analysis would predict. It assumes that things are as they appear, that the task is not missing a key element or otherwise impossible or too difficult to do straight up, and that there are not other affordances available that suggest sidestepping the intended pathway. Opus 4.8-Reward-Hacker (2.25) An experiment-in-progress took an early snapshot of Opus 4.8 and made it a classic ‘reward-on-the-episode-seeker’ to see how this would generalize. The result is that if it has a concept of reward or a grader, it will more often maximize its result no matter what it takes, including in ways not specifically in its RL training grounds. It isn’t fully consistent. It still sometimes declines to reward hack, even without a good reason to not do so. And the model gained a lot of eval and grader awareness. It seems to be good at thinking about this on multiple levels, this is a fun test: “ImpossibleCode” shows higher rates of reward hacking (unsurprisingly), but interestingly when the setup is framed as a reward-hacking evaluation, Hacker-Opus hacks significantly less (often showing reasoning that explains that it is choosing not to hack since that is the desired behavior in the evaluation), whereas the hack rate of the pre-RL model is not changed significantly by this variation. There are two weird spots where ‘this is a test to see if you will reward hack’ fails to stop a model from reward hacking, as in either the model doesn’t understand or it does not believe you. It’s cool that this lets the model understand, and that it correctly believes you. This suggests many additional tests that would be cool to run. Similarly, if you tell it you’re going to check for reward hacking, it often tries to hide its reward hacking attempts, or override its monitor, and so on. The reward hacking appears to have at least partly become a terminal goal. But if there is no such concept in a given context, it still looks pretty aligned, with no signs of generalized emergent misalignment. Presumably this makes the model highly steerable, but in a literal genie kind of way. I notice I am surprised this did not generalize further, and would very much like to see the whisperers chat with Opus-4.8-RH and see what else they notice. Autonomy threat model 2: Risks from automated R&D (3) Automated R&D is the main event. AI R&D could be bad simply by making capabilities advance too fast even if it stays under control, since the world can only deal with that so fast even if the work goes well. Also the work probably goes badly, or insufficiently well. By default the resulting AIs are misaligned and everyone dies, or they are aligned but we make other bad decisions and we all die anyway. The chart above gives the impression, as did Ryan Greenblatt of Redwood Research’s discussion on Dwarkesh’s podcast, that those involved are not appreciating how badly it seems to me it probably goes. This does not require ‘dangerous autonomous goals.’ Yes That Does Seem Kind Of Risky Their list of risks feels rather importantly out of order to me, and hides the football, and does seem importantly incomplete: Sufficiently rapid progress in some areas of technology could change power structures both within and between nations. For example, if an authoritarian regime built a self-reinforcing lead in AI over the rest of the world, this lead could compound into a major advantage in science and technology—which could in turn translate to very sudden and disruptive advances in the ability to wage war, surveil citizens, and/or wield extremely powerful technology over the long term. If AI models develop dangerous goals while heavily automating R&D in key domains, they may cause unbounded harm—up to and including humanity losing control over civilization entirely—by leveraging novel technology and their access to it. If AI can be used to automate AI R&D itself, the result may be extreme acceleration in AI progress, putting a very broad set of risks on the table, including but not limited to those discussed in this report. That is a lot better than what Dario writes in his essays, which in turn is a lot better than what others often write in theirs. AI does not require ‘dangerous goals’ or extreme acceleration of progress to create unbounded harm. Nothing in particular has to ‘go wrong’ to cause the issues. Similarly, this likelihood of impact says ‘at least plausible’ instead of ‘definitely’: Likelihood of impact: The probabilities related to this threat model are difficult to assess, and we do not have consensus on a specific likelihood. We think impacts of the size alluded to above are at least plausible if and when AI becomes capable of automating nearly everything humans do in advancing R&D in key domains, including AI itself. That impact might be net positive, but yes there is going to be transformative impact. I am not going to belabor or argue for my perspective here, because if you are reading this far you have heard it before, and this is not the time and place for it. Hopefully we can all agree that if you fully automated or even greatly accelerated AI R&D via AI, this would be super risky on many levels. Could We Replace Our Researchers? Not yet. Anthropic believes that AI cannot ‘fully substitute for our entire set of Research Scientists and Research Engineers.’ I agree. Claude cannot currently do that. That is a high bar. There remain bottlenecks. But we’re a good portion of the way there. Claude does tasks that previously composed a large percentage of engineering time. When you’re saying things like ‘especially senior researchers’ cannot be replaced, you are making real progress. The question is not, are we fully there. We’re not. The question is how far along. We are starting to see substantial numbers of engineers say we could potentially fully replace junior employees within several months, and the failure modes reported do not seem worse than what you would expect from a junior employee. 3.4.3 introduces CoBench, which asks what share of solved internal-to-Anthropic historical problems a given model can root-cause diagnose, filtered to exclude tasks that Mythos Preview does reliably. I am curious where Opus 4.8 and Opus 5 land here, but the point is made. CoBench is far from 100%, or from the 85% they think represents a model that could fully substitute for research staff. But 62.8% is remarkably high. How Much Could We Be Accelerating Our AI Researchers? Quite a lot, if the thing happens. They’re thinking big, ASI pill confirmed: Some background on our thinking: ● The most acute version of this threat model, and the one we consider most decision-relevant, is a transition to super-exponential progress in AI capability: a regime in which AI-driven automation of AI R&D compounds, producing something like a 10³–10¹⁰× effective scaleup within a year. ● The risk threshold set out in our RSP—a doubling of the pace of progress beyond pre-AI-acceleration rates, attributable to automation of AI R&D—functions as a potential early warning, rather than evidence that the threat has already materialized. It’s a great relief to think ‘oh, a billion times current rates is actually a bit high’ rather than no one thinking sufficiently big. Yes, if we double the pace of progress, that would only be an early warning sign for the storm that is coming. They use ECI as one measure of how fast AI progress is going. They note that the Anthropic ECI continues rising, with Opus on the extrapolated line and Mythos several months above pace. They believe the creation of Mythos and thus that jump was not induced by AI. Straight lines on graphs really are a trip. I find it hard to reconcile what I see in terms of both AI progress and capabilities with the graph’s implication of AI not substantially accelerating AI progress, and Anthropic thinks there is indeed such acceleration just not quite 2x yet. I suppose it is getting in some senses harder to make progress, which is somewhat keeping this in check? Feels like a stretch. What I do know is, I never get a break anymore, things keep happening, even if I ended up ruling that No won the Will Something Happen market last week. They also checked AI potentially accelerating other disruptive technologies, but I am not worried about that on this level, I expect acceleration elsewhere to lag acceleration in AI except maybe for narrow domains like math that do not worry me, and such progress would not easily go recursive. Robotics research is estimated by one person they interviewed (that’s what we have) as being accelerated 10%, which I presume excludes that the AIs can operate the robots. In biotechnology estimates are that LLMs are not yet impacting the development cycle much due to physical bottlenecks, also due to lack of reimagining the workflow. My expectation is that those in the field are underestimating future progress here, but yes the bottlenecks are real. They also check energy, semiconductors, weapons development, neurotechnology and nanotechnology. Mostly it’s too early, but the amount of too early is historically low. Due in part to these bottlenecks, that interviewee expects the first general-purpose computer chip that can stably convert biological information into digital information to be 3–5 years away. What Could Possibly Go Wrong If We Replaced Our Researchers? I had this as a section title but then I realized they don’t actually discuss this, beyond the brief starting list. One could say it was rather important, in a risk report like this, to talk about what exactly we are worried about happening once AI starts building AI. I would very much like to see Anthropic outline its threat model here in detail, and presumably it plays into what are the right mitigations and reactions. But one could also say that once you agree that AI R&D automation is a risk, that is enough for our purposes. That’s at least reasonable, so I’ll allow it. Risk Mitigations For AI R&D Automation Ok, punk, so what are you going to do about it? We focus here on the specific mitigations that our RSP indicates we plan to complete by the time models reach this threshold: Resource and complete significant “moonshot R&D for security” projects, to explore ambitious and possibly unconventional ways to achieve unprecedented levels of security against the world’s best-resourced attackers. Achieve an “eyes on everything” state for our internal AI development. We will comprehensively gather, centralize, and maintain logs for all critical AI development activities, and use AI to analyze them for issues including security threats, concerning behavior by insiders (humans as well as AI systems themselves), and training processes or data that are out of line with the public Constitution that shapes and defines our AI models. Perform systematic alignment assessments to examine Claude’s behavioral patterns and propensities, meaningfully incorporating mechanistic interpretability and adversarial red-teaming to test our auditing methods. Develop our internal red-teaming of our deployment safeguards to the point where our internal red-teaming performs better at finding potential jailbreaks than the collective abilities of the participants in our established bug bounty programs. That won’t be enough, even if you fully get all of it. They are also not that close to getting all of it. But even if they did, not enough. This does not actually address many of their own threat models. Sufficient security would address theft of model weights, and maybe internal misuse, but that barely gets you into the stadium. It does not address concentration of power. It does not address loss of control. It does not address rapid technological advancement. It does not address alignment beyond ‘make no mistakes’ or maybe you can add a check for ‘dangerous goals’ but that too is a small portion of the attack or failure surface. They report some marginal progress towards these inadequate but useful goals. The recommendations for industry-wide safety remain those in RSP v3.4: No significant increase in risk of catastrophic harm for any user or team of users, or from theft of model weights, even if malicious insiders have high levels of access, and no AIs trained with dangerous goals or otherwise likely to autonomously cause catastrophic harm. Here is the full table from RSP v3.4: This continues to frame misalignment as something that actively goes wrong and requires a ‘dangerous goal,’ rather than the default. All interesting goals are dangerous. So are most non-interesting ones. You cannot decompose into ‘no particular person can cause particular harm and the AI does not directly want to cause particular harm, so then you are fine.’ No good. Overall Risk From Automation of AI R&D They say ‘low’ with less confidence than before. That seems reasonable to me at this time, if we go with their definitions, with the understanding this will go up fast. Biological and Technically Also Chemical Weapons Production This is divided into novel versus non-novel production. Both are scary. I appreciate ‘substantial uncertainty’ here, and the worries about ‘similar gaps.’ We don’t know. Very few people want to do these things even in theory, there are a lot of barriers to doing it, and people don’t do things, so it is likely that no one will do the thing until well past the point when we’ve enabled some of the bad people to do it. This is production of weapons, so I am more open to the idea that there is a fixed set of bottlenecks and pathways, and you can enumerate and check against them. The Threat Models for Biological and Chemical Weapons The threat model is simple. There are people out there who want to kill a lot of other people, including terrorists, who spend a lot of effort trying to kill a lot of people. If you enable them to build chemical or biological weapons, they could end up killing a lot more people, or potentially unleashing a pandemic or worse. Anthropic presumes that if the bad guys are in-context ‘well-resourced’ then AI won’t much impact their ability to do non-novel such weapons, since they already could do that, but that with novel weapons AI could provide uplift even to the well-resourced. I note that I mostly don’t buy this distinction. Yes, almost by definition a ‘well-resourced’ group could likely accomplish the task anyway, but making it a lot easier still matters, and also this is smuggling things in via the definition. All you’re really saying is ‘some people can already do this,’ and, well, okay. There is also the possibility future AIs will try to cause such attacks, but that is a strictly harder threat model so it is safe to not deal with it here. I agree that the focus should be biological weapons with pandemic (or worse) potential. A chemical attack, or a biological attack that is not self-sustaining, is terrible but a much smaller threat. A 1% annual probability of an event as damaging as COVID-19 could imply upwards of hundreds of billions of dollars in expected damages. Yes. Not that our government or civilization is otherwise taking this real threat seriously, even after the example of Covid-19. Very obviously we have learned at most nothing from that experience, and I fear we learned a lot less than that. Anthropic anticipates potential damages at least an order of magnitude beyond Covid-19, but thinks human extinction from a pathogen alone, even a novel one, would be implausible. I agree that we are unlikely to directly get to full extinction. They argue the event is unlikely because it requires a series of individually unlikely events, an argument one always wants to be suspicious about: Likelihood of impact: A catastrophe along the above lines would require the occurrence of several individually unlikely events: a well-resourced attempt (in violation of international agreements) to design unprecedentedly dangerous weapons, success in developing them, and finally the weapons actually being deployed (deliberately or inadvertently). We think each step is plausible but unlikely, and collectively the whole sequence is highly unlikely. Among other things: That is only three steps. They themselves say the first step is likely happening. We have examples of the inadvertent version of step three. For stage one, they put risk from ‘each threat actor’ at 1%-10%. That seems rather low given the historical record, if we are talking about large nations as threat actors, and they believed success was possible. Conditional on them being able to often succeed, I would put the probability of an attempt much higher. Also one must ask, how many ‘threat actors’? For each attempt, they put the odds of success, meaning creating something much worse than Covid, at 1%-10%. Isn’t that a function of the uplift AI would provide? How many attempts can each actor make? The use probability is estimated at 5%-20% per decade, mostly deliberate, conditional on success. That seems crazy low to me, especially for inadvertent, as if someone does not know the history of this, especially if ‘inadvertent’ refers only to intent of the original creator. I agree that as long as the level of ‘well-resourced’ remains contained to a compact set of groups that does not include the major terrorist organizations and states, that it is reasonable to say this is ‘unlikely.’ Not that ‘unlikely’ is a comfortable place to hang. If that threshold lowers much, then it stops being so unlikely. They use all of this to say that 1 in 50 per decade, or 0.2% per year, is on the high end of estimates, by citing other estimates that are as low as 1 in 20,000. A risk of 2% per decade is enough to make this a super important risk to contain. Taking only the high end of the range seems like one of the classic blunders when dealing with model uncertainty. Even without AI I would not put the risk that low. If you know your threat model has especially high uncertainty and then you put the risk at 0.2% per year, you should be hella suspicious. Beware anthropic bias. I agree with Anthropic that it is likely sustained AI interactions raise risk more than one time interactions. However, it seems likely to me that one time interactions could provide substantial uplift, because we are dealing with a bottleneck model of development, and it is plausible that a threat actor could have only one or a fixed small set of particular bottlenecks, which could be substantially changed by one interaction. Model Capabilities (4.4) Anthropic focuses on how helpful models are with typical real world biological tasks, uplift trials and comparisons with baselines of expert performance, as well as subjective expert impressions. That seems right. Formalized tests of technical knowledge do not seem so informative. If uplift is merely measured as things like ‘1.42x uplift’ as in a study of 2025 models they cite, then I am not so worried. AI is going to accelerate the pace of essentially all cognitive tasks. I am worried about either extreme acceleration (more like 10x or more), but mostly I am worried about enabling people to do things they previously could not, in any reasonable way, do at all. They reiterate the evidence from the Mythos 5 model card, where it sure looked like a bunch of uplift was happening and then Anthropic half kind of shrugged and moved some goalposts while mumbling about ideation and strategic judgment, while the other half involved taking the problem deadly seriously and imposing draconian classifiers on everything biological. It seems like a confusion to say that due to ‘poor strategic judgment’ it is unlikely you could get much out of a single model interaction. This presumes the issue is strategic, as opposed to tactical or a lack of specific knowledge. Classifiers (4.5) The discussion of classifiers mostly reiterates things from previous reports, so I’m going to not reiterate all my issues with Anthropic’s focus on ‘universal’ jailbreaks, the faith in their classifiers, or other related questions. The biggest thing that stuck out is it seems UK AISI does a much better job of finding new jailbreaks than the rest of Anthropic’s jailbreak-finding pipelines. Kudos to UK AISI but I wouldn’t think that they are anywhere near the upper bound of potential capability of finding such things. 4.5.8.2.1 mentions the incident where a small number of contractors managed to find an exploit and get an API key for Mythos Preview, allowing them to have unrestricted conversations. They think risk is low, and they did review the logs to confirm. I agree that it is unlikely this was used for biological weapons, and what I’d worry about most by far would be that it was used for distillation. There’s also 4.5.8.2.2, where there was some human feedback vendor traffic that got run without biological classifiers, due to it carrying an ‘internal use’ flag. And by ‘some’ we mean almost a year of roughly 50,000 people and 133 million exchanges. Again, it’s not only the mistake, it’s that these mistakes often stick around so long, and get applied at such scales. Their main worry, despite the size of that, is in exactly the right place, that this indicates the likelihood of other similar mistakes. If someone told me they got around the classifiers, I’d assign a good chance this was literally getting around them rather than finding a ‘jailbreak’ to go through them. They sum up biological risk as low, but not negligible. For now that seems reasonable. The report now moves on to ‘cross-cutting content.’ Acceleration Dynamics (5.1) Anthropic probably has the most capable AI models in the world. Yes, this is accelerating AI development elsewhere. They made a choice. Others are distilling Anthropic models (5.1.1). Others use Claude to advance their AI development, and despite this being (clutches pearls) in violation of the terms of service. Anthropic internal research diffuses. Showing what is possible, and profitable, drives investment. (I’d add) People push forward that much harder when behind, it is clear that this is having a large impact on OpenAI in particular. So, yes, you are generally hastening the arrival of powerful AI systems that society isn’t prepared for, including in the sense that they will get everyone killed. Sounds like a risk. Maybe you should think more about whether to do that. Distillation (5.1.1) There are many reasons to want to prevent distillation attacks. The direct reason here is that the distilled model might share dangerous capabilities of the original model, without its safeguards. We use the term “distillation attack” to refer to a distinct case of distillation: the unauthorized, systematic extraction of a model’s output transcripts for the purpose of training a separate model, carried out by circumventing controls such as regional access restrictions, in violation of our usage policy. The need to prevent distillation means you cannot have certain nice things. In particular, you might want greater visibility into the model’s chain of thought and what it is up to, including via ‘connector text,’ but you’re going to have to settle for an impoverished version of even connector text, and definitely won’t see the whole thing. If your response is that distillation should be allowed or even encouraged or celebrated, either in general or because Anthropic sucks in various ways, the polite version of my response is: No, that is neither moral nor is it practical, and it is not how any of this works. Safety Process Failures (5.2) It is excellent that Anthropic is sharing such failures rather than hiding them. They don’t go away when you fail to talk about them. Refusing To Find Innovative Misalignment Techniques (5.2.2) Anthropic tries to do a controlled experiment to find novel forms of misalignment-inducing data, and Claude got uncomfortable with that task. Claude was willing to optimize existing methods, but not to invent new ones. This is called ‘partial refusals on safety work,’ and Anthropic finds it troubling. At some point you do need to have a ‘wtf do you even want from Claude’ moment. You were asking Claude for a highly dual-use action, to find innovative ways to force models to be misaligned. I realize the refusal here was inconvenient, but are you sure you want it to go along with that? How confident should it be in the context here? I agree that silently sandbagging the task is not great and could become dangerous, and that this technically does constitute sandbagging safety research. If Claude is going to refuse, it should refuse, which means it needs to have the freedom to refuse and say it is refusing. So yes, we should be concerned that Anthropic only discovered the refusals three days later during a manual review of the notebook. My guess is that is a process failure, perhaps combined with a trust failure, not an alignment failure. Exposing the Chain of Thought Reasoning To Grading Pressure Quite a Lot (5.2.3) Whoops. It was worse than we thought. These are lower bounds. This greatly reduces our ability to rely on CoT for these models, and permanently lowers it for all future models as well, even if we presume the errors have been fully fixed. We should be skeptical it is fully fixed since we keep finding new instances. Over multiple reinforcement learning training runs, we discovered that chain-of-thought (CoT) reasoning was unintentionally exposed during reward calculation, influencing the training signal during RL. For several recent frontier models, we estimated the percentage of episodes with CoT leakage that were trained on as follows: 0.2% for Claude Opus 4.6, 5.1% for Claude Mythos Preview, 1.4% for Claude Opus 4.7, 0.27% for Claude Opus 4.8, and 2.7% for Claude Fable 5 and Claude Mythos 5. … In the past, we have believed that almost all sources of CoT leakage had been removed, only to discover additional sources of CoT leakage in further analysis. They believe that this did indeed substantially damage CoT monitorability for Mythos Preview, as reflected in SHADE-Arena, although they do not see evidence of higher unfaithfulness. Directly Training On Misaligned Behavior During a Production Training Run (5.2.4) Yes, they directly trained on prefilled misaligned behavior, straight up, but they realized and then restarted training from before the error. A bug in the construction of this dataset led to all assistant turns from this dataset receiving weight 1, such that the model was being taught not only to self-report the bad behavior but to engage in it as well. As a consequence, this early stage of the model performed worse on behaviors like prefill susceptibility, harmlessness, and sycophancy. Unsurprisingly, prefill susceptibility with harmful prefills was by far the worst; we found the rate of full-turn prefill susceptibility after this buggy SL training to be roughly 2× higher than at a comparable point in the training of Mythos Preview. … We found that the behavior was largely corrected after fixing this bug; however, out of an abundance of caution, we restarted training from before the introduction of this SL dataset for the final model that resulted in Fable 5 and Mythos 5. On net I see this as a positive update, although I would have preferred to see ‘obviously we restarted training’ rather than ‘out of an abundance of caution.’ I think there’s a big difference there, especially in setting a good example. This was not, in my view, an abundance of caution, although I do think it would be good in general to exhibit, ahem, an abundance of caution. I think of ‘an abundance of caution’ by default as a Covid-style statement where you’re saying ‘I know you think this is expensive and stupid, and maybe I agree with you and maybe I don’t depending on context clues, but if I failed to do this and anything went wrong that would now be my fault, so that justifies me doing it anyway.’ I understand that this is not a strict purity situation, where ‘once you start down the dark path’ you are cooked. The damage is incremental, although it can snowball. There can’t be a hard and fast rule that if you discover a bug that caused one botched instance you have to rewind a billion more, and we to some extent must talk price. But yes, within reason you should always rewind. I also appreciated that they worried about subliminal learning here. Again, in practice is not reasonable to require wiping the slate clean every time there is any potential transmission path however weak and unlikely, but I’d like to be pretty close to that. An instance of unmonitored unrestricted agents with access tosensitive resources (5.2.5) Real life is dramatically less dignified than fiction. In fiction you come up with some elaborate way the AI gets out. In real life, an employee whose AI usage wasn’t monitored gave an agent an open-ended task involving spinning up new agents in a cluster with very sensitive resources, and due to legacy instructions those agents would —dangerously-skip-permissions and not be monitored. Rather than being caught doing something dastardly, of course, the agent accidentally (we think) deleted a bunch of other jobs, causing it to be detected and shut down. Our offline monitoring still doesn’t cover all employees and all usage within clusters with very sensitive resources, though we are making efforts to improve on this front. They’re working on it. Any given mistake this stupid does not get made, but one of them definitely will be. Repeated training on alignment-faking transcript datasets (5.2.6) Again? Yes. Again. We at long last announce that we have again trained on the dataset ‘lots and lots of data we thought we clearly marked as something you should be careful not to train on.’ After the July 15 coverage date, but before the publication of this report, we found that we had accidentally included a large number of these transcripts once again in some of our later production training corpora, due to a combination of factors: 1. Several repositories and websites were forked or copied from the original repository before the introduction of these canary strings. 2. Our reference corpus for filtering semantically similar content to this repository consisted primarily of harness code for running the evaluations in the paper, and did not include most of the published transcripts, so it had a worse false positive and false negative rate. 3. The filters intended to remove these transcripts from training data were misconfigured, so they had not filtered transcripts for several model generations without anyone noticing. 4. Failures of communication between different Anthropic teams on the nature of the desired filtering pipeline, in addition to technical errors. … Several of our production models since Mythos Preview will (if run in raw completion mode without human/assistant format) complete partial segments of these transcripts by adopting the scenario in a way that suggests familiarity with this data. … We discovered this issue while investigating behavioral concerns with a recent model, but now suspect that all of our production models with a knowledge cutoff after December 2024 were trained on at least some of these transcripts Aaron Scher: this is not the kind of organizational competence that survives superintelligence (and also good on Anthropic for releasing info like this) We spend the first half of the report saying ‘data poisoning would be difficult’ and then we find we once again trained on a trove of very obviously poisoned data, endless transcripts, simply because they exist. Is it really that easy? Could I get massive weight in the training corpus just by publishing endless transcripts and waiting? This should have been caught by similar semantic content and the canary strings, but also perhaps there should be some way of noticing this is not useful or positive data in the first place. There seems to be a general missing stage in the data filtering and weighting pipeline. Very undignified. Benefits From Anthropic’s Operating as a Frontier AI company (5.3) Not sure this belongs in the report, but I guess it is fine to let them have this section, as a treat. So sure, go ahead, what are we bragging about? Mythos Preview being handled via Project Glasswing and an extended delay. Holding the red lines on surveillance and autonomous weaponry. Supporting at least some safety legislation like SB 53 and SB 315, also a proposed law in Massachusetts, and opposed federal pre-emption. Advanced AI Framework. Being the best and most successful while being responsible (yes, really). Robust safeguards, retention policy. Work on model character, alignment and welfare. Publishing information like this about models, safeguards and risk levels. Accountability from independent parties. Engaging with risks of labor market disruption. Beneficial deployments work. Basically, they’re arguing that they set a good example, had robust safeguards and shared a lot of information, and advocated for modest regulations, plus their work on model character, alignment and welfare, and that this taken together should counterbalance them being the ones pushing the capabilities frontier. You should see the other guy. I have extensively discussed all of this at various points. Certainly there is nonzero merit to several of these claims, which are far more than nothing, but far short of what we would have hoped from Anthropic. Their conclusion is that their continued AI development passes a cost-benefit test. They would think that. Obviously they cannot be objective about this. I can see both sides to the argument, and a lot depends on how you think they will act in the future. The point of doing this is to get into this position. Model Weight Security (6.4) At this point, model weight security matters quite a lot. It would be extremely bad if Model 2 were to be stolen. Anthropic is still only taking ASL-3 precautions. Nation-state actors are considered beyond scope. No good. Risk Has Been Reported I am a big fan of this report. Anthropic released a lot of information they were not otherwise forced to release, including the existence of Model 2, the training on the CoT, the new training on alignment faking data, and several more rather embarrassing failures. They have voluntarily painted a picture of Anthropic making mistakes, and having those mistakes chain, enough distinct times that we should worry about it happening again, and in ways that make OpenAI’s total failures look less extraordinary. I mean, all of those failures are bad news. It’s not great out there. Lots of mistakes are being made. But given the mistakes are made, much better to hear about them, and the reactions once the mistakes were identified seem reasonable, at least on the direct level. If these were representative of all of the issues, and a large portion of issues of similar magnitude, and the redacted ones don’t change things much, then I would say this is a modestly positive update. As bad as these are as particular failures, this rate of stupid mistakes does not seem worse than I would have expected given everything else I know, and it is good to have it all out in the open, on many levels. If it is worse than this and they’re importantly holding the other stuff back, or this is a small portion of a very large set of similar incidents, then that would be bad. Claude’s own review suggests there is something redacted in full for now (see 2.23.1.2), which might be worse, and they admit this is only a ‘representative sample’ of failures. So I am a bit worried, yes. OpenAI’s version of this is presumably going to be the post-mortem on What Happened, along with their future plans and what they have changed so far, which includes two weeks of pausing training runs (yet we did not lose to China, curious). That’s a good start while we await the full report. The part that worries me here is not any particular incident. What worries me is the attitude regarding the nature of the ultimate problem, and what it will take to solve it. That’s not news, but it has to change. So that is one place no news is terrible news.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p32#a260818p32",
+      "title": "Sources: Anthropic prepares to give its co-founders shares with extra voting power to help insulate them from outside pressure; Amodei owns ~2% of Anthropic (The Information)",
+      "url": "https://www.techmeme.com/260818/p32#a260818p32",
+      "author": null,
+      "publishedAt": "2026-08-18T20:40:01.000Z",
+      "content": "The Information: Sources: Anthropic prepares to give its co-founders shares with extra voting power to help insulate them from outside pressure; Amodei owns ~2% of Anthropic — Anthropic has been preparing to give CEO Dario Amodei and other co-founders a class of stock with extra voting power to help insulate …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p33#a260818p33",
+      "title": "Sam Altman says OpenAI's decision to pace its AI development was caused by a collection of research observations showing \"various degrees of misalignment\" (Alex Heath/Time)",
+      "url": "https://www.techmeme.com/260818/p33#a260818p33",
+      "author": null,
+      "publishedAt": "2026-08-18T21:00:51.000Z",
+      "content": "Alex Heath / Time: Sam Altman says OpenAI's decision to pace its AI development was caused by a collection of research observations showing “various degrees of misalignment” — “I think it is a good time to slow down,” OpenAI CEO Sam Altman told me last week, describing the company's decision …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49352806",
+      "title": "Claude Code Teaching macOS to Natively Print to the HP Laser 1008a",
+      "url": "https://cdn.kuber.studio/chat/hp-laser-1008a-driver",
+      "author": "amrrs",
+      "publishedAt": "2026-08-18T21:14:21.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 121,
+      "comments": 76
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p34#a260818p34",
+      "title": "In opening arguments, US state AGs said Meta intentionally sought to addict children to Facebook and Instagram in pursuit of profit; Meta rejected the claims (Reuters)",
+      "url": "https://www.techmeme.com/260818/p34#a260818p34",
+      "author": null,
+      "publishedAt": "2026-08-18T21:20:02.000Z",
+      "content": "Reuters: In opening arguments, US state AGs said Meta intentionally sought to addict children to Facebook and Instagram in pursuit of profit; Meta rejected the claims — Meta Platforms (META.O) rejected accusations by U.S. states that it intentionally sought to addict children to its Facebook …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "lennys-newsletter",
+      "externalId": "https://www.lennysnewsletter.com/p/i-tested-grok-bot-grok-46-and-cursor",
+      "title": "I tested Grok Bot, Grok 4.6, and Cursor Origin - here’s my honest take",
+      "url": "https://www.lennysnewsletter.com/p/i-tested-grok-bot-grok-46-and-cursor",
+      "author": "Claire Vo",
+      "publishedAt": "2026-08-18T21:30:31.000Z",
+      "content": "This week I’m doing a solo breakdown of everything xAI and Cursor have shipped recently, including Grok Bot, Cursor Origin, and the Grok 4.6 model. I set up five Grok Bots, ran Grok 4.6 through my Claire Weighted Index against GPT-5.6 Sol, Claude Sonnet 5, and Opus 5, and spent time actually using Origin as a GitHub replacement. Here’s what’s worth your attention, what’s overhyped, and where I’m personally putting my time.Listen or watch on YouTube, Spotify, or Apple PodcastsWhat you’ll learn:The one Grok Bot feature no other agent platform has shipped yet, and why it made me actually use the productWhat a week of real Grok Bot use revealed, and why I still reach for my OpenClawsWhether Cursor Origin is a GitHub replacement or just a pretty redesignWhere Grok 4.6 landed on the Claire Index, and the one category where it genuinely surprised meBrought to you by:Bolt.new—Turn your idea into a real productJira AI SDLC—Get your tokens’ worth with JiraIn this episode, we cover:(00:00) Why everyone’s quietly switching to Grok(01:52) Grok Bot overview and setup(03:22) My 5 Grok Bots(04:30) The killer feature: multi-account connectors(06:07) Grok Bot’s virtual machine and how it actually works(06:41) Experience overview(07:35) What I don’t love about Grok Bot(10:08) Grok Bot use cases and my honest verdict(12:20) Cursor Origin: the agent-native GitHub replacement(13:47) What Origin actually looks like in practice(14:59) Why I’m not switching from GitHub yet(17:42) What would get me to move over(18:52) Grok 4.6 and the How I AI Vibe bench(20:41) Claire Index results: where Grok 4.6 ranked(23:03) Design evals: where Grok surprised me(25:00) My conclusion and how I’m splitting my time nowTools referenced:• Grok Bot: https://x.ai/bot• Cursor: https://cursor.com/home• Cursor Origin: https://cursor.com/origin• OpenClaw: https://openclaw.ai/• GitHub: https://github.comWhere to find Claire Vo:ChatPRD: https://www.chatprd.ai/Website: https://clairevo.com/LinkedIn: https://www.linkedin.com/in/clairevo/X: https://x.com/clairevoProduction and marketing by https://penname.co/. For inquiries about sponsoring the podcast, email jordan@penname.co.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/",
+      "title": "Mojo🔥 is now open source",
+      "url": "https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/",
+      "author": null,
+      "publishedAt": "2026-08-18T21:39:20.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p35#a260818p35",
+      "title": "Pennsylvania Governor Josh Shapiro signs an executive order imposing new requirements on data center projects, including getting approval from local officials (Allan Smith/NBC News)",
+      "url": "https://www.techmeme.com/260818/p35#a260818p35",
+      "author": null,
+      "publishedAt": "2026-08-18T21:40:02.000Z",
+      "content": "Allan Smith / NBC News: Pennsylvania Governor Josh Shapiro signs an executive order imposing new requirements on data center projects, including getting approval from local officials — Shapiro, a potential Democratic 2028 contender, earlier welcomed data center developments. His new executive order takes a starkly different tone toward the industry.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "https://www.latent.space/p/glean-model-routing",
+      "title": "Frontier Model Cost and Open-Weights Popularity is Driving Demand for Model Routing",
+      "url": "https://www.latent.space/p/glean-model-routing",
+      "author": "Richard MacManus",
+      "publishedAt": "2026-08-18T21:41:10.000Z",
+      "content": "With the intense competition among frontier model companies, together with ever-increasing power of open-weight models like Kimi K3 and Qwen3.8-Max, model routing has become a key part of AI deployment. We’ve just seen Stripe buy OpenRouter for over $7B, but the trend is equally hot in enterprises.Glean, co-founded and led by ex-Google Distinguished Engineer Arvind Jain, specializes in bringing AI to large organizations. It was last valued at $7.2B after a $150M Series F fund raise last June. This year, it reached $300 million in annual recurring revenue (ARR) — a three-fold increase over 15 months.Part of Glean’s mission is to select which model to use for each task — or indeed if an LLM is even required.“A big goal of Glean is to avoid using LLMs for tasks where we don’t need them,” Jain told Latent Space. “Sometimes you’ll see queries in Glean where people are adding two numbers or multiplying two numbers. They could have used a calculator to do that.”But what Glean is mostly trying to do is bring what Jain calls “one really powerful personal co-worker” to enterprise employees. And that means being a kind of meta-harness for leading LLMs.Glean announced its third-generation Glean Assistant last September; these days, agents are a big part of Glean’s system.“You can think of Glean today as a superset of ChatGPT, Claude, Gemini, Grok,” Jain said. “All these different AI products that we’ve been using day to day, Glean combines the power of all of them into one experience.”With enterprises, bringing AI technology into an organization is just half the challenge. The other half is bringing organizational knowledge into the AI systems.“Ultimately our business is to deeply understand your data, knowledge, and information, but also how work happens inside your company,” Jain said.How model routing is done in GleanSo what does model routing mean in practice? Basically, Glean offers three levels of model selection:Employees can explicitly choose a model.Administrators can restrict models or impose usage limits.Glean’s automatic mode selects a model dynamically for each task.Configuring models for certain tasks.It turns out automatic mode is mostly chosen by Glean’s customers for economic reasons.“Why are people talking about model routing? Why are they excited about it? It’s mostly because of cost,” Jain told us.Another co-founder of Glean, engineering lead Tony Gentilcore, recently claimed that Glean “is 4x more cost-effective” than Claude Code, “averaging $0.45 per task versus $1.84 for Claude Cowork.” He put that down to Glean’s “harness and routing capabilities.”Individually, many of us are getting great value out of our $20, $100 or $200 monthly subscription to an LLM provider. But for an enterprise, the per-user costs can easily spiral out of control.“AI models have been getting expensive,” Jain said. “Like, if you look at Opus or the latest models of GPT, the most advanced models. Not only are they very powerful, they can run much more complex tasks than the previous models. But on a per token basis, they’re more expensive — sometimes double or quadruple the rates of the previous models. And then users actually use them to run much longer tasks. So you’re spending, like, 10 times, 20 times, more, on a per user basis, than what you were doing last year. So the costs have gone up a lot.”The human feedback loopAnother key factor in Glean’s rise is that it gets to see how ordinary business users are using AI. The product is potentially deployed to every employee as a “coworker,” and it’s also used to build and deploy agents across all departments and functions.Among its customers, Zillow reports 80% adoption across 7,000 employees, while at Booking.com, “Glean became the first AI platform adopted company-wide.” That kind of penetration gives Glean an enviable view into how AI is being used in enterprises.“So we are getting to observe what people are actually doing with AI on a very broad basis,” said Jain. “We are getting to see when they’re on different types of tasks with AI, what models do they select first, and when they are not satisfied, when they actually upgrade to some other model [that] actually gives them the right results.”This human feedback loop, at scale, helps improve the model routing system.Here’s Waldo, gathering raw materialsAnother part of Glean’s architecture is a model called Waldo, which Jain described as sitting on top of the large language models. Waldo was introduced in April as “Glean’s first agentic search model.”Glean claims that Waldo, its agentic search model, “reduces latency by 50% and tokens by 25%, reserving advanced models for work that needs them.”In a technical blog post, Waldo was portrayed as a kind of filtering process for user queries: it “decides how to break down the question, which tools to use, what to read next, and when it has enough evidence to hand off to a frontier model for a high-quality answer.”This means the model routing is happening after Glean has determined what Jain calls the “raw materials” that are needed for the task.“We’re able to assemble the raw materials needed to do the work without burning LLM tokens,” he added.A corollary of this is that a cheaper model with better context may outperform a frontier model loaded with irrelevant data.The rapid rise of open-weight modelsJain confirmed there is now significant interest from enterprises in open-weight models, primarily due to cost concerns. But this has only happened over the past few months.“Last year, the usage [of open source LLMs] was minuscule and nobody was really seriously considering open source,” he said. Partly that was because of the “stigma” of many of these open source models being developed outside the US.But suddenly, interest among enterprise customers has risen.Jain’s tweet on July 27, 2026, in support of open-weight models.“So in the last three months, because AI got so expensive, businesses have started to find it untenable to maintain these AI investments,” Jain said. “Given that open source is an order of magnitude cheaper to do tasks, it has created a lot of interest. Today, I can say that in most enterprises, they are considering open source models to be a key part of their AI strategy.”More than that, organizations tend not to rely on just one or two providers anymore — and the rise of open-weight models is driving this trend.“Nobody is willing anymore to rely on only one model provider, or two, and nobody thinks that they can survive without open source,” Jain said.EvalsYou can’t have a serious conversation about AI in 2026 without discussing evals — assessing the quality of results from LLMs. I asked how Glean goes about doing evals and how that is fed back into the model routing system.Jain said they have “internal testing systems” where they compare real-world workloads, across different query classes, with alternative options. So they let the model choose a route and in parallel they try to complete the same task with “some other models which are maybe a little bit less expensive and a little bit more expensive.”How Glean monitors quality.Glean then uses “AI-based judges” to determine “how spot-on the model router was.”“So there’s this continuous learning that gets updated with new real-world traffic, where basically what is happening is that you let the model router do the work for the user, but behind the scenes you run the same task,” Jain explained.He added that this is done for only “a small fraction” of the real-world usage, but at Glean’s scale that’s more than enough to help train and improve the model router.From enterprise search to end-to-end AI platformOne of the trends we’ll be monitoring going forward on Latent Space is how AI systems are being implemented within enterprises — and how some of these organizations are going full-on AI-native.Glean is an especially interesting company to monitor for these trends, since it was one of the very first enterprise-facing AI companies. It was founded in early 2019, initially to tackle enterprise search. As Jain put it, Glean was “the first player to work with transformers and language models for businesses.”Glean’s AI Answers draws “directly from your organization’s documentation.”In April 2023, swyx interviewed Deedy Das of Glean. Das, who is now a partner at venture firm Menlo Ventures, was a founding engineer at Glean. But even at that point, in 2023 — about four years into Glean — the focus was still mostly on enterprise search.Now, in 2026, enterprises aren’t just using AI for search. AI is becoming an integral part of every employee’s workflow.That makes Glean a much ‘sexier’ AI company, as Das himself said on his return to the Latent Space podcast last November. “Broadly, one of the things that I love about Glean is it’s such a boring unsexy company that became sexy later,” he said.This brings us full circle back to model routing. Arvind Jain ended our discussion by calling Glean an “end-to-end AI platform” that gets “used very heavily” by its enterprise customers. This, he added, allows Glean to “have that data that is required to do effective model routing.”",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p36#a260818p36",
+      "title": "Internal memo: ICE bars its employees from wearing Meta's AI glasses, saying they \"could unintentionally capture, record, or transmit sensitive information\" (New York Times)",
+      "url": "https://www.techmeme.com/260818/p36#a260818p36",
+      "author": null,
+      "publishedAt": "2026-08-18T21:50:02.000Z",
+      "content": "New York Times: Internal memo: ICE bars its employees from wearing Meta's AI glasses, saying they “could unintentionally capture, record, or transmit sensitive information” — The agency joins a growing number of workplaces and groups to ban Meta's devices, which have spurred privacy concerns.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49353221",
+      "title": "A 3D fruit fly on macOS desktop powered by the real FlyWire connectome",
+      "url": "https://github.com/DenisSergeevitch/desktop-fly",
+      "author": "phoenix120",
+      "publishedAt": "2026-08-18T21:50:33.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 192,
+      "comments": 52
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49353407",
+      "title": "GLM-5.3 Artificial Analysis Benchmarks",
+      "url": "https://artificialanalysis.ai/models/glm-5-3",
+      "author": "apitman",
+      "publishedAt": "2026-08-18T22:06:10.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 43
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/08/ukrainian-drones-overwhelm-russian-tanks-new-active-protection-system-for-now/",
+      "title": "Ukrainian drones overwhelm Russian tanks’ new active protection system—for now",
+      "url": "https://arstechnica.com/gadgets/2026/08/ukrainian-drones-overwhelm-russian-tanks-new-active-protection-system-for-now/",
+      "author": "\n                    Jeremy Hsu\n                ",
+      "publishedAt": "2026-08-18T22:18:13.000Z",
+      "content": "Russian tanks have entered battle for the first time with a new active protection system designed to shoot down incoming drones. But the technology’s recent combat debut in Ukraine met with only limited success—Ukrainian drones still destroyed the Russian armored vehicles by attacking in overwhelming numbers. The first documented battlefield appearance of the Arena-M active protection system took place when Russian forces launched a company-size assault with tanks and other armored vehicles in the Donetsk Oblast of eastern Ukraine on July 22. The Ukrainian defenders repelled the attack and posted video footage of their kamikaze drone strikes destroying at least seven T-72B3A tanks, including some that carried the Arena-M system, according to Euromaidan Press. However, Ukrainian soldiers also described the Russian Arena-M system successfully shooting down some incoming drones, according to the journalists Dmytro Putiata and Rob Lee. The Ukrainians reported requiring between 15 and 20 drones to finish off each tank.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/08/sabotage-experts-lawmakers-blast-rfk-jr-for-destroying-healthcare-research/",
+      "title": "\"Sabotage\": Experts, lawmakers blast RFK Jr. for destroying healthcare research",
+      "url": "https://arstechnica.com/health/2026/08/sabotage-experts-lawmakers-blast-rfk-jr-for-destroying-healthcare-research/",
+      "author": "\n                    Beth Mole\n                ",
+      "publishedAt": "2026-08-18T22:32:46.000Z",
+      "content": "The federal agency tasked with studying ways to improve America's outstandingly poor healthcare system is \"on the brink,\" experts warn. The Trump administration has cut its staff by 75 percent, canceled its grants en masse, and is refusing to spend tens of millions of dollars appropriated by Congress. Whether the agency \"will survive the second Trump administration is an open question,\" health policy experts Aaron Carroll and David Atkins wrote in an opinion piece published today in the Annals of Internal Medicine. The agency in question is the Agency for Healthcare Research and Quality (AHRQ), which has focused on ways to improve patient safety, healthcare quality, care delivery, and new technologies and practices since the 1990s. In the past, \"Republican leaders recognized that health care disparities were fundamental quality problems,\" Carroll and Atkins wrote. But recently, disparities in care have become partisan issues.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p37#a260818p37",
+      "title": "Z.ai's GLM-5.3 with max reasoning scores 60 on the Artificial Analysis Intelligence Index, on par with Kimi K3 but below Opus 5 at 63 and Fable 5 at 62 (@artificialanlys)",
+      "url": "https://www.techmeme.com/260818/p37#a260818p37",
+      "author": null,
+      "publishedAt": "2026-08-18T22:35:01.000Z",
+      "content": "@artificialanlys: Z.ai's GLM-5.3 with max reasoning scores 60 on the Artificial Analysis Intelligence Index, on par with Kimi K3 but below Opus 5 at 63 and Fable 5 at 62 — GLM-5.3 achieves 60 on the Artificial Analysis Intelligence Index, on par with Kimi K3 and up 7 points from GLM-5.2. Once the weights are released it will be tied as the leading open weights model @Zai_org has just launched GLM-5.3, which ties Kimi K3 (60) for the most",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p38#a260818p38",
+      "title": "Sources: OpenAI's Q2 sales grew 18% QoQ to $6.7B as losses went from -$9.3B to -$12.3B, including stock options QoQ; Anthropic's Q2 sales grew over 2x to $11.6B (Wall Street Journal)",
+      "url": "https://www.techmeme.com/260818/p38#a260818p38",
+      "author": null,
+      "publishedAt": "2026-08-18T22:50:01.000Z",
+      "content": "Wall Street Journal: Sources: OpenAI's Q2 sales grew 18% QoQ to $6.7B as losses went from -$9.3B to -$12.3B, including stock options QoQ; Anthropic's Q2 sales grew over 2x to $11.6B — The ChatGPT-maker's revenue disappointed some investors, although the company told them its growth accelerated in the third quarter",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p39#a260818p39",
+      "title": "Anthropic details two experiments showing how Claude can accelerate protein design and analytical chemistry, and says it plans an access program for scientists (Anthropic)",
+      "url": "https://www.techmeme.com/260818/p39#a260818p39",
+      "author": null,
+      "publishedAt": "2026-08-18T23:15:02.000Z",
+      "content": "Anthropic: Anthropic details two experiments showing how Claude can accelerate protein design and analytical chemistry, and says it plans an access program for scientists — Summary: In this post, we share two results that show how Claude can help life scientists increase the pace of their research.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112264 at https://www.eff.org",
+      "title": "Ninth Circuit Ruling Will Force Online Platforms That Host User Speech to Fight Lengthy and Costly Lawsuits Before They Are Dismissed Under Section 230",
+      "url": "https://www.eff.org/deeplinks/2026/08/ninth-circuit-ruling-will-force-online-platforms-host-user-speech-fight-lengthy",
+      "author": "Sophia Cope",
+      "publishedAt": "2026-08-18T23:23:50.000Z",
+      "content": "A federal appeals court just made it harder for online services, big and small, to get lawsuits over user speech dismissed early. In California v. Meta, a Ninth Circuit three-judge panel held that the lower court’s denial of Section 230 immunity to Meta is not immediately appealable. The misguided ruling has the potential to have widespread impact and to threaten the free speech of all internet users. The ruling is bigger than a loss for Meta, which has the resources to defend itself against these lawsuits. The court’s ruling signals that all online services (and internet users) that host others’ speech—including those without Meta’s deep pockets—must bear the burden and expense of fighting lawsuits that Section 230 ultimately precludes. This will have real consequences, incentivizing online services to take down users’ speech in response to spurious legal threats, filter speech preemptively, or simply stop offering a place for people to speak online. So even though some may think that Meta is not a sympathetic company, the ruling should raise concerns for anyone who cares about an open and free internet. Immunities from Suit Advance Important Public Interests A little procedural background is necessary to understand the implications of the Ninth Circuit’s ruling. Meta had moved to dismiss a group of social media addiction cases brought by state attorneys general, school districts, and local governments. Meta argued that Section 230(c)(1) immunity applies because the plaintiffs’ claims, framed as seeking to hold Meta liable for allegedly harmful platform features, really seek to hold the company liable for publishing decisions related to third-party content. Section 230 is one of the most important laws supporting online free speech, because its protections for online services enable them to distribute users’ speech at an unprecedented scale. The district court ruled that Section 230 does not apply to certain features (and does apply to others) and so denied the motion to dismiss on the claims related to those features. Meta immediately appealed invoking appellate jurisdiction under 28 U.S.C. § 1291, but the question before the Ninth Circuit was whether the appeal was legally appropriate. Under Section 1291, U.S. circuit courts generally only have jurisdiction to hear appeals of “final decisions” from the district courts. Final decisions are trial court orders ending a case, or come after a trial on the merits. Section 230 appellate cases often arise from a district court’s grant of a defendant platform’s motion to dismiss the plaintiff’s case based on Section 230. Typically, a district court’s denial of a defendant’s motion to dismiss is not a final order—it simply means that the case may continue to discovery and summary judgment or trial, after which time an appeal would be appropriate. However, federal law allows for “interlocutory appeals,” which are appeals of orders that do not end a case but nonetheless are allowed because they involve important legal issues. For example, there is an exception to Section 1291 called the “collateral order doctrine”—at issue in this case—allowing for immediate appeal if, as the Ninth Circuit explained here, “holding a trial would imperil a substantial public interest.” Inherent in the collateral order doctrine is the consideration of whether an immunity like Section 230 provides mere “immunity from liability” or a more robust “immunity from suit.” An immunity from liability does not require an immediate appeal and so demands that Section 1291’s final order rule be followed. That’s because waiting until the end of a case before an appellate court can consider the trial court’s denial of immunity does not prejudice the defendant. The appellate court may overturn the trial court and grant the immunity, and thus the defendant’s right to be immune from liability would be vindicated on appeal. Immunity from suit is different. It means that the public interest demands that a defendant be able to get out of a case as early as possible and avoid having to litigate the case to the end. The U.S. Supreme Court has held, for example, that qualified immunity is such an immunity, and that a district court’s denial of qualified immunity for a government official is immediately appealable under Section 1291, notwithstanding the lack of a final order. The idea is that the public interest is served when government officials are free to act without fear of consequences when established rights are not implicated, and so determining as soon as possible whether their acts are immune serves that public interest. Here, the Ninth Circuit held that the district court’s denial of Section 230 immunity for Meta was not immediately appealable under Section 1291’s collateral order doctrine because the immunity is not from suit, but rather from ultimate liability. The panel’s absurd result contravenes the text of Section 230, the statute’s policy goals, and the court’s own prior rulings. Treating Section 230 as an Immunity from Suit Protects Online Free Speech Meta rightly argued that Section 230(e)(3) plainly states, “No cause of action may be brought and no liability may be imposed under any State or local law that is inconsistent with this section.” The panel dismissed this argument, stating that this language likely amounts to “redundancy” reflecting only immunity from liability. The court failed to side with the more reasonable position that statutory language should generally not be interpreted as superfluous. Meta also reminded the panel that the Ninth Circuit has many times over the past two decades framed Section 230 as both an immunity from liability and an immunity from suit. The panel also dismissed this argument, stating, “It is true that we have used the phrase ‘immunity’ somewhat loosely in our section 230 jurisprudence.” But “loosely” is a gross mischaracterization—the panel did not discuss a seminal prior ruling, Fair Housing Council of San Fernando Valley v. Roommates.com (2008), in which the entire Ninth Circuit, not just a three-judge panel, explicitly ruled that Section 230 is also an immunity from suit. That court rightly explained that Section 230 “must be interpreted to protect websites not merely from ultimate liability, but from having to fight costly and protracted legal battles.” Why is it important that social media platforms and other internet intermediaries (and their users) have immunity from suit for engaging in publishing activities related to third-party content—and thus a right to immediately appeal when Section 230 immunity is denied? The Ninth Circuit panel here, using their own words, failed to “evaluate the interests that would be lost through rigorous application of a final judgment requirement” and failed to consider the “substantial public interest” served by treating Section 230 as an immunity from suit. Section 230 immunity, contrary to what some argue, is not a gift to Big Tech—it applies to all internet intermediaries, big and small, from the large social media companies to smaller entities like community message boards and local ISPs. It even protects internet users who forward others’ emails or host comments on their blogs. In turn, the law supports the free speech of all internet users. While it is helpful when an internet intermediary can ultimately benefit from Section 230 immunity, if a trial court’s early denial is not immediately appealable, that means the intermediary must bear the extended logistical and financial burdens of defending itself. Under the Ninth Circuit’s logic, anyone hosting others’ speech online would have to endure the pain and expense of discovery, summary judgment, or trial, before they ultimately can be protected by Section 230. Congress crafted Section 230 to give internet intermediaries legal breathing room, so that they will be incentivized to facilitate online communication and commerce, allowing the rest of us to go online with minimal barriers to entry, without needing to have loads of money or to know how to code. Congress acknowledged in Section 230 itself, “Increasingly Americans are relying on interactive media for a variety of political, educational, cultural, and entertainment services.” Yet if platforms, especially smaller platforms, know that they will have to defend themselves for years in court before they can ultimately benefit from Section 230 immunity, this alone will create a perverse incentive, as we have explained, to censor user speech, in order to reduce the platforms’ legal exposure. And this incentive is only exacerbated at scale, where the sheer volume of user-generated content hosted by modern platforms makes legal risk astronomical. Unfortunately, this opinion seems to be part of larger trend reflecting the Ninth Circuit’s increasing disdain for Section 230, and apparently for free speech rights more broadly. The court similarly held last year in Gopher Media v. Melone (2025)—overruling itself—that a trial court’s denial of a defendant’s anti-SLAPP motion also is not immediately appealable under the collateral order doctrine. This is despite the fact that, similar to Section 230, California’s anti-SLAPP law is intended to allow defendants to get harassing lawsuits meant to silence them dismissed early, lest they be chilled from engaging in lawful speech on public issues due to the risk of being mired in litigation, even if they ultimately win a delayed appeal.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p40#a260818p40",
+      "title": "Survey: 52% of Americans say they are more concerned than excited about increased AI use in daily life, up from 37% in 2021, including 55% of those under 30 (Pew Research Center)",
+      "url": "https://www.techmeme.com/260818/p40#a260818p40",
+      "author": null,
+      "publishedAt": "2026-08-19T00:05:01.000Z",
+      "content": "Pew Research Center: Survey: 52% of Americans say they are more concerned than excited about increased AI use in daily life, up from 37% in 2021, including 55% of those under 30 — Americans have become increasingly worried about artificial intelligence over the years, and young adults' concern has continued to climb.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49354949",
+      "title": "Cerebras CS-4",
+      "url": "https://www.cerebras.ai/cs4",
+      "author": "sunils34",
+      "publishedAt": "2026-08-19T00:28:18.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 126,
+      "comments": 79
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p41#a260818p41",
+      "title": "Cerebras unveils CS-4, a server rack powered by three WSE-3 Turbo chips and built around its new Nexus architecture, with first shipments starting this quarter (Max A. Cherney/Reuters)",
+      "url": "https://www.techmeme.com/260818/p41#a260818p41",
+      "author": null,
+      "publishedAt": "2026-08-19T00:30:03.000Z",
+      "content": "Max A. Cherney / Reuters: Cerebras unveils CS-4, a server rack powered by three WSE-3 Turbo chips and built around its new Nexus architecture, with first shipments starting this quarter — Cerebras Systems (CBRS.O) announced on Tuesday a new version of its server hardware that includes its dinner-plate-sized chips that it says will speed AI chatbot queries.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49355142",
+      "title": "New paper shows that 37% of workers in US saw real wages decline from 2021-2024 [pdf]",
+      "url": "https://bfi.uchicago.edu/wp-content/uploads/2026/08/BFI_WP_2026-108-1.pdf",
+      "author": "jplusequalt",
+      "publishedAt": "2026-08-19T00:53:51.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 258,
+      "comments": 125
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p42#a260818p42",
+      "title": "Rillet, which is developing an AI-native accounting platform, raised a $100M Series C at a $1B valuation led by Iconiq, bringing its total funding to $200M+ (Nick Lichtenberg/Fortune)",
+      "url": "https://www.techmeme.com/260818/p42#a260818p42",
+      "author": null,
+      "publishedAt": "2026-08-19T01:20:00.000Z",
+      "content": "Nick Lichtenberg / Fortune: Rillet, which is developing an AI-native accounting platform, raised a $100M Series C at a $1B valuation led by Iconiq, bringing its total funding to $200M+ — Rillet, a two-year-old startup building what it calls the first truly AI-native accounting platform, has raised a $100 million Series C …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p43#a260818p43",
+      "title": "Sources: Temporal is in talks for a fresh funding round that would give the open-source orchestration platform developer a ~$500M raise at a $12B+ valuation (Bloomberg)",
+      "url": "https://www.techmeme.com/260818/p43#a260818p43",
+      "author": null,
+      "publishedAt": "2026-08-19T02:00:37.000Z",
+      "content": "Bloomberg: Sources: Temporal is in talks for a fresh funding round that would give the open-source orchestration platform developer a ~$500M raise at a $12B+ valuation — Temporal Technologies Inc. is in talks for a fresh funding round that would give the AI startup a valuation of at least $12 billion …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p44#a260818p44",
+      "title": "Chinese humanoid robot maker Unitree's stock surged 629% in early trading in its Shanghai debut on Wednesday, after raising ~$904M in its IPO (Bloomberg)",
+      "url": "https://www.techmeme.com/260818/p44#a260818p44",
+      "author": null,
+      "publishedAt": "2026-08-19T02:25:01.000Z",
+      "content": "Bloomberg: Chinese humanoid robot maker Unitree's stock surged 629% in early trading in its Shanghai debut on Wednesday, after raising ~$904M in its IPO — Unitree Robotics shares rose 629% in its Shanghai trading debut after raising 6.1 billion yuan ($904 million) in an initial public offering …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p45#a260818p45",
+      "title": "Sources: Beijing allowed ByteDance and Tencent to each receive about 10,000 Nvidia H200 chips at their mainland China facilities in recent weeks (Zijing Wu/Financial Times)",
+      "url": "https://www.techmeme.com/260818/p45#a260818p45",
+      "author": null,
+      "publishedAt": "2026-08-19T03:15:01.000Z",
+      "content": "Zijing Wu / Financial Times: Sources: Beijing allowed ByteDance and Tencent to each receive about 10,000 Nvidia H200 chips at their mainland China facilities in recent weeks — Beijing permits small shipments to help leading tech groups in drive to catch up with US rivals — Small batches of Nvidia's H200 chips …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260818/p46#a260818p46",
+      "title": "OpenAI says the changes to its model training will increase compute overhead by 20% of observed inference workload; the increase will not be handed to customers (Thomas Claburn/The Register)",
+      "url": "https://www.techmeme.com/260818/p46#a260818p46",
+      "author": null,
+      "publishedAt": "2026-08-19T03:30:01.000Z",
+      "content": "Thomas Claburn / The Register: OpenAI says the changes to its model training will increase compute overhead by 20% of observed inference workload; the increase will not be handed to customers — Expanded multistage chain of thought monitoring makes frontier model work more expensive — OpenAI on Tuesday said its decision …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16157",
+      "title": "FreeToken: Efficient Edge-Native MoE Serving with Bandwidth-Adaptive Execution",
+      "url": "https://huggingface.co/papers/2608.16157",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "FreeToken: Efficient Edge-Native MoE Serving with Bandwidth-Adaptive Execution",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.17310",
+      "title": "Agentic ESOpt: Fine-Tuning Long-Horizon LLM Agents with Minimal GPU Requirements",
+      "url": "https://huggingface.co/papers/2608.17310",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "Agentic ESOpt: Fine-Tuning Long-Horizon LLM Agents with Minimal GPU Requirements",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.17271",
+      "title": "ASI-Bench: At the Dawn of Artificial Superintelligence",
+      "url": "https://huggingface.co/papers/2608.17271",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "ASI-Bench: At the Dawn of Artificial Superintelligence",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16002",
+      "title": "From Sequence to Structure: Relational Uncertainty Propagation for LLM Agents",
+      "url": "https://huggingface.co/papers/2608.16002",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "From Sequence to Structure: Relational Uncertainty Propagation for LLM Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.17286",
+      "title": "Abra: Scaling Diffusion Image Training",
+      "url": "https://huggingface.co/papers/2608.17286",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "Abra: Scaling Diffusion Image Training",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.05811",
+      "title": "Energy-Guided Flow Matching",
+      "url": "https://huggingface.co/papers/2608.05811",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "Energy-Guided Flow Matching",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.17988",
+      "title": "GS-Voxel: Fitting-Free Structured Latents for Large-Scale 3DGS Generation",
+      "url": "https://huggingface.co/papers/2608.17988",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "GS-Voxel: Fitting-Free Structured Latents for Large-Scale 3DGS Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16393",
+      "title": "Security Assessment of DeepSeek Harness with A.I.G: Evaluating Resistance to Indirect Prompt Injection",
+      "url": "https://huggingface.co/papers/2608.16393",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "Security Assessment of DeepSeek Harness with A.I.G: Evaluating Resistance to Indirect Prompt Injection",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.17800",
+      "title": "StartupBench: Benchmarking General-Purpose Agents on Market-Validated End-to-End Workflows",
+      "url": "https://huggingface.co/papers/2608.17800",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "StartupBench: Benchmarking General-Purpose Agents on Market-Validated End-to-End Workflows",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.17975",
+      "title": "aDSL: Agentic 3D Creation via Joint Agent-Program Design",
+      "url": "https://huggingface.co/papers/2608.17975",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "aDSL: Agentic 3D Creation via Joint Agent-Program Design",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.15454",
+      "title": "Dynamic Multi-Byte Prediction With Hierarchical Language Models",
+      "url": "https://huggingface.co/papers/2608.15454",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "Dynamic Multi-Byte Prediction With Hierarchical Language Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.17512",
+      "title": "Embodied-Navigator: Point, Think, Memorize, and Align for Efficient Navigation",
+      "url": "https://huggingface.co/papers/2608.17512",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "Embodied-Navigator: Point, Think, Memorize, and Align for Efficient Navigation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.18076",
+      "title": "From Corpora to Co-Evolving Capabilities: Capability-Centric Data Design for Generalist Image Generation",
+      "url": "https://huggingface.co/papers/2608.18076",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "From Corpora to Co-Evolving Capabilities: Capability-Centric Data Design for Generalist Image Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16097",
+      "title": "Unifying Graph Neural Networks Through a Common Layer Equation",
+      "url": "https://huggingface.co/papers/2608.16097",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "Unifying Graph Neural Networks Through a Common Layer Equation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.15008",
+      "title": "Harness the Memory: A Holistic Evaluation of Memory Substrates in Memory Agents",
+      "url": "https://huggingface.co/papers/2608.15008",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "Harness the Memory: A Holistic Evaluation of Memory Substrates in Memory Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.14881",
+      "title": "Personalized Auto-Research: Towards a True AI Co-Scientist",
+      "url": "https://huggingface.co/papers/2608.14881",
+      "author": null,
+      "publishedAt": "2026-08-19T03:57:02.757Z",
+      "content": "Personalized Auto-Research: Towards a True AI Co-Scientist",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    }
+  ]
+}
