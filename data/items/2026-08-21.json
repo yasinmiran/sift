@@ -1,0 +1,1126 @@
+{
+  "day": "2026-08-21",
+  "generatedAt": "2026-08-21T03:59:21.426Z",
+  "items": [
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/how-v0-authenticates-to-snowflake-without-exposing-the-users-oauth-token",
+      "title": "How v0 authenticates to Snowflake without exposing the user's OAuth token",
+      "url": "https://vercel.com/blog/how-v0-authenticates-to-snowflake-without-exposing-the-users-oauth-token",
+      "author": "Anika Sikka",
+      "publishedAt": "2026-08-20T04:00:00.000Z",
+      "content": "AI-generated applications often need to authenticate to external services on behalf of their users. That creates a problem: generated code shouldn't have access to the user's credentials.We faced that decision when building the v0 . It lets users connect Snowflake, inspect schemas, query data, and generate applications that run against their warehouses. That generated code has to authenticate to Snowflake, but it is written by a model and runs without human review, and , so the user's OAuth token should never enter the environment the code runs in.Snowflake integrationprompt injection can steer it into exfiltrating whatever it can readWe solved this with a Snowflake request proxy for v0 sandboxes, built on the . The sandbox can run normal Snowflake clients, but the real credential is resolved at request time in a server proxy outside the sandbox runtime. This lets existing Snowflake clients work inside the sandbox without exposing the user's credential to generated code.Vercel Sandbox firewallThe harder problem was deciding where the proxy could safely inject the credential. The obvious implementation, replacing a placeholder token wherever it appears, introduces another credential leak. runs generated applications in isolated sandboxes. Isolation protects the rest of the system from untrusted code, but it doesn't protect secrets inside the sandbox.v0If a generated app can read a token from the filesystem, that token can be copied into logs, returned in an API response, embedded into generated client code, or sent to another host. Sandbox isolation limits what the application can access, but it does not help once the credential itself is available inside the sandbox.For Snowflake, the credential represents the Snowflake role the user connected with. v0 should be able to help the user explore and build with data they are authorized to access, but generated code should not receive raw provider credentials just because it needs one.The sandbox cannot talk to Snowflake directly. When code inside it sends a request to the user's Snowflake account host, the sandbox firewall forwards that request to the v0 Snowflake proxy:The firewall terminates TLS with a certificate authority unique to each sandbox, which lets the proxy read and rewrite traffic that would otherwise be encrypted. The sandbox trusts that certificate authority automatically, so the Snowflake SDK and CLI run with their default certificate validation, OCSP included. The proxy then verifies the sandbox's OIDC token, looks up the v0 chat the sandbox belongs to, restores the user session bound to that chat, and retrieves a fresh Snowflake credential for that user.The sandbox does not choose where a token-bearing request is sent. The proxy derives the Snowflake account host from the server-side credential and rejects invalid account URLs, keeping the credential scoped to the connected Snowflake account rather than trusting host information supplied by generated code.As a stopgap, the first version of the integration wrote the user's real token into the sandbox's Snowflake token files. The proxy replaced that approach. Ideally, we would remove token files from the sandbox entirely, but Snowflake clients expect credentials in different locations depending on the authentication flow.Some requests, such as calls, authenticate with an header. Other client flows read local token files and send the token as part of a login request. Once the client has authenticated, subsequent requests use Snowflake-issued session tokens, and the proxy passes those requests through untouched.Snowflake SQL APIAuthorization: BearerTo preserve compatibility, v0 still writes a token-shaped placeholder into the sandbox. The placeholder is a fixed, public, 72-byte string that grants no access, and its only job is to let existing Snowflake SDK and CLI flows behave as if a token exists. The proxy never authorizes a request based on the placeholder itself. Instead, the proxy authorizes the request using the sandbox's server-side identity and its binding to the user's chat.The real OAuth token, the reusable credential that represents the user, is never written into the sandbox. Snowflake does issue session tokens that live inside the sandbox after login, but each of those belongs to a single authenticated session.Those sessions are short-lived in practice. The Snowflake helper in generated apps destroys its connection after each query, which ends the session right away. Closing the chat does not end a session on its own, but tearing down the sandbox takes the token with it, and Snowflake expires the session server-side after four hours of inactivity by default. When a request reaches the proxy, it decides whether and where to attach the credential.The first version of the proxy searched each request for the placeholder and swapped in the real token wherever it appeared:The problem is that generated code controls parts of the request, including where the placeholder can appear. A SQL statement, for example, is caller-controlled data. If a query contains the placeholder as a string literal, blind replacement turns that query into one containing the real OAuth token. If the database then returns that string, the real token comes back into the sandbox as query output, and the proxy would have leaked the token it was built to keep out.Stricter matching does not close the hole. The proxy shouldn't inject a credential based on attacker-controlled text. Instead, it needs to know which field in each Snowflake request carries authentication.Snowflake requests reach the proxy in three shapes, and each shape puts authentication in a different place.For Snowflake SQL API requests, the proxy sets the OAuth token on the header. The body remains caller-controlled SQL and is not rewritten. If the placeholder appears in the SQL payload, the proxy rejects the request before it reaches Snowflake and logs it as placeholder misuse.Authorization: BearerFor Snowflake login requests, the proxy parses the JSON request body, sets the token structurally at the login token field, and serializes the body again. If the placeholder remains anywhere else in the request body, the proxy fails closed.Post-login session requests authenticate with Snowflake-managed session tokens, so the proxy has nothing to inject.The proxy rejects any request where:Requests are also bounded before inspection so that compressed or oversized bodies cannot turn the proxy into an unbounded parser. Every proxied request emits an observability event with the upstream outcome, status, duration, and injection location. This surfaces misuse and integration failures without exposing secrets.Token refresh cannot depend on an ambient browser cookie, because proxy requests originate from the sandbox, not from the user's browser session. v0 binds the user session to the sandbox instead, and the proxy mints and refreshes OAuth credentials from that binding.The publish path uses flows with the same credential boundary. Deploy can write the placeholder into credential files, but never the real token.Snowflake CLIAfter deployment, the application runs in and authenticates as its own service user, with a token that Snowflake manages and rotates automatically, mounted at . The user's OAuth token and the v0 proxy are no longer involved.Snowpark Container Services/snowflake/session/tokenFor users, none of this is visible. Connect Snowflake, ask v0 to inspect schemas or build an app, preview the result, and deploy when it's ready.The security model rests on five rules:In its first 15 days in production, the proxy attached credentials server-side for roughly 13,000 requests and recorded zero placeholder-misuse rejections.Although we built this proxy for Snowflake, the same problem applies to other integrations: generated code often needs to authenticate without receiving the user's long-lived credential. The important part is to inject credentials only into protocol-defined authentication fields, rather than rewriting arbitrary request data.The v0 Snowflake integration is now available in beta. Get started by reading the .integration docsRead moreIsolation doesn't protect secretsEvery Snowflake request goes through the proxyCompatibility without credential exposureWhy blind replacement failsInjecting credentials only into authentication fieldsFailing closedHandling refresh and deployThe resulting security boundaryThe sandbox is not bound to a chatNo user-scoped credential can be obtainedThe Snowflake account host cannot be derivedThe placeholder appears outside an approved authentication fieldA structured login body cannot be parsed safelyCredential injection happens only at each endpoint's authentication fieldsRequests that use the placeholder outside an authentication field are rejected and loggedToken-bearing requests go only to the connected Snowflake account hostCredentials are minted and refreshed server-sideGenerated code uses Snowflake without ever reading the user's OAuth token",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/introducing-ai-futures",
+      "title": "Introducing AI Futures",
+      "url": "https://openai.com/index/introducing-ai-futures",
+      "author": null,
+      "publishedAt": "2026-08-20T07:00:00.000Z",
+      "content": "Introducing AI Futures, a new OpenAI blog exploring how transformative AI could reshape power, governance, the economy, and individual freedom.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49373932",
+      "title": "Xorg-server 26.1.0 rc1",
+      "url": "https://lists.x.org/archives/xorg-announce/2026-August/003741.html",
+      "author": "st_goliath",
+      "publishedAt": "2026-08-20T12:50:16.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 114,
+      "comments": 98
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49374287",
+      "title": "DiffusionGemma Technical Report",
+      "url": "https://arxiv.org/abs/2608.00146",
+      "author": "gmays",
+      "publishedAt": "2026-08-20T13:24:32.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 139,
+      "comments": 34
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49374920",
+      "title": "Harvest hikes bills by 1500% after purchased by Bending Spoons",
+      "url": "https://www.bbc.com/news/articles/clyq011414eo",
+      "author": "jonathanlydall",
+      "publishedAt": "2026-08-20T14:18:16.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 109,
+      "comments": 107
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49375719",
+      "title": "Anti-AI fonts are useless and harmful",
+      "url": "https://blog.yaros.ae/anti-ai-fonts-are-useless-and-harmful/",
+      "author": "speckx",
+      "publishedAt": "2026-08-20T15:06:53.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 128,
+      "comments": 86
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49375996",
+      "title": "Vomit: Clean up Claude 5's token output with a separate LLM",
+      "url": "https://github.com/zachahn/vomit",
+      "author": "Bluestein",
+      "publishedAt": "2026-08-20T15:26:02.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 203,
+      "comments": 217
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Aug/20/bun-webview-json-api/",
+      "title": "A shot-scraper-style JSON API on Bun 1.4's new Bun.WebView",
+      "url": "https://simonwillison.net/2026/Aug/20/bun-webview-json-api/",
+      "author": null,
+      "publishedAt": "2026-08-20T15:37:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49376265",
+      "title": "Linux 7.2",
+      "url": "https://www.igalia.com/2026/08/19/Linux-72-Released.html",
+      "author": "mariuz",
+      "publishedAt": "2026-08-20T15:46:18.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 210,
+      "comments": 73
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49376332",
+      "title": "How to compromise your system with a job interview",
+      "url": "https://www.codedge.de/posts/how-to-compromise-your-system-with-a-job-interview",
+      "author": "codedge",
+      "publishedAt": "2026-08-20T15:50:57.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 129,
+      "comments": 109
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/LiquidAI/lfm25-dspark",
+      "title": "Up to 3.2x Faster Inference with LFM2.5-DSpark",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm25-dspark",
+      "author": null,
+      "publishedAt": "2026-08-20T16:52:57.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/custom-metrics-are-now-supported-in-vercel-observability",
+      "title": "Custom metrics are now supported in Vercel Observability",
+      "url": "https://vercel.com/changelog/custom-metrics-are-now-supported-in-vercel-observability",
+      "author": "Tobias Lins",
+      "publishedAt": "2026-08-20T17:00:00.000Z",
+      "content": "You can now emit your own metrics directly from your Vercel Functions and analyze them alongside Vercel's built-in observability data.Use the function from the package to record any value you care about, like request latency or business events, and attach attributes to filter and group by:metric()@vercel/functionsOnce emitted, your custom metrics are available across Observability: • slice and aggregate metrics on the fly. • build and share dashboards. • query using the command.Query builder:Notebooks:CLI:vc metricsVercel automatically adds useful attributes like the source deployment and function region. Custom metrics are billed as observability events and available on Pro and Enterprise with Observability Plus.Learn more in the .docsRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "cloudflare-blog",
+      "externalId": "01M0E1JC8D74SDDVJCVBVX8EFA",
+      "title": "From all-or-nothing to task-based OAuth consent",
+      "url": "https://blog.cloudflare.com/task-based-oauth-consent/",
+      "author": "Miller Vargas",
+      "publishedAt": "2026-08-20T17:03:03.000Z",
+      "content": "Since June, developers have created thousands of third-party OAuth apps on Cloudflare, with more than a million authorizations since. OAuth makes delegated access possible. It lets applications act on a user’s behalf without asking them to handle long-lived credentials or hand over a password. That model works well when an application can describe its access needs with a small set of scopes. Developers use OAuth for SaaS integrations, internal tools, CLIs, and agents. Our permission model has become more granular over time to support better scoping of these different workflows. That is great for security, but it makes a purely all-or-nothing consent screen hard to justify.Cloudflare OAuth already allows clients to request a subset of their configured scopes. But once the client made that request, the user could not narrow it any further on the consent screen. For the user on the consent screen, the experience was still an all-or-nothing one. If an application requested more access than a user was comfortable granting, their only options were to approve the full request, or deny outright. MCP servers are a good example of this. An MCP server might request a broad set of permissions, because in theory an agent could use all of them. But most users would not want an agent to have that much access. Before this feature, the only way to handle this was for the app developer to build a custom scope selection screen before sending the user to our consent flow.Today, we’re introducing OAuth scope customization. Client owners can mark specific scopes as optional when configuring an OAuth client, giving users the ability to grant a narrower subset of an application’s requested access at authorization time.The OAuth spec already allows authorization servers to grant a narrower set of scopes than what was requested. We built on top of that flexibility to make this work cleanly for every existing app.More control, without overwhelming usersOur goal with introducing scope selection is to give security conscious users more flexibility to make the right choices for their use case, without turning the consent screen into a long scope checklist. With scope customization: Developers can mark specific scopes on an OAuth client as required or optionalAt authorization time, users can deselect optional scopes from the requested setRequired and optional scopes are evaluated against the scopes requested for that authorization flowIf no optional scopes are requested, the consent experience stays the sameBy default, the consent screen still grants the full requested scope set. Scoping to the authorization requestOne important detail is that required and optional scopes are evaluated only against the scopes requested in a specific authorization flow, not every scope configured on the client. That matters because OAuth clients do not always request their full configured scope set.For example, a client might be configured with user-details.read, workers-scripts.write, workers-kv-storage.write, and zone.read, while marking workers-kv-storage.write and zone.read as optional. If that client starts an authorization flow requesting all four scopes, the consent screen will evaluate all four. In that case, user-details.read and workers-scripts.write remain required, while the user can choose whether to grant workers-kv-storage.write and zone.read.But if the client later requests only workers-scripts.write and zone.read, then only those two scopes are considered for that authorization flow. user-details.read and workers-kv-storage.write would not be shown or enforced, because they were not requested.This keeps the consent screen focused on the task at hand, rather than every capability the application could request. It also means existing OAuth clients keep their current behavior by default: if a client does not opt into optional scopes, the consent flow remains unchanged.Configuring an OAuth client to use optional scopesDevelopers can opt into scope customization when configuring an OAuth client. Scopes continue to be configured as they are today, and clients can now additionally specify which of those scopes are optional: In the example above, the client can request all four scopes, but the user may only opt out of the workers-kv-storage.write and zone.read scopes during consent. user-details:read and workers-scripts.write remain required if they are included in the authorization request. If the client later requests only workers-scripts.write and zone.read, then only those two scopes are considered for that authorization flow. user-details.read and workers-kv-storage.write would not be shown or enforced because it was not requested.Building with partial grants in mindWhen a user deselects any optional scopes and completes the authorization flow, the generated access token will only contain the scopes they consented to. For developers, this means you need to check the granted scope set after exchanging the authorization code, rather than assuming the full requested set of scopes was approved.An app that handles a narrower grant gracefully, for example an agent that operates within whatever subset of permissions it receives, is one that users feel comfortable authorizing. Requesting only the permissions needed and marking the rest as optional is a good sign to users that your app respects their access decisions.Scopes for every ProductOver the next few weeks, we will be expanding our account & zone-level role surface to cover nearly every Cloudflare product. That means more API token roles, account membership options, and OAuth scopes, giving customers the tools to secure workloads with the right level of access. Build with Optional ScopesAllowing developers and users to better restrict access through optional OAuth scopes is an important step toward a more flexible and trustworthy consent experience on Cloudflare. With optional scopes, developers can build more nuanced authorization flows, and users gain more control over what they approve. To get started with Third Party OAuth, take a look at our documentation or jump straight to the OAuth apps page in the dashboard and create your first OAuth app. Thank you to our amazing internsThis feature is one of the many that we built with the help of our 1,111 interns. Congratulations to Miller Vargas and José Enrique Rodriguez on your high impact contributions here. Miller is a senior at the University of Texas - Austin studying computer science and math; and José is a senior at Universidad Panamericana studying engineering, data intelligence, and cybersecurity.",
+      "topics": [
+        "security-privacy",
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/08/weak-roblox-safeguards-failed-to-stop-adults-contacting-kids-regulator-says/",
+      "title": "Roblox must make changes after failing to block adults creeping on kids",
+      "url": "https://arstechnica.com/tech-policy/2026/08/weak-roblox-safeguards-failed-to-stop-adults-contacting-kids-regulator-says/",
+      "author": "\n                    Ashley Belanger\n                ",
+      "publishedAt": "2026-08-20T17:14:08.000Z",
+      "content": "Despite making changes last fall to help block adults from messaging unknown children, Roblox is still failing to stop adults from creeping on kids in other ways, Australia’s eSafety commissioner, Julie Inman Grant, said on Thursday. Suspecting that Roblox may not be doing enough to stop child exploitation, eSafety conducted testing earlier this year that flagged alarming gaps in Roblox safeguards. The agency found that adult strangers could still send connection requests to kids, whose “profiles and biographies, including account names, number and names of connections, avatar images, and non-sensitive biographical information such as their interests were visible to anyone on the Roblox platform, with no option to restrict the visibility of this information.” Such requests did not trigger parental alerts, eSafety found, and bad actors could also search kids’ visible-to-anyone contact lists for more targets.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=982800",
+      "title": "Framework says it&#8217;s addressing a BIOS update that bricked some of its older laptops",
+      "url": "https://www.theverge.com/gadgets/982800/framework-laptop-13-amd-7040-bios-320-bricking-warranty",
+      "author": "Antonio G. Di Benedetto",
+      "publishedAt": "2026-08-20T17:16:02.000Z",
+      "content": "The 2023 Framework Laptop 13 with AMD Ryzen 7040-series chips. | Photo by Amelia Holowaty Krales / The Verge Some Framework Laptop 13 owners with last-gen AMD chips have reported that a recent BIOS update is bricking their laptops on both Windows and Linux. The BIOS update causing this issue is version 3.20 for Ryzen 7040-series mainboards, released back in July and still available on Framework's site at the time of this writing. Upon running the update, some users reported their laptops getting stuck on the update screen. While some users on Framework's community forums reported that the company was sending them replacement mainboards under the one-year warranty, several with out-of-warranty boards said they were told they'd have to buy new ones. … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "newcomer",
+      "externalId": "https://www.newcomer.co/p/the-story-of-a-cap-table-openrouter",
+      "title": "The Story of a Cap Table: OpenRouter",
+      "url": "https://www.newcomer.co/p/the-story-of-a-cap-table-openrouter",
+      "author": "Madeline Renbarger",
+      "publishedAt": "2026-08-20T17:19:21.000Z",
+      "content": "OpenRouter’s founder Alex Atallah and AI investor Anjney Midha became fast friends over 13 years ago at Stanford, but it took more than a decade for them to partner up professionally — and the results have proven spectacular.Stripe announced Wednesday its agreement to purchase the model routing platform, co-founded by Atallah in 2023. Midha had backed the team in 2025 while he was a general partner at Andreessen Horowitz. It’s the type of rapid-fire founding-to-multibillion-dollar-exit story the AI boom has supercharged in Silicon Valley.We got the details on the deal and OpenRouter’s cap table from sources close to multiple firms with stakes in the company, all of whom requested anonymity to discuss sensitive financial information. A few key numbers: Read more",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=982863",
+      "title": "FCC officially decides gigabit speeds are too good for you",
+      "url": "https://www.theverge.com/policy/982863/fcc-kills-gigabit-goal",
+      "author": "TC. Sottek",
+      "publishedAt": "2026-08-20T17:38:30.000Z",
+      "content": "Another day, another sad thing to report about our compromised Federal Communications Commission. Chairman Brendan Carr has followed through on his 2025 threat to kill long-term broadband speed goals established during the Biden administration, which aimed for eventually getting us to gigabit download and half-gigabit upload speeds. How dare we dream of spreading great download and upload speeds across the country! It's wild that 13 years after Comcast said Americans don't need gigabit internet we're somehow back in this conversation. Especially since the private sector has delivered, albeit unevenly, on super high speeds in certain areas; … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=982885",
+      "title": "Australia says Roblox hasn&#8217;t fixed its child predator problem",
+      "url": "https://www.theverge.com/games/982885/roblox-australia-safety-regulator-child-safety",
+      "author": "Jay Peters",
+      "publishedAt": "2026-08-20T17:42:34.000Z",
+      "content": "Roblox is promising more changes to its child safety features following testing from Australia's online safety regulator, eSafety. eSafety has been looking into concerns that the company hasn't been in compliance with Australia's Online Safety Act, including \"allegedly failing to have sufficient measures in place to prevent contact between adults and children under 16.\" While Roblox has put some new safety measures in place, eSafety's testing this year found that the platform \"continued to put children at risk, including allowing contact between children and adult strangers.\" eSafety's testing found that: adults could send connection req … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72490",
+      "title": "Detailed Timeline of OpenAI’s Cyberattack on Hugging Face",
+      "url": "https://www.schneier.com/blog/archives/2026/08/detailed-timeline-of-openais-cyberattack-on-hugging-face.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-08-20T17:44:36.000Z",
+      "content": "OpenAI presented details of its AI’s model’s cyberattack on Hugging Face at Black Hat last week. Simon Willison details the timeline. It’s really interesting to read through—and really impressive cyberoffense work.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49377853",
+      "title": "I should have loved biology (2020)",
+      "url": "https://jsomers.net/i-should-have-loved-biology/",
+      "author": "tyre",
+      "publishedAt": "2026-08-20T17:50:02.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 208,
+      "comments": 79
+    },
+    {
+      "sourceSlug": "pragmatic-engineer",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/the-pulse-we-need-to-talk-about-migrations",
+      "title": "The Pulse: We need to talk about migrations with AI",
+      "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-we-need-to-talk-about-migrations",
+      "author": "Gergely Orosz",
+      "publishedAt": "2026-08-20T17:53:01.000Z",
+      "content": "The Pulse is a series covering events, insights, and trends within Big Tech and startups.Today, we cover:More on the “great engineering leader career break.” The industry is changing fast, and the VPE and CTO roles also need to adapt. And don’t forget that these are the roles from which you can drive change that reorganizes engineering in ways that work better.We need to talk about migrations with AI. Asana needed to migrate off testing framework Enzyme, but it meant doing a massive rewrite of test cases. With AI, the project was completed in two weeks: without AI, this work would surely have been kicked down the road. Airbnb and Uber share similar stories, and AI seems like a superb fit for framework migrations.Are AI startups making the Gartner Magic Quadrant irrelevant? Gartner ranked AWS, Microsoft and IBM above Anthropic, Cursor and OpenAI in their “AI code modernization tools” ranking. This is most likely because the first three pay large sums of money to Gartner, but AI labs and vendors refuse to pay this “Gartner tax.”Industry Pulse. Another hours-long GitHub outage, GitHub alternatives are here and fighting for market share, Slack launches Slack Code, text generated by Claude to be watermarked, and Uber open sources SubmitQueue.Before we start: apologies for the numerous typos last week. My editor, Dominic, was on vacation, and numerous typos made it through the spellchecker. A reader asked for cute puppy pictures to accept my apology, and so I updated the post with pictures of our 3-month old puppy.1. More on the “great engineering leader career break” Read more",
+      "topics": [
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nextjs-blog",
+      "externalId": "/blog/upcoming-nextjs-security-release-august-2026",
+      "title": "Upcoming Next.js August Security Release",
+      "url": "https://nextjs.org/blog/upcoming-nextjs-security-release-august-2026",
+      "author": {
+        "name": [
+          "Josh Story"
+        ]
+      },
+      "publishedAt": "2026-08-20T18:00:00.000Z",
+      "content": "Next.js is preparing a scheduled August security release for August 26, 2026.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/manage-vercel-toolbar-comments-from-the-cli",
+      "title": "Manage Vercel Toolbar comments from the CLI",
+      "url": "https://vercel.com/changelog/manage-vercel-toolbar-comments-from-the-cli",
+      "author": "Julian Benegas",
+      "publishedAt": "2026-08-20T18:03:00.000Z",
+      "content": "You can now use the to manage comments. covers the full triage loop:Vercel CLIVercel Toolbarvercel commentsStart by listing all of the unresolved comments in the current branch:Dig deeper into a specific thread:Reply, resolve, edit:Update to the latest Vercel CLI version and run . Or just prompt your coding agent: vercel commentsLearn more in the .comments CLI docsRead moreList and filter unresolved comments for the linked project, scoped to your current Git branchInspect a full thread with every message and its IDsReply, resolve, reopen, edit, or delete from the terminal output for scripts and agents--format jsonCommon workflowGet started",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49378243",
+      "title": "Consumer Rights Wiki",
+      "url": "https://consumerrights.wiki/w/Main_Page",
+      "author": "gregsadetsky",
+      "publishedAt": "2026-08-20T18:19:51.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 253,
+      "comments": 38
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p34#a260820p34",
+      "title": "Meta rolls out Pocket, an experimental vibe-coding app that lets users create and share small games, in the US, after launching it in Brazil last month (Sarah Perez/TechCrunch)",
+      "url": "https://www.techmeme.com/260820/p34#a260820p34",
+      "author": null,
+      "publishedAt": "2026-08-20T18:35:46.000Z",
+      "content": "Sarah Perez / TechCrunch: Meta rolls out Pocket, an experimental vibe-coding app that lets users create and share small games, in the US, after launching it in Brazil last month — Meta's experimental vibe-coding gaming app, Pocket, is now rolling out to everyone in the U.S. The app, which arrived quietly last month …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "github-blog",
+      "externalId": "https://github.blog/?p=98377",
+      "title": "The August 17 outage, and the work ahead",
+      "url": "https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/",
+      "author": "Vlad Fedorov",
+      "publishedAt": "2026-08-20T18:36:11.000Z",
+      "content": "On August 17, GitHub experienced an outage that lasted 7 hours and 47 minutes. It disrupted github.com, authentication, GitHub Actions, APIs, pull requests, issues, and Copilot, affecting developers and organizations around the world. If you were trying to ship software that day, we let you down. This was our second significant incident in August, following an actions failure on August 6. In March and April, I shared the work underway to improve GitHub’s reliability. We have made progress, but these incidents make clear that we must accelerate this work. What happened Our investigation found that the outage began when traffic reached a new peak, and a critical infrastructure component in our Central US data center failed to scale with it. The resulting capacity pressure spread through our systems, causing authentication failures and disrupting multiple GitHub services. Recovery required several coordinated actions. Teams rerouted traffic, isolated affected infrastructure, and restored services in stages. Most GitHub services recovered earlier that day, but some Copilot services took longer. Errors in those services triggered a client-side retry loop that increased traffic during recovery. We had to mitigate that behavior before we could safely restore traffic. The full root cause analysis includes a detailed technical timeline. Neither outage was caused by a code or configuration change. Both incidents were capacity failures at their core. We failed to scale critical components before demand exceeded their capacity. Since April, monthly commits have grown from 1.4 billion to 2.9 billion. That growth explains the pressure on our systems, but it does not excuse these outages. What we have done and what comes next As part of the reliability commitments we made earlier this year, we have focused on three priorities: adding capacity, improving efficiency, and removing architectural bottlenecks. We have since added more than 3 million CPU cores, 120 petabytes of high-speed storage, and significant network capacity. We installed as much hardware as available power allowed in our existing data centers while accelerating our migration to Azure. Today, Azure serves roughly 58% of GitHub’s platform load and half of all Git operations, up from 12% of platform load in May. This expanded footprint has also supported the growth in GitHub Actions job runs shown below. Azure’s infrastructure and capacity have also accelerated our work to scale the largest monorepos. Our next milestone is an architecture that scales read capacity linearly with the number of readers, enabling unlimited read operations. We will roll it out gradually, beginning with the largest monorepos. Scale is not our only challenge. As the pace and complexity of change increased, our existing operational practices did not keep up. We have redirected teams and resources toward availability and invested in stronger testing, safer rollouts, better observability, and more effective alerting. We have made progress, but this work is not complete. In addition, we are also isolating critical systems and removing shared dependencies between them. This work is designed to reduce the likelihood of an outage and limit its impact when one occurs. We learn from every outage and add new work to our availability workstream. The August 6 and August 17 incidents led to two immediate changes. First, we are applying consistent retry limits, retry budgets, and variable timeouts across service-to-service interactions to prevent retry storms and cascading load. Second, we are reviewing lower-priority CPU and memory alerts to identify components that could fail during sudden traffic spikes. Our commitment to high availability isn’t just a technical promise. The developer community depends on GitHub to build, ship, and operate their work. That is only possible if you can rely on us, and on August 17, you couldn’t. It is our responsibility to fix that. We’ll earn your trust through the scaling and reliability of the platform. The post The August 17 outage, and the work ahead appeared first on The GitHub Blog.",
+      "topics": [
+        "devtools-infra",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49378446",
+      "title": "Why aren't smart people happier? (2022)",
+      "url": "https://www.experimental-history.com/p/why-arent-smart-people-happier",
+      "author": "rafaelc",
+      "publishedAt": "2026-08-20T18:38:47.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 108,
+      "comments": 162
+    },
+    {
+      "sourceSlug": "stackoverflow-blog",
+      "externalId": "ed3e57af-3814-4e23-a270-d234eb2b4d82",
+      "title": "Quantum-Augmented Applications: Integrating Quantum Subroutines into Classical Software Stacks",
+      "url": "https://stackoverflow.blog/2026/08/20/quantum-augmented-applications-integrating-quantum-subroutines-into-classical-software-stacks/",
+      "author": "Dr. Ahmad Mateen Ishanzai",
+      "publishedAt": "2026-08-20T18:43:39.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=982955",
+      "title": "Mark Zuckerberg bought an Irish castle",
+      "url": "https://www.theverge.com/tech/982955/meta-mark-zuckerberg-strancally-castle-ireland",
+      "author": "Jay Peters",
+      "publishedAt": "2026-08-20T18:50:14.000Z",
+      "content": "Mark Zuckerberg. | Image: Cath Virginia / The Verge; Getty Images Meta CEO Mark Zuckerberg now owns an actual castle. Zuckerberg and his wife Priscilla Chan bought Strancally Castle and its 440-acre estate in Ireland \"several weeks ago,\" according to The Irish Times. While the exact price of the purchase is unclear, the family could have paid \"anywhere between &euro;20 million and &euro;30 million\" for the 16,000-square-foot castle, which was restored by its previous owners. \"Mark and his family look forward to caring for this historic home and visiting when traveling to Ireland, where Meta maintains its international headquarters,\" Brian Baker, a spokesperson for Zuckerberg, says in a statement to The Verge. The I … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49378630",
+      "title": "Watching TikTok and Instagram deactivates the cognitive control network: Study",
+      "url": "https://www.rathbiotaclan.com/tiktok-videos-deactivate-key-cognitive-brain-regions/",
+      "author": "Akasci",
+      "publishedAt": "2026-08-20T18:54:32.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 314,
+      "comments": 114
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49378768",
+      "title": "Show HN: Huzzah – a novel approach to coding with AI",
+      "url": "https://www.danielvaughn.dev/posts/huzzah/",
+      "author": "danielvaughn",
+      "publishedAt": "2026-08-20T19:05:36.000Z",
+      "content": "Hello everyone. I've been working on this experimental editor called Huzzah.I've been working almost exclusively with coding agents since January of this year, and over the past few months I began to feel utterly exhausted by them. They're great, but I'm finding it more and more tedious to write full sentences for every change I want. Not only that, but it seems there's a complexity limit for codebases - beyond a certain point the agent begins confusing itself.I'd like to go back to writing code, but I don't want to go all the way back to fully manual coding. So I've come up with this interaction paradigm where you: 1. write pseudocode in whatever way makes the most sense to you 2. on save, the editor synchronizes your work to real source code 3. the pseudocode is persisted alongside the generated code, making your prompt effectively a stored record of intent. It may not work for every use case, but in my initial playthroughs I've found it very enjoyable.Right now it's just a proof of concept - installation instructions are here in the readme: https://github.com/danielvaughn/hzYou can also watch a video of it in action here: https://x.com/danielvaughn/status/2090456808431165715Cheers!",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 238,
+      "comments": 138
+    },
+    {
+      "sourceSlug": "stackoverflow-blog",
+      "externalId": "07d4e201-1f96-4b57-a3a5-fdcf9c723ece",
+      "title": "AI Won't Replace Project Managers, But It is Reshaping How Work Gets Done",
+      "url": "https://stackoverflow.blog/2026/08/20/ai-won-t-replace-project-managers-but-it-is-reshaping-how-work-gets-done/",
+      "author": "Emim Vigin Lumina",
+      "publishedAt": "2026-08-20T19:05:40.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p35#a260820p35",
+      "title": "Charter closes its $34.5B Cox acquisition, announced in May 2025, uniting two of the biggest US cable and broadband providers, and completes its Liberty deal (Georg Szalai/The Hollywood Reporter)",
+      "url": "https://www.techmeme.com/260820/p35#a260820p35",
+      "author": null,
+      "publishedAt": "2026-08-20T19:05:49.000Z",
+      "content": "Georg Szalai / The Hollywood Reporter: Charter closes its $34.5B Cox acquisition, announced in May 2025, uniting two of the biggest US cable and broadband providers, and completes its Liberty deal — “When Liberty first invested in Charter more than a decade ago, we saw an opportunity to build scale behind a great management team and operating model,\" said John Malone.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "newcomer",
+      "externalId": "https://www.newcomer.co/p/sources-poolside-strikes-6-billion",
+      "title": "SOURCES: Poolside Strikes $6 Billion Licensing Deal with Nvidia & Raises $1 Billion for Remaining Company at $12 Billion Valuation",
+      "url": "https://www.newcomer.co/p/sources-poolside-strikes-6-billion",
+      "author": "Eric Newcomer",
+      "publishedAt": "2026-08-20T19:20:32.000Z",
+      "content": "EXCLUSIVE TO NEWCOMER: Poolside AI, the artificial intelligence model-building startup, has struck a non-exclusive licensing deal with Nvidia for $6 billion, plus a $1 billion investment in Poolside at a $12 billion pre-money valuation, according to a letter to investors obtained by Newcomer. Read more",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49378957",
+      "title": "The August 17 outage",
+      "url": "https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/",
+      "author": "0xedb",
+      "publishedAt": "2026-08-20T19:22:24.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 380,
+      "comments": 426
+    },
+    {
+      "sourceSlug": "figma-blog",
+      "externalId": "https://www.figma.com/blog/sightlines-issue-no2/",
+      "title": "Sightlines issue no.2: What leaders need to know about building agents",
+      "url": "https://www.figma.com/blog/sightlines-issue-no2/",
+      "author": null,
+      "publishedAt": "2026-08-20T19:36:00.000Z",
+      "content": "Agentic products pose a unique set of design challenges. How do you build a tool that’s powerful and knowledgeable enough to be a true partner, while keeping trust and security at the core? Here’s what we’ve heard from leaders.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p36#a260820p36",
+      "title": "Sources: Poolside struck a non-exclusive $6B licensing deal with Nvidia, plus a $1B investment at a $12B pre-money valuation; 109 staffers get Nvidia job offers (Newcomer)",
+      "url": "https://www.techmeme.com/260820/p36#a260820p36",
+      "author": null,
+      "publishedAt": "2026-08-20T19:36:38.000Z",
+      "content": "Newcomer: Sources: Poolside struck a non-exclusive $6B licensing deal with Nvidia, plus a $1B investment at a $12B pre-money valuation; 109 staffers get Nvidia job offers — EXCLUSIVE TO NEWCOMER: Poolside AI, the artificial intelligence model-building startup, has struck a non-exclusive licensing deal …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49379253",
+      "title": "Stop eating Lady Gaga's Oreos",
+      "url": "https://www.experimental-history.com/p/stop-eating-lady-gagas-oreos",
+      "author": "cwal37",
+      "publishedAt": "2026-08-20T19:46:06.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 175,
+      "comments": 113
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=982910",
+      "title": "The Genesis GV90 blows the bloody doors off what’s possible in EV design",
+      "url": "https://www.theverge.com/transportation/982910/genesis-gv90-ev-suv-coach-door-heated-floor",
+      "author": "Andrew J. Hawkins",
+      "publishedAt": "2026-08-20T19:52:57.000Z",
+      "content": "Genesis, Hyundai's luxury brand, just revealed its first full-size, three-row electric SUV for the US market, the GV90. And arguably it has some of the wildest designs and features in the auto market today. Right off the bat, the coach-style doors signal that things aren't what they seem with the GV90. When the front and rear doors open outward, the B-pillar disappears, creating an extra-large opening into the vehicle - because you're the kind of person who can afford it. Genesis is calling it the Neolun Arch Gate, \"the world's first independently opening and closing hidden B-pillar coach door.\" But it's more than just that. To be sur … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=982986",
+      "title": "Riot is ending development on its League of Legends fighting game",
+      "url": "https://www.theverge.com/games/982986/riot-games-league-of-legends-fighting-game-2xko-end-development",
+      "author": "Jay Peters",
+      "publishedAt": "2026-08-20T19:59:09.000Z",
+      "content": "Riot Games is already winding down work on 2XKO, the free-to-play League of Legends fighting game, less than a year after its initial launch. Riot says \"active development\" will conclude at the end of 2026 because the company hasn't \"seen enough players stick with the game to get to a path toward sustainability.\" Servers will stay online \"beyond 2026,\" and Riot is unlocking all playable characters and refunding money spent on the game. 2XKO launched in an early access beta on PC in October 2025 and hit PS5 and Xbox Series X / S in January. But shortly after, Riot announced it would be cutting staff working on the game, saying at the time t … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49379550",
+      "title": "Aaron Swartz was prosecuted for scraping, while Meta does it without consequence",
+      "url": "https://blog.curiousquail.com/im-upset-again-about-a-co-creator-of-rss-being-prosecuted-for-something-meta-is-doing-with-little-consequence/",
+      "author": "speckx",
+      "publishedAt": "2026-08-20T20:07:26.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 1169,
+      "comments": 263
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p37#a260820p37",
+      "title": "San Mateo-based Twin1 AI, which creates professional digital twins that integrate with tools like Slack, launches from stealth with a $20M seed (Chris Metinko/Axios)",
+      "url": "https://www.techmeme.com/260820/p37#a260820p37",
+      "author": null,
+      "publishedAt": "2026-08-20T20:10:01.000Z",
+      "content": "Chris Metinko / Axios: San Mateo-based Twin1 AI, which creates professional digital twins that integrate with tools like Slack, launches from stealth with a $20M seed — Twin1 AI, a startup that helps professionals create a digital twin, launched from stealth with a $20 million seed round, co-founder Lewis Liu tells Axios Pro.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p38#a260820p38",
+      "title": "Google rolls out an embeddable \"Preferred Sources\" button, natural language Discover controls, and custom audio briefings in the Google News app on Android (Matt G. Southern/Search Engine Journal)",
+      "url": "https://www.techmeme.com/260820/p38#a260820p38",
+      "author": null,
+      "publishedAt": "2026-08-20T20:30:03.000Z",
+      "content": "Matt G. Southern / Search Engine Journal: Google rolls out an embeddable “Preferred Sources” button, natural language Discover controls, and custom audio briefings in the Google News app on Android — Google is rolling out a new embeddable Preferred Sources button, natural language Discover controls, and customizable audio briefings in the Google News app.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p39#a260820p39",
+      "title": "Sources: Broadcom is in talks with a group of lenders to raise $60B+ in debt for an AI chip financing deal that will benefit Anthropic and other companies (Bloomberg)",
+      "url": "https://www.techmeme.com/260820/p39#a260820p39",
+      "author": null,
+      "publishedAt": "2026-08-20T20:40:01.000Z",
+      "content": "Bloomberg: Sources: Broadcom is in talks with a group of lenders to raise $60B+ in debt for an AI chip financing deal that will benefit Anthropic and other companies — Broadcom Inc. is in talks with a group of lenders to raise more than $60 billion in debt for an AI chip financing deal …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p40#a260820p40",
+      "title": "GitHub says its 7+ hour August 17 outage was caused by a capacity failure when peak traffic overwhelmed an infrastructure component in a Central US data center (Vlad Fedorov/The GitHub Blog)",
+      "url": "https://www.techmeme.com/260820/p40#a260820p40",
+      "author": null,
+      "publishedAt": "2026-08-20T20:55:01.000Z",
+      "content": "Vlad Fedorov / The GitHub Blog: GitHub says its 7+ hour August 17 outage was caused by a capacity failure when peak traffic overwhelmed an infrastructure component in a Central US data center — An update on the August 17 outage and the steps we're taking to improve reliability. — On August 17, GitHub experienced an outage that lasted 7 hours and 47 minutes.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "https://www.latent.space/p/wayfinder-skill",
+      "title": "The /wayfinder Skill: Navigating the “Fog of War” of Planning",
+      "url": "https://www.latent.space/p/wayfinder-skill",
+      "author": "Richard MacManus",
+      "publishedAt": "2026-08-20T20:59:09.000Z",
+      "content": "We’re currently developing a new series about skills, with the aim of giving you a regular supply of new skills to use in your projects. We’re kicking things off with an interview — and a super-useful skill — featuring Matt Pocock, whose “AI Skills for Real Engineers” project has over 220,000 stars on GitHub. He also talks about these skills to 347,000 subscribers on his YouTube channel.Pocock recently released a new skill called /wayfinder. Its purpose is to help you and your agent figure out a project where the end state isn’t entirely clear. Or as Pocock put it in our interview, /wayfinder helps you navigate “the fog of war,” where you have a project but “you can’t quite decide everything right at the start.”The following interview has been slightly condensed for readability, so you can read it, absorb Matt’s insights, and then test out /wayfinder for yourself!Latent Space: What were the goals of wayfinder?Pocock: What I noticed is I was doing a lot of work with AFK agents [Away From Keyboard] and trying to schedule in a ton of work so that my agents could run virtually overnight. I would just plan a bunch of stuff, and then I would create a spec and then turn that spec into tickets. And I had a really well-developed set of skills for how to turn work into scheduled stuff that agents could just crack on.But [...] I was finding the planning stage really onerous, because I would have to be constantly thinking about my session management. Like, how many tokens am I into my context window? How deep am I going here?Matt Pocock’s wayfinder skill, as documented in GitHubI didn’t want to feel constrained in the planning stage anymore. I wanted an orchestrator layer that would basically say, okay, whatever you want to plan, I’m going to handle the planning sessions for you. I’m going to split this out into multiple different threads, do prototyping, do research and pull it all back together, so that you don’t feel constrained in the planning anymore.And then your specs can be even more detailed, and you can just whack off an AFK agent to go and do tons more work.Latent Space: What was the design process of coming up with this skill?Pocock: I had this kernel of an idea of, what if I didn’t have to manage the handoffs? What would that look like? And then, what would it look like to have some kind of centralized document to have all of those pieces together?Whenever you’re thinking about context management — because that’s really what a skill is, you’re managing the context of the agent you’re working in — you need to think about the information flow. So what I wanted to think about is, what if a grilling session could manage other grilling sessions? What would that look like?Well, the first step to that is, what does the grilling session that’s being managed need? What does the child need in that situation? So the child probably needs to understand a vague overview of what else is happening, and they need their specific task.So there, you’ve got two documents. You’ve got a map — which is all of the rest of the stuff, all the decisions that have already been made. And then you’ve got the specific ticket that goes into the actual session. And what you notice there is that those words are very precise.From wayfinder documentationYou’ve got the map, and you’ve got the ticket, and you’ve got the session. And once you’ve got the kernel of an idea, you then need to come up with the words for that idea. Because once you’ve figured out the words, then those entities can be really clearly mapped out by the agent.Because if you just call everything a ticket, or if you just refer to it in different ways in different places, then it’s going to be really confused and you’re going to get strange behavior. Whereas if you use these very specific, what I call leading words, to lead the agent to understand exactly what each part is, and you’ve understood what the information flow is, then you’ve got your skill.Latent Space: What kind of use cases do you think wayfinder would be useful for?Pocock: Well, I’ve been using it for all sorts of stuff. I’ve been using it to actually plan courses as well. In wayfinder, there are different types of tickets.So you’ve got grilling tickets, which are just a grilling session. Then you’ve got prototype tickets for creating prototypes, research tickets for creating [and doing] research, and then task tickets — which are really broad…basically, just anything the human needs to do that the agent can’t do. And so once you think about that, you realize, OK, I can apply that to anything.One really key idea in wayfinder is the ‘fog of war’. So this is the concept of, you can’t quite decide everything right at the start.I decided to test /wayfinder on a project to rearchitect my personal website. Here’s the initial project set-up, in this case using Claude Code.You can make certain decisions, and those certain decisions sort of lead you there and push further out into the fog of war — kind of like Warcraft III style, exploring the map. And once I had the idea of ‘fog of war’ and ‘map’, I realized those two terms actually work really nicely together, and it really leads the agent into the right idea. So I’ve been using it for engineering, for non-engineering stuff, for course planning, all sorts.Latent Space: This concept of the fog of war — it’s weird to consider what you don’t know that you don’t know. Maybe LLMs are good at capturing that.Pocock: I feel like with the grilling stuff that I’m still working on, that captures an idea that you don’t know stuff, but maybe the agent can contribute something and illuminate a part of the room that you don’t quite understand yet.And wayfinder is just sort of an extra layer on top of that.Working through my website rearchitecture project using /wayfinder. There’s 20+ years of content to re-organize!Latent Space: Yeah, and there’s all these artifacts. How much time do you spend teaching the model all this terminology?Pocock: For the last few months, I’ve been pretty obsessed with terminology — and finding the right terms for certain things. I’ve put together, I haven’t actually put it out yet, but it’s an AI coding dictionary — of basically all the terms in AI coding. It’s in this beautiful graph that you can explore and understand exactly what an agent is, exactly what a harness is, exactly what a model is, blah blah blah.I’ve redone all my courses to use that dictionary and make it really solid. And then all of my skills use a consistent dictionary as well. So they’re all working off the [same] assumptions, the same leading words.I realized that I needed a ubiquitous language between me and the agent. Between me and the agent, there is a communication barrier. And that’s what I’m trying to do with my skills all the time, is try to find the right words.And agents are really good at showing you the opportunities for different wording — really good at domain modeling, actually.Latent Space: When do we directly use the grill-me skill, versus wayfinder?Pocock: Use ‘grill me’ in cases where you feel like you can plan the whole thing in a single session, and you need to align before you go. So most small features will fit into this. Most stuff where you can see the path ahead of you, but you just want to make sure the agent is on board, ‘grill me’ will work with that.Via wayfinder documentationFor stuff where you don’t know the path ahead, for stuff where you can feel the fog of war in front of you, use wayfinder. You’re gonna find your way with wayfinder. So that’s how it works.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/culture/2026/08/new-9-11-documentary-finds-hope-in-the-horror/",
+      "title": "They survived 9/11; 25 years later, their bonds remain unbroken",
+      "url": "https://arstechnica.com/culture/2026/08/new-9-11-documentary-finds-hope-in-the-horror/",
+      "author": "\n                    Jennifer Ouellette\n                ",
+      "publishedAt": "2026-08-20T21:25:25.000Z",
+      "content": "September 11, 2001, will be remembered as one of the darkest days in American history. As the 25th anniversary approaches, National Geographic, in collaboration with the 9/11 Memorial and Museum, is marking the occasion with a new documentary miniseries: 9/11: Reunited. The three-episode series revisits the personal stories of several survivors of the terrorist attacks, with a twist: It reunites people whose paths crossed at that time to celebrate the bonds they formed 25 years ago. Director Julian Jones was a producer on NatGeo's Emmy-winning 2021 documentary miniseries 9/11: One Day in America. The experience inspired him to return to direct 9/11: Reunited. \"What emerged for me [while making the 2021 documentary] was a sense of people showing up for each other, a selflessness and everyday heroism,\" Jones told Ars. As the 25th anniversary of the attacks approached, he and National Geographic decided to commemorate the milestone with a documentary series focused on that aspect. \"We wanted to bring people together to offer gratitude to each other, to answer unanswered questions, to talk about things that maybe they weren't ready to talk about until now, and also to remember their fallen comrades or friends,\" said Jones. \"After 25 years, who do they want to meet? What questions have they got? I think we also wanted to tell the story of what many in the 9/11 community call 9/12, that's the rest of your lives—the journey, and in many cases, the psychological and physical struggles.\"Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/08/europe-cancels-planned-upgrades-for-ariane-6-rocket/",
+      "title": "Europe cancels planned upgrades for Ariane 6 rocket",
+      "url": "https://arstechnica.com/space/2026/08/europe-cancels-planned-upgrades-for-ariane-6-rocket/",
+      "author": "\n                    Eric Berger\n                ",
+      "publishedAt": "2026-08-20T21:40:52.000Z",
+      "content": "In the two years since it made a largely successful debut, Europe's Ariane 6 rocket has launched eight missions, all of which reached orbit safely. The large, expendable rocket has a capacity of more than 20 metric tons to low-Earth orbit. And to the credit of European rocket scientists and planners, the Ariane 6 has had a substantially smoother rollout than comparable vehicles in the United States—Blue Origin's New Glenn and United Launch Alliance's Vulcan rockets—both of which have had significant growing pains. However, even though the Ariane 6 rocket has had a successful debut, its future is clouded by high costs.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p41#a260820p41",
+      "title": "Email: Apple Music tells industry partners that songs tagged as \"materially generated using AI\" by content providers will be visibly labeled on the service (Kristin Robinson/Billboard)",
+      "url": "https://www.techmeme.com/260820/p41#a260820p41",
+      "author": null,
+      "publishedAt": "2026-08-20T21:45:01.000Z",
+      "content": "Kristin Robinson / Billboard: Email: Apple Music tells industry partners that songs tagged as “materially generated using AI” by content providers will be visibly labeled on the service — The news builds on Apple's recent announcement of AI Transparency Tags for songs. Now, the service will soon make those disclosures visible to users.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983088",
+      "title": "Google Discover is getting an AI chatbot-tuned feed",
+      "url": "https://www.theverge.com/tech/983088/google-discover-ai-chatbot-feed",
+      "author": "Emma Roth",
+      "publishedAt": "2026-08-20T21:50:22.000Z",
+      "content": "Google will soon allow you to customize your Discover feed by describing what you want to see. The new feature, rolling out to the Google app in the \"coming days,\" will use AI to automatically tweak your feed and \"remember\" your preferences for future visits. You'll find the option within the three-dot menu on your Discover feed. As shown in a video shared by Google, tapping the feature will open a chatbot-style interface, where you'll be able to describe your preferences. The chatbot will confirm your choices and lay out the types of content it will prioritize, but you'll also have the option to add more information if it doesn't get it qu … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/08/us-distributor-of-chinas-most-popular-humanoid-robots-pivots-after-us-ban/",
+      "title": "US distributor of China’s most popular humanoid robots pivots after US ban",
+      "url": "https://arstechnica.com/gadgets/2026/08/us-distributor-of-chinas-most-popular-humanoid-robots-pivots-after-us-ban/",
+      "author": "\n                    Jeremy Hsu\n                ",
+      "publishedAt": "2026-08-20T22:00:11.000Z",
+      "content": "A leading US distributor of China’s most popular humanoid robots and robot dogs now plans to produce its own robots at a facility on Long Island, New York. The business pivot comes amid the US government’s growing crackdown on foreign-made robots. The company RoboStore had previously become the main North American distributor for humanoid robots and quadruped robots from Unitree Robotics, a Chinese robotics company that produces some of the most affordable and popular humanoid robot models. Universities such as Harvard and MIT, along with tech companies like Amazon and Nvidia, purchased such robots made in China through RoboStore for their own research and development purposes. “We’ve sold over 1,500 robots and deployed them and worked with customers like Cisco, OpenAI, Nvidia, and over 150 universities,” Teddy Haggerty, founder and CEO of RoboStore, told Ars.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p42#a260820p42",
+      "title": "Super Micro says its independent probe found no evidence its CEO or senior management knew of an alleged scheme to smuggle $2.5B worth of Nvidia chips to China (Amanda Gerut/Fortune)",
+      "url": "https://www.techmeme.com/260820/p42#a260820p42",
+      "author": null,
+      "publishedAt": "2026-08-20T22:21:07.000Z",
+      "content": "Amanda Gerut / Fortune: Super Micro says its independent probe found no evidence its CEO or senior management knew of an alleged scheme to smuggle $2.5B worth of Nvidia chips to China — Super Micro Computer said on Thursday that an independent investigation led by its board found no evidence that current members …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p43#a260820p43",
+      "title": "OpenAI rolls out an Apple Messages plugin for ChatGPT on macOS, letting ChatGPT read, search, and analyze chats, prepare and send messages, and more (Zac Hall/9to5Mac)",
+      "url": "https://www.techmeme.com/260820/p43#a260820p43",
+      "author": null,
+      "publishedAt": "2026-08-20T22:51:09.000Z",
+      "content": "Zac Hall / 9to5Mac: OpenAI rolls out an Apple Messages plugin for ChatGPT on macOS, letting ChatGPT read, search, and analyze chats, prepare and send messages, and more — Well, this seems interesting. ChatGPT's latest update adds a new Mac integration: the ability to work with conversations from Apple's Messages app.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/",
+      "title": "ChatGPT search now uses the site:operator at scale",
+      "url": "https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/",
+      "author": null,
+      "publishedAt": "2026-08-20T23:57:32.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p44#a260820p44",
+      "title": "A US judge tosses part of the conviction of ex-Google engineer Linwei Ding, who was found guilty of stealing AI trade secrets to benefit two Chinese companies (Tom Hals/Reuters)",
+      "url": "https://www.techmeme.com/260820/p44#a260820p44",
+      "author": null,
+      "publishedAt": "2026-08-21T00:05:02.000Z",
+      "content": "Tom Hals / Reuters: A US judge tosses part of the conviction of ex-Google engineer Linwei Ding, who was found guilty of stealing AI trade secrets to benefit two Chinese companies — A federal judge on Thursday tossed part of the conviction of former Google software engineer Linwei Ding, who was found guilty earlier …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49382041",
+      "title": "Copyright does not protect AI-generated content in EU",
+      "url": "https://mathstodon.xyz/@maxpool/117128107757895678",
+      "author": "u1hcw9nx",
+      "publishedAt": "2026-08-21T00:15:12.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 151,
+      "comments": 145
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49382200",
+      "title": "It is a sign of the times that Amazon gets to call this fair use",
+      "url": "http://observationalepidemiology.blogspot.com/2026/08/it-is-sign-of-times-that-amazon-gets-to.html",
+      "author": "sonicrocketman",
+      "publishedAt": "2026-08-21T00:34:32.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 103,
+      "comments": 78
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p45#a260820p45",
+      "title": "A NJ teenager drops her lawsuit against Meta, Google, and Snap over alleged social media addiction, without any payment; TikTok previously settled her claims (Diana Novak Jones/Reuters)",
+      "url": "https://www.techmeme.com/260820/p45#a260820p45",
+      "author": null,
+      "publishedAt": "2026-08-21T01:00:49.000Z",
+      "content": "Diana Novak Jones / Reuters: A NJ teenager drops her lawsuit against Meta, Google, and Snap over alleged social media addiction, without any payment; TikTok previously settled her claims — A teen girl whose lawsuit was a test case in litigation accusing social media companies of deliberately addicting young people …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p46#a260820p46",
+      "title": "Nevada approves permits letting Tesla deploy up to 5,000 robotaxis in the Las Vegas area over the next year, while Waymo and Uber are each allowed up to 1,000 (Kirsten Korosec/TechCrunch)",
+      "url": "https://www.techmeme.com/260820/p46#a260820p46",
+      "author": null,
+      "publishedAt": "2026-08-21T01:30:00.000Z",
+      "content": "Kirsten Korosec / TechCrunch: Nevada approves permits letting Tesla deploy up to 5,000 robotaxis in the Las Vegas area over the next year, while Waymo and Uber are each allowed up to 1,000 — Nevada, get ready for the robotaxis. — The Nevada Transportation Authority unanimously approved three permits Thursday that will allow Tesla …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=981536",
+      "title": "Genki’s new customizable controller has a big screen and adjustable buttons",
+      "url": "https://www.theverge.com/tech/981536/genki-manta-wireless-customizable-controller-tmr-screen",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-08-21T02:00:00.000Z",
+      "content": "After collaborating with 8BitDo on a gamepad two years ago, Genki launched the first controller the company designed from the ground up today. With an unorthodox design that positions its thumbsticks and buttons above a large 2.9-inch LCD screen, the Manta looks a lot chunkier than competing controllers. But what really sets it apart is a deeper focus on customizability with numerous settings that can be adjusted using the controller's screen plus buttons and thumbsticks that can be tailored to each player's preferences. The Genki Manta is launching today through a Kickstarter crowdfunding campaign. The earliest backers can preorder the con … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p47#a260820p47",
+      "title": "Source: AI training data startup Micro1's gross annual run rate grew from $100M to $500M in the past eight months, putting net annual run rate at $150M-$200M (Marina Temkin/TechCrunch)",
+      "url": "https://www.techmeme.com/260820/p47#a260820p47",
+      "author": null,
+      "publishedAt": "2026-08-21T02:25:01.000Z",
+      "content": "Marina Temkin / TechCrunch: Source: AI training data startup Micro1's gross annual run rate grew from $100M to $500M in the past eight months, putting net annual run rate at $150M-$200M — The near-bottomless demand for unique AI training data from top labs and corporations is driving a massive boom for a cohort of data-labeling startups.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260820/p48#a260820p48",
+      "title": "Brazil announces ~$444.2M in AI investments split between US and Chinese companies, including ~$250.3M for a supercomputing project with Huawei and iFlytek (Marcela Ayres/Reuters)",
+      "url": "https://www.techmeme.com/260820/p48#a260820p48",
+      "author": null,
+      "publishedAt": "2026-08-21T03:35:02.000Z",
+      "content": "Marcela Ayres / Reuters: Brazil announces ~$444.2M in AI investments split between US and Chinese companies, including ~$250.3M for a supercomputing project with Huawei and iFlytek — Brazil's government announced on Thursday investments of about 2.3 billion reais ($444.2 million) to bolster its artificial intelligence ecosystem …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.19880",
+      "title": "EnvHarness: Awakening Static Worlds for Agent Learning",
+      "url": "https://huggingface.co/papers/2608.19880",
+      "author": null,
+      "publishedAt": "2026-08-21T03:59:03.608Z",
+      "content": "EnvHarness: Awakening Static Worlds for Agent Learning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.18580",
+      "title": "FACET: Preserving Source Intent and Executable State in Terminal Task Synthesis",
+      "url": "https://huggingface.co/papers/2608.18580",
+      "author": null,
+      "publishedAt": "2026-08-21T03:59:03.608Z",
+      "content": "FACET: Preserving Source Intent and Executable State in Terminal Task Synthesis",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20335",
+      "title": "4DAnyone: Create Anyone in 4D from a Casual Monocular Video",
+      "url": "https://huggingface.co/papers/2608.20335",
+      "author": null,
+      "publishedAt": "2026-08-21T03:59:03.608Z",
+      "content": "4DAnyone: Create Anyone in 4D from a Casual Monocular Video",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20336",
+      "title": "WithEveryone: Unified Planning and Identity Grounding for Group Image Generation",
+      "url": "https://huggingface.co/papers/2608.20336",
+      "author": null,
+      "publishedAt": "2026-08-21T03:59:03.608Z",
+      "content": "WithEveryone: Unified Planning and Identity Grounding for Group Image Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20202",
+      "title": "MemTrapBench: Benchmarking Cognitive Traps in LLM Memory Use",
+      "url": "https://huggingface.co/papers/2608.20202",
+      "author": null,
+      "publishedAt": "2026-08-21T03:59:03.608Z",
+      "content": "MemTrapBench: Benchmarking Cognitive Traps in LLM Memory Use",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.14022",
+      "title": "ForgeWM: Progressive Causal Training for Few-Step Action-Conditioned Video World Models",
+      "url": "https://huggingface.co/papers/2608.14022",
+      "author": null,
+      "publishedAt": "2026-08-21T03:59:03.608Z",
+      "content": "ForgeWM: Progressive Causal Training for Few-Step Action-Conditioned Video World Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.19854",
+      "title": "Repo0: Design-Driven Zero-to-All Code Generation",
+      "url": "https://huggingface.co/papers/2608.19854",
+      "author": null,
+      "publishedAt": "2026-08-21T03:59:03.608Z",
+      "content": "Repo0: Design-Driven Zero-to-All Code Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.13120",
+      "title": "SkillEvo: Self-Renewing Evolution Gradients from Multi-Turn Interaction Feedback",
+      "url": "https://huggingface.co/papers/2608.13120",
+      "author": null,
+      "publishedAt": "2026-08-21T03:59:03.608Z",
+      "content": "SkillEvo: Self-Renewing Evolution Gradients from Multi-Turn Interaction Feedback",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20281",
+      "title": "Inject, Align, Recover: Staged Post-Training for Retrieval-Free Document Knowledge Internalization",
+      "url": "https://huggingface.co/papers/2608.20281",
+      "author": null,
+      "publishedAt": "2026-08-21T03:59:03.608Z",
+      "content": "Inject, Align, Recover: Staged Post-Training for Retrieval-Free Document Knowledge Internalization",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.19861",
+      "title": "PolicyGuide: From Guarding One Action to Guiding the Whole Workflow for Policy-Compliant LLM Agents",
+      "url": "https://huggingface.co/papers/2608.19861",
+      "author": null,
+      "publishedAt": "2026-08-21T03:59:03.608Z",
+      "content": "PolicyGuide: From Guarding One Action to Guiding the Whole Workflow for Policy-Compliant LLM Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.19891",
+      "title": "EXIMO: VLM Guided Exploration of VLA Policies",
+      "url": "https://huggingface.co/papers/2608.19891",
+      "author": null,
+      "publishedAt": "2026-08-21T03:59:03.608Z",
+      "content": "EXIMO: VLM Guided Exploration of VLA Policies",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    }
+  ]
+}
