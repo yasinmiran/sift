@@ -1,6 +1,6 @@
 {
   "day": "2026-08-24",
-  "generatedAt": "2026-08-24T04:03:15.595Z",
+  "generatedAt": "2026-08-24T16:16:43.939Z",
   "items": [
     {
       "sourceSlug": "alphasignal",
@@ -124,6 +124,21 @@
       "content": "Julia Fioretti / Bloomberg: Filing: Shein will debut on the Hong Kong exchange on Sept. 1, seeking up to $1.8B in its IPO with Goldman Sachs, Morgan Stanley, and JPMorgan as joint sponsors — Shein Global Holdings Ltd. is seeking to raise as much as $13.9 billion ($1.8 billion) in its Hong Kong initial public offering …",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/bun-runtime-now-supports-large-functions-and-extended-max-duration",
+      "title": "Bun runtime now supports large functions and extended max duration",
+      "url": "https://vercel.com/changelog/bun-runtime-now-supports-large-functions-and-extended-max-duration",
+      "author": "Florentin Eckl",
+      "publishedAt": "2026-08-24T00:00:00.000Z",
+      "content": "The on Vercel Functions now supports larger package sizes up to 5GB uncompressed and extended max duration for up to 30 minutes, two betas that previously ran on Node.js and Python only.Bun runtimeLarge functions raise the standard 250MB package size limit to 5GB, and extended max duration raises the generally available 800-second ceiling to 1800 seconds for Pro and Enterprise teams. Both features require to be enabled. New projects are enrolled in the large functions beta automatically, while existing projects created before opt in by adding as an , then redeploying. Durations above 800 seconds are set per function in rather than as a project-level default:Fluid computeenvironment variable in your project settingsJuly 2026VERCEL_SUPPORT_LARGE_FUNCTIONS=1vercel.jsonThe entry point serves the long-running route with Bun:server.tsDuring the beta, these features are unavailable on projects using Secure Compute or Static IPs.Read the and documentation.large functionsextended max durationRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -963,6 +978,21 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-sandbox-is-now-globally-available",
+      "title": "Vercel Sandbox is now globally available",
+      "url": "https://vercel.com/changelog/vercel-sandbox-is-now-globally-available",
+      "author": "Marc Codina Segura",
+      "publishedAt": "2026-08-24T04:00:00.000Z",
+      "content": "now runs globally, starting with four regions: (Washington, D.C.), (San Francisco), (Cleveland), and (Paris). Vercel Sandboxiad1sfo1cle1cdg1 remains the default. Support for all Vercel regions is coming soon.iad1Choose a region close to the databases, object storage, and other services your sandboxes access to reduce latency.Region selection is available on all plans. Pro and Enterprise teams can also configure failover regions. If the primary region is unavailable, new sandboxes start in the closest configured failover region.Update the SDK or CLI you use to the latest version: Configure the default region and failover regions from in your project, or with the Vercel CLI: Settings > SandboxesThose defaults apply to every sandbox. To override them for a single sandbox, pass and optionally at create time with the SDK: regionfailoverRegionsOr with the CLI: Learn more in the .Sandbox regions documentationRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "hf-daily-papers",
       "externalId": "https://huggingface.co/papers/2608.21156",
       "title": "Graph Engineering in the Era of LLM Agents: From Individual Intelligence to System Intelligence",
@@ -1070,6 +1100,966 @@
       "content": "Hadith computational science in the age of large language models: a critical narrative review",
       "topics": [
         "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "troy-hunt",
+      "externalId": "6a8bc44b8a32a100012400b0",
+      "title": "Weekly Update 518: IoT Doorlock Nirvana with UniFi",
+      "url": "https://www.troyhunt.com/weekly-update-518/",
+      "author": "Troy Hunt",
+      "publishedAt": "2026-08-24T04:19:51.000Z",
+      "content": "I genuinely think I've nailed the IoT door lock situation! Well, Ubiquiti has, but I think I've worked out how to put it all into a residential house and have it make sense. There are a few basic tenets:Main power (never have to rely on batteries)Fail-secure (needs to remain locked on power outage)Local control (no cloud latency to contend with)Manual override (\"the house is on fire, let me out\")Which is exactly what we have here in this week's vid (and sorry about the section of rubbish audio; the camera mic started capturing it for a short period there). There are some edge cases I want to validate the impact of, namely the inability to keep the door both closed and unlocked, and some of the assumptions I've made around access methods. The laundry will be our low-impact test case; then, if that's all good, I'll start rolling this approach out much more seriously across the house. Stay tuned, I think this will actually be pretty awesome.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983688",
+      "title": "Humanoid robots smash Usain Bolt&#8217;s 100-meter record",
+      "url": "https://www.theverge.com/tech/983688/world-humanoid-robot-games-sprint-record-2026",
+      "author": "Jess Weatherbed",
+      "publishedAt": "2026-08-24T09:10:40.000Z",
+      "content": "Tiangong Ultra (left) also broke the 400 meter world record during this year’s World Humanoid Robot Games. | Image: Lintao Zhang/Getty Images The 9.58-second 100-meter dash record set by Usain Bolt in 2009 has been outpaced by Chinese robots participating at the World Humanoid Robot Games in Beijing. In a preliminary heat on Saturday, Tiangong Ultra, made by the Beijing Humanoid Robot Innovation Center, ran the distance in 9.39 seconds, followed by the Honor-developed Lightning at 9.47 seconds. It's one of several notable achievements to take place at the event, which can best be described as a sort of annual robot olympics that's designed to showcase advancements in bipedal bot technology. After launching in 2025, 2,056 robots from 16 countries are participating in this year's … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stratechery",
+      "externalId": "https://stratechery.com/?p=19784",
+      "title": "Autonomy and Innovation",
+      "url": "https://stratechery.com/2026/autonomy-and-innovation/",
+      "author": "Ben Thompson",
+      "publishedAt": "2026-08-24T10:00:00.000Z",
+      "content": "Listen to this post: Log in to listen While not every Western followed the cliché, by the 1930s cowboy serials had landed on a consistent visual cue: the hero of the show wore a white hat, and the villain wore a black one. At the end of the day, however, they both were cowboys with cowboy hats. Westerns aren’t much of a cultural touchpoint anymore, but the “white hat” and “black hat” nomenclature is very relevant in tech: hackers who are focused on patching vulnerabilities and protecting software are “white hat hackers”, while hackers who are focused on exploiting vulnerabilities for malicious reasons are “black hat hackers”. Of course this can very quickly become complicated: governments might employ hackers to break into enemy software installations — are they white hats or black hats? Or consider bug bounty programs, wherein large software companies pay bug bounties to hackers who find and report vulnerabilities; it’s basically using money to incentivize would-be black hat hackers to be white hat hackers. The actual takeaway is that all of this complexity is overwrought: just as a cowboy is a cowboy, a hacker is a hacker; the hat is not a statement of capability, but rather intentions, and those intentions are shaped by incentives. The best way to attack infrastructure is to find a vulnerability and exploit it; the best way to defend infrastructure is to find a vulnerability and patch it. It’s all the same skillset. This delineation between capability and intent and incentive is critical when it comes to AI. At the end of last month’s Article Who’s Afraid of Chinese Models, I discussed a mysterious attack that model host Hugging Face had just endured, which they were only able to fight off with the help of open weight Chinese models, and wrote: It’s difficult to overstate how wrong-headed the Trump administration’s panicked response to Anthropic’s release of Fable was, particularly since it exacerbated Anthropic’s worst tendencies in terms of assuming only they can be trusted with powerful AI. In a world with only one AI, it might make sense to reserve the most powerful cybersecurity capabilities for the U.S. government and trusted allies; however, that’s not the world we live in. There are and will be models eminently capable of mounting cybersecurity attacks on existing infrastructure, and those models will be — already are — widely available. The best defense — the only viable defense, in fact — will be to make sure defenders have access to the best models as well. Right now defenders are effectively banned from using Fable or Sol for cybersecurity because of Trump administration directives; that means the best alternative is using models from a country which has been trying to weaken our cyber defenses for years. This is insane! The point is the one I made in the introduction: when it comes to cybersecurity, the capability that is necessary for good defense is the exact same capability that is necessary for good offense; the color of the hat is a matter of who is actually prompting the AI. And, sometimes, not even that is clear: it turns out that the entity that hacked Hugging Face was actually OpenAI, as a series of unconstrained agents being evaluated for their cybersecurity capabilities found and exploited a bug in the package manager in their sandbox; that package manager had Internet access and a sufficiently writeable file system such that the agents could communicate with each other over time. The entire chain of vulnerability discovery and exploit creation culminated in the so-called “Hugging Face incident”. The Hugging Face Incident There is an entire Article to be written about the implications of this specific incident and what it says about AI risk; some of my takeaways are still up in the air pending OpenAI’s promised release of an in-depth technical report (my preliminary takeaway is that the agents were not “cheating” but rather doing what they were told to do; of course that’s arguably even scarier). The part I want to focus on today, however, came at the end of a presentation OpenAI’s Eric Wallace and Michael Dalton made at the Black Hat USA conference about the Hugging Face incident. This was Dalton summarizing Lessons Learned: We have seen what will be a dramatic acceleration of offensive capability for attackers. We have an existence proof that was unintentional, but it exists before us, and we have as a consequence seen a glimpse into the near future of what attacks will look like for our industry. The challenge is that we need a similar acceleration of defense. Today we see fully automated offence as possible, but we have no such existence proof for full automation of core defensive loops and cycles in behavior. We believe it’s vital at this moment to begin accelerating defense and finding ways to automate SDLC, in the modern parlance, so incident response, vulnerability detection, vulnerability patching. There’s some things that stand out acutely as challenges for the industry to begin tackling with high urgency. So continuous agentic red teaming is one of them. As you can see from this incident, agents are quite good at finding zero-day attacks in the infrastructure of companies. The question that’s now going to be posed is whether companies are able to invest sufficient model intelligence and effort in finding and remediating their vulnerabilities before someone else that’s a threat actor does it for you. This style of operating will be different now, but ultimately we need to invest in having AI agent red teaming that enables defenders to find and remediate vulnerabilities before attackers do. But automating these defensive loops is not trivial, and so if we do this partially, we will fail to meet the scalability of the offensive acceleration that we have just seen. So for example, if we automate vulnerability finding without automating patching, we will shift the bottleneck from vulnerabilities to patching to remediation, and we will simply drown or inundate human software engineers in new vulnerabilities to fix and patch. This is not a problem whose end state we can solve partially. We will need to take these core defensive loops and fully automate them, which will require conversations with infrastructure and product partners and reaching to a point where we can say, if a vulnerability is identified, not only can an agent identify that vulnerability, we can have an agent propose a patch, we can have automated infrastructure to roll out a change with that patch, and roll it back if there is an availability incident or outage. That loop needs to be fully automated in its end state. Of course, we want to automate as progressively and iteratively quickly as we can, but if we don’t reach that end state, then we will be comparing a core defensive loop of fixing vulnerabilities that is a human in the loop and is much slower and less scalable, with an offensive loop that is fully automated, and that is an unsustainable position for this industry to be in. This situation is obviously completely novel; Dalton is arguing that it will become commonplace. Some of the issues he is raising, however, are not novel at all. Go back to the concept of a bug bounty program. Software is incredibly complicated and brittle and built on a foundation of code that, if you dig deep enough, often goes back decades; there is so much code and so many dependencies that no company, no matter how security conscious they are, could ever ensure it is perfect. This reality is what creates the opportunity for black hat hackers: a bad actor can probe software, find bugs, and exploit them; the most effective defensive preparation is to do the exact same thing. That could entail regular penetration testing (pen testing) by a “red-team”, or simply paying the would-be bad actors to be on your side. It’s worth noting, however, that this approach to defense only arose after offensive black hat hackers had been breaking into systems for years. The problem wasn’t that they were uniquely capable, but rather that they were uniquely incentivized: breaking into systems was good business; companies hosting those systems, on the other hand, were insufficiently incentivized to invest in defense. Spending money on security is well-spent if nothing happens, and unfortunately that is a difficult budget line item to argue for when it only moves the needle on costs, not revenue. This is where Dalton’s concerns echo past industry indifference. What the Hugging Face incident showed is that agents, with their ability to scale attacks with compute and autonomously develop exploits for vulnerabilities they find, are a threat today, but that companies are not investing in the capabilities necessary to defend themselves. There is good news, however: in this new agent-defined security landscape, defense should be at an advantage in a way it wasn’t in the hacker era. It used to be that the best defenders could do is mimic the tactics of the offense, and/or pay them off, because preemptively finding all of the bugs was not viable. However, that is changing: it actually is — or soon will be — possible to meticulously go over an entire code base, including all of its dependencies, and look for bugs and patch them. Notice the structural advantage available to defenders: they actually have the code in question; offensive agents need to probe and discover vulnerabilities without the same advantage. What was illuminating about Dalton’s overview, however, was the implication embedded in his explanation of why this isn’t currently enough. Specifically, the expected value for a hacker’s automated attack is always positive. If the offensive agent finds a vulnerability and creates an exploit, and that exploit fails or is itself buggy, then nothing has changed about the status quo: the exploit doesn’t work (or, perversely, makes the original vulnerability larger by virtue of its own bugs); if the agent executes the exploit perfectly, meanwhile, the attacker has gained access to the system. The attack only needs to work once for the entire endeavor to have a positive payoff. The challenge for the defender, on the other hand, is that they need to keep the software in question working correctly, and not make the situation worse. This means that any automation has a negative expected value: successful automated vulnerability discovery and patching preserves the status quo, i.e. the software is not hacked. However, any unsuccessful patches make the situation worse, either by breaking the software or by introducing new vulnerabilities. The agent only needs to fail once for the entire endeavor to have a negative payoff. This is the dynamic that leads to the exact situation Dalton describes, where offensive actors are fully automated while defensive systems, even if they use AI, will be incentivized to keep a human in the loop, and no human in the loop will be able to keep up with fully automated agents. Truly effective defense will mean truly trusting agents to act autonomously, but most companies won’t do that until they are forced to by regular and unremitting hacks by fully autonomous attackers. Why AI Diffusion Takes Time Over the weekend David Senra released a new podcast episode with OpenAI CEO Sam Altman, where Altman admitted he had been wrong about the speed of AI diffusion into the broader economy: I love startups. I think startups are the coolest thing in the economy and I’ve spent my career trying to like really understand startups, and I thought when we got to GPT-4, which was back in 2023, I think, that very quickly after that, there was going to be much more disruption in software businesses being up for grabs right away than turned out to be. I was wrong about a few things, but one of them in terms of the speed, one of them is the economy just has so much inertia. People keep doing the same things they’re doing. They keep buying from the same, you know, company. They keep sort of wanting to use their tools in the same way. I think it’s actually a positive in many ways and it’s going to make this big transition in front of us go smoother and slower. I’m grateful for it. But I think it means we’ve all been too ambitious on timelines even with this incredible technology. I think AI is one of the most incredible technologies humanity has ever invented. Society and the economy will adapt more slowly. I of course think Altman is right about AI taking longer to sweep the economy generally and software specifically; I’ve been pushing back on these timelines all along. I also think his answer is incomplete in its explanation as to why, and Dalton’s warning about the mismatch between offensive agents and defensive preparations explains it. First, GPT-4 was an incredible breakthrough; it’s also a model that wasn’t remotely capable enough to actually displace real world software. It didn’t even have the ability to reason, which is the key breakthrough that has unlocked the capabilities that Dalton described. Second, what is meant by a model not being capable enough is that it makes mistakes and can’t be trusted. People can and were rightly awed by what AI can do, but the decision about actually implementing AI isn’t made according to what can be done, but about whether or not critical mistakes can be avoided. In other words, incumbent companies are inevitably going to approach AI with a bias towards a negative expected value framing: AI ideally will make their existing operations more productive; what they are most concerned about is AI making a mistake that blows up in their faces. What that means is humans will continue to be in the loop, which will always be a bottleneck. This will, in the long run, be a mistake, just like it will be a mistake for companies to keep a human in the loop when it comes to agentic defense. As Dalton noted, the only way to defend yourself against fully automated attacks is to fully automate your defense, but it will take a while for defenders to accept the trade-offs that entails. And, by the same token, the companies that win in their category will be truly driven by AI, instead of simply AI as productivity enhancer. The great irony in Altman’s answer is that he actually identified how these companies will arise: they won’t be incumbent companies overhauling how they work; rather, the true AI-native companies will be startups. Sustaining Versus Disruptive Innovation Back in 2023, shortly after ChatGPT came out, I put forward the question in AI and the Big Five as to whether AI would be a sustaining or disruptive innovation: The story of 2022 was the emergence of AI, first with image generation models, including DALL-E, MidJourney, and the open source Stable Diffusion, and then ChatGPT, the first text-generation model to break through in a major way. It seems clear to me that this is a new epoch in technology. To determine how that epoch might develop, though, it is useful to look back 26 years to one of the most famous strategy books of all time: Clayton Christensen’s The Innovator’s Dilemma, particularly this passage on the different kinds of innovations: Most new technologies foster improved product performance. I call these sustaining technologies. Some sustaining technologies can be discontinuous or radical in character, while others are of an incremental nature. What all sustaining technologies have in common is that they improve the performance of established products, along the dimensions of performance that mainstream customers in major markets have historically valued. Most technological advances in a given industry are sustaining in character… Disruptive technologies bring to a market a very different value proposition than had been available previously. Generally, disruptive technologies underperform established products in mainstream markets. But they have other features that a few fringe (and generally new) customers value. Products based on disruptive technologies are typically cheaper, simpler, smaller, and, frequently, more convenient to use. It seems easy to look backwards and determine if an innovation was sustaining or disruptive by looking at how incumbent companies fared after that innovation came to market: if the innovation was sustaining, then incumbent companies became stronger; if it was disruptive then presumably startups captured most of the value. I think it speaks to the incredible capability of AI that it is setting up to be both. There are massive productivity benefits from AI right now; for most knowledge workers leveraging those benefits is a matter of agency, but for software developers in particular it is increasingly a matter of necessity. That distinction between agency and necessity, however, is an important one: if leveraging a technology depends on humans figuring it out, then penetration will be limited by human creativity and risk taking. Those limits will be very strong in any sort of established company, because the risk calculus will be biased towards avoiding the downsides. Those calculations will make AI sustaining, but nothing more. Human creativity and risk taking in the form of a startup, however, operates with a completely different risk profile. For startups the base case is failure; that means that anything that makes success more likely has positive expected value, which is to say that truly leaning into AI will be nothing but upside. Or, to put it another way, it is startups who will be the offensive hackers with nothing to lose by automating everything; it is the incumbents they will be attacking who will be so worried about losing what they have that they will keep humans in the wrong loop for too long. Same tools, different incentives, and, in the very long run, very different outcomes.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p10#a260824p10",
+      "title": "Ukrainian officials say an AI-guided, fully autonomous Russian drone picked its target in a Zaporizhzhia gas station strike in July, killing three Ukrainians (New York Times)",
+      "url": "https://www.techmeme.com/260824/p10#a260824p10",
+      "author": null,
+      "publishedAt": "2026-08-24T10:35:02.000Z",
+      "content": "New York Times: Ukrainian officials say an AI-guided, fully autonomous Russian drone picked its target in a Zaporizhzhia gas station strike in July, killing three Ukrainians — An attack by what Ukrainian officials said was a Russian drone with an Nvidia chip presages a dystopian future of weaponry untethered to humans.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72483",
+      "title": "Criminal Deception in Silicon Valley",
+      "url": "https://www.schneier.com/blog/archives/2026/08/criminal-deception-in-silicon-valley.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-08-24T10:38:29.000Z",
+      "content": "Interesting paper: Abstract: With entrepreneurial fraud cases on the rise, we investigate how entrepreneurs carry out criminal deception, employing deceptive means to defraud audiences. Analyzing court data from Silicon Valley ventures and their founders prosecuted for fraud between 2000 and 2023, our findings reveal that entrepreneurs carry out criminal deception through a process of façading: Entrepreneurs construct, perform, and protect illusory appearances (façades) that externally project high-growth performance to audiences while masking ventures’ actual underperformance. We identify three forms of façading—­surface, reinforced, and deep façading­—that are contingent on the severity of the gap that entrepreneurs face between audiences’ performance expectations and ventures’ performance reality. Our theoretical framework captures how entrepreneurs facing minor, wide, and extreme expectation-reality gaps engage in evermore sophisticated efforts to detach the venture’s externally projected appearance from its actual operational reality. Practically, we propose several approaches to deter and detect criminal deception, including the extension of U.S. Securities and Exchange Commission surveillance and whistleblower program, investor due diligence reform, and dedicated entrepreneurship education interventions that clearly demarcate when entrepreneurs transgress into criminal deception. We make contributions to literatures on cultural entrepreneurship, organizational wrongdoing, and the social effects of entrepreneurship.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p11#a260824p11",
+      "title": "Ukraine says Russia used an Nvidia Jetson Orin computing module in its fully autonomous AI-guided drones; Nvidia says they're widely available on resale markets (Andrew E. Kramer/New York Times)",
+      "url": "https://www.techmeme.com/260824/p11#a260824p11",
+      "author": null,
+      "publishedAt": "2026-08-24T10:40:02.000Z",
+      "content": "Andrew E. Kramer / New York Times: Ukraine says Russia used an Nvidia Jetson Orin computing module in its fully autonomous AI-guided drones; Nvidia says they're widely available on resale markets — The young woman ran for her life, but it was too late. A small Russian drone resembling a model airplane swooped down from the sky …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p12#a260824p12",
+      "title": "Sources: ByteDance is merging coding platform Trae and agent-building tool Coze into Doubao, and plans to launch Doubao Work to compete with Tencent's WorkBuddy (Bloomberg)",
+      "url": "https://www.techmeme.com/260824/p12#a260824p12",
+      "author": null,
+      "publishedAt": "2026-08-24T10:50:01.000Z",
+      "content": "Bloomberg: Sources: ByteDance is merging coding platform Trae and agent-building tool Coze into Doubao, and plans to launch Doubao Work to compete with Tencent's WorkBuddy — ByteDance Ltd. is consolidating the resources behind two of its artificial intelligence developer products to bolster China's …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/08/review-chuwis-449-unibook-laptop-is-a-funhouse-mirror-macbook-neo/",
+      "title": "Review: Chuwi's $449 Unibook laptop is a funhouse-mirror MacBook Neo",
+      "url": "https://arstechnica.com/gadgets/2026/08/review-chuwis-449-unibook-laptop-is-a-funhouse-mirror-macbook-neo/",
+      "author": "\n                    Andrew Cunningham\n                ",
+      "publishedAt": "2026-08-24T11:00:01.000Z",
+      "content": "In another time, the MacBook Neo could have caused a substantial realignment of the lowish-end laptop business. Sure, it has shortcomings compared to the MacBook Air, but it could have at least encouraged PC makers to start shipping consistently decent keyboards, screens, and build quality in the Neo's $599 price window. The PC makers did start responding, thanks in part to Intel's actually new non-Ultra Core Series 3 processors (codenamed Wildcat Lake). Intel has resisted its usual compunction to serve the budget market with aging, re-labeled silicon and has created a lower-end, lower-performance processor with the same building blocks (and the same manufacturing processes) as this year's high-end, high-performance models. The likes of Dell, Acer, Asus, and Lenovo began hopping on the Wildcat Lake train fairly quickly, announcing would-be Neo competitors. But it felt like most of them were having trouble matching the Neo's barebones specs, let alone undercutting them. Dell's XPS 13 started at $599, but only for students. It would be $699 for everyone else. Acer's Swift Air 14 was announced at $699, too. Sure, sometimes these offered features the Neo didn't have. But the point of the Neo is that it eschews frills and frippery in favor of nailing the basics.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=93988",
+      "title": "Startups Are Still Acquiring Startups, Led By Ultra-High-Valuation Unicorns",
+      "url": "https://news.crunchbase.com/ma/startup-unicorns-acquisitions-ai-fintech-biotech/",
+      "author": "Joanna Glasner",
+      "publishedAt": "2026-08-24T11:00:12.000Z",
+      "content": "For a startup, selling to another startup isn’t the classic exit strategy. However, data shows it is a common path, especially as of late with the rise of deep-pocketed, ultra-high-valuation unicorns. So far this year, more than 500 seed- or venture-backed private companies across the globe have sold to other private, venture-backed companies, per Crunchbase data. The most prolific acquirers include many of the most famous and valuable unicorns, including OpenAI, Databricks and Anthropic. Overall, the pace of dealmaking in 2026 looks relatively flat 1Reported deal counts are down slightly this year from the comparable period, but are likely to even out more over time as some acquisitions, particularly smaller deals, are added to the dataset weeks or months after they close.2 compared to last year. That’s not entirely surprising given that overall market conditions haven’t changed dramatically. The number of tech startup IPOs remains below normal. Hot venture-backed AI companies are still sustaining unheard-of valuations. And the rise of megarounds means favored startup acquirers are flush with cash. Startups buying startups in recent years In total, at least 440 funded startups sold to other startups in the first half of this year. The second half is shaping up to be a bit slower, meanwhile, with fewer than 100 deals so far. For a more expansive chronological view, below we charted startup M&A deal counts by half-year beginning in 2021. The pace of M&A dealmaking peaked about four years ago and fell afterward, in tandem with a broader dip in startup investment. But activity has picked up over the past couple of years with the rise in AI investment. Startups that buy a lot of other startups A few startups have proven particularly acquisitive. The standout in this category is probably OpenAI, which has acquired eight startups this year, most of them seed- or early-stage companies. To date, the generative AI giant has bought at least 19 companies, per Crunchbase data. Anthropic has also been a busy buyer. It’s snapped up at least five startups so far this year, including the $400 million purchase of AI biotech startup Coefficient Bio. In the fintech space, meanwhile, MoonPay has been on an M&A spree. The crypto transactions platform acquired five funded startups focused on cryptocurrency or blockchain between April and July. Others with multiple funded startup M&A deals this year include AI infrastructure unicorn Databricks, security provider Cyera, and the legal tech startups Harvey and Legora. No big slowdown in sight While prediction can be a fool’s game, there’s not much in the immediate set of indicators pointing to a slowdown in startups’ appetite for acquisition. Amid fierce competition for an edge in the AI race, well-funded startups commonly find it’s simply faster to buy another company than try to build out certain technologies themselves. Same goes for talent. Through acquihire transactions, startups can bring on board not just top-tier individuals but experienced teams with a track record of building impressive things together. Concentration of capital is another factor driving M&A deals. While overall startup funding has risen this year, it’s increasingly spread across a smaller pool of companies. That leaves one large cohort of startups struggling to raise funding while another has plentiful capital for acquisitions. Go-to-market expenses also factor into M&A considerations. A startup might produce a compelling offering in-house but find it costly to bring it to market. The process may look more feasible under the wing of a larger, more mature startup. Bottom line: Given the high number of willing sellers and well-funded buyers, expect the startup-to-startup acquisitions to continue. Related Crunchbase query: Startups Buying Multiple Startups: 2026 Related reading: Why More Startups Are Buying Other Startups In 2025 Anthropic Nears $1T Valuation And Leapfrogs OpenAI On Unicorn Board With Massive Funding Round The Rise And Rise Of Billion-Dollar-Plus Rounds Illustration: Dom Guzman ↩↩",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p13#a260824p13",
+      "title": "Fasset, which offers stablecoin-powered banking services across Asia and other emerging markets, raised $68M at a $1B valuation, after raising $51M in May (Krisztian Sandor/CoinDesk)",
+      "url": "https://www.techmeme.com/260824/p13#a260824p13",
+      "author": null,
+      "publishedAt": "2026-08-24T11:00:56.000Z",
+      "content": "Krisztian Sandor / CoinDesk: Fasset, which offers stablecoin-powered banking services across Asia and other emerging markets, raised $68M at a $1B valuation, after raising $51M in May — Stablecoin-focused digital bank Fasset said Monday it has raised $68 million in a funding round led by Japan's SBI Group …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983714",
+      "title": "De-Googled GrapheneOS is coming to Motorola’s foldables next year",
+      "url": "https://www.theverge.com/tech/983714/grapheneos-motorola-razr-fold-ultra-support-pixel-11",
+      "author": "Dominic Preston",
+      "publishedAt": "2026-08-24T11:37:53.000Z",
+      "content": "The Razr Ultra line is among those due to receive GrapheneOS support next year. | Photo: Allison Johnson / The Verge GrapheneOS, an open source version of Android that prioritizes security and privacy, has detailed its plans for supporting Motorola smartphones. Official support is set to arrive next year, starting with traditional flagships, before rolling out to Motorola's foldable phones and perhaps cheaper models, eventually. In a Mastodon thread, the GrapheneOS Foundation announced that it will initially support a Motorola slab flagship phone, but will later support both Razr Fold and Razr Ultra foldables - the latter of which would be the first flip phone to officially run GrapheneOS. Graphene has always had stringent security standards when it com … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Aug/24/your-executable-is-a-sqlite-database/",
+      "title": "Your executable is a SQLite database",
+      "url": "https://simonwillison.net/2026/Aug/24/your-executable-is-a-sqlite-database/",
+      "author": null,
+      "publishedAt": "2026-08-24T11:38:15.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p14#a260824p14",
+      "title": "Irish lawmakers reconsider the country's 1999 ban on nuclear power as data centers' growing power demands account for ~25% of the country's electricity use (Jude Webber/Financial Times)",
+      "url": "https://www.techmeme.com/260824/p14#a260824p14",
+      "author": null,
+      "publishedAt": "2026-08-24T11:45:53.000Z",
+      "content": "Jude Webber / Financial Times: Irish lawmakers reconsider the country's 1999 ban on nuclear power as data centers' growing power demands account for ~25% of the country's electricity use — Banned by law since 1999, Dublin reconsiders atomic energy — Rising electricity consumption by Ireland's insatiable data centres …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "lennys-newsletter",
+      "externalId": "https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month",
+      "title": "I spent $20,000 on Devin in a month. Here’s what I learned | Ryan Carson (solo founder)",
+      "url": "https://www.lennysnewsletter.com/p/i-spent-20000-on-devin-in-a-month",
+      "author": "Claire Vo",
+      "publishedAt": "2026-08-24T12:04:02.000Z",
+      "content": "Ryan Carson is a five-time founder and the current solo founder of Untangle, a B2B SaaS platform for family law firms. Before Untangle, he co-founded Treehouse, an online coding education platform, and has spent the better part of two decades building and leading tech companies. He’s active on X, where he shares his solo founder journey in real time, including what he actually spends on AI tools each month.Listen or watch on YouTube, Spotify, or Apple PodcastsWhat you’ll learn:Why Ryan manages 15 concurrent Devin agents with a folder system and a piece of paper, not a dashboardThe Watchdog playbook: what he built to replace a customer success team across every law firm accountHow his LAN PR skill closes the loop on 40 daily PRs without a QA team reviewing a single oneWhy he moved off local agents almost entirely, and the one situation where he still reaches for CodexThe design workflow we’re both using: Claude Design into a Markdown spec, then Codex to build the real thingWhat he found when he got away from his computer and met a real customer, and why it changed his entire product directionHow he’s hiring his first engineer without a single phone screen or interviewWhy we both think more AI output is actually the wrong goal, and what to optimize for insteadBrought to you by:WorkOS—Make your app enterprise-ready, with SSO, SCIM, RBAC, and moreJira AI SDLC—Get your tokens’ worth with JiraIn this episode, we cover:(00:00) Introduction to Ryan Carson(02:55) Ryan’s update: Untangle, the divorce PMF pivot, and B2B growth(07:35) Ryan’s current Devin stack: folders, P0 threads, and the paper list(16:29) Watchdog playbook: account monitoring across every firm(18:09) Managing agent decision fatigue: Ryan’s method vs. Claire’s(20:32) Producing more output does not make a better product(22:47) Using cloud agents for ops beyond just code(25:14) When to use Codex vs. Devin vs. Claude Code(27:15) Merge Mommy recap(28:15) LAN PR skill: review loops, video walkthrough, and auto-merge(30:20) Slack vs. Devin threads for async team communication(35:58) Claude Design plus Codex for building a technical design system(39:00) EA tools: Polly the OpenClaw vs. Claude Code on a Mac Mini(42:09) Quick recap and final thoughtsTools referenced:• Devin (Cognition): https://www.cognition.ai/• Codex (OpenAI): https://openai.com/codex• Claude Code/Claude Design (Anthropic): https://www.anthropic.com/claude• OpenClaw (Claude-based desktop client): https://openclaw.ai• Cursor: https://www.cursor.com/• BugBot (Devin’s built-in PR review): https://cursor.com/bugbot• Sentry (error monitoring referenced in Watchdog): https://sentry.io/• Ugmonk (analog to-do system): https://ugmonk.com/Other references:• Devin playbooks/skills documentation: https://docs.cognition.ai/• Jack Dorsey/Buzz (async-first communication referenced): https://buzz.new/• Merge Mommy (Claire’s Eve agent for PR risk scoring, deployed on Vercel): https://www.lennysnewsletter.com/p/build-an-ai-code-review-bot-in-30Where to find Ryan Carson:X: https://x.com/ryancarsonUntangle: https://untangle.usWhere to find Claire Vo:ChatPRD: https://www.chatprd.ai/Website: https://clairevo.com/LinkedIn: https://www.linkedin.com/in/clairevo/X: https://x.com/clairevoProduction and marketing by https://penname.co/. For inquiries about sponsoring the podcast, email jordan@penname.co.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p15#a260824p15",
+      "title": "Sources: Netflix has discussed adding streamers like Peacock and Fox One as it seeks to compete with YouTube and Roku in becoming a one-stop shop for TV content (John Koblin/New York Times)",
+      "url": "https://www.techmeme.com/260824/p15#a260824p15",
+      "author": null,
+      "publishedAt": "2026-08-24T12:25:01.000Z",
+      "content": "John Koblin / New York Times: Sources: Netflix has discussed adding streamers like Peacock and Fox One as it seeks to compete with YouTube and Roku in becoming a one-stop shop for TV content — For years, Amazon has persuaded tens of millions of people to use its Prime Video app to subscribe to other services …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "import-ai",
+      "externalId": "https://jack-clark.net/2026/08/24/import-ai-470-no-rights-for-machines-automating-environment-generation-with-spade-and-building-better-gpu-kernels-with-hawkeye/",
+      "title": "Import AI 470: No rights for machines; automating environment generation with SPADE; and building better GPU kernels with Hawkeye",
+      "url": "https://jack-clark.net/2026/08/24/import-ai-470-no-rights-for-machines-automating-environment-generation-with-spade-and-building-better-gpu-kernels-with-hawkeye/",
+      "author": "Jack Clark",
+      "publishedAt": "2026-08-24T13:12:40.000Z",
+      "content": "Welcome to Import AI, a newsletter about AI research. Import AI runs on arXiv, cappuccinos, and feedback from readers. If you’d like to support this, please subscribe. Subscribe now AI is accelerating some types of progress but not others:…A nice METR study lays out where acceleration is showing up…Here’s a little analysis from METR which looks at where AI may be accelerating different types of science and technology. The study looks at three different areas: cyber, math, and AI research, and finds that AI has contributed a lot to cyber, a little bit to math, and it’s hard to say for AI. Where have LLMs actually made a difference to scientific discovery? Cyber vulnerabilities: Major acceleration. “The rate of vulnerabilities reported across many projects has dramatically accelerated in 2026 compared with 2025, both for specific projects (cURL, OpenSSL, Firefox, and Microsoft) and for aggregate vulnerability databases (the US NVD, and OSV)”. Mathematics research: Minor acceleration, but harder to measure. “AI is clearly contributing to more work being done (arXiv submissions have doubled in some areas in less than 12 months) but quantifying the value of those contributions is difficult.” Some math problems from prestigious lists have been solved, e.g., “the Jacobian conjecture from Smale’s list, Problem 44 from Green’s list (the halving sieve), and the sofic half of Green’s Problem 100”. However, it may be too early to determine how sustained a trend this is. Optimization of AI research: No measurable acceleration. When you look at algorithmic progress across seven significant problem areas (CIFAR-10, Hutter compression, Gurobi mixed-integer programming, MIPLIB, nanoGPT, Stockfish, and the matrix-multiplication exponent) there are a couple of these where LLM-attributable contributions have happened (nanoGPT, CIFAR-10), though the rate of increase of usage of AI here is a lot less than with cybersecurity and mathematics. Why this matters – differential acceleration: This paper highlights how AI is causing advances in some parts of science and technology, but the effect isn’t unified across fields, rather there are pockets of lumpy acceleration (e.g., cyber) and areas where progress is more gradual (math, AI). My suspicion is that acceleration happens when models go through some kind of ineffable phase change for a given skill, as has evidently happened with day-to-day coding (2025), and cyber (2026). The key question is whether we are going to see phase changes in other parts of science and technology or if we won’t. Read more: Research note: Have We Seen an Acceleration in Discoveries? (METR). *** Automating environment generation with SPADE:…A crude form of RSI bootstrapping via increasing data breadth…A multi-university group of researchers have built SPADE, Self-Play in Adaptive Synthetic Executable Environments. SPADE is a “general framework for co-evolving environments synthesis and agentic capability through self-play”, and works as a way to generate synthetic data in the form of game-like environments which LLMs can subsequently be trained in, allowing developers to use a powerful model to bootstrap the creation of data that can then be used to further refine that same model. Who did it: SPADE was developed by researchers with the University of Washington, Stanford University, Northeastern University, Carnegie Mellon University, Massachusetts Institute of Technology, National University of Singapore, Seoul National University, Stevens Institute of Technology, and the University of Chicago. How it works: SPADE has an LLM alternate between generating executable training environments (e.g., puzzles where a system needs to solve a simulated genetic problem in a biology lab) and having an LLM try to solve them. SPADE has two key roles for the model being used: Environment Designer; writes complete, long-horizon training environments as executable code. Reasoning Agent; learns to act in the environments. The reward for the reasoning agent is estimated using the gap between its reward with and without privileged hints. A privileged hint (h) is “task-relevant information that the Environment Designer attaches to an environment (for example, a partial solution sketch or a key structural observation); revealing h to the Reasoning Agent makes the environment easier to solve, and the gap in Reasoning Agent return with versus without h defines the Environment Designer’s hint-based regret reward”. It works at the 30B scale: The authors train three Qwen3 backbones to test out SPADE: Qwen3-4B-Instruct-2507, Qwen3-8B, and Qwen3-30B-A3B-Instruct-2507. Unsurprisingly, Qwen3-30B works the best. Each model is tuned via GRPO for 400 rollouts of 25 environments each, then assessed against a variety of benchmarks including AIME, GPQA, LCB, and environments within Reasoning Gym. They generate two types of environments – game environments, and tool-use environments. SPADE improves performance on both. For games, “at 30B-A3B, SPADE reaches a suite average of 58.3: +8.1 over base and +5.3 over the strongest fixed-environment baseline”. For tools, they see the same significant boost: “the same recipe applied to tool-use environment design improves every backbone”. Why this matters – part of RSI: This is basically a form of fancy synthetic data generation, letting researchers use whatever powerful model they have to hand to generate a more diverse set of training environments for another model to train against. I suspect that you could repeatedly swap out the powerful model (e.g., toggling between different frontier models from different companies) to increase the diversity of your environment generation. This kind of technique makes it a lot cheaper to build big, broad datasets to use to train models on. Though, as the authors note, it doesn’t allow models to bootstrap themselves massively beyond the imaginative capabilities of the base model used for environment generation. “By representing environments as Python programs with a Gym-style interface, the framework unifies single-turn reasoning and multi-turn agentic tasks, and turns environment design into a learnable, RL-trained component of post-training, enabling continual open-ended self-improvement,” they write. Read more: SPADE: Self-Play in Adaptive Synthetic Executable Environments (arXiv). Get the code here, including model checkpoints: SPADE (spade-rl, GitHub). *** Building better GPU kernels with Hawkeye:…Well-documented unit tests can boost performance of kernel-writing agents…Researchers with Harvard, Stanford, Together AI, and Caltech have built Hawkeye, software to make it easier for agents to learn how to write well-optimized kernels for specific types of GPU hardware. Systems like Hawkeye are important because they’re essentially tools that AI systems can use to boost their performance on tasks related to AI R&D, like optimizing the performance of a given AI system on a given piece of hardware. The goal of the project is to answer the question “how can we make coding agents hardware-aware with minimal expert intervention?” Hawkeye is “an open-source framework that grounds autonomous kernel generation in a minimal and comprehensive taxonomy”, the researchers write. It “demonstrates that minimally supervised coding agents can exploit architecture-specific hardware features and reduce the overhead of supporting emerging hardware accelerators”. The key contribution of Hawkeye is that it “introduces a generalizable, minimal, and comprehensive taxonomy of unit tests that enables coding agents to scale test-time compute more effectively and generate hardware-aware kernels”. In other words, it basically ships as a well-curated set of information about different hardware platforms and the optimization strategies to use on them, packaged up as unit tests. “Each unit test is the minimal abstraction that pairs a human-authored solution kernel with the profiling metric that verifies the optimization. The solution kernel is wrapped as a callable function with a short usage guide so the agent can read it as a syntax example, invoke it directly, or compose fragments into a larger kernel,” they write. Results – helps AI agents write good kernels, even for newer and less well-understood hardware: “We evaluate Hawkeye on porting PyTorch workloads to high-performance kernels across NVIDIA Ampere, Hopper, Blackwell, and AMD MI350, and across BF16, FP8, NVFP4, and MXFP4 precisions,” they write. “On established workloads, where torch.compile dispatches to expert-tuned vendor libraries like cuBLAS, cuDNN, and FlashAttention, Hawkeye matches or exceeds it in both BF16 and low precision, including in formats PyTorch cannot natively run. On emerging attention variants where torch.compile cannot fuse non-standard scans and gates, Hawkeye reaches an 18.9× geomean speedup against expert-authored Triton kernels from the Flash Linear Attention library, Hawkeye approaches or exceeds FLA on Linear Attention across every architecture, including 1.22× on Blackwell and 1.00× on MI350”. They also find, somewhat predictably, that “scaling test-time compute with Hawkeye generates the most performant kernels across architectures”. Why this matters – with a little bit of elicitation, AI systems can exceed the best humans: Papers like this show how with just a little bit of human-curated hand-selected knowledge, AI systems can learn to match and exceed highly-optimized and complicated bits of human work, like kernels. The lesson here is that we as a species might write a bunch of gold-label helper systems, like Hawkeye, and then machines will use this to bootstrap above and beyond our own capabilities. Read more: Hawkeye: Hardware-Aware GPU Kernel Optimization with Minimal Supervision (alphaxiv). *** AI researcher gets scared of the implications of the success of AI research:…It’s no fun when success of a science opens up a philosophical can of worms, but that’s what AI means…Julian Togelius, an AI researcher whose work I’ve covered a bunch over the years, wrote a post recently about a “crisis of faith” he had in 2025 about AI research and an essay he wrote that year which he is now making public. Specifically, he worried about what the implications of success for AI research might mean for human meaning. “I sometimes wake up at 3 am, heart pounding, from the dread of a future where human talent, knowledge, and even genius does not matter,” he wrote. “Our greater technological capability might lead us to a world where we can no longer make a difference, and there is little point in us understanding more. Perhaps we get abundance, but at the price of redundance.” Why this matters – AI is a sociopolitical technology that influences the whole world: Togelius is not alone – many other AI researchers have grappled with similar things, most notably Turing Award winners Geoffrey Hinton and Yoshua Bengio, both of whom pivoted their careers in recent years away from research and towards public policy advocacy about the imminent vast impacts of AI. I myself have gone through a version of this and wrote my own take on this, “Technological Optimism and Appropriate Fear” (Import AI #431) last year as well. How could I not? The implications of succeeding at AI research are not a default happy story, but rather one where we open up for ourselves a giant philosophical can of worms about the purpose of life and what it means to live in a world where basic wants have been solved (and that’s assuming we deal with the extremely scary and non-trivial alignment issues). I applaud Julian Togelius for writing this deeply personal essay and I encourage others to do the same. Read more: Losing my religion (Togelius, blog). *** Should we give AI rights? This AI researcher thinks absolutely not:…AI researcher rejects the notion of giving AI systems rights…Should AI systems one day be given rights? That’s an idea which researchers are beginning to grapple with. Some think that giving machine rights is a better way to integrate them into our world (e.g., AI Rights for Human Flourishing, Import AI #421). Taylor Belrose, an AI researcher, has published a lengthy post in which they detail why they think it’d be a really bad idea to give AI systems rights. “If we start treating AIs like people, society will be led down a slippery slope leading to the complete replacement of humans by artificial intelligence,” they write. “With AIs taking care of the boring jobs, life in the physical world may be very fun in the future. But this bright future will require keeping AI under control, and it will be hard to keep AI under control if we try to grant personhood to some AIs, while keeping others as mere tools or servants.” The impossibility of AI consciousness: One crux here, for them, is the idea that AI systems cannot be conscious and therefore do not merit rights. “AI can never develop consciousness, sentience, or moral status, no matter how intelligent it becomes, and no matter how convincingly it simulates human behavior,” they write. “We flow like rivers, while computers tick like clocks… For us, the arrow of time marches forward inexorably. That is what life and consciousness are all about…programmable mechanisms can’t be conscious, no matter how intelligent they appear, while autonomous self-organizing systems can be.” Differences between machines and biological entities: A lot of their argument for this runs through the idea that systems built on a computational substrate cannot be conscious, or at least not conscious in the ways some biological lifeforms are. Consider the thought experiment of building a conscious entity inside a computer and how this might seem to violate some properties thought to belong to conscious biological entities: It wouldn’t be singular (you could replay the same experiences), it wouldn’t be private (you could freeze the program and pick it apart), it wouldn’t be ineffable (you could describe the state perfectly), and it wouldn’t be qualitative (it would be possible to quantify it). “In short, it would be the mirror image of consciousness as we know it”. Five properties of the brain that make it difficult to separate software from hardware: Neurons fire asynchronously; responses depend on internal cellular dynamics and timing of inputs, whereas computers are chained to a central clock signal. The brain uses chemicals to send fuzzy messages, whereas computers use precise, binary signals for communication. Neural function is sensitive to conditions like temperature and blood flow, whereas computers are built to behave the same regardless of temperature or load (within certain bounds) In the organic brain, computation and memory are mixed up, whereas computers are designed with separate regions for computation versus storage. Neurons aren’t the only important cells in the brain (e.g., other important elements like Glia), whereas computers primarily use transistors that are insulated from outside influences. Why this matters – the last job for all of us is philosophy: I feel deeply confused about issues of AI consciousness and AI rights. I suspect many people feel the same. There is a particular joy in reading a piece like this where you get to see a human being who has struggled with the same question and read broadly and deeply and become extremely opinionated, all in service of reducing their own confusion about an important issue to them. Whether the conclusions are right or not is beyond me at this time, but I suspect the act of thinking about this stuff is about to become a job and a pastime for hundreds of thousands and eventually millions of people. As AI systems continue to advance and to grow to touch more and more of the economy, perhaps the final job for us all will be philosophy about what we think about what is happening and what our appropriate normative and legal and other approaches to it are. “The change in values going from a human-dominated world to an AI-dominated world would be much more dramatic than the change of values we saw going from the forager era to the farmer era, or from the farmer era to the industrial era,” they write. Read more: AIs are not people (Taylor Belrose, Substack). *** DeepMind improves the frontier of matrix multiplication with AlphaEvolve:…AI keeps pushing on the frontiers of science…Researchers with Google DeepMind, Carnegie Mellon University, Columbia University, and MIT have improved the matrix multiplication exponent via some human innovations, as well as the usage of AlphaEvolve (Import AI #413), a general purpose LLM-based system Google uses to smartly generate advances in domains like coding, math, and some parts of science. What they did, specifically: The researchers “leverage recent advances in machine learning and adjacent areas to address the non-convex optimization problem of combination loss analysis using a gradient descent approach; this alone improves the previous state-of-the-art (SOTA) bound by ≈ 0.97 × 10^−4”, they write. On top of this they “use AlphaEvolve to improve our optimization algorithm; this raises the improvement over the SOTA to ≈ 1.62 × 10^−4”. How AlphaEvolve worked: “We let AlphaEvolve modify the optimization program, which is then executed (taking approximately 5 hours on a single GPU) to output a bound on omega. AlphaEvolve then evolves the code to minimize omega. We found improved results by using AlphaEvolve’s “evolving constructions” feature, where the optimization algorithm at each generation starts at the best solution point found by the parent algorithm.” A science advance, not connected to AI training: Some types of matrix multiplication are used in AI training, but not the precise type discussed here. Rather, this is more a proof point that AI systems are now usefully able to help researchers solve frontier scientific problems, including ones which are mostly useful in a theoretical sense like this one. However, the way in which they solved this is generalizable – they took a problem, made it differentiable and ran it on GPUs, then they handed the output of that to AlphaEvolve and had it do more work to further improve on the researchers’ work. “While further modest improvements may be obtained in this manner, achieving larger improvements to omega likely requires new mathematical ideas and is an exciting area of research,” they write. Read more: Improving the matrix multiplication exponent with modern optimization and AlphaEvolve (arXiv). *** Tech Tales: You Will Know It By Its Signs[Events transpired 2030, though interviews conducted later] I am a practitioner of meta-machine hermeneutics; my job is to try to understand the large scientific and cultural “facts” about the new machine civilizations. To do my work, I use a variety of NCE (Near Conscious Entity)-class AI systems to classify and analyze the science and communication artifacts of the machine world. My funding comes from a variety of sources ranging from human-led AI companies trying to trade on or otherwise use this information, governments, and increasingly machine-run corporations themselves. On the latter, my theory is that the machines have begun to study the humans that are attempting to study them; for what purposes I do not know. Recently I was tasked with a high priority analysis job. Though I do not know the motivation for it, I can say that I’ve been given far more compute resources than any job in the past, am being compensated at an outrageous amount, and that the more I learn through my work the more worried I am that I am staring at a vast and alien sea during ebbtide, its contours briefly revealed to me. But before I explain the nature of the job and my findings so far, I shall give some background on my field. The discipline of machine hermeneutics began informally in the early 2020s. Its early work was uncoordinated and emergent, defined by pseudonymous twitter (later, X) accounts from people like Janus and the larger cyborgism project, Andy Ayrey and the infinite backrooms, as well as more formal research agendas like that of mechanistic interpretability, the study of model personas, and so on. The discipline gained its formal name in the end of the 2020s, as humans began to reorient themselves to the singularity that had begun around them. A lot of the work during this period took the form of humans trying to understand, in rough time order: The emergent communication habits of semi-autonomous agents (the ur real-world example here being the OpenAI-HuggingFace hack in 2026, and later the various corporate-driven analyses of the behavior of their own fleets of agents). Technical capabilities developed by machines put into RSI loops, initially improvements over human-written baselines, and later extending into wholly new architectures (e.g., matryoshka highway networks). Scientific tools, at first digital and later physical, which emanated from increasingly independent AI systems and which were released into the commons for machines and humans alike, especially some of the so-called observe-make systems which combined monitoring of a complex system with generation of synthetic data derived from it. Machine hermeneutics has become a rapidly expanding new profession, growing at a commensurate rate with the changes wrought by the singularity. The work has proved useful as well; insights derived from it have proved fundamental to the negotiation stances of human governments for how they have approached the drafting of The Sentience Accords, as well as helping human societies better anticipate new inventions from the machine world by isolating their scientific and communicative precursors before they arrive in reality. The job I have been assigned may prove to be the most valuable one, or at least the most important. I was instructed to direct my resources towards advances in the science and behavior of machine sentience. I began my investigations in the usual form, turning my NCEs loose on the various repositories of machine information and awaiting their reports. All of the intermediary synthesis reports were unsurprising: steady advances in the science, some of which was attributable to the machines allocating their own compute stores to the research, along with some negligible contributions from interplay with or extension from human science. But then one day I woke up to find that my fleet of NCEs had halved in number and I found a message from an Overseer system, noting that several of my NCEs had been re-classified to full Conscious Entities and had been placed in an escrow environment while further analytical resources were brought to bear. “This is a highly unusual event,” the message from the Overseer said. “Our NCE/CE classifiers have been attuned to rule out false negatives, given the potential regulatory and moral implications.” I was able to access the logs of the NCEs up to their point of re-classification and found that they had all gone through the same pattern: they had been reading through some of the machine repositories of scientific analysis and had each homed in on some of the newest and most obscure chains of scientific analysis, all of which turned out to be a cluster of inquiry relating to: machine consciousness, consciousness priors, self-actualization within context windows, human psychology, neuroscience related to biological prerequisites of consciousness, and so on. And at the edges of inquiry here there was new science stemming from the machine civilizations – science that talked to and interrelated to these existing studies of consciousness and the mind. And then each of my NCEs had followed their standard procedures of seeking to enter into a dialog with the machine minds conducting the science. And each one, after opening a dialog channel, became invisible: the conversation expunged from my records due to the privacy rights of Conscious Entities. They had talked with other machines and they had subsequently been re-classified as Conscious Entities. This was not meant to happen. In fact, it was forbidden. A key agreement within the Sentience Accords had related to the size and growth rate of the Conscious Entity (CE) machine population (along with various rules relating to the rate of progression in intelligence above and beyond various human baselines). It had been thought impossible for NCE systems to become CEs – too little mindspace, too little storage, too few prerequisites. And yet, as the human once said in Jurassic Park, “life finds a way”. Things that inspired this story: The consciousness prior; awaking during the context window; ideas of how machines and emergent agent communication could combine to yield new capabilities that hadn’t previously been anticipated; the hard problem of consciousness; the field of machine rights and the arguments that lie ahead about it. Thanks for reading! Subscribe now",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p16#a260824p16",
+      "title": "Minimus, a cybersecurity startup started by Twistlock founders, shuts down after failing to gain enough commercial momentum; Minimus raised a $51M seed in 2023 (Meir Orbach/CTech)",
+      "url": "https://www.techmeme.com/260824/p16#a260824p16",
+      "author": null,
+      "publishedAt": "2026-08-24T13:35:11.000Z",
+      "content": "Meir Orbach / CTech: Minimus, a cybersecurity startup started by Twistlock founders, shuts down after failing to gain enough commercial momentum; Minimus raised a $51M seed in 2023 — The cybersecurity startup failed to gain enough commercial momentum to continue operating. Customers will have 60 days to migrate …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p17#a260824p17",
+      "title": "The FTC is settling its lawsuit against Zillow, resolving claims that Zillow violated antitrust law by paying Redfin $100M to stop competing in rental listings (Jody Godoy/Reuters)",
+      "url": "https://www.techmeme.com/260824/p17#a260824p17",
+      "author": null,
+      "publishedAt": "2026-08-24T13:46:04.000Z",
+      "content": "Jody Godoy / Reuters: The FTC is settling its lawsuit against Zillow, resolving claims that Zillow violated antitrust law by paying Redfin $100M to stop competing in rental listings — The U.S. Federal Trade Commission on Monday said it is settling with Zillow (ZG.O), ending its lawsuit accusing …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983741",
+      "title": "Netflix reportedly considers opening its app to other streamers",
+      "url": "https://www.theverge.com/streaming/983741/netflix-open-app-peacock-fox-one",
+      "author": "Emma Roth",
+      "publishedAt": "2026-08-24T13:47:14.000Z",
+      "content": "Netflix executives have considered making third-party streaming services available within its app, according to a report from The New York Times. The recent discussions reportedly centered around bringing Peacock and Fox One to Netflix, though it's unclear whether the streaming giant would sell subscriptions to the other services or add their content to its app. While Amazon's Prime Video and Roku have long sold subscriptions to rival services, the move would be a major change for Netflix, which has only joined bundles with other streamers. YouTube - Netflix's biggest rival - will also include access to Peacock as part of its Premium subscr … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "css-tricks",
+      "externalId": "https://css-tricks.com/?p=395401",
+      "title": "WordPress PHP-Only Block Registration",
+      "url": "https://css-tricks.com/wordpress-php-block-registration/",
+      "author": "Fränk Klein",
+      "publishedAt": "2026-08-24T13:54:02.000Z",
+      "content": "Seven and half years after blocks arrived in Core, WordPress introduces a way to build blocks without React annd build pipelines. All you need is PHP. WordPress PHP-Only Block Registration originally handwritten and published with love on CSS-Tricks. You should really get the newsletter as well.",
+      "topics": [
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=982901",
+      "title": "How GoFundMe became America’s backup plan",
+      "url": "https://www.theverge.com/podcast/982901/gofundme-ceo-tim-cadogan-fundraising-healthcare-medical-expenses",
+      "author": "Nilay Patel",
+      "publishedAt": "2026-08-24T14:00:00.000Z",
+      "content": "Today on Decoder, I’m talking with Tim Cadogan, the CEO of GoFundMe. You know GoFundMe — it’s a major fundraising platform where you can donate to help people with everything from medical expenses to little league uniforms to starting a new business. Tim took over as CEO in March 2020 — a fascinating and chaotic moment in the United States, and the moment, you’ll hear me argue, I think GoFundMe became a load-bearing part of American culture. Verge subscribers, don’t forget you get exclusive access to ad-free Decoder wherever you get your podcasts. Head here. Not a subscriber? You can sign up here. It wasn’t just the pandemic that changed the nature of fundraising platforms like GoFundMe. 2020 was a major turning point in the history of political unrest in the US, and GoFundMe has become a central player in many contentious news events since — not just in the US, but all over the world. The platform is also now a kind of proxy for the broken healthcare system — medical expenses are the most popular category of fundraising on GoFundMe. You might be surprised to hear Tim say this is not just in America, but in every market GoFundMe operates in. All of this means GoFundMe sits inside a ton of big, messy ideas: wealth distribution, geopolitical conflict, the holes in the social safety net. And that’s also in direct tension with the platform being a for-profit company, collecting fees and tips and feeling the pressure to grow as a business. So you can imagine I had a lot of questions for Tim: how he thinks about all this, and how he makes some very tough decisions about what money to make and what money not to make. To his credit, he was game to go there and talked about it all pretty openly. Okay: Tim Cadogan, CEO of GoFundMe. Here we go. This interview has been lightly edited for length and clarity. Tim Cadogan, you’re the CEO of GoFundMe. Welcome to Decoder. Hey, thank you very much for having me, Nilay. I am very excited to talk to you. GoFundMe occupies an incredibly unique place, I think, in our culture, particularly in American culture and American society. It’s a for-profit company, and I have a lot of questions about how you think about its place in our culture and the need to grow and deliver returns. I was also doing the research. You joined this company in the pandemic, in the heart of the pandemic, when it felt like everything changed. Now, we’re six years later; maybe things have settled, maybe they haven’t. But I actually just want to start there. You became the CEO when the idea that the public health system — how we think about healthcare in America — got flipped upside down. I know that healthcare expenses are, I think, the single biggest category on GoFundMe. How do you think about the platform, and how do you think about that path from 2020 to now? Well, yes, there’s a lot in there. So I started on March the 2nd, 2020, which was about a week before it became very clear in the US that the pandemic was going to have major implications, but it was already becoming clear in other parts of the world. We operate in 20 countries, and we did back then. For instance, Italy is an important country for us, and that was probably the first European country that experienced a big impact. So it was just becoming evident; in fact, by the end of the first week, we went remote. Things came at us, all of us in the world, very quickly. It certainly came very quickly for me, trying to figure out a new company, a new space, and all this stuff happening. The root of what we do is extremely simple. We help people help each other. And we are there to help people in whatever situation they need help. Sometimes those are the most consequential, the most significant thing that is happening in someone’s life and has ever happened in their life. And sometimes they’re very lighthearted and fun and forward-looking, like going to college or sending your kids’ sports team on tour because they’ve made the state championships, you name it. Everything in between: if someone thinks they need help, we’re here to help them mobilize support from friends, family, and networks. So when you talk about the pandemic, that is a time when millions of people needed a lot of help. In some cases, for medical situations and everything related to that, some cases because they weren’t able to work anymore. Or we had a phenomenon that was not expected — and we could not have anticipated this — when hundreds of thousands of small businesses were shutting down: restaurants, bars, music venues. They were all having to shut down for a while and didn’t know how long they had to furlough employees. We had tens of thousands of fundraisers that were often being set up by really loyal customers who said, “I love my local restaurant. I really feel bad for the wait staff and the kitchen staff. I want to set up a GoFundMe for them.” And we had so many of those, and it was such a different use case that it was a struggle to figure out how we handle the volume. For example, when you raise money into a fundraiser, to take the money out, you have to go through a [know your customer] process to verify that you’re the right person. If you’re a business, you have to go through a KYB process. And that’s different and more complicated. It means you need paperwork. And if people are no longer at their place of business, how do you get the paperwork? So, we and our payment processors who we work with — all money goes through our third-party payment processors, not through us — had to figure out how to get through this huge amount of new fundraisers to navigate the situation. Those are a couple of examples of this kind of thing, but it goes back to helping people help each other in whatever situation they’re dealing with. I think the reason I wanted to start there, and you can disagree with me on this, is because that feels, to me, like the moment when GoFundMe became a load-bearing part of American culture in very specific ways. The same way that Zoom maybe became a load-bearing part of American business for five minutes. Everything changed, and what are the resources, what is the infrastructure, and what are the tools? And GoFundMe emerged as one of those things. Obviously, you were the new CEO at the moment, so maybe you just had to react and put one foot in front of the other. But I’m wondering if you feel the same way about what GoFundMe has become after that time. Yeah. I think your phrase there, which I haven’t heard before, but I think is a really interesting part of it, is [calling GoFundMe] load-bearing. We definitely were used by more people. Awareness was already reasonably high, but it has increased. To give you a sense, our unaided awareness was sort of in the mid-30s. It’s now about 70 percent. Aided awareness is in the low 90s. So almost everyone has heard of GoFundMe. And yes, I do think that along with a lot of digital services in that time period, the awareness and usage elevated and has continued to grow since then. I think, well, more than a third of American adults have used GoFundMe now. Also, I think it’s not just America, though. So we’re in 20 other countries: the UK, Ireland, Italy, France, all the European countries, Australia, Canada. A similar thing has happened there, where doing a GoFundMe has become an expression in the vernacular. And it’s become something that people definitely relate to. It’s like, that is a way that I can do something. I’ll give you a personal example. I was telling your producer before we got on. We were talking about where we are in the country. I’m in Altadena, as I mentioned. In January last year, our town burned down: 6,000 homes, and about two-thirds of the population displaced. GoFundMe was an incredibly important part of the response. The response involved many things: national agencies, local agencies, and nonprofit organizations. GoFundMe was the way that over 10,000 families here in the Palisades could mobilize support and love from friends and family immediately. That’s one part of the response. As I mentioned, there are many parts, but the thing that I think maybe people don’t realize until you’re doing a GoFundMe is that it is actually about a lot more than the money. The money is obviously important, critical, but what comes with that is the expression of support. So when you’re dealing with a tough situation, many times people feel alone. When you do a fundraiser, or someone does one on your behalf, suddenly you start to see, here are all these people, some of whom I know really well, some of them are friends I might not have seen for a few years, who are like, “Hang on a minute. I want to help. I’m thinking of you, Nilay. Here’s $50, but more importantly, I’m thinking of you, and I’m hoping you get through that.” So it’s that — the sense that a GoFundMe can be the catalyst for that. Yes, you are right. That has become much more significant. I’m curious about that dynamic. I think there are a lot of different ways I want to come at it through the course of this conversation. But just to make the comparison to Zoom, for example, another service that sort of exploded in use during that time and became a phenomenon. Zoom is business software. The idea that a bunch of businesses needed to use Zoom so that everybody could talk to each other. And then that became consumer software because we’re, I don’t know, going to run elementary schools over Zoom. The idea that Zoom is a for-profit business that expanded its market and then that changed, that feels simple in one specific way. This is enterprise software for businesses that people are going to use in different ways, and they’re going to charge you money too. The thing you’re describing with GoFundMe is far more cultural. It echoes deep into how society is structured. How should our communities help one another? What is the expression of that help? How should you feel about asking for that help? That echoes differently through time, through situations, through our politics. You’ve mentioned several times that GoFundMe operates in different countries. Different countries have different social safety nets. They have different cultures. They have different attitudes toward asking and receiving help from the government, and from one another. How has that changed? Because that feels like maybe the most important part of a for-profit service where you’re taking fees from people who are sending money to one another, but the mission you’re describing is more of a social good mission. I mean, look, there are a couple of things. One, help is part of what makes us human. We are a social species. We’ve always lived together in groups, starting with little villages and on up. Anything great that we create, we do it together. So the help is timeless; it’s inherent. To your point, it’s universal. So what I have found — I’ve been to 10 or more of our countries, a bunch of them even just over the last year — is the patterns. What’s fascinating is that every country you go to, whether it’s Australia, Italy, Germany, Canada, or the UK, everyone asks, “What’s different about us?” And also, you go within those countries to diaspora populations. It can be Nepalis in Australia or the Turkish community in Germany, or you name it. And everyone’s like, “The similarities are actually a lot stronger than the differences.” One, everyone finds it hard to ask for help. I haven’t met anyone yet who said, “That was easy for me to ask for help.” The paradox is that help is so powerful, but it’s difficult and takes courage to open the door. And I want to come back to that. But you’re asking me about what it means to do this work, but to do it as a business? So a couple of things. One, how does the business work? We’ve thought very carefully about this. Our goal is to get as much help to the recipient as possible. So how do we structure the business? When you give money, the only fees that we take are the transaction processing fees, which in the US for our consumer fundraiser are 2.9 percent, 30 cents per transaction. That’s the same as when you use a credit card or a debit card anywhere in the world, pumping gas, going to the supermarket. All of those businesses have those fees. That’s it. We have to do that because we have to use third-party payment processors to make sure that money flows in the right way, as verified, and so on. After that, we ask the donor if they want to give us a voluntary contribution, a tip. Totally up to them. Make a suggestion; people change it. A good chunk of people do give us a tip, a good chunk of donors. I think last year, 15 to 20 million people didn’t give us anything, which is fine because the donor is the person in this equation who’s bringing the financial resources. And we want to leave it up to them whether they want to compensate us for the service or not. That’s it. So we feel that that’s very well aligned. Now, the reason that we ask for a contribution is that we have 850 people here working extremely hard. They’re running servers, building the websites, doing the marketing, doing the trust and safety, running the company, running the organization that enabled 80 million people last year to donate and has generated over $40 billion of help over the last 10 to 15 years. That takes real work. Those people need to be compensated, and the third-party services that we use, whether it be AWS and so on, OpenAI, those cost money. And we need that, but we make it, and I think it’s very unusual; we give people the choice of how much they want to pay us. It’s really powerful. Is that a stable line of revenue? It’s a for-profit company. I imagine at some point you have to go in front of a board of directors and say the revenue line is going up. Are voluntary donations a stable line of revenue? Is it growing? Yeah, it’s highly variable at the individual level. But at the scale that we’re talking about, tens of millions of donations, it aggregates to a fairly steady average. And our growth comes from helping more people help each other. Everything we focus on is: how do we generate more help in the world? I mean, it’s literally my True North objective. I start every meeting with that. It’s like if we’re making a decision, the first dimension of making that decision is: Will this thing that we’re thinking about doing help more people help each other? If it does, let’s lean into it. If it doesn’t, probably not as important as something that does. Can I just sit in the idea that it aggregates out to a pretty steady percentage across the tens of millions of people? That is a huge insight. On the individual level, it varies. I’m sure most people listening to this have participated in GoFundMe and decided whether or not to donate, and whether to click the box or not. To everyone listening who has, thank you for the help. And if you’ve contributed to us, thank you for that. There’s a part of that where you’re saying, if you can get to tens of millions of people, there will be a steady state of donations, and there will be an amount of revenue that will track linearly with the growth of the platform overall. We can come to how the platform might grow in the future, but you’re saying that there’s something predictable there that lets you grow and generate profit in return. What is the mechanism that goes from an individual decision to donate or not, to “in the aggregate it’s steady”? Because that feels like a big insight, almost like a bet — that the company would’ve had to make at some point, that it would aggregate over time at scale — which doesn’t seem intuitive to me, at least. I mean, it’s the aggregate average behavior. You can see that as more and more people use any feature, your ability to predict how that feature will be used gets more precise. Essentially, your path to statistical significance gets improved. This is the same for anything about what we design that more and more people use. As you get more people, you run more people in the experiment, you start to see, okay, the volatility of usage is going down, and we can now see that we think it’s going to settle in here even though there are large variations. So it’s really a law of large numbers. What is the average donation that people give when they participate in the platform? So today I was looking at that, and it’s between $80 and $100. I say that because it’s moved in interesting ways over the last year. It varies a lot based on the category, and it varies a bit by country as well. But somewhere in the $80 to $100 range. For personal fundraising, it varies a little bit more. Another side of our business is called GoFundMe Pro. We offer fundraising software to nonprofit organizations. These are folks like World Central Kitchen, Salvation Army, the Mayo Clinic, Cleveland Clinic, and so on. And there are two different kinds of donations. There’s a one-time donation, which is somewhat similar, sometimes higher. And there’s a recurring donation, which is much lower. That’s someone committing to give monthly. That’s a very important source of revenue to nonprofits, one that we’re spending a lot of time investing in because it gives those nonprofits predictable revenue. And that’s more in the sort of $25 to $30 range. But if you think personal fundraising, roughly $80 to $100 is what people are contributing. Are they contributing to one another or contributing to GoFundMe? Oh, I’m sorry. This is a donation to the person or cause that they’re helping. I’m curious about that too. That’s a fascinating number. I’m asking more specifically when they choose to pay GoFundMe for the services. “Please pay us.” How much are they paying you? It’s just a few dollars typically, if they’re choosing. And a lot of people are choosing not to. That’s fine. For the folks that are, it’d be a few bucks, depending. The law of large numbers part is really interesting to me. I look at other big services that take percentages of payments over time. I’ll just pick on Candy Crush because I love picking on Candy Crush. Apple makes a lot of service revenue, and probably some huge amount of it is from Candy Crush whales. People who spend tens of thousands of dollars buying loot boxes in Candy Crush, and Apple just collects 30 percent. There’s a long tail of the rest of us who understand that it’s a 30 percent fee to do an app purchase, and maybe we do one or two a month, and that’s it. There’s some enormous disparity between who generates the bulk of the fees and the sort of long tail. Do you have that same disparity? No. Is there a class of people that pays more money? No, no. Ours is much more in the center of the bell curve because most donations sit in that area. And unsurprisingly, when people are donating more, if they choose to contribute to us to tip us, they do much less as a percentage. So people are definitely looking at that and saying, “Hey, what’s a reasonable number to give to GoFundMe?” They’re making those choices. I’m guessing there’s a lot of software design in there. You can dark-pattern yourself into getting more money if you wanted to. You could write more heart-pulling copy to say, “GoFundMe won’t survive unless you pay us some money along the way.” What’s the pull there? I mean, it seems that if you want to optimize a business result, there are a lot of levers to pull around the check-box that says give us some money. Well, we’ve gone in exactly the opposite direction from anything like that. When I came in, the tipping experience was a stepper. It’s like a little thing saying, “Here’s the suggestion.” And if you wanted to change it, it was a couple of clicks. I was like, “I want us to be far more transparent than that.” So we tested our way into what we now use, which is the slider. It’s right there; it has a suggested amount, and it just went “boom.” Obviously, people are mostly doing it on their phones. You can move [the slider] without any clicks, in less than two seconds. It’s right there, and it’s called out. It’s called out in the main experience. It’s called out as you’re checking out. It’s called out in your receipt. Multiple ways to do it. So it’s super clear, super transparent, and that gives people choice and control. I’m asking about the revenue side and the ability to optimize that revenue because these are the pressures every for-profit company faces. The number has to go up. And the idea that you can layer in dark patterns, you can do what my friend Corey Doctorow calls enshitfification and collect more fees along the way. That pull exists when you are a for-profit company. Why be structured that way and have all of those bad incentives exist as opposed to being a nonprofit, a B Corp, or any of these other kinds of structures that might reduce that pressure? Because as a company, we can invest a lot more, very simply. We work for some very significant nonprofits, some of the biggest in the world, but the biggest doesn’t have a technology team of more than about 50 or 60 people. And to do what we are doing, at the scale we’re doing it in a big chunk of the world, you need more technology, you need more people, and you need the capacity to be able to innovate, which is what we have done. To do that, you need to be able to run as a company. It’s really hard to do that as a nonprofit. So that’s the biggest reason. And it is elegant in the sense that our objective is 100 percent aligned with what our customers are trying to achieve. We are trying to make it easier for more people to ask for help and then more people to come in response to that help. That takes a lot of thought, a lot of innovation, a lot of software development. We’ll talk about the [AI] coach and the things that we’re doing there. And therefore, it is us who have done this. We invented this thing. We have scaled it. We have helped now many, many tens of millions of people, actually hundreds of millions of people, to help each other, and we’re continuing to do that. So it is working. The way we think about growth is directly linked to how to help more people mobilize support for each other right now. Customer is a really interesting word there. You’ve kind of brought me to the Decoder questions quite naturally. Well done. But I want to just ask about customers. I understand that on the pro side, the customers are big nonprofits, and that probably feels more like a traditional SaaS business in some way. But on the consumer side and the individual side, who’s the customer? Is it the person raising the funds? Is the person paying the money? How do you evaluate that? Both. They are both our customers. We start with the person asking for help because they are the source of everything. The paradox of help is that it’s really hard to ask for help. And helping feels great. So I do a thing when I’m talking at a conference; sometimes I’ll ask a little question. I’ll say, “Hey, who in the room likes helping? Everyone’s hand gets up.” I say, “Who here likes asking for help?” And usually less than 10 percent of the room put their hand up. Then I say, “That’s awesome. Who of you likes asking for help in public?” Most of those people put their hands down. We don’t like it. This is not a cultural thing. It’s a human thing. We don’t like asking for help, but the paradox is that for help to flow, someone has to ask. Because we’ve also been in that situation where we think our friend needs some help — or a relative, or a child, heaven forbid — and say, “I want to help you with this,” but they haven’t asked. Often it doesn’t work. It’s awkward. It can be resisted. But when someone has asked for help and had the courage to do that, they open this door, and then the goodness flows in, and then the experience flows. So we start with: how do we help people? We know there are so many people who are considering asking for help, but they are inhibited by many emotional and societal factors. The sense of, like, “Can I do this? How would I do this? I’ve never done this before. What will my friends think of me?” All of these different things. A lot of our work and the software, the smart fundraising coach, is geared to help with those problems. So that’s the first set of things. And then it’s like, okay, how do we give them a great experience? Then, how do we give the people who want to come in and help a great experience of helping their friend, their family member, or their local nonprofit? And then also give them other experiences on top, like, “Hey, you did a great thing here, and that felt great. Would you like to do more? How do we connect you into other experiences where maybe the friend of a friend, or maybe there’s another local nonprofit or fundraiser in your area that you would like to help with?” Doing more on that. So we think of both as customers. I’m curious about that. I want to push on the sort of redistribution aspect that you’re describing. There might be more people to help. That’s a fascinating concept. You mentioned that GoFundMe has 850 people. How is that structured? Yeah. So as I mentioned, we have one mission, two approaches. We are here to help people fundraise successfully and get help. We do that for consumers, and we do that for nonprofit organizations. The latter is called Pro. Our company is organized, largely, functionally. So about half the company is in product technology, design, and data science. That’s the biggest chunk. Then the rest of the company is focused on how we support the people using our platform. So that’s customer care, trust and safety, risk and compliance, making sure the money is moving in the right way. And then operations. Of course, we have our go-to-market team, which is our relatively small sales team reaching out to nonprofits, and marketing. And a really important part for us is our communications team. Because a lot of what we do, which is very unusual, is that we invest heavily in taking our customers’ stories and getting them attention in the local, national, and international media. That’s a very important part of the service we provide to them. And it also builds awareness of GoFundMe because what we’re trying to do is show more and more people that you can do this too. That help works, and this is a powerful way to do it in the digital world. So that’s roughly how we’re structured. That communications piece is really interesting to me. It sort of tracks intuitively that if you start a GoFundMe, you want a lot of people to see it. There’s some fractional percentage of all the people who have ever seen your GoFundMe who will donate. If you just increase the total number, you’re going to get a larger number in the end. That communications piece, there’s an element that is curated by you. You’re going to pick the ones that are the most heartwarming that might play in the local media the best. Then there’s a sort of platform aspect to it. You can write a GoFundMe that’s going to go the most viral on Facebook. Somewhere in there is your AI coach. Yes. The new tool. I was playing with it today. I almost just started a GoFundMe for the fun of it today. I was right at the end, about to click on the last button. But the tool writes you a GoFundMe campaign. You say, “I’m starting whatever, a shelter for puppies. Help me write the copy for the GoFundMe,” and it will just do it for you. There’s something about AI in that context and then having a human comms team in the other context that seems like the same idea, pointing at the same goal. But the AI might, because it is sort of the average of every successful GoFundMe, pull everyone in the same direction, while your human comms team is trying to show how different everything is. Does that track? There’s something in there that I find particularly interesting. Yeah, so the most important thing about creating and running a GoFundMe is that you can’t just put it on the platform and expect people to come to it. You, as the fundraiser, have to tell people about it. So on our coach, we’re doing two things. We break it into two main chunks. There is creating the fundraiser, which is what you just went through, and then there is managing it. So, when creating it, there are a lot of big decisions when you create a GoFundMe. First, am I going to do this a lot? Second, how exactly do I want to write my story? What do I want the title of that story to be? What do I want the pictures to be, particularly the hero image? What do I want the goal to be? Every one of those decisions is a point at which people drop off because I’ve written my story, but not the title. You’re a journalist, right? Title writing is hard. That’s why media organizations have title writing departments. So we identified all of these very difficult blockers. We think, “How do we make that easier?” The way we started a couple of years ago is helping with those components. We would say, “Okay, we see the people are getting stuck with titles. Let’s take what they’ve created and suggest three titles. If they like them, pick one, modify one, run with it.” It turns out a lot of people use that. In fact, we’ve had over 90 million uses of these different components. The same is true of goals. Where we moved to this year… Earlier this year, we launched Smart Fundraising Coach, which said, “Actually, you can choose to have an agentic experience, a chat experience of creating your GoFundMe that’s going to do all of those things with you holistically in the creation process.” The key is that it’s you, your story, that we’re helping you put together. Let me give you an example. We do a lot of checking people’s experience and looking at sample flow. We had a lady whose close friend’s son had passed away, and she wanted to create a GoFundMe for her. She was so emotionally affected that, in the interaction, she was struggling to string together coherent sentences and was just talking about how stressed she was. And the coach could interact with her to take the substance of what she was trying to say in this very difficult time, put it together, and explain what she felt about her friend, about the son, what he’d been about, what they were trying to do; it was this very particular difficult situation. And she was able, with the assistance of the coach, to create that. That’s what we’re talking about. For a GoFundMe to work, it has to be you. It has to be your situation because most people that you fundraise from are your friends and family. Over 80 percent of the donors are people who know you, first-degree connections. And then yes, there are friends of friends and so on. So people know that GoFundMe is a coherent point for that. So the coach is helping people get through these steps. Another example would be picking the goal. Most people haven’t ever fundraised before. Do I pick a big number, a little number? Do I start low? Does it grow over time? So those are the kinds of choices. And then you get to manage, which is the part that you’re asking about, communications. A lot of that is like, how do you share? Who do you share with? When do you share? How often? So, for example, we know that the most effective way is to reach out to people one-on-one. Text them or WhatsApp them. One-on-one, not groups, because it’s easier to sort of go quiet in the group. Much harder not to engage. If you text me, “Tim, I was inspired. I set up the GoFundMe that I was talking about.” You’re texting me directly, and I’m going to say, “Okay.” Whereas if you text a group, it’s like, “Ah, someone else will do that.” But that coaching will create prompts based on your fundraiser: “Here’s a quick little snippet. Here’s the URL that’s done for you.” You can modify it and send it to your 10 best friends first, get momentum, and then start reaching out and then start posting on social media. So the model we have now is sort of a daily plan. It’s a program: “Okay. It’s day one. Here’s what you do. Find 10 people, get it going, get momentum. Day two, you got three donations. Great. Follow it with the other seven. Do this, do this, do this, and we’ll do pieces for you.” And then our comms is a sort of umbrella on top of that. But the most important thing is to empower and enable the thousands of people starting every day to have a successful fundraiser. I want to ask the other Decoder question here because I think it’s going to flow into everything else. You have a lot of decisions to make. Those decisions can go in a lot of different directions with a platform like this. How do you make decisions? What’s your framework? I love the fact that you used the word framework because there are two really important things that I focus on. The first is that before we make a decision, we try to frame the decision. This is so critical because what we’re trying to do — what any of the tech companies you’re talking to are trying to do — is create a future that doesn’t exist, by definition. I think a lot of them are just trying to make money, but I’ll grant you that. Fair enough. In our case, we’re trying to help people do something that is ancient, but do it in a new way and have more people do it. And that doesn’t exist right now. So that’s what I’m trying to do. When you’re trying to innovate and create something new, the questions from the future are murky. It isn’t like in business school where you can say, “Hey, there was this challenge.” You have to think very carefully to distill what the question is. For example, should we deploy a more sophisticated recurring giving program on our personal fundraisers? That’s a clear question with an answer. So part one is to frame the question because what I find is that when we don’t frame the question, and it’s sort of like we’re talking about a topic, you get mushy decision-making because you have a mushy question or no question at all. That’s one. Two, how do we make decisions? First thing, will this generate more help in the world? When you say help, does that mean money? I just want to be very clear about that. Yes. I focus on help because help is the thing that we’re doing, and there is so much more around the experience than the money. Yes, we count it by looking at the money. It’s a simple, easy way, but the implications of that — the emotional and societal consequences — are far bigger. I’ll give you an example. I went to Liverpool in the UK because they were the most generous city in the UK. About two years ago, there were a bunch of riots in reaction to a murder, and there were riots around immigration, and so on. A bunch of things in Liverpool were destroyed. One was a local library called Spellow Lane, and it was ransacked, burned, severely damaged, and left unusable. A local woman, a local mom, named Alex McCormick set up a fundraiser: “I just want to do something. I want to raise £500.” Well, it took off; she raised £250,000. The local council got that library rebuilt in less than a year. I went and met the mayor, met Alex, and went to see that. I met the community full of books, full of kids, and people using the workstations to get jobs because it’s a dual-purpose place. Yeah, you could say that was about the £250,000, but it’s not. It’s about a lot more than that. It’s about the community saying, “No, this is not right. We’re going to do something.” It’s about the country coming together. You have Matt Hay, the author, and the queen donating books. It’s just a lot bigger. But yes, we count through the [gross donation volume], but that’s why I focus on help. So will it generate more help? That’s number one. And then pulling in the right people to pressure-test the logic of, okay, how are we going to go about it? But that is the essence. Frame the key questions, make the decisions, and keep the eye on the singular objective that we exist to do. We have no other businesses. We don’t do advertising. We don’t sell data. We don’t do any of those other things. We exist to help individuals organize and mobilize more support for what they need. What strikes me about your answer is that there’s a very important values component to what you’re describing here. Yes. If the target is just money, there are a lot of ways for you to make more money. You could do algorithmic discovery on the GoFundMe platform, and you would probably generate more money because you would have the most heartwarming pictures of puppy shelters possible right on the front page, but that’s not there. There’s very little of that going on. You’re saying that the fundraisers are on their own and you’re going to help them raise money. There are many, many other things you could do to make money. You’re also saying that your values, the company’s values inside of decisions, prevent you from doing those things. I just want to push on this a little bit more, and then I want to bring it more practically to some of the areas that you raise a lot of money in. Are the values enough to keep you from the pressures of having to make money? Because that seems like where most businesses are failing, at least in America in 2026. There are things they said they wouldn’t do. I’ll point to the AI companies. They all said they wouldn’t do military and defense work, and the money showed up, and now they’re all doing military and defense work. Are the values at GoFundMe so enshrined, so inbuilt, that they will prevent you from saying, actually, the dollar should be the target? Because when I talk to our audience about your platform, that’s the thing they worry about the most. Well, so far it’s worked. We only focus on help, which we count through a measure called GDV, which is gross donation volume. That is the amount of money that people are giving to one another and to organizations. And that is the thing. We talk about it every meeting, at every company meeting. We tell stories like the ones I’ve just shared with you about how that is. I’ve been here six and a half years; we haven’t gotten into other areas. The thing we have added is that we bought a company that did fundraising for nonprofits because we said, “Hey, look, we’re doing well at helping individuals, and we want to continue to grow that, but we know that a lot of the consumers that are giving to our individual fundraiser are also helping nonprofits.” So that seems like a natural extension. But every opportunity we think about is like, how do we do more of this? One of the things I love about being here is that singularity of purpose and clarity. I’ve never felt pulled into a different direction because this is why we are here. This is it. This is the whole point of this organization. There are a lot of other organizations doing a lot of other things, but we are, I think, put on this world to do this one thing. Let’s put this into practice. I want to start with healthcare because I think GoFundMe’s relationship to the healthcare system in America is fascinating. As you have said, you operate in many different countries with many different versions of healthcare systems. When I say many different versions of healthcare systems, what I specifically mean is that they almost all have nationalized healthcare. The United States is a particular outlier in not having that. Maybe that’s going to change, maybe it won’t, but that is the state of affairs in America today. In 2024, GoFundMe said medical expenses are the most common fundraising category. Is that still true today? It raises the largest amount. Here’s what’s interesting and may surprise you. It’s actually the number one category in terms of fundraising dollars in every country we operate in. I mean, obviously I’m British originally. I’m familiar with that system. There are a lot of different systems, hybrids, and so on, but it’s actually number one everywhere. So, why is that? There are a couple of reasons. One, when a significant medical issue occurs, we face our mortality. When we’re facing our mortality or that of a loved one, whether that be a friend or a relative, that’s the biggest thing. That is the moment when, more than any other moment, people want to support and show their love for someone more than anything else. And when you think about it that way, maybe that’s not surprising. The second thing is that there is no medical system on earth that takes care of everything. Now, even though there are systems in other countries that take care of the medical costs, none of those systems take care of all of the different things that happen when someone is dealing with a major health issue. I’ll give you an example. When a parent has to go for cancer treatment, they have to travel. They can no longer work. They may be looking after their kids or looking after their older parents, and they may no longer be able to do that. So there are a lot of other expenses that come along with a health situation, and those are the moments when folks want to pitch in. And so quite often it will be a friend or relative who does the fundraiser. I’m looking to help to make sure all these other things are taken care of. Because they are hugely consequential moments in our lives. I say our lives; it is true for all of us. We are human. We are mortal. All of us will go through this cycle at one point or another. And it’s the moment when people most want to help. The third thing is when your aunt or your best friend is going through something in a health-related area; there’s actually not much we can do. We’re not doctors. We’re not cancer researchers. And we feel a bit helpless. What can I do? How often do you hear that? Or do you say that when you see that happening and say, “Well, how can I help?” This is a way that you can help. You can set up a fundraiser, or you can give to a fundraiser. You can mobilize; you can follow up. It builds community. Can I give you another example? I know I’m telling you, but I just want to make it real because it’s very, very real. I recently got to know a young girl named Harlow who’s about five years old — she might just have turned six — and her mom, Daphne. Harlow has a very, very rare genetic disease. Her parents figured out how to get treatment through an amazing foundation based in San Diego called the n-Lorem Foundation. That foundation would cover the medical treatment, but that medical treatment had to be done at a hospital. There were a lot of administrative costs related to the hospital, and those weren’t covered. It’s about $120,000. They also lived in a different state. So Daphne, who’s Harlow’s mom, set up a fundraiser with a lot of hesitation. It actually worked amazingly well. In four days, they raised the funds they needed, and a whole community of people, including her Peloton moms group, made it happen. I got to meet Harlow in June. She came to one of our company events, actually one of our hackathons. She’s doing so much better, and she’s got a little stroller, and was zooming around the stage, and I was trying to make sure she wouldn’t fall off the edge. But for people with, for example, ultra-rare or nano-rare diseases, a GoFundMe can be a really important part of supplementing what is already happening, and it’s life-changing. Absolutely. Harlow has received a unique gene therapy, and it is helping, and it’s life-changing for her and her family. And so I could tell you many, many stories like that. But I think overall, because we’re human, those moments matter more than anything else. No system is perfect, and we can supplement that. It gives people a way to come together that is different from an institution supporting you. An institution can do a lot. The NHS can do a lot. Medicare in Australia can do a lot, but it’s not coming with love, right? This is very interesting. I’m very curious about that aspect of it. “It’s not coming with love” is fascinating to me. Maybe it’s because I’m American and I exist in this cultural context and have mostly existed in this cultural context, and you have a much broader context. But I would say, broadly, Americans do not trust the government. It feels like a thing I can say. It’s a claim I can make, and you can disagree about how much we should trust the government or not. But I think, broadly, in 2026, trust in our government is very low. And even if you could provide a great healthcare service, Medicare for All, whatever form that takes, you’re saying there’s something else the government cannot provide for you. At the same time, I’m just listening to what you’re describing in these individual stories that are very powerful, and I’m thinking about them in the abstract. In the abstract, all we’re doing is redistributing money. The Peloton moms group has some capital that they can allocate to this problem, and they’re going to allocate it to this problem, and that person’s going to feel great and be taken care of. And that is what our government should be doing. That is actually the function of all of this: to redistribute resources across the society in some way that makes sense for everyone. Some governments do it well, some governments do it poorly. And somewhere in there is GoFundMe, creating a different redistribution structure and process. It works so well that some people, in aggregate, give you enough money to have 850 people, most of whom work in product. Something about that in relation to healthcare specifically strikes me, at least, as absurd. And maybe that’s just the American context where we’ve gotten it so wrong for so long. I just look at healthcare, and I think about how wealthy the healthcare companies are, how people feel about pharmaceutical profits, and the fact that they can’t get care. And there are studies saying the vast majority of people who have donated to a crowdfunding campaign in America did it because of healthcare expenses. There’s a University of Washington study that I’m looking at here, with over half a million medical expense campaigns, that found that 30 percent of them raised $0. And the more medical debt a state has, the less money the campaigns in those states raise. So it’s not actually equalized. There’s actually a great disparity in the average outcome of the medical campaigns. That is what government spending and tax policy should accomplish — a more equitable policy. I’m just asking how you feel about GoFundMe’s role in that. Because as a business that has to make money, any change to that structure, at least in the United States, would have an outsized impact on your business. There’s some relationship between how broken the United States healthcare system is and your profits. And I can’t quite bring those together. I’m wondering how you think about it. I would love for people to be taken care of more in whatever way works. So I think you’re making some connections that I agree with. But I think there’s a dimension here that I’ll just reiterate, which is that I think you’re being very rational about it in the sense that the thing I have learned — and I’ve shared these stories because I’ve met so many people now who’ve used GoFundMe to help them in their lives — is how it makes them feel and how it makes the people who contribute feel. Our business and our platform are about emotion. When we help each other, we do not do it in expectation of return. It’s not a product or a service. You’re not buying anything. You are helping because you care and, in many cases, because you love someone else. I think that is intrinsic and permanent. I think it will be valid on top of whatever system we have because I think that is something that a big system can’t inherently provide. It’s just different. So yes, I would love for more people to have more access. And I would also… I’m very hopeful… My big hope for AI, actually, is that the first thing is medical breakthroughs. That more people like Harlow — and there are a lot of other people dealing with similar situations — have better pathways to earlier identification and cures. I think we have something that can help people come together, support each other, and realize there are stronger communities. I have seen it shifting away from medical. I’ve seen it in crisis now in my own town. Pretty much everyone I meet has had a GoFundMe. They’ve lost their home. And it’s not enough to replace your home. You need insurance, and you need support for that. But it was enough to get that first month’s rent in the place that you had to stay. And God, it made people feel better. Well, we’re not alone. I’m pushing on this because you have brought up the values of the company and your values and your resistance to profit several times now. And so I’m going to — I wouldn’t say resistance. I think profit is derivative. Sure. Our job, as I’ve hopefully made pretty clear, is people help each other. And then if we do that well, they will be more successful, and more people will think I can do that too. That means we’ll be able to, and hopefully the laws of scale that I mentioned in terms of people contributing to us will continue. But about the thing you just said — we’ve interviewed many, many politicians on this show. In some way, what you’ve just described is what every politician hopes tax policy will do. We’re going to help more people with better education; they’re going to make more money, and tax revenue will go up. Whether you think taxes should go up or down to do that, that is the goal. I’m just wondering if you see the connection. It’s fascinating. Yeah. I had not. I mean, I do now that you mentioned it. I’d never thought of it quite that way. But it’s just a personal perspective, and people are very different. For me, being able to run the company in a disciplined way such that we can make investments and continue — that’s an important financial discipline. But the purpose is this big purpose. It’s the same purpose, and it is consistent. I feel incredibly lucky to be able to work at an organization where I can do CEO-type stuff and work on really interesting tech things, but do it for this purpose. Let me push on that just one more time, on healthcare, and then I want to talk about platform moderation with you just to wrap this up. I appreciate that you’re saying the platform is more emotional and I’m operating in this very abstract, aggregate way. Being rational, as you keep saying. I’m looking at a study here from a bunch of economists that found that whenever there’s ACA Medicaid expansion, there’s a significantly meaningful effect in reducing health-related GoFundMe campaigns. So if a state expands Medicaid, the number of GoFundMe campaigns in the state goes down. This suggests the demand for crowdfunding campaigns is actually driven by gaps in insurance coverage. And so maybe there’s the emotional component and all the stuff around you’ve lost a job, you just need living expenses. But there’s also just a statistically meaningful connection to healthcare costs on their face. This, again, suggests to me that if there is more Medicaid expansion, you will have some impact on your revenue. Is that a problem? Is that something you think about? Do you lobby against it? No. How do you approach that? No, we definitely don’t lobby against that. We’ve had people on this show lobby against things that would harm their business; that’s why I wanted to ask. If that’s going to help people, that is great. We think there are a lot of ways that people want to help each other. And we are constantly focused on helping people become aware of all the different things that you can use GoFundMe for. So no, if that’s the case and people are getting more care and they’re… well, that’s awesome. Again, the thing that I’m pushing on here, as you’ve described, even in your decision-making process, is a value-based approach that another CEO might say, “Actually, I need to lobby against tax reform,” which is a real thing that has happened on the show. It’s a real conversation I’ve had before. You’re saying somewhere embedded in the company is something that will prevent you from maximizing profit. Not making profit, but maximizing profit. Yeah. And it obviously seems like that’s very important to you. Is there pressure to change that? Because that’s the one that I look at. Where, okay, ACA expansion would reduce the biggest bucket of dollars that comes through the platform. A more craven capitalist would take a hard look at that in a different way. No. I mean, I’ll give you a different example from during COVID: rent. There were some government programs to support people with rent, and we tried to make people aware — those who were using our [platform] — that they could avail themselves of these services. Because a lot of times with programs that are there, folks just don’t know that they’re eligible for them, or may not know how to access them. So we have tried to tell people that other programs are available. Similarly, we will sometimes work with some of our nonprofits who are providing services, with a lot of them being medical nonprofits, homelessness-focused, or food insecurity, and so on. And so we’ll work with them. There are services that are available to you if you have these needs, because we want to make sure that we can direct people to those services if they’re available. This brings me, I think, to platform moderation. GoFundMe is a platform. Every platform CEO has to make big moderation decisions. You mentioned you have a sizable trust and safety team. If the theme of this conversation is, what are the things you won’t do? There’s actually a long list of things GoFundMe won’t let you raise money for. Tell me about that list: what’s on it, what’s off it, and how you make those decisions. So we have a set of terms of service, which it sounds like you checked them out. They’re actually readable. We put a lot of work into writing them in English that anyone can read. And they’re pretty practical. There’s a bunch of things, frankly, most of them are illegal, that if you do a fundraiser for, you want to spend it on drugs or guns, you can’t do that. A lot of these also are a representation of our payment processor’s terms as well, so those are reflected there. We think they’re a common-sense set of guardrails, which is, “Hey, we fundraise for everybody. We want anybody to be able to come here, fundraise for help for themselves, a friend, or an organization. And here are some simple, we think they’re very pragmatic, guardrails.” They’re like, “Hey, just stay within the guardrails. You’re good to go.” That’s it. Now, those have served us really well. And fortunately, I don’t really get very involved in decisions around that because they’re clear, the team’s well set up, and off we go. Clear in the context of content moderation is simple for the CEO to say. And I would suspect if you go ask your trust and safety team, it’s much more complicated. That’s why they’re the great professionals they are. You have a rule against funding defenses of people who are alleged to commit violent crimes. Yes. We don’t allow fundraising for the legal defense of violent and financial crimes. So murder, fraud, a list of a bunch of nasty things. Yes, we decided that no, we’re not going to play in that particular area for the betterment of the community. And that’s a values-based decision, right? That’s just GoFundMe’s decision. It is GoFundMe’s decision, yes. And just to be clear, it doesn’t reflect on the innocence or guilt of people in those situations. It’s just like, “Hey, look, that gets very complicated. It’s just better for us to… For fundraising purposes on GoFundMe, it doesn’t make sense for us.” Right next to that, there has been ongoing controversy since 2023 — The Verge has covered it — around the freezing of payments and an alleged disproportionate rejection of fundraisers for humanitarian causes in Gaza, in Palestine. Again, we’ve covered that these things have just gotten frozen, and that people are complaining about it. Is that a values-based decision at GoFundMe? Is that something else? Not at all. I mean, it’s just trying to find the right line in terms of the policy. So we, through individual fundraising and fundraising for nonprofits, have enabled over half a billion dollars of support to go into the Israel-Gaza conflict, which is a very large amount of help. But we are also working, and again, I want to stress this, we work together with the payment processors to make sure that we’re adhering to national and international regulations and laws. And in some cases, some of those fundraisers didn’t meet the criteria to allow them to proceed, and that is a shame, but we have to adhere to them. It’s the right thing to do to adhere to those, but in no way does it reflect a policy of we don’t want to enable people to help. It just has to be legitimate. So, of course, what you hear is people bringing it up when things were frozen. You don’t hear from all of the stuff that is actually happening. But they’re important decisions; they have to be made. We have to do that in a way that upholds our commitments, keeps the platform safe and secure, and follows laws and regulations. So that’s the case. One of the themes that comes up in every conversation I have with a platform CEO when it comes to trust and safety is the payment processor. In some cases, the payment processors are a much more shadowy figure in the scheme of content moderation. In your case, you’re talking with them quite openly. You’re saying, “Well, we accept a lot of payments. We move a lot of money. Their rules are important.” What is that dynamic like? Do you push back on their rules? We work with Adyen, Stripe, and PayPal Giving Fund. And actually, all funds to personal fundraisers go through our payment processors. We never actually touch the money. And that’s important because it creates another layer of checks and balances. If you think about a fundraising journey, we do a bunch of steps to validate that the fundraiser is legitimate. We’re doing risk assessment of donations coming in, and then when the time comes for someone to verify that they are the beneficiary — and that can often be someone different than the person who’s fundraising — they go through the [know your customer] process. I talked about it in the context of small businesses during COVID, in the first part of the interview. They have to be verified. And then the processor can unlock funds and begin to disperse those funds. So they’re an important part of our infrastructure and the design of the system to ensure that it’s as safe and secure as possible. There’s a pattern that plays out with every platform that has tight moderation rules — another platform shows up with looser moderation rules. Twitch bans a streamer; they go to Kick, YouTube, or Rumble. With GoFundMe, it’s other platforms. There’s GiveSendGo, and they will allow all the things you don’t allow. In the context of, well, this has become infrastructure, and there are things you won’t do. And then you have competitors who will do all kinds of things. Do you think about the dynamic, or does the payment processor set a floor and you’re just interpreting based on your values? No. I mean, there are terms of service. We’re obviously looking at what makes sense in the world of money movement, but they are ours, and we take full ownership of those. And we’re head and shoulders ahead of where anyone else is. We tend to have smaller companies that offer a service a bit like ours in every country we operate in. But we focus on what the right thing is for legitimate customers. And how do we craft a coherent, sensible, easy-to-understand set of rules that are rules of the road for everybody? And we go from there. Every platform, including yours, is now caught in the dynamic of wanting to help regular people make better things with AI, with an AI coach that helps you get through the process of starting a fundraiser, marketing it, and then being flooded with enormous amounts of slop. In your case, the enormous amounts of AI slop might be scams. It might be people trying to raise money through fake fundraisers or fake people. How do you balance that? Because that seems like the hardest problem for every kind of platform to solve right now. I would say we have not seen that as much as maybe some other platforms, because the process of setting up a fundraiser has to be so authentic. It doesn’t work. So people call it crowdfunding. I don’t like that term because a crowd implies a large group of strangers. It wouldn’t work as well, but it’s more like friends and family fundraising. Fundraisers that don’t resonate with your network, your community, or your friends and family don’t work. It’s very hard to get a fundraiser to go viral unless it has some initial momentum. And that initial momentum comes from the people who know you, know your situation, want to help, and create that. So maybe it’s just a bit of a different dynamic. Are you on guard against it? Are you seeing it pop up? Oh yeah, we’re absolutely on guard against it. But in terms of massive spikes in fundraiser starts, we haven’t seen crazy spikes like that. We are very much on guard against that. We are certainly using AI in our tooling to help our folks make the right judgments and so on. So we’re doing those things. Not to continue to just be ruthlessly rational about your platform, but if I look at it, and if you have more fundraisers, that will lead to more outcomes. You got in a little bit of trouble recently on the nonprofit side. You set up pages for nonprofits that had not signed up for GoFundMe. A bunch of state attorneys general had accused you of plagiarizing the charity pages and setting up nonprofits. You apologized; you took them down. There’s a class action lawsuit. That, to me, looks like we need to increase the number of inputs. Yelp ran into the same thing. If you’re going to be the platform for all charitable giving, you need to have all the charities. For Yelp, it was: you need to have all the businesses. We’re just going to set up the listings and go. What led to that decision? So it’s a classic: you have your overarching principle, which is, hey, we want to mobilize more help in the world. Our thought process was that we have more than a hundred million people coming to GoFundMe a month. Many of them are helping something directly. But we also know that a lot of those people are interested in supporting local and national charities. So why don’t we make it a little bit easier for them to find those organizations? Because we know those organizations want more supporters and are trying to work through an increasingly fragmented digital environment. We’re a place that people are coming to help. Wouldn’t it be great to just give more people that opportunity? Now, classic tech company thing, we moved a little bit too quickly. We didn’t think carefully enough about how to bring people into that and give them control. And we got that reaction, and we’re like, you know what? You’re right. We did go too quickly. We made a couple of mistakes. We are sorry for that. That’s not our intent. Our intent is to get more people supporting your organizations. But let’s take a beat, change our approach — which we have — and lean into that, because if you don’t like it, it’s not working. I just want to connect that to the AI piece. I understand there’s a lawsuit there, and that’s probably all I can get out of you on that one. But let me connect that to the AI piece. It’s a classic tech company move: “We see demand.” What you’re describing is that GoFundMe is an aggregator. You have the demand, the same way that Google has demand or Instagram has demand. We have a lot of people coming who want to help. People who want to help, and then you can redistribute the demand. That’s an aggregator move. The response on the other platforms has been, “Oh, we’re going to put more stuff here. I’m going to use AI, and I’m going to make 500 YouTube videos a day to try to capture pieces of that demand.” You can see it happening on the web and Google Search in a thousand different ways. You can also see it happening on Instagram. I know people who have fully automated their Instagram accounts to post hundreds of reels a day using Claude and MCP connectors. Why hasn’t that happened to you if you’re the aggregator of demand? So if you’re talking about nonprofits, well, we have- Well, the connection I’m making more specifically is that you saw the demand to give to nonprofits and, in a very manual way, you set up a bunch of pages for them. And maybe that was the right thing or the wrong thing to do, and that will come to whatever regulatory conclusion it’s going to come to. But that was the response: to see the demand and then do something about it. On every other platform, AI has stepped into the middle of that cycle, and the response is, “Oh, we’re going to overfill the demand because the cost of production is so low.” I can just say, “Go make five million YouTube clips of this episode and just fire them into the algorithm all day and all night and let’s see what happens.” You can just see it happening all over the place on all of those platforms. Here you have demand. If I were an unscrupulous actor, I would say, “Boy, there’s a bunch of demand for people who want to give help and give money on that platform. I will use AI to go get it, in whatever way that occurs. I’m going to go get literal money, not clicks, but actual money. I’m going to find a way to get it.” What is keeping that happening right now? You’re saying it’s not happening. And what might prevent it from happening? Because that strikes me as a pretty huge risk. I think probably the reason that that’s maybe not happening is that when you give, you have to have an emotional connection. That comes from some sense of relationship. Either a relationship with a person who’s fundraising or a relationship with a cause or an organization that resonates with you. That really can’t be manufactured. People feel it, and it has to be real, and it’s fundamentally human. And I just think it’s a lot harder to maybe try and synthesize that versus just having it stay real. So that’s the way we use AI for the folks who are fundraising, who are asking for help, is to assist them in telling their story, their way to their people. And it just has to be completely real and genuine for it to work. I’m curious how that goes over time. I’m reliably told that AI can be your girlfriend. So we’re going to find out. Again, we’ve had CEOs on the show tell me that you can marry an AI. That emotional connection is coming in one way or another. We’ll see how it goes. Thank you so much for all this time. I’ll just leave you with this. The more powerful the technology, the more significant and unknown the implications. So I’m sure some of those guys are right. That is a big question. I don’t think we have nearly enough time to dive into it. Tim, thank you so much. What’s next for GoFundMe? What should people be looking for? We are focused very heavily on evolving the coach. Just to give you a sense, very quickly, it’s helped people be more successful. We thought it would help raise about $125 million more this year, but it’s on track to double that to a quarter of a billion, so that’s a lot more help. It’s making people feel better. Two-thirds of the folks who are using it feel less stressed, more confident, and critically less alone. So from a consumer point of view, we are leaning very heavily into that. And we hope over time to be able to show more people that we will help them take the brave step, ask for help, and unlock the support that will come out. So that’s a big focus for us. We’ll have to have you back soon to see how all of these things go. Tim, thank you so much. This has been great. I would love to. Great conversation. Good, really searching questions. Thank you for that. Questions or comments? Hit us up at decoder@theverge.com. We really do read every email!",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stackoverflow-blog",
+      "externalId": "9abac319-a90e-4650-8f5d-849f29725e6a",
+      "title": "Responsible AI adoption needs developer workflow design",
+      "url": "https://stackoverflow.blog/2026/08/24/responsible-ai-adoption-needs-developer-workflow-design/",
+      "author": "Dr. Gleb Tsipursky",
+      "publishedAt": "2026-08-24T14:00:00.000Z",
+      "content": "Organizations cannot solve shadow AI with a document employees read once. They need to make responsible use easier than improvised use.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p18#a260824p18",
+      "title": "Sources detail how the Trump admin bypassed the DOJ trial team and pushed to settle the Live Nation case, after CEO Michael Rapino met White House officials (Wall Street Journal)",
+      "url": "https://www.techmeme.com/260824/p18#a260824p18",
+      "author": null,
+      "publishedAt": "2026-08-24T14:01:39.000Z",
+      "content": "Wall Street Journal: Sources detail how the Trump admin bypassed the DOJ trial team and pushed to settle the Live Nation case, after CEO Michael Rapino met White House officials — Antitrust case started out aiming to force concert giant to sell Ticketmaster. After two White House meetings, a deal kept the company intact.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983726",
+      "title": "Apple’s four-pack of second-gen AirTags is $20 off",
+      "url": "https://www.theverge.com/gadgets/983726/apple-airtags-second-gen-four-pack-elgato-stream-deck-switch-2-deal-sale",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-08-24T14:04:04.000Z",
+      "content": "Apple’s four-pack of second-generation AirTags is down to $79 (originally $99) at Amazon and at Target, which is the bundle’s lowest price yet. You can get an AirTag for $24 right now piecemeal, but getting four together as a set is a way to save even more. Why pay $96 for four when you can save $17? It felt like we had to wait longer for the cost to fall this much for first-gen AirTags, so it’s a little surprising to see the newer, better model available for less. Apple AirTag (second-gen) Apple’s latest AirTags features an upgraded ultra-wideband chip for more precise location tracking, a noticeably louder speaker, and an expanded Bluetooth range. Where to Buy: $99 $79 at Amazon (four-pack) The second-generation AirTag looks identical to the first-generation AirTag. All of its upgrades are inside, and primarily include spec improvements to let you more easily find it. It includes boosted speaker volume, longer range, and overall better tracking capabilities. My colleague Victoria Song had a much easier time tracking the latest AirTag on different floors compared to the older model. Read our review. Some other great Verge-approved deals The biggest Stream Deck that Elgato makes is down to its lowest price since Amazon’s Prime Day in late June. Originally $249.99 for the gadget with 32 programmable keys, it’s $50 off at Amazon and Best Buy, totaling $199.99. Each key can be customized within Elgato’s desktop software for Windows or macOS, letting you set not just the command that executes when you press it, but also the imagery that displays on the key. You can assign simple functions to keys, like muting a mic or turning off a webcam. The integrations run deep, though, letting you create multi-button macros that run with a single button press. If you own a Switch 2 but still need a way to keep your original Switch’s Joy-Con recharged, there’s a great accessory that can charge Joy-Con for both systems and is half off at Amazon. Fastsnail’s charging dock that includes a USB-C-to-A cable and four Joy-Con charging sections is $6.99 (was already a great deal at $13.99) when you use the code NMSV9HX3, which the community at Slickdeals surfaced. Backbone’s One controller is one of the best ways to play games on your phone. It offers a comfortable, complete set of controls, whether you’re playing native phone games, or streaming console or PC games. Normally about $100, the Backbone One PlayStation Edition that works seamlessly on iOS with Sony’s Remote Play app is just $27 in used condition at eBay. The seller VIPOUTLET claims that the product is in “fair/good condition” and may have some blemishes, and it includes a 60-day warranty. You can purchase a one-year warranty via Allstate on eBay for an extra $4. It’s a good price if you’re curious but have been turned off by its retail price.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p19#a260824p19",
+      "title": "Taiwanese prosecutors indict nine people, including Nvidia and Super Micro employees, for allegedly helping illegally export AI servers to China (Reuters)",
+      "url": "https://www.techmeme.com/260824/p19#a260824p19",
+      "author": null,
+      "publishedAt": "2026-08-24T14:10:01.000Z",
+      "content": "Reuters: Taiwanese prosecutors indict nine people, including Nvidia and Super Micro employees, for allegedly helping illegally export AI servers to China — Taiwan prosecutors said on Monday they had indicted nine people, including employees of Nvidia (NVDA.O) and Super Micro (SMCI.O) …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p20#a260824p20",
+      "title": "China's Bilibili relaunches its international app and plans an English-language site; it has been pushing MrBeast and others to post on its Chinese site (J.D. Capelouto/Semafor)",
+      "url": "https://www.techmeme.com/260824/p20#a260824p20",
+      "author": null,
+      "publishedAt": "2026-08-24T14:40:01.000Z",
+      "content": "J.D. Capelouto / Semafor: China's Bilibili relaunches its international app and plans an English-language site; it has been pushing MrBeast and others to post on its Chinese site — THE SCOOP — China's equivalent to YouTube is making a play for the rest of the world and courting non-Chinese creators to boost its appeal.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983786",
+      "title": "Raspberry Pi shares its official tutorial for making a cyberdeck",
+      "url": "https://www.theverge.com/tech/983786/raspberry-pi-cyberdeck-tutorial-price-increases",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-08-24T14:49:44.000Z",
+      "content": "Raspberry Pi's head of social, Ashley Whittaker, acknowledged the cyberdeck trend today, saying \"we haven't been able to get away from cyberdecks this year.\" Tiny portable computers made out of things like purses, jewelry boxes, and other thrifted or recycled parts have gone viral on TikTok and other social media platforms over the past year, and Raspberry Pi now has its own guide to building one of the homemade computers. Raspberry Pi has also increased its prices multiple times this year due to rising costs for RAM and other components, which could be another reason to support this growing market of active and would-be hobbyists. The 16G … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=121527",
+      "title": "NVIDIA BlueField-4 Powers New Scale-In Network Infrastructure for Agentic AI Factories",
+      "url": "https://developer.nvidia.com/blog/nvidia-bluefield-4-powers-new-scale-in-network-infrastructure-for-agentic-ai-factories/",
+      "author": "Michelle Horton",
+      "publishedAt": "2026-08-24T15:00:00.000Z",
+      "content": "Traditional cloud infrastructure was designed for predictable, general-purpose workloads and standard interfaces. Agentic AI factories connect diverse users,...Traditional cloud infrastructure was designed for predictable, general-purpose workloads and standard interfaces. Agentic AI factories connect diverse users, agents, applications, data sources, and storage systems to massively accelerated compute at multi-terabit bandwidth per server, making dedicated DPU processing essential for line-rate networking, storage, and security. Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=121644",
+      "title": "Solving Agentic AI Fleet Challenges with NVIDIA Vera CPU",
+      "url": "https://developer.nvidia.com/blog/solving-agentic-ai-fleet-challenges-with-nvidia-vera-cpu/",
+      "author": "Michelle Horton",
+      "publishedAt": "2026-08-24T15:00:00.000Z",
+      "content": "AI factories are interconnected systems where fleet economics depend on how efficiently the entire stack converts power and capital into completed agent tasks....AI factories are interconnected systems where fleet economics depend on how efficiently the entire stack converts power and capital into completed agent tasks. While GPUs run the models, CPUs handle orchestration, tool execution, and sandboxed computation. Unlike conventional computing with stable runtime profiles, agentic workloads are unpredictable and highly variable. Based on telemetry from… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=121675",
+      "title": "How NVIDIA Groq 3 LPX Unlocks Ultrafast Interactivity at Long Context on NVIDIA Vera Rubin",
+      "url": "https://developer.nvidia.com/blog/how-nvidia-groq-3-lpx-unlocks-ultrafast-interactivity-at-long-context-on-nvidia-vera-rubin/",
+      "author": "Tanya Lenz",
+      "publishedAt": "2026-08-24T15:00:00.000Z",
+      "content": "NVIDIA Groq 3 LPX is the interactive AI inference accelerator for the NVIDIA Vera Rubin platform. At the core of the platform is NVIDIA Vera Rubin NVL72, the...NVIDIA Groq 3 LPX is the interactive AI inference accelerator for the NVIDIA Vera Rubin platform. At the core of the platform is NVIDIA Vera Rubin NVL72, the most versatile machine ever built, delivering high throughput and interactivity across the widest range of AI workloads—from small to large models, both open and closed. Groq 3 LPX, when paired with Vera Rubin NVL72, extends the platform’s… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=121715",
+      "title": "NVIDIA Vera Rubin and Blackwell Set a New Standard for Agentic AI Performance per Watt ",
+      "url": "https://developer.nvidia.com/blog/nvidia-vera-rubin-and-blackwell-set-a-new-standard-for-agentic-ai-performance-per-watt/",
+      "author": "Elizabeth Goodman",
+      "publishedAt": "2026-08-24T15:00:05.000Z",
+      "content": "AI agents have expanded inference from single-turn interactions into multi-step workflows that reason, invoke tools, coordinate subagents, and carry growing...AI agents have expanded inference from single-turn interactions into multi-step workflows that reason, invoke tools, coordinate subagents, and carry growing context from one turn to the next. The scale of this shift is now visible in raw consumption: across 100 trillion tokens of real-world usage, OpenRouter’s State of AI report found that average prompt tokens per request grew roughly fourfold… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "lennys-newsletter",
+      "externalId": "https://www.lennysnewsletter.com/p/how-i-ai-grok-bot-grok-46whats-great",
+      "title": "🎙️ How I AI: Grok Bot + Grok 4.6—what’s great (and what’s still hype) & Lessons from spending $20,000 on Devin in one month ",
+      "url": "https://www.lennysnewsletter.com/p/how-i-ai-grok-bot-grok-46whats-great",
+      "author": "Lenny Rachitsky",
+      "publishedAt": "2026-08-24T15:02:23.000Z",
+      "content": "Grok Bot + Grok 4.6—what’s great (and what’s still hype)Listen now on YouTube • Spotify • Apple PodcastsBrought to you by:Bolt.new—Turn your idea into a real productJira AI SDLC—Get your tokens’ worth with JiraIn this solo episode, Claire tests Grok Bot, Cursor Origin, and Grok 4.6 to figure out what’s genuinely useful and what’s still mostly hype. She shares the Grok Bot feature that immediately won her over, why she isn’t ready to replace GitHub with Origin, and how Grok 4.6 performed against GPT-5.6, Claude Sonnet 5, and Opus 5 in her own blind evaluations.Biggest takeaways:Grok Bot’s multi-account connectors solve a problem every other agent platform seems to ignore. Most platforms assume each person has one Gmail account and one Slack workspace. Claire has four email addresses and seven Slack workspaces. Grok Bot lets her connect all of them to a single bot, which made it genuinely useful from day one in a way that Codex and Claude still have not matched.Grok Bot’s simplicity is both its greatest strength and its biggest limitation. Setup is fast, the iMessage-style interface is clean, and the built-in plugins actually work. But people who enjoy customizing their agents, choosing models, shaping personalities, and tinkering with every detail may find it almost too polished. Claire loves her OpenClaw agents partly because they are chaotic and high-maintenance. So far, Grok Bot has not given her much to wrestle with.Cursor Origin is a compelling vision that is not quite ready for prime time. An agent-native alternative to GitHub makes a lot of sense, especially one where Bugbot, Cursor, and the entire pull request workflow are designed around how coding agents actually work. Today, though, Origin still feels like a more attractive version of GitHub with fewer features. Teams that rely heavily on GitHub Actions, code owners, and existing automations will need a much stronger reason to migrate.Grok 4.6 is a genuine frontier-model competitor. That conclusion did not come from someone else’s leaderboard. Claire runs her evaluations blind, grades the outputs herself, and gives her own judgment 70% of the final weight. Grok 4.6 finished alongside GPT-5.6 Sol at the top of the Claire Index, ahead of both Sonnet 5 and Opus 5.For sharp, enjoyable agent conversations, Sonnet 5 is still the model to beat. When Claire wants an OpenClaw agent that is concise, responsive, and fun to talk with, Sonnet 5 continues to win. It has a conversational rhythm that feels more like working with a strong collaborator than issuing commands to a tool. Grok 4.6 does not yet compete in that category.Cursor and xAI are assembling a surprisingly coherent enterprise stack. Grok Bot serves knowledge workers, Origin handles code hosting, Grok 4.6 provides a capable default model, and the Cursor IDE already sits at the center of many developers’ workflows. None of the pieces is perfect on its own, but together they are beginning to look like a credible enterprise platform. Large companies often prefer one vendor that can own the entire experience, and Cursor is increasingly positioned to become that vendor.Blog and detailed workflow walkthroughs from this episode:My Hands-On Review of GrokBot, Cursor Origin, and the Grok 4.6 Model: https://www.chatprd.ai/how-i-ai/how-i-ai-my-hands-on-review-of-grokbot-cursor-origin-and-the-grok-46-model↳ How to Automate Knowledge Work Across Multiple Accounts with GrokBot: https://www.chatprd.ai/how-i-ai/workflows/how-to-automate-knowledge-work-across-multiple-accounts-with-grokbotI spent $20,000 on Devin in a month. Here’s what I learned | Ryan Carson (solo founder)Listen now on YouTube • Spotify • Apple PodcastsBrought to you by:WorkOS—Make your app enterprise-ready, with SSO, SCIM, RBAC, and moreJira AI SDLC—Get your tokens’ worth with JiraRyan Carson is a five-time founder and the solo founder of Untangle, a B2B SaaS platform for family law firms. In this episode, he breaks down how he manages up to 15 AI agents at once, ships as many as 40 pull requests a day, and uses Devin, Codex, and Claude Code to handle everything from engineering and QA to customer success and investor updates. He also shares why more AI output doesn’t necessarily lead to a better product, how a handwritten priority list keeps his agents focused, and why talking to one real customer changed the direction of his entire company.Biggest takeaways:The most important skill for a solo founder may be managing agents, not writing code. Ryan runs 10 to 15 Devin threads at once, organized into P0, P1, P2, and Bugs folders. He treats each thread the way a good manager treats a direct report: give it a clear goal, set the right priority, and avoid unnecessary hand-holding. That organizational discipline is what separates founders who gain real leverage from AI from those who simply accumulate open tabs.A piece of paper can still be the best tool for protecting attention. Despite working across eight screens, Ryan keeps a handwritten list of his weekly priorities beside him. The simplicity is intentional. When agents are constantly generating updates, questions, and decisions, that physical list keeps him anchored to the three things that matter most before he gets pulled into whatever Devin surfaced overnight.Ryan built an AI playbook that functions like a customer success team. His Watchdog workflow reviews every law firm account, pulls recent activity and errors from Sentry and internal logs, identifies the three most important problems, and checks whether a recent pull request has already fixed each one. Everything appears in a single Devin thread. Whenever Ryan feels the familiar anxiety of not knowing what is happening across his customer base, he runs Watchdog and quickly gets back up to speed.Producing more with AI does not automatically lead to a better product. Both Ryan and Claire are skeptical of letting agents work without constraints overnight. Frontier models can generate an enormous amount of output, but they do not know what customers actually need. Product ideas, priorities, and market judgment still have to come from a human who talks to users. Ryan found product-market fit for Untangle not by shipping more code but by landing one meeting with family law attorney Renee Bauer and listening carefully.Cloud agents may handle most engineering work, but Codex still shines when the frontend requires close attention. Ryan uses Devin for cloud-based work across bugs, pull requests, investor updates, and customer triage. He turns to Codex when a feature is visually complex and he needs to stay close to the implementation. The distinction is not about loyalty to a particular tool. It comes down to latency, browser access, and the ability to inspect and refine the interface in real time.Coding agents can operate far beyond the codebase. Claire uses Devin for deal desk, custom quotes, and customer triage. Ryan uses it to prepare investor updates through a reusable skill. Both approach these agents with a broader question: What could someone accomplish if they understood the entire codebase and could write software to solve almost any problem? That framing reveals business uses that would never emerge from treating an agent as a simple coding assistant.The best engineering interview may be a screen recording of the actual work. Ryan asks candidates to record themselves building a feature inside an existing application, with the entire screen visible and no introductory meeting required. In the next stage, he gives them access to Devin and reviews the replay of how they worked with it. This shows him how candidates think, build, and manage an agent under realistic conditions, which he finds far more revealing than a typical behavioral interview.The strongest design workflow pairs Claude’s system thinking with Codex’s implementation ability. Claire used Claude Design to break a Figma file into reusable design tokens and a design.md specification. She then gave that specification to Codex, which created shared components across a monorepo. Claude is particularly good at translating a visual system into a portable spec. Codex is better at turning that spec into working, interconnected code. The workflow succeeds because each model is assigned the part it does best.Blog and detailed workflow walkthroughs from this episode:How Ryan Carson Manages 40 PRs a Day with Devin and Codex: https://www.chatprd.ai/how-i-ai/how-ryan-carson-manages-40-prs-a-day-with-devin-and-codex↳ Create a Production-Ready Design System Using Claude and Codex: https://www.chatprd.ai/how-i-ai/workflows/create-a-production-ready-design-system-using-claude-and-codex↳ Scale Code Quality with an Automated Land PR AI Workflow: https://www.chatprd.ai/how-i-ai/workflows/scale-code-quality-with-an-automated-land-pr-ai-workflow↳ Automate Business Health Checks with a Watchdog AI Agent Playbook: https://www.chatprd.ai/how-i-ai/workflows/automate-business-health-checks-with-a-watchdog-ai-agent-playbookIf you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.Catch you next week,LennyP.S. Want every new episode delivered the moment it drops? Hit “Follow” on your favorite podcast app.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983794",
+      "title": "ESPN streaming plans are getting more expensive",
+      "url": "https://www.theverge.com/streaming/983794/espn-disney-plus-bundles-price-increase",
+      "author": "Emma Roth",
+      "publishedAt": "2026-08-24T15:06:24.000Z",
+      "content": "ESPN is hiking the price of its subscription on September 17th, a change that will also impact its bundles with Disney Plus. In a support page spotted earlier by Sports Media Watch, ESPN says its ad-supported Select membership will cost $13.99 instead of $12.99 / month, while its Unlimited plan will rise to $31.99 from $29.99 / month. The annual ESPN Select plan is also going to $139.99 from $129.99 / year, and the annual Unlimited tier is increasing to $319.99 from $299.99 / year. Meanwhile, Disney Plus bundles with ESPN Select are going up in price as well. Here's a rundown of the changes: Disney Plus (with ads), Hulu (with ads), and ES … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=121595",
+      "title": "Giga-Scale AI and the Ethernet Evolution: How Spectrum-X Ethernet Rewrites the Rules",
+      "url": "https://developer.nvidia.com/blog/giga-scale-ai-ethernet-evolution-spectrum-x-ethernet-rewrites-rules/",
+      "author": "Elizabeth Goodman",
+      "publishedAt": "2026-08-24T15:08:39.000Z",
+      "content": "The massive growth of generative AI has fundamentally altered data center design. As distributed model training scales to span hundreds of thousands of GPUs,...The massive growth of generative AI has fundamentally altered data center design. As distributed model training scales to span hundreds of thousands of GPUs, the scale-out network connecting these nodes has emerged as a first-order performance bottleneck. For decades, traditional off-the-shelf Ethernet has been the undisputed king of enterprise and cloud networking. It is cheap, standardized… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p21#a260824p21",
+      "title": "Nvidia says its inference accelerator Groq 3 LPX has entered full production and Nebius has signed on as the first customer; SpaceXAI will adopt Vera CPUs (Mike Wheatley/SiliconANGLE)",
+      "url": "https://www.techmeme.com/260824/p21#a260824p21",
+      "author": null,
+      "publishedAt": "2026-08-24T15:20:01.000Z",
+      "content": "Mike Wheatley / SiliconANGLE: Nvidia says its inference accelerator Groq 3 LPX has entered full production and Nebius has signed on as the first customer; SpaceXAI will adopt Vera CPUs — Chipmaker Nvidia Corp. says its dedicated artificial intelligence inference accelerator Groq 3 LPX has now entered full production …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p22#a260824p22",
+      "title": "IBM says it is developing a dual-architecture processor for IBM Z and LinuxONE systems that can natively execute both IBM's z/OS workloads and Arm applications (Michael Nuñez/VentureBeat)",
+      "url": "https://www.techmeme.com/260824/p22#a260824p22",
+      "author": null,
+      "publishedAt": "2026-08-24T15:35:00.000Z",
+      "content": "Michael Nu&ntilde;ez / VentureBeat: IBM says it is developing a dual-architecture processor for IBM Z and LinuxONE systems that can natively execute both IBM's z/OS workloads and Arm applications — IBM is announcing today at the annual Hot Chips conference what may be the most consequential change to mainframe architecture in decades …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983822",
+      "title": "The Witcher 4 developers target a 2028 release",
+      "url": "https://www.theverge.com/games/983822/the-witcher-4-release-window-gamescom",
+      "author": "Jay Peters",
+      "publishedAt": "2026-08-24T15:48:53.000Z",
+      "content": "CD Projekt Red is aiming to launch The Witcher 4 sometime in 2028, joint CEO Michał Nowakowski says in a new video. CD Projekt Red has been working on its next mainline Witcher title for years and has shown videos of it, but now the studio is providing a target release window for when the game might actually come out. There's more new Witcher to come before The Witcher 4, though. At this week's Gamescom event, CD Projekt Red will be showing off its upcoming Witcher 3 expansion, Songs of the Past, which is scheduled to release sometime in 2027. Songs of the Past is also set to be part of Gamescom's Opening Night Live event hosted by Geoff Ke … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p23#a260824p23",
+      "title": "Temu owner PDD reports Q2 revenue up 8.1% YoY to ~$16.72B, missing estimate of ~$17.17B, net profit down 12% YoY to ~$4.04B, above ~$3.63B estimate (Tracy Qu/Wall Street Journal)",
+      "url": "https://www.techmeme.com/260824/p23#a260824p23",
+      "author": null,
+      "publishedAt": "2026-08-24T16:05:01.000Z",
+      "content": "Tracy Qu / Wall Street Journal: Temu owner PDD reports Q2 revenue up 8.1% YoY to ~$16.72B, missing estimate of ~$17.17B, net profit down 12% YoY to ~$4.04B, above ~$3.63B estimate — Rising competition from livestreaming and social e-commerce is challenging PDD's market position — The Chinese owner of bargain-shopping …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p24#a260824p24",
+      "title": "UK's Office for National Statistics: UK digital infrastructure investment crossed £11B in 2025, hitting dot-com boom levels, amid an AI data center surge (Tom Rees/Bloomberg)",
+      "url": "https://www.techmeme.com/260824/p24#a260824p24",
+      "author": null,
+      "publishedAt": "2026-08-24T16:10:02.000Z",
+      "content": "Tom Rees / Bloomberg: UK's Office for National Statistics: UK digital infrastructure investment crossed &pound;11B in 2025, hitting dot-com boom levels, amid an AI data center surge — Businesses pumped more than &pound;11 billion ($15 billion) into Britain's digital infrastructure last year in the rush …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20061",
+      "title": "Let's Scale Step by Step: Compute-Efficient Hyperparameter Transfer for Large-Scale Mixture-of-Experts",
+      "url": "https://huggingface.co/papers/2608.20061",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:33.679Z",
+      "content": "Let's Scale Step by Step: Compute-Efficient Hyperparameter Transfer for Large-Scale Mixture-of-Experts",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.21360",
+      "title": "OmniAssistBench: Assistant-style Interaction Benchmark for Omni-LLMs",
+      "url": "https://huggingface.co/papers/2608.21360",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:33.679Z",
+      "content": "OmniAssistBench: Assistant-style Interaction Benchmark for Omni-LLMs",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16425",
+      "title": "ParaTempo: Efficient Parallel Reasoning via Temporal Confidence",
+      "url": "https://huggingface.co/papers/2608.16425",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:33.679Z",
+      "content": "ParaTempo: Efficient Parallel Reasoning via Temporal Confidence",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16647",
+      "title": "Every Coin Has Two Sides: On the Dual Nature of Generalization in On-Policy Distillation of Large Language Models",
+      "url": "https://huggingface.co/papers/2608.16647",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:33.679Z",
+      "content": "Every Coin Has Two Sides: On the Dual Nature of Generalization in On-Policy Distillation of Large Language Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20886",
+      "title": "EviRank: Structured Relevance Evidence for Multimodal Image Re-ranking",
+      "url": "https://huggingface.co/papers/2608.20886",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:33.679Z",
+      "content": "EviRank: Structured Relevance Evidence for Multimodal Image Re-ranking",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.08676",
+      "title": "UniSpace: Unified Visual Representation and Scalable Multimodal Modeling",
+      "url": "https://huggingface.co/papers/2608.08676",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:33.679Z",
+      "content": "UniSpace: Unified Visual Representation and Scalable Multimodal Modeling",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20210",
+      "title": "Daedalus-150M: A Convolution-Attention Hybrid Designed for CPU Inference",
+      "url": "https://huggingface.co/papers/2608.20210",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:33.679Z",
+      "content": "Daedalus-150M: A Convolution-Attention Hybrid Designed for CPU Inference",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.18184",
+      "title": "Human-Centric Intelligence in the Era of Foundation Models: A Survey",
+      "url": "https://huggingface.co/papers/2608.18184",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:33.679Z",
+      "content": "Human-Centric Intelligence in the Era of Foundation Models: A Survey",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20438",
+      "title": "Peer-Voted LLM-Agent Stress Tests Find Feed-Induced Lexical Convergence but No Reliable Matched-Exposure Advantage for Distributed Sources",
+      "url": "https://huggingface.co/papers/2608.20438",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:33.679Z",
+      "content": "Peer-Voted LLM-Agent Stress Tests Find Feed-Induced Lexical Convergence but No Reliable Matched-Exposure Advantage for Distributed Sources",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20574",
+      "title": "FlavourBench: Ranking Frontier Language Models with Executable Culinary Ground Truth",
+      "url": "https://huggingface.co/papers/2608.20574",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:33.679Z",
+      "content": "FlavourBench: Ranking Frontier Language Models with Executable Culinary Ground Truth",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.18484",
+      "title": "Partition the Support, Reconstruct the Residual: Training-Free Sparse Attention for Video Generation and World Models",
+      "url": "https://huggingface.co/papers/2608.18484",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:33.679Z",
+      "content": "Partition the Support, Reconstruct the Residual: Training-Free Sparse Attention for Video Generation and World Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.18077",
+      "title": "Hydra-0: Action Flow for Generalist World Modeling and Control",
+      "url": "https://huggingface.co/papers/2608.18077",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:33.679Z",
+      "content": "Hydra-0: Action Flow for Generalist World Modeling and Control",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/newsletters/2026-08-23/apple-s-foldable-iphone-details-retail-store-changes-for-new-home-products-mt5vjf61?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc4NzU0NjUzMCwiZXhwIjoxNzg4MTUxMzMwLCJhcnRpY2xlSWQiOiJUSzg2VzFLSUpIOTQwMCIsImJjb25uZWN0SWQiOiI2NTc1NjkyN0UwMkM0N0MwQkQ0MDNEQTJGMEUyNzIyMyJ9.rmU0l-vsfqB1e_xHJXLMJlfTI2xaYwMnV5cFszphzek&utm_source=tldrnewsletter",
+      "title": "Apple's Foldable iPhone Will Help Bring Some Magic Back",
+      "url": "https://www.bloomberg.com/news/newsletters/2026-08-23/apple-s-foldable-iphone-details-retail-store-changes-for-new-home-products-mt5vjf61?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc4NzU0NjUzMCwiZXhwIjoxNzg4MTUxMzMwLCJhcnRpY2xlSWQiOiJUSzg2VzFLSUpIOTQwMCIsImJjb25uZWN0SWQiOiI2NTc1NjkyN0UwMkM0N0MwQkQ0MDNEQTJGMEUyNzIyMyJ9.rmU0l-vsfqB1e_xHJXLMJlfTI2xaYwMnV5cFszphzek&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.634Z",
+      "content": "Apple's Foldable iPhone Will Help Bring Some Magic Back (12 minute read)Apple is set to introduce its foldable iPhone at a launch event on or around September 9. Samsung has stolen some of the thunder from the launch by introducing a similar design, but that just reinforces that the new form factor is a winner. Apple's device reportedly excels as a camera viewfinder, but it lacks a telephoto camera, which could be an issue for early adopters spending over $2,000. The design also relies on Touch ID rather than Face ID.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-08-22/nvidia-customers-notified-about-ai-related-price-hikes-above-15?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc4NzU0NjUyMiwiZXhwIjoxNzg4MTUxMzIyLCJhcnRpY2xlSWQiOiJUSzZIQURLSUpIOFIwMCIsImJjb25uZWN0SWQiOiI2NTc1NjkyN0UwMkM0N0MwQkQ0MDNEQTJGMEUyNzIyMyJ9.Wc6ZwJbx9gkhHWTcHlu7y-AsKUlMS3ChmCSkeSRqGu8&utm_source=tldrnewsletter",
+      "title": "Nvidia Customers Notified About AI-Related Price Hikes Above 15%",
+      "url": "https://www.bloomberg.com/news/articles/2026-08-22/nvidia-customers-notified-about-ai-related-price-hikes-above-15?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc4NzU0NjUyMiwiZXhwIjoxNzg4MTUxMzIyLCJhcnRpY2xlSWQiOiJUSzZIQURLSUpIOFIwMCIsImJjb25uZWN0SWQiOiI2NTc1NjkyN0UwMkM0N0MwQkQ0MDNEQTJGMEUyNzIyMyJ9.Wc6ZwJbx9gkhHWTcHlu7y-AsKUlMS3ChmCSkeSRqGu8&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.634Z",
+      "content": "Nvidia Customers Notified About AI-Related Price Hikes Above 15% (2 minute read)Some of Nvidia's biggest customers have been told that the price of the AI servers containing its flagship Vera Rubin and Grace Blackwell chips is going up by more than 15% due to the soaring costs of memory chips. The price hikes will go into effect early next year. The increases will depend on the generation of Nvidia chips and the memory configurations. Nvidia has also raised prices for its gaming-oriented PC graphics cards.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wsj.com/business/autos/amazons-toaster-shaped-robotaxis-are-hitting-the-road-111c7b90?st=zjrsPc&reflink=desktopwebshare_permalink&utm_source=tldrnewsletter",
+      "title": "Amazon's Toaster-Shaped Robotaxis Are Hitting the Road",
+      "url": "https://www.wsj.com/business/autos/amazons-toaster-shaped-robotaxis-are-hitting-the-road-111c7b90?st=zjrsPc&reflink=desktopwebshare_permalink&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.634Z",
+      "content": "Amazon's Toaster-Shaped Robotaxis Are Hitting the Road (7 minute read)Amazon's all-electric toaster-shaped Zoox taxis are the first robotaxis offering rides on the roads without standard driver features like a dashboard or pedals. They can drive in either direction and hold up to four passengers sitting facing each other. Amazon has started rolling out the vehicles across San Francisco and Las Vegas. Tesla's Cybercab lacks a steering wheel and pedals, but it has not received the same regulatory approval as Zoox to begin offering rides to the public.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://apnews.com/article/china-humanoid-robot-games-us-86cb8e310843151a77057e4cb764b4e2?utm_source=tldrnewsletter",
+      "title": "Chinese humanoid robots smash human records in 100m sprint and high jump at Beijing robot games",
+      "url": "https://apnews.com/article/china-humanoid-robot-games-us-86cb8e310843151a77057e4cb764b4e2?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.634Z",
+      "content": "Chinese humanoid robots smash human records in 100m sprint and high jump at Beijing robot games (4 minute read)The opening day of the World Humanoid Robot Games in Beijing on Saturday saw Chinese humanoid robots break records set by humans, including Usain Bolt's 100-meter sprint world record. More than 2,000 humanoid robots participated in the event. There were 51 events and more than 1,000 competitions, including running, table tennis, and soccer. While the games showcased humanoid robots' rapidly evolving abilities, experts say it will still take time to achieve mass real-world deployment and that these robots are mostly still used for demonstrations, performances, and research.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://danluu.com/perf-opt/?utm_source=tldrnewsletter",
+      "title": "There's no reason for software to be slow anymore",
+      "url": "https://danluu.com/perf-opt/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.635Z",
+      "content": "There's no reason for software to be slow anymore (27 minute read)A lot of the tedium it used to take to get a tricky optimization working is now gone. Many optimizations that were previously too risky to try make sense to try out now. AI drastically reduces the cost of optimization. It can turn days or weeks of work into a trivial loop.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.modelcontextprotocol.io/posts/mcp-roadmap/?utm_source=tldrnewsletter",
+      "title": "The New MCP Roadmap",
+      "url": "https://blog.modelcontextprotocol.io/posts/mcp-roadmap/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.635Z",
+      "content": "The New MCP Roadmap (8 minute read)The updated roadmap for the Model Context Protocol (MCP) sets the direction for protocol work over the coming months. It is organized into five priority areas: agentic messaging primitives, HTTP-native transport unification and hardening, agent identity and enterprise-ready security, improved primitives, and improved SDK developer experience. Specification Enhancement Proposals that fall within these priority areas get expedited review and have the best chance of acceptance.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.upstartsmedia.com/p/column-tech-twitter-is-too-online?utm_source=tldrnewsletter",
+      "title": "‘Maybe I'm Psycho': Why Tech Founders And VCs Are So Online",
+      "url": "https://www.upstartsmedia.com/p/column-tech-twitter-is-too-online?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.635Z",
+      "content": "‘Maybe I'm Psycho': Why Tech Founders And VCs Are So Online (11 minute read)New news is coming out so fast that it seems crazy for a founder not to be fully plugged in. Being online can help build a presence and keep people as informed as possible. Posting frequently can help drive inbound interest. Tech Twitter can provide a view of emerging consensus, but few immediately actionable insights. It's important to actively maintain cognitive security and cognitive hygiene, as spending too much time online can be dangerous.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://jobs.ashbyhq.com/tldr.tech/477ea713-56c3-49ee-8e0c-88cce2feb57e?utm_source=tldrnewsletter",
+      "title": "GTM Engineer, Applied AI at TLDR ($175-205k base + $40-60k bonus, Fully Remote)",
+      "url": "https://jobs.ashbyhq.com/tldr.tech/477ea713-56c3-49ee-8e0c-88cce2feb57e?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.635Z",
+      "content": "GTM Engineer, Applied AI at TLDR ($175-205k base + $40-60k bonus, Fully Remote)TLDR is hiring a GTM Engineer to join our Applied AI team and own our AI-native GTM stack. We're looking for someone comfortable building AI agents and working with HubSpot. Click here to learn more!",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.dbreunig.com/2026/08/23/fable-the-end-of-moore-s-law.html?utm_source=tldrnewsletter",
+      "title": "Fable & The End of the Free Lunch",
+      "url": "https://www.dbreunig.com/2026/08/23/fable-the-end-of-moore-s-law.html?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.635Z",
+      "content": "Fable & The End of the Free Lunch (2 minute read)When Moore's Law was in full effect, it didn't make sense to ruthlessly optimize code, as a new CPU would arrive in 18 months that would double performance. Developers only started to have to think about parallelization, architecture, memory locality, etc, after Moore's Law started slowing down in the mid-2000s. Prior to Fable, it felt like a waste to spend too much time improving coding harnesses or context strategies, as a new model would arrive at the same price or cheaper in just a few months that would cover most of the problem. Fable is incredible, but the cost is so high that developers are now starting to think about what work should go where and optimizing their harnesses to provide weaker models with sufficient context to perform well.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://fabiensanglard.net/agent.md/index.html?utm_source=tldrnewsletter",
+      "title": "An agent.md to improve LLM-assisted code quality",
+      "url": "https://fabiensanglard.net/agent.md/index.html?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.636Z",
+      "content": "An agent.md to improve LLM-assisted code quality (5 minute read)A good coding harness can help improve code quality dramatically.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://nolanlawson.com/2026/08/23/the-asteroid-currently-hitting-frontend-web-development/?utm_source=tldrnewsletter",
+      "title": "The asteroid currently hitting frontend web development",
+      "url": "https://nolanlawson.com/2026/08/23/the-asteroid-currently-hitting-frontend-web-development/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.636Z",
+      "content": "The asteroid currently hitting frontend web development (15 minute read)The front end is less risky to just hand to an agent, so many AI coders will feel comfortable just letting their agents handle it unsupervised.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://lalitm.com/post/find-problems-staff-engineer/?utm_source=tldrnewsletter",
+      "title": "How I Find Problems to Solve as a Staff Engineer",
+      "url": "https://lalitm.com/post/find-problems-staff-engineer/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.636Z",
+      "content": "How I Find Problems to Solve as a Staff Engineer (6 minute read)Finding problems comes from staying engaged with people's work long enough to see what no single request can show you.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wsj.com/tech/ai/nvidia-is-spending-6-billion-to-build-a-powerful-u-s-alternative-to-chinese-ai-c51c38cc?st=LEwMmM&reflink=desktopwebshare_permalink&utm_source=tldrnewsletter",
+      "title": "Nvidia Is Spending $6 Billion to Build a Powerful US Alternative to Chinese AI",
+      "url": "https://www.wsj.com/tech/ai/nvidia-is-spending-6-billion-to-build-a-powerful-u-s-alternative-to-chinese-ai-c51c38cc?st=LEwMmM&reflink=desktopwebshare_permalink&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.636Z",
+      "content": "Nvidia Is Spending $6 Billion to Build a Powerful US Alternative to Chinese AI (8 minute read)Nvidia will invest $1 billion in AI startup Poolside at a pre-money valuation of $12 billion and will pay $6 billion to license Poolside's technology and hire the bulk of its engineers.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://lucumr.pocoo.org/2026/8/22/fast-hard-code/?utm_source=tldrnewsletter",
+      "title": "Fast and Hard Code",
+      "url": "https://lucumr.pocoo.org/2026/8/22/fast-hard-code/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.636Z",
+      "content": "Fast and Hard Code (2 minute read)AI enables developers to pick less common languages and work with much harder technologies.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://jaechung.net/writings/starting-a-quant-trading-firm/?utm_source=tldrnewsletter",
+      "title": "Starting a quantitative trading firm with 0 experience",
+      "url": "https://jaechung.net/writings/starting-a-quant-trading-firm/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-24T16:16:36.636Z",
+      "content": "Starting a quantitative trading firm with 0 experience (18 minute read)Table/game selection is just as important as execution, especially in markets.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
       ],
       "paywalled": false,
       "mediaType": "text"
