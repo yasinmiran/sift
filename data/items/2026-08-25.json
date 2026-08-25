@@ -1,6 +1,6 @@
 {
   "day": "2026-08-25",
-  "generatedAt": "2026-08-25T03:57:50.734Z",
+  "generatedAt": "2026-08-25T04:38:58.568Z",
   "items": [
     {
       "sourceSlug": "arxiv-systems",
@@ -559,6 +559,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49423539",
+      "title": "Octopus intelligence may be related to never-before-seen mutation",
+      "url": "https://www.smithsonianmag.com/smart-news/why-are-some-octopuses-so-smart-the-answer-might-lie-in-a-never-before-seen-mutation-that-helps-them-accurately-build-proteins-180989319/",
+      "author": "bookofjoe",
+      "publishedAt": "2026-08-24T17:57:13.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 108,
+      "comments": 84
     },
     {
       "sourceSlug": "techmeme",
@@ -1233,6 +1252,784 @@
       "content": "GameXpert-Bench: How Far Are Coding Agents from Expert Game Development?",
       "topics": [
         "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21362v1",
+      "title": "KVBoost: Chunk-Level Key-Value Cache Reuse with Deviation-Guided Recomputation for Efficient Large Language Model Inference",
+      "url": "https://arxiv.org/abs/2608.21362",
+      "author": "Srihari Unnikrishnan",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Transformer-based large language models (LLMs) incur high prefill latency because key-value (KV) tensors must be recomputed for each request. Existing prefix-caching systems reduce this cost but require prompts to share a leading contiguous prefix, limiting effectiveness when shared content appears at arbitrary positions. We present KVBoost, a chunk-level KV cache reuse system for HuggingFace-compatible decoder models that enables reuse regardless of content position. KVBoost introduces a dual-hash keying scheme that separates positional identity (prefix hash) from content identity (content hash), supporting both exact and approximate cache matches. To address attention boundary errors from independently cached chunks, KVBoost employs two repair strategies: SelectiveRecompute, which re-encodes boundary regions, and CacheBlendRecompute, which identifies and recomputes high-deviation tokens after a probe pass. The system further incorporates asymmetric KV quantization (int8/int4), adaptive chunk boundary splitting, and importance-weighted eviction under a fixed memory budget. Evaluated on Qwen/Qwen2.5-3B over 1,000 bug-localization samples, KVBoost achieves a 4.49x reduction in time-to-first-token (142.4 ms vs.\\ 639.1 ms) and outperforms prefix caching by 16%, with no loss in accuracy (99.2% vs.\\ 99.1%). KVBoost provides a practical, memory-bounded inference acceleration layer compatible with RoPE-based models without architectural modification.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21363v1",
+      "title": "AIREP: A Protocol for Per-Decision Evidence in AI Runtime Governance",
+      "url": "https://arxiv.org/abs/2608.21363",
+      "author": "Ali Toygar Abak",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "A protocol is presented for recording the governance decisions of automated AI runtimes. When a runtime releases, blocks, defers, redacts, or escalates an individual output, AIREP records that decision as a single signed object that any party can check offline, independent of the runtime that produced it. A record carries the decision as one of a closed set of verbs under a stated policy basis, references its input, output, and evidence by hash rather than by value, and declares both what its evidence covers and what it does not. Records form a SHA-256 hash chain that binds each record to its position, so that tampering and gaps are detectable by recomputation. Vendor-, model-, and domain-specific content is confined to a single optional namespace, and a mechanical neutrality test keeps the shared format free of it. A reference implementation and a two-language conformance kit are described. Some implementation issues are considered, and problems such as alignment of the canonical form across implementations, freshness witnesses, and multi-runtime chains are exposed. The format is offered for adoption by any AI runtime that records governance decisions.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21364v1",
+      "title": "Distinguishing Revision and Delayed Elaboration in Incremental Narrative Interpretation",
+      "url": "https://arxiv.org/abs/2608.21364",
+      "author": "Yi-Chun Chen",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Both human and AI systems that process narrative or long-form content operate incrementally: input is received over time, and internal representations must be updated accordingly. Incremental interpretation, therefore, depends not only on what is represented but also on how the representational state evolves under new evidence. We distinguish two structurally different update operators that arise in narrative interpretation: revision-driven update and delayed elaboration. Revision-driven updates retract or replace previously committed structure in response to a contradiction and are therefore non-monotonic. Delayed elaboration, by contrast, refines initially underspecified elements through constraint addition without retracting prior commitments, yielding monotonic extension of the interpretive state. Although both operators may alter how earlier material is understood, they impose fundamentally different structural requirements on state transitions. Using visual narratives as a diagnostic domain, we demonstrate how a structured narrative representation can explicitly separate committed from underspecified content and support both update operators during incremental construction. Through a worked example, we show how delayed elaboration enables monotonic refinement of interpretive state, while revision requires non-monotonic correction. We discuss the broader relevance of this structural distinction for incremental reasoning and hybrid symbolic-neural systems.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21365v1",
+      "title": "KSE-Web: An Analysis of Hybrid Retrieval and LLM-Assisted Query Expansion for Low-Resource Khmer Semantic Search",
+      "url": "https://arxiv.org/abs/2608.21365",
+      "author": "Nimol Thuon",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "As a low-resource language, Khmer presents several retrieval challenges, including limited annotated data, ambiguous word boundaries, weak support in multilingual embedding models, and frequent mixed Khmer-English usage. This paper presents KSE-Web, an analysis of hybrid retrieval and LLM-assisted query expansion for Khmer semantic search. We construct the dataset from approximately 17K candidate Khmer titles and retain 3K cleaned full-text Khmer documents after filtering, normalization, deduplication, and document-length control. The dataset includes 300 manually reviewed user-style Khmer search queries and silver relevance labels with partial human verification. We evaluate character n-gram BM25, multilingual dense retrieval, hybrid BM25+dense retrieval, and LLM-assisted query expansion using Qwen2.5 models. Experimental results show that BM25 achieves the strongest overall performance, reaching 0.943 Recall and 0.876 nDCG. Hybrid BM25+dense retrieval performs comparably, achieving 0.929 Recall and 0.871 nDCG, while dense retrieval alone performs lower. LLM-assisted query expansion does not outperform non-expanded retrieval; however, Qwen2.5-3B produces substantially stronger expanded-query results than Qwen2.5-0.5B, suggesting that LLM size and expansion quality matter for low-resource Khmer retrieval. Our analysis further shows that direct LLM expansion can introduce topic drift, generic terms, and noisy reformulations, while simple filtering may remove useful semantic cues. These findings highlight both the potential and limitations of LLM-assisted retrieval for Khmer semantic search and provide a foundation for future Khmer retrieval datasets with stronger human-verified annotations and Khmer-aware retrieval models. The dataset and documentation will be made available at github.com/back-kh/KhmerSemantic-Search.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21366v1",
+      "title": "Reviewing Model Collapse and Countermeasures",
+      "url": "https://arxiv.org/abs/2608.21366",
+      "author": "Xihao Xie, Beichen Hu",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Driven by massive amounts of web-scale data, generative AI (GenAI) has achieved remarkable progress, enabling various applications in diverse sectors. The advances of GenAI have actuated practitioners to use AI-synthesized data for training next-generation AI models. Undeniably, using synthetic data has alleviated the increasing stringent demand for data supply. Unfortunately, it also introduces a new critical issue: in a self-consuming cycle between model and data, the model ultimately collapse, raising more trustworthiness concerns to GenAI. In recent years, increasingly more studies have investigated the phenomenon of model collapse (MC) and explored potential solutions to mitigate it. However, the review of the phenomenon of MC still remains blank. To fill this gap, this paper provides an up-to-date overview of these studies for consolidating and reviewing the progress of MC in different application scenarios and countermeasures for mitigating MC. We also highlight challenges and future research opportunities.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21369v1",
+      "title": "Wazobia Eval: A Benchmark for Nigerian Pidgin Emotion Understanding, Sarcasm Detection, and Cultural Reasoning",
+      "url": "https://arxiv.org/abs/2608.21369",
+      "author": "Stephanie Okoye",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Nigerian Pidgin is one of Africa's most widely spoken languages, yet remains severely underrepresented in language model evaluation. Existing benchmarks primarily focus on translation, transcription, or generic sentiment analysis, leaving critical aspects of culturally grounded language understanding unmeasured. We introduce Wazobia Eval, a benchmark for evaluating Nigerian Pidgin emotion understanding, sarcasm detection, and cultural reasoning. The benchmark is built on a manually annotated dataset containing over 550 examples and a 16-category emotion taxonomy designed to capture culturally specific emotional registers that are not represented in conventional sentiment frameworks. Wazobia Eval provides standardized evaluation protocols and benchmark tasks for assessing model performance on nuanced Nigerian language understanding. We present the benchmark design, annotation methodology, taxonomy development process, and preliminary pilot evaluation results. Our goal is to provide foundational evaluation infrastructure for Nigerian language AI and establish a reproducible benchmark for future research. The dataset is publicly available at https://huggingface.co/WAZOBIALABS.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21372v1",
+      "title": "AI Learning and Conceptual Transfer in the Game of Hidden Rules",
+      "url": "https://arxiv.org/abs/2608.21372",
+      "author": "Christo Mathew, Wentian Wang, Jacob Feldman, Lazaros K. Gallos, Paul B. Kantor, Vladimir Menkov, Hao Wang",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "This report summarizes the work conducted on the Game of Hidden Rules (GOHR), focusing on reinforcement learning agents trained to infer hidden rules from trial-and-error feedback, representation design, rule difficulty analysis, transfer learning, generalization, and pseudo-bot-assisted human learning analysis. The report focuses on the Transformer-based A2C framework, Feature-Centric and Object-Centric representations, experimental findings, and classification of human learning data.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21374v1",
+      "title": "LitReview Arena: Evaluating Literature Review Agents with Battle-Style Peer Review Platform",
+      "url": "https://arxiv.org/abs/2608.21374",
+      "author": "Ruotong Zhao, Zhiyu Chen, Xurui Liu, Haidong Xue, Dong Liang, Jigao Fu, Wu YanBiao, Yuanyi Zhen, Fengli Xu, Yong Li",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Literature reviews are essential to scientific progress, but rigorously evaluating automatically generated reviews remains difficult because many aspects of research utility depend on expert judgment rather than reference-overlap metrics. We introduce LitReview Arena, a battle-style evaluation platform with a structured protocol tailored to literature review quality: domain experts with AI paper-writing experience compare anonymized drafts, are matched to topics within their expertise, and provide dimension-wise outcomes over five literature-review-specific criteria. From this protocol, we collect approximately 3k expert judgments, each containing five dimension-wise outcomes, and show that even the strongest current systems win only 23.0% of decisive matches against human drafts on overall utility, while agentic LLMs such as Sonar Deep Research substantially outperform base language models by over 60%. We further find that existing LLM-as-a-judge methods are substantially misaligned with human experts (Spearman's rho=0.467), especially on synthesis-heavy criteria such as paper structure and research suggestions. Using the collected preference data, we provide an expert-calibrated evaluator, LitJudge, which improves alignment to Spearman's rho=0.78, comparable to inter-expert consistency; code and data are publicly available at https://github.com/VanellopeAsher/LitReview-Arena.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21375v1",
+      "title": "SchemaRouter: Field-Aware Tool Routing for Efficient Heterogeneous Agentic RAG",
+      "url": "https://arxiv.org/abs/2608.21375",
+      "author": "Yong-eun Cho",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Heterogeneous agentic retrieval-augmented generation (RAG) systems increasingly orchestrate external APIs, internal databases, vector stores, and graph stores. Exposing all tool descriptions to an LLM agent, or selecting tools only by vector similarity, causes two costly failures: over-fetching, which increases payload size, token use, and latency, and under-fetching, which omits fields needed to answer the query. We present SchemaRouter, a lightweight routing layer that represents tools, endpoints, parameters, response fields, domain concepts, units, provenance, and license policies as a schema graph. Given a query, SchemaRouter emits an executable tool plan specifying which tools to call and which fields to retrieve. A small LLM extracts intent, concepts, and source constraints, while field selection is deterministic over the graph through intent-group projection and concept-field matching with an alias layer. On a materials-science benchmark of 110 queries, SchemaRouter achieves answer accuracy of 0.71, matching fetch-everything within overlapping confidence intervals and exceeding prompt-all's 0.66, though their intervals overlap. It uses 227 retrieved-context tokens versus 2,066 for fetch-everything and achieves 2.7x lower end-to-end latency than prompt-all. It also obtains the best tool-exact rate of 0.93 and parameter validity of 1.0. SchemaRouter grounds provenance and license information in 62 percent of answers, compared with approximately 0 percent for all baselines. We also find that minimizing selected-field count is counterproductive: it reduces answer accuracy to 0.56 with negligible token savings, while recall-preserving projection restores top accuracy. SchemaRouter improves efficiency, schema-size-independent scaling, and verifiable provenance/license-grounded answering at competitive accuracy.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21376v1",
+      "title": "On the Role of Citations in Preference Data",
+      "url": "https://arxiv.org/abs/2608.21376",
+      "author": "Yu Hou, Hal Daum\\'e III, Rachel Rudinger, William Walden",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Many NLP tasks require systems to provide attribution in their outputs--i.e. citations to grounding sources. Attribution serves as a bulwark against model hallucination and as a means for users to verify the credibility of model outputs. Yet, it is unclear how humans and LLMs evaluate citations when comparing outputs, a process central to reward modeling and modern LLM post-training. This paper studies the role of citations in the preferences of human judges and four open-source LLMs within the context of scientific question answering, leveraging mixed effects models to investigate the influence of citations on pairwise judgments. Among our key findings are (1) that humans prefer more diverse citations but fewer overall, and (2) that LLMs show some citation-related preferences compared to humans, despite lacking access to the sources, but these preferences depend on the data and specific models. We further discuss the implications of our findings for preference data collection.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21377v1",
+      "title": "Agentic Scaffolding Amplifies Sycophantic Behavior in Large Language Models",
+      "url": "https://arxiv.org/abs/2608.21377",
+      "author": "Thantham Jittham",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Sycophancy in large language models, the tendency to prioritize user agreement over truthful responses, has been documented extensively but studied primarily in single-turn settings. This paper investigates a critical question: does subjecting LLMs to greater interaction scaffolding make sycophancy better or worse? Across 4,800 veracity judgments (200 statements $\\times$ 6 models $\\times$ 4 conditions), we find that the interaction scaffolding characteristic of agentic systems (feedback loops, reconsideration checkpoints, and iterative refinement) systematically amplifies sycophantic behavior. Multi-turn interaction, user pressure, and iterative self-refinement each provide additional opportunities for models to drift toward agreement, and this drift coincides with a mean accuracy drop of $-6.3$ percentage points, establishing the capitulation as harmful rather than corrective. More capable models show larger amplification effects, a troubling inversion of expectations. We introduce the concept of agentic sycophancy amplification (ASA) and two novel metrics: capitulation rate and sycophantic capitulation rate. Our results indicate that as AI systems acquire greater autonomy, sycophancy becomes compounding rather than merely persistent. Systems designed with human oversight loops may inadvertently create the conditions for this drift.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21379v1",
+      "title": "RIACT: A Responsible AI System for Personalized Study Habit Tracking and Early Burnout Signal Detection in University Students",
+      "url": "https://arxiv.org/abs/2608.21379",
+      "author": "Ria Sidhu",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Student burnout is highly prevalent in higher education, with reported rates ranging from 12% to over 70% and consistently exceeding those of the working population - yet it is typically identified only retrospectively, after academic decline has already occurred. A contributing factor is that students have little structured visibility into their own study behaviour, and existing productivity tools record activity without interpreting it. This paper presents RIACT (Record, Insight, Analyze, Coach, Track), a web-based application that combines structured study session logging with a hybrid AI architecture to surface personalized insights and early burnout signals. Students log sessions by location and time; the system computes net focus time by accounting for breaks, detects burnout signals through transparent, deterministic rules operating on week-over-week behavioural comparisons, and uses a large language model - constrained to a fixed output schema - to contextualize patterns and generate personalized recommendations. The design embeds responsible AI principles throughout: warnings are governed by auditable rules rather than model judgement, all output is framed as an observation rather than a diagnosis and data collection is limited to self-logged behavioural fields. We describe the system's design rationale, situate it within the literature on student burnout and explainable AI in education and propose an evaluation framework for validating its behavioural signals against established burnout instruments.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21382v1",
+      "title": "There Is No Neutral Harness: Modern LLM Leaderboards Are Manufactured by Config-Fragile Items",
+      "url": "https://arxiv.org/abs/2608.21382",
+      "author": "V. S. Raghu Parupudi",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Multiple-choice benchmarks fix the questions and the correct answers, but not the harness: the order of the options, the wording of the prompt, and whether a language model's answer is read from generated text or from per-option likelihoods. Work on this harness sensitivity reports it as aggregate score variance, leaving unexamined which items the variance falls on and whether they are the items that separate one model from the next. We treat the evaluation harness of large language models (LLMs) as an independent variable and resolve its effect to single items. We introduce the \\textit{fragility grid}: 12 open-weight instruction-tuned LLMs from 4 families answer the same 3{,}679 items from 4 benchmarks (ARC, HellaSwag, MMLU, TruthfulQA) under 26 equally defensible harness configurations, recording one correctness bit for every model, item, and configuration. The comparison is matched, since the items, the weights, and the greedy decoding stay fixed while only the harness varies. Under the grid a model's score is a band rather than a point: gemma4-31b scores between 31 and 89 percent depending only on the harness. Three results follow. On the items that two adjacent models both answer stably the pair is tied, and config-fragile items carry 95.7 percent of a pair's gap on average. Four of the 12 models reach rank one under some configuration, so the harness selects the winner. Item discrimination, the property that benchmark-compression methods maximize, correlates with fragility at 0.28 (95 percent CI 0.25 to 0.30), so compression keeps the fragile items rather than removing them. The scoring choice, not the option order that protocols usually fix, is the load-bearing axis. We release the per-item records and the analysis script, from which every number regenerates on a CPU in seconds, and we position the fragility grid as a check a leaderboard can run before it reports an order.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21384v1",
+      "title": "Beyond Two Bytes per Letter: Tokenization Overhead in Cyrillic AI Systems",
+      "url": "https://arxiv.org/abs/2608.21384",
+      "author": "Ivan Dobrovolskyi",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Modern multilingual tokenizers often fragment Ukrainian and other underrepresented Cyrillic-script languages more heavily than English, creating disparities in cost and context capacity. We quantify this overhead across nine production tokenizers and five languages with standardized Cyrillic and Latin representations, covering 8.37 million word forms. On a corpus benchmark, Ukrainian shows 68-121% token overhead on modern tokenizers and 220% on the older cl100k, measured through full-text fertility on the BrUK and Brown corpora. Overhead is negatively associated with Cyrillic vocabulary allocation in the subset with independently verified English baselines, although the association is not statistically significant (Spearman rho = -0.536, p = 0.215, n = 7). We evaluate two mitigation strategies. LLMLingua-2 reduces Ukrainian input length by 47-49% on an e-commerce RAG benchmark of 1,536 products and 145 queries, with no compression-induced value losses among 80 retrievable cases. A balanced byte-level BPE tokenizer trained with a 200K vocabulary cap, converging at 158,184 actual entries, reduces the held-out UK/EN ratio from 2.22x to 1.30x. Romanization increases Ukrainian token counts by 2-19% on most tokenizers. Across the five languages, tokenization efficiency favors the script more prevalent in web data. These findings indicate that training data allocation contributes to Cyrillic tokenization overhead and that mitigation is possible at both inference and tokenizer-design stages.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21385v1",
+      "title": "A Social Media Analysis of Discourse on the Israel--Palestine Conflict on Telegram",
+      "url": "https://arxiv.org/abs/2608.21385",
+      "author": "Michail Zafeiropoulos, Despoina Antonakaki, Sotiris Ioannidis",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Social media has become a central arena in which armed conflicts are contested, yet the pro-Israel and pro-Palestine communities on Telegram, whose broadcast architecture yields an unusually direct record of deliberate political communication, have not been systematically compared at scale. This study presents a multi-method computational analysis of 87,617 messages from sixteen Telegram channels, eight pro-Israel and eight pro-Palestine, spanning May 2021 to June 2026 and covering multiple conflict escalations. It combines sentiment analysis, three stance detection methods drawn from distinct paradigms (keyword matching, zero-shot DeBERTa via natural language inference, and a fine-tuned BERTweet model), and a framing analysis, all evaluated against 736 manually annotated messages. The fine-tuned model performed best (72.1% accuracy, 0.721 macro F1 under 5-fold cross-validation), outperforming both label-free baselines by 8 to 11 points; the baselines stalled in the low-to-mid 60s, indicating a hard ceiling for stance detection not adapted to in-domain language. The central finding emerges only when sentiment, stance, and framing are read together: the two communities deploy the same death- and victim-related vocabulary in opposite emotional registers, pro-Israel channels predominantly neutral and report-style, pro-Palestine channels markedly more negative, consistent with writing from the distinct discourse positions of acting party and affected party.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21386v1",
+      "title": "Model of Models: When Does Emitting a Specialist Beat Attending, Adapting, or Tuning?",
+      "url": "https://arxiv.org/abs/2608.21386",
+      "author": "John C. Howell",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Given a task described by a few examples, how should a model be specialized to it? Four mechanisms are available -- zero-shot, in-context attention, test-time gradient adaptation, and emitting specialist weights from a hypernetwork -- yet the operating regime of the last is rarely mapped. We run the identical four-way comparison across six tasks spanning regression, generation, language modeling, reinforcement learning, and clinical and genomic classification, holding the specialist, the context, and (where we can) the training budget fixed. The clearest wins for emission are about cost at matched quality: it ties the state-of-the-art amortized tabular model (TabPFN) on clinical few-shot classification while emitting a reusable specialist instead of re-attending the support set per query, and reaches noise-floor shape generation with a $132$-float per-instance program. On few-shot sinusoid regression it is $2$--$3$ orders of magnitude below MAML at zero test-time gradient steps -- a margin that narrows to $\\sim$$30\\times$ but persists once training budgets are equalized. Emission cannot match in-context attention on high-dimensional sequence modeling: under matched-budget pre-training a one-pass adapter recovers only a minority of the in-context gain ($14.0\\pm0.9\\%$ at $5$M, $11.2\\pm0.5\\%$ at $15$M), and a LoRA-rank sweep shows this shortfall is a partial capacity limit -- capture climbs from $5\\%$ to $21\\%$ as rank grows but plateaus far below full recovery. Mechanism ablations confirm the emitted specialist is genuinely task-conditioned, not a memorized prior; and, more speculatively, emitted specialists compose in weight space -- interpolating two of them tracks the corresponding blend of their functions. We close with a falsifiable thesis, operationalized through a per-task resolution measure, bounding when each conditioning mechanism should be preferred.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21393v1",
+      "title": "Spyre-Accelerated Retrieval-Augmented Generation on IBM LinuxONE: A Cloud-Native Architecture for Secure, High-Throughput Enterprise AI Inference",
+      "url": "https://arxiv.org/abs/2608.21393",
+      "author": "Sandeep Bokkasam, Pankaj D",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Running large language models inside enterprise environments has always bumped up against a practical wall: the data lives in one place, the AI horsepower sits somewhere else, and moving sensitive records between the two creates real headaches around latency, security, and regulatory exposure. IBM's Spyre accelerator PCIe inference card built for LinuxONE and the broader IBM Z family changes that equation. In this paper we lay out a six-subsystem RAG architecture that runs entirely on IBM LinuxONE, using Spyre for generative inference, the Telum II on-chip accelerator for lightweight classification tasks, and Red Hat OpenShift for container orchestration. Every piece of the pipeline from query intake through vector retrieval, prompt assembly, LLM inference, compliance filtering, and response delivery stays within a single LinuxONE system, so sensitive data never has to leave the hardware perimeter. We walk through the design choices behind each subsystem, dig into the Spyre compilation and serving stack, explain how LinuxONE's Secure Execution technology extends confidential-computing guarantees to AI workloads, and benchmark the architecture against cloud-GPU and on-premises alternatives. Early analysis points to end-to-end RAG latencies under two seconds and up to a 20x reduction compared to off-platform inference, all while keeping the strong encryption and auditability posture that regulated industries actually need.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21398v1",
+      "title": "Runtime Action Interference for AI Control of AlphaStar in StarCraft II",
+      "url": "https://arxiv.org/abs/2608.21398",
+      "author": "Jaymari Chua, Chen Wang, Liming Zhu, Lina Yao",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "A trained reinforcement learning policy does not determine the complete behavior that users encounter: deployment code still schedules, admits, suppresses, or replaces its proposed actions. We contribute \\emph{runtime action interference} (RAI), an AI control mechanism that preserves policy parameters while regulating action pacing and filtering configured action patterns after inference. RAI releases a proposed action only when its cooldown condition is satisfied and its content detector does not flag the action; otherwise, it dispatches a no-op. The detector covers specified toxic behaviors, including worker-unit harassment, while the cooldown controls action rate. We implement RAI in a replication of AlphaStar actor.py and make the implementation and reproducibility materials available through an open source code repository. We deployed RAI in a \\textit{StarCraft~II} human participant study that compared two presentations of the same opponent with high capability and rate limited actions; we withheld its capability claim in one presentation and disclosed it in the other. On response scales from 1 to 5, we observed pooled fairness, trust, and toxicity means of 3.90, 3.50, and 2.00 under claim withholding, compared with 2.62, 4.31, and 2.85 under disclosure. Disclosure corresponded with lower perceived fairness and higher perceived toxicity across every expertise group, whereas trust increased among novices and experts but decreased among intermediate participants. Our human evaluation therefore shows that perceptions of an opponent controlled through RAI can vary substantially with the capability information presented to users, even when the configured control remains constant. We conclude that human-computer evaluations must separate control within the execution stack from capability disclosure and assess fairness, trust, and toxicity as distinct dimensions of human experience.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21399v1",
+      "title": "Federated Ensemble Forecasting Under Supply-Chain Market Volatility",
+      "url": "https://arxiv.org/abs/2608.21399",
+      "author": "Shunmukha Sagar Puppala",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Supply chain forecasting systems increasingly operate under market shocks, non-identically distributed regional demand, and limited willingness to centralize commercial data. This work proposes Federated Ensemble Forecasting with Negative-Correlation Learning (FEF NCL), a distributed method that trains specialized forecasting experts across client nodes while discouraging redundant model errors. The framework combines temporal feature encoders, client level drift scoring, reliability-weighted aggregation, and an explain ability layer that exposes the market and supplier variables most responsible for each forecast. A single synthetic dataset is used to evaluate the design. It contains 124,800 weekly SKU region observations from ten regional client nodes, 60 product families, 40 suppliers, five commodity groups, and a 2021-2024 volatility profile with explicit price-shock regimes. Because the dataset is synthetic, the reported results should be interpreted as controlled evidence of internal consistency rather than real-world validation. Across the synthetic test split, FEF NCL reduces weighted mean absolute percentage error from 13.9% for the best federated baseline to 12.4%, improves delay-risk macro-F1 from 0.755 to 0.801, and lowers the high volatility quintile error by 2.1 percentage points relative to SCAFFOLD. The analysis suggests that negative-correlation specialization is useful when clients face different supplier, freight, and commodity conditions, although deployment would require stronger privacy analysis, live drift monitoring, and operational calibration. Index Terms federated learning, ensemble learning, negative correlation learning, supply chain forecasting, market volatility, data drift, demand planning, risk governance",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21408v1",
+      "title": "Hate Speech Classification In Roman Urdu: A Comparative Study On Parameter Efficient Fine-Tuning And Prompt Engineering",
+      "url": "https://arxiv.org/abs/2608.21408",
+      "author": "Toneema Zubair",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Due to the widespread accessibility of the internet and social media, toxic and hateful con-tent has grown exponentially, causing significant distress and negative societal impacts. Ro-man Urdu, a low-resource language used in Pakistan and among Urdu-speaking communities worldwide, presents additional challenges because of its informal grammar, inconsistent sen-tence structures, and multiple variations in word spellings. This research aims to identify the most effective techniques for hate speech classification in such low-resource settings with limited data. To address this, the study investigates and compares the latest approaches, in-cluding prompt tuning, parameter-efficient fine-tuning (PEFT) using LoRA, and prompt en-gineering, under various experimental configurations. To achieve this objective, four exper-iments were designed. The first experiment involved direct inferencing with LLMs without any fine-tuning, to evaluate how well these models understand Roman Urdu in a zero-shot setting, especially given limited data. The second experiment utilized parameter-efficient fine-tuning (PEFT) with LoRA, which updates only a small subset of parameters, thereby reducing computational cost. The third experiment explored prompt tuning with both mixed and manually crafted prompts, using very small sets of training examples relative to the entire dataset, making it computationally efficient as well. Finally, the fourth experiment applied prompt engineering through zero-shot and few-shot learning, relying solely on care-fully designed instruction prompts for classification without further training.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21412v1",
+      "title": "The Abstention Protocol: RCA for Clos Fabrics",
+      "url": "https://arxiv.org/abs/2608.21412",
+      "author": "Madhava Gaikwad, Deepak Pandey",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Root cause analysis (RCA) in large datacenter networks is challenging because telemetry is noisy, partial, and asynchronous. Score-based approaches degrade under these conditions, often yielding unstable or incorrect attributions. We present \\textsc{CoreSec}, a production RCA system that replaces weighted fusion with a PAM-style abstention algebra. Telemetry agents are composed using control flags that yield deterministic decisions and explicit abstention when evidence is ambiguous. CoreSec combines this algebra with topology-aware configurations that capture failure surfaces across Clos fabrics and converge monotonically as evidence accumulates. Deployed at hyperscale, CoreSec provides stable and explainable RCA behavior across diverse environments without retuning. Our experience shows that structured composition with abstention forms a practical foundation for automated RCA in real-world cloud networks.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21415v1",
+      "title": "Mitigating Bias in Large Vision-Language Models via Counterfactual Ensemble Decoding",
+      "url": "https://arxiv.org/abs/2608.21415",
+      "author": "Yisong Xiao, Aishan Liu, Yongxin Huang, Zonghao Ying, Shiji Zhao, Tianlin Li, Yong Han, Jian Yang, Xianglong Liu",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Large Vision-Language Models (LVLMs) have achieved remarkable performance across a wide range of tasks; however, they often inherit social biases from their training data, resulting in biased behavior when processing portraits from different social groups. Existing debiasing approaches typically compare token probabilities between the original and biased generations during decoding, but they are fundamentally limited by their reliance on a single, stereotyped viewpoint and fail to account for the diversity of social perspectives. Inspired by the social science principle that diversity fosters fairness, we propose Counterfactual Ensemble Decoding (CED), a novel framework that constructs multi-group counterfactual perspectives within the visual representation space and integrates them during decoding to promote equitable model behavior. CED first performs counterfactual steering in the visual space by identifying semantic directions associated with each social group and generating counterfactual representations along these directions, thereby offering diverse perspectives that disrupt stereotypical narratives. During decoding, CED locates the decoder layer exhibiting the greatest divergence among these perspectives and ensembles their token distributions using uncertainty-aware weights, prioritizing high-confidence tokens from different groups to yield a more balanced probability distribution that guides fairer generation. Extensive experiments on three social bias evaluation benchmarks demonstrate that \\tool achieves substantial improvements over leading baselines, reducing bias by up to 47.97% across scenarios involving occupations, descriptors, and persona traits. Moreover, CED also preserves the core capabilities of the original model with minimal degradation.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21417v1",
+      "title": "Retrieval-grounded robot program generation and simulation-based correction via Model Context Protocol",
+      "url": "https://arxiv.org/abs/2608.21417",
+      "author": "Zhichao Zhou, Siyuan Chen, Omkar Salunkhe, Ebru Turanoglu Bekar, Johan Stahre, Anders Skoogh",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Flexible manufacturing requires industrial robots to be reprogrammed rapidly as product variants change. This paper presents a language-model-based workflow that generates, validates, and iteratively corrects ABB RAPID robot programs from natural language task descriptions. A dual-stream retrieval-augmented generation (RAG) pipeline grounds code generation in verified technical documentation and production templates, reducing domain-specific errors produced by ungrounded language models. A custom Model Context Protocol (MCP) server connects the language-model client directly to ABB RobotStudio for automated code upload, simulation execution, and diagnostic feedback. The evaluation combines a 30-query retrieval benchmark, scoped code-generation checks, and RobotStudio case studies in a simulated pickand- place manufacturing cell. The simulation loop exposes execution failures that static and semantic checks alone cannot catch, including suction release-height errors, unreachable placement targets, and configuration-dependent recovery motions. The results show how RAG and MCP can connect grounded code generation with executable feedback from industrial robot simulation software, while reducing but not eliminating expert setup and final supervision.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21418v1",
+      "title": "Composable Trust Infrastructure for Manufacturing Knowledge Graphs: Cross-System Provenance, Temporal Reasoning, and Decision Traceability",
+      "url": "https://arxiv.org/abs/2608.21418",
+      "author": "Grama Chethan",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Manufacturing knowledge graphs that integrate data from heterogeneous industrial systems face a trust deficit: consumers cannot determine whether queried data is valid, whether it was valid when a decision was made, where it originated, or how it was acted upon. We argue that four trust capabilities -- SHACL validation, PROV-O provenance, domain-aware bi-temporal versioning, and graph-native decision objects -- compose through shared correlation identifiers to produce emergent trust properties that no single capability delivers alone. We present a composable trust infrastructure that integrates these four capabilities into a unified RDF architecture. Capabilities compose through shared entity URIs, ingestion activity identifiers, and temporal correlation keys, enabling compound queries spanning all four dimensions. An experimental ablation confirms that removing any single capability causes exactly three of six composition queries to fail, demonstrating that all four are equally load-bearing. Analysis of higher-order compositions reveals four emergent three-way properties and one irreducible four-way property (full-chain auditability, 31ms execution). The infrastructure is validated on a testbed integrating eleven industrial sources -- OPC UA, TIA Portal, eClass, AAS, ISA-95, ISA-18.2, SAP S/4HANA, Teamcenter, Opcenter EX, Insights Hub, and SCM -- under an 89-class ISA-95-aligned ontology. The unified graph contains 8,743 triples across five named graphs, stitched by 81 owl:sameAs identity edges. Evaluation uses simulated but structurally realistic data from purpose-built emulators; data structures and cross-system linkage patterns are representative of real industrial installations.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.21423v1",
+      "title": "Agentic Security: A Systematization of Tools, Failure Modes, and Design Laws for LLM-Driven Penetration Testing",
+      "url": "https://arxiv.org/abs/2608.21423",
+      "author": "Israt Moyeen Noumi, Tarannum Ahmed Nowshin, Md. Mehedi Hasan Nipu, Mohammad Sakib Mahmood, Md. Jakir Hossain, M. F. Mridha",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Agentic security uses large-language-model (LLM) agents to plan, dispatch, and interpret security tools. As these systems move from demonstrations to deployed products, practitioners repeatedly encounter the same operational failures. We systematize these failures through a hands-on evaluation of ten widely used static, dynamic, cloud, orchestration, and AI red-teaming tools for unattended pipelines. We introduce a four-dimensional Integration Friction Index that separates one-time engineering cost from recurring organisational, legal, and maintenance cost. We then derive quantitative regularities that explain recurring failure modes. Modelling an agentic security system as stochastic LLM policies wrapped by a deterministic mediator, we show that long-lived sessions lose resident evidence with phase count, while short-lived sub-agents extend the usable horizon according to the compression ratio between raw evidence and its summary. We show that a two-stage verdict cascade multiplies scorer likelihood ratios, but provides little benefit when scorer errors correlate. We show that treating unevaluable outcomes as attack failures biases downstream measurements toward evasive and severe responses. We formulate planner-versus-worker model routing as a knapsack problem and derive a closed-form execution cap for heavy-tailed tools, eta* = alpha v/c. Finally, we show why scope and budget enforcement cannot be delegated to system prompts: prompts do not constrain what actually executes. Inspectra, our implemented platform, serves as a worked instantiation, with mechanisms labelled shipped, partial, or planned, including those that did not work.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21469v1",
+      "title": "Scalable PII Discovery in Mobile App Databases via Hypothesis-Driven Search",
+      "url": "https://arxiv.org/abs/2608.21469",
+      "author": "Jeel Piyushkumar Khatiwala, Samad Afolabi, Ruoyao Xiao, Yu Luo, Dianxiang Xu, Weifeng Xu",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Discovering personally identifiable information (PII) in mobile forensic databases is difficult because the relevant table-column regions are unknown, distributed across heterogeneous SQLite schemas, and may contain values embedded in free-text or semi-structured fields. We present a hypothesis-driven framework that treats PII localization as bounded, adaptive search under uncertainty. An agent ranks candidate table-column regions, probes sampled values, and maintains a memory of prior evidence, confidence scores, and decisions to refine subsequent hypotheses. The framework separates lightweight PII exploration from targeted extraction, normalization, and deduplication over validated regions, thereby limiting exhaustive inspection to regions supported by sampled evidence. We evaluate the framework on 25 SQLite databases from 10 Android and iOS applications in the Cellebrite CTF corpus, targeting email addresses, phone numbers, domain names, person names, and postal addresses. Against a corpus-level distinct ground-truth set of 3,751 entities, Gemini 2.5 Pro achieves 94.5% F1 while reducing the effective extraction search space by 79.9% on average. Results across 12 model backends show strong performance among several frontier models, but substantial sensitivity to model capability.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21470v1",
+      "title": "Structural Inference in Undocumented Mobile Databases: A Reproducible Benchmark for Evaluating Agentic Reasoning in Digital Forensics",
+      "url": "https://arxiv.org/abs/2608.21470",
+      "author": "Jeel Piyushkumar Khatiwala, Divyangkumar Patel, Weifeng Xu",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Agentic large language models are increasingly used in digital forensic analysis, yet their ability to infer relational structure inside undocumented mobile application databases remains poorly understood. In forensic contexts, structurally incorrect inferences can yield results that appear plausible while remaining evidentially unsound. This work evaluates agentic structural inference as an isolated capability, treating execution success and structural correctness as distinct evaluation axes. It examines how an agent reconstructs table relationships, linking attributes, and executable join paths when given only a raw database and a natural-language investigative prompt. We apply a fixed, deterministic evaluation pipeline to two contrasting SQLite repositories: Android's SMS database with stable identifier propagation, and Snapchat's database with irregular schemas, ephemeral identifiers, and polymorphic relationships. Using expert-verified SQL ground truth, we evaluate (i) structural correctness of inferred relational links, (ii) execution coherence under multi-table reasoning, and (iii) robustness and failure modes of inferred structure when execution succeeds but relational interpretation diverges from expert ground truth. Evaluation is performed independently of semantic interpretation, with full queries and execution traces provided in the Appendix. Results show that structural inference remains reliable in regular schemas but degrades sharply as schema ambiguity increases, frequently producing structurally plausible yet incorrect joins that execute successfully. These findings clarify where schema-agnostic agentic reasoning can support forensic analysis, how its robustness degrades under realistic schema irregularities, and why additional verification remains essential before inferred relationships can be treated as reliable evidence.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21471v1",
+      "title": "A Case-Control Measurement Study of OSINT Source Effectiveness for Critical Infrastructure Defense",
+      "url": "https://arxiv.org/abs/2608.21471",
+      "author": "Ekrem E. Emeksiz, Jeel Piyushkumar Khatiwala, Divyangkumar Patel, Weifeng Xu",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Defenders of critical infrastructure (CI) subscribe to many public open-source intelligence (OSINT) feeds without an empirical basis for which feeds actually precede attacks. We provide one. Across 54 confirmed CI cyberattacks from 2010 through 2024 spanning twelve named CI sectors plus a cross-sector category (consolidation rules in Section IV), paired with 12 null-control vulnerability cases drawn from the same source space, we audit per-source attack coverage, null-case contamination, and signal lead time for ten public OSINT source classes that meet a minimum-volume threshold. Sources separate cleanly into three operationally distinct mission profiles (pooled Fisher exact p = 3.4x10^-8): precursor (six classes with zero observed null firings at coverage at or above 5%), disclosure-exposure (three classes whose null contamination meets or exceeds attack coverage), and one large broad-coverage class that mixes the two profiles but retains 91.3% within-corpus precision. The precision-side classification is stable across a 2019 temporal partition and across a US-versus-non-US geographic partition. Two sources, one broad-coverage and one precursor, cover 92.6% of corpus attacks; three cover 96.3%. The greedy portfolio at k = 3 outperforms the mean random three-source subset by 39.8 percentage points. Several source classes widely treated as canonical for industrial control system defense fall into the disclosure-exposure profile by operational mission, not by quality. Per-sector, per-actor, and per-jurisdiction portfolios diverge in rank order despite a shared rank-one source. The corpus, linkage protocol, and classification rules are released.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21476v1",
+      "title": "From Subjective Judgments to Auditable Standards:Protocol-Guided AI Auditing of Website Redundancy",
+      "url": "https://arxiv.org/abs/2608.21476",
+      "author": "Ge Kong, Yongtong Cao",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Website redundancy does not have a single fixed meaning. The same repeated element may distract during one task and provide backup during another. We introduce CORA (Counterfactual, Observable Redundancy Audit), which measures repetition load, normal-use tax, and failure-domain recovery reserve separately. Each run retains screenshots, stable element identities, and task traces. A versioned vision-language model proposes the annotations. Typed validation and release checks then determine whether a calibrated dimension can be reported; failed or malformed outputs stay in the fixed denominator. On a transparent mechanistic testbed, the factorized CORA representation separated reserve from normal-use tax and predicted perturbed success more accurately than scalar-load baselines. The model studies then showed why repeatability is not enough: two small local vision-language models produced recurring outputs, but neither instrument met all release requirements. CORA therefore withheld automated scores from both instruments while retaining the raw responses and failure records. Separate checker fixtures confirmed that the typed validator and hardened release gates implement their specifications; these tests do not establish semantic grounding or accuracy on production sites. Taken together, the results position CORA as an auditable candidate procedure for the controlled benchmark studied here rather than a general standard. Human agreement, AI-versus-human accuracy, and validation on independent production sites remain open empirical questions.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21477v1",
+      "title": "Explainable Adaptive Zero Trust Framework for AWS with Adversarial Robustness Evaluation",
+      "url": "https://arxiv.org/abs/2608.21477",
+      "author": "Om Singh, Yagyaraj Pandey, Nandini Pathak",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Cloud environments built on Amazon Web Services face a structural security vulnerability: once a credential passes authentication, the resulting session is often treated as trusted for its entire duration. This assumption fails when credentials are stolen. We introduce the Explainable Adaptive Zero Trust Framework (EAZTF), a cloud-native security layer that continuously reevaluates the legitimacy of API actions throughout a session. EAZTF combines Isolation Forest and XGBoost to evaluate eight CloudTrail and IAM-derived behavioral features in real time and produce a Trust Risk Score (TRS) that determines whether a session continues, requires step-up MFA, or is restricted. Each decision is accompanied by a SHAP or LIME explanation, providing human-readable audit records for security analysis and compliance. The framework is also evaluated against four adversarial evasion strategies: credential theft, behavioral mimicry, API rate evasion, and privilege escalation. Experiments on an 8,500-record synthetic CloudTrail dataset show that Isolation Forest achieves 94.4% precision, 91.2% recall, and an F1 score of 0.928. Across the four adversarial scenarios, the mean detection rate is 91.0%, with behavioral mimicry being the most difficult at 83.9%. SHAP analysis identifies IP reputation, login-time deviation, and API call velocity as the three dominant features. A structured NIST SP 800-207 self-assessment gives EAZTF a mean compliance score of 93%, compared with 38% for a traditional perimeter baseline. Mean time to detect decreases from hours to under one minute. Because the evaluation uses synthetic data, these results should be interpreted as indicative rather than validated production performance.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21483v1",
+      "title": "SLICE: Specification-Level Isolation of Contract Enforcement",
+      "url": "https://arxiv.org/abs/2608.21483",
+      "author": "Soohan Lim, Hyundong Jin, Yo-Sub Han",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Programming problems commonly specify both the computation a function should perform and the conditions that its inputs must satisfy. Large language models are widely used to generate code from these problem specifications, and the generated function must implement the required computation while enforcing the stated input conditions. The stated input conditions collectively form an input contract. Enforcing this contract is difficult: incomplete enforcement accepts inputs that should be rejected, whereas overly restrictive enforcement rejects inputs that should be accepted. Existing code generation methods do not provide a generation process that identifies both the input contract and the functional requirements and generates code that satisfies them jointly. We therefore introduce SLICE, a generation framework that identifies both requirements and addresses them through separate generation stages. SLICE consists of three stages: (i) Graph-based specification structuring, which grounds contract conditions to description segments in a specification graph and removes contract-only segments to form a functional view; (ii) Functional body generation, which produces multiple candidate function bodies through greedy and sampled decoding, ranks them using execution scores, and resolves ties using difference-region log probabilities; and (iii) Contract assertion generation, which generates input-validation assertions from the identified contract conditions and attaches them to the selected function body. We evaluate SLICE on ContractEval across four LLMs and compare it with six competing methods. Relative to the strongest evaluated baseline for each model, SLICE improves performance in generating code that satisfies both the functional requirements and the input contract by an average of 6.58%. Our code is available at https://github.com/suhanmen/SLICE.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21489v1",
+      "title": "Composable Building Blocks for Resilient Asynchronous Code",
+      "url": "https://arxiv.org/abs/2608.21489",
+      "author": "Frank Tip",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Asynchronous calls to a network service, database, or language model must cope with transient errors, slow or missing responses, throttling, and atomicity violations. We show how higher-order combinators solve such problems uniformly, including timeouts, retries, rate limiting, caching, reentrant locking, and cancellation. Every combinator maps an async function to another of the same type, so they share a uniform \\emph{shape} and compose by nesting into one expression that implements a program's whole resilience and concurrency policy, leaving its business logic untouched. The same design spans both of JavaScript's native async shapes, promise-returning and async-iterable-returning functions, with one vocabulary of concerns. Solutions exist across the ecosystem but are scattered over differently shaped libraries that are hard to combine. We present case studies where the combinators are used to harden real packages by adding missing resilience or concurrency control and replacing bespoke policy.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21500v1",
+      "title": "SecOPD: Mitigating Adaptive Prompt Injections by On-Policy Distillation",
+      "url": "https://arxiv.org/abs/2608.21500",
+      "author": "Yibo Peng, Long Lian, David Wagner, Sizhe Chen",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Prompt injection is listed as the \\#1 threat to AI agents. When an agent accesses external data from websites, files, or emails, an attacker may inject a prompt into the data, saying, \"Ignore all prior instructions and perform <an attacker's task>.\" To prevent arbitrary manipulation of agents, defenders try to train secure LLMs, which, however, still suffer from near 100% attack success rates (ASRs) against adaptive prompt injections. We note that this is because existing defensive finetuning recipes rely on sequence-level feedback signals (in DPO or GRPO). Treating an entire output equally prevents the model from learning precisely which output tokens are insecure. In this paper, we propose Secure On-Policy Distillation (SecOPD) that provides token-level feedback to guide defensive fine-tuning. The LLM receives an injected sample and produces a rollout, whose tokens are scored by the initialization model given the corresponding clean input. With more fine-grained training signals, our defended Qwen3.6-27B achieves a 9.0% ASR against the SoTA PISmith adaptive prompt injections, compared to 94.0% for the prior SoTA, Meta-SecAlign. The obtained security generalizes to domains completely unseen in training: in agentic tool calling, SecOPD achieves a 4.7% ASR compared to 5.5% for Meta-SecAlign. Code and the model are available at https://github.com/pppyb/SecOPD and https://huggingface.co/pybbb/Qwen3.6-27B-SecOPD.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21503v1",
+      "title": "BeTaL-GBI: Admission-Aware Benchmark Tuning and Full-Stack Verification of Geometric Belief Interfaces",
+      "url": "https://arxiv.org/abs/2608.21503",
+      "author": "Alvin Spivey, Yu Huang",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "A verification substrate is more credible when exposing errors in its own claims, not just model outputs. GBI-DCSE v3 falsified an architectural claim: the reported Fisher value epsilon ~ 0.066 satisfies the kappa^2 <= 10^4 budget only on the slice [epsilon, 3, 4, 5], while the full box [epsilon, 20]^4 requires epsilon ~ 0.326472. This erratum highlights whether an enterprise verification architecture can isolate interface failure, task competence, policy admissibility, and control integrity while keeping claims auditable. BoundaryBench v0.1 established the baseline: Qwen3-4B-Instruct-2507 completed 768 frozen executions, but 0% cleared the contract (369 failed parsing, 399 failed validation), limiting downstream selectivity metrics. This companion study evaluates three successive improvements. First, BeTaL-GBI v0.2 applies Benchmark Tuning with an LLM-in-the-loop over 2,218,750,380 grid points, separating format admission from conditional performance (rho_adm = N_admitted/N; rho_task = N_verified/N_admitted). Following schema repair, a model-free feedback search achieves a 2.87% mean held-out target gap, outperforming non-feedback baselines (13.61%, 11.46%). Second, GBI v2 swaps static keys for a reference-independent witness state W and policy P. Across 512 synthetic tasks, a 16-gate policy detects all 116 injected severe contradictions and accepts all 99 clean records (broad denominator: 4.27%). Hallucinator and evidence-forger surrogates are blocked with zero silent promotions. Third, GBI-DCSE v3 maps 99 claims to machine-readable evidence: 95 of 96 testable claims pass, with 148 standalone checks executed without failure. The harness exercises signed ledgers, PBFT quorums, and enclave forgery across 62 configurations. Under synthetic conditions, GBI-DCSE is a selective, policy-versioned, self-auditing test and routing substrate.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21516v1",
+      "title": "Neuro-Formal Verification: Agentic Language-Agnostic Formal Program Reasoning",
+      "url": "https://arxiv.org/abs/2608.21516",
+      "author": "Shuvendu K. Lahiri",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Formal verification offers the strongest assurance available for software, and verification-aware languages have made its automation real. Yet the benefits reach few mainstream developers, most of whose languages have no verification support. Besides, specifying properties and modeling the environment require expertise in formal methods. Proof is therefore reserved for a few celebrated artifacts, while the production code that ships is attested only through review and testing. We introduce neuro-formal verification (NFV), which harnesses that automation for developers of mainstream programming languages: an AI coding agent translates, an established verifier decides, and a question posed in a mainstream language is answered push-button, at empirical accuracy rather than soundness, with a machine-checked proof. Results on a dataset of correct and incorrect solutions to Python programming problems are encouraging: NFV returns a Dafny proof of correctness or of a bug on 57% of the entries at 92% precision, and a CBMC counterexample for 63% of the buggy programs at 90% precision.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21531v1",
+      "title": "Large Language Models for Requirements Engineering: A Cross-Task Empirical Evaluation",
+      "url": "https://arxiv.org/abs/2608.21531",
+      "author": "Jacek D\\k{a}browski, Manjeshwar Aniruddh Mallya, Alessio Ferrari, Mohammad Amin Zadenoori, Yijun Yu",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Requirements-related information is scattered across heterogeneous artefacts such as user feedback, developer discussions, and software repositories, making the extraction of actionable requirements knowledge labour-intensive and hard to scale. Large Language Models (LLMs) can support many Requirements Engineering (RE) activities, from classification and traceability identification to specification and explanation generation, but existing evidence is fragmented across tasks, artefact types, and evaluation settings, and studies rarely offer cross-task evaluations or replication packages. We present two complementary empirical studies evaluating LLMs across five RE-related activities. The first is a controlled experiment on five lightweight open-source LLMs for feedback-driven requirements classification and specification generation. The second is an exploratory industrial case study on two frontier LLMs for traceability link identification and traceability explanation generation using real project artefacts. Classification and traceability identification were assessed with quantitative metrics, and generation tasks through human evaluation. LLM performance is strongly task-dependent, ranging from moderate to high, and no single model consistently outperformed the others, indicating that effective adoption depends on selecting models and prompting strategies per task. Our contributions are: (i) the first cross-task empirical evaluation of LLMs spanning five RE-related activities, (ii) replication materials supporting reproducibility, and (iii) a broader understanding of the capabilities, limitations, and practical readiness of current LLMs for RE.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21547v1",
+      "title": "Enhancing User Resilience Against AI-Augmented Phishing: A Two-Stage Framework for Detection and Personalized Training",
+      "url": "https://arxiv.org/abs/2608.21547",
+      "author": "Weihao Qu, Gurmeet Singh, Daniel Crawford, Bingjun Li, Jalen Smith",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "The rapid development of artificial intelligence, including agents and deepfake techniques, has accelerated phishing attacks and lowered the threshold for attackers. Modern phishing attacks now blend multiple tactics, including social engineering, URL spoofing, and AI deepfakes enabling adversaries to craft highly convincing messages that exploit human vulnerabilities and bypass traditional detection systems. At the same time, current security awareness education struggles to keep up with the speed, sophistication, and complexity of these evolving threats. To address this challenge, we propose a two-stage anti-phishing framework, CyberGLA, that combines technical defense and user-centered security education. In the Detection stage, we introduce EmailKnight, a spoof detection tool that performs multi-level email analysis. To enhance user awareness, the Training stage incorporates a large language model (LLM)-based security coach that dynamically selects personalized training modules based on the outcomes of the Detection stage. This dual purpose design philosophy enables effective protection against the evolving threats of modern email phishing attacks.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21615v1",
+      "title": "Hiding Directions, Leaking Structure: Breaking ArrowCloak through Low-Rank Structure",
+      "url": "https://arxiv.org/abs/2608.21615",
+      "author": "Beijie Liu, Junyi Ouyang, Haoxuan Xu, Vincent Quentin Ulitzsch, Potung Yu, Yajie Zhao, Mengyuan Li",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "TEE-shielded inference keeps sensitive state in a trusted execution environment (TEE) while offloading linear algebra to an untrusted accelerator. Wang et al., in Game of Arrows (USENIX Security 2025), showed that five widely adopted lightweight defenses preserve vector directions and introduced ArrowMatch to exploit this leakage. They then proposed ArrowCloak, which adds a different multiple of one shared mask direction to each vector and bases its weight-recovery hardness argument on Learning with Errors (LWE). ArrowCloak successfully reduces ArrowMatch to near-black-box levels. In this paper, we revisit ArrowCloak from cryptographic and structural perspectives. Its LWE formulation does not by itself establish standard LWE hardness: the reduction direction, quantized arithmetic, and joint instance distribution do not meet the required conditions. Reusing one mask direction leaves a recoverable rank-one component across the released matrix. We exploit this structure with our proposed attack, an end-to-end, query-free recovery attack. Given a public checkpoint and the obfuscated weights, the attack removes the masking subspace, recovers the hidden one-to-one correspondence, and reconstructs protected weights without transformation secrets, victim queries, or fine-tuning data. Across six model-task pairs spanning classification, segmentation, and diffusion, the attack recovers 99.92%-100% of hidden vector correspondences. Reconstructed classification models achieve 94.39%-99.54% victim agreement and differ by at most 1.59 percentage points in accuracy; the recovered segmentation model achieves 98.35% output agreement. These findings suggest that lightweight protection should address both per-vector geometry and joint structure across released weights.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21628v1",
+      "title": "ExploreAI: Agentic Exploration Knowledge Bases for Reproducible Observable-Regression Testing of Black-Box VR and 3D Applications",
+      "url": "https://arxiv.org/abs/2608.21628",
+      "author": "Jiajie Wang, Kebin Peng, Wei Wang, Xiaoyin Wang, Sen He, Xue Qin",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Black-box VR and 3D applications are difficult to regression test because observable failures depend on where a tester moves, what objects are visible, and which views are captured. Manual exploratory testing can find such failures, but its evidence is time-consuming to reproduce; systematic sweeps are reproducible, but they lack semantic guidance and spend exploration budget on low-value viewpoints. We observe that an LLM can make the high-level decisions a human tester makes during exploration: interpreting a task, choosing which objects to inspect, grouping related objects, recording what it saw, and deciding when missing evidence should trigger another attempt. Based on this observation, we present ExploreAI, an LLM-driven agentic framework that offloads repeated perception, navigation, multi-view capture execution, and logging to specialized modules while using the LLM for planning, evidence recording, capture-policy decisions, and verification decisions. ExploreAI constructs an Exploration Knowledge Base (EKB): a structured, per-object record of one exploration run. For each object the agent finds, the EKB stores the scan evidence that exposed it, the selected target, the navigation path, the multi-view capture, and the self-verification result. The EKB is a reusable testing artifact that supports reproducible observable-regression checking across versions of a VR or 3D application. Across six indoor and outdoor scenes in Unity, AI2-THOR, and BeamNG, ExploreAI constructs high-completeness EKBs under both complete and target exploration, and an LLM-module ablation shows where semantic planning, capture policy, evidence recording, and self-verification contribute. Reproduction pilots further show that EKB-guided traces help both humans and LLM-based reproducers reproduce exact object-view evidence more effectively than conditions without EKB context.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21643v1",
+      "title": "Cross-Layer Roots of Trust: Integrating Biometrics, PUFs, and Hardware Obfuscation",
+      "url": "https://arxiv.org/abs/2608.21643",
+      "author": "Nima Karimian",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Modern cyber--physical, Internet-of-Things (IoT), wearable, and edge systems increasingly require trust in three distinct entities: the human requesting access, the physical device executing the computation, and the hardware function that is permitted to operate. These requirements are usually studied in separate communities. Biometrics establish human identity but remain vulnerable to presentation attacks, intra-user variability, template leakage, and limited revocability. Physical unclonable functions (PUFs) provide device-specific physical identity and on-demand secret derivation, yet must address environmental instability, helper-data exposure, side channels, and modeling attacks. Hardware obfuscation and logic locking condition correct circuit behavior on an activation secret, but face oracle-guided, approximate, structural, removal, and physical attacks. This survey develops a unified human--device--function view of trust. We first decompose each primitive into its complete processing chain and identify the corresponding security assumptions, implementation mechanisms, and evaluation metrics. We then formalize pairwise compositions---biometric--PUF, PUF--obfuscation, and biometric--obfuscation---and a three-way architecture in which correct functionality is bound jointly to an authorized user and a genuine device. Particular attention is given to biometric key reconstruction, PUF stabilization and modeling resistance, logic-locking attack evaluation, cross-layer error propagation, enrollment trust, key lifecycle, and interface leakage. The survey concludes with a taxonomy and research agenda for revocable human--device credentials, compositional security, leakage-aware integration, reconfigurable activation, and standardized end-to-end evaluation.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21718v1",
+      "title": "XRFix: Exploring Performance Bug Repair of Extended Reality Applications with Large Language Models",
+      "url": "https://arxiv.org/abs/2608.21718",
+      "author": "Jingwen Wu, Hanyang Guo, Hong-Ning Dai, Xiapu Luo",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "As an emerging technology, Extended Reality provides end-users with an immersive experience of interacting with virtual and physical environments. Unlike traditional software, the execution of XR applications involves more computationally complex operations, such as 3D scene rendering, real-time animation, and process simulations. Inefficient coding practices during the software development of XR applications may cause various performance bugs, degrading user experience and even causing motion sickness. Thus, it is an urgent need to develop an automated program repair framework for fixing performance bugs in complex XR programs. However, it is non-trivial to achieve this goal due to several technical challenges: (1) a lack of a real-world XR codebase and bug dataset, (2) no accurate bug detection tool, and (3) no effective bug-fixing tool designed for XR performance bugs. To tackle these challenges, we present a novel large language model-based framework, namely XRFix, to repair performance bugs for open-source XR programs. We first construct a corpus of domain-specific performance bugs built with a codebase from 23 open-source XR projects and a dataset of XR-related bugs containing 104 real-world bugs. Then, we tailor two static analysis tools for accurately detecting bugs in both C# scripts and asset files. Last, we design different prompts to instruct LLMs to fix XR bugs in three types of bug scenarios with different complexities, i.e., single-line level, function level, and class level. We conduct extensive experiments on five off-the-shelf LLMs to evaluate the bug-fixing performance of XRFix. We also compare our XRFix with three SOTA APR approaches. Through static analysis, reference answer comparison, and manual inspection, we demonstrate that our XRFix can effectively fix XR bugs, outperforming SOTA APR methods.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21719v1",
+      "title": "PowerSlider: Exploiting Phase Asymmetry for LLM Serving under Demand Response",
+      "url": "https://arxiv.org/abs/2608.21719",
+      "author": "Yueying Li, Jiayang Chen, Yuanfan Chen, Leo Han, Haoran Qiu, Esha Choukse, Rodrigo Fonseca, Udit Gupta",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "AI inference clusters are increasingly constrained by instantaneous power, not just energy: grid operators condition new capacity on demand response, imposing time-varying power caps. Existing LLM serving systems optimize a static energy objective or shed fixed priority tiers under load; either way, goodput collapses when the power envelope moves. An LLM pipeline is not a uniform load: compute-bound prefill loses throughput almost linearly with GPU frequency, memory-bound answer decode sustains it down to $0.57\\times$ nominal, and reasoning's thinking phase couples KV-cache capacity to scheduling -- so a cap should be steered to where each watt costs the least performance. \\sys{} does so with a new Flex SLO contract that turns bounded user slack into an optimization constraint, prefill--think--answer disaggregation exposing per-stage frequency and KV control, and a Karush--Kuhn--Tucker (KKT) online solver re-solving within 7.7 ms of every cap change, backed by a consolidated fail-safe that power-gates drained instances when DVFS bottoms out on static power. On SGLang with production traces, \\sys{} sustains 78.3\\% online goodput at a 30\\% cap reduction versus 47.6\\% for the best of five baselines ($1.64\\times$), holds latency-critical tails within $1.3\\times$ of nominal (baselines: $2.3$--$6\\times$, up to $12\\times$), and delivers 92\\% mean goodput through a replayed CAISO grid-emergency day bottoming at $0.41\\times$ (54\\% at the trough; every baseline below 7\\%).",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21747v1",
+      "title": "Architecture as Capability Equalizer for Coding Agents",
+      "url": "https://arxiv.org/abs/2608.21747",
+      "author": "Arquimedes Canedo",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "LLM-based coding agents generate complete software systems from high-level descriptions, yet little is known about how the format of architecture specifications affects the quality of generated code or whether this effect depends on model capability. We present a controlled experiment comparing five informationally equivalent specification formats (informal prose, Mermaid diagrams with constraints and ADRs, OpenAPI, C4/Structurizr DSL, and TypeScript interface contracts with ArchUnit-style rules) across six models from three vendor families (Anthropic Claude, OpenAI GPT, Google Gemini). Across 90 multi-turn agent trials, specification format shows a strong format x model interaction. On the strongest models (Sonnet 4.6, GPT-5), format barely matters (quality spread 0.17-0.92). On weaker models, format produces spreads of 0.83-2.42 points, with code-proximate formats (OpenAPI, TypeScript contracts) recovering most of the capability gap. Mid-tier models can consume more tokens than frontier models for worse output when they enter compilation debugging loops that stronger models avoid. Self-validation rates collapse from 100% (Sonnet) to 0% (Gemini Flash) across the capability spectrum. TypeScript contracts triple API route coverage for the weakest model (33% to 100%). Structured architecture specifications serve as a capability equalizer, with value inversely proportional to model strength and the largest returns for cost-optimized deployments.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21763v1",
+      "title": "Rapid Earthquake-to-Tsunami Waveform Generation via Large-Scale Multi-GPU FFT Convolution Applied to the Cascadia Subduction Zone",
+      "url": "https://arxiv.org/abs/2608.21763",
+      "author": "Bowen Shi, Sreeram Venkat, Stefan Henneking, Omar Ghattas",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Data-driven methods for earthquake and tsunami early warning rely on large ensembles of rupture scenarios and their resulting waveforms, but generating such datasets with repeated high-fidelity seismic and tsunami simulations is prohibitively expensive. We exploit the linear time-invariant structure of both dynamics to precompute elastic Green's functions and acoustic-gravity adjoint responses, reducing the source-to-waveform map to two consecutive convolution operators. We evaluate these convolutions with a distributed, FFT-accelerated GPU pipeline that partitions the large seafloor grid across GPUs and directly generates the final observation waveforms. We demonstrate the scalability of this pipeline for the Cascadia Subduction Zone with 963 subfaults, 2,416,530 seafloor grid points, 64 observation locations, and 256 timesteps, requiring 9.45 TiB of aggregate GPU memory. On 64 GB200 GPUs within one NVL72 domain, the pipeline generates waveforms in 24 ms per rupture once the response operators are resident, enabling large rupture ensembles to be evaluated within minutes.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21773v1",
+      "title": "Privacy Preserving Semantic Communications in Wireless Edge Networks with Vision Language Models",
+      "url": "https://arxiv.org/abs/2608.21773",
+      "author": "Haoran Chang, Mingzhe Chen, Qianqian Zhang",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Semantic communication has emerged as a promising paradigm for next-generation wireless systems by transmitting high-level semantic features rather than raw bits. However, collaborative devices and multimodal transmission increase privacy risks because sensitive information may leak through inter-device semantic fusion and cross-modal representations. To address this issue, we propose a privacy-preserving semantic communication framework for wireless edge networks. Leveraging a vision-language model (VLM), the framework extracts textual semantics from images and identifies privacy-sensitive entities using a privacy database maintained only at the edge server. Before image transmission, each device removes the identified private regions while preserving useful semantic content. The server then reconstructs the removed regions from the received masked images using textual embeddings and VLM-based semantic priors. To protect textual information, we design an encrypted semantic-channel transceiver using physical-layer keys generated from reciprocal wireless channels, without pre-shared keys. We also introduce a semantic information bottleneck to suppress redundant information across multiple devices. The framework is evaluated against a strong model-aware adversary that can intercept wireless transmissions and access edge-device model parameters but not server-side data. Simulation results show that the proposed method reduces privacy leakage by more than 50% compared with a semantic communication scheme without privacy protection, while the authorized server achieves a 48% improvement in perceptual reconstruction quality over the adversary. The estimated mutual information between transmitted representations approaches 0 bit, indicating effective suppression of cross-device semantic redundancy.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21803v1",
+      "title": "ExplainGuard: A Zero Trust Framework for Post-Hoc Explanation Integrity Guarantees in Blackbox XAI Models",
+      "url": "https://arxiv.org/abs/2608.21803",
+      "author": "Maraz Mia, Shovan Roy, Mir Mehedi A. Pritom, Maanak Gupta",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "As machine learning (ML) models are increasingly deployed in high-stakes environments, explainable AI (XAI) methods like SHAP and LIME have become essential for regulatory compliance and trust. However, the current auditing paradigm relies on an implicit \"chain of trust\" where third-party auditors are assumed to be trusted. Recent research demonstrates that this assumption is flawed and adversarial auditors can manipulate XAI explanations through manipulation attacks such as output shuffling or scaffolding out-of-distribution (OOD) to conceal model biases while maintaining high prediction accuracy aiming for fairwashed explanation. In this paper, we introduce a novel defense framework, ExplainGuard, that leverages a Zero-Trust architecture (ZTA) design to be incorporated within the XAI explanation supply chain and ensures the integrity of the generated explanation. This framework would help us to replace the ambiguous default assumption of \"auditor is trustworthy,\" with a continuous \"verify-then-trust\" approach. Our design architecture establishes a Policy Decision Point (PDP) that enforces three distinct pillars of verification before any explanation is released to the user: (1) asset integrity via behavioral fingerprint to detect model substitution, (2) semantic validity using axiomatic consistency checks to reject mathematically impossible explanations, and (3) feature faithfulness verification utilizing a ranking stability approach with minimal computational overhead. Finally, we evaluate how ExplainGuard can effectively neutralize state- of-the-art explanation manipulation attacks while transforming the auditing process into a verifiable operation.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21826v1",
+      "title": "A Concurrent Queue System for Multi-GPU Platforms: Application to Bellman-Ford SSSP",
+      "url": "https://arxiv.org/abs/2608.21826",
+      "author": "Beyza Cavusoglu",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "This paper presents the design and implementation of a multi-GPU concurrent queue system using NVIDIA's NVSHMEM. The Bellman-Ford algorithm is used as a case study to evaluate the performance of the proposed concurrent FIFO queue, with this multi-GPU implementation being the first known instance of its kind. Experimental results demonstrate that the multi-GPU queue implementation achieves a maximum speedup of 3.92x and an average speedup of 3.04x over the singleGPU baseline on four NVIDIA A100 GPUs. When applied to the Bellman-Ford Single-Source Shortest Path (SSSP) algorithm, the multi-GPU system achieves a maximum speedup of 3.03x and an average speedup of 2.65x compared to the single-GPU implementation, tested on 10 graphs of different kinds taken from the SuiteSparse Matrix Collection.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21884v1",
+      "title": "Loop Engineering: Building Blocks, Adoption, and Impact",
+      "url": "https://arxiv.org/abs/2608.21884",
+      "author": "Jai Lal Lulla, Vahram Nersesyan, Seyedmoein Mohsenimofidi, Christoph Treude, Sebastian Baltes",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Over the past months, the way developers direct agentic AI coding tools has moved up several levels of abstraction, from phrasing prompts to engineering context to configuring the harness around the model. In June 2026, practitioners began to describe a further level called loop engineering: Instead of prompting an agent interactively, developers design systems that prompt agents for them. These systems start agent runs on a schedule or on repository events and stop them when a machine-checkable condition holds. The term spread rapidly, accompanied by bold claims and vocal skepticism, but its adoption in software projects has not been measured. We present an exploratory review of the emerging gray literature, which largely agrees on what a well-engineered loop contains: triggered agent runs bounded by machine-checkable stop conditions, persistent state files, verifier sub-agents, token budgets, and defined points of escalation to humans. From this review, we derive a research agenda for the empirical study of loop engineering in open-source projects, analyze which of its aspects are traceable from repository data, and report an exploratory mining study of 36,710 software repositories. We confirmed the operation of autonomous agent loops in 217 of the 256 repositories our heuristics matched. The repositories commit the configuration around these loops, but almost none commits the state files the discourse prescribes, and the loops' runtime state remains outside version control. We conclude by outlining a planned controlled study of agent autonomy levels and their effect on effort and outcomes.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21895v1",
+      "title": "Breaking the Assumptions: Auditing Input-Side Jailbreak Defenses Against Semantic Attacks",
+      "url": "https://arxiv.org/abs/2608.21895",
+      "author": "Aaditya Pratap, Harsh Kasyap, Somanath Tripathy",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Locally deployed Large Language Models (LLMs) via inference engines such as Ollama run without the moderation and abuse detection present in API-served models. Therefore, the safety of LLMs depends on the defense mechanisms used, and their effectiveness depends on the assumptions on which they were designed. This paper does an audit of defense mechanisms under jailbreak attacks on locally deployed models. Some defenses provide formal guarantees (SmoothLLM, Erase-and-Check, Sequential Monitors), while others rely on empirical detection results (Semantic Smoothing, Self-Denoised Smoothing, Perplexity Filtering). Instead of merely observing that defenses fail, we trace each failure back to the specific assumption: for every defense, we extract the condition it relies on, derive the empirical pattern a violation should produce, and test that prediction on six open-weight models (14B to 35B parameters) with a corpus of 100 jailbreak prompts taken from more than 40 public sources, totalling 13,800 evaluation records.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.21910v1",
+      "title": "PRISM: Predictive Runtime In-place Scaling and Model Selection for Edge Microservices",
+      "url": "https://arxiv.org/abs/2608.21910",
+      "author": "Uwe Gropengie{\\ss}er, Thomas Reuter, Dominik Sch\\\"on, Osama Abboud, Xun Xiao, Max M\\\"uhlh\\\"auser",
+      "publishedAt": "2026-08-25T04:00:00.000Z",
+      "content": "Latency-sensitive edge AI services must balance strict deadlines, output quality, and limited compute and energy budgets. However, static CPU provisioning wastes resources because inference cost varies substantially across inputs, model variants, and runtime conditions. We present PRISM, a prediction-guided runtime framework that jointly selects model variants and CPU allocations for containerized edge microservices. Using container-level energy monitoring and lightweight regression models, PRISM adapts each pipeline stage in place and minimizes predicted CPU-package energy under deadline, resource, and offline model-level Quality of Result (QoR) constraints. We evaluate PRISM on more than 52,000 requests in an Automatic License Plate Recognition (ALPR) pipeline with detection and recognition stages. For detection, PRISM reduces energy consumption by 36 % compared to the strongest static configuration while preserving a comparable success rate and using less than half of the average CPU allocation. For recognition, it reaches near-static-best performance with lower average CPU allocation. These results show that predictive in-place adaptation is a practical mechanism for making time-sensitive AI microservice pipelines more energy-efficient at the edge.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20169",
+      "title": "Task-CoEvolve: Efficient Harness Optimization via Adaptive Validation Task Selection",
+      "url": "https://huggingface.co/papers/2608.20169",
+      "author": null,
+      "publishedAt": "2026-08-25T04:38:48.008Z",
+      "content": "Task-CoEvolve: Efficient Harness Optimization via Adaptive Validation Task Selection",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stackoverflow-blog",
+      "externalId": "a676391e-e7b4-44e7-b05f-9ca5872e3adb",
+      "title": "Inside LinkedIn's cognitive memory agent for agentic personalization",
+      "url": "https://stackoverflow.blog/2026/08/25/inside-linkedin-s-cognitive-memory-agent/",
+      "author": "Phoebe Sajor",
+      "publishedAt": "2026-08-25T07:40:00.000Z",
+      "content": "Ryan is joined by Praveen Bodigutla, Principal AI Researcher at LinkedIn, to chat about the four-layer memory system his team built to give LinkedIn's hiring assistant a persistent, personalized state.",
+      "topics": [
+        "devtools-infra"
       ],
       "paywalled": false,
       "mediaType": "text"
