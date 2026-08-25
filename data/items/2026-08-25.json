@@ -1,6 +1,6 @@
 {
   "day": "2026-08-25",
-  "generatedAt": "2026-08-25T04:38:58.568Z",
+  "generatedAt": "2026-08-25T16:18:57.494Z",
   "items": [
     {
       "sourceSlug": "arxiv-systems",
@@ -836,6 +836,25 @@
     },
     {
       "sourceSlug": "hacker-news",
+      "externalId": "49425800",
+      "title": "Vintage Artificial Intelligence: Before It Got Awkward",
+      "url": "https://blog.archive.org/2026/08/16/vintage-artificial-intelligence-before-it-got-awkward/",
+      "author": "signor_bosco",
+      "publishedAt": "2026-08-24T21:01:38.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 140,
+      "comments": 28
+    },
+    {
+      "sourceSlug": "hacker-news",
       "externalId": "49425819",
       "title": "One corner of China’s internet is insisting that the Tang Dynasty never existed",
       "url": "https://www.cnn.com/2026/08/19/style/china-tang-dynasty-never-existed-hoax-intl-hnk",
@@ -990,6 +1009,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49427001",
+      "title": "Bookshelf – Self-hosted eBook library that runs on object storage",
+      "url": "https://github.com/murerkinn/bookshelf",
+      "author": "arbayi",
+      "publishedAt": "2026-08-24T23:00:37.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 151,
+      "comments": 56
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=983457",
       "title": "Lenovo confirms Legion Go issues after gamers report bricked devices",
@@ -1014,6 +1052,79 @@
       "topics": [
         "ai-llms",
         "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/disrupting-malicious-uses-of-ai-influence-campaign-russia",
+      "title": "Disrupting a new covert influence campaign from Russia",
+      "url": "https://openai.com/index/disrupting-malicious-uses-of-ai-influence-campaign-russia",
+      "author": null,
+      "publishedAt": "2026-08-25T00:00:00.000Z",
+      "content": "OpenAI banned Russia-origin accounts using AI to promote a fake Israel-based think tank and a “sovereignty” index praising Russia and criticizing the West.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "anthropic-news",
+      "externalId": "https://www.anthropic.com/news/wellbeing-research-grants",
+      "title": "Funding better evaluations of AI’s impact on wellbeing",
+      "url": "https://www.anthropic.com/news/wellbeing-research-grants",
+      "author": null,
+      "publishedAt": "2026-08-25T00:00:00.000Z",
+      "content": "Funding better evaluations of AI’s impact on wellbeing",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/chat-sdk-slack-enterprise-grid",
+      "title": "Chat SDK now supports Slack Enterprise Grid",
+      "url": "https://vercel.com/changelog/chat-sdk-slack-enterprise-grid",
+      "author": "Ben Sabic",
+      "publishedAt": "2026-08-25T00:00:00.000Z",
+      "content": "Chat SDK's Slack adapter now supports .Slack Enterprise GridBots installed org-wide work across every workspace, with correct token resolution, tenant-scoped caches, and event retry deduplication.The adapter now stores org-wide installations by enterprise ID. This matches how tokens are resolved for incoming events, slash commands, and interactive payloads. records the new identity fields:SlackInstallationToken resolution behaves the same over HTTP webhooks and Socket Mode. Events route by the installation identity in the envelope's field, which keeps routing correct for Slack Connect shared channels.authorizationsThe adapter is also hardened for multi-workspace deployments:Single-workspace installations are unaffected, and and work unchanged for both install types.getInstallationdeleteInstallationRead the to get started.Slack adapter documentationRead moreUser profile and mention caches are scoped per installation, so one tenant's data never resolves for another.API calls made with an org-wide token pass the event's automatically, which Slack requires for workspace-scoped methods.team_idRetried event deliveries are deduplicated for 24 hours, covering Slack's Delayed Events redeliveries.Outgoing mentions accept W-prefixed Grid user IDs alongside U-prefixed IDs.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/notion-chat-sdk",
+      "title": "Bring your agent to Notion with Chat SDK",
+      "url": "https://vercel.com/changelog/notion-chat-sdk",
+      "author": "Ben Sabic",
+      "publishedAt": "2026-08-25T00:00:00.000Z",
+      "content": "Your team already works in Notion. Now your agent can too.With the new for Chat SDK, the same agent you run on Slack, Discord, GitHub, Teams, or WhatsApp can join comment discussions on your Notion pages, no separate codebase required.Notion adapterEach Notion page maps to a channel and each comment thread to a thread, so replies stay threaded automatically.The adapter supports mentions, message editing, conversation history, and up to three file attachments. By default, your bot replies when @-mentioned and where mentions aren't available in a workspace, it can trigger on a keyword or on all comments instead.Notion doesn't support buttons, modals, or reactions, and cards render as markdown. Discussions can start at the page or block level, but not on inline text ranges. History fetches return only open comments.Read the to get started, browse the , or .documentationdirectorybuild your ownRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/chat-sdk-now-supports-xchat",
+      "title": "Chat SDK now supports XChat",
+      "url": "https://vercel.com/changelog/chat-sdk-now-supports-xchat",
+      "author": "Josh Singh",
+      "publishedAt": "2026-08-25T00:00:00.000Z",
+      "content": "You can now build bots that hold end-to-end encrypted 1:1 and group conversations on XChat with the new for Chat SDK.XChat adapterThe adapter handles all encryption, key management, and signature verification automatically. Bots can also message users first, as long as the user has encrypted chat set up and follows the bot.XChat has no markdown rendering, so the adapter falls back automatically: URLs and @mentions render as tappable links, tables as ASCII code blocks, and cards as text with a link preview. Streaming works through message edits.Read the documentation to get started.XChat adapter Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -1047,6 +1158,44 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49428080",
+      "title": "Was modern art a CIA psy-op? (2020)",
+      "url": "https://daily.jstor.org/was-modern-art-really-a-cia-psy-op/",
+      "author": "neom",
+      "publishedAt": "2026-08-25T01:35:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 129,
+      "comments": 220
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49428121",
+      "title": "How Universities Should Prepare Founders",
+      "url": "https://paulgraham.com/prepare.html",
+      "author": "gmays",
+      "publishedAt": "2026-08-25T01:40:39.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 209,
+      "comments": 250
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260824/p40#a260824p40",
       "title": "OpenAI restores 5-hour Codex and Work limits for ChatGPT Plus users, after weeks without the restriction, saying it would smoothen the load on its compute (Marcus Mendes/9to5Mac)",
@@ -1059,6 +1208,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49428318",
+      "title": "Thomson Reuters Launches Its Own Frontier Model",
+      "url": "https://www.thomsonreuters.com/en/press-releases/2026/august/thomson-reuters-leverages-its-world-class-data-assets-to-launch-its-own-frontier-model",
+      "author": "giuliomagnifico",
+      "publishedAt": "2026-08-25T02:11:39.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 128,
+      "comments": 52
     },
     {
       "sourceSlug": "techmeme",
@@ -1101,6 +1269,44 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49428638",
+      "title": "SiFive's First Server Platform",
+      "url": "https://chipsandcheese.com/p/sifives-first-server-platform",
+      "author": "geerlingguy",
+      "publishedAt": "2026-08-25T03:06:26.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 107,
+      "comments": 35
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49428882",
+      "title": "Headlong: A Microharness for Persistent Agents",
+      "url": "https://www.laude.org/updates/headlong-a-microharness-for-persistent-agents",
+      "author": "lbw1215",
+      "publishedAt": "2026-08-25T03:54:19.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 106,
+      "comments": 50
     },
     {
       "sourceSlug": "hf-daily-papers",
@@ -2021,6 +2227,34 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/jalapeno-first-results",
+      "title": "Jalapeño’s first results show industry-leading speed and efficiency in AI inference",
+      "url": "https://openai.com/index/jalapeno-first-results",
+      "author": null,
+      "publishedAt": "2026-08-25T07:00:00.000Z",
+      "content": "Jalapeño is a custom inference chip from OpenAI that delivers faster, more power-efficient AI inference, with higher throughput and lower latency for modern models.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/the-full-stack-behind-abundant-intelligence",
+      "title": "The full stack behind abundant intelligence",
+      "url": "https://openai.com/index/the-full-stack-behind-abundant-intelligence",
+      "author": null,
+      "publishedAt": "2026-08-25T07:05:00.000Z",
+      "content": "OpenAI CFO Sarah Friar explains how advances across chips, compute, models, and products compound to deliver more useful intelligence at greater scale and lower cost.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "stackoverflow-blog",
       "externalId": "a676391e-e7b4-44e7-b05f-9ca5872e3adb",
       "title": "Inside LinkedIn's cognitive memory agent for agentic personalization",
@@ -2032,6 +2266,1295 @@
         "devtools-infra"
       ],
       "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stratechery",
+      "externalId": "https://stratechery.com/?p=19798",
+      "title": "Netflix to Sell Streaming Services?, Streamers as Aggregators, Revisiting Roku",
+      "url": "https://stratechery.com/2026/netflix-to-sell-streaming-services-streamers-as-aggregators-revisiting-roku/",
+      "author": "Ben Thompson",
+      "publishedAt": "2026-08-25T10:00:00.000Z",
+      "content": "Netflix is considering selling other streaming services, and I think it's a good idea; it's also a let-down for Netflix's original goals and potential pivots.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49431364",
+      "title": "Why some US restaurants are banning tips",
+      "url": "https://www.bbc.com/news/articles/c4g36yze692o",
+      "author": "rock_artist",
+      "publishedAt": "2026-08-25T10:09:47.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 173,
+      "comments": 356
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72500",
+      "title": "Black Hat State of Security Vendors",
+      "url": "https://www.schneier.com/blog/archives/2026/08/black-hat-state-of-security-vendors.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-08-25T10:54:50.000Z",
+      "content": "Andy Ellis has a roundup of the security vendors at Black Hat this year. Key Takeaways: We have entered into an AI world. While nearly half of booths didn’t directly mention AI or agents in their taglines, the effects of AI are everywhere. Multiple spaces (Identity, SaaS, AppSec, Data) have almost every vendor leading with AI; existing unsolved problem areas just got worse. At the same time, there’s a clear trichotomy in the market: tools that tell you how bad things are; tools that stop adversaries, and tools that prevent problems from occurring. While you’d suspect that the tools that fix things would dominate, the tools that merely tell you how bad things are seem to be frustratingly plentiful.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=93992",
+      "title": "Why Bootstrapped Businesses Are More Relevant Than Ever ",
+      "url": "https://news.crunchbase.com/startups/bootstrapped-self-funded-business-ai-relevancy-desilva-lateral/",
+      "author": "Guest Author",
+      "publishedAt": "2026-08-25T11:00:13.000Z",
+      "content": "By Richard de Silva In Silicon Valley, if a founder wants to build the next unicorn, there’s a formula: find a bold idea, surround yourself with well-heeled advisers and investors, and raise a war chest. With cash and fundraising buzz, go after a large market in search of product-market fit. That journey sometimes leads to winning pilots, more rounds and real customers. More often, the company pivots into a different niche or quietly dissolves. A whiff of failure sends employees to the exits and funding evaporates. That’s the VC-backed model. It fuels the dreams of college dropouts and frustrated engineers, rewarding luck and timing when they meet in the hottest niches. Richard de Silva of Lateral Investment Management. But not all companies can or should be built that way. Only a handful of winners make fairy tale successes. The more common path is bootstrapped or self-funded: Start with an existing customer problem and get paid more than it costs to solve it. Find more customers with the same problem, build systems to improve the solution, repeat. For entrepreneurs without the luxury of risk capital, product-market fit can’t be an odyssey. It has to be a starting point. Much of the global economy has been built this way. The path may take longer than the VC “go big or go home” approach, but many small companies scale into middle market businesses, and a few of the best find their way to market leadership, even in tech. Consider Atlassian and Basecamp. For every VC-backed startup, there are hundreds of bootstrapped founders building profitable businesses without any outside investment. Customer-focused and experienced founders Ask VC-backed founders how they built their company, and you’ll hear about the team and investors first. Bootstrapped founders tell it in reverse: the customer comes first, and the team is built around them. Some of the most successful VC-backed founders are younger, benefiting from inexperience by seeing opportunity as a blank sheet of paper rather than a wall of entrenched obstacles. A 25-year-old with no mortgage, no reputation to protect, and no comfortable job to leave can withstand a failure and start again. These risk-taking enterprises spare no expense to attract the best hired guns money can buy and build fancy offices, all with a focus on hitting milestones for the next round of financing. When it works, the outcomes are spectacular: think of the Collison brothers at Stripe taking on payments, or Cursor‘s young team taking on development tools. But these are exceptions, not the rule. Industry experience, domain knowledge and customer relationships are essential to building a company. Bootstrapped founders typically know their customer before they build. There’s no search for product-market fit, because the product is built for problems the founder already knows intimately. Growth comes from deepening existing relationships, a surer path to revenue than risk capital is meant to fund. The team is hired out of profits to serve paying customers, not to test if demand exists. Bootstrapped founders have a different profile. Typically mid-career, they have more at risk: a mortgage, a reputation, a family depending on their income. They lack the appetite for a long-shot bet. Instead, they gravitate toward businesses with a real chance of working, aiming for profitability quickly, often starting small rather than earth-shattering, with lower barriers to entry. The result is a business run for profitability, not growth. Leadership has often worked together before or shares common backgrounds. Growth is often linear and slow for years, until the company reaches a scale where it can pursue more strategic opportunities. The AI advantage for bootstrapped companies In an AI era where code-generation and product design tools bring down the cost of building and deploying new products, most companies should require less risk capital, not more. In the past, a non-technical founder with an idea needed outside capital to build it. Product development required an engineering team, and an engineering team meant a payroll early revenue couldn’t finance. That was the justification for raising a seed round before lining up a single customer. With AI, capital is no longer the limiting factor for innovation. The VC-backed market, though, is moving the other way, with larger seed rounds and bigger early-stage funds than ever. Increasingly, risk capital is used for less rational reasons that speak to the speculative bubble we live in: not to fund product development, but to buy time to market, fuel “land grab” velocity in sales and marketing, and subsidize deployments that would otherwise be uneconomic for customers. A founder today can build a working application with a small team, deploy with real customers, and validate whether further investment is needed. The product/market gap that once required millions of dollars and world-class hires can now be closed by a handful of competent people. Medvi, the one-man GLP-1 vendor with $1 billion in revenue, is an extreme example of what is possible. Niche markets once too small for VC-backed startups now can be addressed by AI-native bootstrapped companies. That doesn’t mean every business should be bootstrapped. A founder with a genuinely untested, capital-intensive idea and no existing customer base still has real use for outside risk capital to fund the search for a market. But AI has lowered the cost of entry and should spur an unprecedented number of bootstrapped companies built outside the VC ecosystem, profitable and lean from the start. The best of them will become the next market leaders. Richard de Silva is the founder, managing partner and chair of the investment committee at Lateral Investment Management. He launched Lateral with a strategy to allocate first institutional growth capital to independent, owner-operated middle-market businesses underserved by typical buyout firms. Previously, he served as a managing director at Highland Capital Partners, a venture capital and growth equity firm that has invested in more than 300 companies including Lululemon, VistaPrint, FastClick, Qihoo 360 Technology, New York Times Digital and CheckFree. De Silva also previously co-founded IronPlanet, a marketplace for construction equipment that was sold to Ritchie Brothers for nearly $800 million. He received an MBA from Harvard Business School, a master of philosophy from the University of Cambridge, and an undergraduate degree from Harvard College. Related reading: Saas Isn’t Coming Back. Something Much Bigger Is Replacing It Illustration: Dom Guzman",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=93999",
+      "title": "Inside The Private-Market Divide: EquityZen’s Phil Haslett On AI, SaaS And Secondaries",
+      "url": "https://news.crunchbase.com/liquidity/ai-ipo-ma-secondaries-haslett-equityzen/",
+      "author": "Judy Rider",
+      "publishedAt": "2026-08-25T11:00:33.000Z",
+      "content": "As startups stay private longer, the market for buying and selling shares in venture-backed companies before they go public has become increasingly active — and heated. EquityZen has been operating in that market since 2013. The New York-based company operates a marketplace for shares of privately held companies, giving employees and other shareholders a way to sell stock before a company goes public or is acquired. Morgan Stanley announced plans to acquire EquityZen in October 2025 and completed the deal in January 2026, bringing the company under the investment bank’s umbrella. Phil Haslett, co-founder and chief strategy officer of EquityZen. (Courtesy photo) Phil Haslett, who co-founded EquityZen and serves as its chief strategy officer, has had a front-row seat to the secondary market’s evolution. Crunchbase News spoke with Haslett about what secondary-market pricing says about today’s most sought-after startups, why AI companies are commanding premiums while many older startups trade at discounts, what the IPO market looks like beyond its biggest names, and why investors are taking a closer look at hard tech. The following conversation has been edited for length and clarity. Crunchbase News: The second quarter was one of the strongest venture-backed IPO quarters since 2021, but SpaceX drove much of that activity. If you remove SpaceX, how open is the IPO market for the typical late-stage startup? Phil Haslett: Generally, I’d say it’s better than it was three or six months ago. If you were a private late-stage technology company, you probably were going to wait until after SpaceX anyway, so that hurdle is gone. Tech markets are also doing well. The stock market is at an all-time high, and there’s been a strong recovery in tech stocks overall. I assume that we’re gearing up for a busier summer than usual. Another thing to consider is IPO performance beyond SpaceX. Some have had initial enthusiasm followed by a slowdown. Cerebras has come down a bit. So companies may see it as a good time to go public, while post-IPO performance has been, in a word, “meh.” But within AI, I think we’ve seen that there’s opportunity up and down the production curve — from energy for data centers, to the technology inside them, to orchestration of compute, to efficient spending on training and inference. There are a lot of interesting companies along that spectrum, and I think that bodes well for companies in the space that want to go public. A few companies entered your Top 20, including Figure AI, Project Prometheus, Redwood Materials and Scale AI. Does that reflect a durable shift away from traditional software, or are investors chasing a small group of scarce, high-profile hard-tech companies? Haslett: I think it reflects a thematic shift. The companies entering that list generally fall into AI infrastructure, space tech and robotics. If those are industries we think will have generational growth opportunities, the logical conclusion is that each sector will have winners. SpaceX gets people thinking about opportunities in space and space tech, and by extension defense tech. The same applies to AI infrastructure. If the market is that big, and we’ve seen companies go public over the last year or so, it stands to reason investors will be interested in other companies in that space. I think that’s more important than simply chasing scarce supply. These businesses tend to be more capital intensive and may take longer to reach predictable revenue than a traditional SaaS company. How are secondary investors underwriting them? Haslett: If a company needs more capital, investors have to decide whether the overall opportunity is big enough to justify waiting longer and having the company raise more. If you have to build a factory or get regulatory approval, that can delay the company’s ability to increase its valuation or reach an exit. Investors discount that into what they’re willing to pay. Secondary investors are making the same calculus as primary venture and growth investors, so you’d imagine much of that is already baked into headline valuations from primary raises. What’s changed is that capital-intensive companies now have more financing options. Five or six years ago, a battery company or new chip manufacturer might have had little choice but to raise equity. In 2026, more credit and asset-based financing options are available. That matters because if one of these companies underperforms or has a distressed asset sale, creditors and lenders get paid first. Secondary investors have to factor that in, too. EquityZen says the average transaction occurred at a 38% discount to the last funding round, while many AI transactions traded at premiums. What does that say about how bifurcated the private market has become? Haslett: I don’t know if it’s a mispricing. There are essentially two vintages of private companies right now. Some companies weren’t built AI-first and have had to adapt. Many raised during the go-go years of 2021, at very high valuations, and may not have raised since. They’ve had to rethink their strategies, which can slow growth and execution. That gets reflected in the discount. Then there’s a new wave of companies, from 2023 and beyond, that were built with an AI-first mentality. They started from a clean slate, may operate more efficiently, and have a cleaner story for the market. Some of those companies are raising rounds in quick succession at higher valuations. Secondary investors may pay a premium because they believe the company’s trajectory is clear and the next valuation increase could happen quickly. Airtable is an example from the 2021 cohort. It raised at roughly a $10 billion-plus valuation and just sold for substantially less. It’s still a good business, but when investors compare 20% growth with newer companies going from zero to hundreds of millions in revenue in just a few years, you can understand why their appetite changes. We may see more companies from that era sell for less than where they raised in 2021. Over the past few years, many private companies have conducted secondaries because they weren’t ready to go public. When should founders consider establishing a company-approved secondary program? Haslett: Historically, companies started thinking about liquidity programs after they’d been around five, six, or seven years, largely to reward employees for their patience and provide liquidity to early investors. Now we’re seeing younger companies engage in controlled liquidity and tender offers. One reason is talent retention. There are only so many engineers and data scientists, and companies need to compete for them. Secondary liquidity has become more normalized. More solutions are available than before. Morgan Stanley, for example, has significantly grown its tender-offer activity as investor interest and available tools have expanded. There’s also more investor appetite. Investors are increasingly willing to gain ownership through tender offers or secondary transactions. Five years ago, that was far less common. Right now, it’s a very founder- and employee-friendly environment, and investors are willing to support secondary liquidity because they want access. If markets turn, that pendulum could shift back. For investors considering private-company shares, what does a secondary-market price tell them compared with the valuation at the company’s last fundraise? Haslett: I think it gives them the true price. A primary valuation is a point-in-time measure of what investors were willing to pay, and those investors generally received preferred stock with additional rights and liquidation preferences. The secondary market is more telling of what you could actually get in your pocket now. For companies that embrace secondary liquidity, those prices help employees, former employees and early investors understand what their shares are actually worth. How does EquityZen calculate popularity and distinguish durable investor demand from curiosity or hype? Haslett: Our platform allows investors, typically retail accredited investors, to tell us what they’re interested in. They can browse companies, review our analysis, and indicate which companies they would invest in, if shares became available, and at what size. That gives us a real-time metric of what our user base wants to invest in and how much. It helps guide where we spend our time bringing opportunities to clients. The last thing we want is to work with a shareholder when we can’t find a buyer, or with a buyer when we can’t find shares for sale. What does the recent consolidation in the secondary market tell you about how the market is evolving? Haslett: There was a lot of attention toward the end of 2025 around consolidation in the secondary-market space. Forge went to Charles Schwab, and EquityZen went to Morgan Stanley. To me, that reflects market growth, increasing adoption of secondary liquidity, and the fact that the biggest financial institutions are paying attention. I don’t expect that to change. Your data showed that some software companies began trading at premiums again in the second quarter. What separates those gaining investor confidence from those still trading at deep discounts? Haslett: Execution. Leadership and execution. It’s about a company’s ability to take a legacy SaaS business and turn it into something AI-enabled across the business. Are you using AI tools to improve internal tasks? Are you building AI into your product for clients? Companies that can combine the stickiness and customer loyalty they’ve already built with their domain expertise and AI are going to do just fine. The ones that are slower to adopt are going to get pummeled. Six months ago, there was concern that when a company like Anthropic announced a cybersecurity or legal tool, companies in those sectors would immediately lose value. I think some of that was a knee-jerk reaction. Customers already using your software have some patience, but they also expect you to keep improving the product and give them a reason not to switch. The companies that are slow to react, or too proud to react, are the ones I think will get hit hardest. SAP, Oracle and Salesforce 1 are examples of software that is deeply ingrained in large enterprises. If companies can keep their products working well and keep adapting them, they still have a shot at being successful standalone businesses. It comes down to management execution. Related Crunchbase query: Global IPOs For Venture-Backed Companies In 2026 Illustration: Dom Guzman Salesforce Ventures is an investor in Crunchbase. They have no say in our editorial process. For more, head here.↩",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49432201",
+      "title": "Credit Card Rewards Became a $9.2B Wealth Transfer",
+      "url": "https://www.library.hbs.edu/working-knowledge/how-credit-card-rewards-became-multibillion-dollar-wealth-transfer",
+      "author": "conbrian",
+      "publishedAt": "2026-08-25T11:37:24.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 131,
+      "comments": 256
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/MultiverseComputingCAI/quantization-aware-healing",
+      "title": "Quantization-Aware Healing: a compressed, 4-bit model that outperforms its full-precision original",
+      "url": "https://huggingface.co/blog/MultiverseComputingCAI/quantization-aware-healing",
+      "author": null,
+      "publishedAt": "2026-08-25T11:39:24.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49432317",
+      "title": "Qwen 3.8-Flash-Next releasing tomorrow (125B a6B)",
+      "url": "https://modelscope.cn/models/Qwen/Qwen3.8-Flash-Next",
+      "author": "garo-pro",
+      "publishedAt": "2026-08-25T11:49:43.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 184,
+      "comments": 80
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49432319",
+      "title": "Don't Wordle",
+      "url": "https://dontwordle.com/",
+      "author": "Hbruz0",
+      "publishedAt": "2026-08-25T11:49:48.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 181,
+      "comments": 79
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49433064",
+      "title": "France's tax agency got hacked (in French)",
+      "url": "https://www.cybernetica.fr/piratage-des-impots-comment-en-est-on-arrive-la/",
+      "author": "zakxxi",
+      "publishedAt": "2026-08-25T12:44:35.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 109,
+      "comments": 50
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=961785",
+      "title": "The lens in Wyze’s new $40 indoor camera retracts for privacy",
+      "url": "https://www.theverge.com/tech/961785/wyze-indoor-cam-pan-tilt-2k-night-vision",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-08-25T13:00:00.000Z",
+      "content": "Wyze announced a new pan-and-tilt security camera today designed for indoor use. The entire Indoor Cam Pan can rotate 360 degrees, while the camera and lens on its front can tilt up and down 103 degrees. When you want privacy, the lens can tilt down until it completely disappears inside the Indoor Cam Pan's body so it's unable to see anything happening in your home. The Indoor Cam Pan is available starting today through Wyze's online store for $39.98. That's cheaper than Wyze's $44.98 Cam Pan v3 that's still available through the company's website. That older camera can tilt up and down up to 180 degrees and has an IP65 water resistance rat … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983020",
+      "title": "GuliKit’s Switch 2 TV dock gives me one feature I’ve missed when traveling",
+      "url": "https://www.theverge.com/tech/983020/gulikit-dock-nintendo-switch-2-hands-on",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-08-25T13:00:00.000Z",
+      "content": "GuliKit’s Switch 2 dock is a much smaller alternative to Nintendo’s. Nintendo didn’t design its Switch dock with travel in mind. Genki’s Covert Dock is a much smaller alternative my family has been using to connect our Switch to hotel TVs for years, but I’ve come to realize I much prefer having a stand for the console when using it this way. So when it came time to replace the Genki because Nintendo broke compatibility with the Switch 2, GuliKit’s updated travel dock seemed like a better fit for my needs. Like Nintendo’s, it provides a convenient place to perch the console while playing on a TV. It’s not perfect, but its few tradeoffs are easy to overlook given GuliKit’s solution is less than half the price of Genki’s. When I first unboxed the GuliKit Dock for Switch 2, it felt like a bait and switch. Although it looks like it’s milled from a block of aluminum like my MacBook, the dock is actually an all-plastic affair that’s convincingly finished to look like metal. Picking it up for the first time was akin to grabbing an empty soda can you think is full. It’s surprisingly light, and while I was initially disappointed, I soon realized that was probably a good thing since I’m an over-packer who frequently deals with overweight baggage. GuliKit Dock for Switch 2 Where to Buy: $29.99 at Amazon The dock’s design — essentially a square puck with rounded corners — is larger than the Genki dock I used to travel with, but it’s by no means bulky or cumbersome. It’s wide enough to securely support the Switch when it’s docked (I actually wouldn’t want it any smaller), and it positions the console at a slight backwards angle that helps ensure it won’t fall off and face-plant even if accidentally bumped. A magnetic cover protects the USB-C connector when it’s not in use, but while the Switch is connected, the cover can be attached to the top of the dock where it doubles as a slightly taller backrest for the console. It’s a good idea, but one let down by relatively weak magnets. It doesn’t take much force to dislodge the cover, and I’ve already had it pop off on its own while buried in my backpack. Attaching the cover with a hinge held shut by a single strong magnet would have worked better, I think. On the underside of the dock are four rubber feet preventing it from sliding around and a three-position sliding switch that’s supposed to extend the USB-C connector to accommodate your console when it’s in a protective case. On the dock I tested, moving that switch to different positions only served to slightly change the angle of the USB-C connector by a few degrees, which doesn’t seem all that useful. On the back of the dock is a 4K/60Hz HDMI port, a USB-A port for charging accessories like a controller, and a USB-C port for connecting an adapter with up to 100W of power delivery. Having to supply your own power adapter is the biggest downside to choosing GuliKit’s dock over Genki’s that has one built-in and is designed to plug straight into an outlet. That could make GuliKit’s dock less appealing to some, but it’s not an issue for me given I already travel with multiple adapters that deliver the 60W the Switch 2 needs for its dock mode. Alongside the multiple ports on the back is also a small button that turns off dock mode and video output so the accessory only functions as a charger. GuliKit positions this feature as a way to charge and play the Switch in handheld mode without actually having to hold it. While the ergonomics of that approach seem less than ideal to me, disabling the dock mode does have the benefit of making the Switch charge a little faster if you’re in a rush to top off its battery. If you’re looking for the smallest possible way to connect your Switch 2 to a TV, you’re probably better off grabbing Genki’s or Jsaux’s accessories that incorporate a power adapter into their designs so all you need to provide is an HDMI and USB-C cable. GuliKit’s solution is slightly bulkier, but I really like that it replicates most of the functionality offered by the bundled Nintendo dock with a much smaller footprint. And it’s not just useful for traveling. If you want to connect your Switch 2 to TVs in multiple rooms around your home and don’t need an ethernet port, at $29.99 GuliKit’s is a much cheaper alternative to Nintendo’s $124.99 dock set, even when factoring in the added cost of an HDMI cable and 60W adapter. Photography by Andrew Liszewski / The Verge",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983926",
+      "title": "Uber is letting parents check in on their teens through drivers’ selfie cameras",
+      "url": "https://www.theverge.com/transportation/983926/uber-teen-account-live-video-driver-selfie-camera",
+      "author": "Andrew J. Hawkins",
+      "publishedAt": "2026-08-25T13:00:00.000Z",
+      "content": "Uber is updating its teen account feature to allow parents to use the selfie cameras on Uber drivers' phones to check in on their teenage children during ridehail trips. Since first launching teen accounts in 2023, Uber has touted the myriad ways parents can keep tabs on their children, from PIN verification to live GPS tracking. Now, parents can also view live video of the ride while it's in progress by viewing the feed from the driver's selfie camera. Uber said that after testing the new feature in several markets, it's ready to roll out nationwide over the next few weeks. Drivers who have opted in to accept underage passengers will now … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=984118",
+      "title": "Apple&#8217;s new M6 chip gets more cores and more AI compute",
+      "url": "https://www.theverge.com/tech/984118/apple-m6-m5-ultra-chip-mac-mini-studio",
+      "author": "Jay Peters",
+      "publishedAt": "2026-08-25T13:00:00.000Z",
+      "content": "Apple has announced a new M6 chip for Macs, along with an M5 Ultra that it says is its \"most powerful chip ever,\" designed for tasks like 3D rendering and running frontier AI models. The M6 is Apple's first 2nm chip, which Apple says will bring improvements in performance and power efficiency, and it also has a Dual 16-core Neural Engine for on-device AI workloads. The M6 has a 12-core CPU, up from 10 in the M5, and it includes two super cores, four performance cores, and six efficiency cores. (Apple's \"super\" core terminology used to refer to performance cores, but it introduced a new type of performance core starting with the M5 Pro and M … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=984190",
+      "title": "Apple’s new Mac Mini has fresh M6 and M5 Pro chip offerings — and higher prices",
+      "url": "https://www.theverge.com/tech/984190/apple-mac-mini-m6-m5-pro-price-specs",
+      "author": "Antonio G. Di Benedetto",
+      "publishedAt": "2026-08-25T13:00:00.000Z",
+      "content": "The M6 / M5 Pro Mac Mini. | Image: Apple Apple is announcing a new generation of the Mac Mini, once again offering two models: one with a new M6 chip and a higher-end model with the M5 Pro found in this year's MacBook Pro. The new Minis have the same tiny design and footprint as the 2024 M4 / M4 Pro models, but with upgraded internals, faster performance, and speedier ethernet ports. The M6 Mac Mini starts at $899, while the M5 Pro model starts at $1,699. Both cost $100 more than the most recent starting prices of the M4 generation. And while preorders start today, the new Mac Minis won't ship until September 22nd - hopefully enough time for Apple to stock up on inventory, as the … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=984207",
+      "title": "Apple launches new Mac Studios with its ‘most powerful chip ever’ — the M5 Ultra",
+      "url": "https://www.theverge.com/tech/984207/apple-mac-studio-m5-max-ultra-price-specs-launch",
+      "author": "Antonio G. Di Benedetto",
+      "publishedAt": "2026-08-25T13:00:00.000Z",
+      "content": "Those precious, precious ports! | Image: Apple Apple is announcing new models of the Mac Studio, now using the existing M5 Max and a new M5 Ultra. This reunification under one chip generation comes over a year after Apple awkwardly split the Studio between M4 Max and M3 Ultra offerings. (The older sounding M3 Ultra was actually the more powerful one, and there was never an M4 Ultra chip.) The new Studios look identical to previous generations, utilizing the same small form factor chassis since its introduction in 2022 (right down to the USB-A ports on the rear), but inside are Apple's most powerful SoCs. The new Mac Studio with the existing M5 Max chip comes with 36GB of unified memory … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/apple/2026/08/with-new-mac-studio-and-mac-mini-apple-leans-hard-into-local-ai-inference/",
+      "title": "Apple's new desktop computers are designed specifically for local AI development",
+      "url": "https://arstechnica.com/apple/2026/08/with-new-mac-studio-and-mac-mini-apple-leans-hard-into-local-ai-inference/",
+      "author": "\n                    Samuel Axon\n                ",
+      "publishedAt": "2026-08-25T13:00:11.000Z",
+      "content": "The Mac mini and Mac Studio occupy two distinct points in Apple's lineup of desktops, but lately, they've had something in common: They're popular for local AI inference and software development thanks to the advantages of their unified memory architecture and the fast CPUs and GPUs on their systems-on-a-chip. Today, Apple announced new iterations of both desktops, along with two new chips: the M6, the first 2nm chip in Apple's M-series lineup for Macs, and the M5 Ultra, now the most powerful chip in the lineup for most things—especially AI workloads.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49433292",
+      "title": "Apple introduces M6 and M5 Ultra for a big leap in performance and AI compute",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/",
+      "author": "interpol_p",
+      "publishedAt": "2026-08-25T13:01:22.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 443,
+      "comments": 364
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=984096",
+      "title": "Where to preorder the updated Mac Mini and Mac Studio",
+      "url": "https://www.theverge.com/gadgets/984096/mac-mini-mac-studio-m5-m6-ultra-preorder",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-08-25T13:02:18.000Z",
+      "content": "The updated Mac Mini is a compact machine for home desktop use. | Image: Apple Apple has announced two new processors, the M6 and M5 Ultra, as well as updated Mac Mini and Mac studio machines powered by them. The new machines are already available for preorder directly from Apple, with shipping for most configurations starting on September 22nd, 2026. The Mac Mini starts at $899, $300 more than the M4-equipped base model from 2024, and the Mac Studio starts at $2,499, the same price as the current M4 Max model. The announcement comes just a few weeks ahead of Apple’s usual timing for an annual iPhone event. The upgraded macOS computers focus on AI performance and improved connectivity, with Apple making a variety of claims about performance gains compared to the previous models. Make sure to check out our full announcement posts for the Mac Mini and Mac Studio for all the details. How to preorder the Mac Mini The Mac Mini with the M6 chip starts at $899 at Apple, while the version with the M5 Pro starts at $1,699. The previous generation Mac Mini only featured the M4 and M4 Max chips, so this represents a big upgrade for Apple’s most compact desktop. Aside from the processor upgrades, the new Mini has improved connectivity, notably sporting 2.5Gb Ethernet as a baseline, as well as Bluetooth 6 and Wi-Fi 7. Apple Mac Mini (M6) Where to Buy: $899 $899 at Apple How to preorder the Mac Studio The updated Mac Studio with the M5 Max chip (plus 36GB of unified memory and 512GB of storage) starts at $2,499 at Apple, while the M5 Ultra version with 96GB of RAM and a 1TB SSD starts at $5,499. While the base models will start shipping on September 22nd, the configurations with a whopping 512GB of RAM (price not yet announced) won’t be available until late October. Apple Mac Studio (M5 Ultra) Where to Buy: $2499 $2499 at Apple",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49433316",
+      "title": "New Mac Studio with M5 Max and M5 Ultra",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-new-mac-studio-with-m5-max-and-m5-ultra/",
+      "author": "interpol_p",
+      "publishedAt": "2026-08-25T13:03:17.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 421,
+      "comments": 269
+    },
+    {
+      "sourceSlug": "lennys-newsletter",
+      "externalId": "https://www.lennysnewsletter.com/p/how-to-figure-out-your-next-career",
+      "title": "How to figure out your next career move",
+      "url": "https://www.lennysnewsletter.com/p/how-to-figure-out-your-next-career",
+      "author": "Cliff Maxwell",
+      "publishedAt": "2026-08-25T13:04:15.000Z",
+      "content": "👋 Hey there, I’m Lenny. Each week, I share deeply researched product, growth, and career advice. For more: Lenny’s Jobs | Lenny’s Podcast | Lennybot | How I AI | Become an AI-Native Builder and my other favorite AI/PM coursesSubscribe nowP.S. Get a full free year of Cursor, Notion, Replit, Lovable, Wispr Flow, Linear, ElevenLabs, Factory, PostHog, Granola, Brain.fm, Waking Up, and more, by becoming an Insider subscriber (while supplies last). Learn more.Building on last week’s very exciting launch of Lenny’s Jobs (that’s a lot of likes!), I’m thrilled to bring you a companion post that will help you clarify what job to look for in the first place.Cliff Maxwell teamed up with the legend Bobby Moesta (co-creator of the Jobs to Be Done framework and a two-time guest on Lenny’s Podcast) to build Vocation, a career navigation platform that helps professionals figure out their next step. Cliff’s own career has spanned building CPUs, education research, product management, venture capital, and serving as Chief of Staff to the late Clayton Christensen. Based on insights from over 1,000 interviews with professionals changing jobs and hundreds of one-on-one coaching clients, this hands-on guide will help you take a step back and connect with what you truly want from your work—and life.Let’s get into it.It’s a disorienting time to work in tech right now. For some, the rise of AI is a thrilling adventure, but for others, it’s a source of existential dread. No matter how you’re feeling, change is coming. The World Economic Forum reports that by 2030, 39% of today’s skills will change or become obsolete, and more than 90 million jobs will be displaced even as 170 million new jobs will be created.Every generation of workers in tech has lived through recessions, layoffs, and technological change, but AI’s impact on work will be fundamentally different. It won’t just require new skills. It is redrawing the boundaries between roles and changing the day-to-day responsibilities inside them. Work may feel unstable now, but this will likely be the most stable it feels for a long time.With this much uncertainty on the horizon, it is imperative that you develop the ability to navigate change. As your responsibilities shift and new opportunities emerge, the durable career advantage will come from knowing what kinds of problems, people, and environments bring out your best work—and having a repeatable process for identifying your next step even when the ultimate destination is unclear.For the past year I have been building career navigation infrastructure with Bobby Moesta, one of the creators of the Jobs to Be Done framework and a two-time guest on Lenny’s Podcast. Bobby brings a product-oriented lens to career change: you are the customer, and the right next career move is the product you are looking to purchase.Through more than 1,000 in-depth interviews with professionals changing jobs (some by choice, some by necessity)—and hundreds more people we have coached since—we identified what helps people make a successful job transition, and built a process to support them.This is not a laundry list of LinkedIn hacks, resume tips, or ideas for how to automate your recruiting efforts. This is a step-by-step formula for designing a system that allows you to understand yourself, your context, and your best next steps when you’re in a state of change.In this post, I’ll help you answer six fundamental questions that will instill confidence and focus anytime you are navigating a transition at work. Each question comes with exercises and tools to help you build understanding.What kind of career progress do I want?What career quest am I on?Which work brings out my best?What possible moves should I explore?Which tradeoffs am I willing to make?Can I get what I need without leaving?Once you know your answers, you’ll be equipped to find your bearings now and every time the labor market throws you a curveball.1. What kind of career progress do I want?About a year ago, we coached an individual who, after spending several years at a startup that was running out of funding, assumed his next step was another early role in a venture-backed company.After evaluating his core motivations and reflecting on his growing desire for impact, he found an opportunity to lead the entrepreneurship center at a local university, a job that he previously would have avoided and that none of his peers would have recommended. When he met with the administration, they effectively hired him on the spot, telling him, “You are exactly who we were looking for.” He’s now crushing it in his new role.This story demonstrates the difference between career “progress” and “progression,” a distinction that is critical to understand when you are at a transition point in your career.Progression is the philosophy that underpins most people’s mental model of careers. You start as an IC, get promoted, and up and up you go on the imaginary career ladder. This mindset will become increasingly less relevant as AI continues its march through knowledge work. Job boundaries and job titles will continue to blur, new job titles will emerge, and companies will struggle to neatly map job descriptions and career pathways into their org chart or KPIs.Progress, on the other hand, is contextual and dynamic. It is ultimately a question of what your professional Job to Be Done is, and allows you to chart your own course rather than follow a single, narrow path of progression. Depending on your context, progress may be about autonomy and flexibility, preparing for the future, respect and recognition, or simply collecting a paycheck during a time of instability. It can look like a more traditional step up, but it may also look like a lateral move or even like a step back from the perspective of others—while it solves the most important problem in your life and gives you space and time to move forward later on.A focus on progress is an active commitment to putting yourself in environments that will bring out your best. It helps you stand out amid the army of applicants all reaching for the same rung on the career ladder. Progress gives you the freedom to see your career in chapters and create space to be emergent rather than assuming you have to write one linear story all at once. To do this, you have to define the progress you’re seeking right now.A 10-minute progress exerciseTake a blank page (or, if you’d like a live template, we made one for you here) and complete the sentence: I want to leave or change my current situation because…Write down every friction or negative force you’re experiencing right now, or that you last experienced at work. We call these pushes. Do not polish the language. “My manager changes priorities every three days, and it’s getting exhausting” is more useful than “I want better leadership.” Unpack each one of these, and ask yourself “why” until you get to the root cause.Then complete this sentence: I want my next chapter to give me…List the desired outcomes you wish were true right now. We call these pulls. Again, make them concrete. “Control over when I do focused work” is more useful than “flexibility.”Now circle the two or three pushes and two or three pulls that carry the most emotional weight. When you see the forces together, you can start to assemble what progress means for you, not for anyone else. For example, two people may both feel overburdened by new management, but one wants to join a more supportive team while the other is seeking more autonomy to work alone. Your unique combination of pushes and pulls forms the basis for your career quest, or the core motivation guiding your desire for change.Below is an example of how this might look for someone seeking a new role:2. What career quest am I on?When you are seriously considering a job change, or when change is forced upon you, it’s easy to label and hold onto your most immediate feeling, whether that’s burnout, the excitement of something new, frustration, or disrespect. But underlying these emotions, less-obvious and subconscious factors are working together in a unique combination to animate your core motivation for change. This is your career quest.Your quest for progress should inform every aspect of your job search, but most people skip this diagnosis and go directly to job boards, answer the recruiter’s call, or ask their network about job openings. They are halfway out the door before deciding what they even need this move to accomplish.For example, I once coached an individual who was frustrated by the lack of leadership opportunities in his product role at a large tech company. When he was recruited to lead and grow the analytics function at a nearby startup, he felt excited and flattered to finally have the opportunity to grow a team.But as we explored other pushes and pulls acting on him, a more nuanced story emerged. Despite the lack of leadership opportunities, he fundamentally liked his job. He was also in the middle of renovating his home, he wanted to be able to spend more time with his two young kids, and he wasn’t all that excited about leaving product for analytics.The new role solved his most immediate and apparent problem, but it wouldn’t offer him the progress he needed both personally and professionally.In our work with professionals looking to make a change, we have identified four common quests for progress that emerge again and again.These quests are not mutually exclusive; you can be on multiple quests simultaneously, though one usually dominates. Even if you have been laid off and the immediate goal is “I need a job,” reflecting on these quests can help you decide which opportunities deserve your attention, and which you can avoid.Quest 1: Get outYou have hit a wall you cannot fix from where you stand. Something about the manager, culture, leadership, or environment has made it hard to succeed or remain healthy. The dominant feeling is escape, and the desire to get out is usually quick, not something you stew on for months at a time.Common pushes:Feeling disrespected or not trusted to do great workWorking for a manager who is wearing you downLosing trust or respect in leadership and/or your peersNot seeing a place to grow in your current organizationCommon pulls:The pulls are often vague: a fresh start, a healthier environment, or simply “anywhere but here.”When someone is looking to get out, they often accept the first available escape but run the risk of landing in the same conditions at a different company.Quest 2: Regain controlWork has swallowed too much of your life, even if you still enjoy the work itself.This quest often follows a change outside work: a new child, caregiving responsibilities, a health issue, or a shift in what you want your life to look like. It can also emerge when a previously manageable role becomes chaotic, or when the way your manager or company leadership is running things no longer works for you.Common pushes:Feeling worn down by managementWork is dominating your life and you’re starting to make sacrificesUnpredictable demands, or feeling challenged beyond your abilityLittle control over your schedule or prioritiesA workload that no longer feels sustainableCommon pulls:More time to spend with othersA job location that fits better into your personal lifeAn employer who properly values your experience and credentialsA scope of responsibility you can sustainQuest 3: Regain alignmentYour job has drifted away from what you do best, what you value, or what you originally agreed to do. You may still be performing well. In some cases, that is part of the problem: you have become useful for work that does not fit you, and you don’t feel respected.Common pushes:Being underused or miscastWatching your responsibilities move away from your strengthsA growing gap between your values and the company’sFeeling unchallenged or boredNot seeing a clear place to grow inside the organizationCommon pulls:Work that uses your full capabilitiesGreater alignment with your valuesRecognition that matches your contributionA role built around the things you do unusually wellQuest 4: Take the next stepYou have completed something meaningful, mastered the role, or reached a point where the work no longer stretches you. Alternatively, you’ve hit a personal milestone (baby, move, etc.) and want a change. You are not necessarily unhappy. You are simply ready to be challenged and get the support you need to grow.Common pushes:Hitting a personal or professional milestoneFeeling unchallenged or boredNot seeing a clear place to growNeeding to provide more support for family or loved onesCommon pulls:Feeling like a job is a clear step forwardJoining a tight-knit team you can count onDeveloping new skills as part of a stepping stone to something elseA quick quest diagnosticFinish this sentence: More than anything, I need my next move to…Get me away from a situation I can no longer tolerate.Give me control over my time, workload, or life again.Let me do work that fits my strengths and values.Give me a new challenge or chapter.How you finish the sentence will not capture every part of your situation, but it will usually reveal which quest you may be on—and also help you label what you don’t need right now.3. Which work brings out my best?Most professionals know their skills better than they know the conditions that allow them to do their best work. You take on responsibilities, become known for certain outcomes, develop valuable skills, but are often too busy doing the job to understand the circumstances you need to be successful and feel fulfilled.Then a shiny title or compensation increase appears, and you accept a role that actually makes you miserable—an outcome common to ICs-turned-managers who realize too late how much they hate management.You need to figure out what you need before you switch jobs (or are compelled to switch), not figure it out by switching. This is what building your energy profile is all about: it provides a blueprint for evaluating new opportunities, along with a starting point for questions you can ask a hiring manager or peer as you explore open roles.Build your energy profileTo get started, grab some Post-it notes or spin up a Miro board, and make a simple timeline of roles you’ve held and the title, company, and duration for each role (including your current role if employed). If you want a pre-built template, we’ve got one here. The steps below will show you how to fill this out, and I’ve included an example of the beginnings of my own energy profile:Step 1: Audit your calendarPull up the past month of your work calendar and list what you actually did, hour by hour.Do not use the language of your job description. Describe the activity:Collaborative planning meetingIndividual researchCustomer callWriting a strategy documentTo help you through this, you can integrate your calendar with an AI agent of your choice (via a simple connection or MCP) and use this simple prompt:“For the past month, make a list of core meetings and time blocks on my calendar and ask me 1-2 questions about each to uncover what I actually did during those blocks of time. For example, if you see a ‘team meeting,’ ask me briefly what my role was and how I contributed. Then produce a list of the 8-10 core activities in my work life.”Step 2: List your energizersWhich tasks energized you?Look for work where you lost track of time, volunteered extra effort, or kept thinking after the meeting ended. Include the tasks that left you with more energy afterward.Step 3: List your drainersWhich tasks did you avoid, postpone, rush through, or perform adequately just to get them over with?Include work you are good at but dislike. Competence and energy are not the same thing. Many careers get built around things a person does well but does not want to keep doing.Step 4: Repeat the exercise across previous jobsReview your last job, then the one before that. You can’t go hour by hour, but for each role there were likely six to eight core responsibilities or tasks you engaged in on a regular basis.As you complete this, you will begin to see a history of your career written in the language of energy instead of titles or responsibilities.Step 5: Identify themes among your energizers and drainersRevisit the activities you collected in the last step and see if you can identify broader themes or clusters that emerge from tasks that energize and drain you. As you do this, clarity is key. “Working with others” is not a clear theme. Neither is “heads-down work.” Working with whom? On what? Under which conditions? Similarly, “office politics” is not a clear theme for what drains you. What relationship dynamics are problematic? What decision-making processes don’t work for you?To help you do this, you can ask questions like:What is this more like?What is this less like?Which conditions need to be present?Below is an example of unpacking a theme that emerged when I built my own energy profile: “environments that allow me to become an expert at the intersection of people and technology.”As your themes begin to emerge, you’ll realize where you shine, where you check out, and what you want out of your next role. This is the foundational work necessary to begin prototyping potential opportunities.4. What possible moves should I explore? Read more",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p20#a260825p20",
+      "title": "Apple unveils M6, a 2nm chip with a 12-core CPU and GPU, and up to 32GB of unified memory, saying it provides \"the world's fastest single-threaded performance\" (Jay Peters/The Verge)",
+      "url": "https://www.techmeme.com/260825/p20#a260825p20",
+      "author": null,
+      "publishedAt": "2026-08-25T13:11:38.000Z",
+      "content": "Jay Peters / The Verge: Apple unveils M6, a 2nm chip with a 12-core CPU and GPU, and up to 32GB of unified memory, saying it provides “the world's fastest single-threaded performance” — Apple is introducing the M6 chip with a new Mac Mini. It's also launching a new M5 Ultra alongside an upgraded Mac Studio.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49433450",
+      "title": "New Mac mini, featuring M6 and M5 Pro",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-unveils-a-more-powerful-mac-mini-featuring-the-all-new-m6-and-m5-pro/",
+      "author": "runako",
+      "publishedAt": "2026-08-25T13:13:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 194,
+      "comments": 111
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p21#a260825p21",
+      "title": "Apple says M5 Ultra uses a quad-die 3nm architecture, \"a first for Apple silicon\", with inter-die bandwidth of 4.4TB/s+ and up to a 36-core CPU and 80-core GPU (Steve Dent/Engadget)",
+      "url": "https://www.techmeme.com/260825/p21#a260825p21",
+      "author": null,
+      "publishedAt": "2026-08-25T13:22:32.000Z",
+      "content": "Steve Dent / Engadget: Apple says M5 Ultra uses a quad-die 3nm architecture, “a first for Apple silicon”, with inter-die bandwidth of 4.4TB/s+ and up to a 36-core CPU and 80-core GPU — The M6 has also arrived with all-new 2nm process technology. — With the launch of the latest Mac mini and Mac Studio computers …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p22#a260825p22",
+      "title": "WhatsApp upgrades its two-step verification, letting users replace the six-digit PIN with a longer alphanumeric password, and adds support for multiple passkeys (Aisha Malik/TechCrunch)",
+      "url": "https://www.techmeme.com/260825/p22#a260825p22",
+      "author": null,
+      "publishedAt": "2026-08-25T13:40:00.000Z",
+      "content": "Aisha Malik / TechCrunch: WhatsApp upgrades its two-step verification, letting users replace the six-digit PIN with a longer alphanumeric password, and adds support for multiple passkeys — WhatsApp announced Tuesday that it's launching new security features and updates to help users keep their accounts secure …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p23#a260825p23",
+      "title": "Apple raises Mac mini and Studio prices: the M6 and M5 Pro Mac mini are $899+ and $1,699+, $100 above M4 models, and the M5 Ultra Mac Studio is $5,499+, up $200 (Nicole Nguyen/Wall Street Journal)",
+      "url": "https://www.techmeme.com/260825/p23#a260825p23",
+      "author": null,
+      "publishedAt": "2026-08-25T13:45:02.000Z",
+      "content": "Nicole Nguyen / Wall Street Journal: Apple raises Mac mini and Studio prices: the M6 and M5 Pro Mac mini are $899+ and $1,699+, $100 above M4 models, and the M5 Ultra Mac Studio is $5,499+, up $200 — Between the AI agent craze and the global memory-chip shortage, Apple might struggle to keep these refreshed little powerhouse Macs in stock",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=984290",
+      "title": "OpenAI says its Jalapeño chip can power faster AI responses than the competition",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/984290/openai-jalapeno-ai-chip-benchmarks",
+      "author": "Emma Roth",
+      "publishedAt": "2026-08-25T14:00:00.000Z",
+      "content": "OpenAI says its new AI chip, Jalape&ntilde;o, completes tasks more efficiently and returns responses faster than other AI systems, according to a blog post published on Tuesday. During a briefing with reporters, OpenAI hardware vice president Richard Ho said Jalape&ntilde;o offers the \"best of both worlds\" with lower latency and higher throughput, as AI systems typically \"have to make a trade-off between the two.\" First introduced in June, Jalape&ntilde;o is an Application-Specific Integrated Circuit (ASIC) made in partnership with Broadcom. It's designed for AI inference - the process of running a trained AI model to complete a task or deploy an agent. To mea … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "css-tricks",
+      "externalId": "https://css-tricks.com/?p=396665",
+      "title": "MicroLighter: Syntax Highlighter",
+      "url": "https://css-tricks.com/microlighter-syntax-highlighter/",
+      "author": "Geoff Graham",
+      "publishedAt": "2026-08-25T14:10:34.000Z",
+      "content": "Syntax highlighting for code blocks without the complicated markup, spans, classes, and bloated JavaScript, courtesy of Uncle Dave. MicroLighter: Syntax Highlighter originally handwritten and published with love on CSS-Tricks. You should really get the newsletter as well.",
+      "topics": [
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p24#a260825p24",
+      "title": "OpenAI says its Jalapeño chip delivered 1.5x-1.9x more AI work per watt and 1.7x-3.6x lower latency than Nvidia chips across GPT-OSS, DeepSeek R1, Kimi K2.5 1T (Emma Roth/The Verge)",
+      "url": "https://www.techmeme.com/260825/p24#a260825p24",
+      "author": null,
+      "publishedAt": "2026-08-25T14:25:00.000Z",
+      "content": "Emma Roth / The Verge: OpenAI says its Jalape&ntilde;o chip delivered 1.5x-1.9x more AI work per watt and 1.7x-3.6x lower latency than Nvidia chips across GPT-OSS, DeepSeek R1, Kimi K2.5 1T — Jalape&ntilde;o outperformed Nvidia's superchips on an AI inference benchmark test.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=984353",
+      "title": "Apple&#8217;s ‘new’ polishing cloth is the same except $10 cheaper",
+      "url": "https://www.theverge.com/tech/984353/apple-polishing-cloth-cheaper",
+      "author": "Emma Roth",
+      "publishedAt": "2026-08-25T14:25:52.000Z",
+      "content": "Apple just dropped a new polishing cloth, and unlike its refreshed Mac Mini models, it comes with a price cut, as spotted earlier by MacRumors. The polishing cloth is still \"made with soft, nonabrasive material\" but costs $9 instead of $19. It doesn't look like anything else has changed, as the description matches an archived version of Apple's old polishing cloth, which it no longer lists on its website. The polishing cloth is compatible with what looks like the same massive list of Apple products, including the iPhone 5 and up. It \"cleans any Apple display, including nano-texture, safely and effectively.\" Curiously, the products Apple re … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p25#a260825p25",
+      "title": "Autonomous trucking startup Gatik raised $200M, two months after striking a multi-year commercial agreement with PepsiCo, bringing its total funding to ~$500M (Kirsten Korosec/TechCrunch)",
+      "url": "https://www.techmeme.com/260825/p25#a260825p25",
+      "author": null,
+      "publishedAt": "2026-08-25T14:30:00.000Z",
+      "content": "Kirsten Korosec / TechCrunch: Autonomous trucking startup Gatik raised $200M, two months after striking a multi-year commercial agreement with PepsiCo, bringing its total funding to ~$500M — Gatik, the autonomous vehicle startup known for its self-driving box trucks, has raised $200 million just two months after striking …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p26#a260825p26",
+      "title": "Waymo plans to offer ride-hailing services in Germany, starting with Munich, by the end of 2027, marking its third international market and the first in the EU (Natalie Lung/Bloomberg)",
+      "url": "https://www.techmeme.com/260825/p26#a260825p26",
+      "author": null,
+      "publishedAt": "2026-08-25T14:35:01.000Z",
+      "content": "Natalie Lung / Bloomberg: Waymo plans to offer ride-hailing services in Germany, starting with Munich, by the end of 2027, marking its third international market and the first in the EU — Waymo is planning to offer driverless ride-hailing services in Germany by the end of next year, marking its third planned international market …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p27#a260825p27",
+      "title": "Perplexity launches Portable Computer, a local AI agent platform running fully on-device with zero token costs, starting with Nvidia DGX Spark and RTX Linux PCs (Michael Nuñez/VentureBeat)",
+      "url": "https://www.techmeme.com/260825/p27#a260825p27",
+      "author": null,
+      "publishedAt": "2026-08-25T14:40:03.000Z",
+      "content": "Michael Nu&ntilde;ez / VentureBeat: Perplexity launches Portable Computer, a local AI agent platform running fully on-device with zero token costs, starting with Nvidia DGX Spark and RTX Linux PCs — Perplexity is launching Portable Computer today, a version of its agentic “Computer” platform that runs entirely …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p28#a260825p28",
+      "title": "Tel Aviv- and NYC-based Alice, which works to protect AI models from misuse and rogue behavior, raised $140M led by Apax Digital at a valuation \"close to $1B\" (Marissa Newman/Bloomberg)",
+      "url": "https://www.techmeme.com/260825/p28#a260825p28",
+      "author": null,
+      "publishedAt": "2026-08-25T14:45:04.000Z",
+      "content": "Marissa Newman / Bloomberg: Tel Aviv- and NYC-based Alice, which works to protect AI models from misuse and rogue behavior, raised $140M led by Apax Digital at a valuation “close to $1B” — An Israeli startup that works to protect artificial intelligence models from misuse and rogue behavior has raised $140 million …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nextjs-blog",
+      "externalId": "/blog/nextjs-security-release-august-2026-update",
+      "title": "Update: August Next.js Security Release",
+      "url": "https://nextjs.org/blog/nextjs-security-release-august-2026-update",
+      "author": {
+        "name": [
+          "Josh Story"
+        ]
+      },
+      "publishedAt": "2026-08-25T15:00:00.000Z",
+      "content": "Next.js is moving the August security release forward to August 25, 2026.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=121791",
+      "title": "CUDA Python 1.0: Stable APIs, One Foundation, Full Platform Access",
+      "url": "https://developer.nvidia.com/blog/cuda-python-1-0-stable-apis-one-foundation-full-platform-access/",
+      "author": "Elizabeth Goodman",
+      "publishedAt": "2026-08-25T15:00:00.000Z",
+      "content": "For years, a Python developer who needed a GPU had two realistic choices: Learn NVIDIA CUDA C++ well enough to write an extension, set up a build toolchain, and...For years, a Python developer who needed a GPU had two realistic choices: Learn NVIDIA CUDA C++ well enough to write an extension, set up a build toolchain, and maintain bindings back to Python, which most people never did; or move up the stack and let someone else’s library do it, namely PyTorch, CuPy, or RAPIDS. The second option is why the Python GPU ecosystem thrives. But it has limits. Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p29#a260825p29",
+      "title": "Mexico-based Primero, which aims to modernize legacy software used by Latin American companies with AI, raised a $12M seed co-led by Kaszek and General Catalyst (Kylie Madry/Reuters)",
+      "url": "https://www.techmeme.com/260825/p29#a260825p29",
+      "author": null,
+      "publishedAt": "2026-08-25T15:00:36.000Z",
+      "content": "Kylie Madry / Reuters: Mexico-based Primero, which aims to modernize legacy software used by Latin American companies with AI, raised a $12M seed co-led by Kaszek and General Catalyst — Mexican startup Primero launched publicly on Tuesday with a $12 million seed round co-led by Kaszek and General Catalyst …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p30#a260825p30",
+      "title": "Uber launches an optional safety feature allowing parents or guardians to watch a livestream of their teen's ride via the driver's front-facing phone camera (Natalie Lung/Bloomberg)",
+      "url": "https://www.techmeme.com/260825/p30#a260825p30",
+      "author": null,
+      "publishedAt": "2026-08-25T15:05:03.000Z",
+      "content": "Natalie Lung / Bloomberg: Uber launches an optional safety feature allowing parents or guardians to watch a livestream of their teen's ride via the driver's front-facing phone camera — Uber Technologies Inc. is rolling out a new safety feature that lets parents or guardians view a video livestream of their teenager's ride.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/08/ai-wont-replace-radiologists-but-it-will-dramatically-change-their-jobs/",
+      "title": "AI won’t replace radiologists, but it will dramatically change their jobs",
+      "url": "https://arstechnica.com/health/2026/08/ai-wont-replace-radiologists-but-it-will-dramatically-change-their-jobs/",
+      "author": "\n                    Lola Butcher\n                ",
+      "publishedAt": "2026-08-25T15:10:03.000Z",
+      "content": "In 2016 Geoffrey Hinton, the Nobel-winning “godfather of AI,” predicted that radiologists—the physicians who read X-rays, ultrasounds, and other images to help make medical diagnoses—would find themselves replaced by computers within five years. Today the field can retort by quoting Mark Twain’s famous quip: The report of my death was an exaggeration. Radiology’s ranks are in fact growing steadily, with the number of practitioners expected to expand by 26 percent or more over the next three decades. But what Hinton may have missed about the dynamics of the job market should not obscure his prescience: He was correct that human physicians now have a silicon-based colleague in the room that matches or exceeds their performance. In fact, radiology is far and away medicine’s hot spot for AI, making it a bellwether for the adoption of expert decision-making systems across healthcare and perhaps in other fields. As of early 2026, about three-quarters of the 1,400 AI-enabled medical devices cleared by the Food and Drug Administration were for radiology. Some make physicians more efficient by drafting reports or alerting them to the images that urgently need attention. But other AI tools have the potential to improve on human performance by identifying abnormalities that may not be visible to the human eye, or interpreting images as well as—and sometimes better than—trained radiologists. For example, an analysis of 43 clinical trials concluded that AI-assisted colonoscopies reveal more polyps than conventional ones.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/ibm-granite/granite-4-2",
+      "title": "Granite 4.2 LLMs: How They're Built",
+      "url": "https://huggingface.co/blog/ibm-granite/granite-4-2",
+      "author": null,
+      "publishedAt": "2026-08-25T15:14:14.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p31#a260825p31",
+      "title": "A detailed look at Jalapeño, OpenAI's ASIC developed with Broadcom in 16 months, which beat Nvidia, AMD, and Google chips on multiple top open-weight models (SemiAnalysis)",
+      "url": "https://www.techmeme.com/260825/p31#a260825p31",
+      "author": null,
+      "publishedAt": "2026-08-25T15:15:02.000Z",
+      "content": "SemiAnalysis: A detailed look at Jalape&ntilde;o, OpenAI's ASIC developed with Broadcom in 16 months, which beat Nvidia, AMD, and Google chips on multiple top open-weight models — OpenAI's self-designed ASIC compared with Rubin, Jalape&ntilde;o's TCO, throughput per MW, and spicy deets",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "pragmatic-engineer",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/why-ramp-built-inspect",
+      "title": "Why Ramp built its own in-house coding agent, Inspect",
+      "url": "https://newsletter.pragmaticengineer.com/p/why-ramp-built-inspect",
+      "author": "Gergely Orosz",
+      "publishedAt": "2026-08-25T15:20:23.000Z",
+      "content": "At a select few tech companies, they write most of their code with their own, custom-built, internal AI coding agents. This is different from most of the industry which uses AI coding agents and harnesses like Codex, Claude Code, Cursor, OpenCode, GitHub Copilot, etc. At Ramp, their own version is called Inspect, while at Block it’s Goose (open source), at Stripe it’s Minions, and River at Shopify.But why not just use what frontier labs and coding harness AI startups already offer; why take the time and effort?We reached out to Ramp, a fintech company big on building its internal AI infrastructure, and sat down with the founding team of Inspect and engineering leadership. We talked with CTO Rahul Sengottuvelu, head of engineering Hamid Dadkhah, and Zach Bruggeman, principal engineer and founding engineer of Inspect.Today, we cover:What is Inspect? Imagine an AI coding agent running on remote sandboxes with access to most internal data sources, and verifying all backend and frontend changes on the remote machine.Why build your own background coding agent? Engineers and designers at Ramp were dissatisfied with third-party harnesses: they wanted to run more than a few agents in parallel – which local machines don’t support – to have better frontend tooling, and also faced demand for remote development environments.How Ramp uses Inspect: coding, bugfixing in Slack, debugging, and building internal agents like code review and incident management on top of the Inspect platformTech stack and architecture: React/Vite, Cloudflare Durable Objects, SQLite, Cloudflare Agents SDK, Modal sandboxes.What makes Inspect so popular? The machine in the cloud is a developer machine, plus it has access to numerous internal integrations via API and MCP.Inside the sandbox. OpenCode, services for development (e.g. Postgres, Redis, RabbitMQ, Temporal), Chromium, and VS Code Server. Plus, we check out smart tricks to make sandboxes spin up in five seconds or less(!!)Collaboration & feedback. All Inspect sessions are public and open to collaboration, with no opt-outs allowed. More than 150 people at Ramp have contributed to the project.If you’re like us, you might wonder what the point would be of building your own harness and investing the time and resources in it, given all the choices already out there. This article sets out to answer that question, to understand why other places chose a similar path, and how a non-AI frontier lab can build more efficient tooling than what the frontier AI labs offer. It looks like the “buy, don’t build” tooling convention might not apply to AI tools!Let’s get into it.The bottom of this article could be cut off in some email clients. Read the full article uninterrupted, online.Read the full article online1. What is Inspect?Inspect is Ramp’s internal background coding agent, shipped and opened internally last November. Engineers at Ramp can use any tool they want, but 75% of merged PRs are now raised by Inspect; a clear indication that many engineers prefer the tool over others:Inspect’s home page: showing sessions started by the userInspect: how the UI looks for engineers inside of RampA couple of things make Inspect different from coding agents like Claude Code and Cursor:Remote sandboxes: Inspect spins up a sandboxed remote development environment which unlocks unlimited session concurrency, centralized setup configuration, and cross-functional session collaboration.Internal integrations: Inspect is integrated across the org with the same tools and context that a Ramp engineer has; the only constraint on agents’ ability is model intelligence, not missing tools or access.Inspect verifies all its changes. As a remote development environment with full tooling access, it can “close the loop” and confirm the changes it makes work:Backend verification: Inspect runs tests, reviews telemetry and queries feature flagsFrontend work verification: Inspect visually verifies its own work by providing screenshots and live previews to users.At present, most third-party AI harnesses cannot do these kinds of verifications ‘out of the box’ because they lack internal integrations with things like telemetry and feature flag systems. Also, almost a year ago, Ramp built screenshot verification before it was supported by third-party vendors. Things like this placed Ramp months ahead of nearly all AI coding harnesses, and they could also build a far better feedback loop in their own harness.Rapid adoption when background agent releasedThe v1 of Inspect was a Chrome extension for designers to prompt AI to make minor website changes. A few months later, the v2 version with background agents followed.History of adoption numbersBy January of this year, just two months after the v2 launch, around 60% of PRs at Ramp were authored by Inspect, which increased to 75% by May. At Anthropic, Claude Code won rapid adoption after an internal release, as covered in the deepdive How Claude Code is built.Then Inspect hit a neat milestone in July, crossing the one million total sessions mark:Milestone: one million Inspect sessions2. Why build your own background coding agent?There are a few reasons why Ramp decided to turn down tried-and-tested products and create their own:Local machines are limited in how many agents they can run. Ramp found third-party products below expectations; they liked Claude Code on day 1, but were constrained by only being able to run one or two sessions on local machines.Better frontend tooling. The web engineering team wanted to improve their frontend tooling so designers could make small UI tweaks. There was an opportunity to use AI to automate themselves out of that loop.Need for remote dev environments. As Ramp scaled, so did the complexity, and with it there was more work at the intersection of systems, like debugging backward compatibility, and broken API contracts. The solution was to create remote dev environments.Inspect started as a designer’s frontend tool, and a good part of its team were frontend engineers with interests in UX and speedy performance. The v1 was a Chrome extension for visual edits, where a user could highlight an area and tell the AI what minor website changes to make, like copy edits and button placements. The task of building a tool for making UI edits with AI was given to two frontend engineers, Zach Bruggeman and Jason Quense, who aside from their frontend domain knowledge, brought a welcome adversarial perspective, as they were less than fully convinced by AI at that time.People liked v1 but it wasn’t adopted because engineers already knew how to go to a file and edit a single line of code, so didn’t have a reason to use it, and it also required setting up a local development environment, making it too complicated for non-devs.For the current iteration of Inspect (released November 2025) the team pivoted. They built Inspect v2 as a remote development environment with a coding agent on top. Setting it up as a remote environment that they could configure centrally removed the need for local setup on each machine. They were also encouraged by seeing that OpenCode, the open-source coding agent which serves as Inspect’s harness, exposed an HTTP API which made it straightforward to set up, and was open-source, good enough, and importantly, offered model agnosticism.Check out the episode of The Pragmatic Engineer podcast with OpenCode creator, Dax Raad.After pivoting, adoption skyrocketed to where it is today:Daily unique human Inspect usersAdoption numbers today:75% of all merged PRs come from Inspect sessions~90% share of PRs merged into the Inspect repo come from an Inspect sessionUnder 5 seconds to spin up a fully provisioned remote dev environment5.5 people in the Inspect team: four engineers, a director, and part-time PM150+ engineers at Ramp who have contributed to the Inspect codebase3. How Ramp uses InspectHaving built it, Ramp uses Inspect for a few things:Coding: obvious use case; engineers prompt Inspect with small and medium-sized coding tasks that can often be one-shot passes. For larger, more complex tasks, devs often use Inspect to kick-start an idea and then take over developing it locally.Bugfixing in Slack: the @inspect fix this prompt in Slack. Inspect reads all the thread context and raises a pull request (PR) with a fix.Debugging: Inspect can do things like debug the code (stepping through the code in debugger mode), query the sanitized read-only prod DB replica, find business logic/data mismatches.Using Inspect to build Inspect: Inspect is used to build itself, and more than 80% of Inspect is written in Inspect sessions.Platform for agents: Engineers at Ramp have built more than 200 agents running on top of the Inspect platformHere’s an example of how debugging works. Devs can ask the agent to investigate an issue, and Inspect goes off and pulls data from the correct sources:Debugging with Inspect: asking the agent about an incorrect allocation. Debugging is done via the web chat interfaceThe tool goes and makes database or Snowflake queries when helpful:Making database and Snowflake queriesThe debug agent can be long-running while it gathers data from various sources. Finally, it presents its findings:The debug agent found the root cause: in this case, it was a routing/policy decision, discovered by querying relevant data sourcesThis debugging example illustrates how much more capable agents can be with the correct access to tools, data, and context.Some internal agents built on top of Inspect:ReviewBuddy: Ramp’s own code review system, customizable per team. The difference from third-party AI code review tools is that it’s very aware of Ramp’s context, and the team found it to work better than third-party tools. Built by a single engineer in a week.Oncall Assistant: connected to all production and observability systems. When the agent detects an incident, it gathers all relevant context and tries to determine the cause. The oncall engineer can choose to join the Inspect session and prompt against this proposed fix.Testo: a frontend QA tool and browser-based agent that clicks around like a user would, and creates Playwright tests.Ramp Research: the company’s agentic “data analyst” is connected to all Ramp’s data sources, like Looker, Snowflake and dbt tables. Ping it from Slack about any topic and it gets answers. Before Ramp Research, engineers and data analysts had to know which data tables to query and join. Ramp previously shared more about its Research.Voice of the Customer: connects to several customer feedback sources like chat, email, App Store reviews, etc. It collects feedback from the last 90 days, and allows prompting against them as a Slack botError automations: automatically create draft pull requests based on alerts from Sentry or Datadog.Visualized:Most agentic automations inside Ramp are built on top of InspectIt’s clever that the Ramp team extended Inspect into a platform, and made it easy to build additional agentic tools, without engineers having to worry about the cloud backend for those tools. Not bad for a tool that started as a simple Chrome extension almost exactly a year ago!4. Architecture and tech stackInspect’s core principle is that agents should have access to the same context and tools as software engineers. Hooking up Inspect to the data sources that engineers would browse with the same tools seems to be a key difference between Inspect and third-party AI harnesses. Read more",
+      "topics": [
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49435728",
+      "title": "How much of HN is AI?",
+      "url": "https://blog.coredump.cx/p/how-much-of-hn-is-ai",
+      "author": "surprisetalk",
+      "publishedAt": "2026-08-25T15:23:41.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 115,
+      "comments": 71
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p32#a260825p32",
+      "title": "Nvidia unveils the Jetson Orin Nano 2 edge AI computer that it says doubles inference performance, with 78 TOPS of AI compute and an eight-core Arm CPU (Eugene Demaitre/The Robot Report)",
+      "url": "https://www.techmeme.com/260825/p32#a260825p32",
+      "author": null,
+      "publishedAt": "2026-08-25T15:35:00.000Z",
+      "content": "Eugene Demaitre / The Robot Report: Nvidia unveils the Jetson Orin Nano 2 edge AI computer that it says doubles inference performance, with 78 TOPS of AI compute and an eight-core Arm CPU — As AI models become more efficient, more devices can become autonomous, but developers need compact, energy-efficient computers built for edge AI …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "google-ai-blog",
+      "externalId": "https://blog.google/products-and-platforms/products/search/home-decor-tips/",
+      "title": "5 ways to upgrade your home decor with Google Search",
+      "url": "https://blog.google/products-and-platforms/products/search/home-decor-tips/",
+      "author": {
+        "$": {
+          "xmlns:author": "http://www.w3.org/2005/Atom"
+        },
+        "name": [
+          "Megan Stoner"
+        ],
+        "title": [
+          "Contributor"
+        ],
+        "department": [
+          ""
+        ],
+        "company": [
+          ""
+        ]
+      },
+      "publishedAt": "2026-08-25T16:00:00.000Z",
+      "content": "Learn how to use Google Search tools to find home decor inspiration, shop for furniture, and tackle DIY projects.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/encrypted-reasoning-traces-on-your-laptop-resume-or-strip",
+      "title": "Encrypted Reasoning Traces on Your Laptop: Resume or Strip",
+      "url": "https://alphasignal.ai/news/encrypted-reasoning-traces-on-your-laptop-resume-or-strip",
+      "author": "Adham Khaled",
+      "publishedAt": "2026-08-25T16:00:00.000Z",
+      "content": "Public traces hid 315,320 encrypted blocks. Treat resume logs and publish logs as two paths, then count the field on your own machine.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/speed-insights-free-tier",
+      "title": "Speed Insights adds a free tier",
+      "url": "https://vercel.com/changelog/speed-insights-free-tier",
+      "author": "Damien Simonin Feugas",
+      "publishedAt": "2026-08-25T16:00:00.000Z",
+      "content": "now has a free tier that gives you a high-level performance overview from your real users. The paid product, now called Speed Insights Plus, includes deeper diagnostics and historical data. If you were already paying for Speed Insights, only the name has changed, your capabilities and pricing stay the same.Speed InsightsThe free tier is available on every plan, for any number of projects. It includes 10,000 events per team every 30 days. Previously, free Speed Insights was limited to a single project on Hobby, and upgrading to Pro meant losing it unless you paid for the add-on. Now your free tier carries over, and you only pay if you upgrade to Speed Insights Plus.Speed Insights reports how real visitors experience your pages, using live traffic rather than lab conditions. Speed Insights Plus adds slow-route diagnosis and detailed breakdowns for finding where pages get slow, and historical data to track performance over time. It also provides access to Drains and the Vercel CLI for working with performance data outside the dashboard.Install in your project to start reporting real-user data, or open the to view your results.@vercel/speed-insightsSpeed Insights dashboardLearn more about .Speed InsightsRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gaming/2026/08/new-bootloader-lets-you-take-the-meta-out-of-the-original-meta-quest/",
+      "title": "New bootloader lets you take the \"Meta\" out of the original Meta Quest",
+      "url": "https://arstechnica.com/gaming/2026/08/new-bootloader-lets-you-take-the-meta-out-of-the-original-meta-quest/",
+      "author": "\n                    Kyle Orland\n                ",
+      "publishedAt": "2026-08-25T16:04:37.000Z",
+      "content": "Remember the original Quest headset that Meta (then Oculus) trumpeted back in 2019? Meta seems to hope you don't, since the company officially stopped supporting the wireless VR headset in 2023 to focus on the more popular Quests 2 and 3. Luckily, tinkerers haven't similarly abandoned the hardware and recently released a new root-access exploit and bootloader that gives \"developers and enthusiasts full control over Quest 1 hardware.\" The QuestStack project integrates previously known vulnerabilities in the Quest's Android fastboot process into a privilege escalation chain that leads easily to full root access on the device. The bootloading process is now streamlined enough that it can be completed without any downloads through a web interface after connecting the headset to a PC. With this exploit, the original Quest hardware can now be officially divorced from any reliance on Meta's servers or services to be useful. That means enterprising Quest owners should be able to sideload apps without needing to register for a Meta Developer account and activating Developer Mode through Meta's mobile app. It also means users should be able to go through the initial setup and login steps for a fresh Quest headset even if and when Meta decides to shut down the servers that currently support this process.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p33#a260825p33",
+      "title": "Sources: Anthropic is likely to tell IPO investors that its potential revenue opportunities are above $30T, topping SpaceX's $28.5T; Uber predicted $6T in 2019 (Corrie Driebusch/Wall Street Journal)",
+      "url": "https://www.techmeme.com/260825/p33#a260825p33",
+      "author": null,
+      "publishedAt": "2026-08-25T16:05:25.000Z",
+      "content": "Corrie Driebusch / Wall Street Journal: Sources: Anthropic is likely to tell IPO investors that its potential revenue opportunities are above $30T, topping SpaceX's $28.5T; Uber predicted $6T in 2019 — The AI startup is likely to top SpaceX's eye-popping potential revenue estimate — SpaceX's record-breaking IPO tested the limits of an obscure financial metric.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "aws-news",
+      "externalId": "0d62c0134c150af14fc409516cdf59aff26dc9e1",
+      "title": "Happy 20th Birthday, Amazon EC2",
+      "url": "https://aws.amazon.com/blogs/aws/happy-20th-birthday-amazon-ec2/",
+      "author": "Channy Yun (윤석찬)",
+      "publishedAt": "2026-08-25T16:11:02.000Z",
+      "content": "Twenty years ago today, Jeff Barr wrote a blog post that launched the Amazon EC2 Beta. That single post introduced resizable Linux virtual servers in the cloud, billed by the hour, with one instance type (m1.small) in one Region (US East). It was minimal yet useful, and it changed how the world thinks about computing infrastructure. In 2021, Jeff covered the fifteen years of EC2 with the backstory and memorable EC2 launches. Over the last five years, AWS has continued to push the boundaries of what cloud computing can deliver, building custom silicon for general-purpose and AI workloads and expanding EC2 into new form factors and deployment models that our customers in 2006 could not have imagined. The 20 years in brief In his 15th anniversary post, Jeff chose important milestones of EC2 that established the foundational building blocks that customers still rely on today. Amazon Elastic Block Store (2008) provided persistent block storage. Elastic Load Balancing, Auto Scaling, and Amazon CloudWatch (2009) made applications scalable and highly available. Amazon Virtual Private Cloud (2009) gave customers logically isolated networks. AWS Nitro System (2017) enabled faster innovation and enhanced security. AWS Graviton processors (2018) were designed for cost-sensitive scale-out workloads. Over 20 years, EC2 grew from one to over 1,200 instance types to meet customer needs across general-purpose, compute-, memory-, and storage-optimized, accelerated computing, and high-performance computing families. These instances expanded from one AWS Region to 39 Regions globally. AWS also extended EC2 beyond the Region boundary with AWS Outposts (2018) running EC2 instances locally, AWS Local Zones (2019) place globally, and AWS Wavelength (2019) inside global 5G telecommunications carrier networks. While I hate to play favorites, I want to choose some of my favorite EC2 launches of the past five years: AWS Inferentia for ML inference at scale (2019): We introduced purpose-built ML inference instances (inf1) with AWS Inferentia chips. Amazon EC2 Inf2 instances became generally available in April 2023 for large-scale generative AI inference workloads. Together with the Inferentia family, AWS Trainium instances now give customers a full stack of AWS-designed silicon optimized for every phase of the AI lifecycle both inference and training. EC2 Mac instances (2020): The first Mac instances (mac1) were built on Apple Mac mini with Intel Core i7 (Coffee Lake) on the AWS Nitro System. Mac M1 (mac2) instances launched in July 2022 as the first Arm-based macOS instances on EC2. M2 Pro Mac instances followed in 2023, M4 and M4 Pro Mac instances in 2025, M3 Ultra Mac instances and M4 Max Mac instances in 2026, giving Apple developers a complete range of cloud-based build and test environments for macOS, iOS, iPadOS, tvOS, watchOS, and visionOS apps. AWS Trainium for full-stack AI workloads at scale (2021): In November 2021, we previewed Trn1 instances with AWS Trainium accelerators optimized for high-performance deep learning training. In December 2024, Trn2 instances powered by AWS Trainium2 launched, with Trn2 UltraServers linking 64 Trainium2 accelerators via NeuronLink for training trillion-parameter foundation models. At AWS re:Invent 2025, Trn3 UltraServers powered by AWS Trainium3 deliver the best token economics for next-generation agentic, reasoning, and video generation applications. A single Trn3 UltraServer interconnects up to 144 Trainium3 chips to train and serve the largest frontier models. Now, AWS Trainium3 delivers the leading price-performance for high-performance AI training and inference at scale. EC2 Capacity Blocks for ML (2023): This new EC2 usage model further democratizes ML democratizes ML by making it easy to access GPU instances to train and deploy ML and generative AI models. You reserve the GPU capacity you need (initially P5 instances) for a future date and only for the duration you require. In November 2024, EC2 Capacity Blocks for ML added supported for provisioning in a matter of minutes and extending up to six months. Now, EC2 Capacity Blocks for ML supports P6-B300, P6-B200, P5e, P5en, P4d, P4de, Trn1, Trn2, and Trn3 instances in addition to P5. AWS Graviton5 (2025): Building on eight years of Graviton innovation since 2018, we previewed Graviton5 chips in AWS re:Invent 2025 and launched M9g and M9gd instances powered by Graviton5 and built on the sixth-generation AWS Nitro System. C9g and C9gd followed in June 2026. Now, Graviton5 features 192 cores, a 5x larger cache, and up to 33% lower inter-core latency, making it well suited for the growing demands of agentic AI workloads such as real-time reasoning, code generation, and multi-step task orchestration that require continuous, high-throughput CPU compute at scale. AWS Nitro Isolation Engine (2026): Customers wanted to see, not just hear from us, proof of workload isolation in the Nitro Hypervisor. The Nitro Isolation Engine is a purpose-built component inside the Nitro Hypervisor, harnessing formal verification to provide mathematical assurance that customer workloads are isolated from each other and AWS operators, pioneering a new standard for mathematically proven cloud security. This feature is also based on the sixth-generation AWS Nitro System which has continued to evolve since our introduction in 2017. The foundation underneath it all Despite two decades of innovation, the fundamental value proposition of Amazon EC2 has not changed. Customers use it to get secure, resizable compute capacity in minutes, pay only for what they consume, and scale on demand without long-term commitments. That same flexibility now extends to AI workloads at a scale no one anticipated in 2006. EC2 remains the foundational compute layer of AWS. Amazon ECS, Amazon EKS, AWS Lambda, AWS Fargate, AWS Batch, Amazon EMR, Amazon SageMaker AI, and Amazon Bedrock ultimately run on EC2 capacity. Every architectural pattern customers have built over the past twenty years, from simple web servers to trillion-parameter foundation model training clusters, starts with a decision to launch an instance. We made strong foundational decisions in 2006, and we left room for the service to grow. Twenty years later, that strategy of creating services that are minimal-yet-useful, launching quickly, and iterating rapidly in response to your feedback continues to guide how we build. The next twenty years of cloud computing will demand capabilities we have not yet imagined. Amazon EC2 will continue to be the foundation where your workloads run. To learn more about Amazon EC2, visit the Amazon EC2 product page or check out what’s new with EC2. — Channy",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=984390",
+      "title": "Polestar claims it was blindsided by sales ban",
+      "url": "https://www.theverge.com/transportation/984390/polestar-blindsided-sales-ban-letter-dealer-trump",
+      "author": "Andrew J. Hawkins",
+      "publishedAt": "2026-08-25T16:14:45.000Z",
+      "content": "BEVERLY HILLS, CALIFORNIA - JUNE 26: Polestar cars are displayed in the showroom at a Polestar dealership on June 26, 2026 in Beverly Hills, California. Electric car maker Polestar will be barred from selling new vehicles in the United States starting with the 2027 model year after the Commerce Department cited national security concerns under new connected-vehicle regulations. (Photo by Justin Sullivan/Getty Images) | Getty Images Polestar said the Trump administration strung it along for months before finally rejecting its request to continue selling its electric vehicles in the US under a rule outlawing vehicles with connected software from China. In an August 18th letter sent to dealers and obtained by The Verge, Polestar said it doesn't have a clear answer as to why its application to continue selling its EVs in the US was denied, considering its sister company Volvo was authorized to sell its vehicles despite similar corporate ownership. (The letter was first reported by The Wall Street Journal.) The US Department of Commerce approved Volvo in May 2026 to con … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260825/p34#a260825p34",
+      "title": "Stability AI, which has deals with UMG, WMG, and EA to build AI models from their IP, raised a $76M Series B from them, Sony Music, and others (Corbin Bolies/Variety)",
+      "url": "https://www.techmeme.com/260825/p34#a260825p34",
+      "author": null,
+      "publishedAt": "2026-08-25T16:15:01.000Z",
+      "content": "Corbin Bolies / Variety: Stability AI, which has deals with UMG, WMG, and EA to build AI models from their IP, raised a $76M Series B from them, Sony Music, and others — Stability AI, the AI startup backed by the likes of James Cameron and Sean Parker, has raised $76 million in a Series B funding round from a roster …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23189",
+      "title": "EchoWM: Open and Enterable Omnimodal World Models",
+      "url": "https://huggingface.co/papers/2608.23189",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "EchoWM: Open and Enterable Omnimodal World Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23035",
+      "title": "MobilePA-Bench: Benchmarking Mobile Planner Agents on Complex Real-World Tasks",
+      "url": "https://huggingface.co/papers/2608.23035",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "MobilePA-Bench: Benchmarking Mobile Planner Agents on Complex Real-World Tasks",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.19567",
+      "title": "Block3D: Efficient Text-to-3D Generation via Block-Wise Diffusion",
+      "url": "https://huggingface.co/papers/2608.19567",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "Block3D: Efficient Text-to-3D Generation via Block-Wise Diffusion",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23392",
+      "title": "Towards a Densing Law for User Representation Learning at Billion-Scale Capacity",
+      "url": "https://huggingface.co/papers/2608.23392",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "Towards a Densing Law for User Representation Learning at Billion-Scale Capacity",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23311",
+      "title": "Beyond the Stability-Exploration Dilemma: Environmental Regularization for LLM Policy Optimization",
+      "url": "https://huggingface.co/papers/2608.23311",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "Beyond the Stability-Exploration Dilemma: Environmental Regularization for LLM Policy Optimization",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.19741",
+      "title": "One Success Isn't Reliability: Thinkingbox, a Sandbox and Benchmark for Agents in Stateful Business Workflows",
+      "url": "https://huggingface.co/papers/2608.19741",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "One Success Isn't Reliability: Thinkingbox, a Sandbox and Benchmark for Agents in Stateful Business Workflows",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.17906",
+      "title": "AutoResearch: Insight In, Hallucination Out",
+      "url": "https://huggingface.co/papers/2608.17906",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "AutoResearch: Insight In, Hallucination Out",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20953",
+      "title": "Quantization-Aware Healing: A Practical Recipe for Recovering Compressed, 4-Bit LLMs",
+      "url": "https://huggingface.co/papers/2608.20953",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "Quantization-Aware Healing: A Practical Recipe for Recovering Compressed, 4-Bit LLMs",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.22872",
+      "title": "Better Retrieval, Worse Robustness:How Multi-hop RAG Amplifies Upstream ASR Errors",
+      "url": "https://huggingface.co/papers/2608.22872",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "Better Retrieval, Worse Robustness:How Multi-hop RAG Amplifies Upstream ASR Errors",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23200",
+      "title": "LongWoF-Bench: Evaluating EvoMap Genes for Verifiable Long-Workflow Tasks",
+      "url": "https://huggingface.co/papers/2608.23200",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "LongWoF-Bench: Evaluating EvoMap Genes for Verifiable Long-Workflow Tasks",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2606.13610",
+      "title": "One Polluted Page Is Enough: Evaluating Web Content Pollution in LLM Recommenders",
+      "url": "https://huggingface.co/papers/2606.13610",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "One Polluted Page Is Enough: Evaluating Web Content Pollution in LLM Recommenders",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.22817",
+      "title": "Industrial-Instruction: An End-to-End Framework for Building Instruction-Tuning and Benchmark Datasets from Industrial Technical Reports",
+      "url": "https://huggingface.co/papers/2608.22817",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "Industrial-Instruction: An End-to-End Framework for Building Instruction-Tuning and Benchmark Datasets from Industrial Technical Reports",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.22849",
+      "title": "RIBOSPAN: A Long-Context RNA Foundation Model for Versatile RNA Modeling",
+      "url": "https://huggingface.co/papers/2608.22849",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "RIBOSPAN: A Long-Context RNA Foundation Model for Versatile RNA Modeling",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.13914",
+      "title": "Hybrid Quantum-inspired Kolmogorov-Arnold Networks for Privacy-Aware Federated Biosignal Learning",
+      "url": "https://huggingface.co/papers/2608.13914",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "Hybrid Quantum-inspired Kolmogorov-Arnold Networks for Privacy-Aware Federated Biosignal Learning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23070",
+      "title": "From Generation to Simulation: How Far Are World Models from Being True Simulators?",
+      "url": "https://huggingface.co/papers/2608.23070",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "From Generation to Simulation: How Far Are World Models from Being True Simulators?",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.22591",
+      "title": "WorldToken: Time-First Sequence Modeling for Robotic Imitation Learning",
+      "url": "https://huggingface.co/papers/2608.22591",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "WorldToken: Time-First Sequence Modeling for Robotic Imitation Learning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.21486",
+      "title": "EXPL-FR: Explaining Face Recognition Models via Vision-Language Alignment",
+      "url": "https://huggingface.co/papers/2608.21486",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "EXPL-FR: Explaining Face Recognition Models via Vision-Language Alignment",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.21455",
+      "title": "Tomatoes, Potatoes, and Onions: Questioning the Need for Faces in Face Presentation Attack Detection",
+      "url": "https://huggingface.co/papers/2608.21455",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "Tomatoes, Potatoes, and Onions: Questioning the Need for Faces in Face Presentation Attack Detection",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23252",
+      "title": "The Laws of Context Allocation: Causal Measurement and Closed-Loop Orchestration in Generative Search",
+      "url": "https://huggingface.co/papers/2608.23252",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:48.176Z",
+      "content": "The Laws of Context Allocation: Causal Measurement and Closed-Loop Orchestration in Generative Search",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://electrek.co/2026/08/24/tesla-cybercab-exclusive-access-robotaxi-sept-3/?utm_source=tldrnewsletter",
+      "title": "Tesla confirms Cybercab launch coming next week",
+      "url": "https://electrek.co/2026/08/24/tesla-cybercab-exclusive-access-robotaxi-sept-3/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.973Z",
+      "content": "Tesla confirms Cybercab launch coming next week (5 minute read)Tesla is holding an invite-only event to launch the Cybercab in Austin on September 3. The invitations are going to the riders who logged the most Robotaxi trips and winners of a draw. Estimates currently put Tesla's active unsupervised fleet at roughly 20 to 30 vehicles. Tesla claims to have driven about 380,000 cumulative unsupervised miles as of its July earnings call.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-08-25/apple-to-launch-new-mac-mini-airpods-5-and-oled-ipad-mini-timing-details?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc4NzYzMjMwMywiZXhwIjoxNzg4MjM3MTAzLCJhcnRpY2xlSWQiOiJUS0FOUk1UOU5KTFMwMCIsImJjb25uZWN0SWQiOiJCMzZENUE5QzIxMDQ0NjU4OTFBMTc1MTVDRDNBQkZFNiJ9.U7K_-LYyuIqPNfPcN7pxM2FSIxM8S_X7Pms_tZw-UaY&utm_source=tldrnewsletter",
+      "title": "Apple Gears Up to Launch Its First New Mac Mini in Two Years",
+      "url": "https://www.bloomberg.com/news/articles/2026-08-25/apple-to-launch-new-mac-mini-airpods-5-and-oled-ipad-mini-timing-details?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc4NzYzMjMwMywiZXhwIjoxNzg4MjM3MTAzLCJhcnRpY2xlSWQiOiJUS0FOUk1UOU5KTFMwMCIsImJjb25uZWN0SWQiOiJCMzZENUE5QzIxMDQ0NjU4OTFBMTc1MTVDRDNBQkZFNiJ9.U7K_-LYyuIqPNfPcN7pxM2FSIxM8S_X7Pms_tZw-UaY&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.974Z",
+      "content": "Apple Gears Up to Launch Its First New Mac Mini in Two Years (4 minute read)Apple's first new Mac mini in almost two years will debut as soon as the next few days. The upgrade follows a surge in demand for the current Mac mini, which has become popular for running AI applications locally. It is part of a wave of new products Apple plans to release in the second half of this year. Apple is set to hold an event on September 9 where it will introduce its first foldable smartphone, as well as the iPhone 18 Pro line. The company is also preparing a range of new Apple Watches and fresh AirPods.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/gadgets/2026/08/energy-hungry-ai-data-centers-spur-new-power-transformer-technology/?utm_source=tldrnewsletter",
+      "title": "Data centers become “killer application” for new power transformer tech",
+      "url": "https://arstechnica.com/gadgets/2026/08/energy-hungry-ai-data-centers-spur-new-power-transformer-technology/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.974Z",
+      "content": "Data centers become “killer application” for new power transformer tech (7 minute read)The AI data center boom has accelerated investment into solid-state power transformers. This technology relies on high-frequency semiconductor switching to perform voltage conversions and can be mass-manufactured using semiconductor materials such as silicon carbide. Solid-state power transformers are physically smaller and lighter than conventional transformers and have modular designs that enable easy upgrades and replacements of parts. They can directly convert AC power from a local grid's distribution network into the DC power that data centers require.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://itcanthink.substack.com/p/approaching-robotics-hardware-takeoff?utm_source=tldrnewsletter",
+      "title": "Approaching Robotics Hardware Takeoff",
+      "url": "https://itcanthink.substack.com/p/approaching-robotics-hardware-takeoff?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.974Z",
+      "content": "Approaching Robotics Hardware Takeoff (9 minute read)The World Humanoid Games in Beijing showed how much has changed since last year. The robots are faster, more intelligent, and more capable. The rapid pace of robotic hardware and software innovation is enabling a robust ecosystem that can both build things and isn't afraid to break them. There is now a massive number of companies producing a truly amazing number of robots.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://newsletter.port.io/p/how-uber-built-a-software-factory?utm_source=tldrnewsletter",
+      "title": "How Uber built a software factory for agentic coding: the MCP gateway and the platform underneath",
+      "url": "https://newsletter.port.io/p/how-uber-built-a-software-factory?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.975Z",
+      "content": "How Uber built a software factory for agentic coding: the MCP gateway and the platform underneath (18 minute read)More than 70% of pull requests at Uber are now written by AI agents. Code shipped per engineer has doubled in a year. This was enabled through a software factory that runs on a platform that Uber built. The platform gives agents the pieces they need to work safely across thousands of engineers. This post looks at how the factory was built. It covers what MCP gateways are and why they are needed for agentic coding at scale, workflows, and more.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.vedanshh.com/blog/context-engineering?utm_source=tldrnewsletter",
+      "title": "The State Machine Nobody Designed",
+      "url": "https://www.vedanshh.com/blog/context-engineering?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.976Z",
+      "content": "The State Machine Nobody Designed (17 minute read)Every part of an agent harness adds information to the model's context, controls what information is allowed into that context, or checks the model's output after it is generated. This is just context engineering. Thinking in terms of harnesses makes developers think in terms of adding components. Context is limited, so it's not just about what you can add, but about what's worth keeping as well. The context window is the whole state machine.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://paulgraham.com/prepare.html?utm_source=tldrnewsletter",
+      "title": "How Universities Should Prepare Founders",
+      "url": "https://paulgraham.com/prepare.html?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.984Z",
+      "content": "How Universities Should Prepare Founders (12 minute read)Universities tend to resist the idea of keeping students less busy with coursework, partly because educators feel they have to take active measures to achieve something. However, student founders should be left alone to their own projects, partly because they will be more excited to work on a project that's entirely their own, and because many projects wouldn't survive official recognition. It seems excessive to change the whole schedule of a university just to encourage would-be founders, but giving students some of their time back would help all of the most energetic and ambitious ones. They'd have time to explore new things if the pressure of work were relieved for even a week or two.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.nytimes.com/2026/08/24/business/media/amazon-youtube-netflix-streaming-platform.html?unlocked_article_code=1.71A.eTI0.gdO_UDMiC1kn&smid=url-share&utm_source=tldrnewsletter",
+      "title": "The Biggest Dogs in Streaming Want You to Use Only Their App",
+      "url": "https://www.nytimes.com/2026/08/24/business/media/amazon-youtube-netflix-streaming-platform.html?unlocked_article_code=1.71A.eTI0.gdO_UDMiC1kn&smid=url-share&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.984Z",
+      "content": "The Biggest Dogs in Streaming Want You to Use Only Their App (3 minute read)YouTube and Roku are racing to become one-stop shops for all of the content people watch on their TVs. Some paying YouTube subscribers will soon have access to content from Peacock as part of a recent deal between the two companies. The streaming wars have now morphed into a bundling war. The biggest streaming companies no longer just want to have the most subscribers - they also want to be the main entry point to everything streaming has to offer.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://fzakaria.com/2026/08/23/your-executable-is-a-sqlite-database?utm_source=tldrnewsletter",
+      "title": "Your executable is a SQLite database",
+      "url": "https://fzakaria.com/2026/08/23/your-executable-is-a-sqlite-database?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.985Z",
+      "content": "Your executable is a SQLite database (30 minute read)This post explores whether it is possible to replace ELF with SQLite as an executable format.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.sshh.io/p/the-harness-is-the-company?utm_source=tldrnewsletter",
+      "title": "The Harness Is the Company",
+      "url": "https://blog.sshh.io/p/the-harness-is-the-company?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.985Z",
+      "content": "The Harness Is the Company (7 minute read)Leaders should work on building an organization where great people can do their best work, and then use AI to multiply that.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thezvi.substack.com/p/the-american-people-really-hate-data?utm_source=tldrnewsletter",
+      "title": "The American People Really Hate Data Centers",
+      "url": "https://thezvi.substack.com/p/the-american-people-really-hate-data?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.985Z",
+      "content": "The American People Really Hate Data Centers (28 minute read)75% oppose local data center development, despite the economic benefits.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://newsletter.eng-leadership.com/p/good-culture-is-the-biggest-productivity?utm_source=tldrnewsletter",
+      "title": "Good Culture is the Biggest Productivity Hack, Not AI",
+      "url": "https://newsletter.eng-leadership.com/p/good-culture-is-the-biggest-productivity?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.985Z",
+      "content": "Good Culture is the Biggest Productivity Hack, Not AI (12 minute read)Making employees worry about their jobs breaks a good culture as it totally decreases psychological safety.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://potsandpansbyccg.com/2026/08/24/starlinks-interesting-approach-to-cellular/?utm_source=tldrnewsletter",
+      "title": "Starlink's Interesting Approach to Cellular",
+      "url": "https://potsandpansbyccg.com/2026/08/24/starlinks-interesting-approach-to-cellular/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.985Z",
+      "content": "Starlink's Interesting Approach to Cellular (4 minute read)StarLink plans to enter the terrestrial cellular business by building a large number of cell sites provisioned with satellite backhaul.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wsj.com/tech/ai/ai-world-models-robotics-33ab46cb?st=xnEhg4&reflink=desktopwebshare_permalink&utm_source=tldrnewsletter",
+      "title": "AI's Next Big Leap Is Into the Real World",
+      "url": "https://www.wsj.com/tech/ai/ai-world-models-robotics-33ab46cb?st=xnEhg4&reflink=desktopwebshare_permalink&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-25T16:18:50.986Z",
+      "content": "AI's Next Big Leap Is Into the Real World (8 minute read)Doing real physical work requires world models, aka 'large action models'.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
       "mediaType": "text"
     }
   ]
