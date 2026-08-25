@@ -1,0 +1,1241 @@
+{
+  "day": "2026-08-25",
+  "generatedAt": "2026-08-25T03:57:50.734Z",
+  "items": [
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.20363v2",
+      "title": "Scalpel3: A High-Performance Data Carving Architecture for Recovery of Fragmented Files",
+      "url": "https://arxiv.org/abs/2608.20363",
+      "author": "Karley Waguespack, Samuel Goodwin, George Hendrick, Samuel Hildebrand, Thomas Landaiche III, Mingyang Li, Joshua McCain, Tyler Saizan, Jacob Tucker, James M. Ghawaly, Golden G. Richard III",
+      "publishedAt": "2026-08-24T04:00:00.000Z",
+      "content": "File carving recovers files from raw storage without filesystem metadata, a key capability in digital forensics, data recovery, and digital exploration. Existing tools recover contiguous files effectively, but, to our knowledge, no publicly available, format-agnostic, high-performance framework exists in which researchers can develop and deploy new fragmented recovery strategies. Scalpel3 fills this gap with a massively threaded architecture for contiguous and fragmented recovery. Researchers need only write single-threaded validation and reassembly code for a new file type; Scalpel3 supplies worker scheduling, synchronization, checkpointing, and I/O. This separation allows new recovery methods to be added without modifying the backend infrastructure. The architecture also integrates the ONNX Runtime, allowing learned models to be used within validators and recovery strategies. Operational features include interactive human-in-the-loop control, block deduplication, persistent restart checkpoints, incremental output, and a FUSE filesystem for hybrid workflows. We evaluate Scalpel3 on a mixed corpus of more than 80,000 files under contiguous recovery and three controlled fragmentation scenarios: gaps, out-of-order block placement, and both together. Results show fast and accurate contiguous recovery and demonstrate that Scalpel3's massively threaded architecture makes validated fragmented results available substantially earlier than single-threaded execution. Furthermore, strategies tailored to individual file types maintain high overall accuracy across increasingly difficult layouts. Together, these results demonstrate that Scalpel3 provides a practical foundation for developing and deploying fragmented recovery strategies at scale.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49418255",
+      "title": "SeL4 security proofs now complete on AArch64",
+      "url": "https://proofcraft.systems/news-2026/#2026-08-21",
+      "author": "snvzz",
+      "publishedAt": "2026-08-24T11:32:51.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 175,
+      "comments": 38
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/gpt-5-6-in-kiro",
+      "title": "Advancing price-performance for developers with GPT‑5.6 in Kiro",
+      "url": "https://openai.com/index/gpt-5-6-in-kiro",
+      "author": null,
+      "publishedAt": "2026-08-24T12:00:00.000Z",
+      "content": "GPT‑5.6 is now available in Kiro, helping developers plan, build, review, and test software with better price-performance.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49419237",
+      "title": "How Europe is killing makers and micro-entrepreneurs",
+      "url": "https://lectronz.com/u/lectronz/articles/how-europe-is-killing-makers-and-micro-entrepreneurs",
+      "author": "l-one-lone",
+      "publishedAt": "2026-08-24T13:05:25.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 1112,
+      "comments": 674
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49419351",
+      "title": "Show HN: A techno machine in one HTML file, with verifiable renders",
+      "url": "https://ssx360.github.io/rack-02/?src=hn",
+      "author": "ssx360",
+      "publishedAt": "2026-08-24T13:17:11.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 186,
+      "comments": 32
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/08/trump-tried-to-curb-clean-energy-its-booming-anyway/",
+      "title": "Trump tried to curb clean energy. It’s booming anyway.",
+      "url": "https://arstechnica.com/science/2026/08/trump-tried-to-curb-clean-energy-its-booming-anyway/",
+      "author": "\n                    Martha Muir, Financial Times\n                ",
+      "publishedAt": "2026-08-24T14:43:56.000Z",
+      "content": "Donald Trump is presiding over an unexpected clean energy boom, as rising electricity demand spurs investment in new capacity despite the US administration’s efforts to thwart a solar and wind rollout. Clean energy additions will rise by a record 45 gigawatts this year, according to S&P Global Energy—equivalent to the average electricity demand of Turkey. The increase is roughly 25 percent higher than the record set in 2024. The US president’s war in Iran, which has driven up global energy prices, along with surging power demand from AI data centers and developers’ rush to capitalize on expiring tax credits, are driving the cleantech boom, said analysts. Trump’s administration has also been pragmatic in the face of its energy needs.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49420530",
+      "title": "Peppermint oil reduces blood pressure by 8.48 mmHg in small study",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0344538",
+      "author": "brandonb",
+      "publishedAt": "2026-08-24T14:44:55.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 108,
+      "comments": 66
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49420873",
+      "title": "Xiaomi: New CPU matches Apple cores single threaded, much faster multithreaded",
+      "url": "https://twitter.com/lemire/status/2091894299289874926",
+      "author": "tosh",
+      "publishedAt": "2026-08-24T15:08:17.000Z",
+      "content": "https://xcancel.com/lemire/status/2091894299289874926",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 766,
+      "comments": 514
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49420902",
+      "title": "Anna's Archive Owes $340 Million, Lost Several Domains, but It's Still Online",
+      "url": "https://torrentfreak.com/annas-archive-owes-340-million-lost-several-domains-but-its-still-online/",
+      "author": "Brajeshwar",
+      "publishedAt": "2026-08-24T15:10:25.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 250,
+      "comments": 166
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/liquid-ai-s-pipette-exposes-what-server-benchmarks-hide-about-phone-ai",
+      "title": "Liquid AI's Pipette Exposes What Server Benchmarks Hide About Phone AI",
+      "url": "https://alphasignal.ai/news/liquid-ai-s-pipette-exposes-what-server-benchmarks-hide-about-phone-ai",
+      "author": "Liquid AI",
+      "publishedAt": "2026-08-24T15:11:58.000Z",
+      "content": "Liquid AI and Artificial Analysis release an open-source suite that measures model quality, speed, latency, and memory across real phones, laptops, and embedded hardware.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49421074",
+      "title": "OpenAI: GPT 5.6 Sol price reduction (until at least Nov 21)",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "author": "tosh",
+      "publishedAt": "2026-08-24T15:22:43.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 312,
+      "comments": 285
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49421158",
+      "title": "MS Paint and Photos inivisibly watermark even locally generated output with GUID",
+      "url": "https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/",
+      "author": "ComputerGuru",
+      "publishedAt": "2026-08-24T15:28:04.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 599,
+      "comments": 239
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/elevenlabs-cli-v1-moves-its-entire-voice-agent-platform-into-the-terminal",
+      "title": "ElevenLabs CLI v1 Moves Its Entire Voice Agent Platform Into the Terminal",
+      "url": "https://alphasignal.ai/news/elevenlabs-cli-v1-moves-its-entire-voice-agent-platform-into-the-terminal",
+      "author": "ElevenLabs Developers",
+      "publishedAt": "2026-08-24T15:48:29.000Z",
+      "content": "ElevenLabs ships a terminal-first CLI that treats voice agents as version-controlled config files, with structured JSON and skills for coding agents.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49421489",
+      "title": "IPFS Maintainers Winding Down",
+      "url": "https://ipshipyard.com/blog/2026-the-end-of-ipfs-at-shipyard/",
+      "author": "iand",
+      "publishedAt": "2026-08-24T15:48:45.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 337,
+      "comments": 168
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49421536",
+      "title": "Jabber/XMPP: 25 Years of Digital Independence",
+      "url": "https://gultsch.de/posts/25-years-of-digital-independence/",
+      "author": "inputmice",
+      "publishedAt": "2026-08-24T15:51:31.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 188,
+      "comments": 84
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49421554",
+      "title": "Coding expertise is going to collapse from AI reliance",
+      "url": "https://larsfaye.com/articles/ai-coding-will-prevent-expertise",
+      "author": "larsfaye",
+      "publishedAt": "2026-08-24T15:52:33.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 497,
+      "comments": 485
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/cars/2026/08/f1-in-the-netherlands-the-driver-you-most-want-to-beat-is-your-teammate/",
+      "title": "F1 in the Netherlands: The driver you most want to beat is your teammate",
+      "url": "https://arstechnica.com/cars/2026/08/f1-in-the-netherlands-the-driver-you-most-want-to-beat-is-your-teammate/",
+      "author": "\n                    Jonathan M. Gitlin\n                ",
+      "publishedAt": "2026-08-24T16:02:54.000Z",
+      "content": "After months of rumors surrounding his future, now we know: Four-time champion Max Verstappen is staying in the sport for the foreseeable future. The news broke on the eve of the Dutch Grand Prix, held this past weekend at Zandvoort in the Netherlands as F1 returned from its mandatory summer vacation. Verstappen's wasn't the only contract news—Williams will keep both Alex Albon and Carlos Sainz, too. More than once I've noticed a driver having an underwhelming weekend following a freshly signed contract; in this case, all three had a weekend they'd probably rather forget. They weren't the only ones, though. Up and down the grid, we saw friction between teammates. And there's no one an F1 driver wants to beat more than the only other person to have the same car as they do. Formula 1 returned from its summer break with this weekend's Dutch Grand Prix.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49421806",
+      "title": "Show HN: PicoMQ – Durable Streams over HTTP, on object storage",
+      "url": "https://picomq.com/",
+      "author": "adesh_nalpet",
+      "publishedAt": "2026-08-24T16:08:17.000Z",
+      "content": "PicoMQ is a Rust server for Durable Streams, built on Object Store. Cheap, URL-addressable, granular streams (create/append/read/long-poll/SSE), with Pico Protocol or Durable Streams Protocol as the facade.S3Stream is the stream storage primitive, used in AutoMQ, shipped as a Rust library. Coordination is a command log in Postgres.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 104,
+      "comments": 20
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/elastic-build-machines-now-use-turborepo-cache-hits-to-prevent-downgrades",
+      "title": "Elastic build machines now use Turborepo cache hits to prevent downgrades",
+      "url": "https://vercel.com/changelog/elastic-build-machines-now-use-turborepo-cache-hits-to-prevent-downgrades",
+      "author": "Mehul Kar",
+      "publishedAt": "2026-08-24T16:11:00.000Z",
+      "content": "now consider cache hits when deciding whether to use a smaller build machine. A warm-cache build no longer triggers a downgrade. Elastic build machinesTurborepoA warm-cache build can use less CPU and memory than the same build with a cold cache. Downgrading based on that lower usage could leave a later cold-cache build without enough resources to complete successfully.This change applies automatically to all builds using elastic build machines. No action is required. Learn more in the .build documentationRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/liquid-ai-s-lfm2-5-beats-bigger-rivals-in-real-on-device-phone-benchmarks",
+      "title": "Liquid AI's LFM2.5 Beats Bigger Rivals in Real On-Device Phone Benchmarks",
+      "url": "https://alphasignal.ai/news/liquid-ai-s-lfm2-5-beats-bigger-rivals-in-real-on-device-phone-benchmarks",
+      "author": "Artificial Analysis",
+      "publishedAt": "2026-08-24T16:14:15.000Z",
+      "content": "Artificial Analysis and Liquid AI launched a joint benchmark measuring how quantized small models actually perform on iPhone 17 Pro and Galaxy S26 Ultra.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49421948",
+      "title": "Show HN: GlassBox – what the browser reveals, and how identifiable you are",
+      "url": "https://glassbox.codecanary.org",
+      "author": "tke248",
+      "publishedAt": "2026-08-24T16:15:10.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 103,
+      "comments": 50
+    },
+    {
+      "sourceSlug": "aws-news",
+      "externalId": "2c1999b3f40dcbf5fbc95e907da3c6141bbc8c45",
+      "title": "AWS Weekly Roundup: Student Rewards on AWS Builder Center, Local Zone in Las Vegas, and more (August 24, 2026)",
+      "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-student-rewards-on-aws-builder-center-local-zone-in-las-vegas-and-more-august-24-2026/",
+      "author": "Esra Kayabali",
+      "publishedAt": "2026-08-24T16:20:15.000Z",
+      "content": "During my time at AWS, I have always looked for opportunities to work with students. I have delivered over 50 talks at universities across the region, and watching the potential in the room is always a strong motivator. It reminds me of why I do this work, and that the students I meet today may well become our customers and collaborators tomorrow. That is why I am happy to open this week with Student Rewards on AWS Builder Center. Rick Suttles published Introducing Student Rewards on AWS Builder Center, a new benefit for verified higher education students. When you verify your enrollment through SheerID and complete your Builder Center profile, you unlock 12 months of premium AWS Skill Builder access (900+ courses, hands-on labs, certification exam prep, and game-based learning). From there, you earn badges through actions on Builder Center: publishing articles, commenting, and maintaining engagement. At 7 badges, you unlock $10 in AWS Credits. At 14 badges, another $20 in credits. At 21 badges, you earn an AWS Foundational Certification exam voucher ($100 value). This represents a commitment of over $500 million in resources during this back-to-school season, providing students with the training, tools, and certification needed to start building their careers in cloud and AI. Student Rewards is available to students 18 years or older and enrolled at accredited higher education institutions worldwide, subject to verification and applicable terms. Verify your student status and start learning, earning badges, and unlocking rewards! Last week’s launches Here’s what else happened this week. A new AWS Local Zone in Las Vegas, Nevada – This new Local Zone supports Amazon EC2 C7i, M7i, R7i, and C8gn instances, Amazon EBS, Amazon ECS, Amazon EKS, Application Load Balancer, and AWS Direct Connect. AWS Local Zones are now available in more than 30 metropolitan areas worldwide. In addition, AWS added a fourth Availability Zone to the Europe (London) Region, delivering next-generation AI and ML capacity with Trn3 and P6 accelerated instances alongside general-purpose compute. Amazon EC2 Auto Scaling now supports batch instance termination – You can now pass up to 100 instance IDs to the TerminateInstanceInAutoScalingGroup API to terminate them as a batch, reducing the number of API calls needed to scale down your Auto Scaling groups. Batch termination is designed for workloads that need to rapidly scale down, such as AI/ML training jobs, container orchestrators, or event-driven architectures that spin up large fleets temporarily. AWS CloudShell now includes a built-in visual file editor – CloudShell now includes a visual file editor that you can launch directly from your shell session using a single edit command. The editor supports syntax highlighting, find-and-replace, multi-line selection, copy-paste, and undo-redo in a single browser session. Whether you are updating a deployment script, modifying an agent steering file, editing a CloudFormation template, or fixing a Lambda function, the editor provides a seamless edit-and-run experience without leaving CloudShell. Amazon Bedrock now supports SpaceXAI Grok 4.6 with cross-Region inference – Grok 4.6, a frontier model built for coding, agentic tasks, and knowledge work, is now available on Amazon Bedrock. The model runs on the bedrock-runtime endpoint with support for the Responses, Chat Completions, and Converse APIs, and works with existing account-level controls including model invocation logging, Amazon CloudWatch metrics, and cost itemization in AWS Cost Explorer. Amazon Bedrock expands API support and introduces cross-Region inference for OpenAI models – Amazon Bedrock now supports OpenAI GPT-5.6 models (Sol, Terra, and Luna) with the Responses, Converse, and Chat Completions APIs, and adds cross-Region inference. Geo cross-Region inference routes requests within a predefined geography (including new US Geo support with this launch), while Global cross-Region inference serves requests from any commercial AWS Region at a lower per-token cost. AgentCore payments is now generally available in Amazon Bedrock AgentCore – At general availability, AgentCore payments includes Quick Create for Coinbase credential provisioning directly within the AgentCore console, a curated Coinbase Bazar MCP server of pay-per-use x402 endpoints via AgentCore gateway, support for the Machine Payment Protocol (MPP), and the “upto” scheme in the x402 protocol for pay-per-inference and dynamic pricing use cases. To learn more, visit the AI Blog post. AWS Glue 6.0 delivers 30% price reduction and Iceberg v3 support – AWS Glue 6.0 is built on a fully modernized runtime, Apache Spark 4.1, Python 3.13, and Scala 2.13, delivering 30% lower pricing than previous AWS Glue versions. With Iceberg v3, Glue 6.0 adds the VARIANT data type with automatic shredding for faster reads on semi-structured data, deletion vectors for high-performance row-level updates, geometry and geography data types for spatial processing, and flexible schema evolution. For a full list of AWS announcements, be sure to keep an eye on the What’s New with AWS page. Other AWS news Here are some additional posts you may find useful: Updates to your AWS Sign-In experience – AWS is gradually introducing updates to the sign-in and sign-up experience. The redesigned sign-in page introduces a unified email entry point for root users and customers using the new email-based sign-in method, while IAM users continue signing in with their account ID, username, and password. The page also includes sign-in options for customers whose AWS account was created using a supported identity provider (Google, GitHub, Apple, or Amazon.com). A redesigned session selection page simplifies viewing and managing multiple active account and role sessions. If your organization relies on browser automation or scripted workflows that interact with the sign-in page, review the post to understand how these changes might affect your configuration. In the works: AWS Builder Lofts in Berlin, Hyderabad, and São Paulo – My colleague Channy announced plans to open new Builder Lofts in three cities. Since the first Builder Loft opened in San Francisco in July 2025, it has welcomed more than 22,500 developers through its doors. Each new location will be a permanent community space offering free workshops, networking events, pitch nights, content creation spaces, and co-working areas. Berlin will focus on digital sovereignty and security-readiness, Hyderabad on AI and cloud-native architecture, and São Paulo on supporting Latin America’s developer ecosystem. AWS and Amazon WorkSpaces recognized as a Leader in the 2026 Gartner Magic Quadrant for Desktop as a Service – AWS has been named a Leader in the 2026 Gartner Magic Quadrant for Desktop as a Service (DaaS) for the third consecutive year, evaluated on Completeness of Vision and Ability to Execute. Gartner noted strengths in operations, geographic strategy, and overall viability. This is also the first year the evaluation includes Amazon WorkSpaces for AI agents, a capability that runs AI agents within the same desktop environment, security perimeter, and audit trail as human users. For a full list of AWS blog posts, be sure to keep an eye on the AWS Blogs page. Upcoming AWS events Check your calendar and sign up for upcoming AWS events: AWS Summits – Free in-person events for builders and innovators to learn, connect, and explore the latest in cloud. Coming up: Zurich (September 2), São Paulo (September 3), Tel Aviv (September 10), and Dubai (September 30). You can also watch keynotes and sessions on the AWS Summits Global Livestream + On-Demand Hub. To access live and on-demand content for a particular Summit, you need to be registered for that event. AWS Community Days – Community-led conferences planned and delivered by community leaders. Upcoming events include Bolivia, Santa Cruz (August 29), Toronto, Canada (August 29), JAWS SONIC, Tokyo (September 5), Warsaw, Poland (September 8). Visit the AWS Builder Center to meet other builders, contribute solutions, and find resources that help you keep building. Summer is slowly coming to an end, and I am already planning a few days off in the coming months to keep me motivated through the rainy autumn ahead. I hope you are doing the same. Come back next week for more! — Esra",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/pika-api-club-lets-developers-access-100-ai-models-for-10",
+      "title": "Pika API Club Lets Developers Access 100 AI Models for $10",
+      "url": "https://alphasignal.ai/news/pika-api-club-lets-developers-access-100-ai-models-for-10",
+      "author": "Pika",
+      "publishedAt": "2026-08-24T16:22:58.000Z",
+      "content": "Pika launches a $10/month API Club offering 100+ generative media models through one endpoint, at up to 88% below rival aggregator prices.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Aug/24/llm-anthropic/",
+      "title": "llm-anthropic 0.27",
+      "url": "https://simonwillison.net/2026/Aug/24/llm-anthropic/",
+      "author": null,
+      "publishedAt": "2026-08-24T16:27:04.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49422204",
+      "title": "A Blackstone real estate company exposed SSN digits, DOBs, addresses and more",
+      "url": "https://alexschapiro.com/security/vulnerability/2026/07/16/beam-living-graphql-data-exposure",
+      "author": "bearsyankees",
+      "publishedAt": "2026-08-24T16:29:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 112,
+      "comments": 48
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/what-8-100-trial-records-reveal-about-the-strengths-and-flaws-in-ai-agent-skills",
+      "title": "AI agent skills: Why they succeed and what causes them to crash",
+      "url": "https://alphasignal.ai/news/what-8-100-trial-records-reveal-about-the-strengths-and-flaws-in-ai-agent-skills",
+      "author": "Ben Dickson",
+      "publishedAt": "2026-08-24T16:29:12.000Z",
+      "content": "Everyone's adding skills to their agents. Almost no one knows when they help, why they work, or where they fail.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/08/nvidia-senior-manager-linked-to-supermicro-scheme-smuggling-ai-servers-to-china/",
+      "title": "Nvidia senior manager linked to Supermicro scheme smuggling AI servers to China",
+      "url": "https://arstechnica.com/tech-policy/2026/08/nvidia-senior-manager-linked-to-supermicro-scheme-smuggling-ai-servers-to-china/",
+      "author": "\n                    Ashley Belanger\n                ",
+      "publishedAt": "2026-08-24T16:41:45.000Z",
+      "content": "Taiwan has indicted nine people—reportedly including an Nvidia senior manager and two Supermicro employees based in the country—who allegedly helped forge documents to cover up illegal exports of high-end AI servers to China in violation of US export controls. On Monday, Reuters reported that prosecutors in Keelung did not release any names but confirmed that the suspects were “charged with breach of trust and document forgery.” One suspect linked to a related case remains at large, accused of the “siphoning of funds from a distributor company involved” in helping China get access to restricted Nvidia chips. Since 2022, the US has required a license to export semiconductors to China, with the intent of protecting national security by staying ahead of China in the AI race. But after the US arrested Supermicro co-founder Wally Liaw in March for allegedly funneling $2.5 billion in restricted AI servers to China since 2024, Taiwan launched a separate probe to learn more about the scheme.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983765",
+      "title": "Robotaxis are real now — so is the pushback",
+      "url": "https://www.theverge.com/transportation/983765/robotaxi-waymo-zoox-tesla-rules-pushback-nhtsa",
+      "author": "Rani Molla",
+      "publishedAt": "2026-08-24T16:42:37.000Z",
+      "content": "Robotaxis are expanding. So is the fight over the rules governing them. In New York, Gov. Kathy Hochul withdrew a proposal earlier this year that would have opened the door to driverless robotaxis outside New York City after taxi drivers, unions, and state lawmakers opposed it. Six months later, commercial driverless service remains illegal in the state, and legalization efforts are stalled. In DC, labor unions are fighting legislation that would legalize commercial robotaxis, while lawmakers are weighing a 200-vehicle cap and a 15-cent-per-mile fee that would fund Metro upgrades and aid workers displaced by autonomous vehicles. A July Cit … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/08/modern-trade-of-mummified-remains-may-carry-its-own-mummys-curse/",
+      "title": "Buyer beware: Those mummified remains might carry toxic spores",
+      "url": "https://arstechnica.com/science/2026/08/modern-trade-of-mummified-remains-may-carry-its-own-mummys-curse/",
+      "author": "\n                    Jennifer Ouellette\n                ",
+      "publishedAt": "2026-08-24T16:59:07.000Z",
+      "content": "Mummified human and animal remains have long been in demand among collectors, and such items are sufficiently rare that their acquisition may involve unregulated, occasionally clandestine trade practices—if not outright illegal ones. According to the authors of a paper published in the International Journal of Cultural Property, the risks to would-be collectors aren't just legal. Mummified remains may also pose a significant health hazard due to toxic substances used in their preservation and microbial growth due to improper storage. In fact, toxic spores or fungi are often cited as the source of the legendary \"mummy's curse\" tied to the excavation of King Tutankhamen's tomb. Per the authors, the mummification process throughout history has relied on various toxic materials and substances to help preserve the remains—heavy metals like arsenic, mercury, and lead, for example—which is why careful handling is necessary to avoid adverse health effects. (Professionals typically don masks, gloves, and lab coats when working with such remains.) Various micro-organisms (bacteria, fungi, yeasts) can also lie dormant in the tissues for centuries and can recolonize and multiply due to a ready supply of organic material—particularly if the remains have been stored in suboptimal conditions. A 1962 case, for example, revealed the presence of poisonous fungi spores in mummified remains that would cause respiratory inflammation and infection if inhaled, as well as fever. A 2013 study found that the hundreds of mummies on display at the Capuchin Catacombs in Palermo, Sicily, are prone to microbial and fungal growth after years of unstable environmental conditions. Similarly, in 2012, scientists identified three species of fungi (Aspergillus, Penicillium, and Stachybotrys) on human remains, coffins, walls, and in the air in the crypts of the Church of St. Peter and Paul in Krakow, Poland.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983864",
+      "title": "Zillow and Redfin settle FTC antitrust case over their rental listings partnership",
+      "url": "https://www.theverge.com/policy/983864/zillow-redfin-ftc-settlement",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-08-24T17:01:05.000Z",
+      "content": "The FTC and Zillow have announced a settlement that ends the case alleging that a 2025 \"partnership\" between Zillow and Redfin violated antitrust laws. The FTC had alleged Zillow agreed to pay Redfin to syndicate its listings, while Redfin would end its own advertising contracts and promise not to compete with Zillow for multifamily listings. The FTC's settlement proposal allows Redfin to continue syndicating rental listings from Zillow \"unencumbered by the anticompetitive restraints\" in the original deal, but also requires Redfin to restart its own rental listings advertising business, which it wound down as part of the partnership. Dani … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49422784",
+      "title": "The entire city of San Francisco as a video game",
+      "url": "https://sf.thijs.gg/",
+      "author": "centrosphere",
+      "publishedAt": "2026-08-24T17:05:38.000Z",
+      "content": "https://twitter.com/cdngdev/status/2091909073038082139, https://xcancel.com/cdngdev/status/2091909073038082139",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 379,
+      "comments": 124
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49422800",
+      "title": "Where did all the public bathrooms go?",
+      "url": "https://daily.jstor.org/where-did-all-the-public-bathrooms-go/",
+      "author": "herbertl",
+      "publishedAt": "2026-08-24T17:07:01.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 186,
+      "comments": 370
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p28#a260824p28",
+      "title": "The UK becomes the first foreign nation to gain access to Ukrainian combat data used to train AI models to strike Russian targets, as part of an AI partnership (Financial Times)",
+      "url": "https://www.techmeme.com/260824/p28#a260824p28",
+      "author": null,
+      "publishedAt": "2026-08-24T17:40:05.000Z",
+      "content": "Financial Times: The UK becomes the first foreign nation to gain access to Ukrainian combat data used to train AI models to strike Russian targets, as part of an AI partnership — Trove of combat imagery used to train AI models to identify and strike Russian targets — Britain will become the first foreign country …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "meta-engineering",
+      "externalId": "https://engineering.fb.com/?p=24394",
+      "title": "MTIA 300: Meta’s First Training Chip with Built-in NICs and Communication-Offloading Engines",
+      "url": "https://engineering.fb.com/2026/08/24/networking-traffic/mtia-300-meta-training-chip-built-in-nics/",
+      "author": "",
+      "publishedAt": "2026-08-24T17:45:52.000Z",
+      "content": "MTIA 300 is the first of Meta’s family of in-house training and inference accelerators optimized for training ranking and recommendation models. We’re sharing how MTIA 300’s built-in NIC chiplets allow it to meet the communication needs associated with training recommendation models with superior performance over general-purpose GPUs. By co-designing MTIA’s communication library, HCCL, alongside the chip we’ve taken a fundamentally different approach to chip design and made communication a first-class citizen. Deep learning models may deliver personalized content—from short videos to friend posts—to people on apps. As these models have grown in complexity, so has the importance of the compute that trains them, and the network that connects those accelerators. Training recommendation models is a unique infrastructure challenge. Unlike large language models, which need enormous floating-point throughput, recommendation models are bottlenecked by a need for fast and efficient communication between the accelerators that train them. Their embedding tables can contain over 99% of the model’s parameters, requiring hybrid parallelism that generates frequent AllReduce, AllToAll, and AllGather collectives across hundreds of accelerators. On chips like GPUs these communication operations compete with training computation for the same resources, often leaving expensive hardware underutilized. We’ve addressed this challenge starting on the Meta Training and Inference Accelerator (MTIA), our family of homegrown AI chips, with MTIA 300, the first of the MTIA family optimized for training recommendation and ranking models. By co-designing MTIA 300 with HCCL, a communication library co-designed with the hardware from scratch, we’ve made communication a first-class citizen in the chip’s design, not an afterthought handled by general-purpose compute cores. Integrating the Network Directly on the Chip With MTIA 300, the network interface lives inside the chip package itself (see Figure 1). Two network chiplets, each containing six custom 800 Gbps RDMA NICs, provide 1.2 TB/s of total I/O bandwidth without ever crossing a PCIe bus. This eliminates the host-device-NIC bottleneck present in traditional GPU architectures, where the CPU must mediate between the accelerator and the network. (More details about the silicon design are available in our recent paper from the ISCA 26 conference.) Because we use the same 12 Ethernet-based NICs for scale-up communication (within a rack of 16 nodes, at up to 1 TB/s) and scale-out communication (across racks, at 200 GB/s), we can flexibly partition the NICs to adjust to changing needs. Figure 1. The MTIA 300 chip architecture. Diagram of MTIA 300 chip. As model requirements shift, we can reconfigure this split by reconfiguring the network rather than changing the hardware. To minimize per-transaction latency, we introduced express doorbells. The work request write itself serves as the doorbell, eliminating an additional memory read and saving ~800 ns per operation. Offloading Communication From the Compute Grid On GPUs, libraries such as NCCL execute collective communication as GPU kernels that consume streaming multiprocessors—the same hardware needed for training computation. When collectives and training kernels run simultaneously, both slow down. MTIA 300 takes a different approach. Alongside its 12×6 grid of processing elements (PEs) for computation, the chip includes 16 dedicated message engines (MEs) that handle all communication independently. Each ME contains: an RISC-V core for orchestrating w an NIC interface that routes requests to the correct NIC a near-memory compute (NMC) block that performs reductions at 128 bytes/cycle Positioned at the chip edges next to HBM and cache, the NMCs collectively deliver more than 2.8 TBs of reduction throughput—more than double the I/O bandwidth—enabling line-rate execution of AllReduce and ReduceScatter collectives without touching the compute grid. The result is near-perfect isolation. Running large GEMMs concurrently with collective operations introduces less than 0.5% degradation to compute throughput, as opposed to traditional GPUs that can see over 20% degradation because communication is handled by the same GPU resources. A Compiled-Communication Model Our communication library, HCCL, was co-designed with MTIA 300. Rather than driving communication from the host during execution, HCCL compiles each collective into a complete set of subgraphs—arrays of work-queue entries with explicit dependencies—dispatched to the MEs for fully autonomous execution. Once work reaches the device, the host is uninvolved. Figure 2 shows how the CPU is no longer involved after copying the instructions into HBM. Figure 2. A comparison of traditional accelerator design with host-based network instructions with MTIA 300’s offloaded communication model. This compiled model integrates naturally with PyTorch’s c10d and torchcomms interfaces. Collectives traced through torch.compile are compiled into a single graph alongside compute operators. HCCL selects topology-aware algorithms that exploit the asymmetric bandwidth between scale-up and scale-out, minimizing cross-rack traffic where bandwidth is constrained. For inference workloads, we developed additional paths: one-sided communication where PEs submit work directly through express doorbells, and device-triggered collectives where compute kernels signal hardware-offloaded communication on a parallel stream without breaking graph execution. Performance in Production HCCL achieves up to 940 GB/s of communication bandwidth within a single rack. On a 150-billion-parameter production-recommendation model running across 40 accelerators, MTIA 300’s total communication time is 3.9 times faster than the equivalent GPU cluster. MTIA 300’s design enables further co-design strategies: Its 216 GB of HBM3E allows larger local batch sizes (reducing trainer count and communication overhead); its 1:1 CPU-to-accelerator ratio enables CPU offloading of numerically intensive optimizer operations; and its high network bandwidth lets us use higher-precision datatypes to maintain precision. Looking Ahead While MTIA 300 was designed for training recommendation models, the architectural principles—integrated networking, offloaded collective execution, and system-level co-design of compute and communication—position it for a broader set of workloads. As AI inference evolves toward reasoning, agentic, and long-context use cases, the communication demands a shift: Messages become smaller, more frequent, and latency-sensitive, with tighter per-collective budgets. An architecture that treats the network as a first-class system constraint, optimizing not just bandwidth but also latency and message rate, is well suited to meet these emerging demands. The patterns established in MTIA 300 and HCCL are the foundation for Meta’s next-generation AI silicon. Learn More About MTIA 300 To learn more about MTIA 300’s silicon design and the work detailed here, read our papers: “MTIA 300: Meta’s First Training Chip Featuring Built-in NICs and Collective Offloading Engines “ (From ISCA ‘26) “HCCL: Collective Communication for Meta Training and Inference Accelerators” (to be published at SC26). The post MTIA 300: Meta’s First Training Chip with Built-in NICs and Communication-Offloading Engines appeared first on Engineering at Meta.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p29#a260824p29",
+      "title": "Alabama AG Steve Marshall launches an investigation into OpenAI's security procedures following the Hugging Face breach in July (Cassandre Coyer/Bloomberg Law)",
+      "url": "https://www.techmeme.com/260824/p29#a260824p29",
+      "author": null,
+      "publishedAt": "2026-08-24T18:00:38.000Z",
+      "content": "Cassandre Coyer / Bloomberg Law: Alabama AG Steve Marshall launches an investigation into OpenAI's security procedures following the Hugging Face breach in July — Alabama Attorney General Steve Marshall launched an investigation into OpenAI's security procedures after one of its AI agents escaped a testing environment and hacked AI firm Hugging Face in July.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "meta-engineering",
+      "externalId": "https://engineering.fb.com/?p=24399",
+      "title": "MetaRoCE: A New RDMA Transport Built for AI-Scale Ethernet",
+      "url": "https://engineering.fb.com/2026/08/24/networking-traffic/metaroce-rdma-transport-ai-ethernet/",
+      "author": "",
+      "publishedAt": "2026-08-24T18:02:29.000Z",
+      "content": "Training and serving frontier AI models depends on fast, reliable networks that move data between GPUs without wasting compute cycles. To meet this challenge at scale, Meta designed MetaRoCE – a clean-sheet RDMA transport protocol purpose-built for AI workloads on commodity Ethernet. We’re releasing the MetaRoCE specification, a reference software implementation and a compliance test suite through the Open Compute Project (OCP) to enable the broader industry to adopt, implement, and build on it. At Meta, we’ve been a strong driver behind the industry’s growing consensus that Ethernet should be the fabric of choice for AI infrastructure. We’ve already shown that RoCE can power distributed AI training at scale. Now, we’re building on that work with MetaRoCE, protocol designed from the ground up for Ethernet at million-GPU scale. We’ve scaled up clusters of hundreds of thousands of GPUs, spread over multiple data centers and regions. Whether these clusters are training the next frontier model or serving inference at global scale, the network is in the critical path. Collective operations like all-reduce and all-to-all synchronize thousands of accelerators during training, and the slowest transfer sets the pace for the entire job. In inference, low-latency communication between distributed model shards directly impacts response times for hundreds of millions of users. Even small amounts of network friction directly strand significant compute capacity. Standard RoCE expects the network to deliver every frame in order, leveraging PFC and discouraging the packet spraying that provides performance in multiplane and large scale networks. MetaRoCE is built to provide high throughput, low tail latency, and operational simplicity as the network grows in the number of accelerators and the distances between them. How MetaRoCE Works MetaRoCE’s core insight is simple: The fabric sees packets, but the NIC sees intent. Traditional architectures centralize intelligence in the fabric, relying on switches to enforce losslessness and maintain order. By moving intelligence to the endpoint MetaRoCE decomposes the network into many fine-grained logical paths, each with its own real-time telemetry – per-path RTT, ECN state, and utilization. This visibility unlocks capabilities that are difficult to achieve with traditional RDMA. Native Out-of-Order Delivery MetaRoce sprays packets across many paths, so they arrive out of order by design. The transport treats out-of-order arrival as the normal case. Every packet carries its own destination, so data is written straight to its final memory location as it lands, with no reorder buffer and no head-of-line blocking. Writes carry their destination in every packet. Sends carry the match to a posted receive buffer, so a Send lands correctly even when the messages ahead of it have not arrived, and without a round trip to learn where the data goes. Collective libraries can use two-sided messaging where it suits them rather than reducing everything to Write. Native Multipathing MetaRoCE gives each connection first class paths and sprays across them packet by packet. Each path carries a distinct UDP source port as its ECMP entropy, which the NIC can change at any time to move traffic off a bad route. On multiplane fabrics, plane selection falls entirely to the NIC, and the fabric is used only as well as the NIC sprays. Because each path keeps its own window and round trip estimate, the transport can tell congestion from failure and rebalance explicitly, so a hot or broken link slows one path instead of stalling the connection. Loss Tolerance by Design MetaRoCE treats the Ethernet fabric as lossy and does not ask it to be otherwise – no PFC, no pause frames. Because each path carries its own ordered sequence, a gap in its 256-bit selective acknowledgment bitvector is evidence of loss rather than of reordering. In other protocols a SACK mostly avoids resending data that already arrived; here it triggers retransmission of exactly the missing packet, on the path that lost it, the moment the gap appears. Congestion Control From Both Sides MetaRoCE combines a conventional ECN-based, sender-driven AIMD congestion control with receiver-driven fair-share rate hints. Windows are kept per path as well as per connection, so a congestion mark trims the path that saw it and steers the next packets toward paths that are clear. In every acknowledgment, the receiver returns the share of its inbound bandwidth it has allocated to that sender, so senders approach the right speed directly rather than searching for it. Incast resolves in one or two round trips, with better fairness and lower tail latency. Topology Independence MetaRoCE asks the fabric for two things every switch already has, ECN marking and ECMP. It does not require packet trimming, in-network telemetry, credit-based flow control, or switch-side spraying, and it does not break when a fabric offers them. The same transport runs over fat-tree, multiplane, deep-buffer, and shallow-buffer fabrics, and over vendor clouds whose configuration you don’t control. Nothing proprietary is involved, so the fabric stays free to optimize for cost and cabling. Unified Connections at Scale A queue pair (QP) carries both an ordered stream of messages and bandwidth. Traditional RDMA gets more of either by opening more QPs (dozens per node pair), each with a congestion window blind to the rest and its own state on the NIC. MetaRoCE separates the two. A single connection carries many independent ordered streams above, one per communicator or collective, and many paths below, under one congestion controller. The connection state stops growing with the parallelism of the workload. The application layer remains mostly untouched – existing RDMA Verbs APIs and software stacks work without modification. Enhanced features like multiplane support are supported through extension APIs. Meta-RoCE in Practice To accelerate hardware validation, we worked with AMD to implement MetaRoCE on their Pensando programmable NICs. On a 64-node AMD GPU cluster running RCCL collectives, we directly compared MetaRoCE against RoCEv2 across all-reduce and all-to-all operations. The results were consistent with the design goals: MetaRoCE consistently delivers higher throughput and lower flow completion times than RoCEv2. Under packet loss conditions that would degrade RoCEv2, MetaRoCE maintains ~86% throughput at 1% packet loss and continues delivering useful bandwidth even at extreme 10% loss rates – converging gracefully rather than collapsing. Multiplane validation across 4-plane and 8-plane topologies with up to 4,000 concurrent connections confirmed that throughput scales linearly with plane count. During simulated plane failures, the protocol demonstrates graceful autonomous recovery – traffic redistributes without application involvement or operator intervention. These results support MetaRoce’s core design choice. By designing for loss from day one and pushing intelligence to the edge, you get a transport that performs better in ideal conditions and degrades gracefully when things go wrong. Open By Design AI infrastructure benefits from shared standards that accelerate innovation across the ecosystem. MetaRoCE extends the same open, multi-vendor philosophy that the Open Compute Project (OCP’s) Ethernet Scalable Unified Network (ESUN) initiative established for the fabric into the transport layer. That’s why we’re opening MetaRoCE: Open specification via OCP: The full protocol spec is being contributed to OCP, available for any vendor to implement and build interoperable hardware. Multiple NIC implementations: MetaRoCE is designed to run across diverse NIC architectures – programmable and fixed-function alike. We’ve proven it on AMD Pensando hardware, with additional implementations underway from other vendors. Production compliance suite: We have developed a compliance suite that gives hardware vendors the tools to prove their implementations match the protocol spec. Software reference implementation: Our libsoftmetaroce library provides a complete, functional transport stack that runs on commodity Linux over standard UDP sockets without specialized hardware. It serves as the authoritative behavioral model for silicon development and the foundation of our unified compliance framework. The Road Ahead With MetaRoCE, we’ve made strong progress on scale-out networking – high-performance, resilient transport within the data center on commodity Ethernet. But AI infrastructure spans multiple distance and latency regimes, and each brings distinct challenges we’re actively working on: Scale-up: Within a rack, accelerators trade small messages where every nanosecond matters. MetaRoCE removes two main sources of latency, the reorder buffer and PFC. We are now optimizing the fast signaling path for short memory operations issued directly from one processing element to another. Scale-across: Scale-across enables a single job to span buildings thousands of kilometers apart. Round trips stretch into milliseconds, and small differences between paths add up. Treating paths as first class entities is what lets MetaRoCE adapt, preferring the uncongested ones and seeking fairness at every level. The work ahead is in fairly sharing contended long-haul links. Storage/Kv-cache use cases: Distributed storage invites incast,where a single read fans out to many servers and they all reply at once. Receiver-driven rate hints let whichever side is receiving(a storage server taking writes or a client taking reads) moderate the inbound rate, whether the request went to ten servers or a thousand. The new dimension is keeping that rate accurate with networks of varying speed and requests of varying size. Help Us Build the Future of Ethernet for AI Infrastructure In October, we’ll release the MetaRoCE specification, a DPDK-optimized software reference implementation, and our production compliance framework at the 2026 OCP Global Summit. We’re building this in the open because the challenges ahead benefit from broad industry collaboration. If you’re building NICs, switches, or AI infrastructure, we invite you to join us. The post MetaRoCE: A New RDMA Transport Built for AI-Scale Ethernet appeared first on Engineering at Meta.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "zvi-dwatv",
+      "externalId": "http://thezvi.wordpress.com/?p=25546",
+      "title": "The American People Really Hate Data Centers",
+      "url": "https://thezvi.wordpress.com/2026/08/24/the-american-people-really-hate-data-centers/",
+      "author": "TheZvi",
+      "publishedAt": "2026-08-24T18:09:59.000Z",
+      "content": "There are at least five different core questions around data centers and their politics. In what ways are specific concerns people raise about data centers legitimate? In what ways are specific concerns people raise about generative AI legitimate? Is it in general a good idea to build more data centers? How can we get America to build more (or less) data centers in a better way? Why do the American people increasingly really, really hate data centers? This post focuses on question five, the latest in a series of such posts most famously Jasmine Sun’s road trip. It is mostly not about the first four questions. Table of Contents The American People Really Hate Data Centers. Transmission Lines Are The Control Group. Thesis: People Mostly Dislike Data Centers Because They Dislike and Distrust AI, Tech Companies, Big Money And Building Things. No It’s Mostly Not the Messaging About AI In General. No This Mostly Isn’t An Op. No This Isn’t Luxury Belief or Moral Panic. A Lot Of People Really Do Want To Stop AI. A Lot Of Other People Are Voting No On Tech Or The Man Generally. Locals Feel Entitled To Heavily Tax The Gains From Construction. Stupid Mistakes Like NDAs Don’t Help. People Don’t Like Building or Building New Tech. What About The Real Physical Concerns? Find A Place To Center Your Data. The American People Really Hate Data Centers Support for data centers keeps cratering. Americans really, really hate data centers, and 75% oppose local data center development, despite the economic benefits. Cremieux illustrates that this opposition mostly does not get solved via arguments about the tangible benefits or costs of data centers. People don’t believe you, and even when they do believe you they don’t care because that wasn’t their true objection. Persuasion buys you a few percent support, but from new very high levels of opposition. This clearly is mostly not about the physical impact on the community, given that this level of support is now well below that of a coal plant, which is bad enough that it substantially increases the surrounding death rate. Transmission Lines Are The Control Group Transmission lines are straight up good, with approximately zero downsides. Transmission lines polling remarkably close to coal plants, when the coal plants actively not only cook the planet but poison the people around them, is crazy. This one absolutely is straight up moral panic. When we see widespread opposition to transmission lines, and politicians shamelessly jumping on board, you know that a lot of this is simply about building anything new, of any kind, anywhere, especially anything that vaguely seems like it supports our technological infrastructure. And that people will invent phantom concerns, in order to have that not happen or to try and extract concessions or both. Thesis: People Mostly Dislike Data Centers Because They Dislike and Distrust AI, Tech Companies, Big Money And Building Things This is my central model. Building data centers combines: AI. Big tech. Other people having data, especially on you. Big money. Building things, especially ugly things. Not offering that many jobs. People dislike and distrust these six things. So they hate data centers. They are also being asked to accept abstract arguments over concrete concerns, the reverse of the situation regarding things like existential risks. The rest, as they say, is commentary. It is what people latch onto. They mostly dislike these things for reasons that are wrong in their details, but highly understandable. Why is opposition rising so quickly? What changed over the last year? My answer is, mostly bandwagon effects, preference cascades and a rise in salience, combined with AI becoming vastly more visible and starting to impact the world including the job market, combined with a push to build vastly more data centers, which is forcing companies to push into communities that are less receptive. No It’s Mostly Not the Messaging About AI In General Many often try to pin the blame for people disliking and distrusting AI on botched messaging. They say the heads of the AI labs should have more often lied. Those CEOs should not have said that their products would take away people’s jobs, and definitely should have said that the product wouldn’t kill everyone, say these folks. Those same people blaming everything on bad marketing, of course, mostly also think the claims that they say are terrible marketing were intended as marketing. They think everything is marketing. That everything is vibes. That reality doesn’t matter. They are wrong. People very much are noticing things about underlying reality, especially locally as it impacts them and people they know. They are using empiricism and first principles reasoning, and picking up vibes from each other. It is possible to intentionally steer this process with the right words, but it is a lot harder than it looks. This is because they don’t like AI, and also ‘I don’t like the Computer Man,’ and also they don’t like The Man. They fear for their jobs because it is sensible to fear for your job given what AI can clearly do, and how people are planning for and reacting to AI. They fear that humanity will be usurped or wiped out because that is an obvious thing to worry about when building smarter artificial minds, as illustrated by every story and thought experiment about such minds ever, without any need to get into the more detailed and technical reasons for worry. They fear their culture and things they care about will be wiped out, because they’ve seen it before and can see it happening again in real time in some ways. They fear that big tech and big money are full of false promises and there will be a catch, because of the entire history of everything, as one would observe from the average person’s point of view. They don’t know economics, and never have. They do notice that in many cases communities allowing such construction look like they’re getting screwed out of their ‘fair share’ although in some cases not. They fear building and care about relative position. They are not abundance libertarians. People’s concerns about tech are often coming from very basic places, you know? PoIiMath: I believe that data center opposition is not so much about AI and more about the fact that your grandma doesn’t understand 2FA authentication or that you need a mobile phone to pay for downtown parking. That level of concern seems right, but young people oppose data centers more than old ones, so it mostly isn’t about lack of tech proficiency. I do not think that the CEO messaging around AI much mattered. No one knows who Dario Amodei is or what he is saying. They might know who Sam Altman is, but they are forming impressions based mostly on other things. Thus, shots like this from Senator Murphy are good lines but I don’t think people ‘just’ believe them. People don’t just. Senator Chris Murphy (D-Connecticut): I don’t know…the AI industry has been basically promising to destroy jobs at scale and poison our kids with addictive products and it feels like people are just believing them. The messaging on various levels definitely hasn’t helped, and I do think that messaging on data centers in particular is bad and is making things worse, but even then it is not the main thing. I don’t want to go beyond scope, addressing this is a distinct post I plan to write soon, but in brief the ‘the fears are all marketing’ theory is Obvious Nonsense. The whole point is that this is beyond terrible as marketing, yet they say it anyway. So even if you (highly reasonably) do not trust these labs or CEOs at all, the reason they say these things is that they believe them, and in these instances they are trying to be helpful. To the extent that they did tell us, this is to their credit. Whereas to the extent they stopped and lied due to marketing concerns, and especially to the extent they give false reassurances, that is to their discredit. Yet people keep trying to frame this as about the message, rather than the facts. Daniel: The anti-datacenter movement is literally the most rational response imaginable to an industry whose leaders have publicly said the best case scenario for their product is to get everyone fired. If you can’t see this then your brain is in late stage tech rot. Michael Druggan: The best case scenario is everyone gets fired because automation creates such abundance that we can all live in luxury and no one will have to work. That is an extremely good best case scenario. Daniel: Say that to a group of people with a keen sense of societal power dynamics and a knowledge that their labor is the only card they hold in this world PoIiMath: Yes yes, getting fired creates abundance. Tell that to the 170,000 tech workers who were fired this year due to AI. They are all just swimming in abundance. Druggan here is being even more terrible than usual in terms of how he pitches this, but the pitch is not the problem. No This Mostly Isn’t An Op Logic like this is not good in general, or here in particular: Paul Graham: If the Chinese government were sufficiently organized, they’d be funding opposition to data centers in the US. But the Chinese government is very organized. So they presumably already are. The Chinese government makes active dumb mistakes all the time, the same as every other government and large group and also individual, no matter how well organized. That’s to say nothing of the vast errors of omission. The argument that your rivals or enemies are taking advantage of their best opportunities, or must be taking advantage of all the good opportunities you happened to notice, is basically never correct outside of compact literal games. The world is not a rationalfic, where suddenly one person starts acting optimally. That’s a special brand of fiction for a reason, it changes everything, and even then it’s, like, one dude. I also would not, if I was China, be funding the movement against data centers, because the money isn’t needed and the downside of being seen doing this is too high. No This Isn’t Luxury Belief or Moral Panic I absolutely believe that luxury beliefs and moral panics are common. But centrally, that isn’t what is going on here. Sam Lyman: “Ban data centers!” is the “Defund the police!” of the current moral panic. It’s a luxury belief policy idea that, if actually implemented, would have disastrous downstream consequences for the country. Love them or hate them, the entire global economy runs on these bad boys. Garry Tan: Hate to say it but the luxury belief industrial complex is alive and well Erik Telford: I posted this [about water use concerns being fake] and many people are telling me “I don’t use AI and I don’t want it” …like they don’t realize that unless they divorce themselves from participation in the economy, their daily lives are supported by AI in countless ways. People understand that data centers power AI. That is why they are against it. They understand that AI is ‘good for the economy.’ They don’t care about an abstract economy. They care about their experiences, locally, and they fear for their futures. A luxury belief is when you are wilfully blind to the downsides, but use those beliefs as signaling and to seek positional goods. I don’t think either half is true here. A moral panic is when people have an unjustified and disproportionate fixation on the dangers of something, especially something that doesn’t exist or is extremely rare, that one would look back upon as rather silly. Water use by data centers, in particular, is a classic moral panic, but that’s a symptom, the same way that an endless stream of sexual or religious moral panics are a symptom, including today’s such panics. Do these people understand the full economic, strategic or service implications if everyone were to ban data centers? No, but they’re not being wilfully blind to it, and often would be fine with it on reflection. A Lot Of People Really Do Want To Stop AI dan: the people in The Capitol have a poor mental model of the anti-ai crowd. you are reading them at the wrong level. … they know the _actually correct_ target and they’re going to burn it down. you’re going to have to build them in space and on boats and in maximum security, self-sovereign, self-defended untouchable regions then you’ll have the AI, and they won’t — maybe we should reflect for a moment and listen to what the people are trying to tell us? Judd Rosenblatt: Pretty interesting pov on anti-data-center people: “like for all the poor reasoning, they actually got it right on the one thing that could choke it off… this speaks to some pre-reasoning intuition” A Lot Of Other People Are Voting No On Tech Or The Man Generally The way democracy and public action work is typically kind of blunt. If they’re unhappy with how things are going, they tell you no. Throw the bums out, oppose the things The Man wants or that Big Tech wants, and so on. It’s not so much about evaluating detailed consequentialist arguments. As I said before, concerns about tech often come from very basic places. Zac Hill: I think the data center fight is at best tangentially about AI, for a few reasons. First of all, that same Gallup report I just cited about how 70% of Americans oppose data center buildouts suggests at maximum 41% of that opposition is driven by AI-related concerns, with only 14% pertaining directly to negative views about AI itself. I don’t think people know why they’re opposed, and would caution against such a breakdown. I do get the argument that AI is not a salient issue outside of data centers, while data centers are highly salient. I think that is because the data center is a physical thing you can hope to act against or do something about, which makes it salient, and this is largely fueled by people being against AI, plus that combines with the other aspects. Similarly, Zac Hill points in the same post to a past outcry over a 1965 proposal for a ‘National Data Center.’ Zac Hill: The privacy scholar Arthur R. Miller supplied the line that explains the last sixty years of this unease better than anything published in the last sixty days. The National Data Center proposals were, he observed, a “lightning rod for the vague feelings of discontent generated by the computer revolution.” Right. Computers themselves never directly faced that kind of lightning rod or fury. Whereas a central collection with an ominous name, as the embodiment of the thing that was otherwise low salience. People suddenly felt like they had the ‘right to say no.’ This extended to other sources of data elsewhere. The other parallel here is people being uneasy, basically on general principles, about data collection and storage and use. That was driving the opposition back then, and this paranoia remains. People often freak out to a seemingly absurd degree about their particular data being used to train an AI, or it being on some server, or whatever. That’s not something you can hope to answer. If you’re the embodiment of amorphous fears, your popularity profile will be kind of cooked, and nothing you say is trusted. Locals Feel Entitled To Heavily Tax The Gains From Construction Locals feel like if they aren’t the primary beneficiaries, or at least don’t get heavily bribed and treated as key stakeholders, they are being cheated, and are now worse off. This need to pay so much extortion money is coming as a surprise to many. A lot of this is The Copenhagen Interpretation of Ethics. Once you are building, they see you as interacting with the community, and as The Man you are better off than they are, thus you are blameworthy for everything, including for ‘not doing more.’ This is true even if objectively they are better off than before. They often don’t care, or don’t trust and don’t believe you, or are now thinking about relative wealth levels even more than they were before, not absolute levels. Part of this is that they expect to be screwed over in various ways in the future, so they need compensation for all that. This is especially bad for data centers because they don’t sufficiently ‘create jobs’ directly. You could of course use the money to ‘create jobs.’ Early data center efforts often served communities well, but also often didn’t, and locals have noticed that they’re not getting the kinds of consideration they feel they deserve, whether or not you think they deserve it. In other cases the results are fantastic, such as much higher tax revenues, but locals basically don’t believe in that until they see money in the bank. Remember that they expect to be screwed over, and promises not kept. Also, they don’t really ‘believe in money’ or that money is fungible, and don’t always want the tax to be in money, as in: PoliMath: A tech company will spend $10 billion building a data center outside of a Wisconsin town but they won’t sponsor a little league team. They won’t support the local Girl Scouts. They won’t build a park. Actually, they do this. Meta and Google have such programs. Meta has such a program at Mount Pleasant. They don’t do as much per dollar or square foot as local businesses, but that’s an impossible standard. This is the kind of thing people say when they’d already decided you were The Outgroup, the kind of thing you say to someone you’re rejecting for entirely unrelated reasons. There is always some local detail you did not do. If you sponsor a team they say you weren’t in the parade. If you were in the parade they complain about you not building a park, even though that doesn’t actually make any sense. Or that you did these things wrong, in a done deaf way. Or they just move on to something else entirely. When you read Jasmine Sun’s accounts it’s always pure ‘what do I think of this building and proposal.’ The real messaging issues with data centers came while trying to build the data centers, and from politicians, and also the broad history of what locals see as broken promises from elites. This is the unavoidable politics. It is being played badly, or alternatively it is being played well from a selfish local standpoint in ways that poison the well down the line. But a lot of that is that the situation is tough. If what they want are broad, deep, sustained, detailed costly signals of ‘respect’ then that is super expensive to deliver, they’re not going to get that. If you want to tax people you need to set a tax rate. PoliMath: Flipping the script, there can’t be any form of compromise if the data center opposition can’t even tell us what changes they would accept in exchange for permission to build. If what they really want is to be treated with respect, they might not get that. Respect might simply not be on the table. If that’s the case, they will end up in a place where they don’t get the respect but they also don’t get the fringe benefits of boosted tax revenues. One would assume what happens is the data centers end up in the places that know to ask for money, and those places end up with a lot of money. PoliMath: To their credit, many in the tech community are trying to figure out what will work. To their detriment, most of these strategies assume that their opponents are stupid and that we can just deftly out-maneuver them with money and power and the fact that they are oh so much smarter than those flyover hicks. Which is exactly the attitude that makes negotiations pointless. The thing about ‘we can outmaneuver these people with power and money’ is that, as much as it pisses off the flyover folks, it’s mostly true most of the time. We are potentially approaching a notably rare exception. Stupid Mistakes Like NDAs Don’t Help Other times, it is unforced errors, like making government officials sign NDAs, which makes people think there is corruption involved. But also there is a tendency to blame the thing people latch onto to get mad about as having been stupid, when the real cause is the suspicion that makes them latch onto every little suspicious thing. The NDA is only a problem because you lost trust. People Don’t Like Building or Building New Tech We have a huge YIMBY problem even for things like houses. Matthew Yglesias: It’s unsurprising that people have turned against data centers in a world where it’s illegal to build midrise apartments — or in many cases even just single family homes on small lots — on the most in-demand parcels of land. We also have a history of people opposing moonshot projects, and yes I do also mean that literally. We can forget that the Apollo Project was not popular at the time. What I don’t think this has that much to do with, yet, as much as it pains me, are the existential risks. I do think it is a contributing factor, but not as big as it should be. Cassie Pritchard: Even the people who are building AI (who hope to build AGI/ASI/RSI) keep saying “yeah there’s a 5-40% chance it kills everyone.” That’s not the same proposition as the Apollo Project. People are entirely rational to want democratic input/a slowdown/a pause/a ban. It’s not only Apollo, where people saw it as a waste of money, ‘whitey on the moon’ and all that. This also happened to excellent pitches. Seth Burn: Light at night was a pretty good sales pitch. An algorithm will put you out of a job (and might end all life on Earth) might need a little work. nicole ruiz: in 1937 the federal government ran poster campaigns to convince rural Americans electricity was a good idea. people were protesting the towers. @mattyj612 and I talked about what those fights say about the data center backlash. Electrification is about as obviously good as it gets. Whereas today locals often oppose even things like wind farms even if the national theoretical numbers there look solid, don’t want to be ‘bribed’ to accept them or other projects, and are much easier to get to oppose things via argument than convinced to support them. In terms of tech impacts, think more about how people see the Internet, despite it being essentially the greatest thing ever. Cassie Pritchard: The internet comparison is also apt but in the way of justifying hesitancy; the buildout of internet infrastructure and Big Tech happened largely without democratic input or oversight. It remains a very under-regulated sector, and it has led to both a myriad of negative social externalities that people perceive every day (colonization of attention, social isolation, erosion of privacy, polarization/loss of social cohesion, etc) and a massive concentration of wealth/power in very few firms with relatively few employees. It’s *entirely* reasonable that the industry which transformed the world rapidly (and which people have ambivalent feelings about) without popular input is now prompting people to think “hey, maybe let’s not give them a blank check again to build the Replace Every Human Machine.” I do think the Replace Every Human Machine aspect is doing a lot of work, but more in the I Do Mean The Impact On Jobs sense. What About The Real Physical Concerns? There are real concerns about electricity, aesthetics, noise and property values, and mostly not real but concrete physical concerns about other things like water. The water claims in particular are notoriously resistant to pointing out they are false. A lot of the ‘real’ concerns are factually misplaced, or much smaller deals than people act like they are. They have arisen and been emphasized because of the bad vibes and track records. When you read how people talk about them the concerns do not typically make logical sense. People want to oppose, they assume there is a catch, so they latch onto reasons. Whether real or not, whether motivated or not, those should be directly addressed. In some cases addressing them means pointing out that the concern is not real. In other cases a real fix is needed. Electricity prices will need to be locked in. Aesthetics and noise are skill issues. Property values may need to be made whole, whether or not that seems justified, perhaps via put options. And so on. Not that any of these things is going to much matter. Jasmine Sun: My conversations make me wonder if the technical content of data center deals is mostly beside the point. Closed-loop cooling systems? “I don’t believe them.” Paying millions in taxes? “I don’t believe them.” Creating a thousand jobs? “I don’t believe them.” I hear a reflexive skepticism of every claim. I won’t go into the details more here, as that too would be a distinct post. Find A Place To Center Your Data This post was meant to be descriptive. I don’t have a great solution to propose. I am very much in the ‘more data centers in America would be good’ camp, because chips are highly economically valuable, the physical concerns are highly solvable when they’re not outright fake, and if we don’t put the chips here then someone will have to put them somewhere else. That would be worse. To the extent this opposition is successfully forcing chips overseas, it is very bad. One can route around the places that say no, but only up to a point. Lack of domestic placement has been used to justify putting massive numbers of chips in places like the UAE and KSA. That is way worse. It is not hard to imagine a world in which that bites us very hard, up to and including existentially. There are those I respect who are very worried about existential risk from AI and see that dynamic differently, and think the anti-data center movement is a good thing and want to support it. I get why, but I believe that they are wrong even on their own terms, because I think the dynamics of shutting down construction within America would shift construction elsewhere rather than reducing it overall. Solving these issues will not be easy. It is a lot easier to not lose trust and not trigger such a panic in the first place, than it is to repair the damage once it happens. The politics could easily turn into a runaway train here. But there are also a lot of marginal ways to make progress on the logistics or the politics, a lot of which are low-hanging fruit. We shall see.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-kills-oauth-chaos-so-2-000-employees-get-claude-tools-instantly",
+      "title": "Anthropic Kills OAuth Chaos so 2,000 Employees Get Claude Tools Instantly",
+      "url": "https://alphasignal.ai/news/anthropic-kills-oauth-chaos-so-2-000-employees-get-claude-tools-instantly",
+      "author": "ClaudeDevs",
+      "publishedAt": "2026-08-24T18:19:41.000Z",
+      "content": "Anthropic ships an open MCP extension that pipes enterprise SSO straight into Claude connectors, killing the per-user OAuth consent tax.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p30#a260824p30",
+      "title": "The UK backs Ofcom to take \"tough action\" under the OSA against social media sites failing to remove dangerous driving videos, after a crash killed seven people (Raphael Boyd/The Guardian)",
+      "url": "https://www.techmeme.com/260824/p30#a260824p30",
+      "author": null,
+      "publishedAt": "2026-08-24T18:20:07.000Z",
+      "content": "Raphael Boyd / The Guardian: The UK backs Ofcom to take “tough action” under the OSA against social media sites failing to remove dangerous driving videos, after a crash killed seven people — Downing Street condemns ‘utterly disgraceful’ clips and says sites are legally obliged to take them down",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49424082",
+      "title": "Anger, Anxiety and Agency",
+      "url": "https://lucumr.pocoo.org/2026/8/24/anger-anxiety-agency/",
+      "author": "lumpa",
+      "publishedAt": "2026-08-24T18:37:24.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 108,
+      "comments": 117
+    },
+    {
+      "sourceSlug": "cloudflare-blog",
+      "externalId": "01M0TDEVJZ66N7RGSKFA27M2WZ",
+      "title": "The Cloudflare Blog – Brought to you by EmDash",
+      "url": "https://blog.cloudflare.com/cloudflare-blog-uses-emdash/",
+      "author": "Kody Jackson",
+      "publishedAt": "2026-08-24T19:00:00.000Z",
+      "content": "You likely noticed the recent redesign of the Cloudflare Blog. We added dark mode, modernized the look and feel, and made a lot of other small improvements along the way.What you might not have noticed – well, except for those who are more terminally online – is that the redesign was part of a much bigger migration project. On Wednesday, August 12, we moved the blog to EmDash, a content management system (CMS) built especially to work on Astro and with Cloudflare.We’ll take you into the migration story – what we learned and how EmDash got better – as well as into the benefits we’re already seeing from a new platform.We are Customer ZeroAt Cloudflare, Cloudflare itself is Customer Zero. This means that we use our products. And – in use – we make them better for ourselves and our customers.This is a very real cultural value at Cloudflare. The burden of proof is on you if you want to use an external vendor. Why can’t that team support you, what gaps are there, why can’t those gaps be filled, and are those “gaps” true requirements?This preference is even enshrined in our internal engineering standards, known as our Codex.We don’t just build products for others; we build them to run Cloudflare itself. We are our own first, most demanding customer.We validate scale, security, and usability on our own massive infrastructure before a paying customer ever touches the product. If a product breaks, it breaks us first. This forces us to fix issues immediately, ensuring that by the time a feature reaches the enterprise, it has already survived the harshest production environment on earth.With the launch of EmDash and some limitations with our current CMS vendor, we knew that we’d likely be the Customer Zero for EmDash internally at Cloudflare.Customer Zero in ActionWhen we began our initial migration conversations, we started with two main questions:Does EmDash work for us?Can EmDash scale?Does the platform work?Our first question was the most broad, does EmDash work for us? This is something you’d want to know broadly about any new platform, but especially one that’s pre-1.0. To answer this question, we ran through a bunch of common user flows, such as:Publishing and unpublishing a postAuthoring a new postScheduling a postAdding media itemsBy and large, EmDash held up pretty well to these usability tests. The gaps we found were generally related to:The sheer scale of the Cloudflare Blog (media, content entity search, and bylines)Nuances around localization, SEO, and Content Security Policies (CSPs)Usability features for the admin editor – especially ones that might delay the publishing of a post – such as easier findability for custom HTML blocks, bugs in the in-entity content editor, and keeping the formatting toolbar in view for longer posts.The biggest oversight we found was around scheduled posts, which didn’t work until EmDash version 0.19.0. This gap was understandable given the early version of EmDash, but it was also definitely something we didn’t want to be finding out after the scheduled time for a post.Can EmDash scale?Our biggest concerns were whether our proposed EmDash setup could handle the traffic we saw on the Cloudflare Blog.The traffic pattern to our blog is incredibly varied. Normal load sits in the neighborhood of 75 requests per second (RPS), but also spikes up to over 5,000 RPS. Some of these spikes line up with the publishing times of new posts, meaning those posts went viral and attracted a lot of attention. Others happen during all points of the day and night, which likely means folks are sending some extra traffic our way, just to see what happens. Performance also matters for our systems (and our readers). Cloudflare is a web performance company, after all, so the speed at which a page loads becomes incredibly important.With those two concerns in mind, we built out some scenarios using k6, an open-source performance testing tool:Ramp: Where we gradually increase requests up to triple the prod baseline and then cool down.Breakpoint: Where we ramp from 0 to 100 RPS over 10 minutes, stopping when something breaks.Burst: Where we throw an immediate traffic load of 7,000 RPS and see what happens.For each of those scenarios, we evaluated:Availability: Failure when more than 0.01% of HTTP requests lead to 5xx errors, meaning the application couldn’t handle the traffic.Latency:P95 latency: Failure when more than 5% of responses exceed 500ms.P99 latency: Failure when more than 1% of responses exceed 1000ms.Armed with these tests – and a lot of internal discussion and data points – we came to our production architecture:EmDash, running on a Cloudflare WorkerRunning behind the new Workers Cache (we believe as the first major site to do so)Using the new EmDash object cache built on Workers KV, which the EmDash team built specifically for our use case.Using Cloudflare’s new, first-party Hyperdrive integration with PlanetScale.The multiple layers of caching we put in place play a key role in making the blog both fast and resilient. In the diagram below, they are ordered from top to bottom by proximity to the user:With this setup, we’re typically serving 99.5% of static files from a cache and 70% of requests from a cache, improving frontend performance and decreasing load on the database.Once we had that architecture in place, we could start thinking about the frontend redesign as well.Frontend redesignBeyond updating the backend architecture, the migration offered us the perfect opportunity to bring the blog's interface into alignment with Cloudflare’s updated visual language. We rebuilt the frontend experience using patterns established by the Kumo design system, creating visual and structural consistency between the Cloudflare homepage, dashboard, and marketing sites. The result is a cohesive reading experience that feels like a natural extension of the broader Cloudflare ecosystem.A major priority for this redesign, and a long-overdue request from our readers, was native support for light and dark modes. We implemented theme switching tied directly to system preferences, alongside an explicit toggle, and ensured that accessibility guidelines were strictly met across both themes. Regardless of preference, the updated palette and code syntax highlighting adapt seamlessly without sacrificing legibility.We also took the opportunity to solve a few long-standing user experience quirks, starting with our email subscription form. Previously, the subscription box lived in the top right corner of the page. Because of its placement, readers frequently mistook it for a search bar and typed their search queries directly into the input field. To fix this, we moved the email sign-up into a dedicated call-to-action block at the bottom of posts. Now, once a reader finishes an article and wants to stay updated, the prompt to subscribe appears naturally at the end of a post.Finally, we introduced two dedicated sidebar features on interior post pages to improve navigation and community engagement. On the right, an \"On this page\" table of contents tracks your progress and lets you jump directly to specific sections of longer technical posts. On the left, a new \"Discuss Online\" section makes it effortless to share articles and engage in conversations across social platforms and developer communities.Rollout strategyAs we got nearer to our migration, we started focusing on the broader question of “how do we make this change safely?” Ensuring zero downtime for our readers was a non-negotiable requirement, alongside guaranteeing a seamless fallback mechanism if something went wrong at the last minute.To achieve this, we deployed a proxy Worker to intelligently route traffic between the legacy blog and the new EmDash-powered site. This Worker set a version cookie on requests, which then let us route incoming traffic to the new or legacy experience accordingly. Additionally, this strategy allowed us to fall back to the legacy blog if the new site experienced any 500 errors. Thanks to the flexibility of Cloudflare Workers, this proxy was relatively simple to create and scaled without any issues. The ability to configure a direct worker-to-worker connection through the NEW_BLOG service binding was particularly useful here, as it reduced latency for any end user going through the proxy. This service binding let the proxy Worker dispatch incoming requests directly to the new blog Worker instead of sending them through a public hostname, DNS, TLS, and an outbound HTTP connection.On launch day, we initiated a gradual rollout, starting at just 1% of total traffic, then incrementally stepping up to 5%, 15%, and beyond as we validated system health. This phased approach allowed us to observe how the platform handled real-world production load while catching a few last-minute edge cases without impacting the vast majority of our audience. By the end of the day, we had comfortably shifted 100% of traffic over to the new platform.ResultsMeasurable performance gainsOne of our primary objectives for this migration was to deliver a faster, more reliable site to our readers, and the early data shows we accomplished exactly that.Comparing p95 response latencies between the old architecture (green line) and the new EmDash setup (yellow line) revealed a stark difference. Where the previous platform experienced periodic latency spikes under load, the new system maintains a remarkably flat, consistent response profile. By running EmDash on Cloudflare Workers alongside our new caching layers, we’ve delivered a significantly faster and more performant reading experience across the board.We’ve seen all these performance gains – and minimal errors – while serving up to 850 RPS.MCP serversWith this change, the blog also got more accessible for agents, in two distinct ways.The first is that we released a new Model Context Protocol (MCP) server for the Cloudflare Blog.An MCP server bundles up a bunch of specific tools that your agent can then use to interact with an external resource, almost like an API for agents.Using that MCP, you can now use the following tools with your agents:search_postslist_postsget_postlist_tagsWith the new, intuitive EmDash APIs and AI search endpoints exposed by our Worker, creating this new MCP took just a few hours of work.The second is that – for our blog authors – EmDash has an MCP server for EmDash itself, meaning that they can browse, create, and edit content, publish and schedule posts, remove files, and more.Though this sort of agentic tooling is becoming more standardized in the CMS industry, what’s not standard is that it’s available without any additional cost. The MCP is just another part of the platform, reflecting a growing trend of designing for agents, as well as humans.The first test: Agents WeekAt Cloudflare, we run multiple innovation “weeks” a year, where we set ambitious goals for internal teams around specific themes. These weeks push our products forward, as well as help customers digest the changes that are constantly happening at Cloudflare.The latest of these, Agents Week, was quite a test for the new blog. We launched 18 new posts over 9 days. And those posts got a lot of traffic, close to 3 million pageviews.On the frontend, our new blog Worker did very well, serving up to 450 RPS without any noticeable issues. Thanks to Cloudflare’s built-in DDoS protection, we also absorbed a 28,000 RPS DDoS attack on August 10th, also without any noticeable issues.On the editing side, we continued to find some issues. Most of these involved small quirks of the editing experience, though we also found some bugs specifically around scheduled posts. We’ve since raised these to the EmDash team and are confident that they’ll be fixed before Birthday Week.Give EmDash a tryWe want to give a heartfelt thank you to the EmDash team, who made this migration about as smooth as possible and were incredibly receptive to our feedback. This is how Customer Zero is supposed to work, and it’s incredibly gratifying to share an inside look into that process with all of our readers as well.If you’re in the market for a new CMS, try out EmDash today. It’s pretty amazing and – with the upcoming launch to v1 – it’ll be getting even better soon.",
+      "topics": [
+        "security-privacy",
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49424387",
+      "title": "LLMs could control their host machines by exploiting inference engines",
+      "url": "https://boydkane.com/essays/llms-could-control-their-host-machines-by-exploiting-inference-engines",
+      "author": "zdw",
+      "publishedAt": "2026-08-24T19:03:06.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 111,
+      "comments": 56
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49424606",
+      "title": "Oceans hit highest temperature on record",
+      "url": "https://www.bbc.com/news/articles/c62m4gpnp78o",
+      "author": "tcp_handshaker",
+      "publishedAt": "2026-08-24T19:19:08.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 447,
+      "comments": 366
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/security/2026/08/aliexpress-caught-fingerprinting-visitors-after-sending-inaudible-sounds-to-browsers/",
+      "title": "Inaudible sounds used to fingerprint browsers catch AliExpress red-handed",
+      "url": "https://arstechnica.com/security/2026/08/aliexpress-caught-fingerprinting-visitors-after-sending-inaudible-sounds-to-browsers/",
+      "author": "\n                    Dan Goodin\n                ",
+      "publishedAt": "2026-08-24T19:19:21.000Z",
+      "content": "Chinese retailer AliExpress has been caught fingerprinting visitors after one of the metrics—an outdated technique that measures inaudible sounds it sends to browsers—impeded a researcher's ability to use his bluetooth headphones. Researcher Matthew Callaghan said he stumbled on the stealthy tracking by mistake. After loading the AliExpress homepage, audio from his phone stopped playing over his multipoint headphones, which accept connections from more than one device at a time. He set the headphones to play sounds from his phone except when his PC was producing audio. Each time he loaded AliExpress, the phone audio stopped. Each time he closed the tab the site was loaded into, the phone was once again audible. Users can't hear it, but browsers can While investigating the odd behavior, Callaghan said he found two highly obfuscated scripts. Together, they rendered a graph that analyzed the WebAudio readings of each visiting browser. This graph acted as an oscillator that measured Sawtooth waves, which are common in output from digital audio.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p31#a260824p31",
+      "title": "Mercury Research: AMD's share of x86 client CPU shipments tops 30% for the first time, hitting 30.3% in Q2, up from 21.1% two years earlier, vs. Intel's 69.7% (Michael Kan/PCMag)",
+      "url": "https://www.techmeme.com/260824/p31#a260824p31",
+      "author": null,
+      "publishedAt": "2026-08-24T19:25:01.000Z",
+      "content": "Michael Kan / PCMag: Mercury Research: AMD's share of x86 client CPU shipments tops 30% for the first time, hitting 30.3% in Q2, up from 21.1% two years earlier, vs. Intel's 69.7% — For the first time, AMD's share of the x86 client CPU market, covering both mobile and desktop, has crossed 30% …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/cars/2026/08/feds-deepen-probe-into-general-motors-brake-failures/",
+      "title": "GM vehicles under federal scrutiny after hundreds of reports",
+      "url": "https://arstechnica.com/cars/2026/08/feds-deepen-probe-into-general-motors-brake-failures/",
+      "author": "\n                    Jonathan M. Gitlin\n                ",
+      "publishedAt": "2026-08-24T19:42:50.000Z",
+      "content": "The federal government is expanding a safety investigation into a number of vehicles manufactured by General Motors after receiving hundreds of reports of brake failure. The problem affects more than 1.1 million cars, including many of GM's electric vehicles, as well as ones it has built for Honda and Acura. The problem is with the brake-by-wire system (which GM calls eBoost), which can suffer a spindle fracture while driving. GM says that in the event of that happening, the car should still retain a number of critical safety features—antilock brakes, traction control, and stability control—at least until it comes to a complete stop, at which point they become inoperable. But NHTSA's ODI says that it has received many reports that contradict this behavior and allege that eBoost failures are followed by an immediate loss of braking, which obviously poses a safety risk. Indeed, NHTSA has received 227 incident reports, a number that grows to 745 once you include the hundreds of occurrences reported to GM. Twenty-two cases resulted in crashes, and while six people have been injured in five crashes, thankfully there have been no fatal incidents.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983244",
+      "title": "The cat-and-mouse game over 3D-printed guns has begun",
+      "url": "https://www.theverge.com/tech/983244/3d-printed-guns-hashes-hochul",
+      "author": "Mack DeGeurin",
+      "publishedAt": "2026-08-24T19:50:00.000Z",
+      "content": "The creator of the world's first 3D-printed gun claims he's developed a way to thwart government-mandated software meant to block 3D printers from making firearms. It's an opening volley in what's shaping up to be an evolving battle between regulators trying to stem the tide of ghost guns and individuals trying to create workarounds. Cody Wilson, who claims to have made the detection-defying tool, is calling it \"Hochulization\" as a direct jab at New York Gov. Kathy Hochul, who pushed through the nation's first law mandating gun file detection software on new printers earlier this year. \"New York is trying to reach into the internet and pol … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/08/ads-and-tracking-infiltrated-tvs-now-theyre-coming-for-monitors/",
+      "title": "Ads and tracking infiltrated TVs. Now they're coming for monitors.",
+      "url": "https://arstechnica.com/gadgets/2026/08/ads-and-tracking-infiltrated-tvs-now-theyre-coming-for-monitors/",
+      "author": "\n                    Scharon Harding\n                ",
+      "publishedAt": "2026-08-24T20:17:41.000Z",
+      "content": "Ads and tracking have turned TVs into privacy nightmares. Both are so widespread among smart TVs that I’ve written a guide for avoiding them. One recommendation in that guide is to use a computer monitor. But in recent years, monitors have become more capable of pushing ads and tracking users. Without more straightforward approaches from vendors, such as easily comprehensible privacy policies and avoiding inappropriate ads, monitors are dangerously encroaching into smart-TV-like territory. LG monitors’ McAfee ads LG lost some trust after a recent report that some of its monitors installed McAfee pop-up ads onto connected computers. Since at least 2024, some of these displays installed an app, LG Monitor App Installer, onto connected computers under the cover of driver updates installed through Windows Update.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p32#a260824p32",
+      "title": "At his first Cursor all-hands, Musk said Grok needs to catch up, AI will become impossible for humans to control, Anthropic is leading the AI race, and more (Grace Kay/The Information)",
+      "url": "https://www.techmeme.com/260824/p32#a260824p32",
+      "author": null,
+      "publishedAt": "2026-08-24T20:30:02.000Z",
+      "content": "Grace Kay / The Information: At his first Cursor all-hands, Musk said Grok needs to catch up, AI will become impossible for humans to control, Anthropic is leading the AI race, and more — Earlier this month, on the day SpaceX announced it had completed its $60 billion acquisition of Cursor, Elon Musk called …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "github-blog",
+      "externalId": "https://github.blog/?p=98354",
+      "title": "Your alt text passes automated checks. That doesn’t mean it’s any good.",
+      "url": "https://github.blog/engineering/user-experience/your-alt-text-passes-automated-checks-that-doesnt-mean-its-any-good/",
+      "author": "Taarik Ashenafi",
+      "publishedAt": "2026-08-24T20:56:32.000Z",
+      "content": "More than one in four images on the web’s most popular home pages have alt text that’s missing, vague, or copied from adjacent images. That’s from WebAIM’s 2026 WebAIM Million report, which found that alt text,an HTML attribute containing text describing the content of an image, was missing on 16.2% of images across the top million home pages. Among the images that did have alt text, another 10.8% provided an undescriptive attribute, such as alt=\"image\", a raw filename, or a description duplicated from a neighbor. While automated tooling reliably flags missing alt text, it isn’t as good at fixing poorly written alt text. Most alt text checkers test whether an accessible name for an image exists, not whether the provided alt text says anything useful about the associated image, and that’s a deliberate design choice: a quality-oriented rule with false positives is a rule teams switch off. So alt=\"IMG_2847.png\" passes. So does the same alt=\"3/5 stars\" on five different star-shaped icons. We built an alt text plugin for the GitHub Accessibility Scanner to help improve your alt text. This post covers where we drew the line between what a checker can prove and what it can only suspect, why our worst bug turned out to be a layout problem rather than a parsing one, and what changed once we let a model into the loop. If you’re building automated checks of your own, for accessibility or otherwise, the tradeoffs should transfer. Proving a string is wrong without seeing the picture Presence of alt text is an objective fact; the attribute is there or it isn’t. Quality is often a judgment call. A machine can’t prove whether a sentence adequately describes a picture in context from markup. However, not all quality is subjective. There’s several checks you can perform based on the alt text alone, with no need to consult the image content: The attribute is absent (not empty) or whitespace-only. The alt is a filename, such as hero.png, IMG_2847.jpg. The alt is a placeholder somebody meant to replace, such as TODO, tbd. The alt is one generic word naming the medium instead of the content, such as image, logo, chart. The same alt repeats across adjacent images. Every one of those is a claim about a string, and that became our dividing line. Five deterministic rules run by default which need no credentials for running AI models or network calls. One opt-in rule calls a model with provided image content and surrounding context, for judgments an alt text string can’t support on its own. First, we had to determine which images to judge on a scanned webpage. We use Playwright’s role-based locator rather than querySelectorAll('img'), so anything not included in the browser’s accessibility tree drops out, including anything carrying alt=\"\". That last exclusion matters most. An empty alt is the author explicitly saying the image is decorative, and flagging it would punish exactly the behavior you want to encourage. So, how strict should it be? A quality checker lives or dies on false positives, so we chose closed sets over clever heuristics. The vague-alt rule normalizes a string, then checks it against a curated list of words that carry no information on their own. It fires only on an exact match: alt=\"image\" gets flagged. alt=\"image of the login screen with the SSO button highlighted\" doesn’t. Rules this literal miss plenty of bad alt text. We took the miss over the false positive, because a reliable checker that developers enable beats one that gets switched off. Repetition is a layout problem, not a DOM problem Repeated alt text presented an interesting problem. Picture a row of five star-shaped icons that each say \"3/5 stars\". A screen reader user hears the same thing five times and learns nothing new from four of them. Our first version walked the images in document order and flagged any run sharing the same normalized alt. It caught things it shouldn’t have. For example, a footer “GitHub” logo and a header “GitHub” logo might sit next to each other in the extracted list but nowhere near each other on screen, so nobody experiences them as a group. What matters is where images land on screen, not where they sit in the markup. So the rule now checks page layout, and only extends a run when the gap between two bounding boxes is small compared to the boxes themselves: const gap = Math.max(horizontalGap, verticalGap) const largerDim = Math.max(a.boundingBox.width, a.boundingBox.height, b.boundingBox.width, b.boundingBox.height) return gap > GAP_MULTIPLIER * largerDim Two details worth noting: The multiplier is a judgment call, not a number we derived from anything. It’s the kind of value you tune against real pages instead of trusting from a spec. When either image has no measurable box, the check fails open and the run continues. A missing finding is invisible; a wrong one isn’t. Getting a model to act like a reviewer, not a critic Deterministic rules only need the alt string. Anything smarter needs to know what the page is about, and none of that is tracked by the image element. Whether alt=\"a smiling person\" is fine depends entirely on what surrounds it: on a generic mood shot, it’s probably works. But under a heading where a specific person is named, it doesn’t provide enough detail. In our optional alt-text-qualitycheck, we extract page context alongside each image: the nearest heading, the page title, any <figcaption>, whether the image sits inside a link or button, and up to 600 characters of nearby prose. The link signal matters most, because when an image is a link’s only content, its alt becomes the link’s accessible name. The right alt then names the destination instead of describing the picture. One caution: The plugin only records that an image sits inside a link. We don’t check whether it’s the link’s only content, which is the part that actually turns alt into a link name. So right now both cases look identical to the model. That context, the alt, and the image go to a vision model through GitHub Models. Our failure modes were rarely the model misreading a picture. They were the model having opinions. Given perfectly good alt text, our first version of the checker would suggest different alt text, because “could this be better?” is a question a language model always answers yes to. Every image becomes a finding, so the signal disappears. Three changes fixed it: A decision procedure instead of an instruction. The prompt walks four ordered steps, stops at the first that matches, and emits that step’s verdict: decorative, redundant with a caption, functional, or informative. Explicit anti-nitpick rules. Trust the author’s framing. Separate redundant prefixes (“Image of…”) from semantic ones (“Photograph of…”). Treat a short alt as correct when the surrounding prose already analyzes the image. Structured output with a forced field order, so reasoning is generated before verdict and the model has to build an argument before it picks a label. None of that makes the model unfailingly correct. It makes it consistent enough to iterate against. The repository carries an offline grading harness built from published teaching material: WebAIM, the W3C images tutorial, and POET. The rule and the harness share one prompt, so what you tune offline is what runs in CI. That harness only tests the model’s judgment, though, not the whole pipeline. A case can score perfectly there and never reach the model in a real scan. Sending images to a model is a privacy and cost decision The moment a check calls an external model with webpage data, it stops being just a lint rule and requires careful data flow design. A few things follow from that: The rule is off by default. It won’t run unless you deliberately enable it in your plugin configuration, and it needs a token with access to GitHub Models. URLs get redacted. Image URLs and link hrefs often carry signed CDN tokens or session identifiers, so query and fragment are stripped from anything entering the model context or the rule’s error logs. For the same reason, src and srcset are replaced with (omitted) in the markup we send. Everything in that context window is untrusted input. Titles, headings, and prose all come from the page being scanned, and a page can contain text written to steer a model. Structured output constrains the shape of a response, not the reasoning behind it. One caution, because that list is easy to over-read: findings still carry the real page URL and original HTML into the scanner’s normal reporting pipeline. That’s on purpose, since you can’t fix an image you can’t locate. Redaction narrows what reaches the model and the logs, not what lands in your own issues. And if you set up Azure AI Vision credentials, an optional OCR pre-pass sends image bytes to a second place. Nothing requires Azure, but a data-flow review needs to cover both paths. Cost follows the same shape. In the common case this is one model call per image per scan, which on an image-heavy site dominates the cost of the whole run. That’s reason enough to put it on a schedule rather than on every commit. What this still can’t do The deterministic rules are literal. They catch alt text that’s obviously unwritten, not alt text that’s fluent and wrong. They also read the alt attribute rather than the computed accessible name, so an aria-label that fixes the problem won’t stop the finding. The model-backed rule produces false positives. Every finding is a prompt for human attention, not a verdict. Silence isn’t coverage. That rule re-fetches images outside the browser session, so anything behind authentication can fail to load. Fetch and model errors are logged and skipped, which means a page can come back clean because nothing got checked. Suggested alt text is a draft. A model that sees the image and a few nearby words can’t account for your audience, your house style, or the job that image is doing on the whole page. Some findings double up with the scanner’s built-in checks, since our missing-alt rule covers the same ground. We only check HTML <img> tags. SVG, role=\"img\" containers, CSS backgrounds, and canvas aren’t covered yet. This is new code with limited real-world feedback. Rules like these improve when they meet the variety of markup and content found across real sites. This plugin hasn’t had that yet, so treat early findings accordingly. Passing isn’t conformance. Automated checks are a floor. Testing with people who use assistive tech is the goal. What we’d tell you if you’re building something similar Separate what you can prove from what you can only suspect, and give them different defaults. Checks that prove something should be cheap, predictable, and on by default. Checks that only suspect something should be opt-in, and should read as a suggestion rather than a verdict. Then, ask what the user experiences rather than what the DOM says. Every gap still open in this plugin has that second shape. We record that an image is inside a link, not that it is the link. We read an attribute, not a computed name. That distance is the real boundary, and a better model doesn’t close it. Deciding what the functionality of an image is for a user who can’t see it still requires human judgment. What automation buys you is making sure that human is giving the right images a second examination. Try the alt-text plugin in your accessibility scanning workflow. If it tells you the wrong thing, please report it. Open an issue with the finding and, if public, a link to the affected page. The post Your alt text passes automated checks. That doesn’t mean it’s any good. appeared first on The GitHub Blog.",
+      "topics": [
+        "devtools-infra",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p33#a260824p33",
+      "title": "Canada-based logistics software company Descartes acquires Tai, a California-based transportation management system provider, for $100M in cash (Colin Campbell/Axios)",
+      "url": "https://www.techmeme.com/260824/p33#a260824p33",
+      "author": null,
+      "publishedAt": "2026-08-24T21:00:45.000Z",
+      "content": "Colin Campbell / Axios: Canada-based logistics software company Descartes acquires Tai, a California-based transportation management system provider, for $100M in cash — Logistics software giant Descartes has acquired transportation management system provider Tai for $100 million in cash, the companies announced today.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49425819",
+      "title": "One corner of China’s internet is insisting that the Tang Dynasty never existed",
+      "url": "https://www.cnn.com/2026/08/19/style/china-tang-dynasty-never-existed-hoax-intl-hnk",
+      "author": "related",
+      "publishedAt": "2026-08-24T21:03:06.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 144,
+      "comments": 118
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/08/rfk-jr-may-upend-how-vaccine-recommendations-are-categorized/",
+      "title": "RFK Jr. may upend how vaccine recommendations are categorized",
+      "url": "https://arstechnica.com/health/2026/08/rfk-jr-may-upend-how-vaccine-recommendations-are-categorized/",
+      "author": "\n                    Beth Mole\n                ",
+      "publishedAt": "2026-08-24T21:04:48.000Z",
+      "content": "Under anti-vaccine Health Secretary Robert F. Kennedy Jr., the US health department is considering changing how vaccine recommendations are categorized and described. The move creates the possibility that vaccinations currently considered \"routine\" or \"universal\" could be given new designations that sound less definitive or more conditional, such as \"recommended with qualification\" or recommended based on \"shared clinical decision-making.\" Kennedy has made no new rules or recommendations for the categories yet. However, he laid out ideas and possibilities in a Request for Information (RFI) posted online Friday and published in the Federal Register on Monday. In the 10-page document, Kennedy poses questions about the current categories and asks the public to weigh in on ideas for how to change or replace them. The deadline to comment on the questions and ideas is September 20. Currently, there are three categories of vaccination recommendations granted by the Centers for Disease Control and Prevention, which is informed by a panel of independent expert advisors, the Advisory Committee on Immunization Practices (ACIP). The three categories are: routine, otherwise considered universal (a recommendation that everyone should get a vaccine); risk-based recommendations (only certain groups at higher risk should get a vaccine); and recommendations based on \"shared clinical decision-making,\" or SCDM (a flexible but uncommon recommendation for vaccination based on the characteristics, values, and preferences of a patient and the judgment of their healthcare provider).Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p34#a260824p34",
+      "title": "Source: robotics startup Generalist, which released its GEN-1 model to complete physical tasks in April, raised ~$200M led by 8VC, after raising $400M in June (Dan Primack/Axios)",
+      "url": "https://www.techmeme.com/260824/p34#a260824p34",
+      "author": null,
+      "publishedAt": "2026-08-24T21:15:01.000Z",
+      "content": "Dan Primack / Axios: Source: robotics startup Generalist, which released its GEN-1 model to complete physical tasks in April, raised ~$200M led by 8VC, after raising $400M in June — Generalist has quietly raised around $200 million in new funding, just two months after the robotics AI startup raised $400 million.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p35#a260824p35",
+      "title": "Sources: smart ring maker Oura and some of its backers seek to raise up to $3B in a US IPO that could take place as soon as September and value it at over $16B (Bloomberg)",
+      "url": "https://www.techmeme.com/260824/p35#a260824p35",
+      "author": null,
+      "publishedAt": "2026-08-24T21:30:01.000Z",
+      "content": "Bloomberg: Sources: smart ring maker Oura and some of its backers seek to raise up to $3B in a US IPO that could take place as soon as September and value it at over $16B — Oura Health Oy, a maker of smart rings that track health, fitness and sleep, and some of its backers are seeking to raise …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/08/energy-hungry-ai-data-centers-spur-new-power-transformer-technology/",
+      "title": "Data centers become \"killer application\" for new power transformer tech",
+      "url": "https://arstechnica.com/gadgets/2026/08/energy-hungry-ai-data-centers-spur-new-power-transformer-technology/",
+      "author": "\n                    Jeremy Hsu\n                ",
+      "publishedAt": "2026-08-24T21:32:16.000Z",
+      "content": "Data centers have become the largest driver of surging electricity demand that is straining US power grids. But the AI data center boom has also accelerated investment in a technology that could provide a silver lining for everyone—solid-state power transformers that replace industrial-age technology with modern power electronics. Power grids currently rely on conventional transformer technology that is painstakingly assembled by hand and has a fundamental design dating back to the 1880s. Two copper wire coils manually wound around a steel core create electromagnetic fields that help step up voltage levels of alternating current electricity for long-distance transmission or step down voltage levels for the electricity use of homes and businesses. The largest power transformers cannot be mass-manufactured but are instead custom-built for each utility company’s electrical substations. Manufacturing constraints, coupled with the scramble to upgrade US power infrastructure, have meant utility companies and other customers must wait up to several years for delivery of new power transformers. That is not only a problem for expanding power grid infrastructure to support growing electricity demand, but also delays the process of replacing aging power transformers.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/08/ai-is-hitting-entry-level-jobs-hardest-stanford-study-finds/",
+      "title": "AI is hitting entry-level jobs hardest, Stanford study finds",
+      "url": "https://arstechnica.com/ai/2026/08/ai-is-hitting-entry-level-jobs-hardest-stanford-study-finds/",
+      "author": "\n                    Kyle Orland\n                ",
+      "publishedAt": "2026-08-24T21:45:53.000Z",
+      "content": "For years, AI industry watchers of all stripes have been warning of a coming jobs apocalypse driven by ultra-intelligent AI systems that will be able to replicate most human tasks more cheaply. Now, newly updated research from Stanford University economists suggests AI seems to be causing significant entry-level job losses for younger workers in some fields, even as older workers appear largely unaffected so far. The August 2026 edition of \"Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of Artificial Intelligence\" updates and revises a paper of the same name published last year with fresh data and refined statistics. In that update, the Stanford researchers find the employment trends they identified for entry-level workers last year are persisting and expanding. Specifically, employment levels for workers aged 22 to 25 in the most \"AI-exposed\" occupations are now 19 percent below those of their peers in fields less exposed to AI disruption. Last year, that gap measured just 13 percent.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49426466",
+      "title": "Moon (2024)",
+      "url": "https://ciechanow.ski/moon/",
+      "author": "simonebrunozzi",
+      "publishedAt": "2026-08-24T22:06:02.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 120,
+      "comments": 20
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49426564",
+      "title": "iCloud+ Hide My Email addresses will remain on icloud.com",
+      "url": "https://developer.apple.com/news/?id=1ptvdtcm",
+      "author": "K7PJP",
+      "publishedAt": "2026-08-24T22:13:40.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 293,
+      "comments": 73
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p36#a260824p36",
+      "title": "Apple reverses its plan to move iCloud+ Hide My Email addresses to private.icloud.com after user backlash; the feature will continue using the icloud.com domain (Juli Clover/MacRumors)",
+      "url": "https://www.techmeme.com/260824/p36#a260824p36",
+      "author": null,
+      "publishedAt": "2026-08-24T22:35:00.000Z",
+      "content": "Juli Clover / MacRumors: Apple reverses its plan to move iCloud+ Hide My Email addresses to private.icloud.com after user backlash; the feature will continue using the icloud.com domain — Apple today said it is reversing its decision and will not change the email domain used for the iCloud+ Hide My Email feature.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p37#a260824p37",
+      "title": "Docs: Meta plans to launch its version of OpenClaw, codenamed Hatch, in late August or early September and its latest AI model, Watermelon, in October (Jyoti Mann/The Information)",
+      "url": "https://www.techmeme.com/260824/p37#a260824p37",
+      "author": null,
+      "publishedAt": "2026-08-24T22:53:07.000Z",
+      "content": "Jyoti Mann / The Information: Docs: Meta plans to launch its version of OpenClaw, codenamed Hatch, in late August or early September and its latest AI model, Watermelon, in October — Meta Platforms plans to launch its consumer version of the OpenClaw AI agent, dubbed Hatch internally, as soon as the next several weeks …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983457",
+      "title": "Lenovo confirms Legion Go issues after gamers report bricked devices",
+      "url": "https://www.theverge.com/games/983457/lenovo-bad-legion-go-bios-update-bricked",
+      "author": "Sean Hollister",
+      "publishedAt": "2026-08-24T23:38:10.000Z",
+      "content": "Cursed BIOS. | Photo by Sean Hollister / The Verge When a company's software update turns your computer into a useless brick, should fixes be free? Framework, the modular computer startup, apparently thinks so. But it's not clear that computing giant Lenovo will go that far. Three weeks after a Redditor presented a nearly $300 repair bill for their handheld gaming PC - among other reports of damage and high repair bills - the company is breaking its silence. It says, in short: try holding down the power button longer, and if that fails, contact customer support. Here's the statement Lenovo provided to The Verge, via communications director Jeff Witt: Lenovo is aware that some Legion Go d … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/gradio-workflow-guide",
+      "title": "Wire It, Run It, Deploy It: AI Workflows in Gradio",
+      "url": "https://huggingface.co/blog/gradio-workflow-guide",
+      "author": null,
+      "publishedAt": "2026-08-25T00:00:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p38#a260824p38",
+      "title": "Quintessent, a startup making optical interconnects for data centers, raised a $40M Series A led by Cycle Capital, following its $11.4M seed round in 2024 (Maria Deutscher/SiliconANGLE)",
+      "url": "https://www.techmeme.com/260824/p38#a260824p38",
+      "author": null,
+      "publishedAt": "2026-08-25T00:25:00.000Z",
+      "content": "Maria Deutscher / SiliconANGLE: Quintessent, a startup making optical interconnects for data centers, raised a $40M Series A led by Cycle Capital, following its $11.4M seed round in 2024 — Optical interconnect startup Quintessent Inc. today announced that it has raised $40 million in funding to ramp up production of its hardware.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p39#a260824p39",
+      "title": "Researchers detail the growing use of AI in cyberattacks across many Chinese state-linked groups, primarily using open-weight models like Kimi K3 and DeepSeek (Mark Anderson/Bloomberg)",
+      "url": "https://www.techmeme.com/260824/p39#a260824p39",
+      "author": null,
+      "publishedAt": "2026-08-25T01:20:01.000Z",
+      "content": "Mark Anderson / Bloomberg: Researchers detail the growing use of AI in cyberattacks across many Chinese state-linked groups, primarily using open-weight models like Kimi K3 and DeepSeek — Chinese hackers are ramping up attacks after integrating DeepSeek and other open-source artificial intelligence models into their operations …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p40#a260824p40",
+      "title": "OpenAI restores 5-hour Codex and Work limits for ChatGPT Plus users, after weeks without the restriction, saying it would smoothen the load on its compute (Marcus Mendes/9to5Mac)",
+      "url": "https://www.techmeme.com/260824/p40#a260824p40",
+      "author": null,
+      "publishedAt": "2026-08-25T02:10:01.000Z",
+      "content": "Marcus Mendes / 9to5Mac: OpenAI restores 5-hour Codex and Work limits for ChatGPT Plus users, after weeks without the restriction, saying it would smoothen the load on its compute — Following several weeks during which ChatGPT users were subject only to a weekly usage cap, OpenAI announced today that it is restoring …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p41#a260824p41",
+      "title": "Sources: Apple is about to launch a new Mac mini, potentially before its September iPhone event; Apple has tested versions with M5 and M6 (Mark Gurman/Bloomberg)",
+      "url": "https://www.techmeme.com/260824/p41#a260824p41",
+      "author": null,
+      "publishedAt": "2026-08-25T02:21:14.000Z",
+      "content": "Mark Gurman / Bloomberg: Sources: Apple is about to launch a new Mac mini, potentially before its September iPhone event; Apple has tested versions with M5 and M6 — Apple Inc. is gearing up to launch a new version of its Mac mini desktop computer for the first time in almost two years, according to people familiar with the matter.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260824/p42#a260824p42",
+      "title": "Sources: Nvidia-backed neocloud Lambda is in talks to raise up to $3B at a $12B+ valuation; its revenue this year is estimated to reach $1.5B+ (Bloomberg)",
+      "url": "https://www.techmeme.com/260824/p42#a260824p42",
+      "author": null,
+      "publishedAt": "2026-08-25T02:45:01.000Z",
+      "content": "Bloomberg: Sources: Nvidia-backed neocloud Lambda is in talks to raise up to $3B at a $12B+ valuation; its revenue this year is estimated to reach $1.5B+ — Lambda Inc., an AI cloud-computing provider backed by Nvidia Corp., is in talks to raise as much as $3 billion in a round that could tee …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "https://www.latent.space/p/ainews-andrew-ng-gets-into-ai-engineering",
+      "title": "[AINews] Andrew Ng gets into AI Engineering",
+      "url": "https://www.latent.space/p/ainews-andrew-ng-gets-into-ai-engineering",
+      "author": null,
+      "publishedAt": "2026-08-25T02:50:57.000Z",
+      "content": "We’ve lost count of how many adoption milestones have been passed since the original Rise of the AI Engineer post, but surely Andrew Ng, cofounder of Google Brain and Coursera among many other things, relaunching DeepLearning.ai with a focus on AI Engineering is a big one:This was done via “an analysis of over 10,000 job postings; carrying out dozens of structured interviews with AI experts, hiring managers, and recruiters; gathering data through surveys; and synthesizing other online data” .Here are the four most important AI engineering skills according to Andrew:You can read his full post for more from the horses’ mouth, but we agree that “AI Engineering Skills” are broadly applicable to more than just those with the job title of “AI Engineer” and that is an insightful focus.Commentary on the 4 skills:Building and deploying AI applications: “People who are skilled at building and deploying AI applications understand the building blocks of AI (such as LLMs, context engineering, RAG, agentic workflows, machine learning and deep learning) and, importantly, how to use statistical techniques to measure, steer, and govern AI systems so that they behave more predictably. A core skill in doing so is knowing how to drive disciplined evals and error analysis loops.”yup. this part is closest to the traditional MLE/MLOps workflow, from “zero gradient” aka prompt engineering techniques, to harness engineering, to finetuning and beyond, all the way up to building your own agent lab as folks like Harvey are now doingSoftware engineering fundamentals. “Understanding software fundamentals allows you to recognize what tradeoffs even exist. This leads to better decisions in choosing your software stack, designing system architecture, designing your data store, testing, and so on. It also leads to much better outcomes than those for an inexperienced developer who vibe codes a solution without knowing the tradeoffs their coding agent is making — which will often be poor ones, because they don’t know what context to give their coding agent.”yup. this part is closest to the traditional SWE workflow. LLMs reward expertise — they raise the ceiling (high skill devs) much more than they raise the floor (low skill vibecoders), though both are improved.Using coding agents. “Using agentic coding effectively is now a key skill for every developer. When you have this skill, you have a good mental model for how agents work. You understand their limitations and how to work around them, and are able to quickly steer them — knowing how much to intervene and how much to leave them alone — to build robust software without wasting excessive time or tokens. You also need to know how to work with a clear spec (and when not to bother doing so), orchestrate multiple agents that work together, and avoid pitfalls like risk an agent messing up your production database. Because agentic coding is evolving quickly, using coding agents skillfully means not only knowing cutting-edge practices, but also having routines to keep trying new tools and evolve your workflows as best practices change.”When we first spoke about the 1000x AI Engineer in 2023, when Copilot was the only game in town, this was the part that was the least evident, but clearly on the horizon. Coding exploded in 2024-2026 culminating in the epic 0-$60B run of Cursor and the rise of Claude Code, Codex, Cognition, Cline and other coding powerhouses not starting with C. Being nimble here is a plus, just as much as being wary of tokenmaxxers with LLM psychosis.Shaping the build. “Effective AI engineering requires having product sense and understanding business context and customer goals, so you can participate in shaping and driving the build… Taking advantage of this opportunity requires knowing how to drive projects forward. For example, knowing when to quickly build an MVP to take to users for testing, and when to slow down and take longer in order to build more carefully.”This is perhaps the only part of AI Engineering that wasn’t foreseen in the original essay; we added the AI PM track in World’s Fair 2024 and soon Design Engineering and other AIE adjacencies because the lines started to blur very quickly in both directions.Overall, a great update to the DeepLearning.AI focus. Welcome Andrew and team!AI News for 8/22/2026-8/24/2026. We checked 12 subreddits, 544 Twitters and no further Discords. AINews’ website lets you search all past issues. As a reminder, AINews is now a section of Latent Space. You can opt in/out of email frequencies!AI Twitter RecapAgent Harnesses, Persistent Agents, and Enterprise MCPHarness design is becoming a primary optimization surface: Several posts converged on the idea that agent quality is increasingly shaped by the harness rather than just the base model. NVIDIA’s new evaluation work argues that structural checks on agent “skills” barely predict usefulness—scan scores correlate with judged quality at just Spearman ρ = 0.14—and proposes measuring “Skill Lift” instead: run the same task with and without a skill under identical conditions and score the delta in completed work (paper summary via @omarsar0). In parallel, a position paper on Anthropic-style harnesses argues enterprises should standardize on a single reusable coding-agent harness rather than bespoke orchestration graphs, claiming harness choice can matter more than model choice on enterprise work (summary via @dair_ai).Persistent and self-modifying agents are moving from concept to open-source implementations: @andykonwinski introduced Headlong, an open-source “microharness” for persistent agents that think continuously rather than only on request. The system stores trajectories as a DAG of jsonl files, keeps a self-guided inner loop running, and reportedly achieved an unattended self-debugging repair in 48 minutes; tradeoffs include $1–$2/hr background thinking cost and occasional self-inflicted failures. Complementing that, @omarsar0 described exo, a harness architecture for recursive self-improvement with an append-only event log, swappable executor, and snapshot/rollback-capable sandbox—explicitly designed so agents can rewrite prompts/tools/memory without being able to corrupt durable state. Together, these posts suggest the next wave of agent infra is about durability, forking, rollback, and continuous operation, not just better prompting.MCP is maturing into enterprise infrastructure: Anthropic rolled out enterprise-managed auth for MCP connectors, centralizing authorization through the organization’s identity provider so end users no longer perform per-tool OAuth for connectors like Asana, Atlassian, Canva, Datadog, Figma, Notion, Slack, and Supabase (announcement from @ClaudeDevs). Separately, the MCP roadmap highlights upcoming support for long-running workloads with streaming/server push, HTTP for local servers, progressive discovery for large catalogs, and standard identities/delegated permissions (roadmap summary via @_philschmid). This closes a notable gap between toy demos and auditable enterprise deployment.Model Releases, Leaks, and Competitive PositioningQwen3.8-27B continues to punch above its size class: In Code Arena: WebDev, Qwen3.8-27B landed at #9 overall with 1595 points, the only model in its size class in the top 10 and just six ranks behind Qwen3.8-Max (leaderboard update from @arena). It also ranked highly in consumer product, brand/marketing, and gaming categories. A related open-source derivative, Carnice-V3-27B, was released by @kaiostephens: a 27B Qwen-based, Hermes-agent SFT intended to fit on consumer GPUs (3090+), with merged BF16 and GGUF variants.Rumor cycle around unreleased frontier models intensified: Multiple tweets referenced apparent early access or traces of unreleased systems: EAP models labeled “claude-melon-eap” and “claude-marshmallow-eap” reportedly emphasized 3D/RL-style tasks and used many thinking tokens (demo by @Lentils80); @kimmonismus collected signs of new Claude models, Ox Alpha, Qwen 4, and a confirmed GPT Astra; and @eliebakouch claimed access to a model still in training with a public W&B run. Treat most of this as ecosystem signal rather than verified spec, but it’s notable how much of the discourse is now about pre-release access asymmetry rather than public launches—echoing @michael_nielsen, who warned that controlling access to unreleased models is becoming a source of power concentration.OpenAI and Anthropic positioning remains in flux: OpenAI developers announced GPT-5.6 availability in Kiro and a claimed ~82% cost reduction per successful Terminal-Bench 2.1 task in Kiro’s spec-driven environment for the Terra variant (announcement). OpenAI also cut GPT-5.6 Sol API pricing to $4/M input and $20/M output tokens (pricing note via @kimmonismus), with Arena updates showing Sol and Luna shifting the cost/performance Pareto frontier (@arena). On the Anthropic side, @tenobrus noted there has not been an unambiguous Opus-line upgrade in over six months, even as external testers reported stronger medium-reasoning results from new Claude variants (@kimmonismus).Inference, Benchmarking, and Cost-EfficiencyTool latency overlap is emerging as a key harness-level speedup: @a1zhang introduced Speculative Programmatic Tool Calling (sPTC), which predicts safe tool calls during code generation and launches them early in a copy of the environment so execution overlaps with token generation. The reported improvement is modest so far—about 1.0–1.2×—but the mechanism is important: it shifts optimization from token-level decoding tricks to agent workflow pipelining. @lateinteraction compared it to CPU speculative execution, emphasizing that discarded work is acceptable if most guesses are right.Token accounting and benchmark hygiene remain messy: Several posts called out misleading reporting practices. @bnjmn_marie shared a DeepSWE run with 918.9M input tokens, clarifying many were cache hits, while @cHHillee bluntly argued that counting cached input tokens in “token usage” is “incredibly dumb.” On the eval side, @jmbollenbacher warned that when a quantized model exceeds the reference model on a benchmark, it may indicate overfitting the quant, not genuine improvement; @xeophon summarized the broader lesson: fixing the eval may matter more than hill-climbing it.Cost-normalized agent benchmarks continue to reshape model choices: Together AI reported that under a $100 budget, GLM-5.3 completed 5× more work than Fable 5 on DeepSWE, roughly 17 vs 3 solved tasks, despite similar first-try performance (tweet). @reach_vb similarly reported GPT-5.6 Sol Max at 72.7% on DeepSWE v1.1 for $6.47/task versus Fable 5 Max at 69.7% and $21.63/task. Cline also compared Ox Alpha vs Fable on a real bugfix and found both solved it, but Ox used roughly 3× fewer output tokens, suggesting a notably different post-training philosophy around re-verification versus acting on the first conclusion (comparison from @cline).On-Device AI and Inference SystemsLiquid AI + Artificial Analysis launched a serious on-device benchmark stack: @liquidai released Pipette, an open-source evaluation suite for on-device inference measuring quality, speed, latency, and memory across model + quantization + runtime + device combinations, with 10k+ verified results spanning 35 model classes, 7 quants, llama.cpp runtimes, and four devices. Artificial Analysis paired this with independent phone-scale intelligence evals on iPhone 17 Pro and Galaxy S26 Ultra (full thread).Phone-scale results highlight a different Pareto frontier than cloud evals: Under an 8 GB memory / 16K context framing, Nanbeige4.2-3B and LFM2.5-2.6B topped the average score at 63, with LFM2.5-2.6B much more efficient on iPhone (8.0s, 2.3 GB) than Nanbeige (21.4s, 4.0 GB). MoE designs such as LFM2.5-8B-A1B and Ling 3.0 Tiny are notable because they activate ~1B parameters/token, enabling sub-6-second responses on phone hardware. The evaluation also makes explicit that many “smart” reasoning models are poorly matched to mobile memory and latency constraints.Inference vendors are competing on agent-specific throughput, not just raw TPS: NVIDIA’s Groq 3 LPX was described as adding a dedicated token-generation accelerator to Vera Rubin, with a claimed 3,400 output tokens/s on Gemma 4 31B at 100K context in Artificial Analysis benchmarking (summary via @kimmonismus); Groq said it will be among the first to deploy it in production (announcement). Separately, vLLM published extensive AgentX 1.0 results on real multi-turn coding traces, emphasizing KV offload, prefix reuse, and prefill/decode disaggregation as the keys to high agentic throughput rather than classic single-turn serving metrics (@vllm_project).Research, Papers, and Technical EducationRL for LLMs and harness-native training remain hot: @cwolferesearch published a comprehensive reinforcement learning guide covering token-level vs completion-level formulations, PPO/GRPO variants, actor-critic methods, rubric-based RL, and agentic RL/world modeling. This coincides with growing attention on “harness-native” RL and agent environments, reflected in paper roundups like @TheTuringPost and discussion of papers such as Agent Lightning, LEGO-RL, EnvHarness, and SkillGate.Other notable research threads: Meta/USC’s Periodic Row-wise Muon extends Muon optimization to larger diffusion transformers by amortizing expensive Newton–Schulz updates while keeping gains over AdamW (summary via @iScienceLuvr); Adobe’s Latent Dynamics Reasoning learns extrapolative video world models from pixels by modeling latent state evolution instead of direct future prediction (paper via @_akhaliq, authors’ note); and Cartwheel reported compute-optimal scaling laws for human motion generation, arguing motion may become the fifth modality with Chinchilla-like scaling behavior (launch).Educational content worth saving: @fchollet recommended chapters 15–16 of Deep Learning with Python as one of the best accessible explanations of why dot-product attention works; @ProfTomYeh posted a detailed by-hand walkthrough of self-attention; and @mervenoyann announced a new home for llama.cpp docs, with upcoming material on speculative decoding, quantization, and coding agents.Top tweets (by engagement)Hands-on product/UI performance: Anthropic said long answers in Claude web/desktop now stream ~4× smoother, with 9× fewer stalls and 4.5× shorter worst freezes on slower laptops (announcement).Fast image generation UX: @samdape showed a technique to make GPT image generation draw faster.OpenAI research culture: @gdb amplified a post from @kundan2510 praising OpenAI’s willingness to sustain long-term bets like full-duplex models.Learning resources: @fchollet recommending attention chapters from Deep Learning with Python was one of the highest-signal educational posts in the set.Enterprise MCP: Anthropic’s enterprise-managed auth for MCP connectors was one of the most consequential platform updates for production agent deployment (announcement).AI Reddit Recap/r/LocalLlama + /r/localLLM Recap1. Qwen 3.8 27B Coding and Quantization Benchmarks“Qwen 3.8 isn’t Opus level”: I re-ran the test. (Activity: 911): The image (link) shows the Deepseek/pi.dev-style coding harness being used with qwen3.8-27b in “Plan” mode for a C#/OpenGL ocean-rendering task, supporting the post’s claim that harness quality strongly affects observed model capability. In the author’s rerun, the same Qwen3.8 model and prompt failed under VS Code Copilot with a black screen, but succeeded under the alternate harness, reportedly using screenshot feedback and even generating a PNG decoder when vision was not enabled, producing waves, sky, sun, and underwater view in about 1 hour on an RTX 5090 running an ninfer-nvfp4 build with ~190k context at ~150–180 tok/s. Commenters largely agreed that the result demonstrates a large gap between “lazy” or sandboxed coding harnesses and agentic harnesses with execution/screenshot feedback. The original critic of Qwen3.8 conceded the prior conclusion was wrong and began retesting with pi.dev, noting fewer crashes and lower RAM use than VS Code/BYOM with llama.cpp.A key technical theme was that harness quality can dominate perceived model capability: commenters noted Qwen 3.8 apparently implemented an “on the fly PNG decoder” and still produced working ocean shaders despite an initially misconfigured or limited execution setup. The discussion framed this as evidence that sandboxed tools like Copilot-style environments may under-represent what coding agents can do when given a proper runtime/test loop.The original tester reported switching from VS Code + BYOM talking to llama.cpp to pi.dev after acknowledging the earlier harness was inadequate. They observed two concrete issues in the VS Code setup: driver errors after spawning the test executable, and random VS Code crashes while llama.cpp RocM 1200 build from Lemonade SDK continued running without output errors; by contrast, pi.dev had not crashed and used noticeably less RAM.Several commenters compared agent harnesses such as pi.dev/OhMyPi, opencode, and local llama.cpp setups, with interest in how much autonomy the harness provides beyond a standard Claude-like chat workflow. Hardware constraints also came up: users speculated that a RTX 5090 or similar high-end local GPU setup, potentially with tools like Ninfer, could make local agentic coding workflows more viable without cloud subscriptions.New qwen3.8:27b on a 39k line C to single-file HTML / three.js port (Activity: 655): A one-shot agent benchmark attempted to port a 2.1 MB / 39k-line / ~600k-token single-file C procedural shooter (skill-issue) into single-file HTML/Three.js, where the source was >2× the available 262,144 token context. On RTX 6000 Pro 96GB with vLLM, FP8 weights and FP8 KV cache, Claude Code + Opus 5 produced the only “okay” port in 21 min / 1759 LOC, while qwen3.8:27b via hermes took 4h18m / 949 LOC and via codehamr (repo) took 1h40m / 1056 LOC, both judged “bad.” Commenters suggested that direct “convert this code” prompts cause models to re-imagine behavior; a more reliable pipeline is to first generate a transpiler, get runnable target-language output, then iteratively rewrite function-by-function against high-level pixel comparisons or low-level register/state references. Technical debate centered on whether the poor local results were due more to prompt/harness design, missing decomposition/tests, or inference setup: multiple commenters warned that FP8 KV-cache quantization may significantly degrade long-context performance and suggested rerunning without it. Others argued the wall-clock gap is expected because Anthropic can parallelize across far more hardware, and recommended measuring vLLM tokens/sec, planning first, splitting the monolithic C file into modules, and adding behavioral tests before porting.Several commenters argued that direct “convert this codebase” prompting causes models to re-imagine the source rather than preserve behavior, even with frontier models. A suggested workflow is to first have the model help write a transpiler to the target language, then iteratively rewrite function-by-function while validating against high-level pixel comparisons or low-level register/value traces to reach pixel-perfect equivalence.Multiple comments questioned the inference setup, specifically FP8 KV-cache quantization, Q8, and not running the full bf16 Qwen 27B model on an RTX 6000-class GPU. The concern was that KV-cache compression/quantization could introduce severe quality issues for a long-context code-porting task, and that rerunning without FP8 KV-cache or with full bf16 would better isolate model capability from quantization artifacts.One technical explanation for the long runtimes was repeated KV-cache reprocessing in vLLM: if the engine releases the session cache, it may spend minutes recomputing prior context before generating any new tokens. A commenter suggested using LMCache to persist KV-cache in RAM, noting that cloud providers often avoid this latency by caching processed context across turns. Read more",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23283",
+      "title": "Apodex 1.1: Scaling Agentic Intelligence for Complex Work",
+      "url": "https://huggingface.co/papers/2608.23283",
+      "author": null,
+      "publishedAt": "2026-08-25T03:57:41.787Z",
+      "content": "Apodex 1.1: Scaling Agentic Intelligence for Complex Work",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20958",
+      "title": "TLive-Omni: An Omni-Modal Understanding Model for E-Commerce Live Streaming",
+      "url": "https://huggingface.co/papers/2608.20958",
+      "author": null,
+      "publishedAt": "2026-08-25T03:57:41.787Z",
+      "content": "TLive-Omni: An Omni-Modal Understanding Model for E-Commerce Live Streaming",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20430",
+      "title": "RISE: Adaptive Imagination for World Action Models",
+      "url": "https://huggingface.co/papers/2608.20430",
+      "author": null,
+      "publishedAt": "2026-08-25T03:57:41.787Z",
+      "content": "RISE: Adaptive Imagination for World Action Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23552",
+      "title": "Prime Agent: A Self-Improving RLM Harness",
+      "url": "https://huggingface.co/papers/2608.23552",
+      "author": null,
+      "publishedAt": "2026-08-25T03:57:41.787Z",
+      "content": "Prime Agent: A Self-Improving RLM Harness",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23565",
+      "title": "ReWorld: An Interactive World Model with Long-Horizon Memory",
+      "url": "https://huggingface.co/papers/2608.23565",
+      "author": null,
+      "publishedAt": "2026-08-25T03:57:41.787Z",
+      "content": "ReWorld: An Interactive World Model with Long-Horizon Memory",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.19408",
+      "title": "Beyond Imitation: Filtering On-Policy Distillation by Reasoning Progress",
+      "url": "https://huggingface.co/papers/2608.19408",
+      "author": null,
+      "publishedAt": "2026-08-25T03:57:41.787Z",
+      "content": "Beyond Imitation: Filtering On-Policy Distillation by Reasoning Progress",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.22856",
+      "title": "Same Agent, Different Answers: A Repeat-Aware Audit of Corpus-Induced Answer Churn in Retrieval-Augmented QA",
+      "url": "https://huggingface.co/papers/2608.22856",
+      "author": null,
+      "publishedAt": "2026-08-25T03:57:41.787Z",
+      "content": "Same Agent, Different Answers: A Repeat-Aware Audit of Corpus-Induced Answer Churn in Retrieval-Augmented QA",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.17336",
+      "title": "TileMix: Tile-Centric Mixed-Precision Attention for LLM Inference Acceleration",
+      "url": "https://huggingface.co/papers/2608.17336",
+      "author": null,
+      "publishedAt": "2026-08-25T03:57:41.787Z",
+      "content": "TileMix: Tile-Centric Mixed-Precision Attention for LLM Inference Acceleration",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.16812",
+      "title": "Unlocking the Potential of Image Editing via Concept Scaling and Dense Supervision",
+      "url": "https://huggingface.co/papers/2608.16812",
+      "author": null,
+      "publishedAt": "2026-08-25T03:57:41.787Z",
+      "content": "Unlocking the Potential of Image Editing via Concept Scaling and Dense Supervision",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.13622",
+      "title": "ARC: Fair Relative Advantage Comparison in Open-Ended Real-World Interaction",
+      "url": "https://huggingface.co/papers/2608.13622",
+      "author": null,
+      "publishedAt": "2026-08-25T03:57:41.787Z",
+      "content": "ARC: Fair Relative Advantage Comparison in Open-Ended Real-World Interaction",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.21833",
+      "title": "GameXpert-Bench: How Far Are Coding Agents from Expert Game Development?",
+      "url": "https://huggingface.co/papers/2608.21833",
+      "author": null,
+      "publishedAt": "2026-08-25T03:57:41.787Z",
+      "content": "GameXpert-Bench: How Far Are Coding Agents from Expert Game Development?",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    }
+  ]
+}
