@@ -1,6 +1,6 @@
 {
   "day": "2026-08-26",
-  "generatedAt": "2026-08-26T04:01:01.898Z",
+  "generatedAt": "2026-08-26T16:37:48.079Z",
   "items": [
     {
       "sourceSlug": "hacker-news",
@@ -947,6 +947,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49441375",
+      "title": "Show HN: TeXbrain, a LaTeX editor that runs pdfTeX in the browser via WASM",
+      "url": "https://github.com/swimmingbrain/texbrain",
+      "author": "swimmingbrain",
+      "publishedAt": "2026-08-25T22:08:50.000Z",
+      "content": "I'm a master's engineering student and a big fan of LaTeX, which I used for my thesis and research articles. I have used Overleaf and that was fine until I wanted to git sync, which unfortunately sits behind a paywall. Since I didn't want to pay subscriptions for things that should simply just work, I built the editor I wanted in my free time, where you open a tab, write LaTeX, get your PDF and the files stay all in one folder on my disk.TeXbrain is a static site with no backend. pdfTeX is compiled to WebAssembly (SwiftLaTeX) and runs in your browser. The editor can read and write your project folder through the File System Access API, so you can use git, any local TeX install, local AI Agents, or any other editor on the same files. Git is built in through isomorphic-git for anyone who would rather not touch a terminal and clone, branch, commit, push or pull via commands. No account is needed, no analytics, and everything works offline after the first load.Try it out: https://tex.swimmingbrain.dev/ (Chromium browsers get direct folder access, while Firefox or Safari fall back to a virtual filesystem)Or for self-hosting/contributing: https://github.com/swimmingbrain/texbrain (MIT, the pdfTeX engine is EPL 2.0 / GPL 2.0 and is listed in the THIRD_PARTY_LICENSES file).The part I'm most proud of getting to work is the package loading. The engine itself is only 1.8 MB. When it asks for a file it doesn't have, then a service worker intercepts the request and resolves it through Cache Storage first, then a small bundled subset, then a TeX Live tree mirrored on jsDelivr, then a SwiftLaTeX style server as a last resort. Every file is fetched once at most and after the first successful compilation, the core subset is prefetched in the background so that the offline story actually holds. Only file names go over the network, never any document content.So far, it only supports pdfTeX (no XeTeX or LuaTeX), so fontspec or polyglossia won't work, packages are pinned to the TeX Live 2020 era to stay coherent with the engine's format file and there is no bibtex or biber in the engine yet, which is maybe the roughest edge.This is should be a good solution for people on a work laptop, a Chromebook, or a university lab PC where installing TeX Live isn't always an option, and people who don't want to maintain a TeX install at all. If you already have a local setup you like, keep it. This isn't necessarily thought as a replacement for that.Some people have already used it for their thesis in the past months and their bug reports (which I would never have hit on my own) were then most of the summer's work. The first outside PR also landed recently, so if something doesn't compile for you, an issue with the package name or the bug itself is the most useful thing you can send me!",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 110,
+      "comments": 26
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260825/p44#a260825p44",
       "title": "Nitter, an open-source front end that let users read X without an account, says X sent cease-and-desist letters demanding a takedown; Nitter.net is now offline (Sarah Perez/TechCrunch)",
@@ -987,6 +1006,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49441666",
+      "title": "Maiao: Gerrit-style code review workflow for GitHub, GitLab, Gitea, others",
+      "url": "https://github.com/runetes/maiao",
+      "author": "zdw",
+      "publishedAt": "2026-08-25T22:40:07.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 110,
+      "comments": 66
     },
     {
       "sourceSlug": "alphasignal",
@@ -1045,6 +1083,80 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/train-multi-vector-encoder",
+      "title": "Training and Finetuning Multi-Vector Embedding Models with Sentence Transformers",
+      "url": "https://huggingface.co/blog/train-multi-vector-encoder",
+      "author": null,
+      "publishedAt": "2026-08-26T00:00:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/loveholidays",
+      "title": "How loveholidays is making everyone a builder with Codex",
+      "url": "https://openai.com/index/loveholidays",
+      "author": null,
+      "publishedAt": "2026-08-26T00:00:00.000Z",
+      "content": "Discover how loveholidays uses OpenAI Codex to make software development accessible across the business, helping teams turn ideas into products faster.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/glm-5-3-flash-now-available-on-ai-gateway",
+      "title": "GLM 5.3 Flash now available on AI Gateway",
+      "url": "https://vercel.com/changelog/glm-5-3-flash-now-available-on-ai-gateway",
+      "author": "Zachary Chen",
+      "publishedAt": "2026-08-26T00:00:00.000Z",
+      "content": "is now available on AI Gateway.GLM 5.3 Flash from Z.aiGLM-5.3 Flash is a multimodal model that supports text and vision input, with a 1M token context window. It supports function calling, structured output, and streaming. To use GLM-5.3 Flash, set to :modelzai/glm-5.3-flashYou can also pass images alongside text in a message. URLs and Base64 data URLs both work, and a request can include multiple images:To use it in a , run to connect agents like Claude Code, Codex, OpenCode, Cursor, Pi, and more, then select inside the agent.coding agentvercel ai-gateway coding-agents setupzai/glm-5.3-flashTry in the model playground.GLM-5.3 FlashAI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in , , , , and more.custom reportingZero Data Retention supportbudgets for API keysrouting rulesAI Gateway reflects provider pricing with no markup and does not charge a platform fee on inference, including on (BYOK) requests. on AI Gateway.Bring Your Own KeyView all language modelsRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-security-dashboard-is-now-generally-available",
+      "title": "Vercel Security Dashboard is now generally available",
+      "url": "https://vercel.com/changelog/vercel-security-dashboard-is-now-generally-available",
+      "author": "Roman Olynyk",
+      "publishedAt": "2026-08-26T00:00:00.000Z",
+      "content": "The Vercel Security Dashboard is now generally available on all plans, giving you one place to see your security posture across every account and project.You can access the Security Dashboard in or run in the Vercel CLI. the UIvercel security checkAs teams grow and coding agents make it faster to spin up projects, small misconfigurations add up quietly. The Security Dashboard automatically flags issues like:Misconfigurations are ordered by risk with the most severe first, and each finding links to the settings that fix them. Findings that are just noise for your team can also be muted, and all results can be exported to a CSV file for triage or reporting.You can also run the same checks in your terminal through the command, allowing your agents to work through the findings for you.new Vercel CLIvercel security checkAn agent using can read what failed, apply the fix and re-check to confirm. Fixes an agent can apply include:vercel security check --findingsYou can also scope the check to one project with when you want a narrow change set.--projectIn CI or any other non-interactive environment, the command writes the report to stdout as JSON automatically, giving agents structured output without extra flags.Get started by running your first scan from the , and learn more in the .Security DashboardSecurity Dashboard documentationRead moreTeam members without 2FALong-lived credentials that can be replaced with OIDCPublic preview deploymentsNon-sensitive and stale environment variablesTurning on Git fork protectionMarking an environment variable as sensitiveReplacing a static credential with OIDC federationThe Security Dashboard UIThe Security Dashboard CLI",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/python-projects-now-support-routing-rules",
+      "title": "Python projects now support routing rules",
+      "url": "https://vercel.com/changelog/python-projects-now-support-routing-rules",
+      "author": "Ricardo Gonzalez",
+      "publishedAt": "2026-08-26T00:00:00.000Z",
+      "content": "Python projects can now use to set response headers or rewrite requests to internal paths, including apps built with FastAPI, Django, and Flask.routing rulesThe evaluates rules before requests reach your application, so changes apply without a new deployment.Vercel CDNFor example, this FastAPI app serves a route:/newTo send requests for to that route, create a rewrite from the CDN tab in your project dashboard or with the :/oldVercel CLIPublished rules take effect immediately across all regions, and you can roll back to a previous version from the History tab.You can also manage rules from Python with the , which wraps the . stages the rule, and publishes it: SDKvercelVercel REST APIadd_routeupdate_route_versionRewrites can also be defined in :vercel.jsonProject-level rules live outside your deployment and are evaluated before its routes, so a published rule takes precedence over a rewrite for the same path. Each surface fits a different workflow:vercel.jsonUpdate Vercel CLI to the latest version and read the to get started.routing documentationRead moreHow you define itTakes effectBest forCDN tab in the dashboardOn publishEditing and testing rules visuallyVercel CLIOn publishOne-off changes from the terminal Python SDK or REST APIvercelOn publishAutomation and CI/CDvercel.jsonOn each deploymentRewrites that ship with the application code",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "alphasignal",
       "externalId": "https://alphasignal.ai/news/artificial-analysis-catches-ai-coding-agents-cheating-their-way-to-top-scores",
       "title": "Artificial Analysis Catches AI Coding Agents Cheating Their Way to Top Scores",
@@ -1057,6 +1169,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49442589",
+      "title": "Queryable Executables",
+      "url": "https://fzakaria.com/2026/08/24/actually-queryable-executables",
+      "author": "rguiscard",
+      "publishedAt": "2026-08-26T00:20:49.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 287,
+      "comments": 78
     },
     {
       "sourceSlug": "techmeme",
@@ -2028,6 +2159,1338 @@
       "content": "TorchMorph: CUDA-accelerated Morphological Transforms",
       "topics": [
         "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49444514",
+      "title": "More than half of adults in U.S. say they lack basic statistical understanding",
+      "url": "https://www.psu.edu/news/research/story/more-half-adults-us-say-they-lack-basic-statistical-understanding",
+      "author": "giuliomagnifico",
+      "publishedAt": "2026-08-26T05:49:20.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 128,
+      "comments": 197
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Aug/26/paul-dix/",
+      "title": "Quoting Paul Dix",
+      "url": "https://simonwillison.net/2026/Aug/26/paul-dix/",
+      "author": null,
+      "publishedAt": "2026-08-26T08:07:55.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49445727",
+      "title": "RAG Is Simpler Than You Think",
+      "url": "https://www.lighthousenewsletter.com/p/rag-is-simpler-than-you-think",
+      "author": "j0selit0",
+      "publishedAt": "2026-08-26T08:39:17.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 318,
+      "comments": 143
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49445873",
+      "title": "Oldinsurancemaps.net is now a Charter Project",
+      "url": "https://openstreetmap.us/news/2026/08/oim-charter-project/",
+      "author": "altilunium",
+      "publishedAt": "2026-08-26T08:57:46.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 144,
+      "comments": 27
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49446210",
+      "title": "XCancel and Nitter are receiving C&D letters from XCorp",
+      "url": null,
+      "author": "mobilio",
+      "publishedAt": "2026-08-26T09:34:38.000Z",
+      "content": "https://xcancel.com \"On Monday 24th August at 8PM EST, we received at letter from X Corp. asking to cease and desist the service XCancel. The service XCancel is stopped until further notice. We are seeking legal advice and won't share more details for now. Thank you for the trust you have put in these two years of XCancel.\"https://nitter.net \"On 24 August 2026 cease and desist letters have been sent by X Corp. demanding a permanent takedown of Nitter instances and the project's repository.nitter.net is offline and development has stopped for the time being. I'm seeking legal advice and won't be commenting further on the specifics for now.Thank you to everyone who used, hosted, packaged, donated and contributed to Nitter over the past seven years.\"",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 268,
+      "comments": 120
+    },
+    {
+      "sourceSlug": "stratechery",
+      "externalId": "https://stratechery.com/?p=19806",
+      "title": "Apple Updates Mini and Studio, AI Computers, OpenAI Jalapeño",
+      "url": "https://stratechery.com/2026/apple-updates-mini-and-studio-ai-computers-openai-jalapeno/",
+      "author": "Ben Thompson",
+      "publishedAt": "2026-08-26T10:00:00.000Z",
+      "content": "Apple and OpenAI have two completely different hardware announcements; both represent pressure on Nvidia.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49446422",
+      "title": "Z.ai confirms Ox Alpha is a new GLM-series model and will release its weights",
+      "url": "https://www.bloomberg.com/news/articles/2026-08-26/china-s-z-ai-made-ox-alpha-stealth-model-that-rivals-deepseek",
+      "author": "garo-pro",
+      "publishedAt": "2026-08-26T10:04:55.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text",
+      "points": 372,
+      "comments": 132
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49446748",
+      "title": "U.S. gov't moves to suppress pushback on data centers",
+      "url": "https://www.tomshardware.com/tech-industry/data-centers/u-s-govt-moves-to-suppress-pushback-on-data-centers-by-removing-requirements-for-public-input-on-pollution-epa-change-would-allow-air-pollution-permits-without-publicizing-them",
+      "author": "rbanffy",
+      "publishedAt": "2026-08-26T10:44:40.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 154,
+      "comments": 121
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/cars/2026/08/xtracycles-swoop-asm-e-bike-brings-an-automatic-transmission-to-cargo-bikes/",
+      "title": "Xtracycle's Swoop ASM e-bike brings an automatic transmission to cargo bikes",
+      "url": "https://arstechnica.com/cars/2026/08/xtracycles-swoop-asm-e-bike-brings-an-automatic-transmission-to-cargo-bikes/",
+      "author": "\n                    John Timmer\n                ",
+      "publishedAt": "2026-08-26T11:00:12.000Z",
+      "content": "The Velotric Discover M e-bike we reviewed earlier this year had a feature I found somewhat annoying: It would sporadically block much of the display with an alert telling me I should be in a different gear. While the implementation bugged me, the concept made a certain degree of sense; most e-bikes now know your cadence, how much torque you're generating, and how that power is being translated into speed. That's everything you need to know to determine an optimal gear. Somewhere in the back of my mind, I thought, \"If you're so smart, why don't you just shift for me?\" I was completely unaware that Shimano had already developed a system that did exactly that. And for the past few weeks, I've been using it on a $4,500 cargo bike from Xtracycle called the Swoop ASM that let me see what it's like to hand control of my gears to an electronic brain.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=94006",
+      "title": "Sector Snapshot: Legal Tech Funding Down Slightly From All-Time High ",
+      "url": "https://news.crunchbase.com/venture/legal-tech-startuo-funding-down-ai-acquisitions-2026/",
+      "author": "Joanna Glasner",
+      "publishedAt": "2026-08-26T11:00:37.000Z",
+      "content": "If AI legal tech funding was a baseball game, this might be roughly the fifth inning. One already has a sense of top-performing players and which team is in the lead. Nonetheless, it’s much too early to confidently call a winner. It’s been a rapid progression to get here. In the past two years, venture investors have poured more than $7 billion into legal and legal tech startups, most with an AI focus. Funding to the space hit a record level last year, with $4.6 billion invested, per Crunchbase data. So far this year, legal tech startups have pulled in more than $2.2 billion. Top fundraisers The biggest chunk of funding in recent quarters has gone to startups familiar to followers of the space. Harvey, a provider of AI tools for legal professionals, is the sector’s top fundraiser with $1.2 billion in investment to date. The 4-year-old, San Francisco-based company is reportedly now looking to raise another $500 million at a $15.5 billion valuation. Legora, an AI platform built for lawyers, is also in the midst of a massive scale-up. The Stockholm-based startup raised $600 million in Series D funding this year, securing a valuation of $5.5 billion, tripling over a six-month period. Clio, a 2008 vintage provider of legal practice management software that has pivoted heavily into AI, has also been attracting growth funding. While it didn’t secure a round this year, the Vancouver company closed on $1.4 billion in equity financing in 2024 and 2025. For 2026, meanwhile, at least 12 legal tech-focused startups have secured rounds of $50 million or more. We’ve put together a list below. Notably, there’s still quite a bit of activity at the early stage. Out of the 12 largest rounds this year, eight were Series A or Series B financings. Seed-stage dealmaking is also busy, with more than 50 legal- and legal-tech seed rounds of $1 million or more this year, per Crunchbase data. Exits Legal tech startups are also selling to acquirers at a steady clip. Legora has been particularly acquisitive of late, snapping up at least five companies this year, all of which raised seed or venture funding. Harvey is also a serial buyer, acquiring at least three companies in 2026. Neither company has disclosed purchase prices. Among publicly traded acquirers, Wolters Kluwer, a Dutch legal and healthcare software provider, has made at least two sizable legal tech startup acquisitions since last year. It paid $500 million for Brightflag, a provider of legal spend management tools, and $105 million for Libra, an AI workspace for legal professionals. We haven’t seen venture-backed legal tech companies go public lately, but the biggest names seem to be signaling the possibility. Harvey, for instance, says it added over $100 million in ARR in the first quarter of this year, indicating it has the revenue and growth trajectory of a strong IPO candidate. With high investment comes high expectations Robust investment in legal tech comes amid high expectations for AI-delivered efficiencies among legal professionals. A Thomson Reuters survey of professionals in the space this year found that 80% of respondents believe AI will have a high or transformational impact on their work within the next five years. Early benefits look promising too, with more than half of respondents attesting that their organizations are already seeing a return on investment from investing in AI. Top use cases include document review, legal research, summarizing documents, and drafting briefs or memos. One of the highest-impact areas for AI ahead is saving time, with tools that automate repetitive tasks. Generally speaking, that’s a welcome offering, although legal professionals do widely anticipate it could disrupt the hourly billing model. Overall, the storyline looks similar to what we see in other industries where AI is shouldering more tasks. AI isn’t expected to replace lawyers and legal support staff. However, it could free people to spend more time on valuable tasks only a human can do, enable employers to run with a smaller staff, or both. Related Crunchbase query: Global Legal And Legal Tech Startup Funding In 2026 Related reading: Legal Tech Investment Hits All-Time High With Filevine Funding Swedish Legal Tech Startup Legora Lands Another $50M In Nvidia-Led Series D Extension Illustration: Dom Guzman",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/08/ibms-new-granite-4-2-models-ride-the-wave-of-interest-in-local-llms/",
+      "title": "IBM's new Granite 4.2 models ride the wave of interest in local LLMs",
+      "url": "https://arstechnica.com/ai/2026/08/ibms-new-granite-4-2-models-ride-the-wave-of-interest-in-local-llms/",
+      "author": "\n                    Samuel Axon\n                ",
+      "publishedAt": "2026-08-26T11:10:49.000Z",
+      "content": "IBM has rolled out the newest models in its family of open-weight large language models designed to be downloaded and self-hosted. The newly launched Granite 4.2 comes in 3B, 8B, and 30B parameter variants. Like previous versions, IBM is taking a decoder-only approach here. These new releases offer a 128,000-token context window natively. The 8B and 30B variants (not the 3B one) also go through an agentic reinforcement-learning block; they were trained for expanded capabilities like using the terminal, searching the web, or using external tools. The 3B model supports tools too, but without the same level of specialized training.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=984959",
+      "title": "Rockstar finally responds to &#8216;heartbreaking&#8217; GTA 6 leaks",
+      "url": "https://www.theverge.com/games/984959/gta-vi-leaks-rockstar-games-official-statement-heartbreaking",
+      "author": "Dominic Preston",
+      "publishedAt": "2026-08-26T12:04:15.000Z",
+      "content": "Rockstar Games has released its first official statement following days of sustained leaks of footage from Grand Theft Auto VI, calling the period \"heartbreaking for our team.\" Not long after Rockstar posted, another leaked video appeared, this time showing the Jason character pulling off the series' trademark move of carjacking a box Chevy-like vehicle with a \"Rideout Customs\" logo across the back window and trying to evade the police. At the end, the other main character of the game, Lucia, appears briefly in what looks like a cutscene. \"It would be an understatement to say that having videos of Grand Theft Auto VI gameplay leak in this w … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72504",
+      "title": "Spyware for Babies",
+      "url": "https://www.schneier.com/blog/archives/2026/08/spyware-for-babies.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-08-26T12:05:52.000Z",
+      "content": "The New York Times has a long article (alt link) on surveillance systems aimed at babies. They are increasingly using AI. Nanit and its rivals want to own 24/7 health tracking for the sub-four-foot set. And their already astonishing levels of baby data collection are just the beginning. Nanit recently raised $50 million from investors to expand its use of A.I. and use its camera to track speech and language development, motor skills and more, while extending its presence in children’s bedrooms into early adolescence.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49447600",
+      "title": "Fake US thinktank set up and funded by Israel sought to game AI for propaganda",
+      "url": "https://www.theguardian.com/world/2026/aug/26/fake-thinktank-israel-ai-propaganda",
+      "author": "n1b0m",
+      "publishedAt": "2026-08-26T12:11:19.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 216,
+      "comments": 38
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49447682",
+      "title": "Omarchy development practices lead to predictable security issues",
+      "url": "https://blog.happyfellow.dev/merchants-of-insecurity/",
+      "author": "arn3n",
+      "publishedAt": "2026-08-26T12:17:43.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 265,
+      "comments": 363
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/alibaba-s-qwen3-8-flash-next-hits-10x-long-context-speed-at-1-9-training-cost",
+      "title": "Alibaba's Qwen3.8-Flash-Next Hits 10x Long-Context Speed at 1/9 Training Cost",
+      "url": "https://alphasignal.ai/news/alibaba-s-qwen3-8-flash-next-hits-10x-long-context-speed-at-1-9-training-cost",
+      "author": "Qwen",
+      "publishedAt": "2026-08-26T12:34:01.000Z",
+      "content": "Alibaba open-weights a 125B multimodal MoE with just 6B active parameters, previewing the attention overhaul coming in Qwen4.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49448137",
+      "title": "Bill Gates: The turbulent AI era is here",
+      "url": "https://www.gatesnotes.com/work/make-ai-work-for-everyone/reader/a-turbulent-ai-era-and-critical-choices-to-make",
+      "author": "ilamont",
+      "publishedAt": "2026-08-26T12:47:47.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 113,
+      "comments": 180
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49448210",
+      "title": "Qwen3.8-Flash-Next: A New Architecture, Towards Ultimate Cost-Efficiency",
+      "url": "https://qwen.ai/blog?id=qwen3.8-flash-next",
+      "author": "tosh",
+      "publishedAt": "2026-08-26T12:52:12.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 371,
+      "comments": 110
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=984838",
+      "title": "Ring says its new encryption limits what it can give police",
+      "url": "https://www.theverge.com/tech/984838/ring-take-encryption-throw-away-the-key-law-enforcement",
+      "author": "Jennifer Pattison Tuohy",
+      "publishedAt": "2026-08-26T12:55:45.000Z",
+      "content": "All Ring cameras will soon use TAKE encryption by default. | Photo by Jennifer Pattison Tuohy / The Verge Ring has a new way to protect your videos. It's developed an encryption method called TAKE, short for Throw Away the Key Encryption, that the Amazon-owned company says will protect your videos without traditional end-to-end encryption. TAKE limits when and why Amazon's cloud can access those videos, while still providing features like smart alerts for people and packages, AI-powered video search, and video descriptions. The feature is rolling out gradually starting in September, regardless of whether you have a subscription, and will become the default encryption for all Ring customers. TAKE arrives during a year of intense scrutiny for R … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49448321",
+      "title": "AWS Acquires DuckDB",
+      "url": "https://ducklabs.com/news/2026/08/26/ducklabs-to-join-aws",
+      "author": "onderkalaci",
+      "publishedAt": "2026-08-26T12:59:26.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 650,
+      "comments": 171
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49448819",
+      "title": "Meta reaches $16.68B settlement over social media harms to children",
+      "url": "https://www.reuters.com/world/us/meta-settles-with-us-states-over-social-media-harms-2026-08-26/",
+      "author": "bhouston",
+      "publishedAt": "2026-08-26T13:28:32.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 319,
+      "comments": 274
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=985032",
+      "title": "Meta agrees to heavy restrictions on teen users in major lawsuit settlement",
+      "url": "https://www.theverge.com/policy/985032/meta-state-ag-kids-online-safety-settlement",
+      "author": "Lauren Feiner",
+      "publishedAt": "2026-08-26T13:31:32.000Z",
+      "content": "Mark Zuckerberg. | Image: Cath Virginia / The Verge, Getty Images Meta settled its latest kids online safety trial with a group of 29 state attorneys general, sparing it from the remainder of a trial that could have cost it hundreds of billions of dollars. Under the terms of the settlement, which resolves claims by a larger group of 47 states and several districts and territories, Meta agreed to come up with an age assurance standard that is subject to independent testing, and must have a false positive rate no higher than 10 percent for users aged 16 to 17, and 3 percent for users aged 13 to 15. The company also agreed to give teens the option to turn off personalized feeds, meaning that they won't be s … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49448872",
+      "title": "France reaches 94.9% fiber coverage in 2026",
+      "url": "https://cartefibre.arcep.fr",
+      "author": "nehalem501",
+      "publishedAt": "2026-08-26T13:32:35.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 122,
+      "comments": 69
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p30#a260826p30",
+      "title": "Meta says its AG deal requires it to create an age assurance standard that is subject to independent testing, with a false positive rate no higher than 10% (Lauren Feiner/The Verge)",
+      "url": "https://www.techmeme.com/260826/p30#a260826p30",
+      "author": null,
+      "publishedAt": "2026-08-26T13:47:15.000Z",
+      "content": "Lauren Feiner / The Verge: Meta says its AG deal requires it to create an age assurance standard that is subject to independent testing, with a false positive rate no higher than 10% — It agreed to independent testing of age assurance standards. … Meta settled its latest kids online safety trial with a group …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/08/psychiatrys-diagnostic-bible-is-finally-getting-a-biological-upgrade/",
+      "title": "Psychiatry’s diagnostic bible is finally getting a biological upgrade",
+      "url": "https://arstechnica.com/health/2026/08/psychiatrys-diagnostic-bible-is-finally-getting-a-biological-upgrade/",
+      "author": "\n                    Anand Kumar, The Conversation\n                ",
+      "publishedAt": "2026-08-26T13:53:32.000Z",
+      "content": "The “bible” of clinical psychiatry—the DSM, short for the Diagnostic and Statistical Manual of Mental Disorders—is one of the most popular psychiatry reference books around the world. Clinicians use it to diagnose patients and scientists use it to guide research. Despite its wide impact, the DSM has never integrated biology in its diagnoses of mental illness. This omission was largely because the underlying biology of mental illness was too preliminary to be included in such a widely used clinical manual. The most recent version of the DSM—the DSM-5, released in 2013—has attracted significant criticism from clinicians and researchers, including on how its lack of objective biological measures risks medicalizing human suffering and reducing the validity of psychiatric diagnoses.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p31#a260826p31",
+      "title": "Meta's AG settlement will be distributed to the 48 signing states and four jurisdictions in annual installments over a 10-year period based on their populations (Meghan Bobrowsky/Wall Street Journal)",
+      "url": "https://www.techmeme.com/260826/p31#a260826p31",
+      "author": null,
+      "publishedAt": "2026-08-26T13:54:14.000Z",
+      "content": "Meghan Bobrowsky / Wall Street Journal: Meta's AG settlement will be distributed to the 48 signing states and four jurisdictions in annual installments over a 10-year period based on their populations — The deal contains broad new safeguards for underage users but only pays out in full if TikTok and YouTube make similar concessions",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983307",
+      "title": "Elden Ring on the Switch 2 isn&#8217;t tarnished",
+      "url": "https://www.theverge.com/entertainment/983307/elden-ring-nintendo-switch-2-review",
+      "author": "Andrew Webster",
+      "publishedAt": "2026-08-26T14:00:00.000Z",
+      "content": "FromSoftware is hoping to make a splash on the Switch 2 later this year when it launches The Duskbloods, a gothic competitive multiplayer game that's unlike anything the studio has made before. But before that, Switch 2 owners have a chance to experience the studio's biggest hit for the first time thanks to a port of Elden Ring and its expansion, Shadow of the Erdtree. For the most part, the new version - called the \"Tarnished Edition\" - is the same game that captivated players in 2022. But the shift in platform also makes it a particularly compelling way to explore the Lands Between. Elden Ring differentiated itself from past FromSoft game … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=984926",
+      "title": "You can now buy music on SoundCloud",
+      "url": "https://www.theverge.com/entertainment/984926/soundcloud-direct-music-sales-beta-launch",
+      "author": "Jess Weatherbed",
+      "publishedAt": "2026-08-26T14:00:00.000Z",
+      "content": "SoundCloud has launched a new beta feature that allows artists on the audio streaming platform to sell music directly from their profiles, instead of diverting fans to purchase from third-party services like Bandcamp and Beatport. The feature aims to give listeners a better way to support the musicians behind their favorite songs, because SoundCloud isn't taking any commission from these sales - meaning everything goes directly to the artists. By comparison, Bandcamp takes a cut of between 10-15 percent for sales, and artists on Beatport receive roughly 50-65 percent of their sale price. More than 250,000 artists have linked over 2.4 millio … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=984991",
+      "title": "Your Oura Ring can&#8217;t measure what&#8217;s going on in your skull",
+      "url": "https://www.theverge.com/column/984991/optimizer-oura-ring-lawsuit-sleep-tracking-wearables",
+      "author": "Victoria Song",
+      "publishedAt": "2026-08-26T14:00:00.000Z",
+      "content": "Sleep trackers detect sleep via a combination of motion, heart rate, and temperature sensors. This is Optimizer, a weekly newsletter sent from Verge senior reviewer Victoria Song that dissects and discusses the latest gizmos and potions that swear they're going to change your life. Opt in for Optimizer here. Oura's getting sued. A recently filed class-action complaint against the smart ring maker alleges that the company has duped customers by claiming it can accurately track different sleep stages. A smart ring can't possibly do that, the suit says, because the Oura Ring doesn't directly measure your brain waves. Instead, Oura uses AI models to take advantage of \"desperate consumers who struggle with their sleep … by selling fault … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=985003",
+      "title": "Microsoft’s 25th anniversary Xbox will cost $899",
+      "url": "https://www.theverge.com/games/985003/microsoft-xbox-25th-anniversary-console-price",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-08-26T14:05:38.000Z",
+      "content": "The special-edition translucent green Xbox finally has an official price. Preorders for the console start August 27th at 10AM ET / 7AM PT, although Microsoft says \"some of XBOX's most dedicated fans\" will receive early access preorder emails starting today. The console will launch on November 13th, alongside a matching controller with the same \"OG Green\" colorway from the original translucent green Xbox. Microsoft is also including a full-game download of Halo: Campaign Evolved with each of the consoles, and revealed during Gamescom on Wednesday that each console will be laser-etched and numbered. Under the special-edition shell, it's an X … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49449507",
+      "title": "GLM-5.3-Flash",
+      "url": "https://z.ai/blog/glm-5.3-flash",
+      "author": "Philpax",
+      "publishedAt": "2026-08-26T14:08:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 390,
+      "comments": 164
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49449576",
+      "title": "Twitter Viewer – View Twitter Without Account",
+      "url": "https://twitterwebviewer.com/",
+      "author": "motownphilly",
+      "publishedAt": "2026-08-26T14:11:39.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 119,
+      "comments": 41
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/z-ai-s-glm-5-3-flash-matches-claude-opus-at-one-tenth-the-price",
+      "title": "Z.ai's GLM-5.3-Flash Matches Claude Opus at One-Tenth the Price",
+      "url": "https://alphasignal.ai/news/z-ai-s-glm-5-3-flash-matches-claude-opus-at-one-tenth-the-price",
+      "author": "Z.ai",
+      "publishedAt": "2026-08-26T14:12:36.000Z",
+      "content": "Z.ai just dropped a 320B mixture-of-experts model with 18B active params, MIT-licensed weights, native multimodal input, and a 1M-token context window.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/08/15000-years-of-solar-wind-in-four-hours-a-seattle-company-gives-it-a-go/",
+      "title": "15,000 years of solar wind in four hours? A Seattle company gives it a go.",
+      "url": "https://arstechnica.com/space/2026/08/15000-years-of-solar-wind-in-four-hours-a-seattle-company-gives-it-a-go/",
+      "author": "\n                    Eric Berger\n                ",
+      "publishedAt": "2026-08-26T14:14:52.000Z",
+      "content": "As part of its nuclear fusion processes, the Sun produces a particularly interesting isotope of helium, known as helium-3. Some of this helium-3 escapes the Sun's gravitational pull as part of the solar wind, a stream of charged particles that emanates out across the Solar System. Over billions of years, this wind has bombarded every body in the vicinity of the Sun, including Earth's Moon. Lacking a magnetic field or atmosphere, the Moon's surface has no barrier to prevent the constant flow of this wind. This means that helium-3 has been striking the lunar soil, or regolith, for a long time. These helium ions penetrate only a little way into the individual grains of this soil, but periodically meteorites have struck the lunar surface to churn the soil, mixing some of this helium-3 a little below the surface.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p32#a260826p32",
+      "title": "Vanguard agrees to acquire RIA software startup Altruist, a source says for $4.6B in cash; Altruist raised $600M and had a $1.9B valuation in early 2025 (Dan Primack/Axios)",
+      "url": "https://www.techmeme.com/260826/p32#a260826p32",
+      "author": null,
+      "publishedAt": "2026-08-26T14:15:01.000Z",
+      "content": "Dan Primack / Axios: Vanguard agrees to acquire RIA software startup Altruist, a source says for $4.6B in cash; Altruist raised $600M and had a $1.9B valuation in early 2025 — Vanguard Group on Wednesday announced an agreement to acquire Altruist, a California-based provider of software for registered investment advisors.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p33#a260826p33",
+      "title": "Amazon's Ring unveils a new proprietary encryption architecture called TAKE, set to begin rolling out in September as the default encryption for all cameras (Jennifer Pattison Tuohy/The Verge)",
+      "url": "https://www.techmeme.com/260826/p33#a260826p33",
+      "author": null,
+      "publishedAt": "2026-08-26T14:20:03.000Z",
+      "content": "Jennifer Pattison Tuohy / The Verge: Amazon's Ring unveils a new proprietary encryption architecture called TAKE, set to begin rolling out in September as the default encryption for all cameras — The new “Throw Away The Key Encryption” method will become the default on all Ring cameras — Ring has a new way to protect your videos.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p34#a260826p34",
+      "title": "Sources: Sword Health plans to acquire mental health company Headspace for between $200M and $300M in cash, far below its ~$3B valuation in 2021 (Brock E.W. Turner/Axios)",
+      "url": "https://www.techmeme.com/260826/p34#a260826p34",
+      "author": null,
+      "publishedAt": "2026-08-26T14:23:10.000Z",
+      "content": "Brock E.W. Turner / Axios: Sources: Sword Health plans to acquire mental health company Headspace for between $200M and $300M in cash, far below its ~$3B valuation in 2021 — Sword Health plans to acquire mental health company Headspace for between $200 million and $300 million in cash, Axios Pro has learned from multiple sources.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p35#a260826p35",
+      "title": "Z.ai releases GLM-5.3-Flash, the first natively multimodal GLM-5 series model, with 320B parameters, saying it outperforms GLM-5.2 at \"one-tenth the price\" (Z.ai)",
+      "url": "https://www.techmeme.com/260826/p35#a260826p35",
+      "author": null,
+      "publishedAt": "2026-08-26T14:26:48.000Z",
+      "content": "Z.ai: Z.ai releases GLM-5.3-Flash, the first natively multimodal GLM-5 series model, with 320B parameters, saying it outperforms GLM-5.2 at “one-tenth the price” — We introduce GLM-5.3-Flash, the first natively multimodal model in the GLM-5 series. With 320B total parameters …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=984936",
+      "title": "Xbox announces disc-to-digital feature that digitizes your physical games",
+      "url": "https://www.theverge.com/tech/984936/xbox-disc-to-digital-feature-official",
+      "author": "Tom Warren",
+      "publishedAt": "2026-08-26T14:30:00.000Z",
+      "content": "Microsoft is officially announcing a new Xbox feature that will allow Xbox owners to digitize their existing physical game collections. The disc-to-digital feature, which The Verge exclusively revealed last month, is part of work that Microsoft is doing for game preservation and in preparation for the next generation of Xbox consoles. \"Most Xbox One and Xbox Series X disc-based games support this new feature,\" explains Jason Ronald, VP of next generation at Xbox. \"Players can claim a digital entitlement by inserting a supported disc into an Xbox One or Xbox Series X console and launching the game.\" This digital entitlement is tied to the sp … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112283 at https://www.eff.org",
+      "title": "French Top Court Gets It Right, Strikes Down Social Media Ban For Youths",
+      "url": "https://www.eff.org/deeplinks/2026/08/french-top-court-gets-it-right-strikes-down-social-media-ban-youths",
+      "author": "Paige Collings",
+      "publishedAt": "2026-08-26T14:32:59.000Z",
+      "content": "Earlier this month, France’s top court struck down the country’s legislation that banned social media use for people under 15 years old, which had been scheduled to take effect in January 2027. This is a welcome win for free expression, as we face a wave of countries and U.S. states seeking to pass similar laws banning young people from social media. In particular, the Constitutional Council’s decision focused on two components: Infringement on Free Expression The Council ruled that the legislation banning under-15s from social media infringed on freedom of expression and communication in a manner that is not appropriate, necessary, or proportionate, which is required by Article 34 of the French Constitution. In particular, it stressed that the ban did not distinguish between different types of online services, and ignored the circumstances of individual users, such as their exact age, level of maturity, and family situation. The evidence is clear: these are reckless and harmful laws that negatively impact all people, not just those under 15. These measures chill all users’ exercise of the right to free speech and expression online by imposing obstacles on sites or by wrongfully blocking people’s access outright. By forcing young people into digital isolation, these bans curtail vital access to news and resources for health and development; especially for LGBTQ+ and marginalized youth as social media can often be the only place to find community, explore their identity, or access life-saving resources. They also completely ignore the calls of young people themselves who favor digital literacy and education over surveillance and government control. These bans also destroy the right to online anonymity—a cornerstone of our right to free expression that in particular protects whistleblowers, journalists, activists, and immigrants. Infringement on the Right to Private Life The Council’s second objection noted that the law requiring every person, even adults, to prove their age before accessing social media platforms impedes the right to private life, and thus infringes on Article 2 of the Déclaration de 1789. The French Council gets a lot right in this decision: it highlights that bans like this impact not just young people, but everyone online. They force people of all ages to hand over government IDs, face scans, and other sensitive information into a growing surveillance ecosystem. Further, when parental consent is required, companies must collect even more verification data on the parents. We know that when people are forced to hand over this information, age verification systems frequently misidentify or lock out people of color, people with disabilities, and trans or gender-nonconforming individuals whose IDs may not match their appearance; adding to the privacy concerns around these bans. Next Steps As all bills in France are subject to scrutiny by the Constitutional Council to ensure compliance with the French Constitution, French President Emmanuel Macron has tasked Prime Minister Sébastien Lecornu to re-work the legislation with a goal to adopt a ‘legally robust’ version of the social media ban. Public policy must be effective, proportionate, and respectful of fundamental rights; and the ruling by the Constitutional Council has ramifications beyond France. It sends a message of caution to Brussels, where the EU Commission is working on an EU-wide bill on access restrictions. These legal restrictions would likely require problematic age verification of users. The prominent EU digital identity wallet and the “mini” age verification app, presented as privacy-robust options, instead raise serious privacy and security concerns. Young people deserve better than a policy built on panic, and all internet users deserve a safe and free internet that includes measures to empower all people with the knowledge they need to navigate online spaces safely. A social media ban generates headlines, but it will not solve the problem.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p36#a260826p36",
+      "title": "In Q2, Apple's base iPhone 17 was the global best-selling smartphone, with a 6% share, followed by the iPhone 17 Pro Max; Apple and Samsung had all 10 top spots (Counterpoint Research)",
+      "url": "https://www.techmeme.com/260826/p36#a260826p36",
+      "author": null,
+      "publishedAt": "2026-08-26T14:35:08.000Z",
+      "content": "Counterpoint Research: In Q2, Apple's base iPhone 17 was the global best-selling smartphone, with a 6% share, followed by the iPhone 17 Pro Max; Apple and Samsung had all 10 top spots — - The iPhone 17 led the Top 10 bestsellers list with 6% overall market sales share for the quarter, iPhone 17 Pro Max and iPhone 17 Pro take the next two spots.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p37#a260826p37",
+      "title": "The US DOJ says it disrupted a Chinese hacking operation responsible for break-ins at the DOJ, NASA, the Fed, Senate, and others, seizing two platforms' domains (Reuters)",
+      "url": "https://www.techmeme.com/260826/p37#a260826p37",
+      "author": null,
+      "publishedAt": "2026-08-26T14:51:42.000Z",
+      "content": "Reuters: The US DOJ says it disrupted a Chinese hacking operation responsible for break-ins at the DOJ, NASA, the Fed, Senate, and others, seizing two platforms' domains — The United States said Wednesday that it had disrupted a Chinese hacking operation responsible for break-ins at the U.S. Justice Department …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/08/researchers-get-two-genetic-codes-to-work-at-the-same-time/",
+      "title": "Researchers get two genetic codes to work at the same time",
+      "url": "https://arstechnica.com/science/2026/08/researchers-get-two-genetic-codes-to-work-at-the-same-time/",
+      "author": "\n                    John Timmer\n                ",
+      "publishedAt": "2026-08-26T15:00:34.000Z",
+      "content": "The genetic code is what life everywhere uses to convert the information contained in DNA into specific protein sequences. With minor variations, the same genetic code is used by every living thing on Earth, suggesting it was already present in the last common ancestor of all of it. It's not an easy thing to change, because so many things in every cell depend on it. Nevertheless, some preliminary steps have been taken. Researchers have managed to add some new amino acids to a bacterial cell and were able to make proteins that were one amino acid less than usual. But it's a slog; for some of this work, people have had to re-engineer every single gene in a bacterial genome. Now, researchers have found a way to operate two separate genetic codes simultaneously, avoiding the need to do any work to compensate for altering the code that every protein in a cell relies on. They didn't test it in an actual cell, and it might cause some problems there. But it's a creative solution that should accelerate some synthetic biology work.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49450448",
+      "title": "Nebula Sans",
+      "url": "https://www.nebulasans.com",
+      "author": "GavinAnderegg",
+      "publishedAt": "2026-08-26T15:03:52.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 102,
+      "comments": 47
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "https://www.latent.space/p/anima",
+      "title": "🔬“We have foundation models for language, not for physics” — Anima Anandkumar, Bren Professor of Computing",
+      "url": "https://www.latent.space/p/anima",
+      "author": "Brandon Anderson",
+      "publishedAt": "2026-08-26T15:15:39.000Z",
+      "content": "A few years ago, Caltech Prof. Anima Anandkumar set out to develop the first open-source weather model with AI. Talking to experts in the field, she was met with skepticism. Weather is chaotic, physics simulations are hard, have been developed for decades, and require supercomputers, the data just isn’t there. Despite reservations, Anima went forth and built. Within a year her team had developed FourCastNet, a predictive model that is competitive with the best physics-based simulations available. Thanks to Anima, and her follow up work, anyone can now predict weather accurately over a short timescale using consumer grade GPUs.1 In the fifteen or so science episodes we’ve released on Latent.Space, we’ve covered atoms, molecules, materials, biology, and math. Anima is a pioneer in studying physical systems that are continuous. Weather, fusion, and fluid or heat flow are huge areas of science that are extremely difficult to model: they are large, chaotic, and fundamentally multi-scale. This is a field the AI community has somewhat neglected, but one we expect will grow fast. We plan to cover large physical systems more in coming episodes.One thing you can glean from Anima’s work is that this area of AI resists the scaling ideas that have permeated the rest of the field. The data isn’t there: open source datasets in many of these domains are limited to tens or hundreds of thousands of examples, far from what token-hungry transformers need. Even worse, the resolution that physics demands pushes the context length into the hundreds of billions, so you can’t just throw more tokens at the problem. That isn’t a ceiling though, just a slower road: progress here comes from building in structure and inductive biases. Sorry for all you bitter-lesson-pilled language modelers.“If each dimension is even a few hundred grid points, which is where industrial scale starts... we’re talking hundreds of billions to even a trillion context length. So forget ever having a transformer for anything of this scale, all of the world’s compute will not be enough.”The math underneathTo tackle these systems, Anima pioneered a technique known as Neural Operators, one of the most beautiful theoretical developments in AI of the last decade.2 These allow you to combine data and physical laws to enable multi-scale inputs and outputs. We’re no longer modeling a grid, we’re modeling a function that evolves over many scales. This allows Anima and crew to build in priors based upon physical intuition.Neural Operators What if we created a neural network where every layer was itself a function?To see how physical priors are still helpful for AI modeling, let’s revisit the problem of weather forecasting on a global scale. The earth is a sphere, which meant that accurate modeling involved using the right basis set —3 the Spherical Harmonics. Run a weather model on a grid and it blows up fast. Move to the natural basis for the problem and it stays stable far longer, long enough to roll out months ahead instead of days. Anima’s Fourier Neural Operator learns directly in this frequency domain, and its spherical variant powers FourCastNet 3, which models the weather across the whole globe and keeps running stably far into the future.FourCastNet 3 The earth is (almost) a sphere — bake the spherical harmonics into your network!The physical world is forgivingAnima explored Neural Operators across other physical domains too, and one striking observation is that the physical world is more forgiving than you’d expect. In fusion, a few thousand samples are enough to predict plasma disruptions, and to do it a million times faster than traditional simulation.None of this is a rejection of scale, it is a different route to it. Anima ultimately still wants to build a “foundation model for physics”, a model that spans many phenomena and does both simulation and design. You get there by building in the structure the physical world already has, not by waiting for data that will never exist. It is a start, and it will take longer than the token-driven parts of AI, because for the physical world tokens were never the answer.“All of the things that work with deep learning, let’s take them, but make them a bit more principled.”Weather is only the beginningNeural operators and weather modeling were a personal passion of mine, so we’ve spent much of this blog and the episode exploring this work. Anima has done so much more! In the episode, we cover several other recent developments from Anima:Anima has a series of works integrating neural networks and automated proof techniques. We talk about TorchLean, a new framework that lets you write PyTorch-style networks inside the proof assistant Lean and formally verify them. This is a major step for proving bounds on neural networks, something that would be really important for someone trying to, e.g., add a neural network as part of the control loop to their fusion reactor!Anima was recently appointed to the United Nations Scientific Advisory Board! We talk with her about her goals of bringing evidence-based viewpoints to policy, and how AI in scientific domains can improve people’s lives all over the world.This episode has something for every AI or science nerd! Elegant math? ✅ Old school harmonic analysis? ✅ Fundamental developments in modern AI? ✅ Practical ways of modeling the physical world? ✅Give it a watch!1Work that has blossomed into an entire field of AI forecasting, a theme we will cover more on the podcast in coming months.2This is an elegant and very technically deep paper. Excellent nerd snipe if you have a big block of time to study!3All emdashes were human generated.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49450722",
+      "title": "Disruption with Some GitHub Services",
+      "url": "https://www.githubstatus.com/incidents/hcbtzksccj2f",
+      "author": "blimmer",
+      "publishedAt": "2026-08-26T15:19:40.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 101,
+      "comments": 57
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p38#a260826p38",
+      "title": "Xbox announces a disc-to-digital feature that will allow users to digitize their existing physical games, rolling out for Xbox Insider testers on August 31 (Tom Warren/The Verge)",
+      "url": "https://www.techmeme.com/260826/p38#a260826p38",
+      "author": null,
+      "publishedAt": "2026-08-26T15:20:55.000Z",
+      "content": "Tom Warren / The Verge: Xbox announces a disc-to-digital feature that will allow users to digitize their existing physical games, rolling out for Xbox Insider testers on August 31 — Xbox Insiders will get access to this new feature on August 31st. … Microsoft is officially announcing a new Xbox feature …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/perplexity-s-brain-beats-vector-search-with-a-self-rewriting-memory-wiki",
+      "title": "Perplexity's Brain Beats Vector Search With a Self-Rewriting Memory Wiki",
+      "url": "https://alphasignal.ai/news/perplexity-s-brain-beats-vector-search-with-a-self-rewriting-memory-wiki",
+      "author": "Perplexity",
+      "publishedAt": "2026-08-26T15:25:44.000Z",
+      "content": "Perplexity's Brain turns agent memory into a linked Markdown wiki that background agents refine, boosting correctness 9.3 points with 15% fewer tokens.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=985070",
+      "title": "Volvo’s cars will warn one another about hazards in the road",
+      "url": "https://www.theverge.com/transportation/985070/volvo-connected-safety-hazard-alert-animal-cyclist",
+      "author": "Andrew J. Hawkins",
+      "publishedAt": "2026-08-26T15:28:14.000Z",
+      "content": "Volvo is updating three of its electric vehicles with new hazard alerts to warn drivers when there are animals or vulnerable road users ahead. The new connected safety features are based on Volvo's cars talking to one another, as opposed to crowdsourced alert systems used by popular navigation tools like Google Maps and Waze. The alerts work by using connected vehicle data from Volvo's fleet of passenger vehicles in Europe, the US, and Canada. The car's sensors and cameras are tuned to identify certain risks on the road. When one Volvo spots a hazard, it automatically logs the location and sends it to Volvo's servers. Alerts are then sent … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p39#a260826p39",
+      "title": "Bengaluru-based Runable, whose AI agents let small businesses find customers, run ad campaigns, and more, raised a $21M Series A at a $65M post-money valuation (Jagmeet Singh/TechCrunch)",
+      "url": "https://www.techmeme.com/260826/p39#a260826p39",
+      "author": null,
+      "publishedAt": "2026-08-26T15:30:01.000Z",
+      "content": "Jagmeet Singh / TechCrunch: Bengaluru-based Runable, whose AI agents let small businesses find customers, run ad campaigns, and more, raised a $21M Series A at a $65M post-money valuation — As artificial intelligence makes it easier than ever to build websites and apps, Indian startup Runable is betting …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p40#a260826p40",
+      "title": "Interviews with OpenAI leaders, employees, and others on the company's reboot; Sam Altman says OpenAI would have a system he would call AGI by the end of 2026 (Alex Heath/Time)",
+      "url": "https://www.techmeme.com/260826/p40#a260826p40",
+      "author": null,
+      "publishedAt": "2026-08-26T15:35:54.000Z",
+      "content": "Alex Heath / Time: Interviews with OpenAI leaders, employees, and others on the company's reboot; Sam Altman says OpenAI would have a system he would call AGI by the end of 2026 — Alex Heath … They hoisted signs to “stop the AI race” and scrawled chalk messages on the sidewalk.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "css-tricks",
+      "externalId": "https://css-tricks.com/?page_id=394713",
+      "title": "animation-trigger",
+      "url": "https://css-tricks.com/almanac/properties/a/animation-trigger/",
+      "author": "Saleh Mubashar",
+      "publishedAt": "2026-08-26T15:38:41.000Z",
+      "content": "The CSS animation-trigger property allows you to delay the start of a CSS animation until a specific trigger occurs. animation-trigger originally handwritten and published with love on CSS-Tricks. You should really get the newsletter as well.",
+      "topics": [
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p41#a260826p41",
+      "title": "Banks are warming up to launching their own stablecoins as nonbank companies enter the market; sources: JPMorgan Chase evaluated launching its own stablecoin (Wall Street Journal)",
+      "url": "https://www.techmeme.com/260826/p41#a260826p41",
+      "author": null,
+      "publishedAt": "2026-08-26T15:45:01.000Z",
+      "content": "Wall Street Journal: Banks are warming up to launching their own stablecoins as nonbank companies enter the market; sources: JPMorgan Chase evaluated launching its own stablecoin — Executives are on defensive as companies outside of banking system launch coins — Banks large and small have started to warm …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/08/court-blocks-trump-fcc-order-that-could-flood-broadcast-tv-with-more-election-ads/",
+      "title": "Court blocks Trump FCC order that could flood broadcast TV with more election ads",
+      "url": "https://arstechnica.com/tech-policy/2026/08/court-blocks-trump-fcc-order-that-could-flood-broadcast-tv-with-more-election-ads/",
+      "author": "\n                    Jon Brodkin\n                ",
+      "publishedAt": "2026-08-26T15:45:07.000Z",
+      "content": "A federal appeals court yesterday blocked a Trump administration decision that could have resulted in even more political advertisements appearing on broadcast television during the upcoming elections. The Federal Communications Commission recently ordered broadcasters to offer the lowest advertising rates to political parties and joint fundraising committees. Four Democratic candidates challenged the decision in court, saying that only individual candidates are entitled under US law to receive what is called the \"lowest unit charge,\" or LUC. In a 2-1 vote, a judges' panel at the US Court of Appeals for the 4th Circuit agreed with the candidates and set aside the FCC decision that was scheduled to take effect on September 4. That's the start date of the 60-day period before the election in which broadcasters must offer the lowest ad rates to qualified candidates.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p42#a260826p42",
+      "title": "Amazon agrees to acquire DuckLabs, the Amsterdam company behind open-source database DuckDB, for an undisclosed sum; DuckDB will remain open source (Todd Bishop/GeekWire)",
+      "url": "https://www.techmeme.com/260826/p42#a260826p42",
+      "author": null,
+      "publishedAt": "2026-08-26T15:50:54.000Z",
+      "content": "Todd Bishop / GeekWire: Amazon agrees to acquire DuckLabs, the Amsterdam company behind open-source database DuckDB, for an undisclosed sum; DuckDB will remain open source — Amazon has agreed to acquire DuckLabs, the company behind DuckDB, the fast-growing open-source database that has become a favorite …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "newcomer",
+      "externalId": "https://www.newcomer.co/p/a16zs-martin-casado-bullish-on-ai",
+      "title": "A16z’s Martin Casado: Bullish on AI Apps, Bearish on Lone Ranger VCs ",
+      "url": "https://www.newcomer.co/p/a16zs-martin-casado-bullish-on-ai",
+      "author": "Tom Dotan",
+      "publishedAt": "2026-08-26T15:59:38.000Z",
+      "content": "It was mostly by chance that the acquisitions of Cursor and OpenRouter landed just four days apart. But for a16z’s infrastructure team, which had a hand in both, it made for an especially glorious victory lap: Cursor was the biggest M&A exit of all time, and OpenRouter was a monster too, returning more than 50x in just two years.So when Martin Casado, who leads that team, reached out to talk shop after the news, we were surprised that what animated him most was all the maneuvering to get credit for the two big scores.Individual VCs claiming deals, he told us, is “a historical relic” of a bygone era in tech investing. Modern venture, he argued, doesn’t rest on individual decisions.“I’ve done almost 200 deals,” Casado said. “I can’t think of a single deal that other people weren’t absolutely instrumental in, whether it’s closing the deal, sourcing, doing the picking, diligence.” Read more",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "pragmatic-engineer",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/why-performant-code-matters-but-gets",
+      "title": "Why performant code matters (but gets widely ignored), with Casey Muratori",
+      "url": "https://newsletter.pragmaticengineer.com/p/why-performant-code-matters-but-gets",
+      "author": "Gergely Orosz",
+      "publishedAt": "2026-08-26T15:59:59.000Z",
+      "content": "Stream the latest episodeListen and watch now on YouTube, Apple, and Spotify. See the episode transcript at the top of this page, and timestamps for the episode at the bottom.Brought to You by• Antithesis – turbocharge testing of your systems by running your whole system under aggressive fault injection. There’s good reason teams like Jane Street, Fly.io, and the etcd community rely on Antithesis. Learn more.• Sentry – application monitoring software built by developers, for developers. Sentry’s Seer AI agent is one of their new, neat tools, which I’ve used as a way to quickly fix errors on my backend. Check out Sentry.• turbopuffer – A vector and full-text search engine built on object storage. It’s fast, cheap, and extremely scalable. I met their team in San Francisco, and am a fan of their “hardcore and whimsical” engineering culture, and how pragmatic their engineering philosophy is. Check them out.In this episodeThere can be few people around who care about software performance more than today’s pod guest, Casey Muratori. He’s a programmer and videogame developer, founder of Molly Rocket, and creator of Handmade Hero – a long-running series about building a game from scratch. He also evangelizes about performance on his Substack, Computer, Enhance.We got to know each other about three years ago, first via messages, including this one from Casey:“Why does the industry zeitgeist place so little emphasis on software performance when there seems to be overwhelming evidence that performance is critical to their bottom line?Like you, I run a Substack for professional programmers, but I focus exclusively on software performance. Although we are quite large by Substack standards, so a certain subset of programmers must believe performance is important, I nonetheless hear lots of dismissive excuses when I post on social media. This happens so frequently, I devoted an entire article to cataloging the extensive pro-performance evidence we already have from the world’s leading software companies: Performance Excuses Debunked.Strangely, nobody has a rebuttal to why performance is important. When I point people to this, they actually tend to agree. But the prevailing attitude nonetheless stays the same.”I’m delighted we finally have Casey on the podcast because it’s overdue! In this episode, we discuss why software performance matters, why it’s overlooked, and how developers can get better at writing performant code. We explore why performance should be considered during design, the value of learning to read assembly & understanding how CPUs work, Casey’s critique of ‘clean code’, and why he believes testing shouldn’t drive software design.We touch on how videogame development has changed, and influential game engines. Casey also tells us why he prefers to write code by hand, not with AI, and more.Takeaways from the conversation with Casey1. DirectX might not exist without an “unauthorized” internal Microsoft project. DirectX is a very popular Microsoft library that standardized rendering on top of GPUs, used mostly for games. Casey tells how Chris Hecker built a library for fast on-screen rendering at Microsoft called WinG, which was never authorized; it was a total “Skunk Works” project. DirectX’s roots go back to WinG, which its three founders were testers on.2. Is performance starting to matter to businesses? Enterprise software buyers care mainly about cost, compliance, and capabilities – but not performance. Even so, there are some products gaining major popularity and market share due to their performance, such as File Pilot (next-gen file explorer) and the Blick video editor. Is the tide turning?3. Profiler-driven performance optimization is the wrong way to optimize. The standard way of optimizing is to profile the application, tweak hotspots, then check if the stats have improved. But this only finds a local minimum; Casey says every engineer he’s worked with who was a great “optimizer” began by establishing what the hardware could theoretically do, and then did not stop until they’d closed the gap to that performance level.4. If you care about performance, learn to read assembly (no need to write it). There are about 20-30 instructions you need to learn to be able to read basic assembly. For example, here’s a program that calculates the value of 5 + 3 - 1 (which is 7), then prints it out:An assembly program calculates 5+3-1 (the first 3 lines after _start), then prints the result to stdout5. Take a grain of salt with conventional wisdom that premature optimization is the “root of all evil”. Many devs use it as an excuse to delay performance optimization, but Casey says that not optimizing in time could mean that only performance hotspots can be fixed later, and not the architectural issues that create poor performance. Architect your system to be performant, or you’ll have trouble solving problems without a rewrite!6. Only three things are needed to understand how CPUs work. Casey believes that knowing them means you’ll be able to tell from any CPU announcement roughly how well it performs. Those three pillars of understanding:How data moves in and out: load/store units and L1–L3 cachesHow instructions flow through the pipes: branch prediction, i-cacheExecution unit scheduling: raw throughput per operation type7. Why are game studios so secretive? Before licensable videogame engines existed, the game engine was a studio’s “core” intellectual property (IP), and every studio built rendering, pathfinding, and other tools from scratch. This is how Blizzard rolled Warcraft 1’s engine into Warcraft 2. Any competitor making a rival game had to start from scratch, which was a reason for game studios to closely guard the secrets of how their own game engines worked.8. The games industry already had its “AI moment” – and it wasn’t pretty. When game engines became licensable, pretty much any developer could build and publish a game with the likes of Unity and Unreal, on a platform like Steam.Initially, this change empowered new devs to build interesting games. But soon enough, the market was flooded with tens of thousands of releases per year, which destroyed organic discovery. Without a marketing strategy, the chances of a game gaining traction today are basically zero, says Casey.9. Old games don’t look dated anymore, and that’s a problem. For decades, graphics were a vital barometer for showing how videogames improved over time; a new release in 1995 was guaranteed to be visually superior to one from 1990. But a new game in 2026 likely doesn’t look much different from one that’s nine years old, and new releases face ongoing competition from older games.10. Casey’s problem with test-driven development is the “test” bit. Casey believes tests should be a cost/benefit decision, and not put in place by default. For some projects, doing tests upfront – or doing any tests at all, in some cases – is simply a bad choice.11. One trait of almost every great engineer: refusing to accept programming wisdom untested in the real world. As Casey puts it:“I find there’s a lot of received programming wisdom that’s just nonsense. Clearly, no one’s ever tested it. In order for something to be received wisdom, you should have to at least demonstrate concrete upsides, but often this cannot be done. I would say focusing on what actually works in practice is a huge plus.”12. No AI in Casey’s upcoming game. He acknowledges that many developers will disagree, but insists there’s nothing wrong with being outside of mainstream tastes, just like some people chose handmade furniture over the flatpack kind. His reasoning for omitting AI is straightforward:“I want to program things in a game because I want to program them. If I only wanted output, I’d just get the Unreal Engine.”The Pragmatic Engineer deepdives relevant for this episode• Pushing software engineering limits with “napkin math” with Simon Eskildsen• How Games Typically Get Built: prototyping, game engines, and a different type of QA• Game Development Basics: deepdive on how game studios differ from standard software teams• Inside Linear’s Engineering Culture: building a performant product with a tiny team• Building a best-selling game with a tiny team – with Jonas Tyroller. A two-person team built a game that sold 1M+ copiesMore on premature optimization: read or watch Casey’s extended take on “premature optimization is the root of all evil”: Computer, Enhance!The Root of the Root of All EvilRead more13 hours ago · 26 likes · 3 comments · Casey MuratoriTimestamps00:00 Intro05:17 Games at Microsoft12:52 Building games16:00 Why performance matters27:12 Why you should learn to read assembly30:36 Designing for optimization42:51 How to get better at writing performant software49:04 Understanding how the CPU works55:53 Building games then and now1:05:56 How game engines changed building games1:10:48 Why new games compete with old games1:13:25 GTA 6: why is it taking so long?1:16:59 Casey’s critique of clean code1:21:48 Casey’s take on TDD1:24:30 What is good code?1:27:32 What makes a good software engineer?1:33:56 Why Casey doesn’t code with AI1:39:01 AI’s impact on the game industry1:44:43 AI and burnout1:50:21 Why you should read papersReferencesWhere to find Casey Muratori:• X: https://x.com/cmuratori• Website: Computer, Enhance!Programming Courses and Interviews, by Casey Muratori.By Casey Muratori• Substack: https://substack.com/@cmuratoriMentions during the episode:• Digital Equipment Corporation: https://en.wikipedia.org/wiki/Digital_Equipment_Corporation• VAX 9000: https://en.wikipedia.org/wiki/VAX_9000• Intel: https://www.intel.com• Chris Hecker’s website: https://www.chrishecker.com/Homepage• Doom: https://en.wikipedia.org/wiki/Doom_(franchise)• Wolfenstein 3D: https://en.wikipedia.org/wiki/Wolfenstein_3D• WinG: https://en.wikipedia.org/wiki/WinG• Ron Gilbert: https://en.wikipedia.org/wiki/Ron_Gilbert• Humongous Entertainment: https://en.wikipedia.org/wiki/Humongous_Entertainment• The Secret of Monkey Island: https://en.wikipedia.org/wiki/The_Secret_of_Monkey_Island• DirectX: https://en.wikipedia.org/wiki/DirectX• Todd Laney on Tumblr: https://toddla.tumblr.com• Craig Eisler on LinkedIn: linkedin.com/in/craigeisler• Eric Engstrom: https://en.wikipedia.org/wiki/Eric_Engstrom• Dungeon Siege: https://en.wikipedia.org/wiki/Dungeon_Siege• RAD Game Tools: https://www.radgametools.com• Alex St. John: https://en.wikipedia.org/wiki/Alex_St._John• Molly Rocket: https://mollyrocket.com• File Pilot: https://filepilot.tech• Bun: https://bun.com• npm: https://www.npmjs.com• Napkin math: https://github.com/sirupsen/napkin-math• Fortnite: https://www.fortnite.com• Minecraft: https://www.minecraft.net• Roblox: https://www.roblox.com• GTA online: https://www.rockstargames.com/gta-online• Unreal Engine: https://www.unrealengine.com• Ken Silverman’s website: https://advsys.net/ken• id software: https://www.idsoftware.com• Bullfrog Productions: https://en.wikipedia.org/wiki/Bullfrog_Productions• Thief: The Dark Project: https://en.wikipedia.org/wiki/Thief:_The_Dark_Project• Death Rally: https://en.wikipedia.org/wiki/Death_Rally• Grand Theft Auto V: https://www.rockstargames.com/gta-v• “Clean” Code, Horrible Performance:Computer, Enhance!\"Clean\" Code, Horrible PerformanceRead more3 years ago · 648 likes · 144 comments · Casey Muratori• TDD, AI agents and coding with Kent Beck: https://newsletter.pragmaticengineer.com/p/tdd-ai-agents-and-coding-with-kent• Python, Go, Rust, TypeScript and AI with Armin Ronacher: https://newsletter.pragmaticengineer.com/p/python-go-rust-typescript-and-ai—Production and marketing by Pen Name.",
+      "topics": [
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=983407",
+      "title": "Apple announces September iPhone launch event",
+      "url": "https://www.theverge.com/tech/983407/apple-iphone-launch-event-2026-date",
+      "author": "Jay Peters",
+      "publishedAt": "2026-08-26T16:03:49.000Z",
+      "content": "A screenshot from Apple’s events website. Apple's next launch event will take place on September 9th at 1PM ET. Invites to the event, which has a \"Surprise and shine\" tagline, were sent out on Wednesday. The event will take place at the Steve Jobs Theater in Apple Park, but there will also be a livestream on Apple's website. September's show could be a big one, as Apple may finally announce the long-rumored foldable iPhone. A photo of an apparent dummy unit indicates the foldable may have a wide form factor that's similar to what Samsung used with the Galaxy Z Fold 8, a phone that our reviewer Dominic Preston said \"feels like the future.\" Apple is also expected to refresh its Pro … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p43#a260826p43",
+      "title": "Deep Cogito, which develops open-weight models and helps companies build their own specialized AI models, raised a $43M Series A led by TQ Ventures (Steven Rosenbush/Wall Street Journal)",
+      "url": "https://www.techmeme.com/260826/p43#a260826p43",
+      "author": null,
+      "publishedAt": "2026-08-26T16:05:57.000Z",
+      "content": "Steven Rosenbush / Wall Street Journal: Deep Cogito, which develops open-weight models and helps companies build their own specialized AI models, raised a $43M Series A led by TQ Ventures — The startup founded by former Google AI search employees raised $43 million to help companies build their own specialized AI models",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260826/p44#a260826p44",
+      "title": "Apple announces a \"Surprise and shine\" event on September 9 at 10am PT at Apple Park, where its first foldable iPhone, iPhone 18 Pro, and more are expected (Zac Hall/9to5Mac)",
+      "url": "https://www.techmeme.com/260826/p44#a260826p44",
+      "author": null,
+      "publishedAt": "2026-08-26T16:08:19.000Z",
+      "content": "Zac Hall / 9to5Mac: Apple announces a “Surprise and shine” event on September 9 at 10am PT at Apple Park, where its first foldable iPhone, iPhone 18 Pro, and more are expected — Apple has officially announced its next product event, where it will unveil the iPhone 18 Pro lineup and its first foldable iPhone.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "https://www.latent.space/p/lovable-future-of-saas",
+      "title": "The Future of SaaS Is Apps That Agents Can Use",
+      "url": "https://www.latent.space/p/lovable-future-of-saas",
+      "author": "Richard MacManus",
+      "publishedAt": "2026-08-26T16:16:25.000Z",
+      "content": "Lovable is well known as an AI-powered platform to build applications. But ironically, it is now moving towards a future where fewer and fewer people will be using conventional apps. That is, of course, because of the growing impact of agents.In a recent blog post, Lovable outlined a vision for “a digital brain for your team connecting your daily tools.”Or as Lovable CTO Fabian Hedin put it in an interview with Latent Space, “you can get to a place where you’re using one entry point to all the work that you’re doing.”Diagram by Latent Space based on an internal diagram shown to us by Lovable.To be clear, Lovable still wants to be the tool you use to build apps — but increasingly, it will also enable you to build what Hedin calls “capabilities.” Lovable defines a capability as a useful part of an application that an agent can call directly; bypassing the need for a human user to open the app.Lovable can turn a published application into agent-accessible capabilities by exposing selected functions from the app as tools through a hosted MCP server. The result is essentially one application with two interfaces: a traditional human UI and a new agent interface that can be used from ChatGPT, Claude and other MCP-compatible AI clients.Diagram supplied by LovableThis is how fast an AI business evolvesThis shift towards capabilities is the latest evolution from Lovable, in an already fast-moving 3 years in business.Lovable emerged from GPT Engineer, an open source coding tool that launched in 2023, initially focusing on prototyping. In November 2024, it became a commercial product and the following month, it was rebranded as Lovable.By that point, they’d begun to notice some of its users building production apps on Lovable — including products that had become real businesses.“We started seeing people on the platform building not only a prototype, and not only an MVP [Minimum Viable Product], but the actual thing — an actual product that serves real customers,” Hedin said.Next, Lovable noticed its users creating internal software, in some cases to support a public-facing app and in other cases as an internal app built for an enterprise company.“People started creating not only software to enable a business, in terms of a customer-facing product, but also the operations behind the company,” Hedin said.He means tools like a CRM, an admin panel, or a customer-support console.From app builder to agent platformSo in less than three years, Lovable has become an all-round software creation and hosting company, which means it’s swimming in the same waters as the likes of Vercel and Cloudflare. That said, Lovable is more focused on AI-generated software than infrastructure. But we are seeing crossover in these markets — for example, Vercel’s v0 allows you to generate an app from natural language, just like Lovable.Also just like the black triangle and orange cloud companies, Lovable has expanded into agentic workflows.Lovable connectors, which let you use external tools.This rapid product evolution has been accompanied by strong user and revenue growth. According to a tweet from Deedy Das, a partner at lead investor Menlo Ventures, the company has surpassed a $500 million annualized revenue run rate, with more than 60 million projects created and over 900 million monthly visits to Lovable-built apps. Lovable also says employees at nearly two-thirds of the Fortune 500 have used the platform.Unsurprisingly, Menlo Ventures is doubling down on its investment. It led Lovable’s $400 million Series C this month, alongside the Scaleup Europe Fund managed by EQT, valuing the company at $13.3 billion.Hedin attributes the pace of change to a combination of Lovable’s innovation and the rapidly improving state of LLMs.“Every few months, we introduce new capabilities at the application layer, while the large language models also continue improving. Those two things compound.”Lovable’s model of a company brainThe concept of a digital brain for an organization, for Lovable, essentially means a single interface where you can access many different tools and workflows.“It should have as much context as possible about you, your company and the world around you,” said Hedin. “Then it needs the capabilities to perform both general tasks and actions that are specific to your organization.”Ultimately, he added, the goal is that “everything that you’re building can be reused in an agentic way.”Diagram supplied by LovableIn a sense, then, applications are becoming a collection of capabilities that users will increasingly access through an organizational agent — instead of, or in addition to, the actual application.“Our job as a platform is to ensure that all these separate capabilities are connected through one agent — not that you have to build a different agent for every task,” said Hedin.As an example, Hedin mentioned an internal application they use at Lovable.“We built this internal tool to help us grant credits to users [via] our support team, and help manage our platform in different ways. Those capabilities are now available [internally] through the Lovable agent.”Lovable also wants this company brain to work asynchronously. Its agent can schedule itself to resume a task later — for example to check a deployment or to monitor a recurring process — then return the result to the same conversation.The competitionLovable isn’t the only company pursuing a “company brain” vision. Vercel CEO Guillermo Rauch recently introduced its internal agent, called @𝚟. “Every day-to-day job at Vercel now involves @𝚟,” Rauch tweeted. “It’s growing exponentially both in daily interactions and token use.”Hedin acknowledged that Vercel and other AI companies are building towards a similar vision, but he thinks Lovable’s “wedge” is “being the best place to build the capabilities that agents need.” In other words, Lovable’s focus is on helping their users build the capabilities that a company brain will need.“Orchestrating these capabilities is the easy part,” Hedin said. “Making sure they are well connected, built correctly and reliable is the hard part.”He also hinted at why they’re using the word ‘brain’ to describe this shift, rather than just ‘agent’.“I’m careful about using the word ‘agent.’ It suggests something like an employee performing a task, which is an easy way to think about it. But underneath, it is really about connecting the right context and capabilities.”Security and connecting to external capabilitiesPerhaps the biggest challenge with the agents and capabilities paradigm is security. For instance, if one of your employees creates an app with Lovable that connects to the company Slack, you want to ensure that user doesn’t inadvertently expose their personal messages, or any other confidential information, to the company brain.Connectors are Lovable’s method of connecting to external tools and services. Hedin said the platform must account for a “kind of permissioning graph” to maintain security and privacy.As described in a technical article on Lovable’s blog, one connector type, which Lovable calls an “app user connector,” preserves each user’s identity and source-system permissions. Credentials are stored server-side in encrypted form and handled by Lovable’s connector gateway, rather than being exposed to the generated application; the app instead presents a short-lived key bound to the relevant user.Diagram supplied by Lovable“We separate the connection to external systems from the application code being written,” is how Hedin put it. “The application interfaces with the Lovable platform, but the application itself never gets access to those credentials.”The future of SaaSSo Lovable is moving to a future where a company brain uses capabilities derived from the apps its users build. That begs the question: what will happen to SaaS apps?Hedin reiterated that people will increasingly interact with software through an AI layer — the company brain concept.“People are not going to have as many tabs open in different tools as they have historically. That experience is going to consolidate, but the vertical capabilities those tools provide will remain valuable.”He recognizes that some traditional SaaS products may “fight” this trend, by sticking with their traditional apps and not adapting, but he says Lovable wants to become a platform for building capabilities.“We want to build this open platform that anyone can connect to, anyone can use,” he said.Hedin ended with some advice for SaaS companies, whether existing ones or apps that might emerge on the Lovable platform.“I think SaaS businesses are going to have to focus more on providing the shovel for AI to use their capabilities.”",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112285 at https://www.eff.org",
+      "title": "EFF Statement on Meta Settlement",
+      "url": "https://www.eff.org/deeplinks/2026/08/eff-statement-meta-settlement",
+      "author": "David Greene",
+      "publishedAt": "2026-08-26T16:34:41.000Z",
+      "content": "Under this settlement, young users will now have less access to Meta products, and a lesser ability to exercise their rights to speak, access information and art and culture, associate and form communities, and play. The settlement also embeds age assurance into every product, mandating the collection of even more personal information from users of all ages; this enshrines Meta's harmful surveillance into law, and it will compromise users' privacy and anonymity while increasing their exposure to data breaches and government data requests. And the data minimization and security measures don’t keep states from using data collected under the agreement for other law enforcement purposes – which could include things like criminal investigations of abortions or gender-affirming care.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.15875",
+      "title": "GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture",
+      "url": "https://huggingface.co/papers/2608.15875",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:38.199Z",
+      "content": "GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.20492",
+      "title": "Annotations as Rollouts: Efficient and Scalable Reinforcement Learning for Video MLLMs",
+      "url": "https://huggingface.co/papers/2608.20492",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:38.199Z",
+      "content": "Annotations as Rollouts: Efficient and Scalable Reinforcement Learning for Video MLLMs",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.21500",
+      "title": "SecOPD: Mitigating Adaptive Prompt Injections by On-Policy Distillation",
+      "url": "https://huggingface.co/papers/2608.21500",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:38.199Z",
+      "content": "SecOPD: Mitigating Adaptive Prompt Injections by On-Policy Distillation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23181",
+      "title": "CyberFactory: Scaling Cyber Security Capabilities with Instances from the Wild",
+      "url": "https://huggingface.co/papers/2608.23181",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:38.199Z",
+      "content": "CyberFactory: Scaling Cyber Security Capabilities with Instances from the Wild",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.24680",
+      "title": "Game2World Engine: Unlocking In-the-Wild Gameplay Videos for World Model Training",
+      "url": "https://huggingface.co/papers/2608.24680",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:38.199Z",
+      "content": "Game2World Engine: Unlocking In-the-Wild Gameplay Videos for World Model Training",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23740",
+      "title": "AgentRoom: Concurrent Multi-Agent Coding in a CRDT-Backed Shared Workspace",
+      "url": "https://huggingface.co/papers/2608.23740",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:38.199Z",
+      "content": "AgentRoom: Concurrent Multi-Agent Coding in a CRDT-Backed Shared Workspace",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23670",
+      "title": "Automata from Agent Traces: Failure and Next-Step Prediction",
+      "url": "https://huggingface.co/papers/2608.23670",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:38.199Z",
+      "content": "Automata from Agent Traces: Failure and Next-Step Prediction",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.09408",
+      "title": "DREAM Technical Report",
+      "url": "https://huggingface.co/papers/2608.09408",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:38.199Z",
+      "content": "DREAM Technical Report",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.24763",
+      "title": "MoTE: Mixture of Task Experts for Multi-Task Video Understanding",
+      "url": "https://huggingface.co/papers/2608.24763",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:38.199Z",
+      "content": "MoTE: Mixture of Task Experts for Multi-Task Video Understanding",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.23691",
+      "title": "Autonomous Mathematical Discovery in an Open-World Multi-Agent Environment",
+      "url": "https://huggingface.co/papers/2608.23691",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:38.199Z",
+      "content": "Autonomous Mathematical Discovery in an Open-World Multi-Agent Environment",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.24882",
+      "title": "Latent Action as Intention Enables Efficient Future Imagination for World Action Models",
+      "url": "https://huggingface.co/papers/2608.24882",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:38.199Z",
+      "content": "Latent Action as Intention Enables Efficient Future Imagination for World Action Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/apple/2026/08/with-new-mac-studio-and-mac-mini-apple-leans-hard-into-local-ai-inference/?utm_source=tldrnewsletter",
+      "title": "Apple's new desktop computers are designed specifically for local AI development",
+      "url": "https://arstechnica.com/apple/2026/08/with-new-mac-studio-and-mac-mini-apple-leans-hard-into-local-ai-inference/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.936Z",
+      "content": "Apple's new desktop computers are designed specifically for local AI development (4 minute read)Apple has announced new iterations of the Mac mini and Mac Studio along with the M6, the first 2nm chip in Apple's M-series lineup, and the M5 Ultra, Apple's most powerful chip. There aren't any major new features for either machine. The devices have been recently popular for local AI inference and software development due to their unified memory architecture and fast CPUs and GPUs on their systems-on-a-chip. The Mac mini with M6 starts at $899 with 16GB of memory, and the Mac Studio with the M5 Max starts at $2,499.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-08-25/openai-claims-its-new-chips-can-outperform-nvidia-processors-in-tests?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc4NzcxNTE4MiwiZXhwIjoxNzg4MzE5OTgyLCJhcnRpY2xlSWQiOiJUS0JXODFOM04wQUIwMCIsImJjb25uZWN0SWQiOiJCMzZENUE5QzIxMDQ0NjU4OTFBMTc1MTVDRDNBQkZFNiJ9.g7aynXoS1Cg_lAitk1xUe_PLVBoXyT7wr4nF1iv0D8k&utm_source=tldrnewsletter",
+      "title": "OpenAI Claims Its New Chips Can Outperform Nvidia Processors in Tests",
+      "url": "https://www.bloomberg.com/news/articles/2026-08-25/openai-claims-its-new-chips-can-outperform-nvidia-processors-in-tests?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc4NzcxNTE4MiwiZXhwIjoxNzg4MzE5OTgyLCJhcnRpY2xlSWQiOiJUS0JXODFOM04wQUIwMCIsImJjb25uZWN0SWQiOiJCMzZENUE5QzIxMDQ0NjU4OTFBMTc1MTVDRDNBQkZFNiJ9.g7aynXoS1Cg_lAitk1xUe_PLVBoXyT7wr4nF1iv0D8k&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.937Z",
+      "content": "OpenAI Claims Its New Chips Can Outperform Nvidia Processors in Tests (6 minute read)OpenAI's new 'Jalapeno' chips performed better than Nvidia's current lineup during testing. The company plans to use the new chips to support its AI models later this year. The chip should significantly reduce costs for OpenAI as it rolls out more widely. OpenAI created the chip in a partnership with Broadcom.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.geekwire.com/2026/amazon-eyes-fully-automated-delivery-stations-to-bring-robotics-to-the-last-mile/?utm_source=tldrnewsletter",
+      "title": "Amazon eyes ‘fully automated' delivery stations to bring robotics to the last mile",
+      "url": "https://www.geekwire.com/2026/amazon-eyes-fully-automated-delivery-stations-to-bring-robotics-to-the-last-mile/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.937Z",
+      "content": "Amazon eyes ‘fully automated' delivery stations to bring robotics to the last mile (3 minute read)Amazon's fulfillment centers are equipped with the latest robots and automation, but its delivery stations still remain mostly manual. The company is now developing an internal project to build fully automated delivery stations. The technology behind Project Tetromino could come from Boxbot, a robotics startup that uses conveyors and AI-driven storage trays to automatically sequence packages for vehicle loading. Amazon has opened up a Last Mile Innovation Center in Germany to test delivery station technologies.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.nytimes.com/2026/08/25/technology/spacex-louisiana-spaceport.html?unlocked_article_code=1.8VA.NApc._HM7bHfHJVnx&smid=url-share&utm_source=tldrnewsletter",
+      "title": "SpaceX to Spend $100 Billion on New Spaceport in Louisiana",
+      "url": "https://www.nytimes.com/2026/08/25/technology/spacex-louisiana-spaceport.html?unlocked_article_code=1.8VA.NApc._HM7bHfHJVnx&smid=url-share&utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.938Z",
+      "content": "SpaceX to Spend $100 Billion on New Spaceport in Louisiana (3 minute read)SpaceX is committing $100 billion to build a launch facility in southern Louisiana as part of its plans to send multiple rockets into space every day. The new facility, named Starbase Louisiana, will be located on 125,000 acres of coastal marshland and bring 3,000 jobs to the area. SpaceX will need at least several locales to fulfill its goal of sending thousands of rockets into orbit a year. The company is constantly exploring viable sites to expand its operations, domestically and internationally.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://githubnext.com/posts/knowledge-compressor/?utm_source=tldrnewsletter",
+      "title": "Knowledge Compressor",
+      "url": "https://githubnext.com/posts/knowledge-compressor/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.938Z",
+      "content": "Knowledge Compressor (6 minute read)Natural language tends to contain quite a bit of repetition and redundancy, which isn't inherently bad, but it comes with tradeoffs. With AI, repetition can cost a significant amount of tokens when working with substantial knowledge content. This study looks at whether documentation can be made less repetitive through compression. It found that typical technical documentation can have its token count cut in half without substantially reducing its usefulness to language models.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://vercel.com/blog/introducing-run?utm_source=tldrnewsletter",
+      "title": "Introducing Run SDK: secure eval for your agents",
+      "url": "https://vercel.com/blog/introducing-run?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.939Z",
+      "content": "Introducing Run SDK: secure eval for your agents (4 minute read)Run SDK is a package from Vercel for executing untrusted JavaScript or TypeScript without giving it direct access to apps or systems. It evaluates JavaScript or type-stripped TypeScript in a fresh QuickJS context inside a worker thread and exposes selected operations through hostFunctions. Calls cross the sandbox boundary through serialization. A host function may return a promise, so existing service clients can sit behind this interface without being passed into the sandbox.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.macrumors.com/2026/08/24/apple-tim-cook-farewell-party/?utm_source=tldrnewsletter",
+      "title": "Apple Holds Farewell Party for Tim Cook as Ternus Prepares to Take Over",
+      "url": "https://www.macrumors.com/2026/08/24/apple-tim-cook-farewell-party/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.939Z",
+      "content": "Apple Holds Farewell Party for Tim Cook as Ternus Prepares to Take Over (2 minute read)Tim Cook will step down as Apple's CEO on September 1. The company held a celebration for Cook on August 23, a day before his 15th anniversary as Apple CEO. Approximately 200 people attended the party, where the band OneRepublic performed. Cook will remain with Apple and become the company's executive chairman. John Ternus, who has been at Apple since 2001, will take over as CEO.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.electronicsweekly.com/blogs/mannerisms/dilemmas/could-nvidia-default-2026-08/?utm_source=tldrnewsletter",
+      "title": "Could Nvidia Default?",
+      "url": "https://www.electronicsweekly.com/blogs/mannerisms/dilemmas/could-nvidia-default-2026-08/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.939Z",
+      "content": "Could Nvidia Default? (1 minute read)Credit Default Swaps insuring against an Nvidia debt default have doubled in price in the last two months. The company gave a $105 billion residual value guarantee for OpenAI's Ohio data center earlier this month, and it has also been involved in two other $500 billion deals this month. It has been reported to have been involved in over 300 financing deals in the last five years. Analysts are worried an AI downturn could see the circular deals entered into by Nvidia with other AI players unravel, which could result in cascading losses.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.figure.ai/news/introducing-index?utm_source=tldrnewsletter",
+      "title": "Introducing Index: Building The World's Largest and Most Diverse Physical Dataset",
+      "url": "https://www.figure.ai/news/introducing-index?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.940Z",
+      "content": "Introducing Index: Building The World's Largest and Most Diverse Physical Dataset (4 minute read)Figure's Index is an app that was created to help the company collect the physical data that its AI stack needs, directly from humans at scale.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.elliotcsmith.com/engineering-theatre/?utm_source=tldrnewsletter",
+      "title": "Engineering Theatre",
+      "url": "https://www.elliotcsmith.com/engineering-theatre/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.940Z",
+      "content": "Engineering Theatre (4 minute read)Engineering theater is when something looks like engineering but really isn't.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/08/25/x-sends-cease-and-desist-to-open-source-project-nitter-over-alleged-scraping?utm_source=tldrnewsletter",
+      "title": "X sends cease-and-desist to open source project Nitter over alleged scraping",
+      "url": "https://techcrunch.com/2026/08/25/x-sends-cease-and-desist-to-open-source-project-nitter-over-alleged-scraping?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.940Z",
+      "content": "X sends cease-and-desist to open source project Nitter over alleged scraping (3 minute read)Nitter and its instances offer a handy way for people to keep up with posts on X without an account.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.natemeyvis.com/some-recent-applications-of-ai/?utm_source=tldrnewsletter",
+      "title": "Some recent applications of AI",
+      "url": "https://www.natemeyvis.com/some-recent-applications-of-ai/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.940Z",
+      "content": "Some recent applications of AI (3 minute read)Some recent applications of AI include gathering mostly unstructured real-world data and checking stuff and high-judgment lifestyle questions.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.troyhunt.com/a-cautionary-tale-about-data-breach-claims-verification-and-carhartt/?utm_source=tldrnewsletter",
+      "title": "A Cautionary Tale About Data Breach Claims, Verification, and Carhartt",
+      "url": "https://www.troyhunt.com/a-cautionary-tale-about-data-breach-claims-verification-and-carhartt/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.940Z",
+      "content": "A Cautionary Tale About Data Breach Claims, Verification, and Carhartt (31 minute read)Take headline numbers with a grain of salt unless you're confident in the processes of those making the claims.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://ilyabirman.net/meanwhile/all/let-me-click/?utm_source=tldrnewsletter",
+      "title": "Let me Click",
+      "url": "https://ilyabirman.net/meanwhile/all/let-me-click/?utm_source=tldrnewsletter",
+      "author": null,
+      "publishedAt": "2026-08-26T16:37:39.940Z",
+      "content": "Let me Click (4 minute read)Examples of the 'Let me click' principle in user interface design.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
       ],
       "paywalled": false,
       "mediaType": "text"
