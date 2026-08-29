@@ -9,7 +9,7 @@ import { loadState, saveState } from "../src/pipeline/state";
 import type { SourceConfig } from "../src/pipeline/sources";
 
 // Fabricated feed with fresh pubDates: the ingest window drops anything older
-// than 24h, so recorded fixtures (frozen in June) would come back empty here.
+// than 48h, so recorded fixtures (frozen in June) would come back empty here.
 const rssFixture = `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
   <item><title>First post</title><guid>a1</guid><link>https://example.com/1</link><pubDate>${new Date().toUTCString()}</pubDate><description>alpha body</description></item>
   <item><title>Second post</title><guid>a2</guid><link>https://example.com/2</link><pubDate>${new Date().toUTCString()}</pubDate><description>beta body</description></item>
@@ -100,10 +100,10 @@ describe("runIngest", () => {
     expect(stats.failures).toEqual(["bad"]);
   });
 
-  it("drops items older than the 24h window from a pull-mode adapter", async () => {
+  it("drops items older than the 48h window from a pull-mode adapter", async () => {
     const now = Date.now();
-    const freshTime = Math.floor(now / 1000);
-    const staleTime = Math.floor((now - 25 * 60 * 60 * 1000) / 1000);
+    const freshTime = Math.floor((now - 40 * 60 * 60 * 1000) / 1000);
+    const staleTime = Math.floor((now - 49 * 60 * 60 * 1000) / 1000);
     const hnFetchJson = async (url: string) => {
       if (url.includes("tags=front_page"))
         return {

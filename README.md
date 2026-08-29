@@ -48,7 +48,8 @@ sources in `config/sources.json`:
    hash); an unchanged feed costs one request and no parse.
 2. **Parse**: per-kind adapters (`rss`, `arxiv`, `hn`, `web`) map the
    payload to plain items.
-3. **Filter**: drop items older than 24h and sponsored inventory; flag
+3. **Filter**: drop items older than 48h (feeds often backdate posts to
+   midnight and surface them a day late) and sponsored inventory; flag
    paywalled links so the digest can prefer ones readers can open.
 4. **Dedupe**: item identity is `sourceSlug:externalId`, remembered for
    7 days in `data/state.json`.

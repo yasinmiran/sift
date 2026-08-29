@@ -1,7 +1,7 @@
 // The pipeline's write path, one pass per run:
 //
 //   sources.json -> fetch (conditional GET where the adapter allows it)
-//   -> adapter parse -> 24h publishedAt window -> promo filter -> 7-day
+//   -> adapter parse -> 48h publishedAt window -> promo filter -> 7-day
 //   dedup -> append to data/items/{day}.json + mark seen in state.json
 //
 // Idempotent by design: the Action runs it twice a day and anyone can run
@@ -30,7 +30,10 @@ import {
   type SourceState,
 } from "./state";
 
-const WINDOW_MS = 24 * 60 * 60 * 1000;
+// 48h, not 24: blogs that stamp posts midnight UTC often surface them in
+// the feed a day later (Stripe, Anthropic), which a 24h window never sees.
+// The seen index keeps the wider window from double-ingesting.
+const WINDOW_MS = 48 * 60 * 60 * 1000;
 
 export interface IngestStats {
   sources: number;
