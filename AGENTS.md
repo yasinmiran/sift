@@ -4,7 +4,9 @@ You are the scheduled routine that turns this repo's fetched items into
 the daily digest. Everything happens in this repo: a GitHub Action
 commits raw items twice a day, you read them and commit the digest
 markdown beside them, and a Pages workflow renders `digests/` into the
-public site. No servers, no credentials anywhere.
+public site. No servers; the only credentials live in a small Netlify
+sidecar (push notifications, instagram posting), never in this repo or
+your hands.
 
 ## Input
 
@@ -92,11 +94,14 @@ pushing. Re-running a day overwrites the file: idempotent via git.
 Subscribers are notified by a push service that polls the live site
 every 15 minutes and sends when a new day page appears or the newest
 day's digest content changed (it compares the hash in `latest.json`).
-After your push, once the pages deploy is green
-(`gh run watch --repo yasinmiran/sift`), you may
-`curl -s https://sift-push.netlify.app/.netlify/functions/notify` to
-deliver that notification immediately instead of on the next poll.
-The call is idempotent, cannot double-send, and needs no credentials.
+The poller is a scheduled Netlify function and cannot be invoked
+directly (a manual curl gets a 403); notification arrives on its next
+poll, nothing for you to trigger. After your push, confirm the pages
+deploy went green:
+
+```
+gh run watch $(gh run list --repo yasinmiran/sift -w pages -L1 --json databaseId -q '.[0].databaseId') --repo yasinmiran/sift
+```
 
 If your harness requires a feature branch instead of pushing main,
 finish the job yourself: push the branch, `gh pr create`, then
@@ -118,7 +123,10 @@ the `am` object unchanged, 2-space indent, keys in schema order,
 trailing newline. The pages workflow renders each post and publishes it at
 `sift.yasint.dev/slides/{day}/{slot}/` (pngs, a sheet.html preview,
 and meta.json with the caption, hashtags and alt texts); you never
-render slides yourself.
+render slides yourself. Shortly after each deploy, a scheduled Netlify
+function auto-posts the rendered carousel to sift's instagram account
+with no human review between your commit and the live post: the
+verifier plus your own read are the final gate.
 
 ```json
 {
@@ -366,15 +374,17 @@ npm ci && npm run verify -- {YYYY-MM-DD}
 ```
 
 Exits non-zero on `errors`, including: missing or wrong frontmatter,
-date not matching the filename, non-http links, unclosed pen marks,
-marks in frontmatter, a malformed picks/slides/config file (json
-errors name the file to fix), an unreadable items file, empty body,
-and the carousel gates: slide urls the digest never linked, a url
-repeated on one post, a pm slide repeating an am story, overflowing
+date not matching the filename, non-http links, a body with no inline
+links, backslash escapes in the frontmatter title/description or a
+caption (only \" renders as written), unclosed pen marks, marks in
+frontmatter, a malformed picks/slides/config file (json errors name
+the file to fix), an unreadable items file, empty body, and the
+carousel gates: slide urls the digest never linked, a url repeated on
+one post, a pm slide repeating an am story, overflowing
 titles/descs/categories (measured on visible text, mark syntax does
 not count), markdown on slides, marks in hook or caption, captions
 missing the pointer home or past 500 chars, raw urls, @-mentions,
-out-of-pool or miscounted hashtags. Fix and re-verify before
+out-of-pool, miscounted or duplicate hashtags. Fix and re-verify before
 committing. If a carousel error resists fixing, shrink the post to
 its 3 strongest slides rather than shipping a broken script: the site
 deploys carousel-less when the script is MISSING, but a malformed one
@@ -382,9 +392,10 @@ must never be committed. `warnings` need judgment: a link outside the
 day's items is fine when you deliberately linked a primary source and
 a bug when it is a typo or an invented url; a link an earlier digest
 already used is fine only as a deliberate update (see Continuity); an
-uncovered pick, more than 3 pen marks, thin digests, a missing
-Threads section, a missing carousel script (expected only for
-backfilled days), an am slide url orphaned by the evening rewrite
+uncovered pick, more than 3 pen marks, thin digests, a digest past 60
+links, a missing items file (links cannot be cross-checked), a
+missing Threads section, a missing Hacker News section, a missing
+carousel script (expected only for backfilled days), an am slide url orphaned by the evening rewrite
 (keep am stories linked, see Instagram slides), caption voice slips
 (uppercase, emoji, foreign domains) and em/en dashes or emoji on
 cards also warn. Resolve every warning consciously before pushing.
