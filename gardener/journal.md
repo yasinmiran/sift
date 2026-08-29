@@ -31,7 +31,17 @@ playwright screenshot at 375px showed the note rendering visibly dim;
 computed contrast against the pinned palette's own hex values was
 ~2.7:1 (`--faint` on `--bg`), under WCAG AA's 4.5:1 for normal text.
 `--muted` brings it to ~4.1:1, no palette hex touched or added
-(test/contract.test.ts unaffected). Outcome: pending, PR #109.
+(test/contract.test.ts unaffected).
+
+Copilot's automatic review on #109 caught a real regression: with the
+note and its link both `--muted`, the link (global `a` has
+`text-decoration:none`) lost its only non-color signal. Fixed with a
+second push: `.foot-note a` gets back a dotted underline, same
+pattern `.notify-hint` already uses. Copilot also noted `--muted` is
+itself still under AA at 4.1:1; true, but so is every other
+`--muted`-tier chrome element sitewide (`.byline`, `.meta`, `.tag`),
+so that's a bigger, sitewide repaint call, not this PR's, filed as
+issue #110 for Yasin to greenlight. Outcome: pending, PR #109.
 
 Contract written; no run yet. Backlog seeded from the 2026-08-29
 refresh audit (source health probe, digest drift review).
