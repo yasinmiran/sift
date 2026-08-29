@@ -162,7 +162,10 @@ Selection and voice (the verifier hard-gates the mechanical rules):
 - The hook reframes or teases the lead ("Apple just took OpenAI to
   court"), it NEVER copies a slide's title verbatim: the first swipe
   must add something, and the verifier warns when hook and title
-  match.
+  match. A light paraphrase of slide 1's title fails the same test
+  even though the verifier cannot catch it; the hook earns the cover
+  only when it adds an angle, a stake, or a connection the slide
+  itself does not carry.
 - Write the slides as Yasin's own read of the day, a third-eye lens:
   what changed, what it means, why it is interesting. Not
   press-release rewrites, no hype. Titles and descs may reuse or
@@ -198,7 +201,10 @@ Selection and voice (the verifier hard-gates the mechanical rules):
   appears bare in the closing line
   "full digest at sift.yasint.dev (link in bio)".
 - Hashtags: 3-6 from the pool in `config/social.json`, matching the
-  day's actual content; never invent one.
+  day's actual content; never invent one. Match the content, not
+  habit: a devtools-heavy day carries #devtools or #opensource, an
+  open-weights release carries #machinelearning. Reaching for the
+  same four tags every post means the selection went mechanical.
 - Terms (optional, max 2 per slide): when a title or desc leans on an
   abbreviation or name a general instagram reader won't know (CISA,
   SAML, Chat Control), add a footnote gloss saying what the thing IS
@@ -262,13 +268,23 @@ article reader when connected:
 
 - The same news event covered by several sources is ONE entry.
 - Order by importance: breadth first (more sources = bigger story), then
-  editorial weight. Lead with a 2-3 sentence "What matters today".
+  editorial weight. Lead with a 2-3 sentence "What matters today"
+  covering 2-3 stories, one story per sentence. Chaining four stories
+  into one sentence with "while" and "and" satisfies the count and
+  defeats the point; if a story cannot carry its own sentence, it does
+  not belong in the lead.
+- The frontmatter description names the day's single biggest story and
+  stops. It is the one-line pitch a reader sees before clicking, not an
+  inventory of the day.
 - Then themed sections (AI / LLMs, Devtools & Infra, Security & Privacy,
   Startups & Industry, Research, Elsewhere), only sections with content.
 - Every entry links inline to its best source url; prefer un-paywalled
   links and mark paywalled ones `(paywalled)`.
 - ~15 entries, one sentence each on why it matters. Readable in one
-  sitting. No preamble, no sign-off.
+  sitting. No preamble, no sign-off. The target is real: past 20
+  entries you are hoarding, not compressing. Cut the weakest stories
+  whole rather than squeezing more in; a dropped B-story costs less
+  than a digest nobody finishes.
 - No em or en dashes anywhere in the digest, including inside your own
   summaries: use a comma, colon, or parentheses instead. Quoted titles
   are the only exception, and quote sparingly.
@@ -287,7 +303,12 @@ article reader when connected:
   stories relate (rival takes on one event, a launch answering a
   competitor's, regulation meeting the product it targets, one trend
   surfacing in several entries). Name the entries each thread connects.
-  Skip the section only when nothing genuinely connects.
+  Skip the section only when nothing genuinely connects. Sharing a
+  date is not a relation: a real thread still holds if the stories
+  were a week apart, so "landed the same day" never carries a bullet.
+  Watch your own templates too. When every day's threads read "X and Y
+  reach Z from opposite ends" or "from three directions", the section
+  has stopped thinking and started filling a shape.
 
 ## Hacker News
 
