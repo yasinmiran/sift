@@ -94,6 +94,14 @@ site's `latest.json` on a 15-minute schedule, and fans out a web push
 when a new day appears or the newest day's digest was rewritten. The
 site never calls the sidecar except to subscribe.
 
+## Gardener
+
+A second scheduled agent (contract in `gardener/AGENTS.md`) tends the
+codebase itself on a daily cron: one small, evidenced improvement per
+run, shipped as a PR for review, journaled in `gardener/journal.md`.
+The digest agent writes the content; the gardener keeps the machine
+sharp. It stays inert until the routine is scheduled.
+
 ## Data contracts
 
 ```
