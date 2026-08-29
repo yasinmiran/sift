@@ -87,7 +87,7 @@ h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:2.1rem;letter-
 .feed{font-size:.9rem}
 .foot{margin-top:4.5rem}
 .foot-note{margin:.4rem 0 0;max-width:60%;font-size:.7rem;color:var(--muted)}
-.foot-note a{color:var(--muted)}
+.foot-note a{color:var(--muted);text-decoration:underline dotted var(--faint);text-underline-offset:2px}
 a{color:var(--accent);text-decoration:none;transition:color .2s}
 a:hover{color:var(--accent-hover)}
 .hero{display:block;margin:0 0 1.5rem;padding:0 0 2rem;border-bottom:1px solid var(--border)}
