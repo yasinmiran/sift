@@ -24,5 +24,14 @@ merges and closures and never expire.
 
 ### 2026-08-29
 
+First run. What: swapped the footer disclaimer's text color from
+`--faint` to `--muted` (src/site/page.ts, `.foot-note`), matching the
+color its own inline link already uses. Why: `npm run site` +
+playwright screenshot at 375px showed the note rendering visibly dim;
+computed contrast against the pinned palette's own hex values was
+~2.7:1 (`--faint` on `--bg`), under WCAG AA's 4.5:1 for normal text.
+`--muted` brings it to ~4.1:1, no palette hex touched or added
+(test/contract.test.ts unaffected). Outcome: pending, PR #109.
+
 Contract written; no run yet. Backlog seeded from the 2026-08-29
 refresh audit (source health probe, digest drift review).
