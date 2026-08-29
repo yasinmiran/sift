@@ -23,6 +23,13 @@ describe("isPromotional", () => {
     ).toBe(true);
   });
 
+  it("scans only the body's opening, not sponsor tags deep in a full-text post", () => {
+    const deepTag = `${"Editorial analysis of the week. ".repeat(200)}(Sponsor) listen to the podcast`;
+    expect(isPromotional({ title: "Clean headline", content: deepTag })).toBe(false);
+    const openingTag = `Together with Acme (Sponsor). ${"body ".repeat(500)}`;
+    expect(isPromotional({ title: "Clean headline", content: openingTag })).toBe(true);
+  });
+
   it("keeps editorial content, editorial tracking params and ad-adjacent prose", () => {
     expect(isPromotional({ title: "How we built an ad server" })).toBe(false);
     expect(isPromotional({ title: "Paid search economics, explained" })).toBe(false);

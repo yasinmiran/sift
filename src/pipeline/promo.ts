@@ -40,7 +40,9 @@ function looksPromotionalUrl(url: string): boolean {
 export function isPromotional({ title, content, url }: TitleLike): boolean {
   if (looksPromotional(title)) return true;
   if (url && looksPromotionalUrl(url)) return true;
-  // Some feeds keep the headline clean and tag the body's opening line instead.
-  const firstLine = (content ?? "").split("\n", 1)[0] ?? "";
+  // Some feeds keep the headline clean and tag the body's opening line
+  // instead. Full-text feeds render as one newline-free line, so cap the
+  // scan: a tag past the opening marks an embedded ad, not the article.
+  const firstLine = ((content ?? "").split("\n", 1)[0] ?? "").slice(0, 200);
   return looksPromotional(firstLine);
 }
