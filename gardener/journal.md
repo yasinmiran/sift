@@ -22,6 +22,39 @@ merges and closures and never expire.
 
 ## Entries
 
+### 2026-08-30
+
+Quiet run, no PR: #109 is still open and unreviewed, and the contract
+allows one open gardener PR at a time. Spent the run on signals
+instead.
+
+Health sweep found one real thing. `ingest.yml`'s cron (`15 3` /
+`45 15` UTC) stopped landing before the digest windows on 2026-08-27:
+scheduled runs went from a steady +13m..+53m across the prior 24 runs
+to +3h08..+12h02, and today's 03:15 never fired at all (still absent
+at 08:06). Consequence is visible from both sides: seven consecutive
+digest runs since 08-27 each forced their own `workflow_dispatch`
+ingest minutes before drafting, and the digest commit messages say so
+in their own words ("items file was empty (404) at run start, well
+past the 03:15 UTC ingest cron"). Today's items file carries
+`generatedAt 04:37`, the manual dispatch, not the cron. The morning
+margin was only ever ~30 minutes (03:15 cron, 04:34 digest, 36-47m
+typical delay), so it was the first to go.
+
+Filed as issue #112 rather than shipped: the two options that
+actually cover a cron that never fires both edit ../AGENTS.md, the
+digest agent's contract, which is not mine to change. The one option
+I could ship alone (move the crons earlier) only widens a window and
+would have looked like progress without being any.
+
+Rest of the sweep was clean and stays unfiled: `npm test` 158/158,
+typecheck clean, `npm run site` builds 33 pages at 1.2MB, `npm run
+verify` returns ok with zero warnings on 08-27..08-30 (the older
+warnings are all "link not found in the day's items", the known
+HN-permalink and secondary-source pattern, not regressions).
+
+Outcome: no PR by design. #109 pending, #110 pending, #112 filed.
+
 ### 2026-08-29
 
 First run. What: swapped the footer disclaimer's text color from
