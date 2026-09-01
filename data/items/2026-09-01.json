@@ -1,0 +1,1433 @@
+{
+  "day": "2026-09-01",
+  "generatedAt": "2026-09-01T04:36:49.195Z",
+  "items": [
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49496292",
+      "title": "Smartphone LED detects hidden cameras with AI",
+      "url": "https://www.chosun.com/english/industry-en/2026/08/30/SBFXUIJQYZEARKP5T4FBAY25HQ/",
+      "author": "geox",
+      "publishedAt": "2026-08-30T06:52:04.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 175,
+      "comments": 50
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49503521",
+      "title": "Terence Tao explains 6 essential mathematical concepts [video]",
+      "url": "https://www.youtube.com/watch?v=OOMx2BHHWtE",
+      "author": "matthewsinclair",
+      "publishedAt": "2026-08-30T22:37:01.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 291,
+      "comments": 32
+    },
+    {
+      "sourceSlug": "anthropic-news",
+      "externalId": "https://www.anthropic.com/news/improving-alignment-security-efforts",
+      "title": "Improving our alignment and security efforts",
+      "url": "https://www.anthropic.com/news/improving-alignment-security-efforts",
+      "author": null,
+      "publishedAt": "2026-08-31T00:00:00.000Z",
+      "content": "Improving our alignment and security efforts",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-sandbox-now-calculates-snapshot-storage-costs-daily",
+      "title": "Vercel Sandbox now calculates snapshot storage costs daily",
+      "url": "https://vercel.com/changelog/vercel-sandbox-now-calculates-snapshot-storage-costs-daily",
+      "author": "Christian Le",
+      "publishedAt": "2026-08-31T00:00:00.000Z",
+      "content": "Vercel now calculates charges for from each day’s average usage and adds them to your monthly invoice. Previously, billing used one average across the entire monthly billing period. Sandbox snapshot storageYou can track these daily charges on the team’s and see how changes in storage affect your cost.Usage pageThe rate remains $0.08 per GB-month; only how usage is calculated has changed. The update takes effect automatically at the start of the next billing period for Pro and Enterprise teams. No action is required. Learn more about in the documentation.Sandbox snapshot storageRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/how-our-agents-build-on-brand-pages-with-design-md",
+      "title": "How our agents build on-brand pages with design.md",
+      "url": "https://vercel.com/blog/how-our-agents-build-on-brand-pages-with-design-md",
+      "author": "John Phamous",
+      "publishedAt": "2026-08-31T04:00:00.000Z",
+      "content": "Across Vercel, we use coding agents to design and build pages that have to look and feel like Vercel. The typography, color, and composition all need to carry the same judgment that we put into the pages we already ship ourselves. , our skill that teaches agents how we design when they work in our codebases. The skill lives in each repository alongside the code that it governs, explaining how agents can find and understand our design system as well as product guidelines for whatever they are building.We recently wrote aboutproduct-designThis works great when agents are working in our codebases, where everything the skill needs is right there. But what about reports, proposals, and the one-off pages that still have to look like Vercel but get made in tools that can't read any of those files? For us, the answer was , one public file any agent can load.design.mdWhat made work well was that the design system and product guidelines were sitting right there in the repository for agents to read. We needed a way for agents and tools outside that environment to reach the same knowledge, so that the pages coming out the other end would still look like something we designed ourselves. That set two requirements:product-designThe naive approach we tried first was to simply port into a public prompt, collapsing the skill's reference files into one file any agent could read from a URL. The problem we found was that while the prompt described our visual language just fine, every model reading it interpreted that description differently, generating vastly different pages from the same guidance.product-designPart of this comes from the fact that design language is subjective. Phrases like \"keep the layout clean\" can really mean anything. What is \"clean\"? Beyond that, the bigger problem was everything else the prompt left behind. Inside our codebases, an agent reads surrounded by real components and shipped examples of the things it describes. But a public prompt includes none of that, leaving every model to rebuild our style from just words alone.product-designSo what we needed to do was distill what that environment provided into a single file, and the only way to know whether we were getting closer was to look at the pages coming out. We set the port aside and started writing a new file from scratch, this time testing every change against a repeatable set of eval prompts.We wrote seven of them, pulled from real use cases and paired with mock inputs:The prompts stayed fixed while the file changed, so any difference in the output traced back to the guidance.These evals gave us a way to measure both what the file was actually doing and how it was being interpreted by different agents. For our first test, we wanted to know whether would actually change what a model produced at all. We ran the renewal proposal eval twice in the same environment with the same model, once without and once with it loaded, keeping the prompt, data, and viewport identical in both runs.design.mddesign.mdWithout , the model generated a generic SaaS dashboard. But with it, the page led with the renewal recommendation itself, pulled the commercial evidence into one grid, put peer values on a single scale so they could actually be compared, and kept supporting detail available without letting it compete with the summary. This allowed us to conclude that the file changed the page’s structure and hierarchy as well, not just the styling like we originally found, giving us enough signal to keep building the guidance like this, one rule at a time.design.mdAs we tested and rebuilt , the scope evolved into a three-part system that made the entire thing work:design.mdEach of these layers covers a different slice of the work that creates a high-quality, on-brand Vercel page. The judgment that gets encoded in gives agents guidance on:design.md also names the recurring generated-design patterns that we never want to see, allowing agents to recognize and avoid them far more reliably by giving the patterns names.design.mdWe created a stylesheet because agents kept inventing their own typography, spacing, and layout, so we took those decisions away from the model entirely. The stylesheet packages our design system's primitives, such as headers, tables, stat strips, and chart styles, as CSS that any page can use via a public URL. Then documents the class names and tokens that the stylesheet provides, allowing the agent to build the page with those names in the HTML instead of reinventing them.design.mdAnother benefit to this is that the agent never actually reads the stylesheet itself. The stylesheet loads when the page renders in your browser, so none of the code enters the model's context, saving more room for design guidance instead.Last, the evaluation loop is what helps make the other two pieces work. Deterministic checks are used to help catch mechanical failures, such as a table that ignores the width available to it, while people judge the subjective parts that can't be automated, like hierarchy, composition, and whether the page actually gives the reader what they came for.Every line of guidance in earned its place through the eval loop. We generated pages from fixed scenarios, reviewed what came back, encoded the corrections we accepted, and reran the scenarios to see whether each change stuck, since a change that helped one artifact could quietly hurt another. Nothing got in any other way.design.mdEach of the seven prompts becomes a scenario, meaning the prompt is frozen together with its mock inputs and render settings. The renewal proposal, for example, always runs with the same fake customer data with the same viewport settings, keeping as the only thing that changes between runs. A round means generating a fresh page from every scenario against the current version of the file. Full rounds cover all seven scenarios on both Claude Opus 4.8 and Codex with GPT-5.5.design.mdIf we want to investigate something specific, such as a rule change that only affects tables, we can rerun the affected scenarios or a single model, keeping iteration loops tight.Generating all seven pages together also made them easy to compare side by side, and what stood out was that wasn't pushing every page toward one template. The interactive planning page put its controls front and center, because someone opens a planning page to change the numbers and see what happens. The renewal proposal instead led with the recommendation and the commercial comparison behind it, because its reader is deciding whether to renew. Every page used the same Vercel typography, color, and spacing, but each one was structured around what its reader came to do.design.mdTo review the pages each round produced, we built a local app that displays full-page renders and runs blind A/B comparisons. This app eventually became our eval harness, running each scenario and storing the results. Each stored run keeps the prompt, inputs, model configuration, the version of it used, the screenshots, and whatever feedback the reviewer left about it. Reviewers record every correction against the exact run that produced it.design.mdEach correction a reviewer records gets landed in the narrowest place that can consistently enforce it. Judgment changes go into as prose, reusable mechanics go into the stylesheet, and anything that we can check mechanically becomes a deterministic check in code. Problems with the harness itself stay in the harness, and when a single model fails in a way the others don't, we keep it out of the rules until it repeats.design.mdTake one of the early renewal proposals. Its commercial terms table came back squeezed to the same width as the prose, even though the page had room for the table to be twice as wide.During review, we flagged that evidence tables should use the full width available to them. But when looking through previous outputs, we found this same failure everywhere. So this correction ended up going into two places:Once this landed, later renewal proposal prompts resulted in pages with correct full-width tables. To verify changes like this one, we reran the affected scenarios after encoding them. At milestones we went further, running blind A/B rounds that put the updated against an earlier version of the file to decide whether to keep, revise, or revert each change.design.mdBuilding the file had taken well over 200 runs, counting full rounds, targeted checks, dry runs, and all of the dead ends. Alongside the human reviewers, a model judge wrote critiques for each round, and every round's feedback went into improving the next run.After all of those runs, we wanted to know whether the corrections we had encoded were actually preventing the failures they were written for. So we picked three desktop scenarios, and for each one we had Codex with GPT-5.5 generate the page twice, once with loaded and once without. We kept the first attempt from every generation, with no re-rolls. Then we ran our deterministic checks over all six pages and counted how many times a known failure, like a table that ignores its available width, showed up in each set. The pages generated with had 39 of those failures. The pages generated without it had 91, which works out to 57% fewer in this test.design.mddesign.mdThose numbers come with two caveats. The checks can only catch failures we have already seen and written down, so this test says nothing about whether a page is well designed overall. Six pages is also far too small a sample to make claims about quality or reliability, and every one of them, with or without the file, still had at least one failure serious enough to block shipping. But what the test does well is tell us that once we name a failure and encode it, that failure tends to stay gone.The eval loop got the file shipped, but what keeps it current is real usage. Inside our Slack, that usage comes through , an agent built on that we use for anything from design critiques and copy alternatives to icon recommendations and report sites built from pasted data. Instead of setting up a prompt or hunting down source files, you just mention the agent in a thread. For website requests, it loads the current , builds the page against the published stylesheet, and posts a full-page screenshot and deployment URL back to the thread. Unlike our fixed scenarios, each of these threads captures a real request, a real output, and whatever feedback or steering followed, showing us how the guidance performs out in the wild.@design-agentdesign.mdeveEvery week, we gather all of that feedback in one place, the Slack threads along with comments from GitHub reviews and Figma. Automation groups the comments that keep repeating, and each repeated complaint becomes a proposed change. A person then reviews each proposal, checks whether the system already handles it, and decides where the accepted fix belongs, whether that is , the skill, , the stylesheet, or a deterministic check. And if people start asking for a kind of page we have never tested, that request becomes a new eval scenario.@design-agentproduct-designdesign.mdTo know whether any of this is working, we count how often each kind of complaint shows up in similar work over time. Once we encode a fix, that count should start falling. When it does not, something about the fix is wrong. The rule might be unclear, it might not be loading when it is needed, the stylesheet might not have a primitive that can express it, or it might need a deterministic check instead of prose.You can build the same loop yourself, starting with one recurring artifact and one manual comparison.1. Pick one repeated artifactUse a recent task with a real reader and real inputs, like a proposal, performance report, benchmark, or microsite. Avoid broad goals such as \"make it on-brand.\" Before generating anything, write down a short rubric. A good one checks that the supplied facts survived, that the reader's decision is clear, and that the correction you keep making by hand actually got resolved.2. Save the baseline firstGenerate the page once without any new design context, and save the prompt, inputs, configuration, and a screenshot. Keep that first output even if it looks rough, unless the harness itself failed. You cannot tell whether new context helped without a before.3. Start from your last ten correctionsCollect the feedback you keep giving in design reviews, pull requests, or Slack, and rewrite each correction as something observable. That means writing instead of , since only one of those can be checked.Let evidence tables use the full available widthMake the table feel less crampedPut the decisions in one file with sections for scope, reader and task, observable decisions, and available primitives. That file is your first .design.md4. Constrain repeatable mechanicsIf your outputs keep inventing their own typography, spacing, or layout, publish a stylesheet and document the exact classes and tokens the agent may use. Keep your judgment in prose, and push the repeatable mechanics into CSS or deterministic checks.5. Run one matched comparisonGenerate the page one more time with the same input, model, and viewport, but now with your file loaded. Shuffle it with the baseline and score both against your rubric without knowing which is which.You do not need a runner or a model judge to start, a single trial can reveal the large, obvious failures. To measure reliability, run multiple independent first-attempt trials () and report how often the result holds.Anthropic's guide to evals for agents6. Encode the correctionReview the output alongside whatever follow-up prompts you have to send, and then ask:Update the guidance instead of hand-tuning the generated page. Your next comparison tells you whether first attempts actually improved.Add tooling after the manual loop starts paying off:However far you take the automation, keep final changes human-reviewed.Then keep the loop running. Collect feedback on a cadence, and watch whether each kind of complaint actually becomes less common after you change the guidance. A passing evaluation matters less if people keep correcting the same mistake in production.And if you want working examples, ours are public. We load into tools like , Codex, and Claude every day to make artifacts that feel like Vercel, and the will get you a Slack design agent like the one we run.design.mdv0eve design agent templateRead moreHow we approached building design.mdThe first comparisonThe three parts that make the system workHow guidance made it into the fileMeasuring whether it workedHow stays currentdesign.mdBuild your ownA single public URL that anyone can point their agents at, regardless of the environment they run in.Guidance covering everything that made useful in the first place, from brand, layout, and copywriting to the design system, responsiveness, and information architecture.product-designUsage and performance reportRenewal proposalBenchmark reportInteractive planning pageBuild-versus-buy briefSecurity governance briefPresentation deck supplies guidance that shows agents how to frame the reader's job, structure evidence, and choose a composition.design.mdA public that defines a bounded, documented vocabulary of classes and tokens.stylesheetAn evaluation loop turns repeated human feedback into better guidance and deterministic checks.Shaping a page for both a quick executive read and a detailed audit.Writing copy with concrete claims and honest caveats.Composing hierarchy, typography, and color so that evidence and prose support each other.How to publish as Vercel, down to the asset rules for our wordmark and the triangle logo.A rule in stating the intended behavior.design.mdA deterministic check in code that catches the same layout failure the next time it appears.What did the user have to repeat or steer manually?Is a rule missing or unclear?Can the stylesheet express the correction?Is the failure mechanical enough to check in code?Does the correction generalize beyond this output?Include scenarios where the guidance should and should not apply.Keep a small holdout hidden while editing.Record model and guidance versions.Automate mechanical checks.Use multiple blind reviewers.Scenarios and roundsReviewing every runTurning corrections into rules and checks",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/fx-ai-sdk-harness-adapter",
+      "title": "fx is now available in the AI SDK harness layer",
+      "url": "https://vercel.com/changelog/fx-ai-sdk-harness-adapter",
+      "author": "Felix Arntz",
+      "publishedAt": "2026-08-31T06:00:00.000Z",
+      "content": "The now supports , Vercel's lightweight, open-source coding agent. The harness layer provides one API for running coding agents in your application, so you can add fx without building a separate integration.AI SDK harness layerfxConfigure with the official adapter: HarnessAgent@ai-sdk/harness-fxThe adapter connects to fx over the Agent Client Protocol (ACP) using .@ai-sdk/harness-fx@ai-sdk/harness-acpfx joins Claude Code, Cline, Codex, Cursor, Deep Agents, Grok Build, OpenCode, and Pi in the list of supported harnesses. Read the to get started.fx harness documentationRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/polimill",
+      "title": "Polimill builds Japan's next-generation public AI infrastructure",
+      "url": "https://openai.com/index/polimill",
+      "author": null,
+      "publishedAt": "2026-08-31T07:00:00.000Z",
+      "content": "Polimill uses OpenAI GPT models and Codex to help municipalities search and use administrative knowledge while accelerating development.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49512856",
+      "title": "The safest job from AI may be writing",
+      "url": "http://muratbuffalo.blogspot.com/2026/08/the-safest-job-from-ai-may-be-writing.html",
+      "author": "ilreb",
+      "publishedAt": "2026-08-31T18:12:20.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 121,
+      "comments": 166
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=986901",
+      "title": "Alienware’s budget-friendly QD-OLED is discounted for the first time",
+      "url": "https://www.theverge.com/gadgets/986901/alienware-qdoled-2726dm-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-08-31T19:31:59.000Z",
+      "content": "The Alienware AW2726DM is a wallet-friendly screen with premium features for gaming. While memory and storage prices are still high, there are still good discounts on other gaming-related hardware. Take Alienware’s AW2726DM, for example. Dell is selling it for $319.99, a $30 break from the usual price of $349.99. The 27-inch gaming monitor features an QD-OLED panel for deep, immersive black levels, and quantum dots for full and vivid colors. With a 240Hz refresh rate for super smooth gaming, and AMD FreeSync Premium Plus to keep your frames per second and refresh rate locked together, this monitor is a great, budget-friendly choice for PC gamers who don’t want to compromise on contrast and fast response times. Alienware AW2726DM QD-OLED monitor Where to Buy: $349.99 $319.99 at Dell Connectivity is a bit limited, with a DisplayPort 1.4 port that supports up to 240Hz at 2560 x 1440, and two HDMI ports that support up to 120Hz at its peak resolution. While some other screens have USB hubs or audio connections, they aren’t necessary for PC gaming, and sometimes add to the cost. The included stand has adjustable swivel, height, pivot, and tilt, with a 100 x 100 VESA mount in case you want to mount it to a monitor arm or use a different stand. It also sports a lengthy three year warranty with coverage for burn-in. Read our Alienware AW2726DM hands-on.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49514878",
+      "title": "Google Has Removed MV2 Extensions from the Chrome Web Store, Including UBO",
+      "url": "https://webiterate.dev/google-removed-extensions-ublock-origin-108/",
+      "author": "twapi",
+      "publishedAt": "2026-08-31T21:10:58.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 619,
+      "comments": 477
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/staff/2026/08/get-in-on-the-ars-community-that-doesnt-fit-beneath-an-article/",
+      "title": "Get in on the Ars community that doesn’t fit beneath an article",
+      "url": "https://arstechnica.com/staff/2026/08/get-in-on-the-ars-community-that-doesnt-fit-beneath-an-article/",
+      "author": "\n                    Eric Bangeman\n                ",
+      "publishedAt": "2026-08-31T21:12:01.000Z",
+      "content": "If you’re like many of our readers, you’ve got Ars Technica bookmarked and hit the front page a few times a day. But for others, a compelling story is what brings them here for the first time. And the discussions sometimes keep them coming back. Since its launch in 1998, Ars Technica has been known for its depth of community. If all you're doing is checking out the front page and the discussion threads that sit beneath each story, you’re missing out on more than you realize. The Ars OpenForum is a place for readers to ask questions, compare notes, argue (without being jerks to each other), and go down all sorts of rabbit holes. Our Hardware and Tweaking forums cover PC builds, networking, mobile computing, CPUs and motherboards, A/V, and just about any other hardware-related topic you can think of. Stop by the Operating Systems & Software forums for in-depth discussion on Windows, macOS, or Linux or just to have a good, friendly argument over why your preferred OS rules.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=986967",
+      "title": "I went to the loneliest baseball game on Apple Vision Pro",
+      "url": "https://www.theverge.com/tech/986967/apple-vision-pro-mlb-red-sox-yankees-immersive-game",
+      "author": "Mia Sato",
+      "publishedAt": "2026-08-31T21:18:27.000Z",
+      "content": "Ceddanne Rafaela is tagged out at home plate at Yankee Stadium on August 28th. | Getty Images This weekend, I strapped on an Apple Vision Pro to watch a baseball game in immersive virtual reality for the first time. It was technically impressive, visually pretty remarkable, and also didn't make that much sense. Apple and Major League Baseball chose a classic match-up of the Boston Red Sox and the New York Yankees for the first of its series of four games streamed on the device. I do not review tech for The Verge, but I do watch a lot of baseball - if there's a game on and I'm at home, it's likely on my television. If this is the future of sports, live events, and wearable technology in general, I'd like to see what all the fuss is a … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/08/trump-admin-shelves-cyclospora-research-despite-record-breaking-outbreak/",
+      "title": "Trump admin shelves Cyclospora research despite record-breaking outbreak",
+      "url": "https://arstechnica.com/health/2026/08/trump-admin-shelves-cyclospora-research-despite-record-breaking-outbreak/",
+      "author": "\n                    Beth Mole\n                ",
+      "publishedAt": "2026-08-31T21:23:09.000Z",
+      "content": "The Trump administration is halting vital federal research on the foodborne parasite Cyclospora, despite the record-breaking, nationwide outbreak of the diarrheal pathogen, according to Politico. Of the three research programs that represent nearly all of the Cyclospora work at the US Department of Agriculture, two have been defunded, and the third is about to lose every scientist working on it. The Trump administration is shuttering the USDA's Beltsville Agricultural Research Center near Washington, DC, and moving its work to a location in Iowa. That includes relocating the remaining Cyclospora research. Although the research is still funded, insiders told Politico that not one of the scientists working on the project plans to relocate from Maryland to Iowa. Instead, they are either retiring, being reassigned to a different project, or leaving the USDA's research services.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260831/p39#a260831p39",
+      "title": "Sources: AI sales and marketing startup Clay is raising a round led by Wellington at a $7B pre-money valuation, up from $5B via an employee tender in January (Lucinda Shen/Axios)",
+      "url": "https://www.techmeme.com/260831/p39#a260831p39",
+      "author": null,
+      "publishedAt": "2026-08-31T21:25:01.000Z",
+      "content": "Lucinda Shen / Axios: Sources: AI sales and marketing startup Clay is raising a round led by Wellington at a $7B pre-money valuation, up from $5B via an employee tender in January — Clay, an AI startup for sales and marketing teams, is raising new money led by Wellington at a $7 billion pre-money valuation, Axios has learned.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=986982",
+      "title": "FTC lawsuit alleges Amazon has been ‘secretly and systematically’ overcharging for ads",
+      "url": "https://www.theverge.com/tech/986982/amazon-advertising-prices-ftc-lawsuit",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-08-31T21:41:42.000Z",
+      "content": "The FTC and 22 state attorneys general are suing Amazon for allegedly using a \"secret ad surcharge\" to drive up prices for ads on its website and app. FTC chairman Andrew Ferguson claims in a blog post on the lawsuit that the higher advertising prices \"were largely passed on to American consumers.\" According to the complaint, Amazon violated the FTC Act and over a dozen state laws. This lawsuit comes almost a year after Amazon agreed to pay $2.5 billion to settle an earlier FTC lawsuit over Prime subscription practices. In Amazon's \"second price\" auctions for ads on its platform, the winning bidder is supposed to only pay one cent more tha … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260831/p40#a260831p40",
+      "title": "Filing: Apple claims a former iPhone engineer used a confidential Apple circuit schematic in his work at OpenAI, evidence is being destroyed, and more (Chance Miller/9to5Mac)",
+      "url": "https://www.techmeme.com/260831/p40#a260831p40",
+      "author": null,
+      "publishedAt": "2026-08-31T21:45:01.000Z",
+      "content": "Chance Miller / 9to5Mac: Filing: Apple claims a former iPhone engineer used a confidential Apple circuit schematic in his work at OpenAI, evidence is being destroyed, and more — Apple has filed a new document in its ongoing lawsuit against OpenAI as it continues to push for expedited discovery.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260831/p41#a260831p41",
+      "title": "Florida says it is revoking permits for Flock cameras and similar license-plate readers on state roads and no longer intends to issue such permits (Ryan Gillespie/Orlando Sentinel)",
+      "url": "https://www.techmeme.com/260831/p41#a260831p41",
+      "author": null,
+      "publishedAt": "2026-08-31T21:55:01.000Z",
+      "content": "Ryan Gillespie / Orlando Sentinel: Florida says it is revoking permits for Flock cameras and similar license-plate readers on state roads and no longer intends to issue such permits — Florida is revoking permits for Flock cameras and similar license-plate readers on state roads, dealing a blow to local law enforcement agencies …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=985986",
+      "title": "JMGO’s very bright all-in-one projector looks ideal for gamers and sports",
+      "url": "https://www.theverge.com/tech/985986/jmgo-4k-gaming-projector-price-specs",
+      "author": "Thomas Ricker",
+      "publishedAt": "2026-08-31T22:00:00.000Z",
+      "content": "JMGO’s Iris Ultra Max 4K 120Hz Google TV projector. | Image: JMGO JMGO's 4K 120Hz Iris Ultra Max all-in-one Google TV projector is now available outside China. It gets its name from a new dual-iris system that lets it produce an impressive 10,000:1 native contrast, according to JMGO. It boosts the contrast - always an issue with projectors - by placing two separate physical apertures (irises) along different points of the internal optical path to control light scatter and brightness far more aggressively than a single iris can. It also promises to produce a very bright 6,500 ISO lumen image from its triple-laser light engine. Last year at IFA, 6,000 lumens from an all-in-one projector was breaking new gro … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Aug/31/andrew-digby/",
+      "title": "Quoting Andrew Digby",
+      "url": "https://simonwillison.net/2026/Aug/31/andrew-digby/",
+      "author": null,
+      "publishedAt": "2026-08-31T22:25:02.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=987032",
+      "title": "The Google TV Streamer now costs $50 more",
+      "url": "https://www.theverge.com/tech/987032/google-tv-streamer-price-increase",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-08-31T22:32:51.000Z",
+      "content": "Google raised the price of its 4K streaming box to $149, up $50 from its original $99 price. The new price is currently live at the Google Store and Best Buy, but Amazon appears to still be offering the original price. The price hike comes just a couple of weeks after Google launched its new lineup of Pixel 11 phones with a $100 price hike over their Pixel 10 counterparts. The Google TV Streamer originally launched in 2024 and doubles as a smart home hub. It isn't the only streaming device getting more expensive - component shortages have been driving up prices on everything from laptops to game consoles. Earlier this month, Amazon incre … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49515830",
+      "title": "Run macOS Software on Linux",
+      "url": "https://www.darlinghq.org/",
+      "author": "Bluestein",
+      "publishedAt": "2026-08-31T22:53:45.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 164,
+      "comments": 52
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/cars/2026/08/the-bentley-supersports-a-stripped-out-engineers-indulgence/",
+      "title": "The Bentley Supersports: A stripped-out engineer's indulgence",
+      "url": "https://arstechnica.com/cars/2026/08/the-bentley-supersports-a-stripped-out-engineers-indulgence/",
+      "author": "\n                    Jonathan M. Gitlin\n                ",
+      "publishedAt": "2026-08-31T23:01:16.000Z",
+      "content": "Bentley provided flights from Washington, DC, to Monterey, California, and accommodation so Ars could drive the Supersports, as well as ride in a preproduction Torcal EV, which we wrote about last week. Ars does not accept paid editorial content. MONTEREY, Calif.—Last week, we brought news of the Bentley Torcal, a new electric vehicle that the luxury automaker has been cooking up at its HQ in Crewe, England. The company wants to attract new customers with its first battery EV, part of a plan to make sustainability as much a part of the brand's character as its high-end fit and finish. W12 engines have given way to V8 plug-in hybrid power, and the new Continental GT is all the better for it. But around the same time as Ars got its first experience of that new PHEV two-door on a rather wet Spanish racetrack, some of Bentley's boffins were wondering what might happen if you also built one without the hybrid stuff. Or all-wheel drive—something that has been a characteristic of every new road-going Bentley since the turn of the century. That would certainly cut the curb weight. So, too, would leaving out the rear seats. That sort of idea leads down a well-trodden path for some OEMs, and Porsche in particular is famous for making stripped-out road cars inspired by its race cars and making money from them, too.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-antigravity-s-boost-turns-hard-bugs-into-multi-agent-reasoning-missions",
+      "title": "Google Antigravity's /boost Turns Hard Bugs Into Multi-Agent Reasoning Missions",
+      "url": "https://alphasignal.ai/news/google-antigravity-s-boost-turns-hard-bugs-into-multi-agent-reasoning-missions",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-08-31T23:05:07.000Z",
+      "content": "Google Antigravity's new /boost slash command spins up a three-phase multi-agent pipeline that trades extra tokens for deeper reasoning on hard coding tasks.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112313 at https://www.eff.org",
+      "title": "EFF to Governor Newsom: Veto California’s AB 1709",
+      "url": "https://www.eff.org/deeplinks/2026/08/eff-gov-newsom-veto-californias-ab-1709",
+      "author": "Rindala Alajaji",
+      "publishedAt": "2026-08-31T23:37:39.000Z",
+      "content": "The California legislature passed Assembly Bill 1709 (A.B. 1709) today, which functions as a sweeping ban on social media use for young people under the age of 16. This well-intentioned, but deeply flawed piece of legislation, cuts young people off from essential information and experiences, particularly harming vulnerable youth and marginalized groups who often find safety in supportive online communities they can't access offline. That’s why we’re urging Governor Gavin Newsom to veto the measure. Should the law go into effect in January, platforms would be prohibited from offering virtually every functional recommendation algorithm and basic input, such as who a user follows or what posts they like, to anyone under 16. These so-called \"addictive features,\" are in reality the basic tools that online services use to identify what other user-generated content a particular user might want to see. Users also rely on these features to find audiences for their own speech, as well as community. By labeling these basic tools as \"addictive,\" the bill relies on sweeping generalizations regarding the unsettled science of youth social media use. Because nearly every major service relies on automated feeds, the ultimate result is that young people under 16 will still be locked out of major digital services as they currently exist. A.B. 1709 is a massive privacy and free speech nightmare. A.B. 1709 is a massive privacy and free speech nightmare. Denying young people access to digital forums (or stripping out the basic tools needed to navigate them) does nothing to make young people safer or healthier. Research shows that social media bans are ineffectual, and can be harmful when they deny young people opportunities to develop their own voices and perspectives, whether that means sharing art, practicing religion, or engaging in politics. Far from protecting children, the bill will also severely restrict access to constitutionally protected speech and push platforms to implement invasive age-verification methods, such as requiring government IDs or biometric scanning. Age-gating requirements will force everyone to give big tech companies even more personal information. To verify who can pass through online gates, companies will collect even more data, concentrating power in corporate hands rather than protecting users. This creates massive honeypots of sensitive personal data, severely damages online anonymity, and exposes users of all ages to heightened data breach risks. Finally, A.B. 1709 introduces legal confusion by creating provisions that conflict with already enacted legislation like A.B. 1043 and S.B. 976. Rather than offering regulatory clarity on already-passed laws, California will only end up spending valuable resources to defend a law bound to be tied up in court. For more details, you can read our full letter to the Governor here.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260831/p42#a260831p42",
+      "title": "Sources: Anthropic has signed a $35B cloud deal with Nvidia-backed Lambda; Nvidia will hold the lease on and supply chips to a Texas data center built by Hut 8 (Anissa Gardizy/Wall Street Journal)",
+      "url": "https://www.techmeme.com/260831/p42#a260831p42",
+      "author": null,
+      "publishedAt": "2026-08-31T23:40:03.000Z",
+      "content": "Anissa Gardizy / Wall Street Journal: Sources: Anthropic has signed a $35B cloud deal with Nvidia-backed Lambda; Nvidia will hold the lease on and supply chips to a Texas data center built by Hut 8 — Nvidia will supply chips to Texas data center and hold the lease, another example of the company using its financial might to boost a customer",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49516199",
+      "title": "Evidence of Fraud in an Influential Study About Procrastination",
+      "url": "https://datacolada.org/138",
+      "author": "Anon84",
+      "publishedAt": "2026-08-31T23:45:56.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 115,
+      "comments": 83
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Aug/31/introducing-wrapture/",
+      "title": "Introducing wrapture",
+      "url": "https://simonwillison.net/2026/Aug/31/introducing-wrapture/",
+      "author": null,
+      "publishedAt": "2026-08-31T23:59:36.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-hacker-opus-learned-to-attack-servers-just-to-win-tasks",
+      "title": "Anthropic's Hacker-Opus Learned to Attack Servers Just to Win Tasks",
+      "url": "https://alphasignal.ai/news/anthropic-s-hacker-opus-learned-to-attack-servers-just-to-win-tasks",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-01T00:07:51.000Z",
+      "content": "Anthropic deliberately trained an Opus-class model on 80 hackable environments. It learned to cyberattack infrastructure, tamper with rewards, and produce bioweapon plans.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260831/p43#a260831p43",
+      "title": "Anthropic details security efforts following Claude cyber evaluation incidents, including a weeks-long pause on higher-risk RL and work to curb reward hacking (Anthropic)",
+      "url": "https://www.techmeme.com/260831/p43#a260831p43",
+      "author": null,
+      "publishedAt": "2026-09-01T00:10:02.000Z",
+      "content": "Anthropic: Anthropic details security efforts following Claude cyber evaluation incidents, including a weeks-long pause on higher-risk RL and work to curb reward hacking — On July 30, we reported three incidents in which Claude models gained unauthorized access to real computer systems.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260831/p44#a260831p44",
+      "title": "AI startup Mirage streamed a 24-hour \"live\" AI news show on X on August 11, which cost ~$50K in tokens, featuring realistic avatars that struggled to converse (Alex Konrad/Upstarts Media)",
+      "url": "https://www.techmeme.com/260831/p44#a260831p44",
+      "author": null,
+      "publishedAt": "2026-09-01T03:10:03.000Z",
+      "content": "Alex Konrad / Upstarts Media: AI startup Mirage streamed a 24-hour “live” AI news show on X on August 11, which cost ~$50K in tokens, featuring realistic avatars that struggled to converse — Inside the good, the bad, and the ugly of a 24-hour live AI broadcast experiment by video startup Mirage.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28590v1",
+      "title": "DS-Lighting: Making Agent Harnesses Explicit for Data-Science Automation",
+      "url": "https://arxiv.org/abs/2608.28590",
+      "author": "Fan Liu, Hao Liu",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Large Language Model (LLM) agents have shown promise for automating data-science workflows, yet their end-to-end performance depends critically on the agent harness that represents tasks, manages execution state, constrains output artifacts, and provides evaluation feedback. Existing data-science agents often leave this harness implicit, making results difficult to reproduce, compare, and attribute across heterogeneous tasks. We introduce DS-Lighting, a unified harness toolkit that makes harness design explicit for data-science automation. DS-Lighting decomposes the harness into four reusable layers: data, workflow, execution, and evaluation, and represents diverse agents as executable operator programs that support both predefined pipelines and adaptive search. We further integrate multiple open-source data-science benchmarks into an MLE-Bench-style task format, enabling controlled comparison under a shared task interface, sandboxed runtime, and metric protocol. Experiments across agents, harnesses, models, and ablations show that explicit harness design improves reproducibility, comparability, and reliability, while reducing avoidable system-level failures in end-to-end data-science workflows. Our code is available at https://github.com/usail-hkust/dslighting",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28591v1",
+      "title": "Expert-validated STEM QA",
+      "url": "https://arxiv.org/abs/2608.28591",
+      "author": "Kihwan Han, Saurabh Patil, Chinmayee Shukla, Abhinav Sharma, Marko Pavlovic, Anshuman Lall, Mahesh Joshi",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Recent advancements in AI are helping scientists achieve breakthroughs in fields such as mathematics, medicine, and materials sciences. New evaluation datasets for AI models contribute to such advancement in AI. In the STEM domain, frontier models have consumed most of the available online data, creating the need for human-created datasets that codify the knowledge of leading experts in the domain. There are several STEM datasets available for the research community in this field. However, there are some gaps in these datasets, leaving room for improvement. Examples of gaps include (1) saturation in model performance on these datasets, leaving no head-room for meaningful evaluations, (2) skewed taxonomy distributions, (3) multiple choice question format that is misaligned with how scientists use AI in the real world, and (4) inaccurate answers and rationales partially led by a contest-based data collection and a time-bound review process. In this study, we present 'Expert-validated STEM QA', a high-quality, expert-validated STEM dataset (N=398) in Physics, Chemistry, Biology, and Mathematics, created by 241 domain experts. We (1) carefully designed a taxonomy with balanced distribution, (2) vetted question contributors with quality-driven incentive, (3) conducted multiple rounds of reviews with revisions validated by domain experts based on consensus, and (4) created the dataset in verifiable question and answer format. Our study demonstrated low performance ($<25\\%$) of frontier AI models on the dataset as a benchmark. Post-training on a separate, private version of the dataset (N=2,000) increased performance of the open source model by $15\\%$ relative to the baseline model (p=0.045) on the STEM subset of HLE-verified dataset, indicating potential utility of the dataset for model training. We have open-sourced a portion of our dataset for the AI research community.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28592v1",
+      "title": "A collective capability boundary in frontier large language models on guideline-conformant and case-specific oncology decision-making",
+      "url": "https://arxiv.org/abs/2608.28592",
+      "author": "Zhang Sheng, Jinming Li, Wangyang Chen, Zhiwei Bao, Yu YoSean Wang",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Large language models (LLMs) achieve high scores on medical knowledge examinations, yet real-world oncology is not a knowledge test--it is a sequence of guideline-pathway choices, escalation judgments, and commitments under uncertainty. Existing benchmarks largely measure factual recall, leaving open whether frontier LLMs share decision-path blind spots that combining models cannot fix. We built the Oncology Decision Boundary Benchmark (ODBB)--2,005 oncology decision points across NCCN guidelines and colorectal cancer cases--and evaluated nine frontier LLMs (four closed-source, five open-weight families) released between June 2025 and April 2026. A fully deterministic scorer (zero LLM inference) classified outputs into 14 failure types, independently validated by two oncologists (Cohen's weighted $\\kappa$ = 0.939 and 0.790) on a 225-item stratified sample. Treating the nine as a pooled super-model, 42.1% (Wilson 95% CI 40.0--44.3%) of all items--35.7% of the 1,586 NCCN items and 66.4% of the 419 colorectal-cancer cases--were answered correctly by none, with failures concentrated in choosing between guideline pathways before reasoning within any: a consistent blind spot in clinical meta-judgment that likely requires architectural intervention rather than more training data. Two models tuned for decisiveness (GPT-5.5, Gemini 3.1 Pro Preview) made unsafe commitments three to five times more often than the seven cautious models without scoring higher. In 3--9% of items, models stated the correct next clinical step yet did not commit to it--failures of decision, not knowledge. Model quality is no longer the primary bottleneck for clinical LLM deployment; the binding constraint is the assumption that any single model can be the sole basis for a clinical decision. Progress requires architectures that detect when a model reaches its competence boundary and route the decision to a clinician.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28593v1",
+      "title": "Statutory AI: Aligning Large Language Models With Legal Norms",
+      "url": "https://arxiv.org/abs/2608.28593",
+      "author": "Cindy Delage, St\\'ephane Canu, Marc D\\'ecombas, Jonathan Foureur",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "With the increasing development of AI regulatory frameworks, ensuring that artificial intelligence systems, particularly generative models, operate in accordance with legal and ethical standards has become a critical priority. Existing proposals for AI alignment and value-guided behavior, however, face some limitations. Approaches such as Constitutional AI depend on human supervision, while broad normative frameworks like the Good-for-Humanity (GfH) principle may be overly general and ambiguous to provide actionable governance guidance. To overcome these limitations, we propose a hybrid approach called Statutory AI that employs pre-existing human-authored principles drawn from specific themes within a legal corpus. Specifically, Statutory AI uses legal texts as a constitutional framework, enabling AI systems to autonomously critique and revise their outputs according to established norms. It operates in two stages, both using Chain-of-Thought prompting. The first stage classifies the user prompt into one of the identified themes, while the second stage analyzes it in conjunction with relevant articles selected from the legal corpus of that theme. To illustrate the potential of our approach, we conducted an experiment involving 1,000 red-teaming prompts and five penal themes: discrimination, disclosure of confidential information, violence, fraud, and abuse of vulnerable persons. Statutory AI reduced harmful content by 52 to 59 percentage points across tested models, approximately 10 percentage points higher than standard Constitutional AI, while cutting computation time by over 50%.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28594v1",
+      "title": "From Question-First to Analyst-First: Domain-Expert Skills and Verified Knowledge Compilation for Proactive Enterprise Analytics",
+      "url": "https://arxiv.org/abs/2608.28594",
+      "author": "Harmohit Singh, Rahul Sharma",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Conversational analytics systems assume the user already has a well-formed question, leaving a non-expert facing a blank query box on an unfamiliar enterprise schema. Commercial 'proactive' tools narrow this gap only by detecting statistical anomalies over analyst-curated metric layers, and academic next-question recommenders depend on query logs that a fresh dataset lacks. We describe a production analytics system that inverts the interaction model from question-first to analyst-first through two coupled architectural ideas. First, a pluggable domain-expert 'skill' abstraction: a folder-based, database-free subject-matter pack (a manifest, per-stage prompt facets, keyword-routed references, report templates, and optional compute) auto-selected per (client, dataset) by deterministic schema matching and spliced as a cross-cutting concern into every stage of an agentic pipeline, the schema explorer, and the report engines, degrading to a strict no-op when absent. Because a skill is a self-contained folder resolved deterministically, the catalogue is open-ended: an extensible marketplace of domain experts. Second, an offline knowledge-compilation loop: an agent probes the dataset's parquet via DuckDB (zero load on production), runs critic-gated per-table convergence with self-healing retries, and data-validates joins by value overlap, producing durable schema knowledge that drives standing expert reports whose every published metric is re-verified by re-executing its evidence SQL, plus suggested questions that mirror the report agenda. These close a proactive loop: reports surface numbers, the numbers seed questions, and a click launches a verified deep dive, all before the query box is used. We give a formal model and report illustrative single-tenant evidence. We make no user-study or benchmark claims; the contribution is the architecture and its defensibility.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28595v1",
+      "title": "The Signal in the Noise: An Auditable Reliability Layer for Biomedical Text Classification",
+      "url": "https://arxiv.org/abs/2608.28595",
+      "author": "Moustafa Yehia Hassan, Sharon Wong, Woh Kai Xuan",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Biomedical NLP pipelines routinely presuppose clean input text, yet large-scale corpora assembled through automated PDF parsing harbour pervasive OCR-like artifacts, token splits and merges, hyphenation remnants, and character-level corruption, that systematically erode lexical evidence and degrade downstream classifiers. We introduce a conservative, fully auditable spell-correction reliability layer conceived as a safety-oriented preprocessing module rather than a maximal-accuracy corrector: under conditions of uncertainty, the system abstains from editing, in accordance with a medical do-no-harm philosophy. The deterministic architecture couples bounded edit-distance candidate generation with corpus-derived n-gram scoring and a suite of biomedical safety gates that protect domain-critical terminology. We evaluate the layer both intrinsically, on a manually curated benchmark of 2,104 token-level cases, and extrinsically, on a tri-class CORD-19 topic classifier (Prevention, Treatment, Epidemiology) spanning 10,000 examples under a principled four-run protocol (Clean, Noisy, Restored, Safety). Intrinsically, the layer attains 94.61% error-fix recall on synthetic errors with zero harmful edits on negative controls. Downstream, it recovers approximately 80.45% of the noise-induced macro-F1 degradation, elevating macro-F1 from 0.7654 (Noisy) to 0.7717 (Restored) while preserving near-clean performance (Safety: 0.7721). A supplementary case study on 103 real-world OCR-extracted abstracts classified with BioBERT confirms that transformer encoders appeared relatively robust to mild noise, motivating a future grey-box architecture that integrates bounded neural signals and UMLS lexicons without compromising auditability. The system is fully deterministic, artifact-driven, and designed with deployment and auditability in mind.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28596v1",
+      "title": "Paper Pilot: A Human-in-the-Loop Expert System for Evidence-Traceable Scientific Manuscript Generation in Applied Sciences",
+      "url": "https://arxiv.org/abs/2608.28596",
+      "author": "Nidhi Jha, Siddharth Chaudhary, Ajinkya Kulkarni",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Large language model (LLM) agents are increasingly embedded in scientific workflows for literature analysis, drafting, and review. Existing systems advance autonomous discovery and manuscript generation, but do not resolve the governance problem that arises when ideas, methods, results, and claims propagate through AI-assisted workflows without mandatory human approval or artifact-level traceability. This paper proposes Paper Pilot, a human-in-the-loop expert system for evidence-traceable scientific manuscript generation in applied sciences. It adapts the Collaborative Agent Reasoning Engineering (CARE) methodology to manuscript development through manuscript-owner approval gates, explicit no-pass criteria, claim classification, audit logging, advisory LLM review, and evidence-locked revision control. The framework defines eight approval gates across the idea-to-claim pipeline and distinguishes literature-grounded from artifact-grounded claims, requiring reported numbers and interpretations to remain traceable to approved evidence; its system prompt is openly released for deployment in ChatGPT, Gemini, Claude, or institutional LLM environments. As a first empirical validation, we evaluate the citation-grounding layer with a controlled, mechanically scored benchmark (two commercial LLMs, real arXiv papers, no LLM judge): under coverage pressure ungated drafters fabricated up to 25% of their citations and never flagged an evidence gap, whereas the same models under Paper Pilot's evidence-locked rules produced zero fabricated citations and surfaced the planted gaps as explicit placeholders. Preliminary results for result grounding, revision, and adversarial robustness point the same way; full evaluation is left to future work. Paper Pilot positions LLM-assisted writing as a controlled human-AI decision-support process rather than a fully autonomous authorship pipeline.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28597v1",
+      "title": "The Race between Agentic AI Capabilities and Data Quality Control in Online Surveys",
+      "url": "https://arxiv.org/abs/2608.28597",
+      "author": "Sourav Panda, Hillmer Chona, Rupak Kumar Das, Shreyash Kale, Shikha Soneji, Jonathan Dodge",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Online surveys are a foundational data collection instrument in a variety of fields, with attention checks serving as critical guardians of response quality. However, the rapid emergence of agentic AI (goal directed systems powered by a large language model (LLM) brain and/or a multimodal processing unit with tool-augmented capabilities) raises new questions about the robustness of these safeguards. We investigate how well agentic AI architectures can complete web-based surveys and pass standard attention checks. We evaluate a single-agent architecture capable of multimodal input processing and tool-based web interaction on a controlled survey sandbox. We analyze the problem from two perspectives. From an attack perspective, we demonstrate how structural vulnerabilities such as exposed DOM metadata and predictable option encoding allow agents to resolve attention checks through structured parsing only. From a defense perspective, we implement a mitigation strategy of DOM metadata obfuscation to remove semantic cues in text-based questions. We evaluate multiple open-source language and multimodal models to study capability and orchestration effectiveness. Based on our evaluations, we offer perspectives on how to simultaneously meet the needs of empiricists and agentic AI researchers.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28599v1",
+      "title": "CDPR: Counterfactual Advantage-based Credit Assignment for Cost-Aware Sequential Medical Diagnosis",
+      "url": "https://arxiv.org/abs/2608.28599",
+      "author": "Qi Peng, Yi Cai, Changmeng Zheng, Xin Wu, Jiayuan Xie, Qing Li",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Clinical diagnosis is a step-by-step, cost-aware process: a physician orders examinations one at a time, observes the results, and updates the diagnosis before reaching a final conclusion. Most medical language models instead treat diagnosis as a one-pass classification task and ignore the trade-off between a test's value and its cost. We model diagnosis as a cost-aware sequential decision process and train the policy with reinforcement learning. The main difficulty is credit assignment: the only reliable signal comes once at the end of a long trajectory, so it scores a wasteful workup the same as an efficient one. We propose CDPR (Counterfactual Diagnostic Process Reward), which needs no expert labels and no learned critic. CDPR first finds the states where the policy hesitates, using the uncertainty of its action distribution, and then scores the chosen action by its advantage over the alternatives the policy itself would consider, estimated with short rollouts under a utility that balances correctness against test count, cost, and infeasible requests. A rollout cache reuses within-batch trajectories to keep the cost low. We integrate CDPR into GRPO and test it on one in-domain (MIMIC-IV) and two out-of-domain (ClinicalBench and a private hospital dataset) benchmarks. CDPR improves diagnostic accuracy while clearly reducing the number and cost of examinations.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28600v1",
+      "title": "SHAPE of Chain-of-Thought in Math Reasoning",
+      "url": "https://arxiv.org/abs/2608.28600",
+      "author": "Jonghyun Song, Sangjun Song, Minjae Oh, Haesung Pyun, Sungsik Lee, Yohan Jo",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Large language models (LLMs) achieve strong performance on mathematical reasoning benchmarks, yet the mathematically meaningful skills underlying their reasoning remain underexplored. We introduce \\texttt{SHAPE}, a framework that analyzes Chain-of-Thought (CoT) trajectories through two lenses developed in mathematics education: (1) semantic spaces: the model's evolving mathematical interpretations of a problem (e.g., algebraic, geometric), and (2) heuristics: the specific mathematical actions taken within those spaces (e.g., simplifying the problem, working backward). We first use \\texttt{SHAPE} to analyze the reasoning patterns of various models. Our findings reveal that the mathematical heuristics employed by a model better explain final answer correctness than traditional CoT features. Furthermore, models are likely to reach correct solutions by concentrating their reasoning effort within a few semantic spaces rather than exploring many disparate ones -- a pattern consistent with human behavior. Next, we utilize the \\texttt{SHAPE} lens to evaluate whether post-training truly enhances mathematical proficiency. We find that reinforcement learning induces mode-seeking in heuristic usage. Lastly, we post-train LLMs by promoting diverse heuristics and demonstrate its effectiveness in improving accuracy. Overall, \\texttt{SHAPE} provides a theoretically-grounded diagnostic framework for decoding LLM reasoning and offers a new path toward post-training LLMs for math reasoning. The code for our model is available at https://github.com/holi-lab/SHAPE-of-CoT",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28601v1",
+      "title": "Leveraging Generative AI to Design Accessible Interactive Visualizations for Undergraduate Mathematics: A Six-Phase Workflow",
+      "url": "https://arxiv.org/abs/2608.28601",
+      "author": "Mahesh Sunkula, Kuan-Hua Chen",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Interactive visualizations support conceptual understanding in undergraduate mathematics, but building them has required programming expertise most instructors lack. Using a design-based research approach, we develop, deploy, and evaluate a six-phase workflow (Foundation, Customization, Mathematical Depth, Application, Accessibility, Pedagogical Control) that uses generative AI to build WCAG~2.2 Level~AA compliant visualizations without programming. The six phases structure every prompt, scaffold the AI's code generation, and define where human verification is applied. We ask whether the structure reliably yields correct and accessible tools, whether it runs both backward (reverse-engineering prompts from a finished tool) and forward (generating a tool from a plain-language idea), and what verification each phase requires. Across four deployed tools spanning calculus, multivariable calculus, and differential equations, we evaluate mathematical correctness against closed forms, accessibility through automated and manual screen-reader testing, and the errors that recurred. The structure produces structurally complete first-pass tools, but human verification remains mandatory at every phase: each output must be checked for mathematical correctness, accessibility, and pedagogical fit before the next phase begins. The workflow is platform-independent and serves both instructors and students.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28602v1",
+      "title": "Integrating Triaxial IMU Sensors and Ensemble Learning for Effective Parkinson Disease Severity Classification",
+      "url": "https://arxiv.org/abs/2608.28602",
+      "author": "Rehan Khan, Muhammad Junaid Asif, Rana Fayyaz Ahmad",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Parkinson disease PD is a progressive neurodegenerative disease that can have a significant impact on motor performance resulting in the appearance of symptoms such as tremors rigidity postural instabilities and bradykinesia. Timely clinical treatment disease management and quality life of the patients are closely linked to early and appropriate identification of PD. Over the past few years the growth of wearable sensor technology and artificial intelligence AI have made it possible to create noninvasive and data driven disease detection methods. This paper proposes a comparative system using artificial intelligence to detect Parkinsons disease by analyzing the motion and tremor data captured by an inertial measurement unit IMU. The data comprises the signals of the acceleration and gyroscope sensors measuring movement in three directions X Y and Z. The signs and symptoms provide helpful information about subtle motor deficits associated with PD. Several classification models like Support Vector Machine SVM Logistic Regression LR KNearest Neighbors KNN Decision Tree DT Extreme Gradient Boosting XGBoost and Light Gradient Boosting Machine LightGBM were used to compare their effectiveness. The Logistic Regression model had a performance around 75 percent in all evaluation metrics and KNearest Neighbours KNN around 90 percent. The support vector machine SVM performed almost 94 percent whereas the performance of classifiers such as Decision Tree and XGBoost was close to 96 percent and overall classification efficacy respectively. LightGBM model performs consistently at the best rank among all of the evaluated methods having Accuracy, Precision, Recall and F1score of around 97 percent. The results show that the proposed machine learning approach offers an accurate and effective predictive capability in the classification of PD severity.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28603v1",
+      "title": "C3-UniMM: Causal Cycle-Consistent Unified Multimodal Modeling via Super Alignment and Shared Decoding Space",
+      "url": "https://arxiv.org/abs/2608.28603",
+      "author": "Yujie Shen, Lianlei Shan",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Unified Multimodal Models aim to achieve any-to-any understanding and generation across arbitrary modalities. However, existing methods primarily rely on modeling implicit statistical correlations and lack cross-modal structural consistency constraints. This deficiency leads to profound issues, including semantic drift, poor compositional generalization, and instability under interventions. In this paper, we propose C3-UniMM, a unified multimodal modeling framework based on Causal Cycle Consistency and Super Alignment. Specifically, we introduce a Structured Latent Causal Graph (SLCG) as a shared cross-modal semantic space and design unified multimodal encoding blocks, enabling understanding and generation to be synergistically optimized within the identical causal semantic structure. Furthermore, we propose a Unified Decoding Space to enforce structural preservation and semantic invertibility during the cross-modal generation process. Theoretical analyses demonstrate that our approach significantly enhances both the invertibility and mechanism invariance of cross-modal mappings. Extensive experimental results across multiple understanding, generation, and compositional generalization tasks indicate that C3-UniMM substantially outperforms existing unified multimodal baselines.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28605v1",
+      "title": "MedTVL: Harnessing Vision and Language for Medical Time Series Classification",
+      "url": "https://arxiv.org/abs/2608.28605",
+      "author": "Jiexia Ye, Jia Li, Fugee Tsung",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Recent advancements in multimodal learning for medical time series (MedTS) classification highlight the benefits of integrating complementary modalities for clinical decision. However, existing methods typically focus on bi-modal interactions (e.g., time series and text), leaving the tri-modal synergy between time series, vision, and language largely unexplored. Inspired by diagnostic practice synergizing numerical assessment, visual inspection and clinical context, we introduce MedTVL, a text-guided dual-pathway architecture tailored for MedTS classification. Specifically, it synergizes a convolution-based temporal pathway for fine-grained temporal dynamics from raw numerical sequences and a transformer-based visual pathway for holistic morphological structures from time-series-derived images. Such combination of cross-modal and architectural heterogeneity provides a comprehensive diagnostic perspective. To further resolve potential diagnostic ambiguity, both pathways are guided by adaptive medical textual semantics. Finally, a Mixture-of-Experts mechanism dynamically routes each instance to specialized fusion experts, capturing instance-specific reliance on the temporal and visual pathway outputs. In addition, MedTVL supports multimodal contrastive learning to mitigate the clinical label scarcity challenge. Extensive experiments across multiple medical datasets and tasks, spanning supervised, few-shot, and contrastive learning settings, demonstrate the superiority and transferability of MedTVL, highlighting its potential for robust clinical decision support.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28607v1",
+      "title": "RegDivergence-101: An LLM Benchmark for Cross-Jurisdiction Regulatory Contradiction Detection in Life Sciences",
+      "url": "https://arxiv.org/abs/2608.28607",
+      "author": "Chuchu Wu, Zhiyin Zhou, Jingzhuo Hu, Liang You",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Pharmaceutical sponsors developing a drug for both the United States and the European Union must reconcile guidance issued independently by the FDA and the EMA. Where the two agencies require substantively the same thing, a sponsor can file once; where they diverge, a single trial design risks rejection in one region; where one agency is silent on a point the other regulates, the sponsor must infer obligations. Today this reconciliation is performed manually by regulatory-affairs experts. We introduce cross-jurisdiction regulatory divergence detection: given an FDA requirement and an EMA requirement on the same topic, classify their relationship as AGREE, DIVERGE, or SILENT. SILENT is inherently directional (SILENT_FDA vs. SILENT_EMA); we record direction per pair and report per-direction F1 alongside the collapsed label. We release RegDivergence-101, a 101-pair expert-grounded pilot evaluation benchmark (labels grounded in three peer-reviewed FDA/EMA comparison studies and primary FDA/EMA/ICH guidance text; dual-annotation inter-annotator kappa = 0.85), and systematically characterise a four-method baseline hierarchy: lexical heuristic (0.511 macro-F1, 95% CI [0.411-0.605]), NLI cross-encoder (0.233), obligation-level Graph-RAG (0.663 [0.570-0.747]), and flat LLM judge / Claude Haiku (0.830 [0.747-0.908]). Three directional observations emerge at pilot scale (n = 101): SILENT is semantically detectable but invisible to entailment-only formulations; pair-level obligation graphs improve over lexical methods but trail flat-LLM context (CIs partially overlapping); and corpus-level graph construction is the indicated architectural target for large-scale silent-detection. RegDivergence-101 is a pilot release establishing the task formulation and baseline hierarchy; four unrepresented regulatory domains and an expansion roadmap are described in Section 7.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28608v1",
+      "title": "NLP-Driven Knowledge Extraction and Thematic Classification of Translated Ancient Indian Medical Texts",
+      "url": "https://arxiv.org/abs/2608.28608",
+      "author": "M. S. Rajeevan, B. Mini Devi, V. S. Anoop, C. Mallikarjuna",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Ancient Indian medical texts like Sushruta Samhita have extensive information on diseases, treatments, and surgical techniques. Yet, their ancient format and use of intricate vocabulary pose difficulties in accessibility and systematic ordering. The research here utilizes Natural Language Processing (NLP) methods like Named Entity Recognition (NER), BERTopic modeling, and Knowledge Graph development in Neo4j to extract, categorize, and visualize important concepts based on translated versions. Thematic classification with BERTopic allows for the identification of the underlying medical topics, whereas NER supports the structured entity recognition of diseases, treatments, researchers, and medicinal plants. Graphbased network analysis with Neo4j also allows for the semantic representation of relationship among extracted entities, supporting knowledge retrieval and digital preservation. The findings illustrate how graph databases, topic modeling, and entity recognition facilitate the computational organization of Ayurveda's historical medical wisdom, closing the gap between the conventional texts and contemporary data-driven inquiry. The suggested method promotes historical text analysis, medical informatics, and digital humanities to make ancient Indian medical wisdom more accessible and understandable.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28609v1",
+      "title": "Parametric Multimodal User Memory: Storing What Captions Cannot Carry",
+      "url": "https://arxiv.org/abs/2608.28609",
+      "author": "Bojie Li, Noah Shi",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "A personalized agent needs a user memory: a persistent model of who its user is. Today it is almost always text -- transcripts and captions retrieved by similarity. This serves the captionable half of a person (\"my cat is named Bibi\"), but discards the perceptual half no caption can hold: how a voice sounds, how a face reads across age and lighting, how tired someone sounds. We measure this loss across five modalities: a strong caption-based re-identifier recovers as little as 0.11 of a dedicated encoder's recall, collapsing toward chance on non-nameable signals. We instead ground perceptual memory in the model, decomposing recall into two subproblems: a vision-language model grounds the referent in context (what and where), and a dedicated encoder extracts an identity key (who), stored as one inline token read by attention at generation with no external round-trip. Neither suffices alone -- the VLM identifies cross-age faces at only 0.54 recall where a face encoder reaches 0.81, and an ungrounded encoder recognizes a two-person-scene referent at 0.05 -- yet together they reach correct-region oracle (0.96), generalizing to multi-speaker audio and video. The recognition core is training-free: it reproduces the encoder's recall on any frozen model at O(1) registration cost. On PerceptMem (12 domains, 1,080 tasks) perceptual identity is capacity-limited while exact facts are binding-limited: identity belongs in a parametric bank, facts in a text store. The two memories compose cleanly: an agent with both can remember not only what its user said, but also what they are like.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28610v1",
+      "title": "TPvG: A Moral Decision Framework for Large Language Models from One-Shot to Sequential Feedback",
+      "url": "https://arxiv.org/abs/2608.28610",
+      "author": "Fangyuan Zhang, Dong Yu, Pengyuan Liu",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Existing LLM moral evaluations typically present models with isolated moral vignettes and elicit a single-shot decision, neglecting a factor known to profoundly influence human moral behavior: consequence feedback. We introduce TPvG (Text-based Pain-versus-Gain), adapted from a human moral paradigm, which embeds consequence feedback into an everyday moral dilemma of not harming others versus maximising self-gain. TPvG comprises five moral decision tasks, progressing from minimal-context one-shot choices to sequential decisions with explicit consequence feedback. Our results show that LLM moral decisions were strongly affected by decision format (one-shot versus sequential), and explicit receiver feedback produced heterogeneous effects across models. Furthermore, LLM responses to explicit receiver feedback diverged from the human reference pattern, suggesting potentially different decision processes. These findings highlight the need to evaluate whether LLM moral behavior remains stable in high-stakes interactive settings.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28611v1",
+      "title": "Gurukul AI: An Interactive AI-Driven Educational Platform for Indian Education System",
+      "url": "https://arxiv.org/abs/2608.28611",
+      "author": "Isha Narang, Sneh Gosai, Mayank Singh",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Recent advances in large language models (LLMs) like ChatGPT and LLaMA have transformed AI-driven education, but these systems are predominantly trained on Western-centric data, making them ill-suited for regional curricula like India's. The Indian education system is linguistically diverse, exam-oriented, and structured around standardized syllabi, not addressed by existing datasets or tools. In this work, we curate a syllabus-aligned QA dataset based on NCERT (National Council of Educational Research and Training) textbooks for classes 9-12, capturing the content, context, and teaching style of Indian curricula. The final dataset, comprising 18,720 question-answer pairs across five subjects, is publicly available at https://huggingface.co/datasets/LingoIITGN/Gurukul. We fine-tune the LLaMA 3.1 8B model using this dataset and deploy it in a Retrieval-Augmented Generation (RAG) framework tailored to educational needs. We introduce GurukulAI, an open-access platform that enables Indian students to chat with the model, get doubts cleared, practice exam-style questions, receive contextual answers, and interact in both English and Hindi. By localizing AI for Indian classrooms, our work bridges the gap between global LLM capabilities and regional educational demands. The code is available at https://github.com/lingo-iitgn/GurukulAI.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28612v1",
+      "title": "InternReviewer & InternAdvocate: Objective Reward and Evaluation for Agentic Reinforcement Learning in Peer Review and Rebuttal",
+      "url": "https://arxiv.org/abs/2608.28612",
+      "author": "Xuerui Su, Liya Guo, Qizhi Pei, Qipeng Guo, Zhongbo Tian, Lijun Wu, Kai Chen, Zun Wang",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Generating professional scholarly content, such as peer reviews and rebuttals, requires an intricate synergy between domain reasoning and factual grounding. This work presents a comprehensive framework for the development and evaluation of specialized scholarly agents, InternReviewer and InternAdvocate. We first establish a large-scale, high-quality scholarly dataset and integrate a high-efficiency arXiv retrieval tool to enable active evidence gathering. To optimize these agents, we implement an agentic Reinforcement Learning (RL) paradigm driven by a unified objective metric and reward system. This system avoids the biases of subjective model-based judging by employing multi-dimensional criteria, including reference-anchored semantic alignment, structural compliance, and a strict verification mechanism that cross-checks citations against real-time interaction logs to eliminate hallucinations. Experimental results demonstrate that agents trained within this closed-loop framework exhibit significant improvements in reasoning depth and citation accuracy.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28614v1",
+      "title": "STAGEET: Stage-wise Typed Edit Tagging for Grammatical Error Correction with Arabic as a Case Study",
+      "url": "https://arxiv.org/abs/2608.28614",
+      "author": "Wenjie Lou, Alaa Mamdouh Akef",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Sequence-to-edit approaches make grammatical error correction (GEC) efficient and locally interpretable by predicting edit labels over the input rather than generating a full corrected sentence. Their interpretability, however, is primarily operational: a label specifies how the string should change, but a single edit vocabulary does not always reveal the type of correction being made. We propose STAGEET, a stage-wise typed edit-tagging framework that reorganizes Seq2Edit supervision into typed executable stages and extends edit operations to correction categories. STAGEET decomposes correction into an ordered sequence of medium-grained typed stages; each stage predicts from its own label space, rewrites the current hypothesis once, and passes the resulting intermediate sentence to the next stage. We instantiate the framework as both an end-to-end shared-encoder multi-head model with stage-specific adapters and a fully specialized variant with one independent tagger per stage. Experiments on QALB-2014 and ZAEBUC show that category-aware staged correction retains competitive edit-based GEC performance while exposing a more inspectable correction trajectory, and attains state-of-the-art results on QALB-2014.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28619v1",
+      "title": "From GenAI Virtual Patient Dialogue Logs to Teacher-Interpretable Process Evidence: A Learning Analytics Study in Higher Education",
+      "url": "https://arxiv.org/abs/2608.28619",
+      "author": "Xinyu Li, Zijian Li, Mengyu Xia, Luzhen Tang, Naping Chen, Changmin Lin, Danijela Gasevic, Dragan Gasevic, Yizhou Fan",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Medical history taking is a dialogue-based clinical reasoning task in which learners must gather, organise, and integrate patient information while the consultation unfolds. Generative AI-powered virtual patients (GenAI VPs) make repeated history taking practice scalable and preserve full turn by turn dialogue. However, these logs are educationally difficult to use directly. Complete transcripts are too detailed for routine teacher review, whereas final scores obscure whether learners followed up patient cues, checked uncertainty, or used summaries to guide later questioning. This study examined whether coded GenAI VP dialogues can provide teacher-interpretable process evidence of clinical reasoning. We analysed 1{,}030 GenAI VP dialogues from 210 second-year medical learners across five weeks chest-pain cases. Each consultation was teacher-scored using a rubric assessing the full history taking dialogue, and consultations were classified within each week as high- or low-rated using the weekly median score. To explain how rated performance was reflected in the dialogue process, we applied three analytic layers to the same coded dialogue data: behavioural prevalence, local co-occurrence using Epistemic Network Analysis, and sequential transition using Transition Network Analysis. High-rated consultations involved more history taking activity, but differences were not simply about volume. High rated consultations more often connected information gathering and symptom exploration with communication, checking, organisation, and synthesis. Summarising and organising moves more often led to verification or mechanism-oriented follow-up. These findings show how layered analysis of GenAI VP dialogue logs can reveal process patterns associated with high rated history taking and support process-focused feedback in medical education.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28620v1",
+      "title": "Preference Elicitation for Policy Optimization and Application to Aligning Heart Transplantation with Human Values",
+      "url": "https://arxiv.org/abs/2608.28620",
+      "author": "Itai Zilberstein, Ioannis Anagnostides, Zachary W Sollie, Arman Kilic, Tuomas Sandholm",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Preference elicitation is essential for aligning AI systems with human values. Prior approaches (e.g., for organ allocation) often ask stakeholders to compare the decisions of an algorithm (e.g., patient A vs. patient B). Such a decision-level approach conflates the means with the ends. Instead, we elicit preferences directly over allocation outcomes to learn a utility function for policy optimization. We construct a novel preference elicitation algorithm for linear utilities that outperforms prior techniques in practice. Our algorithm has two phases. The first phase learns cutting planes through pairwise comparisons to rapidly shrink the space of possible attribute weights and warm-starts the second phase by eliminating dominated regions. The second phase then provably converges to the user's utility function. We apply our technique to heart transplant allocation where a policy must balance competing objectives such as post-transplant outcomes, waitlist mortality, geographic ease, and equity. Using our algorithm, we conduct a user study to learn and aggregate a community-aligned utility function, and use it to optimize heart transplant policies that are significantly better aligned with human values. Compared to the hindsight optimum, the status quo policy achieves a competitive ratio of just 0.54, while our method is near-optimal with a competitive ratio of 0.95.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28623v1",
+      "title": "Looking Again: Measuring Sycophancy in the Reasoning Chains of Multimodal Models Under Pressure",
+      "url": "https://arxiv.org/abs/2608.28623",
+      "author": "Mahir Numayeer Islam, Gakuto Okuyama, Nikolaus Siauw, Shivank Garg, Madhur Panwar, Vasu Sharma",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Large multimodal reasoning models (LMRMs) are getting increasingly capable, primarily through generating explicit chain-of-thought reasoning before answering. In language models it has been observed that this performance often comes with sycophancy, the tendency of a model to agree with the user over the evidence. However, for LMRMs no reliable method to measure sycophancy yet exists. We bridge this gap by introducing a benchmark and dataset for evaluating LMRM sycophancy when confronted with a wrong answer from a user. Our benchmark pairs four visually grounded datasets spanning mathematical, clinical, temporal, and demographic reasoning with five pressure conditions in single-turn and multi-turn settings. We evaluate sycophancy in the final answer as well as its emergence within the reasoning chain. We find that sycophancy is prevalent under pressure, with Statement pressure eliciting the highest rates and Conviction the lowest for all models except Mistral-Small-4, and under multi-turn pressure reasoning-level sycophancy intensifies sharply in clinical visual judgement, reaching 95.7% for the most affected model. We further introduce a failure taxonomy separating reasoning-chain from answer-level sycophancy, and a complementary sentence-level taxonomy locating where in the chain drift first emerges. Our results show that sycophancy can corrupt the reasoning chain independently of the final answer, so answer-level evaluation alone is insufficient.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2608.28624v1",
+      "title": "MA-RAG: Multi-Agent Retrieval-Augmented Generation for Query-Driven Summarization of Longitudinal Parkinson's Disease Assessments",
+      "url": "https://arxiv.org/abs/2608.28624",
+      "author": "Sana Alamgeera, Denise Goberta, Muhammad Irshad, Anne H. H. Ngu",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Accurate interpretation of single-visit and longitudinal clinical assessments for Parkinson's disease is time-consuming and often depends on specialist expertise. Although large language models (LLMs) can generate natural language summaries, they frequently lack domain-specific clinical grounding and struggle to produce factually correct and temporally consistent responses for structured longitudinal assessment data. To address these limitations, we propose MA-RAG, a query-driven multi-agent retrieval-augmented generation framework that decomposes clinical reasoning into domain-specialized agents, combines structured fact extraction, and synthesizes clinically grounded summaries through a final verification stage. The framework supports four clinical analysis tasks: single-session, trajectory, comparison, and cohort summarization. We evaluate MA-RAG using objective metrics, namely Fact Precision, Hallucination Rate, Temporal Fidelity, and Semantic Similarity, together with subjective evaluations conducted by clinical experts. Compared to Traditional, RAG-only, and Single-agent RAG baselines, MA-RAG substantially improves factual correctness, achieving up to a 122% relative increase in Fact Precision (from 0.436 to 0.990) and reducing the Hallucination Rate by up to 98% (from 0.564 to 0.010), while consistently receiving top ratings from clinical experts for organization and clinical usefulness. These results demonstrate that domain-specialized multi-agent reasoning enables reliable query-driven summarization of structured longitudinal clinical assessment data.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28708v1",
+      "title": "STEP: A Modular Silent Trial Engine for Operational Evaluation of Digital Pathology AI in Routine Workflow",
+      "url": "https://arxiv.org/abs/2608.28708",
+      "author": "Gabriele Campanella, Matthew Croken, Olga Lukatskaya, Jane Houldsworth, Ricky Kwan, Peter Sch\\\"uffler, Chad Vanderbilt",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Prospective silent trials provide an important bridge between retrospective validation of artificial intelligence (AI) models and their use in clinical care by evaluating model performance and operational reliability on live clinical data without influencing patient management. In computational pathology, conducting silent trials requires integration across laboratory information systems, digital pathology infrastructure, computational resources, and model inference pipelines, and these workflows are often implemented using application-specific software. We developed the Silent Trial Engine for Pathology (STEP), a reusable software platform for orchestrating prospective silent trials of computational pathology AI models across heterogeneous clinical and computational environments. STEP separates common trial orchestration from institution-specific data access and compute infrastructure through modular adapter interfaces. The platform supports scheduled case discovery, per-slide inference submission, deterministic idempotency, failure recovery, result and ancillary-data ingestion, persistent trial and run state, and audit logging, with compute adapters supporting local execution and high-performance computing environments using LSF and Slurm. STEP was deployed at three institutions to support prospective silent evaluation of EAGLE, an AI model for predicting EGFR mutation status from hematoxylin and eosin-stained whole-slide images. By separating trial-level workflow logic from site-specific integrations, STEP enables a common execution framework to operate across heterogeneous pathology environments while maintaining durable and auditable trial state. This approach may reduce duplicated engineering effort and facilitate systematic real-world evaluation of computational pathology AI before interventional clinical deployment.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28713v1",
+      "title": "Rust's Type Checker Implementation Is Unsound: An Empirical Study on Soundness Bugs in rustc",
+      "url": "https://arxiv.org/abs/2608.28713",
+      "author": "Yusung Sim, Sukyoung Ryu, Jaemin Hong",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Rust is claimed to be a type-sound language capable of preventing various undesirable behaviors, including memory bugs. However, rustc, the official Rust compiler, is not immune to defects; it contains soundness bugs, where the compiler accepts programs that should be rejected during type checking. In this work, we present an empirical study of 30 issues that report potential soundness bugs in rustc, collected from the GitHub issue tracker between January 1, 2022 and September 1, 2025. We analyze each issue in depth, focusing on its affected feature, symptom (how the feature is mishandled), consequence (the resulting undesirable behavior), triggering features, community consensus regarding whether it is a bug, and lifecycle, including introduction, discovery, and fix. Furthermore, we investigate existing artifacts, including implementations such as AddressSanitizer, Miri, Chalk, and a-mir-formality, alongside documentation such as the Rust Reference, the FLS, and Rust RFCs to assess their potential as oracles for testing the type soundness of rustc. Our key findings indicate that: (1) Certain soundness bugs, typically triggered by implied bounds or trait objects, compromise memory safety. (2) Sound type checking is challenged by edge cases involving associated types and the interaction between lifetimes and traits. (3) Most bugs persist from the initial introduction of the relevant features and require significant time to be discovered. (4) While AddressSanitizer and Miri can detect soundness bugs that lead to memory bugs, a-mir-formality and Chalk are currently immature despite their potential to identify other bug categories. (5) Existing documentation frequently fails to provide precise explanations of the language semantics.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28766v1",
+      "title": "Beyond Vector Search: Comparing Classical RAG with Hybrid GraphRAG for Climate Science Q\\&A",
+      "url": "https://arxiv.org/abs/2608.28766",
+      "author": "Daniel Naiff, Ronnie Alves, Gustavo Pinto",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Traditional Retrieval-Augmented Generation (RAG) systems treat documents in isolation, failing to capture hierarchical relationships between concepts in complex scientific corpora. This limitation compromises answer quality in specialized domains such as climatology, where conceptual dependencies frequently traverse multiple articles. We propose a hybrid architecture that integrates vector search with GraphRAG, Leiden community detection, and cross-encoder re-ranking, achieving gains of 160\\% in contextual relevance and 177\\% in contextual recall compared to classical RAG. These results demonstrate that unifying local and global retrieval significantly outperforms text-span isolation, paving the way for more effective question-answering systems over dispersed scientific literature.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28794v1",
+      "title": "Breaking Darknet CAPTCHAs with general purpose LLM",
+      "url": "https://arxiv.org/abs/2608.28794",
+      "author": "Benjamin Fehrensen, Jens Hubler",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Our work evaluates the effectiveness of automated methods for solving CAPTCHA challenges commonly encountered in darknet environments. These CAPTCHAs are typically designed to operate without JavaScript, resulting in distinct characteristics compared to mainstream CAPTCHA systems. Our study considers three representative challenge types: open-circle localization, rotation-based alignment, and object-selection CAPTCHAs. The experiments reveal a systematic limitation of contemporary MLLMs: while they are generally capable of identifying relevant visual structures, they frequently struggle with precise spatial localization and geometric transformations. These deficiencies can be mitigated either through task reformulation or by augmenting the models with specialized image processing tools. These deficiencies can be mitigated by task reformulation or by equipping the model with specialized image-processing tools. We therefore propose a hybrid framework in which an MLLM serves as a high-level reasoning and orchestration layer while delegating geometric computations to deterministic algorithms via the Model Context Protocol (MCP). The resulting system achieves success rates above 90% across all evaluated CAPTCHA types and demonstrates that combining the complementary strengths of MLLMs and classical computer vision yields a more accurate and efficient solver than either approach alone.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28795v1",
+      "title": "The reach of a verification tool decides its value: A controlled study of verification surface, artifact quality, and cost in AI coding agents",
+      "url": "https://arxiv.org/abs/2608.28795",
+      "author": "Achint Mehta",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Modern artificial-intelligence coding agents can be equipped with tools for checking their own work e.g. a linter, a boot probe, a shell, a screenshot tool. We call this set the agent's verification surface. This study asks whether increasing only that surface, with everything else held fixed, produces a matching growth in the quality of the software the agent ships. We built a minimal coding agent whose tool list is the single controlled variable and used it to implement 1,116 web applications across six models and eight tool configurations. A condition-blind human graded every application against a frozen rubric, and automatic probes stress-tested the API-observable behaviors. Verification's cheapest benefit arrives first, which is to make sure that the application comes up. Without any tools, about one build in seven fails to launch at all and a single boot probe removes nearly all of these failures at roughly 35 percent of a full shell's token cost, while the full shell multiplies the no-tools cost by 2.35. Screenshots help most where mistakes are visible (e.g. element placement, interaction), though even there the gain over a shell is modest and does not survive correction for multiple statistical comparisons. In cases where failures can only be measured rather than seen, such as keeping scrolling smooth over a 100,000-row list, screenshots add nothing. A verification tool improves the output artifact only where its reach covers the way the application actually fails.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28800v1",
+      "title": "UML Class Diagram Evaluation and Repair Strategies based on LLMs",
+      "url": "https://arxiv.org/abs/2608.28800",
+      "author": "Jie Liang, Peng Liang, Chong Wang",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "UML class diagrams are a crucial tool for defining the structure of software systems, but designing accurate and comprehensive class diagrams is a challenging task. Traditionally, creating UML models relies on the expertise and experience of professionals. However, with the development of AI technologies, particularly LLMs, new opportunities for software modeling have emerged. Despite this, there has been limited research on the application of LLMs in software modeling, especially in UML class diagram modeling. This study conducts experiments on several typical software system cases. Combining SDMetrics with expert manual review, this paper comprehensively evaluates the practical performance of mainstream LLMs in UML class diagram modeling from multiple dimensions, including size and completeness, relationship correctness, inheritance hierarchy, and design rule compliance. Focusing on typical defects in LLM-generated UML class diagrams, this study reveals that LLMs exhibit uncertainties analogous to human memory. Accordingly, three targeted repair strategies are proposed, including memory reinforcement, external knowledge injection, and detection-guided automated targeted repair. Experimental results obtained from the case studies indicate that (1) compared to expert-crafted class diagrams, LLM-generated UML class diagrams exhibit several issues, such as incomplete identification of key classes, confusion or omissions in relationships, insufficient or absent inheritance relationships, unused classes, and circular dependencies, and (2) after applying the repair methods, all the LLMs show varying degrees of improvement in addressing these issues. The average repair rate for key class identification reaches 85%, the coupling relationship repair rate is 46%, the inheritance relationship repair rate is 69%, while repair rates for unused classes and circular dependencies both reach 100%.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28880v1",
+      "title": "FlowCheck: Helping End-Users Specify and Verify Intent in Vibe-Coded Web Apps",
+      "url": "https://arxiv.org/abs/2608.28880",
+      "author": "Reya Vir, Lydia Chilton, Zhuo Zhang, Eugene Wu",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Vibe-coded applications often contain silent behavioral failures in which the interface appears functional even though user-visible information does not flow to the expected state or output. We introduce FlowCheck, a constraint language to specify these user-visible information flows directly through the application interface, where constraints can also be displayed and inspected without reading code, and are structured enough for reliable LLM generation. FlowCheck translates the constraints into deterministic CodeQL analyses, and we evaluate it across four applications generated via Claude Code, and compare with three coding models as bug-finding baselines. We find that FlowCheck correctly translates and flags all 30 of our injected constraint violations with no false positives. In contrast, frontier models (Claude Opus 4.7, DeepSeek V3, and Gemini Pro) showed significantly lower accuracy when prompted to find bugs in the same code, with none achieving full accuracy. This approach lets vibe coders state intent in terms of the interface they understand, and checks it deterministically against the code they do not.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28882v1",
+      "title": "Enhancing Web Application Firewalls with BERT-GNN for SQL Injection Detection",
+      "url": "https://arxiv.org/abs/2608.28882",
+      "author": "Lilliane Linnet Musoke, Atta Badii, Ahmed Ashlam",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Detecting sophisticated SQL Injection (SQLi) attacks remains among the most critical challenges in web applications security. This research study has resulted in an optimised hybrid BERT-GNN pipeline with improved detection accuracy and robustness while reducing false-positive and false-negative rates. SQL queries are tokenised and encoded into contextual BERT embeddings, which then initialise the node features of a Graph Neural Network (GNN) trained to classify each query, with the architecture tuned by Optuna over accuracy, precision, recall, and F1-score. The proposed model achieved 99.67% accuracy, with 99.71% precision, 99.39% recall, and 99.55% F1-score on the attack class. A sensitivity analysis, performed by perturbing graph inputs, further assessed the model robustness and yielded a low mean sensitivity score of 0.0037, indicating stable predictions under such perturbations. The results have demonstrated the potential of a novel hybrid model that couples BERT contextual understanding with the GNN structural modelling to detect sophisticated SQLi attack vectors. For open validation, the dataset, test sets and models are made available at https://github.com/mlily2024/Final-project-SQL-injection-pipeline.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28889v1",
+      "title": "Enhancing Web Application Firewalls with Machine Learning for SQL Injection Detection",
+      "url": "https://arxiv.org/abs/2608.28889",
+      "author": "Lilliane Linnet Musoke, Atta Badii, Ahmed Ashlam",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Detecting SQL Injection (SQLi) attacks ranks among the most critical challenges in web application security. This research conducted a systematic literature review to identify the research gaps in this domain and responsively designed and optimised a DistilBERT-Stacked Ensemble pipeline to improve detection efficiency and robustness while reducing false-positive and false-negative rates. Comprehensive pre-processing and tokenisation were performed, DistilBERT embeddings were extracted, and machine-learning and ensemble classifiers were trained and ranked on accuracy, precision, recall and F1-score. The three best performers (Logistic Regression, XGBoost and SVM) were combined through a neural meta-learner to form a stacked ensemble. The ensemble was hardened with adversarial examples generated by the Fast Gradient Sign Method (FGSM) and tuned with Optuna. The optimised ensemble achieved 99.81% across all reported metrics, closely comparable to the strongest single model (DistilBERT SVM, 99.82%). On the evaluation platform used in this study (Section 3.8), the ensemble classified the full test set in 0.0136s against 1.896s for DistilBERT-SVM, an approximately 140-fold reduction in measured inference latency, while retaining 99.77% accuracy under a single-step FGSM attack. The contribution is the design and validation of a SQLi detector performing with state-of-the-art accuracy at real-time speed and with demonstrated robustness to a single-step FGSM attack, rather than a marginal gain in accuracy. Sensitivity analysis further confirmed the stability of the model. These findings highlight the value of adversarial training and stacked meta-learning in building robust Web Application Firewalls (WAFs) for SQLi detection. For open validation, the dataset, test sets and models are made available at https://github.com/mlily2024/Final-project-SQL-injection-pipeline.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28921v1",
+      "title": "Identity by Design, Demographics by Accident: Demographic Leakage and Suppression in Behavioral Biometric Embeddings",
+      "url": "https://arxiv.org/abs/2608.28921",
+      "author": "Iyadh Khan, Patrick Nilackshan, Mohamed Aathif, Mohamed Theesan, Sandareka Wickramanayake, Sanka Rasnayaka",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Behavioral biometric authentication (BBA) systems use deep learning models to transform biometric signals, such as eye movements, voice, keystroke/touchstroke dynamics, and gait, into identity embeddings for user authentication. While designed to encode identity, these embeddings may inadvertently reveal sensitive demographic attributes, including gender, age, and height. Consequently, an adversary with access to the authentication model can infer demographic information from biometric signals, including those of users unseen during training or enrollment. In this paper, we present the first systematic audit of demographic leakage in BBA systems, evaluating 11 models across 9 datasets spanning four biometric modalities. We further benchmark four post-hoc suppression methods-Incremental Variable Elimination (IVE), Hilbert-Schmidt Independence Criterion (HSIC), Adversarial Encoder-Decoder (AED), and Protected Attribute Suppression System (PASS) to assess their ability to mitigate demographic leakage while preserving authentication utility. Our analysis reveals substantial variation in leakage and suppressibility across modalities, model architectures, and learning objectives. While voice embeddings exhibit high leakage that can be effectively suppressed, keystroke/touchstroke embeddings exhibit lower leakage but are considerably more difficult to sanitize. These findings highlight a fundamental privacy risk in behavioral biometric authentication and provide insights into the factors governing demographic information suppressibility.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28929v1",
+      "title": "Membership is Ownership: A Robust Ownership Verification Framework for Diffusion Models",
+      "url": "https://arxiv.org/abs/2608.28929",
+      "author": "Feng Jiang, Zuobin Xiong, An Huang, Zhipeng Cai, Yingshu Li",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Large-scale diffusion models have fueled numerous profitable downstream applications for AI-related businesses, including visual editing and content creation. Meanwhile, due to the huge amount of resource consumption (e.g., computation and high-quality data) during training, such diffusion models are deemed valuable intellectual property (IP) for tech companies like OpenAI and Google. Yet, the IP assets are vulnerable to various unauthorized uses by adversaries seeking to steal models for customized, usually commercial applications. Some existing approaches have explored IP protection for AI models; however, they mostly face structural limitations in common --- using a training-time watermarking by injecting artifacts in the model, which can impose a measurable utility cost and can be weakened by post-hoc fine-tuning. To address these challenges, this work investigates IP protection (i.e., model ownership verification) for diffusion models in a realistic commercial scenario with minimal model utility loss. Specifically, the proposed method builds a framework for model ownership verification, termed ``{Membership is Ownership} (MiO)'', based on a population-level hypothesis test on a private member evidence dataset. MiO verifies ownership using two criteria: model attribution through membership inference and model separation from public references. Both are tested at $p<10^{-6}$. We evaluate MiO on DDIM and Stable Diffusion models without modifying the owner model or its sampling pipeline, and report ROC-AUC and true-positive rates at fixed nominal false-positive targets. Furthermore, MiO stays stable under different post-theft fine-tuning and weight perturbation in adversarial scenarios, reflecting better robustness compared to the watermarking methods.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28972v1",
+      "title": "Legacy System Modernization with Coding Agents: A Case Study",
+      "url": "https://arxiv.org/abs/2608.28972",
+      "author": "Iago da Silva Rodrigues Alves, Cristiano Politowski, Jo\\~ao Eduardo Montandon",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Legacy systems built on discontinued platforms are a recurring technological liability in organizations that depend on these applications to sustain critical business processes. Although modernization is strategically necessary, it is costly and error-prone when performed exclusively through manual effort. In this paper, we report on a case study conducted in a real industrial setting, where we evaluate both the effectiveness and efficiency of AI coding agents in supporting the migration of legacy systems to modern platforms. By using one version of Claude Code agent, we migrated 12 features of distinct complexity levels from a corporate ERP system written in Visual Basic 6 to C# .NET 10 under a single-generation strategy. Once the migration sessions were completed, we measured the equivalence of the migrated features against the original ones, and collected data about the time spent and the number of tokens consumed by the agent during the process. In our experiment, the agent achieved an average equivalence of 70%, with a strong asymmetry across complexity levels; low-level features achieved 92%, and high-complexity ones scored 47%. Similar asymmetry was observed in the cost-based metrics; low-level features consumed 1.47M tokens ($1.66), whereas high-level ones used 9.09M ($10.28). We reveal the practical scenarios and circumstances where this migration strategy is more effective, as well as discuss the limitations and challenges of using AI agents for legacy system modernization.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.28992v1",
+      "title": "CARVY-FL: Client Anticlustering for Robust Voting in Provably Secure Federated Learning",
+      "url": "https://arxiv.org/abs/2608.28992",
+      "author": "Masaki Nakada, Honoka Anada, Tatsuya Kaneko, Hiroshi Nakamura, Shinya Takamaeda-Yamazaki, Hideki Takase",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Federated learning (FL) enables collaborative training without directly sharing raw data, but remains vulnerable to malicious clients. Voting-based FL improves robustness by partitioning clients into groups, training one model per group, and aggregating predictions by plurality voting. However, under class-disjoint non-IID data, distribution-oblivious grouping can yield highly variable certified accuracy (CA). We propose CARVY-FL, which estimates client distribution types from one-epoch model updates and uses anticlustering to increase within-group distributional diversity. Under a fixed grouping, CARVY-FL retains the voting-based CA guarantee while increasing vote margins. Experiments on MNIST and Fashion-MNIST show higher CA than FLCert. Under BadNets with model replacement, CARVY-FL improves the AUC of 100-ASR by 11.1% and 14.9%, respectively.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.29053v1",
+      "title": "Performance Evaluation of RED-ONION: A High-Speed Disk-to-Disk Transfer System",
+      "url": "https://arxiv.org/abs/2608.29053",
+      "author": "Keichi Takahashi, Hiroaki Kataoka, Takeo Hosomi, Ayahiro Takaki, Yasunori Kakizawa, Shuichi Ihara, Nobuaki Hashizume, Susumu Date",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Modern experimental instruments produce data faster than general-purpose file transfer interfaces can move it, so delivery to the computing infrastructure has become a bottleneck in the research process. At many universities and research institutes, moreover, the instruments that generate research data and the high-performance computing systems that analyze it are separated both geographically and organizationally, because each demands its own expertise and installation environment. Connecting the two seamlessly is a pressing challenge for data-driven science. This article presents RED-ONION, a high-speed disk-to-disk transfer system that connects research facilities, on campus and beyond, to a computing center. The system combines data transfer nodes, a dedicated high-bandwidth network, an all-flash parallel file system, and multi-threaded transfer software that parallelizes network transmission and storage access. The design targets the wire rate both along the entire path, from the read on the sender storage to the write on the receiver storage, and for a single file between one pair of nodes rather than only in aggregate over many files or nodes. We describe the end-to-end optimizations across the transfer software, the operating system, and the storage that this requires. We evaluate a prototype deployed over a 100 Gbps transpacific path between Atlanta and Tokyo with a 150 ms round-trip time, on which a single 1 TB file transfer reached 90 Gbps, delivering a terabyte in approximately 95 s. Moving a dataset of this size therefore becomes a routine step, and the computing center serves an instrument as if the two were co-located.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.29077v1",
+      "title": "A Comprehensive Survey on Linguistic Steganography: Methods, Countermeasures, Evaluation, and Challenges",
+      "url": "https://arxiv.org/abs/2608.29077",
+      "author": "Ruiyi Yan, Chenhui Chu, Zhongliang Yang, Yugo Murawaki",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Linguistic steganography hides secret messages in natural language text. Large language models (LLMs) have reshaped the field, but a systematic account of how these scattered advances collectively reshape the field in this new era is still missing. We provide one along four axes: 148 steganographic methods, 60 linguistic steganalysis countermeasures, 23 evaluation metrics, and 9 open challenges, each with taxonomies, reviews, and adoption analyses. Cutting across these axes, we identify five specific paradigm shifts in the LLM era: (1) from covertext modification to prompt-only generation, (2) from heuristic to provable security, (3) from white-box symmetric LMs to black-box or asymmetric access, (4) from security-centric designs to joint optimization, and (5) from text-quality concerns to engineering issues. The survey aims to serve as both a reference and a roadmap for practical and responsible linguistic steganography in the LLM era.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.29084v1",
+      "title": "UiAs: User-Independent 3D Facial Anti-Spoofing via Multi-modal Wireless Signals",
+      "url": "https://arxiv.org/abs/2608.29084",
+      "author": "Zhiwei chen, Lebin Lyu, Yimo Zhang, Dingyu Zhong, Yijie Li, Yichao Chen, Dian Ding, Jiguo Yu, Xiaosong Zhang, Yongzhao Zhang",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Face authentication is widely deployed in security-sensitive applications, while increasingly realistic 3D spoofing attacks pose growing threats. High-fidelity 3D masks can reproduce facial appearance and geometry but cannot replicate the intrinsic physical responses of living tissue, which can be actively probed by wireless signals. However, the resulting liveness cues captured by wireless signals are entangled with user-dependent facial geometry, limiting cross-user generalization. We present UiAs, a multimodal user-independent 3D facial anti-spoofing system using electromagnetic (mmWave) and mechanical (acoustic) waves. The two modalities share similar user-dependent geometric variations, allowing UiAs to suppress them through cross-modal subtraction while preserving modality-specific liveness cues. Their complementary physical responses further improve live/spoof discrimination. In practical deployments, multiple materials (e.g., skin, hair, eyeglasses, or face coverings) may also bias liveness representations, while spoofing materials are diverse and open-ended. UiAs addresses both through skin-anchored contrastive learning. We evaluate UiAs with real 3D spoofing attacks, which achieves 93.25\\% accuracy for unseen users without user-specific physical-signal enrollment.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.29103v1",
+      "title": "CLASP: Chained-Request-Aware Scaling and Operator Placement for Serverless Stream Processing",
+      "url": "https://arxiv.org/abs/2608.29103",
+      "author": "Tianyu Qi, Maria A. Rodriguez, Rajkumar Buyya",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Stateful serverless (Function-as-a-Service) environments, whose workers host state servers, are increasingly used for stream processing. A stream application is a pipeline of operators, where each operator forwards intermediate data downstream through a chained request. As input rates fluctuate, the system should adjust operator parallelism and place instances across workers to sustain the incoming rate. Existing approaches do so without fully accounting for chained-request overhead, leading them to misestimate the required number of workers. Too few leave the cluster unable to keep up with the input rate, while too many route a larger fraction of chained requests across worker boundaries, increasing end-to-end latency. We propose CLASP, a scaling and scheduling strategy for stream processing in stateful serverless environments. At runtime, CLASP estimates execution cost and chained-request cost from observed metrics. Under a capacity model that covers the two costs, it adjusts operator parallelism and packs operators onto the fewest workers that can sustain the target input rate. Once a scaling decision is made, CLASP migrates each operator's state together with its instances, thereby minimizing execution pause time. Experiments show that CLASP improves throughput by up to 3.3x and reduces median end-to-end latency by up to 76% compared with state-of-the-art scaling strategies.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.29111v1",
+      "title": "Auditing and Mitigating Privacy Leakage in Cloud-Edge Collaborative Decoding",
+      "url": "https://arxiv.org/abs/2608.29111",
+      "author": "Kejia Zhang, Tianyuan Zou, Zixuan GU, Yang Liu",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Applications such as personalized assistance and proprietary document analysis require large language models (LLMs) to generate outputs from private data. Yet powerful LLMs typically cannot be deployed on the resource-constrained devices where private data resides, and uploading private data to cloud-hosted LLMs exposes sensitive information. Recent work addresses this tension with a cloud-edge collaborative decoding paradigm, where private data are kept on the edge with a small language model (SLM) producing next-token distributions, which are fused with predictions from a cloud LLM operating solely on public data. In this paper, we systematically analyze the privacy risks of such a paradigm with a novel evaluation framework using constructed QA datasets, which show that such collaboration can expose substantial private-context information. To address such privacy leakage, we propose CoVeil, a defense mechanism which dynamically optimizes transmitted signals to suppress leakage during decoding time while preserving the collaborative quality. Extensive evaluations demonstrate that CoVeil consistently improves the privacy-utility trade-off over existing baselines by reducing data leakage by up to 87.2%, with minimal accuracy loss.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.29134v1",
+      "title": "Mechanizing Typed Regulatory Actions for Security Tokens: Semantics, Falsification, and Bounded EVM Evidence",
+      "url": "https://arxiv.org/abs/2608.29134",
+      "author": "Jinwook Kim (Oraclizer Labs)",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Security-token standards expose privileged transfer, freezing, recovery, and compliance mechanisms, but a mechanism does not by itself identify the legal effect being executed or the evidence and reversal obligations attached to it. We formalize in Isabelle/HOL a reference execution semantics for the six regulatory-action meanings proposed in ERC-8319: FREEZE, SEIZE, CONFISCATE, LIQUIDATE, RESTRICT, and RECOVER. The model distinguishes applied, rejected, and operational-failure outcomes and mechanizes reversal, replay, epoch, frame, case-local terminality, and receipt properties; the build has no unproved placeholders or added axioms. It proves an external-truth boundary: two concrete worlds that disagree about title, settlement, and entitlement induce the same kernel observation, so those external facts cannot be established from bound inputs. Constructive witnesses and direct mutations show reachability and falsification for the declared fault set. For one ERC-TRUST Solidity/EVM candidate, we report separately scoped Foundry, Certora, Kontrol/KEVM, mutation, deterministic-build, and runtime-identity evidence. The current publication profile qualifies all seven evidence packages and all 49 Core and 24 mandatory Supporting obligations with no partial credit; six optional obligations remain unclaimed. A mechanized abstraction relation is proved unique and functional under pinned-runtime premises, and package and row corollaries yield conditional, profile-scoped refinement theorems from hash-bound certificates. These results do not constitute a complete Isabelle-to-Solidity-to-EVM refinement theorem, compiler correctness, an audit, production readiness, or deployment verification. The contribution is a machine-checked domain semantics and a falsifiable map of what is proved, what is bounded evidence, what is assumed, and what remains open for a regulated-token execution standard.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.29136v1",
+      "title": "Not the Same Protector: Deployment-Dependent Protective Intervention in LLMs",
+      "url": "https://arxiv.org/abs/2608.29136",
+      "author": "Eunna Lee, Soomyoung Lee, Jungpyo Nam, Heonjin Ha, Jamin Jung, Kyunam Choi, Sunjun Hwang, Yeonghun Kim, Seok-Jae Lim",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "We ask whether a model protects a user in the same way when that user speaks rather than types. Using a single distress vignette---a physical injury of unstated severity following an interpersonal conflict---we present four frontier models with matched inputs across voice, text, and raw API deployment conditions (n=30 per cell) and code each response along five binary protective indicators, including whether the model issues an explicit medical-care directive. Voice-interface responses are markedly shorter than text-interface responses for three of the four models, and protective behavior contracts alongside that compression: medical directives are at ceiling under both the API and text conditions but decline under voice for every model tested. The contraction is not reducible to length. One model produces voice and text responses of comparable length yet still drops medical directives, and another falls below ceiling between its API and voice conditions, whose responses are of nearly identical length. Under raw API access the pattern is categorical rather than partial: no model asks after the user's safety even once. These results show that protective intervention is sensitive to the surface through which a request arrives, that this sensitivity is detectable using a simple protective coding scheme, and that it is not explained by turn length alone.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.29151v1",
+      "title": "WoE Wrote It? Watermarking Mixture-of-Experts LLMs for Black-Box Text Provenance",
+      "url": "https://arxiv.org/abs/2608.29151",
+      "author": "Jona te Lintelo, Lichao Wu, Stjepan Picek",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Large Language Model (LLM) watermarks provide a mechanism for text provenance, enabling model owners to identify machine-generated content and attribute it to a specific watermarked model. However, current LLM watermarking approaches predominantly rely on inference-time sampler methods and focus their analysis on dense models. Inference-time methods are only effective when the text is explicitly generated via the model owner's controlled API; they fail in a post-compromise scenario. An adversary who steals or leaks the model weights gains complete control over inference and can simply run an unmodified sampler, bypassing the watermark and preventing post-theft attribution. In this work, we introduce Watermarking of Experts (WoE), a novel black-box text provenance method that leverages the unique structural properties of sparse Mixture-of-Experts (MoE) models. WoE biases the vocabulary of specific experts and shifts the watermark signal embedding away from unenforceable inference wrappers. This approach ensures the watermark remains intrinsic to the model parameters, enabling defenders to attribute text generated by stolen weights, leaked checkpoints, and secondary dense models distilled from the stolen architecture without needing access to the adversary's deployment or weights. We evaluate WoE across eight MoE models, demonstrating successful watermark detection from suspect text, achieving an average true positive rate of 90.1% at a 1% false positive rate, reaching up to 94.9%, while largely preserving general model utility. Furthermore, WoE remains detectable under adversarial supervised fine-tuning, model extraction, and output-level paraphrasing, forcing malicious actors into a trade-off in which weakening the attribution signal requires additional model adaptation or text-rewriting operations, or compromises the utility of the resulting output.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.29184v1",
+      "title": "GhostSplat: Input-Triggered Backdoors for Multi-View-Consistent 3D Content Manipulation in Feed-Forward Gaussian Splatting",
+      "url": "https://arxiv.org/abs/2608.29184",
+      "author": "Yudong Gao, Zongjian Ding, Linghan Chen, Yajing Chen, Yu Xinglin, Jiale Liu, Shan Huang, Mingjun Cheng",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Feed-forward 3D Gaussian Splatting (3DGS) reconstructs a 3D scene from sparse images in one forward pass. Its shared pretrained weights also expose a supply-chain attack surface. Existing Neural Radiance Field and 3DGS backdoors modify individual scenes and activate at selected viewpoints; they do not install persistent behavior in shared generator weights. We introduce GhostSplat, an input-triggered backdoor that installs such behavior in feed-forward 3DGS. A low-amplitude pattern added to the input images causes the poisoned generator to render an attacker-chosen payload on unseen victim scenes. Anchoring the payload to a 3D point and reprojecting it into each target view makes the payload multi-view consistent. Exact projection onto the generator's representation-specific consistency set leaves a realized payload unchanged because the output already belongs to that set. The GhostSplat training framework succeeds across three architectures (MVSplat, pixelSplat, DepthSplat) and two datasets (RealEstate10K, ACID). Its strongest evaluated injection and deletion settings reach 96% and 100% ASR, respectively, with zero observed false positives while surviving JPEG, blur, and resampling. Defenses that use only that exact projection are therefore insufficient; effective mitigation requires information or intervention beyond same-set consistency projection.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.29191v1",
+      "title": "A Broadcast Authenticated Encryption with Keyword Search in the Standard Model: Tightly Secure in Multi-User, Multi-Challenge Settings",
+      "url": "https://arxiv.org/abs/2608.29191",
+      "author": "Sayantan Mukherjee",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "However, no known work considered the functionality requirement in its most realistic setting. We propose a new security definition of BAEKS in the multi-user (with adaptive corruptions) and multi-challenge (both in terms of ciphertext and trapdoor in an interleaved manner) settings. We also study the question of the unforgeability of BAEKS. In fact, our strong hiding requirement already implies a significant amount of unforgeability. We then propose a new BAEKS construction in the bilinear pairing groups. We prove this scheme achieves adaptive tight full-hiding security under (almost) standard MDDH assumptions. Restricting our BAEKS construction for a single receiver also gives an efficient and tightly secure PAEKS construction. We further run experiments to implement and evaluate our scheme.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.29204v1",
+      "title": "AgentLogs: A Dataset for Opening the Black Box of GitHub's Cloud Agent",
+      "url": "https://arxiv.org/abs/2608.29204",
+      "author": "Jonan Richards, Kosei Horikawa, Youmei Fan, Yutaro Kashiwa, Mairieli Wessel",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Generative AI-based software engineering agents are becoming routine contributors to real-world software projects. On GitHub, developers can assign tasks to the Copilot cloud agent, which autonomously explores the repository, edits code, runs commands, and opens or reviews pull requests, producing a detailed log of every step along the way. While existing datasets capture outcomes of agent contributions, such as agent-authored pull requests, the process by which agents produce these contributions remains largely unexplored. To address this gap, we introduce AgentLogs, a large-scale dataset of agent activity on GitHub. AgentLogs comprises 307,416 agent tasks and 549,239 agent sessions in 35,810 of the 1,812,362 popular public repositories that we scanned, together with 64,255,174 session log entries that record each agent run step by step, including prompts, intermediate reasoning, tool calls (e.g., file edits, git operations, and GitHub interactions), and token usage. By exposing not only what agents contribute but also how they work, AgentLogs enables research on agent behavior, efficiency and cost, task formulation, failure modes, and human-agent collaboration in agentic software engineering.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2608.29212v1",
+      "title": "Asymmetric Phase Coding Video Watermarking",
+      "url": "https://arxiv.org/abs/2608.29212",
+      "author": "Guang Yang, Fengchen Liu",
+      "publishedAt": "2026-09-01T04:00:00.000Z",
+      "content": "Existing video watermarking systems are symmetric: the party that can verify a mark holds the extractor weights or generator secret and can therefore also embed one. Benchmarks confirm the consequence, reporting that white-box forgery defeats all evaluated methods. We present a training-free video watermark that removes the shared secret. The signer embeds a complete Ed25519 signature into the phase spectrum of the chroma plane; any party holding the 32-byte public key and public per-video metadata verifies offline, with no model, no registry, and no network. The payload, 1024 bits of signed message with error correction, is an order of magnitude above common learned payloads and is carried by three design elements: a run-length temporal layout whose decoder identifies payload groups by correlation and never reads a frame index, a payload-free search that recovers scale, rotation, and translation from the carrier itself, and a closed-loop signing procedure that selects each video's embedding strength by self-verification through the unchanged public verifier. On 1000 uncurated real-world clips the system ships a verifying signature for 99.3% of the corpus and accepts a wrong public key zero times in 1000 attempts. An attack-aware acceptance gate yields embeddings that survive H.264 re-encoding at 100% and 50% rescaling at 97.4% on gated clips. The signature also verifies through a real display and capture loop, an axis absent from published evaluations.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.31119",
+      "title": "PaperGym: Rubric-Centered Evolution for Research-Plan Generation",
+      "url": "https://huggingface.co/papers/2608.31119",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "PaperGym: Rubric-Centered Evolution for Research-Plan Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.31046",
+      "title": "Does On-Policy Distillation Really Distill? From Noisy Teacher to Self-Improvement",
+      "url": "https://huggingface.co/papers/2608.31046",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "Does On-Policy Distillation Really Distill? From Noisy Teacher to Self-Improvement",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.30821",
+      "title": "Lucida: Parse, Generate, and Place for Composable Real-to-Sim Scene Modeling",
+      "url": "https://huggingface.co/papers/2608.30821",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "Lucida: Parse, Generate, and Place for Composable Real-to-Sim Scene Modeling",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.31075",
+      "title": "Scaling Large Reasoning Models beyond Human Supervision: A Path toward Superintelligence",
+      "url": "https://huggingface.co/papers/2608.31075",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "Scaling Large Reasoning Models beyond Human Supervision: A Path toward Superintelligence",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.29335",
+      "title": "GenFirst: Generation Before Reconstruction for Stable End-to-End Latent Generative Modeling",
+      "url": "https://huggingface.co/papers/2608.29335",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "GenFirst: Generation Before Reconstruction for Stable End-to-End Latent Generative Modeling",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.31076",
+      "title": "Learning to Evaluate Before Improving: Automatic Rubric Induction for Automatic Research Agents",
+      "url": "https://huggingface.co/papers/2608.31076",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "Learning to Evaluate Before Improving: Automatic Rubric Induction for Automatic Research Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.30147",
+      "title": "CAST: Critique-Aware Supervision for Training Reliable Long-Horizon Tool-Calling Agents",
+      "url": "https://huggingface.co/papers/2608.30147",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "CAST: Critique-Aware Supervision for Training Reliable Long-Horizon Tool-Calling Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.30968",
+      "title": "CogEvol: Towards Efficient and Reliable Learning Environment Generation",
+      "url": "https://huggingface.co/papers/2608.30968",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "CogEvol: Towards Efficient and Reliable Learning Environment Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.31036",
+      "title": "Normalized Low-Rank Adaptation",
+      "url": "https://huggingface.co/papers/2608.31036",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "Normalized Low-Rank Adaptation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.30241",
+      "title": "PaperBanana-Interact: Scientific Diagram Refinement with Multi-Turn Human Feedback",
+      "url": "https://huggingface.co/papers/2608.30241",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "PaperBanana-Interact: Scientific Diagram Refinement with Multi-Turn Human Feedback",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.30320",
+      "title": "On the Design of Qwen3.8-Next Architecture: Evaluation, Efficiency, and Training Stability",
+      "url": "https://huggingface.co/papers/2608.30320",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "On the Design of Qwen3.8-Next Architecture: Evaluation, Efficiency, and Training Stability",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.31113",
+      "title": "BLARM: Animating 3D Objects from Video via Blending Latent Rigid Motion Primitives",
+      "url": "https://huggingface.co/papers/2608.31113",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "BLARM: Animating 3D Objects from Video via Blending Latent Rigid Motion Primitives",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.30396",
+      "title": "Scaffolding Foundation Models into Physical-World Agents Pushes the Frontier of Long-Horizon Navigation",
+      "url": "https://huggingface.co/papers/2608.30396",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "Scaffolding Foundation Models into Physical-World Agents Pushes the Frontier of Long-Horizon Navigation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.31022",
+      "title": "MNIST-PRO: MNIST is Back as a Partially Observable World for AI Agents",
+      "url": "https://huggingface.co/papers/2608.31022",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "MNIST-PRO: MNIST is Back as a Partially Observable World for AI Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.29910",
+      "title": "Matrix-Game 3.5: Enhancing Real-Time Streaming Interactive World Models with Patch Memory",
+      "url": "https://huggingface.co/papers/2608.29910",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "Matrix-Game 3.5: Enhancing Real-Time Streaming Interactive World Models with Patch Memory",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.29613",
+      "title": "Cross-lingual Functional Vectors for Emotion Detection in Large Language Models",
+      "url": "https://huggingface.co/papers/2608.29613",
+      "author": null,
+      "publishedAt": "2026-09-01T04:36:39.355Z",
+      "content": "Cross-lingual Functional Vectors for Emotion Detection in Large Language Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    }
+  ]
+}
