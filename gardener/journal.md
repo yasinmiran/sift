@@ -27,8 +27,58 @@ merges and closures and never expire.
   call about breadth, not a health fix, so it wants Yasin's word
   first. Numbers in the 2026-08-31 entry; re-measure before acting,
   a 32-day window is short.
+- READY TO SHIP, queued behind #109: undici 7.28.0 (transitive, via
+  cheerio 1.2.0, our only fetch path in ingest) carries five high
+  advisories. `npm audit fix --package-lock-only` bumps it to 7.29.0
+  and clears all five; package.json untouched, 10 lines of
+  package-lock.json, full sweep green on the bumped tree. First run
+  with a free PR slot should ship this before anything else.
 
 ## Entries
+
+### 2026-09-01
+
+Quiet run, no PR, fourth day blocked on the same thing: #109 has been
+open and unreviewed since 08-29, and one open gardener PR at a time is
+a hard limit. #109 itself still needs nothing — mergeable_state clean
+against today's main, three Netlify checks neutral-not-failing, the one
+Copilot review already answered by its second commit. Left alone.
+
+This is the first blocked run where the block has a cost worth naming.
+The health sweep turned up a real, shippable, one-line-of-intent fix
+and it cannot go out: `npm audit --omit=dev` reports five high
+advisories against undici 7.28.0 — response desynchronization via the
+retry interceptor, two cross-user disclosure paths through
+Cache-Control parsing, CRLF injection via blob body `type`, cookie
+attribute injection. It is transitive, `cheerio@1.2.0 -> undici@7.28.0`,
+and cheerio's fetch is the ingest path's only http client, so this is
+runtime surface and not a dev-dep footnote. `npm audit fix
+--package-lock-only` resolves all five by moving to 7.29.0: no
+package.json change, 10 changed lines in package-lock.json, and on the
+bumped tree `npm test` 158/158, typecheck silent, `npm run site` 33
+pages. Verified, then reverted — the working tree is clean and the fix
+sits in the backlog marked ready to ship. Deliberately not filed as an
+issue: it is a day's work, not a big idea, and a third ungreenlit
+gardener issue would be accumulation, same call as 08-31.
+
+Rest of the sweep clean. `npm run verify` ok with zero warnings on
+08-27..09-01; 08-26 still carries the known "link not found"
+warnings (DOJ press release, a TechCrunch piece, an HN permalink), the
+familiar primary/secondary-source pattern, not a regression. No failed
+workflow runs in the last week. goatcounter still unreachable from this
+environment (proxy 403 on CONNECT), so a fifth run with no reader
+signal.
+
+#112 unchanged and still compounding: no scheduled ingest has fired
+since 08-31 21:06 UTC, today's 03:15 never ran, and this morning's
+digest again forced its own workflow_dispatch at 04:36 before drafting.
+That is nine consecutive digest runs self-rescuing. Scheduled runs that
+do land are now +3h to +6h behind their cron, never inside the window
+they were written for. Still not mine to fix — both real options edit
+../AGENTS.md.
+
+Outcome: no PR by design. #109 pending (4th day, now blocking a
+security fix), #110 pending, #112 pending and biting daily.
 
 ### 2026-08-31
 
