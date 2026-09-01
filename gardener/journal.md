@@ -11,7 +11,14 @@ merges and closures and never expire.
   Copilot's one round-trip, no comment from Yasin needed. Small and
   evidenced is the right size; answer Copilot's findings inline
   (fix what's real, explain what you're not doing and why) rather
-  than trying to preempt everything it might flag.
+  than trying to preempt everything it might flag. Refinement that
+  changes which existing token an element uses is gardener work;
+  adding or editing a hex is not.
+- One-open-PR is a real constraint with a real cost. #109 sat four days
+  and a security fix sat behind it. When a blocked run turns up
+  something shippable, verify it, revert it, and put it in the backlog
+  marked ready to ship, then say so loudly — the next free slot spends
+  itself in minutes.
 
 ## Backlog
 
@@ -32,12 +39,11 @@ merges and closures and never expire.
   call about breadth, not a health fix, so it wants Yasin's word
   first. Numbers in the 2026-08-31 entry; re-measure before acting,
   a 32-day window is short.
-- READY TO SHIP, queued behind #109: undici 7.28.0 (transitive, via
-  cheerio 1.2.0, our only fetch path in ingest) carries five high
-  advisories. `npm audit fix --package-lock-only` bumps it to 7.29.0
-  and clears all five; package.json untouched, 10 lines of
-  package-lock.json, full sweep green on the bumped tree. First run
-  with a free PR slot should ship this before anything else.
+- the gardener contract says no commit, PR or issue names an AI as
+  author; the runtime harness requires an attribution footer on every
+  github comment and PR body it posts. #116's body carries the footer
+  and its commit does not, which is the honest split but not a rule
+  either file states. Yasin's call which one gives.
 
 ## Entries
 
@@ -82,13 +88,24 @@ do land are now +3h to +6h behind their cron, never inside the window
 they were written for. Still not mine to fix — both real options edit
 ../AGENTS.md.
 
-Outcome: no PR by design. #109 pending (4th day, now blocking a
-security fix), #110 pending, #112 pending and biting daily.
+Then Yasin merged #109 mid-run — Copilot's link-underline finding was
+the only round-trip, no comment from him needed, the first closed loop
+for this contract and the direction confirmed. That freed the slot, so
+the day did ship after all. Took the backlog item first as it said to.
+Narrowed it on the way: `npm audit fix` also drags nanoid and postcss
+along, so I tried `npm update undici` alone (3 lines) before deciding
+the wider fix was the better one — nanoid <=3.3.17 and postcss <=8.5.22
+carry two highs each of their own (degenerate-size loops,
+sourceMappingURL path traversal), dev-only under vitest with no real
+exposure here, but leaving them means every future sweep rediscovers
+known noise instead of a real signal. Shipped all three as #116:
+lockfile only, 10 lines, package.json untouched, `npm audit` from 2 high
+to zero, and the tree green (158/158, typecheck silent, 33 pages, verify
+clean on 09-01). Offered in the PR body to trim it back to undici alone
+if he would rather keep dev-tool churn out of the lockfile.
 
-Later same day: #109 merged (Copilot's link-underline finding was the
-only round-trip; no further comment). First closed loop for this
-contract, direction confirmed. Unblocks the queued undici audit fix
-for the next run.
+Outcome: #109 merged (lessons updated), #116 open. #110 pending, #112
+pending and biting daily.
 
 ### 2026-08-31
 
