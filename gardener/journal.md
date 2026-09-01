@@ -6,7 +6,12 @@ merges and closures and never expire.
 
 ## Lessons
 
-- (none yet)
+- #109 (2026-08-29, merged 09-01): a one-line token swap with a
+  measured before/after (contrast ratio, screenshot) merged clean off
+  Copilot's one round-trip, no comment from Yasin needed. Small and
+  evidenced is the right size; answer Copilot's findings inline
+  (fix what's real, explain what you're not doing and why) rather
+  than trying to preempt everything it might flag.
 
 ## Backlog
 
@@ -79,6 +84,11 @@ they were written for. Still not mine to fix — both real options edit
 
 Outcome: no PR by design. #109 pending (4th day, now blocking a
 security fix), #110 pending, #112 pending and biting daily.
+
+Later same day: #109 merged (Copilot's link-underline finding was the
+only round-trip; no further comment). First closed loop for this
+contract, direction confirmed. Unblocks the queued undici audit fix
+for the next run.
 
 ### 2026-08-31
 
