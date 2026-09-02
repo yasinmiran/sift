@@ -22,6 +22,19 @@ merges and closures and never expire.
 
 ## Backlog
 
+- READY TO SHIP (verified 2026-09-02, blocked only by the open PR
+  slot): `color-scheme:dark` on `:root` in src/site/page.ts. The site
+  never declares a scheme, so every page renders a white UA scrollbar
+  against `#0d0c0b`. One line, no palette hex touched or added, 158/158
+  and typecheck silent on the change, all 32 pages plus 404 carry it.
+  Recipe for the before/after: build, then playwright at 900x700 with
+  `executablePath: "/opt/pw-browsers/chromium"` (the preinstalled 1194
+  build; the pinned playwright wants 1228 and will not find it) and
+  `ignoreDefaultArgs: ["--hide-scrollbars"]`, which is what makes the
+  scrollbar show up in a headless screenshot at all. Right-edge pixels
+  at y=350 go `(252,252,252)` to `(44,44,44)`;
+  `getComputedStyle(document.documentElement).colorScheme` goes
+  `normal` to `dark`.
 - web-dev's feed has been frozen since 2026-06 while the site still
   builds (sitemap lastmod runs current). Recheck around 2026-09-29;
   developer.chrome.com/static/blog/feed.xml is the candidate
@@ -46,6 +59,52 @@ merges and closures and never expire.
   either file states. Yasin's call which one gives.
 
 ## Entries
+
+### 2026-09-02
+
+Quiet run, no PR, blocked on the slot again: #116 has been open and
+unreviewed since yesterday morning and one open gardener PR at a time
+is the limit. #116 needs nothing — it merges clean against today's main
+(nothing but data/ has moved since it branched), its three Netlify
+checks are neutral-not-failing, no review on it at all. Left alone.
+
+The headline is not mine to fix and needs saying anyway: **there is no
+morning digest for 2026-09-02**. digests/ runs 08-02..09-01 with no
+gaps, 31 straight days, and today's 04:34 UTC run simply did not
+happen — no digest file, no slides, no PR opened today, and none of the
+`workflow_dispatch` ingest the digest agent has fired before drafting on
+each of the last nine mornings. As of 08:07 UTC that is 3h33 past the
+window. First outright miss since the record starts. Data is not the
+cause: the 03:15 ingest cron did land today, at 07:52, and
+data/items/2026-09-02.json carries 136 items. Pushed to Yasin; the
+digest agent's schedule lives outside this repo.
+
+The ingest drift of #112 continues underneath it: 03:15 landed at
+07:52 (+4h37), yesterday's 15:45 at 18:51 (+3h06). Commented the two
+data points on #112 rather than opening anything new.
+
+Took the blocked run to the craft signal, per the lesson, so the next
+free slot spends itself in minutes. Found one: the site never sets
+`color-scheme`, so the browser paints its light-mode UA scrollbar —
+measured `#fcfcfc`, 15px wide, full height — down the right edge of a
+`#0d0c0b` page, on all 32 pages. `color-scheme:dark` on the existing
+`:root` block fixes it (scrollbar to `(44,44,44)`, computed scheme
+`normal` to `dark`), one line, no hex touched or added, contract test
+untouched, 158/158 and typecheck silent. Verified, then reverted; the
+tree is clean and it sits at the top of the backlog marked ready to
+ship with the screenshot recipe, since headless chromium hides
+scrollbars unless you ask it not to and that cost a detour to work out.
+
+Rest of the sweep clean. `npm test` 158/158, typecheck silent, `npm run
+site` 32 pages (31 digests + index; 08-01 aged out of the rolling
+month, not a regression from yesterday's 33), `npm run verify` ok with
+zero warnings on 08-27..09-01. No failed workflow runs in the last
+week. `npm audit --omit=dev` still five undici highs on main, which is
+exactly what #116 is waiting to fix. goatcounter unreachable from this
+environment for the sixth run (proxy 403 on CONNECT).
+
+Outcome: no PR by design. #116 pending (2nd day), #110 pending, #112
+pending and now with a missed digest sitting next to it.
 
 ### 2026-09-01
 
