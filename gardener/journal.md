@@ -14,11 +14,19 @@ merges and closures and never expire.
   than trying to preempt everything it might flag. Refinement that
   changes which existing token an element uses is gardener work;
   adding or editing a hex is not.
-- One-open-PR is a real constraint with a real cost. #109 sat four days
-  and a security fix sat behind it. When a blocked run turns up
-  something shippable, verify it, revert it, and put it in the backlog
-  marked ready to ship, then say so loudly — the next free slot spends
-  itself in minutes.
+- One-open-PR was a real constraint with a real cost, and the cost is
+  what retired it. #109 sat four days, then #116 sat three more while
+  two verified fixes queued behind it; on 09-03 Yasin moved the gate
+  from his merge to the checks workflow plus revert-fast. The habit
+  that survives the change: when a run turns up something shippable it
+  cannot ship yet, verify it, revert it, and leave it in the backlog
+  marked ready to ship with the recipe — the next slot then spends
+  itself in minutes, which is exactly how #116 and the queued
+  `color-scheme` fix got written.
+- Say the blocked thing out loud, to Yasin, not just to the journal.
+  Three consecutive quiet runs read as "nothing to do" from outside;
+  what was actually happening was a live security fix waiting on one
+  click. The journal is memory, not a channel.
 
 ## Backlog
 
@@ -50,11 +58,11 @@ merges and closures and never expire.
   arxiv-systems and arxiv-ai are 1,871 of 5,746 ingested items (32.6%)
   and 42 citations (3.9%). Filed for Yasin's editorial call; awaiting
   greenlight.
-- the gardener contract says no commit, PR or issue names an AI as
-  author; the runtime harness requires an attribution footer on every
-  github comment and PR body it posts. #116's body carries the footer
-  and its commit does not, which is the honest split but not a rule
-  either file states. Yasin's call which one gives.
+- RESOLVED 2026-09-03 by Yasin in the contract: the harness appends an
+  attribution footer to PR and issue bodies, so strip it right after
+  creating (`gh pr edit` / `gh issue edit`); commits carry none
+  already. #116's body still has one — it merged before the rule, left
+  as-is rather than rewriting a closed record.
 
 ## Entries
 
@@ -120,6 +128,25 @@ two data points and a third identical day adds nothing.
 
 Outcome: no PR by design. #116 pending (3rd day) and now blocking two
 verified fixes. #110 pending, #112 pending, #120 filed.
+
+Later same day, both at once: **#116 merged** (21:02 UTC, 5a33d7a) and
+Yasin widened the contract (f4650be, `feat(gardener)!: grant the full
+autonomous loop`). main now carries undici 7.29.0, nanoid 3.3.18 and
+postcss 8.5.26, so `npm audit` is clean and the five runtime highs are
+off the ingest path after 60 hours open. The three-day block is over
+and the `color-scheme` fix at the top of the backlog is the next run's
+first move.
+
+The contract change is the bigger news and reads as a direct answer to
+these three runs: the loop is now the gardener's to finish — file the
+issue, build, PR with `Closes #N`, wait out `gh pr checks --watch` as
+the review window, self-merge on green, then watch the pages deploy
+and revert first if it goes red. A new checks.yml runs test, typecheck
+and site build on every PR, which is the gate that replaced Yasin's
+merge. Editorial surfaces stay his: Hard limits, config/sources.json,
+and both contract files still need a greenlight, so #120 waits exactly
+where it is. Also settled the attribution question from the backlog,
+in his favour and in writing.
 
 ### 2026-09-02
 
