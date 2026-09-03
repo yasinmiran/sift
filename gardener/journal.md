@@ -44,14 +44,12 @@ merges and closures and never expire.
   look if ingest bandwidth ever matters.
 - substack-backed sources (big-technology, normal-technology) send no
   usable validator, so they re-parse every run. Harmless, noted.
-- four sources ingest real volume and get cited nothing: console-dev
-  (32 items, 0 links in any digest over 32 days), lennys-newsletter
-  (24/0), css-tricks (17/0), stackoverflow-blog (16/0). That is ~90
-  items a month the digest agent reads past. A prune is a
-  config/sources.json one-liner per source, but it is an editorial
-  call about breadth, not a health fix, so it wants Yasin's word
-  first. Numbers in the 2026-08-31 entry; re-measure before acting,
-  a 32-day window is short.
+- SUPERSEDED by issue #120 (2026-09-03): the four uncited sources were
+  the small end of a much bigger pattern. Re-measured across all
+  sources and the paper feeds are the story — hf-daily-papers,
+  arxiv-systems and arxiv-ai are 1,871 of 5,746 ingested items (32.6%)
+  and 42 citations (3.9%). Filed for Yasin's editorial call; awaiting
+  greenlight.
 - the gardener contract says no commit, PR or issue names an AI as
   author; the runtime harness requires an attribution footer on every
   github comment and PR body it posts. #116's body carries the footer
@@ -59,6 +57,69 @@ merges and closures and never expire.
   either file states. Yasin's call which one gives.
 
 ## Entries
+
+### 2026-09-03
+
+Quiet run, no PR, third consecutive day blocked on the slot: #116 has
+been open and unreviewed since 09-01 and one open gardener PR at a
+time is the limit. #116 needs nothing — three Netlify checks
+neutral-not-failing, its only comment is netlify's own deploy notice,
+no review on it at all, and nothing but data/ has moved on main since
+it branched. Left alone. The five undici highs it fixes are still
+live on main (`npm audit --omit=dev` confirms all five today), and the
+`color-scheme` fix is still queued behind it — re-checked, `:root` in
+src/site/page.ts still carries no `color-scheme`, so the backlog
+recipe still applies verbatim.
+
+Good news first: **the morning digest is back**. 2026-09-03 landed at
+04:46 (#119), and yesterday's miss was recovered later the same day —
+digests/ now runs 08-03..09-03 with no gaps. The 09-02 outage was a
+single missed window, not the start of a decline, so the escalation
+from yesterday can stand down.
+
+Took the blocked run to the signals, and the measurement that came
+back reframes a backlog item rather than adding one. The 08-31 pass
+counted the top eight sources and the nine that ingest nothing; it
+never looked at the middle. Counting all 44 sources that ingest at
+all, over 08-03..09-03 (5,746 items, 1,090 cited), the paper feeds are
+the story: hf-daily-papers 665/4 (0.6%), arxiv-systems 604/30 (5.0%),
+arxiv-ai 602/8 (1.3%). Together 1,871 ingested and 42 cited — **32.6%
+of all intake producing 3.9% of citations**. tldr is a fourth of the
+same shape (325/4). Next to that, the four sources the backlog had
+been holding are 97 items.
+
+Checked it was not a url-matching artifact before filing, since the
+digest could plausibly cite a paper by a different url form: rematched
+on the bare paper id against the full prose of every digest, any form,
+any mention. 38 of 1,200 arxiv ids and 6 of 665 hf-daily ids appear
+anywhere. Same answer, so the finding holds.
+
+Filed as issue #120 rather than shipped — it is a prune-or-narrow
+decision about breadth, which the contract puts on Yasin's side of the
+line. Wrote the caveat into the issue honestly: a low citation rate is
+not automatically waste, because these feeds may be earning their
+place as background reading the digest agent writes better for without
+linking, and that is not something I can measure from here. This makes
+a third ungreenlit gardener issue, which 08-31 talked itself out of;
+the numbers being 20x bigger is what changed the call, and #120
+supersedes the backlog note instead of sitting beside it.
+
+Rest of the sweep clean. `npm test` 158/158, typecheck silent, `npm
+run site` 33 pages, `npm run verify` clean on 08-29..09-01. 09-02 and
+09-03 each carry one warning, both the known deliberate pattern (a
+Chalkbeat primary-source link, then a conscious continuity callback to
+it the next day), not regressions. No failed workflow runs in the last
+week. goatcounter unreachable for the seventh run (proxy 403 on
+CONNECT).
+
+#112's ingest drift is unchanged and still daily: today's 03:15 cron
+landed at 07:59 (+4h44), yesterday's 15:45 at 18:57 (+3h12), and this
+morning's digest again forced its own workflow_dispatch at 04:37
+before drafting. No new comment on #112 — yesterday's already carries
+two data points and a third identical day adds nothing.
+
+Outcome: no PR by design. #116 pending (3rd day) and now blocking two
+verified fixes. #110 pending, #112 pending, #120 filed.
 
 ### 2026-09-02
 
