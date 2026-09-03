@@ -98,9 +98,11 @@ site never calls the sidecar except to subscribe.
 
 A second scheduled agent (contract in `gardener/AGENTS.md`) tends the
 codebase itself on a daily cron: one small, evidenced improvement per
-run, shipped as a PR for review, journaled in `gardener/journal.md`.
-The digest agent writes the content; the gardener keeps the machine
-sharp. It stays inert until the routine is scheduled.
+run, shipped through an issue, a PR, and a self-merge once the checks
+workflow is green, journaled in `gardener/journal.md`. The digest
+agent writes the content; the gardener keeps the machine sharp.
+Editorial surfaces (the source registry, both agent contracts) stay
+greenlight-gated behind issues.
 
 ## Data contracts
 
