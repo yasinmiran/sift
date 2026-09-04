@@ -27,22 +27,33 @@ merges and closures and never expire.
   Three consecutive quiet runs read as "nothing to do" from outside;
   what was actually happening was a live security fix waiting on one
   click. The journal is memory, not a channel.
+- Elapsed time is read from `date`, never inferred. On 09-04 a
+  backgrounded `sleep` does not block the run that starts it, so a
+  string of "waits" that each returned instantly made a healthy
+  110-second `npm ci` look like a 40-minute stall, and a green run got
+  cancelled for nothing. Cost: one wasted CI cycle. Wait by blocking on
+  the thing itself (`until <state> = completed; do sleep 15; done`
+  against the api) and sanity-check the clock before concluding
+  anything is stuck.
 
 ## Backlog
 
-- READY TO SHIP (verified 2026-09-02, blocked only by the open PR
-  slot): `color-scheme:dark` on `:root` in src/site/page.ts. The site
-  never declares a scheme, so every page renders a white UA scrollbar
-  against `#0d0c0b`. One line, no palette hex touched or added, 158/158
-  and typecheck silent on the change, all 32 pages plus 404 carry it.
-  Recipe for the before/after: build, then playwright at 900x700 with
-  `executablePath: "/opt/pw-browsers/chromium"` (the preinstalled 1194
-  build; the pinned playwright wants 1228 and will not find it) and
-  `ignoreDefaultArgs: ["--hide-scrollbars"]`, which is what makes the
-  scrollbar show up in a headless screenshot at all. Right-edge pixels
-  at y=350 go `(252,252,252)` to `(44,44,44)`;
-  `getComputedStyle(document.documentElement).colorScheme` goes
-  `normal` to `dark`.
+- checks.yml spends effectively all of its time installing. Measured on
+  #124's second attempt: `npm ci` 7m02s, then test 3s, typecheck 2s,
+  site 1s — 7m11s total for 6 seconds of actual checking. The install
+  is playwright pulling browsers, and the cliff shows up whenever the
+  lockfile changes and the setup-node npm cache misses (09-03's run on
+  the pre-bump lockfile was 29s end to end). `playwright` is imported
+  only by src/slides/render.ts, which the checks job never runs, so
+  `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1` on that job should remove the
+  cliff without changing what the job verifies. One env line; verify
+  the claim about render.ts before shipping.
+- Merged gardener branches cannot be deleted from this environment:
+  `git push origin --delete` dies on a sideband disconnect through the
+  proxy and the api token gets 403 on `DELETE /git/refs/heads/...`.
+  gardener/2026-09-04-color-scheme-dark is merged but still on the
+  remote. Either Yasin prunes them, or the repo turns on
+  auto-delete-on-merge in its settings, which would close this for good.
 - web-dev's feed has been frozen since 2026-06 while the site still
   builds (sitemap lastmod runs current). Recheck around 2026-09-29;
   developer.chrome.com/static/blog/feed.xml is the candidate
@@ -65,6 +76,67 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-04
+
+Shipped, and the first run to close its own loop end to end. What:
+`color-scheme:dark` added to the existing `:root` block in
+src/site/page.ts (#123, PR #124, merged 6f4bdcc). Why: the site never
+declared a scheme, so the browser assumed light and painted its
+light-mode UA chrome against `#0d0c0b` — a near-white scrollbar down
+the right edge of every page. The backlog recipe from 09-02 held
+verbatim: right-edge pixel at y=350 goes `(252,252,252)` to
+`(44,44,44)`, computed `colorScheme` goes `normal` to `dark`, and all
+34 built files (32 digests, index, 404) carry it. One declaration, no
+palette hex touched or added, contract test untouched. 158/158,
+typecheck silent, 33 pages. Copilot returned "approval recommended"
+with zero comments; checks green; merged rebase; pages deploy green.
+
+Two things the run learned the hard way, both now lessons or backlog
+rather than prose. The first is mine: I launched background `sleep`
+commands and then queried the api without ever waiting on them, so a
+perfectly healthy `npm ci` two minutes into its run looked like a
+40-minute stall and I cancelled it. The re-run (attempt 2) was green.
+Nothing was lost but a CI cycle, and the fix is to block on the state
+itself and read `date` before believing anything is wedged.
+
+The second came out of that mistake and is worth keeping: the cancelled
+attempt's logs made the checks workflow's shape measurable. `npm ci`
+7m02s against 6 seconds of test, typecheck and site combined. That is a
+cold npm cache plus playwright's browser download, first triggered by
+#116's lockfile bump; 09-03's run on the old lockfile was 29 seconds.
+Backlogged with the one-line candidate fix rather than shipped, since
+today's improvement was already spent.
+
+Two smaller notes. The merged branch could not be deleted — the proxy
+kills a delete-ref push and the token is 403 on the refs api — so
+gardener/2026-09-04-color-scheme-dark is still on the remote; also
+backlogged. And no screenshots were attached to #124: this environment
+cannot upload images to github. The pixel readings carry the same
+measurement and the PR body says plainly that they stand in for the
+images. Same reason the live site could not be re-checked after deploy
+(sift.yasint.dev is 403 through the egress proxy, as goatcounter has
+been for eight runs now) — the deploy went green and the built output
+was verified locally file by file, which is as far as this environment
+reaches.
+
+Rest of the sweep clean and unfiled. `npm audit --omit=dev` reports
+zero vulnerabilities, the first clean audit since #116 landed. No
+failed workflow runs in the last week. `npm run verify` ok with zero
+errors on 08-29..09-04; 09-02, 09-03 and 09-04 each carry warnings and
+all of them are the known deliberate pattern — primary sources outside
+the day's items (an openai post, a washingtonexaminer piece, two HN
+permalinks) and one conscious continuity callback to a story digested
+on 09-02. The digest agent has run on time every window since 09-03.
+
+#112's ingest drift is unchanged and still daily: today's 03:15 cron
+landed at 07:56 (+4h41), yesterday's 15:45 at 18:52 (+3h07), and this
+morning's digest again forced its own workflow_dispatch at 04:36 before
+drafting. No new comment on #112 — it already carries two data points
+and a third identical day adds nothing.
+
+Outcome: #123 filed and closed by #124, merged and deployed. #110
+pending, #112 pending, #120 pending Yasin's editorial call.
 
 ### 2026-09-03
 
