@@ -27,6 +27,15 @@ merges and closures and never expire.
   Three consecutive quiet runs read as "nothing to do" from outside;
   what was actually happening was a live security fix waiting on one
   click. The journal is memory, not a channel.
+- A backlog recipe is a hypothesis with a shelf life, not a fact banked
+  for later. 09-02 and 09-04 both banked "ready to ship" items; the
+  `color-scheme` one held verbatim, the checks.yml one was wrong on
+  every claim it made and would have shipped a no-op. Re-derive the
+  premise from primary evidence before spending the slot — read the
+  actual job log, not the note about the job log — and treat a recipe
+  written by a past run with the same scepticism as a claim from
+  anywhere else. Retiring a backlog item on evidence is a real day's
+  work; it is cheaper than the PR that would otherwise have shipped.
 - Elapsed time is read from `date`, never inferred. On 09-04 a
   backgrounded `sleep` does not block the run that starts it, so a
   string of "waits" that each returned instantly made a healthy
@@ -38,16 +47,21 @@ merges and closures and never expire.
 
 ## Backlog
 
-- checks.yml spends effectively all of its time installing. Measured on
-  #124's second attempt: `npm ci` 7m02s, then test 3s, typecheck 2s,
-  site 1s — 7m11s total for 6 seconds of actual checking. The install
-  is playwright pulling browsers, and the cliff shows up whenever the
-  lockfile changes and the setup-node npm cache misses (09-03's run on
-  the pre-bump lockfile was 29s end to end). `playwright` is imported
-  only by src/slides/render.ts, which the checks job never runs, so
-  `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1` on that job should remove the
-  cliff without changing what the job verifies. One env line; verify
-  the claim about render.ts before shipping.
+- RETIRED 2026-09-05, the diagnosis was wrong on both counts and the fix
+  would have been a no-op. checks.yml does not have an install cliff.
+  #124's 7m02s `npm ci` was a cache **hit** on key `a401ab82…`, the same
+  key and the same "added 84 packages" as 09-05's run, which took **3s**.
+  Not a lockfile-change cache miss. Nor is it playwright: `playwright`
+  ships no install or postinstall script (verified on 1.61.1 — the only
+  install hook in the whole tree is esbuild's), so `npm ci` never
+  downloads browsers here; they arrive solely from the explicit
+  `npx playwright install` in pages.yml. `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD`
+  on the checks job would change nothing. The 7 minutes was a single
+  silent stall inside one npm ci, and that run alone printed no "audited
+  85 packages / found 0 vulnerabilities" lines that both the 09-05 CI run
+  and a local `npm ci` print — consistent with npm's registry audit call
+  hanging and eventually being abandoned. Transient infrastructure, not a
+  repo defect. Do not re-file without a second occurrence.
 - Merged gardener branches cannot be deleted from this environment:
   `git push origin --delete` dies on a sideband disconnect through the
   proxy and the api token gets 403 on `DELETE /git/refs/heads/...`.
@@ -76,6 +90,74 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-05
+
+Quiet run, no PR, and for once that is the finding rather than the
+absence of one. The slot was free — no open gardener PR, nothing merged
+or closed since yesterday — so the run went to the top of the backlog as
+written, the `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD` one-liner for checks.yml,
+which 09-04 left marked ready to ship pending one verification. The
+verification failed, twice over, and the item is retired instead of
+shipped.
+
+Both claims were wrong. The first: "the cliff shows up whenever the
+lockfile changes and the setup-node npm cache misses." #124's 7m02s run
+was a cache **hit**, on key `a401ab82…` — byte-identical to the key
+09-05's checks run hit, installing the same 84 packages, in **3s**. Same
+lockfile, same cache, same work, 140x apart. There is no cliff to remove.
+The second: "the install is playwright pulling browsers." `playwright`
+1.61.1 ships no `install` or `postinstall` script at all; `npm query`
+across the installed tree finds exactly one install hook, esbuild's. So
+`npm ci` never downloads a browser in this repo — they come only from the
+explicit `npx playwright install --with-deps chromium` in pages.yml, a
+different workflow the env var would not touch. Setting it on the checks
+job would have been a pure no-op dressed up as a performance fix, which
+is precisely the churn the contract's Hard limits exist to stop.
+
+What the 7 minutes actually was: one silent stall inside a single npm ci,
+between the deprecation warning at 08:23:16 and "added 84 packages in 7m"
+at 08:30:16. Tellingly that run printed no "audited 85 packages" and no
+"found 0 vulnerabilities" — lines both the 09-05 CI run and a local
+`npm ci` here do print. Consistent with npm's registry audit request
+hanging and being abandoned. Transient infrastructure, not a repo defect,
+and not worth an issue on one occurrence.
+
+Rest of the sweep clean and unfiled. `npm test` 158/158, typecheck
+silent, `npm run site` 33 pages at 1.2MB, `npm audit --omit=dev` zero
+vulnerabilities. No failed workflow runs anywhere in the last week —
+ingest, pages, checks and Copilot review all green. `npm run verify`
+returns zero errors on 08-30..09-05; 08-30, 08-31 and 09-01 are warning-
+free too, and 09-02..09-05's warnings are all the known deliberate
+pattern (primary-source links outside the day's items, HN permalinks, and
+continuity callbacks to Path to Astra and gpt-6-astra).
+
+Took the free slot to the craft signal since nothing else earned it, and
+it came back clean, which is worth recording so a future run does not
+re-walk it. On the built pages: exactly one h1, `nav`/`main`/`article`/
+`header`/`footer` landmarks all present, zero images missing alt, zero
+`target="_blank"` links missing rel. Head carries canonical, description,
+full OG and Twitter card, NewsArticle JSON-LD, manifest, RSS alternate
+and the icon set. feed.xml (32 items) and sitemap.xml (33 urls) are
+well-formed with no unescaped ampersands; manifest.webmanifest parses;
+every local asset reference resolves. No skip link, but `nav.crumbs` is a
+single "← all days" anchor, so bypass-blocks does not bite — noted so it
+is not mistaken for a defect later.
+
+#112's ingest drift is unchanged and still daily: today's 03:15 cron
+landed at 07:37 (+4h22), yesterday's 15:45 at 18:33 (+2h48), and this
+morning's digest again forced its own workflow_dispatch (run #223, 04:37)
+before drafting at 04:45. No new comment on #112 — a fourth identical day
+adds nothing it does not already carry. The digest agent itself is
+healthy: 2026-09-05 landed on time and digests/ runs 08-05..09-05 with no
+gaps.
+
+goatcounter unreachable again (proxy 403 on CONNECT), ninth run without
+reader signal.
+
+Outcome: no PR by design, and the backlog is one bad item lighter. #110,
+#112 and #120 all still pending Yasin's greenlight — #120 since 09-03,
+and it is the one with a real decision behind it.
 
 ### 2026-09-04
 
