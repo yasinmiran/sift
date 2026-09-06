@@ -5,6 +5,12 @@ import { readPicks } from "../pipeline/picks";
 import { readHashtagPool, readSlidePosts } from "../slides/data";
 import { parseFrontmatter } from "./frontmatter";
 
+interface DayItem {
+  url?: string;
+  sourceSlug?: string;
+  externalId?: string;
+}
+
 export interface VerifyResult {
   ok: boolean;
   errors: string[];
@@ -16,6 +22,17 @@ const MARK_U = /==[^=\n]+?==/g;
 const MARK_O = /\(\([^()\n]+?\)\)/g;
 
 const normalize = (url: string): string => url.replace(/\/+$/, "");
+
+// A hacker news story is ingested under the article's own url, so a digest
+// that links the discussion instead reads as a link outside the day's items
+// unless the permalink form is admitted too. The id is the item's
+// externalId (algolia's objectID), and hacker-news is the only source that
+// keys items by a bare number.
+const HN_PERMALINK = "https://news.ycombinator.com/item?id=";
+const hnPermalinks = (items: DayItem[]): string[] =>
+  items
+    .filter((i) => i.sourceSlug === "hacker-news" && /^\d+$/.test(i.externalId ?? ""))
+    .map((i) => `${HN_PERMALINK}${i.externalId}`);
 
 // Checks a written digest against the digest contract in AGENTS.md: errors
 // break the site or the archive and must be fixed; warnings need judgment
@@ -79,9 +96,9 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
   if (!existsSync(itemsPath)) {
     warnings.push(`data/items/${day}.json is missing; cannot cross-check links`);
   } else {
-    let items: { url?: string }[] | null = null;
+    let items: DayItem[] | null = null;
     try {
-      items = JSON.parse(readFileSync(itemsPath, "utf8")).items as { url?: string }[];
+      items = JSON.parse(readFileSync(itemsPath, "utf8")).items as DayItem[];
       if (!Array.isArray(items)) throw new Error("no items array");
     } catch {
       items = null;
@@ -89,7 +106,11 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     }
     if (items) {
       const known = new Set(
-        [...items.map((i) => i.url).filter(Boolean), ...pickUrls].map((u) => normalize(u!)),
+        [
+          ...items.map((i) => i.url).filter(Boolean),
+          ...hnPermalinks(items),
+          ...pickUrls,
+        ].map((u) => normalize(u!)),
       );
       for (const url of links) {
         if (/^https?:\/\//.test(url) && !known.has(normalize(url))) {
