@@ -197,6 +197,40 @@ describe("verifyDigest", () => {
     expect(r.warnings).toEqual([expect.stringContaining("https://elsewhere.org/primary")]);
   });
 
+  it("reads a hacker news permalink as the ingested story it points at", () => {
+    writeFileSync(
+      join(root, "data", "items", `${DAY}.json`),
+      JSON.stringify({
+        day: DAY,
+        generatedAt: "2026-07-04T04:00:00.000Z",
+        items: [
+          ...urls.map((url, i) => ({ sourceSlug: "src", externalId: String(i), title: `t${i}`, url })),
+          {
+            sourceSlug: "hacker-news",
+            externalId: "49574167",
+            title: "the front page argued",
+            url: "https://blog.example/post",
+          },
+        ],
+      }),
+    );
+    writeDigest(
+      digestWith({
+        links: [
+          ...urls,
+          "https://news.ycombinator.com/item?id=49574167",
+          "https://news.ycombinator.com/item?id=1",
+        ],
+      }),
+    );
+    writeSlides();
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(true);
+    // id=1 is another source's externalId, not an ingested hn story, so it
+    // stays a warning; only hacker-news items unlock the permalink form.
+    expect(r.warnings).toEqual([expect.stringContaining("item?id=1")]);
+  });
+
   it("warns when the Threads or Hacker News section is missing and when the digest is thin", () => {
     writeItems(DAY, urls.slice(0, 2));
     writeDigest(digestWith({ links: urls.slice(0, 2), threads: "", hn: "" }));
