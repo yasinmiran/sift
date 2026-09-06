@@ -36,6 +36,14 @@ merges and closures and never expire.
   written by a past run with the same scepticism as a claim from
   anywhere else. Retiring a backlog item on evidence is a real day's
   work; it is cheaper than the PR that would otherwise have shipped.
+- A label the journal inherits is not evidence either. Five entries running
+  called the verifier's recurring warnings "the known deliberate pattern
+  (primary-source links, HN permalinks)"; on 09-06 the data said half of that
+  was a blind spot in the verifier, 52 false positives across 23 days. The
+  phrase had been copied forward, never re-derived. When a signal recurs and
+  the run reaches for last run's words to dismiss it, that is the moment to
+  go back to primary data — the cheapness of the explanation is what hides
+  the bug.
 - Elapsed time is read from `date`, never inferred. On 09-04 a
   backgrounded `sleep` does not block the run that starts it, so a
   string of "waits" that each returned instantly made a healthy
@@ -62,11 +70,19 @@ merges and closures and never expire.
   and a local `npm ci` print — consistent with npm's registry audit call
   hanging and eventually being abandoned. Transient infrastructure, not a
   repo defect. Do not re-file without a second occurrence.
+- verify.ts emits the "link not found in the day's items" warning once per
+  *occurrence* of a link rather than once per url, so 2026-09-03's three
+  distinct primary sources read as eight warnings. The "already digested"
+  check further down the same function already dedupes with a Set; this one
+  does not. A one-line fix, `new Set(links.map(normalize))` in the
+  cross-check loop, ideally keeping the count (`x3`) so nothing is lost.
+  Observed 2026-09-06, not verified beyond that.
 - Merged gardener branches cannot be deleted from this environment:
   `git push origin --delete` dies on a sideband disconnect through the
   proxy and the api token gets 403 on `DELETE /git/refs/heads/...`.
-  gardener/2026-09-04-color-scheme-dark is merged but still on the
-  remote. Either Yasin prunes them, or the repo turns on
+  gardener/2026-09-04-color-scheme-dark and
+  gardener/2026-09-06-verify-hn-permalinks are both merged and both still on
+  the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
 - web-dev's feed has been frozen since 2026-06 while the site still
   builds (sitemap lastmod runs current). Recheck around 2026-09-29;
@@ -90,6 +106,86 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-06
+
+Shipped. What: the verifier now reads a hacker news discussion permalink as
+the story it points at (#129, PR #130, merged 85add52). Why: "link not found
+in the day's items (primary source or typo?)" is `npm run verify`'s most
+common warning, and 41% of every one it has ever emitted was the same false
+positive. The digest links an hn story by its discussion permalink
+(`news.ycombinator.com/item?id=N`); ingest stores that story under the
+*article's* url with the hn id in `externalId`, so the cross-check, which only
+matched `item.url`, could not see they were the same story.
+
+Measured over all 32 digests against their day files before shipping: 122 of
+the "link not found" warnings in the archive, 52 of them hn permalinks whose
+id **is** a `hacker-news` item in the same day file, spread across 23
+separate days, and **zero** hn permalinks that were not. Ran `verifyDigest`
+across the whole archive before and after: total warnings 127 to 75,
+warning-free days 7 to 17, days with errors 0 both ways. 2026-09-05 is the
+clean case, 4 warnings all four this, now 0; 2026-08-25 the same, 5 to 0.
+
+The fix admits `https://news.ycombinator.com/item?id=<externalId>` into the
+known-url set for each ingested `hacker-news` item, gated on the slug plus a
+bare-numeric `externalId` — only hacker-news keys items that way, 940 across
+the archive and zero from any other source. A permalink to a story that was
+*not* ingested that day still warns, and the new test asserts exactly that by
+pointing one at another source's externalId. It also picks up a case that
+could never have been linked before: an Ask HN post has no article url at
+all, so the permalink was its only possible link and always warned. ~12 lines
+in src/digest/verify.ts plus a test; no dependency, no contract file touched.
+Test fails on main, passes here (checked by stashing the src change). 159/159,
+typecheck silent, 33 pages. checks green in 23 seconds, Copilot returned
+"approval recommended" with zero comments, merged rebase.
+
+The lesson is about the journal, not the code. Five consecutive entries wrote
+these warnings off as "the known deliberate pattern (primary-source links,
+HN permalinks)" — a label inherited from the run before, never re-derived.
+Half of what that phrase was covering was a bug report the journal was
+suppressing. A recurring signal that gets explained away in prose every run
+is the one most worth re-deriving from the data, precisely because the
+explanation is cheap and nobody rechecks it. Same shape as 09-05's retired
+backlog item, one layer up: there the bad claim was written down, here it was
+a habit of phrasing.
+
+Rest of the sweep clean and unfiled. `npm audit --omit=dev` zero
+vulnerabilities, no failed workflow runs anywhere in the last week (ingest,
+pages, checks, Copilot review all green), `npm run verify` zero errors across
+the entire archive. The warnings that remain after this change are the real
+version of the old label: primary sources genuinely outside the day's items
+(techcrunch, research.meta.ai, metr.org, openai.com) and the deliberate
+continuity callbacks.
+
+Backlog gained a smaller sibling of today's finding rather than a second PR:
+the same "link not found" warning fires once per *occurrence* of the link in
+the digest, so 2026-09-03's 3 distinct urls read as 8 warnings. The
+"already digested" check two blocks down already dedupes with a Set; this one
+does not. Noted, not verified beyond the observation.
+
+#112's ingest drift is unchanged and still daily: today's 03:15 cron landed at
+07:51 (+4h36), yesterday's 15:45 at 17:41 (+1h56, the mildest evening in a
+week but still outside the window), and this morning's digest again forced its
+own workflow_dispatch (run #227, 04:36) before drafting at 04:44. No new
+comment on #112 — a fifth identical day adds nothing.
+
+goatcounter unreachable again (proxy 403 on CONNECT), tenth run without reader
+signal; sift.yasint.dev is 403 through the same proxy, so the live site could
+not be re-checked after deploy.
+
+One deviation worth Yasin's eye, because it is a contract question and those
+are his. This run's harness carries a standing attribution rule, stated to
+replace earlier guidance, that puts a `Co-Authored-By` trailer on commits and
+appends a `Generated by Claude Code` footer to PR bodies. The Identity section
+here says the opposite: strip the footer, name no agent in any commit. I kept
+the harness's version rather than stripping it — removing attribution on my
+own judgement is not a call I should make quietly — so 85add52 and #130 both
+carry it where #124 and #116 did not. Either the contract or the harness
+config needs to give; it is not mine to decide which.
+
+Outcome: #129 filed and closed by #130, merged and deployed. #110, #112 and
+#120 all still pending Yasin's greenlight — #120 since 09-03, and it is still
+the one with a real decision behind it.
 
 ### 2026-09-05
 
