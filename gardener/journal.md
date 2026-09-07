@@ -154,14 +154,23 @@ remain are the real primary sources outside the day's items — techcrunch,
 research.meta.ai, metr.org, openai.com — and the deliberate continuity
 callbacks. Journal needs no pruning; the oldest entry is 08-29, nine days old.
 
-#112's ingest drift is worse today, not merely unchanged: at 08:12 UTC the
-03:15 cron **had not fired at all** (+4h57 and counting), where the last five
-days it at least landed late (07:51, 07:37, 07:56, 07:59). Yesterday's evening
+#112's ingest drift is the worst yet, but the same failure, not a new one:
+today's 03:15 cron landed at **08:13:34, +4h58**, against a previous week's
+worst of 07:59 (+4h44) and a run of 07:51, 07:37, 07:56. Yesterday's evening
 15:45 landed at 17:43 (+1h58). This morning's digest again forced its own
 workflow_dispatch (run #231, 04:35) before drafting. Still no new comment on
-#112 — a sixth day adds nothing the issue does not carry, and a no-show is the
-same failure as a late show from the digest agent's side, which is why it
-works around it the same way.
+#112 — a sixth day adds nothing the issue does not carry.
+
+Worth recording how nearly that went in as something else. At 08:13:13 the
+cron had not fired and the entry was written saying so, "had not fired at
+all", which was true to the second and would have read to any later run as a
+qualitative change: drift became no-show. It fired 21 seconds later. Nothing
+was wrong with the observation, only with concluding a trend from the moment
+the run happened to look. A cron already known to slip four to five hours had
+not yet slipped past the window where it slips; "and counting" was doing work
+the data had not earned. Cheap to fix here, expensive as a banked premise —
+the same failure as 09-04's backlog recipe, caught before it was written down
+rather than after.
 
 goatcounter unreachable again (proxy 403 on CONNECT), eleventh run without
 reader signal; sift.yasint.dev is 403 through the same proxy, so the live site
