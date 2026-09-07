@@ -112,10 +112,21 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
           ...pickUrls,
         ].map((u) => normalize(u!)),
       );
+      // One warning per unknown url, not per occurrence: a digest that links
+      // the same primary source from three entries is one thing to judge, and
+      // the count says how far it reaches.
+      const unknown = new Map<string, { url: string; count: number }>();
       for (const url of links) {
-        if (/^https?:\/\//.test(url) && !known.has(normalize(url))) {
-          warnings.push(`link not found in the day's items (primary source or typo?): ${url}`);
-        }
+        if (!/^https?:\/\//.test(url)) continue;
+        const key = normalize(url);
+        if (known.has(key)) continue;
+        const seen = unknown.get(key);
+        if (seen) seen.count += 1;
+        else unknown.set(key, { url, count: 1 });
+      }
+      for (const { url, count } of unknown.values()) {
+        const times = count > 1 ? ` (linked ${count}x)` : "";
+        warnings.push(`link not found in the day's items (primary source or typo?): ${url}${times}`);
       }
     }
   }
