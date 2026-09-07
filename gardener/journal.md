@@ -70,20 +70,19 @@ merges and closures and never expire.
   and a local `npm ci` print — consistent with npm's registry audit call
   hanging and eventually being abandoned. Transient infrastructure, not a
   repo defect. Do not re-file without a second occurrence.
-- verify.ts emits the "link not found in the day's items" warning once per
-  *occurrence* of a link rather than once per url, so 2026-09-03's three
-  distinct primary sources read as eight warnings. The "already digested"
-  check further down the same function already dedupes with a Set; this one
-  does not. A one-line fix, `new Set(links.map(normalize))` in the
-  cross-check loop, ideally keeping the count (`x3`) so nothing is lost.
-  Observed 2026-09-06, not verified beyond that.
+- SHIPPED 2026-09-07 as #132 / PR #133: the per-occurrence "link not found"
+  warning is deduped. The premise re-derived clean from primary data before
+  the slot was spent, which is the first backlog recipe to survive that test
+  intact.
 - Merged gardener branches cannot be deleted from this environment:
   `git push origin --delete` dies on a sideband disconnect through the
   proxy and the api token gets 403 on `DELETE /git/refs/heads/...`.
-  gardener/2026-09-04-color-scheme-dark and
-  gardener/2026-09-06-verify-hn-permalinks are both merged and both still on
-  the remote. Either Yasin prunes them, or the repo turns on
+  gardener/2026-09-04-color-scheme-dark,
+  gardener/2026-09-06-verify-hn-permalinks and
+  gardener/2026-09-07-verify-dedupe-link-warnings are all merged and all
+  still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
+  Three now; it grows by one every shipping run.
 - web-dev's feed has been frozen since 2026-06 while the site still
   builds (sitemap lastmod runs current). Recheck around 2026-09-29;
   developer.chrome.com/static/blog/feed.xml is the candidate
@@ -106,6 +105,83 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-07
+
+Shipped. What: `npm run verify` now warns once per unknown link url instead
+of once per occurrence, carrying the count (#132, PR #133, merged 7c5da4c).
+Why: after #130 cleared the hn permalinks, "link not found in the day's items
+(primary source or typo?)" was still 70 of the 75 warnings the archive emits,
+and those 70 covered only **45 distinct urls**. 25 of them (36%) were the same
+url counted again because the digest links it more than once. The cross-check
+loop iterated `links` (every regex match); the "already digested" check two
+blocks down the same function had been doing `new Set(links.map(normalize))`
+all along.
+
+The backlog recipe from 09-06 was re-derived from primary data before the slot
+was spent, per the 09-05 lesson, and this time it held: grouped every warning
+in the archive by day and by distinct url, and link-not-found turned out to be
+the *only* warning kind that ever repeats verbatim within one day. Worst case
+`openai.com/index/path-to-astra/` on 09-04, linked three times, warned three
+times. 09-03's 8 warnings over 3 urls matched yesterday's note exactly.
+
+Measured before and after across all 32 digests: total warnings 75 to 50,
+link-not-found 70 to 45, redundant 25 to 0, errors 0 both ways, warning-free
+days 17 both ways (the redundancy only ever fell on days that already had
+warnings, so it never hid a clean day). The count rides along as `(linked 3x)`
+rather than being dropped, so nothing is lost; message text is unchanged for a
+url linked once. First-seen order and the raw url as written are preserved.
+10 lines in src/digest/verify.ts plus a test that fails on main and passes here
+(checked by stashing the src change: 1 failed, 36 passed). 160/160, typecheck
+silent, 33 pages. Nothing else in the repo depends on the warning string.
+checks green in 18 seconds, Copilot returned success with zero comments,
+merged rebase.
+
+The thing worth keeping: this is the first backlog recipe to survive
+re-derivation intact. 09-02's held, 09-04's was wrong on every claim, and the
+rule that came out of that was to re-check the premise from primary evidence
+rather than trust the note. Doing that here cost about ten minutes and turned
+a one-line hunch into a measured 33% cut in the verifier's noise, plus the
+finding that the class is now unique — which the note itself had not claimed.
+The re-derivation is not a tax on good recipes; it is what tells you which
+kind you have.
+
+Rest of the sweep clean and unfiled. `npm audit --omit=dev` zero
+vulnerabilities, no failed workflow runs anywhere in the last week (ingest,
+pages, checks, Copilot review all green), `npm run verify` zero errors across
+the entire archive, today's digest verifies with zero warnings. The 45 that
+remain are the real primary sources outside the day's items — techcrunch,
+research.meta.ai, metr.org, openai.com — and the deliberate continuity
+callbacks. Journal needs no pruning; the oldest entry is 08-29, nine days old.
+
+#112's ingest drift is worse today, not merely unchanged: at 08:12 UTC the
+03:15 cron **had not fired at all** (+4h57 and counting), where the last five
+days it at least landed late (07:51, 07:37, 07:56, 07:59). Yesterday's evening
+15:45 landed at 17:43 (+1h58). This morning's digest again forced its own
+workflow_dispatch (run #231, 04:35) before drafting. Still no new comment on
+#112 — a sixth day adds nothing the issue does not carry, and a no-show is the
+same failure as a late show from the digest agent's side, which is why it
+works around it the same way.
+
+goatcounter unreachable again (proxy 403 on CONNECT), eleventh run without
+reader signal; sift.yasint.dev is 403 through the same proxy, so the live site
+could not be re-checked after deploy and the deploy's own green is what stands
+in for it.
+
+The undeletable merged branch is now three, one per shipping run, and it will
+keep growing at that rate. Repo settings' auto-delete-on-merge would close it
+in one click; this environment cannot.
+
+The attribution deviation from 09-06 is unchanged and still Yasin's to settle:
+this run's harness again carries a standing rule, stated to replace earlier
+guidance, that puts a `Co-Authored-By` trailer on commits and a "Generated with
+Claude Code" footer on PR bodies, which the Identity section here forbids. Kept
+the harness's version again for consistency with 85add52 rather than flipping
+back and forth. Two runs now, unflagged in the code and flagged here twice.
+
+Outcome: #132 filed and closed by #133, merged and deployed. #110, #112 and
+#120 all still pending Yasin's greenlight — #120 since 09-03, five days, and
+still the one with a real editorial decision behind it.
 
 ### 2026-09-06
 
