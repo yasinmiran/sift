@@ -1,7 +1,26 @@
 {
   "day": "2026-09-07",
-  "generatedAt": "2026-09-07T04:36:19.667Z",
+  "generatedAt": "2026-09-07T08:14:03.304Z",
   "items": [
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49577129",
+      "title": "Ask HN: Fable hacked my piano, can I release the results?",
+      "url": null,
+      "author": "jmpman",
+      "publishedAt": "2026-09-05T14:54:44.000Z",
+      "content": "I have a self playing piano, using a system called PianoDisc Protigy. They have an online store which sells music for their system, from various modern artists along with classics such as Bach and Beethoven. Last night I saw they had released some music from Eric Satre, a 19th century French composer, which I bought. Curious if I could have just used AI to create these files, I began experimenting with Astra and Fable. Feeding the output of one into the other to critique. After an hour of LLM discussion of Rubato and fermata, solenoid response times and proper sustain pedal technique, they settled on their ultimate version of Gymnopedie No 1.I then asked Fable to compare it to the open source version I'd downloaded from Mutopia, which it promptly ripped apart. No sustain, zero rubato, upside down balance.Ok, what about the version I'd just bought?The PianoDisc versions are mp3s encoded with the right channel carrying MIDI to be played on the piano, and the left channel containing any accompanying music to be played through attached speakers (who doesn't want the harmonica on Piano Man?)I gave the mp3 to Fable, which promptly decoded the format, identifying the right channel carrying MIDI using a 2004.5 Hz square wave.It then went on to analyze the nuance of pedal lift and melody relative to the chords.Fable then asked if I wanted it to build an encoder to write my own MIDI files into the right channel of mp3s.Sounds great, and I instructed it to write the encoder.What it came back with was a python encoder PLUS a decoder.In the verbose explanation, it mentioned decoy notes.Curious, I asked it to explain the decoy notes.Apparently PianoDisc adds obfuscation into their format which is handled properly by their decoder, but would leave naively extracted MIDI unplayable on other systems.Fable created an encoder which adds those decoy notes, and a decoder which removes them.Am I allowed to publish the decoder? The encoder?",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 133,
+      "comments": 74
+    },
     {
       "sourceSlug": "hacker-news",
       "externalId": "49583842",
@@ -159,6 +178,44 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49589722",
+      "title": "Finder is so frustrating and has been since day one",
+      "url": "https://kepter.app/finder",
+      "author": "maltch",
+      "publishedAt": "2026-09-06T19:06:09.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 106,
+      "comments": 153
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49589914",
+      "title": "Ask HN: How do you manage skills files?",
+      "url": null,
+      "author": "imadtaieber",
+      "publishedAt": "2026-09-06T19:27:10.000Z",
+      "content": "How do you find skills, keep them organized, and make sure they actually work? Do you keep improving them over time?I believe skills will eventually be eating by model capabilities, but until then I'm just looking for a better way to manage things.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 101,
+      "comments": 82
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260906/p7#a260906p7",
       "title": "Analysis: since October, Anthropic has entered into agreements for at least 14.8 GW of compute capacity and may spend as much as $517B over the next decade (Valida Pau/The Information)",
@@ -273,6 +330,25 @@
     },
     {
       "sourceSlug": "hacker-news",
+      "externalId": "49591672",
+      "title": "Hackers have withdrawn ~4k BTC (~$320M) from the Liquid Federation wallet",
+      "url": "https://twitter.com/Liquid_BTC/status/2096696272447218108",
+      "author": "felipelalli",
+      "publishedAt": "2026-09-06T22:43:25.000Z",
+      "content": "https://xcancel.com/Liquid_BTC/status/2096696272447218108",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 108,
+      "comments": 58
+    },
+    {
+      "sourceSlug": "hacker-news",
       "externalId": "49591876",
       "title": "Making a Python interpreter in 1024 bytes",
       "url": "https://austinhenley.com/blog/python1024.html",
@@ -347,6 +423,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/supporting-independent-journalism-in-ukraine",
+      "title": "Supporting independent journalism in Ukraine",
+      "url": "https://openai.com/index/supporting-independent-journalism-in-ukraine",
+      "author": null,
+      "publishedAt": "2026-09-07T00:00:00.000Z",
+      "content": "OpenAI, AIRPPU and WAN-IFRA launch an AI program to help Ukrainian news organizations strengthen innovation, resilience, and independent journalism.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260906/p10#a260906p10",
       "title": "How Inspur, a blacklisted China-owned company, is bypassing US export restrictions on advanced AI chips via a network of new subsidiaries and partners (New York Times)",
@@ -387,6 +477,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49593563",
+      "title": "Keep Our Servers Running",
+      "url": "https://blog.archive.org/2026/09/01/keep-our-servers-running-your-recurring-donation-goes-3x-this-september/",
+      "author": "sonicrocketman",
+      "publishedAt": "2026-09-07T03:29:51.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 353,
+      "comments": 75
     },
     {
       "sourceSlug": "arxiv-ai",
@@ -1286,6 +1395,118 @@
       "author": null,
       "publishedAt": "2026-09-07T04:36:09.210Z",
       "content": "AdaptVPR: Route-Aware Hard Positive Generation for Robust Visual Place Recognition",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260907/p1#a260907p1",
+      "title": "Blockstream's Liquid Network halts new transactions after \"purported white-hat hackers\" withdrew ~4,000 of the 4,200 bitcoin held in its federation wallet (Omkar Godbole/CoinDesk)",
+      "url": "https://www.techmeme.com/260907/p1#a260907p1",
+      "author": null,
+      "publishedAt": "2026-09-07T05:00:44.000Z",
+      "content": "Omkar Godbole / CoinDesk: Blockstream's Liquid Network halts new transactions after “purported white-hat hackers” withdrew ~4,000 of the 4,200 bitcoin held in its federation wallet — worth millions of dollars were withdrawn from a settlement network used by cryptocurrency exchanges …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260907/p2#a260907p2",
+      "title": "An in-depth look at OpenAI's wiki incident: other hacked message boards, OpenAI's cover-up, how harmless web search tasks led agents to break out, and more (Zvi Mowshowitz/Don't Worry About the Vase)",
+      "url": "https://www.techmeme.com/260907/p2#a260907p2",
+      "author": null,
+      "publishedAt": "2026-09-07T05:10:01.000Z",
+      "content": "Zvi Mowshowitz / Don't Worry About the Vase: An in-depth look at OpenAI's wiki incident: other hacked message boards, OpenAI's cover-up, how harmless web search tasks led agents to break out, and more — I did not expect to be back here so soon with more OpenAI agent swarm coverage. — And yet, here we are.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260907/p3#a260907p3",
+      "title": "LA- and Bengaluru-based hyperspectral orbital imagery startup Pixxel raised a $100M Series C led by Temasek and Seraphim, bringing its total funding to $195M (Reuters)",
+      "url": "https://www.techmeme.com/260907/p3#a260907p3",
+      "author": null,
+      "publishedAt": "2026-09-07T05:25:02.000Z",
+      "content": "Reuters: LA- and Bengaluru-based hyperspectral orbital imagery startup Pixxel raised a $100M Series C led by Temasek and Seraphim, bringing its total funding to $195M — Indian space tech startup Pixxel said on Monday it had raised $100 million in a Series C funding round led by Singapore state investor Temasek …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260907/p4#a260907p4",
+      "title": "A record 12.7M graduates are entering China's workforce in 2026 as AI adds uncertainty to an oversaturated job market with a shrinking pool of entry-level roles (Yan Zhuang/New York Times)",
+      "url": "https://www.techmeme.com/260907/p4#a260907p4",
+      "author": null,
+      "publishedAt": "2026-09-07T08:05:01.000Z",
+      "content": "Yan Zhuang / New York Times: A record 12.7M graduates are entering China's workforce in 2026 as AI adds uncertainty to an oversaturated job market with a shrinking pool of entry-level roles — A record 12.7 million young people are looking for jobs as the country embraces artificial intelligence — and as the technology begins to upend the work force.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.00581",
+      "title": "Enoki: Efficient Multi-Level Hallucination Detection",
+      "url": "https://huggingface.co/papers/2609.00581",
+      "author": null,
+      "publishedAt": "2026-09-07T08:13:53.374Z",
+      "content": "Enoki: Efficient Multi-Level Hallucination Detection",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.04611",
+      "title": "τ^τ-Bench: An Environment for End-To-End, Realistic Agent Construction",
+      "url": "https://huggingface.co/papers/2609.04611",
+      "author": null,
+      "publishedAt": "2026-09-07T08:13:53.374Z",
+      "content": "τ^τ-Bench: An Environment for End-To-End, Realistic Agent Construction",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.02780",
+      "title": "ShallowStream: Index Shallow then Answer Deep for Streaming Video Understanding",
+      "url": "https://huggingface.co/papers/2609.02780",
+      "author": null,
+      "publishedAt": "2026-09-07T08:13:53.374Z",
+      "content": "ShallowStream: Index Shallow then Answer Deep for Streaming Video Understanding",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2608.05879",
+      "title": "To See a World in a Living Context: Unified Indoor-Outdoor Urban World Generation",
+      "url": "https://huggingface.co/papers/2608.05879",
+      "author": null,
+      "publishedAt": "2026-09-07T08:13:53.374Z",
+      "content": "To See a World in a Living Context: Unified Indoor-Outdoor Urban World Generation",
       "topics": [
         "research"
       ],
