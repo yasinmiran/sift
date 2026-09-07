@@ -197,6 +197,28 @@ describe("verifyDigest", () => {
     expect(r.warnings).toEqual([expect.stringContaining("https://elsewhere.org/primary")]);
   });
 
+  it("warns once per unknown url however often the digest links it, and says how often", () => {
+    writeItems(DAY, urls);
+    writeDigest(
+      digestWith({
+        links: [
+          ...urls,
+          "https://elsewhere.org/primary",
+          "https://elsewhere.org/primary/",
+          "https://elsewhere.org/primary",
+          "https://elsewhere.org/other",
+        ],
+      }),
+    );
+    writeSlides();
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(true);
+    expect(r.warnings).toEqual([
+      "link not found in the day's items (primary source or typo?): https://elsewhere.org/primary (linked 3x)",
+      "link not found in the day's items (primary source or typo?): https://elsewhere.org/other",
+    ]);
+  });
+
   it("reads a hacker news permalink as the ingested story it points at", () => {
     writeFileSync(
       join(root, "data", "items", `${DAY}.json`),
