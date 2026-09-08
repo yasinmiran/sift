@@ -10,6 +10,13 @@ export const VAPID_PUBLIC_KEY =
   "BOof2eUjrc1IGkMGlqiRdfB39JYdGHUK-D5GKt1TkxuaO169sUgmgpOWbdilWLVRhBufODdaBgluq3QDS-Bk9AY";
 const BYLINE =
   '<span class="byline">by <a href="https://yasint.dev" data-backlink>yasin</a></span>';
+// The webfont stylesheet is the page's only render-blocking request, so it
+// decides when anything paints. It ships as a preload flipped to a stylesheet
+// on arrival: the page paints in the fallback stacks straight away and swaps
+// when the webfonts land, which is what display=swap already asks for. The
+// noscript copy keeps the plain blocking link for readers without js.
+const FONT_CSS =
+  "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Karla:ital,wght@0,300..700;1,300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap";
 const footer = (note?: string) => `<footer class="foot">
 ${BYLINE} &middot; <a class="feed" href="/feed.xml">rss</a>
 <p class="foot-note">curated daily with help of AI; mistakes are unlikely, but possible. see <a href="${REPO_URL}/blob/main/AGENTS.md">AGENTS.md</a> for how it works.</p>
@@ -65,7 +72,8 @@ ${published ? `<meta property="article:published_time" content="${published}">\n
 ${head}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Karla:ital,wght@0,300..700;1,300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="preload" as="style" href="${FONT_CSS}" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="${FONT_CSS}"></noscript>
 <style>
 /* Type, palette and substrate mirror yasint.dev (its tailwind theme + global.css). */
 :root{color-scheme:dark;--bg:#0d0c0b;--surface:#1a1816;--text:#e8e2d9;--body:#b8b0a3;--bold:#d4cdc2;--muted:#7a7268;--faint:#5c564e;--accent:#d4976a;--accent-hover:#e8b08a;--border:#2a2622;--radius:9px}

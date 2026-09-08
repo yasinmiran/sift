@@ -130,6 +130,21 @@ describe("buildSite", () => {
     );
   });
 
+  it("loads the webfont stylesheet without blocking the first paint", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+
+    for (const file of ["index.html", "2026-07-04.html", "404.html"]) {
+      const html = readFileSync(join(out, file), "utf8");
+      expect(html).toContain('<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?');
+      expect(html).toContain("onload=\"this.rel='stylesheet'\"");
+      // The only stylesheet link left is the noscript fallback; a bare one
+      // outside it would put the third-party request back in front of paint.
+      expect(html).toContain('<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?');
+      expect(html.match(/<link rel="stylesheet"/g)).toHaveLength(1);
+    }
+  });
+
   it("renders pen marks on day pages with the hand-drawn styles", () => {
     digest("2026-07-04", "a ==big deal== and ((circled)) figure");
     buildSite(root, out);
