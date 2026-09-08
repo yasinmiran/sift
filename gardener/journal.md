@@ -78,11 +78,17 @@ merges and closures and never expire.
   `git push origin --delete` dies on a sideband disconnect through the
   proxy and the api token gets 403 on `DELETE /git/refs/heads/...`.
   gardener/2026-09-04-color-scheme-dark,
-  gardener/2026-09-06-verify-hn-permalinks and
-  gardener/2026-09-07-verify-dedupe-link-warnings are all merged and all
+  gardener/2026-09-06-verify-hn-permalinks,
+  gardener/2026-09-07-verify-dedupe-link-warnings and
+  gardener/2026-09-08-fonts-non-blocking are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Three now; it grows by one every shipping run.
+  Four now; it grows by one every shipping run.
+- Walked clean on 2026-09-08, recorded so a future run does not re-walk them:
+  the slide cards (520 rendered across 32 days, no card clips — every card's
+  lowest element bottom lands exactly on the 1262px padding edge, never past
+  it) and horizontal overflow on the built site (34 pages at 375px and
+  1280px, zero pages scroll sideways, zero elements escape the viewport).
 - web-dev's feed has been frozen since 2026-06 while the site still
   builds (sitemap lastmod runs current). Recheck around 2026-09-29;
   developer.chrome.com/static/blog/feed.xml is the candidate
@@ -105,6 +111,91 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-08
+
+Shipped. What: the google fonts stylesheet no longer blocks the first paint
+(#136, PR #137, merged 22fa2b4). Why: the site is otherwise a single
+self-contained html file — inline `<style>`, no external css, no external js
+above the fold — and that one `<link rel="stylesheet">` decided when anything
+painted. Measured on the built index over a local http server, five runs each:
+median fcp **12656ms** on main against a fonts.googleapis.com `responseEnd` of
+12535ms, versus **88ms** on the branch with the stylesheet still in flight.
+
+The 12.5s is this environment's egress proxy, not a reader's network, and I
+said so in the issue, the PR and the commit rather than letting the number do
+work it has not earned. The finding is the coupling, not the magnitude: fcp
+landed within ~50ms of the stylesheet's arrival in all five runs on main
+(12668/12624/12656/12664/12636) and before it answered at all on the branch
+(88/88/100/80/100). Whatever a reader's latency to the font cdn is, that is
+what stands between them and a painted page, and an unreachable cdn means a
+blank one.
+
+The argument that made it feel like gardening rather than fashion: the url
+already carries `&display=swap`, which is an explicit "paint the fallback,
+swap when the webfont lands". A blocking stylesheet means the browser cannot
+reach that decision until after the wait the policy exists to avoid. The
+change does not pick a new tradeoff, it makes the one already written in the
+url actually happen. Same url, same families, weights and axes; preload
+flipped to stylesheet on load, `<noscript>` copy for no-js readers.
+
+Verified the type still arrives rather than assuming it: after
+`document.fonts.ready`, `document.fonts.check` is true for Fraunces, Karla and
+Space Mono, `h1` computes to Fraunces, and a full-page screenshot of the
+settled page is byte-identical to main's (sha256 `ff7e2978…` both ways). That
+mattered — the first probe run showed no font resource at all under the new
+pattern and looked like a broken fix; it was the 12s request still in flight
+past the measurement window, which is the point of the change, not a failure
+of it. Named the cost too: the url appears twice now, so each page grows 302
+bytes. 24 changed lines, test fails on main and passes here (stashed the src
+change: 1 failed, 22 passed), 161/161, typecheck silent, 33 pages, verify
+clean. checks green in 19s, Copilot returned "approval recommended" with zero
+comments, merged rebase, pages deploy green.
+
+Spent most of the run looking rather than fixing, which is what a healthy repo
+costs. Two signals got walked properly for the first time and both came back
+clean, so they are in the backlog as walked: the slide cards (520 across 32
+days, checked for clipping against the 1080x1350 frame — none, every card's
+lowest element sits exactly on the 1262px padding edge) and horizontal
+overflow on the built site (34 pages at 375px and 1280px, nothing escapes).
+Read today's am carousel end to end as well; it renders as designed.
+
+Rest of the sweep clean and unfiled. `npm audit --omit=dev` zero
+vulnerabilities, no failed workflow runs anywhere in the last week (ingest,
+pages, checks, Copilot review all green), `npm run verify` zero errors across
+the whole archive and zero warnings on today's digest. The archive now sits at
+52 warnings over 32 days, 16 warning-free days, and I re-derived the
+link-not-found class rather than inheriting yesterday's label: the 47 that
+remain spread across **38 distinct hosts**, 1 to 5 each, techcrunch the worst
+at 5. No systematic false positive is left hiding in there — after #130 and
+#133 the class is real signal, which is what the 09-06 lesson asks to be
+checked rather than assumed.
+
+#112's ingest drift is unchanged and still daily: today's 03:15 cron landed at
+**08:01:10, +4h46**, against yesterday's +4h58 worst; yesterday's evening
+15:45 landed at 19:23 (+3h38). This morning's digest again forced its own
+workflow_dispatch (run #235, 04:36) before drafting. Still no new comment on
+#112 — a seventh identical day adds nothing.
+
+goatcounter unreachable again (proxy 403 on CONNECT), twelfth run without
+reader signal; sift.yasint.dev is 403 through the same proxy, so the live site
+could not be re-checked after deploy and the deploy's own green stands in for
+it. Worth noting the asymmetry: fonts.googleapis.com *is* reachable from here,
+which is why today's measurement was possible at all.
+
+The attribution deviation is now three runs old and still Yasin's to settle.
+This run's harness again carries a standing rule, stated to replace earlier
+guidance, that puts a `Co-Authored-By` trailer on commits and a "Generated by
+Claude Code" footer on PR bodies, which the Identity section of the contract
+forbids. Kept the harness's version for the third time rather than flipping
+back and forth mid-stream — but this time it also went to Yasin directly
+rather than only here, per the lesson about the journal not being a channel.
+Interesting datum: issue #136 came out with no footer, so only the PR path
+appends one.
+
+Outcome: #136 filed and closed by #137, merged and deployed. #110, #112 and
+#120 all still pending Yasin's greenlight — #120 since 09-03, six days, and
+still the one with a real editorial decision behind it.
 
 ### 2026-09-07
 
