@@ -16,7 +16,7 @@ export function notFoundPage(): string {
   const m = /^\\/(\\d{4}-\\d{2}-\\d{2})\\.html$/.exec(location.pathname);
   if (!m) return;
   const day = m[1];
-  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
   const why = document.getElementById("why");
   why.innerHTML = day >= today
     ? "the <strong>" + day + "</strong> digest is not sifted yet. digests land around <strong>" + AM + "</strong> and <strong>" + PM + "</strong> Oslo time; <a href=\\"/\\">read the recent days</a> meanwhile."

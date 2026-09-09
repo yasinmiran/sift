@@ -6,12 +6,13 @@
 // every autumn on a site that is built once and read for months. AM_NEXT is
 // tomorrow's morning drop, which differs from AM on the evening before a
 // switch. Shared by the index note, the day-page note and the 404 page.
+// One `now` for all three, so they cannot land on either side of a UTC
+// midnight and disagree about which day they describe; it doubles as the
+// clock the surrounding scripts read.
 export const DROP_TIMES = `
-  const dropAt = (h, m, ahead) => {
-    const n = new Date();
-    const at = new Date(Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate() + (ahead || 0), h, m));
-    return new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Oslo", hour: "2-digit", minute: "2-digit", hour12: false }).format(at);
-  };
+  const now = new Date();
+  const dropAt = (h, m, ahead) => new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Oslo", hour: "2-digit", minute: "2-digit", hour12: false })
+    .format(new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + (ahead || 0), h, m)));
   const minsOf = (t) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3));
   const AM = dropAt(4, 45), PM = dropAt(16, 45), AM_NEXT = dropAt(4, 45, 1);`;
 
@@ -21,7 +22,6 @@ export const DROP_TIMES = `
 export function todayScript(): string {
   return `<script>
 (() => {${DROP_TIMES}
-  const now = new Date();
   const oslo = (t) => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" }).format(t);
   const day = oslo(now);
   const yesterday = oslo(new Date(now.getTime() - 864e5));
@@ -51,7 +51,6 @@ export function refreshNote(): string {
 (() => {${DROP_TIMES}
   const m = /(\\d{4}-\\d{2}-\\d{2})\\.html$/.exec(location.pathname);
   if (!m) return;
-  const now = new Date();
   const day = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
   if (m[1] !== day) return;
   const clock = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Oslo", hour: "2-digit", minute: "2-digit", hour12: false }).format(now);
