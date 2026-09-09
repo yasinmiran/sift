@@ -80,10 +80,11 @@ merges and closures and never expire.
   gardener/2026-09-04-color-scheme-dark,
   gardener/2026-09-06-verify-hn-permalinks,
   gardener/2026-09-07-verify-dedupe-link-warnings and
-  gardener/2026-09-08-fonts-non-blocking are all merged and all
+  gardener/2026-09-08-fonts-non-blocking and
+  gardener/2026-09-09-drop-times-dst are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Four now; it grows by one every shipping run.
+  Five now; it grows by one every shipping run.
 - Walked clean on 2026-09-08, recorded so a future run does not re-walk them:
   the slide cards (520 rendered across 32 days, no card clips — every card's
   lowest element bottom lands exactly on the 1262px padding edge, never past
@@ -111,6 +112,100 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-09
+
+Shipped. What: the site's "next digest lands at" times are derived from the
+utc schedule at view time instead of being hardcoded as oslo wall clock
+(#140, PR #141, merged c063b07). Why: three scripts print those times — the
+index note, today's day-page "morning half" note and the 404 — and all three
+carried the literals `06:45` and `18:45`. The schedule behind them is utc
+(04:34 and 16:34 plus about ten minutes) and **europe/oslo leaves cest on
+2026-10-25**, 46 days out, so from that sunday every label reads an hour
+late.
+
+The signal came from reading today.ts's own comment, which said the quiet
+part out loud: "drops land around 06:45 and 18:45 oslo time **in summer**".
+The caveat was written down and then never acted on, which is the same shape
+as the 09-06 lesson one layer over: a known-incomplete fact sitting in a
+comment is not safer than one sitting in the journal.
+
+Worth naming that this was not only cosmetic. `refreshNote` returns early on
+`clock >= "18:45"`, so on a winter afternoon between 17:45 and 18:45 a reader
+would sit on the day page being told the evening half is still coming — while
+reading it. The literals gated the logic, not just the copy.
+
+Verified in a browser rather than by reading the diff: built main and the
+branch over the same fixture, served both, and read the rendered note out of
+chromium with `page.clock.setFixedTime` and `timezoneId: Europe/Oslo`. Eight
+cases, and the split is exactly the claim — all three summer cases byte-for-
+byte identical (day page 12:00, index 05:00, 404), all five winter cases
+corrected (17:45/05:45 instead of 18:45/06:45, the tomorrow-branch too, and
+the 18:00 note correctly hidden where main still showed it). That probe is
+what turned "an hour is wrong" into a demonstration; the unit test that came
+out of it pins summer, winter and the evening before the switch, where
+today's and tomorrow's drops disagree.
+
+The tests needed changing, which is the part to be careful about. Four
+assertions looked for the literal `06:45`/`18:45` in the built html — exactly
+what the fix removes. They now assert the derivation, and the guarantee they
+stood for moved into the new DST test, which is strictly stronger than what
+it replaced (it checks values, not the presence of a string). Checked they
+fail against main's src by stashing the two source files: 4 failed, 158
+passed. 162/162 after, typecheck silent, 33 pages, verify clean, npm audit
+zero.
+
+Copilot returned "approval recommended" with one finding, and it was real:
+`dropAt` called `new Date()` once per label, so am, pm and tomorrow's am
+could in principle be computed either side of a utc midnight. Hoisted the
+clock into the snippet where the surrounding scripts reuse it rather than
+making their own — which also took the page-weight cost down, +354 bytes on a
+day page against +406 before. Answered it on the thread and pushed; checks
+green in 17s both rounds, merged rebase, pages deploy green.
+
+Rest of the sweep clean and unfiled. No failed workflow runs anywhere in the
+last week (ingest, pages, checks, Copilot review all green), `npm run verify`
+zero errors across the archive and three warnings on today's digest, all of
+them the real class — an x.com post, a cisa advisory and an nbc story, none
+of them in the day file. Journal needs no pruning; oldest entry is 08-29.
+
+Two things looked at and left alone rather than filed, recorded so a later
+run does not re-derive them from scratch. The rss feed carries only the
+frontmatter description, and `pubDate` is a pure function of the day
+(04:34 utc), so the evening rewrite never reaches a feed subscriber: all six
+complete days since 09-03 got a pm rewrite and all six changed the
+description. Fixing it properly wants a field saying which edition a file is,
+and that is frontmatter, which is the digest agent's contract and not mine —
+an issue, not a PR, and not one worth filing on top of #110/#112/#120 all
+still waiting. Day pages also have no prev/next navigation, only "all days";
+that is an addition to the design rather than a correction inside it, so it
+is Yasin's call, not a gardener slot.
+
+#112's ingest drift is unchanged and still daily: today's 03:15 cron landed
+at **08:05:13, +4h50**; yesterday's evening 15:45 at 18:58 (+3h13). This
+morning's digest again forced its own workflow_dispatch (run #239, 04:35)
+before drafting. Still no new comment on #112 — an eighth identical day adds
+nothing.
+
+goatcounter unreachable again (proxy 403 on CONNECT), thirteenth run without
+reader signal; sift.yasint.dev is 403 through the same proxy, so the live
+site could not be re-checked after deploy and the deploy's own green stands
+in for it. Branch deletion failed the same way as every shipping run
+(sideband disconnect); five merged gardener branches on the remote now.
+
+The attribution deviation is four runs old and still Yasin's to settle. This
+run's harness again carries a standing rule, stated to replace earlier
+guidance, that puts a `Co-Authored-By` trailer on commits and a "Generated by
+Claude Code" footer on PR bodies, which the Identity section of the contract
+forbids and which the contract's own RESOLVED note (09-03) says to strip.
+Kept the harness's version for the fourth time rather than flipping back and
+forth, and said so to Yasin directly rather than only here. Same datum as
+09-08 holds: issue #140 came out with no footer, so only the PR path appends
+one.
+
+Outcome: #140 filed and closed by #141, merged and deployed. #110, #112 and
+#120 all still pending Yasin's greenlight — #120 since 09-03, seven days, and
+still the one with a real editorial decision behind it.
 
 ### 2026-09-08
 
