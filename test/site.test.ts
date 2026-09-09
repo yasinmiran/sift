@@ -1,9 +1,10 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { createHash } from "node:crypto";
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { buildSite } from "../src/site/build";
+import { DROP_TIMES } from "../src/site/today";
 
 let root: string;
 let out: string;
@@ -11,6 +12,9 @@ beforeEach(() => {
   root = mkdtempSync(join(tmpdir(), "sift-site-"));
   out = join(root, "site");
   mkdirSync(join(root, "digests"), { recursive: true });
+});
+afterEach(() => {
+  vi.useRealTimers();
 });
 
 const digest = (day: string, body: string) =>
@@ -56,10 +60,30 @@ describe("buildSite", () => {
     expect(index).toContain('<section id="today" class="today-note" hidden></section>');
     expect(index).toContain('timeZone: "Europe/Oslo"');
     expect(index).toContain("location.replace");
-    expect(index).toContain("06:45");
-    expect(index).toContain("18:45");
+    expect(index).toContain("dropAt(4, 45)");
+    expect(index).toContain("dropAt(16, 45)");
+    expect(index).toContain('"around " + AM_NEXT + " tomorrow"');
     const day = readFileSync(join(out, "2026-07-03.html"), "utf8");
     expect(day).not.toContain('id="today"');
+  });
+
+  // The two drop labels are Oslo wall clock, and Oslo moves an hour twice a
+  // year while the built html sits still; they have to come from the UTC
+  // schedule at view time, not from a literal baked in at build time.
+  it("derives the drop times from the UTC schedule, so they hold across DST", () => {
+    const read = () => new Function(`${DROP_TIMES}\nreturn [AM, PM, AM_NEXT];`)() as string[];
+    vi.useFakeTimers();
+
+    vi.setSystemTime(new Date("2026-09-09T08:00:00Z"));
+    expect(read()).toEqual(["06:45", "18:45", "06:45"]);
+
+    vi.setSystemTime(new Date("2026-12-15T08:00:00Z"));
+    expect(read()).toEqual(["05:45", "17:45", "05:45"]);
+
+    // Europe/Oslo leaves CEST on 2026-10-25: that evening, tomorrow's
+    // morning drop is an hour earlier than today's was.
+    vi.setSystemTime(new Date("2026-10-24T19:00:00Z"));
+    expect(read()).toEqual(["06:45", "18:45", "05:45"]);
   });
 
   it("carries the byline backlink and a github link in a shared footer", () => {
@@ -205,8 +229,7 @@ describe("buildSite", () => {
     expect(nf).toContain('href="/"');
     expect(nf).toContain('href="/favicons/favicon.svg"');
     expect(nf).toContain('timeZone: "Europe/Oslo"');
-    expect(nf).toContain("06:45");
-    expect(nf).toContain("18:45");
+    expect(nf).toContain('"</strong> and <strong>" + PM + "</strong> Oslo time');
     expect(nf).toContain("https://github.com/yasinmiran/sift");
     const index = readFileSync(join(out, "index.html"), "utf8");
     expect(index).not.toContain('<meta name="robots" content="noindex">');
@@ -249,7 +272,8 @@ describe("buildSite", () => {
     buildSite(root, out);
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).toContain('id="refresh-note"');
-    expect(day).toContain("18:45");
+    expect(day).toContain('the evening update lands <strong>around " + PM + "</strong> (Oslo time)');
+    expect(day).toContain("minsOf(PM) - minsOf(clock)");
     expect(day).toContain("in case you have them on");
     expect(day).toContain("your time");
     expect(day).toContain("left * 60000");
