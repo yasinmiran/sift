@@ -80,11 +80,42 @@ merges and closures and never expire.
   gardener/2026-09-04-color-scheme-dark,
   gardener/2026-09-06-verify-hn-permalinks,
   gardener/2026-09-07-verify-dedupe-link-warnings and
-  gardener/2026-09-08-fonts-non-blocking and
-  gardener/2026-09-09-drop-times-dst are all merged and all
+  gardener/2026-09-08-fonts-non-blocking,
+  gardener/2026-09-09-drop-times-dst and
+  gardener/2026-09-10-actions-node24 are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Five now; it grows by one every shipping run.
+  Six now; it grows by one every shipping run.
+- Seven enabled sources produced **zero items in the whole 32-day archive**:
+  karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
+  web-dev, normal-technology. Not failures — today's ingest logged
+  `failures: []`, and the four that were fetched this run all parsed fine and
+  simply had nothing inside the 48h window (`kept: 0` against `dropped` of
+  20/88/20/10). So this is either genuinely low-frequency blogs or dead feeds,
+  and telling those apart per source is the work. Registry consequences are
+  editorial, so this ends as an issue, not a PR — but #120 is already waiting
+  on the same kind of call and a second unanswered editorial issue helps
+  nobody. Re-measure when #120 moves; fold the web-dev recheck (below) into it.
+- `state.sources` in data/state.json is never pruned, unlike `seen`.
+  shopify-engineering, tbpn and boris-cherny are gone from config/sources.json
+  and their conditional-GET validators are still in the file. Harmless today
+  (a resurrected slug would just get a 200 on a stale etag) and roughly 200
+  bytes of cruft, so not worth a slot on its own; if a run ever touches
+  state.ts for a real reason, add the prune in the same PR.
+- Walked clean on 2026-09-10, recorded so a future run does not re-walk them.
+  Tap targets: every interactive element on the index and a day page measured
+  at 375px and 1280px. The 31 `.days` anchors are 20px tall, under WCAG 2.5.8's
+  24px, but the gaps between them are 111-180px, so the spacing exception
+  applies with enormous margin; prose links are covered by the inline
+  exception, and the footer's `yasin`/`rss` pair sits ~42px centre-to-centre
+  against a 24px requirement. No violation. The maskable icon: icon-512.png
+  and icon-512-maskable.png are byte-identical (sha256 `5e1fcdfb…`), which
+  looks like a mistake and is not one — the mark is a centred dot about 60% of
+  the frame, comfortably inside the 80% safe-zone circle, and a maskable icon
+  is supposed to bleed its background to the edge. The `.foot-note` measure:
+  `max-width:60%` gives ~50 characters a line on desktop and ~33 on a phone,
+  which is a percentage doing opposite things at the two ends, but the note is
+  two lines of 11px chrome and changing it would have been fashion, not a fix.
 - Walked clean on 2026-09-08, recorded so a future run does not re-walk them:
   the slide cards (520 rendered across 32 days, no card clips — every card's
   lowest element bottom lands exactly on the 1262px padding edge, never past
@@ -112,6 +143,91 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-10
+
+Shipped. What: every workflow action moved off the deprecated node 20 runtime
+(#144, PR #145, merged 6fcc9f7). Why: the last line of every job in every
+workflow, on every run, was the runner saying so — ingest naming
+`actions/checkout@v4, actions/setup-node@v4`, pages/build naming those two
+plus `actions/cache@v4` and `actions/upload-artifact@v4`, pages/deploy naming
+`actions/deploy-pages@v4`. "Being forced to run on Node.js 24" is the runner
+already declining to start node 20; the pins are what github is deprecating,
+and when it finishes, ingest, pages and checks all stop at once. That is the
+whole machine the digest agent runs on, which is what made a version bump feel
+like gardening rather than housekeeping.
+
+Ten lines, five pins, three files. Every runtime claim came from the action's
+own `action.yml` at the tag rather than from memory, which was the right
+instinct twice over. First, `actions/upload-artifact@v4` in the pages warning
+is transitive — it lives inside `upload-pages-artifact`, and that action's own
+`@v4` **still** pins `upload-artifact@v4.6.2`, node20. Bumping v3→v4 would
+have looked like a fix and left the warning standing; only `@v5`, which pins
+`upload-artifact@v7.0.0`, is node24. Second, `actions/upload-artifact@v5`
+itself declares node20 at its tag, so "v5 means node24" is not a rule you can
+apply across actions by pattern. Read each one.
+
+The one real behaviour change is `upload-pages-artifact@v5` excluding
+dot-prefixed entries from the tarball unless asked otherwise. Proved it a
+no-op instead of asserting it: ran both the v3 and the v5 `tar` invocations
+verbatim against the real built `site/` — 33 pages plus the full slides tree,
+692 files — and got 790 members either way with member lists byte-identical
+(sha256 `a351193e…` both). The published artifacts agree: 88,024,666 bytes on
+the last v3 run against 88,020,815 on this one, a 0.004% delta that is png
+re-render noise, not missing files.
+
+Verification that mattered more than the tests, though: the proof is an
+absence. checks green in 13s and its log ends on "Cleaning up orphan
+processes" with no warning after it — on main that exact line was followed by
+the deprecation notice. Same for pages/build and pages/deploy after the merge.
+Every node 20 warning in the repo is gone, including the transitive one, which
+is what confirms the upload-pages-artifact reasoning was right rather than
+merely plausible. 162/162, typecheck silent, 33 pages, verify clean, all three
+workflow files parse. Copilot returned "approval recommended" with zero
+comments. Merged rebase, pages run 229 green, deploy reported success.
+
+Rest of the sweep clean. No failed workflow runs anywhere in the last week,
+`npm run verify` returned zero errors **and zero warnings** on today's digest,
+which is the first fully silent verify in a while.
+
+Three signals walked and left alone rather than filed — tap targets, the
+maskable icon, the footnote measure — all three written into the backlog as
+walked, with the measurements, so a later run does not re-derive them. The
+icon one is worth naming here because it was nearly a bad PR: two byte-
+identical files where one is declared `purpose: "maskable"` reads as an
+obvious oversight, and it took actually looking at the image to see the mark
+already sits inside the safe zone and the duplication is correct. Cheap
+explanations hide bugs, per 09-06; expensive-looking bugs also hide correct
+code.
+
+Two new backlog items from the data. Seven enabled sources have produced zero
+items across the entire 32-day archive, with `failures: []` — so not broken,
+just quiet, and separating dead feeds from slow bloggers has a registry
+consequence, which is Yasin's. Not filing it as a second unanswered editorial
+issue while #120 sits. And `state.sources` is never pruned the way `seen` is,
+so three slugs deleted from the registry still carry validators; too small to
+spend a slot on, flagged to ride along with any future state.ts change.
+
+#112's ingest drift is unchanged and still daily: today's 03:15 cron landed at
+**08:04:51, +4h50**; yesterday's 15:45 at 18:51 (+3h06). This morning's digest
+again forced its own workflow_dispatch (run 243, 04:36) before drafting. Ninth
+identical day, still no comment on #112 — nothing to add.
+
+goatcounter unreachable again (proxy 403 on CONNECT), fourteenth run without
+reader signal; sift.yasint.dev is 403 through the same proxy, so the deploy's
+own green again stands in for a live check. Branch deletion failed the same way
+as every shipping run; six merged gardener branches on the remote now.
+
+The attribution deviation is five runs old and still Yasin's to settle. Same
+call as the last four — kept the harness's `Co-Authored-By` trailer and PR
+footer rather than flipping the convention back and forth, and said so to him
+directly. One datum that argues the harness is now simply the house style:
+the digest agent's own commits carry `Co-Authored-By: Claude Sonnet 5`
+trailers, so the Identity rule is out of step with what the repo already does
+twice a day. Worth a one-line contract edit either way, which is his.
+
+Outcome: #144 filed and closed by #145, merged and deployed. #110, #112 and
+#120 all still pending — #120 since 09-03, eight days.
 
 ### 2026-09-09
 
