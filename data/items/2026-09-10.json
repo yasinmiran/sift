@@ -1,6 +1,6 @@
 {
   "day": "2026-09-10",
-  "generatedAt": "2026-09-10T04:36:51.422Z",
+  "generatedAt": "2026-09-10T08:05:19.874Z",
   "items": [
     {
       "sourceSlug": "hacker-news",
@@ -59,6 +59,21 @@
       "author": "Andrew Barba",
       "publishedAt": "2026-09-09T00:00:00.000Z",
       "content": "agents can now retain context across sessions and use it in future conversations.evePersistent is organized into slots. You can define named slots in files under . Each slot specifies a provider, which stores and retrieves the memory, and a scope, which determines who or what shares it. For example, you can keep separate memory for each authenticated user.memoryagent/memory/Before each turn, eve retrieves relevant memory and adds it to the model's context. Depending on the provider, memory can be updated automatically after a turn, through tools the agent uses, or through both methods.To add eve's built-in file memory provider, run:The command creates a memory slot scoped to each authenticated caller:fileFor agents deployed on Vercel, file memory uses a private store so saved memories persist across restarts and deployments.Vercel BlobOther supported memory providers include , , and . You can also connect another storage system or memory service by .SupermemoryUpstash AgentKitKybernesis Arcanabuilding a custom providerRead the to choose a provider and get started.memory documentationRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/deepseek-v4-1-flash-now-available-on-ai-gateway",
+      "title": "DeepSeek V4.1 Flash now available on AI Gateway",
+      "url": "https://vercel.com/changelog/deepseek-v4-1-flash-now-available-on-ai-gateway",
+      "author": "Zachary Chen",
+      "publishedAt": "2026-09-09T00:00:00.000Z",
+      "content": "is now available on AI Gateway with native image understanding.DeepSeek V4.1 FlashV4.1 Flash has vision support and accepts text and images in the same request, so you can ask questions about screenshots, read charts, and extract information from visual content.The model has a 1 million token context window and supports responses up to 384,000 tokens, along with reasoning, tool use, and prompt caching. Its new architecture processes input and generates output with separate components, reducing the active computation needed for each stage.Use as the model name:deepseek/deepseek-v4.1-flashTo use it in Claude Code, Codex, Cursor, and more, install the latest Vercel CLI and run setup:Then select in the agent. See the for details.deepseek/deepseek-v4.1-flashcoding agents guideTry DeepSeek V4.1 Flash in the .model playgroundAI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in , , , , and more.custom reportingZero Data Retention supportbudgets for API keysrouting rulesAI Gateway reflects provider pricing with no markup and does not charge a platform fee on inference, including on (BYOK) requests.Bring Your Own KeyYou can view available on AI Gateway.all language modelsRead more",
       "topics": [
         "devtools-infra",
         "frontend"
@@ -288,6 +303,20 @@
       "content": "CUPERTINO, Calif.—Apple's new iPhone 18 Pro is an iterative update that—as usual—focuses heavily on both performance and new camera features. This time around, many of the new camera features are oriented around giving the user more direct control of the image, rather than depending entirely on Apple's computational photography assumptions. As usual, the new iPhone has a new chip. It's called A20 Pro, and it's the first 2 nm chip for the iPhone. It has a 6-core CPU, with two super-cores that are up to 20 percent faster, and four efficiency cores. A 7-core GPU offers up to 40 percent improved performance and increased bandwidth. The A20 Pro also has a new Neural Engine—the machine-learning processor on the system-on-chip—which the company says is basically two Neural Engines on one chip.Read full article Comments",
       "topics": [
         "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/vercel-s-v0-adds-one-click-auth-databases-and-email-without-leaving-chat",
+      "title": "Vercel's v0 Adds One-Click Auth, Databases and Email Without Leaving Chat",
+      "url": "https://alphasignal.ai/news/vercel-s-v0-adds-one-click-auth-databases-and-email-without-leaving-chat",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-09T17:53:47.000Z",
+      "content": "Vercel is closing the gap between its Marketplace and v0, letting you wire Resend, Clerk, MongoDB Atlas, Algolia, and Amazon OpenSearch straight from a chat prompt.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -768,6 +797,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/dream-loop-gives-coding-agents-a-gated-critic-loop-for-aaa-3d-visuals",
+      "title": "dream-loop Gives Coding Agents a Gated Critic Loop for AAA 3D Visuals",
+      "url": "https://alphasignal.ai/news/dream-loop-gives-coding-agents-a-gated-critic-loop-for-aaa-3d-visuals",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-09T22:43:38.000Z",
+      "content": "A new open-source agent skill called dream-loop turns any capable coding agent into a self-critiquing 3D artist that iterates against generated concept art.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260909/p47#a260909p47",
       "title": "Consensys plans to split into two companies: MetaMask, with Joe Lubin as CEO, and a new Consensys focused on Ethereum and institutional infrastructure (Jason Shubnell/The Block)",
@@ -862,6 +905,118 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "console-dev",
+      "externalId": "https://four.htmx.org?ref=console.dev",
+      "title": "Tool: htmx 4",
+      "url": "https://four.htmx.org?ref=console.dev",
+      "author": null,
+      "publishedAt": "2026-09-10T00:00:00.000Z",
+      "content": "Description: Enhance HTML.What we like: Simplifies the approach to adding attributes to HTML tags for dynamic features. Now uses fetch(). Makes it easy to implement features like infinite scroll, form post, search as you type, polling, and streaming responses. Still pretty minimal (11kb) and no dependencies.What we dislike: Lots of attributes littered all over your HTML, but that is the point.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "https://github.com/pg83/solo?ref=console.dev",
+      "title": "Tool: Solo",
+      "url": "https://github.com/pg83/solo?ref=console.dev",
+      "author": null,
+      "publishedAt": "2026-09-10T00:00:00.000Z",
+      "content": "Description: Loader for Linux static binaries.What we like: Makes static binaries for GPU-accelerated code actually work. Makes it easy to build self-contained applications that can benefit from acceleration. Compile to musl, but still use common shared packages.What we dislike: Incomplete ABI coverage: unsupported glibc calls currently abort. Musl has its own compatibility issues.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "https://copperhead.sh?ref=console.dev",
+      "title": "Beta: Copperhead",
+      "url": "https://copperhead.sh?ref=console.dev",
+      "author": null,
+      "publishedAt": "2026-09-10T00:00:00.000Z",
+      "content": "Cursor for circuit boards.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "https://github.com/mlc-ai/web-llm?ref=console.dev",
+      "title": "Beta: WebLLM",
+      "url": "https://github.com/mlc-ai/web-llm?ref=console.dev",
+      "author": null,
+      "publishedAt": "2026-09-10T00:00:00.000Z",
+      "content": "In-browser LLM inference.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "https://github.com/NVIDIA/Personal-AI-Router?ref=console.dev",
+      "title": "Beta: PAIR",
+      "url": "https://github.com/NVIDIA/Personal-AI-Router?ref=console.dev",
+      "author": null,
+      "publishedAt": "2026-09-10T00:00:00.000Z",
+      "content": "Personal AI Router.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "https://www.vidact.dev?ref=console.dev",
+      "title": "Beta: Vidact",
+      "url": "https://www.vidact.dev?ref=console.dev",
+      "author": null,
+      "publishedAt": "2026-09-10T00:00:00.000Z",
+      "content": "Compile React-style components to DOM.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "https://tt-a1i.github.io/archify/?ref=console.dev",
+      "title": "Beta: Archify",
+      "url": "https://tt-a1i.github.io/archify/?ref=console.dev",
+      "author": null,
+      "publishedAt": "2026-09-10T00:00:00.000Z",
+      "content": "HTML architecture diagrams.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "https://github.com/ebitengine/purego?ref=console.dev",
+      "title": "Beta: Purego",
+      "url": "https://github.com/ebitengine/purego?ref=console.dev",
+      "author": null,
+      "publishedAt": "2026-09-10T00:00:00.000Z",
+      "content": "Call C functions from Go without Cgo.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260909/p49#a260909p49",
       "title": "Sources: Jeffrey Katzenberg, ex-OpenAI Sora head Bill Peebles, and ex-Dropbox CFO Sujay Jaswa plan to launch a startup to train AI video models for filmmakers (The Information)",
@@ -930,6 +1085,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49637385",
+      "title": "Show HN: What if the speed of light was 5 km/h?",
+      "url": "https://rivendell.dmitrybrant.com/relativity/",
+      "author": "dmitrybrant",
+      "publishedAt": "2026-09-10T01:58:00.000Z",
+      "content": "I've always wanted to make a visualization where the speed of light was scaled down to human speeds, so that we could intuit relativistic effects with everyday objects. Here is the first version of it!",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 262,
+      "comments": 110
     },
     {
       "sourceSlug": "techmeme",
@@ -1795,6 +1969,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49638280",
+      "title": "All grown-ups were once children, but only few of them remember it",
+      "url": "https://mathstodon.xyz/@tao/117244102901892965",
+      "author": "yurivish",
+      "publishedAt": "2026-09-10T04:04:38.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 124,
+      "comments": 65
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260910/p1#a260910p1",
       "title": "Sources: Alibaba is set to lead a $300M round in AI model testing startup UniPat AI at a $2.5B valuation; UniPat founder Li Kuan worked at Alibaba's Tongyi Lab (Bloomberg)",
@@ -1809,6 +2002,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49638353",
+      "title": "OpenAI might have stolen another major proof",
+      "url": "https://twitter.com/ValerioCapraro/status/2097791836269977996",
+      "author": "tamnd",
+      "publishedAt": "2026-09-10T04:19:48.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 174,
+      "comments": 62
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260910/p2#a260910p2",
       "title": "OpenAI Foundation board member Paul Christiano says the AI industry is currently not on track to reduce the acute loss-of-control risk to an \"acceptable\" level (Paul Christiano/@paulfchristiano)",
@@ -1818,6 +2030,20 @@
       "content": "Paul Christiano / @paulfchristiano: OpenAI Foundation board member Paul Christiano says the AI industry is currently not on track to reduce the acute loss-of-control risk to an “acceptable” level — I am excited to be joining the OpenAI nonprofit board, serving on the Safety and Security Committee to support safety oversight.",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-s-artemis-hits-99-on-android-tasks-where-most-agents-fail",
+      "title": "Google's ARTEMIS Hits 99% on Android Tasks Where Most Agents Fail",
+      "url": "https://alphasignal.ai/news/google-s-artemis-hits-99-on-android-tasks-where-most-agents-fail",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-10T04:35:49.000Z",
+      "content": "Google's Pixel Test Engineering team open-sourced ARTEMIS, an Android automation agent hitting 99%+ on AndroidWorld with 3-5s step latency.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -1998,6 +2224,207 @@
       "author": null,
       "publishedAt": "2026-09-10T04:36:43.558Z",
       "content": "Difficulty-Adaptive Tree-Structured Policy Optimization for Expanding Reasoning Coverage in RLVR",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260910/p3#a260910p3",
+      "title": "Sources including French public officials detail how Mistral's rise over the past three years owes much to the privileged relationship it built with Macron (Océane Herrero/Politico)",
+      "url": "https://www.techmeme.com/260910/p3#a260910p3",
+      "author": null,
+      "publishedAt": "2026-09-10T05:01:00.000Z",
+      "content": "Oc&eacute;ane Herrero / Politico: Sources including French public officials detail how Mistral's rise over the past three years owes much to the privileged relationship it built with Macron — Mistral has forged unrivaled ties with the French presidency. Now, Emmanuel Macron is departing. — in Paris",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260910/p4#a260910p4",
+      "title": "Sources: Chinese AI chipmakers Huawei, Cambricon, MetaX, and Iluvatar CoreX have raised prices for current and next-gen chips by 20%-50% due to rising HBM costs (Reuters)",
+      "url": "https://www.techmeme.com/260910/p4#a260910p4",
+      "author": null,
+      "publishedAt": "2026-09-10T05:30:02.000Z",
+      "content": "Reuters: Sources: Chinese AI chipmakers Huawei, Cambricon, MetaX, and Iluvatar CoreX have raised prices for current and next-gen chips by 20%-50% due to rising HBM costs — Chinese AI chipmakers including Huawei Technologies [RIC:RIC:HWT.UL] and Cambricon (688256.SS) have sharply raised prices …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260910/p5#a260910p5",
+      "title": "Q&A with AI researcher Jacob Coxon, who quit Anthropic, on the need for industry-wide, international coordination to limit recursive self-improvement, and more (Maxwell Zeff/Wired)",
+      "url": "https://www.techmeme.com/260910/p5#a260910p5",
+      "author": null,
+      "publishedAt": "2026-09-10T05:45:00.000Z",
+      "content": "Maxwell Zeff / Wired: Q&A with AI researcher Jacob Coxon, who quit Anthropic, on the need for industry-wide, international coordination to limit recursive self-improvement, and more — Jacob Coxon talks to WIRED about the “mini Manhattan project” inside Anthropic, the problem with alignment …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260910/p6#a260910p6",
+      "title": "Chinese tech giants are hiring skilled professionals as specialized AI trainers to build high-quality datasets, mirroring efforts by US platforms like Mercor (Viola Zhou/Rest of World)",
+      "url": "https://www.techmeme.com/260910/p6#a260910p6",
+      "author": null,
+      "publishedAt": "2026-09-10T05:55:01.000Z",
+      "content": "Viola Zhou / Rest of World: Chinese tech giants are hiring skilled professionals as specialized AI trainers to build high-quality datasets, mirroring efforts by US platforms like Mercor — Squeezed by a stagnant economy and state directives, China's underemployed lawyers, architects, and engineers are taking cheap gig work …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/deepseek-s-v4-1-flash-beats-its-own-flagship-at-a-quarter-of-the-memory-cost",
+      "title": "DeepSeek's V4.1-Flash Beats Its Own Flagship at a Quarter of the Memory Cost",
+      "url": "https://alphasignal.ai/news/deepseek-s-v4-1-flash-beats-its-own-flagship-at-a-quarter-of-the-memory-cost",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-10T06:10:09.000Z",
+      "content": "DeepSeek's 552B mixture-of-experts model splits input and output compute asymmetrically, natively handles vision, and undercuts its own flagship on price.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49639090",
+      "title": "DeepSeek v4.1 Flash",
+      "url": "https://twitter.com/deepseek_ai/status/2097930608790167907",
+      "author": "Liwink",
+      "publishedAt": "2026-09-10T06:11:05.000Z",
+      "content": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 147,
+      "comments": 26
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260910/p7#a260910p7",
+      "title": "How Amazon's Zoox, which has ~100 AVs in its fleet, is utilizing social media influencers, community events, and ad campaigns to compete with Waymo in SF (Emmy Martin/New York Times)",
+      "url": "https://www.techmeme.com/260910/p7#a260910p7",
+      "author": null,
+      "publishedAt": "2026-09-10T06:20:00.000Z",
+      "content": "Emmy Martin / New York Times: How Amazon's Zoox, which has ~100 AVs in its fleet, is utilizing social media influencers, community events, and ad campaigns to compete with Waymo in SF — The Amazon-owned driverless car company is a distant second to Waymo. Its pitch to riders? Wine pop-ups, festival sponsorships and a car built to be filmed.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260910/p8#a260910p8",
+      "title": "Sources: Grab is in talks to buy a majority stake in Advance Intelligence Group's Singapore-based BNPL platform Atome Financial at a $2B+ valuation (Bloomberg)",
+      "url": "https://www.techmeme.com/260910/p8#a260910p8",
+      "author": null,
+      "publishedAt": "2026-09-10T06:25:01.000Z",
+      "content": "Bloomberg: Sources: Grab is in talks to buy a majority stake in Advance Intelligence Group's Singapore-based BNPL platform Atome Financial at a $2B+ valuation — Grab Holdings Ltd., the biggest ride-hailing and food-delivery firm in Southeast Asia, is in talks to buy a majority stake in Singapore-based buy …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260910/p9#a260910p9",
+      "title": "The AI boom is fueling a resurgence in VC bets in \"moonshot\" sectors such as BCI; Dealroom says non-AI deeptech funding has topped $150B since the start of 2024 (Tim Bradshaw/Financial Times)",
+      "url": "https://www.techmeme.com/260910/p9#a260910p9",
+      "author": null,
+      "publishedAt": "2026-09-10T06:30:01.000Z",
+      "content": "Tim Bradshaw / Financial Times: The AI boom is fueling a resurgence in VC bets in “moonshot” sectors such as BCI; Dealroom says non-AI deeptech funding has topped $150B since the start of 2024 — Tech investors are rediscovering the kind of long-shot sci-fi bets that helped build Silicon Valley.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260910/p10#a260910p10",
+      "title": "A look at why the oft-discussed predictions that AI will deliver double-digit GDP growth in advanced economies are extremely unlikely over the next 10-15 years (Ghosts of Electricity)",
+      "url": "https://www.techmeme.com/260910/p10#a260910p10",
+      "author": null,
+      "publishedAt": "2026-09-10T06:35:00.000Z",
+      "content": "Ghosts of Electricity: A look at why the oft-discussed predictions that AI will deliver double-digit GDP growth in advanced economies are extremely unlikely over the next 10-15 years — The following post represents the personal views of the author(s) and does not reflect or represent the positions of their employers.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=992443",
+      "title": "Volvo XC40 PHEV is back with a new look, better sensors, and Gemini AI",
+      "url": "https://www.theverge.com/transportation/992443/volvo-xc40-phev-specs-price-gemini",
+      "author": "Andrew J. Hawkins",
+      "publishedAt": "2026-09-10T07:00:00.000Z",
+      "content": "It's been about three years since Volvo discontinued its plug-in hybrid XC40. The mild hybrid version remains on sale in the US and elsewhere, alongside the electric EX40. Today, Volvo announced it was bringing back the PHEV version and giving it a major facelift. When it arrives at dealerships early next year, the new XC40 will have updated exterior styling, a gut-renovated interior featuring Google's Gemini AI assistant, enlarged infotainment screen, and a new sensor-and-software safety suite. As a hybrid, the XC40 serves as a bridge for customers who want better gas mileage but aren't ready for the pure EV lifestyle. Volvo itself needs t … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.05405",
+      "title": "WearableQA: A Benchmark for Health Reasoning over Real-World Wearable Data",
+      "url": "https://huggingface.co/papers/2609.05405",
+      "author": null,
+      "publishedAt": "2026-09-10T08:05:12.033Z",
+      "content": "WearableQA: A Benchmark for Health Reasoning over Real-World Wearable Data",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.09155",
+      "title": "SyncWorld: Visual Calibration Enables World Models as Zero-Shot Simulators",
+      "url": "https://huggingface.co/papers/2609.09155",
+      "author": null,
+      "publishedAt": "2026-09-10T08:05:12.033Z",
+      "content": "SyncWorld: Visual Calibration Enables World Models as Zero-Shot Simulators",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.07369",
+      "title": "DF26: We Cannot Tell Fake From Real Anymore",
+      "url": "https://huggingface.co/papers/2609.07369",
+      "author": null,
+      "publishedAt": "2026-09-10T08:05:12.033Z",
+      "content": "DF26: We Cannot Tell Fake From Real Anymore",
       "topics": [
         "research"
       ],
