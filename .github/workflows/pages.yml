@@ -19,8 +19,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
@@ -28,7 +28,7 @@ jobs:
       - run: npm run site
       - id: pw-version
         run: echo "v=$(node -p "require('playwright/package.json').version")" >> "$GITHUB_OUTPUT"
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ steps.pw-version.outputs.v }}
@@ -42,7 +42,7 @@ jobs:
           npm run slides:render
           mkdir -p site/slides
           cp -R slides/. site/slides/
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
 
@@ -56,8 +56,8 @@ jobs:
       # The Pages service intermittently rejects fresh deployments with a
       # generic "try again later"; a second attempt has always succeeded.
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
         continue-on-error: true
       - id: retry
         if: steps.deployment.outcome == 'failure'
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
