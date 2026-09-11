@@ -1,6 +1,13 @@
 // Service worker source, emitted verbatim as /sw.js by the site build.
 // Push-only by design: no fetch handler, the site stays plain static.
-export const SW_SOURCE = `self.addEventListener("push", (event) => {
+export const SW_SOURCE = `self.addEventListener("activate", (event) => {
+  // notificationclick navigates an existing tab, and navigate() rejects on any
+  // tab this worker does not control. Without claim() the tab that registers
+  // the worker is never controlled -- and that is the tab the reader taps
+  // "notify me" in, so their every notification would be a dead tap.
+  event.waitUntil(self.clients.claim());
+});
+self.addEventListener("push", (event) => {
   const data = event.data ? event.data.json() : {};
   event.waitUntil(self.registration.showNotification(data.title || "sift", {
     body: data.body || "a new digest is up",
@@ -13,7 +20,9 @@ self.addEventListener("notificationclick", (event) => {
   const url = (event.notification.data && event.notification.data.url) || "/";
   event.waitUntil(self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((tabs) => {
     const tab = tabs.find((t) => new URL(t.url).origin === self.location.origin);
-    return tab ? tab.navigate(url).then((w) => w && w.focus()) : self.clients.openWindow(url);
+    return tab
+      ? tab.navigate(url).then((w) => w && w.focus()).catch(() => self.clients.openWindow(url))
+      : self.clients.openWindow(url);
   }));
 });
 `;
