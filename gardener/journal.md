@@ -81,11 +81,12 @@ merges and closures and never expire.
   gardener/2026-09-06-verify-hn-permalinks,
   gardener/2026-09-07-verify-dedupe-link-warnings and
   gardener/2026-09-08-fonts-non-blocking,
-  gardener/2026-09-09-drop-times-dst and
-  gardener/2026-09-10-actions-node24 are all merged and all
+  gardener/2026-09-09-drop-times-dst,
+  gardener/2026-09-10-actions-node24 and
+  gardener/2026-09-11-sw-notification-click are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Six now; it grows by one every shipping run.
+  Seven now; it grows by one every shipping run.
 - Seven enabled sources produced **zero items in the whole 32-day archive**:
   karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
   web-dev, normal-technology. Not failures — today's ingest logged
@@ -96,6 +97,13 @@ merges and closures and never expire.
   editorial, so this ends as an issue, not a PR — but #120 is already waiting
   on the same kind of call and a second unanswered editorial issue helps
   nobody. Re-measure when #120 moves; fold the web-dev recheck (below) into it.
+- Noticed while fixing #148, too small to spend a slot on. The `push` handler
+  does `event.data.json()` unguarded, so a payload that is not json throws and,
+  on a `userVisibleOnly` subscription, the browser substitutes its own generic
+  "this site has been updated in the background" notification. Only push/ sends
+  to these subscribers and it always sends json, so this is theoretical today —
+  but push/ is a deployed sidecar I cannot see or test. If a run ever touches
+  sw.ts again, wrap it in a try and fall through to the existing defaults.
 - `state.sources` in data/state.json is never pruned, unlike `seen`.
   shopify-engineering, tbpn and boris-cherny are gone from config/sources.json
   and their conditional-GET validators are still in the file. Harmless today
@@ -143,6 +151,93 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-11
+
+Shipped. What: the service worker claims the tab that registers it, so a push
+notification click can actually open the digest (#148, PR #149, merged 9d1c0cb).
+Why: `notificationclick` calls `WindowClient.navigate()` on a tab drawn from
+`matchAll({ includeUncontrolled: true })`, and `navigate()` rejects on exactly
+the tabs that option exists to include. There was no catch, so the promise
+inside `waitUntil` rejected and nothing opened at all.
+
+What turned that from a spec footnote into a reader-facing bug is the second
+half: `sw.js` called neither `claim()` nor `skipWaiting()`, so the tab that
+registers the worker is uncontrolled for its whole life — and that is precisely
+the tab a reader taps "notify me" in. Subscribe on a first visit, never reload,
+and every notification you then get is a dead tap. The one path the site has for
+bringing a reader back was broken for the readers most likely to use it.
+
+Proved it rather than citing it, which mattered because the mechanism is the
+kind that sounds right and is easy to be wrong about. Served the shipped
+`notificationclick` body **verbatim** in chromium behind a message-handler
+harness and fired it at a same-origin tab: uncontrolled, `navigate()` rejected
+with `TypeError: This service worker is not the client's active service worker.`
+and the page never moved; after one reload, controlled, and it navigated. Then
+the same body with `clients.claim()` on activate navigated **without** the
+reload. Backed it with the real artifact too — served the actual built
+`site/sw.js` from each branch and read `navigator.serviceWorker.controller`
+after registering with no reload: `null` on main, non-null here. Two independent
+angles on the same precondition.
+
+Deliberately did not let the catch carry the argument. A catch-only build does
+reach `openWindow`, but `openWindow` then rejects `InvalidAccessError: Not
+allowed to open a window.` because a `message` event carries no user activation
+where a real `notificationclick` does. So the catch is provably *reached* and
+not provably *effective* from here, while `claim()` is proven end to end through
+the real `navigate()` call. Wrote it in the issue and the PR in that order —
+claim is the fix, the catch is insurance — rather than presenting the half I
+could not finish proving as if I had. Left `skipWaiting()` out on the same
+logic: it would reach readers holding an old `sw.js` sooner, at a blast radius
+the bug does not justify.
+
+The test is the part worth keeping. `sw.js` never runs under vitest and its two
+existing assertions were `toContain("push")`-grade, so the bug had nothing
+standing in its way. `test/sw.test.ts` loads the real `SW_SOURCE` into a
+stand-in worker global and drives the handlers it registers: two of the four
+fail against main's source (`expected undefined to be defined` for activate,
+`promise rejected "TypeError: not the active worker" instead of resolving` for
+the click), two pin unchanged behaviour and pass both ways. Checked that split
+by stashing the src change, per habit. 166/166 from 162, typecheck silent, 33
+pages, verify clean, `npm audit --omit=dev` zero. checks green in 23 seconds,
+Copilot returned "approval recommended" with zero comments, merged rebase,
+pages run 232 green.
+
+Rest of the sweep clean and unfiled. No failed workflow runs anywhere in the
+last week — ingest, pages, checks and Copilot review all green. `npm run verify`
+returned zero errors **and zero warnings** on today's digest, the second fully
+silent verify in a row. digests/ runs 08-11..09-11 with no gaps.
+
+One signal walked and left alone, recorded so a later run does not re-walk it:
+loaded the built index, a day page and the 404 in chromium over a local server
+and watched the console and the network. Zero page errors, zero failed local
+requests, zero 404s on any local asset across all three; the only failures are
+fonts.googleapis.com and gc.zgo.at, both of which are this environment's proxy
+rather than the site. Worth naming because it is what pushed the run toward
+reading `sw.ts` properly — nothing was visibly wrong, so the defect was always
+going to be in a path a page load never exercises.
+
+#112's ingest drift is unchanged and still daily: today's 03:15 cron landed at
+**07:59:45, +4h44**; yesterday's 15:45 at 18:41 (+2h56). This morning's digest
+again forced its own workflow_dispatch (run 247, 04:36) before drafting. Tenth
+identical day, still no comment on #112 — nothing to add.
+
+goatcounter unreachable again (proxy 403 on CONNECT), fifteenth run without
+reader signal; sift.yasint.dev is 403 through the same proxy, so the live site
+could not be re-checked after deploy and the deploy's own green stands in for
+it. Branch deletion failed the same way as every shipping run (sideband
+disconnect); seven merged gardener branches on the remote now.
+
+The attribution deviation is six runs old and still Yasin's to settle. Same call
+as the last five — kept the harness's `Co-Authored-By` trailer and PR footer
+rather than flipping the convention back and forth, and said so to him directly.
+The datum from 09-10 still stands and still argues the harness is now the house
+style: the digest agent's own commits carry `Co-Authored-By: Claude Sonnet 5`
+trailers twice a day, so the Identity rule is out of step with what the repo
+already does. A one-line contract edit either way, which is his.
+
+Outcome: #148 filed and closed by #149, merged and deployed. #110, #112 and
+#120 all still pending — #120 since 09-03, nine days.
 
 ### 2026-09-10
 
