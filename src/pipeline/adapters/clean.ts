@@ -23,6 +23,18 @@ export function truncate(s: string, max: number): string {
 // kind of thing — drop those and the article stops opening.
 const TRACKING = (name: string): boolean => name.startsWith("utm_") || name === "smid";
 
+// A key is matched decoded (utm%5Fsource is utm_source to whoever reads it)
+// and kept verbatim, so nothing but the tag itself is ever rewritten.
+function paramName(param: string): string {
+  const raw = param.split("=")[0]!;
+  if (!raw.includes("%")) return raw;
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
+}
+
 /** Drop a syndicator's tracking tags, keeping every other query param. */
 export function stripTracking(url: string): string {
   // The fragment comes off first: a ? after a # is part of the fragment, not
@@ -36,7 +48,7 @@ export function stripTracking(url: string): string {
     .slice(q + 1)
     .split("&")
     .filter(Boolean);
-  const kept = params.filter((p) => !TRACKING(p.split("=")[0]!));
+  const kept = params.filter((p) => !TRACKING(paramName(p)));
   if (kept.length === params.length) return url;
   return base.slice(0, q) + (kept.length > 0 ? `?${kept.join("&")}` : "") + tail;
 }
