@@ -154,6 +154,26 @@ describe("runIngest", () => {
     expect(loadDay(dataDir, today()).items[0]!.url).toBeNull();
   });
 
+  it("strips a syndicator's tracking tags from the stored url, not from the item's identity", async () => {
+    const link = "https://example.com/story?unlocked_article_code=1._lA&amp;smid=url-share&amp;utm_source=tldrnewsletter";
+    const xml = `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
+      <item><title>Tagged link</title><guid>${link}</guid><link>${link}</link><pubDate>${new Date().toUTCString()}</pubDate><description>body</description></item>
+    </channel></rss>`;
+    const sources = [src("tldr")];
+    const stats = await runIngest(dataDir, { fetchImpl: stubFetch(xml) as never, sources });
+    expect(stats.created).toBe(1);
+    const item = loadDay(dataDir, today()).items[0]!;
+    expect(item.url).toBe("https://example.com/story?unlocked_article_code=1._lA");
+    // The seen key is sourceSlug:externalId, and externalId is the url the
+    // feed gave: a re-run must still recognize the item, not re-ingest it.
+    expect(item.externalId).toContain("utm_source=tldrnewsletter");
+    const rerun = await runIngest(dataDir, {
+      fetchImpl: stubFetch(xml.replace("body", "body edited")) as never,
+      sources,
+    });
+    expect(rerun.created).toBe(0);
+  });
+
   it("only fetches enabled sources and prunes stale seen entries", async () => {
     const state = { sources: {}, seen: { "2020-01-01": ["ghost:1"] } };
     saveState(dataDir, state);

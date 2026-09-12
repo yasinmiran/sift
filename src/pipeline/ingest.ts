@@ -12,7 +12,7 @@ import { resolve } from "node:path";
 import { today } from "../day";
 import { warn } from "../log";
 import { adapterFor, type Fetchers } from "./adapters/registry";
-import { safeHttpUrl } from "./adapters/clean";
+import { safeHttpUrl, stripTracking } from "./adapters/clean";
 import type { RawItem } from "./adapters/types";
 import { loadDay, saveDay, type StoredItem } from "./day-file";
 import { fetchIfChanged, type FetchImpl } from "./fetch";
@@ -114,11 +114,14 @@ function sourceState(state: IngestState, slug: string): SourceState {
 }
 
 function toStored(raw: RawItem, topics: string[]): StoredItem {
+  const url = safeHttpUrl(raw.url);
   return {
     sourceSlug: raw.sourceSlug,
     externalId: raw.externalId,
     title: raw.title,
-    url: safeHttpUrl(raw.url),
+    // externalId keeps the url the feed gave; only the stored link is tidied,
+    // so the seen index reads the same across the change.
+    url: url && stripTracking(url),
     author: raw.author ?? null,
     publishedAt: raw.publishedAt.toISOString(),
     content: raw.content,
