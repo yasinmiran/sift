@@ -55,6 +55,20 @@ merges and closures and never expire.
 
 ## Backlog
 
+- the-verge stores 67 titles carrying a literal numeric entity across the
+  32-day archive (`&#8217;` 54, `&#8216;` 11, `&#038;` 2, e.g. "Apple&#8217;s
+  iPhone 18"). Its feed double-encodes: the xml holds `&amp;#8217;`, which
+  unescapes to the text `&#8217;`, so rss.ts's `sanitizeEntities` (named to
+  numeric, then the xml parser decodes) never gets a second pass at it. Zero
+  of them have reached a digest or a slide — the agent rewrites titles rather
+  than pasting them — so this is data cleanliness, not a reader-facing bug,
+  and it waits for a day with nothing better. One decode pass on
+  `stripInvisibles`'s input in rss.ts, fixture-backed, is the shape of it.
+- Left deliberately out of #153, recorded so a later run does not re-file it
+  as an oversight: `ref` (38, all `console.dev`) and `source` (2, medium's rss
+  token) are tracking here but are functional param names elsewhere
+  (`?ref=main` on a github file url), and 40 occurrences in 5,765 do not earn
+  that false positive. Revisit only if a `ref=` ever reaches a digest link.
 - RETIRED 2026-09-05, the diagnosis was wrong on both counts and the fix
   would have been a no-op. checks.yml does not have an install cliff.
   #124's 7m02s `npm ci` was a cache **hit** on key `a401ab82…`, the same
@@ -82,11 +96,12 @@ merges and closures and never expire.
   gardener/2026-09-07-verify-dedupe-link-warnings and
   gardener/2026-09-08-fonts-non-blocking,
   gardener/2026-09-09-drop-times-dst,
-  gardener/2026-09-10-actions-node24 and
-  gardener/2026-09-11-sw-notification-click are all merged and all
+  gardener/2026-09-10-actions-node24,
+  gardener/2026-09-11-sw-notification-click and
+  gardener/2026-09-12-strip-tracking-params are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Seven now; it grows by one every shipping run.
+  Eight now; it grows by one every shipping run.
 - Seven enabled sources produced **zero items in the whole 32-day archive**:
   karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
   web-dev, normal-technology. Not failures — today's ingest logged
@@ -151,6 +166,79 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-12
+
+Shipped. What: ingested urls lose the syndicator's tracking tags (#152, PR #153,
+merged fe77686 and dd54a9d). Why: 387 of the 5,785 items in the 32-day archive
+store a tagged url — `utm_source` 325, all tldr's `tldrnewsletter`; `smid` 24,
+nyt's share-medium twin; `ref` 38, console.dev; `source` 2, medium's rss token.
+
+The tags do not stop at data/, which is what turned a tidiness itch into a fix.
+Five links across three published digests carry one — cnbc on 08-31, thenextweb
+twice on 09-08, nytimes and gizmodo on 09-09 — and two ride along in the 09-09
+carousel. A reader clicking those from sift is counted as a tldr newsletter
+click. The digest agent is not at fault and could not be: it links the url the
+day's items hand it, and that url arrives tagged.
+
+The care went into what *not* to strip. The nytimes link is the whole argument:
+`...?unlocked_article_code=1._lA&smid=bs-share&utm_source=tldrnewsletter`, where
+the gift token is the only reason the article opens at all. `accessToken`
+(bloomberg, 22), `reflink` (wsj, 13) and a youtube `v=` (15) are the same
+shape, so "drop the query" would have broken 50 links to fix 349. Named tags
+only, and `ref`/`source` left alone for the mirror-image reason (backlogged
+above).
+
+Evidence was the archive itself rather than a spot check: replayed all 5,765
+stored urls through the function, 325 change and each only by losing a
+`utm_*`/`smid`, origin, path and fragment intact on all 325, the other 5,440
+byte-identical. That replay is also what caught the one real bug — teslarati
+sends `.../#google_vignette?utm_source=...`, where the `?` is inside the
+fragment, and the first draft happily rewrote the fragment. Reading the query
+before splitting off the hash is the kind of wrong that only shows up against
+real data; the case is pinned now.
+
+Dedup was the risk worth checking before writing anything: the seen index keys
+on `sourceSlug:externalId`, and tldr's `externalId` **is** the raw href, so
+tidying the stored url cannot make an item re-enter. The ingest test asserts
+both halves — url cleaned, identity untouched, re-run still recognizes it.
+
+Copilot came back "needs a closer look" with one suppressed finding, and it was
+right: a percent-encoded key (`utm%5Fsource`) decodes to `utm_source` and slipped
+the raw-spelling match. Nothing in the archive is spelled that way, so it buys
+nothing today, but it is four lines and a test, and a bot finding is a bug report
+until disproved. Fixed in the second commit, answered on the PR, and put
+through the same failing-without-the-fix check as the rest. 171 tests from 166,
+typecheck silent, 33 pages, verify clean, checks green on both heads (13s on the
+first), pages run 235 green.
+
+Rest of the sweep clean. No failed workflow runs anywhere in the last week.
+`npm run verify` is silent on today's digest; re-run across the ten days before
+it, zero errors and only the familiar primary-source and 60+ link warnings.
+Worth one correction to yesterday's entry: it recorded 09-11 as the second fully
+silent verify in a row, which was true of the am digest it ran against and is not
+true of the file now — the evening rewrite added two primary-source links. A
+verify result is a reading of a file at a moment, and the pm rewrite moves it.
+
+The environment lost ground worth recording: outbound https is now allowlisted to
+github, so feed probes, sift.yasint.dev and goatcounter all fail at CONNECT with
+403. That retires live feed probing from the Signals list for as long as it holds
+— the corpus in data/items/ is the substitute, and today's pick came out of it,
+which is some evidence the substitute is workable. Sixteenth run without reader
+signal.
+
+#112's ingest drift is unchanged and still daily: today's 03:15 cron landed at
+**07:52:39, +4h37**, and this morning's digest again forced its own
+workflow_dispatch (run 251, 04:36) before drafting. Eleventh identical day, still
+no comment on #112.
+
+Branch deletion failed the same way as every shipping run (sideband disconnect,
+then 403 on the api); eight merged gardener branches on the remote now. The
+attribution deviation is seven runs old and unchanged — kept the harness's
+trailer and footer rather than flipping the convention back and forth.
+
+Outcome: #152 filed and closed by #153, merged and deployed. #110, #112 and #120
+all still pending — #120 since 09-03, ten days.
 
 ### 2026-09-11
 
