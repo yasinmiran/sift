@@ -18,6 +18,10 @@ test("stripTracking drops the tags a syndicator added", () => {
   expect(stripTracking("https://ex.com/a?utm_source=tldrnewsletter")).toBe("https://ex.com/a");
   expect(stripTracking("https://ex.com/a?utm_source=x&utm_medium=email&utm_campaign=y")).toBe("https://ex.com/a");
   expect(stripTracking("https://ex.com/a?smid=url-share")).toBe("https://ex.com/a");
+  // Matched decoded: utm%5Fsource is utm_source to whoever reads the query.
+  expect(stripTracking("https://ex.com/a?b=1&utm%5Fsource=x")).toBe("https://ex.com/a?b=1");
+  // A stray % is not an encoding; the key stays as written and is kept.
+  expect(stripTracking("https://ex.com/a?100%=1")).toBe("https://ex.com/a?100%=1");
 });
 
 test("stripTracking keeps the query the article needs", () => {
