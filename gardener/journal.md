@@ -55,15 +55,35 @@ merges and closures and never expire.
 
 ## Backlog
 
-- the-verge stores 67 titles carrying a literal numeric entity across the
-  32-day archive (`&#8217;` 54, `&#8216;` 11, `&#038;` 2, e.g. "Apple&#8217;s
-  iPhone 18"). Its feed double-encodes: the xml holds `&amp;#8217;`, which
-  unescapes to the text `&#8217;`, so rss.ts's `sanitizeEntities` (named to
-  numeric, then the xml parser decodes) never gets a second pass at it. Zero
-  of them have reached a digest or a slide — the agent rewrites titles rather
-  than pasting them — so this is data cleanliness, not a reader-facing bug,
-  and it waits for a day with nothing better. One decode pass on
-  `stripInvisibles`'s input in rss.ts, fixture-backed, is the shape of it.
+- REWRITTEN 2026-09-13, the counts were occurrences read as titles and the
+  stated mechanism was half wrong. Re-derived: **49 titles**, 66 occurrences
+  (`&#8217;` 53, `&#8216;` 11, `&#038;` 2), all the-verge, titles only —
+  `content` and `author` are clean, and the entity never reaches digests/,
+  data/picks/ or data/slides/. The "feed double-encodes" claim cannot be
+  settled from here: probing the real adapter, a plain title holding
+  `&amp;#8217;` **and** a CDATA title holding `&#8217;` both reproduce the
+  stored string exactly, and feed fetching is blocked in this environment.
+  What is settled is that #157 does not touch it — `sanitizeEntities` never
+  looked at numeric refs — so the fix is still a decode pass, and it belongs
+  on `stripInvisibles`'s input in rss.ts, **decode first** so a watermark
+  arriving as `&#8203;` is stripped after.
+  The recipe now carries the trap, measured: it must decode numeric refs
+  itself, never reuse `htmlToText`. Run all 5,601 archived titles through
+  cheerio and two real ones lose text — arxiv-ai's `<<History>>` becomes
+  `<>` and css-tricks's `<geolocation>,` becomes `,`. A targeted numeric
+  decode changes 49 titles and leaves the other 5,552 byte-identical, and
+  zero titles in the archive carry a *named* entity, so numeric-only is
+  enough. Still data cleanliness, still waiting for a day with nothing
+  better.
+- rss-parser resolves the common html entities natively: probed against the
+  installed 3.13.0, `&nbsp;`, `&rsquo;` and `&hellip;` all parse and only a
+  genuinely unknown `&wibble;` throws `Invalid character entity`. So rss.ts's
+  comment about tldrsec's `&nbsp;` killing the parse no longer reproduces.
+  The `HTML_ENTITIES` map still earns its place for a different reason than
+  the one written next to it — a title never passes through cheerio, so
+  without the map `&nbsp;` would reach a title as the literal six characters
+  instead of a space. Worth a comment correction if a run touches rss.ts
+  again; not worth a slot.
 - Left deliberately out of #153, recorded so a later run does not re-file it
   as an oversight: `ref` (38, all `console.dev`) and `source` (2, medium's rss
   token) are tracking here but are functional param names elsewhere
@@ -97,11 +117,12 @@ merges and closures and never expire.
   gardener/2026-09-08-fonts-non-blocking,
   gardener/2026-09-09-drop-times-dst,
   gardener/2026-09-10-actions-node24,
-  gardener/2026-09-11-sw-notification-click and
-  gardener/2026-09-12-strip-tracking-params are all merged and all
+  gardener/2026-09-11-sw-notification-click,
+  gardener/2026-09-12-strip-tracking-params and
+  gardener/2026-09-13-cdata-entities are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Eight now; it grows by one every shipping run.
+  Nine now; it grows by one every shipping run.
 - Seven enabled sources produced **zero items in the whole 32-day archive**:
   karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
   web-dev, normal-technology. Not failures — today's ingest logged
@@ -166,6 +187,81 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-13
+
+Shipped. What: the entity sanitizer stops reaching inside CDATA (#156, PR #157,
+merged acdb1b7 and 1b2719b). Why: 43 of the 5,601 items in the 32-day archive
+store a literal html entity where a character belongs — 68 occurrences, content
+only, techmeme 43 and the-verge 25. `a &pound;545M cash takeover`, `Brussels
+fined Google &euro;890 million`, `a record &yen;1 trillion bond`, `Niclas
+Negl&eacute;n`, `Michael Nu&ntilde;ez`, `jalape&ntilde;os`, `Pok&eacute;mon`.
+
+Ours, not the feeds'. `sanitizeEntities` rewrites every non-xml named entity to
+`&amp;NAME;` so one sloppy `&nbsp;` cannot kill a parse; inside CDATA an `&` is
+already literal, so the rewrite only adds an `&amp;` that the parser hands on
+verbatim, cheerio decodes that, and the entity is left standing as text.
+
+The diagnosis is unambiguous for a reason worth keeping: every non-CDATA
+spelling already round-trips clean — plain `&eacute;` and the double-encoded
+`&amp;eacute;` both arrive as `é` — so only the CDATA path can produce what is
+stored, and the stored corruption is itself the evidence those two feeds are
+CDATA-wrapped. Probed through the real adapter before writing anything, which
+is also what stopped this from being filed as the-verge's problem.
+
+Came out of walking the backlog's the-verge entity item and re-deriving it
+instead of trusting it. The recorded counts were occurrences read as titles
+(49 titles, not 67), the stated mechanism was half wrong, and the scan that
+checked it turned up this larger thing one field over. The entry is rewritten
+above with what the data actually says, including the trap: reusing
+`htmlToText` for the title fix would eat text from two real titles
+(`<<History>>` → `<>`), so that one wants a targeted numeric decode. Retiring
+a wrong premise and finding the real bug behind it was the day's work.
+
+Copilot came back "needs a closer look" with one suppressed finding and was
+right again: a `<![CDATA[` written inside an xml comment is text, not an
+opener, and the first scanner would start a span there and run to the next real
+`]]>`, carrying whatever is between through unsanitized. Second commit scans
+comments and processing instructions as opaque spans of their own.
+
+The reproduction took one correction worth recording. The first attempt used
+`&nbsp;` as the swallowed entity and passed against the broken scanner:
+rss-parser resolves the common html entities natively, so `&nbsp;`, `&rsquo;`
+and `&hellip;` all parse and only a genuinely unknown one fails. With
+`&wibble;` the case lands exactly as described — `Error: Invalid character
+entity` on the whole feed. A test that passes against the code it is meant to
+catch is not a weak test, it is a wrong one, and the difference was one entity.
+Backlogged what it turned up about `HTML_ENTITIES`.
+
+174 tests from 171, typecheck silent, 33 pages, verify unchanged, an 8MB feed
+of 5,000 CDATA items parses in 748ms. checks green on both heads, merged
+rebase, pages run 238 green. No second Copilot review on the new head; there
+never is one, same as #153.
+
+Rest of the sweep clean. No failed workflow runs anywhere in the last week —
+the only non-successes in 160 listed runs are the three cancelled pages runs
+from 09-02. `npm run verify` on today's digest carries two warnings, both
+editorial rather than gardener work: one primary-source link (tomshardware,
+linked 2x) and `already digested on 2026-09-12` on the verge's LG story.
+
+#112's ingest drift is unchanged, still daily, and now the widest yet: today's
+03:15 cron landed at **08:15:01, +5h00** (09-12 was +4h37, 09-11 +4h44), and
+this morning's digest again forced its own workflow_dispatch (run 255, 04:36)
+before drafting. Twelfth identical day, still no comment on #112.
+
+goatcounter and sift.yasint.dev both 403 at CONNECT through the proxy, so no
+reader signal for the seventeenth run and the live site could not be re-checked
+after deploy; the deploy's own green stands in for it. Branch deletion failed
+the same way as every shipping run (sideband disconnect); nine merged gardener
+branches on the remote now.
+
+Attribution: PR and issue bodies stripped per the contract, commit trailers and
+the PR comment footer kept, same call as the last seven runs rather than
+flipping the convention back and forth. Eighth run of the deviation, still
+Yasin's one-line call either way.
+
+Outcome: #156 filed and closed by #157, merged and deployed. #110, #112 and
+#120 all still pending — #120 since 09-03, ten days.
 
 ### 2026-09-12
 
