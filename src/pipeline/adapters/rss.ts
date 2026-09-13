@@ -32,10 +32,26 @@ const HTML_ENTITIES: Record<string, string> = {
   trade: "&#8482;",
 };
 
-function sanitizeEntities(xml: string): string {
+function sanitizeMarkup(xml: string): string {
   return xml.replace(/&([a-zA-Z][a-zA-Z0-9]{1,31});/g, (whole, name: string) =>
     XML_NATIVE.has(name) ? whole : (HTML_ENTITIES[name] ?? `&amp;${name};`),
   );
+}
+
+// CDATA is the one place this must not reach. An & in there is already
+// literal text, so nothing inside can break the parse — and neutralizing it
+// anyway adds an &amp; the parser hands on verbatim, which leaves techmeme's
+// &pound;545M reading as those nine characters instead of £545M.
+const CDATA = /<!\[CDATA\[[\s\S]*?\]\]>/g;
+
+function sanitizeEntities(xml: string): string {
+  let out = "";
+  let end = 0;
+  for (const section of xml.matchAll(CDATA)) {
+    out += sanitizeMarkup(xml.slice(end, section.index)) + section[0];
+    end = section.index + section[0].length;
+  }
+  return out + sanitizeMarkup(xml.slice(end));
 }
 
 export function createRssAdapter(opts: {

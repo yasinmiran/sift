@@ -58,6 +58,48 @@ test("strips zero-width watermark characters from titles and content", async () 
   expect(items[0]!.content).toBe("bodytext");
 });
 
+const cdataFeed = (body: string) =>
+  `<?xml version="1.0"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>t</title>
+    <item><title>t</title><guid>e1</guid>
+    <link>https://example.com/1</link><pubDate>${new Date().toUTCString()}</pubDate>
+    ${body}</item>
+  </channel></rss>`;
+
+const parseFeed = async (slug: string, feed: string) => {
+  const a = createRssAdapter({ slug, url: "https://x" });
+  if (a.mode !== "body") throw new Error("rss adapter must be body-mode");
+  return a.parse(feed, new Date(0));
+};
+
+test("leaves entities inside CDATA alone so the html parser can decode them", async () => {
+  const encoded = await parseFeed(
+    "the-verge",
+    cdataFeed(
+      `<content:encoded><![CDATA[<p>Klarna CFO Niclas Negl&eacute;n and Michael Nu&ntilde;ez</p>]]></content:encoded>`,
+    ),
+  );
+  expect(encoded[0]!.content).toBe("Klarna CFO Niclas Neglén and Michael Nuñez");
+
+  const described = await parseFeed(
+    "techmeme",
+    cdataFeed(`<description><![CDATA[Pinewood agrees to a &pound;545M cash takeover]]></description>`),
+  );
+  expect(described[0]!.content).toBe("Pinewood agrees to a £545M cash takeover");
+});
+
+test("still sanitizes the markup on both sides of a CDATA section", async () => {
+  const feed = `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
+    <item><title>what&rsquo;s new &wibble;</title><guid>e1</guid>
+    <link>https://example.com/1</link><pubDate>${new Date().toUTCString()}</pubDate>
+    <description><![CDATA[a &pound;5 note]]></description>
+    <category>security&nbsp;news</category></item>
+  </channel></rss>`;
+  const items = await parseFeed("mixed", feed);
+  expect(items).toHaveLength(1);
+  expect(items[0]!.title).toBe("what’s new &wibble;");
+  expect(items[0]!.content).toBe("a £5 note");
+});
+
 test("tolerates html-named entities that are not valid xml", async () => {
   const feed = `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
     <item><title>Security&nbsp;news: what&rsquo;s new &wibble;</title><guid>e1</guid>
