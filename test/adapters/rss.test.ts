@@ -100,6 +100,18 @@ test("still sanitizes the markup on both sides of a CDATA section", async () => 
   expect(items[0]!.content).toBe("a £5 note");
 });
 
+test("does not mistake a CDATA marker written inside a comment for a real one", async () => {
+  const feed = `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
+    <!-- the old exporter wrapped these in <![CDATA[ -->
+    <item><title>security news &wibble;</title><guid>e1</guid>
+    <link>https://example.com/1</link><pubDate>${new Date().toUTCString()}</pubDate>
+    <description><![CDATA[a &pound;5 note]]></description></item>
+  </channel></rss>`;
+  const items = await parseFeed("commented", feed);
+  expect(items[0]!.title).toBe("security news &wibble;");
+  expect(items[0]!.content).toBe("a £5 note");
+});
+
 test("tolerates html-named entities that are not valid xml", async () => {
   const feed = `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
     <item><title>Security&nbsp;news: what&rsquo;s new &wibble;</title><guid>e1</guid>

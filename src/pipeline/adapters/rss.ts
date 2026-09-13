@@ -42,14 +42,18 @@ function sanitizeMarkup(xml: string): string {
 // literal text, so nothing inside can break the parse — and neutralizing it
 // anyway adds an &amp; the parser hands on verbatim, which leaves techmeme's
 // &pound;545M reading as those nine characters instead of £545M.
-const CDATA = /<!\[CDATA\[[\s\S]*?\]\]>/g;
+//
+// Comments and processing instructions are skipped for the same reason, and
+// for one more: a "<![CDATA[" written inside a comment is text, not an
+// opener, and mistaking it for one would swallow the real markup after it.
+const OPAQUE = /<!\[CDATA\[[\s\S]*?\]\]>|<!--[\s\S]*?-->|<\?[\s\S]*?\?>/g;
 
 function sanitizeEntities(xml: string): string {
   let out = "";
   let end = 0;
-  for (const section of xml.matchAll(CDATA)) {
-    out += sanitizeMarkup(xml.slice(end, section.index)) + section[0];
-    end = section.index + section[0].length;
+  for (const span of xml.matchAll(OPAQUE)) {
+    out += sanitizeMarkup(xml.slice(end, span.index)) + span[0];
+    end = span.index + span[0].length;
   }
   return out + sanitizeMarkup(xml.slice(end));
 }
