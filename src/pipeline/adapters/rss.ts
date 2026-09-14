@@ -1,6 +1,6 @@
 import Parser from "rss-parser";
 import { info } from "../../log";
-import { htmlToText, stripInvisibles } from "./clean";
+import { decodeNumericRefs, htmlToText, stripInvisibles } from "./clean";
 import type { Adapter, RawItem } from "./types";
 
 type ParsedFeed = Awaited<ReturnType<Parser["parseString"]>>;
@@ -12,9 +12,12 @@ type FeedItem = ParsedFeed["items"][number] & {
 
 const parser = new Parser();
 
-// XML only defines five named entities; feeds routinely leak html ones
-// (tldrsec's &nbsp; kills the whole parse). Map the common ones to numeric
-// refs and neutralize the rest so one sloppy entity never costs a feed.
+// XML only defines five named entities; feeds routinely leak html ones. The
+// parse dies on an entity the parser does not know (&wibble;), so the
+// load-bearing half here is the fallback that neutralizes those. The map is
+// belt and braces: rss-parser 3.13.0 resolves every name in it natively —
+// probed, along with &eacute;, &pound; and a dozen more — so it only earns
+// its place if a future parser stops doing that.
 const XML_NATIVE = new Set(["amp", "lt", "gt", "quot", "apos"]);
 const HTML_ENTITIES: Record<string, string> = {
   nbsp: "&#160;",
@@ -84,7 +87,9 @@ export function createRssAdapter(opts: {
         out.push({
           sourceSlug: opts.slug,
           externalId,
-          title: stripInvisibles(e.title),
+          // Decode before stripping, so a watermark that arrives as &#8203;
+          // is a zero-width character by the time the stripper looks.
+          title: stripInvisibles(decodeNumericRefs(e.title)),
           url: e.link,
           author: e.creator ?? e.author,
           publishedAt,

@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { htmlToText, stripTracking, truncate } from "../../src/pipeline/adapters/clean";
+import { decodeNumericRefs, htmlToText, stripTracking, truncate } from "../../src/pipeline/adapters/clean";
 
 test("htmlToText strips tags and collapses whitespace", () => {
   expect(htmlToText("<p>Hello   <b>world</b></p>\n<p>x</p>")).toBe("Hello world x");
@@ -7,6 +7,30 @@ test("htmlToText strips tags and collapses whitespace", () => {
 
 test("htmlToText decodes entities", () => {
   expect(htmlToText("a &amp; b &lt;c&gt;")).toBe("a & b <c>");
+});
+
+test("decodeNumericRefs decodes the spellings the-verge sends", () => {
+  // The three in the 32-day archive, verbatim.
+  expect(decodeNumericRefs("It looks like Apple&#8217;s iPhone 18")).toBe("It looks like Apple’s iPhone 18");
+  expect(decodeNumericRefs("&#8216;quoted&#8217;")).toBe("‘quoted’");
+  expect(decodeNumericRefs("AT&#038;T")).toBe("AT&T");
+  expect(decodeNumericRefs("&#x2019;&#X2019;")).toBe("’’");
+});
+
+test("decodeNumericRefs decodes once and leaves everything else alone", () => {
+  // One pass: a decoded & must not turn the text after it into a reference.
+  expect(decodeNumericRefs("a&#38;#8217;b")).toBe("a&#8217;b");
+  // Named entities are not its business; astral codepoints are.
+  expect(decodeNumericRefs("&rsquo; &wibble; &# &#; 50% off")).toBe("&rsquo; &wibble; &# &#; 50% off");
+  expect(decodeNumericRefs("&#128512;")).toBe("😀");
+  // A tag-shaped title survives, which is why this is not htmlToText.
+  expect(decodeNumericRefs("<<History>> of <geolocation>,")).toBe("<<History>> of <geolocation>,");
+});
+
+test("decodeNumericRefs leaves a reference no character answers to", () => {
+  for (const s of ["&#0;", "&#55296;", "&#xD800;", "&#1114112;", "&#99999999;", "&#x1FFFFFF;"]) {
+    expect(decodeNumericRefs(s)).toBe(s);
+  }
 });
 
 test("truncate adds ellipsis past the limit", () => {

@@ -6,6 +6,24 @@ const INVISIBLES = /[\u200B-\u200D\uFEFF]/g;
 
 export const stripInvisibles = (s: string): string => s.replace(INVISIBLES, "");
 
+// A numeric reference written inside CDATA is literal text, not a reference,
+// so the xml parser hands it on as-is and the-verge's titles arrive spelled
+// "Apple&#8217;s". Content is spared because it goes through cheerio; a title
+// never does, which is why this exists rather than reusing htmlToText — that
+// would also read a title's <<History>> as a tag and eat it.
+const NUMERIC_REF = /&#(?:(\d{1,7})|[xX]([0-9a-fA-F]{1,6}));/g;
+
+/** Decode numeric character references, once, leaving anything else alone. */
+export function decodeNumericRefs(s: string): string {
+  return s.replace(NUMERIC_REF, (whole, dec?: string, hex?: string) => {
+    const code = dec === undefined ? Number.parseInt(hex!, 16) : Number.parseInt(dec, 10);
+    // Nothing outside unicode, and no lone surrogate: String.fromCodePoint
+    // throws on the first and the second only makes an unpaired half.
+    if (code < 1 || code > 0x10ffff || (code >= 0xd800 && code <= 0xdfff)) return whole;
+    return String.fromCodePoint(code);
+  });
+}
+
 export function htmlToText(html: string): string {
   const $ = cheerio.load(html);
   return stripInvisibles($.root().text()).replace(/\s+/g, " ").trim();
