@@ -100,6 +100,44 @@ test("still sanitizes the markup on both sides of a CDATA section", async () => 
   expect(items[0]!.content).toBe("a £5 note");
 });
 
+test("decodes a numeric reference the parser handed on as literal title text", async () => {
+  // the-verge's titles are CDATA-wrapped, where &#8217; is text rather than a
+  // reference, so the parser cannot decode it and content's cheerio pass
+  // never sees a title. 49 titles in the 32-day archive are spelled this way.
+  const cdata = await parseFeed(
+    "the-verge",
+    `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
+      <item><title><![CDATA[It looks like Apple&#8217;s iPhone 18 &#038; the Pixel]]></title>
+      <guid>e1</guid><link>https://example.com/1</link>
+      <pubDate>${new Date().toUTCString()}</pubDate><description>d</description></item>
+    </channel></rss>`,
+  );
+  expect(cdata[0]!.title).toBe("It looks like Apple’s iPhone 18 & the Pixel");
+
+  // The double-encoded spelling reaches the title the same way.
+  const doubled = await parseFeed(
+    "the-verge",
+    `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
+      <item><title>Apple&amp;#8217;s iPhone</title>
+      <guid>e1</guid><link>https://example.com/1</link>
+      <pubDate>${new Date().toUTCString()}</pubDate><description>d</description></item>
+    </channel></rss>`,
+  );
+  expect(doubled[0]!.title).toBe("Apple’s iPhone");
+});
+
+test("decodes before stripping, so a watermark written as a reference still goes", async () => {
+  const items = await parseFeed(
+    "stackoverflow-blog",
+    `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
+      <item><title><![CDATA[Zero&#8203;width&#65279; title]]></title>
+      <guid>e1</guid><link>https://example.com/1</link>
+      <pubDate>${new Date().toUTCString()}</pubDate><description>d</description></item>
+    </channel></rss>`,
+  );
+  expect(items[0]!.title).toBe("Zerowidth title");
+});
+
 test("does not mistake a CDATA marker written inside a comment for a real one", async () => {
   const feed = `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
     <!-- the old exporter wrapped these in <![CDATA[ -->
