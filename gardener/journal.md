@@ -55,35 +55,26 @@ merges and closures and never expire.
 
 ## Backlog
 
-- REWRITTEN 2026-09-13, the counts were occurrences read as titles and the
-  stated mechanism was half wrong. Re-derived: **49 titles**, 66 occurrences
-  (`&#8217;` 53, `&#8216;` 11, `&#038;` 2), all the-verge, titles only —
-  `content` and `author` are clean, and the entity never reaches digests/,
-  data/picks/ or data/slides/. The "feed double-encodes" claim cannot be
-  settled from here: probing the real adapter, a plain title holding
-  `&amp;#8217;` **and** a CDATA title holding `&#8217;` both reproduce the
-  stored string exactly, and feed fetching is blocked in this environment.
-  What is settled is that #157 does not touch it — `sanitizeEntities` never
-  looked at numeric refs — so the fix is still a decode pass, and it belongs
-  on `stripInvisibles`'s input in rss.ts, **decode first** so a watermark
-  arriving as `&#8203;` is stripped after.
-  The recipe now carries the trap, measured: it must decode numeric refs
-  itself, never reuse `htmlToText`. Run all 5,601 archived titles through
-  cheerio and two real ones lose text — arxiv-ai's `<<History>>` becomes
-  `<>` and css-tricks's `<geolocation>,` becomes `,`. A targeted numeric
-  decode changes 49 titles and leaves the other 5,552 byte-identical, and
-  zero titles in the archive carry a *named* entity, so numeric-only is
-  enough. Still data cleanliness, still waiting for a day with nothing
-  better.
-- rss-parser resolves the common html entities natively: probed against the
-  installed 3.13.0, `&nbsp;`, `&rsquo;` and `&hellip;` all parse and only a
-  genuinely unknown `&wibble;` throws `Invalid character entity`. So rss.ts's
-  comment about tldrsec's `&nbsp;` killing the parse no longer reproduces.
-  The `HTML_ENTITIES` map still earns its place for a different reason than
-  the one written next to it — a title never passes through cheerio, so
-  without the map `&nbsp;` would reach a title as the literal six characters
-  instead of a space. Worth a comment correction if a run touches rss.ts
-  again; not worth a slot.
+- SHIPPED 2026-09-14 as #159 / PR #160: rss titles decode numeric refs. The
+  09-13 rewrite held verbatim against a fresh scan — 49 titles, 66
+  occurrences, all the-verge — which is the second backlog recipe to survive
+  re-derivation intact. The `htmlToText` trap it recorded is now a test.
+- RESOLVED 2026-09-14 in PR #160, and the note itself was half wrong. The
+  first half held: rss-parser 3.13.0 resolves the common html entities
+  natively — probed again, every one of the thirteen in `HTML_ENTITIES` plus
+  `&eacute;`, `&pound;`, `&hearts;` and more — so rss.ts's tldrsec `&nbsp;`
+  comment no longer reproduced and is corrected. The second half does not:
+  this note claimed the map still earns its place because a title skips
+  cheerio, and the probe that settled it says otherwise — a raw parser, no
+  sanitizer, reads `a&nbsp;b` in a *title* as `a b`. So the map is belt and
+  braces against a future parser, nothing more; what is load-bearing is the
+  fallback that neutralizes a name the parser does not know. Written that way
+  in the comment now. Lesson in miniature: the correction I banked was itself
+  a claim I had not probed.
+- A *named* entity in a title would still store literally — the new decode is
+  numeric-only, deliberately, since a named pass needs a table and zero of
+  the 5,637 archived titles carry one. Same call site if one ever shows up;
+  not worth pre-building.
 - Left deliberately out of #153, recorded so a later run does not re-file it
   as an oversight: `ref` (38, all `console.dev`) and `source` (2, medium's rss
   token) are tracking here but are functional param names elsewhere
@@ -118,11 +109,12 @@ merges and closures and never expire.
   gardener/2026-09-09-drop-times-dst,
   gardener/2026-09-10-actions-node24,
   gardener/2026-09-11-sw-notification-click,
-  gardener/2026-09-12-strip-tracking-params and
-  gardener/2026-09-13-cdata-entities are all merged and all
+  gardener/2026-09-12-strip-tracking-params,
+  gardener/2026-09-13-cdata-entities and
+  gardener/2026-09-14-title-numeric-entities are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Nine now; it grows by one every shipping run.
+  Ten now; it grows by one every shipping run.
 - Seven enabled sources produced **zero items in the whole 32-day archive**:
   karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
   web-dev, normal-technology. Not failures — today's ingest logged
@@ -187,6 +179,81 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-14
+
+Shipped. What: rss titles decode numeric character references (#159, PR #160,
+merged 960f2d1). Why: 49 of the 5,637 titles in the 32-day archive store one as
+text — `&#8217;` 53 occurrences, `&#8216;` 11, `&#038;` 2, all the-verge.
+`It looks like Apple&#8217;s iPhone 18`, `This is Instagram&#8217;s new logo`.
+Titles only; content, author and url clean; nothing published carries it.
+
+Walked the backlog item the 09-13 run rewrote, and this time the recipe held
+verbatim — same 49 titles, same three spellings, same source, re-scanned from
+data/items rather than read off the note. Second recipe to survive
+re-derivation intact, against two that did not. What re-deriving is for is not
+catching a lie every time; it is that the two kinds of note are
+indistinguishable until you check.
+
+Content is spared because it goes through cheerio on the way to text; a title
+never does. Probed through the real adapter again: a CDATA-wrapped `&#8217;`
+and a double-encoded plain `&amp;#8217;` both reproduce the stored string
+exactly, and since the fix is identical for both, which one the-verge sends
+never had to be settled — the question the last two runs kept reaching for was
+not on the path.
+
+Decode before strip, so a watermark arriving as `&#8203;` is zero-width by the
+time the stripper looks. One pass, so a decoded `&` cannot make the text after
+it into another reference. A reference no character answers to — lone
+surrogate, past the last code point — is left standing rather than turned into
+a replacement character. Targeted rather than `htmlToText`, which the 09-13
+note had measured and which is now a test: cheerio eats arxiv-ai's
+`<<History>>` and css-tricks's `<geolocation>,`.
+
+Evidence was the archive, not a spot check: all 5,637 stored titles replayed
+through the decoder, 49 change, each one checked segment by segment (literal
+text between the references identical, each reference exactly one code point),
+and 5,588 byte-identical. Both new adapter tests fail against the unfixed
+adapter — the 09-13 lesson about a test that passes against the code it is
+meant to catch, applied before pushing rather than after. 179 tests from 174,
+typecheck silent, 33 pages.
+
+Rode along: the comment above `HTML_ENTITIES`, which the backlog had been
+holding for the next run to touch rss.ts. Probing it turned the note against
+itself — it said the map earns its place because a title skips cheerio, and a
+raw parser with no sanitizer reads `a&nbsp;b` in a title as `a b`. The map is
+belt and braces; the fallback for an unknown name is what actually saves the
+feed. A correction banked by a past run is still an unprobed claim.
+
+Copilot never posted. Its run went in_progress at 08:12:24 and was still
+in_progress, `updated_at` frozen at 08:12:30, eleven minutes later; checks went
+green in 25s, which is the gate the contract names, so the merge went on the
+checks. First run since the bot arrived where it said nothing at all — worth
+watching whether it is stuck or gone, not worth acting on yet.
+
+Rest of the sweep clean. 100 workflow runs listed back to 09-06, every one
+`success`, so no failures anywhere in the last week. `npm run verify` across
+09-07..09-13 is `ok: true` on all seven, warnings all the familiar editorial
+ones (primary-source links, two `already digested`, one 63-link day).
+
+Two health notes, both worse than yesterday. **No morning digest today**: no
+`digests/2026-09-14.md`, no am slides, no items file, and no forced
+`workflow_dispatch` ingest before it — the 04:34 window simply passed. That is
+the second occurrence, after 09-02, and the first one that is not a one-off.
+And today's `15 3` ingest cron had still not fired at 08:24 UTC, **+5h09** and
+counting, the widest yet (09-13 +5h00, 09-12 +4h37). Both commented onto #112
+rather than a new issue, since #112 already holds exactly this pair.
+
+goatcounter and sift.yasint.dev still 403 at CONNECT through the proxy, so no
+reader signal for the eighteenth run and no post-deploy look at the live site;
+the pages run's own green stands in. Branch deletion failed the same sideband
+way as every shipping run — ten merged gardener branches on the remote now.
+
+Attribution: PR body footer stripped, issue body had none to strip, commit
+trailers and this journal's commit trailer kept. Ninth run of that convention.
+
+Outcome: #159 filed and closed by #160, merged and deployed. #110, #112 and
+#120 all still pending — #120 since 09-03, eleven days.
 
 ### 2026-09-13
 
