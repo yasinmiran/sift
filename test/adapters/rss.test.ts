@@ -163,3 +163,28 @@ test("tolerates html-named entities that are not valid xml", async () => {
   expect(items[0]!.title).toContain("Security news: what’s new");
   expect(items[0]!.content).toContain("body…");
 });
+
+test("normalizes an author element that carries child elements, not text", async () => {
+  // blog.google's item, verbatim: in rss 2.0 an <author> with children parses
+  // to the parser's node for the whole element, so the name has to be read
+  // out of it. ars-technica's dc:creator is the same field pretty-printed.
+  const feed = `<?xml version="1.0"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>t</title>
+    <item><title>Get closer to the game with Gemini and Pixel</title><guid>e1</guid>
+    <link>https://blog.google/1</link><pubDate>${new Date().toUTCString()}</pubDate>
+    <author xmlns:author="http://www.w3.org/2005/Atom"><name>Eileen Mannion</name><title>VP, Marketing UKI and EMEA Devices and Services</title><department></department><company></company></author>
+    <description>body</description></item>
+    <item><title>Rocket Report</title><guid>e2</guid>
+    <link>https://arstechnica.com/1</link><pubDate>${new Date().toUTCString()}</pubDate>
+    <dc:creator>
+                    Eric Berger
+                </dc:creator>
+    <description>body</description></item>
+    <item><title>No byline here</title><guid>e3</guid>
+    <link>https://example.com/3</link><pubDate>${new Date().toUTCString()}</pubDate>
+    <author><name></name></author><description>body</description></item>
+  </channel></rss>`;
+  const items = await parseFeed("google-ai-blog", feed);
+  expect(items.map((i) => i.author)).toEqual(["Eileen Mannion", "Eric Berger", undefined]);
+  // The job title inside that node never becomes the item's own.
+  expect(items[0]!.title).toBe("Get closer to the game with Gemini and Pixel");
+});

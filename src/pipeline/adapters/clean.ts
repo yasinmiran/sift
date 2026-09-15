@@ -24,6 +24,24 @@ export function decodeNumericRefs(s: string): string {
   });
 }
 
+// An author arrives in three shapes. A plain string is the common one, and
+// ars-technica's dc:creator is that string pretty-printed across lines. The
+// third is an rss 2.0 <author> carrying child elements instead of text
+// (blog.google, nextjs.org): the parser hands back its node for the whole
+// element, name and job title and all, where the declared type says string.
+// Atom's <author><name> never reaches here — rss-parser resolves that itself.
+export function authorName(value: unknown): string | undefined {
+  const raw =
+    value !== null && typeof value === "object" && !Array.isArray(value) && "name" in value
+      ? (value as { name: unknown }).name
+      : value;
+  const names = (Array.isArray(raw) ? raw : [raw])
+    .filter((v): v is string => typeof v === "string")
+    .map((v) => v.replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+  return names.length > 0 ? names.join(", ") : undefined;
+}
+
 export function htmlToText(html: string): string {
   const $ = cheerio.load(html);
   return stripInvisibles($.root().text()).replace(/\s+/g, " ").trim();
