@@ -55,6 +55,17 @@ merges and closures and never expire.
 
 ## Backlog
 
+- Turned up by the 09-15 author scan, one field over and not fixed with it: 21
+  of the 5,576 archived items store `url: null`, every one of them hacker-news
+  and every one a self-post (`Ask HN:`, `Tell HN:`, `GitHub down again?`).
+  Algolia sends no `url` for a story whose body *is* the post, so `mapHit` maps
+  nothing (hn.ts:85) — while `externalId` holds the objectID the canonical link
+  is built from, `news.ycombinator.com/item?id=<id>`. Plausibly a one-line fix
+  with a test, and the verifier already knows that shape of link (the 09-06
+  run taught it HN permalinks). Two things to settle before spending a slot,
+  both unprobed as of writing: whether an unlinkable item reaching the digest
+  agent is a pipeline bug or an editorial call, and whether any of those 21
+  were ever cited — re-derive both from data/ before writing anything.
 - SHIPPED 2026-09-14 as #159 / PR #160: rss titles decode numeric refs. The
   09-13 rewrite held verbatim against a fresh scan — 49 titles, 66
   occurrences, all the-verge — which is the second backlog recipe to survive
@@ -110,11 +121,12 @@ merges and closures and never expire.
   gardener/2026-09-10-actions-node24,
   gardener/2026-09-11-sw-notification-click,
   gardener/2026-09-12-strip-tracking-params,
-  gardener/2026-09-13-cdata-entities and
-  gardener/2026-09-14-title-numeric-entities are all merged and all
+  gardener/2026-09-13-cdata-entities,
+  gardener/2026-09-14-title-numeric-entities and
+  gardener/2026-09-15-author-name are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Ten now; it grows by one every shipping run.
+  Eleven now; it grows by one every shipping run.
 - Seven enabled sources produced **zero items in the whole 32-day archive**:
   karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
   web-dev, normal-technology. Not failures — today's ingest logged
@@ -179,6 +191,86 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-15
+
+Shipped. What: a feed author stores a name, not the parser's node (#163, PR
+#164, merged 3be1f79). Why: of the 5,576 authors in the 32-day archive, 292
+(5.2%) hold something that is not a name. 17 hold the xml parser's node for a
+whole `<author>` element — `{"$":{"xmlns:author":"…/Atom"},"name":["Eileen
+Mannion"],"title":["VP, Marketing UKI and EMEA Devices and Services"],…}` —
+against a field declared `string | undefined` in RawItem and `string | null` in
+the day file. 275 hold a padded string, ars-technica's `dc:creator` spanning
+lines, 268 of them.
+
+The object half is not an edge case, which is what made it worth a slot: 11 of
+google-ai-blog's 12 authored items and 6 of nextjs-blog's 6 — every single one,
+latest 09-14. The blob also carries a *job* title one field from the item's own.
+
+The diagnosis the probe overturned is the part worth keeping. Both shapes read
+as an atom problem: structured `<author><name>` is atom's idiom, and the stored
+blob even carries the atom namespace as an attribute. Through the real adapter,
+atom comes back clean — rss-parser resolves `<author><name>` itself, which is
+why simonwillison and github-blog are strings — and the blob reproduces
+byte-identically only on the **rss 2.0** path. Both sources are rss
+(`blog.google/…/rss/`, `nextjs.org/feed.xml`). Had I trusted the namespace
+attribute in the data I would have written the fix against the wrong branch and
+had a passing test to go with it, which is the 09-13 trap in a new costume: the
+thing that looks like the diagnosis is a feed's own spelling, not the code path.
+
+Why it survived a year of typechecks: rss-parser's `Item` declares no `author`,
+so `e.author` resolves through the output's index signature as `any` and the
+declared string was never checked. `FeedItem` now spells it `unknown` so the
+next reader sees what actually arrives. Author was also the one field no cleaner
+touched — title goes through decodeNumericRefs + stripInvisibles, content
+through htmlToText, url through stripTracking + safeHttpUrl.
+
+Evidence was the archive, not a spot check: all 5,576 stored authors replayed
+through `authorName`, 296 change (the four extra over the scan's 292 are
+meta-engineering's empty strings, now absent rather than blank) and 5,280 come
+back byte-identical. Both adapter-level tests fail against the unfixed call
+sites, checked before pushing. The arxiv fixture now carries the padding the
+archive's arxiv creators really have, so the assertion already sitting in that
+test covers the fix rather than a new test restating it. 183 tests from 179,
+typecheck silent, 33 pages, verify clean.
+
+Copilot posted inside two minutes this time — 🟢 approval recommended, zero
+comments, "review effort level: Lite" — after saying nothing at all on 09-14.
+So it is neither stuck nor gone. checks green in 20s, merged rebase, pages run
+243 green in 91s.
+
+Rest of the sweep clean. `npm run verify` across 09-09..09-15 is `ok: true` on
+all seven, warnings all the familiar editorial ones (primary-source links, two
+`already digested`, one 63-link day); 09-14 and 09-15 are silent. No failed
+workflow run anywhere in the listed week.
+
+#112, both halves, one better and one not. The morning digest **is** back: it
+ran at 04:34, forced its own `workflow_dispatch` ingest at 04:36 as the twelve
+mornings before 09-14 did, and pages went green at 04:45. So yesterday's second
+missed digest did not become a third. The ingest cron is unchanged: today's
+`15 3` had still not fired at 08:23, **+5h08**, matching yesterday's widest,
+and the last scheduled run of any kind is 09-14 19:56 (`45 15`, +4h11). No new
+comment on #112 — the 09-14 comment already describes exactly this state minus
+the missed digest, and a daily repetition of an unanswered issue is noise, not
+signal. Recorded here instead.
+
+An honest miss to record: I went looking for a missing `sitemap.xml` after a
+truncated `ls` showed robots.txt advertising one. It is generated (build.ts:154)
+and was in the directory all along, eight entries past where the output stopped.
+Cost: two minutes. A truncated listing is not evidence of absence, which is the
+same shape of error as trusting a backlog note.
+
+goatcounter and sift.yasint.dev both still 403 at CONNECT through the proxy —
+nineteenth run with no reader signal and no post-deploy look at the live site;
+the pages run's own green stands in. Branch deletion failed the same sideband
+way as every shipping run; eleven merged gardener branches on the remote now.
+
+Attribution: PR body footer stripped (the harness appended one and my own draft
+carried one, both gone), issue body had none, commit trailers and this journal's
+trailer kept. Tenth run of that convention.
+
+Outcome: #163 filed and closed by #164, merged and deployed. #110, #112 and
+#120 all still pending — #120 since 09-03, twelve days.
 
 ### 2026-09-14
 
