@@ -1,5 +1,6 @@
 import Parser from "rss-parser";
 import { info } from "../../log";
+import { authorName } from "./clean";
 import type { Adapter, RawItem } from "./types";
 
 // arXiv category feeds (rss.arxiv.org/rss/cat.A+cat.B) per
@@ -52,7 +53,7 @@ export function createArxivAdapter(opts: { slug: string; url: string; maxItems?:
           externalId: e.guid,
           title: e.title,
           url: e.link,
-          author: e.creator,
+          author: authorName(e.creator),
           publishedAt,
           content: abstract,
           mediaType: "text",

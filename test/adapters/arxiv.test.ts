@@ -24,6 +24,8 @@ test("maps abstract, authors and the abs link", async () => {
   const [first] = await parse();
   expect(first!.title).toBe("Bounded-Memory Agents: A Testbed for Long-Horizon Evaluation");
   expect(first!.url).toBe("https://arxiv.org/abs/2507.01001");
+  // The fixture's creator is padded the way the archive's arxiv ones are
+  // (a leading space, an internal double space); the name comes out clean.
   expect(first!.author).toBe("Ada Example, Grace Sample");
   expect(first!.content).toMatch(/^We introduce a bounded-memory testbed/);
   expect(first!.content).not.toContain("Announce Type");

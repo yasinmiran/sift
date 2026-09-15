@@ -1,5 +1,11 @@
 import { expect, test } from "vitest";
-import { decodeNumericRefs, htmlToText, stripTracking, truncate } from "../../src/pipeline/adapters/clean";
+import {
+  authorName,
+  decodeNumericRefs,
+  htmlToText,
+  stripTracking,
+  truncate,
+} from "../../src/pipeline/adapters/clean";
 
 test("htmlToText strips tags and collapses whitespace", () => {
   expect(htmlToText("<p>Hello   <b>world</b></p>\n<p>x</p>")).toBe("Hello world x");
@@ -30,6 +36,36 @@ test("decodeNumericRefs decodes once and leaves everything else alone", () => {
 test("decodeNumericRefs leaves a reference no character answers to", () => {
   for (const s of ["&#0;", "&#55296;", "&#xD800;", "&#1114112;", "&#99999999;", "&#x1FFFFFF;"]) {
     expect(decodeNumericRefs(s)).toBe(s);
+  }
+});
+
+test("authorName takes the name out of an author element that has children", () => {
+  // Both node shapes verbatim from the archive: blog.google, then nextjs.org.
+  // The job title sitting next to the name is not a name and is dropped.
+  expect(
+    authorName({
+      $: { "xmlns:author": "http://www.w3.org/2005/Atom" },
+      name: ["Eileen Mannion"],
+      title: ["VP, Marketing UKI and EMEA Devices and Services"],
+      department: [""],
+      company: [""],
+    }),
+  ).toBe("Eileen Mannion");
+  expect(authorName({ name: ["Aurora Scharff"] })).toBe("Aurora Scharff");
+  expect(authorName({ name: ["A One", "B Two"] })).toBe("A One, B Two");
+});
+
+test("authorName collapses the whitespace a pretty-printed creator carries", () => {
+  // ars-technica's dc:creator, verbatim, then arxiv's two spellings.
+  expect(authorName("\n                    Eric Berger\n                ")).toBe("Eric Berger");
+  expect(authorName(" Elle")).toBe("Elle");
+  expect(authorName("Rabimba Karanjai,  Yang Lu")).toBe("Rabimba Karanjai, Yang Lu");
+  expect(authorName("Jakub Oleksy")).toBe("Jakub Oleksy");
+});
+
+test("authorName returns nothing when there is no name in there", () => {
+  for (const empty of [undefined, null, "", "   \n ", 42, { $: { x: "1" } }, { name: [""] }, []]) {
+    expect(authorName(empty)).toBeUndefined();
   }
 });
 

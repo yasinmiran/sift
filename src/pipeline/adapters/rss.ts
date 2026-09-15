@@ -1,6 +1,6 @@
 import Parser from "rss-parser";
 import { info } from "../../log";
-import { decodeNumericRefs, htmlToText, stripInvisibles } from "./clean";
+import { authorName, decodeNumericRefs, htmlToText, stripInvisibles } from "./clean";
 import type { Adapter, RawItem } from "./types";
 
 type ParsedFeed = Awaited<ReturnType<Parser["parseString"]>>;
@@ -8,6 +8,9 @@ type FeedItem = ParsedFeed["items"][number] & {
   "content:encoded"?: string;
   creator?: string;
   id?: string;
+  // rss-parser declares no author, so this one arrives through the output's
+  // index signature and is whatever the xml parser built for the element.
+  author?: unknown;
 };
 
 const parser = new Parser();
@@ -91,7 +94,7 @@ export function createRssAdapter(opts: {
           // is a zero-width character by the time the stripper looks.
           title: stripInvisibles(decodeNumericRefs(e.title)),
           url: e.link,
-          author: e.creator ?? e.author,
+          author: authorName(e.creator ?? e.author),
           publishedAt,
           content: htmlToText(e["content:encoded"] ?? e.content ?? e.contentSnippet ?? ""),
           mediaType: opts.mediaType ?? "text",
