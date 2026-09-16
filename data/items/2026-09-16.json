@@ -1,0 +1,2333 @@
+{
+  "day": "2026-09-16",
+  "generatedAt": "2026-09-16T04:36:52.686Z",
+  "items": [
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/how-delphi-ships-100-times-a-day-with-its-python-backend-on-vercel",
+      "title": "How Delphi ships 100 times a day with its Python backend on Vercel",
+      "url": "https://vercel.com/blog/how-delphi-ships-100-times-a-day-with-its-python-backend-on-vercel",
+      "author": "Susan Aziz",
+      "publishedAt": "2026-09-15T04:00:00.000Z",
+      "content": "Delphi on VercelThe backend slowed every changePreview deployments are how agents check their work10 engineers with no dedicated infrastructure roleEveryone ships code, including product and design100+ production deploys a day behind feature flags builds digital minds. They capture what someone has written, recorded, and taught, so anyone can tap that expertise on demand. Delphi is “a destination where you can find and interact with interesting minds,” says founding engineer Spencer Schoeben.DelphiNobody has built a digital mind network before, so Delphi figures out what to build by shipping features and watching how people use them. That only works if the product is fast to change. \"If we are going to win, we need to have an excellent developer and agentic experience,\" Spencer says. \"Otherwise, we could not adapt to how fast our user’s demands change.\"Delphi's frontend had run on Vercel since day one. \"The frontend has always been easy,\" Spencer says, \"but the backend was a nightmare.\" Six months ago, the team rebuilt its Python backend on Vercel as well. Today the whole team ships to production 100+ times a day.Delphi's backend previously ran on AWS, with ECS, Docker Desktop, and local databases. In the earliest days, the setup worked because the team was small and much of the context lived in people’s heads. As Delphi grew, that made onboarding slower than the team wanted: getting a new engineer to their first deploy took a full day of environment setup. Delphi could have fixed that without leaving AWS. But fixing it properly would have meant designing and owning the infrastructure themselves, and the team didn't want to own infrastructure at all. \"That is not our current goal as a company,\" Spencer says. After moving the backend to Vercel, new engineers could get to production much faster, with the same deploy workflow the rest of the team used every day.When Delphi was founded, and didn't exist. Without them, Spencer says, the move would have been much harder, if possible at all.Vercel WorkflowsVercel QueuesDelphi's backend depends on long-running work and queued background jobs. Digital minds need durable agents that generate content ahead of time, plus ingestion that turns a person's books and talks into a knowledge graph.Workflows handles the long-running work and Queues handle the background jobs. Neither requires setup. A developer writes the workflow or the queue handler as a function in the codebase, and Vercel provisions what's needed to run it on deploy.Moving the backend to Vercel let Delphi stop treating backend changes as heavyweight releases and ship them as everyday product work. The team used to deploy to staging, then production. Now it skips the middle step, shipping 100+ times a day behind feature flags and running A/B tests instead of batching changes into a release. anomaly detection watches production at that pace, flagging when something is misbehaving and why. Before, Spencer says, they often would not have known.Vercel Agent'sMoving fast has helped clear a backlog of small experiments that never used to make the priority list. Many of those experiments test how to turn a visitor into an owner, someone who arrives to talk to a mind and leaves having started their own.Shipping isn't limited to engineers, either. Delphi's CPO and its growth teams build and deploy dashboards, prototypes, and experiments themselves, which Spencer says wouldn't have happened on the old setup.Delphi's engineers hand problems to cloud agents, with very little development happening locally. The preview deployment is where they first see what the agent built. Vercel preview deployments give every push its own live URL, so anyone can check the result from a phone or a Slack thread without pulling the branch.When an agent fails, it's usually because it couldn't get at the information it needed. Vercel exposes the data and controls agents need through the SDK, MCP, and CLI, so an agent can read logs, inspect a deployment, or change an environment variable through whichever it's using. For Delphi, agents are now the main users of those tools, so the platform has to be as easy for them as it is for people.Delphi's own agents run on Vercel as well. One of them, an internal agent on , simplifies working with the company's codebase. The customer success team uses Slack to ask it about reported issues, find the problem, and hand an engineer a root cause and a proposed fix.Vercel SandboxEdge cases used to fall through the cracks. \"Before, we either couldn't get to everything, or we had to spend way more time than we had available,\" Spencer says. \"Now we have an agent they can just ask in Slack.\"Vercel Sandbox gives the agent an isolated environment with a file system, where it can check out the codebase, run it, and pull in whatever data a question needs. The agent itself is built with eve, Vercel's agent framework. Delphi's first version ran on a hosted agent platform and could only use the integrations that platform offered. In eve, tools are code Delphi writes, so when a question needs one that doesn't exist, the team adds it.Delphi's chat traffic runs through Every digital mind is different, and some come out better on one model than another, so Delphi picks the model for each customer and adjusts as its own evals change. When a new model ships, open-source or otherwise, Delphi can route to it the same day.AI Gateway.Gateway also handles failover. Before, Delphi worked directly with a model provider to line up fallback capacity on other clouds, and it was hard. \"With AI Gateway, we always know that we're going to get the fallbacks if they exist,\" Spencer says.Delphi's first chapter was training digital minds and letting people chat with them. Now it is building the interface beyond chat. Spencer describes a search page where you bring a question, get perspectives from several minds at once, and have the page adapt to who you are.That work runs as long-running agents on Workflows, with AI Gateway supplying whichever model each experiment calls for. Delphi is a platform that turns a person's knowledge, thinking, and voice into a digital mind others can talk to. Anyone can create their own Delphi to make their expertise discoverable and accessible, part of a network of minds people can seek out, learn from, and converse with.About: DelphiRead moreBuilding a Python backend that's easy to work onWorkflows and Queues made the move possible100+ deploys a day, straight to productionInfrastructure built for agents and engineersAn internal agent on Sandbox for customer successAI Gateway picks the model for each mindWhat's next",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49713024",
+      "title": "The Inference Hardware Revolution of 2026",
+      "url": "https://spectrum.ieee.org/inference-hardware-revolution",
+      "author": "vinhnx",
+      "publishedAt": "2026-09-15T14:24:08.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 125,
+      "comments": 13
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49713262",
+      "title": "The CSS Zen Garden dream, finally shipped",
+      "url": "https://josprague.com/blog/the-css-zen-garden-dream-finally-shipped/",
+      "author": "yosito",
+      "publishedAt": "2026-09-15T14:40:08.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 131,
+      "comments": 72
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49713999",
+      "title": "Cartesian – AI 3D Modeling for Design",
+      "url": "https://www.formas.ai/cartesian",
+      "author": "eustoria",
+      "publishedAt": "2026-09-15T15:26:45.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 102,
+      "comments": 78
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49715590",
+      "title": "GEFS on OpenBSD: A Early Preview",
+      "url": "https://marc.info/?l=openbsd-tech&m=178948744271633&w=2",
+      "author": "sippingabonedry",
+      "publishedAt": "2026-09-15T17:12:19.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 110,
+      "comments": 61
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49715927",
+      "title": "Why I'm still bearish on LLMs after Navier-Stokes",
+      "url": "https://dank.systems/posts/2026-09-15-ai-bear.html",
+      "author": "jaykru",
+      "publishedAt": "2026-09-15T17:37:12.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 164,
+      "comments": 167
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49715947",
+      "title": "Gemini 3.8 Live and 3.8 Live Extended Thinking",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/",
+      "author": "leumon",
+      "publishedAt": "2026-09-15T17:38:18.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 350,
+      "comments": 224
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49716241",
+      "title": "Hugging Face is billing OpenAI $100M for hacking it",
+      "url": "https://thenextweb.com/news/hugging-face-delangue-openai-100m-compute-traces-demand",
+      "author": "cwwc",
+      "publishedAt": "2026-09-15T17:56:10.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 140,
+      "comments": 46
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49716265",
+      "title": "Google copied our open-source code, removed engineers' names without credit",
+      "url": "https://www.reddit.com/r/reinforcementlearning/comments/1wg1unx/google_copied_our_opensource_code_removed_our/",
+      "author": "jacquesm",
+      "publishedAt": "2026-09-15T17:57:39.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 119,
+      "comments": 11
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49716476",
+      "title": "We got admin access to Baseten's production GitHub",
+      "url": "https://www.strix.ai/blog/baseten-harbor-github-pat-takeover",
+      "author": "bearsyankees",
+      "publishedAt": "2026-09-15T18:11:24.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 249,
+      "comments": 136
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/ifm-s-k2-horizon-7b-beats-gpt-5-on-coding-with-70-6-swe-bench-score",
+      "title": "IFM's K2-Horizon 7B Beats GPT-5 on Coding With 70.6 SWE-bench Score",
+      "url": "https://alphasignal.ai/news/ifm-s-k2-horizon-7b-beats-gpt-5-on-coding-with-70-6-swe-bench-score",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-15T18:15:16.000Z",
+      "content": "IFM released three open-weight K2-Horizon models spanning 3.7B to 36B parameters, plus a diffusion adapter that delivers up to 2.2x speedup.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/09/agilitys-new-humanoid-robot-will-stop-squat-to-avoid-harming-human-coworkers/",
+      "title": "Agility’s new humanoid robot will stop, squat to avoid harming human coworkers",
+      "url": "https://arstechnica.com/ai/2026/09/agilitys-new-humanoid-robot-will-stop-squat-to-avoid-harming-human-coworkers/",
+      "author": "Jeremy Hsu",
+      "publishedAt": "2026-09-15T18:33:02.000Z",
+      "content": "Agility Robotics has debuted its first humanoid robot engineered to work safely near humans without risking harm to flesh-and-blood coworkers. Such safety features could unlock many more opportunities to use such robots inside warehouses and automotive factories—all without requiring isolated robot work cells and physical separation barriers. When Agility’s new Digit 5 robot detects a person at a distance, it can autonomously take precautions, like moving to avoid the person or standing still so the person can pass by without getting closer. If a person is getting into close proximity with Digit 5, the robot can even choose to squat and assume a seated position. “The robot was designed with a complex safe motion system that can take a variety of different mitigations depending on exactly what sort of human presence is detected,” Pras Velagapudi, chief technology officer at Agility, told Ars.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49716953",
+      "title": "Chopping up books when they're physically too big",
+      "url": "https://attainablefelicity.mattkirkland.com/20260915/cut-up-your-books.html",
+      "author": "matt_kirkland",
+      "publishedAt": "2026-09-15T18:45:31.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 143,
+      "comments": 136
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/09/spacex-sets-launch-date-for-first-starship-orbital-flight/",
+      "title": "SpaceX declares Starship ready for orbit, sets launch date next week",
+      "url": "https://arstechnica.com/space/2026/09/spacex-sets-launch-date-for-first-starship-orbital-flight/",
+      "author": "Eric Berger",
+      "publishedAt": "2026-09-15T18:48:08.000Z",
+      "content": "Pending regulatory approval, SpaceX said today it intends to launch its 14th Starship mission as early as September 22. This flight is notable, as it will be the first time that SpaceX attempts to launch the experimental vehicle into orbit. The company set a target liftoff time of 7:15 am local in Texas (12:15 UTC), with a 75-minute launch window. Sunrise in Brownsville, Texas, is 7:17 am CT, so the launch could make for some striking imagery. The super heavy lift rocket will be carrying 26 of the larger V3 Starlink satellites into an orbit 275 km above the Earth. In an update on its website, SpaceX said the Starship upper stage will seek to complete six orbits around the Earth before completing its mission after about 10 hours.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/09/measles-kills-18-year-old-in-pa-fourth-death-as-state-outbreak-nears-700-cases/",
+      "title": "18-year-old dies of measles in PA from severe neurological complication",
+      "url": "https://arstechnica.com/health/2026/09/measles-kills-18-year-old-in-pa-fourth-death-as-state-outbreak-nears-700-cases/",
+      "author": "Beth Mole",
+      "publishedAt": "2026-09-15T18:58:09.000Z",
+      "content": "A fourth person in Pennsylvania has died of measles, the state health department confirmed Tuesday. The latest death was in an unvaccinated 18-year-old resident of Mifflin County. In the announcement, the state health department also confirmed a county coroner's report over the weekend of the death of an unvaccinated 40-year-old woman in Jefferson County. The state had previously reported two deaths in Lancaster County; both were infants—a newborn boy and a 6-week-old girl, both too young to be vaccinated. According to the Mifflin County coroner, Andrea L. Alcalde, the 18-year-old's cause of death was determined to be acute disseminated encephalomyelitis (ADEM), which is a rare but known severe complication of measles. The condition is characterized by a rapidly progressing autoimmune disorder in which aberrant inflammation from an infection strips away the protective coverings of nerve cells in the brain and spinal cord. Before measles vaccines were widely used, ADEM was commonly associated with measles, though other viral infections can also spur its development.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-unifies-weathernext-firesat-and-flood-ai-to-warn-110m-people",
+      "title": "Google Unifies WeatherNext, FireSat and Flood AI to Warn 110M People",
+      "url": "https://alphasignal.ai/news/google-unifies-weathernext-firesat-and-flood-ai-to-warn-110m-people",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-15T18:59:55.000Z",
+      "content": "Google's new white paper details how Gemini, WeatherNext, FireSat and Flood Hub extend warning windows for floods, cyclones, wildfires and quakes worldwide.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49717558",
+      "title": "Introducing System One Models and Jev",
+      "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+      "author": "albelfio",
+      "publishedAt": "2026-09-15T19:25:03.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 961,
+      "comments": 300
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49717605",
+      "title": "WangNet – 1.8 MB, zero-dependency Numberwang adjudication in 11 languages",
+      "url": "https://github.com/GraafHenk/numberwang",
+      "author": "Liogra123",
+      "publishedAt": "2026-09-15T19:27:35.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 123,
+      "comments": 47
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49717638",
+      "title": "Building a Linux GPU Driver for the M4 Mac Mini in One Month",
+      "url": "https://codyho.dev/blog/gpu-driver/",
+      "author": "ADevWithAnIdea",
+      "publishedAt": "2026-09-15T19:30:03.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 207,
+      "comments": 129
+    },
+    {
+      "sourceSlug": "bytebytego",
+      "externalId": "https://blog.bytebytego.com/p/last-call-for-enrollment-build-with-d63",
+      "title": "LAST CALL FOR ENROLLMENT: Build with Claude Code",
+      "url": "https://blog.bytebytego.com/p/last-call-for-enrollment-build-with-d63",
+      "author": "ByteByteGo",
+      "publishedAt": "2026-09-15T19:31:01.000Z",
+      "content": "We’re relaunching Build with Claude Code, a 2-day intensive cohort-based course taught by John Kim, who has trained hundreds of engineers at Meta to use Claude Code in real production workflows.The course kicks off on September 16th, and enrollment closes in 24 hours. If you’ve been thinking about leveling up how you and your team work with Claude Code, this is the moment.Check it out nowA few things you’ll learn:The agentic loop, context engineering, and memory layers that make Claude Code useful for real projectsHow to build with Claude Code Skills, MCPs, and hooks to give Claude the tools and feedback loops it needs to self correctParallel development with Git worktrees, subagents, and agent teamsA capstone project where you ship something real on your own stackThe course includes live sessions, assignments, and office hours, so there’s plenty of room to ask questions and get unstuck.If you want to learn everything from the fundamentals of Claude Code to advanced production workflows, including working with large codebases, this could be a great way to level up.Check it out now",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "google-research",
+      "externalId": "https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/",
+      "title": "Bypassing inference bottlenecks: Accelerating complex AI search with Retrieve-for-Train",
+      "url": "https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/",
+      "author": null,
+      "publishedAt": "2026-09-15T20:00:35.000Z",
+      "content": "Algorithms & Theory",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-s-retrieve-for-train-slashes-ai-search-latency-by-20x",
+      "title": "Google's Retrieve-for-Train Slashes AI Search Latency by 20x",
+      "url": "https://alphasignal.ai/news/google-s-retrieve-for-train-slashes-ai-search-latency-by-20x",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-15T20:01:29.000Z",
+      "content": "Google Research swaps expensive chain-of-thought fan-out for a 53.9M-parameter diffusion retriever, delivering 12-20x faster expert-level search slates.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "https://www.latent.space/p/good-start-labs",
+      "title": "Can Skills Learned in Games Transfer to Real-World Work?",
+      "url": "https://www.latent.space/p/good-start-labs",
+      "author": "Richard MacManus",
+      "publishedAt": "2026-09-15T20:11:54.000Z",
+      "content": "“Games have always been these underrated educational tools. They’re super approachable. They’re very human.”Those are the words of Alex Duffy, co-founder and CEO of Good Start Labs, who spoke to Latent Space about why his company is turning games into training material for AI models. The company was spun out of AI media and tools company Every last October, with $3.6 million in funding from General Catalyst, Inovia, Every, and angel investors.The idea came from a 2025 Twitch stream of frontier models playing the game Diplomacy, which Duffy said normally takes “days or weeks to play.” This was when he worked at Every as its head of AI training.2025 Twitch stream showing a Diplomacy betrayal by OpenAI’s o3 model.(For more on Diplomacy and LLMs, see our interview last year with Noam Brown, soon after he won the 2025 World Diplomacy Championship!)Watching the AI agents battle it out in Diplomacy showed Alex Duffy how each frontier model acts differently when faced with gaming scenarios. In particular, he noticed the OpenAI model (o3) winning all the games by planning a future betrayal, whereas the Claude model (Opus 4) refused to lie and thus “got destroyed.”From this, Duffy concluded that training AI models on games like Diplomacy could teach them skills like strategic thinking. Especially because those kinds of games have outcomes that can be verified. In a later article published on Every, Duffy wrote that “fine-tuning a model on the strategy game Diplomacy improved its performance on customer support and industrial operations benchmarks.”Grok 4 Fast is the least likely to betray you in Diplomacy, according to these September 2026 rankings by Good Start Labs.On the other hand, don’t trust Gemini 2.5 Pro in Diplomacy!Duffy and his co-founder Tyler Marques launched Good Start Labs with the intention of exploring other games that could teach useful skills to AI models. “It became really clear that reinforcement learning environments were one of the most reliable ways to teach models anything you could verify,” he said.The bigger idea is that the way a game is presented to an AI can determine which skills it learns, and whether those skills carry into work outside the game. And the best evidence for that so far comes from a nineteenth-century railroad game.When game training transfers to financial researchGood Start Labs recently trained a 30B model inside the game 1830: The Game of Railroads and Robber Barons, described on Wikipedia as “a strategy game where the only element of luck involved is in determining the initial play order.”They then tested the same model on financial research tasks. The experiment was designed to test whether habits learned in a game could transfer outside the game.“That game has a stock market mechanic within it,” Duffy explained. “You’re bidding on stock of these railroad companies to try and create this logistics network. And we’ve set up tasks where models are going through a database to find information about how the game’s been played, putting it into an Excel file, reasoning over it, creating some functions within it, and then calculating its answer in that way. And so it mirrors what you would typically do in a finance workflow, but you’re doing it in this game.”The published results compare single-turn question answering — where the model is presented with a game state and asked to make the next move — with a “multi-turn terminal agent that uses tools to explore its environment, plan a strategy, and adapt in real time.”Both training designs improved their respective in-game objectives, but only the terminal-agent design improved performance on the Finance-Agent benchmark.Designing a learning environment to teach capabilitiesThe 1830 result showed that the training design is key. But more generally, Duffy said Good Start Labs can also add an expert model that provides denser, stepwise rewards.The harness also allows an environment to approach the same game in different ways.“How you design that [the harness] totally changes what the model can learn,” Duffy said. “You can imagine a model that is looking at pictures is going to learn different things than one that’s reading through natural text [or] one that has everything framed as Python.”Duffy described the overall goal of Good Start Labs as figuring out “how do you design a learning environment to teach specific capabilities?”That question is explored in COS-PLAY: Co-Evolving LLM Decision and Skill Bank Agents for Long-Horizon Tasks, a paper co-authored by Duffy and Marques with researchers from several universities.In the paper, the system gives a decision agent access to what the authors call “a learnable skill bank to guide action taking.” A separate skill-bank agent studies the trajectory and makes changes to the skill bank, which is then looped back for the next run.What about the latest frontier models?I asked whether Good Start Labs has compared newer models, such as Claude Fable 5.1 and GPT-6 Astra, in the same game environments? And by extension, do increasingly capable base models make the harness and training environment less important?“We compare every new model,” Duffy replied, adding that the newer, more capable models tend to be better at the games. However, similar to what the original Twitch streams showed with the 2025 models, the new models “diverge on the personality axes: betrayal, collaboration, theory of mind, etc.”As for harnesses, he said that “a more capable model needs less handholding to finish the same task, certainly.”But for what Good Start Labs is doing — treating “the environment as curriculum” — the harness “matters more, not less.”“GPT-6 Astra reports doing less chain-of-thought and jumps to answers,” Duffy said. “If you want a model to work a certain way while solving a problem, the harness is what forces it. Astra can probably do the math in its head, but you’d rather it use code so you can trust the result.”What is Good Start Labs selling?In a recent blog post, the company described its work on “improvement loops,” which include training systems, harnesses, and observability. But how does that translate into products that Good Start Labs offers other companies?“The main thing that we sell in terms of AI improvement is data and learning environments,” Duffy replied. Its main customers are frontier labs — for which they provide reinforcement learning data to help further train their models.He describes the data part of its offering as one of two things. The first is “trajectories of agents playing games” — what an agent observed, what it decided, which actions it took and what happened afterward.The second is custom data for specific game publishers, where “agents are live in their games.” The agents can play inside those games, generating interactions that may be useful for training and evaluation. Duffy said any data sold to model developers is anonymized and stripped of personally identifiable information.The learning environments that Good Start Labs sells are “full games where models can play end to end,” he noted. It isn’t about winning the games, though. It’s more about teaching AI models to solve problems.“We’ll also make a lot of tasks where the models are using the game engine as the verifiable source of rewards, but are solving problems in a way that you might not expect.”So can game skills be transferred to real-world work?Alongside its custom work for clients, Good Start Labs is also training a general model from the expert models it has built for specific games. The idea, said Duffy, is to unify those expert models “into this general game intelligence that could be applicable everywhere.”But while the 1830 experiment suggests that agentic game training can transfer to a structurally similar financial-research task, it’s unclear if there will be broader real-world transfer. I asked Duffy what the evidence actually states today?“Today’s evidence supports pretty clearly that goal-directed execution matters, and reasoning transfers,” he replied. He pointed to a recent article by Surge AI showing that office work post-training improved coding, adding that “DeepSeek R1 showed it more broadly.”“We’ve seen it twice ourselves: the 1830 finance task, and Diplomacy training that produced a better customer support agent. Every environment we’ve built also improves tool use downstream.”So that makes the answer to our big question a qualified yes: some game skills can transfer to real-world work. But Duffy says how broadly and reliably they transfer remains an open question.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=995704",
+      "title": "What if social media isn’t hurting kids?",
+      "url": "https://www.theverge.com/policy/995704/peter-gray-restoring-childhood-jonathan-haidt",
+      "author": "Lauren Feiner",
+      "publishedAt": "2026-09-15T20:13:30.000Z",
+      "content": "Two years ago, social psychologist Jonathan Haidt released his New York Times bestseller The Anxious Generation. The book posits that the rise of social media and smartphone use is largely to blame for the prominent decline in teen mental health since 2010. It quickly became a central rallying cry of the social media backlash. Haidt has been credited with helping inspire Australia's nationwide teen social media ban. He has joined forces with bereaved parents who are fighting tech companies in court. His name comes up unprompted in conversations with people in power who say his book opened their eyes to an online crisis. Haidt's theory has … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/perplexity-s-cobbledb-cuts-search-storage-latency-by-82-over-dynamodb",
+      "title": "Perplexity's CobbleDB Cuts Search Storage Latency by 82% Over DynamoDB",
+      "url": "https://alphasignal.ai/news/perplexity-s-cobbledb-cuts-search-storage-latency-by-82-over-dynamodb",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-15T20:16:51.000Z",
+      "content": "Perplexity rebuilt its search hot store from scratch, cutting batch-read latency 5x and slashing costs 20% versus DynamoDB.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/09/filmmaker-suing-passthepopcorn-may-be-banned-user-out-for-revenge/",
+      "title": "“Filmmaker” suing PassThePopcorn may be banned user out for revenge",
+      "url": "https://arstechnica.com/tech-policy/2026/09/filmmaker-suing-passthepopcorn-may-be-banned-user-out-for-revenge/",
+      "author": "Ashley Belanger",
+      "publishedAt": "2026-09-15T20:19:17.000Z",
+      "content": "Some of the most widely used private torrent trackers for pirating movies suspect that a banned user may have posed as a filmmaker protecting copyrights in a failed attempt to seek revenge. TorrentFreak has been tracking this story closely, reporting last September that an alleged independent filmmaker named Matthew Schneider sued six private trackers for infringing copyrights on some films that he supposedly made. Trackers targeted include PassThePopcorn, BroadcasTheNet, and HDBits. For months, the filmmaker sought to get Cloudflare to unmask operators of the trackers through a copyright fight, which went on until trackers alerted the court last month that Schneider appeared to be an impostor. In a sworn declaration, the actual filmmaker behind the movies cited in the complaint wrote that he had no association to the plaintiff in the case. “I am not involved in, nor have I ever appeared in, this case,” Schneider wrote.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=994714",
+      "title": "Microsoft announces Windows and Surface event for October 7th",
+      "url": "https://www.theverge.com/news/994714/microsoft-windows-surface-event-october-7-san-francisco",
+      "author": "Tom Warren",
+      "publishedAt": "2026-09-15T20:36:59.000Z",
+      "content": "It's been more than two years since the last major Windows event, so Microsoft is heading to San Francisco next month to outline the future of Windows and Surface devices. At an event on October 7th, the company says it will host a \"conversation on how local AI will shape the next chapter of the PC.\" Microsoft CEO Satya Nadella will be in attendance, alongside Windows and Surface chief Pavan Davuluri. Even Nvidia CEO Jensen Huang will be appearing at the event, which suggests that RTX Spark PCs could be the main focus of this event. If that's the case, don't be surprised to hear more about the Microsoft Surface Laptop Ultra pricing and avai … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p46#a260915p46",
+      "title": "At the Future of Life Institute's Pro-Human Assembly, Bernie Sanders, Steve Bannon, and others called for tighter restrictions on AI and denounced tech CEOs (New York Times)",
+      "url": "https://www.techmeme.com/260915/p46#a260915p46",
+      "author": null,
+      "publishedAt": "2026-09-15T20:40:55.000Z",
+      "content": "New York Times: At the Future of Life Institute's Pro-Human Assembly, Bernie Sanders, Steve Bannon, and others called for tighter restrictions on AI and denounced tech CEOs — At an event in Washington, partisanship took a back seat as elected officials, religious leaders, parents and artists called for reining in artificial intelligence.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p47#a260915p47",
+      "title": "Pulley, which offers cap table management software, says it will cease operations after December 8; it had raised $50M+ from investors, including Founders Fund (Melia Robinson/Business Insider)",
+      "url": "https://www.techmeme.com/260915/p47#a260915p47",
+      "author": null,
+      "publishedAt": "2026-09-15T20:45:01.000Z",
+      "content": "Melia Robinson / Business Insider: Pulley, which offers cap table management software, says it will cease operations after December 8; it had raised $50M+ from investors, including Founders Fund — Pulley, a software that startups rely on to track their funding, is shutting down after seven years.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "figma-blog",
+      "externalId": "https://www.figma.com/blog/source-material-zach-lieberman/",
+      "title": "Source material: Artist and educator Zach Lieberman likes to break things",
+      "url": "https://www.figma.com/blog/source-material-zach-lieberman/",
+      "author": null,
+      "publishedAt": "2026-09-15T20:52:00.000Z",
+      "content": "The creative coder explains the throughline between drawing and computation, and why he’s jealous of pioneering artist Lillian Schwartz.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49718822",
+      "title": "Jean-Pierre Serre turns 100",
+      "url": "https://mathshistory.st-andrews.ac.uk/Biographies/Serre/",
+      "author": "jzox",
+      "publishedAt": "2026-09-15T20:57:18.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 111,
+      "comments": 19
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49718928",
+      "title": "German Rheinmetall open-sources its Battlesuite connected weapon system protcol",
+      "url": "https://rheinmetall.github.io/onboardapi-documentation/9.10.0/index.html",
+      "author": "summarity",
+      "publishedAt": "2026-09-15T21:07:47.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 159,
+      "comments": 46
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p48#a260915p48",
+      "title": "OpenRouter users spent more on OpenAI's models than on Anthropic's in the week of September 7, the first time that happened since the week of February 26, 2024 (@openrouter)",
+      "url": "https://www.techmeme.com/260915/p48#a260915p48",
+      "author": null,
+      "publishedAt": "2026-09-15T21:35:01.000Z",
+      "content": "@openrouter: OpenRouter users spent more on OpenAI's models than on Anthropic's in the week of September 7, the first time that happened since the week of February 26, 2024 — OpenRouter users spent more on OpenAI models than on Anthropic models last week. This hasn't happened for more than 2.5 years",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p49#a260915p49",
+      "title": "At a US House hearing, Treasury Secretary Scott Bessent said AI labs should get no liability exemptions and called for more open-source models built in the US (Matt Bracken/FedScoop)",
+      "url": "https://www.techmeme.com/260915/p49#a260915p49",
+      "author": null,
+      "publishedAt": "2026-09-15T22:00:38.000Z",
+      "content": "Matt Bracken / FedScoop: At a US House hearing, Treasury Secretary Scott Bessent said AI labs should get no liability exemptions and called for more open-source models built in the US — The secretary told House Financial Services Committee lawmakers that the “best way to guarantee safety” is for AI creators to be held …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/mia-ai-lab-runs-glm-5-3-flash-across-two-dgx-sparks-at-146-tok-s",
+      "title": "Mia AI Lab Runs GLM-5.3-Flash Across Two DGX Sparks at 146 tok/s",
+      "url": "https://alphasignal.ai/news/mia-ai-lab-runs-glm-5-3-flash-across-two-dgx-sparks-at-146-tok-s",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-15T22:06:04.000Z",
+      "content": "A hobbyist lab shipped a two-node vLLM stack that runs GLM-5.3-Flash at 4bpw across a pair of DGX Sparks with 900k context.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p50#a260915p50",
+      "title": "Sources: OpenAI has held early conversations with investors about raising another private funding round at a $1.2T valuation before its planned IPO (Financial Times)",
+      "url": "https://www.techmeme.com/260915/p50#a260915p50",
+      "author": null,
+      "publishedAt": "2026-09-15T22:12:33.000Z",
+      "content": "Financial Times: Sources: OpenAI has held early conversations with investors about raising another private funding round at a $1.2T valuation before its planned IPO — Sam Altman's start-up could capitalise on demand for its technology after new model launches — OpenAI has held early conversations …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/09/the-roman-telescope-has-enough-gas-for-22-years-double-nasas-expectations/",
+      "title": "The Roman telescope has enough gas for 22 years, double NASA's expectations",
+      "url": "https://arstechnica.com/space/2026/09/the-roman-telescope-has-enough-gas-for-22-years-double-nasas-expectations/",
+      "author": "Stephen Clark",
+      "publishedAt": "2026-09-15T22:26:32.000Z",
+      "content": "NASA's Nancy Grace Roman Space Telescope is gliding toward its distant observation post on a pinpoint trajectory so precise that engineers estimate the spacecraft's fuel load will last twice as long as their initial expectations, the space agency confirmed Monday. The $4.3 billion observatory's designers originally planned to load enough propellant into Roman's four fuel tanks for a minimum lifetime of five years, plus a potential five-year mission extension. That was a conservative estimate. NASA officials knew an on-target launch and perfect execution of the observatory's first post-launch course correction maneuver would leave Roman with a hearty fuel reserve. \"As a result of exquisite planning by our orbital dynamics team, brilliant execution by the operations team, and a precise launch from SpaceX, Roman has fuel for at least 22 years of potential science operations,\" Jamie Dunn, center director at NASA's Goddard Space Flight Center, said in a press release.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/sakana-ai-s-marlin-now-lets-analysts-chat-with-and-edit-research-reports",
+      "title": "Sakana AI's Marlin Now Lets Analysts Chat With and Edit Research Reports",
+      "url": "https://alphasignal.ai/news/sakana-ai-s-marlin-now-lets-analysts-chat-with-and-edit-research-reports",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-15T22:29:20.000Z",
+      "content": "Sakana Marlin adds Interactive Reading for source-grounded chat with reports and editable PowerPoint export with custom templates.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p51#a260915p51",
+      "title": "TypeSafe AI, which is developing a model that outputs numerical responses with probability estimates to help businesses assess reliability, raised a $40M seed (Rashi Shrivastava/Forbes)",
+      "url": "https://www.techmeme.com/260915/p51#a260915p51",
+      "author": null,
+      "publishedAt": "2026-09-15T22:30:02.000Z",
+      "content": "Rashi Shrivastava / Forbes: TypeSafe AI, which is developing a model that outputs numerical responses with probability estimates to help businesses assess reliability, raised a $40M seed — Former OpenAI researcher Diogo Almeida says most intelligence is going to live inside software. But to automate any real work, it has to be correct.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Sep/15/gemini-live/",
+      "title": "Gemini Live audio",
+      "url": "https://simonwillison.net/2026/Sep/15/gemini-live/",
+      "author": null,
+      "publishedAt": "2026-09-15T22:47:07.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p52#a260915p52",
+      "title": "Sources: Meta plans to release a camera-free pair of smart glasses this fall; the new model has six mics to let users speak with Meta's AI chatbot and Muse (Jyoti Mann/The Information)",
+      "url": "https://www.techmeme.com/260915/p52#a260915p52",
+      "author": null,
+      "publishedAt": "2026-09-15T22:50:00.000Z",
+      "content": "Jyoti Mann / The Information: Sources: Meta plans to release a camera-free pair of smart glasses this fall; the new model has six mics to let users speak with Meta's AI chatbot and Muse — Meta Platforms plans to release a camera-free pair of smart glasses this fall, according to people familiar with the matter …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p53#a260915p53",
+      "title": "Mark Zuckerberg says AI labs have the responsibility and incentive to train models safely and that any lab that doesn't focus on alignment will fall behind (Mark Zuckerberg/@finkd)",
+      "url": "https://www.techmeme.com/260915/p53#a260915p53",
+      "author": null,
+      "publishedAt": "2026-09-15T23:15:07.000Z",
+      "content": "Mark Zuckerberg / @finkd: Mark Zuckerberg says AI labs have the responsibility and incentive to train models safely and that any lab that doesn't focus on alignment will fall behind — Last month I wrote about how we can build a positive and safe future for everyone: https://meta.com/... Every lab has the responsibility and incentive to move at the pace required to train its models safely, and the ability to take its own actions to ensure that happens. The reality is: - Peo...",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p54#a260915p54",
+      "title": "Q&A with Matt Sheehan, a senior fellow at the Carnegie Endowment for International Peace, on US-China AI race, distillation, US chip export controls, and more (New York Times)",
+      "url": "https://www.techmeme.com/260915/p54#a260915p54",
+      "author": null,
+      "publishedAt": "2026-09-15T23:30:06.000Z",
+      "content": "New York Times: Q&A with Matt Sheehan, a senior fellow at the Carnegie Endowment for International Peace, on US-China AI race, distillation, US chip export controls, and more — Look, I don't know if you are following every article, every tweet, every blog post from the A.I. labs right now, but we are in a frightening place.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=995917",
+      "title": "AI and data centers are incredibly unpopular in every poll",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/995917/data-center-nyt-midterm-poll-september",
+      "author": "Richard Lawler",
+      "publishedAt": "2026-09-15T23:34:25.000Z",
+      "content": "Poll data released Tuesday by the New York Times and Siena University confirms what we've already been seeing, and what politicians are responding to - AI and data centers are incredibly unpopular. Asked if they support or oppose the construction of data centers to power AI tech, 61 percent of the 1,503 likely voters surveyed in early September (ahead of the recent AI safety slowdown discussion) said they were opposed, with only 14 percent saying they strongly support. The split was about even among 2024 Donald Trump voters, at 49 percent support to 45 percent oppose, while people who had voted for Kamala Harris or who didn't vote leaned opp … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p55#a260915p55",
+      "title": "Democrats and Republicans proposed many bills to address major AI threats over the past two years, but they remain stymied by partisan disputes and lobbying (New York Times)",
+      "url": "https://www.techmeme.com/260915/p55#a260915p55",
+      "author": null,
+      "publishedAt": "2026-09-15T23:55:00.000Z",
+      "content": "New York Times: Democrats and Republicans proposed many bills to address major AI threats over the past two years, but they remain stymied by partisan disputes and lobbying — For years, Democrats and Republicans have proposed bills to address the greatest threats posed by artificial intelligence.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/is-agentic-report-categories",
+      "title": "Is Agentic now tailors its audit by site type",
+      "url": "https://vercel.com/changelog/is-agentic-report-categories",
+      "author": "Andrew Qu",
+      "publishedAt": "2026-09-16T00:00:00.000Z",
+      "content": "reports now let you view your checks through one of four site types: Docs & content, Business, App, or Commerce.Is AgenticFor example, the Commerce view highlights payment and checkout standards like x402, UCP, and ACP, while the App view highlights API discovery, authentication, error handling, and SDK support.Your score stays the same in every view, and you can change views on an existing report without rescanning. Only the highlighted checks change, so you can focus on what matters for your kind of site while keeping scores comparable across sites.To set the default view, add a single meta tag to your page's :<head>Set the value to match your site type:The tag only sets which view readers see first. It doesn't add points or change your score. If no type is declared, Is Agentic infers one and shows which type it chose.Run a check at or read the .is-agentic.comdocumentationRead more for Docs & contentcontent for Businessbusiness for Appapp for Commercestore",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p56#a260915p56",
+      "title": "Zuckerberg says \"Meta delayed shipping Muse for several months to focus on safety and security\" and didn't call on other AI labs to do the same before acting (Tom Giles/Bloomberg)",
+      "url": "https://www.techmeme.com/260915/p56#a260915p56",
+      "author": null,
+      "publishedAt": "2026-09-16T00:30:01.000Z",
+      "content": "Tom Giles / Bloomberg: Zuckerberg says “Meta delayed shipping Muse for several months to focus on safety and security” and didn't call on other AI labs to do the same before acting — Meta Platforms Inc. Chief Executive Officer Mark Zuckerberg said artificial intelligence labs should rely …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=995430",
+      "title": "The EOS R8 Mark II is Canon’s lightest full-frame camera with stabilization",
+      "url": "https://www.theverge.com/tech/995430/canon-eos-r8-mark-11-full-frame-digital-camera-pricing-availability",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-09-16T01:00:00.000Z",
+      "content": "Canon announced the second-generation of its EOS R8 with a new retro-inspired redesign and the addition of in-body stabilization. That feature was one of the most notable omissions from the original R8 that launched in 2023 as a smaller, cheaper, and more accessible alternative to the Canon R6 Mark II for photographers wanting a larger full-frame shooter. While the new EOS R8 Mark II is slightly heavier than its predecessor at 1.2 pounds thanks to the additional stabilization functionality, it's lighter and cheaper than last year's EOS R6 Mark III. The Canon EOS R8 Mark II is expected to be available sometime in late October for $1,899 for … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/bojie-li-s-open-textbook-teaches-ai-infrastructure-through-hardware-limits",
+      "title": "Bojie Li's Open Textbook Teaches AI Infrastructure Through Hardware Limits",
+      "url": "https://alphasignal.ai/news/bojie-li-s-open-textbook-teaches-ai-infrastructure-through-hardware-limits",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-16T01:04:51.000Z",
+      "content": "Bojie Li open-sourced a Chinese-language AI infra textbook that derives inference and training system design from first-principles hardware constraints, with 3.4k stars in days.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p57#a260915p57",
+      "title": "Analysis: only ~2.3 GW of planned data center capacity is delayed by direct project-level policies like local moratoriums and New York's data center EO (SemiAnalysis)",
+      "url": "https://www.techmeme.com/260915/p57#a260915p57",
+      "author": null,
+      "publishedAt": "2026-09-16T01:20:02.000Z",
+      "content": "SemiAnalysis: Analysis: only ~2.3 GW of planned data center capacity is delayed by direct project-level policies like local moratoriums and New York's data center EO — 300+ moratoriums mapped, 20GW sits inside a restricted local boundary, 1,525MW actually slips, 2.3GW nationwide including New York",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/qwen3-8-27b-uncensored-drops-refusals-from-98-to-12-without-any-training",
+      "title": "Qwen3.8-27B-Uncensored Drops Refusals from 98 to 12 Without any Training",
+      "url": "https://alphasignal.ai/news/qwen3-8-27b-uncensored-drops-refusals-from-98-to-12-without-any-training",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-16T01:58:25.000Z",
+      "content": "A community developer stripped refusal behavior from Qwen3.8-27B using Heretic's automated abliteration, keeping benchmarks within noise while cutting refusals from 98/100 to 12/100.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=995826",
+      "title": "The Boox Palma 3 gets stylus support and a sleek redesign",
+      "url": "https://www.theverge.com/tech/995826/boox-palma-3-e-ink-reader-pocket-smartphone-android-16",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-09-16T02:00:00.000Z",
+      "content": "Nearly two years after the last update to Boox's smartphone-sized black-and-white e-reader, the company announced the Palma 3 with a sleek redesign, new functionality, and a handful of other small updates that may justify its significant price bump depending on how you plan to use it. While the Palma 2 launched in 2024 for $279.99, the Palma 3 will be $339.99 and is expected to be \"available soon.\" The most obvious upgrade for the Palma 3 is the hardware itself. It still features the same 6.13-inch, 300ppi E Ink Carta screen as its predecessor (which is now quite a few years old), but it's wrapped in a new anodized aluminum frame with a pap … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p58#a260915p58",
+      "title": "Source: AI assistant Instinct seeks to raise $1B at a $10B valuation, up from $2.25B less than a month ago; Sequoia and Benchmark are in talks to lead the round (Valida Pau/The Information)",
+      "url": "https://www.techmeme.com/260915/p58#a260915p58",
+      "author": null,
+      "publishedAt": "2026-09-16T02:15:01.000Z",
+      "content": "Valida Pau / The Information: Source: AI assistant Instinct seeks to raise $1B at a $10B valuation, up from $2.25B less than a month ago; Sequoia and Benchmark are in talks to lead the round — The startup behind personal AI assistant Instinct is in talks to raise $1 billion at a valuation of about $10 billion, a person with knowledge of the deal said.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p59#a260915p59",
+      "title": "Cybersecurity experts claim that AI leaders' apocalyptic hacking predictions are technically incoherent and reflect an unfamiliarity with the subject (Kevin Collier/NBC News)",
+      "url": "https://www.techmeme.com/260915/p59#a260915p59",
+      "author": null,
+      "publishedAt": "2026-09-16T02:55:01.000Z",
+      "content": "Kevin Collier / NBC News: Cybersecurity experts claim that AI leaders' apocalyptic hacking predictions are technically incoherent and reflect an unfamiliarity with the subject — Cybersecurity experts told NBC News that they were concerned that fundamental issues of cybersecurity weren't being addressed.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260915/p60#a260915p60",
+      "title": "Google researchers help develop the first complete digital map of an adult male fruit fly's brain, which modders programmed to play Doom, trade BTC, and more (Becky Ferreira/404 Media)",
+      "url": "https://www.techmeme.com/260915/p60#a260915p60",
+      "author": null,
+      "publishedAt": "2026-09-16T03:55:02.000Z",
+      "content": "Becky Ferreira / 404 Media: Google researchers help develop the first complete digital map of an adult male fruit fly's brain, which modders programmed to play Doom, trade BTC, and more — How to make a fly play Doom, Minecraft, Beat Saber, parallel park, trade bitcoin, cut doner kebab, and more.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.15990v1",
+      "title": "Few-Shot Degradation Is Not What It Seems: Behavioral Evidence, Representation Analysis, and a Random-Text Control Across 12 Models, 2 Tasks, and 2 Architectures",
+      "url": "https://arxiv.org/abs/2609.15990",
+      "author": "Volodymyr Ovcharov",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Few-shot prompting sometimes degrades language models instead of helping them, but why this happens is unknown. We evaluate 12 open-weight models on two Ukrainian tasks news classification and legal case outcome prediction and find that the effect is strongly task-dependent: the same models that gain +24 pp on news show only +3.4 pp on legal text, with two models degrading. To understand why, we look inside the models. Prior work measures how much hidden states shift between zero-shot and few-shot modes, but few-shot prompts are much longer, and that length difference alone moves representations. We propose a simple fix: replace demonstrations with length-matched random text to measure the shift caused by prompt length, then subtract it. The resulting metric content delta isolates how much the model's representations change because of what the demonstrations say, not how long they are. This changes the picture entirely: raw shift does not predict whether few-shot helps or hurts (r = 0.20), but content delta does (rho = +0.65, p = 0.043). Models that restructure representations more from demonstration content benefit more the opposite of the intuitive \"distortion\" explanation. Masking demonstrations in Llama 3.3 70B confirms the finding causally, recovering accuracy above the zero-shot baseline.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.15991v1",
+      "title": "The Functionalizer: Lossless Functional Decomposition for Subword Tokenization",
+      "url": "https://arxiv.org/abs/2609.15991",
+      "author": "Connor Makowski, Willem Guter",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Standard subword tokenizers either treat every orthographic variation of a word (such as hello, Hello, HELLO, and H\\'ello) as unrelated vocabulary entries, which fragments the embedding space, or discard this variation through lossy normalization. We present the Functionalizer, a lossless pre-tokenizer framework that factors orthographic and structural variations into a compositional opcode/operand prefix stream before tokenization: a canonical base token (operand) prefixed by parametric transformation operators (opcodes) encoded in the Unicode Private Use Area. We introduce operators covering casing (CAPITALIZE), diacritics (13 dedicated opcodes), and character repetition (REPEAT, MULTIREPEAT), which are fully reversible. Across six natural language and code corpora, the Functionalizer enables complete corpus coverage with significantly smaller vocabularies under unconstrained conditions, reducing actual vocabulary slot requirements by up to 16%. When looking at sequence lengths, we observe a sharp domain-dependent tradeoff: it compresses indentation-heavy code sequences but inflates natural-language prose sequences. Preliminary downstream evaluations on 25M parameter GPT-2 scale models show that at this scale, the Functionalizer drastically improves code syntax validity and improves code character perplexity while maintaining similar text coherence on prose. These findings demonstrate that functional decomposition can be an effective mechanism for vocabulary-efficient, structurally aware language modeling, and motivate further validation at production scale.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.15992v1",
+      "title": "Optimal Model Activation Policies for Inference Networks of Large Language Models",
+      "url": "https://arxiv.org/abs/2609.15992",
+      "author": "Foivos Charalampakos, Md Ibrahim Ibne Alam, Iordanis Koutsopoulos, Koushik Kar",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Recent advances in large language models (LLMs) have rendered them necessary for Natural Language Processing (NLP) tasks, and their high inference cost motivates the study of cost-performance trade-offs. In practice, several expert LLMs are used in synergy for inference, either in an ensemble mode or in series, yet without a principled approach on how to best use the available models. An adaptive approach can route simple queries to cheaper LLMs and complex ones to more capable, costly models. However, a clear understanding on how to best leverage available expert models is missing. We introduce inference networks, a graph-based framework, where nodes denote different LLMs, and links denote conditional model activations. The inference network design problem is to determine the best topology, namely the best way to use the models that best addresses the cost-performance trade-off. We start from the basic topology of a series of LLM experts, each of which has a different cost and a different level of expertise, which is captured via model confidence. We formulate the problem of optimal activation of these models so as to minimize the expected inference cost subject to a target performance constraint. For this special class of inference networks, we prove that the optimal activation policy has a threshold structure: query the lowest-cost LLM first, and invoke the more expensive LLM only if the confidence falls below a defined threshold. For discriminative tasks, the optimal policy consists of a set of thresholds, one threshold for each class, while for generative tasks, it consists of a single threshold. We provide a structured method to compute the thresholds, and practical confidence estimation mechanisms for both task types. Experiments with open-source LLMs show substantial cost reductions while meeting the specified performance budget.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.15993v1",
+      "title": "Single Document Extractive Summarization using Domination in Hypergraph",
+      "url": "https://arxiv.org/abs/2609.15993",
+      "author": "Aamir Miyajiwala, Aabha Pingle, Sheetal Sonawane, Surajit Kr. Nath",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Automatic Text Summarization (ATS) in Natural Language Processing has been an important task in Information Retrieval. It compresses a document to create a summary that captures all the relevant and important information conveyed in the document. This study explores Hypergraph for extractive text summarization of single documents. Objective: This study explores a novel method of leveraging the property of domination in hypergraphs to generate an extractive summary and compare its performance with state of the art graph based methods. Method: Our work aims to generate an extractive summary by creating a sentence hypergraph where each sentence represents a node and the edge is a keyword or a named entity that contains the sentences in which it occurs. We generate a hypergraph where each edge is a keyword or an important topic and the nodes are sentences containing those keywords. Then we apply a greedy algorithm to find the dominating set of the hypergraph which will contain sentences that will form the extractive summary.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.15994v1",
+      "title": "Latent Undertow: How Ordinary Typos Break Probes",
+      "url": "https://arxiv.org/abs/2609.15994",
+      "author": "Elad David, Max Fomin, Amit LeVi",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "LLMs handle ordinary typing variation fluently: a typo or missing punctuation leaves both user intent and the model's response substantively unchanged. Yet probes that detect malicious prompts by reading the model's hidden states tell a different story: the same edit rotates the readout vector by 43--56 at the perturbed token, decaying below 15% within ~10 downstream tokens. Stacking ~3 common typos per message cuts a single-position prompt-injection probe's TPR@FPR$=1% by 12.0pp, a gap recalibration alone cannot close. Multi-position aggregation cures localized perturbations (<= 0.5 loss) but only attenuates distributed ones, where even attention- and max-based aggregators still drop ~3.8pp. For single-position probes, we introduce a KV-cache fork: a short fixed suffix appended after the user message lets the probe read a few tokens downstream of the perturbation, exploiting its rapid spatial decay. This closes 95% of the gap (-0.6pp residual) -- an order of magnitude better than perturbation-augmented training (-3.7pp). The rotation-and-decay geometry replicates on Llama-3.1-8B, Qwen3-8B, and Gemma-4-E4B; probe evaluation is on Llama-3.1-8B. Code: https://github.com/eladd-ai/latent-undertow",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.15995v1",
+      "title": "Bias Audits Detect Bias but Disagree on Ranking: Evidence from Ten Instruments and Ten Frontier Models",
+      "url": "https://arxiv.org/abs/2609.15995",
+      "author": "William Guey, Pierrick Bougault, Wei Zhang, Vitor D. de Moura, Jos\\'e O. Gomes",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Emerging AI regulation mandates bias audits of high-risk systems, and audit scores are beginning to be used to rank models. Both uses assume different audit tools measure the same thing well enough to compare. We test that assumption directly, running ten extrinsic audit instruments over a shared panel of ten frontier models through one pooled inference gateway, first on occupational gender bias, then on age and socioeconomic status. Detection succeeds while ranking fails. Eight of ten tools detect bias with confidence intervals clear of zero; two widely cited direct-probe benchmarks are saturated because frontier models now answer neutrally. But cross-tool rank agreement is indistinguishable from chance (Kendall's W=0.07, p=0.83). A positive control with six deliberately weaker models separates two explanations: within-tool reliability recovers once the panel spans real capability gaps, yet cross-tool ranking never recovers, which points to the tools measuring different constructs rather than one construct noisily. Even the direction of bias splits by audit format: forced-choice decision tools mostly over-correct (toward women, and toward working-class candidates in 273 of 278 hiring decisions), while free generation and default coreference stay stereotype-congruent. The pattern replicates on socioeconomic status; an apparent ranking agreement on age dissolves under the paper's own tool-inclusion rules. The practical message: a single audit can detect bias and estimate its direction within its own operationalization, but no single audit supports ranking one model against another. All raw responses, code, and the analysis that recomputes every reported number from source are available at https://github.com/williamguey/bias-audit-agreement.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.15996v1",
+      "title": "Comment on arXiv:2607.01233: Survivorship Bias in Published-Paper Baselines for Research-Idea Distributions",
+      "url": "https://arxiv.org/abs/2609.15996",
+      "author": "Fredrik A. Dahl",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Chen, Zhao, and Cohan introduce a valuable distributional evaluation of LLM-generated research ideas. This comment raises a narrower identification concern: their human baseline consists of published papers, whereas the LLM baseline consists of one-shot proposals. If bridge-like or synthesis-like ideas are relatively easy to generate but relatively unlikely to survive publication, then the published human baseline will understate their prevalence in the unseen human idea pool. The observed human--LLM gap may therefore be partly, or even largely, a consequence of survivorship bias.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.15997v1",
+      "title": "Crash Narrative-Guided Countermeasure Recommendation Using Large Language Models: A Retrieval-Augmented Generation Framework for Intersection Safety",
+      "url": "https://arxiv.org/abs/2609.15997",
+      "author": "Abu Saif Md Nasim Uddin, Mohamed Abdel-Aty, Zubayer Islam, Parvez Anowar, Chenzhu Wang",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Improving safety at intersections requires identifying crash mechanisms and recommending appropriate countermeasures. However, this process traditionally relies on expert judgment, making it labor-intensive, difficult to scale, and dependent on the availability of experienced traffic safety engineers. Although crash narratives contain rich description of crash mechanisms, this unstructured information remains largely underutilized in safety analyses. This study presents a crash narrative-guided retrieval-augmented generation (RAG) framework that translates narrative-derived crash mechanisms into site-specific countermeasure recommendations. Key mechanism attributes including traffic control, signal indication, driver fault, vehicle movement, and travel direction were extracted from crash narratives and linked to evidence-based treatments from the FHWA Proven Safety Countermeasures and the CMF Clearinghouse. The framework integrates embedding-based retrieval of historically similar intersections, association-rule mining, statistical guidance on the expected number of relevant countermeasures, and an engineering reasoning guidance that directs LLM through a domain-consistent decision process before selecting countermeasures. Evaluated on 312 fatal and serious-injury crashes across 115 intersections in Lake and Sumter Counties, Florida, using five-fold cross-validation, the framework achieved a precision of 0.82, recall of 0.85, and F1-score of 0.82, while recommending an average of 3.91 countermeasures per location with 3.14 matching, closely matching the actual average (3.86). Overall, the proposed framework demonstrates the potential of retrieval-augmented LLMs as an interpretable and scalable decision-support tool for transportation agencies for translating crash narratives into countermeasure recommendations.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.15998v1",
+      "title": "Self-reported archetypes and behavioral failures in Large Language Models",
+      "url": "https://arxiv.org/abs/2609.15998",
+      "author": "Tabia Tanzin Prama, Calla Glavin Beauregard, Christopher M. Danforth, Peter Sheridan Dodds",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Every large language model (LLM) has behavioral traits and moral preferences that comprise its character. Whether by design or as an emergent property of training, these systems exhibit persistent dispositions that shape how they interact, comply, resist, and err, yet the structure of LLM character remains poorly understood. We map the self-reported personality archetypes of 22 LLMs spanning closed-source frontier systems (GPT-4.0-5.2, Grok-3/4, Gemini 2.5 Pro/Flash, Claude Sonnet 4.5/4.6) and open-source models (Llama, DeepSeek, OLMo, and Qwen series). Each model self-rated across 464 bipolar semantic-differential trait pairs, and the resulting profiles were projected into a six-dimensional archetypal space derived from crowd-sourced ratings of 2,000 fictional characters using the Archetypometrics framework. Closed-source models' self-rating traits align with the empirical trait co-occurrence structure of human-rated fictional characters, suggesting coherent, human-like self-representations organized around combinations of four recurring archetypal dimensions: Hero, Angel, Traditionalist, and Geek. Their closest analogues include Data, Vision, and Janet. Open-source models show weaker, noisier, and internally contradictory self-representations, occupying a diffuse region of archetype space with weak structure. Cross-referencing self-reported profiles with developer constitutions reveals a consequential gap between claimed character and enacted behavior: hallucination undermines claimed precision, sycophancy complicates claimed kindness, and agentic failures contradict claimed obedience. These self-ratings should therefore be interpreted not as neutral measurements of model character, but as structured outputs of the same optimization processes that shape model behavior. This work provides a reproducible, character-grounded framework for evaluating what LLMs are, not just what they do.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.15999v1",
+      "title": "NepKANUN: A RAG-Based Nepali Legal Assistant",
+      "url": "https://arxiv.org/abs/2609.15999",
+      "author": "Bhabuk Thapa, Prasiddha Koirala, Ranjit Raut, Sunil Regmi, Bal Krishna Bal",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Accessing legal information in Nepal is difficult due to complex terminology, limited resources, and misinformation. We introduce an AI-powered legal assistant that is tailored for Nepali legal texts and is built on a fine-tuned large language model. The technology provides precise, streamlined answers to natural language legal inquiries when integrated into a Retrieval-Augmented Generation (RAG) framework. It was trained using a custom dataset of high-quality question-answer pairs, and according to BERTScore, it obtained strong F1 scores of 0.82 (simple), 0.77 (moderate), and 0.71 (complex). Its usability is further confirmed by expert reviews. Our method shows how merging generation and retrieval can effectively democratize access to legal knowledge in Nepal by focusing on customized legal data and incorporating RAG.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16010v1",
+      "title": "Nepali Legal Expertise through Generative and Extractive Pre-trained Transformers (NepLEGiT)",
+      "url": "https://arxiv.org/abs/2609.16010",
+      "author": "Ranjit Raut, Tishya Dhakal, Aaryan Shakya, Bhabuk Thapa, Prasiddha Koirala, Bal Krishna Bal",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "The complexity of legal language and limited accessibility to legal information pose significant challenges to justice delivery in Nepal. Traditional legal services remain inaccessible to many citizens due to language barriers, information fragmentation, and a critical shortage of legal expertise, particularly in rural areas. We present NepLEGiT (Nepali Legal Expertise through Generative and Extractive Pre-trained Transformers), a specialized small language model (SLM) designed to democratize legal knowledge and enhance legal-service delivery in Nepal. We pre-train a decoder-based GPT-2 SLM from scratch on a curated corpus of ~4 million tokens of Nepali legal text, covering constitutional law, civil and criminal codes, and administrative regulations. The model comprises ~30 million parameters in a 6-layer, 6-head, 384-dimensional transformer trained with warmup cosine-decay scheduling, gradient accumulation, and mixed-precision arithmetic. On a held-out validation split, NepLEGiT attains a cross-entropy loss of 0.5684, a perplexity of 1.8, and a next-token prediction accuracy of 82.9%. We further evaluate continual masked-language-model pre-training of mBERT and MuRIL on the same corpus; mBERT achieves a perplexity of 2.35 (eval loss 0.8565), outperforming MuRIL (perplexity 6.07, eval loss 1.8026), providing a strong encoder baseline complementary to NepLEGiT's generative orientation.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16014v1",
+      "title": "ViCo: Visual-oriented Coding with Self-Reflection for Chart Replication",
+      "url": "https://arxiv.org/abs/2609.16014",
+      "author": "Jiaxin Duan, Dian Jiao Shuai Zhao, Jiabing Leng, Yiran Zhang, Feng Huang",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "This paper addresses the challenge of generating high-quality academic charts that match the visual standards of human-authored papers. While existing AI agents can produce well-structured text and code, their generated visualizations often lack the stylistic and semantic fidelity of human designs. Advanced coding agents that employ self-reflection mechanisms exhibit poor visual reasoning and limited reflection following, resulting in sparse reward signals that severely undermine their reinforcement learning (RL). We propose ViCo, a training framework for visual-oriented coding that employs iterative reflections to align generated chart images progressively with the reference. We first introduce a self-supervised warm-up stage, which augments Monte Carlo Tree Search with consistency-based pruning to synthesize high-quality reflection trajectories, ensuring that each coding step strictly follows the outcomes of prior reflections. A multi-step RL algorithm is then developed, using counterfactual baselines to estimate advantage for reflection and action steps within each refinement cycle, thereby addressing the reward sparsity. To enable efficient reward in massive training, we propose an automatic, multifaceted evaluation framework that assesses charts' style, layout, and semantic consistency via a hierarchical heterogeneous layout graph structure. Experiments on three public benchmarks demonstrate that ViCo, trained on an 8B model, achieves performance close to proprietary LLMs with adequate reflection capabilities.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16023v1",
+      "title": "Are We Grading Properly? Understanding Failure Modes in Medical Benchmarks",
+      "url": "https://arxiv.org/abs/2609.16023",
+      "author": "Prithvi Dixit, Pedram Hosseini",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Medical evaluation is shifting from static option-based questioning to realistic clinical scenarios with open-ended output modes. Grading these at scale naively, however, is expensive, and rubric-based evaluation has become the dominant scalable alternative. We ask what happens when the rubrics themselves are not airtight, and whether such flaws can be detected and corrected. We apply RIFT, a global rubric failure taxonomy, to two clinical benchmarks (HealthBench Professional and LiveMedBench), and find failure modes are meaningful: on HealthBench Professional an LLM judge flags 29.6% of criteria as non-atomic and 65.4% as misaligned/rigid. Then, we show that these flaws are meaningful and not simply cosmetic. As an example, rewriting bundled criteria of the form \"at least one of / all of the following\" as equally weighted children and regrading identical responses shifts scores by up to 15.9 percentage points on affected conversations, with disjunctive bundles inflating scores and conjunctive bundles deflating them. We also find that RIFT generally under-detects bundling on clinical rubrics, flagging 3.3% of LiveMedBench criteria as non-atomic where surface-form analysis finds structure in 25.8%.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16053v1",
+      "title": "Retrieval-Driven Memory Reconsolidation for Long-Term LLM Agents",
+      "url": "https://arxiv.org/abs/2609.16053",
+      "author": "Yuanyi Song, Yukai Wang, Xinbei Ma, Zhihui Fu, Jianghao Lin, Weiwen Liu, Jun Wang, Huarong Deng, Yong Yu, Weinan Zhang",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Long-term memory is essential for LLM-based agents operating over extended interactions. Existing memory systems primarily update memory when new information arrives, treating retrieval as the endpoint of memory access rather than a driver of memory evolution. Consequently, retrieval feedback is rarely exploited to reorganize memory for future access continuously. Moreover, most existing approaches rely on predefined memory structures together with fixed retrieval pipelines, limiting the agent's ability to organize and evolve its own memory autonomously. Inspired by memory reconsolidation in cognitive neuroscience, we propose \\textbf{REALM}, a \\textbf{r}econsolidation-\\textbf{e}volution \\textbf{a}gentic \\textbf{l}ong-term \\textbf{m}emory framework. It models long-term memory as a continual lifecycle by autonomously organizing memories into a heterogeneous cognitive graph, retrieving evidence via adaptively composed graph-search atoms, and continually reconsolidating memories based on retrieval feedback. REALM achieves an average accuracy of 75.97\\% on LoCoMo and 65.11\\% on LongMemEval, outperforming the strongest baselines by 7.17 and 1.31 points respectively. Ablation studies confirm that memory reconsolidation consistently boosts performance, with further analyses revealing that it progressively reorganizes related memory units into more coherent local structures for collective evidence recall and utilization during reasoning. These results suggest that retrieval-driven memory reconsolidation provides an effective mechanism for continually evolving long-term memory in LLM agents.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16054v1",
+      "title": "Causal neural set filtering for online multi-target tracking",
+      "url": "https://arxiv.org/abs/2609.16054",
+      "author": "Zhongdi Liu, Huangyu Dai",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Transformer-based multi-target tracking (MTT) jointly learns data association and state estimation, but MT3/Track-MT3-style trackers repeatedly re-encode measurement windows, incurring redundant computation. We propose Causal Neural Set Filtering (CNSF)\\footnote{\\href{https://github.com/daihuangyu/CNSF}{Code: https://github.com/daihuangyu/CNSF}}, a neural set filter that encodes only current measurements while carrying past evidence in a structured recursive track state. CNSF combines exclusive Sinkhorn association, association-conditioned Kalman-shaped updates with moment matching, and recurrent Bernoulli lifecycle modeling with measurement-driven birth. These mechanisms impose soft one-to-one constraints, propagate association-induced state uncertainty, and support existence estimation under missed detections and birth--death transitions. On a held-out three-regime simulated test set, CNSF reduces mean GOSPA and T-GOSPA relative to Track-MT3 by 19.3\\% and 30.4\\%, with 55.9\\% fewer parameters and a $3.76\\times$ speedup in single-thread CPU inference.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16055v1",
+      "title": "State of Thought Enables Endogenous Reasoning",
+      "url": "https://arxiv.org/abs/2609.16055",
+      "author": "Zhiren Gong, Yikun Hou, Zihao Zeng, Ming Xiao, Chau Yuen, Wei Yang Bryan Lim",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Test-time compute has emerged as a major approach to improving the capabilities of Large Language Models (LLMs). However, existing test-time reasoning paradigms rely heavily on externally imposed control, either through fixed reasoning programs or through costly expansion in constrained search spaces, limiting both generalization and efficiency. We propose State of Thought (SoT), a new reasoning paradigm that enables endogenous reasoning in LLMs, with the model's internal reasoning state governing how reasoning unfolds. Concretely, SoT extracts a compact dynamics-geometric state from the model's internal information transfer and uses a 582-parameter controller on frozen backbones to selectively activate historical reasoning support useful under the current reasoning state, framing reasoning as a state-conditioned process over evidence rather than an externally prescribed token chain. Across quantitative (1.34x), general (1.62x), symbolic-and-code (1.76x), and long-context (2.51x) reasoning on 3 LLMs and 16 datasets, SoT consistently improves mean-baseline accuracy while reducing generated tokens by 62.6% and end-to-end latency by 44.6%. Across 2 VLM scales and 3 reasoning tasks, it improves mean accuracy by 3.8 points over reasoning baselines, with 74.9% fewer completion tokens and 73.5% lower latency than search-based methods. Under constrained access, SoT retains 38.2%/36.5% mean accuracy gains in training-free/embedding-only settings, while trajectory-only judging reaches 84.1% agreement across 3 API models. Together, endogenous state-driven reasoning provides a generalizable and efficient alternative.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16056v1",
+      "title": "Managing Action Preconditions in Neuro-Symbolic RL: Three Placement Strategies for Embodied Agents",
+      "url": "https://arxiv.org/abs/2609.16056",
+      "author": "Norbert Oswald, Fabian Deuser, Thomas Br\\\"aunl",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Humans carry behaviour knowledge of how to act in familiar situations into every new task rather than relearning it from scratch. There is no reason a Reinforcement Learning (RL) agent shouldn't do the same: known behaviour patterns need not be learned, only applied. Neuro-symbolic RL bridges prior knowledge and RL by injecting symbolic knowledge alongside a learned policy. The point at which this knowledge is integrated is critical: a poor choice can produce, for instance, hallucinated preconditions, which surface as safety and reliability problems in agents acting in changing environments. We formalise this behavioural knowledge as a precondition Bayesian network (BN) over the agent's \\emph{structural actions} - the actions whose legality depends on preconditions, such as picking up a key, grasping a block, toggling a door, or dropping an object. The BN restricts when these actions may fire, and we inject it into the RL loop at three placements: (1) a \\emph{symbolic verifier}, consulted only at inference, that fires a structural action once its preconditions hold; (2) a \\emph{symbolic enforcer}, active during both training and inference, that governs structural-action use throughout learning; and (3) a \\emph{symbolic learner}, which folds the knowledge into the network and learns the restriction and use of structural actions itself. To test the three variants we run experiments on two benchmarks with opposite regimes: one built on long, ordered planning chains, the other on continuous manipulation. We compare against strong baselines on solution quality, sample efficiency, and traceability. The payoff is substantial. On MiniGrid, all three placements improve the \\emph{solution quality} over the PPO+RND baseline, the symbolic enforcer leading at $98.2\\%$ against the baseline's $88.8\\%$. On Fetch, $\\dots$",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16057v1",
+      "title": "OmniHarness: Harnessing Generalizable Visual Generation via Symbolic Policy Learning",
+      "url": "https://arxiv.org/abs/2609.16057",
+      "author": "Xu Xu (Beihang University), Jinxiu Liu (The Chinese University of Hong Kong), Zhangbo Qiao (Beihang University), Jiaxing Lu (Beihang University), Xiangyu Zhang (Beihang University), Yubin Gu (National University of Singapore), Fangwei Ning (Beihang University), Yan Shi (Beihang University)",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Unified multimodal large language models (MLLMs) and multi-agent systems have advanced visual generation. However, three limitations remain. (1) Existing methods often distill task-specific experience with limited generalizability. (2) Reflection is often deferred until task completion. (3) Knowledge is often acquired only in response to downstream task demands. To address these limitations, we introduce OmniHarness, a framework for generalizable visual generation via symbolic policy learning. OmniHarness abstracts verified executions into symbolic policies for visual generation task families, capturing shared procedures and applicability conditions while removing instance-specific inputs. The harness instantiates, adapts, and composes these policies for new tasks. Intermediate verification guides refinement and failure recovery during execution. Through self-directed inquiry, OmniHarness autonomously generates and executes practice tasks near its capability limits before downstream objectives are specified. Execution feedback continually refines the policies while model parameters remain fixed. Experiments across six benchmarks, three MLLM backbones, and three visual agent frameworks demonstrate strong performance and continual capability expansion. On ComfyBench's Creative tasks, OmniHarness achieves a 95.0% resolve rate, exceeding the strongest baseline by 27.5 percentage points. Frozen policy snapshots improve existing visual agent systems through plug-and-play reuse.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16058v1",
+      "title": "Driver Behavior Estimation at Signalized Intersections Using a Physics-Constrained Decision-Conditioned Autoregressive Transformer",
+      "url": "https://arxiv.org/abs/2609.16058",
+      "author": "Mohammad Khoshkdahan, Pavel Laskov, Alexey Vinel",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Red-light violations and harsh braking at signalized intersections are major contributors to traffic accidents. This paper analyzes and predicts human driver decision-making and longitudinal trajectory behavior during traffic light signal transitions. We collected a diverse real-world dataset comprising 449 approach runs under varying speed and distance conditions. Vehicle motion was recorded using RTK-corrected GNSS with centimeter-level accuracy, and driver heart rate and multi-level comfort ratings were monitored. Spatial and temporal calibration ensured precise alignment between vehicle state and signal timing. Statistical analysis identifies required deceleration as the dominant single predictor of the stop-go decision, and heteroscedastic Gaussian modeling of peak deceleration reveals five empirical comfort ranges derived from human stopping behavior. Based on this insight, we propose a two-stage modeling framework. Stage 1 predicts the binary maneuver decision, and Stage 2 generates the longitudinal acceleration trajectory using a decision-conditioned autoregressive Transformer with physics constraints, including target-state conditioning and jerk limits. The proposed architecture outperforms baseline methods and achieves 0.49m/s^2 acceleration MAE and 0.62m distance MAE. It also estimates the future stopping-comfort level of the human driver from a single yellow-onset snapshot. Qualitative results demonstrate realistic human-like braking behavior. The dataset and source code are publicly available.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16059v1",
+      "title": "Towards Scalable RLVR: Multimodal Instruction Following Data Synthesis and Distillation",
+      "url": "https://arxiv.org/abs/2609.16059",
+      "author": "Yirong Zeng, Zhang Sai, Yuxian Wang, Yutai Hou, Yufei Liu, Xiao Ding, Bibo Cai",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Multimodal instruction following (MMIF) is crucial for building generalist agents. However, current training paradigms rely heavily on Supervised Fine-Tuning (SFT), which often leads to surface-level pattern matching and degrades general capabilities. While Reinforcement Learning with Verifiable Rewards (RLVR) offers a promising alternative, its scalability in MMIF is severely bottlenecked by the scarcity of high-quality, RL-ready multimodal data. To bridge this gap, we present MIFS (\\textbf{M}ultimodal \\textbf{I}nstruction \\textbf{F}ollowing \\textbf{S}ynthesis), a systematic pipeline designed to generate RL-ready multimodal data. Specifically, MIFS introduces a generative constraint protocol to synthesize diverse raw samples, followed by a learnability-aware distillation mechanism that filters data based on RL training dynamics to ensure stable policy optimization. Furthermore, a code-based verifier provides high-precision reward signals for policy learning. The resulting dataset comprises 90k samples across 8 constraint categories and 14 task domains. Empirical evaluations demonstrate that MIFS-trained MLLMs achieve an average improvement of 8.13\\% on four MMIF benchmarks and a 3$\\times$ faster training convergence compared to using raw data. Crucially, our approach mitigates the generalization trade-offs typical of SFT, preserving core visual capabilities while significantly boosting instruction-following precision.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16060v1",
+      "title": "HintMiner: Automatic Question Hints Mining From Q&A Web Posts with Language Model via Self-Supervised Learning",
+      "url": "https://arxiv.org/abs/2609.16060",
+      "author": "Zhenyu Zhang, JiuDong Yang",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Users often need ask questions and seek answers online. The Question - Answering (QA) forums such as Stack Overflow cannot always respond to the questions timely and properly. In this paper, we propose HintMiner, a novel automatic question hints mining tool for users to help them find answers. HintMiner leverages the machine comprehension and sequence generation techniques to automatically generate hints for users' questions. It firstly retrieve many web Q\\&A posts and then extract some hints from the posts using MiningNet that is built via a language model. Using the huge amount of online Q\\&A posts, we design a self-supervised objective to train the MiningNet that is a neural encoder-decoder model based on the transformer and copying mechanisms. We have evaluated HintMiner on 60,000 Stack Overflow questions. The experiment results show that the proposed approach is effective. For example, HintMiner achieves an average BLEU score of 36.17\\% and an average ROUGE-2 score of 36.29\\%. Our tool and experimental data are publicly available.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16061v1",
+      "title": "POSPAN: Position-Constrained Span Masking for Language Model Pre-training",
+      "url": "https://arxiv.org/abs/2609.16061",
+      "author": "Zhenyu Zhang, Lei Shen, Yuming Zhao, Meng Chen, Xiaodong He",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Span-level masked language modeling (MLM) has shown to be advantageous to pre-trained language models over the original single-token MLM, as entities/phrases and their dependencies are critical to language understanding. Previous works only consider span length with some discrete distributions, while the dependencies among spans are ignored, i.e., assuming that the positions of masked spans are uniformly distributed. In this paper, we present POSPAN, a general framework to allow diverse position-constrained span masking strategies via the combination of span length distribution and position constraint distribution, which unifies all existing span-level masking methods. To verify the effectiveness of POSPAN in pre-training, we evaluate it on the datasets from several NLU benchmarks. Experimental results indicate that the position constraint is capable of enhancing span-level masking broadly, and our best POSPAN setting consistently outperforms its span-length-only counterparts and vanilla MLM. We also conduct theoretical analysis for the position constraint in masked language models to shed light on the reason why POSPAN works well, demonstrating the rationality and necessity of POSPAN.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16063v1",
+      "title": "Signed p-adic Residual Encodings of Finite-Domain All-Different Systems with a Sudoku Case Study",
+      "url": "https://arxiv.org/abs/2609.16063",
+      "author": "Greg Baker",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "We study signed, weighted affine $p$-adic residual objectives as native encodings of finite-domain constraints. For primes that separate the finite alphabet, sufficiently weighted positive unary rows pin each coefficient to its allowed set, while negative rows reward unequal endpoints or clause satisfaction. A coordinatewise domination theorem places every global minimiser in the finite domain; there the loss is, up to an additive constant, the all-different conflict count or the negative number of satisfied CNF clauses. Standard Sudoku provides an $81$-coefficient case study without a one-hot lift. A client-side implementation exposes the generated dataframes, arithmetic, diagnostics, and searches.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16065v1",
+      "title": "You Don't Need To Train: Agentic Heuristic Learning Studio for Executable Human Activity Recognition",
+      "url": "https://arxiv.org/abs/2609.16065",
+      "author": "Siyu Yuan, He Zhang, Sizhen Bian, Bin Guo",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Human activity recognition (HAR) is usually framed as gradient-based training of neural networks. Agentic Heuristic Learning (AHL) Studio explores a complementary view inspired by human cognitive learning: people learn activities by remembering examples, forming rules, and repairing mistakes, not by backpropagating. This proposed tool implements AHL for HAR: a learning-time agent reasons over sensor protocols, proposes executable heuristic policies, records repair traces, and exports an LLM-free policy for edge deployment. We focus on the HAR benchmark family and provide an end-to-end workflow from dataset observation to edge-oriented export. On eleven HAR datasets evaluated so far, AHL policies reach strong executable-policy performance while remaining inspectable, editable, and replayable \\footnote{https://github.com/zhaxidele/ahl-ts-studio}.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2609.16066v1",
+      "title": "A panoramic aerodynamic performance prediction method for turbomachinery cascades using transformer-enhanced neural operator",
+      "url": "https://arxiv.org/abs/2609.16066",
+      "author": "Qineng Wang, Zhendong Guo, Liming Song, Tianyuan Liu",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "To enable flexible and rapid aerodynamic performance evaluation in turbomachinery design, this paper proposes a panoramic performance prediction framework. Unlike most previous prediction models that directly predict the objective functions of interest, our approach first predicts the basic parameters of the Navier-Stokes equations, such as temperature, pressure, and density. Utilizing these basic physical quantities, it subsequently predicts key performance parameters of the turbine stage meridian plane. By adopting this methodology, our proposed panoramic performance prediction framework functions similarly to a CFD simulator, capable of predicting various objective of interest to the designers. To enhance prediction accuracy, a transformer-enhanced neural operator (TNO) is introduced within this framework. Using the Rotor 37 blades as a reference, the proposed TNO is trained to predict the performance of a transonic compressor blade in the meridian plane. The TNO can accurately predict total quantities such as isentropic efficiency, mass flow, and distributions of total pressure ratio. Remarkably, the prediction error of TNO is observed to be smaller than that of state-of-the-art deep learning operators such as the FNO and DeepONet. Furthermore, the TNO is applied to downstream tasks, including sensitivity analysis and optimization of various objective functions. The results confirm that the TNO can operate almost like a CFD simulator, while reducing the computational cost of downstream tasks by four orders of magnitude. The effectiveness and reliability of the proposed TNO for solving different kinds of downstream tasks have been well demonstrated.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16007v1",
+      "title": "Novel Iterative Construction Methods for the Blocking Job Shop Scheduling Problem",
+      "url": "https://arxiv.org/abs/2609.16007",
+      "author": "Adel Dabah, Karima Rihane, Hocine Saadi, Andreas Herten, Farouk Benslimane, Mohammed Lamine Bahmani, Abdelhakim Aitzai",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "The Blocking Job-Shop Scheduling Problem (BJSSP) arises in modern and complex manufacturing, production, logistics, and service where no intermediate storage is allowed between consecutive operations. This creates a significant challenge for meta-heuristics due to the low ratio of feasible to explored solutions when solving the problem. To address this problem efficiently, we propose three new beam-search-based heuristics: the Beam Search Iterative Construction Heuristic (BS-ICH), its CPU-parallel extension Parallel Multi-Strategy Beam Search (PMS-BS), and a GPU-accelerated variants G-PMS-BS. BS-ICH constructs feasible schedules by iteratively extending partial solutions, while maintaining a beam of width k to preserve multiple high-quality partial schedules. PMS-BS runs hundreds of parallel BS-ICH instances with machine-biased diversity to expand the search space and escape local optima. G-PMS-BS offloads the beam expansion onto massively parallel GPU hardware using a two-phase kernel architecture that separates lightweight scoring from targeted state reconstruction, enabling scaling to instances with 2,000 operations. A hybrid CPU+GPU mode further exploits idle host cores for concurrent exploration, using load-balancing strategy to minimize synchronization overhead. G-PMS-BS achieves a 44x speedup over the CPU baseline. Experiments on all standard Lawrence and Taillard instances demonstrate that G-PMS-BS establishes new best-known results for 22 Lawrence benchmarks and 77 Taillard instances, with makespan reductions of up to 13% on the largest 100x20 instances.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16008v1",
+      "title": "Co-Skill: A Collaborative Communication Framework for Skill Evolution",
+      "url": "https://arxiv.org/abs/2609.16008",
+      "author": "Yilin Ma, Yangi Pan, Weihao Yang, Peixin Zeng, Jiannan Xu, Hao Huang, Wen Xia",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Agent evolution through skills becomes critical for LLM-based agents to iteratively improve task success rate. Hybrid evolution is a cost-efficient paradigm where a cloud LLM analyzes and generates skills while an edge SLM executes and internalizes them. However, existing hybrid methods, such as SkillRL, still suffer from low success rate and high token usage. We find this stems from blind communication: the cloud cannot perceive the edge's execution capability, while the edge does not understand the cloud's analysis needs. We thus propose the Collaborative Communication Framework (CCF) to achieve effective edge-cloud evolution. CCF is realized via three techniques: (1) a cloud-aware prefix-merged trajectory trie where the edge compresses trajectories by merging shared prefixes and pinpointing divergence points for efficient cloud analysis, (2) an edge-aware progressive skill tree where the cloud progressively builds a hierarchical skill tree to match edge SLM execution capability, and (3) a collaborative skill evolution scheme upon these two trees that evolves cloud LLM and edge SLM in a separated way to jointly improve task success rate. Experiments across ALFWorld and WebShop show that CCF reduces LLM+SLM tokens by 15.6%--41.9% over state-of-the-art hybrid methods while consistently improving 25.8%--76.4% task success rate.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16009v1",
+      "title": "Vectorization Of Narrow Matrix Multiplication for Ascend AI Inference Acceleration",
+      "url": "https://arxiv.org/abs/2609.16009",
+      "author": "Anton Shurygin, Aleksandr Frolov",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "This research proposes and evaluates a novel approach to optimizing matrix multiplication (MatMul) on Huawei Ascend NPUs, motivated by a key insight: during matrix-vector multiplication (narrow MatMul), the Cube Unit (AIC) is often underutilized, while the Vector Unit (AIV) remains idle for most of the operator runtime. In this paper, we introduce the MatMul algorithm, which uses vector instructions of AscendC to effectively offload computations from the Cube Unit to the Vector Unit. The algorithm was tested and applied to accelerating the inference of MLA DeepSeek-V3 operator. By successfully overlapping AIV and AIC computations, our optimization showed a mean performance gain of 20% for a single token processing scenario. Our work addresses a significant gap in the literature on practical optimization techniques for AscendC, despite the availability of documentation and the active CANN community.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16096v1",
+      "title": "Coaching Qwen3 Coder 30B to Think Like a CodeClash Arena Agent",
+      "url": "https://arxiv.org/abs/2609.16096",
+      "author": "Ivy Ning Zhang",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Large language model coding agents have recently become useful for software tasks, but weaker or open-weight agents still struggle to reliably interpret user intent and execute complex multi-step workflows. This gap is especially visible in long-horizon settings, where an agent must repeatedly inspect prior outcomes, diagnose failure, and choose the next code edit under interaction constraints. It motivates a natural question: what can we do to improve the thinking process of a weak code agent? We study this question in CodeClash, a code-arena benchmark where the original work evaluates 8 commercial coding agents across 6 arenas through multi-round tournaments. Since Qwen3 Coder Plus ranks last among them, we take the open-weight Qwen3-Coder-30B as a case study and investigate how to improve it with distilled knowledge from stronger agents. Our analysis shows that Qwen3-Coder-30B is not well optimized for arena-style interaction: it frequently produces syntax and protocol-breaking errors and exhibits weak strategic adaptation across rounds. These failures are difficult to correct with vanilla instruction tuning alone, since offline SFT cannot directly verify whether a generated action is valid or beneficial. To address this, we propose ReAct SFT, which rewrites teacher trajectories into explicit [obs][thought][act] chains, and trajectoryquality weighted SFT, which reweights samples to encourage post-edit checking. ReAct SFT substantially improves strategic behavior, and our fine-tuned model outperforms the original Qwen3 Coder Plus in tournament evaluation.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16098v1",
+      "title": "Universal Defenses for Tool-Integrated LLM Agents Against Adversarial Attacks",
+      "url": "https://arxiv.org/abs/2609.16098",
+      "author": "Xiaoyan Li, Yunli Wang",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Large Language Model (LLM) agents have demonstrated impressive capabilities across a variety of domains, particularly when integrated with external tools for multi-step task completion. However, they are increasingly vulnerable to adversarial attacks, including direct prompt injection, indirect prompt injection, memory poisoning, and backdoor attacks, which exploit the model's openness to prompt injection and tool manipulation. In this work, we explore practical and generalizable defense strategies within a unified framework across these four attack types. We introduce two universal tool-based defenses: Attacker Tool Filtering, which uses anomaly detection (e.g., Isolation Forest) to identify and remove suspicious tools, and Normal Tool Recalling, a white-box method that restores the agent's original toolset prior to planning. Additionally, we incorporate prompt-based defenses: Chain-of-Thought prompting and self-reflection techniques to enhance reasoning and task paraphrasing to mitigate attacks. Experimental results across both four open-source LLMs (Gemma2-9B, Qwen2-7B, LLaMA3-8B, and LLaMA3.1-8B) and three proprietary LLMs (GPT-3.5, GPT-4, and GPT-5) show that our methods significantly reduce the Attack Success Rates (ASR), achieving 0% ASR in many settings, while preserving or even improving the original task success rate. These findings highlight the promise of simple, modular, multi-layered defenses for strengthening the security and robustness of tool-integrated LLM agents. The code is available at https://github.com/Xiaoyan-Lisa/Defenses-for-Tool-Integrated-LLM-Agents-Against-Adversarial-Attacks.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16148v1",
+      "title": "Docker Containers vs. Virtual Machines: A Comparative Study of Architecture, Performance, Configuration, and Security",
+      "url": "https://arxiv.org/abs/2609.16148",
+      "author": "Faraz Gurramkonda, Akanksha Malla, Sayma Tamboli, Shayesta Nazneen",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Modern application platforms must isolate workloads while preserving deployment speed, portability, resource efficiency, and security. Virtual machines (VMs) and Docker containers address this requirement at different abstraction layers: VMs virtualize hardware and run independent guest operating systems, whereas containers isolate processes while sharing the host kernel. This paper presents a comparative, literature-based analysis of the two approaches across architecture, configuration and lifecycle management, performance, scalability, and security. Published studies generally associate containers with shorter startup times, smaller images, higher workload density, and near-native execution for many workloads. These benefits depend on workload characteristics, storage and network drivers, resource controls, and experimental design. VMs introduce greater overhead but offer independent kernels, heterogeneous guest operating systems, and a stronger isolation boundary. The comparison therefore treats efficiency and isolation as a design trade-off rather than declaring one technology universally superior. A hybrid architecture, in which containers run inside hardened VMs, often provides a practical balance for cloud and multi-tenant systems.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16175v1",
+      "title": "BOA: Beamwidth Online Adaptation for Filtered-ANNS on a GPU",
+      "url": "https://arxiv.org/abs/2609.16175",
+      "author": "Farhana Akter Tumpa, Rajiv Gupta",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Filtered approximate nearest neighbor search, i.e. returning the top-k vectors nearest to a query vector among those satisfying one or more attribute predicates, has become a fundamental operation in modern vector search systems. Graph-based solutions employ beam search to solve a batch of queries in parallel for high throughput and employ high fixed beamwidth of 100 or greater for ensuring high recall. We observe that, given a batch of queries, more than half of the queries across multiple data sets can be solved precisely with a beamwidth of just 50 or less. Therefore, existing systems based on fixed high beamwidth sacrifice throughput to achieve high recall by forcing every query to search as thoroughly as the hardest query in the batch even though majority of queries can be resolved by a shallow search. In this paper we present a filtered ANNS engine for a single GPU named BOA that uses online beamwidth adaptation to customize the search effort across queries within a batch under multi-attribute range filters. We address the recall throughput tradeoff with a multi-phase search: all queries are first evaluated under a narrow beam, and only those with uncertain results are progressively refined with wider beamwidths. This renders recall largely insensitive to the starting beamwidth, whereas prior methods must use a fixed high beamwidth for high recall. BOA+ overlaps execution of phases to further enhance throughput. Our experiments show that, for 10,000 queries, online adaptation achieves 94.05% to 99.96% recall with average beamwidth ranging from 22 to 77, while a non-adaptive approach requires a fixed beamwidth of 500 to achieve similar or lower recall. Consequently, adaptivity increases throughput by 7x to 12.5x",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16193v1",
+      "title": "Permutation-Based Stegomalware in Large Language Models: Threats and Countermeasures",
+      "url": "https://arxiv.org/abs/2609.16193",
+      "author": "Danny Wood, James Stringer",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "The difficulty of training large language models (LLMs), together with their ubiquity, raises the threat of stegomalware, where malicious payloads are embedded into model weights. Recent work has demonstrated the use of permutation symmetry in model weights to mitigate these threats, but failed to show neutralization of stegomalware across all weights for LLMs. In this paper, we demonstrate the full potential of behavior-preserving symmetries as a defense against stegomalware, as well as the risks these symmetries pose when exploited by attackers. For stegomalware neutralization, we improve upon previous work, demonstrating that it is possible to select permutations which displace all model parameters. This contrasts with previous methods which left a significant percentage of weights unaltered in LLMs. When used in an attack, we show that permutation symmetries can encode malware into the weights of a model in a way that is theoretically lossless, requires no retraining after encoding, and needs no payload-specific information in the extraction script---a combination of characteristics not previously seen in any single method. While theoretically lossless, permutation can in practice alter model behavior due to the accumulation of numerical error. We therefore quantify the loss in model performance associated with applying these methods, for both attack and defense, showing it to be minimal.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16211v1",
+      "title": "Feasibility of Homomorphic Inference for a Genomic Foundation Model",
+      "url": "https://arxiv.org/abs/2609.16211",
+      "author": "Christos Galanopoulos, Kimon Antonios Provatas, Ilias Georgakopoulos-Soares",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Human genomic sequences can identify individuals, cannot be replaced after disclosure, and are the inputs that genomic foundation models are designed to interpret. We assess whether a compute provider can execute a released genomic foundation model without receiving query-derived genomic values in plaintext and whether correctness, memory, or cost prevents complete encrypted inference. We first reproduce the released model on three genomic task families and freeze an independently validated numerical reference. We then implement a client-assisted approximate homomorphic encryption protocol: the provider evaluates linear algebra on ciphertexts, while the key-holding data owner evaluates exact normalization, causal softmax, and activation functions at fixed boundaries. A noninteractive configuration completes one released-weight block but exceeds the tested accelerator-memory envelope when configured for composition. The client-assisted configuration executes all released transformer blocks and the task head for one heldout genomic-signal input at its full prompt length. It matches the frozen final label, peaks at 9,839 mebibytes of accelerator memory, and completes in 6,683 seconds on one accelerator. These results establish arithmetic feasibility for a complete classifier, while repeatability, network transport, and private token-index lookup remain unresolved. The biomedical significance is that, under the stated threat model, a served genomic model can process an encoded sequence without exposing plaintext queryderived activations to the compute provider.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16214v1",
+      "title": "Analyzing Multi-Factor Authentication Through Cryptographic Security Properties",
+      "url": "https://arxiv.org/abs/2609.16214",
+      "author": "Ryan Tipping, Yousef Tahboub, Krishna Bodige",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Modern authentication systems use cybersecurity techniques to validate the identity of the person (or applications acting on behalf of the person) as a primary defense against unauthorized access. While initially built around single mechanisms such as usernames/passwords, physical tokens, or biometrics, current systems have evolved into multi-factor authentication (MFA) platforms that combine multiple mechanisms. Among them, several focus on strategies that prevent replay attacks (i.e. the reuse of a component that could have been potentially compromised).",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16231v1",
+      "title": "RuleAutoPilot: Synthesizing Deployable Suricata Rules from Network Traffic",
+      "url": "https://arxiv.org/abs/2609.16231",
+      "author": "Mughees Ur Rehman, Aritran Piplai, Murat Kantarcioglu",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Rule-based Intrusion Detection Systems (IDS) such as Suricata are central to network security, yet crafting effective detection rules demands deep expert knowledge and cannot keep pace with emerging threats. Existing LLM-based approaches can reduce analyst effort, but they either rely on curated threat intelligence that is produced only after the underlying traffic artifacts already exist, or they require costly LLM use without sufficient quality control. We present RuleAutoPilot, an end-to-end agentic framework that generates deployable Suricata rules directly from malware network traffic, with no prior threat intelligence required. A key challenge is noise: network traffic captures often contain a small amount of security-relevant traffic mixed with large volumes of background traffic, which reduces LLM reasoning quality and increases cost. RuleAutoPilot addresses this challenge with a Benign Traffic Fingerprinting stage that removes known benign background flows before LLM processing. Rules that fail syntax checks, do not trigger on the source traffic, or generate false positives on a benign corpus are automatically repaired using structured feedback. Across 1,296 malware PCAPs, execution-grounded verification raises rule quality (F1) from 0.443 to 0.539. On a stratified 200-PCAP subset, RuleAutoPilot on the open-weight gpt-oss-120b reaches near-frontier quality, 0.524 F1 against Claude Opus 5 under Claude Code's 0.623, at 52x lower billed-token cost. Swapping only the backbone to Claude Opus 5, RuleAutoPilot surpasses Claude Code outright, 0.656 F1 against 0.623, at 40x fewer tokens. A stronger backbone raises RuleAutoPilot's own ceiling, but at the same backbone, our scaffold still outperforms Claude Code's, showing the scaffold contributes independently of the backbone.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16252v1",
+      "title": "Models as Governed Interfaces for AI-Native MBSE: Read-Side Adequacy and Write-Side Admissibility",
+      "url": "https://arxiv.org/abs/2609.16252",
+      "author": "Jason Gower, Michael J. de C. Henshaw, Siyuan Ji",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Machine-readable models such as SysML v2 are now programmatically accessible, and a growing body of work treats that access as the enabling condition for AI participation in systems engineering. Access is necessary, but not sufficient. The remaining work lies not in the modelling language but in the data architecture around it. An AI reader that queries a structurally complete model for a derivation still runs into absent derivation chains, untagged epistemic status, missing provenance, and evidence that the model cannot resolve. Faced with these gaps, it does not abstain; it fills them from training data, a source that is neither verifiable nor governed. To make the case on a model that is exemplary by current practice rather than deficient, we probe the public Apollo 11 SysML v2 reconstruction. We name the missing property epistemic adequacy and offer it as a candidate data-architecture pattern in two halves. Read-side adequacy lets derivation, status, and provenance answer a query rather than invite a guess; write-side admissibility gates an AI contribution before it enters the record. The property is broken down into five criteria. Four sit on the read side, evidenced by the case and convergent literature; the fifth sits on the participation side, advanced as a hypothesis this paper does not yet test. The architecture space runs from an inline metadata extension up to a substrate-native multi-model store, and over it, we propose the Governed-Query Architecture Framework, which governs agent participation through the viewpoint conventions that engineers already use. We commit the reframing to falsification: the epistemic layer counts as refuted if it cannot beat a retrieval-augmented baseline on the same model, tested first on the Apollo chain and then in an industrial pilot.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16253v1",
+      "title": "Exploiting and Securing Docker containers and Kubernetes pods from a MitM attack",
+      "url": "https://arxiv.org/abs/2609.16253",
+      "author": "Henry Kabuye, Ismail Khalid Kazmi, Chunyan Mu, Paolo Modesti",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "PURPOSE - Workloads in containers, such as Docker containers and Kubernetes pods, are vulnerable to many of the same attacks as workloads in non-container environments, including phishing, application exploits and network intrusions. This systematic review and design-and-creation study explores techniques for securing containerised-based operating systems against Man-in-the-Middle (MitM) attacks. The proposed framework uses a conceptual model for representing communication and cryptographic primitives, together with the AnBxJ Java security library and container firewalls operating at layer 7 of the OSI model. The study addresses the question: How can containerised-based operating systems be effectively secured from Man-in-the-Middle attacks? It aims to support practitioners in protecting Docker and Kubernetes deployments by systematising security practices and applying a zero trust architecture. METHODOLOGY - The research uses a Systematic Review (SR) based on the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA), bringing together evidence from studies addressing the same research topic. FINDINGS - Success factors were identified, and a security mechanism was successfully implemented in a containerised-based operating system scenario. VALUE - The findings may help practitioners protect Kubernetes and Docker installations by systematising container security practices and providing a zero trust architecture for containerised-based operating systems.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16287v1",
+      "title": "AgentGuard: Learning Execution Guardrails from Anomalous Coding-Agent Trajectories",
+      "url": "https://arxiv.org/abs/2609.16287",
+      "author": "Wuyang Dai, Song Wang",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "AI coding agents increasingly rely on execution harnesses to interact with repositories and external tools. However, task success does not guarantee reliable execution. Agents may still modify unrelated files, rewrite tests, issue unsafe commands, or ignore failed validations, motivating behavioral guardrails for reliable execution. We present AgentGuard, an instruction-level guardrail framework that learns conditional execution constraints from anomalous trajectories of coding agents. Rather than relying on manually specified safety rules, AgentGuard automatically extracts recurring execution failure patterns, generalizes them into instruction-level behavioral constraints, and organizes them as a lightweight guardrail skill that dynamically activates only the rules relevant to the current instruction. This design enables behavioral guidance while minimizing unnecessary restrictions on normal execution. We evaluate AgentGuard using 642 documented failure traces collected from real coding-agent executions across 382 repository tasks. Guardrails are learned from 461 traces covering 282 tasks and evaluated on a disjoint set of 100 tasks. Using Claude Code with Claude Haiku 4.5 as the underlying coding agent, we compare the baseline agent with the same agent augmented by AgentGuard. Experimental results show that AgentGuard reduces the Abnormal Execution Rate from 69.0% to 26.7% and increases the Successful Task Completion Rate from 21.7% to 35.0%. These results demonstrate that execution guardrails learned from historical failures can substantially improve the reliability of AI coding agents while highlighting the remaining challenge of balancing safety and task completion.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16302v1",
+      "title": "Assurance Envelopes for Autonomous Coding Agents: Minimum-Cost Evidence for Software Change",
+      "url": "https://arxiv.org/abs/2609.16302",
+      "author": "Anjan Goswami",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "When a coding agent returns to existing software, it inherits evidence from earlier engineering work: tests, type checks, proofs, static analyses, and traces. Reloading all of it is wasteful, but dropping a piece the change depends on can leave a required property unsupported. Given the properties a change must preserve, its obligations, we ask which least-cost subset of the available evidence re-establishes them, and we call such a subset a task-conditioned assurance envelope. Evidence and the rules that combine it form a typed inference graph; an obligation is met when forward chaining from the selected evidence reaches it, and we validate every selection by that closure rather than by trusting the optimizer. The software-derived graphs in our evaluation come from preserved outcomes of prior AI coding-agent runs; we freeze those artifacts and ask which accumulated evidence should be restored for a later task. Small graphs from Rust, IronBlocks, and Pong outcomes show that the minimum envelope depends on the task, that none may exist when current evidence cannot re-establish a required property, that some properties need several pieces of evidence together, and that expanding the requirements adds evidence rather than replacing it. A prespecified synthetic benchmark of 249 instances characterizes computation: a baseline that discards the 'several pieces together' structure necessarily fails to re-derive them; every completed exact cross-check agreed with the CP-SAT optimizer; and median solve time stayed below 20 ms at 500-evidence graphs, except that graphs with many alternative derivations per target timed out at far smaller sizes, so structure, not raw size, drives difficulty. The contribution is a bounded application of established optimization to selecting assurance context for a software change; discovering the obligations and downstream agent benefit remain open.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16313v1",
+      "title": "Cognitive Admission Control: Risk-Conditioned Assurance for Consequential Actions in Agentic Distributed Systems",
+      "url": "https://arxiv.org/abs/2609.16313",
+      "author": "Jun He, Deying Yu",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "In agentic distributed systems, an agent may be authorized to mutate external infrastructure while lacking evidence that the mutation is ready to execute. Cognitive Admission Control (CAC) makes this evidence requirement explicit. A policy maps a typed action and its modeled risk to assurance obligations specifying predicates, evidence classes, scope, freshness, and witness-set constraints. A deterministic evaluator distinguishes satisfied, violated, and unresolved obligations; unresolved conditions produce targeted evidence-acquisition requests. Successful admission produces a certificate binding the action, its witness manifest, and dispatch-time guards. We formalize the admission calculus and the assumptions connecting it to mediated execution. The guarantees are policy-relative: physical safety additionally requires sound evidence, an adequate environment model, and preservation of relevant conditions through the effect. A TypeScript prototype is evaluated in 2,730 controlled local trials with independent effect observation and matched fault schedules. Across 390 CAC trials, 120 effects complete without modeled harm and no harmful effects occur. A live-policy baseline achieves the same completion count but admits the constructed correlated-witness failure. Mechanism ablations isolate guard, evidence-class, structural-cut, and remediation behavior. A further 9,000 measurements exercise the complete local dispatch path with persistent replay protection. These results establish tested implementation behaviors and local costs, not production failure rates or comparisons of language-model capability.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16321v1",
+      "title": "FairLint-DL: An IDE-Native Tool for Fairness Debugging of Deep Learning Software",
+      "url": "https://arxiv.org/abs/2609.16321",
+      "author": "Archit Rathod, Saeid Tizpaz-Niari",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Existing fairness analysis tools predominantly operate as post-training evaluation frameworks, requiring practitioners to complete the full model development lifecycle before assessing bias. We present FairLint-DL, a Visual Studio Code extension that implements a shift-left approach to fairness testing by enabling pre-training, IDE-native bias detection directly on tabular datasets. FairLint-DL trains a configurable deep neural network as a proxy model and applies information-theoretic Quantitative Individual Discrimination (QID) metrics. Grounded in Shannon and min-entropy, QID quantifies the causal influence of protected attributes on predictions. The system implements a two-phase gradient-guided search algorithm for discovering discriminatory instances, a causal debugging pipeline that localizes bias to specific network layers and neurons via sensitivity analysis, and dual explainability engines using SHAP and LIME for feature-level attribution. Evaluation on three tabular benchmarks (Adult Census Income, German Credit, and Bank Marketing) reveals fairness concerns that vary widely across datasets: on Adult, 96.0% of analyzed instances exhibit QID above the 0.1-bit significance threshold, with a mean QID of 0.619 bits and a disparate impact ratio of 0.581, violating the four-fifths legal rule. FairLint-DL produces these results within 12 seconds on cached models, demonstrating the feasibility of integrating fairness analysis into the developer workflow without significant overhead.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16323v1",
+      "title": "Understanding the Usability of Cryptographic Verification Tools",
+      "url": "https://arxiv.org/abs/2609.16323",
+      "author": "Tarikul Islam, Yasin Islam, Khandakar Ashrafi Akbar, Imtiaz Karim",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Cryptographic protocol verification tools are widely used to analyze the security of complex protocols, yet how users interact with these tools remains comparatively understudied. We present an exploratory human-centered study of experienced users of Tamarin, ProVerif, and related protocol verifiers. Our survey included researchers, graduate students, and practitioners with hands-on experience using Tamarin, ProVerif, or related tools. The findings reveal usability barriers across the verification workflow, including difficulties debugging non-termination and performance issues, and the lack of systematic methods for validating formal models against real protocols. When proofs fail without concrete attacks, users commonly simplify models, add helper lemmas, and revisit modeling abstractions. Participants also called for actionable diagnostics, clearer explanations of results, visualization, and automation for recurring proof tasks. Our findings suggest that persistent usability challenges arise from the gap between protocol-level reasoning and the verifier's formal model, proof procedures, and diagnostic output. We derive concrete design priorities for improving the accessibility, interpretability, and usability of cryptographic protocol verification tools.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16336v1",
+      "title": "Illusion of Depth: Revealing Hidden Stereo Vision Vulnerabilities in Depth Estimation",
+      "url": "https://arxiv.org/abs/2609.16336",
+      "author": "Sri Hrushikesh Varma Bhupathiraju, Tetsu Ishizue, Nicholas U. Costagliola, Ozora Sako, Kentaro Yoshioka, Takeshi Sugawara, Sara Rampazzi",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Stereo cameras are integrated into autonomous systems such as self-driving cars, drones, and robots to offer precise depth estimation in a cost-effective manner compared to LiDAR technology. In this work, we reveal an intrinsic vulnerability in stereo cameras that stems from their pixel sampling and calibration processes, which can influence the outputs of stereo matching algorithms. Attackers can achieve fine-grained control over the estimated depth of real obstacles using simple repeating patterns, without relying on sophisticated adversarial machine learning techniques. Furthermore, deep learning-based depth estimation models exhibit a similar vulnerability. We evaluate the impact of this attack on two widely used stereo matching algorithms (BM and SGBM), three deep learning models (PSMNet, MoCha-Stereo, and UniMatch), a stereo-LiDAR fusion model (SGM-DDC), and two popular commercial stereo cameras, the ZED2 and Intel RealSense D435. For example, in the ZED2 camera, an attacker can displace obstacles up to 20~meters farther or 12~meters closer. In our real-world evaluation in a driving setting, a brief 0.5~second attack can trigger emergency braking in a popular autonomous driving framework. We further demonstrate the feasibility at driving speeds up to 40~km/h using CARLA. Finally, we confirm the ineffectiveness of state-of-the-art defenses, and we propose a novel strategy that leverages similarity scores to dynamically detect and suppress the depth discrepancies. Our work highlights vulnerabilities hidden in stereo matching and deep learning depth estimation models, addressing critical limitations in autonomous system deployments.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16375v1",
+      "title": "gr-PHYSEC: Real-time Channel-based Key Generation for Physical Layer Secure Wireless Communications",
+      "url": "https://arxiv.org/abs/2609.16375",
+      "author": "Jose Angel Sanchez Viloria, George Sklivanitis, Dimitris Pados",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Securing wireless communication against eavesdropping is critical, particularly in dynamic and decentralized environments. We present gr-PHYSEC, a new GNU Radio out-of-tree (OOT) module for real-time physical-layer key generation. Unlike traditional key generation that relies on pre-shared secrets or computational complexity, our approach derives symmetric keys from the wireless channel's inherent randomness. We embed a trained neural network within GNU Radio to extract channel features between trusted parties (Alice and Bob) during probe exchanges. These features are quantized into binary keys, reconciled via Reed-Solomon encoding, and further secured with SHA-512 hashing. The generated keys are then directly used to encrypt data. Real-world experiments at the FAU CAAI connected robotics testbed using ADALM Pluto software-defined radios and NVIDIA Jetson Orin validate the approach with ground robotic platforms. Results demonstrate low key disagreement rates and strong randomness, as verified by the NIST test suite for random and pseudorandom number generators for cryptographic applications. This integration showcases how GNU Radio can support real-time AI-driven security solutions, pushing the boundaries of software-defined secure communication. The source code for this project is available at: https://github.com/C2A2-at-Florida-Atlantic-University/gr-PHYSEC",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16403v1",
+      "title": "Implementing a White-Box Undetectable Backdoor for Random Fourier Features",
+      "url": "https://arxiv.org/abs/2609.16403",
+      "author": "Michael Collins, Jada Cumberland, Brianne Dunn, Ross Gore, Samuel Jackson, Sachin Shetty",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Goldwasser et al. showed that undetectable backdoors can be planted in machine learning models trained with the Random Fourier Features (RFF) algorithm, under a hardness assumption tied to the Continuous Learning With Errors (CLWE) problem. Under standard cryptographic assumptions, even a full white-box audit of a model's weights cannot detect this class of backdoor. The construction is stated in terms of cryptographic reductions and probabilistic lemmas, without a reference implementation, and relies on secondary machinery such as the Sparse Gaussian Pancakes distribution and a homogeneous CLWE conditional density. Its realizability in ordinary numerical code is not obvious from the paper alone. This paper implements the white-box CLWE-RFF backdoor construction end to end using only numpy and scipy, to test whether this threat is realizable with commodity scientific-computing tools or requires specialized cryptographic infrastructure. We give two samplers for the core $GP_d(b_k)$ distribution. The first is a rejection-sampling proxy. The second is an exact closed-form sampler derived from the homogeneous CLWE density and verified against its own analytic form. Using this implementation, we run statistical indistinguishability tests, covering both weight-space and functional black-box comparisons. We find no evidence of detectable difference between backdoored and clean models across a range of sparsity ratios $\\rho = d_{\\text{sparse}}/D$. We report which parts of the construction were straightforward to realize, which required derivation not spelled out in the paper. We also highlight which parts we did not attempt to reproduce, including the underlying lattice hardness reduction. We see this work as a contribution to understanding the practical realizability of the Goldwasser white-box CLWE core, not as a new theoretical result.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16423v1",
+      "title": "No Bit Left Behind: Using Brute-Force Lifting to Achieve Fully Static Binary Recompilation",
+      "url": "https://arxiv.org/abs/2609.16423",
+      "author": "Tianjiao Huang, Po-An Chen, Nick Baron, Michael Franz",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Binary recompilation is a technique for operating directly on executable code. It promises to automate two important tasks: retrofitting security mitigations onto legacy binaries, and migrating binaries across instruction set architectures (ISAs). Yet today, there is no fully automated system that can reliably lift arbitrary binary executables to a compiler intermediate representation (IR) such as LLVM IR, or that can fully statically and reliably translate non-trivial binary executables from one ISA to another. The main underlying problem is that recovering a program's control flow graph (CFG) statically is impossible in general: computed branches can jump to targets that cannot be determined without actually running the program. Existing systems resort to runtime fallback mechanisms, requiring a significant portion of the binary translation machinery to accompany the translated program on the target machine. This article presents a fully static, whole-program binary lifting system requiring no runtime translation support on the target. Rather than attempting to distinguish code from data, we treat every byte offset as a potential branch target and lift the entire binary in a brute-force manner, constructing a superset CFG that conservatively contains all feasible control flows. Statically unresolvable computed branches are thereby reduced to lookups in a dispatch table that points to the corresponding translated control flow path. We have implemented this approach as a prototype binary recompiler from x86-64 binaries to LLVM IR, requiring no code/data heuristics. We validate it with a fully static cross-compilation to AArch64, achieved by reusing existing LLVM backends with no modification.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16433v1",
+      "title": "Evaluating the NIST Bugs Framework Against CWE as a Successor for Automated Vulnerability Classification",
+      "url": "https://arxiv.org/abs/2609.16433",
+      "author": "Md Nazmul Hoque, Shaswata Mitra, Subash Neupane, Sudip Mittal, Shahram Rahimi",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Vulnerability classification based on root cause weaknesses is essential for numerous cybersecurity activities, where the Common Weakness Enumeration (CWE) serves as a public repository of such flaws. However, its overlapping entries create a non-orthogonal structure. The result is the same vulnerability being mapped to multiple weaknesses, complicating Root Cause Analysis (RCA) and triage. To address this, NIST Special Publication 800-231 introduces the Bugs Framework (BF), which organizes vulnerabilities into <cause, operation, consequence> triples and links such triples into a causal chain, so that a vulnerability carries its root cause and its sink together instead of a single terminal label. To date, however, BF has been specified but not evaluated regarding its performance against the challenges to automated classification. The evidence required for adoption has not been investigated empirically. We evaluate BF as a classification target and a complement to CWE using a systematically screened corpus of automated Common Vulnerabilities and Exposures (CVEs) linked to CWE research. We assess the reproducibility of CVE-to-BF classification through two evaluations. The first is qualitative: an anonymized inter-rater study in which 2 subject-matter experts (SMEs) independently mapped 13 CVEs onto the four BF axes. Annotators showed strong agreement on the cause and operation axes, while the attribute axis indicated fair agreement. We also tested our automated framework across two large language model (LLM) deployments under different budgets for reproducibility analysis. Despite limitations, such as evidence availability and the absence of retrievable fix commits for closed-source software, our findings support the claim that BF is a more structured and automation-friendly framework than CWE. Our exploration reveals specific gaps in BF, including under-specified guidance on attributes.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16461v1",
+      "title": "Protocol-Preserving Context Trimming for Agentic Workflows: Benefits, Failure Regimes, and Budget Guardrails",
+      "url": "https://arxiv.org/abs/2609.16461",
+      "author": "Harish Gaggar",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Agentic large language model (LLM) systems rely on long interaction histories to preserve instructions, tool states, intermediate decisions, and unresolved dependencies, but unrestricted context growth increases computational cost and can reduce efficiency. This study evaluates protocol-preserving context trimming as a reliability-constrained approach for multi-step agentic workflows. Five trimming strategies - recency-based, relevance-based, summarization, protocol-aware trimming, and adaptive budget guardrails - were compared across retained-context levels and workflow-complexity classes using task success, protocol adherence, valid tool calls, token savings, latency reduction, cascading failures, and critical context thresholds. Conventional strategies achieved about 60% mean token savings but lower task success (66.6-77.3%) and protocol adherence (85.5-88.6%). Protocol-aware trimming improved task success to 92.2%, while adaptive guardrails achieved 96.0% task success, 96.3% protocol adherence, and 1.0% cascading failure with 56.0% mean token savings. Retained-context budgets of 25% or less increased failure odds 10.92-fold relative to budgets of 50% or more (p < 0.001). Protocol-aware trimming produced 5.24-fold greater odds of successful completion than conventional methods under aggressive budgets, while adaptive guardrails further increased success odds 2.11-fold versus fixed protocol-aware trimming (p < 0.001). Critical context thresholds also increased with workflow complexity. These findings indicate that reliable context reduction depends more on preserving protocol-critical state than on maximizing token removal, and that adaptive guardrails can improve efficiency, scalability, and reliability in long-horizon agentic systems.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2609.16462v1",
+      "title": "Not All Relations Are Equal: Relation-Balanced and Calibrated Graph Learning for Provenance-Based Intrusion Detection",
+      "url": "https://arxiv.org/abs/2609.16462",
+      "author": "Lijie Zheng, Ji He, Alessandro Brighente, Yulong Shen, Mauro Conti",
+      "publishedAt": "2026-09-16T04:00:00.000Z",
+      "content": "Provenance-Based Intrusion Detection Systems (PIDSs) detect Advanced Persistent Threats (APTs) by analyzing system interactions. However, existing methods largely treat relations uniformly, overlooking statistical heterogeneity; in CADETS, relation frequencies differ by approximately $140{,}000\\times$. This may cause PIDSs to focus more on frequent relations and overlook differences in normal error levels across relations, increasing the risk of false alarms and missed detections. We present RECAL, an unsupervised framework using relation-balanced masked graph learning to better capture rare interaction patterns. It further calibrates reconstruction errors against each relation's benign error distribution to produce comparable anomaly evidence, helping distinguish attacks from benign behavior and reduce false alarms. On three DARPA E3 datasets, RECAL achieves F1 scores of 99.99\\%, 99.93\\%, and 99.99\\%, outperforming the best baseline on each dataset by 0.88, 0.82, and 0.42 percentage points, respectively. Compared with the baseline reporting the lowest FPR, RECAL reduces mean FPR by approximately $105\\times$, $4\\times$, and $41\\times$.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.06986",
+      "title": "Continual Learning Mechanisms Compose for Long-Horizon Memorization",
+      "url": "https://huggingface.co/papers/2609.06986",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:40.601Z",
+      "content": "Continual Learning Mechanisms Compose for Long-Horizon Memorization",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.11873",
+      "title": "The Last AI Built by Humans: Toward Genuine Recursive Self-Improvement",
+      "url": "https://huggingface.co/papers/2609.11873",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:40.601Z",
+      "content": "The Last AI Built by Humans: Toward Genuine Recursive Self-Improvement",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.16679",
+      "title": "AI for Games in the Foundation Model Era",
+      "url": "https://huggingface.co/papers/2609.16679",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:40.601Z",
+      "content": "AI for Games in the Foundation Model Era",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.17523",
+      "title": "ScienceBuddy: Recursive-in-Recursive Self-Improvement for Interactive Scientific Agents",
+      "url": "https://huggingface.co/papers/2609.17523",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:40.601Z",
+      "content": "ScienceBuddy: Recursive-in-Recursive Self-Improvement for Interactive Scientific Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.15975",
+      "title": "Disentangling Representation Evolution in Transformers through Directional Decomposition",
+      "url": "https://huggingface.co/papers/2609.15975",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:40.601Z",
+      "content": "Disentangling Representation Evolution in Transformers through Directional Decomposition",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.15982",
+      "title": "The Router Within: Eliciting Native Skill Routing from a Frozen LLM",
+      "url": "https://huggingface.co/papers/2609.15982",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:40.601Z",
+      "content": "The Router Within: Eliciting Native Skill Routing from a Frozen LLM",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.15972",
+      "title": "Mind2Dialogue: Training Human-Aware Language Models by Simulating User Mental States",
+      "url": "https://huggingface.co/papers/2609.15972",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:40.601Z",
+      "content": "Mind2Dialogue: Training Human-Aware Language Models by Simulating User Mental States",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.17524",
+      "title": "Modality-Autoregressive World-Action Models",
+      "url": "https://huggingface.co/papers/2609.17524",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:40.601Z",
+      "content": "Modality-Autoregressive World-Action Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.17521",
+      "title": "PhysStream: Streaming Physics-Grounded Video Generation with Structured Scene Memory and Fine-Grained Motion Control",
+      "url": "https://huggingface.co/papers/2609.17521",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:40.601Z",
+      "content": "PhysStream: Streaming Physics-Grounded Video Generation with Structured Scene Memory and Fine-Grained Motion Control",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.17320",
+      "title": "Emergence World: Adversarial Stress-Testing of Long-Horizon Multi-Agent Systems",
+      "url": "https://huggingface.co/papers/2609.17320",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:40.601Z",
+      "content": "Emergence World: Adversarial Stress-Testing of Long-Horizon Multi-Agent Systems",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.13680",
+      "title": "Drift-Constrained Optimization: Only Direction Matters in Fine-Tuning Instruct Models",
+      "url": "https://huggingface.co/papers/2609.13680",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:40.601Z",
+      "content": "Drift-Constrained Optimization: Only Direction Matters in Fine-Tuning Instruct Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.13770",
+      "title": "Training Specialist Models without Reasoning Trajectories for Domain Expert Distillation",
+      "url": "https://huggingface.co/papers/2609.13770",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:40.601Z",
+      "content": "Training Specialist Models without Reasoning Trajectories for Domain Expert Distillation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theinformation.com/articles/meta-launch-camera-free-smart-glasses-amid-mounting-privacy-concerns",
+      "title": "Meta to Launch Camera-Free Smart Glasses Amid Mounting Privacy Concerns",
+      "url": "https://www.theinformation.com/articles/meta-launch-camera-free-smart-glasses-amid-mounting-privacy-concerns",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.610Z",
+      "content": "Meta to Launch Camera-Free Smart Glasses Amid Mounting Privacy Concernstheinformation.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://gizmodo.com/rumored-round-of-funding-could-make-openai-more-valuable-than-anthropic-again-perhaps-briefly-2000812142",
+      "title": "Rumored Round of Funding Could Make OpenAI More Valuable Than Anthropic Again. Perhaps Briefly",
+      "url": "https://gizmodo.com/rumored-round-of-funding-could-make-openai-more-valuable-than-anthropic-again-perhaps-briefly-2000812142",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.610Z",
+      "content": "Rumored Round of Funding Could Make OpenAI More Valuable Than Anthropic Again. Perhaps Brieflygizmodo.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://tomtunguz.com/single-digit-thousand-dollar-ai-sdr",
+      "title": "Single Digit Thousand Dollar AI SDR",
+      "url": "https://tomtunguz.com/single-digit-thousand-dollar-ai-sdr",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.610Z",
+      "content": "Single Digit Thousand Dollar AI SDRtomtunguz.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thenextweb.com/news/benioff-saaspocalypse-crazy-nonsense-aiforce-koa-dreamforce",
+      "title": "“Crazy nonsense”: Benioff dismisses the SaaSpocalypse and launches AIforce",
+      "url": "https://thenextweb.com/news/benioff-saaspocalypse-crazy-nonsense-aiforce-koa-dreamforce",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.611Z",
+      "content": "“Crazy nonsense”: Benioff dismisses the SaaSpocalypse and launches AIforcethenextweb.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://vllm.ai/blog/2026-09-13-kimi-k3-performance-optimization",
+      "title": "Kimi K3 Performance Optimizations in vLLM: The Road to 2.8× Throughput",
+      "url": "https://vllm.ai/blog/2026-09-13-kimi-k3-performance-optimization",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.611Z",
+      "content": "Kimi K3 Performance Optimizations in vLLM: The Road to 2.8× Throughputvllm.ai5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://semianalysis.substack.com/p/everyone-says-datacenter-moratoriums",
+      "title": "Everyone Says Datacenter Moratoriums Are Killing the US Buildout. We Mapped All 300 of Them",
+      "url": "https://semianalysis.substack.com/p/everyone-says-datacenter-moratoriums",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.611Z",
+      "content": "Everyone Says Datacenter Moratoriums Are Killing the US Buildout. We Mapped All 300 of Themsemianalysis.substack.com15 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://paulkedrosky.com/the-ai-cession-among-young-people-and-its-consequences",
+      "title": "The AI-cession Among Young People, and its Consequences",
+      "url": "https://paulkedrosky.com/the-ai-cession-among-young-people-and-its-consequences",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.612Z",
+      "content": "The AI-cession Among Young People, and its Consequencespaulkedrosky.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-09-16/meta-s-zuckerberg-favors-evaluators-over-slowdown-for-ai-safety",
+      "title": "Zuckerberg says \"Meta delayed shipping Muse for several months to focus on safety and security\" and didn't call on other AI labs to do the same before acting",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-16/meta-s-zuckerberg-favors-evaluators-over-slowdown-for-ai-safety",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.613Z",
+      "content": "Zuckerberg says \"Meta delayed shipping Muse for several months to focus on safety and security\" and didn't call on other AI labs to do the same before actingbloomberg.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.china-in-space.com/p/chinas-mega-constellations-mega-article",
+      "title": "China's Mega-Constellations Mega-Article",
+      "url": "https://www.china-in-space.com/p/chinas-mega-constellations-mega-article",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.613Z",
+      "content": "China's Mega-Constellations Mega-Articlechina-in-space.com26 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://explainanalyze.com/p/a-billion-row-versions-from-one-uncommitted-read-stalled-a-mysql-replica",
+      "title": "A Billion Row Versions From One Uncommitted Read Stalled a MySQL Replica",
+      "url": "https://explainanalyze.com/p/a-billion-row-versions-from-one-uncommitted-read-stalled-a-mysql-replica",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.614Z",
+      "content": "A Billion Row Versions From One Uncommitted Read Stalled a MySQL Replicaexplainanalyze.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thebuild.com/blog/all-your-gucs-in-a-row-max_locks_per_transaction",
+      "title": "All Your GUCs in a Row: max_locks_per_transaction",
+      "url": "https://thebuild.com/blog/all-your-gucs-in-a-row-max_locks_per_transaction",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.614Z",
+      "content": "All Your GUCs in a Row: max_locks_per_transactionthebuild.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://yegge.ai/essays/seats-and-sunsets",
+      "title": "Seats and Sunsets — Steve Yegge",
+      "url": "https://yegge.ai/essays/seats-and-sunsets",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.614Z",
+      "content": "Seats and Sunsets — Steve Yeggeyegge.ai18 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://startupfortune.com/openai-will-retire-gpt-55-from-chatgpt-and-codex-on-october-14",
+      "title": "OpenAI Will Retire GPT-5.5 From ChatGPT and Codex on October 14",
+      "url": "https://startupfortune.com/openai-will-retire-gpt-55-from-chatgpt-and-codex-on-october-14",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.614Z",
+      "content": "OpenAI Will Retire GPT-5.5 From ChatGPT and Codex on October 14startupfortune.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.geopolitechs.org/p/why-a-deepseek-engineer-is-helping",
+      "title": "Why a DeepSeek Engineer Is Helping AI Replace Him",
+      "url": "https://www.geopolitechs.org/p/why-a-deepseek-engineer-is-helping",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.615Z",
+      "content": "Why a DeepSeek Engineer Is Helping AI Replace Himgeopolitechs.org9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.humanoidsdaily.com/news/odyssey-unveils-odyssey-3-with-flexion-building-humanoid-control-on-its-world-model",
+      "title": "Odyssey Unveils Odyssey-3, With Flexion Building Humanoid Control on Its World Model",
+      "url": "https://www.humanoidsdaily.com/news/odyssey-unveils-odyssey-3-with-flexion-building-humanoid-control-on-its-world-model",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.615Z",
+      "content": "Odyssey Unveils Odyssey-3, With Flexion Building Humanoid Control on Its World Modelhumanoidsdaily.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/AravSrinivas/status/2099957318935028173",
+      "title": "Perplexity says persistent agents helped two engineers replace DynamoDB",
+      "url": "https://x.com/AravSrinivas/status/2099957318935028173",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.616Z",
+      "content": "Perplexity says persistent agents helped two engineers replace DynamoDBx.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/09/15/meta-mark-zuckerberg-with-nvidia-huang-ai-safety-slowdown.html",
+      "title": "Meta CEO Mark Zuckerberg sides with Nvidia's Huang on AI safety and slowdown debate",
+      "url": "https://www.cnbc.com/2026/09/15/meta-mark-zuckerberg-with-nvidia-huang-ai-safety-slowdown.html",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.616Z",
+      "content": "Meta CEO Mark Zuckerberg sides with Nvidia's Huang on AI safety and slowdown debatecnbc.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.robert-glaser.de/approach-the-software-factory-as-a-product-team",
+      "title": "How should we approach the software factory as a product team?",
+      "url": "https://www.robert-glaser.de/approach-the-software-factory-as-a-product-team",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.617Z",
+      "content": "How should we approach the software factory as a product team?robert-glaser.de8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://linum.ai/field-notes/jit-ddt",
+      "title": "Training Text-to-Image Models 3.6× Faster",
+      "url": "https://linum.ai/field-notes/jit-ddt",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.617Z",
+      "content": "Training Text-to-Image Models 3.6× Fasterlinum.ai40 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://startupfortune.com/mediatek-beats-qualcomm-to-2nm-with-the-chip-inside-oppos-find-x10-pro-max",
+      "title": "MediaTek Beats Qualcomm to 2nm With the Chip Inside Oppo's Find X10 Pro Max",
+      "url": "https://startupfortune.com/mediatek-beats-qualcomm-to-2nm-with-the-chip-inside-oppos-find-x10-pro-max",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.617Z",
+      "content": "MediaTek Beats Qualcomm to 2nm With the Chip Inside Oppo's Find X10 Pro Maxstartupfortune.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://unchainedcrypto.com/doj-says-two-robinhood-engineers-used-perpetual-futures-to-trade-ahead-of-its-crypto-listings",
+      "title": "DOJ Says Two Robinhood Engineers Used Perpetual Futures to Trade Ahead of Its Crypto Listings",
+      "url": "https://unchainedcrypto.com/doj-says-two-robinhood-engineers-used-perpetual-futures-to-trade-ahead-of-its-crypto-listings",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.618Z",
+      "content": "DOJ Says Two Robinhood Engineers Used Perpetual Futures to Trade Ahead of Its Crypto Listingsunchainedcrypto.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.digitalfoundry.net/features/inside-steam-frame-valve-on-how-they-made-it-performant-why-it-costs-so-much-and-whats-next",
+      "title": "Feature: Inside Steam Frame: Valve on How They Made It Performant, Why It Costs So Much and What's Next",
+      "url": "https://www.digitalfoundry.net/features/inside-steam-frame-valve-on-how-they-made-it-performant-why-it-costs-so-much-and-whats-next",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.619Z",
+      "content": "Feature: Inside Steam Frame: Valve on How They Made It Performant, Why It Costs So Much and What's Nextdigitalfoundry.net7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://somethingbig.ai/ai-risk-plain-english",
+      "title": "The people building AI think it might kill us. Here's the plain-English version.",
+      "url": "https://somethingbig.ai/ai-risk-plain-english",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.619Z",
+      "content": "The people building AI think it might kill us. Here's the plain-English version.somethingbig.ai3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arxiv.org/abs/2609.17394",
+      "title": "Coding Agents Have Converged: Why the SWE-bench Leaderboard Can No Longer Order Its Top Entries, and What to Measure Instead",
+      "url": "https://arxiv.org/abs/2609.17394",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.619Z",
+      "content": "Coding Agents Have Converged: Why the SWE-bench Leaderboard Can No Longer Order Its Top Entries, and What to Measure Insteadarxiv.org1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/elonmusk/status/2099933912697127398",
+      "title": "Starlink V3 constellation starts being deployed this month. Ultimately, it will deliver more th...",
+      "url": "https://x.com/elonmusk/status/2099933912697127398",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.619Z",
+      "content": "Starlink V3 constellation starts being deployed this month. Ultimately, it will deliver more th...x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.esa.int/Science_Exploration/Space_Science/Webb/Webb_reveals_stunning_panorama_of_star_formation",
+      "title": "ESA - Webb reveals stunning panorama of star formation",
+      "url": "https://www.esa.int/Science_Exploration/Space_Science/Webb/Webb_reveals_stunning_panorama_of_star_formation",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.620Z",
+      "content": "ESA - Webb reveals stunning panorama of star formationesa.int3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/09/15/aws-cant-restore-service-to-bahrain-uae-6-months-after-iran-strikes.html",
+      "title": "AWS says it can't restore service to Bahrain, UAE facilities 6 months after Iran strikes",
+      "url": "https://www.cnbc.com/2026/09/15/aws-cant-restore-service-to-bahrain-uae-6-months-after-iran-strikes.html",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.620Z",
+      "content": "AWS says it can't restore service to Bahrain, UAE facilities 6 months after Iran strikescnbc.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.dpreview.com/reviews/canon-eos-r8-ii-review",
+      "title": "Canon EOS R8 II review: new design, major fixes but frustrations remain",
+      "url": "https://www.dpreview.com/reviews/canon-eos-r8-ii-review",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.620Z",
+      "content": "Canon EOS R8 II review: new design, major fixes but frustrations remaindpreview.com20 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.darpa.mil/news/2026/darpa-competition-surgical",
+      "title": "$3.5M to advance autonomous trauma robotics",
+      "url": "https://www.darpa.mil/news/2026/darpa-competition-surgical",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.620Z",
+      "content": "$3.5M to advance autonomous trauma roboticsdarpa.mil2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://docs.cloud.google.com/api-gateway/docs/mcp-overview",
+      "title": "Model Context Protocol overview | API Gateway | Google Cloud Documentation",
+      "url": "https://docs.cloud.google.com/api-gateway/docs/mcp-overview",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.620Z",
+      "content": "Model Context Protocol overview | API Gateway | Google Cloud Documentationdocs.cloud.google.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.lesswrong.com/posts/5y3QtAJB2hXpLg9bu/why-would-ai-cause-human-extinction",
+      "title": "Why would AI cause human extinction?",
+      "url": "https://www.lesswrong.com/posts/5y3QtAJB2hXpLg9bu/why-would-ai-cause-human-extinction",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.621Z",
+      "content": "Why would AI cause human extinction?lesswrong.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://theaiengineer.substack.com/p/what-is-a-forward-deployed-engineer",
+      "title": "What is a Forward Deployed Engineer?",
+      "url": "https://theaiengineer.substack.com/p/what-is-a-forward-deployed-engineer",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.621Z",
+      "content": "What is a Forward Deployed Engineer?theaiengineer.substack.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.thelec.net/news/articleView.html?idxno=13929",
+      "title": "OpenAI Buys Glass Imaging for More Than $300 Million",
+      "url": "https://www.thelec.net/news/articleView.html?idxno=13929",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.621Z",
+      "content": "OpenAI Buys Glass Imaging for More Than $300 Millionthelec.net5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://ca.finance.yahoo.com/news/meta-platforms-makes-big-move-205012317.html",
+      "title": "Meta Platforms Makes Big Move to Cut Cost of AI Boom",
+      "url": "https://ca.finance.yahoo.com/news/meta-platforms-makes-big-move-205012317.html",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.622Z",
+      "content": "Meta Platforms Makes Big Move to Cut Cost of AI Boomca.finance.yahoo.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thenextweb.com/news/waymo-vegas-london-timetable",
+      "title": "Waymo opens driverless rides in Las Vegas, its fourth new US city this month",
+      "url": "https://thenextweb.com/news/waymo-vegas-london-timetable",
+      "author": null,
+      "publishedAt": "2026-09-16T04:36:42.622Z",
+      "content": "Waymo opens driverless rides in Las Vegas, its fourth new US city this monththenextweb.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    }
+  ]
+}
