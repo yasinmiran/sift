@@ -55,17 +55,13 @@ merges and closures and never expire.
 
 ## Backlog
 
-- Turned up by the 09-15 author scan, one field over and not fixed with it: 21
-  of the 5,576 archived items store `url: null`, every one of them hacker-news
-  and every one a self-post (`Ask HN:`, `Tell HN:`, `GitHub down again?`).
-  Algolia sends no `url` for a story whose body *is* the post, so `mapHit` maps
-  nothing (hn.ts:85) — while `externalId` holds the objectID the canonical link
-  is built from, `news.ycombinator.com/item?id=<id>`. Plausibly a one-line fix
-  with a test, and the verifier already knows that shape of link (the 09-06
-  run taught it HN permalinks). Two things to settle before spending a slot,
-  both unprobed as of writing: whether an unlinkable item reaching the digest
-  agent is a pipeline bug or an editorial call, and whether any of those 21
-  were ever cited — re-derive both from data/ before writing anything.
+- SHIPPED 2026-09-16 as #167 / PR #168: an hn self-post stores its permalink.
+  The 09-15 recipe held — same 21 items, still 21 against a grown archive
+  (5,835 items, 992 of them hn) — and both questions it left open answered
+  from data/ before any code: five of the 21 were cited, three linked only
+  because the digest agent hand-built the permalink and one mentioned with no
+  link at all, so a pipeline gap, not an editorial call. Third backlog recipe
+  to survive re-derivation intact.
 - SHIPPED 2026-09-14 as #159 / PR #160: rss titles decode numeric refs. The
   09-13 rewrite held verbatim against a fresh scan — 49 titles, 66
   occurrences, all the-verge — which is the second backlog recipe to survive
@@ -122,11 +118,12 @@ merges and closures and never expire.
   gardener/2026-09-11-sw-notification-click,
   gardener/2026-09-12-strip-tracking-params,
   gardener/2026-09-13-cdata-entities,
-  gardener/2026-09-14-title-numeric-entities and
-  gardener/2026-09-15-author-name are all merged and all
+  gardener/2026-09-14-title-numeric-entities,
+  gardener/2026-09-15-author-name and
+  gardener/2026-09-16-hn-self-post-url are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Eleven now; it grows by one every shipping run.
+  Twelve now; it grows by one every shipping run.
 - Seven enabled sources produced **zero items in the whole 32-day archive**:
   karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
   web-dev, normal-technology. Not failures — today's ingest logged
@@ -191,6 +188,79 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-16
+
+Shipped. What: an hn self-post stores the permalink it always had (#167, PR
+#168, merged 98b29ec). Why: 21 of the 992 hacker-news items in the 32-day
+archive (2.1%) store `url: null`, every one a self-post — `Ask HN:`, `Tell
+HN:`, `Launch HN:`, plus a handful of bodied text posts — and all 21 carry
+`story_text`, so the body is the post and Algolia sends no url for it.
+`mapHit` mapped that nothing straight through.
+
+The backlog note from 09-15 held on re-derivation: still exactly 21, now
+against 5,835 items rather than 5,576, and the same source and shape. Third
+recipe to survive that test intact, against two that did not.
+
+Both questions it left open answered from data/ before anything was written,
+and they answered each other. Five of the 21 reached a digest. Three are
+linked — 49322107 twice on 08-17, 49331033, 49657850 on 09-11 — every one
+because the digest agent built `item?id=` by hand, which its contract tells it
+to do for a heavily discussed story. One is not: 08-27 reads "reports that
+both Xcancel and Nitter have been taken down" with no link, in a sentence
+where tailcat, the arxiv linker and Mechanical Turk each carry one. The story
+the pipeline handed over without a url is the story that went out unlinked, so
+this is a pipeline gap and not an editorial call — the pipeline has a link for
+every hn item and was dropping it for the 2% with nowhere else to point.
+
+What made it cheap was that the blast radius is checkable rather than
+arguable, and all of it came back clean: the dedup key is
+`sourceSlug:externalId` and never read the url, so the seen index is
+untouched; all 21 permalinks replayed through the real `safeHttpUrl` +
+`stripTracking` come back byte-identical (it drops `utm_*` and `smid` only, so
+`?id=` survives — worth checking, since a url whose whole meaning is one query
+param would be a silly thing to strip); none of the 21 reads as promotional or
+paywalled; and no stored hn url is an empty string, so `||` cannot overwrite a
+story that has an article. That last one is now an assertion in the existing
+front-page test rather than a claim in a commit message. The new test fails
+against the unfixed adapter, checked before pushing. 184 tests from 183,
+typecheck silent, 33 pages. No screenshots: nothing under src/site or
+src/slides reads data/items, so there is no visual surface to photograph.
+
+The verifier's HN-permalink allowance stays as it is. It is not made redundant
+by this — it still covers the common case, a story whose article url is stored
+and whose discussion the digest links instead.
+
+Copilot posted in under two minutes again: 🟢 approval recommended, zero
+comments, "review effort level: Lite". checks green in 19s, merged rebase,
+pages run 246 green in 116s.
+
+Rest of the sweep clean. `npm run verify` across 09-10..09-16 is `ok: true` on
+all seven, warnings all the familiar editorial ones (two techmeme
+primary-source pairs that are also `already digested`, one x.com link thrice,
+one 63-link day); 09-14 and 09-15 silent. No failed workflow run anywhere in
+the last 30 listed, back to 09-13.
+
+#112, unchanged in substance and still unanswered. The morning digest ran: it
+forced its own `workflow_dispatch` ingest at 04:36, drafted, and pages went
+green at 04:48, so the workaround held for the second day running. The cron
+itself has not: today's `15 3` had still not fired at 08:14, **+4h59**, and the
+last scheduled run of any kind is 09-15 19:14 (`45 15`, +3h29). No new comment
+— the 09-14 comment describes this state already, and repeating it daily is
+noise.
+
+goatcounter and sift.yasint.dev both still 403 at CONNECT through the proxy,
+probed again rather than assumed: twentieth run with no reader signal and no
+post-deploy look at the live site, the pages run's own green standing in.
+Branch deletion failed the same sideband way as every shipping run; twelve
+merged gardener branches on the remote now.
+
+Attribution: PR body footer stripped (the harness appended one), issue body had
+none, commit trailers and this journal's trailer kept. Eleventh run of that
+convention.
+
+Outcome: #167 filed and closed by #168, merged and deployed. #110, #112 and
+#120 all still pending — #120 since 09-03, thirteen days.
 
 ### 2026-09-15
 
