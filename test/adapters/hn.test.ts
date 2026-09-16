@@ -55,7 +55,35 @@ test("reads the front page and filters out below-threshold and score-less entrie
   expect(top.sourceSlug).toBe("hacker-news");
   expect(top.title).toContain("GPT");
   expect(top.author).toBe("pg");
+  expect(top.url).toBe("https://example.com/gpt6"); // a story keeps the article it points at
   expect(top.publishedAt).toBeInstanceOf(Date);
+});
+
+// Algolia sends no url for a story whose body is the post, which is 21 of the
+// 992 hn items in the archive this was written against. The shape below is a
+// real one, objectID and all: news.ycombinator.com/item?id=49462253.
+test("links a self-post to its discussion, the only url it has", async () => {
+  const stub: JsonFetcher = async (url) => {
+    if (url.includes("tags=front_page"))
+      return {
+        hits: [
+          {
+            objectID: "49462253",
+            title: "Tell HN: PayPal Blocks GrapheneOS",
+            author: "grapheneos",
+            points: 235,
+            num_comments: 145,
+            created_at_i: now - 3600,
+            story_text: "PayPal has blocked our account with no explanation.",
+          },
+        ],
+      };
+    throw new Error("unexpected url " + url);
+  };
+  const a = hn({ minScore: 100, maxItems: 10, backfillDays: 0 }, stub);
+  const items = await a.fetch(new Date());
+  expect(items.map((i) => i.url)).toEqual(["https://news.ycombinator.com/item?id=49462253"]);
+  expect(items[0]!.content).toContain("PayPal");
 });
 
 test("does not throw when an endpoint returns a non-array payload", async () => {
