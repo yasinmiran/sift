@@ -74,15 +74,22 @@ export function createHnAdapter(
 const hitsOf = (res: { hits?: AlgoliaHit[] } | null): AlgoliaHit[] =>
   res && Array.isArray(res.hits) ? res.hits : [];
 
+// A self-post's body is the post, so algolia sends no url for it: an Ask,
+// Tell or Launch HN, or a bodied text post. The discussion is that story's
+// canonical link and the objectID is what it is keyed by, so build it rather
+// than store nothing — the same permalink form the verifier already admits.
+const permalink = (objectID: string): string => `https://news.ycombinator.com/item?id=${objectID}`;
+
 function mapHit(slug: string, h: AlgoliaHit, minScore: number): RawItem | null {
   if (!h.title || (h.points ?? 0) < minScore) return null;
   const publishedAt = new Date(h.created_at_i * 1000);
   if (Number.isNaN(publishedAt.getTime())) return null;
+  const id = String(h.objectID);
   return {
     sourceSlug: slug,
-    externalId: String(h.objectID),
+    externalId: id,
     title: h.title,
-    url: h.url,
+    url: h.url || permalink(id),
     author: h.author,
     publishedAt,
     content: htmlToText(h.story_text ?? ""),
