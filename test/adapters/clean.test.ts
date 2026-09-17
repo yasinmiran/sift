@@ -15,6 +15,18 @@ test("htmlToText decodes entities", () => {
   expect(htmlToText("a &amp; b &lt;c&gt;")).toBe("a & b <c>");
 });
 
+test("htmlToText drops the markup chrome a feed ships with its body", () => {
+  // beehiiv's table stylesheet, the opening of every tl;dr sec issue in the
+  // archive, verbatim down to the spacing.
+  const beehiiv =
+    "<style>.bh__table, .bh__table_header, .bh__table_cell { border: 1px solid #C0C0C0; }\n" +
+    ".bh__table_cell { padding: 5px; background-color: #FFFFFF; }</style>";
+  expect(htmlToText(`${beehiiv}<p>Hey there,</p>`)).toBe("Hey there,");
+  expect(htmlToText("<p>Hello</p>\n<script>var a = 1</script>\n<p>World</p>")).toBe("Hello World");
+  // Prose that talks about a stylesheet is still prose.
+  expect(htmlToText("<p>Write .a{color:red} and see</p>")).toBe("Write .a{color:red} and see");
+});
+
 test("decodeNumericRefs decodes the spellings the-verge sends", () => {
   // The three in the 32-day archive, verbatim.
   expect(decodeNumericRefs("It looks like Apple&#8217;s iPhone 18")).toBe("It looks like Apple’s iPhone 18");

@@ -42,8 +42,16 @@ export function authorName(value: unknown): string | undefined {
   return names.length > 0 ? names.join(", ") : undefined;
 }
 
+// A style or script element carries text cheerio's .text() reads like any
+// other, so a feed that ships its own markup chrome hands it straight to the
+// summary: beehiiv stamps a table stylesheet into every tl;dr sec issue and
+// all four in the archive open with the same 460 characters of css. Nothing
+// inside either element is ever prose, so both go before the text is taken.
+const NON_PROSE = "script, style";
+
 export function htmlToText(html: string): string {
   const $ = cheerio.load(html);
+  $(NON_PROSE).remove();
   return stripInvisibles($.root().text()).replace(/\s+/g, " ").trim();
 }
 
