@@ -87,6 +87,21 @@ test("leaves entities inside CDATA alone so the html parser can decode them", as
   expect(described[0]!.content).toBe("Pinewood agrees to a £545M cash takeover");
 });
 
+test("keeps a newsletter's stylesheet out of the summary", async () => {
+  // beehiiv ships its table styles inside content:encoded, so all four tl;dr
+  // sec issues in the 32-day archive store the same 460 characters of css
+  // ahead of the newsletter's first word.
+  const items = await parseFeed(
+    "tldrsec",
+    cdataFeed(
+      `<content:encoded><![CDATA[<style>.bh__table, .bh__table_header, .bh__table_cell { border: 1px solid #C0C0C0; }
+        .bh__table_cell p { color: #2D2D2D; font-family: 'Helvetica',Arial,sans-serif !important; }</style>
+        <p>Hey there,</p><p>I hope you&rsquo;ve been doing well!</p>]]></content:encoded>`,
+    ),
+  );
+  expect(items[0]!.content).toBe("Hey there,I hope you’ve been doing well!");
+});
+
 test("still sanitizes the markup on both sides of a CDATA section", async () => {
   const feed = `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
     <item><title>what&rsquo;s new &wibble;</title><guid>e1</guid>
