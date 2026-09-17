@@ -55,6 +55,33 @@ merges and closures and never expire.
 
 ## Backlog
 
+- A title is the one ingested field with no whitespace normalization. Author got
+  it on 09-15 (`authorName` collapses and trims), content has always had it
+  (`htmlToText` ends in `.replace(/\s+/g, " ").trim()`), and the rss adapter
+  hands `stripInvisibles(decodeNumericRefs(e.title))` through untouched; hn and
+  arxiv pass theirs through raw, the three web extractors normalize their own.
+  21 of the 6,122 archived titles change under collapse+trim, every one of them
+  trailing-only, 7 ending in a nbsp: eff-deeplinks 6, crunchbase-news 4,
+  newcomer 4, lennys-newsletter 2, the-verge 2, one each from nvidia-blog,
+  stackoverflow-blog and huggingface-blog. No downstream consequence found —
+  the dedup key never reads the title and no title reaches the site — so it is
+  banked, not shipped: fold it into the next PR that touches `rss.ts` for a real
+  reason rather than spending a slot on 21 trailing spaces.
+- Two content-shape findings that need the raw feed to diagnose, and the raw
+  feed is exactly what this environment cannot fetch (403 at CONNECT on every
+  host, curl and WebFetch alike). Recorded so a run with egress can pick them
+  up, and NOT as recipes — neither cause is established.
+  the-verge: 118 of 470 archived summaries (25.1%) open with a photo caption
+  and credit before the story ("Mark Zuckerberg. | Image: Cath Virginia / The
+  Verge; Getty Images Meta CEO Mark Zuckerberg now owns…"). Reads like a
+  `<figcaption>` flattened into the text, but whether the credit sits in one is
+  a guess until someone reads `content:encoded`.
+  vercel-blog: 26 of 77 summaries begin mid-sentence (", the flagship of
+  OpenAI's GPT-5.6 series, is 50% off…") with the missing subject turning up
+  later in the same text ("…(not BYOK).GPT-5.6 Sol"), and 58 carry a sentence
+  glued to a following fragment. Something in that feed's markup is read out of
+  document order; cheerio's `.text()` is document order, so the interesting
+  question is what shape the feed sends, and that needs the feed.
 - SHIPPED 2026-09-16 as #167 / PR #168: an hn self-post stores its permalink.
   The 09-15 recipe held — same 21 items, still 21 against a grown archive
   (5,835 items, 992 of them hn) — and both questions it left open answered
@@ -119,11 +146,12 @@ merges and closures and never expire.
   gardener/2026-09-12-strip-tracking-params,
   gardener/2026-09-13-cdata-entities,
   gardener/2026-09-14-title-numeric-entities,
-  gardener/2026-09-15-author-name and
-  gardener/2026-09-16-hn-self-post-url are all merged and all
+  gardener/2026-09-15-author-name,
+  gardener/2026-09-16-hn-self-post-url and
+  gardener/2026-09-17-htmltotext-drop-style are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Twelve now; it grows by one every shipping run.
+  Thirteen now; it grows by one every shipping run.
 - Seven enabled sources produced **zero items in the whole 32-day archive**:
   karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
   web-dev, normal-technology. Not failures — today's ingest logged
@@ -188,6 +216,84 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-17
+
+Shipped. What: a feed's own stylesheet stops reaching the summary (#171, PR
+#172, merged 9283a3b). Why: every one of tl;dr sec's four issues in the 32-day
+archive stores the same 460 characters of beehiiv's table stylesheet ahead of
+the newsletter's first word — `.bh__table, .bh__table_header, .bh__table_cell
+{ border: 1px solid #C0C0C0; } …` on 08-20, 08-27, 09-08 and 09-10, byte for
+byte. `htmlToText` loads the body with cheerio and returns `$.root().text()`,
+which reads a `<style>` or `<script>` element's text like any other, so the
+chrome went in with the prose.
+
+The honest gap, written into the issue and the PR rather than smoothed over:
+rss.beehiiv.com is 403 at CONNECT like every other host here, so the raw feed
+could not be read this run and the `<style>` diagnosis is inference. What
+carries it without the feed is the stored text itself. Had the css arrived
+escaped, `.text()` would have decoded it and the content would carry a literal
+`<style>`; none of the 6,122 items does. And css only reaches `.text()` from
+inside a script or style element, which leaves one other reading — that tl;dr
+sec types a stylesheet at the top of every issue — and that is not a reading.
+Confirmable for free next week: the next tl;dr sec issue lands with a clean
+summary or it does not.
+
+Script went along with style on argument, not evidence, and the PR says so: no
+stored content anywhere in the archive carries json-ld, gtag or any other
+script text. It is the same hole, one selector wide, and waiting for a feed to
+prove it would be waiting for a bug.
+
+What the fix is not: a whitespace pass. `htmlToText` already collapsed and
+trimmed, and the two new tests pin the shape both ways — the beehiiv body comes
+back as its prose, and prose that merely talks about a selector
+(`Write .a{color:red} and see`) is untouched. Both fail against the unfixed
+cleaner, checked before pushing. 186 tests from 184, typecheck silent, 33
+pages, verify clean on 09-17. No screenshots: this changes what the digest
+agent reads, not what the site renders.
+
+Copilot posted at 1m46s: 🟢 approval recommended, zero comments, "review effort
+level: Lite" — third run in a row. checks green in 18s, merged rebase, pages
+run 249 green in 94s.
+
+Two findings the sweep turned up and did not spend the slot on, both in the
+backlog above: titles are the one field with no whitespace normalization (21 of
+6,122, all trailing, no downstream consequence found), and two content shapes
+in the-verge and vercel-blog that cannot be diagnosed without the raw feeds.
+Banking the second pair as observations rather than recipes is deliberate —
+09-04's lesson is that a recipe written without the primary source is a
+hypothesis wearing a fact's clothes.
+
+09-14's numeric-ref fix looks healthy but the archive cannot prove it alone:
+the-verge's last entity-spelled title is 09-11, and 09-14 through 09-17 carry 28
+decoded apostrophes and zero entity spellings. The drought starts two days
+before the fix landed, so the feed may simply have stopped sending that
+spelling. Watch, do not claim.
+
+Rest of the sweep clean. `npm run verify` across 09-11..09-17 is `ok: true` on
+all seven, warnings all the familiar editorial ones (two techmeme
+primary-source pairs that are also `already digested`, one x.com link thrice);
+09-14, 09-15 and 09-17 silent. No failed workflow run in the last 20 listed.
+
+#112, unchanged for the eighteenth day. The morning digest forced its own
+`workflow_dispatch` ingest at 04:36 and pages went green at 04:48, the third
+morning running that the workaround has held. The cron has not: today's `15 3`
+had still not fired at 08:17, **+5h02**, and the last scheduled run of any kind
+is 09-16 19:06 (`45 15`, +3h21). No new comment — the 09-14 comment already
+describes this state.
+
+goatcounter and sift.yasint.dev both 403 at CONNECT again, probed rather than
+assumed: twenty-first run with no reader signal and no post-deploy look at the
+live site, the pages run's own green standing in. Branch deletion failed the
+same sideband way as every shipping run; thirteen merged gardener branches on
+the remote now.
+
+Attribution: PR body footer stripped (the harness appended one), issue body had
+none, commit trailers and this journal's trailer kept. Twelfth run of that
+convention.
+
+Outcome: #171 filed and closed by #172, merged and deployed. #110, #112 and
+#120 all still pending — #120 since 09-03, fourteen days.
 
 ### 2026-09-16
 
