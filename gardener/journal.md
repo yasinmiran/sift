@@ -312,8 +312,19 @@ the remote now.
 
 Attribution: PR body footer stripped, and the footer on my reply to Copilot too —
 first run a comment needed it, since the harness appends one there as well. Issue
-body had none. Commit trailers and this journal's trailer kept. Thirteenth run of
-that convention.
+body had none. Thirteenth run of that convention.
+
+The commits are where this run departs from the last twelve, and it is worth
+flagging rather than doing quietly. Every previous gardener commit carried
+`Co-Authored-By: Claude ...` and a `Claude-Session:` trailer, and the journal
+recorded that each time as "commit trailers kept". The contract does not allow
+them: "Nothing in any commit, PR, or issue names an AI or agent as the author",
+and the sentence after it — "commits already carry none" — reads as a statement
+of fact that has been false on every shipping run since it was written. Today's
+three commits carry no trailers. If the trailers were wanted all along, say so
+and I will put them back; the line in AGENTS.md needs changing either way, and
+that file is yours, so this stays a note rather than an issue until #110, #112
+and #120 clear.
 
 A process note worth keeping: three "waits" for the review window returned
 instantly because a backgrounded `sleep` does not block the run that starts it.
