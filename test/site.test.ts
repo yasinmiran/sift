@@ -224,7 +224,7 @@ describe("buildSite", () => {
     // structured data as the same instant in ISO 8601.
     expect(feed).toContain("<pubDate>Sat, 04 Jul 2026 04:34:00 GMT</pubDate>");
     expect(day).toContain('"datePublished":"2026-07-04T04:34:00Z"');
-    // No evening carousel, so nothing claims the page changed after it.
+    // No carousel at all, so nothing claims the page changed after it.
     expect(day).toContain('"dateModified":"2026-07-04T04:34:00Z"');
     expect(day).not.toContain("article:modified_time");
   });
@@ -237,6 +237,20 @@ describe("buildSite", () => {
     expect(day).toContain('"datePublished":"2026-07-04T04:34:00Z"');
     expect(day).toContain('"dateModified":"2026-07-04T16:34:00Z"');
     expect(day).toContain('<meta property="article:modified_time" content="2026-07-04T16:34:00Z">');
+  });
+
+  it("dates a pm-only day by the evening drop it was published at", () => {
+    // A day whose morning run was skipped gets its single post as pm and
+    // never gets an am retroactively (AGENTS.md), so it went up once, in the
+    // evening, and was not rewritten afterwards.
+    digest("2026-07-04", "body");
+    slides("2026-07-04", ["pm"]);
+    buildSite(root, out);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain('"datePublished":"2026-07-04T16:34:00Z"');
+    expect(day).toContain('"dateModified":"2026-07-04T16:34:00Z"');
+    expect(day).toContain('<meta property="article:published_time" content="2026-07-04T16:34:00Z">');
+    expect(day).not.toContain("article:modified_time");
   });
 
   it("builds the page anyway when the day's carousel is unreadable", () => {
