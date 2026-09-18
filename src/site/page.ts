@@ -32,11 +32,12 @@ export interface PageMeta {
   noindex?: true;
   footNote?: string;
   published?: string;
+  modified?: string;
   jsonLd?: Record<string, unknown>;
 }
 
 export function page(
-  { title, description, path, type, noindex, footNote, published, jsonLd }: PageMeta,
+  { title, description, path, type, noindex, footNote, published, modified, jsonLd }: PageMeta,
   body: string,
 ): string {
   const canonical = `${BASE_URL}/${path}`;
@@ -54,7 +55,9 @@ ${noindex ? '<meta name="robots" content="noindex">\n' : ""}<meta name="descript
 <meta property="og:image:alt" content="sift: the day's tech, sifted">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="${BASE_URL}/og.png">
-${published ? `<meta property="article:published_time" content="${published}">\n` : ""}<meta name="theme-color" content="#0d0c0b">
+${published ? `<meta property="article:published_time" content="${published}">\n` : ""}${
+    modified && modified !== published ? `<meta property="article:modified_time" content="${modified}">\n` : ""
+  }<meta name="theme-color" content="#0d0c0b">
 <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
