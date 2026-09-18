@@ -23,6 +23,27 @@ const digest = (day: string, body: string) =>
     `---\ntitle: "The day's tech, sifted: ${day}"\ndescription: "top story of ${day}"\ndate: "${day}"\n---\n\n${body}\n`,
   );
 
+// The digest agent's carousel script for the day; only the slots matter here,
+// since the pm one is what marks a day as rewritten in the evening.
+const slides = (day: string, slots: ("am" | "pm")[]) => {
+  mkdirSync(join(root, "data", "slides"), { recursive: true });
+  writeFileSync(
+    join(root, "data", "slides", `${day}.json`),
+    JSON.stringify({
+      day,
+      posts: slots.map((slot) => ({
+        slot,
+        hook: "hook",
+        caption: "full digest at sift.yasint.dev (link in bio)",
+        hashtags: ["#ai"],
+        slides: [
+          { number: 1, category: "ai", title: "t", desc: "d", url: "https://example.com/a" },
+        ],
+      })),
+    }),
+  );
+};
+
 describe("buildSite", () => {
   it("renders an index newest-first and a page per digest", () => {
     digest("2026-07-03", "## Section\n\n- [story](https://example.com/a) why it matters");
@@ -188,10 +209,44 @@ describe("buildSite", () => {
     expect(index).toContain('"@type":"WebSite"');
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).toContain('"@type":"NewsArticle"');
-    expect(day).toContain('"datePublished":"2026-07-04"');
+    expect(day).toContain('"datePublished":"2026-07-04T04:34:00Z"');
     expect(day).toContain('"headline":"The day\'s tech, sifted: 2026-07-04"');
-    expect(day).toContain('<meta property="article:published_time" content="2026-07-04">');
+    expect(day).toContain('<meta property="article:published_time" content="2026-07-04T04:34:00Z">');
     expect(index).not.toContain("article:published_time");
+  });
+
+  it("dates a day by the drop it belongs to, the same instant the feed publishes", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    const feed = readFileSync(join(out, "feed.xml"), "utf8");
+    // The morning drop, said twice in one build: rss as an http-date, the
+    // structured data as the same instant in ISO 8601.
+    expect(feed).toContain("<pubDate>Sat, 04 Jul 2026 04:34:00 GMT</pubDate>");
+    expect(day).toContain('"datePublished":"2026-07-04T04:34:00Z"');
+    // No evening carousel, so nothing claims the page changed after it.
+    expect(day).toContain('"dateModified":"2026-07-04T04:34:00Z"');
+    expect(day).not.toContain("article:modified_time");
+  });
+
+  it("carries the evening drop as dateModified once the day has a pm carousel", () => {
+    digest("2026-07-04", "body");
+    slides("2026-07-04", ["am", "pm"]);
+    buildSite(root, out);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain('"datePublished":"2026-07-04T04:34:00Z"');
+    expect(day).toContain('"dateModified":"2026-07-04T16:34:00Z"');
+    expect(day).toContain('<meta property="article:modified_time" content="2026-07-04T16:34:00Z">');
+  });
+
+  it("builds the page anyway when the day's carousel is unreadable", () => {
+    digest("2026-07-04", "body");
+    mkdirSync(join(root, "data", "slides"), { recursive: true });
+    writeFileSync(join(root, "data", "slides", "2026-07-04.json"), "{ not json");
+    expect(() => buildSite(root, out)).not.toThrow();
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    // Falls back to the morning drop; the broken file is verify.ts's to report.
+    expect(day).toContain('"dateModified":"2026-07-04T04:34:00Z"');
   });
 
   it("writes an rss feed and links it from every page", () => {

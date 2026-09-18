@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { parseFrontmatter } from "../digest/frontmatter";
+import { readSlidePosts } from "../slides/data";
 import { formatDay } from "./day-format";
 import { escapeHtml } from "./html";
 import { renderMarkdown } from "./markdown";
@@ -30,10 +31,33 @@ function parseDigest(day: string, raw: string): Digest {
   };
 }
 
-// The morning digest lands right after the 04:34 UTC run.
-function feedDate(day: string): string {
+// The two drops the whole site is built around: the morning digest lands
+// right after the 04:34 UTC run, the evening rewrite right after 16:34.
+// One helper so the schedule is written down once — rss reads it as an
+// http-date, structured data and Open Graph as ISO 8601.
+const AM_DROP = [4, 34] as const;
+const PM_DROP = [16, 34] as const;
+
+function dropAt(day: string, [hour, minute]: readonly [number, number]): Date {
   const [y, m, d] = day.split("-").map(Number) as [number, number, number];
-  return new Date(Date.UTC(y, m - 1, d, 4, 34)).toUTCString();
+  return new Date(Date.UTC(y, m - 1, d, hour, minute));
+}
+
+const feedDate = (day: string): string => dropAt(day, AM_DROP).toUTCString();
+// Seconds, no milliseconds: still ISO 8601, and the drop is a schedule.
+const isoDate = (day: string, drop: readonly [number, number]): string =>
+  dropAt(day, drop).toISOString().replace(/\.\d{3}Z$/, "Z");
+
+// The evening run rewrites the day for the whole day and appends the pm
+// carousel post beside it (AGENTS.md), so that post is the only mark of a
+// rewrite the build can see. Read defensively: a malformed carousel is
+// verify.ts's error to report, never a reason the site fails to build.
+function rewrittenInTheEvening(rootDir: string, day: string): boolean {
+  try {
+    return readSlidePosts(rootDir, day)?.posts.some((p) => p.slot === "pm") ?? false;
+  } catch {
+    return false;
+  }
 }
 
 const AUTHOR = { "@type": "Person", name: "Yasin", url: "https://yasint.dev" };
@@ -54,6 +78,8 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
   if (existsSync(pub)) cpSync(pub, outDir, { recursive: true });
 
   for (const d of digests) {
+    const published = isoDate(d.day, AM_DROP);
+    const modified = rewrittenInTheEvening(rootDir, d.day) ? isoDate(d.day, PM_DROP) : published;
     const body = `
       <nav class="crumbs"><a href="index.html">&larr; all days</a></nav>
       <main>
@@ -85,14 +111,15 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
           description: d.description,
           path: `${d.day}.html`,
           type: "article",
-          published: d.day,
+          published,
+          modified,
           jsonLd: {
             "@context": "https://schema.org",
             "@type": "NewsArticle",
             headline: d.title,
             description: d.description,
-            datePublished: d.day,
-            dateModified: d.day,
+            datePublished: published,
+            dateModified: modified,
             author: AUTHOR,
             image: `${BASE_URL}/og.png`,
             mainEntityOfPage: `${BASE_URL}/${d.day}.html`,
