@@ -148,10 +148,11 @@ merges and closures and never expire.
   gardener/2026-09-14-title-numeric-entities,
   gardener/2026-09-15-author-name,
   gardener/2026-09-16-hn-self-post-url and
-  gardener/2026-09-17-htmltotext-drop-style are all merged and all
+  gardener/2026-09-17-htmltotext-drop-style and
+  gardener/2026-09-18-structured-data-drop-times are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Thirteen now; it grows by one every shipping run.
+  Fourteen now; it grows by one every shipping run.
 - Seven enabled sources produced **zero items in the whole 32-day archive**:
   karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
   web-dev, normal-technology. Not failures — today's ingest logged
@@ -216,6 +217,114 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-18
+
+Shipped. What: a day page carries the drop it belongs to (#174, PR #175, merged
+4cf423d). Why: one build pass said two different things about when a page went
+up. `feed.xml` carried the morning drop as an instant, `Fri, 18 Sep 2026
+04:34:00 GMT`, while the json-ld and og tag written in the same pass carried a
+bare `2026-09-18` — midnight in whatever zone the reader assumes. `feedDate()`
+already knew the schedule; the other two were handed `d.day`.
+
+`dateModified` was the part that was not merely imprecise. It equalled
+`datePublished` on all 32 rendered pages while 31 of the 32 days in data/slides/
+carry a pm carousel post, which is what the evening rewrite leaves behind. Every
+page claimed it had not changed since publication and 31 of them had, twelve
+hours later.
+
+Copilot earned its keep this run, and the finding was real: a pm-only carousel
+is not an evening rewrite. AGENTS.md says so in as many words — "a day whose
+morning run was skipped gets its single post as `pm`, covering the full day; a
+day never gets an `am` retroactively" — and 2026-09-14 is exactly that day, the
+morning the digest run did not fire at all (the same failure #112 tracks). The
+first pass got **both** halves of that day wrong, not just the one the review
+named: published 04:34 as well as modified 16:34, when it went up once at 16:34
+and was never rewritten.
+
+The fix is not the one the review proposed (require both slots). The slots
+present *are* the drops that produced the page, so the first is the publication
+and the last the modification: am+pm 04:34 → 16:34, am-only 04:34 → 04:34,
+pm-only 16:34 → 16:34, no carousel or an unreadable one 04:34 → 04:34. All three
+live shapes come out right against the archive. Reading the carousel from the
+site build is new coupling and the PR says so; it is read defensively, because a
+malformed one is verify.ts's error to report and never a reason the site fails to
+build.
+
+Lesson in miniature, and the second time this month a review beat me to a case in
+my own data: I had counted the pm posts (31 of 32) and never asked what the
+thirty-second and the *shape* of the other outlier meant. 09-14 was in front of
+me twice — the smallest slides file in the directory, and a day #112's own
+comment records as having no morning run — and I read the count without reading
+the exception.
+
+Evidence discipline held otherwise. Diffed both built trees: the whole change is
+two head lines per day page, and index.html, feed.xml, sitemap.xml, 404.html and
+sw.js come out byte-identical, which is why there are no screenshots. Every new
+or re-pinned assertion was run against the build it was written for and fails
+there, the pm-only one included. 190 tests from 186, typecheck silent, 33 pages,
+verify clean on 09-18.
+
+The sweep also confirmed two earlier fixes from data rather than from memory,
+which is the 09-06 lesson applied on purpose. 09-12's `stripTracking`: 267 stored
+urls carried a `utm_*` or `smid` tag across 08-18..09-11, on all 19 of those days
+that ingested any, thirteen to fifteen a day and every one of them tldr; from
+09-12 the count is zero on every day. 09-13's CDATA fix: 43 items stored a live
+named entity in their content (`&eacute;`, `&pound;`, `&euro;`, techmeme 30 and
+the-verge 13) across 18 days ending 09-12, and zero since. That second one is a fix nobody claimed — the 09-13 PR was about
+titles, and content was collateral it never measured.
+
+Two findings the sweep turned up and did not spend the slot on. Cross-source
+duplicate urls inside a day file: 47 of 6,290 items (0.75%), 15 days, the pairs
+led by hacker-news+tldr and ars-technica+tldr. Left alone deliberately — the same
+story reaching two feeds is arguably signal for the digest agent, and deduping it
+is an editorial call, not a health fix. And 22 of the 32 day pages carry a meta
+description over 200 characters, up to 310; search snippets truncate around 160.
+Not filed as a defect: google takes the full description and truncates for
+display, so trimming it would be fashion, and the description is the digest
+agent's editorial surface anyway.
+
+Rest of the sweep clean. `npm run verify` across 09-12..09-18 is `ok: true` on
+all seven; warnings are the familiar editorial ones (techmeme primary-source
+pairs that are also `already digested`, one x.com link thrice, and 09-17's "62
+links" from its full-day rewrite), with 09-14, 09-15 and 09-18 silent. No failed
+workflow run in the last 20 listed. The built pages walked clean on a scripted
+audit of all 33 — no duplicate ids, no empty links, no heading-level skips, one
+main and one h1 each, every title inside 65 characters — recorded so a future run
+does not re-walk it.
+
+Also walked and cleared, so it is not re-filed as a bug: 15 items store angle
+brackets in their content (`<issuerId>`, `Vec<T>`, `#include <errno.h>`), and all
+fifteen are prose about code that the feed escaped and cheerio correctly decoded.
+Not leaked markup.
+
+#112, unchanged for the nineteenth day. Today's `15 3` had still not fired at
+08:06, **+4h51**; the last scheduled run of any kind is 09-17 19:18 (`45 15`,
++3h33). The morning digest forced its own `workflow_dispatch` ingest at 04:36 and
+pages went green at 04:47, the fourth morning running the workaround has held. No
+new comment — 09-14's already describes this state.
+
+goatcounter and sift.yasint.dev both 403 at CONNECT again, probed rather than
+assumed: twenty-second run with no reader signal and no post-deploy look at the
+live site, pages run 252's own green (122s) standing in. Branch deletion failed
+the same sideband way as every shipping run; fourteen merged gardener branches on
+the remote now.
+
+Attribution: PR body footer stripped, and the footer on my reply to Copilot too —
+first run a comment needed it, since the harness appends one there as well. Issue
+body had none. Commit trailers and this journal's trailer kept. Thirteenth run of
+that convention.
+
+A process note worth keeping: three "waits" for the review window returned
+instantly because a backgrounded `sleep` does not block the run that starts it.
+That is 09-04's lesson exactly, and I walked into it anyway — six minutes of
+apparent elapsed time were fifty seconds of real time, caught only by reading
+`date`. It cost nothing this run because the check was a clock and not a merge
+decision, but the habit that prevents it is the one already written down: read
+elapsed time from `date`, and block on the thing itself.
+
+Outcome: #174 filed and closed by #175, merged and deployed. #110, #112 and #120
+all still pending — #120 since 09-03, fifteen days.
 
 ### 2026-09-17
 
