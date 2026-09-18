@@ -35,29 +35,41 @@ function parseDigest(day: string, raw: string): Digest {
 // right after the 04:34 UTC run, the evening rewrite right after 16:34.
 // One helper so the schedule is written down once — rss reads it as an
 // http-date, structured data and Open Graph as ISO 8601.
-const AM_DROP = [4, 34] as const;
-const PM_DROP = [16, 34] as const;
+type Drop = readonly [hour: number, minute: number];
+const AM_DROP: Drop = [4, 34];
+const PM_DROP: Drop = [16, 34];
 
-function dropAt(day: string, [hour, minute]: readonly [number, number]): Date {
+function dropAt(day: string, [hour, minute]: Drop): Date {
   const [y, m, d] = day.split("-").map(Number) as [number, number, number];
   return new Date(Date.UTC(y, m - 1, d, hour, minute));
 }
 
 const feedDate = (day: string): string => dropAt(day, AM_DROP).toUTCString();
 // Seconds, no milliseconds: still ISO 8601, and the drop is a schedule.
-const isoDate = (day: string, drop: readonly [number, number]): string =>
+const isoDate = (day: string, drop: Drop): string =>
   dropAt(day, drop).toISOString().replace(/\.\d{3}Z$/, "Z");
 
-// The evening run rewrites the day for the whole day and appends the pm
-// carousel post beside it (AGENTS.md), so that post is the only mark of a
-// rewrite the build can see. Read defensively: a malformed carousel is
-// verify.ts's error to report, never a reason the site fails to build.
-function rewrittenInTheEvening(rootDir: string, day: string): boolean {
+// Slot follows time, not trigger (AGENTS.md): the morning run writes the am
+// carousel post, the evening one appends pm, and a day whose morning was
+// skipped gets its single post as pm, covering the full day. So the slots
+// present are the drops that produced the page — the first is when it went
+// up, the last when it last changed. A pm-only day published once, in the
+// evening, and was never rewritten.
+//
+// Read defensively: an unreadable carousel is verify.ts's error to report,
+// never a reason the site fails to build, and a day without one falls back
+// to the morning drop rather than guessing.
+function dropsOf(rootDir: string, day: string): { published: Drop; modified: Drop } {
+  let slots: string[] = [];
   try {
-    return readSlidePosts(rootDir, day)?.posts.some((p) => p.slot === "pm") ?? false;
+    slots = readSlidePosts(rootDir, day)?.posts.map((p) => p.slot) ?? [];
   } catch {
-    return false;
+    slots = [];
   }
+  return {
+    published: slots.length > 0 && !slots.includes("am") ? PM_DROP : AM_DROP,
+    modified: slots.includes("pm") ? PM_DROP : AM_DROP,
+  };
 }
 
 const AUTHOR = { "@type": "Person", name: "Yasin", url: "https://yasint.dev" };
@@ -78,8 +90,9 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
   if (existsSync(pub)) cpSync(pub, outDir, { recursive: true });
 
   for (const d of digests) {
-    const published = isoDate(d.day, AM_DROP);
-    const modified = rewrittenInTheEvening(rootDir, d.day) ? isoDate(d.day, PM_DROP) : published;
+    const drops = dropsOf(rootDir, d.day);
+    const published = isoDate(d.day, drops.published);
+    const modified = isoDate(d.day, drops.modified);
     const body = `
       <nav class="crumbs"><a href="index.html">&larr; all days</a></nav>
       <main>
