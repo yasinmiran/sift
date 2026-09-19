@@ -263,6 +263,38 @@ describe("buildSite", () => {
     expect(day).toContain('"dateModified":"2026-07-04T04:34:00Z"');
   });
 
+  it("moves the sitemap's lastmod to the evening drop when the day was rewritten", () => {
+    digest("2026-07-03", "body");
+    digest("2026-07-04", "body");
+    slides("2026-07-04", ["am", "pm"]);
+    buildSite(root, out);
+    const map = readFileSync(join(out, "sitemap.xml"), "utf8");
+    // lastmod is the recrawl signal, so the rewritten day has to carry the
+    // instant it was rewritten at, and the index with it — its hero is that
+    // day's description. The day nobody touched keeps its morning drop.
+    expect(map).toContain(
+      "<loc>https://sift.yasint.dev/2026-07-04.html</loc><lastmod>2026-07-04T16:34:00Z</lastmod>",
+    );
+    expect(map).toContain("<loc>https://sift.yasint.dev/</loc><lastmod>2026-07-04T16:34:00Z</lastmod>");
+    expect(map).toContain(
+      "<loc>https://sift.yasint.dev/2026-07-03.html</loc><lastmod>2026-07-03T04:34:00Z</lastmod>",
+    );
+    // The same instant the page head states: one build, one answer.
+    expect(readFileSync(join(out, "2026-07-04.html"), "utf8")).toContain(
+      '"dateModified":"2026-07-04T16:34:00Z"',
+    );
+  });
+
+  it("publishes a pm-only day in the feed at the drop it went up, not the morning one", () => {
+    digest("2026-07-04", "body");
+    slides("2026-07-04", ["pm"]);
+    buildSite(root, out);
+    const feed = readFileSync(join(out, "feed.xml"), "utf8");
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(feed).toContain("<pubDate>Sat, 04 Jul 2026 16:34:00 GMT</pubDate>");
+    expect(day).toContain('"datePublished":"2026-07-04T16:34:00Z"');
+  });
+
   it("writes an rss feed and links it from every page", () => {
     digest("2026-07-03", "body");
     digest("2026-07-04", "body");
