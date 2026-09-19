@@ -136,6 +136,9 @@ merges and closures and never expire.
 - Merged gardener branches cannot be deleted from this environment:
   `git push origin --delete` dies on a sideband disconnect through the
   proxy and the api token gets 403 on `DELETE /git/refs/heads/...`.
+  Counted from `git ls-remote` on 09-19, not from this note, and the note
+  was one short: `gardener/2026-08-29-footnote-contrast` (PR #109, the
+  first one) had never been listed. The full set is that branch plus
   gardener/2026-09-04-color-scheme-dark,
   gardener/2026-09-06-verify-hn-permalinks,
   gardener/2026-09-07-verify-dedupe-link-warnings and
@@ -147,12 +150,13 @@ merges and closures and never expire.
   gardener/2026-09-13-cdata-entities,
   gardener/2026-09-14-title-numeric-entities,
   gardener/2026-09-15-author-name,
-  gardener/2026-09-16-hn-self-post-url and
-  gardener/2026-09-17-htmltotext-drop-style and
-  gardener/2026-09-18-structured-data-drop-times are all merged and all
+  gardener/2026-09-16-hn-self-post-url,
+  gardener/2026-09-17-htmltotext-drop-style,
+  gardener/2026-09-18-structured-data-drop-times and
+  gardener/2026-09-19-sitemap-lastmod-drop are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Fourteen now; it grows by one every shipping run.
+  Sixteen now; it grows by one every shipping run.
 - Seven enabled sources produced **zero items in the whole 32-day archive**:
   karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
   web-dev, normal-technology. Not failures — today's ingest logged
@@ -217,6 +221,95 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-19
+
+Shipped. What: the sitemap and the feed are dated by the drops they belong to
+(#178, PR #179, merged 8a0fc32). Why: #175 gave the day page's structured data
+the real drop instants and left the other two date surfaces in the same build
+pass still guessing. The sitemap wrote `lastmod` as the bare day, so one pass
+said two things about one url — `<lastmod>2026-09-18</lastmod>` beside a head
+reading `"dateModified":"2026-09-18T16:34:00Z"`. 30 of the 32 archived days
+carry a pm carousel post (am+pm 30, pm-only 1, am-only 1, today), so 30 pages
+were rewritten at 16:34 and the sitemap dated all of them to midnight.
+
+The imprecision was the smaller half. `lastmod` is the field a crawler polls to
+decide on a recrawl, and the bare day is byte-identical before and after the
+rewrite, so the evening rewrite never raised it — the one thing the field
+exists to say, it could not say. That the rewrite is a real content change and
+not a touch was checked rather than assumed: the frontmatter description alone
+differs on every rewritten day this shallow clone can reach (09-13, 09-15,
+09-16, 09-17, 09-18 — five for five), body with it.
+
+Second half, one day wide: `feedDate` was pinned to the morning drop, so
+2026-09-14 — the morning the digest run did not fire, #112's own day —
+published at `Mon, 14 Sep 2026 04:34:00 GMT` in the feed against
+`2026-09-14T16:34:00Z` in its own page head. The only day in the archive that
+can show it, and the same day the review caught in #175. That is twice now that
+09-14 has been the day holding the case, which is worth remembering: the
+archive's one irregular day is the one to test a date change against.
+
+What did not move, deliberately and said so in the PR: `pubDate` still follows
+publication, not modification. RSS items have no modified field, so pointing it
+at the evening drop would re-surface every day in subscribers' readers twelve
+hours after they read it — how sift talks to its readers is editorial, not a
+health fix, and the temptation to fix "both dates while I am here" is exactly
+where a gardener change turns into a landscaper's.
+
+Evidence discipline: built both trees and diffed them whole. The entire built
+difference is feed.xml's one pm-only `pubDate` and the 33 sitemap `lastmod`s
+(31 landing on 16:34 — 30 rewritten days plus 09-14 — and 2 on 04:34, today's
+page and the index whose hero is today). index.html, all 32 day pages, 404.html,
+robots.txt, latest.json and sw.js come out byte-identical, which is why there
+are no screenshots. Both new assertions were run against the unfixed build and
+fail there. 192 tests from 190, typecheck silent, 33 pages, verify clean on
+09-19. 50 insertions, 9 deletions, 2 files.
+
+Copilot posted at 1m26s: 🟢 approval recommended, zero findings, "review effort:
+Lite" — fourth run running. checks green in 19s, merged rebase, pages run 255
+green in 85s. The deploy is the only look at it: the live site is 403 at CONNECT
+from here, so "deployed" means the workflow went green, not that I read the
+sitemap back off sift.yasint.dev.
+
+One warning re-derived rather than inherited, which is the 09-06 lesson on
+purpose. Today's verify pairs read oddly — `link not found` on
+`…/researchers-used-claude-to-hack-openai/` next to `already digested on
+2026-09-18` on the same url without its trailing slash — which looks like one
+check normalizing and the other not. It is not: `verify.ts:121` normalizes for
+the day's-items lookup too (line 24, `replace(/\/+$/, "")`). The two messages
+simply print different spellings of the same url, one raw and one normalized,
+and the story genuinely carried over from yesterday. Cosmetic, not a blind spot,
+and not filed.
+
+Rest of the sweep clean. `npm run verify` across 09-13..09-19 is `ok: true` on
+all seven; warnings are the familiar editorial ones (techmeme primary-source
+pairs that are also `already digested`, one x.com link thrice, 09-17's "62
+links"), with 09-14 and 09-15 silent. No failed workflow run in the last 20
+listed.
+
+#112, unchanged for the twentieth day. Today's `15 3` landed at 07:59:27,
+**+4h44**; the morning digest forced its own `workflow_dispatch` ingest at 04:37
+and pages went green at 04:50, the fifth morning running the workaround has
+held. No new comment — 09-14's already describes this state.
+
+goatcounter and sift.yasint.dev both 403 at CONNECT again, probed not assumed:
+twenty-first run with no reader signal and no post-deploy look at the live site.
+Branch deletion failed the same sideband way as every shipping run.
+
+A correction to my own bookkeeping: the backlog's merged-branch list has been
+one short since it was written. It named fourteen through 09-18 and the remote
+actually held fifteen — `gardener/2026-08-29-footnote-contrast`, the very first
+one, was never in the list. Counted from `git ls-remote` this time instead of
+from the previous entry, which is how it surfaced. Sixteen now with today's.
+
+Commit trailers: none, second run running, per the contract's "nothing in any
+commit, PR, or issue names an AI or agent as the author". The note in 09-18's
+entry stands — if the trailers were wanted all along, say so. PR body footer
+stripped (the harness appended one); the issue body had none this time, which
+is new and worth noting rather than assuming it will hold.
+
+Outcome: #178 filed and closed by #179, merged and deployed. #110, #112 and #120
+all still pending — #120 since 09-03, sixteen days.
 
 ### 2026-09-18
 
