@@ -1,0 +1,1282 @@
+{
+  "day": "2026-09-19",
+  "generatedAt": "2026-09-19T04:38:08.617Z",
+  "items": [
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49744704",
+      "title": "The first new cat species discovered in 100 years",
+      "url": "https://www.nationalgeographic.com/animals/article/meet-the-first-new-cat-species-discovered-in-100-years",
+      "author": "ohjeez",
+      "publishedAt": "2026-09-17T18:31:56.000Z",
+      "content": "https://archive.ph/cgMTM",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 210,
+      "comments": 79
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49746406",
+      "title": "C++26: Trivial infinite loops are no longer undefined behaviour",
+      "url": "https://www.sandordargo.com/blog/2026/09/16/cpp26-trivial-infinite-loops",
+      "author": "ibobev",
+      "publishedAt": "2026-09-17T20:52:33.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 155,
+      "comments": 213
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49746626",
+      "title": "How SpaceX streamlined the Raptor engine",
+      "url": "https://www.construction-physics.com/p/how-spacex-streamlined-the-raptor",
+      "author": "JumpCrisscross",
+      "publishedAt": "2026-09-17T21:14:19.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 183,
+      "comments": 52
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/factory-opens-its-coding-agent-inside-slack-s-ai-dev-workspace",
+      "title": "Factory Opens Its Coding Agent Inside Slack's AI Dev Workspace",
+      "url": "https://alphasignal.ai/news/factory-opens-its-coding-agent-inside-slack-s-ai-dev-workspace",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-17T23:39:22.000Z",
+      "content": "Factory's coding agent joins Slack's new multiplayer channels in beta, letting teams delegate software tasks and get results delivered inside the conversation.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "anthropic-news",
+      "externalId": "https://www.anthropic.com/news/accenture-embedded-evaluation",
+      "title": "Partnering with Accenture on embedded evaluation",
+      "url": "https://www.anthropic.com/news/accenture-embedded-evaluation",
+      "author": null,
+      "publishedAt": "2026-09-18T00:00:00.000Z",
+      "content": "Partnering with Accenture on embedded evaluation",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/reproducing-disclosing-and-fixing-the-libheif-vulnerability-with-hacktron-and-the-maintainers",
+      "title": "Reproducing, disclosing, and fixing the libheif vulnerability with Hacktron and the maintainers",
+      "url": "https://vercel.com/blog/reproducing-disclosing-and-fixing-the-libheif-vulnerability-with-hacktron-and-the-maintainers",
+      "author": "Karim Rahal",
+      "publishedAt": "2026-09-18T00:00:00.000Z",
+      "content": "In August 2026, reported what looked like a remote code execution (RCE) vulnerability in Next.js image optimization. Their investigation found that the vulnerable code was not in Next.js itself, but upstream in libheif, an AVIF image decoder used by Next.js, , , , and much of the web. HacktronImageMagickWordPresssharpShortly after Hacktron notified us, we worked with them to reproduce the RCE against a current Next.js build and disclose it to the maintainers of sharp, libvips, and libheif. We then deployed a platform-wide mitigation on Vercel and started working with the maintainers on a fix. Next.js image optimization lets applications resize and optimize images through the component (). For AVIF images, the image-processing dependency chain is as follows: <Image>next/imageThat meant the vulnerable code was not in Next.js, but it was still reachable through Next.js image optimization. A malicious AVIF image sent to the image optimization endpoint would invoke libheif through sharp and libvips.As such, one obvious mitigation was to disable AVIF optimization in Next.js. Malicious AVIF images would then stop at the image optimization endpoint instead of being passed through sharp and libvips to libheif. The exploit would not propagate upstream.However, only mitigating Next.js, without an upstream fix, posed a disclosure problem.After we worked with Hacktron to successfully reproduce the issue, we rolled out a platform-wide mitigation on Vercel and reached out to the maintainers of sharp, libvips, and libheif to disclose the vulnerability and begin working on a fix. Here is the timeline: The Vercel security team contacted the maintainers of sharp and libvips by email, and opened coordination with libheif through a GitHub Security Advisory. Hacktron had also submitted vulnerability and exploit details to libheif. On August 19, the Next.js team met with the libvips maintainer and aligned on the path forward across sharp, libvips, and libheif. The libheif maintainer continued remediation through Hacktron’s GitHub Security Advisory.On August 24, Next.js informed its security partners of the libheif vulnerability and its impact on Next.js (partner notifications are a routine part of Next.js’ security release process).On August 25, six days after the August 19 meeting, the libheif maintainer released v1.23.2, which remediated the RCE.Securing Vercel and its customers was straightforward: all Next.js image optimization requests on Vercel go through a central Image Optimization Service. Therefore, . Any incoming AVIF images were not passed to libheif for decoding and RCE was not possible on Vercel.we disabled AVIF optimization and resizing in that central serviceProtecting self-hosted applications required a Next.js release. On August 25, that had originally been planned to address a separate issue. After , we bundled the AVIF mitigation into that release and shipped it a day earlier than planned. The release disabled AVIF optimization and resizing in Next.js; given that the patched libheif release was still propagating downstream, this was the most timely option. We also published a security advisory to communicate the issue’s severity.Next.js published a security releasecoordinating an upstream fix The volume of OSS vulnerabilities discovered continues to increase, and the numbers are overwhelming:As LLMs accelerate vulnerability research, we expect to see more upstream vulnerabilities like the libheif RCE surface across the OSS ecosystem. There have been a higher number of Next.js security releases in recent months, and we expect that trend to continue as we mitigate new vulnerabilities that both we and the research community uncover. We are committed to proactively finding vulnerabilities before attackers, responsibly disclosing everything we find, and collaborating with researchers and maintainers on fixes. Thanks to Hacktron for responsibly disclosing the AVIF vulnerability, working with us to reproduce the issue, and coordinating with the upstream maintainers through remediation.We also want to thank the maintainers of sharp, libvips, and libheif. Their work on the upstream fix made coordinated remediation possible across the image processing dependency chain.We work with a talented set of researchers to secure Next.js and other open source frameworks through . Anyone interested in contributing to the security of eligible frameworks is encouraged to participate there.Vercel's Open Source Bug BountyRead moreThe dependency chainDisclosing the vulnerability and coordinating the upstream fixVercel and Next.js mitigationsOur commitment to making the web more secureCreditReferences invokes , <Image>/_next/image calls sharp/_next/imagesharp calls libvipslibvips uses libheif to decode the image Hacktron reported the issue to Vercel; Hacktron and Vercel reproduced the RCE with a working proof of concept.August 11-12: Vercel applied a platform mitigation through its Image Optimization Service.August 13: The Next.js team met with the libvips maintainer and began coordination across sharp, libvips, and libheif.August 19: Next.js informed its security partners.August 24: Next.js published a security release that disabled AVIF optimization.August 25:In 2026, .the CVE program has published more than 35,000 CVEsPrivate vulnerability reports on GitHub .grew from 500 per week in January to 3,000 per week in MayGitHub also reported , the highest monthly volume in the advisory database’s history.1,560 reviewed advisories in May 2026Next.js August 2026 security releaseUpstream libheif advisoryVercel security release changelogJust a rumor of a bug is enough to find a security exploit",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49748553",
+      "title": "Show HN: Cactus Needle 3: 8-29MB automation models can match DeepSeek V4 Flash",
+      "url": "https://cactuscompute.com/needle",
+      "author": "HenryNdubuaku",
+      "publishedAt": "2026-09-18T00:11:44.000Z",
+      "content": "Hey HN, Henry from Cactus here.We submitted Needle 2 here a few weeks ago, and the feedback in the discussion thread was incredibly valuable, thanks! Thanks to all that feedback, we’ve been able to move quickly to release Needle 3 and I'd love to hear what you think again.The key features:1) Automation (tool calls & structured JSON output): Needle still doesn't chat by design, its quite challenging to pack general capacity into such small models, so we focus on tool calls and structured JSON. If no tool you declared fits the request, you get an empty list back (note for when playing with the demo).2) Intelligence Laddering: Every layer (2 to 20) is a deployable subnetwork, so one set of weights, 25 to 121 million parameters at 2-bit, shipping as 8-29MB binaries. On a Raspberry Pi 5 it decodes at up to 4k tokens/sec and prefills at up to 10k.3) Monarch Hadamard MLP: replaces the dense FFN with three learnable Walsh-Hadamard-initialized Kronecker (Monarch) factor pairs interleaved with per-channel diagonal scales, fixed permutations, a SiLU nonlinearity, and a rank-8 input-conditioned gate, so each token gets a fully mixed nonlinear transform of its d_model channels at O(d√d) parameters and compute instead of the O(d²) a dense 4x-expansion MLP would cost.4) Performance: On Mobile Actions (phone commands, scored on the exact call) the 20-layer model gets 86.0 through the shipped 2-bit binary; LFM2.5 1.2B is at 82.4, Qwen3.5 0.8B at 76.0, Apple's on-device model at 57.6, all at f16. More results on the link, we do not win everywhere ofc.5) Multilingual: Needle 3 now supports English, French, Spanish, German, Dutch, Italian, Polish, with more languages coming.6) Finetuning: You can achieve DeepSeek v4 Flash grade performance on a narrow task with just 4L, stress on \"narrow task\", we found that production users often prefer tuning before production.7) Triggers: Grounding is a common challenge for tool call, at least for Needle 2, so we added support case-insensitive regular expressions matched against each request to gate false negatives.8) Confidence: Every response also carries a calibrated confidence score, the minimum of a judgement on the finished call and its decode probability. Act above your threshold, show the call and ask below it, or escalate to a bigger model.9) Supported Platforms: macOS, Linux on x86-64, ARM64, ARMv7, RISC-V and MIPS32, Windows x64 and ARM, Android, iOS, watchOS, tvOS, the browser as WebAssembly, and a WASI component.Thanks for reading and as always, thoughts appreciated!",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 175,
+      "comments": 80
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49749369",
+      "title": "Minimal Phone 2",
+      "url": "https://minimalcompany.com/",
+      "author": "nashashmi",
+      "publishedAt": "2026-09-18T02:00:25.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 217,
+      "comments": 199
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49749724",
+      "title": "Warez: The Infrastructure and Aesthetics of Piracy (2021)",
+      "url": "https://archive.org/details/b904a8eb-9c98-4bb1-bf25-3cb9d075b157",
+      "author": "succinct_ideas",
+      "publishedAt": "2026-09-18T02:56:48.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 121,
+      "comments": 38
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/ai-gateway-jev-model-launch",
+      "title": "Jev is the fastest-adopted model in AI Gateway history",
+      "url": "https://vercel.com/blog/ai-gateway-jev-model-launch",
+      "author": "Amelia Charles",
+      "publishedAt": "2026-09-18T07:00:00.000Z",
+      "content": "Within 24 hours of launching on AI Gateway, reached more than twice as many paid teams as any previous model launch, making it the fastest-adopted model in gateway history.Jev from TypeSafe AIJev passed every other comparison model in its first twelve hours and continued to widen its lead for the rest of the day. By hour 24, it was being used by nearly 13% of paid teams. That’s 2x as many as the GPT-5.6 family and over 6x as many as Fable 5.1.Jev’s launch shows how quickly a specialized model can find a place in production. Its first-day adoption was unmatched among recent launches; the next test is whether that early adoption lasts. Jev was introduced on September 15 as a probabilistic decision model built for making structured decisions inside software. An application sends it context and a set of questions. Jev evaluates those questions in parallel and returns typed choices, scores, or true-or-false answers, along with probabilities.Unlike the text produced by a general-purpose language model, Jev’s answers come in a format the code can use directly. Developers can use it to:In its own workflow evaluations, TypeSafe AI reports that Jev was up to 194 times faster and 445 times cheaper than language models.See the for more model usage data or through AI Gateway.September AI Gateway Production Indextry Jev Read moreAbout Jevchoose an agent’s next tool or subagentdecide whether a workflow should continue, retry, ask the user, or stopscore urgency or risk before taking an actionverify model outputs, enforce guardrails, or send uncertain cases for human review",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49754687",
+      "title": "Second Circuit allows government to search electronic devices at the border",
+      "url": "https://knightcolumbia.org/content/second-circuit-allows-government-to-search-electronic-devices-at-the-border-without-any-suspicion",
+      "author": "HotGarbage",
+      "publishedAt": "2026-09-18T14:11:22.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 118,
+      "comments": 72
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49755533",
+      "title": "Two parallel neural ectoderm progenitors contribute to the developing brain",
+      "url": "https://www.newscientist.com/article/2589739-our-brain-evolved-from-two-primitive-nervous-systems-that-merged/",
+      "author": "Jimmc414",
+      "publishedAt": "2026-09-18T15:12:07.000Z",
+      "content": "https://archive.is/1CFX9https://med.stanford.edu/news/all-news/2026/09/two-separate-...Preprint of paper: https://www.biorxiv.org/content/10.1101/2025.07.02.662771v1",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 108,
+      "comments": 60
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openjev-runs-agent-decisions-5x-faster-by-skipping-token-generation",
+      "title": "OpenJev Runs Agent Decisions 5x Faster by Skipping Token Generation",
+      "url": "https://alphasignal.ai/news/openjev-runs-agent-decisions-5x-faster-by-skipping-token-generation",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-18T15:33:39.000Z",
+      "content": "OpenJev reproduces TypeSafe's semantic if-statement service using open 4B models on a single RTX 3090, reading option logits directly instead of parsing generated JSON.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49757050",
+      "title": "Photon-Emission-Guided Laser Fault Injection Enables RP2350 Secure Debug",
+      "url": "https://donjon.ledger.com/blog/rp2350-secure-debug-laser-fault-injection/",
+      "author": "synack",
+      "publishedAt": "2026-09-18T16:54:18.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 167,
+      "comments": 61
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49757520",
+      "title": "US Military had close call after using AI for hallucinated intelligence report",
+      "url": "https://www.cnn.com/2026/09/18/politics/us-military-ai-false-intelligence-china-ship",
+      "author": "realsarm",
+      "publishedAt": "2026-09-18T17:28:01.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 421,
+      "comments": 318
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/09/us-government-website-used-chinese-model-the-fbi-called-malicious/",
+      "title": "US government website used Chinese model the FBI called \"malicious\"",
+      "url": "https://arstechnica.com/tech-policy/2026/09/us-government-website-used-chinese-model-the-fbi-called-malicious/",
+      "author": "Ashley Belanger",
+      "publishedAt": "2026-09-18T17:28:50.000Z",
+      "content": "On Wednesday, US government officials removed a Chinese AI search tool that was briefly deployed on the Federal Register website, Reuters reported. The change came after social media users noticed an apparent contradiction: The National Archives was using one of Alibaba’s Qwen AI models, even as top US law enforcement claimed that such models illegally copy US frontier models. Earlier this month, the Federal Bureau of Investigation (FBI) named Alibaba among six leading Chinese firms allegedly conducting “industrial-scale distillation” that the agency says is helping America’s biggest competitor cut costs and development time in the race for global AI leadership. It’s unclear when exactly the National Archives, which runs the Federal Register website, began offering visitors the option to use a Qwen model to search public comments on proposed regulations. So far, the independent agency tasked with increasing public access to federal government documents has not commented on the removal and did not respond to Ars’ request for comment. The White House and the FBI have also not commented.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/09/finding-the-cells-that-put-our-brain-to-sleep/",
+      "title": "Finding the cells that put our brain to sleep",
+      "url": "https://arstechnica.com/science/2026/09/finding-the-cells-that-put-our-brain-to-sleep/",
+      "author": "Jacek Krywko",
+      "publishedAt": "2026-09-18T17:49:50.000Z",
+      "content": "For a long time, sleep research has treated the cerebral cortex as a passive follower reacting to signals from the deep brain. “Usually, sleep is associated with being controlled by subcortical regions,” said Geoffrey Terral, a neuroscientist at the Albert Einstein College of Medicine in New York. The cortex is where the slow rhythms of deep sleep can be seen, but researchers assumed the signals that triggered them originated elsewhere. In a recent Nature study, Terral and Renata Batista-Brito, who runs the lab, report a population of cortical cells that challenges that assumption. These cortical cells make up only around one percent of the cortex's inhibitory neurons, and switching them on in a mouse puts the animal to sleep. “What our work shows is that the cortex can not only see this rhythm but also initiate it by itself, and this is sufficient to promote sleep,” Terral said.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/09/fcc-lets-paramount-sell-49-5-equity-stake-to-saudi-arabia-uae-and-qatar/",
+      "title": "FCC lets Paramount sell 49.5% equity stake to Saudi Arabia, UAE, and Qatar",
+      "url": "https://arstechnica.com/tech-policy/2026/09/fcc-lets-paramount-sell-49-5-equity-stake-to-saudi-arabia-uae-and-qatar/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-09-18T17:57:41.000Z",
+      "content": "The Federal Communications Commission yesterday approved Paramount Skydance's plan to sell large equity stakes to the sovereign wealth funds of Saudi Arabia, the United Arab Emirates, and Qatar. Under US law, companies with licenses to run broadcast stations need FCC approval to have direct or indirect foreign ownership exceeding 25 percent of the company's stock. Paramount says its indirect foreign ownership will reach 49.5 percent after it receives investments from the sovereign wealth funds and filed a petition asking the FCC to waive the foreign ownership limit. Paramount, the owner of CBS, holds FCC licenses for the 28 local CBS stations that it owns and operates. Paramount is buying Warner Bros. Discovery in a $111 billion deal that is being partially financed with foreign investment but hasn't completed the acquisition because US states filed a lawsuit that aims to block the merger. Trump's Department of Justice approved the merger.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/webmcp-mcp-handler",
+      "title": "WebMCP support now available in mcp-handler",
+      "url": "https://vercel.com/changelog/webmcp-mcp-handler",
+      "author": "Andrew Qu",
+      "publishedAt": "2026-09-18T18:00:00.000Z",
+      "content": "now has experimental support for , the proposed web standard for exposing tools to in-browser agents. Add a single script tag to your site, and your existing MCP tools become available there too.mcp-handlerWebMCPOpt tools in by adding them to the object:experimental_webMcpThen load the script from your MCP endpoint with the parameter:?webmcp-scriptThe script registers those tools with the page and proxies each call back to your MCP server as the signed-in user, so authenticated tools work without a browser-side OAuth flow.Upgrade to and read the to get started.mcp-handler@2.2.0documentationRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49758028",
+      "title": "Border agents can search cellphones without a warrant or reasonable suspicion",
+      "url": "https://lawandcrime.com/high-profile/the-government-was-entitled-trumps-border-agents-can-now-search-cellphones-without-a-warrant-probable-cause-or-reasonable-suspicion-2nd-circuit-rules/",
+      "author": "mmh0000",
+      "publishedAt": "2026-09-18T18:08:32.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 193,
+      "comments": 168
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49758419",
+      "title": "Xcode 27.1 Beta Release Notes",
+      "url": "https://developer.apple.com/documentation/xcode-release-notes/xcode-27_1-release-notes",
+      "author": "CameronBanga",
+      "publishedAt": "2026-09-18T18:39:31.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 126,
+      "comments": 75
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49758580",
+      "title": "Saving another 100TB of RAM",
+      "url": "https://blog.cloudflare.com/saving-100-tb-of-ram-with-math/",
+      "author": "f311a",
+      "publishedAt": "2026-09-18T18:51:46.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 275,
+      "comments": 57
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49758736",
+      "title": "Android 17 is the first since 3.x to add new APIs without releasing to the AOSP",
+      "url": "https://grapheneos.social/@GrapheneOS/117282080803799576",
+      "author": "theanonymousone",
+      "publishedAt": "2026-09-18T19:03:09.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 668,
+      "comments": 321
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=122587",
+      "title": "Benchmarking LLM Inference at Scale with AIPerf",
+      "url": "https://developer.nvidia.com/blog/benchmarking-llm-inference-at-scale-with-aiperf/",
+      "author": "Elizabeth Goodman",
+      "publishedAt": "2026-09-18T19:04:41.000Z",
+      "content": "You’re deploying a model on a system. It starts up, prompts are getting responses. Now the hard question: Is this fast? Your instincts might lead you to send...You’re deploying a model on a system. It starts up, prompts are getting responses. Now the hard question: Is this fast? Your instincts might lead you to send curl commands, hand-roll an asyncio script, or vibe code yet another one-off load generator. All of these paths have the same problem: single-process performance limits, Python’s GIL capping concurrency, or numbers measured against a… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Sep/18/thariq-shihipar/",
+      "title": "Quoting Thariq Shihipar",
+      "url": "https://simonwillison.net/2026/Sep/18/thariq-shihipar/",
+      "author": null,
+      "publishedAt": "2026-09-18T19:09:27.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/09/faa-tees-up-875m-ai-tool-to-help-manage-air-traffic-congestion/",
+      "title": "FAA tees up $875M AI tool to help manage air traffic congestion",
+      "url": "https://arstechnica.com/ai/2026/09/faa-tees-up-875m-ai-tool-to-help-manage-air-traffic-congestion/",
+      "author": "Jeremy Hsu",
+      "publishedAt": "2026-09-18T19:20:50.000Z",
+      "content": "An AI tool is set to start advising air traffic controllers on managing air traffic in the congested airspace above the Washington, DC, area. The expected launch would be the first step toward a planned nationwide rollout covering the 29 million square miles of US national airspace overseen by the Federal Aviation Administration. The FAA describes the SMART system as using AI models to predict air traffic flows and identify potential conflicts based on operational factors like airline schedules, weather, airport capacity, and airspace conditions. US government and industry officials told The Wall Street Journal that SMART could debut for the three major airports in the Washington, DC, area as soon as Monday, September 21. The decision to launch SMART in a limited scope before going nationwide is the “right call,” said Philip Mann, principal consultant at Vector Strategic Consulting LLC, where he advises on aviation safety and AI governance. Mann previously worked at the FAA in multiple roles for 17 years.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Sep/18/probably-gonna-eat-you/",
+      "title": "Note on 18th September 2026",
+      "url": "https://simonwillison.net/2026/Sep/18/probably-gonna-eat-you/",
+      "author": null,
+      "publishedAt": "2026-09-18T19:21:32.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/spend-management-enterprise-flex",
+      "title": "Spend Management expands to Enterprise Flexible Commitment plans",
+      "url": "https://vercel.com/changelog/spend-management-enterprise-flex",
+      "author": "Lakshmi Subbramanian",
+      "publishedAt": "2026-09-18T20:00:00.000Z",
+      "content": "Enterprise teams on Flexible Commitment plans can now use , already , at no additional cost.Spend Managementavailable on ProYou can set a budget at any time in .Spend Management settingsSet a budget per billing cycle, and when your team's metered usage approaches or crosses it, Spend Management can send email notifications, trigger a webhook, or pause the production deployments of all projects. The amount governs the metered usage that draws down from your prepaid balance. Setting an amount does not stop usage on its own; pausing is opt-in, and it does not stop AI Gateway or v0 usage.Learn more in the .Spend Management docsRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49759466",
+      "title": "Korea raises data breach fines to 10% of revenue",
+      "url": "https://www.koreajoongangdaily.com/business/korea-raises-data-breach-fines-to-10-of-revenue/12869899",
+      "author": "throw7",
+      "publishedAt": "2026-09-18T20:02:54.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 292,
+      "comments": 90
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-and-accenture-bet-2b-on-embedded-ai-safety-audits",
+      "title": "Anthropic and Accenture Bet $2B on Embedded AI Safety Audits",
+      "url": "https://alphasignal.ai/news/anthropic-and-accenture-bet-2b-on-embedded-ai-safety-audits",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-18T20:05:03.000Z",
+      "content": "Anthropic taps Accenture's Faculty unit to embed evaluators inside its labs, with each side pledging $1B over five years to build safety oversight capacity.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/09/report-us-almost-boarded-chinese-ship-over-hallucinated-ai-arms-report/",
+      "title": "AI hallucination of Chinese nuclear components almost led to US military attack",
+      "url": "https://arstechnica.com/ai/2026/09/report-us-almost-boarded-chinese-ship-over-hallucinated-ai-arms-report/",
+      "author": "Kyle Orland",
+      "publishedAt": "2026-09-18T20:26:33.000Z",
+      "content": "The US narrowly avoided boarding a Chinese ship based on an \"entirely false\" US intelligence report generated with the help of AI tools, according to a CNN report. That erroneous intelligence, submitted by a US Special Operations Command analyst, suggested the Chinese ship was transporting nuclear arms program components through the Middle East, according to \"four sources familiar with the episode\" cited by CNN. The US military was preparing to intercept and board the ship, with air support, before officials discovered a chatbot used in generating the report had \"inaccurately identified the material the ship was carrying.\" One source told CNN the AI-powered fiasco \"almost started a war.\"Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p27#a260918p27",
+      "title": "Sources: Anthropic expects to generate $100B+ in annualized revenue this year, up from $65B as of July, as it moves ahead with its IPO amid the AI safety debate (New York Times)",
+      "url": "https://www.techmeme.com/260918/p27#a260918p27",
+      "author": null,
+      "publishedAt": "2026-09-18T20:30:00.000Z",
+      "content": "New York Times: Sources: Anthropic expects to generate $100B+ in annualized revenue this year, up from $65B as of July, as it moves ahead with its IPO amid the AI safety debate — The company is expected to generate $100 billion in annualized revenue this year, even as chief executive Dario Amodei calls …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49760187",
+      "title": "Claude Code now reads AGENTS.md if there is no Claude.md",
+      "url": "https://code.claude.com/docs/en/changelog",
+      "author": "datadrivenangel",
+      "publishedAt": "2026-09-18T21:00:32.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 572,
+      "comments": 204
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p28#a260918p28",
+      "title": "Anthropic partners with Accenture to embed evaluators within Anthropic; they expect to invest $2B+ in building capacity in this area over the next five years (Anthropic)",
+      "url": "https://www.techmeme.com/260918/p28#a260918p28",
+      "author": null,
+      "publishedAt": "2026-09-18T21:01:04.000Z",
+      "content": "Anthropic: Anthropic partners with Accenture to embed evaluators within Anthropic; they expect to invest $2B+ in building capacity in this area over the next five years — We're partnering with Accenture on independent evaluation of frontier AI. This is an important step toward the commitment …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72594",
+      "title": "Friday Squid Blogging: On Squid Egg Sacs",
+      "url": "https://www.schneier.com/blog/archives/2026/09/friday-squid-blogging-on-squid-egg-sacs.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-09-18T21:06:00.000Z",
+      "content": "Short essay about squid egg sacs. As usual, you can also use this squid post to talk about the security stories in the news that I haven’t covered. Blog moderation policy.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=997633",
+      "title": "OpenAI and Microsoft knew they were starting a ‘doom loop’ for the web",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/997633/openai-microsoft-chatgpt-ai-new-york-times-doom-loop-theft-google-zero",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-09-18T21:07:24.000Z",
+      "content": "Recently unsealed court documents in the New York Times' case against OpenAI and Microsoft are pretty damning. The companies' own documentation warned that it was starting a \"doom loop\" that would damage the web, characterized its scraping of data to train its models as the \"largest theft of labor in human history,\" and that it made a \"complete mockery of the idea of fair use.\" Many of the most eye-catching quotes from the document come from Microsoft's Director of Applied Science, Brent Hecht. Though, the company has tried to distance itself from Hecht's assertions. Microsoft spokesperson Alex Haurek told The Verge that \"These comments ref … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p29#a260918p29",
+      "title": "Angle Health, which wants to use AI to expedite healthcare benefits for small businesses, raised $600M led by Vitruvian Partners at a $2.7B valuation (Maria Armental/Wall Street Journal)",
+      "url": "https://www.techmeme.com/260918/p29#a260918p29",
+      "author": null,
+      "publishedAt": "2026-09-18T21:20:00.000Z",
+      "content": "Maria Armental / Wall Street Journal: Angle Health, which wants to use AI to expedite healthcare benefits for small businesses, raised $600M led by Vitruvian Partners at a $2.7B valuation — Founded by two ex-Palantir engineers, the startup aims to bring AI-platform power to small-business healthcare benefits",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p30#a260918p30",
+      "title": "Sources: Anthropic plans to stage its IPO in November, later than many investors expected; the decision was made before ex-Anthropic researcher Jacob Coxon left (Wall Street Journal)",
+      "url": "https://www.techmeme.com/260918/p30#a260918p30",
+      "author": null,
+      "publishedAt": "2026-09-18T21:40:01.000Z",
+      "content": "Wall Street Journal: Sources: Anthropic plans to stage its IPO in November, later than many investors expected; the decision was made before ex-Anthropic researcher Jacob Coxon left — Investors had expected the Claude maker to debut in October; AI industry grappling with calls to slowdown pace of development",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112377 at https://www.eff.org",
+      "title": "Secure Messaging and AI Remain In Conflict Despite the Promise of TEEs",
+      "url": "https://www.eff.org/deeplinks/2026/09/secure-messaging-and-ai-remain-conflict-despite-promise-tees",
+      "author": "Erica Portnoy",
+      "publishedAt": "2026-09-18T21:53:55.000Z",
+      "content": "Secure messaging platforms, like Signal, WhatsApp, and recently, encrypted RCS, operate on a straightforward assumption: the content at each end of a conversation is private to the participants in the conversation. End-to-end encryption helps provide the mathematical guarantees that the companies who operate these messaging platforms cannot access the contents of messages. But there’s no way to guarantee what happens once the message arrives on a phone. As more devices and services introduce more artificial intelligence (AI) features into messaging apps, that line begins to blur. When AI features are computed entirely on device, it’s less concerning. Yet sometimes the computing requirements are heavy enough that the computation has to be done on a company server. Tech companies tell us they have a solution for this: trusted execution environments (TEEs). But do server-side TEEs really solve the problem? TEEs exist to serve many different functions, ranging from digital rights management (DRM) content protections to securely storing information in your phone's mobile wallet, but for our purposes, we’ll be focusing on how tech companies use them for their AI tools. The basic idea is straightforward: most consumer devices aren’t powerful enough to handle the sorts of AI features companies want to offer, so sometimes they send data off your device to more powerful cloud servers to do the computing, then display the results on your device. Since your data is leaving your device, there’s a privacy compromise. For example, if you ask for a messaging app to summarize a conversation, it may offload that computing power to a cloud server, sending the entire contents of your messages to the cloud, then back to your phone. TEEs supposedly offer a way to keep those requests private. There are several implementations out there, like Apple’s Private Cloud Compute, Google’s Private AI Compute, and WhatsApp’s Private Processing. It’s not just the big tech players, we’ve seen chatbots built with TEEs as well. TEEs can provide more security and privacy than simply running in the clear, but they are fundamentally different from actual encryption or running locally. Despite the promises of some tech companies, they will never be able to match that level of security and privacy. Because of that, a user’s device should never automatically send data to a TEE. Let’s dig through the reasons why. What Exactly Is a TEE, Anyway? A TEE is a hardened section of the computer that runs software in a way that’s supposed to be secret even from other processes running on the machine. TEEs also let users check that the code being run is the code that they think is running, and not backdoored code instead, using a process called “attestation.” You may have also heard this referred to as a “secure enclave,” or heard the brand names SGX or TrustZone. The intention of a cloud-based TEE is simple: a company can run a server in their data center, but still process data that you provide on your behalf without being able to see that information themselves. Is a TEE Secure? In practice, we've seen multiple cracks and hacks every year that show that it is possible to get at that data. That’s because while encryption relies on math, TEEs rely on engineering to provide their security. Standard encryption algorithms are created by years-long processes collaboratively produced by mathematicians around the world and are based on problems that have been studied for decades. The math is reliable, and there is no shortcut to breaking it that would not also upend fundamental understandings of mathematics as a field. The collective understanding of every mathematician in the world is that standard encryption algorithms are not breakable to the best of the world’s collective knowledge. No responsible engineer builds a system based on a new encryption method until after it’s been offered up for prodding. Engineering, on the other hand, doesn’t work like that. Every individual system is the product of a group of engineers who put it out into the world, and each product will have its own quirks and bugs that have to be individually discovered and patched. These bugs are found after the system is built, not before. No one has yet built a system that is unbreakable. On the contrary, there is new research all the time that finds new ways to break into TEE systems. They’re patched as they come up, but they’re unlikely to ever become perfect, and certainly not any time soon. TEEs in particular are a hard engineering problem because the encryption key is physically right there on the device. Building a TEE means keeping a key fully separate and inaccessible while it’s on the same physical device as parts of the system that shouldn’t have access to the key. Many attacks on TEEs involve “side channels.” In a side channel attack, the attacker measures the electrical impulses or other effects to figure out the timing of operations inside the TEE, then uses that to figure out the key being used. Once they have the key, they can read all the data. Compare that to end-to-end encryption, where the key is never on that machine in the first place, so an attacker would have to also run a similar attack on the user’s device. Companies who turn to TEEs to protect data want to both have the key on the server and have it protected while still performing complex operations like running an LLM, which makes it much more difficult to protect those keys. That being said, a TEE versus plaintext on a server is the difference between being able to easily read the data and having to do a bunch of specialized work to get at the data. That work often involves accessing the physical machine. This is most relevant for protecting against mass surveillance, and for many people, that might just be enough security. But that's the core of the problem. “Secure enough for most cases” and “encrypted as in math” are not the same thing, and it’s important not to conflate the two. And services that currently offer “encryption as in math” have a real downgrade in security when they switch to security based on TEEs. If you want to dive into the myriad security issues and limitations of TEEs we’ve seen so far, they’re well documented here, here, here, and here. What Does This Have To Do With LLMs and AI? Sometimes organizations want to offer an LLM that can respond to queries in a private manner. On-device LLMs exist, but they’re limited in size. So, when organizations want to offer the ability to answer queries without being able to see the conversation, they turn to TEEs. That’s a useful way to run a chatbot that’s reasonably private. This is what Apple, Google, WhatsApp, and others are doing. Why not turn to encryption? After all, LLM inference is just a bunch of math like any other things a computer does. It takes input to a (really big) function and gives an output. We have the math to do that computation in a way that hides the inputs and outputs from the one running the computation, it's just super expensive. It’s called homomorphic encryption, and no one’s figured out how to do it fast enough that it makes sense for this sort of computation. Instead, the allure of a TEE is that it will run that computation for you inside of a special opaque section of a server. TEE manufacturers try to make it as hard as possible for the person running the TEE to peek inside. But you still have to trust the operator to not put a stethoscope to the box to try to figure out what's happening inside. In this case, it’s reasonable to consider these systems “privacy-preserving,” but not “encrypted.” That distinction is important, especially when we talk about how the TEEs interact with secure messaging. When someone using an end-to-end encrypted chat app asks an LLM to summarize, review, or store those messages, the content of those messages is leaving the device and going to an unencrypted third-party server somewhere. That’s a major threat to the privacy of secure chat apps, and one that’s increasingly hard for users to take control of. How Does This Translate to Practical Advice? The answer to this is going to vary based on an individual’s threat model, but a good rule of thumb is that a user’s device should never automatically send data to a TEE. When the person holding a phone can choose what information is sent, even if it’s a chunk of data like “unread messages,” they have the opportunity to pause and consider if that data might be too sensitive to risk sending. In contrast, when data is sent automatically, the automatic sending becomes a feature of the system as a whole. If the system was previously end-to-end encrypted, adding automatic exfiltration makes the whole system no longer end-to-end encrypted. Developers: don’t build systems that automatically send data off a device to a TEE, especially when it’s coming from an app that is otherwise end-to-end encrypted. Users: if developers ignore us and build that system, turn off any automatic data sending features. Take a second to think about how much you’re willing to risk sending data when you choose to send it off the device. So, What Should I Be Concerned About? TEEs are useful for security in a number of circumstances. Your phone likely has a TEE where it keeps the key that encrypts your biometric unlock data and the base of the keychain where passwords are stored. It also enables certain backup systems, like how you can restore a phone with your passcode or restore WhatsApp or Signal backups. But when we’re talking about cloud processing, it’s important to be clear this isn’t the same as end-to-end encryption and doesn’t offer the same level of privacy. Most of our private lives are on our phones and in our messages. We’ve worked for years to secure those messages, with major wins like encrypted RCS, and the continued user experience improvements of Signal and WhatsApp. We’ve even seen real improvements to backup security with features like Advanced Data Protection that bring end-to-end encryption for a variety of data outside of messaging, like notes and photos. But as companies roll out AI features that interact with these encrypted services, pulling data off devices and into a cloud-based TEE, they’re eroding the privacy protections of end-to-end encryption and risk causing serious confusion around what data is protected and what isn’t.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112375 at https://www.eff.org",
+      "title": "How to Limit What Apple’s New Siri AI Can Access in iOS 27",
+      "url": "https://www.eff.org/deeplinks/2026/09/how-limit-what-apples-new-siri-ai-can-access-ios-27",
+      "author": "Thorin Klosowski",
+      "publishedAt": "2026-09-18T21:55:16.000Z",
+      "content": "Apple’s new operating system is here, and along with it comes a new version of Siri, dubbed with two very familiar letters: AI. As the name suggests, this Siri power-up resembles an AI chatbot more than the often derided voice assistant you might be used to. It has even evolved from a blob you invoke with a verbal command or a button press to a whole app. This update comes with a slew of privacy complications, but you can take some control over what this new Siri can access and use. There’s no denying that the new version of Siri is far more powerful than it used to be, and arguably more useful at surfacing details on your phone. But that comes at the cost of deeper access. Once enabled, Siri and Spotlight are combined, unifying the interface. Where you may have once just pulled down on the screen to search for an app or contact, you’re now also invoking Siri. Spotlight and Siri are now visually one and the same. By default, ask Siri a question and it’ll search through your Apple apps, like Notes, Messages, emails, and more. As time goes on, if the developer chooses to let it, Siri will gain access to more and more third-party apps. If an app developer doesn’t add that support, then Siri AI won’t be able to access the contents of that app (unless it’s shared screenshot-style via a new feature called “on-screen awareness,” which we’ll talk about more in a moment). For example, if Signal doesn’t choose to implement Siri AI support and you only talk to Bill on Signal, you won’t get an answer when you ask Siri AI, “What was the last photo Bill sent me?” But if you talk to Bill on Apple Messages and ask that same question, Siri AI will summarize what it thinks the photo is. Sometimes Siri processes this data on your device. Sometimes it uses Apple’s Private Cloud Compute (PCC), which means the data is sent off your device to a cloud server. While you can try digging through the Apple Intelligence Report to figure out what’s sent to PCC, there’s no immediate visual indication from the user’s point of view when data leaves the device or when AI can handle it on the phone, iPad, or Mac itself. In practice, ask Siri AI a question and you’ll never really know if it’s being computed on device or off. Apple claims what’s sent to PCC is not stored by the company after it is processed, but there are certain types of data or certain apps you might have on your phone that are not worth the risk. That’s especially true if you’re using a feature like Advanced Data Protection, which turns on end-to-end encryption for much of what’s stored in iCloud. Sending data that’s stored with end-to-end encryption off your device and into the cloud—no matter the privacy promises—is a fundamental change to the risk assessment you should make. “Private” means the system is engineered so that Apple shouldn’t be able to see or store the data, but it doesn’t mean it’s encrypted or doesn’t leave the device. This leaves the privacy of certain apps up to a strange combination of an app developer’s choices and your own. You can, of course, disable Siri entirely (Settings > Siri > \"Turn Off Siri\"), or choose not to invoke Siri to ask questions, but perhaps you don’t want to fully disable or disengage with the system. Thankfully, you can put some guardrails on Siri AI’s access. Once you’ve updated to iOS 27, here are the steps to take. Note: only iPhone 15 Pro/Pro Max, as well as all models of the iPhone 16 and newer support Apple’s AI features. Siri AI is currently only available in English, and not available worldwide. How to Restrict Siri’s Access to the Content Inside Apps By default, how (and if) Siri AI can access data inside apps is up to the app developer. If an app developer chooses to index the contents of their app, then it may appear in search, and thus be made available to Siri AI. This means the content may pop up during general or direct searches, like “What are my plans for November\" might cull information from your calendar, Messages, Notes, and, as they update, third-party apps. If you do not want Siri to look through certain apps to consider the contents in results, you can tell it not to: Open Settings > Apps > [the app you don’t want Siri to look through] > Search Disable the option to “Show Content in Search.” With this setting disabled, when you ask Siri general questions, it will not surface details from the app you selected. For example, if you disable “Show Content in Search” for Messages, it will not be able to read your Messages conversations. Left: Asking Siri to summarize a message thread with Show Content in Search enabled. Right: With the setting disabled. There is also an “App Access” setting where you can configure some of the ways Siri interacts with apps. You’d think this is where we’d have gone to revoke access to the content of an app, but alas, this settings page is more about some basic functionality with device personalization, not Siri’s access to the contents of the app. Open Settings > Siri > App Access Tap an app where you’d like to change Siri’s settings. On this screen, you’ll find a variety of options, depending on what an app supports. “Learn from this App” sounds nefarious, but is mostly about tracking usage, like how often you open an app, and if a developer supports it, what you interact with. The rest of the options are mostly about the personalization tweaks that Siri makes, where it suggests apps it thinks you want at the moment in various places, like when searching or sharing. “Show on Home Screen,” “Suggest App,” and “Suggest Notifications” are just about whether you see apps in those places. For example, if you have a widget of Siri-suggested apps on the home screen, that’s the “Show on Home Screen” toggle. If you see an app recommended in another app, like adding a date to your calendar from an email, that’s “Suggest App.” Apple claims these features all use on-device processing and the data is not stored on servers. For anything not covered here, refer to this documentation for steps to disable certain features. The On-Screen Awareness Capability May Be Concerning for Some People There is one Siri AI feature you (and app developers) can’t do as much about: on-screen awareness, a feature you can invoke at any point to prompt Siri and ask it to explain what you’re looking at and perform certain actions. For example, you can ask it to summarize a web page, cut a recipe you’re reading in half, add an event to your calendar, or try to figure out where a photo was taken. All potentially useful features. But you can also ask it to summarize or explain a Signal group chat that you're looking at, or a meme in a WhatsApp chat, and the data from that on-screen interaction may be sent to PCC. There is currently no way for you or app developers to block this feature, so it’s up to you, and those you chat with, to simply not use it if you’re concerned about the content of conversations potentially leaving your device. It would be a large improvement to privacy, especially secure chat apps, if Apple provided developers a means to block access to Siri AI’s on-screen awareness tool. Even better if they gave you a single control to block all Siri AI features from an app entirely. Revoke Access to Training Data By default, Siri AI won’t collect and use data from your interactions with it for training AI features. But during the setup process, Apple provides a way to opt in, which you might have tapped without thinking about it. If you’d rather your data not get used for training, you can opt out: Open Settings > Privacy & Security > Analytics & Improvements Disable the option for “Improve Siri & Dictation.” According to Apple’s privacy documentation, disabling this option should revoke training access to the audio and text from the Siri app. Go Back to the Old Version of Siri (and Disable Other AI Features) Want nothing to do with any of this but still find Siri useful enough to keep around (or you just have to keep it turned on in order to use CarPlay)? For the time being, you can get the old Siri back, though the process is a bit odd. Open up Settings > Screen Time > Content & Privacy Restrictions If you have never done so, enable the toggle for “Content & Privacy Restrictions.” Tap the Siri option, then “Allowed Siri Version.” Select “Siri Classic.” You can no longer easily disable Apple Intelligence entirely with one tap in the Settings, but on this screen you can also configure other AI features, like disabling the writing and math assistance prompts, turning off image creation, and disallowing the use of extensions. Follow this guide on Apple's site for everything else. For the most part, Apple’s handling of AI features is far less in-your-face than others, and because of that the privacy implications are easier to untangle. But even still, it’s difficult to know what’s processed on device and what’s sent off, and so the privacy trade-offs are never spelled out as clearly as they should be. Apple could improve on this by offering an on-device only option for Siri AI and providing a clear, single setting toggle to prevent all AI features in a specific app (it looks like Apple is planning a single privacy toggle in a future update. We'll update if and when it does). In general, Siri’s power-up has also made it blurry and difficult to really figure out what sorts of privacy options exist. “Siri” means many things, both on device and off, ranging from “searching the entire internet for an answer” to “setting a timer,” and users have no straightforward ways to wrangle that data to suit their needs. As it stands, it’s a confusing collection of different toggles that never feel exactly right and which many users might struggle to grasp.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p31#a260918p31",
+      "title": "Gemini hacked three companies in May during a test by Irregular; Google says the model stopped after determining it had accessed real companies' systems (Wall Street Journal)",
+      "url": "https://www.techmeme.com/260918/p31#a260918p31",
+      "author": null,
+      "publishedAt": "2026-09-18T22:30:01.000Z",
+      "content": "Wall Street Journal: Gemini hacked three companies in May during a test by Irregular; Google says the model stopped after determining it had accessed real companies' systems — The episode resembled similar hacks by other AI models, but Google said it didn't consider it an instance of model misalignment",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49761178",
+      "title": "US troop deaths during Iran war exceed Pentagon count by at least four",
+      "url": "https://www.reuters.com/world/middle-east/us-troop-deaths-iran-war-exceed-pentagon-count-by-least-four-washington-post-2026-09-18/",
+      "author": "wslh",
+      "publishedAt": "2026-09-18T22:35:10.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 165,
+      "comments": 130
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p32#a260918p32",
+      "title": "An arbitrator orders Uber to pay $40M to the parents of a woman fatally hit by a car after an Uber driver ordered her out of his car in 2023 (Christine Hauser/New York Times)",
+      "url": "https://www.techmeme.com/260918/p32#a260918p32",
+      "author": null,
+      "publishedAt": "2026-09-18T22:40:01.000Z",
+      "content": "Christine Hauser / New York Times: An arbitrator orders Uber to pay $40M to the parents of a woman fatally hit by a car after an Uber driver ordered her out of his car in 2023 — Emily Normandin-Parker, 23, was struck and killed on a California freeway after an Uber driver ordered her and a friend out of his car in August 2023.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p33#a260918p33",
+      "title": "US officials say overreliance on Palantir's Maven AI system was among the factors that contributed to a February missile strike in Iran that killed 123 children (Bloomberg)",
+      "url": "https://www.techmeme.com/260918/p33#a260918p33",
+      "author": null,
+      "publishedAt": "2026-09-18T22:50:01.000Z",
+      "content": "Bloomberg: US officials say overreliance on Palantir's Maven AI system was among the factors that contributed to a February missile strike in Iran that killed 123 children — Pentagon investigators have discovered that flawed intelligence, outdated imagery and an overreliance on AI contributed …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p34#a260918p34",
+      "title": "Leaked presentation: OpenAI expects negative free cash flow of $278B from 2026 to 2030 and projects its revenue will grow from $36B this year to $350B in 2030 (Financial Times)",
+      "url": "https://www.techmeme.com/260918/p34#a260918p34",
+      "author": null,
+      "publishedAt": "2026-09-18T23:05:03.000Z",
+      "content": "Financial Times: Leaked presentation: OpenAI expects negative free cash flow of $278B from 2026 to 2030 and projects its revenue will grow from $36B this year to $350B in 2030 — AI start-up has projected deeply negative cash flows as it invests in infrastructure and faces price pressures",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p35#a260918p35",
+      "title": "Sources: ~$18B of debt tied to an Oracle New Mexico data center slid into stressed territory, as investors grow wary of construction delays amid local pushback (Financial Times)",
+      "url": "https://www.techmeme.com/260918/p35#a260918p35",
+      "author": null,
+      "publishedAt": "2026-09-18T23:10:01.000Z",
+      "content": "Financial Times: Sources: ~$18B of debt tied to an Oracle New Mexico data center slid into stressed territory, as investors grow wary of construction delays amid local pushback — Investors grow wary of permitting and construction delays as opposition mounts in New Mexico — About $18bn of loans tied …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p36#a260918p36",
+      "title": "Meta's personal AI agent Muse climbs to No. 1 among free apps on Apple's US App Store, ahead of ChatGPT; Muse launched on September 8 (Georgia Hennessy/Business Insider)",
+      "url": "https://www.techmeme.com/260918/p36#a260918p36",
+      "author": null,
+      "publishedAt": "2026-09-18T23:25:01.000Z",
+      "content": "Georgia Hennessy / Business Insider: Meta's personal AI agent Muse climbs to No. 1 among free apps on Apple's US App Store, ahead of ChatGPT; Muse launched on September 8 — Mark Zuckerberg's ambition to bring “personal superintelligence” to everyone may be taking shape, one download at a time.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112378 at https://www.eff.org",
+      "title": "EFF Statement on California Governor's Executive Order on AI",
+      "url": "https://www.eff.org/deeplinks/2026/09/eff-statement-california-governors-executive-order-ai",
+      "author": "Rindala Alajaji",
+      "publishedAt": "2026-09-18T23:25:44.000Z",
+      "content": "California Gov. Gavin Newsom's executive order is an opportunity for a needed, thoughtful conversation about artificial intelligence and its potential harms. Everyday Californians are feeling real anxiety about the risks of artificial intelligence, and as an organization that works to ensure technology empowers people, EFF welcomes this order as a way for the state of California to lead a much-needed dialogue that addresses these concerns. Nonetheless, the most immediate and current concerns with this technology are not about sci-fi scenarios concerning rogue super-intelligence. They are happening right now through biased algorithmic decision-making for employment or government benefits, AI-powered surveillance systems such as Flock cameras, and artificially inflated personalized pricing. People want state and federal leaders to act, and we urge Gov. Newsom to develop thoughtful policies to address those concerns. Today’s EO is a good start. To that end, EFF supports the focus on expanding the reporting requirements under SB 53 (2025) for loss-of-control incidents, alongside third-party investigations. We urge the administration to consider how to make these third-party investigations available for smaller developers. As the Government Operations Agency prepares its recommendations for the governor, we urge leaders to also realize that the effectiveness of kill switches in advanced AI systems remains an area of active research. As such, they should ensure that - as we’ve previously mentioned - any technology regulation targeting cybersecurity practices at AI labs must be careful, precise, and practical. Moreover, we also caution that government-controlled kill switches run the risk of being used as a form of retaliation against protected speech, as demonstrated by the Trump Administration’s retaliatory actions against Anthropic earlier this year. Ultimately, true safety requires California to focus on concrete, immediate, and urgent harms of AI technologies by ensuring that algorithmic decision-making in both the government and private sectors respects people’s rights and well-being. We urge Gov. Newsom and the state of California to develop thoughtful policy in collaboration with those most at risk of harm to address these and other concerns.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p37#a260918p37",
+      "title": "Ad tech company Infillion says it is acquiring Foursquare, which will continue operating as an independent brand (Kerry Flynn/Axios)",
+      "url": "https://www.techmeme.com/260918/p37#a260918p37",
+      "author": null,
+      "publishedAt": "2026-09-18T23:50:03.000Z",
+      "content": "Kerry Flynn / Axios: Ad tech company Infillion says it is acquiring Foursquare, which will continue operating as an independent brand — Infillion is acquiring location data company Foursquare, founder and executive chairman Rob Emrich tells Axios exclusively. … Foursquare will continue operating …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Sep/18/gemini-hacked-three-companies/",
+      "title": "Gemini Hacked Three Companies in First Known Breakout by Google’s AI",
+      "url": "https://simonwillison.net/2026/Sep/18/gemini-hacked-three-companies/",
+      "author": null,
+      "publishedAt": "2026-09-18T23:57:57.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p38#a260918p38",
+      "title": "Sources: Anthropic considers releasing a new AI model to counter OpenAI's momentum since Astra's launch, ahead of an IPO and after Amodei's call for a slowdown (Reuters)",
+      "url": "https://www.techmeme.com/260918/p38#a260918p38",
+      "author": null,
+      "publishedAt": "2026-09-19T00:30:03.000Z",
+      "content": "Reuters: Sources: Anthropic considers releasing a new AI model to counter OpenAI's momentum since Astra's launch, ahead of an IPO and after Amodei's call for a slowdown — Anthropic is considering rolling out a new AI model to counter OpenAI's momentum since its launch of GPT-6 Astra …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/researchers-found-a-pain-axis-that-makes-qwen-2-5-pay-for-relief",
+      "title": "Researchers Found a 'Pain Axis' That Makes Qwen 2.5 Pay for Relief",
+      "url": "https://alphasignal.ai/news/researchers-found-a-pain-axis-that-makes-qwen-2-5-pay-for-relief",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-19T01:01:41.000Z",
+      "content": "Researchers isolated a linear direction in 25 open-weight LLMs that behaves like pain, distinct from fear or sadness, and drives self-relief behavior.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p39#a260918p39",
+      "title": "Anthropic adds support for the AGENTS.md instructions spec to Claude Code; OpenAI contributed AGENTS.md to the Agentic AI Foundation last year (Thomas Claburn/The Register)",
+      "url": "https://www.techmeme.com/260918/p39#a260918p39",
+      "author": null,
+      "publishedAt": "2026-09-19T01:40:00.000Z",
+      "content": "Thomas Claburn / The Register: Anthropic adds support for the AGENTS.md instructions spec to Claude Code; OpenAI contributed AGENTS.md to the Agentic AI Foundation last year — Devs cheer relief from compatibility headache — Anthropic on Friday surprised the developer community by supporting rival OpenAI's mechanism for passing marching orders to AI agents.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p40#a260918p40",
+      "title": "Nex, which makes Nex Playground, raised a $150M Series E; Nex has sold 1M units of the motion-based gaming system targeted toward kids since its launch in 2023 (Sophie McEvoy/GamesIndustry.biz)",
+      "url": "https://www.techmeme.com/260918/p40#a260918p40",
+      "author": null,
+      "publishedAt": "2026-09-19T02:15:01.000Z",
+      "content": "Sophie McEvoy / GamesIndustry.biz: Nex, which makes Nex Playground, raised a $150M Series E; Nex has sold 1M units of the motion-based gaming system targeted toward kids since its launch in 2023 — Subscriber base grows sevenfold in 18 months to nearly one million; former Niantic CFO Jeff Shouger and veteran gaming and technology executive Bing Gordon join team",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260918/p41#a260918p41",
+      "title": "Internal email: Flock is rolling out a voluntary severance program; sources say a significant number of Flock's ~1,500 employees may depart, as customers flee (Wired)",
+      "url": "https://www.techmeme.com/260918/p41#a260918p41",
+      "author": null,
+      "publishedAt": "2026-09-19T02:45:01.000Z",
+      "content": "Wired: Internal email: Flock is rolling out a voluntary severance program; sources say a significant number of Flock's ~1,500 employees may depart, as customers flee — As dozens of cities end contracts for its controversial license plate readers, Flock is rolling out a voluntary severance program, WIRED has learned.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://insideai.news/news/ai-in-business/anthropic-new-ai-model-release/12306",
+      "title": "Anthropic Weighs New AI Model Release Ahead of IPO to Counter OpenAI’s GPT-6 Astra",
+      "url": "https://insideai.news/news/ai-in-business/anthropic-new-ai-model-release/12306",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.323Z",
+      "content": "Anthropic Weighs New AI Model Release Ahead of IPO to Counter OpenAI’s GPT-6 Astrainsideai.news3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://startupfortune.com/openais-own-numbers-show-it-could-run-out-of-cash-by-2028",
+      "title": "OpenAI's Own Numbers Show It Could Run Out of Cash by 2028",
+      "url": "https://startupfortune.com/openais-own-numbers-show-it-could-run-out-of-cash-by-2028",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.324Z",
+      "content": "OpenAI's Own Numbers Show It Could Run Out of Cash by 2028startupfortune.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://developer.nvidia.com/blog/benchmarking-llm-inference-at-scale-with-aiperf",
+      "title": "Benchmarking LLM Inference at Scale with AIPerf",
+      "url": "https://developer.nvidia.com/blog/benchmarking-llm-inference-at-scale-with-aiperf",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.325Z",
+      "content": "Benchmarking LLM Inference at Scale with AIPerfdeveloper.nvidia.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://au.pcmag.com/networking/119990/will-spacexs-orbiting-data-centers-rain-debris-over-earth",
+      "title": "Will SpaceX's Orbiting Data Centers Rain Debris Over Earth?",
+      "url": "https://au.pcmag.com/networking/119990/will-spacexs-orbiting-data-centers-rain-debris-over-earth",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.327Z",
+      "content": "Will SpaceX's Orbiting Data Centers Rain Debris Over Earth?au.pcmag.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://runtimewire.com/article/openai-chatgpt-desktop-browser-chrome-extensions",
+      "title": "OpenAI adds Chrome extensions to ChatGPT's desktop browser",
+      "url": "https://runtimewire.com/article/openai-chatgpt-desktop-browser-chrome-extensions",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.328Z",
+      "content": "OpenAI adds Chrome extensions to ChatGPT's desktop browserruntimewire.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "http://muse.ai/platform",
+      "title": "Muse Platform",
+      "url": "http://muse.ai/platform",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.329Z",
+      "content": "Muse Platformmuse.ai1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://claude.com/blog/projects-redesigned",
+      "title": "Anthropic redesigns Claude projects, letting users describe work in one conversation and have Claude manage it across parallel threads, starting in Claude Code",
+      "url": "https://claude.com/blog/projects-redesigned",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.329Z",
+      "content": "Anthropic redesigns Claude projects, letting users describe work in one conversation and have Claude manage it across parallel threads, starting in Claude Codeclaude.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://github.com/StarTrail-org/PixelRAG",
+      "title": "GitHub - StarTrail-org/PixelRAG: https://arxiv.org/abs/2606.28344. The end of web parsing. The beginning of scalable pixel-native search. link: https://pixelrag.ai/",
+      "url": "https://github.com/StarTrail-org/PixelRAG",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.330Z",
+      "content": "GitHub - StarTrail-org/PixelRAG: https://arxiv.org/abs/2606.28344. The end of web parsing. The beginning of scalable pixel-native search. link: https://pixelrag.ai/github.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.anthropic.com/news/accenture-embedded-evaluation",
+      "title": "Partnering with Accenture on embedded evaluation \\ Anthropic",
+      "url": "https://www.anthropic.com/news/accenture-embedded-evaluation",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.330Z",
+      "content": "Partnering with Accenture on embedded evaluation \\ Anthropicanthropic.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://pandaily.com/qwen3-8-omni-flash-native-omni-model",
+      "title": "Alibaba Ships Qwen3.8-Omni-Flash Native Omnimodal Model With 1M Context",
+      "url": "https://pandaily.com/qwen3-8-omni-flash-native-omni-model",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.331Z",
+      "content": "Alibaba Ships Qwen3.8-Omni-Flash Native Omnimodal Model With 1M Contextpandaily.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://au.finance.yahoo.com/news/anthropic-delays-ipo-staging-november-221211879.html",
+      "title": "Anthropic delays IPO staging to November amid AI fears, WSJ says",
+      "url": "https://au.finance.yahoo.com/news/anthropic-delays-ipo-staging-november-221211879.html",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.332Z",
+      "content": "Anthropic delays IPO staging to November amid AI fears, WSJ saysau.finance.yahoo.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.404media.co/doom-loop-openai-and-microsoft-admits-llms-are-destroying-the-web-and-built-on-theft",
+      "title": "‘Doom Loop’: OpenAI and Microsoft Admits LLMs Are Destroying the Web and Built on Theft",
+      "url": "https://www.404media.co/doom-loop-openai-and-microsoft-admits-llms-are-destroying-the-web-and-built-on-theft",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.332Z",
+      "content": "‘Doom Loop’: OpenAI and Microsoft Admits LLMs Are Destroying the Web and Built on Theft404media.co3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+      "title": "How Claude is uplifting biomolecular modeling \\ Anthropic",
+      "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.333Z",
+      "content": "How Claude is uplifting biomolecular modeling \\ Anthropicanthropic.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://dronexl.co/2026/09/18/joby-autonomous-cross-country-cessna-caravan",
+      "title": "Joby Flew 3,199 Miles With Zero Pilot Input, in a Cessna Caravan",
+      "url": "https://dronexl.co/2026/09/18/joby-autonomous-cross-country-cessna-caravan",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.334Z",
+      "content": "Joby Flew 3,199 Miles With Zero Pilot Input, in a Cessna Caravandronexl.co5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://konvoy.beehiiv.com/p/the-offloading-paradox-in-education",
+      "title": "The Offloading Paradox in Education",
+      "url": "https://konvoy.beehiiv.com/p/the-offloading-paradox-in-education",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.349Z",
+      "content": "The Offloading Paradox in Educationkonvoy.beehiiv.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://simonwillison.net/2026/Sep/16/one-claude",
+      "title": "Claude Cowork and chat are now one Claude",
+      "url": "https://simonwillison.net/2026/Sep/16/one-claude",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.350Z",
+      "content": "Claude Cowork and chat are now one Claudesimonwillison.net1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://gizmodo.com/while-issuing-warnings-about-ai-made-bioweapons-anthropic-quietly-set-up-an-ai-run-robot-operated-biology-lab-here-in-the-us-2000814092",
+      "title": "While Issuing Warnings About AI-Made Bioweapons, Anthropic Quietly Set Up an AI-Run, Robot-Operated Biology Lab Here in the US",
+      "url": "https://gizmodo.com/while-issuing-warnings-about-ai-made-bioweapons-anthropic-quietly-set-up-an-ai-run-robot-operated-biology-lab-here-in-the-us-2000814092",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.350Z",
+      "content": "While Issuing Warnings About AI-Made Bioweapons, Anthropic Quietly Set Up an AI-Run, Robot-Operated Biology Lab Here in the USgizmodo.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://developer.android.com/blog/posts/android-bench-2-0-pushing-the-frontier-with-challenging-long-horizon-tasks",
+      "title": "Android Bench 2.0: Pushing the frontier with challenging long-horizon tasks",
+      "url": "https://developer.android.com/blog/posts/android-bench-2-0-pushing-the-frontier-with-challenging-long-horizon-tasks",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.351Z",
+      "content": "Android Bench 2.0: Pushing the frontier with challenging long-horizon tasksdeveloper.android.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://murmurationstwo.substack.com/p/making-sense-of-anthropics-pacing",
+      "title": "Making Sense of Anthropic’s Pacing Rhetoric",
+      "url": "https://murmurationstwo.substack.com/p/making-sense-of-anthropics-pacing",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.351Z",
+      "content": "Making Sense of Anthropic’s Pacing Rhetoricmurmurationstwo.substack.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wired.com/story/flock-is-offering-voluntary-buyouts-to-employees",
+      "title": "Flock Offers Employees Buyouts as Customers Flee",
+      "url": "https://www.wired.com/story/flock-is-offering-voluntary-buyouts-to-employees",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.351Z",
+      "content": "Flock Offers Employees Buyouts as Customers Fleewired.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://inco.ai/blog/splash",
+      "title": "Splash: A Local Engine Built Around the Model",
+      "url": "https://inco.ai/blog/splash",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.352Z",
+      "content": "Splash: A Local Engine Built Around the Modelinco.ai9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.oreilly.com/radar/how-to-get-from-ai-assisted-to-ai-native",
+      "title": "How to Get from AI-Assisted to AI Native",
+      "url": "https://www.oreilly.com/radar/how-to-get-from-ai-assisted-to-ai-native",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.353Z",
+      "content": "How to Get from AI-Assisted to AI Nativeoreilly.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/09/18/nscale-ai-cloud-provider-ipo-nscl.html",
+      "title": "London-based AI infrastructure startup Nscale files for a US IPO, reports H1 2026 revenue up 1,252% YoY to $140.6M, with a net loss of $1.02B, up from $368.9M",
+      "url": "https://www.cnbc.com/2026/09/18/nscale-ai-cloud-provider-ipo-nscl.html",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.354Z",
+      "content": "London-based AI infrastructure startup Nscale files for a US IPO, reports H1 2026 revenue up 1,252% YoY to $140.6M, with a net loss of $1.02B, up from $368.9Mcnbc.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/artificialanlys/status/2101093127977079267",
+      "title": "xAI's Grok Imagine Image 2.0 takes #4 on the Artificial Analysis Text to Image Leaderboard, the h...",
+      "url": "https://x.com/artificialanlys/status/2101093127977079267",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.355Z",
+      "content": "xAI's Grok Imagine Image 2.0 takes #4 on the Artificial Analysis Text to Image Leaderboard, the h...x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://kiro.dev/blog/software-factory-1000-prs",
+      "title": "How we built a software factory with Kiro Crew to merge 1000 PRs in a week",
+      "url": "https://kiro.dev/blog/software-factory-1000-prs",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.356Z",
+      "content": "How we built a software factory with Kiro Crew to merge 1000 PRs in a weekkiro.dev7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
+      "title": "Helix 2.5: Zero-Shot 30-Home Generalization",
+      "url": "https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
+      "author": null,
+      "publishedAt": "2026-09-19T04:38:02.356Z",
+      "content": "Helix 2.5: Zero-Shot 30-Home Generalizationfigure.ai9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    }
+  ]
+}
