@@ -34,7 +34,7 @@ function parseDigest(day: string, raw: string): Digest {
 // The two drops the whole site is built around: the morning digest lands
 // right after the 04:34 UTC run, the evening rewrite right after 16:34.
 // One helper so the schedule is written down once — rss reads it as an
-// http-date, structured data and Open Graph as ISO 8601.
+// http-date, structured data, Open Graph and the sitemap as ISO 8601.
 type Drop = readonly [hour: number, minute: number];
 const AM_DROP: Drop = [4, 34];
 const PM_DROP: Drop = [16, 34];
@@ -44,7 +44,7 @@ function dropAt(day: string, [hour, minute]: Drop): Date {
   return new Date(Date.UTC(y, m - 1, d, hour, minute));
 }
 
-const feedDate = (day: string): string => dropAt(day, AM_DROP).toUTCString();
+const feedDate = (day: string, drop: Drop): string => dropAt(day, drop).toUTCString();
 // Seconds, no milliseconds: still ISO 8601, and the drop is a schedule.
 const isoDate = (day: string, drop: Drop): string =>
   dropAt(day, drop).toISOString().replace(/\.\d{3}Z$/, "Z");
@@ -83,16 +83,21 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
         .sort()
         .reverse()
     : [];
-  const digests = days.map((d) => parseDigest(d, readFileSync(join(dir, `${d}.md`), "utf8")));
+  // One read of each day's carousel, shared by the page head, the sitemap and
+  // the feed, so the three cannot answer "when did this go up, when did it
+  // last change" differently within one build.
+  const digests = days.map((d) => ({
+    ...parseDigest(d, readFileSync(join(dir, `${d}.md`), "utf8")),
+    ...dropsOf(rootDir, d),
+  }));
 
   mkdirSync(outDir, { recursive: true });
   const pub = join(rootDir, "public");
   if (existsSync(pub)) cpSync(pub, outDir, { recursive: true });
 
   for (const d of digests) {
-    const drops = dropsOf(rootDir, d.day);
-    const published = isoDate(d.day, drops.published);
-    const modified = isoDate(d.day, drops.modified);
+    const published = isoDate(d.day, d.published);
+    const modified = isoDate(d.day, d.modified);
     const body = `
       <nav class="crumbs"><a href="index.html">&larr; all days</a></nav>
       <main>
@@ -186,9 +191,13 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
     ),
   );
 
+  // lastmod is what a crawler polls to decide on a recrawl, so it has to move
+  // when the evening rewrite moves the page. The index is rebuilt from the
+  // newest day's description, so it changes on that day's drops.
+  const lastmodOf = (d: { day: string; modified: Drop }): string => isoDate(d.day, d.modified);
   const urls = [
-    { loc: `${BASE_URL}/`, lastmod: days[0] },
-    ...days.map((d) => ({ loc: `${BASE_URL}/${d}.html`, lastmod: d })),
+    { loc: `${BASE_URL}/`, lastmod: newest ? lastmodOf(newest) : "" },
+    ...digests.map((d) => ({ loc: `${BASE_URL}/${d.day}.html`, lastmod: lastmodOf(d) })),
   ];
   writeFileSync(
     join(outDir, "sitemap.xml"),
@@ -213,7 +222,7 @@ ${digests
 <link>${BASE_URL}/${d.day}.html</link>
 <guid>${BASE_URL}/${d.day}.html</guid>
 <description>${escapeHtml(d.description)}</description>
-<pubDate>${feedDate(d.day)}</pubDate>
+<pubDate>${feedDate(d.day, d.published)}</pubDate>
 </item>`,
   )
   .join("\n")}
