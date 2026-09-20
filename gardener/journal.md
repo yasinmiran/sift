@@ -152,11 +152,14 @@ merges and closures and never expire.
   gardener/2026-09-15-author-name,
   gardener/2026-09-16-hn-self-post-url,
   gardener/2026-09-17-htmltotext-drop-style,
-  gardener/2026-09-18-structured-data-drop-times and
-  gardener/2026-09-19-sitemap-lastmod-drop are all merged and all
+  gardener/2026-09-18-structured-data-drop-times,
+  gardener/2026-09-19-sitemap-lastmod-drop and
+  gardener/2026-09-20-verify-carried-over are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Sixteen now; it grows by one every shipping run.
+  Seventeen now; it grows by one every shipping run. On 09-20 the delete
+  did not even reach the proxy — the environment's own guard refused the
+  command — so there are now two walls in front of it, not one.
 - Seven enabled sources produced **zero items in the whole 32-day archive**:
   karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
   web-dev, normal-technology. Not failures — today's ingest logged
@@ -221,6 +224,89 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-20
+
+Shipped. What: the verifier names a carried-over story instead of calling it a
+possible typo (#182, PR #183, merged 0dcb47e). Why: `verify.ts` cross-checks
+every digest link against **that day's** items and warns on the rest with
+"link not found in the day's items (primary source or typo?)". The message
+offers two readings and there is a third it could not see — a story sift
+ingested on an earlier day and linked again today, as a follow-up or because
+the evening rewrite reached back.
+
+Across the 32-day archive that is 10 of the 52 such warnings, every one a url
+sitting in another day's `data/items/`: 09-04's `path-to-astra` (ingested
+09-02), 09-07's stratechery Brockman interview (09-04), 09-08's `an-alien-mind`
+(09-06), two techmeme permalinks on 09-12 (09-11), one each on 09-16 (09-15)
+and 09-18 (09-17), and three theverge/404media links in today's own digest
+(09-19). Eight resolve one day back, one at two, one at three; widening the
+lookback to thirty days finds no eleventh, which is what made 7 —
+`SEEN_DAYS`, the pipeline's own dedup horizon — the honest window rather than
+a number picked to fit. It is imported from `state.ts` rather than copied, so
+the two cannot drift.
+
+This is the 09-06 lesson landing a second time, and it is worth being exact
+about how. Yesterday's entry wrote the warnings off as "the familiar editorial
+ones (techmeme primary-source pairs that are also `already digested`)" — the
+same phrase the five entries before 09-06 used about the hn permalinks, and
+the same mistake: a label inherited instead of re-derived. Nine of the ten
+print `already digested on …` right beside the first warning, so the pair
+reads as one signal contradicting itself, and *that contradiction was visible
+in every one of those entries*. What made today different was asking the data
+whether the url existed anywhere in the archive rather than reading last run's
+sentence about it. The tenth case, 09-07's stratechery interview, was never
+digested before and had no pair to hide behind; it had been sitting alone in
+the output for thirteen days.
+
+No gate relaxed, and that was the line to hold: the warning count is
+unchanged, nothing is silenced, and the 42 warnings that are genuinely outside
+the archive keep the old wording verbatim — 09-18's gov.ca.gov, about.fb.com
+and huawei.com among them. The tempting version of this change was to treat a
+url found in the archive as known and drop the warning; that would have been
+relaxing a gate to make output prettier, and a digest reaching three days back
+for a story is still something the editor should see.
+
+Cost named rather than waved at: only a day with an unexplained link opens the
+archive, and the guard is explicit. `npm run verify` on 09-20 goes 650ms to
+677ms over three runs each; on 09-19, which has no unknown links, the files
+are never read and the time does not move.
+
+195 tests from 192, typecheck silent, 33 pages, verify clean across
+09-14..09-20. All three new assertions fail against the unfixed source, checked
+by stashing the two source files and running them. 89 insertions, 4 deletions,
+3 files, no new dependency. Nothing visual moves, so no screenshots — the
+verifier is not part of the build.
+
+Copilot posted at 2m02s: 🟢 approval recommended, zero findings, "review
+effort: Lite" — fifth run running. checks green in 18s, merged rebase, pages
+run 258 green in 81s. As always, "deployed" means the workflow went green, not
+that the site was read back: sift.yasint.dev and goatcounter are both still
+unreachable from here.
+
+#112, unchanged for the twenty-first day and today the worst of them. The
+`15 3` cron had still not fired at 08:20, **+5h05 and counting** — every
+previous day in the streak had landed by now, yesterday's at 07:59 (+4h44).
+The morning digest forced its own `workflow_dispatch` ingest at 04:36 and
+pages went green at 04:46, the sixth morning running the workaround has held.
+No new comment: 09-14's already describes this state and a worse number is not
+a different failure.
+
+goatcounter and sift.yasint.dev both refused at CONNECT again, probed not
+assumed: twenty-second run with no reader signal and no post-deploy look at
+the live site. Branch deletion was not attempted this run — the environment's
+own guard stopped the command before it reached the proxy, which is a
+different wall than the sideband disconnect every previous shipping run hit,
+but the same outcome. Seventeen merged gardener branches on the remote now,
+counted from `git ls-remote`.
+
+Commit trailers: none, third run running, per the contract's "nothing in any
+commit, PR, or issue names an AI or agent as the author". PR body footer
+stripped (the harness appended one); the issue body had none, matching 09-19,
+so that now looks like the rule rather than a one-off.
+
+Outcome: #182 filed and closed by #183, merged and deployed. #110, #112 and
+#120 all still pending — #120 since 09-03, seventeen days.
 
 ### 2026-09-19
 
