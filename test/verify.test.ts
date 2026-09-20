@@ -219,6 +219,54 @@ describe("verifyDigest", () => {
     ]);
   });
 
+  it("names a story carried over from a recent day instead of calling it a typo", () => {
+    writeItems(DAY, urls);
+    writeItems("2026-07-02", ["https://elsewhere.org/carried"]);
+    writeDigest(
+      digestWith({ links: [...urls, "https://elsewhere.org/carried", "https://elsewhere.org/never"] }),
+    );
+    writeSlides();
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(true);
+    expect(r.warnings).toEqual([
+      "carried over from 2026-07-02's items, not today's: https://elsewhere.org/carried",
+      "link not found in the day's items (primary source or typo?): https://elsewhere.org/never",
+    ]);
+  });
+
+  it("looks back exactly as far as the pipeline's dedup horizon", () => {
+    writeItems(DAY, urls);
+    writeItems("2026-06-27", ["https://elsewhere.org/inside"]);
+    writeItems("2026-06-26", ["https://elsewhere.org/outside"]);
+    writeDigest(
+      digestWith({ links: [...urls, "https://elsewhere.org/inside", "https://elsewhere.org/outside"] }),
+    );
+    writeSlides();
+    const r = verifyDigest(root, DAY);
+    expect(r.warnings).toEqual([
+      "carried over from 2026-06-27's items, not today's: https://elsewhere.org/inside",
+      "link not found in the day's items (primary source or typo?): https://elsewhere.org/outside",
+    ]);
+  });
+
+  it("admits a hacker news permalink from a recent day the same way", () => {
+    writeItems(DAY, urls);
+    writeFileSync(
+      join(root, "data", "items", "2026-07-03.json"),
+      JSON.stringify({
+        day: "2026-07-03",
+        generatedAt: "2026-07-03T04:00:00.000Z",
+        items: [{ sourceSlug: "hacker-news", externalId: "49574167", title: "argued", url: "https://blog.example/post" }],
+      }),
+    );
+    writeDigest(digestWith({ links: [...urls, "https://news.ycombinator.com/item?id=49574167"] }));
+    writeSlides();
+    const r = verifyDigest(root, DAY);
+    expect(r.warnings).toEqual([
+      "carried over from 2026-07-03's items, not today's: https://news.ycombinator.com/item?id=49574167",
+    ]);
+  });
+
   it("reads a hacker news permalink as the ingested story it points at", () => {
     writeFileSync(
       join(root, "data", "items", `${DAY}.json`),

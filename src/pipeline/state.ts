@@ -20,7 +20,9 @@ export interface IngestState {
 }
 
 // The dedup horizon: an item reappearing within this many days is skipped.
-const SEEN_DAYS = 7;
+// verify.ts reads it too, to tell a story carried over from a recent day
+// apart from a url that was never ingested at all.
+export const SEEN_DAYS = 7;
 
 export const itemKey = (i: { sourceSlug: string; externalId: string }): string =>
   `${i.sourceSlug}:${i.externalId}`;

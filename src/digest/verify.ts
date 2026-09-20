@@ -1,7 +1,8 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { today } from "../day";
+import { daysBefore, today } from "../day";
 import { readPicks } from "../pipeline/picks";
+import { SEEN_DAYS } from "../pipeline/state";
 import { readHashtagPool, readSlidePosts } from "../slides/data";
 import { parseFrontmatter } from "./frontmatter";
 
@@ -33,6 +34,33 @@ const hnPermalinks = (items: DayItem[]): string[] =>
   items
     .filter((i) => i.sourceSlug === "hacker-news" && /^\d+$/.test(i.externalId ?? ""))
     .map((i) => `${HN_PERMALINK}${i.externalId}`);
+
+// A digest links stories from the day's items, but not only: a follow-up, or
+// an evening rewrite reaching back, can carry yesterday's story into today's
+// prose. That url is in no items file of this day and is not a typo either,
+// so the archive is asked before the warning is written. SEEN_DAYS is the
+// pipeline's own dedup horizon (state.ts) — an item cannot re-enter a later
+// day inside it — which makes it the window where "sift has this story"
+// still means something. Maps a url to the most recent day that ingested it.
+function carriedOver(rootDir: string, day: string): Map<string, string> {
+  const ingested = new Map<string, string>();
+  for (let n = SEEN_DAYS; n >= 1; n--) {
+    const past = daysBefore(day, n);
+    const path = join(rootDir, "data", "items", `${past}.json`);
+    if (!existsSync(path)) continue;
+    let items: DayItem[];
+    try {
+      items = JSON.parse(readFileSync(path, "utf8")).items as DayItem[];
+      if (!Array.isArray(items)) continue;
+    } catch {
+      continue; // an unreadable past day is that day's verify run to report
+    }
+    for (const url of [...items.map((i) => i.url).filter(Boolean), ...hnPermalinks(items)]) {
+      ingested.set(normalize(url!), past);
+    }
+  }
+  return ingested;
+}
 
 // Checks a written digest against the digest contract in AGENTS.md: errors
 // break the site or the archive and must be fixed; warnings need judgment
@@ -124,9 +152,16 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
         if (seen) seen.count += 1;
         else unknown.set(key, { url, count: 1 });
       }
-      for (const { url, count } of unknown.values()) {
+      // Only a day with something unexplained pays for reading the archive.
+      const carried = unknown.size > 0 ? carriedOver(rootDir, day) : new Map<string, string>();
+      for (const [key, { url, count }] of unknown) {
         const times = count > 1 ? ` (linked ${count}x)` : "";
-        warnings.push(`link not found in the day's items (primary source or typo?): ${url}${times}`);
+        const from = carried.get(key);
+        warnings.push(
+          from
+            ? `carried over from ${from}'s items, not today's: ${url}${times}`
+            : `link not found in the day's items (primary source or typo?): ${url}${times}`,
+        );
       }
     }
   }
