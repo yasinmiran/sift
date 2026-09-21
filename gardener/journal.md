@@ -55,6 +55,21 @@ merges and closures and never expire.
 
 ## Backlog
 
+- Left out of #187 deliberately, recorded so a later run does not re-file it
+  as an oversight: a feed sending an empty `<content>` beside a real
+  `<summary>` still stores nothing. rss-parser hands an empty content element
+  back as the string `<div type="html"/>` rather than as absent, so no `??`
+  chain can see past it — the guard would have to sit on the text after
+  `htmlToText`. Probed, not assumed. No enabled source is known to do this, so
+  it is a hypothesis with no case behind it; fold it in only if an empty body
+  ever shows up from a feed that has a summary.
+- Four sources still hold empty content after #187 and the cause is unproven
+  for every one of them, because their feeds are what this environment cannot
+  fetch (403 at CONNECT): huggingface-blog 17/17, fireship 10/10,
+  deepmind-blog 6/10, stackoverflow-blog 2/18. fireship is a youtube feed,
+  which carries its body in `media:group` and not `summary`, so that one is
+  very likely a different cause. Recorded for a run with egress, and NOT as a
+  recipe.
 - A title is the one ingested field with no whitespace normalization. Author got
   it on 09-15 (`authorName` collapses and trims), content has always had it
   (`htmlToText` ends in `.replace(/\s+/g, " ").trim()`), and the rss adapter
@@ -153,13 +168,15 @@ merges and closures and never expire.
   gardener/2026-09-16-hn-self-post-url,
   gardener/2026-09-17-htmltotext-drop-style,
   gardener/2026-09-18-structured-data-drop-times,
-  gardener/2026-09-19-sitemap-lastmod-drop and
-  gardener/2026-09-20-verify-carried-over are all merged and all
+  gardener/2026-09-19-sitemap-lastmod-drop,
+  gardener/2026-09-20-verify-carried-over and
+  gardener/2026-09-21-atom-summary-content are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Seventeen now; it grows by one every shipping run. On 09-20 the delete
-  did not even reach the proxy — the environment's own guard refused the
-  command — so there are now two walls in front of it, not one.
+  Eighteen now; it grows by one every shipping run. Since 09-20 the delete
+  does not even reach the proxy — the environment's own guard refuses the
+  command — so there are two walls in front of it, not one, and 09-21 hit
+  the same one.
 - Seven enabled sources produced **zero items in the whole 32-day archive**:
   karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
   web-dev, normal-technology. Not failures — today's ingest logged
@@ -224,6 +241,105 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-21
+
+Shipped. What: an atom feed that puts its body in `<summary>` is no longer
+ingested with nothing (#186, PR #187, merged b5339db). Why: the rss adapter's
+content chain read `content:encoded`, then `content`, then `contentSnippet`.
+Atom has a fourth place to put a body and rss-parser surfaces it as
+`item.summary`, which the chain never asked for. `contentSnippet` could not
+have covered the gap either — rss-parser derives it from `content`, so it is
+absent in exactly the case where it would be needed.
+
+The signal came out of a shape scan of the whole archive rather than a
+warning: five rss sources hold empty content, and simon-willison holds
+nothing else — **90 of 90 items, 100%**. The proof was already in the repo.
+`test/fixtures/rss/simonwillison.xml` is that feed: 30 entries, 30
+`<summary type="html">`, zero `<content>`. Parsed through the old chain all
+30 come out at length 0; read from `summary` all 30 have a body, median 785
+characters, mean 1,614, max 10,147. Ordinary next to the archive's
+330-character median and 411KB maximum, and about 145KB a month against
+data/items' 11MB.
+
+The part worth remembering is the second-order cost, which is what turned
+this from a tidy-up into a fix. `isPromotional` scans the body's opening line
+for a sponsorship tag and `isPaywalled` scans it for a subscriber-only stub.
+On those 90 items both filters ran on the title and url alone — an empty
+content field is not just less for the digest agent to read, it is two
+guards silently running at half strength.
+
+Two things left out and named in the PR so a later run does not re-file them
+as oversights. A feed sending an empty `<content>` beside a real `<summary>`
+still stores nothing: rss-parser hands an empty content element back as the
+string `<div type="html"/>`, not as absent, so no `??` chain can see past it
+and the guard would have to sit on the text after `htmlToText`. Probed, not
+assumed — and no source is known to do this. And the other four empty-content
+sources (huggingface-blog 17/17, fireship 10/10, deepmind-blog 6/10,
+stackoverflow-blog 2/18) are measured but unclaimed, because the feeds are
+exactly what this environment cannot fetch. fireship is a youtube feed, which
+carries its body in `media:group` rather than `summary`, so that one is
+probably a different cause entirely.
+
+A near-miss worth writing down. The first version of the new test asserted
+`!content.includes("<")`, copied straight from the lobsters test two functions
+up. It failed — and the failure was right. This author writes about markup, so
+`<iframe>`, `<system>` and `<meta http-equiv=...>` arrive escaped and decode to
+literal prose the digest agent should get. The assertion was mine and wrong, not
+the code's; it is now a check that the actual tags (`<blockquote`, `<p>`) are
+gone plus one that `<iframe>` survives as text. The lesson generalizes the 09-06
+one: an assertion inherited from the test above it is as unexamined as a label
+inherited from the entry above it.
+
+197 tests from 195, typecheck silent, 33 pages, verify `ok: true` across
+09-15..09-21. The first new assertion fails against the unfixed source, checked
+by stashing rss.ts and running it; the second passes either way and is there to
+pin the precedence, which the PR says rather than dressing it up as a second
+regression test. 39 insertions, 1 deletion, 2 files, no new dependency. Nothing
+visual moves — this is the ingest path and the site build reads `digests/` — so
+no screenshots.
+
+One thing this change cannot show yet: no ingest has run since the merge, so
+the first simon-willison item with a body will appear in tomorrow's
+data/items/. Worth a look next run to confirm the fix lands on live feeds and
+not only on the fixture.
+
+A dead end retired on the way, which is the cheaper half of the day. The
+archive's literal named entities in content (`S&eacute;bastien`, `&euro;28M`,
+`RT&Eacute;`) looked like a live bug: 60 occurrences, 38 of them techmeme.
+They are not. The last one is 09-12 and there are nine clean days since across
+~330 techmeme items, because 09-13's CDATA fix is exactly what stopped them —
+before it, `sanitizeMarkup` reached inside CDATA and turned `&pound;` into
+`&amp;pound;`, which cheerio then decoded back to the literal. Reproduced the
+old behaviour through the adapter to be sure rather than reading the comment
+that claims it. So: sift's own bug, already fixed, and the data now confirms
+the fix held.
+
+Copilot posted at 1m59s: 🟢 approval recommended, zero findings, "review
+effort: Lite" — sixth run running. checks green in 18s, merged rebase, pages
+run 261 green in 111s. As always, "deployed" means the workflow went green:
+sift.yasint.dev and goatcounter are both still 403 at CONNECT from here,
+probed not assumed, twenty-third run with no reader signal and no post-deploy
+look at the live site.
+
+#112, unchanged for the twenty-second day and again the worst of them. The
+`15 3` cron had still not fired at 08:23, **+5h08**, past yesterday's +5h05.
+The morning digest forced its own `workflow_dispatch` ingest at 04:35 and
+pages went green at 04:46, the seventh morning running the workaround has
+held. No new comment: 09-14's already describes this state and a worse number
+is still not a different failure.
+
+Branch deletion refused by the environment's own guard again, the same wall as
+09-20 rather than the sideband disconnect before it. Eighteen merged gardener
+branches on the remote now.
+
+Commit trailers: none, fourth run running, per the contract's "nothing in any
+commit, PR, or issue names an AI or agent as the author". PR body footer
+stripped (the harness appended one); the issue body had none, third run
+running, so that is the rule now rather than a one-off.
+
+Outcome: #186 filed and closed by #187, merged and deployed. #110, #112 and
+#120 all still pending — #120 since 09-03, eighteen days.
 
 ### 2026-09-20
 
