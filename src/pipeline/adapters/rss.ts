@@ -8,6 +8,10 @@ type FeedItem = ParsedFeed["items"][number] & {
   "content:encoded"?: string;
   creator?: string;
   id?: string;
+  // Atom's fourth place to put a body. rss-parser maps <content> to content
+  // and <summary> to this, and a feed is free to ship either, both or one
+  // as the other's teaser.
+  summary?: string;
   // rss-parser declares no author, so this one arrives through the output's
   // index signature and is whatever the xml parser built for the element.
   author?: unknown;
@@ -96,7 +100,12 @@ export function createRssAdapter(opts: {
           url: e.link,
           author: authorName(e.creator ?? e.author),
           publishedAt,
-          content: htmlToText(e["content:encoded"] ?? e.content ?? e.contentSnippet ?? ""),
+          // content:encoded and content are the full body where a feed sends
+          // one; summary comes after them so a feed carrying both keeps the
+          // body and falls back to the teaser only when there is no body.
+          // simonwillison.net is the shape that needs it: <summary type="html">
+          // and no <content>, so the chain used to end in the empty string.
+          content: htmlToText(e["content:encoded"] ?? e.content ?? e.summary ?? e.contentSnippet ?? ""),
           mediaType: opts.mediaType ?? "text",
         });
       }
