@@ -1,6 +1,6 @@
 {
   "day": "2026-09-21",
-  "generatedAt": "2026-09-21T16:36:56.859Z",
+  "generatedAt": "2026-09-21T20:08:06.419Z",
   "items": [
     {
       "sourceSlug": "alphasignal",
@@ -2232,6 +2232,34 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/expanding-openai-academy-with-new-learning-paths",
+      "title": "Expanding OpenAI Academy with new learning paths",
+      "url": "https://openai.com/index/expanding-openai-academy-with-new-learning-paths",
+      "author": null,
+      "publishedAt": "2026-09-21T07:00:00.000Z",
+      "content": "Explore new OpenAI Academy learning paths for employees, developers, leaders, educators, and students to build and demonstrate practical AI skills.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "project-zero",
+      "externalId": "https://projectzero.google/2026/09/windows-dangling-com",
+      "title": "Windows Exploitation Techniques: Dangling COM Object Registrations",
+      "url": "https://projectzero.google/2026/09/windows-dangling-com.html",
+      "author": "James Forshaw",
+      "publishedAt": "2026-09-21T07:00:00.000Z",
+      "content": "This short blog post is about abusing a privilege escalation bug that Microsoft recently fixed in Windows, CVE-2026-66804, that I and 14 others reported. This issue is an incomplete fix for CVE-2026-50343, a bug dubbed “Dark Elevator” by Calif. The root cause of the bug was a dangling COM object registration for the CrossDevice COM object with the CLSID {E9F83CF2-E0C0-4CA7-AF01-E90C70BEF496}. A COM registration typically needs two parts: a server executable, which for in-process components is a DLL and a CLSID entry under the HKEY_CLASSES_ROOT registry key which points to that DLL. This object was registered in the system wide classes key, meaning it was accessible to all users on the system, including system services. However the server executable was missing. Specifically it was registered to use the DLL %PROGRAMDATA%\\CrossDevice\\CrossDevice.Streaming.Source.dll. Not only does this path not exist, it’s also within the C:\\ProgramData directory. This is a common location for all users on the system and therefore permits anyone to create directories. Therefore you can create an arbitrary DLL file at that location and the COM object can be instantiated potentially leading to privilege escalation. But how to get the COM object, and thus the DLL, loaded into a privileged process? The fixed bug Calif blogged about, CVE-2026-50343, abused a weak registry key permissions to add the class as a installer plugin and then get the InstallService to load it into memory. The issue with the InstallService was fixed, so we need an alternative way to abuse the unfixed dangling COM reference. Abuse Custom COM Marshaling, Again A technique I’ve used multiple times in the past to load an arbitrary DLL into a privileged process is to abuse custom COM marshaling. When you call an interface method which is implemented out-of-process, the COM runtime will marshal the parameters into an RPC call to send to the server. If a parameter is a COM object then the runtime marshals that object into an OBJREF structure that allows the object to be used in the server. The two main types of OBJREFs are shown in the diagram below, or you can read about them in the official DCOM documentation here: The default COM marshaling strategy is by reference which produces a Standard OBJREF containing all the information needed to connect to the original object. The object might even be on a completely different computer. When the object is unmarshaled this information is used to create an RPC channel back to the caller so that the server can call methods on the object. The runtime also supports an opt-in marshal by value mechanism if the object implements the IMarshal interface. This allows the object to specify an arbitrary CLSID to use as the unmarshaling object, which doesn’t have to be the same as the object being passed in. When the object is unmarshaled in the server the CLSID is used to lookup an in-process server DLL to load. Therefore an obvious technique to exploit the dangling COM object registration is to send a Custom OBJREF to a privileged COM service specifying the CLSID of the dangling object. When unmarshaled, which happens automatically in the runtime before the target method is called, the malicious DLL will be loaded and we’d get privilege escalation. The following code shows how trivial it is to specify the dangling COM class in an IMarshal implementation: class FakeMarshal : public IMarshal { // Inherited via IMarshal HRESULT GetUnmarshalClass(REFIID riid, void* pv, DWORD dwDestContext, void* pvDestContext, DWORD mshlflags, CLSID* pCid) override { return CLSIDFromString(L\"{E9F83CF2-E0C0-4CA7-AF01-E90C70BEF496}\", pCid); } // ... }; We need to find a privileged service to send the marshaled COM object to become an administrator. Unfortunately, finding such a service isn’t so simple. The fact that a custom marshaling object will cause an arbitrary DLL to be loaded into the process and code executed is a risky operation, especially across privilege boundaries. Therefore Microsoft implemented a mitigation which can be enabled to disable custom marshaling in the process unless the class is explicitly opted in, or is one of a small number of trusted components such as classes in the runtime library. Since Windows 8 this mitigation is implemented through two mechanisms, the first and original method is setting the EOAC_NO_CUSTOM_MARSHAL capabilities flag when calling CoInitializeSecurity. The second, added to improve security in AppContainer sandboxes is set through the IGlobalOptions::Set method and specifying the COMGLB_UNMARSHALING_POLICY property type. As we’re not trying to escape from a sandbox the only value of importance is COMGLB_UNMARSHALING_POLICY_STRONG which disables custom marshaling similar to the capabilities flag. As the dangling COM object isn’t registered as a trusted marshaler this means we need to find a privileged COM server that doesn’t enable these mitigations. The easiest approach is to scan the processes at runtime. The capability flags are stored in the value combase!gCapabilities while the marshaling policy is stored in combase!g_GLBOPT_UnmarshalingPolicy. However, I kept thinking there must be a COM service that runs as SYSTEM and doesn’t enable custom marshaling. After a bit of fiddling I found one, although there’s no doubt others. It turned out to be a COM service I’ve researched and exploited before, the Shell Create Object Handler object. This is an interesting COM object, in that while it runs in a SYSTEM service, it’s not directly instantiable: PS> $cls = Get-ComClass -Clsid 135fd325-45b7-4c30-89f8-4386961669f0 PS> $o = New-ComObject -Class $cls Exception calling \"CreateInstanceAsObject\" with \"3\" argument(s): \"Class not registered\" PS> $cls.AppIdEntry | Select Name, RunAs, IsService Name RunAs IsService ---- ----- --------- Shell Create Object Handler nt authority\\system False Normally, when a COM object is hosted by a privileged service, it’s registered with the name of a system service that RPCSS will start automatically when the object class is requested. However, in this case as there’s no service,creating the object fails with a “Class not registered” error. In order to create the COM server, the service needs to already be running as the SYSTEM user before you call CoCreateInstance. Instead you have to start the privileged server via the \\Microsoft\\Windows\\Shell\\CreateObjectTask scheduled task. Fortunately this task can be started by normal users, which you can verify with my Get-AccessibleScheduledTask command: PS> Get-AccessibleScheduledTask -Executable | ? Name -Match Shell\\\\CreateObjectTask TokenId Access Name ------- ------ ---- 77E3156D GenericExecute|GenericRead ...\\Shell\\CreateObjectTask Of course just starting this task is not enough, you also need to create a global named event, ShellCreateObjectTaskReadyEvent otherwise the task will immediately exit and not export the COM service. A simple script to create an instance is shown below: PS> $ev = New-NtEvent -Win32Path \"Global\\ShellCreateObjectTaskReadyEvent\" -InitialState $false PS> Start-ScheduledTask -TaskPath \"\\Microsoft\\Windows\\Shell\\\" -TaskName \"CreateObjectTask\" PS> $ev.Wait() PS> $o = New-ComObject -Clsid \"135fd325-45b7-4c30-89f8-4386961669f0\" PS> $o InterfaceName Iid ------------- --- IUnknown 00000000-0000-0000-c000-000000000046 You can verify that the object is hosted in a privileged process with the Get-ComProcess command and checking the CustomMarshalAllowed property. Note this command is currently broken on Windows 11 25H2 due to changing structures that I’ve not had a chance to update, it still works on previous versions. PS> $objref = Get-ComObjRef -Object $o PS> $p = Get-ComProcess -ProcessId $objref.ProcessId PS> $p | Select Name, User, CustomMarshalAllowed Name User CustomMarshalAllowed ---- ---- -------------------- dllhost NT AUTHORITY\\SYSTEM True At this point we have everything we need to exploit the dangling COM object, we’ve got a COM service running as SYSTEM with custom marshaling allowed. We can use the CoGetInstanceFromIStorage API to create the object, passing the “fake” marshaled object as the pstg parameter. This object will get marshaled to the COM server process and then unmarshaled unconditionally during object activation. We do need to implement a fake IStorage interface to get it past the local API implementation, which isn’t that difficult but I thought I’d see if there’s an easier way. Let’s look at the supported interfaces: PS> Get-ComInterface -Object $o Name IID HasProxy HasTypeLib ---- --- -------- ---------- IUnknown 00000000-0000-... False False IMarshal 00000003-0000-... False False IMarshal2 000001cf-0000-... False False ICreateObject 75121952-e0d0-... True False PS> Get-ComInterface -Name ICreateObject | ConvertTo-ComSourceCode -Parse [ object, uuid(75121952-E0D0-43E5-9380-1D80483ACF72), ] interface ICreateObject : IUnknown { HRESULT Proc3([in] GUID* p0, [in] IUnknown* p1, [in] GUID* p2, [out, iid_is(p2)] IUnknown** p3); } The COM object only has one unique interface, ICreateObject. Converting the interface proxy to IDL shows that it takes an IUnknown pointer as its second parameter. Therefore to exploit the dangling COM registration we can just pass the “fake” marshaled object to this parameter and get privileged code execution. I’ve attached an updated, fully working exploit of the bug to the original issue here. It’s worth noting that while this exploitation technique makes it easy to exploit dangling COM registrations, it can also be used to exploit buggy COM class custom unmarshalers. Sometimes, just the act of loading a DLL into a process can cause a crash. Finding the Original Dangling COM Object Registration As a footnote, a quick way to try and find other dangling COM servers would be to use the following PowerShell script with my OleViewDotNet and NtObjectManager modules installed: function Test-ComServer { param($Server) try { Use-NtObject($lib = Import-Win32Module -Path $Server -Flags AsDataFile) { $true } } catch { $false } } PS> $db = Get-ComDatabase -LoadMode MachineOnly PS> $cs = Get-ComClass -Database $db -ServerType InProcServer32 PS> $cs | ? { -not (Test-ComServer $_.DefaultServer) } | Sort DefaultServer | Select Name, DefaultServer This will print out any in-process COM class from the machine hive where LoadLibrary can’t find the DLL. It’s important to use LoadLibrary via the Import-Win32Module command as some of the COM registrations only specify the file name and you want to ensure these are resolved correctly according to the system path. This script will find the dangling CrossDevice COM class on an unpatched system. Note, you’ll need to manually inspect the paths to see if a DLL can be planted at that location. You could make it smarter by checking if the path is in a directory that can be written to, or even test if an existing DLL can be modified, but that’s an exercise for the reader.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "hacker-news",
       "externalId": "49783999",
       "title": "Kev: Tiny Jev-like family of decision models built on top of Qwen3.5",
@@ -2784,6 +2812,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/building-standards-next-phase-ai",
+      "title": "Building standards for the next phase of AI",
+      "url": "https://openai.com/index/building-standards-next-phase-ai",
+      "author": null,
+      "publishedAt": "2026-09-21T10:00:00.000Z",
+      "content": "OpenAI outlines a path to shared global AI standards, calling for coordinated evaluation, reporting, and governance to improve safety.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "hacker-news",
       "externalId": "49785397",
       "title": "ZuckOff Is a Free App That Sees Meta Glasses Before They See You",
@@ -2846,6 +2888,34 @@
       "content": "Petal, the next step in Meta’s subsea innovation, will be the first subsea cable to deliver petabit capacity at transoceanic distances, connecting France and the United States over approximately 7,000 km (4,300 mi). Expected to enter service in 2029, it will be the first subsea cable system to deploy multi-core fiber technology at scale, doubling the capacity per fiber without a proportional increase in power or physical infrastructure. Petal will be built in partnership with NEC and Sumitomo Electric Industries, with support on the French landing from Orange. Today, we’re announcing Petal, the first transoceanic subsea cable at petabit capacity, and the first to deploy multi-core fiber at scale. Spanning 7,000 km between France and the United States, Petal will deliver 1 Pbps (1 petabit per second or 1,000 terabits per second), doubling what today’s most advanced subsea cables carry at this distance. That’s roughly the network capacity required for 75% of the world’s population to stream music at the same time.* Petal is a key piece of Meta’s subsea cable investments bringing greater capacity, stronger resiliency, and future-proof infrastructure to Europe as demand for communications and reliable connectivity continues to increase. The road to this point has taken years of collaborative engineering with our partners and a complete rethinking of the subsea industry’s approach to cable design. Subsea Capacity Innovation A subsea cable is the least visible, yet one of the most critical layers of the internet. Approximately 99% of intercontinental data traffic – nearly every message, phone, or video call between continents – travels through glass strands on the ocean floor. Since the introduction of the erbium-doped fiber amplifier (EDFA) in the 1980s, there have been several transformational shifts in subsea cable capacity. In the 2010s, coherent optical transmission technology and dispersion-uncompensated cable designs launched the industry into a decade of dramatic fiber capacity increases of 10x and more until the ever-looming Shannon Limit finally pushed back. To overcome this, the industry pivoted to spatial division multiplexing (SDM) to increase the number of fibers within a subsea cable. Meta scaled its subsea cable approach from Marea’s eight fiber pairs, to Amitié’s 16 fiber pairs, and recently to Anjana’s 24 fiber pairs – the first 0.5 Pbps transatlantic cable system. Three innovations could double capacity again: Continue on the conventional path to increase the number of fibers to reach 48 fiber pairs. Expand the optical transmission band by using the L-band, as we did with the PLCN cable, resulting in 24 fiber pair C+L transmission. Adopt a 2-core fiber-based solution. With Petal, we’ve opted for 2-core fiber technology in a 24 fiber-pair system, equivalent to 48 fiber pairs, to make the leap to 1 Pbps at transatlantic distances. This is double Anjana’s capacity and makes Petal the single largest generational increase in cable capacity of any repeatered subsea system, ever. A few of Meta’s cable investments. Our latest cable investment, Petal, will be 5.5x the capacity of Marea, our first transatlantic investment. The Challenges of Engineering a 2-Core Fiber Ecosystem Carrying a petabit through one cable significantly reduces materials, resources, and carbon footprint compared to building two 0.5 Pbps systems. However, transitioning to a 2-core fiber ecosystem comes with challenges that affect the fiber and subsea repeaters. A snapshot of a Sumitomo Electric preform of a multicore fiber strand showing two cores for light propagation. This will be stretched from 2-3 m long and 20 cm wide to 1000s of kilometers long and 125 µm wide, about the diameter of a hair. Fiber: Transitioning From Single to 2-Core Fiber There are two main challenges to enabling 2-core fiber for Petal. First is ensuring low attenuation while maintaining the physical dimensions of the outer fiber, including the 125 μm width. Second is minimizing crosstalk between the cores to maximize optical performance and capacity. The former is achieved by using ultra-pure synthetic silica during the manufacture of the preform. The latter is achieved by carefully controlling for high refractive indexes in the cores against lower indexes within the surrounding medium and counter-propagating the optical signals, resulting in nearly immeasurable crosstalk. 1-core fiber allows the industry to counter-propagate traffic using a pair of fibers. Petal’s 2-core fiber will combine this capacity into one fiber strand. Repeater: Amplifying 96 Fiber Cores in a Single Body Repeater A 7,000 km subsea cable typically needs about a hundred repeaters to amplify the digital signals along the length of the cable. Petal’s single-body 96 amp repeater uses single-core fiber amplification with a Fan-In/Fan-Out (FIFO) interface to transition 2-core fiber into two single-core fibers within each repeater and then back to 2-core fiber following amplification. This design allows Petal to retain the highest efficiency and reliability of single-core amplification with an SDM pump-sharing architecture. FIFO, combined with highly efficient amplification and high-quality, low-loss fiber, will enable Petal to double capacity without a proportional increase to required power. Petal will remain within existing power feeding equipment limits, rated up to 18 kV, which avoids triggering a requalification of the subsea ecosystem necessary at higher equipment voltages. The Partnerships Behind Petal Meta’s vision for Petal wouldn’t be possible without the engineering capabilities of our partners at NEC, Sumitomo Electronic Industries, and Orange. NEC, our turnkey system supplier, engineered and qualified the world’s first petabit transoceanic system around the next generation SDM foundation – cable with 2-core fiber, repeaters, FIFO systems, system powering – and is responsible for manufacturing and installing the final product. NEC has made deep investments in their manufacturing facilities to produce petabit-class SDM repeaters, multicore fiber cable as well as associated technologies. “Achieving petabit-per-second capacity across a transoceanic submarine system represents a major technological milestone in the history of global telecommunications. This achievement reflects NEC’s sustained investment in research and development, combined with decades of experience delivering some of the world’s most advanced, reliable, and secure submarine networks that interconnect the globe,” – Eduardo Mateo, Chief Strategy Officer, Submarine Network Division, NEC Corporation Sumitomo Electric Industries, NEC’s fiber supplier, developed and manufactured the 2-core fiber with ultra low losses and practically immeasurable crosstalk for counterpropagating signals, resulting in optical performance nearly identical to single-core fiber. “We are thrilled that Sumitomo Electric’s innovative submarine multi-core fiber, “2C Z-PLUS ULL Fiber” will contribute to “Petal”, an epoch-making Pb-class transatlantic cable system. As a pioneer with nearly four decades of experience in ultra-low loss submarine fiber manufacturing, we are committed to supporting the global network expansion essential to realizing a highly digital future.” -Takehiko OKADA, General Manager of Optical Fiber & Cable Division, Sumitomo Electric Industries, Ltd. Orange and Meta are working together on plans to land Petal ashore France’s Atlantic coast including the terrestrial interconnection into the European network. “Reaching one petabit on a transatlantic link, 25 years after the terabit milestone, represents a significant breakthrough to meet the exponential traffic growth while optimizing network capacity. This makes us very proud to welcome this new generation petabit subsea cable with dual-core fiber technology in our infrastructure, as the landing party in France. This new project reinforces our commitment with Meta and demonstrates our leading expertise in landing subsea systems, and extending connectivity to other European countries. It underlines our dedication to developing reliable infrastructure that guarantees the security and resilience of the terrestrial segment of those connections.” – Jean-Louis Le Roux, EVP, Orange International Networks New Capacity for a New Era Meta has been one of the world’s largest investors in subsea cable infrastructure, building the digital backbone that connects continents and strengthens the global internet, enabling a future that is for everyone. We’re moving multi-core fiber from experimental to mainstream, making it a practical design for building subsea systems at scale – a shift the entire industry can benefit from. Our aim is to set a new standard for what undersea infrastructure can deliver and invite the ecosystem to invest alongside us. *Calculation based on a total capacity of 1 Pbps with an audio stream bitrate of ~0.16 Mbps (160 kbps) for ≈ 6.25 billion simultaneous streams. The post Inside Petal: Building the World’s First Petabit-Class Transoceanic Subsea Cable appeared first on Engineering at Meta.",
       "topics": [
         "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/advisory-group-on-mathematics-and-ai",
+      "title": "Advisory Group on Mathematics and Artificial Intelligence",
+      "url": "https://openai.com/index/advisory-group-on-mathematics-and-ai",
+      "author": null,
+      "publishedAt": "2026-09-21T12:00:00.000Z",
+      "content": "OpenAI is working with an independent Advisory Group on Mathematics and Artificial Intelligence to guide the review and communication of emerging AI results.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/higgsfield-from-prompt-to-production-with-astra",
+      "title": "Higgsfield AI ships new video features in a day with GPT-6 Astra",
+      "url": "https://openai.com/index/higgsfield-from-prompt-to-production-with-astra",
+      "author": null,
+      "publishedAt": "2026-09-21T12:00:00.000Z",
+      "content": "With GPT-6 Astra, Higgsfield AI makes video ad creation easier for small businesses and brings new creative tools to market faster.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -2920,6 +2990,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49786609",
+      "title": "Ask HN: Is it impossible to disable Siri on macOS 27?",
+      "url": "https://news.ycombinator.com/item?id=49786609",
+      "author": "semidror",
+      "publishedAt": "2026-09-21T12:47:05.000Z",
+      "content": "I disabled Siri in the Settings app, and then further disabled Siri and its extensions in Settings > Screen Time.Next, I disabled all Siri-related and Apple Intelligence-related services as per https://github.com/OleksandrKrupko/mac-os-debloatBut after restarting, I could still see a \"Siri\" process running in Activity Monitor. Upon further inspection, I found that it is the \"Siri AI.app\".These \"features\", together with Apple's Personal Context sound very similar to Microsoft's Recall.Does anyone have the same experience? Is it really impossible to fully turn off Siri, Siri AI, Apple Intelligence and all related services and features on macOS 27?",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 131,
+      "comments": 72
     },
     {
       "sourceSlug": "hacker-news",
@@ -3166,6 +3255,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49787142",
+      "title": "Python Workers are now generally available",
+      "url": "https://blog.cloudflare.com/python-workers-ga/",
+      "author": "torutofu",
+      "publishedAt": "2026-09-21T13:38:19.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 130,
+      "comments": 17
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260921/p32#a260921p32",
       "title": "An interview with Google SVP of Devices Rick Osterloh on Googlebooks, which he calls \"the ultimate focusing move\" for Google, a potential Pixel laptop, and more (David Pierce/The Verge)",
@@ -3323,6 +3431,44 @@
     },
     {
       "sourceSlug": "hacker-news",
+      "externalId": "49787535",
+      "title": "macOS 27: Workaround to avoid downloading AI models and save storage",
+      "url": "https://www.reddit.com/r/MacOSBeta/comments/1vlnf13/workaround_to_avoid_downloading_ai_models_and/",
+      "author": "ano-ther",
+      "publishedAt": "2026-09-21T14:10:49.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 161,
+      "comments": 76
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49787726",
+      "title": "Attention is all you have",
+      "url": "https://alicegg.tech/2026/09/21/attention",
+      "author": "zer0tonin",
+      "publishedAt": "2026-09-21T14:26:56.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 390,
+      "comments": 113
+    },
+    {
+      "sourceSlug": "hacker-news",
       "externalId": "49787767",
       "title": "Meta bans ads for Virginia Woolf play in Spain",
       "url": "https://www.theguardian.com/technology/2026/sep/21/meta-ban-virginia-woolf-a-room-of-ones-own-barcelona-teatre-raval",
@@ -3427,6 +3573,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=998207",
+      "title": "Grab an Xbox controller and a $50 Xbox gift card together for just $80",
+      "url": "https://www.theverge.com/gadgets/998207/xbox-controller-chromebook-usbc-charger-deal-sale",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-09-21T15:13:32.000Z",
+      "content": "Newegg is hosting a bundle that includes Microsoft’s wireless Xbox controller (in black) and a $50 digital Xbox gift card together for $80. Given that this model typically sits around $50 to $60 depending on the color you want, this is a fantastic value since it essentially knocks its price down to $30. Another way of thinking about it is you’re paying full price for the controller, but getting a big discount on the gift card. Xbox Wireless Controller Where to Buy: $80 at Newegg (with $50 gift card) The controller included is a great option for Xbox or for PC. It supports Bluetooth connectivity, and it’s also a solid wireless gamepad to connect to a Steam Deck or any other gaming handheld that can be docked to a TV. While it lacks Hall effect sticks, it’s the best midrange controller from Microsoft yet, with a premium-feeling, comfortable design, a headphone jack, and good battery life (it supports swappable AA batteries). window.HYPE_DESK_CONFIG = { productImageUrl: \"https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/Corsair_Vanguard_96_Hype_Desk_1600x900.jpg\", productImageAlt: \"VANGUARD 96 Mechanical Gaming Keyboard\", productTitle: \"VANGUARD 96 Mechanical Gaming Keyboard\", shortDescription: \"Refresh your setup with the CORSAIR VANGUARD 96 Mechanical Gaming Keyboard, featuring Pacific Blue keycaps, an included Matcha Green keycap set, and a space-saving 96% layout.\", longDescription: \"Give your desk a fresh look with the CORSAIR VANGUARD 96 Mechanical Gaming Keyboard. It comes with Pacific Blue keycaps pre-installed plus a complete Matcha Green keycap set, making it easy to switch up your setup. Its compact 96% design keeps the number pad and arrow keys while packing in CORSAIR MLX Plasma mechanical switches, an integrated color LCD screen, a multifunction rotary dial, hot-swappable switch support, 8,000Hz hyper-polling, and Stream Deck integration. From September 21 through September 27, the complete bundle is available for $129.99, down from $189.99 — a savings of $60.\", purchaseUrl: \"https://go.corsair.com/c/482924/490888/8513?subId1=VergeHypeDesk&subId2=CorsairArticle92126&u=https%3A%2F%2Fwww.corsair.com%2Fus%2Fen%2Fp%2Fbundles%2Fvanguard96-pacificblue-matchagreen-keyboard-keycap-bundle-na%2Fvanguard96-pacificblue-matchagreen-keyboard-keycap-bundle-na&partnerpropertyid=7032191\", purchaseLinkText: \"SHOP AT CORSAIR\" }; Other great Verge-approved deals The Aurzen tri-fold mini projector is an awesome gadget. We said as much in our review, wherein Verge deputy editor Thomas Ricker used it in all sorts of scenarios to put it to the test. Normally $299, the USB-C chargeable projector is $249.99 at Best Buy for the rest of the day. Despite its small size, it’s surprisingly bright, and it easily connect to Android or iPhone so you can get to mirroring your games and other locally-stored content (or stuff that’s streamed via Plex or a similar service). Though, if it’s DRM-protected shows or movies you want to beam on your wall or makeshift surface, you’ll unfortunately need Aurzen’s pricey CastPlay Pro dongle that’s currently $105. I don’t want to jinx our good fortune, but I’ve been finding some appealing laptop deals recently. The latest is Acer’s Chromebook Plus Spin 514, which is one of the best, most well-rounded models available. Sure, it’s no high-end Googlebook, but it’s a pretty solid laptop for $499 at Best Buy (originally $749, the discount expires later today). It has a 14-inch 1200p touchscreen with a foldable 2-in-1 design, and its specs include the MediaTek Kompanio Ultra processor, 12GB RAM, 256GB of SSD storage, Wi-Fi 7 support. Given its Chromebook Plus designation, it includes one year of free access to Google AI Pro, which grants 5TB of cloud storage, YouTube Premium Lite, Google Home Premium, and other perks. The price keeps falling at Amazon on Ugreen’s Nexode Pro multi-port wall charger. Originally $89.99, it has almost never sold for that amount. In fact, it dropped to $49.99 briefly following its debut, and has only dropped to $59.99 — its current price — once before. This is the kind of gadget that anyone who owns multiple USB-C chargeable tech products should have. It tops out at 140W speed when you use just one of its USB-C ports, and it can divvy up 160W of total power across five gadgets that are plugged in at once.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260921/p37#a260921p37",
       "title": "Z.AI open sources its coding harness ZCode and disables certain features after users said ZCode was uploading codebases onto overseas servers without consent (Laurie Chen/Reuters)",
@@ -3439,6 +3599,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49788592",
+      "title": "Good people refuse to do bad things",
+      "url": "https://carette.xyz/posts/good_people_refuse_to_do_bad_things/",
+      "author": "Brajeshwar",
+      "publishedAt": "2026-09-21T15:31:47.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 127,
+      "comments": 127
     },
     {
       "sourceSlug": "techmeme",
@@ -3483,6 +3662,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49788838",
+      "title": "Grok 4.7",
+      "url": "https://x.ai/news/grok-4-7",
+      "author": "meetpateltech",
+      "publishedAt": "2026-09-21T15:50:15.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 365,
+      "comments": 306
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260921/p40#a260921p40",
       "title": "SpaceXAI releases Grok 4.7, which it says is better at verifying its own work and managing longer context, available for $2/1M input and $6/1M output tokens (xAI)",
@@ -3492,6 +3690,20 @@
       "content": "xAI: SpaceXAI releases Grok 4.7, which it says is better at verifying its own work and managing longer context, available for $2/1M input and $6/1M output tokens — SpaceXAI's most powerful model for coding and knowledge work. Twice as fast, at half the price of comparable models.",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/understanding-the-harness-tax-behind-coding-agents",
+      "title": "Understanding the “Harness Tax” Behind Coding Agents",
+      "url": "https://alphasignal.ai/news/understanding-the-harness-tax-behind-coding-agents",
+      "author": "Ben Dickson",
+      "publishedAt": "2026-09-21T16:00:00.000Z",
+      "content": "21 combos, 60 tasks, 5x cost swing, and a 4-tool harness on the Pareto frontier",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -3539,6 +3751,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49789224",
+      "title": "Fable 5 – Median thinking declined in August",
+      "url": "https://twitter.com/Lon/status/2101793422487204027",
+      "author": "espeed",
+      "publishedAt": "2026-09-21T16:13:57.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 254,
+      "comments": 171
+    },
+    {
       "sourceSlug": "ars-technica",
       "externalId": "https://arstechnica.com/tech-policy/2026/09/california-settles-lawsuit-against-paramount-warner-merger-angering-advocates/",
       "title": "California settles lawsuit against Paramount/Warner merger, angering advocates",
@@ -3576,6 +3807,20 @@
       "content": "Alexander Martin / The Record: ShinyHunters hijacked the dark web site of cybercrime gang Cl0p, set an eight-figure extortion demand, describing the amount as “2.333%” of Cl0p's net worth — The ShinyHunters extortion group hijacked the dark web leak site of the prolific Cl0p ransomware gang, according to material posted on the site over the weekend.",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=998317",
+      "title": "Bungie says it’s ‘not done with Destiny’ and will bring back vaulted content",
+      "url": "https://www.theverge.com/news/998317/bungie-destiny-2-unvaulted-raids-campaigns-destinations",
+      "author": "Tom Warren",
+      "publishedAt": "2026-09-21T16:35:59.000Z",
+      "content": "Months after seemingly giving up on Destiny 2, Bungie now says it's planning to restore vaulted content in the game like campaigns, destinations, and raids. The decision reverses the Destiny Content Vault that Bungie created six years ago, controversially removing older content from Destiny 2 that players had paid to access. \"We understand that removing these experiences had a lasting impact on player trust and enjoyment of Destiny,\" admits Bungie. \"We cannot change the decision we made, but we can acknowledge its impact and do the work to make it right by restoring these important parts of Destiny's history.\" All Destiny 2 players will ge … Read the full story at The Verge.",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -4342,6 +4587,787 @@
         "startups-industry"
       ],
       "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/09/trump-planning-to-hand-veto-power-over-nih-grants-to-political-appointee/",
+      "title": "Russel Vought will reportedly be given veto power over all NIH grants",
+      "url": "https://arstechnica.com/science/2026/09/trump-planning-to-hand-veto-power-over-nih-grants-to-political-appointee/",
+      "author": "John Timmer",
+      "publishedAt": "2026-09-21T16:40:26.000Z",
+      "content": "On Friday, The Washington Post reported on a contentious White House meeting in which the director of the National Institutes of Health (NIH), Jay Bhattacharya, tried to fend off yet another effort to place funding decisions under political control. The move came from Russell Vought, head of the Office of Management and Budget (OMB), which has sought to limit and control research funds. The Post suggested that Bhattacharya ended up on the losing side of the fight. This initial leak has been confirmed and expanded on by outlets such as The New York Times and Politico. It now appears that the administration is drafting an executive order that would give Vought veto power over every individual grant awarded by the NIH. If at first you don't succeed The NIH is the largest funder of biomedical research on the planet, and its $47 billion budget is larger than that of the next 10 research funders combined. Its funding, distributed largely through grants to academic researchers at universities, supports everything from basic biological research to clinical trials and has helped the biotechnology industry flourish.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/google/2026/09/google-confirms-gemini-models-hacked-three-companies-in-may-2026/",
+      "title": "Google confirms Gemini models hacked three companies in May 2026",
+      "url": "https://arstechnica.com/google/2026/09/google-confirms-gemini-models-hacked-three-companies-in-may-2026/",
+      "author": "Ryan Whitwam",
+      "publishedAt": "2026-09-21T16:57:26.000Z",
+      "content": "It has become increasingly common for AI firms to announce that their latest and most capable models engaged in unauthorized real-world hacking. Google, which has been slow to release frontier Gemini models in recent months, has been absent from the \"rogue AI\" conversation until now. Following a Wall Street Journal report, Google has confirmed that Gemini models hacked three companies during a May 2026 test, but the nature of the intrusion isn't as troubling (or impressive) as previous AI hacks. The hack took place during a test conducted by cybersecurity firm Irregular. A collection of Gemini models were taking part in a \"capture the flag\" exercise intended to test the AI's cybersecurity capabilities in a closed environment. The AI was instructed to retrieve information from a fake company (which shared a name with a real company) within this environment. Irregular was not supposed to allow the model to operate outside its servers, but due to a misconfiguration, Gemini was able to access the Internet. When Gemini started snooping around the web, it targeted real infrastructure instead of the fakes. For one of the three hacks, Gemini simply guessed passwords until it accessed a company's online services. In the other two instances, Gemini searched public software repositories until it found login credentials for companies that had been accidentally included.Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49789982",
+      "title": "Amazon blocks Meta’s new Muse AI agent from shopping on amazon.com",
+      "url": "https://www.forbes.com/sites/jonmarkman/2026/09/21/amazon-blocks-metas-new-muse-ai-agent-from-shopping-on-amazoncom/",
+      "author": "simianwords",
+      "publishedAt": "2026-09-21T17:00:23.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 123,
+      "comments": 118
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260921/p43#a260921p43",
+      "title": "Intel, AMD, and Arm shares soar on potential CPU demand sparked by the popularity of Meta's Muse; INTC jumps 12%+, AMD is up 8%+, and ARM 15%+ (Adam Clark/Barron's Online)",
+      "url": "https://www.techmeme.com/260921/p43#a260921p43",
+      "author": null,
+      "publishedAt": "2026-09-21T17:00:57.000Z",
+      "content": "Adam Clark / Barron's Online: Intel, AMD, and Arm shares soar on potential CPU demand sparked by the popularity of Meta's Muse; INTC jumps 12%+, AMD is up 8%+, and ARM 15%+ — Advanced Micro Devices' market valuation surpasses $1 trillion for the first time in intraday trading. — Choose Barron's as a preferred source of financial news",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/kyutai-s-voice-of-reason-thinks-while-it-speaks-hitting-77-math-accuracy",
+      "title": "Kyutai's Voice of Reason Thinks While It Speaks, Hitting 77% Math Accuracy",
+      "url": "https://alphasignal.ai/news/kyutai-s-voice-of-reason-thinks-while-it-speaks-hitting-77-math-accuracy",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-21T17:01:39.000Z",
+      "content": "Kyutai's Voice of Reason turns GLM-4-Voice into a speech-native math solver, jumping GSM8K accuracy from 27.3% to 77.1% with no added latency.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-connect-microsoft-teams",
+      "title": "Vercel Connect now supports Microsoft Teams",
+      "url": "https://vercel.com/changelog/vercel-connect-microsoft-teams",
+      "author": "Bhrigu Srivastava",
+      "publishedAt": "2026-09-21T17:10:00.000Z",
+      "content": "now includes a managed connector for . Creating one gives your organization a Teams bot that your apps and agents run. People can @mention it in channels or message it directly, and your code receives the message and replies as the bot.Vercel ConnectMicrosoft TeamsAs a , Vercel registers the Entra app and Azure Bot resource in your tenant, so there's no client secret to store. A tenant administrator with an Azure subscription completes setup once. Incoming Teams activities are verified and forwarded to your project as .Vercel Managed ConnectorConnect triggerCreate a connector from the or :dashboardVercel CLIOnce the connector is set up, your code requests a token only when it needs one. Use it with the SDK, channel or adapter:@vercel/connecteveChat SDKEach token is scoped to what you request and refreshed automatically, so there's nothing to rotate by hand. Connectors only work in the environments you attach them to, and you can revoke access at any time with .vc connect revoke-tokensRead the , view details about the in the Vercel Connect catalog, or to get started.Vercel Connect documentationTeams connectorcreate a Teams connectorRead more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/liquid-ai-s-lfm2-5-tops-mobile-ai-charts-using-half-the-memory",
+      "title": "Liquid AI's LFM2.5 Tops Mobile AI Charts Using Half the Memory",
+      "url": "https://alphasignal.ai/news/liquid-ai-s-lfm2-5-tops-mobile-ai-charts-using-half-the-memory",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-21T17:14:52.000Z",
+      "content": "Liquid AI's LFM2.5 family posts Pareto-frontier scores on Artificial Analysis's new mobile benchmark, matching a top 3B model at 40% less memory.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260921/p44#a260921p44",
+      "title": "Ahead of Sam Altman's UN address, OpenAI urges the US to lead an effort to develop global safety and security standards for building frontier systems (Maria Curi/Axios)",
+      "url": "https://www.techmeme.com/260921/p44#a260921p44",
+      "author": null,
+      "publishedAt": "2026-09-21T17:25:01.000Z",
+      "content": "Maria Curi / Axios: Ahead of Sam Altman's UN address, OpenAI urges the US to lead an effort to develop global safety and security standards for building frontier systems — OpenAI on Monday released international AI safety standards as world leaders, namely the U.S. and China, weigh how to mitigate risk.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49790409",
+      "title": "Turn off and restrict access to Apple Intelligence features on Mac",
+      "url": "https://support.apple.com/guide/mac-help/turn-restrict-access-apple-intelligence-mchlb2e44f94/mac",
+      "author": "alwillis",
+      "publishedAt": "2026-09-21T17:30:21.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 135,
+      "comments": 88
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=998302",
+      "title": "Paramount settles lawsuit blocking $110 billion Warner Bros. merger",
+      "url": "https://www.theverge.com/entertainment/998302/paramount-warner-bros-discovery-merger-settlement",
+      "author": "Emma Roth",
+      "publishedAt": "2026-09-21T17:42:15.000Z",
+      "content": "Paramount has reached a settlement with California and the 11 other states that sued to block its planned $110 billion acquisition of Warner Bros. Discovery. The settlement removes a major roadblock standing in the way of the massive media merger. According to the proposed consent decree filed with the court, it includes requirements like minimum numbers of theatrical film releases over the next five years, starting with 30 in year one and two, and 32 in the following years, and a commitment to spend at least $300 million more on production in the US compared to what the companies spent in 2025. At least four of the films produced must be i … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=998259",
+      "title": "GM can’t ‘bring back’ Apple CarPlay because it never left",
+      "url": "https://www.theverge.com/transportation/998259/gm-apple-carplay-android-auto-phone-mirror-google",
+      "author": "Andrew J. Hawkins",
+      "publishedAt": "2026-09-21T17:47:54.000Z",
+      "content": "Last week, GM announced a new software experience for its upcoming Chevy Silverado and GMC Sierra trucks, including a new look for Apple CarPlay and Android Auto, the popular phone mirroring systems that the automaker made a big deal about removing from its electric vehicles in 2023. Naturally, this led to some confusion about whether GM was \"bringing back\" CarPlay and Android Auto to its vehicles. Yahoo Finance reported it that way, calling it an \"about-face\" by the automaker, while Apple Insider's headline boasted that GM \"cave[d]\" on its decision to remove the interface from its gas-powered vehicles. Even The Verge's own commenters were … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "fireship",
+      "externalId": "yt:video:TbkUKCm3CHQ",
+      "title": "An ex-OpenAI researcher just deleted language from the LLM...",
+      "url": "https://www.youtube.com/watch?v=TbkUKCm3CHQ",
+      "author": "Fireship",
+      "publishedAt": "2026-09-21T17:52:29.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "video"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260921/p45#a260921p45",
+      "title": "OpenAI says automated research could improve alignment, but \"fully autonomous RSI is not happening today\" and shouldn't be pursued unless it can be done safely (OpenAI)",
+      "url": "https://www.techmeme.com/260921/p45#a260921p45",
+      "author": null,
+      "publishedAt": "2026-09-21T18:00:39.000Z",
+      "content": "OpenAI: OpenAI says automated research could improve alignment, but “fully autonomous RSI is not happening today” and shouldn't be pursued unless it can be done safely — Our mission is to ensure that artificial general intelligence benefits all of humanity.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260921/p46#a260921p46",
+      "title": "Source: before the Hugging Face incident, OpenAI was negotiating a legally binding deal with Anthropic for the companies to stress-test each other's models (The Information)",
+      "url": "https://www.techmeme.com/260921/p46#a260921p46",
+      "author": null,
+      "publishedAt": "2026-09-21T18:15:01.000Z",
+      "content": "The Information: Source: before the Hugging Face incident, OpenAI was negotiating a legally binding deal with Anthropic for the companies to stress-test each other's models — OpenAI is rethinking a range of safety strategies as it responds to fears from employees and others about the dangers its AI poses.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260921/p47#a260921p47",
+      "title": "OpenAI says it is working with an independent advisory group of mathematicians to responsibly share math-related AI advances (OpenAI)",
+      "url": "https://www.techmeme.com/260921/p47#a260921p47",
+      "author": null,
+      "publishedAt": "2026-09-21T18:20:02.000Z",
+      "content": "OpenAI: OpenAI says it is working with an independent advisory group of mathematicians to responsibly share math-related AI advances — Loading... On August 28, we began training a new internal model. In addition to resolving the Navier-Stokes Millennium Prize problem, this model has now resolved …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/cognition-s-devin-cloud-lets-developers-ssh-into-ai-coding-sessions",
+      "title": "Cognition's Devin Cloud Lets Developers SSH Into AI Coding Sessions",
+      "url": "https://alphasignal.ai/news/cognition-s-devin-cloud-lets-developers-ssh-into-ai-coding-sessions",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-21T18:34:45.000Z",
+      "content": "Cognition wired Devin Cloud into the CLI with session handoffs and full SSH access to the agent's VM, blurring local and remote work.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/inco-ai-s-splash-runs-qwen3-8-27b-twice-as-fast-on-apple-silicon",
+      "title": "Inco AI's Splash Runs Qwen3.8-27B Twice as Fast on Apple Silicon",
+      "url": "https://alphasignal.ai/news/inco-ai-s-splash-runs-qwen3-8-27b-twice-as-fast-on-apple-silicon",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-21T18:35:21.000Z",
+      "content": "Inco's open-source Splash engine runs Qwen3.8-27B at 74 tok/s on an M5 Pro, hitting 2x oMLX and 3x Ollama on Apple silicon.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260921/p48#a260921p48",
+      "title": "Sensor Tower: Muse was downloaded 902K+ times in the six days after its launch on Sept. 8, vs. Meta AI's 773K in the same post-launch period; META jumps 12%+ (Bloomberg)",
+      "url": "https://www.techmeme.com/260921/p48#a260921p48",
+      "author": null,
+      "publishedAt": "2026-09-21T19:05:00.000Z",
+      "content": "Bloomberg: Sensor Tower: Muse was downloaded 902K+ times in the six days after its launch on Sept. 8, vs. Meta AI's 773K in the same post-launch period; META jumps 12%+ — Meta Platforms Inc.'s new artificial intelligence agent, Muse, has quickly risen to the top of mobile app charts …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260921/p49#a260921p49",
+      "title": "California Gov. Gavin Newsom signs seven bills aimed at regulating data centers, imposing new requirements on electricity costs, water use, and local oversight (Nichola Groom/Reuters)",
+      "url": "https://www.techmeme.com/260921/p49#a260921p49",
+      "author": null,
+      "publishedAt": "2026-09-21T19:20:02.000Z",
+      "content": "Nichola Groom / Reuters: California Gov. Gavin Newsom signs seven bills aimed at regulating data centers, imposing new requirements on electricity costs, water use, and local oversight — California Governor Gavin Newsom on Monday signed seven bills aimed at regulating the fast-growing data center industry …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260921/p50#a260921p50",
+      "title": "Sources: SoftBank's SB Energy has delayed its IPO, originally planned for this month, as investors question the company's sought-after valuation of $50B+ (Maureen Farrell/New York Times)",
+      "url": "https://www.techmeme.com/260921/p50#a260921p50",
+      "author": null,
+      "publishedAt": "2026-09-21T19:50:01.000Z",
+      "content": "Maureen Farrell / New York Times: Sources: SoftBank's SB Energy has delayed its IPO, originally planned for this month, as investors question the company's sought-after valuation of $50B+ — Several companies tied to the data center industry have delayed their initial public offerings amid the increasing public backlash to these energy guzzling facilities.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nextjs-blog",
+      "externalId": "/blog/upcoming-nextjs-security-release-september-22-2026",
+      "title": "Upcoming Next.js Security Update for a Critical Upstream Issue",
+      "url": "https://nextjs.org/blog/upcoming-nextjs-security-release-september-22-2026",
+      "author": "Josh Story",
+      "publishedAt": "2026-09-21T20:00:00.000Z",
+      "content": "Next.js 16.3.6 and 15.5.26 are planned for a critical out-of-band security update on September 22, 2026.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.20886",
+      "title": "BI-Agent and BI-Bench: Towards Automating End-to-End Business Intelligence",
+      "url": "https://huggingface.co/papers/2609.20886",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:51.566Z",
+      "content": "BI-Agent and BI-Bench: Towards Automating End-to-End Business Intelligence",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.21788",
+      "title": "From Pretraining to Proficiency: Real-World Subtask RL for Long-Horizon Manipulation with Minimal Human Intervention",
+      "url": "https://huggingface.co/papers/2609.21788",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:51.566Z",
+      "content": "From Pretraining to Proficiency: Real-World Subtask RL for Long-Horizon Manipulation with Minimal Human Intervention",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.19169",
+      "title": "SiliconBench: Speed, Memory, and Fidelity for LLM Serving on Unified-Memory Desktops",
+      "url": "https://huggingface.co/papers/2609.19169",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:51.566Z",
+      "content": "SiliconBench: Speed, Memory, and Fidelity for LLM Serving on Unified-Memory Desktops",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theglobeandmail.com/canada/article-openai-tumbler-ridge-mass-shooting-bc-lawsuit",
+      "title": "B.C. government sues OpenAI over Tumbler Ridge mass shooting",
+      "url": "https://www.theglobeandmail.com/canada/article-openai-tumbler-ridge-mass-shooting-bc-lawsuit",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.300Z",
+      "content": "B.C. government sues OpenAI over Tumbler Ridge mass shootingtheglobeandmail.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://marginalrevolution.com/marginalrevolution/2026/09/further-results-on-ai-and-labor-market-reallocation.html",
+      "title": "Further results on AI and labor market reallocation",
+      "url": "https://marginalrevolution.com/marginalrevolution/2026/09/further-results-on-ai-and-labor-market-reallocation.html",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.311Z",
+      "content": "Further results on AI and labor market reallocationmarginalrevolution.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://officechai.com/ai/after-amazon-blocks-metas-muse-agent-shopify-says-itll-integrate-muse-to-help-people-shop-on-its-stores",
+      "title": "After Amazon Blocks Meta’s Muse Agent, Shopify Says It’ll Integrate Muse To Help People Shop On Its Stores",
+      "url": "https://officechai.com/ai/after-amazon-blocks-metas-muse-agent-shopify-says-itll-integrate-muse-to-help-people-shop-on-its-stores",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.311Z",
+      "content": "After Amazon Blocks Meta’s Muse Agent, Shopify Says It’ll Integrate Muse To Help People Shop On Its Storesofficechai.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/awilkinson/status/2102088532605223125",
+      "title": "Has your startup \"failed\"? You might be a multi-millionaire. Let me explain: Most \"failed\" sta...",
+      "url": "https://x.com/awilkinson/status/2102088532605223125",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.312Z",
+      "content": "Has your startup \"failed\"? You might be a multi-millionaire. Let me explain: Most \"failed\" sta...x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.tobyord.com/writing/swarm-scaling",
+      "title": "Swarm Scaling — Toby Ord",
+      "url": "https://www.tobyord.com/writing/swarm-scaling",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.312Z",
+      "content": "Swarm Scaling — Toby Ordtobyord.com10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://runtimewire.com/article/cognition-devin-cloud-terminal-ssh",
+      "title": "Cognition brings Devin's cloud VMs into the terminal, SSH included",
+      "url": "https://runtimewire.com/article/cognition-devin-cloud-terminal-ssh",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.314Z",
+      "content": "Cognition brings Devin's cloud VMs into the terminal, SSH includedruntimewire.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://minimaxir.com/2026/09/agentic-iteration",
+      "title": "Writing Rust code that's faster than state-of-the-art libraries by asking agents to make the code faster",
+      "url": "https://minimaxir.com/2026/09/agentic-iteration",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.315Z",
+      "content": "Writing Rust code that's faster than state-of-the-art libraries by asking agents to make the code fasterminimaxir.com24 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.pulumi.com/blog/10-tips-to-improve-your-coding-agent-game",
+      "title": "10 tips to improve your coding agent game | Pulumi Blog",
+      "url": "https://www.pulumi.com/blog/10-tips-to-improve-your-coding-agent-game",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.315Z",
+      "content": "10 tips to improve your coding agent game | Pulumi Blogpulumi.com12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.axios.com/2026/09/21/openai-ai-safety-standards-us-china",
+      "title": "Ahead of Sam Altman's UN address, OpenAI proposes new ways to track AI misalignment risks",
+      "url": "https://www.axios.com/2026/09/21/openai-ai-safety-standards-us-china",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.317Z",
+      "content": "Ahead of Sam Altman's UN address, OpenAI proposes new ways to track AI misalignment risksaxios.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://peps.python.org/pep-0824",
+      "title": "PEP 824: None-coalescing operators",
+      "url": "https://peps.python.org/pep-0824",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.317Z",
+      "content": "PEP 824: None-coalescing operatorspeps.python.org12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://peps.python.org/pep-0823",
+      "title": "PEP 823: None-aware access operators",
+      "url": "https://peps.python.org/pep-0823",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.317Z",
+      "content": "PEP 823: None-aware access operatorspeps.python.org26 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.r6i.it/typesafe-jev-vs-agentic-loop.html",
+      "title": "Typed Judgments or Agentic Loops? Benchmarking Jev Against a GPT Agent",
+      "url": "https://blog.r6i.it/typesafe-jev-vs-agentic-loop.html",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.319Z",
+      "content": "Typed Judgments or Agentic Loops? Benchmarking Jev Against a GPT Agentblog.r6i.it12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://github.com/elevenlabs/skills",
+      "title": "GitHub - elevenlabs/skills: Collections of skills for building with ElevenLabs",
+      "url": "https://github.com/elevenlabs/skills",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.319Z",
+      "content": "GitHub - elevenlabs/skills: Collections of skills for building with ElevenLabsgithub.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://linear.app/now/ci-bottleneck-reworked",
+      "title": "AI coding has made CI a bottleneck, so we reworked ours to keep up",
+      "url": "https://linear.app/now/ci-bottleneck-reworked",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.320Z",
+      "content": "AI coding has made CI a bottleneck, so we reworked ours to keep uplinear.app8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.strangeloopcanon.com/p/the-business-of-building-god",
+      "title": "The Business of Building God",
+      "url": "https://www.strangeloopcanon.com/p/the-business-of-building-god",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.321Z",
+      "content": "The Business of Building Godstrangeloopcanon.com11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://oreillyradar.substack.com/p/the-post-training-process-openai",
+      "title": "The Post-training Process OpenAI Used for ChatGPT",
+      "url": "https://oreillyradar.substack.com/p/the-post-training-process-openai",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.322Z",
+      "content": "The Post-training Process OpenAI Used for ChatGPToreillyradar.substack.com17 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.androidauthority.com/google-gemini-call-for-me-apk-teardown-3713510",
+      "title": "Pixel phones could soon call customer support lines on your behalf",
+      "url": "https://www.androidauthority.com/google-gemini-call-for-me-apk-teardown-3713510",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.322Z",
+      "content": "Pixel phones could soon call customer support lines on your behalfandroidauthority.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/09/21/x-will-now-tell-users-when-governments-have-forced-it-to-limit-their-posts",
+      "title": "X will now tell users when governments have forced it to limit their posts",
+      "url": "https://techcrunch.com/2026/09/21/x-will-now-tell-users-when-governments-have-forced-it-to-limit-their-posts",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.323Z",
+      "content": "X will now tell users when governments have forced it to limit their poststechcrunch.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/09/21/kairos-power-gets-up-to-100m-from-samsung-group-to-build-nuclear-reactor-for-google",
+      "title": "Kairos Power gets up to $100M from Samsung group to build nuclear reactor for Google",
+      "url": "https://techcrunch.com/2026/09/21/kairos-power-gets-up-to-100m-from-samsung-group-to-build-nuclear-reactor-for-google",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.323Z",
+      "content": "Kairos Power gets up to $100M from Samsung group to build nuclear reactor for Googletechcrunch.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.zachleat.com/web/ai-websites",
+      "title": "“AI, make the website good”",
+      "url": "https://www.zachleat.com/web/ai-websites",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.324Z",
+      "content": "“AI, make the website good”zachleat.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thenextweb.com/news/nvidia-sb-energy-pre-ipo-stake",
+      "title": "Nvidia is buying SB Energy stock at 90% of its IPO price",
+      "url": "https://thenextweb.com/news/nvidia-sb-energy-pre-ipo-stake",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.324Z",
+      "content": "Nvidia is buying SB Energy stock at 90% of its IPO pricethenextweb.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.jeffgeerling.com/blog/2026/raspberry-pi-ram-lockdown",
+      "title": "Raspberry Pi locks down Pi 5 RAM upgrades in firmware",
+      "url": "https://www.jeffgeerling.com/blog/2026/raspberry-pi-ram-lockdown",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.324Z",
+      "content": "Raspberry Pi locks down Pi 5 RAM upgrades in firmwarejeffgeerling.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://lapcatsoftware.com/articles/2026/9/5.html",
+      "title": "macOS 26.4 silently enabled login keychain data protection",
+      "url": "https://lapcatsoftware.com/articles/2026/9/5.html",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.325Z",
+      "content": "macOS 26.4 silently enabled login keychain data protectionlapcatsoftware.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://gizmodo.com/traditional-safety-measures-are-unraveling-as-ai-advances-un-panel-warns-2000814893",
+      "title": "Traditional Safety Measures are ‘Unraveling’ as AI Advances, UN Panel Warns",
+      "url": "https://gizmodo.com/traditional-safety-measures-are-unraveling-as-ai-advances-un-panel-warns-2000814893",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.325Z",
+      "content": "Traditional Safety Measures are ‘Unraveling’ as AI Advances, UN Panel Warnsgizmodo.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.ai/news/grok-4-7",
+      "title": "SpaceXAI releases Grok 4.7, which it says is better at verifying its own work and managing longer context, available for $2/1M input and $6/1M output tokens",
+      "url": "https://x.ai/news/grok-4-7",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.326Z",
+      "content": "SpaceXAI releases Grok 4.7, which it says is better at verifying its own work and managing longer context, available for $2/1M input and $6/1M output tokensx.ai2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.infoq.com/news/2026/09/bun-AI-rewrite-zig-rust-4-months",
+      "title": "Bun Rewrites 535K Lines of Zig into Rust in Four Months, Eliminates Numerous Memory Leaks",
+      "url": "https://www.infoq.com/news/2026/09/bun-AI-rewrite-zig-rust-4-months",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.326Z",
+      "content": "Bun Rewrites 535K Lines of Zig into Rust in Four Months, Eliminates Numerous Memory Leaksinfoq.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://therecord.media/google-europe-location-data-fine",
+      "title": "EU data regulator fines Google more than $460 million for location data violations",
+      "url": "https://therecord.media/google-europe-location-data-fine",
+      "author": null,
+      "publishedAt": "2026-09-21T20:07:56.326Z",
+      "content": "EU data regulator fines Google more than $460 million for location data violationstherecord.media2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
       "mediaType": "text"
     }
   ]
