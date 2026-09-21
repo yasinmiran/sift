@@ -26,6 +26,35 @@ test("maps Atom entries with a link/id fallback for externalId", async () => {
   expect(items.every((i) => i.externalId.length > 0)).toBe(true);
 });
 
+test("reads an atom body out of summary when the feed sends no content", async () => {
+  // simonwillison.net ships <summary type="html"> and no <content>, so every
+  // one of its 90 archived items stored an empty string. The fixture is that
+  // feed: 30 entries, 30 summaries, no content element between them.
+  const items = await parse("simon-willison", "simonwillison.xml");
+  expect(items).toHaveLength(30);
+  expect(items.every((i) => i.content.length > 0)).toBe(true);
+  expect(items[0]!.content).toContain("Frontier models are trained at an enormous cost");
+  // The summary is escaped html, so the tags have to be gone -- but not every
+  // angle bracket with them: this author quotes markup, and "<iframe>" inside
+  // a sentence is prose the digest agent should still get.
+  expect(items[0]!.content).not.toContain("<blockquote");
+  expect(items[0]!.content).not.toContain("<p>");
+  expect(items.some((i) => i.content.includes("<iframe>"))).toBe(true);
+});
+
+test("prefers a real body over the summary when a feed carries both", async () => {
+  const feed = `<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom"><title>t</title>
+    <entry><title>t</title><id>e1</id><link href="https://example.com/1" rel="alternate"/>
+    <published>${new Date().toISOString()}</published>
+    <summary type="html">the teaser</summary>
+    <content type="html">the whole post</content></entry>
+  </feed>`;
+  const a = createRssAdapter({ slug: "both", url: "https://x" });
+  if (a.mode !== "body") throw new Error("rss adapter must be body-mode");
+  const items = await a.parse(feed, new Date(0));
+  expect(items[0]!.content).toBe("the whole post");
+});
+
 test("filters entries published before since", async () => {
   const future = await parse("lobsters", "lobsters.xml", new Date("2099-01-01"));
   expect(future).toHaveLength(0);
