@@ -56,10 +56,14 @@ const NON_PROSE = "script, style";
 // between the tags, which is luck rather than handling — ars-technica sends
 // the same footer block on every item and 272 of 275 archived bodies have it
 // fused. Inline elements stay untouched, so "pre<b>fix</b>" is still one word.
+// The set is the html rendering spec's block-level defaults, the deprecated
+// ones included: center and dir still arrive from newsletter templates, and a
+// selector that claims to cover block boundaries has to mean it.
 const BLOCK =
-  "address, article, aside, blockquote, br, dd, details, div, dl, dt, fieldset, " +
-  "figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hr, li, " +
-  "main, nav, ol, p, pre, section, summary, table, tbody, td, tfoot, th, thead, tr, ul";
+  "address, article, aside, blockquote, br, caption, center, dd, details, dialog, " +
+  "dir, div, dl, dt, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, " +
+  "h5, h6, header, hgroup, hr, legend, li, main, menu, nav, ol, p, pre, search, " +
+  "section, summary, table, tbody, td, tfoot, th, thead, tr, ul";
 
 export function htmlToText(html: string): string {
   const $ = cheerio.load(html);

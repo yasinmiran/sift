@@ -25,6 +25,19 @@ test("htmlToText separates blocks a feed sends without whitespace between them",
   expect(htmlToText("<table><tr><td>a</td><td>b</td></tr></table>")).toBe("a b");
 });
 
+test("htmlToText covers the block-level tags no feed here has sent yet", () => {
+  // Each against a bare text sibling, because a listed neighbour supplies the
+  // boundary on its own: <menu>…</menu><p>x</p> spaces correctly whether or
+  // not menu is in the set, which makes it useless as a test of menu.
+  for (const tag of ["menu", "hgroup", "search", "dialog", "legend", "center", "dir"]) {
+    expect(htmlToText(`<${tag}>one</${tag}>two`)).toBe("one two");
+  }
+  // caption is the one that cannot be isolated: the parser drops it outside a
+  // table, and inside one every sibling it has is already in the set. It is in
+  // there for completeness, not because a case here can prove it.
+  expect(htmlToText("<table><caption>Q3</caption><tr><td>a</td></tr></table>")).toBe("Q3 a");
+});
+
 test("htmlToText leaves an inline boundary alone", () => {
   // The separator is for blocks only: an inline element sits inside a word
   // often enough that spacing it would invent whitespace the feed never sent.
