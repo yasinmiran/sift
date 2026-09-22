@@ -49,9 +49,24 @@ export function authorName(value: unknown): string | undefined {
 // inside either element is ever prose, so both go before the text is taken.
 const NON_PROSE = "script, style";
 
+// cheerio's .text() concatenates text nodes with nothing between them, so a
+// block boundary contributes no separator and the collapse below has nothing
+// to collapse: </p><p> stores "…in the event of a collision.Read full
+// article". A feed that pretty-prints its markup survives on the newline
+// between the tags, which is luck rather than handling — ars-technica sends
+// the same footer block on every item and 272 of 275 archived bodies have it
+// fused. Inline elements stay untouched, so "pre<b>fix</b>" is still one word.
+const BLOCK =
+  "address, article, aside, blockquote, br, dd, details, div, dl, dt, fieldset, " +
+  "figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hr, li, " +
+  "main, nav, ol, p, pre, section, summary, table, tbody, td, tfoot, th, thead, tr, ul";
+
 export function htmlToText(html: string): string {
   const $ = cheerio.load(html);
   $(NON_PROSE).remove();
+  // Both sides, because a boundary is a boundary whichever element is missing
+  // its whitespace, and the collapse makes the doubled space free.
+  $(BLOCK).before(" ").after(" ");
   return stripInvisibles($.root().text()).replace(/\s+/g, " ").trim();
 }
 
