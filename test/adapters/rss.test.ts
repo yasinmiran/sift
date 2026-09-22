@@ -128,7 +128,11 @@ test("keeps a newsletter's stylesheet out of the summary", async () => {
         <p>Hey there,</p><p>I hope you&rsquo;ve been doing well!</p>]]></content:encoded>`,
     ),
   );
-  expect(items[0]!.content).toBe("Hey there,I hope you’ve been doing well!");
+  // The two paragraphs are sent with no whitespace between them, so until
+  // htmlToText spaced its block boundaries this read "there,I hope" — the
+  // archive's four issues all store it fused. The assertion this test exists
+  // for is the css, which is absent either way.
+  expect(items[0]!.content).toBe("Hey there, I hope you’ve been doing well!");
 });
 
 test("still sanitizes the markup on both sides of a CDATA section", async () => {

@@ -11,6 +11,27 @@ test("htmlToText strips tags and collapses whitespace", () => {
   expect(htmlToText("<p>Hello   <b>world</b></p>\n<p>x</p>")).toBe("Hello world x");
 });
 
+test("htmlToText separates blocks a feed sends without whitespace between them", () => {
+  // ars-technica's footer block, the shape 272 of 275 archived bodies stored
+  // fused. The test above passes only because its markup has a newline
+  // between the two <p>s; this one is the minified shape that does not.
+  expect(htmlToText("<p>…in the event of a collision.</p><p>Read full article</p>")).toBe(
+    "…in the event of a collision. Read full article",
+  );
+  // A heading or list item ends in a word, so it fuses with nothing to see.
+  expect(htmlToText("<h2>Newsletters</h2><p>Advertise</p>")).toBe("Newsletters Advertise");
+  expect(htmlToText("<ul><li>one</li><li>two</li></ul>")).toBe("one two");
+  expect(htmlToText("<p>line one<br>line two</p>")).toBe("line one line two");
+  expect(htmlToText("<table><tr><td>a</td><td>b</td></tr></table>")).toBe("a b");
+});
+
+test("htmlToText leaves an inline boundary alone", () => {
+  // The separator is for blocks only: an inline element sits inside a word
+  // often enough that spacing it would invent whitespace the feed never sent.
+  expect(htmlToText("<p>pre<b>fix</b>ed</p>")).toBe("prefixed");
+  expect(htmlToText("<p>a <em>b</em> c</p>")).toBe("a b c");
+});
+
 test("htmlToText decodes entities", () => {
   expect(htmlToText("a &amp; b &lt;c&gt;")).toBe("a & b <c>");
 });
