@@ -1,6 +1,6 @@
 {
   "day": "2026-09-22",
-  "generatedAt": "2026-09-22T16:45:47.292Z",
+  "generatedAt": "2026-09-22T19:14:58.250Z",
   "items": [
     {
       "sourceSlug": "simon-willison",
@@ -15,6 +15,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49780622",
+      "title": "MUNI Heritage Weekend in San Francisco",
+      "url": "https://daniel.lawrence.lu/blog/2026-09-20-muni-heritage-weekend/",
+      "author": "plun9",
+      "publishedAt": "2026-09-20T22:13:07.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 119,
+      "comments": 26
     },
     {
       "sourceSlug": "vercel-blog",
@@ -761,6 +780,80 @@
       "content": "We analyzed billions of transactions on Stripe from January 2022 to March 2026 to understand how card fraud patterns differ by region and country, what's driving those differences, and how businesses can respond.",
       "topics": [
         "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/evaleval-aisi",
+      "title": "How UK AISI and EvalEval Are Making Benchmark Results Reproducible",
+      "url": "https://huggingface.co/blog/evaleval-aisi",
+      "author": null,
+      "publishedAt": "2026-09-22T00:00:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/priorities-principles-third-party-assessments",
+      "title": "Priorities and principles for effective third party assessments",
+      "url": "https://openai.com/index/priorities-principles-third-party-assessments",
+      "author": null,
+      "publishedAt": "2026-09-22T00:00:00.000Z",
+      "content": "OpenAI outlines priorities and principles for rigorous, secure, and independent third-party AI safety assessments of frontier models and safeguards.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/gpt-6-sol-and-luna-now-available-on-ai-gateway",
+      "title": "GPT-6 Sol and Luna now available on AI Gateway",
+      "url": "https://vercel.com/changelog/gpt-6-sol-and-luna-now-available-on-ai-gateway",
+      "author": "Zachary Chen",
+      "publishedAt": "2026-09-22T00:00:00.000Z",
+      "content": "and from are now available on .GPT-6 SolGPT-6 LunaOpenAIAI Gateway Both models bring GPT-6 improvements in professional work, coding, computer use, factuality, and communication at a lower price than .GPT-6 Astra Both Sol and Luna communicate more directly than their GPT-5.6 counterparts, with less jargon and fewer low-value details. They also improve factual reliability and are less likely to make misleading claims about work completed during coding tasks. Use and across the , , , and connected to AI Gateway.openai/gpt-6-solopenai/gpt-6-lunaAI SDKOpenAI-compatible Chat Completions APIOpenAI-compatible Responses APIcoding agents Install the latest and connect your supported to AI Gateway:Vercel CLIcoding agents Then select for longer or more demanding coding work, or when throughput is the priority.openai/gpt-6-solopenai/gpt-6-luna AI Gateway provides a unified API for calling models, tracking usage, and configuring retries, failover, and routing. Try or in the model playground, or available on AI Gateway.GPT-6 SolGPT-6 Lunaview all language models Read more () is suited to complex professional workflows and sustained coding tasks where quality and room to iterate both matter.GPT-6 Solopenai/gpt-6-sol () is the lower-cost option for high-volume agentic workflows, coding, and everyday tasks.GPT-6 Lunaopenai/gpt-6-luna",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/drives-for-vercel-sandbox-are-now-in-public-beta",
+      "title": "Drives for Vercel Sandbox are now in public beta",
+      "url": "https://vercel.com/changelog/drives-for-vercel-sandbox-are-now-in-public-beta",
+      "author": "Tom Lienard",
+      "publishedAt": "2026-09-22T00:00:00.000Z",
+      "content": "Drives for Vercel Sandbox are now available in public beta on Hobby, Pro, and Enterprise. A Drive is persistent storage that you mount as a directory in a Vercel Sandbox. It isn’t tied to a single sandbox, so you can reuse the same Drive across runs and different sandbox instances. Use Drives to preserve an agent's workspace or on-disk memory, or to reuse datasets, models, and dependency trees. Create or retrieve a Drive and mount it at a path when starting a sandbox. Read and write files through the sandbox filesystem at that path. Anything stored under remains on the Drive after the sandbox stops./data A Drive supports one read-write mount at a time. After the Drive has been written to, multiple sandboxes can read from it concurrently by mounting point-in-time, read-only snapshots. Each snapshot reflects the Drive at the moment it's mounted. Later writes aren’t included; mount a new snapshot to access them. Each sandbox can mount up to four Drives at separate paths. Drives default to a maximum size of 1 TiB (1 GiB on Hobby) and can be configured up to 16 TiB, with higher limits available by request. Drives are available in every . Each Drive stays in the region where it was created. Sandboxes that mount it must run in that region and can’t use failover regions.Sandbox region Drive pricing is based on storage, reads, and writes, with rates varying by region. In , storage costs $0.05 per GB-month, reads $0.0015 per GB, and writes $0.004 per GB. Hobby includes 15 GB of Drive storage and 30 GB each of reads and writes per month. See for regional rates and plan details.iad1Sandbox pricing Learn more in the .Drives documentation Read more Create and mount a Drive Share Drive data across sandboxes Limits and pricing",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/claude-opus-5-5-now-available-on-ai-gateway",
+      "title": "Claude Opus 5.5 now available on AI Gateway",
+      "url": "https://vercel.com/changelog/claude-opus-5-5-now-available-on-ai-gateway",
+      "author": "Rohan Taneja",
+      "publishedAt": "2026-09-22T00:00:00.000Z",
+      "content": "from is now available on . It is a step-change improvement over , with its biggest gains in agentic coding, long-running agent tasks, and knowledge work. Anthropic cites that Opus 5.5 performs at the level of Fable 5.1, but ~30% faster and ~40% cheaper than Opus 5 per task.Claude Opus 5.5AnthropicAI GatewayOpus 5 Opus 5.5 is also a better collaborator over long runs. It reports back in plain language on what it did, what it found, and what it needs next, making it easier to supervise work that spans many steps or takes place over a longer period. Opus 5.5 includes two API changes that can turn previously valid requests into HTTP 400 errors: Use across the , , , and connected to AI Gateway. You can also enable with the gateway option r . The model has a 1M-token context window, returns up to 128K tokens, and has a June 2026 knowledge cutoff. anthropic/claude-opus-5.5speedanthropic/claude-opus-5.5-fastAI SDKOpenAI-compatible Chat Completions APIAnthropic Messages APIcoding agentsfast mode and are opt-in request controls. This example pins inference to the US and ZDR:Regional inferenceZero Data Retention Install the latest and connect your supported coding agents to AI Gateway:Vercel CLI Then select in the agent. In , use to toggle fast mode for the session. See the for other agent-specific instructions.anthropic/claude-opus-5.5/fastClaude Codecoding agents guide AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in , , , and more.custom reportingbudgets for API keysrouting rules AI Gateway reflects provider pricing with no markup and does not charge a platform fee on inference, including on (BYOK) requests.Bring Your Own Key Try , or available on AI Gateway.Claude Opus 5.5 in the model playgroundview all language models Read more Requests that disable thinking or set a fixed thinking budget are rejected. The model decides how much to think for each request. Use effort and prompting to steer its thinking behavior.Thinking is always adaptive. Requests cannot require a tool call or force a specific tool. Prompt the model toward the tool, then catch and retry misses in your harness. If you previously forced a tool call to return JSON, use structured outputs instead.Forced tool use is retired. Regional inference and Zero Data Retention Use Opus 5.5 in coding agents",
+      "topics": [
+        "devtools-infra",
+        "frontend"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -3312,6 +3405,25 @@
       "comments": 255
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49801329",
+      "title": "Show HN: Drop – A rootless Linux sandbox with gVisor support",
+      "url": "https://droprun.sh/",
+      "author": "mixedbit",
+      "publishedAt": "2026-09-22T13:52:47.000Z",
+      "content": "I created Drop because I always felt uneasy installing and running third-party programs using my main user account. A single compromised dependency means a full compromise of the system. What is even worse, because I ship software from my computer, a single compromised dependency can lead to compromise of all the users of my software. Containers and VMs are one solution, but for local work, they are often detrimental to productivity. It takes effort to configure a machine with all the tools and configs needed for productive work, but a container or a VM will be stripped of all these tools. This is great for production deployments, where the aim is a reproducible system with minimal dependencies, but can get in the way of productive local work. Drop is language independent, but the workflow is inspired by Python's virtualenv. With virtualenv the environment isolation is only a convention that relies on installed dependencies being good citizens. With Drop the isolation is enforced. Each Drop environment gets its own writable and easily disposable home dir, with only selected config files and dirs from the original home mounted, mostly read-only. Drop uses Linux namespaces for isolation (user, mount, network, PID, IPC, cgroup), doesn't require root and, as an option, uses gVisor user-space kernel, which adds protection against exploiting host kernel vulnerabilities to escape the sandbox. I don't want to make the introductory post too lengthy, but I'm here to answer any questions and give any additional technical details. Note: This is my 3rd submission of the project, the first two did not draw attention. Since then I have added support for gVisor and created a project website to better explain the concept and organize documentation.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 124,
+      "comments": 41
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=998726",
       "title": "‘Trump TV’ is just reruns of the president on YouTube",
@@ -3664,6 +3776,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/09/effort-begins-to-fill-the-void-left-by-terminated-us-climate-report/",
+      "title": "Effort begins to fill the void left by terminated US climate report",
+      "url": "https://arstechnica.com/science/2026/09/effort-begins-to-fill-the-void-left-by-terminated-us-climate-report/",
+      "author": "Scott K. Johnson",
+      "publishedAt": "2026-09-22T16:26:30.000Z",
+      "content": "Last year, the Trump administration did what it could to shut down work on the next US National Climate Assessment, eliminating funding for the US Global Change Research Program and booting hundreds of contributing authors. The administration even took past reports offline, forcing others to host copies so the information would still be accessible. And this all comes despite the fact that these reports are legally required. Later in the year, the American Geophysical Union and American Meteorological Society announced an effort to give researchers a central place to compile the kind of work that would have fed the next US report, as well as potential regional and local reports. This “US Climate Collection” works differently from the US Global Change Research Program or the International Panel on Climate Change (IPCC). Rather than facilitating the writing of a giant, coordinated report, the groups are inviting teams of researchers to publish peer-reviewed papers in scientific journals, which will then be added to a centralized resource for future report-writers. The first paper has now been added to that collection. It’s the work of 149 authors (many of whom had been working on the US report), and it is actually being published in two journals—one operated by the American Geophysical Union and one by the American Meteorological Society. That’s because this paper is intended to provide a roadmap to prioritize future contributions. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "hacker-news",
       "externalId": "49803863",
       "title": "Claude Opus 5.5",
@@ -3681,6 +3807,25 @@
       "mediaType": "text",
       "points": 120,
       "comments": 71
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49803892",
+      "title": "Claude Opus 5.5",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "author": "km144",
+      "publishedAt": "2026-09-22T16:29:05.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 632,
+      "comments": 554
     },
     {
       "sourceSlug": "the-verge",
@@ -3746,6 +3891,20 @@
       "author": null,
       "publishedAt": "2026-09-22T16:42:22.000Z",
       "content": "Matthias Bastian / The Decoder: Anthropic says Opus 5.5 matches Fable 5.1 “on most tasks” while costing about 40% less to run than Opus 5; Opus 5.5 costs $4/1M input and $20/1M output tokens — Ask about this article... According to Anthropic, Opus 5.5 matches Claude Fable 5.1 “on most tasks” while costing about 40 percent less to run than Opus 5.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260922/p39#a260922p39",
+      "title": "Sources: Apple is developing prototypes for a screenless health and fitness tracker similar to Whoop but hasn't decided whether to release the product (Mark Gurman/Bloomberg)",
+      "url": "https://www.techmeme.com/260922/p39#a260922p39",
+      "author": null,
+      "publishedAt": "2026-09-22T16:45:01.000Z",
+      "content": "Mark Gurman / Bloomberg: Sources: Apple is developing prototypes for a screenless health and fitness tracker similar to Whoop but hasn't decided whether to release the product — Apple Inc. is developing a screenless health and fitness tracker similar to Whoop Inc.'s wrist-worn device, part of an effort to rethink …",
       "topics": [
         "startups-industry"
       ],
@@ -4412,6 +4571,601 @@
       "author": null,
       "publishedAt": "2026-09-22T16:45:41.255Z",
       "content": "GitHub Won a Case You Weren’t In thebuild.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49804316",
+      "title": "Claude Opus 5.5 Intelligence, Performance and Price Analysis (Max)",
+      "url": "https://artificialanalysis.ai/models/claude-opus-5-5",
+      "author": "theanonymousone",
+      "publishedAt": "2026-09-22T16:51:31.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 102,
+      "comments": 34
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/lovable-adds-opus-5-5-and-builds-apps-with-57-fewer-steps",
+      "title": "Lovable Adds Opus 5.5 and Builds Apps With 57% Fewer Steps",
+      "url": "https://alphasignal.ai/news/lovable-adds-opus-5-5-and-builds-apps-with-57-fewer-steps",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-22T16:53:06.000Z",
+      "content": "Lovable swapped in Anthropic's Opus 5.5 across its app-building agent, cutting build steps by up to 48% with no drop in output quality.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/information-technology/2026/09/it-mistake-erases-11-years-of-viewing-history-for-hospitals-maternity-records/",
+      "title": "IT mistake erases 11 years of viewing history for hospitals’ maternity records",
+      "url": "https://arstechnica.com/information-technology/2026/09/it-mistake-erases-11-years-of-viewing-history-for-hospitals-maternity-records/",
+      "author": "Scharon Harding",
+      "publishedAt": "2026-09-22T16:55:40.000Z",
+      "content": "A “human error” in the IT department led to Nottingham University Hospitals NHS Trust (NUH) losing data from maternity records over an 11-year span. The data loss occurred on August 18, the English hospitals announced in a blog post on Monday spotted by The Register. The blog said the problem is “the result of human error” during routine technical work while “creating a copy of a radiotherapy database for reporting purposes.” The post reads: Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=998902",
+      "title": "Apple is reportedly working on a Whoop-like fitness tracker",
+      "url": "https://www.theverge.com/gadgets/998902/apple-whoop-fitness-tracker",
+      "author": "Emma Roth",
+      "publishedAt": "2026-09-22T17:04:52.000Z",
+      "content": "The Whoop MG fitness band. | Photo by Amelia Holowaty Krales / The Verge Apple is working on a new fitness tracker with a screenless design, similar to the one made by Whoop, according to a report from Bloomberg. A prototype of the device reportedly has \"a thin fabric band with a sensor-equipped computing module.\" The device is in an early stage of development and likely wouldn't arrive before 2028 if Apple decides to release it, Bloomberg reports. In addition to Whoop's lineup of 5.0 bands, the company also sells MG - or \"medical grade\" - variants with a built-in EKG feature. The bands are designed to be worn continuously, as they offer more than 14 days of battery life. As pointed out by Bloomberg, Apple has … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/09/toyota-claims-plan-for-400000-factory-robots-wont-replace-human-workers/",
+      "title": "Toyota orders workers to train humanoid robots but says humans won't be replaced",
+      "url": "https://arstechnica.com/ai/2026/09/toyota-claims-plan-for-400000-factory-robots-wont-replace-human-workers/",
+      "author": "Jeremy Hsu",
+      "publishedAt": "2026-09-22T17:06:16.000Z",
+      "content": "Toyota workers are already helping to train humanoid robots as part of the automaker’s race to eventually deploy 400,000 factory robots—but a Toyota executive said the robotic push is not meant to directly replace humans. Starting in 2028, the Toyota Motor group aims to start investing $6.42 billion every year in upgrading factories with the new robotic workforce, according to Nikkei Asia. The company wants to put 150,000 robots in its own automotive plants and deploy another 250,000 at group company facilities that produce various components and materials. Toyota has already begun deploying some of its ELEY humanoid robots across assembly lines to learn from human workers. Nikkei Asia reported that workers are teaching the robots, which roll around on wheels, to perform tasks requiring precise hand movements by wearing “jigs” based on the humanoids’ fingers. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49804683",
+      "title": "There's a high chance of devices being sold with GrapheneOS preinstalled in 2027",
+      "url": "https://grapheneos.social/@GrapheneOS/117299954135808210",
+      "author": "Cider9986",
+      "publishedAt": "2026-09-22T17:12:51.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 137,
+      "comments": 53
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=122765",
+      "title": "Topology-Aware Workload Scheduling with NVIDIA Topograph",
+      "url": "https://developer.nvidia.com/blog/topology-aware-workload-scheduling-with-nvidia-topograph/",
+      "author": "Elizabeth Goodman",
+      "publishedAt": "2026-09-22T17:16:28.000Z",
+      "content": "AI factories are power-limited systems that deliver maximum value when fully optimized. GPU workload placement is a key optimization. Poor workload placement... AI factories are power-limited systems that deliver maximum value when fully optimized. GPU workload placement is a key optimization. Poor workload placement fragments topology domains and forces traffic across shared links, reducing throughput, raising job costs, and leaving GPUs consuming provisioned power while waiting on data without advancing the workload. GPUs exchange data continuously… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "pragmatic-engineer",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/windows-and-ai",
+      "title": "How will AI change operating systems? Part 2: Windows",
+      "url": "https://newsletter.pragmaticengineer.com/p/windows-and-ai",
+      "author": "Gergely Orosz",
+      "publishedAt": "2026-09-22T17:17:31.000Z",
+      "content": "AI is changing how us software engineers build software, and developers’ tool preferences are rapidly evolving with it – like how AI coding harnesses have gotten very popular. Likewise, future versions of the world’s leading operating systems look certain to feature more support for agentic tools. To find out how things are changing, we talked with the folks at tech giant Microsoft who shared in detail their plan for Windows, and how AI will play a part. It comes after the company’s previous AI efforts led to it being dubbed “Microslop” by some users online. The Windows team’s vision is opinionated and includes building new agentic primitives, alongside reversing some decisions that have annoyed engineers. Microsoft wants developers who have shunned the system to return. The big question is: will it succeed? For more, check out a previous article on how the leading Linux distribution, Ubuntu, is changing, thanks to AI, with a focus on hardware support for GPUs, NPUs and DPUs, a bet on local-first LLMs, and a focus on AI developer tools. Today, we cover: How many devs use Windows anyway? It’s hard to get exact numbers, but macOS appears far more popular at startups than Windows, while Linux may also be on track to overtake Microsoft’s OS in developer popularity. Agent identity & discovery. Windows ships with native support for agent identification, plus a centralized registry of locally available MCP servers to be included with the OS. Isolate agentic tools. Microsoft is building an OS-agnostic isolation mechanism that should make it easy for developers to build agents that run tools safely. Running models locally: Windows is betting big on local models. WindowsML is a new hardware abstraction layer for building and running local AI models across GPU, NPU, and CPU. The OS aims to ship Small Language Models (SLMs) without requiring an NPU in the future. We’ve also seen an impressive demo of a local model running on a Surface laptop using NVIDIA chips. Building agents on Windows: one goal of the OS is to allow building of agents with opinionated frameworks and libraries that devs can just assume are available. More dev-friendly: Windows was plagued by questionable product decisions that resulted in a cluttered Start menu and search, to the chagrin of many developers who lost interest in the OS. Microsoft wants them back and is addressing criticisms – finally! Linux on Windows (WSL): Windows ships with an embedded Linux called Windows Subsystem for Linux (WSL). It’s proving quite popular with devs. Windows embracing Linux might just be the strategy to get devs to switch from both native Linux and macOS, as counter-intuitive as this strategy sounds. Windows & hardware: since its early days, Windows has gone out of its way to support a wide variety of hardware. The OS was x86-based from the beginning, but Windows on ARM is starting to finally look like a good alternative. A look into why ARM support took so long, and the upcoming NVIDIA collaboration. We’ve talked with people on the Windows team to learn about the thinking behind Microsoft’s strategy for the operating system: Pavan Davuluri (EVP, Windows and Devices), Scott Hanselman (VP, Member of Technical Staff, Microsoft CoreAI and GitHub), and Logan Iyer, (CVP, Windows Platform and Developer). Many thanks for your time! 1. How many devs use Windows anyway? While Windows remains the most popular desktop operating system for mainstream computer users at around 63% market share as per Statcounter – the strong sense is that its popularity is down among developers. Windows used to be popular with devs… A year ago, the 2025 Stack Overflow survey polled professional users’ choices of OS. It found that a minority of devs overall use Windows – although it remained the single most popular OS. Despite its top ranking in the survey, the number of devs using Windows was actually way down on Microsoft’s XP-era peak. Meanwhile, MacOS and various Linux distributions also showed considerable market share: OS choice for professional use (49,000 respondents.) Source: Stack Overflow 2025 survey Then Mac started to catch up… Elsewhere, a JetBrains survey asked devs about their OS usage for developments, also last year. The results: Source: State of Developer Ecosystem 2025 by JetBrains. Based on 24,500 responses Interestingly, half of devs use more than one OS for development. This JetBrains survey suggests that several devs jump between operating systems for their work. The survey also found macOS close to overtaking Windows as the most-used standalone OS for development work. … and is Windows declining in developer market share? Only last week, myself and Ivan ran two social media surveys on X and on LinkedIn, most likely shown overwhelmingly to people who are also The Pragmatic Engineer readers. We offered a single choice – with no option to select multiple OS usage, Linux on Windows, or via WSL. We were surprised to find Windows in third place behind Linux, based on nearly 10,000 combined responses: What OS are you using to build software on? Based on 9,937 responses, surveyed in Sep 2026 Based on current research, it’s likely that Windows’ share of the developer market is on the wane, but it’s hard to tell by how much. Inside VC-funded startups and Big Tech, it’s an open secret that Macs have been the most popular developer machine for some years now, partly thanks to the superior hardware performance of M-series CPUs, and also because these companies are not looking to save money when purchasing developer machines. It’s very likely that our own social media survey over-indexes on this group! Either way, Microsoft has both market share and developer goodwill that it needs to win back. Based on what we’ve heard from them, Microsoft is attempting this. But where is OS usage at with readers of The Pragmatic Engineer? To figure this out, please cast a vote on the primary operating system you use when developing software. After the vote, you can see the results: With that, let’s get into how the next version of Windows intends to integrate AI agents at the OS level. 2. Agent identity & discovery At the operating system level, agents increasingly look like regular users. Their sessions can last hours, use multiple programs, and use OS resources like the UI and clipboard. Windows allows developers to build agentic programs that are distinguishable from users. Agent identification is enabled through Entra ID, Microsoft’s tool for centralized identity management in Windows. When an agent has a local identity, it acts as if it is another user on the system as visible in the Task Manager. Below, tasks are grouped by user, and there are two users in the task manager: kirupach (a human) and V9-G4 (an agent). All observability of human users is now available for agent users as well. Task Manager showing human & agent users (kirupach and V9-G4). Source: Microsoft Agents must be built with this agent identification capability in mind. Consider how a rogue agentic application can impersonate a user and not self-register as an agent – which in a sense is how viruses operate by using legitimate OS functionality for illegitimate purposes. That’s why Defender, Microsoft’s antivirus software, is becoming “agent aware” and scanning Windows for known local agent activity like it scans for viruses. Microsoft Defender’s AI Assets feature can scan for known agent activity. Source: Microsoft Agent discovery: agents are only as useful as the tools they’re able to interact with, and Windows On Device Agent Registry (ODR) is the centralized place where agents register and discover available MCP tools. ODR manages and runs MCP servers locally, and also comes with connectors for core operating system components like the File Explorer or System Settings. Let’s say you want to build a specialized Photo Organizer Agent; the organizer agent organizes photos in the user’s Photos folders by theme and starts by running an image classifier to understand photos’ themes, then puts them in the relevant folder, such as ‘parties’, ‘outdoors’, ‘baby photos’, etc. As such, the Photo Organizer Agent needs the ability to read and change the user’s local files, which starts with Windows ODR finding an MCP connector for the file access capability. After discovering File Explorer, the agent uses File Explorer MCP to access and modify files in the user’s Photo directory. ODR and built-in MCPs when agents access dependencies ODR is still in development and available to beta testers, so little is known about its internals, but preliminary research by Origin Technology indicates an interesting implementation detail of ODR. By reverse engineering ODR behavior, researchers proved ODR puts itself as a proxy between the MCP client and its server. Here’s what that would look like in our updated Photo Organizer Agent example: More than a registry: ODR also acts as a proxy between MCP clients and the server The Photo Organizer agent discovers the File Explorer MCP capability in the same way as in the dependencies diagram above. However, the process ID that ODR sends back to the agent is ODR itself: the Photo Organizer Agent talks to the File Explorer MCP through ODR! By putting itself between the MCP client and server, ODR can inspect payloads going back and forth. This is a useful choke point because it enables Windows to detect potentially dangerous behavior. However, this proxying behaviour is as yet unconfirmed by Microsoft, so it remains to be seen how they use it. 3. Isolate agentic tools Tools are external programs that an agent uses to perform actions on the operating system, such as native OS tools, third-party app calls, or even programs written by an agent. Granting agents rights to execute tools potentially means code execution, so it’s essential the agent tools run in isolation to ensure the user’s files and session aren’t reachable by agentic tools. Microsoft Execution Containers (MXC) is a new, in-development agent containment technology by Windows. Developers can use MXC to spawn agentic tools in isolated environments called sandboxes, and agent access within the sandbox environment is configured through MXC containment policies. Containment policies are JSON-based config files that describe network, filesystem, UI, and execution restrictions. The image below illustrates how MXC works: Agents run code with MXC in contained environments, with support for different containment tech & OSes Let’s say you’re building an agentic application like OpenClaw. This application will necessarily have to use tools to do its job and can use file operations, web operations, shell commands, and more. These are potentially dangerous operations, as OpenClaw executes them through MXC’s spawnSandboxFromConfig() method, which spawns a new contained process in which said tools can run safely. The process containment technology used depends on the containment policy config. MXC doesn’t do the containment itself and uses multiple existing containment technologies for that; for example, on a Mac, it would use seatbelt, a process containment layer built into the Mac OS. Speed versus safety tradeoff: some containment mechanisms are faster to start and cheaper to run than others. For example, starting a new process is faster than starting a new Windows session or a new virtual machine. At the same time, running a new process in the existing user’s Windows session potentially exposes the user’s filesystem to the new process. MXC allows developers to adapt the containment level to the sensitivity of the operation being run. Multiple containment levels are available in Windows: Process containment Session containment Running WSL containers Lightweight Hyper-V containers Full virtual machines Choosing the right level of containment is a trade-off between the blast radius and speed of execution. The simplified example below shows how it all comes together: How developers can use MXC to contain agents The policy object specifies how the containerized workload should be constrained. It specifies network, UI, filesystem restrictions The createConfigFromPolicy step configures the whole container. It takes the containment policy object, the chosen isolation level (“process”), and names the container. The app then manipulates what gets executed in the “WHAT RUNS” step Finally, spawnSandboxFromConfig() runs the container and processes its output. OpenClaw for Windows ships as a native app and is one of the first agents to adopt MXC for isolation. Configuring the MXC containment in OpenClaw for Windows is packed as a standard windows settings screen. OpenClaw Windows app containment config screen. Source: Microsoft MXC abstracts away process isolation for agents, so the OpenClaw agent in this example isn’t aware of all the restrictions its tools are running within. It can therefore encounter situations where it tries to do something its sandbox disallows. OpenClaw agent describes lack of access to Windows resources like installed programs. Source: Microsoft Combined with agent identities, MXC will give enterprises fleet-wide control of their agents. For admins, Microsoft will offer MXC policy management through its Intune product for corporate device fleet management. MXC enforcement isn’t broadly adopted yet, so we asked Microsoft for examples of how they use MXC internally to isolate autonomous agents. They shared some use cases with us: How the Windows team uses MXC to isolate autonomous agents These cases illustrate how Microsoft is automating many internal developer chores, and how MXC provides finegrained control over agent isolation. MXC is under development, but already runs on Windows, Linux, and macOS. Developers therefore get a unified way of containing external tools across operating systems. 4. Running models locally Windows ML is a hardware-agnostic layer for running AI models locally on Windows. Its goal is to do for AI what DirectX did for computer graphics: abstract away hardware complexity, regardless of the underlying model’s architecture. Windows ML is Microsoft’s second attempt at building a hardware-agnostic layer for running ML models. DirectML, the first attempt, is a library for running machine learning tasks on GPUs built on top of DirectX 12, Microsoft’s graphics library used for running games on Windows, released in 2019. So, an obvious question is how is Windows ML different? They say that Windows ML offers two improvements over DirectML: #1: Higher level abstraction & better hardware coverage. DirectML is a low-level library where developers have to manually build the inference pipelines from simple mathematical operations, worry about memory layout, etc. Being based on DirectX, DirectML only worked with GPUs. In contrast, Windows ML is based on the Open Neural Network Exchange format (ONNX), an open format for representing and running neural networks. Neural networks built with all popular machine learning frameworks can be converted into the ONNX format called ONNX graph and run on ONNX runtime. ONNX runtime is an open source, cross-platform system for training and running neural nets defined in the ONNX format. Windows ML provides developers a framework that runs on a broader range of silicon, including GPUs, NPUs, and CPUs from all major vendors. #2: No driver-update bottleneck: Windows ML wraps the ONNX runtime and abstracts away the hardware-specific runtime optimizations by providing hardware-agnostic APIs. Each hardware vendor implements this API for its own hardware through the Execution providers (EPs) concept. With DirectML, new runtime optimizations had to be done via driver updates which took six months to get meaningful adoption. Windows ML loads EPs when they are needed, depending on the user’s hardware. For example, if a user has an NVIDIA GeForce RTX GPU, the NVIDIA Tensor RTX execution provider is downloaded and used to maximize GPU performance. Hardware vendors build and submit PEs to Microsoft for certification and testing before they can be used with Windows ML. Most execution providers available today are also available on GitHub. Windows ML ecosystem layers Small language models (SLMs) are embedded within the operating system. Without them, developers would have to ship models with their apps, or call cloud-based models. Even if running local models should be easier with Windows ML, it’s still not worth the effort if you want to add simple functionalities to an app. For example, running a sentiment analysis on some text in an application used to involve calling a hosted AI model in the cloud. On top of incurring app running costs, it can also add lag to the app, whereas with embedded models developers can assume the models are already there, and use them as any other local library. For example, the Aion-1.0-Instruct model is built into Edge, Microsoft’s web browser. Accessed through the Prompt API, Aion model allows developers to build apps like sentiment analysis with a few lines of code. Here’s an example from Microsoft’s website: Local language model usage example in JavaScript (Source) Even a simple web application can now have LLM-powered features like sentiment analysis without having to continuously pay for tokens. The demo is JavaScript-only, but versions for native apps and other languages are also expected to be available when it’s released. Teams being able to run their own models is becoming increasingly important, especially in the corporate sector, driven by escalating costs, mode availability questions such as those recently raised with Fable, and compliance issues. Running models locally also unlocks a hybrid approach, which is well aligned with a trend among tech companies we recently covered, where tech companies have successfully shifted their LLM workloads to cheaper models for simpler requests, and only use frontier models for advanced reasoning. By running models locally, some agentic jobs could be executed with local LLMs, and more complex jobs delegated to a cloud-hosted frontier model. Running local models on a next-gen Surface laptop with NVIDIA GPUs is impressive. At Microsoft, Scott Hanselman showed us a pre-release Surface laptop with NVIDIA GPUs running Qwen as a local model, hooked up to GitHub Copilot. This local model churned out tokens at a rate of ~40 tokens per second! Once such laptops become widely available, coding-related use cases could become a lot more viable, running locally. 5. Building agents on Windows Besides Windows being agent-friendly, Microsoft is also investing in the agent building toolchain to simplify agentic app development by providing a rich agent building framework. Read more",
+      "topics": [
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-opus-5-5-tops-cursor-s-coding-benchmark-at-40-lower-cost",
+      "title": "Anthropic's Opus 5.5 Tops Cursor's Coding Benchmark at 40% Lower Cost",
+      "url": "https://alphasignal.ai/news/anthropic-s-opus-5-5-tops-cursor-s-coding-benchmark-at-40-lower-cost",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-22T17:22:13.000Z",
+      "content": "Anthropic's new flagship lands in Cursor with a 57.8% CursorBench Max score and 40% cheaper per-task cost than Opus 5.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=122756",
+      "title": "Enabling Private High-Performance Production AI Inference with NVIDIA Confidential Computing",
+      "url": "https://developer.nvidia.com/blog/enabling-private-high-performance-production-ai-inference-with-nvidia-confidential-computing/",
+      "author": "Tanya Lenz",
+      "publishedAt": "2026-09-22T17:27:41.000Z",
+      "content": "As large language model (LLM) inference increasingly processes sensitive information and proprietary model context across personal, enterprise, and regulated... As large language model (LLM) inference increasingly processes sensitive information and proprietary model context across personal, enterprise, and regulated settings, data must be processed inside a trusted environment. NVIDIA Confidential Computing (CC) provides a pathway for running these workloads securely using memory-encrypted confidential virtual machines (CVMs), confidential GPUs… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260922/p40#a260922p40",
+      "title": "OpenAI says it plans to let third-party groups conduct technical safety evaluations of its AI models during the training, evaluation, and deployment phases (Rachel Metz/Bloomberg)",
+      "url": "https://www.techmeme.com/260922/p40#a260922p40",
+      "author": null,
+      "publishedAt": "2026-09-22T17:30:00.000Z",
+      "content": "Rachel Metz / Bloomberg: OpenAI says it plans to let third-party groups conduct technical safety evaluations of its AI models during the training, evaluation, and deployment phases — OpenAI plans to let third-party groups vet its artificial intelligence models for safety risks in earlier phases of the development cycle …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/culture/2026/09/review-resident-evil-is-the-fresh-take-this-flagging-franchise-really-needed/",
+      "title": "Review: Resident Evil is the fresh take this flagging franchise really needed",
+      "url": "https://arstechnica.com/culture/2026/09/review-resident-evil-is-the-fresh-take-this-flagging-franchise-really-needed/",
+      "author": "Jennifer Ouellette",
+      "publishedAt": "2026-09-22T17:30:07.000Z",
+      "content": "I was on the fence about going to see the latest Resident Evil reboot to review, given how uninspired the prior reboot attempt in 2021 turned out to be. But director Zach Cregger gave us last year's phenomenal Weapons, and early word of mouth was extremely positive, so I took a chance. I'm glad I did, because the film is terrific. Cregger's distinctive sensibility is just what the flagging franchise needed: a truly fresh take on a well-trodden fictional world that blends horror, humor, and some pretty over-the-top gore in just the right ratios. And you don't need to be a Resident Evil franchise fan to enjoy it. (Spoilers below, but we'll give you a heads-up before any major reveals.) When the first Resident Evil game debuted in 1996, it was an immediate commercial and critical success, spawning several sequel games, comics, novels, and a very lucrative film franchise directed by Paul W.S. Anderson and starring Milla Jovovich. Reviews were mixed, despite the films’ massive box office success. The first reboot, Welcome to Raccoon City (2021), was critically panned and had a disappointing box office, grossing just $42 million globally against its $25 million budget. The studio nixed its plans for a direct sequel, and a 2022 Netflix series was also canceled after a less-than-stellar first season. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/github-integrates-anthropic-s-claude-opus-5-5-into-copilot-at-40-lower-cost",
+      "title": "GitHub Integrates Anthropic's Claude Opus 5.5 Into Copilot at 40% Lower Cost",
+      "url": "https://alphasignal.ai/news/github-integrates-anthropic-s-claude-opus-5-5-into-copilot-at-40-lower-cost",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-22T17:34:29.000Z",
+      "content": "Anthropic's newest flagship model lands in Copilot Pro+, Max, Business, and Enterprise, promising Opus 5 quality with fewer steps, fewer tokens, and 40% lower cost.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260922/p41#a260922p41",
+      "title": "Anthropic raises its five-hour usage limits by 20% on Pro, Max, and Team plans, and gives subscription users a rate limit reset (David Gewirtz/ZDNET)",
+      "url": "https://www.techmeme.com/260922/p41#a260922p41",
+      "author": null,
+      "publishedAt": "2026-09-22T17:40:02.000Z",
+      "content": "David Gewirtz / ZDNET: Anthropic raises its five-hour usage limits by 20% on Pro, Max, and Team plans, and gives subscription users a rate limit reset — Anthropic's newest Claude model aims to make frontier AI cheaper, faster, and safer, while giving subscribers more breathing room before those frustrating usage limits kick in.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=998914",
+      "title": "San Francisco sues Trump Media for selling early access to Trump posts",
+      "url": "https://www.theverge.com/tech/998914/trump-truth-social-api-lawsuit-san-francisco",
+      "author": "Gaby Del Valle",
+      "publishedAt": "2026-09-22T17:43:50.000Z",
+      "content": "San Francisco is suing the Trump Media & Technology Group, the parent company behind Truth Social, for selling early access to President Donald Trump's posts on the social media site. The lawsuit, filed today in California state court, alleges that the Truth API feed is a \"corrupt business scheme\" that violates both California's Unfair Competition Law and federal ethics and anti-corruption laws that prohibit insider trading. White House spokesperson Davis Ingle recently called Truth Social the \"most powerful and popular social media platform in the world.\" While the latter part of that statement is objectively untrue based on any credible e … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/how-to-review-your-vibe-coded-app-before-deployment",
+      "title": "How to Review Your Vibe Coded App Before Deployment",
+      "url": "https://alphasignal.ai/news/how-to-review-your-vibe-coded-app-before-deployment",
+      "author": "Akruti Acharya",
+      "publishedAt": "2026-09-22T17:47:04.000Z",
+      "content": "METR’s API key theft shows why you must check authentication, credential access, and permissions before deployment.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+      "title": "Introducing GPT-6 Sol and Luna",
+      "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+      "author": null,
+      "publishedAt": "2026-09-22T18:00:00.000Z",
+      "content": "Meet GPT-6 Sol and Luna, two models that bring frontier intelligence to everyday work with different balances of capability and cost.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nextjs-blog",
+      "externalId": "/blog/nextjs-security-update-september-22-2026",
+      "title": "Next.js Security Update for a Critical Upstream Issue",
+      "url": "https://nextjs.org/blog/nextjs-security-update-september-22-2026",
+      "author": "Josh Story",
+      "publishedAt": "2026-09-22T18:00:00.000Z",
+      "content": "The September 22, 2026 out-of-band security update for Next.js is now available",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49805509",
+      "title": "GPT-6 Sol and Luna",
+      "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+      "author": "OfficialTurkey",
+      "publishedAt": "2026-09-22T18:00:34.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 455,
+      "comments": 254
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Sep/22/therealcornpop/",
+      "title": "Quoting @therealcornpop",
+      "url": "https://simonwillison.net/2026/Sep/22/therealcornpop/",
+      "author": null,
+      "publishedAt": "2026-09-22T18:03:21.000Z",
+      "content": "Hey, you know it's like super obvious if you're using AI to write your scripts for TikTok and YouTube, right? [...] It's not just the general AI-isms of \"it's not X, it's Y\", or the rule of three, or the really weird broken staccato-like way of writing where you just say a lot of things with all these punctuation marks. and it sounds really deep, but it's not. It's the lack of anything. It's the lack of a definitive sort of spear of your voice. It's the fact I can tell you don't have opinions about the thing that you're talking about. — @therealcornpop, on TikTok Tags: tiktok, ai, ai-misuse",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260922/p42#a260922p42",
+      "title": "Internal data: Meta's Muse surpassed 500,000 total users, including 250,000 daily active users, with more than 2M prompts submitted in its first week (Jyoti Mann/The Information)",
+      "url": "https://www.techmeme.com/260922/p42#a260922p42",
+      "author": null,
+      "publishedAt": "2026-09-22T18:05:00.000Z",
+      "content": "Jyoti Mann / The Information: Internal data: Meta's Muse surpassed 500,000 total users, including 250,000 daily active users, with more than 2M prompts submitted in its first week — Meta's new personal AI agent, Muse, had more than 500,000 people try it out roughly a week after launch, including more than 250,000 daily active users …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=998824",
+      "title": "Save $30 on Apple’s Magic Keyboard with Touch ID and a numpad",
+      "url": "https://www.theverge.com/gadgets/998824/apple-magic-keyboard-touch-interstellar-4k-blu-ray-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-09-22T18:10:57.000Z",
+      "content": "A rare discount on Apple’s dark color keyboard. | Image: The Verge Until the end of the day on September 22nd, 2026, Best Buy and Amazon have the black Apple Magic Keyboard on sale for $169.99, a $30 discount from the usual price. This is the souped-up version of Apple’s full-size, wireless keyboard, with a Touch ID button, numerical pad, arrow keys, plus additional function keys. The Touch ID functionality is compatible with macOS computers running version 15.1 or newer on Apple-made silicon. Apple Magic Keyboard with Touch ID and Numeric Keypad Where to Buy: $199.99 $169.99 at Amazon $199.99 $169.99 at Best Buy The keyboard includes a woven USB-C cable that handles both charging and data, or you can use Bluetooth for a wireless connection. Black-colored Apple accessories tend to carry a higher price premium than their equivalent white models, and go on sale less frequently. Best Buy’s price is only good through 10PM PT on September 22nd, 2026, and the Amazon page is currently shipping one or two days out. Other deals to consider The refurbished 160W Anker Prime Charger is on sale for $75 on eBay via the Anker Outlet Store, $41 lower than the current Prime-exclusive price at Amazon, and half off the list price for a new model. This compact charger sports three USB-C ports, with a maximum output of 140W from a single port. It even has a little display for power monitoring or changing charging modes with the push of a button. For a limited time, you can grab a 512GB microSD Express card for $99.99 or less. The Samsung P9 is $99.99 at B&H Photo and Amazon (discounted automatically applied at checkout), and the SanDisk GamePlay is $98 at Walmart. The Switch 2 is the only mainstream device that requires a microSD Express for add-ons torage, and first-party Nintendo games run between 10 and 30 GB (the upcoming Ocarina of time remake is 27GB, for example) so a 512GB card can store upwards of 15 games. The 4K Blu-ray version of Interstellar is discounted to $14.96 at Amazon. That’s the lowest we’ve seen the price since Prime Day in June, and a five dollar break from the usual price. This classic Christopher Nolan film is an excellent addition to any film buff’s home collection, and benefits massively from the sharper visuals provided by the 4K Blu-ray. Read our review.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-drops-gpt-6-sol-and-luna-at-50-less-than-gpt-5-6",
+      "title": "OpenAI Drops GPT-6 Sol and Luna at 50% Less Than GPT-5.6",
+      "url": "https://alphasignal.ai/news/openai-drops-gpt-6-sol-and-luna-at-50-less-than-gpt-5-6",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-22T18:12:13.000Z",
+      "content": "OpenAI expands its GPT-6 lineup with two cheaper, faster siblings to Astra, cutting API prices in half and pushing prompt caching further.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260922/p43#a260922p43",
+      "title": "OpenAI launches GPT-6 Sol and Luna, saying Sol makes about half as many mistakes as GPT-5.6 Sol and Luna matches GPT-5.6 Sol's performance at ~1% of the cost (David Gewirtz/ZDNET)",
+      "url": "https://www.techmeme.com/260922/p43#a260922p43",
+      "author": null,
+      "publishedAt": "2026-09-22T18:15:08.000Z",
+      "content": "David Gewirtz / ZDNET: OpenAI launches GPT-6 Sol and Luna, saying Sol makes about half as many mistakes as GPT-5.6 Sol and Luna matches GPT-5.6 Sol's performance at ~1% of the cost — GPT-6 Sol and Luna arrive less than three months after GPT-5.6, with OpenAI claiming major accuracy gains, dramatic cost reductions …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/cognition-adds-gpt-6-sol-and-luna-to-devin-cutting-coding-costs-61",
+      "title": "Cognition Adds GPT-6 Sol and Luna to Devin, Cutting Coding Costs 61%",
+      "url": "https://alphasignal.ai/news/cognition-adds-gpt-6-sol-and-luna-to-devin-cutting-coding-costs-61",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-22T18:22:56.000Z",
+      "content": "Cognition wired OpenAI's new GPT-6 Sol and Luna into Devin, and its FrontierCode benchmark shows big cost cuts with better engineering behavior.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260922/p44#a260922p44",
+      "title": "GPT-6 Sol costs $2/1M input and $10/1M output tokens, and GPT-6 Luna costs $0.10/1M input and $0.50/1M output tokens, both about 50% cheaper than GPT-5.6 (Nat Rubio-Licht/The Deep View)",
+      "url": "https://www.techmeme.com/260922/p44#a260922p44",
+      "author": null,
+      "publishedAt": "2026-09-22T18:25:01.000Z",
+      "content": "Nat Rubio-Licht / The Deep View: GPT-6 Sol costs $2/1M input and $10/1M output tokens, and GPT-6 Luna costs $0.10/1M input and $0.50/1M output tokens, both about 50% cheaper than GPT-5.6 — OpenAI is releasing a more budget-friendly version of its most powerful model. — On Tuesday, the company unveiled GPT-6 Sol and GPT-6 Luna …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260922/p45#a260922p45",
+      "title": "Sources: Mirendil, founded by former Anthropic researchers to build self-improving AI, is in talks to raise ~$1B led by Kleiner Perkins at a $5B valuation (Bloomberg)",
+      "url": "https://www.techmeme.com/260922/p45#a260922p45",
+      "author": null,
+      "publishedAt": "2026-09-22T18:40:01.000Z",
+      "content": "Bloomberg: Sources: Mirendil, founded by former Anthropic researchers to build self-improving AI, is in talks to raise ~$1B led by Kleiner Perkins at a $5B valuation — Mirendil, an artificial intelligence startup launched by former Anthropic PBC researchers, is in talks to raise a new round of funding …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260922/p46#a260922p46",
+      "title": "In his UN General Assembly speech, Trump rejects a \"globalist scheme to control\" AI, saying the US is \"leading now over China by a lot and everyone else\" (Financial Times)",
+      "url": "https://www.techmeme.com/260922/p46#a260922p46",
+      "author": null,
+      "publishedAt": "2026-09-22T18:55:02.000Z",
+      "content": "Financial Times: In his UN General Assembly speech, Trump rejects a “globalist scheme to control” AI, saying the US is “leading now over China by a lot and everyone else” — President says US is 'leading over China by a lot and everyone else, and we're going to keep it that way'",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/together-ai-fixes-a-hidden-bias-crashing-llm-reinforcement-learning-training",
+      "title": "Together AI Fixes a Hidden Bias Crashing LLM Reinforcement Learning Training",
+      "url": "https://alphasignal.ai/news/together-ai-fixes-a-hidden-bias-crashing-llm-reinforcement-learning-training",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-22T19:04:39.000Z",
+      "content": "A new additive correction called score centering removes the hidden drift that destabilizes off-policy RL when training and inference engines disagree.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "lennys-newsletter",
+      "externalId": "https://www.lennysnewsletter.com/p/i-left-claude-for-months-opus-55",
+      "title": "I left Claude for months. Opus 5.5 is why I'm back",
+      "url": "https://www.lennysnewsletter.com/p/i-left-claude-for-months-opus-55",
+      "author": "Claire Vo",
+      "publishedAt": "2026-09-22T19:06:40.000Z",
+      "content": "Listen or watch on YouTube, Spotify, or Apple Podcasts I’ve been off Claude for months. Not because it got dumb, but because it got annoying. The rambling, the hedging, the preachy little disclaimers on tasks that didn’t need them. I moved most of my daily work to Codex and I didn’t miss it. Then Anthropic shipped Opus 5.5: 40% cheaper than Opus 5, faster, and with what they’re calling a fundamentally different alignment approach. I ran it for a week across real work, including four long-running agentic tasks, a full ChatPRD homepage redesign, an SVG benchmark, and one very firm refusal, and I’m ready to give you the honest verdict. There’s a lot to like. There are still two things that drive me a little crazy. And there’s one capability I genuinely wasn’t expecting. What you’ll learn: Why I walked away from Claude entirely, and what it took for me to come back The real cost math on Opus 5.5 and why pricing matters more for agentic work than single prompts What happened when I ran four long-running agentic tasks, including one that tried to manipulate Claude mid-run Why Opus 5.5 is now my go-to for frontend prototyping, and where it still lets me down The one capability I genuinely didn’t see coming, and no other model in my stack can match it The moment Opus 5.5 told me flat-out no, and what that says about where Anthropic’s safety posture actually lands in practice Where Codex still wins, and how I’m splitting my model stack after a full week of testing In this episode: (00:00) Why I stopped using Claude (01:02) What Anthropic says Opus 5.5 is (01:54) Cost, speed, and benchmark overview (03:20) Safety, alignment, and the cybersecurity limits (05:02) How I AI bench (05:39) Voice test: is it actually not annoying? (07:54) Long-running agentic task results (10:50) Frontend prototyping (17:23) Writing voice and email (19:41) SVG illustrations (20:46) Video editing (21:42) My verdict: what it’s good at, what it still isn’t Tools referenced: • Claude Opus 5.5: https://www.anthropic.com/claude-opus-5-5 • ElevenLabs MCP connector: https://elevenlabs.io/mcp • Codex (OpenAI): https://openai.com/codex Where to find Claire Vo: ChatPRD: https://www.chatprd.ai/ Website: https://clairevo.com/ LinkedIn: https://www.linkedin.com/in/clairevo/ X: https://x.com/clairevo Production and marketing by https://penname.co/. For inquiries about sponsoring the podcast, email jordan@penname.co.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260922/p47#a260922p47",
+      "title": "ShinyHunters claims it used an Oracle PeopleSoft zero-day to hack FBI-related services and steal employee and applicant data; it also defaced the FBI jobs site (Joseph Cox/404 Media)",
+      "url": "https://www.techmeme.com/260922/p47#a260922p47",
+      "author": null,
+      "publishedAt": "2026-09-22T19:10:01.000Z",
+      "content": "Joseph Cox / 404 Media: ShinyHunters claims it used an Oracle PeopleSoft zero-day to hack FBI-related services and steal employee and applicant data; it also defaced the FBI jobs site — A sample of 5,000 alleged agents seen by 404 Media includes names, addresses, phone numbers, and details on FBI employees' spouses.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.06052",
+      "title": "SkillSpec: Intent-Masked Specification Reasoning for Agent Skill Correctness",
+      "url": "https://huggingface.co/papers/2609.06052",
+      "author": null,
+      "publishedAt": "2026-09-22T19:14:49.100Z",
+      "content": "SkillSpec: Intent-Masked Specification Reasoning for Agent Skill Correctness",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://developers.openai.com/api/docs/models/gpt-6-sol",
+      "title": "GPT-6 Sol Model API Documentation",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-sol",
+      "author": null,
+      "publishedAt": "2026-09-22T19:14:50.792Z",
+      "content": "GPT-6 Sol Model API Documentation developers.openai.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.404media.co/we-hacked-the-fbi-hackers-say-they-have-data-on-all-fbi-employees",
+      "title": "‘We Hacked the FBI:’ Hackers Say They Have Data on All FBI Employees",
+      "url": "https://www.404media.co/we-hacked-the-fbi-hackers-say-they-have-data-on-all-fbi-employees",
+      "author": null,
+      "publishedAt": "2026-09-22T19:14:50.793Z",
+      "content": "‘We Hacked the FBI:’ Hackers Say They Have Data on All FBI Employees 404media.co2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://vercel.com/changelog/claude-opus-5-5-now-available-on-ai-gateway",
+      "title": "Claude Opus 5.5 now available on AI Gateway",
+      "url": "https://vercel.com/changelog/claude-opus-5-5-now-available-on-ai-gateway",
+      "author": null,
+      "publishedAt": "2026-09-22T19:14:50.796Z",
+      "content": "Claude Opus 5.5 now available on AI Gateway vercel.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bleepingcomputer.com/news/security/new-closedquorum-windows-malware-uses-ai-for-attack-decisions",
+      "title": "New ClosedQuorum Windows malware uses AI for attack decisions",
+      "url": "https://www.bleepingcomputer.com/news/security/new-closedquorum-windows-malware-uses-ai-for-attack-decisions",
+      "author": null,
+      "publishedAt": "2026-09-22T19:14:50.800Z",
+      "content": "New ClosedQuorum Windows malware uses AI for attack decisions bleepingcomputer.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thenextweb.com/news/china-cac-probe-deepseek-moonshot-anthropic-data",
+      "title": "China is investigating DeepSeek and Moonshot, The Information reports",
+      "url": "https://thenextweb.com/news/china-cac-probe-deepseek-moonshot-anthropic-data",
+      "author": null,
+      "publishedAt": "2026-09-22T19:14:50.802Z",
+      "content": "China is investigating DeepSeek and Moonshot, The Information reports thenextweb.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.macrumors.com/2026/09/22/apple-screenless-fitness-band",
+      "title": "Apple Testing Prototypes of Whoop-Like Screenless Fitness Band",
+      "url": "https://www.macrumors.com/2026/09/22/apple-screenless-fitness-band",
+      "author": null,
+      "publishedAt": "2026-09-22T19:14:50.809Z",
+      "content": "Apple Testing Prototypes of Whoop-Like Screenless Fitness Band macrumors.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://armenpress.am/en/article/1261009",
+      "title": "Armenia on track to become one of leading hubs for US AI infrastructure – Bloomberg - ARMENPRESS Armenian News Agency",
+      "url": "https://armenpress.am/en/article/1261009",
+      "author": null,
+      "publishedAt": "2026-09-22T19:14:50.812Z",
+      "content": "Armenia on track to become one of leading hubs for US AI infrastructure – Bloomberg - ARMENPRESS Armenian News Agency armenpress.am2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.macrumors.com/2026/09/22/apple-smart-glasses-to-enter-growing-market",
+      "title": "Apple's Smart Glasses to Enter a Rapidly Growing Market",
+      "url": "https://www.macrumors.com/2026/09/22/apple-smart-glasses-to-enter-growing-market",
+      "author": null,
+      "publishedAt": "2026-09-22T19:14:50.812Z",
+      "content": "Apple's Smart Glasses to Enter a Rapidly Growing Market macrumors.com1 min read",
       "topics": [
         "ai-llms",
         "devtools-infra",
