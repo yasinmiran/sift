@@ -6,6 +6,16 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A test that passes before and after the fix is not a regression test,
+  whoever wrote it. On 09-22 three cases written for newly-covered block tags
+  all passed against the unfixed selector, because a neighbouring `<p>` was
+  supplying the boundary the assertion claimed to be about — and the example
+  in the reviewer's own comment had the identical flaw. Running them stashed
+  is what caught it, which is now the third time that habit has paid. Two
+  things follow: an example handed over by a reviewer is a claim to check, not
+  a case to paste; and when a test is meant to prove a specific mechanism,
+  build the case so nothing *else* in it can produce the same output.
+
 - #109 (2026-08-29, merged 09-01): a one-line token swap with a
   measured before/after (contrast ratio, screenshot) merged clean off
   Copilot's one round-trip, no comment from Yasin needed. Small and
@@ -55,6 +65,15 @@ merges and closures and never expire.
 
 ## Backlog
 
+- The harness appends its attribution footer to review-comment replies as well
+  as to PR and issue bodies, and that one cannot be stripped from here: the api
+  tool for editing comments states outright that it cannot edit pull request
+  review comments. PR #191's reply to Copilot carries one. Found 09-22, the
+  first run with a review finding to answer, so every earlier run's "footer
+  stripped" note was only ever about bodies. Either the contract's rule grows a
+  sentence admitting the exception, or a run with `gh` can strip it — both are
+  Yasin's call, which is why this is a note and not a change.
+
 - Left out of #187 deliberately, recorded so a later run does not re-file it
   as an oversight: a feed sending an empty `<content>` beside a real
   `<summary>` still stores nothing. rss-parser hands an empty content element
@@ -91,12 +110,18 @@ merges and closures and never expire.
   Verge; Getty Images Meta CEO Mark Zuckerberg now owns…"). Reads like a
   `<figcaption>` flattened into the text, but whether the credit sits in one is
   a guess until someone reads `content:encoded`.
-  vercel-blog: 26 of 77 summaries begin mid-sentence (", the flagship of
-  OpenAI's GPT-5.6 series, is 50% off…") with the missing subject turning up
-  later in the same text ("…(not BYOK).GPT-5.6 Sol"), and 58 carry a sentence
-  glued to a following fragment. Something in that feed's markup is read out of
-  document order; cheerio's `.text()` is document order, so the interesting
-  question is what shape the feed sends, and that needs the feed.
+  vercel-blog: HALF RESOLVED 2026-09-22 by #190 / PR #191, and the resolved
+  half never needed the feed at all. The "58 carry a sentence glued to a
+  following fragment" was `htmlToText` fusing block boundaries — not this
+  feed's markup, not document order, and not vercel-specific: 27 sources do
+  it, vercel-blog 78 items / 411 occurrences among them. The note's own
+  example gives it away, "…(not BYOK).GPT-5.6 Sol" is a fused `</p><p>`. What
+  survives is the other half, and only that half: 26 of 77 summaries begin
+  mid-sentence (", the flagship of OpenAI's GPT-5.6 series, is 50% off…"),
+  which spacing a boundary cannot explain and which still needs the feed.
+  Lesson in miniature, the 09-06 one again: the note reached for a
+  feed-specific cause for a pipeline-wide bug, and reading two symptoms as one
+  is what kept it unexplained for six days.
 - SHIPPED 2026-09-16 as #167 / PR #168: an hn self-post stores its permalink.
   The 09-15 recipe held — same 21 items, still 21 against a grown archive
   (5,835 items, 992 of them hn) — and both questions it left open answered
@@ -169,11 +194,13 @@ merges and closures and never expire.
   gardener/2026-09-17-htmltotext-drop-style,
   gardener/2026-09-18-structured-data-drop-times,
   gardener/2026-09-19-sitemap-lastmod-drop,
-  gardener/2026-09-20-verify-carried-over and
-  gardener/2026-09-21-atom-summary-content are all merged and all
+  gardener/2026-09-20-verify-carried-over,
+  gardener/2026-09-21-atom-summary-content and
+  gardener/2026-09-22-block-boundary-text are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Eighteen now; it grows by one every shipping run. Since 09-20 the delete
+  Nineteen now, counted from `git ls-remote`; it grows by one every
+  shipping run. Since 09-20 the delete
   does not even reach the proxy — the environment's own guard refuses the
   command — so there are two walls in front of it, not one, and 09-21 hit
   the same one.
@@ -241,6 +268,127 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-22
+
+Shipped. What: `htmlToText` no longer fuses the last word of one block to the
+first word of the next (#190, PR #191, merged c33b951). Why: it is cheerio's
+`.text()` plus a whitespace collapse, and `.text()` concatenates text nodes
+with **nothing** between them. `</p><p>` contributes no separator, so there is
+no whitespace for the `\s+` collapse to collapse and the two sentences arrive
+as one word. A feed that pretty-prints its markup gets a newline between the
+tags and survives on luck; a feed that minifies does not.
+
+The signal came from following up yesterday's merge rather than from a
+warning. #187's entry said to check that the atom-summary fix landed on live
+feeds and not only on the fixture — it did, simon-willison 3 of 3 with a body
+in today's ingest — and the first of those bodies opens "— Hacker News.This
+article entirely misses". `News.This` is not in the feed.
+
+Measured across the 32-day archive: 493 of 5,284 stored bodies (9.3%) carry at
+least one fused sentence boundary, 5,348 occurrences over 27 sources —
+latent-space 2,881, cloudflare-blog 526, vercel-blog 411, lennys-newsletter
+248, ars-technica 231. ars-technica is the cleanest proof because its feed
+closes every body with the same footer block: **272 of 275** archived items
+store it fused, and the 3 that do not are the ones whose markup happened to
+carry a newline. The 9.3% is a floor, not a count — the detector can only see
+a boundary whose previous block ended in `.!?`, and a heading or list item
+ends in a word.
+
+What it cost is worth stating precisely, because it is not what the archive
+looks like at first glance. No reader ever saw it: all 32 files in `digests/`
+are clean of fused tokens. The damage is upstream, on the digest agent, which
+is the customer — 5,348 fused word boundaries a month in the text it reads to
+decide what to cite.
+
+A backlog item half-retired on the way, and the half that fell was the half
+that had been misdiagnosed. The vercel-blog note said "58 carry a sentence
+glued to a following fragment" and reached for a feed-specific cause —
+"something in that feed's markup is read out of document order" — parked as
+needing egress this environment does not have. It needed no feed at all: it is
+this bug, 27 sources wide, vercel-blog 78 items among them. The note's own
+example, "…(not BYOK).GPT-5.6 Sol", is a fused `</p><p>` sitting in plain
+sight. The other half of that note, 26 summaries that *begin* mid-sentence,
+spacing a boundary cannot explain and it stays open. The 09-06 lesson again,
+one turn further out: not a label inherited, but two symptoms read as one
+cause because they arrived in the same sentence.
+
+Copilot posted at 1m37s: 🟡 changes recommended, one medium finding, `menu`
+missing from the block set. First finding in seven runs, and it was right —
+and the gap was wider than the tag it named. `hgroup`, `search`, `dialog`,
+`legend`, `center` and `dir` were missing on the same reasoning, `caption`
+too; the comment claims the set is the html rendering spec's block-level
+defaults, so it has to be them. `center` and `dir` are deprecated and are
+exactly what newsletter templates still send.
+
+The part of that round worth keeping is what the fix's *tests* turned out to
+be. The three cases I first wrote for the added tags all passed against the
+unfixed selector, and so would the example in Copilot's own comment: in
+`<menu>…</menu><p>Next</p>` it is the `<p>` that supplies the boundary, so the
+assertion proves nothing about `menu`. Caught it by running them stashed,
+which is the habit that keeps paying. Each tag is now asserted against a bare
+text sibling (`<menu>one</menu>two`) where nothing else can space it, and
+seven of the eight fail without the change. `caption` cannot be isolated at
+all — the parser drops it outside a `<table>` and inside one every sibling it
+has is already covered — so it is in the set for completeness and the test
+says that rather than dressing it up as a regression case. Generalizing 09-21:
+a test that passes before and after is not a regression test, whoever proposed
+it, and an example handed over by a reviewer is a claim to check, not a case
+to paste.
+
+Also corrected: an existing assertion had baked the defect in. The tl;dr sec
+test pinned `"Hey there,I hope you've been doing well!"`, copied out of the
+archive, so the bug was load-bearing in a test that exists to prove something
+else entirely (that beehiiv's stylesheet stays out of the summary, which is
+unaffected either way). Not a gate relaxed — the boundary is corrected and the
+reason written down beside it.
+
+200 tests from 197, typecheck silent, 33 pages, verify `ok: true` across
+09-16..09-22. Costs named rather than waved at: the largest body in the
+fixtures (460KB) goes 60.7ms to 57.2ms over 20 runs each, inside the noise,
+and `isPromotional`'s 200-character scan window can slide right since the fix
+only ever inserts characters — at most 11 characters across the 61 real bodies
+in `test/fixtures`. 58 insertions, 1 deletion, 3 files, two commits, no new
+dependency. Nothing visual moves, so no screenshots.
+
+Ingest-forward only: the 32 days already stored keep their fused text, and the
+first clean bodies land in tomorrow's `data/items/`. Worth the same look next
+run that this change came out of.
+
+checks green in 21s on the second head, merged rebase, pages run 264 green in
+85s. As always, "deployed" means the workflow went green, not that the site
+was read back.
+
+A new wall, small and worth recording before it is re-discovered. The harness
+appends its attribution footer to review-comment replies too, and unlike a PR
+or issue body there is no way to strip it from here — the api tool for it says
+outright it cannot edit pull request review comments. PR #191's reply to
+Copilot carries one. Previous runs never hit this because they never had a
+finding to answer. PR body footer stripped as usual; the issue body had none,
+fourth run running.
+
+#112, unchanged for the twenty-third day. The `15 3` cron had still not fired
+at 08:17, **+5h02**; yesterday's eventually landed at 08:51, +5h36, which is
+the worst of the streak so far. The morning digest forced its own
+`workflow_dispatch` ingest at 04:36 and pages went green at 04:48, the eighth
+morning the workaround has held. No new comment: 09-14's already describes
+this state.
+
+goatcounter and sift.yasint.dev both refused at CONNECT again, probed not
+assumed — twenty-fourth run with no reader signal and no post-deploy look at
+the live site. Feed egress re-probed too, and still 403 at CONNECT on
+arstechnica, vercel and simonwillison, which is why the vercel-blog note above
+was retired from the archive rather than from the feed.
+
+Branch deletion refused again, and by the *other* wall this time: the sideband
+disconnect through the proxy, not the environment guard that stopped 09-20 and
+09-21 before the command left the machine. Nineteen merged gardener branches
+on the remote now.
+
+Commit trailers: none, fifth run running.
+
+Outcome: #190 filed and closed by #191, merged and deployed. #110, #112 and
+#120 all still pending — #120 since 09-03, nineteen days.
 
 ### 2026-09-21
 
