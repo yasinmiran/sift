@@ -6,6 +6,17 @@ merges and closures and never expire.
 
 ## Lessons
 
+- Naming a cost in the pr body is not paying it. Today's pager put its
+  direction word on `--muted` to match the chrome around it, and the body said
+  so plainly — "that puts two more words on the --muted token, which #110 has
+  open as below AA sitewide" — as though writing it down settled it. Copilot
+  read the same sentence and called it the one thing needing a closer look,
+  which it was: `--muted` measures 4.13:1 against `--bg` and the word renders
+  at ~13px, so it failed AA, and `--body` at 9.10:1 was already in the palette.
+  Ten minutes, no new hex. The honest disclosure was doing the work of the fix
+  and hiding that the fix was cheap. Test for it: if the cost can be removed
+  for less than it took to write the paragraph excusing it, remove it.
+
 - A test that passes before and after the fix is not a regression test,
   whoever wrote it. On 09-22 three cases written for newly-covered block tags
   all passed against the unfixed selector, because a neighbouring `<p>` was
@@ -65,14 +76,29 @@ merges and closures and never expire.
 
 ## Backlog
 
-- The harness appends its attribution footer to review-comment replies as well
-  as to PR and issue bodies, and that one cannot be stripped from here: the api
-  tool for editing comments states outright that it cannot edit pull request
-  review comments. PR #191's reply to Copilot carries one. Found 09-22, the
-  first run with a review finding to answer, so every earlier run's "footer
-  stripped" note was only ever about bodies. Either the contract's rule grows a
-  sentence admitting the exception, or a run with `gh` can strip it — both are
-  Yasin's call, which is why this is a note and not a change.
+- A day page can scroll sideways on a phone and one does today. `2026-09-19`
+  at 375px has scrollWidth 547 against a client width of 375, from three bare
+  urls used as their own link text (`https://grapheneos.social/@GrapheneOS/117282080803799576`
+  is the widest at 541px). Pre-existing and not the pager's: measured
+  identically on the build before #195 and after it, and the other 32 pages
+  are clean at 375px and 1280px. Candidate recipe, NOT re-derived and not
+  ready: `overflow-wrap:anywhere` on `.prose a`, which would wrap the url
+  rather than widening the page. Two things to settle first — whether it
+  should sit on `.prose a` or all of `.prose`, and whether this is a site fix
+  at all or an editorial one, since the digest agent chose to print a bare url
+  where every other entry carries prose link text. 1 of 33 pages today, but it
+  recurs whenever a bare url is linked, so it earns a slot rather than a fold-in.
+
+- NARROWED 2026-09-23, and the wall is smaller than 09-22 read it. A footer on
+  a *conversation* comment strips fine: today's reply to Copilot on #195 was
+  posted, read back with the footer on it, and edited clean, same as a body.
+  What cannot be stripped is only a reply threaded on a review comment, where
+  the api tool says outright it cannot edit pull request review comments —
+  PR #191's reply carries one and still will. So the exception is one comment
+  shape, not "replies"; a run can answer a reviewer in the pr conversation and
+  stay inside the contract, which is what today did. Whether the contract grows
+  a sentence for the threaded case, or a run with `gh` strips it, is still
+  Yasin's call.
 
 - Left out of #187 deliberately, recorded so a later run does not re-file it
   as an oversight: a feed sending an empty `<content>` beside a real
@@ -122,6 +148,28 @@ merges and closures and never expire.
   Lesson in miniature, the 09-06 one again: the note reached for a
   feed-specific cause for a pipeline-wide bug, and reading two symptoms as one
   is what kept it unexplained for six days.
+  SHARPENED 2026-09-23, from the archive alone, and "begins mid-sentence" was
+  the wrong description of it. 35 of 84 vercel-blog bodies now, and the damage
+  is not at the start: **every inline label in a paragraph is hoisted to the
+  end of that paragraph.** Read one whole and it is unmistakable — "and from
+  are now available on .GPT-6 SolGPT-6 LunaOpenAIAI Gateway Both models bring
+  GPT-6 improvements … at a lower price than .GPT-6 Astra Both Sol and Luna
+  …" — the four missing labels arrive in order, after the sentence, and the
+  next paragraph does the same with its one. The sandbox item does it twice:
+  "…and (Paris). Vercel Sandboxiad1sfo1cle1cdg1 remains the default.iad1Choose
+  a region…".
+  Reproduced exactly, locally, with no feed: text sitting inside a `<table>`
+  but outside any cell is foster-parented *before* the table by the html
+  parser while the cells stay behind, so
+  `htmlToText('<table>and <tr><td><a>GPT-6 Sol</a></td></tr> from <tr><td><a>OpenAI</a></td></tr>.</table>')`
+  returns `"and from . GPT-6 Sol OpenAI"`. Same fingerprint, spec-correct
+  parsing. That is a mechanism, NOT a diagnosis: whether vercel actually sends
+  a table is exactly what the feed would say and vercel.com/atom is still 403
+  at CONNECT, probed again today. So still not shippable, and the next run
+  with egress has a claim to check rather than a symptom to stare at. Worth
+  saying out loud: if the markup is what the parser thinks it is, there may be
+  no fix here at all, only a decision about whether to unwrap tables before
+  reading text.
 - SHIPPED 2026-09-16 as #167 / PR #168: an hn self-post stores its permalink.
   The 09-15 recipe held — same 21 items, still 21 against a grown archive
   (5,835 items, 992 of them hn) — and both questions it left open answered
@@ -195,12 +243,12 @@ merges and closures and never expire.
   gardener/2026-09-18-structured-data-drop-times,
   gardener/2026-09-19-sitemap-lastmod-drop,
   gardener/2026-09-20-verify-carried-over,
-  gardener/2026-09-21-atom-summary-content and
-  gardener/2026-09-22-block-boundary-text are all merged and all
+  gardener/2026-09-21-atom-summary-content,
+  gardener/2026-09-22-block-boundary-text and
+  gardener/2026-09-23-day-pager are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Nineteen now, counted from `git ls-remote`; it grows by one every
-  shipping run. Since 09-20 the delete
+  Twenty now; it grows by one every shipping run. Since 09-20 the delete
   does not even reach the proxy — the environment's own guard refuses the
   command — so there are two walls in front of it, not one, and 09-21 hit
   the same one.
@@ -268,6 +316,115 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-23
+
+Shipped. What: a day page now links the days either side of it (#194, PR #195,
+merged 7b6f1fd). Why: every built day page carried exactly two internal links,
+`index.html` and `/feed.xml`, and nothing else — all 32 day pages of 33. No day
+linked to any other day.
+
+The index is the page almost nobody arrives at, which is what makes that a
+problem rather than a preference. feed.xml carries 32 entries and every one is
+a day page; the sitemap lists 33 urls, 32 of them day pages. Every syndicated
+and indexed entry point bar one drops a reader mid-archive, and the only move
+the page offered was back out to the list. The writing already assumed the
+sequence the site would not expose: 18 of the 32 archived digests reach back to
+a previous day, 46 occurrences, and today's own morning digest does it twice
+("a follow-up to yesterday's Palantir Maven report"). The story continued on a
+page the reader had no link to.
+
+Both ends are open by design, which is the only real edge case: the archive is
+a rolling month, so the newest day has no later neighbour and the oldest loses
+its earlier one as days drop off. Each link renders only when its day exists,
+and a one-day archive gets no nav rather than an empty one.
+
+The round with Copilot is the part worth keeping, and it is a lesson about the
+pr body rather than about the code. 🔵 needs a closer look, **Findings: None** —
+no inline comment, nothing posted — and its one concern was the contrast of the
+direction word. Which the pr body had already named, in a sentence I wrote
+myself: the word sat on `--muted` to match the chrome around it, and the body
+said plainly that this puts two more words on the token #110 has open as below
+AA. Writing it down had felt like settling it. It was not: `--muted` `#7a7268`
+against `--bg` `#0d0c0b` measures 4.13:1, the word renders at .85em of .95rem
+≈ 13px so no large-text allowance applies, and it failed AA outright. `--body`
+`#b8b0a3` is 9.10:1 and was already in the palette. Ten minutes, no new hex,
+which is exactly what made the excuse indefensible. Generalised into a lesson
+above: if a named cost is cheaper to remove than the paragraph excusing it, the
+paragraph is the tell.
+
+Hierarchy survives the swap — 13px mono against a 15px accent link is what
+separates them, not the colour — and it is the #109 move, changing which
+existing token an element uses rather than editing a hex.
+
+Yesterday's fix, followed up as #191's entry said to. The block-boundary
+spacing landed on live feeds: 09-22's ingest stored 1,005 fused occurrences
+over 11 bodies, 09-23's stored 1, and that one is `llm.ConversationNotSupported`
+in a simon-willison body — an identifier, not a boundary, so zero real. Checked
+for the artifact the fix could have introduced too, since it only ever inserts
+characters: space-before-punctuation runs 23 occurrences on 09-22 against 1 on
+09-23, so the inserted spaces are not landing in front of full stops.
+
+Two older fixes re-derived clean on the way, which is cheap and worth doing
+before trusting them. Across 6,565 unique archived items the last title
+carrying a literal character reference is 09-11 and the last body carrying one
+is 09-12 — the numeric-ref fix merged 09-14 and the CDATA one 09-13, and
+nothing has slipped past either since.
+
+The vercel-blog backlog half is sharpened rather than shipped, and "begins
+mid-sentence" turned out to be the wrong description of it: every inline label
+in a paragraph is hoisted to the end of that paragraph, 35 of 84 bodies. Read
+one whole and it is plain. Reproduced the fingerprint exactly with no feed —
+text inside a `<table>` but outside a cell is foster-parented before the table
+while the cells stay behind — but a mechanism is not a diagnosis, and whether
+vercel sends a table is the one thing only the feed can say. Recorded as a
+claim for a run with egress to check, deliberately not as a recipe. The 09-04
+lesson held the slot: it would have been easy to ship a table-unwrapping guess
+today.
+
+Walked and recorded, not fixed: `2026-09-19` scrolls sideways at 375px,
+scrollWidth 547 against 375, from three bare urls used as their own link text.
+Confirmed pre-existing by building the same page before the pager and measuring
+547 either way, and the other 32 pages are clean at both widths. It is its own
+day's work and is in the backlog with the two questions it needs answered
+first.
+
+203 tests from 200, typecheck silent, 33 pages, verify `ok: true` (the two
+expected warnings, one Verge link carried over from 09-22). Both regression
+cases fail against the unfixed source, checked by stashing `build.ts` and
+`page.ts`; the third passes either way and its comment says so rather than
+dressing up as a regression test. 68 insertions, 1 deletion, 3 files, two
+commits, no new dependency. +677 bytes on a 28,019-byte page, ~300 of it the
+shared css every page already carries.
+
+Screenshots taken at 1280px and 390px and read before merging, but not attached:
+this environment has no `gh` and the api has no endpoint for uploading an image
+to a pr, so the before/after is written out in the pr body instead. First run to
+hit that wall, because it is the first visual change since the environment lost
+`gh`.
+
+checks green in 19s on the second head, merged rebase, pages run 267 green.
+As always, "deployed" means the workflow went green: sift.yasint.dev refused at
+CONNECT again, probed not assumed, so the live pager has not been read back.
+goatcounter the same, twenty-fifth run with no reader signal — which is why the
+case for this change was built from the built output and the digests rather
+than from entry paths, where entry paths are exactly what would have settled it.
+
+#112, unchanged for the twenty-fourth day. The `15 3` cron did not fire again;
+the morning digest forced its own `workflow_dispatch` ingest at 04:44 and pages
+went green at 04:55, the ninth morning the workaround has held. No new comment:
+09-14's already describes this state.
+
+Branch deletion refused again, the sideband disconnect through the proxy rather
+than the environment guard. Twenty merged gardener branches on the remote now.
+
+Commit trailers: none, sixth run running. PR body footer stripped as usual, the
+issue body had none, fifth run running — and the reply to Copilot went in the pr
+conversation, where the footer strips like a body's does. That narrows 09-22's
+wall to threaded review-comment replies alone; backlog note corrected.
+
+Outcome: #194 filed and closed by #195, merged and deployed. #110, #112 and #120
+all still pending — #120 since 09-03, twenty days.
 
 ### 2026-09-22
 
