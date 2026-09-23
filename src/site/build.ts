@@ -81,6 +81,11 @@ const AUTHOR = { "@type": "Person", name: "Yasin", url: "https://yasint.dev" };
 // which until now pointed at a page the reader had no link to. Both
 // neighbours are optional: the newest day has no later one, and the oldest
 // loses its earlier one as days roll off the month.
+//
+// The direction word is --body, not the --muted the rest of the page chrome
+// uses: at .85em of .95rem it is ~13px, where AA wants 4.5:1, and --muted is
+// 4.13:1 against --bg (that gap is #110, open since 08-29). Size and the mono
+// face carry the hierarchy here instead of colour.
 function pager(earlier?: string, later?: string): string {
   if (!earlier && !later) return "";
   const link = (day: string, dir: "earlier" | "later"): string => {
