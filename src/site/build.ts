@@ -74,6 +74,26 @@ function dropsOf(rootDir: string, day: string): { published: Drop; modified: Dro
 
 const AUTHOR = { "@type": "Person", name: "Yasin", url: "https://yasint.dev" };
 
+// A day page is where readers land: feed.xml carries nothing but day pages
+// and the sitemap is 32 of them to one index, so the index is the page
+// almost nobody arrives at. The prose leans on the sequence too — 18 of the
+// 32 archived digests reach back to a previous day ("yesterday's report") —
+// which until now pointed at a page the reader had no link to. Both
+// neighbours are optional: the newest day has no later one, and the oldest
+// loses its earlier one as days roll off the month.
+function pager(earlier?: string, later?: string): string {
+  if (!earlier && !later) return "";
+  const link = (day: string, dir: "earlier" | "later"): string => {
+    const arrow = dir === "earlier" ? "&larr; earlier" : "later &rarr;";
+    const rel = dir === "earlier" ? "prev" : "next";
+    return `<a class="${dir}" rel="${rel}" href="${day}.html" aria-label="${dir} digest, ${formatDay(day)}"><span class="mono">${arrow}</span>${formatDay(day)}</a>`;
+  };
+  return `<nav class="pager" aria-label="nearby days">${earlier ? link(earlier, "earlier") : ""}${
+    later ? link(later, "later") : ""
+  }</nav>`;
+}
+
+
 export function buildSite(rootDir: string, outDir: string): { pages: number } {
   const dir = join(rootDir, "digests");
   const days = existsSync(dir)
@@ -95,9 +115,13 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
   const pub = join(rootDir, "public");
   if (existsSync(pub)) cpSync(pub, outDir, { recursive: true });
 
-  for (const d of digests) {
+  for (const [i, d] of digests.entries()) {
     const published = isoDate(d.day, d.published);
     const modified = isoDate(d.day, d.modified);
+    // digests runs newest-first, so the later day is the entry before this
+    // one and the earlier day the entry after. Both ends are open: the
+    // archive is a rolling month, so the newest day has no later neighbour
+    // and the oldest loses its earlier one as days drop off the end.
     const body = `
       <nav class="crumbs"><a href="index.html">&larr; all days</a></nav>
       <main>
@@ -109,6 +133,7 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
       ${refreshNote()}
       <div class="prose">${renderMarkdown(d.body)}</div>
       </article>
+      ${pager(digests[i + 1]?.day, digests[i - 1]?.day)}
       </main>
 <script>
 fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".json")
