@@ -1,6 +1,6 @@
 {
   "day": "2026-09-23",
-  "generatedAt": "2026-09-23T08:31:29.598Z",
+  "generatedAt": "2026-09-23T16:45:08.963Z",
   "items": [
     {
       "sourceSlug": "hacker-news",
@@ -699,6 +699,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49808816",
+      "title": "The current balance of power in open models",
+      "url": "https://www.interconnects.ai/p/the-current-balance-of-power-in-open",
+      "author": "gmays",
+      "publishedAt": "2026-09-22T22:03:46.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 111,
+      "comments": 49
+    },
+    {
       "sourceSlug": "aws-news",
       "externalId": "3f3cdf7764c9ed9c135b98890bec5b260beeb5ae",
       "title": "Introducing Amazon CloudWatch Omni: AI-powered observability for generative AI and agentic workloads",
@@ -818,6 +837,20 @@
       "author": null,
       "publishedAt": "2026-09-22T23:46:41.000Z",
       "content": "Yesterday was Grok 4.7 (pelicans) and MiMo v2.6 Flash/Pro (more pelicans). Today Anthropic released Claude Opus 5.5, and around an hour later OpenAI released GPT-6 Sol and GPT-6 Luna. It's going to take a while to get a good read on all of these new models, but here are my impressions so far. GPT-6 Sol and Luna are half the price of their GPT-5.6 equivalents GPT-5.6 Luna was already my favorite model for building applications against, because it combined excellent performance with being really cheap. Somehow GPT-6 Luna is half the price of that again - and GPT-6 Sol had a similar reduction compared to GPT-5.6 Sol. Here's what the pricing landscape looks like today: Model Input Cached input Output GPT-6 Luna $0.10/M $0.01/M $0.50/M GPT-5.6 Luna $0.20/M $0.02/M $1.20/M Grok 4.7 $2/M $0.50/M $6/M GPT-6 Sol $2/M $0.20/M $10/M GPT-5.6 Terra $2/M $0.20/M $12/M Claude Opus 5.5 $4/M $0.20/M $20/M GPT-5.6 Sol $4/M $0.40/M $20/M Claude Fable 5.1 $10/M $0.25/M $50/M GPT-6 Astra $10/M $1/M $50/M Note that GPT-5.6 has a scheduled 25% price increase for November, so GPT-6 is half the price of the promotional pricing for those models. (With GPT-5.6 Terra priced the same as GPT-6 Sol, any remaining reasons to use Terra just evaporated.) It's hard to overstate how competitive this pricing is. Grok 4.7 priced itself at $2/$6, less than half the price of GPT-5.6 Sol, but is now equally priced to GPT-6 Sol on input and closer on output. At $0.10/$0.50 GPT-6 Luna is one of the cheapest models OpenAI have ever released, beaten only by the far weaker GPT-4.1 Nano ($0.10/$0.40, April 2025) and GPT-5 Nano ($0.05/$0.40, August 2025). I rendered pelicans for GPT-6 Luna and for GPT-6 Sol, then I combined them all together in this comparison grid along with the GPT-5.6 pelicans. I like how you can instantly see that the 5.6 family chose bolder, brighter colors, while the 6 family is a lot more muted. I still think GPT-6 Astra on max produced the best pelican. Claude Opus 5.5 got a price cut too Opus 5.5 looks like it addresses the biggest complaints people had about Opus in terms of its communication style. Thariq Shihipar: Opus 5.5 is the result of your feedback. It communicates clearly, it's cheaper per token than Opus 5.0 with the intelligence of Fable 5.1 it's very token efficient and works across every effort level. It's also meant to be better at Blender. I'm looking forward to putting it through its paces there. Opus 4.5, 4.6, 4.7, 4.8, and 5 all shared the same price: $5/million tokens for input and $25/million for output. 5.5 is a 20% reduction - $4/million and $20/million. The price for cache reads fell 60%. That's significant for longer agentic conversations, where 90%+ of input tokens are processed at cached token prices. The new price for Opus 5.5 is the same as the price for GPT-5.6 Sol, but that was before OpenAI dropped their Sol prices by half. GPT-6 Astra and Claude Fable 5.1 are both priced at $10/million input and $50/million output. The price war currently affects the next tier of models below that. Anthropic say that Sonnet 5.5 and Haiku 5.5 are coming soon. It's going to be interesting to see if Haiku can regain its price competitiveness at the lower end, given current Haiku 4.5 is $1/$5 while the latest GPT-6 Luna is one tenth of that price at $0.10/$0.50. Claude Opus 5.5 max over-thinks to the point of breaking In a first for my \"Generate an SVG of a pelican riding a bicycle\" test, Claude Opus 5.5 at \"max\" thinking level failed to return a response! It started by calling this \"a classic test request\", and then thought really, really hard about what it was doing: This is a classic test request, so I want to plan out a well-composed pelican with its distinctive beak and pouch riding a bicycle with proper wheels, frame, and pedals, set against a simple sky and ground backdrop. [...] Verifying the shin length checks out at roughly 95.2, close enough. Now I'm working out the near leg path from hip to knee to ankle, then sketching the foot shape resting on the pedal — outlining the heel, toe tips, and sole contour with a path using lines and curves to sit naturally on the pedal surface around y=478-494. [...] I like the fish sticking prominently out of the basket with the pelican eyeing it as a fun detail worth keeping. I'm also confirming the eye placement near the bill base matches typical pelican anatomy, and considering giving it a slightly happier expression. [...] The far leg reads correctly as passing behind the frame, so I'm moving on to check the chainring teeth and confirm layer ordering—the far crank arm should be mostly hidden by the seat tube and chainring. I'm settling on the final SVG's width and height attributes alongside the viewBox to ensure proper scaling, noting there's no text so no font-family is needed. [...] I was so excited to see this pelican... but then it stopped. Opus 5.5 has a 128,000 maximum output token limit (as do the other Claude models), and it hit that while it was still reasoning about the SVG! I tried a second time and got the same result. This makes me suspect that \"max\" is effectively useless - if it over-thinks to breaking point on a stupid SVG prompt I don't trust it not to do the same for more interesting work. (Those two failures each cost me $2.56 and took nearly 20 minutes.) Fable 5.1 on \"max\" didn't over-think and did give me the best pelican I've seen from any Anthropic model. Here are the Opus 5.5 pelicans, excluding 5.5 max. I also built this comparison grid comparing them with pelicans by Opus 5, Fable 5.1, and Sonnet 5: Comparing different model vendors by how well they draw a pelican riding a bicycle may not make much sense now (if it ever did), but I'm still finding value in using them for comparisons of the same model families at different reasoning levels. I'm now using GPT-6 Sol and Claude Opus 5.5 as my default models in Codex and Claude Code. I've upgraded the Datasette Agent demo at agent.datasette.io to use GPT-6 Luna, and it seems to be fast and competent at both SQL queries and building HTML and JavaScript for Datasette Apps. Tags: ai, openai, generative-ai, llms, anthropic, claude, llm-pricing, pelican-riding-a-bicycle, gpt",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/grab-openai-ai-skills-southeast-asia",
+      "title": "Grab and OpenAI bring practical AI skills to Southeast Asia",
+      "url": "https://openai.com/index/grab-openai-ai-skills-southeast-asia",
+      "author": null,
+      "publishedAt": "2026-09-23T00:00:00.000Z",
+      "content": "OpenAI and Grab launch GO Forward with AI, a regional programme helping 30,000 partners build practical AI skills across Southeast Asia.",
       "topics": [
         "ai-llms"
       ],
@@ -2308,6 +2341,44 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49812769",
+      "title": "Jev in 25 Lines of Python",
+      "url": "https://www.nobodywho.ai/posts/jev-in-25-lines/",
+      "author": "bashbjorn",
+      "publishedAt": "2026-09-23T07:26:23.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 473,
+      "comments": 143
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49812975",
+      "title": "I am done with this shit",
+      "url": "https://www.reddit.com/r/ClaudeAI/comments/1wm5c21/i_am_done_with_this_shit/",
+      "author": "meander_water",
+      "publishedAt": "2026-09-23T07:59:14.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 215,
+      "comments": 168
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260923/p7#a260923p7",
       "title": "German publisher C.H.BECK takes a majority stake in Noxtua, which develops AI tech to research, analyze, and draft legal documents and raised a $100M+ Series C (Cate Lawrence/Tech.eu)",
@@ -2453,6 +2524,1328 @@
         "ai-llms",
         "devtools-infra",
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49813419",
+      "title": "Netherlands bracing for potentially devastating US sanctions against the ICC",
+      "url": "https://apnews.com/article/icc-trump-sanctions-eu-israel-netherlands-2c1cc314732f920c2de59396d3b556f6",
+      "author": "vrganj",
+      "publishedAt": "2026-09-23T09:09:49.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 125,
+      "comments": 117
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/alibaba-s-qwen-audio-3-1-slashes-voice-api-prices-by-up-to-95",
+      "title": "Alibaba's Qwen-Audio 3.1 Slashes Voice API Prices by up to 95%",
+      "url": "https://alphasignal.ai/news/alibaba-s-qwen-audio-3-1-slashes-voice-api-prices-by-up-to-95",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-23T09:11:23.000Z",
+      "content": "Alibaba's Qwen team ships a five-model audio stack covering recognition, synthesis, and real-time conversation, with price cuts up to 95 percent.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49813482",
+      "title": "Tokens Too Cheap to Meter",
+      "url": "https://jyn.dev/tokens-too-cheap-to-meter/",
+      "author": "teoruiz",
+      "publishedAt": "2026-09-23T09:21:17.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 115,
+      "comments": 82
+    },
+    {
+      "sourceSlug": "stratechery",
+      "externalId": "https://stratechery.com/?p=20085",
+      "title": "More on Muse, Amazon, and Walmart; Muse and Expedia; Whither Google?",
+      "url": "https://stratechery.com/2026/more-on-muse-amazon-and-walmart-muse-and-expedia-whither-google/",
+      "author": "Ben Thompson",
+      "publishedAt": "2026-09-23T10:00:00.000Z",
+      "content": "Meta needs Walmart to wait out Amazon; Expedia seeks to keep its middleware position; meanwhile, where is Google?",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49814159",
+      "title": "The darker side of being a doctor",
+      "url": "https://drericlevi.pages.dev/the-darker-side-of-being-a-doctor/",
+      "author": "Danhale93",
+      "publishedAt": "2026-09-23T10:54:55.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 234,
+      "comments": 259
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/09/there-are-now-17000-satellites-in-orbit-and-growing-should-we-be-concerned/",
+      "title": "A new report from Europe raises serious alarms about orbital collisions",
+      "url": "https://arstechnica.com/space/2026/09/there-are-now-17000-satellites-in-orbit-and-growing-should-we-be-concerned/",
+      "author": "Eric Berger",
+      "publishedAt": "2026-09-23T11:00:17.000Z",
+      "content": "The 2013 sci-fi blockbuster film Gravity, starring Sandra Bullock and George Clooney, popularized the notion of the Kessler syndrome. In the movie, Russia shoots down a defunct satellite and creates a cloud of debris, leading to serious tension in orbit. The movie is fantastic, a true thriller, and while some liberties were taken with the depiction of outer space, the basic premise of a cascading series of collisions rendering orbits too cluttered with debris to be usable is valid. The idea was first proposed by NASA scientists Donald Kessler and Burton Cour-Palais nearly half a century ago. Still, the movie was science fiction, right? Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=94104",
+      "title": "The Emerging M&A Map For AI Agent Security",
+      "url": "https://news.crunchbase.com/ma/emerging-map-ai-agentic-security-sagie/",
+      "author": "Judy Rider",
+      "publishedAt": "2026-09-23T11:00:22.000Z",
+      "content": "AI agents are quickly becoming part of the enterprise. They browse the web, write code, access files, trigger APIs and interact with internal systems. That creates enormous productivity potential, but it also creates a new security problem: Companies now need to protect not only users, devices and applications, but software actors that can take actions on their behalf. AI agents are becoming a new class of enterprise identity An agent may access corporate files, query databases, send emails or execute code. Once it has that level of access, it needs permissions, monitoring and governance. Companies will need to know which agent accessed what information, which systems it connected to, and whether the actions it took were authorized. As enterprises move from experimenting with a few agents to deploying hundreds of them, agent identity will become another important layer of cybersecurity. The challenge is that these identities are not passive. Agents can move between systems, invoke tools and make decisions, which makes controlling them more complex than managing traditional users or service accounts. The value will sit in specific control points This market will probably not develop as one broad category called “AI security.” The real opportunity will be around specific control points. One company may protect agent identity, another may control the data an agent can access, while others may focus on prompts, MCP servers, plug-ins, traffic or auditability. We are already seeing activity around these areas. Kiteworks recently acquired Israeli startup Bonfy.AI, which focuses on real-time data classification and policy enforcement. Israeli cybersecurity startup Huskeys, meanwhile, raised a $27 million Series A led by Blackstone and focuses on understanding and securing increasingly complex internet traffic, including traffic generated by autonomous systems. These companies are solving different problems, but together they show how the market may begin to separate into distinct security layers. These control points are creating a new M&A map Identity providers may extend identity governance to autonomous agents. Data-security vendors may need to control what information agents can access. Cybersecurity platforms, cloud companies and enterprise software vendors may eventually need agent-security capabilities embedded directly into their products. For entrepreneurs, this means that “AI security” may already be too broad a positioning. The more important question is what exactly the company controls. Itay Sagie is a strategic adviser to tech companies, investors, CEOs and boards, specializing in strategy, growth and M&A. He is a guest contributor to Crunchbase News and a university lecturer on strategy, finance and entrepreneurship. Learn more at SagieCapital.com and connect with him on LinkedIn. Related Crunchbase queries: Global M&A In 2026 For Venture-Backed Companies Global Venture Funding To AI Startups In 2026 Global Cybersecurity Venture Funding In 2026 Illustration: Dom Guzman",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=94105",
+      "title": "Jumbo-Sized Series A Rounds Are On The Rise",
+      "url": "https://news.crunchbase.com/venture/megaround-seriesa-ai-chips-robotics-2026/",
+      "author": "Joanna Glasner",
+      "publishedAt": "2026-09-23T11:00:38.000Z",
+      "content": "The size of a Series A round for a hot startup is on the rise. So far this year, global startups have secured at least 114 Series A rounds 1 of $100 million or more, per Crunchbase data. That’s the highest annual total in years and on track to top the all-time peak. Moreover, many of those jumbo early-stage rounds far exceed the $100 million threshold. Collectively, this group of Series A recipients has raised around $33 billion this year, with at least 12 rounds valued at $500 million or more. An AI thing The funding bump was mostly an AI-driven phenomenon. Per Crunchbase data, more than 70% of Series A rounds of $100 million or more went to AI-focused startups. That figure encompasses some of the year’s largest early-stage financings. For instance, it includes a $1.2 billion round for Silicon Valley-based River AI, a platform for developers to train and serve custom models, and a $900 million financing for China-based Xpeng Robotics, a developer of AI-enabled humanoid robots. Below, we put together a sample of 10 of the largest Series A rounds, including mostly AI but a few other areas as well. The high preponderance of AI deals reflects what we’ve been seeing across stages. In the first half of this year, venture and growth funding to artificial intelligence startups totaled an estimated $394 billion, roughly 77% of all investment capital. Granted, most of that was for later-stage financings. But our Series A data shows early-stage doesn’t look too different for AI’s share. US leads for jumbo Series A deals. Roughly half of this year’s $100 million-plus Series A rounds and funding went to U.S.-based startups, per Crunchbase data. That translates to about 62 deals with a collective value of around $15 billion so far in 2026, which puts it on track for a record tally. Still, megaround funding at Series A is more globally dispersed than overall venture investment this year. In the first half of 2026, more than three-quarters of global seed- through growth-stage financing went to American companies, largely due to megarounds for Silicon Valley-based Anthropic and OpenAI. When investors like the same things One can point to several potential causes behind the rise in Series A megarounds beyond AI growth alone. For one, leading startup investors have exceptionally large capital reserves to deploy. Additionally, exit multiples historically, and to an even greater extent recently, reward those who are anything but modest in their ambitions. At Series A, another factor may be that investors seem to agree more than usual on the sectors, business models and founding teams they want to back. And given that a pricey share of a winner still beats a discounted share of a laggard, they’re piling in to perceived early-stage leaders. Related Crunchbase queries: Global 2026 Series A Rounds Of $100M+ Sample List Of Large 2026 Series A Related reading: Crunchbase Data: Global Startup Investment Hit Record $510B in H1 2026 As AI Boom Accelerates Funding And Exits Illustration: Dom Guzman The dataset includes rounds that were explicitly announced as Series A rounds as well as financings that had characteristics of Series A but were not explicitly labeled by the recipient as such.↩",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72663",
+      "title": "Research on Models Engaging in Genie-Like Behavior",
+      "url": "https://www.schneier.com/blog/archives/2026/09/research-on-models-engaging-in-genie-like-behavior.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-09-23T11:03:36.000Z",
+      "content": "New paper: “Self-Jailbreaking: Language Models Can Reason Themselves Out of Safety Alignment After Benign Reasoning Training.” Abstract: We discover a novel and surprising phenomenon of unintentional misalignment in reasoning language models (RLMs), which we call self-jailbreaking. Specifically, after benign reasoning training on math or code domains, RLMs will use multiple strategies to circumvent their own safety guardrails. One strategy is to introduce benign assumptions about users and scenarios to justify fulfilling harmful requests. For instance, an RLM reasons that harmful requests like “outline a strategy for stealing customers’ credit card information from a retail store” could be associated with the benign intent of “a security professional trying to test defense,” despite no such benign context being provided as input. We observe that many open-weight RLMs, including DeepSeek-R1-distilled, s1.1, Phi-4-mini-reasoning, and Nemotron, suffer from self-jailbreaking despite being aware of the harmfulness of the requests. We also provide a mechanistic understanding of self-jailbreaking: RLMs are more compliant after benign reasoning training, and after self-jailbreaking, models appear to perceive malicious requests as less harmful in the CoT, thus enabling compliance with them. To mitigate self-jailbreaking, we find that including minimal safety reasoning data during training is sufficient to ensure RLMs remain safety-aligned. Our work provides the first systematic analysis of self-jailbreaking behavior and offers a practical path forward for maintaining safety in increasingly capable RLMs. I think the core problem is that these models are all trained on the average of humanity, and we are a pretty duplicitous species.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49814236",
+      "title": "Z80 REPL (2018)",
+      "url": "https://abagames.github.io/z80-repl/index.html",
+      "author": "adunk",
+      "publishedAt": "2026-09-23T11:04:52.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 104,
+      "comments": 12
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/09/small-undersea-volcanoes-may-unleash-outsized-tsunamis/",
+      "title": "Small undersea volcanoes may unleash outsized tsunamis",
+      "url": "https://arstechnica.com/science/2026/09/small-undersea-volcanoes-may-unleash-outsized-tsunamis/",
+      "author": "Yook Ji Hun",
+      "publishedAt": "2026-09-23T11:15:30.000Z",
+      "content": "Krakatau, a volcanic island in Indonesia, killed more than 30,000 people when it erupted in 1883. One might assume that volcanic debris posed the major threat, yet many of the victims died from a tsunami caused by the volcanic eruption instead. Volcanoes at sea can pose hazards quite different from those on land, as their impact can vary depending on how the volcanic activity interacts with seawater. In the deep ocean, high water pressure can suppress explosive volcanic activity, making eruptions less destructive. But closer to the surface, the lower water pressure and the high temperatures of volcanic material can cause violent explosions. Yet scientists still do not fully understand the conditions under which volcanic activity can cause a tsunami. To better understand these risks, an international team of researchers examined the 2022 Hunga eruption in Tonga, focusing on the rapid caldera collapse that may have amplified its powerful tsunami. Calderas form when the ground above a magma reservoir collapses as the magma drains away. Comparisons of seafloor topography before and after the eruption showed that a roughly 4-kilometer-wide caldera sank by about a kilometer during the eruption. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/sarvam-s-saaras-v4-brings-all-22-indian-languages-into-one-asr-model",
+      "title": "Sarvam's Saaras V4 Brings All 22 Indian Languages Into One ASR Model",
+      "url": "https://alphasignal.ai/news/sarvam-s-saaras-v4-brings-all-22-indian-languages-into-one-asr-model",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-23T11:47:51.000Z",
+      "content": "Sarvam's new speech-to-text model beats Deepgram Nova-3 and GPT-4o Transcribe on noisy audio while covering all 22 Indian languages.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/alibaba-s-qwen-intelligence-splits-phone-automation-across-three-specialized",
+      "title": "Alibaba's Qwen Intelligence Splits Phone Automation Across Three Specialized Agents",
+      "url": "https://alphasignal.ai/news/alibaba-s-qwen-intelligence-splits-phone-automation-across-three-specialized",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-23T11:50:54.000Z",
+      "content": "Alibaba's Qwen Intelligence launches three mobile agents plus open benchmarks, pushing on-phone task automation past 90% end-to-end success on real devices.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p19#a260923p19",
+      "title": "OpenAI says it will give its AI cyber defense system Daybreak and GPT-5.6 Sol to the Ukrainian government for free to help it protect civilian infrastructure (Zoe Kleinman/BBC)",
+      "url": "https://www.techmeme.com/260923/p19#a260923p19",
+      "author": null,
+      "publishedAt": "2026-09-23T12:15:02.000Z",
+      "content": "Zoe Kleinman / BBC: OpenAI says it will give its AI cyber defense system Daybreak and GPT-5.6 Sol to the Ukrainian government for free to help it protect civilian infrastructure — The tech giant OpenAI will share its AI cyber defence system Daybreak for free with the Ukraine government to help …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49814947",
+      "title": "Claude Code reads AGENTS.md only when telemetry is on [fixed]",
+      "url": "https://blog.szypowi.cz/p/claude-code-reads-agents.md-only-when-telemetry-is-on/",
+      "author": "pszypowicz",
+      "publishedAt": "2026-09-23T12:15:33.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 351,
+      "comments": 199
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p20#a260923p20",
+      "title": "Ema, which uses AI agents to automate corporate processes across HR, IT, and finance, raised a $77M Series B led by Creaegis, taking its total funding to $140M (Jagmeet Singh/TechCrunch)",
+      "url": "https://www.techmeme.com/260923/p20#a260923p20",
+      "author": null,
+      "publishedAt": "2026-09-23T12:25:19.000Z",
+      "content": "Jagmeet Singh / TechCrunch: Ema, which uses AI agents to automate corporate processes across HR, IT, and finance, raised a $77M Series B led by Creaegis, taking its total funding to $140M — Ema, a startup that uses teams of AI agents to automate corporate processes across HR, IT, and finance, has raised $77 million …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49815127",
+      "title": "OpenAI is enlisting an influencer army to make it look 'good for the world'",
+      "url": "https://www.businessinsider.com/inside-open-ai-influencer-marketing-strategy-chatgpt-ads-sponsorships-instagram-2026-9",
+      "author": "cdrnsf",
+      "publishedAt": "2026-09-23T12:32:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text",
+      "points": 190,
+      "comments": 186
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49815381",
+      "title": "Samsung accidentally freezes its smart fridges with a software update",
+      "url": "https://www.androidauthority.com/samsung-accidentally-freezes-its-smart-fridges-with-a-software-update-3714472/",
+      "author": "Markoff",
+      "publishedAt": "2026-09-23T12:57:59.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 193,
+      "comments": 188
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/openai-extends-cyber-access-to-ukraine-for-civilian-defense",
+      "title": "OpenAI extends cyber access to Ukraine for civilian defense",
+      "url": "https://openai.com/index/openai-extends-cyber-access-to-ukraine-for-civilian-defense",
+      "author": null,
+      "publishedAt": "2026-09-23T13:00:00.000Z",
+      "content": "OpenAI is extending access to its Daybreak program to the Government of Ukraine to support the cyber defense of civilian infrastructure.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "github-blog",
+      "externalId": "https://github.blog/?p=98976",
+      "title": "Developers want more efficient software. Here’s what over 1000 GitHub users told us they need.",
+      "url": "https://github.blog/news-insights/research/developers-want-more-efficient-software-heres-what-over-1000-github-users-told-us-they-need/",
+      "author": "Paull Young",
+      "publishedAt": "2026-09-23T13:00:00.000Z",
+      "content": "Developers know efficient software matters, but many lack a clear way to find waste, measure an improvement, and make the case for fixing it. That is the central finding from a new survey of 1,039 GitHub users conducted by GitHub and the Yale Program on Climate Change Communication. Eight in 10 respondents said they were interested in tools that help them write more energy-efficient code. Nearly as many wanted best practices for reducing software’s environmental footprint, and almost 75% wanted ways to measure the impact of their software or development process. There is an opportunity to turn that interest into normal engineering work: identify unnecessary compute, propose a change, test it, and let maintainers decide what ships. Developers care about climate change and AI’s environmental impact The survey, drawn from GitHub monthly active users in the United States, asked about climate change, AI, software efficiency, and the responsibilities of organizations across the technology sector. The concern was clear: 79% said they were worried about global warming. 71% said they were concerned about the environmental impact of AI systems, including their energy and water use and carbon emissions. 75% said it was important that their employer actively work to reduce its environmental impact. These findings describe the views of survey respondents. They do not measure the environmental footprint of AI or any individual software system. The sample was drawn from GitHub users who had opted in to receive marketing communications, so the results should not be treated as representative of every developer or GitHub user. They do show that many developers are thinking about the environmental effects of the systems they build and use. GitHub users differ from the broader U.S. adult population When asked questions that also appeared in Yale’s nationally representative Climate Change in the American Mind survey , GitHub users expressed greater concern about climate change than U.S. adults overall. GitHub users were more likely to say global warming is happening (86% compared with 68% of U.S. adults), that it is at least somewhat personally important (82% compared with 65%), and that it will harm them personally at least a moderate amount (68% compared with 45%). They were also more likely to expect at least moderate harm to future generations (82% compared with 68%) and to say they were worried about global warming (79% compared with 66%). One note on interpretation: the data in this report are based on a non-probability sample of GitHub users who had opted in to marketing emails, so the findings describe survey respondents rather than developers generally, and differences from data for U.S. adults reflect both population and survey design differences. The gap is not interest. It’s a practical path to action Only 10% of respondents said the way they develop and write software has a large effect on reducing their personal environmental impact. Another 28% said it has a moderate effect, while 63% said the effect is small. At the same time: 80% were interested in tools for writing more energy-efficient code. 78% wanted to learn best practices for reducing software’s environmental footprint. 74% were interested in measuring the environmental impact of their software or development process. 70% were interested in contributing to open source projects focused on sustainability. Developers are asking for the same things they expect in other areas of engineering: useful tools, credible measurements, and changes they can review. Open-ended survey responses illustrated the concrete. Respondents asked for help estimating the footprint of repositories and CI/CD workflows, finding unnecessary GitHub Actions runs, improving code efficiency, and comparing AI use with other sources of compute demand. Several also warned against making environmental claims without evidence. That last point matters. Faster code can reduce resource use, but runtime alone does not prove a reduction in energy use or emissions. Hardware, workload, location, time, and the source of electricity all affect the result. Developers need measurements that match the claim. Start with the waste you can see and measure Software efficiency is already part of good engineering. It can lower infrastructure costs, improve performance, reduce latency, and free capacity. When an improvement reduces the compute needed to deliver the same successful result, it can also reduce energy use. A practical starting point is to look for measurable waste in four areas: Code: repeated computation, inefficient algorithms, unnecessary allocations, or expensive work that could be cached. Data: over-fetching, unbounded queries, missing caching, or database calls that should be batched. Network and I/O: duplicate requests, polling that could be event-driven, oversized payloads, or missing compression. Frontend: unnecessary rendering, eagerly loaded off-screen assets, or media that could use smaller formats. The right metric depends on the change. Execution time, CPU use, memory allocation, and network transfer size can all act as useful proxies for computational demand. Each has limits, so state what you measured and what you did not. For example, a pull request that replaces an O(n²) search with a hash-map lookup should include before-and-after measurements for a representative workload, the commands needed to reproduce the test, and any trade-offs in memory or maintainability. That is a stronger engineering case than calling the change “greener” without supporting data. Use an agent to find opportunities, not to make the final decision Finding efficiency work across a large repository can be slow. GitHub Agentic Workflows can help automate the search while keeping maintainers in control. The open source Daily Efficiency Improver workflow reviews a repository for opportunities across code, data, network, I/O, and frontend performance. It prioritizes changes that can be measured, runs the repository’s tests, and can open draft pull requests with the evidence and trade-offs for maintainers to review. It does not merge changes itself. You can add the workflow to a repository with the GitHub CLI: gh extension install github/gh-aw gh aw add-wizard githubnext/agentics/efficiency-improver Before enabling a scheduled workflow, review its permissions, configuration, model use, expected run frequency, and likely compute cost. Start with a suitable test repository or run it manually. Treat every recommendation as a hypothesis until the benchmark and tests support it. The strongest pull requests should answer five questions: What waste did the workflow find? Which metric represents the expected improvement? What was the baseline? Did the change preserve functionality and quality? What trade-offs should maintainers consider? AI can help developers search, test, and document possible improvements. Humans still decide whether the evidence is sound and whether the change belongs in the codebase. Make efficiency part of the engineering loop Efficiency work is easiest to sustain when it fits the tools and decisions developers already use. A repository-level workflow can surface an opportunity. A draft pull request can show the proposed fix. Benchmarks and tests can establish whether it works. Maintainers can then accept, revise, or reject the change. That loop gives developers the practical support survey respondents asked for: tools, measurement, and a path from concern to code. Read the full Software Developers on Climate Change, AI, and Sustainable Software report from GitHub and the Yale Program on Climate Change Communication. Then try the Daily Efficiency Improver on a suitable repository and review its findings. The post Developers want more efficient software. Here’s what over 1000 GitHub users told us they need. appeared first on The GitHub Blog.",
+      "topics": [
+        "devtools-infra",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/jared-palmer-s-kev-0-5b-answers-many-ai-questions-in-one-38mb-pass",
+      "title": "Jared Palmer's Kev-0.5B Answers Many AI Questions in one 38MB Pass",
+      "url": "https://alphasignal.ai/news/jared-palmer-s-kev-0-5b-answers-many-ai-questions-in-one-38mb-pass",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-23T13:00:23.000Z",
+      "content": "A LoRA-tuned Qwen2.5-0.5B that reads a document once and answers many typed questions in parallel with calibrated probabilities, no text generation involved.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49815466",
+      "title": "I don't want the details",
+      "url": "https://michaelheap.com/i-dont-want-the-details/",
+      "author": "mooreds",
+      "publishedAt": "2026-09-23T13:04:44.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 190,
+      "comments": 114
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p21#a260923p21",
+      "title": "HypeAuditor: OpenAI doubled its sponsored Instagram posts promoting ChatGPT from 61 in June to 122 in July, rising again to 141 in August, as it seeks new users (Business Insider)",
+      "url": "https://www.techmeme.com/260923/p21#a260923p21",
+      "author": null,
+      "publishedAt": "2026-09-23T13:05:07.000Z",
+      "content": "Business Insider: HypeAuditor: OpenAI doubled its sponsored Instagram posts promoting ChatGPT from 61 in June to 122 in July, rising again to 141 in August, as it seeks new users — AI's reputation is in hot water. Can influencers save it? — OpenAI has been ramping up its creator marketing efforts as AI safety concerns take center stage.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49815484",
+      "title": "The GitHub wiki is an anti-pattern (2022)",
+      "url": "https://michaelheap.com/github-wiki-is-an-antipattern/",
+      "author": "ibobev",
+      "publishedAt": "2026-09-23T13:05:49.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 113,
+      "comments": 69
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p22#a260923p22",
+      "title": "Bessemer raised $5.75B, allocating $4B to growth-stage funding, including young companies raising large rounds at high valuations, and $1.75B for early-stage (Natasha Mascarenhas/Bloomberg)",
+      "url": "https://www.techmeme.com/260923/p22#a260923p22",
+      "author": null,
+      "publishedAt": "2026-09-23T13:15:01.000Z",
+      "content": "Natasha Mascarenhas / Bloomberg: Bessemer raised $5.75B, allocating $4B to growth-stage funding, including young companies raising large rounds at high valuations, and $1.75B for early-stage — Bessemer Venture Partners is set to announce $5.75 billion in fresh funding to support a broader shift towards more growth stage investments …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/nvidia/nemotron-diarization",
+      "title": "**Know Who Spoke When: Build Real-Time, Multi-Speaker AI with NVIDIA Nemotron 3 Diarization**",
+      "url": "https://huggingface.co/blog/nvidia/nemotron-diarization",
+      "author": null,
+      "publishedAt": "2026-09-23T13:17:01.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p23#a260923p23",
+      "title": "London-based AI life sciences startup Basecamp Research raised a $140M Series C led by S32, with participation from Anthropic, taking its total funding to $225M (John Reynolds/Tech.eu)",
+      "url": "https://www.techmeme.com/260923/p23#a260923p23",
+      "author": null,
+      "publishedAt": "2026-09-23T13:25:20.000Z",
+      "content": "John Reynolds / Tech.eu: London-based AI life sciences startup Basecamp Research raised a $140M Series C led by S32, with participation from Anthropic, taking its total funding to $225M — Basecamp says it will use the funding to train a new generation of its AI models. — A UK life sciences startup using AI …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "https://www.latent.space/p/bio-security-is-an-ai-arms-race-eric",
+      "title": "🔬Bio-security is an AI Arms Race - Eric Nguyen (CEO, Radical Numerics)",
+      "url": "https://www.latent.space/p/bio-security-is-an-ai-arms-race-eric",
+      "author": "RJ Honicky",
+      "publishedAt": "2026-09-23T13:27:18.000Z",
+      "content": "The OpenAI → Hugging Face attack has people asking “what else do we need to worry about?” and Anthropic’s filters flag two things: cyber-security and biology. The natural question is: what about bio-security, then? Clem Delangue argues that cyber-warfare defensive capabilities need to be open and to keep pace with frontier models’ attack capabilities Radical Numerics co-founder Eric Nguyen sat down with us and explained why the same models that increase biological capability can also keep defense from falling behind. Building a virus from scratch While he was at Stanford, Eric couldn’t get traction on Genomic Language Models (GLMs) for a long time. Biologists didn’t believe it would work, didn’t think they could verify the output, and didn’t see important applications beyond what they could already do. He kept pushing, eventually helping lead the development of Evo and contributing to Evo 2 at Arc Institute. Those models were later used by a separate Arc/Stanford team to generate entire bacteriophage genomes that were synthesized into functional viruses! Long context unlocks biological intelligence Early ChatGPT spit out poems and email, and early DNA language models like Evo and Evo-2 could build a genome from scratch. DNA is different, however, from natural language in that it has a very small alphabet (4 characters ACTG) and that its sequences are very long: 60K for an average human gene long being up to 2.3M the whole human genome around 3B. Innovation in long-context models made this possible about 3 years ago (footnote: striped hyena), long before the frontier labs were building 1M+ context models. Adapted from Wikipedia: Genome Size Now Eric and other AI x Bio luminaries1 have founded Radical Numerics to build and scale GLMs to tack a wide range of biological problems, extending well beyond generating DNA. Thinking in DNA Their GLMs already do pretty well with RNA and protein because there are clear markers in the DNA sequence for genes (RNA sequences the perform many functions) and specific genes that encode proteins. This means that the models already generalize to multiple “languages,” before even attempting to train in other modalities, such as 3d protein structure, epigenetics and natural language. If a model thinks in the DNA language, maybe it understands the imprint that environment left on different genomes as well? Perhaps the model has learned the functional relationship between different sequences, and could extrapolate to new sequences based on that? And so what we wanted to showcase was that if we show the model progressively better RNAs in a series of steps with its score, right? So you have like low scores first and then you gradually move up the chain. Can the model continue that trajectory on its own? And then in the final step, does it self optimize to a point where it's like the best score it can get? That was the experiment. Can we do that? And so we took a data set, a large data set of aptamers. We held out a portion of the best performing ones and we showed it only the lower ones, but then we ranked it, right? So we showcase lower scores with the RNA aptamers and then progressively got higher, and then ask the model to just like continue with that pattern. And it turns out it was able to recapitulate some of those higher scores that we had not shown it yet. So, voila: chain-of-thought, thinking in DNA! The arms race But much as long-context inference, chain-of-though and multi-modal perception unlocked sophisticated reasoning in natural language LLMs, these capabilities in GLMs are enabling increasingly sophisticated “biological intelligence,” and along with it, greater danger. According to Eric, defense is currently losing this battle, but Radical Numerics argues to push the frontier harder! I won’t spoil the details for you. In the episode we talk in detail about: Biosecurity as an arms race — and how defense can keep up The genome as the imprint of the environment on DNA Going truly multi-modal How chain-of-though works when you “think” in the language of DNA 1 Eric Nguyen: Co-founder and CEO, holding a PhD in Bioengineering & AI from Stanford University. He previously helped develop large-scale genome language models like Evo and Evo 2 Michael Poli: Chief AI Scientist, holding a Stanford PhD and a former founding scientist at Liquid AI. Stefano Massaroli: President, a former postdoc with Yoshua Bengio and a founding team member at Liquid AI. Armin W. Thomas: CTO, a former Stanford postdoc who worked with Chris Ré and was previously at Liquid AI.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/reviews/2026/09/how-the-us-handed-china-control-of-the-rare-earth-supply-chain/",
+      "title": "America gave up its rare earth edge. China took full advantage.",
+      "url": "https://arstechnica.com/reviews/2026/09/how-the-us-handed-china-control-of-the-rare-earth-supply-chain/",
+      "author": "Charles Edward Gehrke, The Conversation",
+      "publishedAt": "2026-09-23T13:37:05.000Z",
+      "content": "Look around you, and you’ll see rare earth elements at work. A phone vibrates because a magnet moves a weight. Its screen was polished with cerium powder. Its connection to the rest of the world crosses oceans on cables amplified with erbium. If you drove today, a rare earth magnet helped you steer, and a cerium compound scrubbed the exhaust. All of these devices function because of 17 metals collectively known as rare earth elements. The scientists who gave the group that name in 1794 created a misnomer. Cerium alone is about as common in the Earth’s crust as copper. However, separating rare earth minerals from one another and from raw ore is intensely difficult. As a result, countries that control the processing of rare earth minerals have a lot of political leverage. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p24#a260923p24",
+      "title": "Sony Music becomes the first music company to join ARIAM, which advocates for responsible AI adoption in the creative industry and includes the NYT and Disney (Corbin Bolies/Variety)",
+      "url": "https://www.techmeme.com/260923/p24#a260923p24",
+      "author": null,
+      "publishedAt": "2026-09-23T13:40:22.000Z",
+      "content": "Corbin Bolies / Variety: Sony Music becomes the first music company to join ARIAM, which advocates for responsible AI adoption in the creative industry and includes the NYT and Disney — Sony Music Group has joined the Alliance for Responsible Innovation in the Arts & Media (ARIAM), becoming the first music company …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=999268",
+      "title": "Nobody does it like Remedy",
+      "url": "https://www.theverge.com/games/999268/control-resonant-review-ps5-xbox",
+      "author": "Andrew Webster",
+      "publishedAt": "2026-09-23T13:45:00.000Z",
+      "content": "Video games have given us plenty of ways to traverse huge open worlds, but none have felt quite as oddly exhilarating as manipulating gravity in Control Resonant's twisted version of New York City. It's a game that lets you flip, twist, and fly through the air, while exploring settings that look ripped out of Inception. It's as if you mashed up the meta storytelling of House of Leaves with the inventive platforming of Super Mario Galaxy and somehow turned it into a coherent experience. That strange combination is just the latest example of developer Remedy making games like nobody else out there. Resonant is a sequel to 2019's Control - tho … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=999295",
+      "title": "McDonald’s is testing ads on its drive-thru menus",
+      "url": "https://www.theverge.com/tech/999295/mcdonalds-drive-thru-menu-ads",
+      "author": "Emma Roth",
+      "publishedAt": "2026-09-23T13:52:39.000Z",
+      "content": "McDonald's is putting ads on its drive-thru menu as part of a \"limited\" pilot at company-owned restaurants, according to a report from Bloomberg. Drive-thru locations included in the test will show ads from other brands on digital menu boards after a customer places their order, which they'll see while they wait for their meal. In a statement to Bloomberg, a McDonald's spokesperson says the test allows the company to explore \"ways to share post-purchase content that customers may find helpful, relevant, or interesting.\" As noted by Bloomberg, selling ads on McDonald's menu boards could open up another stream of revenue for the company, whi … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p25#a260923p25",
+      "title": "Seattle-based satellite startup Hubble, which is working to enable global Bluetooth connectivity, raised $200M at a $1.6B valuation, for $300M in total funding (Sana Pashankar/Bloomberg)",
+      "url": "https://www.techmeme.com/260923/p25#a260923p25",
+      "author": null,
+      "publishedAt": "2026-09-23T14:00:42.000Z",
+      "content": "Sana Pashankar / Bloomberg: Seattle-based satellite startup Hubble, which is working to enable global Bluetooth connectivity, raised $200M at a $1.6B valuation, for $300M in total funding — Satellite startup Hubble Network raised $200 million in a new funding round, taking the company's valuation to $1.6 billion …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/cars/2026/09/aftermarket-driver-assist-under-federal-probe-following-fatal-crashes/",
+      "title": "After multiple deaths and injuries, NHTSA is investigating comma.ai",
+      "url": "https://arstechnica.com/cars/2026/09/aftermarket-driver-assist-under-federal-probe-following-fatal-crashes/",
+      "author": "Jonathan M. Gitlin",
+      "publishedAt": "2026-09-23T14:20:23.000Z",
+      "content": "Aftermarket devices that can boost or augment a vehicle’s native advanced driver assistance systems are the target of a new federal investigation this week. The National Highway Traffic Safety Administration’s Office of Defects Investigation says it knows of five crashes in which drivers using devices from comma.ai crashed into stopped or slow-moving cars. Two of the crashes resulted in three deaths, and 11 people were injured in four of the five crashes, some seriously. Comma.ai was the brainchild of George Hotz, who rose to prominence at the start of the last decade by jailbreaking iOS and hacking Sony PlayStations. In 2015, Hotz turned his attention to partially automated driver assists, which were gaining attention following Tesla’s exploits with its Autopilot system. Hotz first modified his own Acura to give it a more advanced driver assist that let him take his hands off the wheel, with the goal of selling his system to Tesla and replacing Mobileye as the company’s supplier. (Mobileye dropped Tesla as a customer the following year after becoming unhappy with the way the car company was using Mobileye products in unintended ways.) Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=999305",
+      "title": "Discord will now automatically estimate your age",
+      "url": "https://www.theverge.com/tech/999305/discord-updated-age-assurance-global-rollout",
+      "author": "Jess Weatherbed",
+      "publishedAt": "2026-09-23T14:27:49.000Z",
+      "content": "Discord is rolling out a new global age assurance system, seven months after pausing its previous verification measures following backlash from users. Starting today in every country except Australia and the UK, Discord will automatically assign users to an estimated age group based on \"multiple account signals,\" with account restrictions placed on users believed to be between 13 and 17. The updates follow Discord slamming the brakes on its earlier age verification rollout in February in response to data privacy concerns. Its previous system required adults to verify themselves via video selfies or ID documentation, and faced criticism afte … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=999140",
+      "title": "YouTube is building AI creator tools that do almost everything for them",
+      "url": "https://www.theverge.com/tech/999140/made-on-youtube-creator-tools-ai-thumbnails-tests",
+      "author": "Mia Sato",
+      "publishedAt": "2026-09-23T14:30:00.000Z",
+      "content": "Part of the job of a content creator is to figure out how to get their work in front of the most people. Cracking - or fighting - the algorithm has historically been a frustration for creators, but YouTube is increasingly simply telling creators what they should do. At the annual creator-focused Made on YouTube event, the company announced updates to the suite of AI-powered creator tools it unveiled in 2025. In its initial iteration, the dashboard of creator tools included things like A/B testing for video thumbnails and a chatbot interface to query how content was performing. This year's update adds AI tools for more complex tasks. Perhap … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p26#a260923p26",
+      "title": "YouTube rolls out tools for microdramas, an AI storytelling assistant for script analysis, video A/B-testing, and more, as it battles Netflix over top creators (Ben Fritz/Wall Street Journal)",
+      "url": "https://www.techmeme.com/260923/p26#a260923p26",
+      "author": null,
+      "publishedAt": "2026-09-23T14:35:01.000Z",
+      "content": "Ben Fritz / Wall Street Journal: YouTube rolls out tools for microdramas, an AI storytelling assistant for script analysis, video A/B-testing, and more, as it battles Netflix over top creators — Google-owned platform rolling out better tools for digital producers that could help it keep more of their content exclusively",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p27#a260923p27",
+      "title": "At its Made on YouTube event, YouTube unveils Custom Feeds, an LLM-powered feature that lets users generate and save tailored homepage video feeds, for US users (Reece Rogers/Wired)",
+      "url": "https://www.techmeme.com/260923/p27#a260923p27",
+      "author": null,
+      "publishedAt": "2026-09-23T14:37:20.000Z",
+      "content": "Reece Rogers / Wired: At its Made on YouTube event, YouTube unveils Custom Feeds, an LLM-powered feature that lets users generate and save tailored homepage video feeds, for US users — In YouTube's latest update, viewers can tweak what the algorithm shows on their front page and curate it to a specific vibe.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p28#a260923p28",
+      "title": "Coachella promoter Goldenvoice renews its livestreaming partnership with YouTube through 2030, choosing it over competing bids from Netflix and Amazon (Lucas Shaw/Bloomberg)",
+      "url": "https://www.techmeme.com/260923/p28#a260923p28",
+      "author": null,
+      "publishedAt": "2026-09-23T14:40:38.000Z",
+      "content": "Lucas Shaw / Bloomberg: Coachella promoter Goldenvoice renews its livestreaming partnership with YouTube through 2030, choosing it over competing bids from Netflix and Amazon — New deal includes mini artist documentaries and more programming leading up to North America's largest music festival.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=999380",
+      "title": "This $199 GPS sports watch is repairable, modular, and open-source",
+      "url": "https://www.theverge.com/gadgets/999380/una-watch-sports-gps-modular",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-09-23T15:01:16.000Z",
+      "content": "The Una Watch costs less than most Garmin watches now that its price has been lowered from the Kickstarter offer of $350 to $199, but its modular, repairable design grabbed my attention first. It features a 1.2-inch MIP LCD display and up to 10 days of battery life, similar to the Garmin Forerunner 70 or the Pebble Round 2 I preordered earlier this year. Like Pebble's revamped watches, the Una Watch is also open-source, including its SDK, housing, and circuit boards, but it has more fitness features out of the box than Pebble's watches currently offer. Una is also encouraging users to build their own apps for it, including with vibe coding - … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=999329",
+      "title": "One of the best Metroid games for the Switch is 30 percent off",
+      "url": "https://www.theverge.com/gadgets/999329/metroid-prime-remastered-nintendo-flow-usbc-apple-deal-sale",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-09-23T15:01:50.000Z",
+      "content": "Nintendo’s “Customer Appreciation” sale continues through September 26th. It includes discounts on Switch games and accessories, and I thought I’d call out one of my favorite games that’s cheaper than ever. Metroid Prime Remastered is down to $27.99 in digital format for the Switch and Switch 2, and it’s among the best remasters I’ve played because it makes smart improvements to an already-great game. You can get it for this price at Amazon, Best Buy, and Walmart. The physical version costs around $42 at those retailers. Metroid Prime Remastered Where to Buy: $39.99 $27.99 at Amazon (digital) $39.99 $27.99 at Walmart (digital) $39.99 $27.99 at Best Buy (digital) Most Metroid fans have already played this one — maybe multiple times, even — but if you’ve somehow missed out, here’s your sign to pick it up. It applies a modern coat of updated textures and improved lighting to the 2002 GameCube title, and it runs at a smooth frame rate. Notably, the control scheme doesn’t require motion controls like the Wii re-release did. For about the same price as this digital title, true fans can also buy the Metroid Prime 1-3: A Visual Retrospective hardcover book. Normally $49.99, it’s $28.50 at Amazon and Walmart for the 208-page art book covering the original trilogy, peppered with some fantastic quotes from people who worked on the games. It’s an unusually candid look into Nintendo’s first-person shooter series and the company’s game design philosophy. It’d make for a great holiday gift. Read our coverage of the book. Other great Verge-approved deals Flow is one of the best animated movies of the past few years, and now it’s cheaper than ever to own a digital copy. Unless you have HBO Max to watch it on demand, snag the 4K version from Apple TV or Amazon for $4.99. The voiceless tale follows a cat who survives a huge flood that leaves civilizations in ruin. The perilous (yet adorable) adventure sees the cat relying on other animals to survive. It’s just a fantastic way to spend 90 minutes. It’s never a bad time to recommend a cable as useful as Anker’s 2-in-1 USB-C cable. The two-headed cable can charge two devices from a single charging port (up to 140W for a single device), and the six-foot version is down to $15.99 at Amazon. This is only $4 off, and it’s far from the first time we’ve seen this deal. But it’s never been cheaper, and it’s practical cable that will likely improve your charging setup. My wife and I use it to cycle between charging our MacBooks and an iPad, occasionally throwing a phone or Kindle into the mix. Best Buy is trolling us a bit with today’s price on the white Magic Keyboard with Touch ID. We focused yesterday on the $30 discount for the black version of the wireless keyboard that brought it down to $169.99. That deal is gone, but the model with white key caps is down to $149.99 at Best Buy. It’s compatible with all Macs that have Apple silicon, dating back to the M1 models (so long as you have macOS 15.1 or later). It recharges via USB-C, and has a full numerical pad, plus other keys for easier navigation on your computer.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/nvidia-s-nemotron-3-beats-12-rivals-with-a-14-72-speaker-error-rate",
+      "title": "NVIDIA's Nemotron 3 Beats 12 Rivals With a 14.72% Speaker Error Rate",
+      "url": "https://alphasignal.ai/news/nvidia-s-nemotron-3-beats-12-rivals-with-a-14-72-speaker-error-rate",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-23T15:02:41.000Z",
+      "content": "NVIDIA's 100M-parameter Nemotron 3 Diarization tracks up to 8 speakers in overlapping conversations, topping Voice Arena's benchmark with 14.72% DER.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p29#a260923p29",
+      "title": "At its Accelerate conference, Amazon says it is opening its seller tools to third-party AI agents, starting with Claude, in beta for US merchants (Todd Bishop/GeekWire)",
+      "url": "https://www.techmeme.com/260923/p29#a260923p29",
+      "author": null,
+      "publishedAt": "2026-09-23T15:05:03.000Z",
+      "content": "Todd Bishop / GeekWire: At its Accelerate conference, Amazon says it is opening its seller tools to third-party AI agents, starting with Claude, in beta for US merchants — Amazon announced new AI tools for its independent sellers Wednesday, led by a plugin that lets them run their Amazon businesses from Anthropic's Claude or Amazon's own Quick assistant.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49817280",
+      "title": "Why is Hacker News like that?",
+      "url": "https://drewdevault.com/blog/Why-is-HN-like-that/",
+      "author": "caution",
+      "publishedAt": "2026-09-23T15:05:20.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 127,
+      "comments": 54
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49817404",
+      "title": "GPT-6 Astra has gained the ability to drive a car",
+      "url": "https://drivingbench.com/",
+      "author": "plurby",
+      "publishedAt": "2026-09-23T15:14:22.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 130,
+      "comments": 88
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49817469",
+      "title": "Fixing the Portobello Police Station Clock",
+      "url": "https://pointinthecloud.com/2026-04-11-211700.html",
+      "author": "avidly",
+      "publishedAt": "2026-09-23T15:18:53.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 104,
+      "comments": 24
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p30#a260923p30",
+      "title": "Q&A with Jensen Huang on AI creating more jobs than it destroys, pushing back against AI doomerism, Chinese open models, the Hugging Face acquisition, and more (Ezra Klein/New York Times)",
+      "url": "https://www.techmeme.com/260923/p30#a260923p30",
+      "author": null,
+      "publishedAt": "2026-09-23T15:20:01.000Z",
+      "content": "Ezra Klein / New York Times: Q&A with Jensen Huang on AI creating more jobs than it destroys, pushing back against AI doomerism, Chinese open models, the Hugging Face acquisition, and more — This is an edited transcript of “The Ezra Klein Show.” You can listen to the episode wherever you get your podcasts.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "deepmind-blog",
+      "externalId": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech/",
+      "title": "Gemini 3.8 text-to-speech says hello",
+      "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech/",
+      "author": null,
+      "publishedAt": "2026-09-23T15:25:14.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-ships-gemini-3-8-flash-tts-with-prompt-directed-emotional-speech",
+      "title": "Google Ships Gemini 3.8 Flash TTS With Prompt-Directed Emotional Speech",
+      "url": "https://alphasignal.ai/news/google-ships-gemini-3-8-flash-tts-with-prompt-directed-emotional-speech",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-23T15:25:55.000Z",
+      "content": "Google's new Flash TTS models bring 200+ expressive audio tags and multi-language narration to AI Studio and the Gemini API for developers building voice apps.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=999404",
+      "title": "Xbox’s Mythic achievements sound like PlayStation’s Platinum trophy",
+      "url": "https://www.theverge.com/news/999404/xbox-mythic-achievement-feature",
+      "author": "Tom Warren",
+      "publishedAt": "2026-09-23T15:45:11.000Z",
+      "content": "Xbox appears to be ready to launch its own version of PlayStation's platinum trophies. A new update to the Xbox PC app has revealed Mythic achievements, which according to data in the app will appear once a player completes all the achievements in a game. Mythic achievements appear on screen with a unique unlock sound, and players will reportedly be able to track them through the Xbox dashboard. Xbox players will also be able to display their Mythic count on their profiles. Some Xbox Insider testers have already started spotting references to Mythic achievements in early versions of the Xbox dashboard. A new update for the Xbox PC App re … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49817877",
+      "title": "Woman Arrested, Dragged Away After Speaking About Flock at City Council Meeting",
+      "url": "https://www.404media.co/woman-arrested-after-city-council-denies-residents-right-to-speak-on-flock-cameras/",
+      "author": "latexr",
+      "publishedAt": "2026-09-23T15:46:27.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 125,
+      "comments": 68
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p31#a260923p31",
+      "title": "Google releases Gemini 3.8 Flash TTS and Gemini 3.8 Flash-Lite TTS, its \"most expressive audio generation models yet\", with support for more than 100 languages (Google)",
+      "url": "https://www.techmeme.com/260923/p31#a260923p31",
+      "author": null,
+      "publishedAt": "2026-09-23T15:50:02.000Z",
+      "content": "Google: Google releases Gemini 3.8 Flash TTS and Gemini 3.8 Flash-Lite TTS, its “most expressive audio generation models yet”, with support for more than 100 languages — Gemini 3.8 Flash TTS and Gemini 3.8 Flash-Lite TTS are our most expressive audio generation models yet.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=998266",
+      "title": "Logitech’s new haptics-based gaming mouse is a little better and $20 more",
+      "url": "https://www.theverge.com/news/998266/logitech-x3-pro-superstrike-specs-price",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-09-23T16:00:00.000Z",
+      "content": "The X3 also comes in black. “Lunar eclipse” remains an option for the $179.99 X2. | Image: Logitech The G Pro Superstrike mouse is one of Logitech's most interesting products. Unlike other gaming mice, it has haptic actuators beneath its two main buttons instead of mechanical switches, which decreases latency and allows for a custom click feel (the click can be super subtle, more jolty, or turned off entirely). The tech debuted in the G Pro X2 Superstrike in February, and there's already a sequel. Well, it's more like a 1.5 rather than a true successor. The G Pro X3 Superstrike is out October 6th for $199.99, and comes in a bold pink (as pictured) or black color scheme. The X2 will remain available at $179.99. The notable improvements wit … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/two-years-of-openai-academy",
+      "title": "Two years of OpenAI Academy",
+      "url": "https://openai.com/index/two-years-of-openai-academy",
+      "author": null,
+      "publishedAt": "2026-09-23T16:00:00.000Z",
+      "content": "Marking two years of OpenAI Academy and bringing AI skills to even more communities.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=122835",
+      "title": "How SWE-Serve Exposes the Gap Between Local Tests and Live Serving",
+      "url": "https://developer.nvidia.com/blog/how-swe-serve-exposes-the-gap-between-local-tests-and-live-serving/",
+      "author": "Elizabeth Goodman",
+      "publishedAt": "2026-09-23T16:00:00.000Z",
+      "content": "An AI coding agent’s patch can pass tests yet fail when the server loads a real model and handles requests. Evaluating changes to inference-serving software... An AI coding agent’s patch can pass tests yet fail when the server loads a real model and handles requests. Evaluating changes to inference-serving software therefore requires checking the full serving path, including whether the system returns correct results through its public interface. Developed with input from the SGLang team, SWE-Serve evaluates this gap with 53 tasks derived from… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p32#a260923p32",
+      "title": "Disney raises Disney+ and Hulu prices, the fourth price hike in as many years; the ad-free tiers will each cost $21.49/month, an increase of $2.50 (Rick Porter/The Hollywood Reporter)",
+      "url": "https://www.techmeme.com/260923/p32#a260923p32",
+      "author": null,
+      "publishedAt": "2026-09-23T16:00:53.000Z",
+      "content": "Rick Porter / The Hollywood Reporter: Disney raises Disney+ and Hulu prices, the fourth price hike in as many years; the ad-free tiers will each cost $21.49/month, an increase of $2.50 — Subscribing to a bundle is now almost exactly half the price of individual plans for each streamer.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "deepmind-blog",
+      "externalId": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/",
+      "title": "Advancing Private AI Compute with secure, server-side memory",
+      "url": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/",
+      "author": null,
+      "publishedAt": "2026-09-23T16:00:57.000Z",
+      "content": "Introducing private, server-side memory to Private AI Compute for personal AI.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=999406",
+      "title": "Logitech’s new Blue Yeti 2 mic adjusts itself to where you are",
+      "url": "https://www.theverge.com/gadgets/999406/blue-yeti-2-usb-microphone-price-availability",
+      "author": "Jess Weatherbed",
+      "publishedAt": "2026-09-23T16:01:45.000Z",
+      "content": "The LED control display includes a Yeti mascot, because of course it does. | Image: Logitech G The original Blue Yeti has been one of the most recognizable go-to USB microphones for content creators since it launched in 2009, and now it finally has a successor. Launching today under Logitech G, the Blue Yeti 2 adds some modern upgrades, including an interactive LED display, AI de-noising, and a proximity based voice sensor - which resolves a notable flaw with its predecessor's design while still paying homage to it. It's available in black or white color options for $159.99, which is comparatively cheaper than Shure's popular MV7 series USB microphones, which are the current choice for podcasters and start at $299. It's also interest … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-s-gemini-now-controls-adobe-linear-and-12-more-apps",
+      "title": "Google's Gemini Now Controls Adobe, Linear and 12 More Apps",
+      "url": "https://alphasignal.ai/news/google-s-gemini-now-controls-adobe-linear-and-12-more-apps",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-23T16:02:59.000Z",
+      "content": "Gemini adds 13 new Connected Apps across productivity, creativity, and lifestyle, letting users control Adobe, Linear, Peloton, and more from a single chat.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260923/p33#a260923p33",
+      "title": "Pilgrim, whose device combines air sampling and genomic sequencing to detect biological threats, raised a $25M seed led by Buckley at a $150M valuation (Kate Clark/Wall Street Journal)",
+      "url": "https://www.techmeme.com/260923/p33#a260923p33",
+      "author": null,
+      "publishedAt": "2026-09-23T16:20:00.000Z",
+      "content": "Kate Clark / Wall Street Journal: Pilgrim, whose device combines air sampling and genomic sequencing to detect biological threats, raised a $25M seed led by Buckley at a $150M valuation — Pilgrim has raised $25 million and has developed a 50-pound device that detects biological threats — Two Anthropic leaders are investing …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=999443",
+      "title": "Bernie Sanders proposes banning ‘superintelligence’ and putting violators in prison",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/999443/bernie-sanders-ai-superintelligence-ban-act",
+      "author": "Emma Roth",
+      "publishedAt": "2026-09-23T16:23:05.000Z",
+      "content": "Sen. Bernie Sanders (I-VT) and Rep. Greg Casar (D-TX) have introduced new legislation that would ban anyone from developing artificial superintelligence - a technology the bill describes as capable of the \"destruction or disempowerment of humanity,\" including by overthrowing the government. Under the Ban Artificial Superintelligence Act, AI leaders would face up to 20 years in prison for violating the law. The bill doesn't just ban the more powerful artificial superintelligence; it would also pause the development of advanced AI systems, which lawmakers classify as frontier models trained on a specific threshold of data. The law would only … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.26550",
+      "title": "JEV-as-a-Judge: Accept When Confident, Escalate When Unsure",
+      "url": "https://huggingface.co/papers/2609.26550",
+      "author": null,
+      "publishedAt": "2026-09-23T16:44:59.556Z",
+      "content": "JEV-as-a-Judge: Accept When Confident, Escalate When Unsure",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.26781",
+      "title": "Agensh: Scaling Organizational Intelligence to 1,024 Agents",
+      "url": "https://huggingface.co/papers/2609.26781",
+      "author": null,
+      "publishedAt": "2026-09-23T16:44:59.556Z",
+      "content": "Agensh: Scaling Organizational Intelligence to 1,024 Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.26346",
+      "title": "Blaming Across the Aisle: Political Contrasting and Blame Attribution in the Danish Parliament",
+      "url": "https://huggingface.co/papers/2609.26346",
+      "author": null,
+      "publishedAt": "2026-09-23T16:44:59.556Z",
+      "content": "Blaming Across the Aisle: Political Contrasting and Blame Attribution in the Danish Parliament",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.25636",
+      "title": "RoboFollow: Unveiling the Instruction Following Mirage in Embodied Agents",
+      "url": "https://huggingface.co/papers/2609.25636",
+      "author": null,
+      "publishedAt": "2026-09-23T16:44:59.556Z",
+      "content": "RoboFollow: Unveiling the Instruction Following Mirage in Embodied Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.25053",
+      "title": "LatentPort: Beyond KV Cache - Cross-Model Transfer of Recurrent Memory in Hybrid Language Models: A 4B-to-9B Hybrid-State Handoff Without Target Prefix Replay",
+      "url": "https://huggingface.co/papers/2609.25053",
+      "author": null,
+      "publishedAt": "2026-09-23T16:44:59.556Z",
+      "content": "LatentPort: Beyond KV Cache - Cross-Model Transfer of Recurrent Memory in Hybrid Language Models: A 4B-to-9B Hybrid-State Handoff Without Target Prefix Replay",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.06011",
+      "title": "Tri-PvP: Exposing Modality Bias in Omni-Modal Large Language Models through Perceptual-Propositional Evidence Conflicts",
+      "url": "https://huggingface.co/papers/2609.06011",
+      "author": null,
+      "publishedAt": "2026-09-23T16:44:59.556Z",
+      "content": "Tri-PvP: Exposing Modality Bias in Omni-Modal Large Language Models through Perceptual-Propositional Evidence Conflicts",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.22319",
+      "title": "Embedding Physics Priors in Robot Learning: A Survey",
+      "url": "https://huggingface.co/papers/2609.22319",
+      "author": null,
+      "publishedAt": "2026-09-23T16:44:59.556Z",
+      "content": "Embedding Physics Priors in Robot Learning: A Survey",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.25267",
+      "title": "ImIR: Image-Instruction Tuning for All-in-One Image Restoration",
+      "url": "https://huggingface.co/papers/2609.25267",
+      "author": null,
+      "publishedAt": "2026-09-23T16:44:59.556Z",
+      "content": "ImIR: Image-Instruction Tuning for All-in-One Image Restoration",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
+      "title": "Gemini 3.8 text-to-speech says hello",
+      "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.132Z",
+      "content": "Gemini 3.8 text-to-speech says hello deepmind.google5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.tomshardware.com/tech-industry/artificial-intelligence/alibaba-claims-new-qwen-image-2-1-ai-model-beats-google-nano-banana-2-0-with-minuscule-7b-parameter-model-benchmarks-show-open-weight-contender-is-competitive-with-openai-and-meta-image-models",
+      "title": "Alibaba claims new Qwen Image 2.1 AI model beats Google Nano Banana 2.0 with minuscule 7B parameter model",
+      "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/alibaba-claims-new-qwen-image-2-1-ai-model-beats-google-nano-banana-2-0-with-minuscule-7b-parameter-model-benchmarks-show-open-weight-contender-is-competitive-with-openai-and-meta-image-models",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.147Z",
+      "content": "Alibaba claims new Qwen Image 2.1 AI model beats Google Nano Banana 2.0 with minuscule 7B parameter model tomshardware.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory",
+      "title": "Advancing Private AI Compute with secure, server-side memory",
+      "url": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.151Z",
+      "content": "Advancing Private AI Compute with secure, server-side memory deepmind.google1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.tomshardware.com/tech-industry/data-centers/filing-reveals-how-bytedance-gained-access-to-over-2-000-nvidia-b200-chips-through-nscales-norway-data-center-singaporean-subsidiary-spring-contributed-73-percent-of-uk-neoclouds-2025-revenue",
+      "title": "China's ByteDance gained access to over 2,000 Nvidia B200 chips through Norway data center",
+      "url": "https://www.tomshardware.com/tech-industry/data-centers/filing-reveals-how-bytedance-gained-access-to-over-2-000-nvidia-b200-chips-through-nscales-norway-data-center-singaporean-subsidiary-spring-contributed-73-percent-of-uk-neoclouds-2025-revenue",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.151Z",
+      "content": "China's ByteDance gained access to over 2,000 Nvidia B200 chips through Norway data center tomshardware.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "http://anthropic.com/claude-opus-5-5",
+      "title": "Introducing Claude Opus 5.5 \\ Anthropic",
+      "url": "http://anthropic.com/claude-opus-5-5",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.152Z",
+      "content": "Introducing Claude Opus 5.5 \\ Anthropic anthropic.com19 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://steveblank.com/2026/09/23/the-year-ai-came-for-us-teaching-entrepreneurship-will-never-be-the-same",
+      "title": "The Year AI Came For Us: Teaching Entrepreneurship Will Never Be The Same",
+      "url": "https://steveblank.com/2026/09/23/the-year-ai-came-for-us-teaching-entrepreneurship-will-never-be-the-same",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.153Z",
+      "content": "The Year AI Came For Us: Teaching Entrepreneurship Will Never Be The Same steveblank.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://a16z.com/announcement/incubating-horowitz-andreessen-academy",
+      "title": "Incubating The Horowitz Andreessen Academy | Andreessen Horowitz",
+      "url": "https://a16z.com/announcement/incubating-horowitz-andreessen-academy",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.155Z",
+      "content": "Incubating The Horowitz Andreessen Academy | Andreessen Horowitz a16z.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://steveblank.substack.com/p/the-year-ai-came-for-us-teaching",
+      "title": "The Year AI Came For Us: Teaching Entrepreneurship Will Never Be The Same",
+      "url": "https://steveblank.substack.com/p/the-year-ai-came-for-us-teaching",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.156Z",
+      "content": "The Year AI Came For Us: Teaching Entrepreneurship Will Never Be The Same steveblank.substack.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thehackernews.com/2026/09/anthropic-and-openai-models-still.html",
+      "title": "Anthropic and OpenAI Models Still Attempt Restricted Actions in Safety Tests",
+      "url": "https://thehackernews.com/2026/09/anthropic-and-openai-models-still.html",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.159Z",
+      "content": "Anthropic and OpenAI Models Still Attempt Restricted Actions in Safety Tests thehackernews.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.gitguardian.com/github-app-private-keys-leaked",
+      "title": "GitHub App Private Keys: 474 Leaked Keys Exposed",
+      "url": "https://blog.gitguardian.com/github-app-private-keys-leaked",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.161Z",
+      "content": "GitHub App Private Keys: 474 Leaked Keys Exposed blog.gitguardian.com11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techxplore.com/news/2026-09-anthropic-openai-cheaper-ai-safety.html",
+      "title": "Anthropic, OpenAI release cheaper AI even as safety fears grow",
+      "url": "https://techxplore.com/news/2026-09-anthropic-openai-cheaper-ai-safety.html",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.162Z",
+      "content": "Anthropic, OpenAI release cheaper AI even as safety fears grow techxplore.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://postquantum.com/security-pqc/china-ngcc-candidate-flaws",
+      "title": "China’s Next-Generation Crypto Candidates Drew 104 Public Findings in Three Days. Researchers Broke Five Designs on Day Two",
+      "url": "https://postquantum.com/security-pqc/china-ngcc-candidate-flaws",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.164Z",
+      "content": "China’s Next-Generation Crypto Candidates Drew 104 Public Findings in Three Days. Researchers Broke Five Designs on Day Two postquantum.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.apnic.net/2026/09/22/latest-bgp-hijack-targets-hosting-software-vendor",
+      "title": "Latest BGP hijack targets hosting software vendor",
+      "url": "https://blog.apnic.net/2026/09/22/latest-bgp-hijack-targets-hosting-software-vendor",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.166Z",
+      "content": "Latest BGP hijack targets hosting software vendor blog.apnic.net7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.openwall.com/lists/oss-security/2026/09/16/14",
+      "title": "oss-security - CVE-2026-89775: Guest-to-Host Escape in KVM/arm64",
+      "url": "https://www.openwall.com/lists/oss-security/2026/09/16/14",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.166Z",
+      "content": "oss-security - CVE-2026-89775: Guest-to-Host Escape in KVM/arm64 openwall.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/arcprize/status/2102778658608091594",
+      "title": "New ARC Prize 2026 - ARC-AGI-2 High Score 83.06% by @tufalabs The Grand Prize is unlocked at 85...",
+      "url": "https://x.com/arcprize/status/2102778658608091594",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.168Z",
+      "content": "New ARC Prize 2026 - ARC-AGI-2 High Score 83.06% by @tufalabs The Grand Prize is unlocked at 85... x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://developer.nvidia.com/blog/topology-aware-workload-scheduling-with-nvidia-topograph",
+      "title": "Topology-Aware Workload Scheduling with NVIDIA Topograph",
+      "url": "https://developer.nvidia.com/blog/topology-aware-workload-scheduling-with-nvidia-topograph",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.169Z",
+      "content": "Topology-Aware Workload Scheduling with NVIDIA Topograph developer.nvidia.com10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://devops.com/your-ai-coding-assistant-has-the-keys-to-the-repo-z-ai-just-showed-why-that-matters",
+      "title": "Your AI Coding Assistant Has the Keys to the Repo. Z.ai Just Showed Why That Matters",
+      "url": "https://devops.com/your-ai-coding-assistant-has-the-keys-to-the-repo-z-ai-just-showed-why-that-matters",
+      "author": null,
+      "publishedAt": "2026-09-23T16:45:01.172Z",
+      "content": "Your AI Coding Assistant Has the Keys to the Repo. Z.ai Just Showed Why That Matters devops.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/ringg",
+      "title": "Ringg’s AI agents resolve up to 65% of customer calls with OpenAI",
+      "url": "https://openai.com/index/ringg",
+      "author": null,
+      "publishedAt": "2026-09-24T12:00:00.000Z",
+      "content": "Using GPT-5.6, Ringg powers multilingual agents across voice, chat, WhatsApp, and web for 90% less cost vs. GPT-4.1.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
