@@ -96,7 +96,7 @@ h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:2.1rem;letter-
 .pager{display:flex;gap:1.5rem;margin:3.5rem 0 0;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.95rem}
 .pager a{display:flex;flex-direction:column;gap:.15rem}
 .pager .later{margin-left:auto;text-align:right}
-.pager .mono{color:var(--muted);transition:color .2s}
+.pager .mono{color:var(--body);transition:color .2s}
 .pager a:hover .mono{color:var(--accent-hover)}
 .byline{font-size:.9rem;color:var(--muted)}
 .byline a{color:var(--body)}
