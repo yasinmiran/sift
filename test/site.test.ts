@@ -380,6 +380,43 @@ describe("buildSite", () => {
     expect(day).toContain("left * 60000");
   });
 
+  it("walks a day page to its neighbours in both directions", () => {
+    digest("2026-07-03", "body");
+    digest("2026-07-04", "body");
+    digest("2026-07-05", "body");
+    buildSite(root, out);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain('<nav class="pager"');
+    expect(day).toContain('rel="prev" href="2026-07-03.html"');
+    expect(day).toContain('rel="next" href="2026-07-05.html"');
+    expect(day).toContain("Fri, Jul 3");
+    expect(day).toContain("Sun, Jul 5");
+    // After the day's own reading, before the site chrome.
+    expect(day.indexOf("</article>")).toBeLessThan(day.indexOf('class="pager"'));
+    expect(day.indexOf('class="pager"')).toBeLessThan(day.indexOf('<footer class="foot">'));
+  });
+
+  it("leaves off the neighbour a rolling month does not have", () => {
+    digest("2026-07-03", "body");
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const newest = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(newest).toContain('rel="prev" href="2026-07-03.html"');
+    expect(newest).not.toContain('rel="next"');
+    const oldest = readFileSync(join(out, "2026-07-03.html"), "utf8");
+    expect(oldest).toContain('rel="next" href="2026-07-04.html"');
+    expect(oldest).not.toContain('rel="prev"');
+  });
+
+  // Passes with or without the pager, so not a regression case: it pins that
+  // the only day in the archive gets no empty nav rendered around nothing.
+  it("renders no pager when the archive holds one day", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).not.toContain('class="pager"');
+  });
+
   it("uses semantic landmarks with the buttons in the index masthead", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);
