@@ -201,6 +201,23 @@ describe("buildSite", () => {
     expect(day).toContain(".pen-o{");
   });
 
+  it("lets a bare url in the prose break rather than widen the page", () => {
+    digest(
+      "2026-07-04",
+      "Android 17 ships without an AOSP release (https://grapheneos.social/@GrapheneOS/117282080803799576) and the room noticed.",
+    );
+    buildSite(root, out);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    // Both halves matter. A bare url has to reach the page as an anchor, since
+    // the wrap rule is on .prose a; and the anchor has to be allowed to break
+    // mid-token, since a url offers no break opportunity at / or . and 515px
+    // of unbreakable link text widens the whole page on a 375px screen.
+    expect(day).toContain(
+      '<a href="https://grapheneos.social/@GrapheneOS/117282080803799576">https://grapheneos.social/@GrapheneOS/117282080803799576</a>',
+    );
+    expect(day).toMatch(/\.prose a\{[^}]*overflow-wrap:break-word/);
+  });
+
   it("emits structured data for the site and each day", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);
