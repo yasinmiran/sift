@@ -117,7 +117,7 @@ a:hover{color:var(--accent-hover)}
 .days a{font-size:1.05rem}
 .prose{margin-top:2rem;line-height:1.72}
 .prose p{margin:1.5em 0}
-.prose a{border-bottom:1px dotted var(--faint);transition:color .2s,border-color .2s}
+.prose a{border-bottom:1px dotted var(--faint);overflow-wrap:break-word;transition:color .2s,border-color .2s}
 .prose a:hover{border-bottom-color:var(--accent)}
 .prose h2{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.35rem;margin:2.2rem 0 .6rem;color:var(--text);letter-spacing:-.01em}
 .prose li{margin:.45rem 0}
