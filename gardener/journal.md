@@ -6,6 +6,17 @@ merges and closures and never expire.
 
 ## Lessons
 
+- An open question in a backlog note is not automatically a judgement call.
+  The 09-23 note parked this one on two questions, `.prose a` or all of
+  `.prose`, and site fix or editorial, as though both needed Yasin. The first
+  was a measurement: min-content for every link and every text block across the
+  34 pages, five things over the measure, all five a bare url in link text, so
+  `.prose a` is the whole of it and `.prose` would have been wider than the
+  evidence. The second answered itself once stated plainly, since `digests/` is
+  never rewritten and the next bare url breaks the page again whatever the
+  editorial style becomes. The scan cost ten minutes and the note had been
+  waiting a day. Before deferring a question, ask what would measure it.
+
 - Naming a cost in the pr body is not paying it. Today's pager put its
   direction word on `--muted` to match the chrome around it, and the body said
   so plainly — "that puts two more words on the --muted token, which #110 has
@@ -76,18 +87,13 @@ merges and closures and never expire.
 
 ## Backlog
 
-- A day page can scroll sideways on a phone and one does today. `2026-09-19`
-  at 375px has scrollWidth 547 against a client width of 375, from three bare
-  urls used as their own link text (`https://grapheneos.social/@GrapheneOS/117282080803799576`
-  is the widest at 541px). Pre-existing and not the pager's: measured
-  identically on the build before #195 and after it, and the other 32 pages
-  are clean at 375px and 1280px. Candidate recipe, NOT re-derived and not
-  ready: `overflow-wrap:anywhere` on `.prose a`, which would wrap the url
-  rather than widening the page. Two things to settle first — whether it
-  should sit on `.prose a` or all of `.prose`, and whether this is a site fix
-  at all or an editorial one, since the digest agent chose to print a bare url
-  where every other entry carries prose link text. 1 of 33 pages today, but it
-  recurs whenever a bare url is linked, so it earns a slot rather than a fold-in.
+- SHIPPED 2026-09-24 as #198 / PR #199: a bare url in the prose wraps instead of
+  widening the page. The 09-23 recipe held on the premise and was wrong on the
+  fix: `2026-09-19` still measured 547 against 375 (and 547 at 320px too, which
+  09-23 had not checked), but `anywhere` was a guess and `break-word` is enough.
+  Both of the note's open questions turned out to be measurable rather than
+  matters of judgement, and the same scan answered both. Fourth backlog recipe
+  to survive re-derivation, the first to be narrowed by it.
 
 - NARROWED 2026-09-23, and the wall is smaller than 09-22 read it. A footer on
   a *conversation* comment strips fine: today's reply to Copilot on #195 was
@@ -316,6 +322,79 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-24
+
+Shipped. What: a bare url in the digest prose now wraps instead of widening the
+page (#198, PR #199, merged bffd2a9). Why: the 09-08 overflow walk, re-run
+across the 34-page build. One page scrolls sideways on a phone. `2026-09-19` has
+a scrollWidth of 547 against a client width of 375, and 547 again at 320px, a
+width 09-23 had not measured; the other 33 pages are clean at 320px, 375px and
+1280px.
+
+The cause is link text that is its own url. Chrome breaks a url after a hyphen
+but not after `/` or `.`, so `grapheneos.social/@GrapheneOS/117282080803799576`
+is one unbreakable 515px token against a 335px measure and the page widens to
+hold it. Two more on the same page measure 438px and 366px, both of which do
+break at their hyphens and still overrun.
+
+The backlog note left two questions and both were measurements, which is today's
+lesson. Min-content for every link and every text block on all 34 pages: five
+things in the rolling month exceed the measure, all five a bare url in link text
+(the two that register as blocks are blocks whose width is driven by the url
+inside them), and the widest non-link token in the whole archive is
+`AlphaGenome/AlphaMissense` at 237px. So `.prose a`, and `.prose` would have
+been wider than the evidence. The other question, site fix or editorial, answers
+itself once said out loud: the urls are the digest agent's choice in the Hacker
+News section, but `digests/` is the record and is never rewritten, so
+`2026-09-19` keeps them until it rolls off the month and the next mastodon
+permalink re-breaks the page whatever the editorial style becomes.
+
+The note's own recipe was the part that did not hold. It proposed
+`overflow-wrap:anywhere`; `break-word` clears the overflow identically (0 of 34
+pages at both 320px and 375px, against 1 without either) and leaves min-content
+contribution alone, so it is the narrower of the two. Checked the one place they
+could differ in rendering, single-word links broken mid-word across the whole
+build: 6 of 1,566 under each, the same six, all on `2026-09-19`. No difference
+to choose between them on output, so the conservative property wins.
+
+Before/after read at 375px and not attached, same wall as 09-23: no `gh` here
+and the api has no endpoint for putting an image on a pr, so the two frames are
+written out in the pr body. Before, the permalink runs off the right edge at
+`@GrapheneOS/11` and takes its `(discussion)` link with it. After, it breaks
+after `@GrapheneOS` and the paragraph closes inside the viewport, with every
+other line on the page unchanged.
+
+204 tests from 203, typecheck silent, 33 pages, verify `ok: true` across
+09-18..09-24 with only the known warnings. The regression case fails against the
+unfixed source, checked by stashing `page.ts`, and it pins both halves the fix
+needs rather than just the css: that a bare url reaches the page as an anchor at
+all (marked's autolink, which the rule depends on) and that the anchor may break
+mid-token. +25 bytes of css per page, 18 insertions, 1 deletion, 2 files, one
+commit, no new dependency, no new hex.
+
+Copilot at 1m32s: 🟢 approval recommended, **Findings: None**, nothing inline.
+Second consecutive round with nothing real to answer.
+
+checks green in 21s, merged rebase, pages run 270 green in 112s. As always,
+"deployed" means the workflow went green: sift.yasint.dev refused at CONNECT
+again, probed not assumed, so the fix has not been read back off the live site.
+goatcounter the same, twenty-sixth run with no reader signal.
+
+#112, unchanged for the twenty-fifth day, and the two crons are now behaving
+differently from each other. The `15 3` did not fire again and the morning
+digest forced its own `workflow_dispatch` ingest at 04:43, pages green at 04:55,
+the tenth morning the workaround has held. The `45 15` did fire, at 19:14 on
+09-23, +3h29. No new comment: 09-14's already describes this state.
+
+Branch deletion refused again, the sideband disconnect through the proxy.
+Twenty-one merged gardener branches on the remote now.
+
+Commit trailers: none, seventh run running. PR body footer stripped as usual;
+the issue body had none, sixth run running.
+
+Outcome: #198 filed and closed by #199, merged and deployed. #110, #112 and #120
+all still pending, #120 since 09-03, twenty-one days.
 
 ### 2026-09-23
 
