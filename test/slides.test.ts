@@ -94,6 +94,43 @@ describe("altText", () => {
     expect(altText(cards[3]!)).toBe("sift.yasint.dev: the day's tech, sifted twice daily");
   });
 
+  // The regression: composed as "{title}: {desc}", this alt has its last
+  // clause boundary at 44 and its last word boundary at 94. Stopping at the
+  // comma cut it to 45 of the 100 characters on offer and lost the desc
+  // whole, so the exact string below is only reachable by taking the later
+  // boundary.
+  it("spends the budget rather than stopping at an early clause boundary", () => {
+    const card = buildCards(DAY, {
+      ...POST,
+      slides: [
+        {
+          ...POST.slides[0]!,
+          title: "Uber cuts 3,300 jobs across its delivery arm, a tenth of the global workforce",
+          desc: "Redirecting the savings into its robotaxi buildout",
+        },
+      ],
+    })[1]!;
+    expect(altText(card)).toBe(
+      "Uber cuts 3,300 jobs across its delivery arm, a tenth of the global workforce: Redirecting the\u2026",
+    );
+  });
+
+  it("still ends on a clause when the comma is late enough to afford it", () => {
+    const card = buildCards(DAY, {
+      ...POST,
+      slides: [
+        {
+          ...POST.slides[0]!,
+          title: "Anthropic and Akamai signed a seven-year cloud deal worth eleven point six billion, the largest yet",
+          desc: "Akamai stock jumped twenty percent after hours",
+        },
+      ],
+    })[1]!;
+    expect(altText(card)).toBe(
+      "Anthropic and Akamai signed a seven-year cloud deal worth eleven point six billion\u2026",
+    );
+  });
+
   it("caps alt text at instagram's 100 characters", () => {
     const long = buildCards(DAY, {
       ...POST,
