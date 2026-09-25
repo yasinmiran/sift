@@ -43,13 +43,22 @@ const dropUnpairedMarks = (s: string): string => {
   return out;
 };
 
+// Ending on a clause reads better than ending mid-phrase, but only when the
+// clause boundary is not throwing the budget away: a comma past 40% of the
+// cap used to beat a word break at 99% of it, which left one alt text at 43
+// of its 100 characters with the why-it-matters clause gone. Both boundaries
+// now have to keep most of what was asked for, and a run of text with no
+// boundary at all still cuts hard rather than vanishing.
+const KEEP = 0.8;
+
 function truncate(s: string, max: number): string {
   if (s.length <= max) return s;
   const cut = s.slice(0, max);
+  const floor = max * KEEP;
   const comma = cut.lastIndexOf(", ");
   const space = cut.lastIndexOf(" ");
-  const base = comma > max * 0.4 ? cut.slice(0, comma) : space > 0 ? cut.slice(0, space) : cut.slice(0, -1);
-  return `${base.trimEnd()}…`;
+  const at = comma >= floor ? comma : space >= floor ? space : max - 1;
+  return `${cut.slice(0, at).trimEnd()}…`;
 }
 
 // Marks render with no width, so a string fits when its visible text does.
