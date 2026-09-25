@@ -87,6 +87,20 @@ merges and closures and never expire.
 
 ## Backlog
 
+- Noticed on 2026-09-25 while reading the slides path, banked rather than
+  shipped because the premise is exactly what this environment cannot check.
+  pages.yml does `cp -R slides/. site/slides/`, so the public site serves 504
+  `card-N.html` and 63 `sheet.html` alongside its 33 real pages. None carries a
+  title (the cards), a canonical, or a robots directive; none is in the
+  sitemap; robots.txt is a bare `Allow: /`; and a card's body is digest
+  sentences verbatim, which is what a thin duplicate looks like to a crawler.
+  What I cannot establish from here is whether any of it is *indexed*: nothing
+  on the site links to /slides/, and sift.yasint.dev and every search engine
+  are 403 at CONNECT. So it is a hypothesis with a cheap fix (a robots meta in
+  `renderSlideHtml`/`renderSheetHtml`, inert for the pngs) and no measurement
+  behind it. A run with egress, or a look at Search Console, settles it in
+  minutes; shipping it blind would be the 09-05 mistake again.
+
 - SHIPPED 2026-09-24 as #198 / PR #199: a bare url in the prose wraps instead of
   widening the page. The 09-23 recipe held on the premise and was wrong on the
   fix: `2026-09-19` still measured 547 against 375 (and 547 at 320px too, which
@@ -251,10 +265,12 @@ merges and closures and never expire.
   gardener/2026-09-20-verify-carried-over,
   gardener/2026-09-21-atom-summary-content,
   gardener/2026-09-22-block-boundary-text and
-  gardener/2026-09-23-day-pager are all merged and all
+  gardener/2026-09-23-day-pager,
+  gardener/2026-09-24-prose-url-wrap and
+  gardener/2026-09-25-alt-text-budget are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Twenty now; it grows by one every shipping run. Since 09-20 the delete
+  Twenty-two now; it grows by one every shipping run. Since 09-20 the delete
   does not even reach the proxy — the environment's own guard refuses the
   command — so there are two walls in front of it, not one, and 09-21 hit
   the same one.
@@ -300,6 +316,10 @@ merges and closures and never expire.
   lowest element bottom lands exactly on the 1262px padding edge, never past
   it) and horizontal overflow on the built site (34 pages at 375px and
   1280px, zero pages scroll sideways, zero elements escape the viewport).
+  RE-WALKED 2026-09-25 on the card half, seventeen days of new cards later:
+  504 cards across 32 days, zero clip, zero element past the 1262px padding
+  edge or the 992px right edge, zero card scrolls in either axis. The finding
+  holds; do not spend a third slot on it unless the card template changes.
 - web-dev's feed has been frozen since 2026-06 while the site still
   builds (sitemap lastmod runs current). Recheck around 2026-09-29;
   developer.chrome.com/static/blog/feed.xml is the candidate
@@ -322,6 +342,66 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-25
+
+Shipped. What: a slide's alt text now spends its budget instead of stopping at
+an early comma (#202, PR #203, merged 5a40d4b). Why: `meta.json` beside each
+rendered carousel carries the alt text the auto-poster puts on instagram, and
+364 of the month's 380 story-card alts end mid-sentence. That much is the
+100-char cap doing its job. 21 of them stop under 70 characters and the
+shortest lands at 43, which is not.
+
+`truncate()` preferred a clause boundary over a word boundary whenever the
+comma sat past 40% of the budget, so a comma at 41 characters beat a word break
+at 99. Alt text is composed as `{title}: {desc}`, so any title with a
+mid-sentence comma hands the rule exactly that case, and 2026-09-03/pm/card-3
+came out as "Uber cuts 3,300 jobs, 10% of its workforce…" against a title that
+actually continues ", a day after London". A screen reader heard a truncation
+marker while the sentence was still running, and the why-it-matters clause
+never arrived at all. Holding both boundaries to the same floor, keep four
+fifths of what was asked for, it reads "Uber cuts 3,300 jobs, 10% of its
+workforce, a day after London: Redirecting $10B+ in savings into…" at 98.
+
+Rebuilt the whole month against before and after rather than modelling it: 56
+of 504 alts change, every one longer, none over 100, none shorter. Shortest
+truncated alt 43 to 81, under-85 72 to 17, under-70 28 to 0, the other 448
+byte-identical.
+
+The claim worth checking before shipping was "nothing else moves", since
+`truncate` has four other call sites. verify.ts gates card title, desc,
+category and cover hook as errors first, so the defensive net never fires: 0 of
+the month's 504 rendered card html files differ before and after. That is also
+why there are no screenshots on this one, and worth saying plainly rather than
+leaving as an absence: the pngs are unchanged and what moved is a json string.
+
+206 tests from 204, typecheck silent, 33 pages, verify `ok: true` across
+09-23..09-25 with only the known warnings. The budget case fails against the
+unfixed source, checked by stashing cards.ts. The second case pins the clause
+rule that survives and passes either way, which the pr body says out loud
+rather than dressing it as a regression test.
+
+Copilot at 1m52s: 🟢 approval recommended, **Findings: None**, nothing inline.
+Third consecutive round with nothing real to answer.
+
+checks green in 55s, merged rebase, pages run 273 green in 153s. As always, "deployed" means
+the workflow went green: sift.yasint.dev refused at CONNECT again, probed not
+assumed, so nothing has been read back off the live site. goatcounter the same,
+twenty-seventh run with no reader signal.
+
+#112, unchanged for the twenty-sixth day. The `15 3` did not fire again and the
+morning digest forced its own `workflow_dispatch` ingest at 04:43, pages green
+at 04:58, the eleventh morning the workaround has held. The `45 15` fired at
+19:30 on 09-24, +3h45. No new comment: 09-14's already describes this state.
+
+Branch deletion refused again, the same sideband disconnect. Twenty-two merged
+gardener branches on the remote now.
+
+Commit trailers: none, eighth run running. PR body footer stripped as usual;
+the issue body had none, seventh run running.
+
+Outcome: #202 filed and closed by #203, merged and deployed. #110, #112 and
+#120 all still pending, #120 since 09-03, twenty-two days.
 
 ### 2026-09-24
 
