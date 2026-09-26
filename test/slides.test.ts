@@ -231,6 +231,27 @@ describe("renderSlideHtml", () => {
     expect(html).toContain("&lt;b&gt;bold&lt;/b&gt;");
   });
 
+  // The pages workflow cp -R's the whole render tree into the site, so both
+  // documents are served from sift.yasint.dev and both have to say they are
+  // not pages. Asserted inside <head>, and over every card kind: the body is
+  // chosen per kind, which is where the directive could get lost.
+  it("tells crawlers the cards and the sheet are not pages", () => {
+    const head = (html: string) => {
+      const end = html.indexOf("</head>");
+      expect(end).toBeGreaterThan(0);
+      return html.slice(0, end);
+    };
+    expect(new Set(cards.map((c) => c.kind))).toEqual(new Set(["cover", "story", "cta"]));
+    for (const [i, card] of cards.entries()) {
+      expect(head(renderSlideHtml(card, i, cards.length))).toContain(
+        '<meta name="robots" content="noindex">',
+      );
+    }
+    expect(head(renderSheetHtml("2026-07-11 am", 4))).toContain(
+      '<meta name="robots" content="noindex">',
+    );
+  });
+
   it("puts the handle and site on the cta card", () => {
     const html = renderSlideHtml(cards[3]!, 3, 4);
     expect(html).toContain("sift.yasint.dev");
