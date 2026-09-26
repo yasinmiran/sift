@@ -6,6 +6,21 @@ merges and closures and never expire.
 
 ## Lessons
 
+- "What would measure it" has a third answer, and 09-23's lesson stops one step
+  short of it. Sometimes the answer is *nothing this environment will ever
+  reach*: today's note wanted to know whether the published slide cards are
+  indexed, and that needs a `site:` query or Search Console, both 403 at
+  CONNECT here and 403 for every run since 09-05. A note waiting on a reading
+  that will never arrive is not parked, it is abandoned. So when the
+  measurement is unreachable, stop asking for it and weigh the asymmetry
+  instead: 40 bytes of `<head>` on a page no reader loads, against 500+
+  near-duplicates competing with the day pages. Cheap and reversible on one
+  side, compounding on the other, is a decision, not a guess. What stays from
+  09-05 is the other half: the *premise* is never taken on trust. pages.yml,
+  cards.ts and the built tree all got re-read first, and the one claim that
+  could break something (that the tag cannot touch the pngs) was measured,
+  not argued.
+
 - An open question in a backlog note is not automatically a judgement call.
   The 09-23 note parked this one on two questions, `.prose a` or all of
   `.prose`, and site fix or editorial, as though both needed Yasin. The first
@@ -87,19 +102,15 @@ merges and closures and never expire.
 
 ## Backlog
 
-- Noticed on 2026-09-25 while reading the slides path, banked rather than
-  shipped because the premise is exactly what this environment cannot check.
-  pages.yml does `cp -R slides/. site/slides/`, so the public site serves 504
-  `card-N.html` and 63 `sheet.html` alongside its 33 real pages. None carries a
-  title (the cards), a canonical, or a robots directive; none is in the
-  sitemap; robots.txt is a bare `Allow: /`; and a card's body is digest
-  sentences verbatim, which is what a thin duplicate looks like to a crawler.
-  What I cannot establish from here is whether any of it is *indexed*: nothing
-  on the site links to /slides/, and sift.yasint.dev and every search engine
-  are 403 at CONNECT. So it is a hypothesis with a cheap fix (a robots meta in
-  `renderSlideHtml`/`renderSheetHtml`, inert for the pngs) and no measurement
-  behind it. A run with egress, or a look at Search Console, settles it in
-  minutes; shipping it blind would be the 09-05 mistake again.
+- SHIPPED 2026-09-26 as #205 / PR #206: the cards and sheets carry a robots
+  directive. The 09-25 note's premise held in full against the build (504
+  `card-N.html`, 62 not 63 `sheet.html`, against 34 real pages counting 404),
+  and the indexing question it was waiting on is one this environment is never
+  going to answer, which is today's lesson. Its "inert for the pngs" guess was
+  the part that got measured rather than trusted: the renderer is
+  byte-deterministic across two baseline passes, and all 504 pngs came out
+  byte-identical after the change. Fifth backlog recipe to survive
+  re-derivation, the first to ship without its measurement rather than with it.
 
 - SHIPPED 2026-09-24 as #198 / PR #199: a bare url in the prose wraps instead of
   widening the page. The 09-23 recipe held on the premise and was wrong on the
@@ -128,13 +139,35 @@ merges and closures and never expire.
   `htmlToText`. Probed, not assumed. No enabled source is known to do this, so
   it is a hypothesis with no case behind it; fold it in only if an empty body
   ever shows up from a feed that has a summary.
-- Four sources still hold empty content after #187 and the cause is unproven
-  for every one of them, because their feeds are what this environment cannot
-  fetch (403 at CONNECT): huggingface-blog 17/17, fireship 10/10,
-  deepmind-blog 6/10, stackoverflow-blog 2/18. fireship is a youtube feed,
-  which carries its body in `media:group` and not `summary`, so that one is
-  very likely a different cause. Recorded for a run with egress, and NOT as a
-  recipe.
+- CORRECTED 2026-09-26, and the list was stale in both directions. Re-measured
+  across the 32-day archive: huggingface-blog 20/20 and fireship 11/11 still
+  100% empty, deepmind-blog 8/12, and **stackoverflow-blog is now 0/15** —
+  #187 fixed it and the note never said so. The bigger miss is the source the
+  note left out entirely: **simon-willison was 77 of 93 empty**, by far the
+  worst in the archive, and #187 fixed that too. The dates say it outright,
+  0 non-empty on every day through 09-21 and 0 empty on every day from 09-22,
+  which is the shape of a fix landing rather than a feed changing. So #187 was
+  worth more than its own entry claimed, and the two sources still at 100% are
+  the whole of what is left. Cause still unproven for those (403 at CONNECT,
+  probed again today); fireship is a youtube feed carrying its body in
+  `media:group` rather than `summary`, so very likely a different cause.
+  Recorded for a run with egress, and NOT as a recipe.
+- Noticed 2026-09-26, and it is the sharpest of the feed-shape findings because
+  the damage is not an empty body but a wrong one. **All 12 google-research
+  items in the rolling month store the post's taxonomy label as their body**:
+  "Earth AI" (8 chars), "Generative AI", "Data Management", "General Science",
+  "Health & Bioscience", "Algorithms & Theory", "Machine Intelligence",
+  "Climate & Sustainability". Longest is 44 characters. So the digest agent
+  reads "Earth AI" as the body of a post titled "Planetary prediction engine:
+  Automating global models via Earth AI", and has the title alone to work from
+  on every research.google post. This is worse than the empty-content cases,
+  which at least announce themselves. What it needs is the raw feed to say
+  which element the label sits in, since the chain is
+  `content:encoded ?? content ?? summary ?? contentSnippet` and a `<description>`
+  holding the category would explain it exactly — research.google is 403 at
+  CONNECT (curl and WebFetch both, probed today), so that is a mechanism to
+  check, NOT a diagnosis, and NOT a recipe. Do not guess a field preference
+  from here: picking wrong swaps a bad body for a different bad body.
 - A title is the one ingested field with no whitespace normalization. Author got
   it on 09-15 (`authorName` collapses and trims), content has always had it
   (`htmlToText` ends in `.replace(/\s+/g, " ").trim()`), and the rss adapter
@@ -342,6 +375,101 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-26
+
+Shipped. What: the published slide cards and preview sheets now tell crawlers
+they are not pages (#205, PR #206, merged cd2f78e). Why: the 09-25 backlog
+note, re-derived against the build rather than the live site. pages.yml's
+slides step ends in `cp -R slides/. site/slides/`, so today's deploy serves
+504 `card-N.html` and 62 `sheet.html` beside the site's 34 real pages. A card's
+whole `<head>` was a charset and a `<style>`, and a card's whole visible text
+is the digest's own title and desc sentences: a thin duplicate of the day page
+it was copied from, with no title, no canonical and no robots directive.
+
+The note had parked this because it could not establish whether any of it is
+indexed, and that is still true: sift.yasint.dev and every search engine are
+403 at CONNECT, probed today with curl and with WebFetch, so there is no
+`site:` query and no Search Console. What changed is the reading of that gap
+rather than the gap itself, which is today's lesson above: the measurement is
+not coming, and a note waiting on a reading that never arrives is abandoned,
+not parked. So it got decided on the asymmetry instead, 40 bytes against 500+
+near-duplicates competing with the 32 day pages that are the point of the site.
+
+What did get measured is the one claim that could have broken something. The
+renderer is byte-deterministic: two full baseline passes over the month's 504
+cards, identical sha256 for all 504. After the change, all 504 pngs are
+byte-for-byte unchanged against that baseline. So there are no before/after
+screenshots and that is the finding rather than an omission, same as 09-25:
+nothing visual moved, and what moved is two lines of `<head>`. The container's
+chromium is build 1194 against the repo's pinned 1228, so the comparison ran
+through a scratch copy of render.ts pointed at `/opt/pw-browsers`; render.ts
+itself is untouched.
+
+Kept deliberately small: no `<title>` on the cards, since a screenshot surface
+does not want one and giving it one makes it look more like a page; no
+`nofollow`, since the card bodies render no anchors at all; no
+`Disallow: /slides/`, which would also cover the pngs and the `meta.json` the
+auto-poster reads, and which stops the crawl rather than the indexing anyway.
+31 insertions, 0 deletions, 2 files, no new dependency, no new hex, no touched
+contract, and AGENTS.md's list of what the workflow publishes stays accurate.
+
+207 tests from 206, typecheck silent, 33 pages, verify `ok: true` across
+09-24..09-26. The case fails against the unfixed source, checked by stashing
+cards.ts, and it asserts the directive inside `<head>` across all three card
+kinds rather than anywhere in the document, with the head-slice guarded so a
+missing `</head>` cannot make it pass by accident.
+
+Copilot at 1m23s: 🟢 approval recommended, **Findings: None**, nothing inline.
+Fourth consecutive round with nothing real to answer.
+
+checks green in 22s, merged rebase, pages run 276 green in 85s with the slides
+step succeeding, so the noindex cards are in the deployed artifact. As always,
+"deployed" means the workflow went green: sift.yasint.dev refused at CONNECT
+again, probed not assumed, so nothing has been read back off the live site.
+goatcounter the same, twenty-eighth run with no reader signal.
+
+The observation pass turned up more than the one change, and the rest is in the
+backlog. Everything green on the health side: no failed workflow run in the
+recent window, verify `ok: true` across 09-20..09-26 with only the known
+warning classes. Every historical text defect in the archive is now confirmed
+fixed with a date attached rather than assumed: content entities stop after
+09-12 (the 09-13 cdata pass), title numeric refs after 09-11 (#160), and
+simon-willison's empty bodies after 09-21 (#187). That last one corrects the
+empty-content note, which had missed both simon-willison's 77 items and
+stackoverflow-blog's repair. One genuinely new and worse finding, also banked:
+all 12 google-research bodies are the post's taxonomy label, not prose.
+
+Two things looked like candidates and were dropped rather than shipped, worth
+naming so a later run does not re-file them. 774 items (11.1% of the archive)
+carry the feed's own read-more trailer at the end of the body: the-verge 442
+"Read the full story at The Verge.", ars-technica 309 "Read full article
+Comments", github-blog 18/18 and meta-engineering 5/5 the WordPress "The post
+X appeared first on Y." It is live, it is measurable, and it is 26 to 34
+characters of obvious chrome in a field only the digest agent reads, which
+handles it without help; the-verge's is the feed's own truncation marker with a
+pointer attached, not something the pipeline created. That is fashion, not
+evidence. And 31 of 32 day pages ship a meta description over 160 characters
+(median 231, longest 355), which truncates in a SERP, but the harm is exactly
+what cannot be measured from here and the text is the digest agent's editorial.
+
+#112, unchanged for the twenty-seventh day. The `15 3` did not fire again and
+the morning digest forced its own `workflow_dispatch` ingest at 04:43, pages
+green at 05:01, the twelfth morning the workaround has held. The `45 15` fired
+at 19:34 on 09-25, +3h49. No new comment: 09-14's already describes this state.
+
+Branch deletion: not attempted, and not claimed as probed either. Two walls are
+documented (the environment's own guard refuses `git push --delete`, the api
+token gets 403 on the ref) and neither has moved since 09-20. Twenty-three
+merged gardener branches on the remote now.
+
+Commit trailers: none, ninth run running. PR body footer stripped as usual; the
+issue body had none, eighth run running. The PR body also carried a wrong
+insertion count on creation (20, actually 31) and was corrected in the same
+edit.
+
+Outcome: #205 filed and closed by #206, merged and deployed. #110, #112 and
+#120 all still pending, #120 since 09-03, twenty-three days.
 
 ### 2026-09-25
 
