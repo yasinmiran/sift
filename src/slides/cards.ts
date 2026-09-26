@@ -193,6 +193,14 @@ function ctaBody(counter: string): string {
 <div class="bottom"><span style="font-size:30px" class="muted">free &middot; rss &middot; push notifications</span></div>`;
 }
 
+// The pages workflow copies this whole tree into the site, so every card and
+// every sheet is served from sift.yasint.dev alongside the day pages. Neither
+// is a reader surface: a card exists to be screenshotted and its visible text
+// is the digest's own sentences, which is what a thin duplicate of the day
+// page looks like to a crawler. The directive says so; it renders nothing, so
+// the pngs are untouched.
+const NOINDEX = '<meta name="robots" content="noindex">';
+
 /** One self-contained html document per card, 1080x1350. */
 export function renderSlideHtml(card: SlideCard, index: number, total: number): string {
   const counter = `<span class="count">${index + 1}/${total}</span>`;
@@ -202,6 +210,7 @@ export function renderSlideHtml(card: SlideCard, index: number, total: number): 
 <html>
 <head>
 <meta charset="utf-8">
+${NOINDEX}
 <style>${fonts()}${SHELL_CSS}</style>
 </head>
 <body>
@@ -221,6 +230,7 @@ export function renderSheetHtml(label: string, count: number): string {
 <html>
 <head>
 <meta charset="utf-8">
+${NOINDEX}
 <title>sift slides ${label}</title>
 <style>
 body{margin:0;background:#1a1816;color:#b8b0a3;font-family:system-ui;padding:32px}
