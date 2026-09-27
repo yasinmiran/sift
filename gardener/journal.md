@@ -6,6 +6,25 @@ merges and closures and never expire.
 
 ## Lessons
 
+- The repo's own comments are evidence, and disagreement between two of them is
+  the finding. Today's defect is ten lines of reading once you look at
+  `isPaywalled`, and the reason nobody looked is that nothing in the data
+  announces it: a gift link is a normal-looking url on a paywalled domain. What
+  pointed at it was `clean.ts`, which already keeps `unlocked_article_code` and
+  `accessToken` because "drop those and the article stops opening" — one file
+  asserting the article opens, another two files away flagging the same url
+  shut. So after a scan turns up a candidate, grep the repo for what it already
+  says about the same thing: agreement sharpens the claim, and a contradiction
+  is the bug, already written down by whoever wrote the other half.
+
+- Measure the consequence, not the defect, when deciding whether a defect is
+  worth the slot. The hostname-only paywall check is obviously crude on sight;
+  crude is not a reason to spend a day. What earned it was reading ../AGENTS.md
+  for what the flag actually does downstream and then measuring that: items
+  carrying an unlock token are cited 1 of 30 against 9 of 64 for the genuinely
+  gated ones, so the links a reader can open are the ones the digest passes
+  over. The bug was visible for a month; the inversion is what made it a PR.
+
 - "What would measure it" has a third answer, and 09-23's lesson stops one step
   short of it. Sometimes the answer is *nothing this environment will ever
   reach*: today's note wanted to know whether the published slide cards are
@@ -300,10 +319,12 @@ merges and closures and never expire.
   gardener/2026-09-22-block-boundary-text and
   gardener/2026-09-23-day-pager,
   gardener/2026-09-24-prose-url-wrap and
-  gardener/2026-09-25-alt-text-budget are all merged and all
+  gardener/2026-09-25-alt-text-budget,
+  gardener/2026-09-26-slides-noindex and
+  gardener/2026-09-27-gift-link-paywall are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Twenty-two now; it grows by one every shipping run. Since 09-20 the delete
+  Twenty-four now; it grows by one every shipping run. Since 09-20 the delete
   does not even reach the proxy — the environment's own guard refuses the
   command — so there are two walls in front of it, not one, and 09-21 hit
   the same one.
@@ -375,6 +396,53 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-27
+
+Shipped. What: a publisher's own gift link no longer ingests as paywalled
+(#208, PR #209, merged ad220f9). Why: `isPaywalled` reads the hostname and
+nothing else, so a url whose whole point is that it opens carried the same
+flag as a bare `wsj.com/tech/x`. In the rolling month that is 30 of the 94
+flagged items, 17 nytimes `unlocked_article_code`, 12 bloomberg
+`accessToken` (one also `leadSource=article-gifting`), 1 ft `accessToken` +
+`sharetype=gift` + `token`. About one a day, on 15 of the 32 days, most
+recently 09-22, almost all arriving via tldr.
+
+The defect is ten lines of reading; what made it worth a slot is what it
+costs. ../AGENTS.md hangs three things on the flag: never extract the item,
+badge the entry `(paywalled)` if you link it, prefer an open link over it.
+So the archive was measured for the consequence rather than the bug, and it
+shows the inversion outright: items flagged with an unlock token are cited
+1 of 30 (3.3%), against 9 of 64 (14.1%) for the genuinely gated ones and
+1,198 of 6,714 (17.8%) for everything else. The links a reader can actually
+open are the ones the digest passes over. The single one that did land,
+09-09's nyt weworm story, carries no `(paywalled)` badge: the agent read the
+url, judged it open, and overrode the flag by hand.
+
+Scoped to what the param asserts: `unlocked_article_code` and `accessToken`
+by name, `sharetype=gift` by value, non-empty values only. wsj's
+`?st=...&reflink=desktopwebshare_permalink` (10 items) stays out, a share
+permalink is not a gift and lands on the same wall, which is the one place
+this disagrees with `clean.ts`'s comment and the one place under-claiming is
+cheap: guessing wrong the other way costs a single extract that returns a
+subscription stub, which the digest agent already knows to badge and move
+past. The body-phrase check deliberately stays in FRONT of the token, so a
+feed body that says "subscribe to keep reading" still flags whatever the url
+carries; 0 of today's 30 hit one, so nothing moves there today. The token
+overrides the domain guess, never the evidence.
+
+Measured against the whole archive before pushing: 30 items flip to open, 0
+newly flagged, the other 6,728 byte-identical in their flag. 210 tests from
+207, typecheck silent, 33 pages, verify ok across 09-25..09-27. The unlock
+case fails against the unfixed source (checked by stashing `paywall.ts`, all
+three urls independently); the two boundary cases pin what must not move and
+pass either way by design. `data/` is the record and is not rewritten, so
+this lands on future ingests only. Copilot: approval recommended, no
+findings. Checks green in 22 seconds, pages deploy green.
+
+Branch delete hit the same two walls as every run since 09-20 (the
+environment's own guard refuses the command, and the api token 403s the ref
+delete), so the merged-gardener-branch count on the remote is 24 now.
 
 ### 2026-09-26
 
