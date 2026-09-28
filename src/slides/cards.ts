@@ -158,12 +158,21 @@ const fontSize = (text: string, big: number, mid: number, small: number): number
 // the mark stays, it is just the brand's now. One stopping on ? ! : ; or the
 // truncation ellipsis keeps its own and takes no dot, which generalises the
 // guard storyBody already had for … alone.
+// Marks carry no width, so the stop is the last VISIBLE character: a title
+// ending "the ==big deal.==" stops on the period, not on the marker, and
+// reading the raw string would double the dot again one layer down. The
+// trailing markers come off, the text under them is judged and trimmed, and
+// they go back on so the underline still closes where it was drawn.
 const ACCENT_DOT = '<span class="dot">.</span>';
 const KEEPS_ITS_STOP = /(?:\.\.\.|…|[?!:;])$/;
+const TRAILING_MARKERS = /(?:==|\)\))+$/;
 
 function closeLine(text: string): { text: string; dot: string } {
-  if (KEEPS_ITS_STOP.test(text)) return { text, dot: "" };
-  return text.endsWith(".") ? { text: text.slice(0, -1), dot: ACCENT_DOT } : { text, dot: ACCENT_DOT };
+  const markers = TRAILING_MARKERS.exec(text)?.[0] ?? "";
+  const visible = markers ? text.slice(0, -markers.length) : text;
+  if (KEEPS_ITS_STOP.test(visible)) return { text, dot: "" };
+  if (!visible.endsWith(".")) return { text, dot: ACCENT_DOT };
+  return { text: visible.slice(0, -1) + markers, dot: ACCENT_DOT };
 }
 
 // Escape first, then let surviving underlines become hand-drawn strokes;

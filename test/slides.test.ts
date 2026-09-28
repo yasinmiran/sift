@@ -208,6 +208,22 @@ describe("renderSlideHtml", () => {
     expect(title).not.toContain("tokens.<span");
   });
 
+  it("reads the stop under a trailing pen mark, not the marker", () => {
+    const marked = renderSlideHtml(
+      buildCards(DAY, { ...POST, slides: [{ ...POST.slides[0]!, title: "the ==$2/M price war.==" }] })[1]!,
+      1,
+      4,
+    );
+    expect(marked).toContain('<span class="pen-u">$2/M price war</span><span class="dot">.</span></h1>');
+    expect(marked).not.toContain("price war.</span>");
+    const asked = renderSlideHtml(
+      buildCards(DAY, { ...POST, slides: [{ ...POST.slides[0]!, title: "who pays for ==the compute?==" }] })[1]!,
+      1,
+      4,
+    );
+    expect(asked).toContain('<span class="pen-u">the compute?</span></h1>');
+  });
+
   it("leaves a line that stops on its own mark alone, and still closes an open one", () => {
     const asking: CoverCard = { kind: "cover", day: DAY, slot: "am", hook: "who is paying for the compute?" };
     const question = renderSlideHtml(asking, 0, 4);
