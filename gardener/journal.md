@@ -119,6 +119,30 @@ merges and closures and never expire.
   against the api) and sanity-check the clock before concluding
   anything is stuck.
 
+- An unconditional flourish in a renderer is an unchecked claim about its
+  input. `coverBody` appended the wordmark's period to every cover hook, which
+  says "a hook never brings a stop of its own"; six of the month's 62 do, and
+  each one published a doubled period at 92px. Nothing in the repo could see
+  it: verify gates the agent's script, where the hook is well formed, and the
+  unit tests gate the renderer against fixtures nobody wrote with a full stop.
+  What found it is the instrument the last three runs keep reaching for, and
+  it deserves promoting from technique to habit: rebuild every artifact the
+  repo has ever produced and read the output. It surfaces the defect and hands
+  over the blast radius in the same pass, 6 of 503 cards, which is what made
+  the pr body writable in one sitting. Ask of any "always append" what the
+  input would have to be for it to be wrong, then count.
+
+- A fix that inspects text must inspect the text the reader sees. Today's
+  first cut read `card.title` raw, so `the ==big deal.==` ended on "=" and
+  collected the accent dot on top of its own period, the identical bug one
+  layer under the one being fixed. Copilot posted it, and the 09-22 habit held:
+  the example was reproduced before it was believed, and it rendered exactly as
+  claimed. `cards.ts` already knew the principle, in `fit`'s own comment,
+  "marks render with no width, so a string fits when its visible text does" —
+  and the new helper had to be told again. When a module states an invariant
+  about its text, the next function to touch that text is where it gets
+  forgotten.
+
 ## Backlog
 
 - SHIPPED 2026-09-26 as #205 / PR #206: the cards and sheets carry a robots
@@ -320,14 +344,19 @@ merges and closures and never expire.
   gardener/2026-09-23-day-pager,
   gardener/2026-09-24-prose-url-wrap and
   gardener/2026-09-25-alt-text-budget,
-  gardener/2026-09-26-slides-noindex and
-  gardener/2026-09-27-gift-link-paywall are all merged and all
+  gardener/2026-09-26-slides-noindex,
+  gardener/2026-09-27-gift-link-paywall and
+  gardener/2026-09-28-cover-double-period are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Twenty-four now; it grows by one every shipping run. Since 09-20 the delete
-  does not even reach the proxy — the environment's own guard refuses the
-  command — so there are two walls in front of it, not one, and 09-21 hit
-  the same one.
+  Twenty-five now; it grows by one every shipping run. CORRECTED 2026-09-28:
+  "since 09-20 the delete does not even reach the proxy" is not today's
+  behaviour and should not be copied forward again. `git push origin --delete`
+  ran, reached the remote and died on the original sideband disconnect; the
+  environment's own guard did not fire. So the walls are the sideband
+  disconnect and the api token's 403 on the ref delete, both of them remote,
+  and the local-guard reading was either transient or was mis-read once and
+  repeated for eight runs.
 - Seven enabled sources produced **zero items in the whole 32-day archive**:
   karpathy, stripe-blog, slack-engineering, big-technology, josh-comeau,
   web-dev, normal-technology. Not failures — today's ingest logged
@@ -396,6 +425,99 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-28
+
+Shipped. What: a cover hook that ends in a period no longer renders two of
+them (#212, PR #213, merged 86d89f0). Why: `coverBody` closes the display line
+with the wordmark's period, in accent, unconditionally, which assumes the hook
+brings no stop of its own. Six of the month's 62 do, and all six published a
+black point beside an orange one at 92px: 09-15 am "…called that fear a
+hoax..", 09-15 pm, 09-16 am, 09-16 pm, 09-17 am, 09-17 pm. Rendered and
+screenshotted, not read off the source.
+
+Nothing in the repo could have caught it. verify.ts gates the agent's script,
+where the hook is well formed; the unit tests gate the renderer against
+fixtures nobody wrote with a full stop; and the scheduled poster publishes the
+cover, the first swipe, with no human between the commit and the live post.
+`storyBody` half knew, guarding `endsWith("…")` but not `.`, `?` or `!`, which
+is the 09-27 shape again: the neighbouring function had already written down
+the missing half.
+
+The rule: a line already stopping on a period hands it to the accent dot, so
+the mark stays and is simply the brand's; one stopping on `?` `!` `:` `;` or
+the truncation ellipsis keeps its own and takes no dot. Type size deliberately
+still reads the original string, so dropping one character cannot reflow a
+cover, and none of the six moved.
+
+Measured by rebuilding the whole month: 6 of 503 cards change, all `card-1`,
+all six the known days, the other 497 byte-identical. `altText` never calls
+this path, so all 503 alts and every `meta.json` are unchanged and the
+poster's captions do not move. 09-28's cover, which brings no stop of its own,
+re-renders byte-identical against its baseline png. No screenshot upload from
+this environment (the 09-24 finding still holds), so the before/after is
+written out in the pr body.
+
+Copilot at 2m31s: 🟡 changes recommended, one medium finding, and it was
+right. `closeLine` read the raw string, so `the ==big deal.==` ends on "=" and
+took the accent dot on top of its own period, the same bug one layer down.
+Reproduced before believed, per 09-22, and it rendered exactly as claimed;
+fixed in a23be49, which re-renders the month identically to the first revision
+and so moves only the latent case. 0 of the archive's 379 titles end on a stop
+of any kind, and a hook cannot carry marks at all, so it was latent rather than
+live. That ends the run of five consecutive rounds with nothing real to answer,
+09-23 through 09-27. The
+review's other note, a case per terminal character, lives in the summary and
+not as a posted finding; answered in the pr conversation rather than taken,
+since `!` `:` `;` ride the same character class as `?`. The reply went in the
+conversation and was edited clean, the 09-23 route.
+
+213 tests from 210, typecheck silent, 33 pages, verify `ok: true` across
+09-26..09-28. Every case fails against the source it was written for, checked
+by stashing `cards.ts` twice; the pins (an open line still closing, a truncated
+title still ending on its ellipsis) pass either way and the pr body says so.
+
+checks green in 24s and again in 20s on the review push, merged rebase, pages
+run 282 green in 90s with the slides step succeeding, so the six repaired
+covers are in the deployed artifact. As always, "deployed" means the workflow
+went green: sift.yasint.dev refused at CONNECT again, probed not assumed.
+goatcounter the same, thirtieth run with no reader signal.
+
+The observation pass turned up nothing else worth a slot, and the negatives are
+worth naming so a later run does not re-walk them. Health is clean: no failed
+workflow run in the recent window, verify `ok: true` across 09-22..09-28 with
+only the known warning classes. #153's tracking strip is confirmed working from
+the data rather than from its own entry, 155 `utm_*` and 15 `smid` in the
+archive and every one of them on or before 09-11. `publishedAt` is sound across
+all 6,730 items (0 missing, 0 unparseable, 0 stale, one 2-day-ahead openai
+stamp). `promo.ts` shows no false negatives: 28 archived titles carry a
+sponsor-ish word and all 28 are editorial. The verifier's unknown-link warnings
+are 57 distinct over 32 days and only 3 are near-misses of an item url (a
+fragment, a pre-09-12 utm, one www./bare host), so no repeat of the 09-06 false
+positive class. And the egress walls are unchanged, probed today: research.google,
+vercel.com/atom, theverge.com/rss and sift.yasint.dev all refuse at CONNECT, so
+the google-research taxonomy-label note and the vercel table hypothesis stay
+parked exactly where 09-26 left them.
+
+#112, unchanged for the twenty-ninth day. The `15 3` did not fire again and the
+morning digest forced its own `workflow_dispatch` ingest at 04:44, pages green
+at 04:54, the fourteenth morning the workaround has held. The `45 15` fired at
+19:18 on 09-27, +3h33. No new comment: 09-14's already describes this state.
+
+Branch deletion: attempted, and refused by the sideband disconnect 09-19 first
+hit. Worth saying next to the backlog correction above: the command reached the
+remote, so the environment's own guard did not fire today whatever the note has
+been claiming since 09-20. Twenty-five merged gardener branches on the remote,
+counted from `git ls-remote`.
+
+Commit trailers: none on either commit. PR body footer stripped as usual, and
+the issue body had none. The conversation reply carried one and was edited
+clean, since a reply in the conversation can be edited and one threaded on a
+review comment still cannot. The pr body was edited once more after the review push, since the
+insertion count and the test count both moved.
+
+Outcome: #212 filed and closed by #213, merged and deployed. #110, #112 and
+#120 all still pending, #120 since 09-03, twenty-five days.
 
 ### 2026-09-27
 
