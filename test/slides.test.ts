@@ -194,6 +194,34 @@ describe("renderSlideHtml", () => {
     expect(pm).toContain('<span class="dot">&middot; evening</span>');
   });
 
+  it("hands a line's own full stop to the accent dot rather than printing both", () => {
+    const stopped: CoverCard = { kind: "cover", day: DAY, slot: "am", hook: "Trump just called that fear a hoax." };
+    const html = renderSlideHtml(stopped, 0, 4);
+    expect(html).toContain('a hoax<span class="dot">.</span></p>');
+    expect(html).not.toContain("a hoax.<span");
+    const title = renderSlideHtml(
+      buildCards(DAY, { ...POST, slides: [{ ...POST.slides[0]!, title: "GPT-6 lands at $2/M tokens." }] })[1]!,
+      1,
+      4,
+    );
+    expect(title).toContain('$2/M tokens<span class="dot">.</span></h1>');
+    expect(title).not.toContain("tokens.<span");
+  });
+
+  it("leaves a line that stops on its own mark alone, and still closes an open one", () => {
+    const asking: CoverCard = { kind: "cover", day: DAY, slot: "am", hook: "who is paying for the compute?" };
+    const question = renderSlideHtml(asking, 0, 4);
+    expect(question).toContain("the compute?</p>");
+    expect(question).not.toContain("compute?<span");
+    const runaway = buildCards(DAY, {
+      ...POST,
+      slides: [{ ...POST.slides[0]!, title: "very long headline words ".repeat(8).trim() }],
+    })[1]!;
+    expect(renderSlideHtml(runaway, 1, 4)).toContain("…</h1>");
+    expect(renderSlideHtml(cards[0]!, 0, cards.length)).toContain('margin war begins<span class="dot">.</span></p>');
+    expect(renderSlideHtml(cards[1]!, 1, cards.length)).toContain('$2/M tokens<span class="dot">.</span></h1>');
+  });
+
   it("carries no source hostname on story cards", () => {
     const html = renderSlideHtml(cards[1]!, 1, cards.length);
     expect(html).not.toContain("example.com");
