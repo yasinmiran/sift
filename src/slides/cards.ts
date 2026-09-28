@@ -151,6 +151,21 @@ display:flex;flex-direction:column;padding:88px}
 const fontSize = (text: string, big: number, mid: number, small: number): number =>
   text.length > 100 ? small : text.length > 60 ? mid : big;
 
+// A display line closes on the wordmark's period, in accent, which assumes
+// the line brings no stop of its own. Six of the month's 62 cover hooks do
+// ("…called that fear a hoax.") and rendered both, a black point beside an
+// orange one at 92px. A line that already stops on a period hands it over:
+// the mark stays, it is just the brand's now. One stopping on ? ! : ; or the
+// truncation ellipsis keeps its own and takes no dot, which generalises the
+// guard storyBody already had for … alone.
+const ACCENT_DOT = '<span class="dot">.</span>';
+const KEEPS_ITS_STOP = /(?:\.\.\.|…|[?!:;])$/;
+
+function closeLine(text: string): { text: string; dot: string } {
+  if (KEEPS_ITS_STOP.test(text)) return { text, dot: "" };
+  return text.endsWith(".") ? { text: text.slice(0, -1), dot: ACCENT_DOT } : { text, dot: ACCENT_DOT };
+}
+
 // Escape first, then let surviving underlines become hand-drawn strokes;
 // circle marks are digest ink and render as plain text if they sneak in.
 const inline = (text: string): string =>
@@ -160,9 +175,10 @@ const inline = (text: string): string =>
 
 function coverBody(card: CoverCard, counter: string): string {
   const when = `${formatDay(card.day)}${card.slot === "pm" ? ' <span class="dot">&middot; evening</span>' : ""}`;
+  const hook = closeLine(card.hook);
   return `<div class="top"><span class="wordmark" style="font-size:88px">sift<span class="dot">.</span></span><span class="mono muted" style="font-size:30px;text-transform:lowercase">${when}</span></div>
 <div style="margin:auto 0">
-<p class="display" style="font-size:${fontSize(card.hook, 92, 78, 66)}px;line-height:1.22">${escapeHtml(card.hook)}<span class="dot">.</span></p>
+<p class="display" style="font-size:${fontSize(card.hook, 92, 78, 66)}px;line-height:1.22">${escapeHtml(hook.text)}${hook.dot}</p>
 <p class="mono" style="font-size:30px;margin-top:64px;color:#d4976a">swipe for the day's stories &rarr;</p>
 </div>
 <div class="bottom"><span style="font-size:30px" class="muted">the day's tech, sifted</span>${counter}</div>`;
@@ -174,9 +190,10 @@ function storyBody(card: StoryCard, counter: string): string {
         .map((t) => `<p><span class="abbr">${escapeHtml(t.abbr)}</span> &middot; ${escapeHtml(t.gloss)}</p>`)
         .join("\n")}</div>`
     : "";
+  const title = closeLine(card.title);
   return `<div class="top"><span class="label">${escapeHtml(card.category)}</span>${counter}</div>
 <div style="margin:192px 0 auto">
-<h1 class="display" style="font-size:${fontSize(card.title, 78, 68, 58)}px;line-height:1.2;margin-bottom:48px">${inline(card.title)}${card.title.endsWith("…") ? "" : '<span class="dot">.</span>'}</h1>
+<h1 class="display" style="font-size:${fontSize(card.title, 78, 68, 58)}px;line-height:1.2;margin-bottom:48px">${inline(title.text)}${title.dot}</h1>
 <p style="font-size:38px;line-height:1.5;color:#9a9184;max-width:820px;text-wrap:pretty">${inline(card.desc)}</p>
 ${terms}
 </div>
