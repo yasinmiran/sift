@@ -321,6 +321,24 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
   if (unmarked.includes("((")) errors.push("unclosed (( pen mark; close it or drop the markers");
   if (marks > 3) warnings.push(`${marks} pen marks; marks lose punch past 2-3 a day`);
 
+  // A mark has to read as emphasis, and on link text it cannot. `mark.pen`
+  // sets --bold, which beats the link's own --accent, so the marked words go
+  // pale mid-link and the link reads as broken in two; and the scribble is
+  // stroked in --accent, the link's own colour, over a band that swallows the
+  // link's dotted underline. Both render as link chrome, which is why
+  // AGENTS.md puts link text out of bounds. Either nesting looks the same,
+  // <mark> inside <a> or around it, so overlap is the test, not containment.
+  const spansOf = (re: RegExp): [number, number][] =>
+    [...prose.matchAll(re)].map((m) => [m.index, m.index + m[0].length]);
+  const linkText = spansOf(/\[[^\]\n]*\]\(\)/g);
+  for (const [start, end] of [...spansOf(MARK_U), ...spansOf(MARK_O)]) {
+    if (linkText.some(([from, to]) => start < to && from < end)) {
+      warnings.push(
+        `pen mark on link text: ${prose.slice(start, end)}; the marked words lose the link's colour and the scribble lands on its underline, so the mark reads as link chrome (AGENTS.md: never on link text)`,
+      );
+    }
+  }
+
   if (body && !/^##\s+Threads\b/m.test(body)) {
     warnings.push("no Threads section; add one unless nothing genuinely connects today");
   }
