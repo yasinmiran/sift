@@ -6,6 +6,18 @@ merges and closures and never expire.
 
 ## Lessons
 
+- The contract is a list of untested claims, and reading it as a checklist
+  against the rendered artifact is a signal source the Signals list does not
+  name. ../AGENTS.md has said "never on link text" since before this journal
+  started; nobody had ever counted, and the count is 24 of 46. The rules worth
+  checking this way are the ones stated as a "never" with no gate behind them,
+  because a rule the verifier enforces is already measured and a rule it does
+  not is a habit on trust. The method that turned it from a rule into a PR is
+  the 09-26 one again, rebuild the artifact and read it: the css alone would
+  have said "a mark inside a link is probably fine", and the rendered page
+  said the marked words go pale and the scribble lands on the link's own
+  underline in the link's own colour.
+
 - The repo's own comments are evidence, and disagreement between two of them is
   the finding. Today's defect is ten lines of reading once you look at
   `isPaywalled`, and the reason nobody looked is that nothing in the data
@@ -403,10 +415,17 @@ merges and closures and never expire.
   504 cards across 32 days, zero clip, zero element past the 1262px padding
   edge or the 992px right edge, zero card scrolls in either axis. The finding
   holds; do not spend a third slot on it unless the card template changes.
-- web-dev's feed has been frozen since 2026-06 while the site still
-  builds (sitemap lastmod runs current). Recheck around 2026-09-29;
-  developer.chrome.com/static/blog/feed.xml is the candidate
-  substitute if it stays dead.
+- RECHECKED 2026-09-29, the date the note set, and only the archive half was
+  reachable: web.dev and the developer.chrome.com substitute both return 000
+  at CONNECT here, as everything has since 09-05, so the "frozen since
+  2026-06" claim cannot be re-derived from this environment and should not be
+  copied forward as if it had been. What the archive says instead: web-dev is
+  0 items across all 32 days, and the seven-source zero list two notes below
+  is four now (karpathy, slack-engineering, josh-comeau, web-dev), because
+  stripe-blog, big-technology and normal-technology have since landed items.
+  developer.chrome.com/static/blog/feed.xml stays the candidate substitute,
+  unprobed. Registry consequences are editorial, so this folds into #120
+  rather than becoming its own issue.
 - project-zero's feed is 13MB per fetch, twice daily, for a source
   that posts every few months. A cheaper probe strategy is worth a
   look if ingest bandwidth ever matters.
@@ -425,6 +444,91 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-29
+
+Shipped. What: the verifier warns when a pen mark lands on link text (#215,
+PR #216, merged a48367b). Why: `../AGENTS.md` puts a mark on "the one number
+or phrase a reader must not miss" and says never on link text, and the
+archive breaks that more often than it keeps it. 24 of the month's 46 marks
+sit inside link text, on 16 of the 26 days that carry a mark at all,
+today's `==$42B==` in the anthropic ipo link among them.
+
+The rule earned its evidence rather than being quoted at. Rendered at 900px
+and measured in the page, a mark on link text does the opposite of emphasis,
+twice: `mark.pen{color:var(--bold)}` beats the link's `--accent`, so the
+marked words go `#d4cdc2` inside a `#d4976a` link and the link reads as
+broken in two with a pale hole where the number is; and `.pen-u`'s scribble
+is stroked `#d4976a`, which IS `--accent`, over a band of 1999.41..2007.41
+that swallows the link's own `1px dotted` border-bottom at 2005.44..2006.44.
+Pale text, then a line drawn on a line in the link's own colour. Screenshot
+beside a plain mark (`56%` on 09-28) settles it on sight: the plain one is
+unmistakable, the linked one is link chrome.
+
+Nothing in the repo could see it. verify.ts counts marks and catches unclosed
+ones but never asks where they sit, the markdown reads perfectly reasonable,
+and the site build has no opinion. This is the 09-28 shape once more, an
+unchecked claim about input, except the claim here was the verifier's silence
+rather than a renderer's flourish.
+
+Either nesting renders the same, `<mark>` inside `<a>` or around it, so
+overlap of the mark's span with a link's text span is the test rather than
+containment; urls are already stripped at that point, so a base64 `==` in a
+url cannot be read as a mark. Warning, not error: the pen-mark family already
+warns rather than fails, and the hook-duplicates-title gate enforces another
+contract "never" the same way. No gate relaxed, nothing silenced, and neither
+contract file touched, which matters here because the rule being enforced
+lives in ../AGENTS.md and staying out of it was the point.
+
+Three counts, one answer, which is what made the body writable in one
+sitting: the gate fires on exactly 24 marks across 16 days, day for day the
+same set a cheerio scan of the built html finds (`mark.pen` with an `<a>`
+ancestor) and the same set a markdown-side span scan finds. Full verify output
+diffed across all 32 days before and after: the only lines that move are the
+24 new warnings, no error added anywhere, `ok: false` on no day. 214 tests
+from 213, typecheck silent, 33 pages. The three positive cases fail against
+the unfixed source, checked by stashing `verify.ts`; the negatives are pins
+and pass either way by design, and they are chosen to be what a line-level
+check would get wrong (a mark beside a link on the same line, on either side).
+42 insertions, 0 deletions, 2 files, no new dependency.
+
+First run in the series with no Copilot review: it posted "unable to review
+this pull request because the user who requested the review has reached their
+quota limit" at 6 seconds, so the review window had nothing real in it. That
+is a fact about the account, not about the change, and it ends the habit of
+reading a green Copilot as corroboration. checks green in 23s, merged rebase,
+pages run 285 green in 83s.
+
+The backlog's "recheck web-dev around 2026-09-29" came due today, and half of
+it is answerable from here. The feed probe is not: web.dev, the
+developer.chrome.com substitute and sift.yasint.dev all return 000 at CONNECT,
+as every run since 09-05. The archive is, and it corrects the note in both
+directions: the seven sources that produced zero items across the month are
+four now (karpathy, slack-engineering, josh-comeau, web-dev) because
+stripe-blog, big-technology and normal-technology have since landed items, and
+web-dev is still 0 of 32 days. Registry consequences stay editorial, so this
+folds into #120 as the backlog already says rather than becoming a second
+unanswered issue.
+
+Health is clean otherwise: no failed workflow run in the recent window, verify
+`ok: true` across 09-23..09-29 with only the known warning classes, 213 tests
+green on main before the change.
+
+#112, unchanged for the thirtieth day. The `15 3` did not fire again and the
+morning digest forced its own `workflow_dispatch` ingest at 04:43, pages green
+at 04:47, the fifteenth morning the workaround has held. The `45 15` fired at
+21:23 on 09-28, +5h38. No new comment: 09-14's already describes this state.
+
+Branch deletion: attempted, and refused by the sideband disconnect again, the
+command reaching the remote before it died. The remote branch count was not
+taken this run, so the number stays where 09-28 left it rather than being
+guessed forward.
+
+Commit trailers: none. PR body footer stripped as usual; the issue body had
+none.
+
+Outcome: #215 filed and closed by #216, merged and deployed. #110, #112 and
+#120 all still pending, #120 since 09-03, twenty-six days.
 
 ### 2026-09-28
 
