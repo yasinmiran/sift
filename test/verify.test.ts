@@ -134,6 +134,30 @@ describe("verifyDigest", () => {
     expect(r.warnings.some((w) => w.includes("marks"))).toBe(true);
   });
 
+  it("warns on a pen mark that lands on link text, in either nesting", () => {
+    writeItems(DAY, urls);
+    const onLinkText = (line: string): string[] => {
+      writeDigest(digestWith({ threads: `\n## Threads\n\n- ${line}\n` }));
+      return verifyDigest(root, DAY).warnings.filter((w) => w.startsWith("pen mark on link text"));
+    };
+    // <mark> inside <a>, which is the whole of what the archive does
+    expect(onLinkText("the [==$42B== net loss](https://example.com/story-0) is the number.")).toEqual([
+      expect.stringContaining("==$42B=="),
+    ]);
+    // <mark> around <a> renders the same, so it warns the same. The url is
+    // already stripped by the time the mark is read, hence the bare ]().
+    expect(onLinkText("the ==[$42B](https://example.com/story-0)== net loss.")).toEqual([
+      expect.stringContaining("==[$42B]()=="),
+    ]);
+    // a circle is the same mark in a different shape
+    expect(onLinkText("the [((first))](https://example.com/story-0) of its kind.")).toHaveLength(1);
+    // A mark beside a link on the same line keeps its emphasis and stays
+    // quiet, on either side, and a == inside a url is not a mark at all.
+    expect(onLinkText("==$42B== of it, per [the filing](https://example.com/story-0).")).toEqual([]);
+    expect(onLinkText("[the filing](https://example.com/story-0) puts it at ==$42B==.")).toEqual([]);
+    expect(onLinkText("==$42B==, sourced [here](https://example.com/story-0?t=YWJjZA==).")).toEqual([]);
+  });
+
   it("fails on pen marks in the frontmatter", () => {
     writeItems(DAY, urls);
     writeDigest(
