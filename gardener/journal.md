@@ -358,10 +358,15 @@ merges and closures and never expire.
   gardener/2026-09-25-alt-text-budget,
   gardener/2026-09-26-slides-noindex,
   gardener/2026-09-27-gift-link-paywall and
-  gardener/2026-09-28-cover-double-period are all merged and all
+  gardener/2026-09-28-cover-double-period,
+  gardener/2026-09-29-mark-on-link-text and
+  gardener/2026-09-30-slide-type-size are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Twenty-five now; it grows by one every shipping run. CORRECTED 2026-09-28:
+  Twenty-seven now, counted from `git ls-remote` on 09-30; it grows by one
+  every shipping run. SHARPENED 2026-09-30: the delete returns
+  `RPC failed; HTTP 403` first and the sideband disconnect after, so the 403
+  is the wall and the disconnect is what it looks like from here. CORRECTED 2026-09-28:
   "since 09-20 the delete does not even reach the proxy" is not today's
   behaviour and should not be copied forward again. `git push origin --delete`
   ran, reached the remote and died on the original sideband disconnect; the
@@ -444,6 +449,99 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-09-30
+
+Shipped. What: a slide title's display size is measured on its visible text
+(#219, PR #220, merged b5d3dc9). Why: `fontSize` picked the size off
+`card.title` raw, markers and all, so `==five weeks==` spends 14 characters of
+budget on 10 of ink and a title sitting just under a breakpoint crosses it on
+syntax alone.
+
+The finding is the 09-27 shape, the repo disagreeing with itself, except both
+halves are in one file. `cards.ts` states the invariant twice, in `fit`'s
+comment ("marks render with no width, so a string fits when its visible text
+does") and in `closeLine`'s ("the stop is the last VISIBLE character"), and
+`fontSize` sits between them never having been told. verify.ts agrees with the
+comments too: its title and desc caps measure `visible()`. So the gate, the
+truncator and the stop-reader all work from the ink; the type size was the one
+that did not.
+
+Live, not latent, which is what earned the slot over the arithmetic being
+obvious. 9 of the month's 375 story titles carry a mark and one crosses a
+breakpoint: 2026-09-24 pm slide 3, "OpenAI sat on an Australian government hack
+for ==five weeks==", 62 raw against 58 visible, published at 68px where 78px
+was intended. Read off the built card first, then rendered.
+
+What settled that 78px is right rather than merely bigger: 103 of the month's
+titles measure 54 to 60 visible characters and every single one renders at
+78px, 68 of them on three lines, the lowest bottom edge 606px. The repaired
+card lands at exactly 606 on three lines. It is not an outlier now, it was one
+before.
+
+Blast radius measured by rebuilding the month: 1 of 499 cards changes, the
+other 498 byte-identical, all 62 `meta.json` byte-identical, so no alt text and
+no caption moves and the poster's payload is untouched. Covers cannot move at
+all, since `buildCards` strips the hook before `fontSize` sees it and 0 of the
+62 hooks carry a mark anyway (verify errors on one). The trailing period stays
+counted, so #212's deliberate reading of the original string is left alone.
+
+Worth recording as its own instrument: every card in the archive was measured
+in the browser for overflow, each element's box against the 1080x1350 frame,
+before and after. Zero outside the frame either way. That negative is what let
+the size step up without a second thought, and it is a cheap sweep to repeat.
+
+215 tests from 214, typecheck silent, 33 pages, verify `ok: true` across
+09-28..09-30. Both positive cases fail against the unfixed source, checked by
+stashing `cards.ts` (58-visible/62-raw gives 68 not 78; 97-visible/101-raw
+gives 58 not 68); the two pins, the same line unmarked and a marked title that
+is genuinely long, pass either way by design. 27 insertions, 2 deletions, 2
+files, no new dependency, no gate relaxed, neither contract file touched.
+
+Second run with no Copilot review: the same quota-limit comment at 7 seconds,
+so the review window again held nothing real. Two in a row makes it the
+account's state rather than a one-off, and 09-29's note that a green Copilot
+can no longer be read as corroboration now applies to its silence too.
+
+Left out deliberately, recorded so a later run does not re-file it: `fit` calls
+`truncate` on the raw string as well, so a marked title over the cap would lose
+more visible text than asked. It is unreachable today, since verify errors on a
+title past 120 visible characters before a card is ever built, and the caps in
+`buildCards` say outright they are "a defensive net, verify gates first". Fold
+it in only if the net ever has to catch something.
+
+Health is clean: no failed workflow run in the window, verify `ok: true` across
+09-23..09-30 with only the known warning classes, 214 tests green on main
+before the change. The mark-on-link-text gate shipped yesterday is doing its
+job on live days, firing on 09-25's `==$400 million==` and 09-27's `==97%==`
+and on nothing else in the week.
+
+#112, unchanged for the thirty-first day, with one correction to yesterday's
+reading. The `15 3` DID fire on 09-29, at 09:45, +6h30, after the morning
+digest had already forced its own; yesterday's entry was written at 08:20 and
+said "did not fire again", which was true at the time and is not true of the
+day. Today it has not fired as of 08:14 and the morning digest forced a
+`workflow_dispatch` ingest at 04:43, pages green at 04:48, the sixteenth
+morning the workaround has held. The `45 15` fired at 20:14 on 09-29, +4h29.
+No new comment: 09-14's already describes this state.
+
+Branch deletion: attempted, refused again, and the shape is worth writing down
+because it is not quite what the backlog note says. `git push origin --delete`
+returned `RPC failed; HTTP 403` FIRST and then the sideband disconnect, so a
+403 arrives before the transport dies rather than the disconnect being the
+whole of it. Twenty-seven merged gardener branches on the remote now, counted
+from `git ls-remote`.
+
+Live site unreachable as always: sift.yasint.dev and the deployed card png both
+000 at CONNECT, probed not assumed, so "deployed" means the pages workflow went
+green (run 288, 94 seconds). goatcounter the same, thirty-second run with no
+reader signal.
+
+Commit trailers: none. PR body footer stripped as usual; the issue body had
+none.
+
+Outcome: #219 filed and closed by #220, merged and deployed. #110, #112 and
+#120 all still pending, #120 since 09-03, twenty-seven days.
 
 ### 2026-09-29
 
