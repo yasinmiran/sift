@@ -238,6 +238,23 @@ describe("renderSlideHtml", () => {
     expect(renderSlideHtml(cards[1]!, 1, cards.length)).toContain('$2/M tokens<span class="dot">.</span></h1>');
   });
 
+  it("sizes a title by its visible text, so a pen mark cannot shrink it a step", () => {
+    const size = (title: string): string => {
+      const html = renderSlideHtml(buildCards(DAY, { ...POST, slides: [{ ...POST.slides[0]!, title }] })[1]!, 1, 4);
+      return /font-size:(\d+)px;line-height:1\.2;/.exec(html)![1]!;
+    };
+    // 62 characters of source, 58 of ink: 2026-09-24 pm published this one a
+    // size down, and the same line without the markers never did.
+    expect(size("OpenAI sat on an Australian government hack for ==five weeks==")).toBe("78");
+    expect(size("OpenAI sat on an Australian government hack for five weeks")).toBe("78");
+    // The other breakpoint, 101 against 97.
+    expect(
+      size("OpenAI sat on an Australian government hack for ==five weeks== and told nobody until the audit landed"),
+    ).toBe("68");
+    // A title that is genuinely long still steps down, marks or not (64 of ink).
+    expect(size("OpenAI sat on an Australian government hack for ==five whole weeks==")).toBe("68");
+  });
+
   it("carries no source hostname on story cards", () => {
     const html = renderSlideHtml(cards[1]!, 1, cards.length);
     expect(html).not.toContain("example.com");

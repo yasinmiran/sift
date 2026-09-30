@@ -148,8 +148,16 @@ display:flex;flex-direction:column;padding:88px}
 .muted{color:#7a7268}
 `;
 
-const fontSize = (text: string, big: number, mid: number, small: number): number =>
-  text.length > 100 ? small : text.length > 60 ? mid : big;
+// Size follows the ink, not the string: "==five weeks==" is 14 characters of
+// source and 10 of rendered text, enough to push a title over a breakpoint and
+// set it a size down for nothing a reader can see. Same invariant `fit` and
+// `closeLine` already work from. A trailing period stays counted, since
+// `closeLine` drops it only to hand the stop to the accent dot and the line
+// keeps its width either way.
+const fontSize = (text: string, big: number, mid: number, small: number): number => {
+  const len = stripMarks(text).length;
+  return len > 100 ? small : len > 60 ? mid : big;
+};
 
 // A display line closes on the wordmark's period, in accent, which assumes
 // the line brings no stop of its own. Six of the month's 62 cover hooks do
