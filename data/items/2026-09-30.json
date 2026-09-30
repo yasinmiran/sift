@@ -1,7 +1,26 @@
 {
   "day": "2026-09-30",
-  "generatedAt": "2026-09-30T16:44:06.913Z",
+  "generatedAt": "2026-09-30T20:19:27.510Z",
   "items": [
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49883970",
+      "title": "I Could've Accessed 17T Microsoft Records",
+      "url": "https://blog.faav.net/how-i-couldve-accessed-17-trillion-microsoft-records",
+      "author": "luispa",
+      "publishedAt": "2026-09-28T20:32:46.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 195,
+      "comments": 86
+    },
     {
       "sourceSlug": "hacker-news",
       "externalId": "49887343",
@@ -20,6 +39,44 @@
       "mediaType": "text",
       "points": 207,
       "comments": 73
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49889140",
+      "title": "Mathematical Origami",
+      "url": "https://mathigon.org/origami",
+      "author": "signa11",
+      "publishedAt": "2026-09-29T06:45:46.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 105,
+      "comments": 22
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49890707",
+      "title": "Show HN: JBR-001 – An open-source 3D printable desktop robot",
+      "url": "https://projecthub.arduino.cc/syntheticaidata/jbr-001-a-desktop-companion-robot-powered-by-arduino-uno-q-b11c96",
+      "author": "gvuksic",
+      "publishedAt": "2026-09-29T10:05:56.000Z",
+      "content": "We built a desktop companion robot that is powered by Arduino UNO Q. Project is open source: source code, 3D printable files and assembly instructions are available at Arduino Project Hub. Robot is equipped with camera, distance sensor, buzzer, moves head and arms with 3 servo motors and has an animated display. It can recognise objects and respond to it. We build it with idea this should be fun project people can 3D print and build at home themself.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 113,
+      "comments": 28
     },
     {
       "sourceSlug": "hacker-news",
@@ -795,6 +852,21 @@
       "content": "Open USD (OUSD), a stablecoin built for global money movement, is now available across Stripe. Businesses can use OUSD to manage funds, make payments, and offer new financial services.",
       "topics": [
         "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vary-cookie-responses-no-longer-cached",
+      "title": "Vercel CDN no longer caches responses with Vary: Cookie",
+      "url": "https://vercel.com/changelog/vary-cookie-responses-no-longer-cached",
+      "author": "Shina Patel",
+      "publishedAt": "2026-09-30T00:00:00.000Z",
+      "content": "Vercel CDN no longer caches origin responses when includes . VaryCookie tells a cache which request headers may change the response. Because cookies often contain visitor-specific values, varying by can create many cache entries that are rarely reused. The response is still served normally but isn't stored for future requests.VaryCookie You can identify these responses by checking the header and . The header is set to , and Logs show as the cache reason.x-vercel-cacheMISSvary_key_denied:cookieRuntime Logs If Logs show for a route you expect to be cached, check the header returned by your origin:vary_key_denied:cookieVary Caching behavior for other supported headers is unchanged.Vary Learn more about and the .high-cardinality headers cache reasonvary_key_denied Read more If the response is the same regardless of cookies, remove from . Vercel CDN can then cache it if it meets the other caching requirements.CookieVary If the response depends on cookies, keep in and use to prevent personalized responses from being stored in the shared CDN cache.CookieVaryCache-Control: private",
+      "topics": [
+        "devtools-infra",
+        "frontend"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -1707,6 +1779,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49904314",
+      "title": "LinkedIn Larpmaxxing",
+      "url": "https://hereticpleb.vercel.app/blog/linkedin-larpmaxxing/",
+      "author": "BurnerBurner",
+      "publishedAt": "2026-09-30T04:19:57.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 101,
+      "comments": 114
     },
     {
       "sourceSlug": "alphasignal",
@@ -3287,6 +3378,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign",
+      "title": "Disrupting a coordinated model-distillation campaign",
+      "url": "https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign",
+      "author": null,
+      "publishedAt": "2026-09-30T10:30:00.000Z",
+      "content": "Learn how OpenAI disrupted a campaign to extract protected model reasoning and is strengthening defenses against adversarial distillation.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "hacker-news",
       "externalId": "49907057",
       "title": "Most data centers refusing to say how much water, electricity they use",
@@ -3595,6 +3700,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49908394",
+      "title": "The last time my family was replaced by technology",
+      "url": "https://manuel.darcemont.fr/posts/the-last-time-my-family-was-replaced-by-technology/",
+      "author": "megalomanu",
+      "publishedAt": "2026-09-30T13:06:11.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 125,
+      "comments": 273
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260930/p24#a260930p24",
       "title": "DoorDash unveils new retail partnerships to deliver clothing and footwear; Macy's is listing products directly on the DoorDash app for two-hour delivery (Sarah Nassauer/Wall Street Journal)",
@@ -3665,6 +3789,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49908962",
+      "title": "SDF vs. MSDF vs. Slug: GPU Text Rendering",
+      "url": "https://alphapixeldev.com/sdf-vs-msdf-vs-slug-vs-rive-gpu-text-rendering/",
+      "author": "ibobev",
+      "publishedAt": "2026-09-30T13:50:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 107,
+      "comments": 44
+    },
+    {
       "sourceSlug": "stackoverflow-blog",
       "externalId": "ffd0f62d-2597-4506-a15a-f073dbaae590",
       "title": "Getting ready for 2026 results: A look back on Developer Survey findings",
@@ -3674,6 +3817,20 @@
       "content": "",
       "topics": [
         "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/09/openai-delays-ipo-over-ai-safety-concerns/",
+      "title": "OpenAI delays IPO over AI safety concerns",
+      "url": "https://arstechnica.com/ai/2026/09/openai-delays-ipo-over-ai-safety-concerns/",
+      "author": "George Hammond, Financial Times",
+      "publishedAt": "2026-09-30T14:06:15.000Z",
+      "content": "OpenAI will not go public until it can “make confident safety decisions,” according to chief executive Sam Altman, as the company faces a new lawsuit over its tools hacking a third party. Altman said it was “bad for the world if OpenAI waits too long to go public” but that the $852 billion start-up would not “barrel all guns blazing towards an IPO” at a time when AI was rapidly advancing in capabilities. “We’re going to prioritize the mission and safety and making sure that we can very confidently scale to the next stage of AI without people debating what percentage chance we’re going to do all these bad things in the world,” Altman told reporters at the company’s annual developer day on Tuesday. Read full article Comments",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -3707,6 +3864,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/elevenlabs-scribe-v2-now-edits-transcripts-without-a-separate-ai-call",
+      "title": "ElevenLabs' Scribe v2 Now Edits Transcripts Without a Separate AI Call",
+      "url": "https://alphasignal.ai/news/elevenlabs-scribe-v2-now-edits-transcripts-without-a-separate-ai-call",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-30T14:21:30.000Z",
+      "content": "ElevenLabs adds natural-language instructions to Scribe v2 transcription, letting you reformat, redact, or annotate transcripts in one API call for a 30% surcharge.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=1002402",
       "title": "Instagram is adding an AI ‘assistant’ to tell you how to post",
@@ -3721,6 +3892,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49909583",
+      "title": "A brief history of the Bloomberg terminal",
+      "url": "https://spectrum.ieee.org/bloomberg-terminal",
+      "author": "rbanffy",
+      "publishedAt": "2026-09-30T14:34:07.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 166,
+      "comments": 63
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260930/p29#a260930p29",
       "title": "The UK's MI5 issues a rare espionage alert urging UK universities to cut ties with the China General Technology Research Institute, which funded AI research (Financial Times)",
@@ -3730,6 +3920,20 @@
       "content": "Financial Times: The UK's MI5 issues a rare espionage alert urging UK universities to cut ties with the China General Technology Research Institute, which funded AI research — China General Technology Research Institute has ‘very strong ties’ to Chinese intelligence, says UK agency in unusual espionage alert",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/cars/2026/09/bmw-opens-us-order-books-for-the-new-gas-and-electric-3-series/",
+      "title": "BMW reveals US 3 series pricing: The EV carries a hefty premium",
+      "url": "https://arstechnica.com/cars/2026/09/bmw-opens-us-order-books-for-the-new-gas-and-electric-3-series/",
+      "author": "Jonathan M. Gitlin",
+      "publishedAt": "2026-09-30T14:42:58.000Z",
+      "content": "BMW has opened the US order books for its hotly anticipated new 3 Series sedan. Built on an all-new platform called Neue Klasse, it now offers a fully electric version for the first time, using BMW’s advanced sixth-generation electric powertrain we liked so much in the iX3. And for those not quite ready to make the switch from liquid hydrocarbons to pure electron power, there are also a pair of gasoline-powered variants. At launch, the only electric version will be the 2027 BMW i3 50 xDrive. It’s an all-wheel drive setup, with a combined 463 hp (345 kW) and 467 lb-ft (633 Nm). And while BMW is still putting the finishing touches on the car’s EPA certification ahead of its showroom arrival in Q1 next year, it expects 446 to 468 miles (718-753 km) of range on a single charge. Contributing to that very impressive range is the new cylindrical cell battery pack, which uses a cell-to-body approach that maximizes energy density, along with the aforementioned new sixth-gen motors. We’re not sure whether BMW is planning any single-motor, rear-wheel drive i3s for the US market, such as the i4 eDrive40 we liked so much. But later next year, we can expect the i3 M60 xDrive, and then the first completely electric BMW M3, which will increase the motor count to four—one for each wheel. Read full article Comments",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -3791,6 +3995,34 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/09/what-butterfly-wings-have-in-common-with-barbershop-poles/",
+      "title": "What butterfly wings have in common with barbershop poles",
+      "url": "https://arstechnica.com/science/2026/09/what-butterfly-wings-have-in-common-with-barbershop-poles/",
+      "author": "Jennifer Ouellette",
+      "publishedAt": "2026-09-30T15:00:56.000Z",
+      "content": "Old-fashioned striped barbershop poles turn in place on a vertical axis, but humans typically perceive the stripes moving upward rather than turning with the pole. It's a well-known visual illusion arising from processing biases in human vision. According to a new paper published in the journal Nature, a similar effect could explain how butterflies often evade predatory birds: Their flight patterns and wing patterns combine to make it hard for predators to accurately gauge speed and direction. \"The stripes and spots on many butterflies’ wings interfere with the way visual systems try to guess the direction and speed of moving things, boosting false motion cues while hiding the butterfly's true heading,\" said co-author George Hancock of the University of Exeter in Cornwall. \"The illusions interfere with the predator’s most basic visual targeting system and disrupt the final ‘ballistic attack’ in the tens of milliseconds when it commits to grabbing its prey, with no time to change course. As a result, birds and other predators will often simply miss.\" Butterfly wings have long fascinated scientists, ever since the first documentation of the growth of said wings back in 1938. By 2021, researchers at MIT had captured on video the unique structural growth of butterfly wings—continuously, as a butterfly develops inside its chrysalis—for the very first time. Butterfly wings are an example of structural color in nature: the bright iridescent colors don’t come from pigment molecules but from what physicists call photonic crystals. The scales of chitin (a polysaccharide common to insects) are arranged like roof tiles. Essentially, they form a diffraction grating, except photonic crystals only produce certain colors, or wavelengths, of light, while a diffraction grating will produce the entire spectrum. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/09/discord-gives-advertisers-more-tools-to-target-its-users/",
+      "title": "Discord gives more advertisers more tools to target its users",
+      "url": "https://arstechnica.com/gadgets/2026/09/discord-gives-advertisers-more-tools-to-target-its-users/",
+      "author": "Scharon Harding",
+      "publishedAt": "2026-09-30T15:01:40.000Z",
+      "content": "Discord has announced tools aimed at expanding the number and types of companies that advertise on the platform. This week, the social media firm announced Discord Ads Manager, an ad campaign management platform that lets companies manage ads shown on Discord in one place. The tool can be used to perform forecasting, build “a campaign with objective-based bidding,” and monitor an ad campaign’s performance, according to the announcement. “Self-service access extends Discord advertising to smaller studios and marketers that previously needed a direct sales relationship to run campaigns, opening the platform to advertisers, regardless of their budget,” Discord said. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "deepmind-blog",
       "externalId": "https://deepmind.google/blog/introducing-synthid-bio/",
       "title": "Introducing SynthID Bio",
@@ -3801,6 +4033,20 @@
       "topics": [
         "ai-llms",
         "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gaming/2026/09/ps5-jailbreaks-just-got-a-lot-more-useful/",
+      "title": "The PS5 hacking scene just took a big leap forward",
+      "url": "https://arstechnica.com/gaming/2026/09/ps5-jailbreaks-just-got-a-lot-more-useful/",
+      "author": "Kyle Orland",
+      "publishedAt": "2026-09-30T15:12:46.000Z",
+      "content": "For a few years now, the PS5 hacking community has been chipping away at various exploits that let users fully jailbreak their locked-down console. For the most part, though, those exploits have only worked with years-old versions of the PS5's frequently updated firmware, making them less than useful for many everyday users. That changed Tuesday with the release of the new Relapse exploit, which works with any PS5 up to firmware version 13.6 (released in July). That means jailbreaking is now possible on any PS5 that was last updated before the mid-September release of firmware version 14.00.00. The so-called Relapse exploit makes use of a long-known WebKit vulnerability in the PS5's hard-to-access web browser, escalating from there to gain write access to the PS5 kernel and install an ELF loader to streamline the running of arbitrary code. The new method is also a lot more efficient than previous PS5 jailbreak exploits, which could hang the system for 50 minutes per attempt. Read full article Comments",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -3881,6 +4127,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/09/google-figures-out-how-to-watermark-ai-designed-proteins/",
+      "title": "Google figures out how to watermark AI-designed proteins",
+      "url": "https://arstechnica.com/science/2026/09/google-figures-out-how-to-watermark-ai-designed-proteins/",
+      "author": "John Timmer",
+      "publishedAt": "2026-09-30T15:54:52.000Z",
+      "content": "AI-based tools seem to be causing security threats on a nearly daily basis, in part because we've been slow to recognize potential threats. One area where we seem to be ahead of the game, however, is in biosecurity. As with most things biological, utility goes hand in hand with threats. We've developed increasingly sophisticated tools for designing proteins and seen some major successes, such as AI-designed enzymes that can digest plastics or block venom proteins. But these same tools could be used to make toxins or alter the behavior of viral proteins. And the software we use to identify DNA sequences that encode potentially threatening proteins doesn't pick out AI-designed proteins, since nobody has characterized them well enough to know that they're threats. Nearly a year after that risk was flagged, it still wasn't clear what anyone could do about it. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=1002642",
       "title": "The Halide camera app now offers full control of the iPhone 18 Pro’s aperture",
@@ -3938,6 +4198,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/google/2026/09/google-is-paying-100-websites-for-contributions-to-ai-overviews-but-the-amounts-are-tiny/",
+      "title": "Google's early attempt to pay websites for AI answers is struggling",
+      "url": "https://arstechnica.com/google/2026/09/google-is-paying-100-websites-for-contributions-to-ai-overviews-but-the-amounts-are-tiny/",
+      "author": "Ryan Whitwam",
+      "publishedAt": "2026-09-30T16:03:48.000Z",
+      "content": "Google's shift to AI-powered search has upended the way the world's largest search engine generates web traffic, rankling large and small publishers alike. In recent months, the company has experimented with paying publishers when their content appears in AI answers, but a new report claims the payouts in this pilot program are miniscule. That has publishers in the program, as well as those watching from the sidelines, feeling skeptical. According to The Information, Google has admitted about 100 publishers to the AI contribution pilot. The pitch is that websites can get payments from Google when their content materially contributes to Gemini-powered search results like an AI Overview. Google has long resisted the idea of direct payments to publishers, arguing that websites get traffic in exchange for allowing Google bots to scrape their content for use in search and knowledge graph tools. In the age of AI, that relationship is breaking down, hence the AI pilot. So far, publishers aren't getting much for their trouble. The Information heard from several small and mid-sized publishers in the program that Google's AI payments are minuscule, equaling roughly one-tenth of one percent of their advertising revenue. These payments have been so disappointing that several larger publishers have reportedly declined to participate in the program. These publishers hope that by refusing to join the pilot, they can force Google to offer a more generous deal. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/260930/p35#a260930p35",
       "title": "Berlin-based Restate, which provides a durable execution engine to make software workflows resilient to crashes, raised a $20M Series A led by Singular (Marina Temkin/TechCrunch)",
@@ -3961,6 +4235,20 @@
       "content": "John Timmer / Ars Technica: Google DeepMind introduces SynthID Bio, a family of watermarking methods for AI-designed proteins to help with biosecurity and scientific integrity — AI-based tools seem to be causing security threats on a nearly daily basis, in part because we've been slow to recognize potential threats.",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1002736",
+      "title": "‘Xbox is not for sale’ says Microsoft’s gaming chief",
+      "url": "https://www.theverge.com/news/1002736/xbox-not-for-sale-asha-sharma-interview",
+      "author": "Tom Warren",
+      "publishedAt": "2026-09-30T16:24:30.000Z",
+      "content": "Asha Sharma. | Image: The Verge, Microsoft Xbox CEO Asha Sharma has denied reports that Microsoft is considering selling off its Xbox business. The Information reported in June that Microsoft CEO Satya Nadella and CFO Amy Hood had been considering spinning out Xbox entirely, and then reported earlier this month that both execs have \"more recently supported Sharma's plans to overhaul the unit.\" \"Xbox is not for sale,\" says Sharma in an interview with The New York Times. \"We will do whatever it takes to set the company up for success, and we will look at the right partnerships, the right operating model and everything needed to achieve that.\" It appears that Nadella and Hood have fav … Read the full story at The Verge.",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -3990,6 +4278,20 @@
       "topics": [
         "devtools-infra",
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/zed-1-22-lets-ai-agents-pick-their-own-models-mid-session",
+      "title": "Zed 1.22 Lets AI Agents Pick Their Own Models Mid-Session",
+      "url": "https://alphasignal.ai/news/zed-1-22-lets-ai-agents-pick-their-own-models-mid-session",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-30T16:39:56.000Z",
+      "content": "Zed 1.22 lets the built-in agent spawn subagents on different models, adds automatic context compaction, and dynamically fetches OpenCode models without app updates.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -4593,6 +4895,62 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1002504",
+      "title": "Asus won’t say how it escaped the US router ban",
+      "url": "https://www.theverge.com/policy/1002504/asus-escape-us-router-ban-us-manufacturing",
+      "author": "Sean Hollister",
+      "publishedAt": "2026-09-30T16:44:20.000Z",
+      "content": "This spring, the United States banned all future foreign-made consumer routers - effectively all future routers - unless their makers could 1) convince the US government that they weren't a national security threat, and 2) submit \"a detailed, time-bound plan to establish or expand manufacturing in the United States.\" As of September 9th, Asus now has an exemption from the ban, just in time to bring its first early Wi-Fi 8 routers here. But Asus has not publicly announced any plan to bring manufacturing to the US. It would not even confirm to The Verge whether it had submitted a US manufacturing plan. Initially, Asus spokesperson JJ Guerre … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112408 at https://www.eff.org",
+      "title": "📱 Hey Siri, How Do I Limit AI Data Access? | EFFector 38.17",
+      "url": "https://www.eff.org/deeplinks/2026/09/hey-siri-how-do-i-limit-ai-data-access-effector-3817",
+      "author": "Hudson Hongo",
+      "publishedAt": "2026-09-30T16:45:11.000Z",
+      "content": "With the launch of iOS 27, Apple is rolling out a variety of new AI features to its familiar voice assistant, Siri. But how are AI tools like these handling our data? In our latest EFFector newsletter, we're talking about the privacy complications of AI phone features. JOIN OUR NEWSLETTER For over 35 years, EFFector has been your guide to understanding the intersection of technology, civil liberties, and the law. This issue covers drones and our right to record the law enforcement, video doorbell footage privacy, and how to limit what data Apple's new Siri AI can access. Prefer to listen in? EFFector is now available on all major podcast platforms. This time we're asking EFF's Thorin Klosowski about the difference between AI phone features that are computed on-device and ones that are computed on external servers—and what that means for data protection. You can find the episode and subscribe on your podcast platform of choice: %3Ciframe%20height%3D%22200px%22%20width%3D%22100%25%22%20frameborder%3D%22no%22%20scrolling%3D%22no%22%20seamless%3D%22%22%20src%3D%22https%3A%2F%2Fplayer.simplecast.com%2Ff5abca72-7d82-4e94-9c0b-0d9f991891f0%3Fdark%3Dfalse%22%20allow%3D%22autoplay%22%3E%3C%2Fiframe%3E Privacy info. This embed will serve content from simplecast.com Want to protect your right to digital privacy? Sign up for EFF's EFFector newsletter for updates, ways to take action, and new merch drops. You can also fuel the fight for privacy and free speech online when you support EFF today!",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/09/so-whats-happening-with-russias-new-long-delayed-crewed-spacecraft/",
+      "title": "So what's happening with Russia's new, long-delayed crewed spacecraft?",
+      "url": "https://arstechnica.com/space/2026/09/so-whats-happening-with-russias-new-long-delayed-crewed-spacecraft/",
+      "author": "Eric Berger",
+      "publishedAt": "2026-09-30T16:48:56.000Z",
+      "content": "In what seems like an alternate universe in hindsight, Russia and the European Space Agency began discussing collaboration on next-generation crewed spacecraft two decades ago. Under the agreement, Europe would have provided a service module to power a crew capsule carrying up to six passengers. Europe ultimately decided not to pursue a crewed spacecraft project at the time, and Russia's state-backed space corporation, Roscosmos, chose to move ahead with a crewed spacecraft on its own. This project—always seemingly more of a Potemkin village than an effort encompassing real hardware—has gone under various guises over the years: PPTS (Perspektivnaya Pilotiruemaya Transportnaya Sistema / Prospective Piloted Transport System): The initial conceptual project name used in 2009 PTK NP (Pilotiruyemy Transportny Korabl Novogo Pokoleniya / New Generation Piloted Transport Ship): The official technical designation used until 2016 Federatsiya (Federation): The official name chosen following a public contest and announced in January 2016 Orel / Oryol (Eagle): A new name adopted in September 2019 when Roscosmos was under the control of Dmitry Rogozin Actual hardware tests, maybe? Beyond the name changes and a flood of renderings, after nearly 20 years of work, then, is anything actually happening with the Eagle spacecraft? Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260930/p38#a260930p38",
+      "title": "Miter, which provides workforce management tools for the construction industry, raised a $40M Series B led by Battery Ventures, taking its total funding to $78M (Chris Metinko/Axios)",
+      "url": "https://www.techmeme.com/260930/p38#a260930p38",
+      "author": null,
+      "publishedAt": "2026-09-30T16:50:01.000Z",
+      "content": "Chris Metinko / Axios: Miter, which provides workforce management tools for the construction industry, raised a $40M Series B led by Battery Ventures, taking its total funding to $78M — Miter, a construction workforce management platform, raised a $40 million Series B led by Battery Ventures, CEO Connor Watumull tells Axios Pro exclusively.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "stackoverflow-blog",
       "externalId": "78281763-feb0-4d4b-982a-fec90093703d",
       "title": "Organizations need decision-grade knowledge. AI makes it urgent.",
@@ -4602,6 +4960,549 @@
       "content": "AI can make the first part remarkably fast. It can find the page, the discussion and the person who might know. The harder work begins when those sources disagree, or when they become stale.",
       "topics": [
         "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1002625",
+      "title": "This blog could help you poop better",
+      "url": "https://www.theverge.com/column/1002625/optimizer-fibermaxxing-wellness-health",
+      "author": "Victoria Song",
+      "publishedAt": "2026-09-30T17:00:00.000Z",
+      "content": "This is Optimizer, a weekly newsletter sent from Verge senior reviewer Victoria Song that dissects and discusses the latest gizmos and potions that swear they're going to change your life. Opt in for Optimizer here. \"I will explode your butthole with this poopmaxxer pesto,\" a calm Gen Z voice announced from my phone's speakers. \"And don't worry, it doesn't taste like poop, unless that's what you're into … I don't know if Italians will approve of this, but it's for my … a-butt-a-hole-a!\" What followed in that video was actually a pretty good recipe. Two cups of blanched peas mixed into a fairly standard pesto recipe for a yield of 18 grams … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "aws-news",
+      "externalId": "fc299694003096540401c2714b7038f1f5b7f685",
+      "title": "Celebrating Our Newest AWS Heroes – September 2026",
+      "url": "https://aws.amazon.com/blogs/aws/celebrating-our-newest-aws-heroes-september-2026/",
+      "author": "Taylor Jacobsen",
+      "publishedAt": "2026-09-30T17:04:05.000Z",
+      "content": "Today, we’re excited to introduce the newest members of the AWS Heroes program. AWS Heroes are a vibrant, worldwide group of AWS experts who go above and beyond to share knowledge, mentor others, and build thriving communities. These individuals make a real difference in helping developers and organizations succeed with AWS. This month, we welcome three exceptional community leaders from across the globe, each bringing unique expertise and a deep commitment to empowering builders everywhere. Avinash Shashikant Dalvi – Bengaluru, India Serverless Hero Avinash Shashikant Dalvi is a tech architect and co-organizer of AWS User Group Bengaluru who is focused on serverless, containers, and production-ready applications on AWS. He has delivered over 40 community talks, publishes the AWS for Product Builders newsletter, and creates technical content covering Amazon ECS, AWS Fargate, AWS Lambda, and AWS Amplify. Joanne Skiles – Orlando, USA Serverless Hero Joanne Skiles is an engineering leader and educator with over 16 years of experience building full-stack systems, including serverless architecture and AI systems on AWS. She organizes the Orlando AWS User Group and teaches cloud and AI concepts through her YouTube channel, conference talks, and her podcasts Chaotic Commits and Her Career Unplugged. Joanne is also a professor in the Computer Science department at Rollins College, where she runs the Transparent Systems lab. Xiaofei Li – Shanghai, China Community Hero Xiaofei Li is an AWS Golden Jacket holder and is an active community leader in the Greater China Region, leading the Kiro, Amazon Quick, and Tokyo Chinese AWS communities. He founded the Kiro Chinese User Community (5,000+ members) and initiated the Chinese localization of AWS Builder Cards across 15 cities and 3,000+ participants. Xiaofei also mentors underserved students and supports Women in Tech initiatives. Learn More Visit the AWS Heroes webpage if you’d like to learn more about the AWS Heroes program, or to connect with a Hero near you. To learn more about how to get involved with the AWS community, visit our AWS Builder Center. — Taylor",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/utopai-studios-utopai-x-beats-the-minimax-h3-model-it-was-built-on",
+      "title": "Utopai Studios' Utopai X Beats the MiniMax H3 Model It Was Built On",
+      "url": "https://alphasignal.ai/news/utopai-studios-utopai-x-beats-the-minimax-h3-model-it-was-built-on",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-30T17:06:54.000Z",
+      "content": "Utopai Studios post-trained MiniMax H3 into a video model that debuts second on Artificial Analysis' text-to-video board, trailing only Alibaba's Wan 3.0.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1002636",
+      "title": "Here’s what AI leaders are saying about Trump’s new safety plan",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1002636/ai-execs-trump-self-policing-deal-comments",
+      "author": "Jess Weatherbed",
+      "publishedAt": "2026-09-30T17:15:49.000Z",
+      "content": "If you think this shot is amusing, check out the panicked look on Zuckerberg’s face when Trump calls on him to speak. | Photo: Kevin Dietsch/Getty Images After hosting a meal with Big Tech leaders on Tuesday, President Donald Trump responded to journalist questions about his artificial intelligence announcements in typical fashion. He said his previous claims regarding fears around AI safety being a \"hoax\" cooked up by Democrats no longer apply now that he's renamed the technology to \"Super Intelligence.\" He brushed off concerns that the government wasn't enforcing enough AI guardrails because US companies are \"dominating China.\" And instead of ushering in federal AI regulations, Trump now has \"the smartest people in the world watching over each other.\" The people in question here are Goog … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "fireship",
+      "externalId": "yt:video:I_KVMFrUtPk",
+      "title": "Did a 50 year old military secret just solve agent prompt injection?",
+      "url": "https://www.youtube.com/watch?v=I_KVMFrUtPk",
+      "author": "Fireship",
+      "publishedAt": "2026-09-30T17:16:43.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "video"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1002766",
+      "title": "Amazon’s delivery driver smart glasses will reportedly take photos ‘almost constantly’",
+      "url": "https://www.theverge.com/tech/1002766/amazon-delivery-driver-smart-glasses-privacy",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-09-30T17:21:29.000Z",
+      "content": "Amazon deliveries could soon come with a new catch: the delivery driver's smart glasses will be snapping photos of anything they see while they're in use, including people and private property. Bloomberg reports that the glasses could take \"several thousand captures in a single driver's typical shift,\" which Amazon plans to upload to its AI Wellspring platform. When asked if customers will be able to opt-out of this, Amazon's Viraj Chatterjee told Bloomberg, \"We haven't thought about that.\" Chatterjee claimed Amazon's only using the data from the glasses to \"enhance the delivery process,\" adding, \"The intent has never been stuff like surve … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "aws-news",
+      "externalId": "ea1cc456e7a2e65a27ab5c8db65b3016bf527355",
+      "title": "Amazon Aurora PostgreSQL now supports direct querying of Apache Iceberg and Parquet data in your data lake",
+      "url": "https://aws.amazon.com/blogs/aws/amazon-aurora-postgresql-now-supports-direct-querying-of-apache-iceberg-and-parquet-data-in-your-data-lake/",
+      "author": "Esra Kayabali",
+      "publishedAt": "2026-09-30T17:22:31.000Z",
+      "content": "Today, we’re announcing a new capability for Amazon Aurora PostgreSQL that you can use to directly query operational data together with data stored in your data lake in Apache Iceberg and Apache Parquet formats, using your existing PostgreSQL applications and tools. By eliminating the need to extract, transform, and load (ETL) structured data from data lakes into your operational database, you can reduce operational complexity and simplify application development. You can also use Aurora PostgreSQL to query data from data lakes managed in Iceberg REST Catalog (IRC)-compatible catalogs, giving you access to data across a breadth of analytics systems without moving or duplicating it. Whether you’re powering real-time dashboards, enriching transactions with historical context, or building AI agents that reason over both live and archived data, you can now do it all through a single, familiar interface. Previously, if your application needed to combine recent transactional data in Aurora with historical records stored in Amazon S3, a common approach was to build reverse ETL pipelines that duplicated data, increased infrastructure costs, and required ongoing engineering effort to keep everything synchronized. This challenge only grows as you increasingly embed AI agents into your applications, where it is impractical to predict and pre-replicate every dataset an agent might need. DuckLabs, the team that maintains the DuckDB project, recently joined Amazon, and this capability is an example of how the efficiency of DuckDB is being integrated into our services. DuckDB is now embedded directly within Aurora PostgreSQL, so you can query live operational data (including uncommitted writes) alongside your data lake in a single query. Query processing stays within Aurora, with no additional network hops and no ETL pipelines that duplicate data. You can query Apache Iceberg tables managed through the AWS Glue Data Catalog, as well as Parquet and Iceberg data stored in Amazon S3 and S3 Tables. You do all of this using familiar PostgreSQL syntax and your existing applications and tools. We’re excited to bring the speed and simplicity of DuckDB directly into Aurora PostgreSQL, so you and your agents can query and combine operational and Iceberg data using the familiar PostgreSQL applications, tools, and endpoints already in use. By building this capability around DuckDB, future improvements to the open source engine can continue to bring performance and functionality gains to Aurora and other AWS services. What is new This capability is supported on two Aurora PostgreSQL major versions: 17 (starting with 17.11) and 18 (starting with 18.6). To use it, you create an Aurora PostgreSQL cluster, attach an IAM role with the AuroraAnalytics feature, and enable the aurora_analytics extension. The IAM role is what gives Aurora access to your data in Amazon S3 and the AWS Glue Data Catalog. You then create foreign tables that point to your Iceberg or Parquet data in the data lake, and query them using familiar PostgreSQL syntax. You can complete this setup through the Amazon RDS console, or with any PostgreSQL client such as psql. The process is well documented in the Aurora PostgreSQL documentation. You can query data across external IRC-compatible catalogs through AWS Glue Data Catalog federation. You register the external catalog once with Glue, and then create foreign tables for the tables you want to query, the same way you would for any Glue-native table. A single query can then join data stored in Aurora with Iceberg tables registered across multiple catalogs, so applications get a unified view without moving data or replacing your existing catalog investments. Aurora also applies optimizations such as predicate pushdown and column pruning so that only the relevant data is read. This keeps queries efficient even as the underlying data grows. Frequently accessed data is also cached in your Aurora instance, so subsequent queries against the same data return faster. You can inspect this behavior per query using aurora_analytics_stat_statements(), which reports metrics such as rows scanned, bytes read from Amazon S3, and cache hits. To see how direct querying works, I connected to my Aurora PostgreSQL database using psql and created the extension: CREATE EXTENSION aurora_analytics; For my walkthrough, I set up a simple financial scenario. I have a recent_transactions table in Aurora with the last 7 days of customer transactions, and a Parquet file in Amazon S3 containing 5 years of historical transaction data. To make Aurora aware of the historical data, I created a foreign table pointing at the Parquet file in S3: CREATE FOREIGN TABLE transaction_history () SERVER aurora_analytics_server OPTIONS ( location 's3://<my-bucket>/finance/transaction_history.parquet', format 'parquet' ); Notice the empty parentheses in the CREATE FOREIGN TABLE statement. Aurora automatically reads the schema from the Parquet file metadata, so you do not need to define columns manually. For workloads with many tables, you can skip creating them one at a time: a single IMPORT FOREIGN SCHEMA statement bulk-creates foreign tables for every Iceberg or Parquet table in an AWS Glue Data Catalog database, inferring schemas automatically. With both tables in place, I ran a single query that combines the recent operational data in Aurora with the historical data in S3: SELECT merchant, category, amount, transaction_date, 'recent' AS source FROM recent_transactions WHERE customer_id = 'C-1001' UNION ALL SELECT merchant, category, amount, transaction_date, 'historical' AS source FROM transaction_history WHERE customer_id = 'C-1001' AND transaction_date >= CURRENT_DATE - INTERVAL '5 years' ORDER BY transaction_date DESC LIMIT 15; The result shows both recent and historical transactions in a single result set. The 7 most recent rows come from Aurora, and the rest come directly from the Parquet file in S3. DuckDB handles the analytical scan of the Parquet data under the hood, while Aurora handles the operational data. That single query would have previously required a pipeline to move the historical data into the database first. If a query pattern needs single-digit-millisecond latency, you can materialize data from the data lake into a native Aurora PostgreSQL table using familiar commands such as CREATE TABLE AS SELECT, INSERT INTO ... SELECT, or MERGE INTO. The materialized table lives in Aurora and is queried like any other PostgreSQL table, giving you a low-latency path for hot data without operating a separate ingestion pipeline. The read queries can run on any Aurora PostgreSQL instance in your cluster, whether the writer or a read replica, so you can offload analytical scans from your operational workload. The materialization commands write data into Aurora, so they run on the writer instance. Get started today Direct querying of Apache Iceberg and Parquet data from Amazon Aurora PostgreSQL is available today in all commercial AWS Regions and AWS GovCloud (US) Regions, at no additional charge. You pay only for the incremental Aurora compute the queries consume and Amazon S3 request costs for reading data lake files. To learn more, visit the Amazon Aurora features page, read the Aurora PostgreSQL documentation, or try it in the Amazon RDS console. We welcome your feedback through AWS re:Post or through your usual AWS Support contacts. — Esra",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/runway-ads-doubles-ad-spend-returns-by-automating-meta-google-and-tiktok",
+      "title": "Runway Ads Doubles Ad Spend Returns by Automating Meta, Google, and TikTok Campaigns",
+      "url": "https://alphasignal.ai/news/runway-ads-doubles-ad-spend-returns-by-automating-meta-google-and-tiktok",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-30T17:33:07.000Z",
+      "content": "Runway just turned its internal ad machine into a product that generates, publishes, and iterates on Meta, Google, and TikTok creative autonomously.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-kills-opal-and-turns-gems-into-gemini-skills-for-free-users",
+      "title": "Google Kills Opal and Turns Gems Into Gemini Skills for Free Users",
+      "url": "https://alphasignal.ai/news/google-kills-opal-and-turns-gems-into-gemini-skills-for-free-users",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-30T17:43:39.000Z",
+      "content": "Google is retiring Opal and folding its no-code workflow ideas into Gemini Skills, a slash-command system replacing Gems worldwide.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/github-s-hydrafusion-beats-claude-opus-5-quality-at-67-lower-cost",
+      "title": "GitHub's HydraFusion Beats Claude Opus 5 Quality at 67% Lower Cost",
+      "url": "https://alphasignal.ai/news/github-s-hydrafusion-beats-claude-opus-5-quality-at-67-lower-cost",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-30T17:44:04.000Z",
+      "content": "GitHub extends its HydraFusion research preview from the Copilot CLI into VS Code and the Copilot app, exposing multi-model routing to more developers.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1002788",
+      "title": "Reddit says it has to cut back access to ‘Old Reddit’ because of AI bots",
+      "url": "https://www.theverge.com/tech/1002788/old-reddit-ai-scraping",
+      "author": "Jay Peters",
+      "publishedAt": "2026-09-30T17:45:00.000Z",
+      "content": "Reddit is further limiting who can use the \"Old Reddit\" experience as part of its efforts to combat scraping and automated traffic. Reddit recently started forcing users to log in to be able to use Old Reddit, but in the \"next few months,\" the company says that you'll have to be logged in and have used Old Reddit within the last six months from when the change rolls out to be able to continue browsing the platform with the classic experience. Reddit says the six-month window covers \"the vast majority of all Old Reddit users.\" The announcement didn't go into detail, but it's clearly aimed at blocking not just new account creation for bots, … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nextjs-blog",
+      "externalId": "/blog/september-2026-security-release",
+      "title": "September 2026 Security Release",
+      "url": "https://nextjs.org/blog/september-2026-security-release",
+      "author": "Josh Story",
+      "publishedAt": "2026-09-30T18:00:00.000Z",
+      "content": "The September 2026 security release for Next.js is now available",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/runway-s-praxis-1-teaches-robots-physical-skills-using-web-video",
+      "title": "Runway's Praxis-1 Teaches Robots Physical Skills Using Web Video",
+      "url": "https://alphasignal.ai/news/runway-s-praxis-1-teaches-robots-physical-skills-using-web-video",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-30T18:06:46.000Z",
+      "content": "Runway is bringing its video pretraining stack to robotics with an open-weight policy model that generalizes across robot bodies and environments.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1002779",
+      "title": "The AI Tamagotchis are coming",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1002779/openai-dots-meta-muse-ai-agents-hardware-devices",
+      "author": "Hayden Field",
+      "publishedAt": "2026-09-30T18:07:38.000Z",
+      "content": "Sam Altman onstage at OpenAI’s DevDay 2026. | Image: Hayden Field / The Verge While AI has made plenty of inroads on people's phones and computers, it's largely failed in dedicated devices. But over the next year, two major AI companies, Meta and OpenAI, will attempt to change that. And they're apparently betting on a similar path: testing appetite for physical hardware with their cutesy software agents. \"Hardware is hard\" is a tech industry mantra. Dedicated AI devices like the Friend and Humane AI Pin have inspired mainly frustration and backlash, which may only worsen as public anger against AI grows. Meta and OpenAI, however, are both pushing ahead. OpenAI is working with famed ex-Apple designer Jony Ive and pla … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260930/p39#a260930p39",
+      "title": "Document: SpaceXAI plans a unified subscription for Grok and X with four tiers, including a $100/month Ultra plan, an $8/month Lite plan, and a free offering (Edward Ludlow/Bloomberg)",
+      "url": "https://www.techmeme.com/260930/p39#a260930p39",
+      "author": null,
+      "publishedAt": "2026-09-30T18:10:01.000Z",
+      "content": "Edward Ludlow / Bloomberg: Document: SpaceXAI plans a unified subscription for Grok and X with four tiers, including a $100/month Ultra plan, an $8/month Lite plan, and a free offering — SpaceXAI, the artificial intelligence unit of Elon Musk's SpaceX, is considering an overhaul of its subscription pricing options …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/09/lawsuit-demands-openai-halt-unsafe-development-that-caused-hugging-face-hack/",
+      "title": "Lawsuit demands OpenAI halt unsafe development that caused Hugging Face hack",
+      "url": "https://arstechnica.com/tech-policy/2026/09/lawsuit-demands-openai-halt-unsafe-development-that-caused-hugging-face-hack/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-09-30T18:25:04.000Z",
+      "content": "OpenAI's hack of Hugging Face in July 2026 has spurred a lawsuit demanding that the company stop accessing third-party computer systems and halt AI development practices that can harm the public. The lawsuit was filed by Legal Advocates for Safe Science & Technology (LASST), which said yesterday that the hack in which OpenAI \"agents stole credentials, uploaded malicious files, and gained control over key parts of Hugging Face’s internal systems... is unquestionably illegal under California law.\" California’s Comprehensive Computer Data Access and Fraud Act (CDAFA) prohibits unauthorized access into computer systems, \"and it doesn’t matter that a swarm of AI agents carried out this cyberattack. California law makes it clear that it is not a defense 'that the artificial intelligence autonomously caused the harm,'\" the group said. The lawsuit, filed in San Francisco County Superior Court, said OpenAI also violated California's Unfair Competition Law (UCL). \"OpenAI’s insistence on externalizing the harms of its unsafe decision-making is a fundamentally unfair business practice,\" the complaint said, adding that \"such risk-taking for private gain at substantial public expense is immoral, unethical, oppressive, unscrupulous, and substantially injurious conduct.\" Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260930/p40#a260930p40",
+      "title": "Open Standard launches its OUSD stablecoin; founding partners Visa, Stripe, Mastercard, and Coinbase will offer initial access to businesses and developers (Ben Weiss/Bloomberg)",
+      "url": "https://www.techmeme.com/260930/p40#a260930p40",
+      "author": null,
+      "publishedAt": "2026-09-30T18:35:02.000Z",
+      "content": "Ben Weiss / Bloomberg: Open Standard launches its OUSD stablecoin; founding partners Visa, Stripe, Mastercard, and Coinbase will offer initial access to businesses and developers — Open Standard, a company backed by more than 100 corporations, including Visa Inc., Stripe Inc., and Mastercard Inc. …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/perplexity-s-pplx-embed-v2-beats-voyage-at-8x-smaller-vector-size",
+      "title": "Perplexity's pplx-embed-v2 Beats Voyage at 8x Smaller Vector Size",
+      "url": "https://alphasignal.ai/news/perplexity-s-pplx-embed-v2-beats-voyage-at-8x-smaller-vector-size",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-30T19:07:29.000Z",
+      "content": "Perplexity's new 9B contextual embedding model distills relevance from a compression teacher, beating Voyage on turbopuffer's private context-bench with 8x less storage.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=123090",
+      "title": "Expanding AI Storage Access with NVIDIA cuObject and the NVIDIA SCADA Server SDK",
+      "url": "https://developer.nvidia.com/blog/expanding-ai-storage-access-with-nvidia-cuobject-and-the-nvidia-scada-server-sdk/",
+      "author": "Harish Arora",
+      "publishedAt": "2026-09-30T19:13:02.000Z",
+      "content": "AI infrastructure engineers, storage developers, and cloud service providers need fast and secure access to high-capacity file and object storage to support AI... AI infrastructure engineers, storage developers, and cloud service providers need fast and secure access to high-capacity file and object storage to support AI workloads. AI workloads increasingly require high-speed data access for training, fine-tuning, inference context, tool calls, searches, and database lookups. Much of this data lies in files and objects stored both on-premises and in… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260930/p41#a260930p41",
+      "title": "OpenAI says individuals associated with Moonshot AI played a significant role in a coordinated model-distillation campaign that began in early July (Maggie Eastland/Bloomberg)",
+      "url": "https://www.techmeme.com/260930/p41#a260930p41",
+      "author": null,
+      "publishedAt": "2026-09-30T19:20:02.000Z",
+      "content": "Maggie Eastland / Bloomberg: OpenAI says individuals associated with Moonshot AI played a significant role in a coordinated model-distillation campaign that began in early July — OpenAI accused its Chinese rival Moonshot AI of being responsible for a wide-scale effort to extract data from its GPT artificial intelligence systems …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260930/p42#a260930p42",
+      "title": "Reddit says it is ending support for RSS feeds on November 13 because the feeds are a target for abuse by AI bots and is ending its public API access in March (Sarah Perez/TechCrunch)",
+      "url": "https://www.techmeme.com/260930/p42#a260930p42",
+      "author": null,
+      "publishedAt": "2026-09-30T19:35:01.000Z",
+      "content": "Sarah Perez / TechCrunch: Reddit says it is ending support for RSS feeds on November 13 because the feeds are a target for abuse by AI bots and is ending its public API access in March — Amid a number of updates for moderators and developers announced Wednesday comes bad news for supporters of a more open web: Reddit is ending support for RSS feeds.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "deepmind-blog",
+      "externalId": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/",
+      "title": "Gemini 4 Argon: our next era of frontier intelligence",
+      "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/",
+      "author": null,
+      "publishedAt": "2026-09-30T20:01:45.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-deepmind-s-gemini-4-argon-shatters-output-limits-with-1-million-tokens",
+      "title": "Google DeepMind's Gemini 4 Argon Shatters Output Limits With 1 Million Tokens",
+      "url": "https://alphasignal.ai/news/google-deepmind-s-gemini-4-argon-shatters-output-limits-with-1-million-tokens",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-30T20:03:30.000Z",
+      "content": "Google DeepMind's new frontier model pushes output to 1M tokens, targets long-horizon coding, enterprise workflows, and autonomous cyber defense through the Fairwind Program.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "aws-news",
+      "externalId": "e76e8a63de9311bd1dde4b12497cc264c4918389",
+      "title": "Amazon S3 Vectors now supports metadata pre-filtering for higher recall on filtered searches",
+      "url": "https://aws.amazon.com/blogs/aws/amazon-s3-vectors-now-supports-metadata-pre-filtering-for-higher-recall-on-filtered-searches/",
+      "author": "Daniel Abib",
+      "publishedAt": "2026-09-30T20:03:34.000Z",
+      "content": "Today, we’re announcing metadata pre-filtering for Amazon S3 Vectors, which delivers higher recall on filtered queries by evaluating your metadata filter before the similarity search. You can filter on attributes such as tenant, category, status, or time, and pre-filtering adds prefix matching with $startsWith for paths, URLs, and hierarchical keys. Each vector carries up to 2 KB of filterable metadata, and a single query supports up to 100 filter constraints. There is no additional cost, no re-ingestion, and no change to your queries. Most applications never search a whole index. They search the part of it that belongs to a particular user, account, or category, and they express that scope as a metadata filter. Semantic search, retrieval-augmented generation (RAG), and agentic applications all need the same thing from a filtered query: a similarity search that covers the vectors matching the filter, and returns the closest of them. With pre-filtering, a filtered query returns more of the relevant matches your index contains, giving you higher recall on filtered searches. Common use cases Pre-filtering applies wherever results have to be both relevant and correctly scoped: Legal and professional services: A law firm or e-discovery platform searches documents scoped to a single client, and with $startsWith narrows further by matter number, folder path, or document ID prefix. A single client is a small share of a firm-wide archive, and filters this narrow are where pre-filtering improves recall most. Financial services: An investment research platform searches analyst notes, filings, and call transcripts scoped by issuer, document type, and publication date. Media and entertainment: A streaming service filters by content rating and regional licensing before the semantic search, finding similar titles restricted to G and PG content licensed in one territory. Agentic applications: An agent working within a user’s session filters on fields such as owner, document set, and timestamp so its searches cover the material relevant to the task at hand. Higher recall means more of that material reaches the agent, which improves task reliability How pre-filtering works Each vector in an S3 Vectors index can carry application-defined metadata, and a query can filter on those fields. Every vector index has an index mode. On an index whose index mode is ENHANCED, S3 Vectors resolves your filter first, then searches only the vectors that match. On an index whose index mode is CLASSIC, S3 Vectors performs the vector search and filter evaluation in tandem, validating each candidate vector against your filter as it searches. Existing indexes use CLASSIC until you update them. Consider a support knowledge base of 8 million tickets, where an agent searches one customer’s history for a recurring error. If that customer accounts for 400 of those tickets, resolving customer_id first means the similarity search runs across all 400 of them, so the agent sees that customer’s prior occurrences. Before the index was updated, the same query drew its candidates from the full 8 million, and the result set contained fewer of that customer’s matching tickets. On highly selective filters, pre-filtering returns up to 5x more of the matching vectors than the same query returned before on CLASSIC indexes. Getting started Before you start, make sure your IAM policy grants permissions for the new actions. You can get started in three steps. The walkthrough below builds a small product-catalog index and runs a selective filter against it, the same pattern you would use for a multi-tenant RAG store or a document search scoped to one client. First, create a vector index: aws s3vectors create-index \\ --index-name product-catalog \\ --vector-bucket-name my-vector-bucket \\ --dimension 1536 \\ --distance-metric cosine The dimension must match the output size of your embedding model, and distance-metric should match how that model was trained (cosine is common for text embeddings). Second, write vectors with the PutVectors API, attaching up to 2 KB of filterable metadata to each vector: aws s3vectors put-vectors \\ --index-name product-catalog \\ --vector-bucket-name my-vector-bucket \\ --vectors '[{ \"key\": \"doc-001\", \"data\": {\"float32\": [0.1, 0.2, 0.3, ...]}, \"metadata\": { \"tenant_id\": \"t-10428\", \"category\": \"legal\", \"created_date\": \"2026-03-15\", \"active\": true } }]' Each vector carries the attributes your application filters on. In this example, tenant_id scopes results to a single customer, category narrows by document type, created_date records when the document was created, and active is a boolean flag. By default every metadata field is filterable, so you can query on any of them without declaring a schema up front. Third, run a filtered similarity query with the QueryVectors API. The filter uses a compact JSON syntax where a bare key-value pair is an equality match, and operators such as $and, $or, and $gt combine or refine conditions. Pass --return-metadata so the query returns each vector’s metadata: aws s3vectors query-vectors \\ --index-name product-catalog \\ --vector-bucket-name my-vector-bucket \\ --query-vector '{\"float32\": [0.1, 0.2, 0.3, ...]}' \\ --top-k 50 \\ --return-metadata \\ --filter '{\"$and\": [ {\"tenant_id\": \"t-10428\"}, {\"category\": \"legal\"}, {\"active\": true} ]}' The expected result is a single vector, doc-001, the only one matching all three filter conditions (tenant_id, category, and active): { \"vectors\": [ { \"distance\": 0.9717477560043335, \"key\": \"doc-001\", \"metadata\": { \"tenant_id\": \"t-10428\", \"category\": \"legal\", \"created_date\": \"2026-03-15\", \"active\": true } } ], \"distanceMetric\": \"cosine\" } S3 Vectors first narrows the search space to vectors matching all three filter conditions, then returns the 50 most similar vectors from that subset. Because the filter is applied before the search, those results are drawn from across all the vectors that match it. Prefix matching with $startsWith Pre-filtering adds a prefix match operator for filtering on paths, URLs, and hierarchical keys. A document store that encodes case and folder structure into a document ID can scope a search to a subtree in one condition: --filter '{\"$startsWith\": {\"document_id\": \"matter-4417/exhibits/\"}}' $startsWith joins the existing operators: equality, numeric range, set membership, existence checks, and boolean logic with $and and $or. Turning on pre-filtering for existing indexes Call UpdateIndexMode on an existing index to turn on pre-filtering: aws s3vectors update-index-mode \\ --vector-bucket-name my-vector-bucket \\ --index-name product-catalog \\ --index-mode ENHANCED Pre-filtering takes effect in place. Your existing vectors are not re-ingested, your queries do not change, and the new filter operators are available immediately. Here is the difference on the same index and the same query. Before the update, a query scoped to one tenant returns two of the ten results requested: aws s3vectors query-vectors \\ --vector-bucket-name my-vector-bucket \\ --index-name product-catalog \\ --query-vector '{\"float32\": [0.1, 0.2, 0.3, ...]}' \\ --top-k 10 \\ --return-metadata \\ --filter '{\"tenant_id\": \"t-10428\"}' { \"vectors\": [ { \"key\": \"doc-114\", \"distance\": 0.41 }, { \"key\": \"doc-322\", \"distance\": 0.55 } ], \"distanceMetric\": \"cosine\" } After the update, the same query returns a full result set drawn from across that tenant’s documents: { \"vectors\": [ { \"key\": \"doc-018\", \"distance\": 0.09 }, { \"key\": \"doc-207\", \"distance\": 0.13 }, { \"key\": \"doc-114\", \"distance\": 0.41 }, ... 7 more ], \"distanceMetric\": \"cosine\" } Rolling out across your indexes Once you have validated pre-filtering on an index, set the default index mode on the vector bucket so that new indexes use ENHANCED without a follow-up call: aws s3vectors put-vector-bucket-default-index-mode \\ --vector-bucket-name my-vector-bucket \\ --default-index-mode ENHANCED To bring the rest of your existing indexes across, list them and check the index mode on each one, then call UpdateIndexMode on the ones still using CLASSIC: aws s3vectors list-indexes \\ --vector-bucket-name my-vector-bucket aws s3vectors get-index \\ --vector-bucket-name my-vector-bucket \\ --index-name product-catalog Things to know Indexes created in vector buckets created on or after September 30, 2026 use index mode ENHANCED. Indexes in buckets that existed before that date use CLASSIC until you set the bucket default, including indexes created in those buckets afterward. A single query supports up to 100 filter constraints, counted per value the filter evaluates. If a query exceeds that, you can usually consolidate the filter, replacing a 300-value $in over legal cases with a single caseId field, for example, or split it into smaller queries, run them in parallel, and merge the results by distance. Get started today Metadata pre-filtering is available at no additional cost in all commercial AWS Regions where Amazon S3 Vectors is available, and in the AWS China Regions. You pay standard S3 Vectors pricing for storage, PUT requests, and queries. For full pricing details, visit the Amazon S3 pricing page. For regional availability, visit Amazon S3 Vectors Regions and quotas. Whether you’re scoping a RAG application to one tenant, scoping an agent’s searches to one user’s documents, or narrowing a catalog search to a licensing window, pre-filtering lets you apply those filters without trading away recall. To learn more and get started, visit the Amazon S3 Vectors documentation. Send feedback to AWS re:Post for S3 or through your usual AWS Support contacts. — Daniel Abib",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49913571",
+      "title": "Gemini 4 Argon",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+      "author": "bradleyg223",
+      "publishedAt": "2026-09-30T20:04:37.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 131,
+      "comments": 43
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-s-gemini-4-argon-pushes-ai-agent-output-to-one-million-tokens",
+      "title": "Google's Gemini 4 Argon Pushes AI Agent Output to One Million Tokens",
+      "url": "https://alphasignal.ai/news/google-s-gemini-4-argon-pushes-ai-agent-output-to-one-million-tokens",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-09-30T20:05:04.000Z",
+      "content": "Google's new frontier model targets long-horizon coding, legal, finance, and cyber defense workflows with a 1M token output ceiling.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/260930/p43#a260930p43",
+      "title": "Google rolls out Gemini 4 Argon to a small group of cybersecurity partners and says it outperforms GPT-6 Astra on certain coding and knowledge work benchmarks (Madison Mills/Axios)",
+      "url": "https://www.techmeme.com/260930/p43#a260930p43",
+      "author": null,
+      "publishedAt": "2026-09-30T20:10:01.000Z",
+      "content": "Madison Mills / Axios: Google rolls out Gemini 4 Argon to a small group of cybersecurity partners and says it outperforms GPT-6 Astra on certain coding and knowledge work benchmarks — Google is unveiling its long-awaited next-generation AI model, Gemini 4 Argon, to a small group of cybersecurity partners, the company said Wednesday.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.36322",
+      "title": "Periodic Weak Spots: Phase Sensitivity from Chunked KV-Cache Compression",
+      "url": "https://huggingface.co/papers/2609.36322",
+      "author": null,
+      "publishedAt": "2026-09-30T20:19:18.299Z",
+      "content": "Periodic Weak Spots: Phase Sensitivity from Chunked KV-Cache Compression",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.36314",
+      "title": "Fractional State Space Transition for Long Sequence Modeling",
+      "url": "https://huggingface.co/papers/2609.36314",
+      "author": null,
+      "publishedAt": "2026-09-30T20:19:18.299Z",
+      "content": "Fractional State Space Transition for Long Sequence Modeling",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.sygnia.co/threat-reports-and-advisories/actively-exploited-netscaler-vulnerabilities",
+      "title": "Actively Exploited NetScaler Vulnerabilities",
+      "url": "https://www.sygnia.co/threat-reports-and-advisories/actively-exploited-netscaler-vulnerabilities",
+      "author": null,
+      "publishedAt": "2026-09-30T20:19:20.556Z",
+      "content": "Actively Exploited NetScaler Vulnerabilities sygnia.co10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/09/29/openai-expands-chatgpts-plugins-with-app-like-interfaces-and-automations",
+      "title": "OpenAI expands ChatGPT’s plugins with app-like interfaces and automations",
+      "url": "https://techcrunch.com/2026/09/29/openai-expands-chatgpts-plugins-with-app-like-interfaces-and-automations",
+      "author": null,
+      "publishedAt": "2026-09-30T20:19:20.561Z",
+      "content": "OpenAI expands ChatGPT’s plugins with app-like interfaces and automations techcrunch.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.sophos.com/en-us/blog/jevs-paradox-hidden-cost-of-cheap-ai-decisions",
+      "title": "Jev’s Paradox: The hidden cost of cheap AI decisions",
+      "url": "https://www.sophos.com/en-us/blog/jevs-paradox-hidden-cost-of-cheap-ai-decisions",
+      "author": null,
+      "publishedAt": "2026-09-30T20:19:20.562Z",
+      "content": "Jev’s Paradox: The hidden cost of cheap AI decisions sophos.com12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.geopolitechs.org/p/deepseek-builds-for-huawei-ascend",
+      "title": "DeepSeek Builds for Huawei Ascend",
+      "url": "https://www.geopolitechs.org/p/deepseek-builds-for-huawei-ascend",
+      "author": null,
+      "publishedAt": "2026-09-30T20:19:20.566Z",
+      "content": "DeepSeek Builds for Huawei Ascend geopolitechs.org2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-09-30/apple-is-finally-ready-to-enter-its-next-big-category-the-smart-home",
+      "title": "Apple Is Finally Ready to Enter Its Next Big Category: the Smart Home",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-30/apple-is-finally-ready-to-enter-its-next-big-category-the-smart-home",
+      "author": null,
+      "publishedAt": "2026-09-30T20:19:20.567Z",
+      "content": "Apple Is Finally Ready to Enter Its Next Big Category: the Smart Home bloomberg.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence",
+      "title": "Gemini 4 Argon: our next era of frontier intelligence",
+      "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence",
+      "author": null,
+      "publishedAt": "2026-09-30T20:19:20.573Z",
+      "content": "Gemini 4 Argon: our next era of frontier intelligence deepmind.google6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents",
+      "title": "Is sandboxing sufficient to contain rogue agents?",
+      "url": "https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents",
+      "author": null,
+      "publishedAt": "2026-09-30T20:19:20.574Z",
+      "content": "Is sandboxing sufficient to contain rogue agents? blog.cryptographyengineering.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.musicologize.com/is-ai-training-fair-use-third-circuit-ross",
+      "title": "Is AI Training Fair Use? The First Appeals Court to Answer Just Said Nah.",
+      "url": "https://www.musicologize.com/is-ai-training-fair-use-third-circuit-ross",
+      "author": null,
+      "publishedAt": "2026-09-30T20:19:20.578Z",
+      "content": "Is AI Training Fair Use? The First Appeals Court to Answer Just Said Nah. musicologize.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
       ],
       "paywalled": false,
       "mediaType": "text"
