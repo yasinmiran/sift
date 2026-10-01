@@ -157,6 +157,57 @@ merges and closures and never expire.
 
 ## Backlog
 
+- Walked clean on 2026-10-01, recorded so a future run does not re-walk them.
+  **The paywall badge**: ../AGENTS.md says mark paywalled links `(paywalled)`,
+  and the archive keeps it. 14 digest links across the month point at an item
+  the current `isPaywalled` calls gated; 9 of the 10 distinct urls carry the
+  badge and the 4 that do not are all inside the Hacker News prose, which is
+  not an "entry". A gate here would have fired 4 false positives and 0 true
+  ones. Worth noting on the way past: recomputing the flag live against the
+  stored one disagrees on exactly one url, 09-09's nyt gift link, which is
+  #209 landing, independent corroboration of that fix.
+  **The promo filter**: 0 of 7,463 archived items match `isPromotional` today,
+  so nothing it should have dropped got through, and the 6 titles a loose
+  `\bsponsor(ed)?\b` catches are all editorial stories *about* sponsorship
+  ("OpenAI expands ChatGPT ads with Sponsored Agents"). The "anchored markers
+  only, never loose substrings" comment holds as written.
+  **Field shapes across the archive**: 0 unparseable `publishedAt`, 0 empty
+  titles, 0 items without topics, 0 authors stored as a url, 1 publishedAt
+  ahead of its day file (openai, 09-12, two days out, the feed's own stamp).
+- Noticed 2026-10-01, measured, and parked with the reason rather than the
+  symptom. **28 of the 32 day pages carry a `<meta name="description">` past
+  160 characters**, the point search snippets and most social cards cut;
+  median ~230, longest 355 (09-18, three independent clauses). The frontmatter
+  contract asks for "one sentence: the day's biggest story" and they are one
+  sentence, syntactically, so the letter is kept and the budget is not. Not
+  shipped for two reasons, both worth writing down: the fix is editorial and
+  lives in ../AGENTS.md, which is not mine; and a verify warning would fire on
+  28 of 32 days at 160 and 21 of 32 at 200, which is wallpaper, not a gate.
+  The index and feed render the description whole, so the only cut surfaces
+  are the snippet and the card. File it as an issue if the drift matters to
+  Yasin; do not spend a slot gating it.
+- Three smaller findings from 2026-10-01's sweep, each too thin for a slot on
+  its own, recorded with their counts so a later run can weigh them against
+  something rather than re-measure.
+  **A slide alt text can end on its own joiner.** `altText` composes
+  `{title}: {desc}` and truncates at 100; when the title alone fills the
+  budget the colon survives and the desc never arrives. 2026-10-01/am/card-2
+  is live with "…get it first:…", 1 of 373 story cards, and 2 more end on a
+  dangling `;`, so 3 of 497 cards. Same family as #212 and #202. Fold it into
+  the next PR that touches `cards.ts` for a real reason.
+  **13 of 7,451 item urls are `http://`**, from hacker-news and tldr, and 2
+  reached a digest (09-04 techdirt, 09-26 allanrbo). None has an `https://`
+  twin in the archive, so no dedup damage; `safeHttpUrl` admits http on
+  purpose and rewriting a url the feed gave is a guess about what the host
+  serves. Revisit only if a published http link is ever found dead.
+  **45 duplicate-url groups inside a single day file**, every one of them the
+  same story arriving under two sourceSlugs (hacker-news beside the blog,
+  tldr beside the original). `itemKey` is `sourceSlug:externalId`, so this is
+  the dedup working as designed, and the digest's "one event, one entry" rule
+  handles it editorially. The one shape worth a thought: tldr's copy carries
+  an 80-character teaser where the original carries the full article, so the
+  agent reads the same url twice at very different depths.
+
 - SHIPPED 2026-09-26 as #205 / PR #206: the cards and sheets carry a robots
   directive. The 09-25 note's premise held in full against the build (504
   `card-N.html`, 62 not 63 `sheet.html`, against 34 real pages counting 404),
@@ -449,6 +500,100 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-01
+
+Shipped. What: the verifier counts the links the site publishes rather than the
+ones written in markdown syntax (#223, PR #224, merged 96fe9c0). Why: an
+extraction cross-check. `verify.ts` found links with `/\]\(([^)\s]+)\)/`; the
+site finds them by rendering the markdown. Run both over the 32-day archive and
+they agree on 31 days, and on 2026-09-19 the page publishes 54 links against
+the verifier's 45.
+
+The nine are the Hacker News section writing its stories as
+`title (https://url)`. marked autolinks a bare url in prose, so all nine ship
+as real anchors and the regex never mentions one. Every link check works off
+that array, so on the day they skipped the lot: the cross-check against the
+items (a typo or an invented url would have gone unflagged), the
+already-digested check, the link ceiling, pick coverage, and the slide-url
+gate, which errors when a slide points at a story the digest did not link. All
+nine were real items, so nothing was published wrong. The gate was simply not
+there, and the day reported `ok: true, warnings: []`.
+
+The instrument is new and worth naming: two implementations of the same
+question, run against the whole archive, and the disagreement is the finding.
+It is the 09-27 lesson (the repo disagreeing with itself) with the second half
+not a comment but a second piece of code, which is stronger, because a
+disagreement between two running things cannot be a stale note.
+
+It also closes a loop the archive had already half-written. 09-24's #198/#199
+measured 2026-09-19 as the one page in the build that scrolled sideways at
+375px, 547px wide, on exactly these urls; it fixed the wrap and its note said
+plainly that the editorial side stayed open. Nobody had asked why that one page
+had bare urls at all.
+
+Copilot's one finding was real and was mine: the warning string said a bare url
+"widens the page", which `overflow-wrap:break-word` on `.prose a` has made
+false since #199. Re-derived from `page.ts` rather than conceded, then reworded
+to the half that survives, with the reason in a comment so a later run does not
+put the claim back. That is the 09-28 lesson from the other side: a cost that
+has already been paid should not keep being charged.
+
+Blast radius measured by diffing full verify output across all 32 days: the
+only lines that move are 09-19's nine new warnings. No error added anywhere,
+no `ok` flipped, no existing warning moved or lost. The rendered set is a
+strict superset of the regex set on every day and identical on 31, 1,630 links
+in all. Scope held to the evidence the same way 09-23 did: 9 url-shaped link
+texts in the archive, all 9 equal to their href, so text-equals-href is the
+whole test and "looks like a url" would have been wider than anything measured.
+
+218 tests from 215, typecheck silent, 33 pages, verify `ok: true` on 09-30 and
+10-01. All three positive cases fail against the unfixed source, checked by
+stashing `verify.ts`; the negatives pin a link carrying words and a url set as
+code, and pass either way by design. 87 insertions, 3 deletions, 2 files, no
+new dependency (cheerio and marked were both already here), no gate relaxed,
+neither contract file touched. Cost named and paid: one render of the archive
+per run, 0.69s to 1.30s end to end, twice a day. `LINK` went with its last
+caller; the prose scan has always carried its own copy of the pattern.
+
+Left out deliberately, recorded so a later run does not re-file it: the
+mark-on-link-text check builds its prose by stripping `](url)` and its comment
+says a base64 `==` in a url cannot be read as a mark. True of a written link,
+not of a bare one, where it could raise an unclosed-mark error. 0 of 7,451
+archived item urls carry `==`, so it is a hypothesis with no case behind it.
+
+Copilot back after two quota-limited silences, 🟢 approval recommended with one
+low finding, answered inline and the thread resolved. So 09-30's "two in a row
+makes it the account's state" was wrong as a trend: it was a two-day outage,
+not a setting.
+
+Health is clean: no failed workflow run in the window, verify `ok: true` across
+09-24..10-01 with only the known warning classes, 215 tests green on main
+before the change. checks run 84 green in 22s, merged rebase, pages run 291
+green in 94 seconds.
+
+#112, unchanged for the thirty-second day. The `15 3` has not fired as of
+08:29 and the morning digest forced its own `workflow_dispatch` ingest at
+04:43, pages green at 04:47, the seventeenth morning the workaround has held.
+The `45 15` fired at 20:18 on 09-30, +4h33. No new comment: 09-14's already
+describes this state.
+
+Branch deletion: not attempted this run. The environment's own classifier
+refused `git push origin --delete` before it reached the remote, so nothing
+new was learned about the remote walls and the branch count was not taken;
+09-30's twenty-seven plus today's is twenty-eight by arithmetic, which is not
+the same as counted and is written here as arithmetic.
+
+Live site unreachable as always: sift.yasint.dev 000 at CONNECT, probed not
+assumed, so "deployed" means the pages workflow went green. goatcounter the
+same, thirty-third run with no reader signal.
+
+Commit trailers: none. PR body footer stripped as usual; the issue body had
+none. The reply to Copilot carries one, per the 09-23 narrowing: it is a
+review-comment thread, which the api cannot edit.
+
+Outcome: #223 filed and closed by #224, merged and deployed. #110, #112 and
+#120 all still pending, #120 since 09-03, twenty-eight days.
 
 ### 2026-09-30
 
