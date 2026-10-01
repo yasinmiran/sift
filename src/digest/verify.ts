@@ -1,8 +1,10 @@
+import * as cheerio from "cheerio";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { daysBefore, today } from "../day";
 import { readPicks } from "../pipeline/picks";
 import { SEEN_DAYS } from "../pipeline/state";
+import { renderMarkdown } from "../site/markdown";
 import { readHashtagPool, readSlidePosts } from "../slides/data";
 import { parseFrontmatter } from "./frontmatter";
 
@@ -18,11 +20,33 @@ export interface VerifyResult {
   warnings: string[];
 }
 
-const LINK = /\]\(([^)\s]+)\)/g;
 const MARK_U = /==[^=\n]+?==/g;
 const MARK_O = /\(\([^()\n]+?\)\)/g;
 
 const normalize = (url: string): string => url.replace(/\/+$/, "");
+
+// What counts as "the digest's links" has to be what the page publishes.
+// marked autolinks a bare url sitting in the prose, so a story written
+// "title (https://url)" ships as a real anchor that the `](url)` form never
+// mentions: 2026-09-19's Hacker News section did that nine times and every
+// check below skipped all nine. Rendering the body and reading the hrefs is
+// how the two are kept the same, and it beats re-deriving marked's autolink
+// rules here — this is the html the site serves.
+interface PublishedLink {
+  url: string;
+  /** The link's visible text is its own url, so it reads as a url, not words. */
+  bare: boolean;
+}
+
+function publishedLinks(body: string): PublishedLink[] {
+  const $ = cheerio.load(renderMarkdown(body));
+  return $("a[href]")
+    .map((_, el) => {
+      const url = $(el).attr("href")!;
+      return { url, bare: $(el).text().trim() === url };
+    })
+    .get();
+}
 
 // A hacker news story is ingested under the article's own url, so a digest
 // that links the discussion instead reads as a link outside the day's items
@@ -101,8 +125,17 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
   const body = rawBody.trim();
   if (!body) errors.push("digest body is empty");
 
-  const links = [...body.matchAll(LINK)].map((m) => m[1]!);
+  const published = publishedLinks(body);
+  const links = published.map((l) => l.url);
   if (body && links.length === 0) errors.push("digest has no inline links");
+  // Editorial, not layout: #199 put overflow-wrap on .prose a, so a bare url
+  // wraps rather than widening the page. What is left is that the reader gets
+  // a url where the words should be.
+  for (const url of new Set(published.filter((l) => l.bare).map((l) => l.url))) {
+    warnings.push(
+      `bare url as link text: ${url}; a link carries its own words ([title](url)), never the url itself`,
+    );
+  }
   for (const url of links) {
     if (!/^https?:\/\//.test(url)) errors.push(`non-http link: ${url}`);
   }
@@ -302,7 +335,9 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
   const digested = new Map<string, string>();
   for (const file of earlier) {
     const text = readFileSync(join(rootDir, "digests", file), "utf8");
-    for (const m of text.matchAll(LINK)) digested.set(normalize(m[1]!), file.slice(0, 10));
+    for (const { url } of publishedLinks(parseFrontmatter(text).body)) {
+      digested.set(normalize(url), file.slice(0, 10));
+    }
   }
   for (const url of new Set(links.map(normalize))) {
     const usedOn = digested.get(url);

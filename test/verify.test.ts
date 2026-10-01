@@ -243,6 +243,58 @@ describe("verifyDigest", () => {
     ]);
   });
 
+  it("counts a bare url the renderer autolinks, and says it reads as a url", () => {
+    writeItems(DAY, urls);
+    // 2026-09-19's shape: the Hacker News section wrote its stories as
+    // "title (https://url)". marked autolinks those, so the page publishes
+    // links the `](url)` form never mentions.
+    writeDigest(
+      digestWith({
+        hn: `\n## Hacker News\n\nA poster essay (${urls[0]}) topped the day; a stray one (https://elsewhere.org/bare) did not.\n`,
+      }),
+    );
+    writeSlides();
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(true);
+    // Both are named, and the one outside the day's items is cross-checked
+    // like any other link, which is the check it used to be spared.
+    expect(r.warnings).toEqual([
+      expect.stringContaining(`bare url as link text: ${urls[0]}`),
+      expect.stringContaining("bare url as link text: https://elsewhere.org/bare"),
+      expect.stringContaining(
+        "link not found in the day's items (primary source or typo?): https://elsewhere.org/bare",
+      ),
+    ]);
+  });
+
+  it("warns on a url written as its own link text, and stays quiet when the link carries words", () => {
+    writeItems(DAY, urls);
+    const bare = (line: string): string[] => {
+      writeDigest(digestWith({ threads: `\n## Threads\n\n- ${line}\n` }));
+      return verifyDigest(root, DAY).warnings.filter((w) => w.startsWith("bare url as link text"));
+    };
+    // Written out, the url is a link the regex already saw; the reader still
+    // gets a url where the words should be, so it warns the same.
+    expect(bare(`the source is [${urls[0]}](${urls[0]}).`)).toEqual([expect.stringContaining(urls[0]!)]);
+    // A link carrying words is the normal case, and a url set as code is not
+    // a link at all: neither is the renderer's doing to report.
+    expect(bare(`the source is [the filing](${urls[0]}).`)).toEqual([]);
+    expect(bare(`the source is \`${urls[0]}\`.`)).toEqual([]);
+  });
+
+  it("remembers an earlier day's bare url when checking for a repeat", () => {
+    writeItems(DAY, urls);
+    writeDigest(
+      digestWith({ links: [urls[1]!], hn: `\n## Hacker News\n\nIt ran first here (${urls[0]}).\n` }),
+      "2026-07-02",
+    );
+    writeDigest(digestWith());
+    writeSlides();
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(true);
+    expect(r.warnings).toContainEqual(expect.stringContaining(`already digested on 2026-07-02: ${urls[0]}`));
+  });
+
   it("names a story carried over from a recent day instead of calling it a typo", () => {
     writeItems(DAY, urls);
     writeItems("2026-07-02", ["https://elsewhere.org/carried"]);
