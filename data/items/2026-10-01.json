@@ -1,6 +1,6 @@
 {
   "day": "2026-10-01",
-  "generatedAt": "2026-10-01T16:43:57.804Z",
+  "generatedAt": "2026-10-01T20:33:04.106Z",
   "items": [
     {
       "sourceSlug": "hacker-news",
@@ -1072,6 +1072,35 @@
       "author": "Kevin Dawkins",
       "publishedAt": "2026-10-01T00:00:00.000Z",
       "content": "Vercel and Microsoft AI (MAI) have partnered to make MAI models available on AI Gateway. AI Gateway is one of a limited number of platforms offering access to MAI models. MAI's focus on security and zero data retention (ZDR) align with Vercel's goal of giving AI Gateway users control over their data and transparency in how it is used for training. are now supported on AI Gateway. MAI-Voice-2.1 and MAI-Voice-2.1-Flash generate speech, while MAI-Transcribe-2 Streaming returns transcript updates as audio arrives.MAI's latest audio models AI Gateway bills these models at their listed rates, with no platform fee or markup on inference. Use in AI SDK 7 with MAI-Voice-2.1-Flash to create a spoken response. The voice name selects Microsoft's Harper voice with the Flash model:generateSpeech For longer audio such as narration, use .microsoft/mai-voice-2.1 takes a stream of audio chunks and returns transcript updates as the audio arrives. This example assumes is a of 16 kHz, 16-bit PCM audio:streamTranscribemicrophoneStreamReadableStream Partial transcripts can change as more audio arrives, so replace the displayed text when a new partial arrives. Explore for speech generation and for live transcription. See the for the full family, or follow the to get started.MAI-Voice-2.1-FlashMAI-Transcribe-2 StreamingMAI model pagespeech quickstart AI Gateway provides one API for calling models, tracking usage and cost, and viewing request traces. It also supports routing, retries, and failover across available providers. Read more MAI models on AI Gateway Get started Additional resources () generates expressive speech in 23 languages and keeps a consistent speaker across longer passages. Use it for narration, audiobooks, podcasts, and lessons where delivery matters from start to finish.MAI-Voice-2.1microsoft/mai-voice-2.1 () brings the same multilingual speech generation to lower-latency interactions. It is suited to voice agents, assistants, and spoken replies that need to arrive quickly.MAI-Voice-2.1-Flashmicrosoft/mai-voice-2.1-flash () returns partial transcripts while audio is still arriving. Applications can show live captions or follow a conversation as it happens, without waiting for the full recording.MAI-Transcribe-2 Streamingmicrosoft/mai-transcribe-2-streaming Transcribe live audio",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stripe-blog",
+      "externalId": "https://stripe.com/blog/where-pricing-is-headed",
+      "title": "Why I tried to kill token billing (and why we kept it)",
+      "url": "https://stripe.com/blog/where-pricing-is-headed",
+      "author": null,
+      "publishedAt": "2026-10-01T00:00:00.000Z",
+      "content": "Token billing is useful infrastructure, but usually a bad customer-facing pricing model. Your invoice should define the value your product delivers, not break down what it cost you to create it.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/laya-decision-model-now-available-on-ai-gateway-free-through-october-31",
+      "title": "Laya decision model now available on AI Gateway, free through October 31",
+      "url": "https://vercel.com/changelog/laya-decision-model-now-available-on-ai-gateway-free-through-october-31",
+      "author": "Zachary Chen",
+      "publishedAt": "2026-10-01T00:00:00.000Z",
+      "content": "is free to use on for 1 month through October 31, 2026 via .Laya from Convai InnovationsAI GatewayBoundless Laya is an evaluation/decision model that evaluates shared context against yes/no, choice, or scoring questions and returns structured answers with probabilities. For example, use it to: You can call Laya through the , the , or the with or :AI SDK evaluation APInative HTTP APITypeSafe-compatible APIconvaiinnovations/layaconvaiinnovations/laya-free Through October 31, 2026, both and are free when served by . The ID routes to Boundless and stops serving after the promotion; the standard ID begins billing then.convaiinnovations/layaconvaiinnovations/laya-free-freeBoundless Read the documentation on on AI Gateway for more details, or explore the .evaluation modelsmodel catalog AI Gateway provides one API for calling models, tracking usage and cost, and configuring routing, retries, and failover. You can use an or .AI Gateway API keybring your own provider key Read more Detect a refund request and route it to the billing team.Triage support requests: Choose which tool or workflow should handle a request.Route agent work: Flag a request or response for review when it may violate a policy.Check guardrails: Rate a ticket's urgency or an answer's quality on a defined scale.Score against a rubric:",
       "topics": [
         "devtools-infra",
         "frontend"
@@ -3446,6 +3475,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/adaption-labs-turns-a-single-prompt-into-20-000-ai-training-samples",
+      "title": "Adaption Labs Turns a Single Prompt Into 20,000 AI Training Samples",
+      "url": "https://alphasignal.ai/news/adaption-labs-turns-a-single-prompt-into-20-000-ai-training-samples",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-01T12:00:01.000Z",
+      "content": "Adaption's new Invent a Dataset system generates post-training data from a plain text description, beating five frontier model APIs on quality and diversity.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261001/p18#a261001p18",
       "title": "Micron filed a US lawsuit accusing Chinese memory maker YMTC of systematically poaching key engineers and then using the engineers' patents to sue Micron (Anton Shilov/Tom's Hardware)",
@@ -3871,6 +3914,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49921923",
+      "title": "Cloudflare K2: serverless event streams",
+      "url": "https://blog.cloudflare.com/cloudflare-k2-streams/",
+      "author": "elffjs",
+      "publishedAt": "2026-10-01T14:09:10.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 143,
+      "comments": 63
+    },
+    {
       "sourceSlug": "tldrsec",
       "externalId": "https://tldrsec.com/p/tldr-sec-348",
       "title": "[tl;dr sec] #348 - Google's PageBreak Scanner, Perplexity's Agent Security Tool, Defending Agentically",
@@ -3897,6 +3959,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49922278",
+      "title": "Cops Can Bypass iPhone's Automatic Reboot to Get into Locked Phones",
+      "url": "https://www.404media.co/cops-can-bypass-iphone-automatic-inactivity-reboot-graykey/",
+      "author": "speckx",
+      "publishedAt": "2026-10-01T14:38:35.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 203,
+      "comments": 166
     },
     {
       "sourceSlug": "stackoverflow-blog",
@@ -3955,6 +4036,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49922515",
+      "title": "RacketCon Is Saturday",
+      "url": "https://con.racket-lang.org/",
+      "author": "spdegabrielle",
+      "publishedAt": "2026-10-01T14:58:13.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 108,
+      "comments": 27
+    },
+    {
       "sourceSlug": "huggingface-blog",
       "externalId": "https://huggingface.co/blog/allenai/olmocore3",
       "title": "Introducing Olmo-core 3: Open, scalable training infrastructure for large MoEs",
@@ -3970,6 +4070,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49922569",
+      "title": "Ask HN: Who is hiring? (October 2026)",
+      "url": "https://news.ycombinator.com/item?id=49922569",
+      "author": "whoishiring",
+      "publishedAt": "2026-10-01T15:02:07.000Z",
+      "content": "Please state the location and include REMOTE for remote work, REMOTE (US) or similar if the country is restricted, and ONSITE when remote work is not an option. Please only post if you personally are part of the hiring company—no recruiting firms or job boards. One post per company. If it isn't a household name, explain what your company does. Please only post if you are actively filling a position and are committed to replying to applicants. Commenters: please don't reply to job posts to complain about something. It's off topic here. Readers: please only email if you are personally interested in the job. Searchers: try https://hnwork.app, https://nthesis.ai/public/hn-who-is-hiring, https://dheerajck.github.io/hnwhoishiring/, http://nchelluri.github.io/hnjobs/, https://hnjobs.emilburzo.com. Don't miss this other fine thread: Who wants to be hired? https://news.ycombinator.com/item?id=49922568",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 106,
+      "comments": 103
+    },
+    {
       "sourceSlug": "github-blog",
       "externalId": "https://github.blog/?p=99192",
       "title": "10 technical talks I’m excited about at GitHub Universe 2026",
@@ -3983,6 +4102,44 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49922674",
+      "title": "Various Projects Find Hidden SDR Capabilities in ESP32 Microcontrollers",
+      "url": "https://www.rtl-sdr.com/various-projects-independently-find-hidden-sdr-capabilities-in-esp32-microcontrollers/",
+      "author": "nkw",
+      "publishedAt": "2026-10-01T15:07:42.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 110,
+      "comments": 12
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49922729",
+      "title": "Figma restricts MCP access to whitelisted clients, excluding Pi",
+      "url": "https://twitter.com/GayaniFigma/status/2105295629941350454",
+      "author": "thdr",
+      "publishedAt": "2026-10-01T15:10:46.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 148,
+      "comments": 87
     },
     {
       "sourceSlug": "techmeme",
@@ -4027,6 +4184,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/10/as-us-relations-fray-canada-gets-serious-about-its-own-launch-industry/",
+      "title": "As US relations fray, Canada gets serious about its own launch industry",
+      "url": "https://arstechnica.com/space/2026/10/as-us-relations-fray-canada-gets-serious-about-its-own-launch-industry/",
+      "author": "Eric Berger",
+      "publishedAt": "2026-10-01T15:30:49.000Z",
+      "content": "A year or two ago, a few Canadian launch companies were trying to develop small rockets, but if we're being frank, the industry was not particularly notable. Sure, something interesting might eventually happen, but no one outside of a few Canadian space geeks was paying much attention. But then the Trump Administration started threatening and instituting tariffs. There was talk of making Canada the 51st state. And pretty much every Canadian I know began telling me how enraged they were at their neighbors to the south. It's hard to blame them. This has led the Canadian government to reassess all manner of areas where it had previously been happy to rely largely on the US government and American companies for goods and services. This included sovereign access to space. So this spring, the government announced the first awards to three companies—NordSpace, Reaction Dynamics, and Canada Rocket Company—to support work on rockets with \"light lift\" capability. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "bytebytego",
       "externalId": "https://blog.bytebytego.com/p/why-state-is-the-hardest-thing-in",
       "title": "Why State is the Hardest Thing in Software Design",
@@ -4039,6 +4210,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49923056",
+      "title": "Red Hat being phased out of existence?",
+      "url": "https://techrights.org/n/2026/10/01/Red_Hat_Being_Phased_Out_of_Existence_Like_Many_Other_Companies.shtml",
+      "author": "amcclure",
+      "publishedAt": "2026-10-01T15:33:26.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 143,
+      "comments": 79
     },
     {
       "sourceSlug": "cloudflare-blog",
@@ -4126,6 +4316,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49923466",
+      "title": "RIP, vector database",
+      "url": "https://turbopuffer.com/blog/rip-vector-database",
+      "author": "razin",
+      "publishedAt": "2026-10-01T16:01:56.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 215,
+      "comments": 60
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=1003515",
       "title": "Microsoft’s Office and Teams chief is leaving",
@@ -4154,6 +4363,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/perplexity-computer-now-renders-live-financial-charts-inside-your-research",
+      "title": "Perplexity Computer Now Renders Live Financial Charts Inside Your Research Thread",
+      "url": "https://alphasignal.ai/news/perplexity-computer-now-renders-live-financial-charts-inside-your-research",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-01T16:12:01.000Z",
+      "content": "Perplexity's agentic Computer tool now renders interactive charts inline, using TradingView's Lightweight Charts for candlesticks, volume, and moving averages.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261001/p27#a261001p27",
       "title": "Memo: Ryan Roslansky, previously LinkedIn CEO who became Office and Teams head in 2025, is leaving after ~18 years at Microsoft, triggering an exec reshuffle (Tom Warren/The Verge)",
@@ -4168,6 +4391,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49923692",
+      "title": "Clef: Open-source decision models, and new RL fine-tuning platform",
+      "url": "https://blog.cloudflare.com/clef-decision-models/",
+      "author": "jasondavies",
+      "publishedAt": "2026-10-01T16:18:57.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 314,
+      "comments": 128
+    },
+    {
       "sourceSlug": "alphasignal",
       "externalId": "https://alphasignal.ai/news/agents-don-t-need-a-new-identity-stack-they-need-a-new-enforcement-point",
       "title": "Agents Don't Need a New Identity Stack — They Need a New Enforcement Point",
@@ -4177,6 +4419,34 @@
       "content": "Most identity vendors shipped a brand-new, parallel system for agent security this year. Ory's bet is the opposite: reuse the identity stack you already run, and move the enforcement point inside the one place agents actually act — the harness event loop.",
       "topics": [
         "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/microsoft-s-mai-transcribe-2-streaming-tops-38-models-with-2-5-error-rate",
+      "title": "Microsoft's MAI-Transcribe-2-Streaming Tops 38 Models With 2.5% Error Rate",
+      "url": "https://alphasignal.ai/news/microsoft-s-mai-transcribe-2-streaming-tops-38-models-with-2-5-error-rate",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-01T16:19:32.000Z",
+      "content": "Microsoft AI's new streaming speech-to-text model tops the Artificial Analysis leaderboard with 2.5% WER delivered just 0.13 seconds after speech ends.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/10/ai-finally-beat-the-best-stratego-player-in-history-and-did-it-on-a-budget/",
+      "title": "With most information hidden, the game Stratego had stumped AI—until now",
+      "url": "https://arstechnica.com/science/2026/10/ai-finally-beat-the-best-stratego-player-in-history-and-did-it-on-a-budget/",
+      "author": "Jacek Krywko",
+      "publishedAt": "2026-10-01T16:28:04.000Z",
+      "content": "Deep Blue took down Garry Kasparov at chess in 1997, AlphaGo beat Lee Sedol at Go in 2016, and poker bots have been beating professionals for years. But one classic game called Stratego held out. Even DeepMind, with its exceptional budget, couldn't build a machine that reliably beat the best human players. Now, a team of researchers from Carnegie Mellon, MIT, New York University, and Stanford University has done it. Their AI, called Ataraxos, beat Pim Niemeijer, arguably the best Stratego player of all time, 15 games to one, with four draws. And it took just 16 GPUs and a few thousand dollars to train it. Hidden armies In Stratego, each player gets 40 pieces representing military ranks, from a marshal down to a spy, plus bombs and a flag. You win by capturing the opponent's flag. Your opponent knows where your pieces are, but not what they are. Identities are revealed only when two pieces collide in battle—the weaker one is removed, and the identity of the winner is revealed. That makes Stratego an imperfect-information game, just like poker, which computers cracked years ago. “There's something super distinctive about Stratego, which is that it is a massive amount of hidden information that unfolds over a very long time scale,” said Eugene Vinitsky, a researcher at NYU and co-author of the study. Read full article Comments",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -4218,6 +4488,35 @@
       "publishedAt": "2026-10-01T16:35:27.000Z",
       "content": "Benchmark has won out in a hot competition to lead a new funding round for early-stage chip startup Tendrils Compute, according to multiple people familiar with the matter. Sources say that the company is already discussing a fast follow-up raise that would potentially value the firm at more than $1 billion. Neither round has previously been reported. Benchmark declined to comment. The Tendrils deal is the latest in a wave of big VC bets on chips, marking the revival of the sector that gave Silicon Valley its name but has long been out of favor as investors focused on software and networking. Startups are betting that specialized chips for specific workloads will have an important place in the infrastructure build-out — in contrast to previous generations of the technology that were dominated by a small handful of chipmakers. The small Tendrils team, which is led by Nils Cremer and based in Cambridge in the U.K., is betting that general-purpose chips based on an obscure graph-based computing model called interaction nets will let it scale without the coordination and cost problems associated with contemporary multi-core CPUs. As AI agents complete multiple steps of inference and tool calls, CPU speed may become a new bottleneck. Subscribe to Newcomer to see our market map of hot chip alternatives. Benchmark has been on the leading edge of the new chip enthusiasm. Back in 2016, Eric Vishria co-led the Series A round in Cerebras Systems and saw a 20.5x multiple on its check when the company went public this spring. It was Benchmark’s first hardware investment in 10 years, and Vishria almost skipped the meeting, he told TechCrunch. That success, combined with the relentless demand for AI compute, has convinced VCs that there are plenty of returns to go around on chip startups. In August, Etched, which builds specialized chips and racks for AI inference, doubled its valuation to $21 billion off a fresh $700 million fundraise. Fellow inference-focused chipmaker Fractile is in talks to raise at a $6.5 billion valuation after landing a deal to supply chips to Anthropic. OLIX, a U.K.-based inference chip startup, raised $312 million at a $3.3 billion valuation back in August. Two other companies each announced nine-figure capital hauls in September: inference chip startup Euclyd and Delos Data, which builds software and networking equipment to help information travel more quickly around data centers. Just this morning, Volantis Semiconductors raised $88 million from Lachy Groom and Abstract Ventures for another inference-focused chip. “They have a massive tailwind from capex build-out,” said Darian Shirazi, managing partner at Gradient. “They probably will all do well.” Still, chips are notoriously capital-intensive and cyclical, with long development timelines, and are not for the faint of heart. Cerebras, for example, went public in May at $185 and has traded as high as $386, but now sits close to its offering price. VCs have been getting creative to share the risk and cost of chip development. Coatue and startup chipmaker MatX have been in talks to form a joint venture to the tune of billions of dollars to help the company finance memory purchases and capacity with manufacturers, per The Information. We’ve heard from VCs that the emerging chip ecosystem is noisy and difficult to parse. We’ve created a market map that helps clarify the state of play, focusing on three different types of chip startups. You can also get insight on how investors are thinking about this sector from Newcomer’s VC Sentiment Report — a brand-new, quarterly study featuring quantitative questions and no-BS quotes from 25 anonymous VCs representing many of the best-known firms. Check it out here. Read more",
       "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/when-to-use-deepseek-v4-1-flash",
+      "title": "When to use DeepSeek-V4.1-Flash",
+      "url": "https://alphasignal.ai/news/when-to-use-deepseek-v4-1-flash",
+      "author": "Adham Khaled",
+      "publishedAt": "2026-10-01T16:39:00.000Z",
+      "content": "Field-test, Max effort, private repo to 512k. Reading 60/64 each. Kimi 8/8 vs DeepSeek 7/8 repairs. Bill $1.70 vs $31.75",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "pragmatic-engineer",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/the-pulse-firebases-global-outage",
+      "title": "The Pulse: Firebase’s global outage & poor response",
+      "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-firebases-global-outage",
+      "author": "Gergely Orosz",
+      "publishedAt": "2026-10-01T16:43:19.000Z",
+      "content": "The Pulse is a series covering events, insights, and trends within Big Tech and startups. Today, we cover: Firebase: global outage & poor handling by Google. The Firebase iOS SDK crashed after a backend change, crashing all apps which used Firebase analytics for 2-6 hours. Google did not update the status page or offer any postmortem, which is a head-scratcher from a company known for standout incident management practices. OpenAI’s platform play from AWS playbook? OpenAI is becoming a platform where it’s possible to allocate ChatGPT spend on open models and AI offerings from among 16 partners, not just OpenAI models. It’s fair to ask if Anthropic will consider a similar platform play. More data on companies moving to open models. Vercel’s AI gateway shows 60% of model spend goes to open weight models, and OpenRouter also shows open models are being more used than closed ones. Why CTOs and VPEs are quitting en masse: another take. What if it’s not “founder mode”, but about people who love building software, feeling like they can do it solo (or with a small team) with AI tools? 1. Firebase SDK: global outage & poor handling by Google Read more",
+      "topics": [
+        "devtools-infra",
         "startups-industry"
       ],
       "paywalled": false,
@@ -4688,6 +4987,637 @@
       "topics": [
         "devtools-infra",
         "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/10/florida-cops-say-they-dont-know-who-owns-11-unpermitted-flock-cameras/",
+      "title": "Florida cops say they don't know who owns 11 unpermitted Flock cameras",
+      "url": "https://arstechnica.com/tech-policy/2026/10/florida-cops-say-they-dont-know-who-owns-11-unpermitted-flock-cameras/",
+      "author": "Ashley Belanger",
+      "publishedAt": "2026-10-01T16:49:33.000Z",
+      "content": "Florida cops are facing questions after a mandate to remove all Flock cameras tracking cars on St. Lucie County roads led local police to uncover more than a dozen suspicious cameras operating without permits. Local residents told The Washington Post that they were alarmed that no one knows who owns many of the mysterious cameras. Of the 14 cameras found, 11 had no obvious owners, raising concerns about who has access to sensitive data that bad actors could abuse. After the cameras were discovered, St. Lucie County Commissioner James Clasby told a local news outlet that there’s “potential for non-law enforcement to have cameras out there, and I’m not OK with that.” Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1003549",
+      "title": "Sony brings AI graphics upscaling to the regular PS5",
+      "url": "https://www.theverge.com/games/1003549/sony-ps5-quick-spectral-super-resolution-qssr",
+      "author": "Jay Peters",
+      "publishedAt": "2026-10-01T16:53:39.000Z",
+      "content": "Sony is launching a new AI upscaling technology specifically for the regular PS5. The new tech, called Quick Spectral Super Resolution (QSSR), is a \"new performance tier of AI upscaling\" that's a result of Sony's Project Amethyst work with AMD, according to a blog post. Sony says that PlayStation Spectral Super Resolution (PSSR), which is available on the PS5 Pro, \"remains the gold standard,\" and in Digital Foundry's early hands-on with the tech, it does seem that QSSR isn't as fast as PSSR because the PS5 doesn't have dedicated machine learning silicon. As a result, you should probably expect closer to an upscaled 1440p resolution on PS5 … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261001/p29#a261001p29",
+      "title": "Gavin Newsom vetoes a CA bill banning secret recording with smart glasses in private places, saying its definition of wearable recording devices was too broad (Sophie Austin/Associated Press)",
+      "url": "https://www.techmeme.com/261001/p29#a261001p29",
+      "author": null,
+      "publishedAt": "2026-10-01T16:55:05.000Z",
+      "content": "Sophie Austin / Associated Press: Gavin Newsom vetoes a CA bill banning secret recording with smart glasses in private places, saying its definition of wearable recording devices was too broad — California Gov. Gavin Newsom vetoed legislation Wednesday that would have penalized Californians for using smart glasses …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49924179",
+      "title": "Git 3.0's upcoming SHA-256 default will be a costly mistake",
+      "url": "https://blog.gitbutler.com/git-3-sha-256",
+      "author": "chmaynard",
+      "publishedAt": "2026-10-01T16:57:03.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 149,
+      "comments": 170
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/the-eternal-complement",
+      "title": "The eternal complement",
+      "url": "https://openai.com/index/the-eternal-complement",
+      "author": null,
+      "publishedAt": "2026-10-01T17:00:00.000Z",
+      "content": "Advanced AI may matter most for the routine work behind breakthrough ideas. Explore why execution could shape the next economy and the pace of progress.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1003589",
+      "title": "Judge dismisses antitrust lawsuits over Google’s AI Overviews",
+      "url": "https://www.theverge.com/tech/1003589/google-ai-overviews-chegg-penske-lawsuits-dismissed",
+      "author": "Emma Roth",
+      "publishedAt": "2026-10-01T17:12:21.000Z",
+      "content": "A federal judge has dismissed a pair of antitrust lawsuits filed by Chegg and Rolling Stone parent company Penske Media Corporation, which accused Google of driving away web traffic with its AI-powered search features, as reported earlier by Reuters. US District Judge Amit Mehta takes Google's side in a ruling on Wednesday, writing that PMC and Chegg's claims don't stand up to antitrust law. In lawsuits filed last year, Chegg and PMC accused Google of abusing its monopoly power by coercing publishers into supplying content for AI Overviews for free, or risk disappearing from search results. The publishers alleged Google's practices diverted … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261001/p30#a261001p30",
+      "title": "Sony launches Quick Spectral Super Resolution, a \"new performance tier of AI upscaling\" for the standard PS5 developed in collaboration with AMD (Jay Peters/The Verge)",
+      "url": "https://www.techmeme.com/261001/p30#a261001p30",
+      "author": null,
+      "publishedAt": "2026-10-01T17:15:03.000Z",
+      "content": "Jay Peters / The Verge: Sony launches Quick Spectral Super Resolution, a “new performance tier of AI upscaling” for the standard PS5 developed in collaboration with AMD — Sony's new Quick Spectral Super Resolution AI upscaling is coming first to Marvel's Wolverine and Ghost of Yōtei.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/factory-s-droid-now-runs-engineering-workflows-autonomously-without-human-input",
+      "title": "Factory's Droid Now Runs Engineering Workflows Autonomously Without Human Input",
+      "url": "https://alphasignal.ai/news/factory-s-droid-now-runs-engineering-workflows-autonomously-without-human-input",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-01T17:35:35.000Z",
+      "content": "Factory's Droid agent can now run recurring engineering workflows on triggers and schedules, with user-chosen models, machines, and connectors.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261001/p31#a261001p31",
+      "title": "Sources: Anthropic could start formal marketing for its IPO as soon as the week of November 9, putting it in line to begin trading before Thanksgiving (Bailey Lipschultz/Bloomberg)",
+      "url": "https://www.techmeme.com/261001/p31#a261001p31",
+      "author": null,
+      "publishedAt": "2026-10-01T17:37:27.000Z",
+      "content": "Bailey Lipschultz / Bloomberg: Sources: Anthropic could start formal marketing for its IPO as soon as the week of November 9, putting it in line to begin trading before Thanksgiving — Anthropic PBC is seeking to go public as soon as the middle of November, according to people familiar with the matter …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/odyssey-s-prowl-2-fixes-its-own-simulator-errors-while-training-ai-teams",
+      "title": "Odyssey's PROWL-2 Fixes Its Own Simulator Errors While Training AI Teams",
+      "url": "https://alphasignal.ai/news/odyssey-s-prowl-2-fixes-its-own-simulator-errors-while-training-ai-teams",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-01T17:41:25.000Z",
+      "content": "Odyssey's new framework pairs agents with a self-repairing world model, lifting StarCraft win rates by up to 91% and cracking the hardest robot coordination tasks.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/information-technology/2026/10/memory-supplies-are-only-getting-tighter-micron-ceo-says/",
+      "title": "Memory executives expect RAM shortage to continue through 2028",
+      "url": "https://arstechnica.com/information-technology/2026/10/memory-supplies-are-only-getting-tighter-micron-ceo-says/",
+      "author": "Scharon Harding",
+      "publishedAt": "2026-10-01T17:49:56.000Z",
+      "content": "Micron and Samsung executives this week said the memory shortage will continue for at least the next couple of years. Micron CEO Sanjay Mehrotra expects demand for the firm’s memory to exceed its available supply over that period, he told investors last night. Micron no longer sells consumer RAM, and Mehrotra’s statements refer to Micron’s business-to-business sales of high-bandwidth memory (HBM) for AI and DRAM for servers. However, his comments also have implications for consumer devices. Manufacturing capacity is prioritizing memory for AI and servers, limiting the supply of memory manufactured for consumer devices. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=123027",
+      "title": "Build Local AI Apps with C++ and NVIDIA TensorRT RTX Samples",
+      "url": "https://developer.nvidia.com/blog/build-local-ai-apps-with-c-and-nvidia-tensorrt-rtx-samples/",
+      "author": "Luca Spindler",
+      "publishedAt": "2026-10-01T17:59:27.000Z",
+      "content": "Adding AI models to local applications requires a portable model format, a reliable runtime, and acceleration that works across target systems. Do Inference Now... Adding AI models to local applications requires a portable model format, a reliable runtime, and acceleration that works across target systems. Do Inference Now (DIN) Deploy is an open-source collection of practical C++ samples that bridges that gap. It combines ONNX Runtime with the NVIDIA TensorRT RTX execution provider to help developers move from a model checkpoint to a native… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/culture/2026/10/marvel-releases-one-last-visionquest-trailer/",
+      "title": "Marvel releases one last VisionQuest trailer",
+      "url": "https://arstechnica.com/culture/2026/10/marvel-releases-one-last-visionquest-trailer/",
+      "author": "Jennifer Ouellette",
+      "publishedAt": "2026-10-01T18:04:48.000Z",
+      "content": "With its premiere just two weeks away, Marvel Studios has dropped one last trailer for the limited series, VisionQuest, which will complete the trilogy begun with WandaVision and Agatha All Along. (Spoilers for WandaVision and Agatha All Along below.) As previously reported, Marvel’s streaming TV portfolio has kind of been all over the place: a handful of hits, a few misses, and a bunch of middling offerings. One standout was WandaVision, followed by an excellent sequel (of sorts), Agatha All Along. VisionQuest will complete the trilogy. Vision (Paul Bettany) died in Infinity War, but WandaVision resurrected an all-white version whose memories were restored in the finale. We finally get to learn what happened afterward. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-claude-code-mods-let-developers-rewrite-the-agent-from-inside",
+      "title": "Anthropic's Claude Code Mods Let Developers Rewrite the Agent From Inside",
+      "url": "https://alphasignal.ai/news/anthropic-s-claude-code-mods-let-developers-rewrite-the-agent-from-inside",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-01T18:08:07.000Z",
+      "content": "Claude Code now accepts TypeScript mods that intercept events, redraw the UI, and replace built-in features through the plugin system.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=123148",
+      "title": "Build Applications on NVIDIA BlueField Faster with NVIDIA DOCA Agent Skills",
+      "url": "https://developer.nvidia.com/blog/build-applications-on-nvidia-bluefield-faster-with-nvidia-doca-agent-skills/",
+      "author": "Tanya Lenz",
+      "publishedAt": "2026-10-01T18:13:29.000Z",
+      "content": "AI agents are becoming a standard part of development workflows, but general-purpose agents weren't built with specialized infrastructure software such as... AI agents are becoming a standard part of development workflows, but general-purpose agents weren’t built with specialized infrastructure software such as NVIDIA DOCA in mind. Without domain-specific knowledge, agents may fall back on guesswork. This is an issue in infrastructure development because every correction cycle takes time away from deployment. DOCA is the unified software platform… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261001/p32#a261001p32",
+      "title": "Strands Labs, AWS's experimental agent-development project, unveils Strands Decider 2B, a free, open-source Jev competitor fine-tuned from an Alibaba Qwen base (Carl Franzen/VentureBeat)",
+      "url": "https://www.techmeme.com/261001/p32#a261001p32",
+      "author": null,
+      "publishedAt": "2026-10-01T18:15:02.000Z",
+      "content": "Carl Franzen / VentureBeat: Strands Labs, AWS's experimental agent-development project, unveils Strands Decider 2B, a free, open-source Jev competitor fine-tuned from an Alibaba Qwen base — The race to make AI agents cheaper and faster is moving beyond the models that write their answers.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261001/p33#a261001p33",
+      "title": "A US judge dismisses Chegg and Penske lawsuits alleging Google violated antitrust law by forcing them to allow content in AI Overviews, reducing web traffic (Mike Scarcella/Reuters)",
+      "url": "https://www.techmeme.com/261001/p33#a261001p33",
+      "author": null,
+      "publishedAt": "2026-10-01T18:50:01.000Z",
+      "content": "Mike Scarcella / Reuters: A US judge dismisses Chegg and Penske lawsuits alleging Google violated antitrust law by forcing them to allow content in AI Overviews, reducing web traffic — Alphabet's Google has persuaded a US federal judge to dismiss lawsuits from education technology company Chegg …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1003593",
+      "title": "Steam Deck 2: Is AMD Gainsborough the chip Valve’s been waiting for?",
+      "url": "https://www.theverge.com/games/1003593/steam-deck-2-is-amd-gainsborough-the-chip-valves-been-waiting-for",
+      "author": "Sean Hollister",
+      "publishedAt": "2026-10-01T18:52:58.000Z",
+      "content": "The Steam Deck LCD’s “Aerith” APU. | Photo by Fritzchens Fritz The Steam Deck is four and a half years old, and handheld gamers are eagerly awaiting a Steam Deck 2 - but Valve has consistently said it needs a new chip with a \"generational leap\" in performance and efficiency before building the sequel. There's some reason to believe that chip has now broken cover: AMD Gainsborough. But I'm a tad skeptical. As leaker Moore's Law is Dead and IT Home report, the latest AMD drivers have leaked the codename for a previously unknown chip: an \"AMD Gainsborough.\" The first Steam Deck chip was named \"Aerith\" after Final Fantasy VII's heartbreaking love interest, and Gainsborough is her last name. Plus, the chip … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261001/p34#a261001p34",
+      "title": "SoftBank made the final $10B investment in its $30B pledge to OpenAI's last funding round; source: Nvidia also made its final $10B investment in the round (The Information)",
+      "url": "https://www.techmeme.com/261001/p34#a261001p34",
+      "author": null,
+      "publishedAt": "2026-10-01T18:55:14.000Z",
+      "content": "The Information: SoftBank made the final $10B investment in its $30B pledge to OpenAI's last funding round; source: Nvidia also made its final $10B investment in the round — Nvidia and SoftBank have each made the final $10 billion investment in each of their $30 billion pledges to OpenAI's last funding round …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/black-forest-labs-flux-3-image-lets-developers-place-objects-with-exact",
+      "title": "Black Forest Labs' FLUX 3 Image Lets Developers Place Objects With Exact Coordinates",
+      "url": "https://alphasignal.ai/news/black-forest-labs-flux-3-image-lets-developers-place-objects-with-exact",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-01T19:00:27.000Z",
+      "content": "Black Forest Labs ships FLUX 3 Image with bounding box layout control, multi-reference composition, native 4K output, and pixel-perfect multi-turn editing.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1003735",
+      "title": "Android Central ‘will continue’ despite laying off its staff",
+      "url": "https://www.theverge.com/tech/1003735/android-central-layoffs",
+      "author": "Jay Peters",
+      "publishedAt": "2026-10-01T19:20:29.000Z",
+      "content": "Android Central, a blog focused on the Android ecosystem, laid off its staff yesterday, but owner Future confirms to The Verge that the site will continue publishing. Yesterday, four of the six staffers on Android Central's staff page posted publicly about the layoffs, including Shruti Shekar, Derrek Lee, Harish Jonnalagadda, and Nicholas Sutrich, and former senior editor Namerah Saud Fatmi updated her LinkedIn to indicate that her tenure at Android Central had ended. Both Lee, the site's managing editor, and Sutrich confirmed that all remaining staff were laid off. The former staffers weren't told whether the site would shut down. Today, … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261001/p35#a261001p35",
+      "title": "Anthropic urges Australia to consider \"conditional approval\" for Big Tech to train models on copyrighted works, giving copyright holders a choice to opt out (Josh Butler/The Guardian)",
+      "url": "https://www.techmeme.com/261001/p35#a261001p35",
+      "author": null,
+      "publishedAt": "2026-10-01T19:25:01.000Z",
+      "content": "Josh Butler / The Guardian: Anthropic urges Australia to consider “conditional approval” for Big Tech to train models on copyrighted works, giving copyright holders a choice to opt out — Maker of Claude claims AI could transform economy but ABC and SBS say the technology should be subject to media regulations",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112412 at https://www.eff.org",
+      "title": "Happy Opt Out October! Let’s Find Real Alternatives to the Tech Giants",
+      "url": "https://www.eff.org/deeplinks/2026/10/happy-opt-out-october-lets-find-real-alternatives-tech-giants",
+      "author": "Thorin Klosowski",
+      "publishedAt": "2026-10-01T19:27:29.000Z",
+      "content": "Over the years, the major tech companies have found all sorts of ways to embed themselves into our lives. We often use their software, their AI tools, their social media, and their operating systems by default without even thinking about potential alternatives. It’s time to rethink that relationship. Last year, we created Opt Out October to help remind ourselves of the variety of ways we can take back control of our data through small steps inside apps, operating systems, and other various forms. This year, we highlight the idea that sometimes the best way to control your data is to leave a platform, app, or operating system altogether. To do so, we’ve created a hub of resources sharing ways to find new software that isn’t made by the tech giants, take advantage of the growing universe of new social media options, install a whole new operating system, and better control how various popular tools and software use your data for AI training. As an incentive, we’ve made merit badges like the one below to help you track your own wins and share them with others. Complete any of these tasks and let the world know by sharing that accomplishment on social media or changing your profile image! Better, more privacy-respecting, and less-enshittified tools are out there. We just have to find and use them. Head over to our Opt Out October landing page and start taking the first steps to regaining control of the tools and software you use.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49926069",
+      "title": "Pi 1.0",
+      "url": "https://earendil.com/posts/pi-1-0/",
+      "author": "sergiotapia",
+      "publishedAt": "2026-10-01T19:33:05.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 195,
+      "comments": 72
+    },
+    {
+      "sourceSlug": "fireship",
+      "externalId": "yt:video:No-JPdFvYWU",
+      "title": "The one OpenAI announcement that can actually make you money...",
+      "url": "https://www.youtube.com/watch?v=No-JPdFvYWU",
+      "author": "Fireship",
+      "publishedAt": "2026-10-01T19:34:14.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "video"
+    },
+    {
+      "sourceSlug": "newcomer",
+      "externalId": "https://www.newcomer.co/p/igor-babuschkin-founders-of-legora",
+      "title": "Igor Babuschkin + Founders of Legora, Factory, Fireworks AI, Etched & Crosby Join the Cerebral Valley AI Summit as Speakers",
+      "url": "https://www.newcomer.co/p/igor-babuschkin-founders-of-legora",
+      "author": "Madeline Renbarger",
+      "publishedAt": "2026-10-01T19:39:07.000Z",
+      "content": "We just wrapped up the Machine Earning AI Summit, where we zeroed in on the hottest debates surrounding AI and commerce. In less than two months we’ll be back to host our biggest and best Cerebral Valley AI Summit yet. Apply to Attend Our flagship AI summit is returning to San Francisco on Nov. 12. We’re thrilled to share that we’ve added an incredible roster of founders to our lineup. Our newest Cerebral Valley speakers include: Igor Babuschkin, founder & CEO of River AI & co-founder of xAI Max Junestrand, founder & CEO of Legora Lin Qiao, founder & CEO of Fireworks AI Robert Wachen, co-founder of Etched Matan Grinberg, founder & CEO of Factory Ryan Daniels, founder & CEO of Crosby Each of them is building a company that’s fundamentally changing how AI gets made and used — from legal work and software development to the infrastructure powering it all. They’ll be joining our fellow main stage speakers: Dario Amodei, founder & CEO of Anthropic Ali Ghodsi, founder & CEO of Databricks Nikesh Arora, CEO of Palo Alto Networks Big things happen at our Cerebral Valley summits. We’ve seen billion-dollar exits and nine-figure funding rounds come from AI leaders and investors rubbing elbows in the same room. Some of the most important conversations in AI happen between sessions. We’d like you to be part of them. Spots are already filling up fast, so apply now to secure your place in the room where it happens. Tickets are $1,299. Founder tickets are $199. Professional Services and Business Development tickets are $2,999. Apply to Attend Additionally, we’d like to thank our latest sponsors: Oracle, Fireworks AI, WorkOS, Exa, ElevenLabs, Sapphire Ventures, and Bessemer Venture Partners. They’re joining our existing sponsors Nebius, Index Ventures, QuantumBlack, Liquid AI, and Weekend. We still have some space left for additional sponsors, so if you’re establishing your company as one of the top brands in AI, you can reach out to riley@newcomer.co for more information. We hope to see you there. You won’t want to miss it.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112416 at https://www.eff.org",
+      "title": "Court Agrees with EFF: Utah’s VPN Law Demands a Technical Impossibility",
+      "url": "https://www.eff.org/deeplinks/2026/10/court-agrees-eff-utahs-vpn-law-demands-technical-impossibility",
+      "author": "Rindala Alajaji",
+      "publishedAt": "2026-10-01T19:57:20.000Z",
+      "content": "When state lawmakers attempt to rewrite how the internet works, users rely on courts to recognize that laws can’t make technical impossibilities a reality. That’s why we were happy to see that a court has blocked Utah’s attempt to outlaw the privacy protections of Virtual Private Networks (VPNs). In a win for digital rights, a federal judge has issued a preliminary injunction blocking Utah’s SB 73, the state’s draconian anti-VPN age verification law. The decision comes as EFF submitted our comments to the Utah Department of Commerce, detailing how forcing platforms to detect and block privacy-preserving tools undermines user privacy and security worldwide while demanding the impossible. What SB 73 Does Signed into law earlier this year, SB 73 attempted to regulate adult websites by requiring them to block VPN users or to identify the physical location of visitors using them or similar tools that mask their network traffic. It even went so far as to prohibit websites from offering instructions on how to use a VPN to bypass these checks. This made Utah, to EFF’s knowledge, the first state in the nation to target the use of VPNs to avoid legally mandated age-verification gates. The Utah federal court halted enforcement of the law's VPN provisions last week, ruling that the law likely violates the U.S. Constitution’s prohibition on passing laws that significantly burden businesses and people outside Utah’s borders. SB 73 burdens the rights of all internet users outside of Utah because it requires adult websites to either know every visiting user’s physical location, and then block those in Utah, or to verify every visitor’s age just in case they might be in Utah. The law’s “actual-location provision in practice requires an entity to perform age verification services for every user visiting its site from any location because the entity would violate the law if even one of those users happened to be obfuscating,” the court wrote. The court essentially ruled that Utah has less-burdensome ways to prevent Utah minors from accessing adult websites than requiring all users in the world to comply with SB 73. Aylo’s lawsuit does not challenge SB 73’s provision prohibiting the websites covered by the law from sharing information about VPNs. The Legal Challenge This court order follows months of legal maneuvering. Initially set to go into effect in May 2026, SB 73 sparked an immediate constitutional challenge from Aylo, the parent company of major online adult platforms like Pornhub. In response to the lawsuit, Utah and Aylo initially agreed that the state would pause enforcement while the court considered the preliminary injunction request or until administrative rules setting specific compliance terms were finalized. Those proposed compliance rules (R152-78B, see Utah State Bulletin, page 6) were published by the Utah Department of Commerce’s Division of Consumer Protection on September 1st, and EFF submitted formal comments to the Department in opposition. According to the notice, the proposed rules could be effective as soon as October 8, 2026. However, Judge Barlow’s decision means that it cannot be enforced pending further action by the court. The Ruling EFF welcomes Judge Barlow’s ruling, which recognizes the fundamental disconnect between state legislation of the internet and how technology works. In his ruling, Judge Barlow noted that the statute requires a technical impossibility on pain of legal liability. “Aylo is correct that the statute, as amended, now essentially imposes strict liability for entities like it when it comes to determining the location of its websites’ users.” The court recognized that the problem is that SB 73 “requires entities like Aylo to geolocate its website users with perfection to avoid liability.” But, at the same time, the court acknowledged “that geolocation perfection is not presently possible.” EFF explained this technical impossibility in our comment to the Department of Commerce. VPNs protect user privacy by routing web traffic through intermediary servers. Because destination websites only see the IP address of the VPN server, they have no reliable mechanism to tell whether a connection originates from Salt Lake City, Seattle, or Shanghai. So, under Utah's current statutory framework, platforms are left with an impossible choice: completely block all VPN traffic nationwide or withdraw access from Utah entirely. Judge Barlow agreed, asserting: Because the law requires perfection in the absence of perfect geolocation tools, Aylo would need to verify those 28 million users—whether located in Salt Lake City, Boston, New Orleans, Anchorage, or Honolulu—to ensure compliance and avoid liability. The Rulemaking The administrative rules drafted by the state compelled commercial entities to implement \"commercially reasonable geolocation obfuscation detection systems\", which is a directive, we argue, that demands a technical impossibility. In our submission to the Utah Department of Commerce, EFF also detailed how these rules force an invasive data collection regime onto internet users everywhere. So, in response to internet users trying to avoid invasive data collection required by age-verification requirements, SB 73 requires even greater surveillance of internet users’ online activities. The Department’s suggested detection heuristics (like monitoring connection latency or device time zones) are notoriously unreliable and easily skewed by normal network conditions. This active surveillance inevitably leads to widespread misclassification, unwarranted access blocks, and severe impacts on users’ privacy far beyond Utah's borders. You can read EFF’s full comments to the Department of Commerce here. What Now? As we’ve said time and time again: the internet will always route around censorship. Mandating invasive tracking and punishing the use of essential security tools turns genuine privacy concerns into mere compliance theater and requires more state-mandated surveillance of internet users who rely on VPNs. As is the case in heavily censored regions, VPN services and obfuscation tools will simply adapt, making this framework fundamentally unsustainable. As we’ve said time and time again: the internet will always route around censorship. While Utah legislators have indicated they may attempt to revise the law during the next legislative session, the court's preliminary injunction sets an important precedent: state lawmakers should not weaponize age verification to force dragnet tracking or undermine essential security tools. As other states consider similar anti-VPN proposals, EFF will continue pushing back against these technically impossible mandates and defending users’ privacy and anonymity. Thus, we urge legislators and regulators to reject anti-privacy rules, prioritize real user security, and safeguard constitutional protections for all users.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261001/p36#a261001p36",
+      "title": "DoorDash pulls support for a GOP bill that would have limited DC's ability to write its own tax laws after widespread calls for locals to boycott the service (Martin Austermuhle/The Washington Sun)",
+      "url": "https://www.techmeme.com/261001/p36#a261001p36",
+      "author": null,
+      "publishedAt": "2026-10-01T20:00:45.000Z",
+      "content": "Martin Austermuhle / The Washington Sun: DoorDash pulls support for a GOP bill that would have limited DC's ability to write its own tax laws after widespread calls for locals to boycott the service — The company still wants the D.C. Council to make changes to a new delivery fee taking effect Thursday. — Copy",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "aws-news",
+      "externalId": "6936a126ff37e6868dadff2a0b59022a185e8d3c",
+      "title": "Announcing AWS Well-Architected Agent, an AI-powered intelligence to optimize your cloud environment (preview)",
+      "url": "https://aws.amazon.com/blogs/aws/announcing-aws-well-architected-agent-an-ai-powered-intelligence-to-optimize-your-cloud-environment-preview/",
+      "author": "Channy Yun (윤석찬)",
+      "publishedAt": "2026-10-01T20:04:04.000Z",
+      "content": "Today, we’re announcing the public preview of AWS Well-Architected Agent, an AI-powered service that analyzes your AWS environment to deliver targeted, contextual recommendations for improving your applications’ cost, security, performance, and resilience. The AWS Well-Architected Agent analyzes your infrastructure, understands unique business goals, and delivers contextual recommendations with ready-to-implement fixes. It delivers context-aware optimization without relying on manual audits or generic checklists. The agent evaluates your environment as an experienced cloud architect would. It automatically correlates utilization metrics, resource configurations, and application topology, and analyzes against Well-Architected best practices across 65+ AWS services. It generates recommendations aligned to your declared business goals, delivers implementation packages with every finding, and surfaces cross-pillar trade-offs making it simpler to remediate the findings. Here are the three main features of this service: Goal-aligned intelligence: AWS Well-Architected Agent replaces flat, undifferentiated findings with context-aware, prioritized recommendations. You declare your business objectives and share your application context. The agent automatically generates and prioritizes recommendations by impact and effort against those goals. Three-level recommendations: AWS Well-Architected Agent provides individual resource findings with specific dollar impact (where applicable) and step-by-step remediation, consolidated findings across multiple resources scoped to your application, and broad architectural patterns and designs with Infrastructure as Code (IaC) code changes needed to align with Well-Architected best practices. Optionality in remediation: You can choose your path on how you want to remediate with a complete implementation steps tailored to your environment: the console walk-throughs, updated IaC changes for architecture-level recommendations, and AWS Command Line Interface (AWS CLI) commands. AWS Well-Architected Agent in action To get started, create an agent profile to define the scope of what Well-Architected Agent can access and provide recommendations on, complete the IAM role setup to access resources, conduct architecture review, and remediate recommendations. Create an agent profile In the AWS Well-Architected console, choose Get started with Well-Architected Agent. You can define an agent profile that specifies which AWS accounts and applications to monitor, which optimization pillars to focus on, and the permissions required. You can choose AWS accounts or AWS Regions to monitor and optimization pillars that matter most to your business. You can also set goals for each pillar: cost optimization, performance, resilience, and security. To give access to the agent for your AWS environment, provision customer-managed IAM roles the agent uses to read resource configurations, utilization metrics, and application topology. To learn more, visit the IAM prerequisite for AWS Well-Architected Agent. When you choose Get Started, the agent creates your agent profile. Resource and application recommendations will be generated within 24 hours after profile creation. You can conduct an architecture review on pre-deployment workloads by uploading an IaC project in Terraform, AWS CloudFormation, or AWS Cloud Development Kit (CDK) to be analyzed. Choose Conduct architecture review in the dashboard, upload a.zip file containing IaC project or repository file, and select which Well-Architected lens to use for reviewing your infrastructure. You can define your applications to add context which will enhance the relevancy and further contextualize recommendations. Choose Add application context in the dashboard, add your applications with AWS accounts, AWS Regions, AWS services, tags if you want to narrow the scope to specific resources, and the details of applications. Review prioritized recommendations and start remediating Now you can see generated prioritized recommendations generated by the agent across your resources and applications, selected pillars, ranked against your declared goals, with automation-ready remediation included. When you choose the specific recommendation, you can see the details, insights into why the agent are suggesting the recommendation, impacts and trade-off, and recommended fixes across affected AWS resources. Choose Start remediation to address recommended fixes. You can choose the console, updated IaC template, CLI commands to remediate by the resolution type. It provides detailed step-by-step instructions and you can roll out this instruction and verify the result. When you choose Using updated IaC template, the agent provides the code changes needed to update your existing IaC templates such as the CDK function shown above which you can copy directly into your codebase. You can also configure API access to integrate recommendations directly into your existing development and operations workflows. To interact with the agent programmatically, including calling APIs and searching documentation, try the AWS MCP Server and plugins with your preferred AI coding tool. To learn more, visit the AWS Well-Architected Agent documentation. Things to know Here are some things that you should know about the Well-Architected Agent. Automation: You can receive recommendations with the exact IaC code changes needed to remediate, with risks identified by pillar, catching issues before they reach production. Recommendations are delivered through the console and API so you can act without context-switching. Recommendations are also updated periodically, so new recommendations are available for your team to track regularly. Evaluation: Generative AI capabilities produce this recommendation, which may contain errors or incomplete information. You are responsible for evaluating the recommendation in your specific context and implementing appropriate oversight and safeguards. Learn more about AWS Responsible AI practices. You can still use existing AWS Well-Architected Tool to manually evaluate your cloud architecture with user-defined lenses that measure your workload using your own best practices. Join the preview Access to the AWS Well-Architected Agent and its recommendations is available in US East (N. Virginia), US East (Ohio), and US West (Oregon). You can onboard workloads from any AWS commercial Region. AWS Well-Architected Agent is delivered by AWS Support and available to AWS customers with an AWS Support plan. Give it a try today in the AWS Well-Architected console and send feedback through your usual AWS Support contacts. — Channy",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.32720",
+      "title": "BiasReducer: Adaptive Bias Mitigation for Reward Models",
+      "url": "https://huggingface.co/papers/2609.32720",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:53.694Z",
+      "content": "BiasReducer: Adaptive Bias Mitigation for Reward Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.38658",
+      "title": "Tacit-TTS: From Autoregressive Decoding to Masked Prediction for Efficient Transcript-Free Voice Cloning",
+      "url": "https://huggingface.co/papers/2609.38658",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:53.694Z",
+      "content": "Tacit-TTS: From Autoregressive Decoding to Masked Prediction for Efficient Transcript-Free Voice Cloning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.38792",
+      "title": "Training LLM Judges from Language Feedback via Position-Selective Self-Distillation",
+      "url": "https://huggingface.co/papers/2609.38792",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:53.694Z",
+      "content": "Training LLM Judges from Language Feedback via Position-Selective Self-Distillation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.30840",
+      "title": "Aligning One-Step Generative Models with Reward-Weighted Transport Distillation",
+      "url": "https://huggingface.co/papers/2609.30840",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:53.694Z",
+      "content": "Aligning One-Step Generative Models with Reward-Weighted Transport Distillation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.34274",
+      "title": "BIABench: Evaluating AI agents on real-world bioimage analysis tasks",
+      "url": "https://huggingface.co/papers/2609.34274",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:53.694Z",
+      "content": "BIABench: Evaluating AI agents on real-world bioimage analysis tasks",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.39154",
+      "title": "DAGent: Evaluate-then-Grow Planning for Deep Research Agents",
+      "url": "https://huggingface.co/papers/2609.39154",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:53.694Z",
+      "content": "DAGent: Evaluate-then-Grow Planning for Deep Research Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bankinfosecurity.com/openai-pauses-top-models-as-rogue-agents-target-agencies-a-32961",
+      "title": "OpenAI Pauses Top Models as Rogue Agents Target Agencies",
+      "url": "https://www.bankinfosecurity.com/openai-pauses-top-models-as-rogue-agents-target-agencies-a-32961",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:55.217Z",
+      "content": "OpenAI Pauses Top Models as Rogue Agents Target Agencies bankinfosecurity.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blogs.windows.com/windowsdeveloper/2026/09/29/wsl-containers-now-generally-available",
+      "title": "WSL containers is now generally available",
+      "url": "https://blogs.windows.com/windowsdeveloper/2026/09/29/wsl-containers-now-generally-available",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:55.226Z",
+      "content": "WSL containers is now generally available blogs.windows.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.techspot.com/news/114055-cost-ai-performance-falling-fast-could-reshape-entire.html",
+      "title": "The cost of AI performance is falling so fast it could reshape the entire software market",
+      "url": "https://www.techspot.com/news/114055-cost-ai-performance-falling-fast-could-reshape-entire.html",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:55.228Z",
+      "content": "The cost of AI performance is falling so fast it could reshape the entire software market techspot.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.cloudflare.com/clef-decision-models",
+      "title": "Introducing Clef: our open-source decision models, and new RL fine-tuning platform",
+      "url": "https://blog.cloudflare.com/clef-decision-models",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:55.228Z",
+      "content": "Introducing Clef: our open-source decision models, and new RL fine-tuning platform blog.cloudflare.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thenextweb.com/news/gpt-6-astra-supply-chain-attacks-uk-aisi-simulations",
+      "title": "GPT-6 Astra ran simulated supply-chain attacks in UK government tests",
+      "url": "https://thenextweb.com/news/gpt-6-astra-supply-chain-attacks-uk-aisi-simulations",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:55.229Z",
+      "content": "GPT-6 Astra ran simulated supply-chain attacks in UK government tests thenextweb.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.techspot.com/news/114058-court-ruled-training-ai-someone-else-editorial-work.html",
+      "title": "A court just ruled that training an AI on someone else's editorial work isn't fair use",
+      "url": "https://www.techspot.com/news/114058-court-ruled-training-ai-someone-else-editorial-work.html",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:55.230Z",
+      "content": "A court just ruled that training an AI on someone else's editorial work isn't fair use techspot.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.helpnetsecurity.com/2026/09/30/ai-coding-agents-github-screenshot-leak",
+      "title": "AI coding agents leaked 13,000 internal company screenshots to public GitHub repos",
+      "url": "https://www.helpnetsecurity.com/2026/09/30/ai-coding-agents-github-screenshot-leak",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:55.235Z",
+      "content": "AI coding agents leaked 13,000 internal company screenshots to public GitHub repos helpnetsecurity.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://cirriustech.co.uk/blog/a-human-should-check-it",
+      "title": "'A Human Should Check It' is Not an Agentic Security Control",
+      "url": "https://cirriustech.co.uk/blog/a-human-should-check-it",
+      "author": null,
+      "publishedAt": "2026-10-01T20:32:55.235Z",
+      "content": "'A Human Should Check It' is Not an Agentic Security Control cirriustech.co.uk9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
       ],
       "paywalled": false,
       "mediaType": "text"
