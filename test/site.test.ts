@@ -4,7 +4,7 @@ import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { buildSite } from "../src/site/build";
-import { DROP_TIMES } from "../src/site/today";
+import { DROP_TIMES, TIME_LEFT } from "../src/site/today";
 
 let root: string;
 let out: string;
@@ -107,6 +107,19 @@ describe("buildSite", () => {
     expect(read()).toEqual(["06:45", "18:45", "05:45"]);
   });
 
+  // The countdown is prose, so one hour is "an hour", not "1 hours". The
+  // rounded hour is 1 for every gap from 61 to 89 minutes, which is the
+  // half-hour before 17:45 Oslo on every morning-half day.
+  it("counts the hours to the evening drop in words, one of them singular", () => {
+    const timeLeft = new Function(`${TIME_LEFT}\nreturn timeLeft;`)() as (left: number) => string;
+    expect(timeLeft(720)).toBe("in about 12 hours");
+    expect(timeLeft(90)).toBe("in about 2 hours");
+    expect(timeLeft(89)).toBe("in about an hour");
+    expect(timeLeft(61)).toBe("in about an hour");
+    expect(timeLeft(60)).toBe("in under an hour");
+    expect(timeLeft(1)).toBe("in under an hour");
+  });
+
   it("carries the byline backlink and a github link in a shared footer", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);
@@ -139,6 +152,9 @@ describe("buildSite", () => {
     expect(day).toContain('id="views"');
     expect(day).toContain("yasin.goatcounter.com/counter/");
     expect(index).not.toContain('id="views"');
+    // A page with one recorded view reads "1 view". The counter's own text is
+    // written in the browser, so this pins the branch the script carries.
+    expect(day).toContain('(n === "1" ? " view" : " views")');
   });
 
   it("emits seo head tags, sitemap, robots and copies public assets", () => {

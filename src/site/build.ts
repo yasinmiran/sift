@@ -146,7 +146,8 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
   .then((c) => {
     if (!c) return;
     const views = document.getElementById("views");
-    views.textContent = " \\u00b7 " + c.count.replace(/[\\u2009\\u202f]/g, ",") + " views";
+    const n = c.count.replace(/[\\u2009\\u202f]/g, ",");
+    views.textContent = " \\u00b7 " + n + (n === "1" ? " view" : " views");
     views.hidden = false;
   })
   .catch(() => {});
