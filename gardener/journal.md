@@ -6,6 +6,19 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A string composed at view time is output nobody has read. The rebuild-and-read
+  habit from 09-28 reaches every artifact the repo writes to disk and stops dead
+  at the three notes the site builds in the reader's browser: they are assembled
+  from a clock, so the build shows the source and never the sentence, and the
+  unit tests assert on the source too. Sweeping the clock is the missing half,
+  1440 page loads in a real browser, one a minute, reading what the reader sees,
+  about eight minutes of wall time. It printed thirteen sentences for one page
+  and one of them said "in about 1 hours", and it handed over the exact daily
+  window (29 minutes) in the same pass, which is what let the issue be written
+  before any code was touched. The same sweep run after is the blast radius.
+  Ask of anything built at view time: what does it say at every input it can
+  have, and then go and look.
+
 - The contract is a list of untested claims, and reading it as a checklist
   against the rendered artifact is a signal source the Signals list does not
   name. ../AGENTS.md has said "never on link text" since before this journal
@@ -500,6 +513,97 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-02
+
+Shipped to green, not merged. What: the site counts one hour and one view in
+the singular (#226, PR #227). Why: a new instrument. The three notes the site
+writes in the reader's browser had never been read as output, because nothing
+in the repo can see them: they are strings built at view time from a clock, so
+rebuilding the archive shows the source and not the sentence. Driving the built
+pages through all 1440 minutes of a day in chromium, one reload a minute,
+reading what the reader sees, prints the sentence at every minute it can exist.
+
+The day's output is thirteen distinct sentences on today's page and one of them
+is wrong: `Math.round(left / 60)` with `" hours"` glued on reads "in about 1
+hours" for every gap from 61 to 89 minutes, 15:16 to 15:44 UTC, 17:16 to 17:44
+Oslo, 29 minutes of every day whose morning half is live. Live, on today's page,
+which is where the feed, the notification and the front door all point.
+
+The same shape sits one file over in the view counter, found by enumerating
+rather than by guessing: `textContent`/`innerHTML` across `src/site/` writes
+eleven strings and exactly two interpolate a count. Fulfilling the goatcounter
+response in the browser gives "1 views" at a count of 1. Reach is not
+measurable here (goatcounter 403 at CONNECT, thirty-fourth run), so that half
+shipped on reachability, not on a count, and the pr body says so rather than
+dressing it up.
+
+The instrument generalizes past this fix and deserves the same promotion the
+rebuild-and-read one got on 09-28: when a string is composed at view time,
+sweep the clock. Every minute of a day is 1440 page loads, about eight minutes
+of wall time, and it hands over the defect and its exact daily window in one
+pass, which is what made the issue writable before any code was touched. The
+after sweep is the blast radius in the same form: all 1440 minutes identical to
+the before sweep except the one band, now "in about an hour".
+
+Specificity checked the 09-22 way, and the first reading of the test was not
+good enough. Against the unfixed source the new test fails because `TIME_LEFT`
+does not exist, which proves nothing about arithmetic; so the snippet was put
+back carrying the OLD expression and run again, and it fails
+`expected 'in about 1 hours' to be 'in about an hour'`. Both boundaries are
+pinned on the plural side (90 rounds to 2, 60 and under stay "in under an
+hour"), so the singular branch is the only thing the assertions can read.
+
+219 tests from 218, typecheck silent, 33 pages, verify `ok: true` on 10-01 and
+10-02. Blast radius by rebuilding the whole site: 32 files differ, all day
+pages, and across all 32 the changed lines are exactly the four removed and
+eight added of these two edits; index.html, 404.html, feed.xml, sitemap.xml,
+latest.json, robots.txt, sw.js, og.png and the favicons byte-identical, so the
+push poller's hash does not move. Cost named and trimmed rather than excused,
+09-28's lesson: the first cut put the explanation inside the emitted template,
+which ships three comment lines to every reader on every day page, so it moved
+to a TS comment outside it. +164 bytes a page, 0.5%. No new dependency, no gate
+relaxed, neither contract file touched.
+
+Copilot 🟢 approval recommended, findings: none.
+
+NOT MERGED, and this is the thing for Yasin rather than for the journal. checks
+green, Copilot green, no review comments, and the environment's own permission
+classifier refused the merge call with `[Merge Without Review]`. That is a
+harness guard, not a repo rule or a failing check: the autonomy grant of 09-03
+says merge it myself and this environment will not let the run do that. So #227
+sits green and mergeable and needs one click. Not worked around.
+
+Second wall, new today: the harness footer can no longer be stripped. #223 and
+#224 came out clean yesterday the usual way, and today a `PATCH` of the issue
+body and of the pr body both land with `_Generated by [Claude Code]_` appended
+again (the create footer carries a session link, the patched one does not, so
+the write does go through and the append is re-applied after it). `gh issue
+edit` is GraphQL and 403s here. So #226 and #227 both carry it, against the
+Identity rule, and there is nothing from here that removes it. Commits carry
+none, as always.
+
+Health is clean: no failed workflow run in the window, verify `ok: true` across
+09-26..10-02 with only the known warning classes (one day of pen-mark-on-link
+warnings on 09-27, the rest link-not-found), 218 tests green on main before the
+change. checks run 85 green, pages 293 green at 04:46.
+
+#112, unchanged for the thirty-third day. The `15 3` has not fired as of 08:50
+and the morning digest forced its own `workflow_dispatch` ingest at 04:44,
+pages green at 04:46, the eighteenth morning the workaround has held. The
+`45 15` fired at 20:32 on 10-01, +4h47. No new comment: 09-14's already
+describes this state.
+
+Branch deletion: not applicable, nothing merged. The branch count is unchanged
+at twenty-eight by arithmetic, not counted.
+
+Live site unreachable as always: sift.yasint.dev 000 at CONNECT, probed not
+assumed. goatcounter the same, thirty-fourth run with no reader signal, which
+is also why the view-counter half of today's fix ships unmeasured.
+
+Outcome: #226 filed, PR #227 open, green and approved, blocked on a merge this
+environment will not perform. #110, #112 and #120 all still pending, #120 since
+09-03, twenty-nine days.
 
 ### 2026-10-01
 
