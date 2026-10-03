@@ -16,6 +16,19 @@ export const DROP_TIMES = `
   const minsOf = (t) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3));
   const AM = dropAt(4, 45), PM = dropAt(16, 45), AM_NEXT = dropAt(4, 45, 1);`;
 
+// How long until the evening drop, in words. The count is computed in the
+// browser and a count of one is not a plural: `Math.round(left / 60)` with
+// " hours" glued on reads "in about 1 hours" for every `left` from 61 to 89
+// minutes, which is 17:16 to 17:44 Oslo on every day whose morning half is
+// live. The sentence already spells one the other way a clause earlier, so
+// the singular says it the same. Its own snippet so the test runs this
+// arithmetic rather than a copy of it.
+export const TIME_LEFT = `
+  const timeLeft = (left) => {
+    const hours = Math.round(left / 60);
+    return left <= 60 ? "in under an hour" : hours === 1 ? "in about an hour" : "in about " + hours + " hours";
+  };`;
+
 // Visitors clicking "read today's digest" land on the index with ?today=1.
 // The site is static, so today's page may not exist yet; decide client-side:
 // jump to it when it is in the list, otherwise say when the next one lands.
@@ -48,7 +61,7 @@ export function todayScript(): string {
 export function refreshNote(): string {
   return `<p id="refresh-note" class="today-note refresh-note" hidden></p>
 <script>
-(() => {${DROP_TIMES}
+(() => {${DROP_TIMES}${TIME_LEFT}
   const m = /(\\d{4}-\\d{2}-\\d{2})\\.html$/.exec(location.pathname);
   if (!m) return;
   const day = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
@@ -56,7 +69,7 @@ export function refreshNote(): string {
   const clock = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Oslo", hour: "2-digit", minute: "2-digit", hour12: false }).format(now);
   if (clock >= PM || clock < AM) return;
   const left = minsOf(PM) - minsOf(clock);
-  const when = left <= 60 ? "in under an hour" : "in about " + Math.round(left / 60) + " hours";
+  const when = timeLeft(left);
   const local = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date(now.getTime() + left * 60000));
   const yours = local === PM ? "" : ", around <strong>" + local + "</strong> your time";
   const slot = document.getElementById("refresh-note");
