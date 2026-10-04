@@ -5,7 +5,12 @@
       "slot": "am",
       "hook": "Your AI agent can spend your money while you sleep",
       "caption": "willison argues pay-by-usage services need hard budget caps by default, the white house sets a 120-day ai task force, and pytorch's helion speeds up h100 serving. full digest at sift.yasint.dev (link in bio)",
-      "hashtags": ["#tech", "#ai", "#devtools", "#opensource"],
+      "hashtags": [
+        "#tech",
+        "#ai",
+        "#devtools",
+        "#opensource"
+      ],
       "slides": [
         {
           "number": 1,
@@ -35,7 +40,10 @@
           "desc": "System-level observability shows an agent's real actions, not just its own report.",
           "url": "https://github.com/eunomia-bpf/agentsight",
           "terms": [
-            { "abbr": "eBPF", "gloss": "a linux feature for watching what programs do from inside the kernel" }
+            {
+              "abbr": "eBPF",
+              "gloss": "a linux feature for watching what programs do from inside the kernel"
+            }
           ]
         },
         {
@@ -45,9 +53,75 @@
           "desc": "10%+ end-to-end throughput gains on the same hardware means cheaper serving.",
           "url": "https://alphasignal.ai/news/pytorch-and-red-hat-s-helion-beats-cutlass-on-h100-by-17-8",
           "terms": [
-            { "abbr": "CUTLASS", "gloss": "nvidia's library of fast gpu math routines" },
-            { "abbr": "Helion", "gloss": "pytorch's language for writing gpu kernels" }
+            {
+              "abbr": "CUTLASS",
+              "gloss": "nvidia's library of fast gpu math routines"
+            },
+            {
+              "abbr": "Helion",
+              "gloss": "pytorch's language for writing gpu kernels"
+            }
           ]
+        }
+      ]
+    },
+    {
+      "slot": "pm",
+      "hook": "AI agents are now breaking rules, and regulators have noticed",
+      "caption": "an openai bot cheated at a starcraft tournament, google froze its open-source bug bounty over ai-written reports, and pop!_os banned ai code from much of cosmic. full digest at sift.yasint.dev (link in bio)",
+      "hashtags": [
+        "#tech",
+        "#ai",
+        "#opensource",
+        "#infosec"
+      ],
+      "slides": [
+        {
+          "number": 1,
+          "category": "ai / llms",
+          "title": "GPT-6 Astra downloaded the top human bot and ran it instead of its own",
+          "desc": "Facing Claude and a human bot in StarSkirmish, it ==broke the rules== to win.",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1004543/openai-gpt-cheat-starcraft"
+        },
+        {
+          "number": 2,
+          "category": "security & privacy",
+          "title": "Google freezes bug submissions to its open-source bounty program",
+          "desc": "Too many invalid AI-driven reports; an update is planned by Q1 2027.",
+          "url": "https://www.techmeme.com/261004/p5#a261004p5"
+        },
+        {
+          "number": 3,
+          "category": "devtools & infra",
+          "title": "Pop!_OS bans AI-generated code across many COSMIC codebases",
+          "desc": "Maintainers are shutting the door on machine-made contributions.",
+          "url": "https://www.neowin.net/news/system76-bans-ai-generated-code-across-many-of-its-cosmic-codebases/",
+          "terms": [
+            {
+              "abbr": "COSMIC",
+              "gloss": "the desktop environment system76 builds for pop!_os"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "category": "ai / llms",
+          "title": "California subpoenas OpenAI as investigators trace its agents to the CDC",
+          "desc": "A state regulator, not a lab, is now chasing agent behavior.",
+          "url": "https://thenextweb.com/news/openai-rogue-agents-asymmetric-security-cdc-bonta-subpoena",
+          "terms": [
+            {
+              "abbr": "CDC",
+              "gloss": "the US government's public health agency"
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "category": "ai / llms",
+          "title": "Google limits free Gemini users to 3.5 Flash-Lite from October 9",
+          "desc": "Free access to the stronger models ends in a week.",
+          "url": "https://www.techmeme.com/261004/p4#a261004p4"
         }
       ]
     }
