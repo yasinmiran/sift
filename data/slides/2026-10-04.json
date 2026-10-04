@@ -1,0 +1,55 @@
+{
+  "day": "2026-10-04",
+  "posts": [
+    {
+      "slot": "am",
+      "hook": "Your AI agent can spend your money while you sleep",
+      "caption": "willison argues pay-by-usage services need hard budget caps by default, the white house sets a 120-day ai task force, and pytorch's helion speeds up h100 serving. full digest at sift.yasint.dev (link in bio)",
+      "hashtags": ["#tech", "#ai", "#devtools", "#opensource"],
+      "slides": [
+        {
+          "number": 1,
+          "category": "devtools & infra",
+          "title": "Pay-by-usage services need hard budget caps by default, not warning emails",
+          "desc": "Coding agents can run up ==thousands of dollars== overnight, so cutting off should be the default.",
+          "url": "https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/"
+        },
+        {
+          "number": 2,
+          "category": "ai / llms",
+          "title": "White House sets up an AI task force with 120 days to report",
+          "desc": "Jay Clayton chairs it, per WSJ sources, giving the AI safety debate a federal deadline.",
+          "url": "https://www.techmeme.com/261003/p13#a261003p13"
+        },
+        {
+          "number": 3,
+          "category": "ai / llms",
+          "title": "Microsoft and Hugging Face release ThinkingBox, a benchmark for agents",
+          "desc": "It targets agents that say they are done while the database says otherwise.",
+          "url": "https://huggingface.co/blog/microsoft/thinkingbox"
+        },
+        {
+          "number": 4,
+          "category": "devtools & infra",
+          "title": "agentsight watches what AI agents actually do, using eBPF",
+          "desc": "System-level observability shows an agent's real actions, not just its own report.",
+          "url": "https://github.com/eunomia-bpf/agentsight",
+          "terms": [
+            { "abbr": "eBPF", "gloss": "a linux feature for watching what programs do from inside the kernel" }
+          ]
+        },
+        {
+          "number": 5,
+          "category": "ai / llms",
+          "title": "Helion-powered vLLM backend beats CUTLASS on H100 by 17.8%",
+          "desc": "10%+ end-to-end throughput gains on the same hardware means cheaper serving.",
+          "url": "https://alphasignal.ai/news/pytorch-and-red-hat-s-helion-beats-cutlass-on-h100-by-17-8",
+          "terms": [
+            { "abbr": "CUTLASS", "gloss": "nvidia's library of fast gpu math routines" },
+            { "abbr": "Helion", "gloss": "pytorch's language for writing gpu kernels" }
+          ]
+        }
+      ]
+    }
+  ]
+}
