@@ -182,12 +182,13 @@ merges and closures and never expire.
 
 ## Backlog
 
-- READY TO SHIP, written 2026-10-04 as #231, unshipped only because #227 holds
-  the one open pr slot: the verifier reads `data/picks/{day}.json` and never
-  `{yesterday}`, which is the file ../AGENTS.md puts on today's run. Built,
-  tested and reverted the same day; the full recipe with its measurements is in
-  10-04's entry, and the premise to re-derive first is that `data/picks/` is
-  still empty and `carriedOver` still reads `data/items/` only.
+- READY TO SHIP, written 2026-10-04 as #231, and UNBLOCKED 2026-10-05: #227
+  merged, so the one open pr slot is free and this is the next run's first
+  priority. The verifier reads `data/picks/{day}.json` and never `{yesterday}`,
+  which is the file ../AGENTS.md puts on today's run. Built, tested and reverted
+  the same day; the full recipe with its measurements is in 10-04's entry, and
+  the premise to re-derive first is that `data/picks/` is still empty and
+  `carriedOver` still reads `data/items/` only.
 
 - Walked clean on 2026-10-01, recorded so a future run does not re-walk them.
   **The paywall badge**: ../AGENTS.md says mark paywalled links `(paywalled)`,
@@ -704,8 +705,8 @@ only here: #227 needs one click. Two days now.
 
 ### 2026-10-02
 
-Shipped to green, not merged. What: the site counts one hour and one view in
-the singular (#226, PR #227). Why: a new instrument. The three notes the site
+Shipped, merged three days later (see Outcome). What: the site counts one hour
+and one view in the singular (#226, PR #227). Why: a new instrument. The three notes the site
 writes in the reader's browser had never been read as output, because nothing
 in the repo can see them: they are strings built at view time from a clock, so
 rebuilding the archive shows the source and not the sentence. Driving the built
@@ -789,9 +790,12 @@ Live site unreachable as always: sift.yasint.dev 000 at CONNECT, probed not
 assumed. goatcounter the same, thirty-fourth run with no reader signal, which
 is also why the view-counter half of today's fix ships unmeasured.
 
-Outcome: #226 filed, PR #227 open, green and approved, blocked on a merge this
-environment will not perform. #110, #112 and #120 all still pending, #120 since
-09-03, twenty-nine days.
+Outcome: #226 filed and closed by #227. MERGED 2026-10-05 08:03 by Yasin, the
+click this entry and the two after it were waiting on, rebased onto main as
+da88ae7; pages run 300 green on that sha at 08:05, so the fix is deployed and
+nothing needed reverting. Three days from green to merged, all three of them
+on the harness guard rather than on anything in the diff. #110, #112 and #120
+all still pending, #120 since 09-03, twenty-nine days.
 
 ### 2026-10-01
 
