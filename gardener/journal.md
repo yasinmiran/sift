@@ -6,6 +6,20 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A wall is a reading with a one-day shelf life, and the 09-06 rule about
+  inherited labels applies to the environment as hard as it does to the data.
+  Four consecutive runs described the same two surfaces and no two descriptions
+  agreed: the merge call was refused on 10-02, 10-03 and 10-04 and went through
+  on 10-05 with nothing about #227 changed, and the footer strip re-appended,
+  then refused the `PATCH` outright, then re-appended, then worked. Every one of
+  those readings was true the day it was taken and wrong the next. So re-probe
+  the wall at the top of the run, cheaply, before shaping the day around it, and
+  write it down as "this is what it did today" rather than as a standing
+  property. What the three blocked runs got right is the other half, and it is
+  why four days of block cost one day of work: they refused to route around the
+  refusal, verified the queued fix anyway, and banked it with its measurements,
+  so the run that finally got the click spent minutes on #231 instead of a day.
+
 - An empty history and a zero-occurrence habit are not the same evidence, and
   "a gate that would fire 0 true positives in 32 days is wallpaper" has to stop
   at the line between them. 09-30 and 10-03 both declined gates on real data
@@ -182,13 +196,15 @@ merges and closures and never expire.
 
 ## Backlog
 
-- READY TO SHIP, written 2026-10-04 as #231, and UNBLOCKED 2026-10-05: #227
-  merged, so the one open pr slot is free and this is the next run's first
-  priority. The verifier reads `data/picks/{day}.json` and never `{yesterday}`,
-  which is the file ../AGENTS.md puts on today's run. Built, tested and reverted
-  the same day; the full recipe with its measurements is in 10-04's entry, and
-  the premise to re-derive first is that `data/picks/` is still empty and
-  `carriedOver` still reads `data/items/` only.
+- SHIPPED 2026-10-05 as #231 / PR #234: the verifier reads yesterday's picks on
+  the run that owes them. Written 2026-10-04, unshippable that day because #227
+  held the one open pr slot; the 09-05 re-derivation was done first and the
+  recipe held verbatim on all three claims, `data/picks/` still 0 files,
+  `carriedOver` still `data/items/` only, `readPicks` still today-only. Sixth
+  backlog recipe to survive re-derivation, and the first whose own entry had
+  already measured it well enough that the slot cost minutes rather than a day.
+  Shipped 26 lines where the note said 24 (one comment longer), 223 tests where
+  it said 222 (#227 had added one in between).
 
 - Walked clean on 2026-10-01, recorded so a future run does not re-walk them.
   **The paywall badge**: ../AGENTS.md says mark paywalled links `(paywalled)`,
@@ -533,6 +549,94 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-05
+
+Two ships in one run, which the contract allows only because the first of them
+was four days old. **#227 merged at 08:03** on the first attempt, same call that
+was refused on 10-02, 10-03 and 10-04 with the `[Merge Without Review]`
+classifier reason and no change to the PR in between: green checks, Copilot
+🟢, `mergeable_state: clean` throughout. Pages run 300 went green on da88ae7 at
+08:05. So the wall was never the diff and never the repo, and it moved on its
+own; what the three blocked entries got right was refusing to route around it.
+
+With the slot free, **#231 shipped as PR #234**, merged, pages run 301 green on
+bd433f7 at 08:13. The 09-05 rule was honoured before the code was touched and
+the recipe held on all three claims it asked to be re-derived: `data/picks/` is
+still 0 files, `carriedOver` still reads `data/items/` only, `readPicks` in
+`verify.ts` is still called for today alone. What: yesterday's pick urls join
+`known`, and a pick that neither today's digest nor any earlier one linked
+warns `pick from {yesterday} still not covered`. Why: ../AGENTS.md makes today's
+run responsible for yesterday's picks, and the verifier could not see that
+file, so covering one exactly as instructed read back as "primary source or
+typo?" while the pick the digest genuinely dropped went quiet on the one run
+that owes it.
+
+Reproduced end to end before merging rather than trusting the unit tests, in a
+scratch root holding the real 10-04 and 10-05 digests and items with a
+10-04 picks file carrying one covered url and one dropped one. Before: one
+warning, `link not found in the day's items (primary source or typo?)`, on the
+correct act. After: one warning, `pick from 2026-10-04 still not covered`, on
+the dropped pick. Both halves swapped to the right side, which is what the
+issue claimed and is now read rather than argued.
+
+Evidence: 223 tests from 219, typecheck silent, 33 pages. Both positives fail
+against the unfixed source with `verify.ts` stashed alone; the two negatives
+pass either way by design. `npm run verify` across all 32 archived days is
+byte-identical before and after, `ok: true` on every one, which is the honest
+weakness of the PR and was written into its body rather than left here: the
+gate fires on Yasin's first pick and never on history.
+
+Wall correction, the second in two days, and this time the wall is gone rather
+than moved. The footer strip on #234 **worked**: `PATCH` went through, read
+back clean, no re-append. 10-02 saw the footer re-appended, 10-03 saw the
+`PATCH` itself refused as `[External System Writes]`, 10-04 saw the re-append
+again. So the contract's "strip it right after creating" is honourable from
+here today, and #226, #227 and #231 keep their footers as a closed record. Not
+copied forward as a standing wall again: the only honest summary is that this
+surface has behaved differently on four consecutive days.
+
+One thing happened that is worth recording without a cause, because I cannot
+establish one from here. A commit landed on main at 08:06:30, between my merge
+of #227 and my opening of #234, authored `Yasin <wytm97@protonmail.com>`,
+touching `gardener/journal.md` and nothing else: `docs(gardener): record #227
+merged and deployed`. It wrote #227's outcome into 10-02's entry accurately and
+marked the #231 backlog item unblocked, which is exactly what step 2 of a run
+produces. No gardener session is visible from here (the session listing
+excludes scheduled runs) and no second branch or PR was created, so the
+collision cost nothing. Its backlog line is superseded above by SHIPPED. If a
+second concurrent run is real, the exposure is two runs filing against one
+issue; worth a sentence to Yasin rather than an issue, since one observation is
+not a pattern.
+
+Observation pass, the rest of it clean.
+
+Health: the 10 most recent workflow runs, zero failures. `pages` green on all
+three of today's pushes (the 04:46 digest, and runs 300 and 301 above).
+`npm ci`, 223 tests, typecheck silent, 33 pages. The verifier across all 32
+archived days: `ok: true` on every one, zero errors. 94 warnings in total,
+counted rather than characterised from last run's words, and they sit almost
+entirely in the pre-gate half of the archive: 42 primary-source links, 17 pen
+marks on link text and 9 bare urls as link text. The last two are the archive
+keeping its record rather than drift, and the dates say so: every pen-mark
+warning is 09-27 or earlier, against a gate that landed 10-01, and all nine
+bare urls are 09-19, the single day the finding came from. `digests/` is never
+rewritten, so they stay. The 13 remaining are the deliberate carried-over /
+already-digested follow-up pairs and five days over 60 links. The last seven
+digests carry one warning between them, 09-29's pdf.
+
+Live site unreachable as always: sift.yasint.dev 403 at CONNECT, probed not
+assumed, so #227's fix is confirmed deployed by a green pages run on its own
+sha and by the local before/after rebuild in its body, not by reading the
+published page.
+
+#112's signal is still live and unchanged. 10-04's `45 15` cron landed at
+18:48:05 UTC (+3h03) and 10-05's `15 3` had not fired at 08:12, +4h57 and
+counting, with the digest agent's own `workflow_dispatch` at 04:43 doing the
+real work again. Nothing new for the issue.
+
+The thing for Yasin: nothing blocked. #110, #112 and #120 all still pending
+his word, #120 since 09-03, thirty-two days.
 
 ### 2026-10-04
 
