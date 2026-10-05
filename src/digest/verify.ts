@@ -153,6 +153,20 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     errors.push(e instanceof Error ? e.message : String(e));
   }
 
+  // AGENTS.md puts yesterday's picks on today's run as well as its own: a pick
+  // recorded after the evening run was never digested, so today covers it like
+  // one of today's. A hand-found url sits in no items file by definition, and
+  // carriedOver reads data/items/ only, so without this the contract's own
+  // prescribed act reads back as "primary source or typo?".
+  const prevDay = daysBefore(day, 1);
+  let prevPickUrls: string[] = [];
+  try {
+    prevPickUrls = readPicks(rootDir, prevDay)?.items.map((i) => i.url) ?? [];
+  } catch {
+    // a malformed yesterday is yesterday's verify run to report, the same way
+    // carriedOver passes over an unreadable past items file
+  }
+
   const itemsPath = join(rootDir, "data", "items", `${day}.json`);
   if (!existsSync(itemsPath)) {
     warnings.push(`data/items/${day}.json is missing; cannot cross-check links`);
@@ -171,6 +185,7 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
           ...items.map((i) => i.url).filter(Boolean),
           ...hnPermalinks(items),
           ...pickUrls,
+          ...prevPickUrls,
         ].map((u) => normalize(u!)),
       );
       // One warning per unknown url, not per occurrence: a digest that links
@@ -342,6 +357,17 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
   for (const url of new Set(links.map(normalize))) {
     const usedOn = digested.get(url);
     if (usedOn) warnings.push(`already digested on ${usedOn}: ${url}`);
+  }
+
+  // Yesterday's pick is chased on the day the contract assigns it. "pick not
+  // covered" fires on the day a pick lands, which is premature by that same
+  // contract (the evening run is allowed to miss a pick recorded minutes
+  // before it) and then goes quiet on the run that owes it. The digested map
+  // above answers "did any earlier digest already link it" for free.
+  for (const url of prevPickUrls) {
+    const key = normalize(url);
+    if (linked.has(key) || digested.has(key)) continue;
+    warnings.push(`pick from ${prevDay} still not covered: ${url}`);
   }
 
   const dashes = (raw.match(/[–—]/g) ?? []).length;
