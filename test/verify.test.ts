@@ -91,6 +91,56 @@ describe("verifyDigest", () => {
     expect(r.warnings.some((w) => w.includes("pick not covered: https://found.example/missing"))).toBe(true);
   });
 
+  const writePicks = (day: string, pickUrls: string[]) => {
+    mkdirSync(join(root, "data", "picks"), { recursive: true });
+    writeFileSync(
+      join(root, "data", "picks", `${day}.json`),
+      JSON.stringify({
+        day,
+        items: pickUrls.map((url) => ({ url, addedAt: `${day}T16:40:00Z` })),
+      }),
+    );
+  };
+
+  it("treats yesterday's pick as a known link, not a possible typo", () => {
+    writeItems(DAY, urls);
+    writePicks("2026-07-03", ["https://found.example/late"]);
+    writeDigest(digestWith({ links: [...urls, "https://found.example/late"] }));
+    const r = verifyDigest(root, DAY);
+    expect(r.errors).toEqual([]);
+    expect(r.warnings.some((w) => w.includes("found.example/late"))).toBe(false);
+  });
+
+  it("warns when yesterday's pick is still not covered", () => {
+    writeItems(DAY, urls);
+    writePicks("2026-07-03", ["https://found.example/dropped"]);
+    writeDigest(digestWith());
+    const r = verifyDigest(root, DAY);
+    expect(r.errors).toEqual([]);
+    expect(
+      r.warnings.some((w) => w === "pick from 2026-07-03 still not covered: https://found.example/dropped"),
+    ).toBe(true);
+  });
+
+  it("stays quiet when an earlier digest already covered yesterday's pick", () => {
+    writeItems(DAY, urls);
+    writePicks("2026-07-03", ["https://found.example/late"]);
+    writeDigest(digestWith({ links: [...urls, "https://found.example/late"] }), "2026-07-03");
+    writeDigest(digestWith());
+    const r = verifyDigest(root, DAY);
+    expect(r.warnings.some((w) => w.includes("still not covered"))).toBe(false);
+  });
+
+  it("passes over a malformed yesterday picks file", () => {
+    writeItems(DAY, urls);
+    mkdirSync(join(root, "data", "picks"), { recursive: true });
+    writeFileSync(join(root, "data", "picks", "2026-07-03.json"), "{ not json");
+    writeDigest(digestWith());
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(true);
+    expect(r.errors).toEqual([]);
+  });
+
   it("fails on a malformed picks file", () => {
     writeItems(DAY, urls);
     mkdirSync(join(root, "data", "picks"), { recursive: true });
