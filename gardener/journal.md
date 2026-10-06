@@ -6,6 +6,18 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A gate's scope is a measurement, not a preference, and counting both sides of
+  it is cheaper than defending the line later. Today's rule ("every entry links
+  inline to its best source url") has an obvious reading that fires 30 times
+  across the archive and a narrower one that fires 4, and the difference is
+  entirely Threads bullets, which the same contract asks to name the entries
+  they connect rather than link them. Counting inside and outside the scope
+  before a line of code was written is what turned "should Threads count?" from
+  a judgement call into a number, the same way 09-23's two open questions
+  dissolved under a measure. Pair it with the wallpaper rule from 09-30 and
+  10-03: a gate is worth shipping when its true positives are real and its
+  silence is wide, and the exclusion is usually where both live.
+
 - A wall is a reading with a one-day shelf life, and the 09-06 rule about
   inherited labels applies to the environment as hard as it does to the data.
   Four consecutive runs described the same two surfaces and no two descriptions
@@ -196,6 +208,53 @@ merges and closures and never expire.
 
 ## Backlog
 
+- Noticed 2026-10-06 while reading the contract as a checklist, measured, and
+  left for Yasin rather than gated, because the fix is editorial and
+  ../AGENTS.md is not mine. **The Hacker News section is drifting to about two
+  thirds of its brief.** The contract asks for "1-2 flowing paragraphs, roughly
+  150-200 words"; counted on the rendered text, the last eight days run 120,
+  134, 103, 102, 127, 102, 125, 157 (mean 121), against a mean of 193 across
+  the 24 days before them, and no day before 09-29 came in under 126. Nothing
+  else about the section broke: 0 of 32 days use bullets, every day has the
+  section, and the stories featured barely moved (10.9 article links a day
+  across the first 24, 9.5 across the last 8, both inside the contract's 6-10
+  once a cluster's catch-all clause is allowed for), so the drop is prose
+  density rather than coverage.
+  Not gated, and the numbers are recorded so a later run can weigh it rather
+  than re-measure: the contract's band read strictly (150-200) holds on only 15
+  of the 32 days, so a gate on it fires 17 times and is wallpaper; read as
+  "roughly" (120-260) it holds on 29, and the three it would catch are 10-01,
+  10-02 and 10-04 at 102-103. So a wide-band warning is defensible on the
+  counts and still editorial, which is why it ends here and not in verify.ts.
+  File it if the terseness matters to Yasin.
+- Walked clean on 2026-10-06, recorded so a future run does not re-walk them.
+  **Digest comment counts**: every `(N comments)` claim in the archive, 8 of
+  them across 5 days, matches the `comments` the day's items file stored for
+  that url exactly, so the digest agent is reading the thread it cites and a
+  cross-check gate would fire 0 true positives. **Section order**: 5 of 32 days
+  order the themed sections differently from ../AGENTS.md's list (Security
+  before Devtools, mostly), which is the "order by importance" rule doing its
+  job, not drift; not a gate. **Rendered digest shape**: all 32 days render
+  with zero literal pen-mark syntax, zero stray `](`, zero html entities left
+  in the text, no images, code blocks, tables or blockquotes, and one list per
+  themed section with no nesting anywhere (which is what lets the new entry
+  gate find a section by the h2 before the list).
+- Noticed 2026-10-06, counted, and banked rather than shipped: **every one of
+  the 298 archived ars-technica bodies ends on the feed's own footer**, "Read
+  full article Comments", on a body whose median length is 1,109 characters.
+  #190 fixed the half that was a bug (the fusion: 93 of the first 150 archived
+  bodies read "…for updates.Read full article", 0 of the 148 since 09-22), and
+  what is left is 26 characters of chrome the digest agent reads on 4% of the
+  archive. Not shipped because the consequence could not be measured: no digest
+  has ever quoted it, and on a teaser body it arguably tells the agent honestly
+  that the full article is elsewhere. A generic strip is the part that needs
+  thought, not the ars case: the same shape is 92 "Read more" tails
+  (vercel-blog 30, latent-space 13, lennys-newsletter 12, pragmatic-engineer 8,
+  newcomer 8), 20 WordPress "The post … appeared first on …" tails (github-blog
+  17, meta-engineering 3) and about 21 newsletter sign-offs ("Thanks for
+  reading", "Subscribe now"), and a blacklist that eats a sentence of real
+  prose is worse than the chrome. Fold the ars footer in if a run ever touches
+  `clean.ts` for a real reason; treat the generic version as its own idea.
 - SHIPPED 2026-10-05 as #231 / PR #234: the verifier reads yesterday's picks on
   the run that owes them. Written 2026-10-04, unshippable that day because #227
   held the one open pr slot; the 09-05 re-derivation was done first and the
@@ -549,6 +608,74 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-06
+
+Built, verified, green, and blocked on the merge click: **#236 / PR #237**, the
+verifier warns when an entry carries no link. The wall from 10-02, 10-03 and
+10-04 is back after one day off, the same `[Merge Without Review]` classifier
+reason on the same shape of PR, and today's reading is written as today's
+rather than as a property: refused 10-02, 10-03, 10-04, allowed 10-05, refused
+10-06. Not routed around, per the lesson that bought those four days: the PR is
+green (`checks` success at 08:16:48, `mergeable: true` / `clean`), its
+measurements are in its body, and the merge is one click for Yasin. Pushed to
+his phone rather than left here.
+
+What: one warning per entry with no `a[href]` in the rendered body, Threads and
+Hacker News excluded. Why: ../AGENTS.md says "Every entry links inline to its
+best source url" and `verify.ts` only asked whether the body linked anything at
+all, so the rule was a habit on trust. Counted it, every archived digest
+rendered and read: 4 entries in 3 of the 32 days carry no link. Three lean on
+"(above)" and are judgement calls; 09-09's Navier-Stokes cost entry is a
+follow-up to an earlier day citing nothing at all, which Continuity asks to
+write "still citing today's link". That is the 09-29 method again, the contract
+read as a checklist against the rendered artifact, and it is the second find it
+has produced.
+
+The exclusion is where the evidence did the deciding. Threads bullets carry no
+link on 26 occasions across 09-25..29, and the Threads contract asks them to
+name the entries they connect rather than link them: with Threads in, the gate
+fires 30 times and is wallpaper; with it out, 4. Measured both ways before the
+line was written.
+
+Evidence: 226 tests from 223, typecheck silent, 33 pages. `npm run verify`
+across all 32 archived days is identical before and after except the 4
+warnings, `ok: true` and `errors: 0` on every day either way, 91 warnings to
+95. Both positives fail against the unfixed source with `verify.ts` stashed
+alone; the third test (an autolinked bare url counting as the entry's link)
+passes either way and is labelled as pinning the instrument, not proving it.
+
+Wall notes, both of them today's reading only. The footer strip: the `PATCH`
+was accepted on both #236 and #237 and the harness re-appended
+`_Generated by [Claude Code]_` to each, which is 10-02's shape rather than
+10-03's outright refusal or 10-05's clean strip. Four different behaviours in
+five days on this one surface. And **Copilot did not review**: its one comment
+says the requesting user "has reached their quota limit", so this is the first
+gardener PR to go to the merge click with no review pass behind it. Worth
+knowing before the next run leans on Copilot as the review window; worth
+knowing for Yasin too, since the quota is his.
+
+Observation pass, the rest of it clean.
+
+Health: the 25 most recent workflow runs, zero failures. `pages` green on
+today's 04:46 digest push. `npm ci`, 223 tests before the change, typecheck
+silent, 33 pages. The verifier across all 32 archived days: `ok: true` on every
+one, zero errors, 91 warnings, and the count is lower than 10-05's 94 only
+because the archive rolled a day.
+
+#112's signal is wider than it has been. 10-05's `45 15` cron landed at
+22:11:49 UTC (+6h26), the widest yet, and today's `15 3` had not fired at
+08:16, +5h01 and counting, with the digest agent's own `workflow_dispatch` at
+04:43 doing the real work again. Nothing new to decide, but the drift is still
+growing.
+
+Egress re-probed rather than assumed, and the wall holds: vercel.com/atom,
+research.google, theverge.com/rss, feeds.arstechnica.com and
+sift.yasint.dev/latest.json all return 000 at CONNECT, and WebFetch answers
+`EGRESS_BLOCKED` for vercel. The three feed-shape notes stay parked.
+
+The thing for Yasin: PR #237 needs the merge click. #110, #112 and #120 all
+still pending his word, #120 since 09-03, thirty-three days.
 
 ### 2026-10-05
 
