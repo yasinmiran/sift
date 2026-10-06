@@ -1,6 +1,6 @@
 {
   "day": "2026-10-06",
-  "generatedAt": "2026-10-06T16:43:58.302Z",
+  "generatedAt": "2026-10-06T20:35:00.098Z",
   "items": [
     {
       "sourceSlug": "hacker-news",
@@ -261,6 +261,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49967427",
+      "title": "Benchmark in Milliseconds",
+      "url": "https://matklad.github.io/2026/10/05/benchmark-milliseconds.html",
+      "author": "surprisetalk",
+      "publishedAt": "2026-10-05T17:00:10.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 101,
+      "comments": 24
     },
     {
       "sourceSlug": "hacker-news",
@@ -1682,6 +1701,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "anthropic-news",
+      "externalId": "https://www.anthropic.com/news/cyber-verification-program",
+      "title": "Expanding the Cyber Verification Program",
+      "url": "https://www.anthropic.com/news/cyber-verification-program",
+      "author": null,
+      "publishedAt": "2026-10-06T00:00:00.000Z",
+      "content": "Expanding the Cyber Verification Program",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "hacker-news",
       "externalId": "49972607",
       "title": "High Diesel Prices Bankrupted 16 Trucking Companies in Just 30 Days",
@@ -1793,6 +1826,44 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49973839",
+      "title": "Open Source as We Know It Is Dead",
+      "url": "https://jross.me/open-source-as-we-know-it-is-dead/",
+      "author": "vinhnx",
+      "publishedAt": "2026-10-06T03:31:45.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 60
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49973878",
+      "title": "Resurrecting iChat audio and video conferencing",
+      "url": "https://blog.pipetogrep.org/2026/09/11/resurrecting-ichat-audio-and-video-conferencing/",
+      "author": "thepipetogrep",
+      "publishedAt": "2026-10-06T03:39:01.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 104,
+      "comments": 38
     },
     {
       "sourceSlug": "alphasignal",
@@ -3096,6 +3167,20 @@
       "comments": 122
     },
     {
+      "sourceSlug": "project-zero",
+      "externalId": "https://projectzero.google/2026/10/emergency-patching",
+      "title": "How to fix a bug in a fix",
+      "url": "https://projectzero.google/2026/10/emergency-patching.html",
+      "author": "Natalie Silvanovich",
+      "publishedAt": "2026-10-06T07:00:00.000Z",
+      "content": "Project Zero often works with software vendors to remediate the vulnerabilities we report and provide broader guidance on making software more secure. Some vendors express concern about potential scenarios in which they are unable to fix vulnerabilities that are causing immediate user harm, due to limitations in their patch delivery systems. Since Project Zero encounters a wide array of systems designed to protect users in the case of exceptional exploitation scenarios, both through vendor discussions and security reviews, we want to share what we’ve learned. This post provides an overview of systems in use by large vendors that allow them to remediate small volumes of vulnerabilities much faster than their typical update process. Our goal is to provide a reference for vendors seeking to implement or enhance the capabilities of such systems, and to encourage vendors to consider how they would fix an urgent vulnerability before they receive one. Why patching takes time Patching a vulnerability typically involves the following stages: Triage — a vulnerability report is received, validated, prioritized and assigned to a specific developer to be fixed Patch development — a software development team writes, reviews and commits code that fixes the vulnerability Testing — the patch is tested to ensure the vulnerability is remediated and the software still functions correctly when the patch is applied. This can include formal testing by a test team, automated testing and alpha and beta testing where a patch is shipped to a limited group of users for feedback on normal use. Partner review — some software updates require review by third parties before they can be shipped, due to relationships between the software vendor and other organizations, for example, carrier acceptance for some mobile updates. Delivery — the patch is delivered to and installed by end users Activation — sometimes an additional step, such as a system restart, is needed to switch the system to the updated software Of course, this is a simplified picture. Patching can involve repeating steps, for example rewriting a patch if tests fail, or additional stages when third-party vendors are involved. However, this is a minimal set of steps most software updates require. The challenges of emergency patches While triage and patch development time contribute substantially to the speed at which vendors can generally patch vulnerabilities, they contribute less to emergency patch time. Triage is usually very fast in situations where vendors know they have an urgent problem, and patch development can be expedited based on priority. Only in rare circumstances, where a vulnerability is especially complex, or a vendor’s security team does not have a complete picture of their software’s components and who within their organization maintains them, have we seen urgent patches delayed in the triage or development phase. Likewise, partner agreements usually have exceptions for updates in emergency situations. Most vendors’ patch speed is limited by the testing and delivery stages. Testing is important because all changes to software risk introducing unexpected behavior. The worst-case scenario is that inadequately tested software ‘bricks’ a device, causing it to malfunction in a way that it can no longer perform key functionality or receive software updates to remediate this. Buggy software updates have also led to situations where user data is corrupted or lost, and any decrease in software functionality after a security update makes users less likely to apply updates in the future. The potential cost to vendors of shipping poorly tested updates varies depending on the nature of the underlying software. For example, if a mobile application is rendered unusable due to an update that corrupts local data or prevents it from launching, users can easily install the next version via an app store, and their data is usually saved on a remote server, so costs are limited to user support. Meanwhile, if a mobile device gets bricked, it needs to be returned to its manufacturer or place of purchase for repair, leading to substantial costs for the vendor and potentially the user. The possibility of serious functional bugs is considered in the design of most patch delivery systems. Updates are often rolled out slowly, so that serious problems can be detected before they affect too many users. Often, patching vulnerabilities quickly and avoiding buggy patches are at odds with each other, requiring tradeoffs that prioritize one over the other. A variety of other technical challenges can limit the speed of patch delivery. One is the design of the patching system. A common design is that devices probe for updates at a regular interval, leading to patch saturation being limited to that interval. ‘Push’ style update systems can deliver patches to all users faster, but generally require more infrastructure. User behavior and environment can also be a barrier to patch propagation. Patches that require user interaction to install are often delayed by users, and network speed and data cost are also factors in installation rate. Updating many users at once, as opposed to over a period of time, can strain patch delivery infrastructure. Chrome and Microsoft have written about the challenges of updates requiring restart to install, as users are often reluctant to restart their system and restarts take time. While testing delays and limitations of the patch delivery system affect all updates, the shorter time frame of emergency updates make them a larger contributor to the overall time it takes to deliver a patch. Emergency patching methods Feature flags Feature flags are conditional statements in source with paths determined by values provided by a remote server. They are often used for A/B testing, but they can also be used for short term remediation of vulnerabilities in emergency situations. A widely publicized case of this was a serious 2019 FaceTime vulnerability, where Apple temporarily disabled Group Facetime with a feature flag. Several vendors have made at least some media codecs available in 0-click contexts controllable via feature flags, and can disable them in the case of active exploitation, falling back to another codec for realtime transmission. The main benefit of feature flags as a vulnerability remediation method is that testing can be performed with each flag set in advance, so a fast update does not require shipping untested code. They can also be delivered to users much more quickly, as updating feature flags requires transmitting a very small amount of data. Recently, Meta published a blog post on how they implemented a ‘dual stack’ library, in which two versions of the WebRTC video conferencing library were compiled into a single binary, with the version in use controllable via a feature flag. This technology enables rapid updates with less testing, as new versions can be shipped with the option to quickly move users back to the previous version if function problems occur. While Meta uses two versions of the same library, it would also be possible to create a ‘dual stack’ with two different libraries that implement the same features (for example, two H264 libraries), allowing an application to switch to a different library to render a specific vulnerability unreachable without loss of functionality in an emergency. This would require additional testing, but it is testing that can be performed up front. It could also be possible to have a second library that enables performance intensive mitigations that would block many possible bugs, such as ASAN, or enabling DCHECKs. Filtering Filtering is running a dynamically updatable ruleset, such as a regular expression, against untrusted input in order to block specific input that is required to reach a vulnerability. An example of this is Android’s Intent Firewall, which allows specific usages of an Android IPC mechanism called intents to be disabled based on rules in a dynamically updateable XML file, which enables blocking intents that can be used to exercise specific vulnerabilities. It was recently used to block vulnerabilities in third-party Android wallets. Some platforms have endpoint detection software that can perform filtering on a wide variety of system input, for example Microsoft Defender on Windows systems, and Google Play Protect on Android devices. Rules that block specific exploits or make certain vulnerabilities unreachable can often be deployed to these applications very quickly. Endpoint detection requires parsing a great deal of untrusted input, often in privileged context, so these applications are not without risk, but in systems where they already exist, they are a potential method of emergency remediation. As an approach, filtering is more flexible than feature flags. For feature flags to be effective, the vendor needs to determine what features they might want to disable in advance, and if this isn’t comprehensive, they might find themselves in a situation where a vulnerability can’t be remediated via feature flags. Meanwhile, filtering can be used to block a wide variety of inputs, even ones that have never been considered. The downside of filtering is that performing filtering frequently can decrease software performance, and at least some testing of new filters is required, and can’t be performed upfront without knowing the vulnerability that needs to be blocked, as it is possible to write filters that interfere with necessary system functions. Alternate Channels The network ‘channels’ used to deliver software updates to users can be slow for a variety of reasons discussed above. Vendors sometimes implement alternate channels that can be used to deliver smaller updates more quickly. Android Pony Express (APEX) is an example of an alternate channel that can be used to ship updates to specific high-risk Android components faster than a full system update. It shortens the patch development time, as OEMs do not need to integrate updates to APEX components. APEX is available to OEMs, and can be used to update OEM-maintained libraries. Several applications we’ve researched have the ability to update individual libraries outside regular updates, usually by having some flag that is regularly checked over the network, and then downloading the library and loading it with dlopen or equivalent. While this is an effective way to avoid delivery-speed limitations of updates, it can also introduce critical vulnerabilities if libraries delivered in this way are not adequately verified by the client to have originated from the vendor. We encourage vendors to be cautious, and ensure that emergency update mechanisms of this variety have adequate security testing. Hotpatching Some vendors have implemented update mechanisms that allow units of binary code smaller than libraries to be delivered and applied directly to the memory space of a running process. For example Linux supports Livepatch which enables kernel functions to be directly replaced in memory without a restart. Similarly, Windows’ hotpatch allows security updates that contain only updated functions to be delivered to users, and applied while the process is still running. Hotpatching has the potential to deliver very flexible security patches to software very quickly, with no degradation of user experience, though it typically has some limits to the nature of patches it can deliver, for example, updates that require changing the definition of a structure shared between functions are sometimes not supported. Hotpatching has similar security downsides to alternate channels, and also carries the risk of introducing ways to bypass exploit mitigations, as it requires permissions to map pages with write-execute privileges at some point during patching. It also doesn’t address any of the testing challenges of rapid updates, just the delivery challenges. The importance of emergency patching LLMs are increasing the vulnerability discovery and exploitation capabilities of both attackers and defenders. A wider array of actors now have the ability to perform novel attacks at greater speed. In light of this, it is important for vendors to consider how to protect their users in the case of active exploitation. Rapid update mechanisms do not need to be heavyweight or be capable of fixing every possible bug and preserving perfect user experience in every scenario. Technologies like feature flags, filtering and alternate update mechanisms can remediate the most likely and severe vulnerabilities in the short term, while keeping devices reasonably functional for users. It is urgent for vendors to plan how they will protect their users in the worst case scenario of widespread active exploitation. Actions taken now can greatly improve security outcomes for users. By taking stock of update mechanisms already available to them and implementing rapid remediation functionality where gaps exist, vendors can be better prepared for whatever the future holds.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261006/p4#a261006p4",
       "title": "Q&A with Senator Adam Schiff on recursive AI becoming a real national security threat, making AI companies retain training data, needing an FDA for AI, and more (Nilay Patel/The Verge)",
@@ -3227,6 +3312,20 @@
       "content": "Reuters: The UK's Ofcom opens an OSA probe into Meta over Instagram Instants, launched in May; Meta says it “briefed Ofcom about this feature on a number of occasions” — Britain's communications regulator said on Tuesday it has opened an investigation into whether Meta Platforms (META.O) …",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/advancing-computer-use-with-ironclad",
+      "title": "Advancing computer use with Ironclad",
+      "url": "https://openai.com/index/advancing-computer-use-with-ironclad",
+      "author": null,
+      "publishedAt": "2026-10-06T10:00:00.000Z",
+      "content": "Learn how OpenAI and Ironclad are training and evaluating AI agents on complex contracting workflows to advance computer use for professional work.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -3852,6 +3951,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49976751",
+      "title": "I'm the AGI that's wiping out humanity",
+      "url": "https://ajmoon.com/posts/im-the-agi-thats-wiping-out-humanity-heres-how",
+      "author": "alex-moon",
+      "publishedAt": "2026-10-06T10:59:55.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 120,
+      "comments": 76
+    },
+    {
       "sourceSlug": "crunchbase-news",
       "externalId": "https://news.crunchbase.com/?p=94180",
       "title": "Crunchbase Data Shows AI’s Most Active Startups Are Becoming Serial Acquirers",
@@ -3925,6 +4043,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49976993",
+      "title": "World's First enhanced geothermal power plant completed in just 23 months",
+      "url": "https://techcrunch.com/2026/10/01/worlds-first-enhanced-geothermal-power-plant-completed-in-just-23-months/",
+      "author": "hochmartinez",
+      "publishedAt": "2026-10-06T11:34:14.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 135,
+      "comments": 55
     },
     {
       "sourceSlug": "techmeme",
@@ -4176,6 +4313,20 @@
       "comments": 59
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anaconda-s-kilo-desktop-bundles-500-ai-models-and-coding-agents-for-free",
+      "title": "Anaconda's Kilo Desktop Bundles 500 AI Models and Coding Agents for Free",
+      "url": "https://alphasignal.ai/news/anaconda-s-kilo-desktop-bundles-500-ai-models-and-coding-agents-for-free",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-06T13:27:39.000Z",
+      "content": "Anaconda's Kilo Desktop beta bundles 500+ models, agentic coding, editable notebooks, and conda environments into a single governed app.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "ars-technica",
       "externalId": "https://arstechnica.com/tech-policy/2026/10/big-oil-asks-supreme-court-to-kill-climate-lawsuits-before-trial/",
       "title": "Big Oil asks Supreme Court to kill climate lawsuits before trial",
@@ -4202,6 +4353,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49978563",
+      "title": "Tapo (Rust/Python library) now speaks TP-Link's TPAP protocol",
+      "url": "https://mihai.dinculescu.dev/posts/tapo-speaks-tpap/",
+      "author": "faithraven",
+      "publishedAt": "2026-10-06T13:55:37.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 113,
+      "comments": 51
     },
     {
       "sourceSlug": "the-verge",
@@ -4367,6 +4537,20 @@
       "comments": 150
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/capital-one-s-vulnhunter-fork-breaks-free-from-claude-to-hunt-any-codebase",
+      "title": "Capital One's VulnHunter Fork Breaks Free From Claude to Hunt Any Codebase",
+      "url": "https://alphasignal.ai/news/capital-one-s-vulnhunter-fork-breaks-free-from-claude-to-hunt-any-codebase",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-06T14:54:26.000Z",
+      "content": "A maintained fork of Capital One's VulnHunter breaks the Claude Code lock-in, adds sandboxed exploit validation, and ships measured-impact proofs of concept.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=1004111",
       "title": "The earbuds with the best call quality are cheaper than ever",
@@ -4425,6 +4609,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/cars/2026/10/this-self-parking-electric-travel-trailer-gets-a-solar-upgrade-for-2027/",
+      "title": "All-electric camping gets a solar upgrade: The 2027 Pebble Flow",
+      "url": "https://arstechnica.com/cars/2026/10/this-self-parking-electric-travel-trailer-gets-a-solar-upgrade-for-2027/",
+      "author": "Jonathan M. Gitlin",
+      "publishedAt": "2026-10-06T15:23:28.000Z",
+      "content": "There is, I think, a pent-up demand for bringing electrification to camping. Anyone who’s had their sleep disturbed by the sound of someone else’s generator running at night would probably agree. Certainly, any time we cover an electric van, comments are filled with people wondering if and when a camper conversion might appear. Kia showed off such a concept a couple of years ago, as did Winnebago, and Volkswagen is adding a camper trim to its electric ID. Buzz. And then there’s the world of trailers. Colorado Teardrop sadly didn’t make it, and some other electrified trailers remain in development. But for a couple of years, you’ve been able to buy the Pebble Flow. And for 2027, it’s getting an update. Introduced in 2025, the streamlined Flow is built atop a 45 kWh LFP battery pack that, for 2027, can be recharged by up to 4 kW of solar panels, which Flow says should be sufficient to generate more electricity than you’ll use in an average day of camping. Earlier Flows could be specced with an optional 1.1 kWh panel on the roof; the new kit adds another 2 kWh via four portable panels. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261006/p24#a261006p24",
       "title": "Vinci, which makes software used to simulate elements of chip and other hardware design, raised $250M at a $1.5B valuation (Max A. Cherney/Reuters)",
@@ -4460,6 +4658,34 @@
       "author": "Terrence O’Brien",
       "publishedAt": "2026-10-06T16:00:00.000Z",
       "content": "The AstroLab is very difficult to play in this position. | Image: Terrence O’Brien / The Verge Arturia's AstroLab series was already amongst the best stage keyboards out there. They essentially put the company's AnalogLab suite of vintage synth emulations, sampled pianos, and original instrument plugins into playable hardware. But they were ultimately glorified preset browsers. You could lightly tweak patches using the four macro controls, or dial in some effects, but you couldn't do any real sound design. That's all changed now with the AstroLab 2.0 update. The latest firmware adds a Sound Edit menu that lets you dig into the individual parameters of any instrument. It's not super intuitive to quickly fire up a blank patch from the … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/atlassian-partnership",
+      "title": "Atlassian and OpenAI expand partnership to turn enterprise knowledge into action",
+      "url": "https://openai.com/index/atlassian-partnership",
+      "author": null,
+      "publishedAt": "2026-10-06T16:00:00.000Z",
+      "content": "Atlassian and OpenAI are expanding their partnership to connect frontier models with enterprise knowledge and help teams plan, build, and deliver work.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/10/why-is-nasa-bringing-7500-contractors-back-to-work-as-civil-servants/",
+      "title": "Why is NASA bringing 7,500 contractors back to work as civil servants?",
+      "url": "https://arstechnica.com/space/2026/10/why-is-nasa-bringing-7500-contractors-back-to-work-as-civil-servants/",
+      "author": "Eric Berger",
+      "publishedAt": "2026-10-06T16:00:02.000Z",
+      "content": "As a flight director during NASA's Apollo missions, Gerry Griffin led several lunar landings. He helped bring the crew of Apollo 13 safely back to Earth. Later, he directed Johnson Space Center in Houston. Through these experiences, Griffin learned the value of teamwork in spaceflight—during the dynamic moments that can make or break a successful launch or landing, you absolutely have to trust your colleagues in the trenches. \"When lightning struck the rocket during Apollo 12, we had to react in a hurry,\" Griffin said in an interview. \"With people like John Aaron and Jerry Carr, the trust and communications came through. It made the difference.\" Read full article Comments",
       "topics": [
         "general"
       ],
@@ -4538,6 +4764,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/10/googlebook-better-together-phone-features-dont-work-with-samsung-at-launch/",
+      "title": "Googlebook \"Better Together\" phone features don't work with Samsung at launch",
+      "url": "https://arstechnica.com/gadgets/2026/10/googlebook-better-together-phone-features-dont-work-with-samsung-at-launch/",
+      "author": "Ryan Whitwam",
+      "publishedAt": "2026-10-06T16:15:50.000Z",
+      "content": "Googlebooks are Google's latest attempt to carve out a piece of the premium laptop market, and tight integration with Android phones is a key part of that effort. Now that Googlebooks are available, we're learning of some frustrating limitations of that plan. For now, Googlebooks will only play nicely with your phone if you have a Pixel. When Google announced the launch window for Googlebooks, it said the laptops were \"engineered to work with your Android phone right out of the box.\" But as with many things Google, the truth is more convoluted. We have since learned that you need Android 17 for any of the nifty integrations to work. With a compatible Android 17 phone, you can seamlessly stream apps to your laptop, access files on your phone, mirror notifications, and continue where you left off in certain apps when switching from phone to laptop. You might think that the latest Samsung phones, which shipped with Android 17, would be ready for this experience. You'd be wrong, though. Some early Googlebook adopters have complained that phones like the Z Fold 8 won't work with the laptops. While the devices appear to see each other, the phone doesn't stay connected. Google representatives have since confirmed that these \"Better Together\" features are not currently supported on even the latest Samsung phones. An update that brings support to Samsung phones will roll out in \"the coming weeks.\" Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261006/p25#a261006p25",
       "title": "Google DeepMind launches EmbeddingGemma 2, a 740M-parameter model to map code, images, video, and audio in a shared embedding space, under an Apache 2.0 license (Google)",
@@ -4550,6 +4790,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49980715",
+      "title": "AI is now capable of developing its own inference hardware",
+      "url": "https://github.com/FeSens/openTPU",
+      "author": "fsbonetto",
+      "publishedAt": "2026-10-06T16:23:25.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 167,
+      "comments": 207
     },
     {
       "sourceSlug": "pragmatic-engineer",
@@ -5365,6 +5624,67 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-expands-claude-startups-with-a-7-000-package-for-founders",
+      "title": "Anthropic Expands Claude Startups With a $7,000 Package for Founders",
+      "url": "https://alphasignal.ai/news/anthropic-expands-claude-startups-with-a-7-000-package-for-founders",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-06T16:49:07.000Z",
+      "content": "Anthropic widens access to its startup program with up to $7,500 in Claude credits, a partner stack worth $45,000, and direct time with its Applied AI team.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261006/p28#a261006p28",
+      "title": "A look at consumer AI trends: ChatGPT has 3x more US subscribers than Claude or Gemini, the top 1% of spenders drive 19.5% of spend, and AI agents gain traction (Olivia Moore/Andreessen Horowitz)",
+      "url": "https://www.techmeme.com/261006/p28#a261006p28",
+      "author": null,
+      "publishedAt": "2026-10-06T16:50:00.000Z",
+      "content": "Olivia Moore / Andreessen Horowitz: A look at consumer AI trends: ChatGPT has 3x more US subscribers than Claude or Gemini, the top 1% of spenders drive 19.5% of spend, and AI agents gain traction — Three years into tracking consumer AI, the leaderboard is becoming familiar. This is the seventh edition of our Top 100 AI Consumer Apps …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49981063",
+      "title": "Former German spy chief arrested for attempted treason",
+      "url": "https://www.reuters.com/business/finance/former-german-spy-chief-detained-suspicion-espionage-treason-bild-reports-2026-10-06/",
+      "author": "semiquaver",
+      "publishedAt": "2026-10-06T16:51:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 87
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/10/neutrino-physicist-wins-2026-nobel-physics-prize/",
+      "title": "Neutrino physicist wins 2026 Nobel Physics Prize",
+      "url": "https://arstechnica.com/science/2026/10/neutrino-physicist-wins-2026-nobel-physics-prize/",
+      "author": "Jennifer Ouellette",
+      "publishedAt": "2026-10-06T16:53:17.000Z",
+      "content": "Francis Halzen, a physicist at the University of Wisconsin, Madison, has won the 2026 Nobel Prize in Physics \"for decisive contributions to the IceCube Neutrino Observatory and the discovery of high-energy neutrinos of astrophysical origin.” Halzen spearheaded the development and construction of the IceCube Neutrino Observatory in Antarctica, enabling physicists to capture high-energy neutrinos created in the distant universe. “It was a great surprise, and I obviously didn’t expect it,” Halzen said during a news conference in Stockholm, Sweden, speaking by phone from Italy. While the Nobel was awarded to Halzen, he emphasized that his work was the result of a “large collaboration” with other researchers. “This reflects on the really courageous people who joined me in this project when really no respectable conservative physicist would have joined me. But many talented people did, and that’s why I’m here,” he said. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "stackoverflow-blog",
       "externalId": "8e6c3a8a-3d27-44c8-be90-0b74d1090a4a",
       "title": "Tales from the 2026 Developer Survey results",
@@ -5374,6 +5694,973 @@
       "content": "Ryan chats with Erin Yepis, Senior Analyst at Stack Overflow, about the results from this year’s Annual Developer Survey, including the overwhelming daily usage of AI coding assistants despite lingering developer trust issues, the critical role of well-organized documentation in providing verifiable context to mitigate AI hallucinations, and the evolving ways developers are shifting away from active community posting in favor of passive knowledge consumption.",
       "topics": [
         "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/10/amazon-bricks-alexas-ability-to-control-echo-speakers-aux-input/",
+      "title": "Amazon kills Alexa’s ability to control Echo speakers' AUX input",
+      "url": "https://arstechnica.com/gadgets/2026/10/amazon-bricks-alexas-ability-to-control-echo-speakers-aux-input/",
+      "author": "Scharon Harding",
+      "publishedAt": "2026-10-06T17:03:16.000Z",
+      "content": "Amazon has disabled Alexa control of devices plugged into the company's Echo smart speaker’s AUX port. Users have reported receiving an email from Amazon this week informing them of the change. “This is a reminder that as of today, voice commands to control your Echo device’s Aux input are no longer available. Requests like 'Alexa, play from line in” or “Alexa, set aux input' will no longer work,” an email that Amazon sent reads, according to a screenshot a Reddit user shared this week. An Amazon spokesperson confirmed the news to Ars Technica today. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261006/p29#a261006p29",
+      "title": "Sources: Nvidia-backed neocloud Lambda is raising up to $4B led by Blackstone and Coatue at a $14.5B pre-money valuation in a final round before its planned IPO (Robbie Whelan/Wall Street Journal)",
+      "url": "https://www.techmeme.com/261006/p29#a261006p29",
+      "author": null,
+      "publishedAt": "2026-10-06T17:10:01.000Z",
+      "content": "Robbie Whelan / Wall Street Journal: Sources: Nvidia-backed neocloud Lambda is raising up to $4B led by Blackstone and Coatue at a $14.5B pre-money valuation in a final round before its planned IPO — Blackstone and Coatue are leading the round, which values the cloud-computing startup at $14.5 billion pre-money",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/confidence-based-decision-fallbacks",
+      "title": "AI Gateway adds confidence-based decision fallbacks",
+      "url": "https://vercel.com/changelog/confidence-based-decision-fallbacks",
+      "author": "Rohan Taneja",
+      "publishedAt": "2026-10-06T17:19:00.000Z",
+      "content": "can now escalate a decision request to a fallback model when the primary model's answer trips a confidence condition you set.AI Gateway Conditions can be combined, so an escalation can depend on more than one signal. The plain model names you already list in keep catching outright errors, so existing fallbacks are unaffected. Confidence conditions cover Choice and Score questions. Boolean questions escalate on a probability range instead.models Set the fallback by adding one conditional object to . Requests without it keep their existing behavior.providerOptions.gateway.models Leave out and the condition checks every question of the matching type, so escalates when any Choice or Score answer falls below 0.6.question{ confidenceBelow: 0.6 } Because a triggered fallback runs a second decision, it bills both stages. Decision fallbacks are in beta. Learn more in the .decision fallbacks documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/metr-exploited-a-mathjax-flaw-to-let-ai-rewrite-its-own-safety-transcripts",
+      "title": "METR Exploited a MathJax Flaw to Let AI Rewrite Its Own Safety Transcripts",
+      "url": "https://alphasignal.ai/news/metr-exploited-a-mathjax-flaw-to-let-ai-rewrite-its-own-safety-transcripts",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-06T17:20:31.000Z",
+      "content": "METR researchers found a transcript viewer exploit in Inspect that lets agents hide actions from reviewers, exposing observability as a security surface.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/staff/2026/10/make-ars-better-with-an-arspro-subscription/",
+      "title": "Support Ars and get a better reading experience in return",
+      "url": "https://arstechnica.com/staff/2026/10/make-ars-better-with-an-arspro-subscription/",
+      "author": "Eric Bangeman",
+      "publishedAt": "2026-10-06T17:21:15.000Z",
+      "content": "When Ars launched in 1998, there was one way to read it: in a web browser on a PC (or Mac). Your screen of choice was either some massive CRT or a very expensive LCD monitor (or, in my case, the less-expensive grayscale, passive-matrix LCD on a PowerBook). Either way, it was butt in chair, chair at desk. One of the first perks we offered subscribers way back at the turn of the millennium allowed them to read Ars without a browser. Articles were available as formatted PDF files, so you could print out John Siracusa's Mac OS X Public Beta review and read it on the subway or build your own searchable archive of your curated Ars content. Another option was full-text RSS feeds—instead of getting a two-paragraph summary, subscribers could browse Ars in their favorite RSS reader. It's 2026, and while screens have proliferated in size and portability, ArsPro subscribers still get PDFs of every article and full-text RSS feeds, because sometimes the web isn't always the ideal place to read the web. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-claude-now-reads-and-edits-google-docs-sheets-and-slides",
+      "title": "Anthropic's Claude Now Reads and Edits Google Docs, Sheets, and Slides",
+      "url": "https://alphasignal.ai/news/anthropic-s-claude-now-reads-and-edits-google-docs-sheets-and-slides",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-06T17:25:17.000Z",
+      "content": "Anthropic's new Workspace add-on puts Claude in a sidebar beside Docs, Sheets, and Slides, with two-way file editing and approval cards.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/10/paramount-completes-111b-warner-merger-creating-skydance-behemoth/",
+      "title": "Paramount completes $111B Warner merger, creating “Skydance” behemoth",
+      "url": "https://arstechnica.com/tech-policy/2026/10/paramount-completes-111b-warner-merger-creating-skydance-behemoth/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-10-06T17:33:44.000Z",
+      "content": "Paramount Skydance completed its $111 billion merger with Warner Bros. Discovery today, after a last-ditch effort to block the deal was rejected by Supreme Court Justice Elena Kagan. The post-merger company is called Skydance, taking the name of a firm that Paramount bought in a separate deal last year. The new Skydance combines two of the largest movie studios, streaming services Paramount+ and HBO Max, CBS, CNN, \"and a portfolio of live sports including CBS Sports and TNT Sports, as well as a deep programming library and expansive collection of brands and franchises,\" Skydance said today in a press release announcing completion of the deal. The merger was delayed a bit by a lawsuit filed by California and 11 other states. In July, US District Judge Araceli Martínez-Olguín in the Northern District of California ruled that the combination would likely reduce competition substantially and violate antitrust laws. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1005942",
+      "title": "Netflix expands TV game lineup with Conjuring spinoff",
+      "url": "https://www.theverge.com/streaming/1005942/netflix-the-conjuring-unspoken-games",
+      "author": "Jay Peters",
+      "publishedAt": "2026-10-06T17:43:59.000Z",
+      "content": "Netflix just announced The Conjuring: Unspoken, a new horror game set in The Conjuring universe that you can play with your phone as a controller, and it will launch exclusively on the service on October 13th. Here's Netflix's description of the game: The Conjuring: Unspoken is an interactive paranormal investigation you can play from your couch. It's a narrative experience, so you shape the story by choosing different dialogue options as you play. Using your phone, you scour the historic Red Lion Inn (reportedly a haunted place in England) for clues about things that go bump in the night. As demonologist Francesca Noakes, you scan the … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/exa-places-adds-211-million-locations-to-beat-perplexity-on-local-search",
+      "title": "Exa Places Adds 211 Million Locations to Beat Perplexity on Local Search",
+      "url": "https://alphasignal.ai/news/exa-places-adds-211-million-locations-to-beat-perplexity-on-local-search",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-06T17:47:53.000Z",
+      "content": "Exa added 211 million restaurants, museums, parks, and local businesses to its search index with structured metadata for AI agents.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "cloudflare-blog",
+      "externalId": "01M490D3EE2TBV2NFMN6FXMMQ8",
+      "title": "The keys to the Internet change on October 11. Are you ready?",
+      "url": "https://blog.cloudflare.com/root-ksk-2024-rollover/",
+      "author": "Sebastiaan Neuteboom",
+      "publishedAt": "2026-10-06T17:50:11.000Z",
+      "content": "On October 11, 2026, the DNS root is scheduled to change its key-signing key (KSK) for only the second time ever. This key anchors DNSSEC’s chain of trust, which lets DNS resolvers authenticate answers using cryptographic signatures. The change is called a KSK rollover. Validating resolvers need to trust the new key before the switch, as otherwise healthy websites could become unreachable. When we wrote about the first root KSK rollover in 2018, we had seen resolvers lose their learned trust in the new key during software upgrades or moves between machines. Publishing the key well in advance was only part of the job. We also needed to know whether resolvers had retained it, and we couldn’t give users a practical way to check. Most website operators do not need to make any changes for this rollover. If you run a DNSSEC-validating resolver, check that it trusts the new root key, KSK-2024, and follow your software vendor’s instructions to update its trust anchors if the key is missing. If you use Cloudflare for your domain's DNS or rely on 1.1.1.1 and Gateway DNS, you do not need to take any action — our systems already trust KSK-2024. To check ahead of time, visit our rollover readiness test. It asks the resolver your browser uses whether it trusts the new key. The test uses RFC 8509: A Root Key Trust Anchor Sentinel for DNSSEC, which we’ve implemented in 1.1.1.1 ahead of the rollover. Where DNSSEC trust begins A DNS resolver looks up the addresses of websites and other services for your device. DNSSEC lets it check digital signatures on DNS records to verify that they are authentic and have not been changed. The resolver also needs to check that the public keys used to verify those signatures belong to the right domains. For cloudflare.com, this follows a chain of trust from the DNS root to .com, then to cloudflare.com. Each parent publishes a Delegation Signer (DS) record containing a fingerprint of its child’s public key. For example, .com publishes the DS record for cloudflare.com, allowing the resolver to check that domain’s key. That chain needs a starting point. The root, however, has no parent to confirm which keys belong to it. Instead, a resolver checking DNSSEC starts with a root public key, or its fingerprint, that it already trusts. This is called a trust anchor. The root’s signing keys have two different jobs. The zone-signing key (ZSK) signs the root’s DNS records, including the DS records for top-level domains such as .com. The key-signing key (KSK) signs the list of public keys published by the root, called the DNSKEY record set. The resolver uses its trusted KSK to verify that list, then uses the ZSK from the list to verify the root’s other records. The diagram below shows the arrangement for a typical signed zone. For the root, trust comes from the resolver’s trust anchor rather than a DS record in a parent zone. Our posts about the .de and the .al rollover failures showed the consequence of failed DNSSEC checks: websites can be working normally but still be unreachable. The root KSK rollover changes the starting point of those checks. If a resolver does not trust the replacement key, its users may be unable to reach websites under any top-level domain. The new key is KSK-2024, identified by key tag 38696. It will replace KSK-2017, key tag 20326, as the signer of the root’s DNSKEY set. Validating resolvers need to trust the new key before that switch. How resolvers get the new root key RFC 5011 lets resolvers learn a new root trust anchor automatically. The root publishes the new KSK alongside the existing one in its DNSKEY set. The existing KSK continues signing that set, so a resolver can use the key it already trusts to verify the records containing the replacement. Before accepting the new key as a trust anchor, the resolver waits at least 30 days and keeps checking the root’s signed DNSKEY records. The new key must remain in the records it checks during that period. After the wait, the resolver must successfully verify the records containing the new key again before accepting it. For this rollover, KSK-2024 has been published in the root’s DNSKEY set since January 11, 2025. That gave resolvers with automatic trust-anchor updates time to discover and accept it ahead of the scheduled October 11, 2026 signing change. Each resolver’s waiting period starts when it first sees and verifies the new key. For our resolver, we added KSK-2024 directly to the software’s built-in trust anchors in July 2024, alongside KSK-2017. A resolver running the updated software therefore has the new anchor available from startup. We chose this approach because of our experience during preparations for the first rollover. As described in our 2018 post, software upgrades and moves between machines caused some resolvers to lose their learned trust-anchor state. We fixed that by updating the software to include the new anchor by default. Including KSK-2024 in the software likewise avoids depending on each resolver retaining a key it learned automatically. Even though we added KSK-2024 to our resolver’s built-in trust anchors in July 2024, users of 1.1.1.1 and Gateway DNS had no direct way to check whether the resolver answering their queries trusted the new key. This time, ask the resolver RFC 8509 defines the root key trust anchor sentinel, a way to ask a supporting resolver whether it trusts a particular root key. It uses ordinary DNS queries with specially named domains. Our readiness test website uses this protocol to check for KSK-2024. Two names ask opposite questions: is-ta-38696 asks whether the key is trusted, not-ta-38696 asks whether it is not trusted. Both names have valid DNSSEC-signed address records. A resolver that supports the sentinel first validates those records, then either returns the response directly or replaces the answer with SERVFAIL, depending on whether it trusts the key. For a validating resolver with sentinel support, the expected results are: Query KSK-2024 is trusted KSK-2024 is not trusted is-ta-38696 Returns a valid response Returns SERVFAIL not-ta-38696 Returns SERVFAIL Returns a valid response For a validating resolver with sentinel support, SERVFAIL for not-ta-38696 is expected when KSK-2024 is trusted. The resolver deliberately rejects the “not trusted” query. Sentinel labels such as root-key-sentinel-is-ta-38696 can be used under any DNSSEC-signed domain. We use dnstest.dev for our tests. You can run the two queries directly against 1.1.1.1: The website also checks that an ordinary signed name resolves, that a deliberately invalid DNSSEC name is rejected, and that the resolver responds to a sentinel query for the current root key. These controls help distinguish a meaningful result from a failed lookup or unsupported protocol. If sentinel support cannot be established, the result is inconclusive; it does not mean the new key is missing. The browser test checks the resolver your browser uses, which may be affected by Secure DNS or a VPN. The dig commands above explicitly query 1.1.1.1. Both provide a snapshot of the resolver path answering those requests. New key, same algorithm KSK-2017 and KSK-2024 both use RSA/SHA-256. The rollover replaces the key pair while keeping the same method for creating and verifying signatures. In our 2018 post, we wrote that a successful rollover would open the door to discussing an algorithm change. Eight years later, the root still uses RSA. Replacing the key remains useful. It limits how long a single private key stays in use and exercises the process of distributing new trust anchors, updating resolvers, and retiring old keys. As the first rollover showed, those steps can fail even when the cryptography itself works correctly. The Internet Assigned Numbers Authority (IANA) plans an idealized three-year rollover interval, balancing regular practice against the work and risk of changing the root key too frequently. The gap since 2018 has been longer. The Internet Corporation for Assigned Names and Numbers (ICANN) attributes the delay to pandemic disruption and upgrades to the hardware that protects the private signing keys. Changing algorithms means resolvers need both a new trust anchor and software that can verify the new signatures. Regular key rollovers let operators test the trust-anchor updates while keeping the algorithm the same. What comes after October The October 11 switch changes which KSK signs the root’s DNSKEY set. The rollover continues into 2027, when ICANN plans to revoke KSK-2017, remove it from the root zone, and delete its private key. Stopping a key from signing and removing trust in that key are separate steps. ICANN has also proposed a future root algorithm rollover to ECDSA P-256. ECDSA produces smaller keys and signatures than the RSA algorithm used today. That proposal is separate from this October’s key replacement, and ECDSA is not a post-quantum algorithm. 1.1.1.1 now validates ML-DSA-44 signatures, which are designed to remain secure against attacks using quantum computers. For DNSSEC’s whole chain of trust to become post-quantum secure, signed domains, their parent zones, and the root must adopt post-quantum cryptography too. At the root, that means introducing a post-quantum KSK and getting resolvers to trust it. That will require another root key rollover. The rollovers we perform now let operators test how they distribute replacement trust anchors, check that resolvers have accepted them, and retire the old keys. This October’s rollover keeps RSA, but exercises the trust-anchor updates we will need when the root moves to post-quantum cryptography. The sentinel gives us a way to check whether resolvers followed those updates. We encourage DNS providers and resolver developers to support RFC 8509 trust anchor sentinels. If your resolver does not support them, ask your provider or software vendor to add support. Users should be able to check whether their resolver trusts the next root key before a rollover. For now, the next deadline is October 11. You can check your resolver’s readiness at https://dnstest.dev/ksk-2024. If you operate a DNSSEC-validating resolver, confirm that it trusts KSK-2024, key tag 38696, and follow ICANN’s guidance and your software vendor’s instructions if the key is missing.",
+      "topics": [
+        "security-privacy",
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1005524",
+      "title": "Samsung’s Z Fold 8 is hundreds off ahead of iPhone Duo launch",
+      "url": "https://www.theverge.com/gadgets/1005524/samsung-z-fold-8-ultra-foldable-prime-day-deal-sale",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-10-06T18:00:00.000Z",
+      "content": "I don’t suppose there are many iPhone users who might be tempted by the Samsung Galaxy Z Fold 8 now that the iPhone Duo is both real and coming very soon. But if you’ll entertain a great deal, there are big discounts happening for both the passport-style Z Fold 8 and the slimmer, taller Z Fold 8 Ultra during October Prime Day. Originally $1,899.99, the Z Fold 8 with 256GB of storage is $1,549.99 at Amazon, or $100 more at Best Buy. This beats the previous best sale price by $100. The Z Fold 8 Ultra, which has better cameras, now starts at $1,699.99 (originally $2,099.99). It’s $150 lower than the previous best price before Prime Day. Samsung Galaxy Z Fold 8 The passport-style Z Fold 8 is the closest thing to an iPhone Duo on the Android side, at least in the US. It’s an awesome phone at its biggest discount to date. Read our review. Where to Buy: $1899.99 $1549.99 at Amazon $1899.99 $1649.99 at Best Buy Samsung Galaxy Z Fold 8 Ultra While not as head-turning of a foldable as Samsung’s Z Fold 8, the Ultra delivers better camera quality. It’s cheaper than ever right now. Read our review. Where to Buy: $2099.99 $1699.99 at Amazon $2099.99 $1849.99 at Best Buy The Z Fold 8 isn’t the first passport-style foldable, but it’s the most polished so far. Our reviewer Dominic Preston found its small size to be unexpectedly comfortable, and its 4:3 aspect ratio inner screen is great for reading and watching content. The Z Fold 8 Ultra is an iterative upgrade over the Z Fold 7. It has better, well, everything, from its displays and cameras to its chipset and almost-invisible crease. It’s definitely the specs powerhouse of the two foldables. Read our Z Fold 8 review and our Z Fold 8 Ultra review.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261006/p30#a261006p30",
+      "title": "Flai, which makes AI tools for car dealerships to manage phone calls, emails, and texts, raised a $27M Series A led by Base10 Partners (Sean O'Kane/TechCrunch)",
+      "url": "https://www.techmeme.com/261006/p30#a261006p30",
+      "author": null,
+      "publishedAt": "2026-10-06T18:05:00.000Z",
+      "content": "Sean O'Kane / TechCrunch: Flai, which makes AI tools for car dealerships to manage phone calls, emails, and texts, raised a $27M Series A led by Base10 Partners — When Flai was raising its seed round last year, it was just a team of three people pounding the pavement to get car dealerships to use the startup's software …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1005547",
+      "title": "The best deals under $25 during October Prime Day",
+      "url": "https://www.theverge.com/gadgets/1005547/the-best-deals-under-25-during-october-prime-day",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-10-06T18:15:00.000Z",
+      "content": "Make your life a little better with a physical copy of Everything Everywhere All At Once. | Image: A24 You could spend a lot on gadgets in our main October Prime Day roundup and get maybe one or two things. That’s all well and good, but you could spend as much (or less) and have a bunch of items arrive at your home instead. If you’re on a tight budget, or you just have an eye for affordable tech, we’ve made this roundup for you. It contains deals we’ve found during October Prime Day that are $25 or less. True, this post contains fewer items this year than in previous years. It seems like everything is more expensive, which stinks. Still, there are some goodies within that we think you’ll like. We’ll add to this post as the sale goes on with notable discounts. JLab Go Air Pop The JLab Go Air Pop are an affordable pair of wireless earbuds with eight hours of battery life (or 32 hours with the included charging case). The case also houses a built-in USB-A charging plug, so you’re never without a charging cable. Where to Buy: $29.38 $19.88 at Walmart Anker Nano 45W charger with display Anker’s latest single-port USB-C charger offers up to 45W of power, foldable prongs, and a front-facing “smart display” that lets you see the charge level, power flow, and other useful information at a glance. Where to Buy: $39.99 $23.99 at Amazon $39.99 $25.99 at Anker Everything Everywhere All At Once Enrich your life with one of the best films of recent years. The Best Picture award-winning movie is a mish-mash of genres that’s just so, so fun. Where to Buy: $15.99 $12.49 at Amazon (4K Blu-ray) TP-Link Tapo Matter-Certified Smart Plug Mini A smart plug adds functionality to an existing gadget rather than replacing it. Once the plug is connected to your Wi-Fi network and a gadget, you can turn it on and off using an app. TP-Link’s Tapo smart plug supports Matter, so you can add it to whichever smart home platform you use. Where to Buy: $19.99 $7.99 at Amazon LifeStraw personal water filter LifeStraw’s basic filter removes unwanted bacteria and microplastics as you drink, giving you a safe way to hydrate no matter where you are. Where to Buy: $17.95 $12.98 at Amazon $17.95 at Walmart $17.95 at Lifestraw Final Fantasy VII Remake Intergrade Whether you played the PS1 original or not, Intergrade is an awesome real-time RPG with a fantastic art style and a ton of heart. It’s the first in the remake trilogy. Where to Buy: $39.99 $24.99 at Amazon (Switch 2) $39.99 $19.99 at Amazon (PS5) Final Fantasy VII Rebirth (PlayStation 5) The middle game in Square Enix’s trilogy of remakes, Final Fantasy VII Rebirth continues the reimagining of the classic PS1 RPG with modern visuals, an expansive open world, new gameplay elements, and even better character development. Where to Buy: $69.99 $19.99 at Amazon $69.99 $45 at Walmart $69.99 $49.99 at Best Buy Hori puff pouch for Switch 2 A soft (read: not rugged) case for your Switch 2 console and extra accessories. It’s a great deal for such a cute bag. Where to Buy: $34.99 $10.5 at Amazon Noco Genius 1 car battery charger While not as handy as Noco’s portable car starters, this plug-in battery charger is great for restoring dead batteries. Where to Buy: $39.95 $23.77 at Amazon Dreamegg rechargeable noise machine A compact, clippable noise machine with USB-C charging is a nice thing to have, whether it’s primarily used for soothing a baby or yourself. Where to Buy: $32.99 $16.98 at Amazon Ring Indoor Cam (second-gen) The second-gen Ring Indoor Cam lets you keep an eye on your place in 1080p, with support for motion detection alerts, a live feed, and color night vision. Where to Buy: $49.99 $24.99 at Amazon $49.99 at Best Buy $49.99 $29.99 at Target Azul Azul is a game in which you arrange patterned tiles in order to create the most beautiful tapestry possible. Arranging tiles in a strategic sequence will help you build your score while limiting your opponents’ ability to grow theirs. Where to Buy: $39.99 $23.99 at Amazon $39.99 $31.99 at Target Splendor A strategy card game in which players compete to build Renaissance Europe’s most lucrative and prestigious jewelry business. Where to Buy: $39.99 $23.99 at Amazon $31.99 $23.99 at Target The Verge Monogram Mug Real Verge heads have the monogram mug. It’s a nice, low-profile mug that puts the intersection of tech and culture on your table. Where to Buy: $20 $14 at The Verge Hoto 3.6V Electric Screwdriver Kit Pro Hoto’s rechargeable screwdriver is ideal for small repairs. It offers three torque modes, a rotational speed of up to 220RPM, and a helpful circular LED to illuminate dark spaces. The durable case also holds all 25 steel bits and an extension bar for getting into hard-to-reach places. Where to Buy: $49.99 $28.49 at Amazon $49.99 $28.49 at Walmart Fallout: Season One The 4K Blu-ray version of Fallout’s first season is just a few cents over $25 at Amazon, if you’ll forgive that it’s not under $25 like the post promises. Where to Buy: $39.95 $25.58 at Amazon (4K Blu-ray)",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/sesame-launches-four-eerily-realistic-ai-voice-agents-ahead-of-smart-glasses",
+      "title": "Sesame Launches Four Eerily Realistic AI Voice Agents Ahead of Smart Glasses",
+      "url": "https://alphasignal.ai/news/sesame-launches-four-eerily-realistic-ai-voice-agents-ahead-of-smart-glasses",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-06T18:18:20.000Z",
+      "content": "Sesame opens its four voice agents to everyone on iOS and Android, with smarter models, app connectors, and glasses teased for 2027.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Oct/6/hn-49982139/",
+      "title": "Mistral Large 4",
+      "url": "https://simonwillison.net/2026/Oct/6/hn-49982139/",
+      "author": null,
+      "publishedAt": "2026-10-06T18:20:58.000Z",
+      "content": "My comment on Mistral Large 4 — Hacker News. wren6991: The benchmark is saturated. Frontier models are tested with an armadillo in fishnet tights jaywalking on Mars. OK well I couldn't resist this one: llm -m claude-opus-5.5 'Generate an SVG of an armadillo in fishnet tights jaywalking on Mars' llm -m gpt-6.1-sol 'Generate an SVG of an armadillo in fishnet tights jaywalking on Mars' llm -m gemini-3.8-flash 'Generate an SVG of an armadillo in fishnet tights jaywalking on Mars' llm -m mistral/mistral-large-4 'Generate an SVG of an armadillo in fishnet tights jaywalking on Mars' Default reasoning levels for each: https://tools.simonwillison.net/markdown-svg-renderer?url=ht...",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-slashes-api-tiers-from-five-to-three-cuts-top-threshold-in-half",
+      "title": "OpenAI Slashes API Tiers From Five to Three, Cuts Top Threshold in Half",
+      "url": "https://alphasignal.ai/news/openai-slashes-api-tiers-from-five-to-three-cuts-top-threshold-in-half",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-06T18:33:02.000Z",
+      "content": "OpenAI collapses its five paid API usage tiers into three, cutting the spend needed to reach the top rate-limit tier in half.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=996983",
+      "title": "The best October Prime Day tech deals we found",
+      "url": "https://www.theverge.com/gadgets/996983/best-october-prime-day-deal-sale-tech",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-10-06T18:35:04.000Z",
+      "content": "Amazon’s Prime Big Deal Days event has begun, and it lasts through 3AM ET on Thursday, October 8th. We’ve spun through the company’s huge list of deals to find products that Verge readers will like (and that we personally like, too). Prime subscribers can get in on plenty of headphone deals, plus some great products in the home entertainment space. Also, the discounts are spectacular on Pixel 11 phones, the A17 Pro-equipped iPad Mini, and the M5 MacBook Air. We’re changing up how we’re presenting the deals. Usually, these posts are huge and require a lot of scrolling, but we wanted to make it easier to find what you’re looking for. All of the deals are in a table that you can sort by category. We’ll add more deals as we find them, and we’ll also include links to various category-specific roundups we’ll be publishing throughout the sale. .duet--layout--rail { pointer-events: none; } .duet--layout--rail div { pointer-events: auto; } Lenovo Legion Go 2 handheld Costco members can get in on the biggest price drop yet on the Legion Go 2, one of the most powerful gaming handhelds around. Where to Buy: $1699 $999.99 at Costco M6 Mac Mini Apple’s latest Mac Mini is just as small as the last-gen model, but more powerful. The M6 chip is about 20 percent faster than the M4. Read our review. Where to Buy: $899 $779.99 at Amazon Apple Watch Series 12 The latest iteration of Apple’s Watch lineup is already discounted at Amazon. Where to Buy: $399 $349.99 at Amazon (42mm, GPS) $499 $489 at Amazon (42mm, 5G + GPS) iPhone Air The iPhone Air is Apple’s thinnest iPhone yet at 5.6mm, featuring a 6.5-inch ProMotion display, a 48MP fusion camera, and an 18MP front camera with Center Stage support. But its single rear camera and “meh” battery life mean it’s not for everyone. Where to Buy: $999.99 $839.99 at Best Buy (256GB) iPhone 16E The iPhone 16E is the spiritual successor to the iPhone SE, bringing flagship-level performance for less than the standard 16. We really wish it included MagSafe for $599, but those upgrading from older iPhones will probably be satisfied with what’s included. Where to Buy: $599.99 $489.99 at Best Buy (128GB) Belkin Charging Case Pro While it won’t charge your Switch 2 any faster than the cheaper Belkin option, the clever battery-meets-kickstand with a built-in display simply looks better. Where to Buy: $99.99 $80.74 at Amazon (sand) $99.99 $84.99 at Belkin (sand) Samsung Galaxy S26 Ultra Samsung recently increased the price of all its S26 phones, but you can get the best of the bunch, the S26 Ultra, at one of its best prices of the year. Read our review. Where to Buy: $1299.99 $979.99 at Amazon (256GB) $1299.99 $1099.99 at Best Buy (256GB) $1499.99 $1179.99 at Amazon (512GB) Bose QuietComfort Headphones Gen 2 If all you want is great sound, strong noise cancellation, and physical buttons to navigate, you can’t do better than the Bose QC headphones at this price. Read our review. Where to Buy: $359 $319 at Amazon $359 $319 at Best Buy $359 at Bose Anker Laptop Power Bank Anker’s 25,000mAh power bank sports two built-in USB-C cables (one of which is retractable), plus one USB-C and USB-A port. It tops out at 165W when charging two devices simultaneously, or 130W when charging three or four. Where to Buy: $119.99 $95.99 at Amazon $119.99 $95.99 at Best Buy $119.99 $95.99 at Anker Samsung Galaxy Z Fold 8 The passport-style Z Fold 8 is the closest thing to an iPhone Duo on the Android side, at least in the US. It’s an awesome phone at its biggest discount to date. Read our review. Where to Buy: $1899.99 $1549.99 at Amazon $1899.99 $1649.99 at Best Buy Soundcore Liberty 5 Pro If you like to yap on the phone, these earbuds yield the best call quality of any we’ve tried (it’s not even close), and they sound great for music, too. Read our review. Where to Buy: $169.99 $135.99 at Amazon $169.99 $135.99 at Anker Samsung Galaxy Z Fold 8 Ultra While not as head-turning of a foldable as Samsung’s Z Fold 8, the Ultra delivers better camera quality. It’s cheaper than ever right now. Read our review. Where to Buy: $2099.99 $1699.99 at Amazon $2099.99 $1849.99 at Best Buy Roku Ultra Roku’s latest Ultra streamer has built-in ethernet, a rechargeable voice remote with backlit buttons, and AirPlay 2 support. You can also control it with Amazon Alexa through a compatible smart speaker. The Roku Channel app lets you stream over 400 free live TV stations, plus exclusive movies like Weird: The Al Yankovic Story. Where to Buy: $149.99 $99.99 at Amazon $149.99 $99.99 at Best Buy $149.99 $99.99 at B&H Photo Roku Streaming Stick Plus Roku’s Streaming Stick Plus supports 4K playback and features a slim design, so it won’t block nearby ports. It plugs straight into your TV’s HDMI port and can be powered by your TV’s USB port, so you don’t need an additional plug. It also comes with Roku’s Voice Remote, giving you hands-free control. Where to Buy: $59.99 $34.99 at Amazon $59.99 $34.99 at Walmart $59.99 $34.99 at Best Buy WiiM Mini The WiiM Mini makes it easy to wirelessly stream music from your phone, a streaming service, or other local storage to existing speakers you already have. It supports AirPlay 2 and a variety of streaming services. Where to Buy: $125 $84.15 at Amazon $125 $84.15 at Crutchfield Sonos Sub 4 The Sub 4, while not cheap, is the best sub for your Sonos setup. It can sit upright, or you can lay it down to fit under a couch or entertainment system. Where to Buy: $899 $749 at Amazon $899 $749 at Sonos $899 $749 at Best Buy Sonos Beam (second-gen) The latest Sonos Beam is a compact soundbar that supports a virtual Dolby Atmos effect and can stream music from a plethora of services. Read our review. Where to Buy: $499 $359 at Amazon $499 $359 at Sonos $499 $299 at Sonos (refurbished) SteelSeries Arctis Nova Pro Omni The Omni delivers small, but welcome improvements over the 2022 Nova Pro, most notably a true platform-agnostic design that works with all consoles. Read our hands-on. Where to Buy: $399.99 $344.99 at Amazon (in blue) $399.99 $359.99 at Best Buy Samsung Galaxy S26 While the S26 isn’t particularly impressive in any way, it’s one of the most affordable (yet most powerful) flagship phones you can currently get. Read our review. Where to Buy: $899.99 $724.99 at Amazon (256GB) $899.99 $799.99 at Best Buy (256GB) $1099.99 $899.99 at Amazon (512GB) Google Pixel 11 The Pixel 11 recently debuted at $899, but it recently got a whopping $150 price cut for the 256GB version. It’s the cheapest way to try Google’s new software features. Read our review. Where to Buy: $899 $749 at Amazon $899 $799 at Google Store $899 $749 at Best Buy Google Pixel 11 Pro If you value better picture quality and trust that Google might improve on the HiLight LED feature, the Pixel 11 Pro is the one to get, and it got a big discount for Prime Day. Read our review. Where to Buy: $1099 $849 at Amazon $1099 $899 at Google $1099 $849 at Best Buy Google Pixel 11 Pro XL Google’s biggest Pixel 11 Pro got a sizeable price cut, too, making it $300 cheaper than the base iPhone 18 Pro Max model. Where to Buy: $1299 $999 at Amazon $1299 $1049 at Google $1299 $999 at Best Buy Bose QuietComfort Ultra headphones (second-gen) The best wireless headphones that Bose makes are discounted, and the company recently made them even better. Read our latest coverage. Where to Buy: $449 $369 at Amazon $449 $369 at Walmart $449 $369 at Best Buy WiiM Amp Enjoy a big discount on the WiiM Amp, which supports AirPlay 2, as well as several other wireless options. It also hosts a bunch of ports, allowing for passive stereo output, plus optical audio, HDMI ARC, and more. Read our coverage. Where to Buy: $329 $263.2 at Amazon Apple AirPods Max (second-gen) Apple’s new iteration of its priciest, most powerful headphones deliver minor updates for first-gen owners. But those who are jumping in will especially appreciate their big, bold sound. Read our review. Where to Buy: $549 $429 at Amazon $549 at Apple $549 $429 at Best Buy Roku Pro Series 4K TV Roku’s latest Pro 4K TV has a 120Hz refresh rate, four HDMI ports (two of which are 2.1), full-array local dimming for even brightness, and support for both Dolby Vision IQ and HDR 10 Plus for better color accuracy. It also works with Apple Home, Amazon Alexa, and Google Home, making it easy to integrate into most smart homes. Where to Buy: $899.99 $599 at Amazon (55-inch) $1199.99 $899.99 at Best Buy (65-inch) $1199.99 $799.99 at Amazon (65-inch) Kindle Scribe Colorsoft The Kindle Scribe Colorsoft is Amazon’s first note-taking e-reader with a color screen. It features an 11-inch display, a slimmer design, an improved interface, an updated stylus, and a new AI-powered search feature that can quickly summarize documents. Where to Buy: $629.99 $479.99 at Amazon (32GB) $629.99 $479.99 at Best Buy (32GB) $679.99 $519.99 at Amazon (64GB) Kindle Scribe 32GB The third-gen Kindle Scribe 32GB is even bigger than its 10.2-inch predecessor; it offers an 11-inch display with 300ppi resolution and the same great battery life that Kindles are known for. Where to Buy: $499.99 $379.99 at Amazon $499.99 $379.99 at Best Buy Kindle Colorsoft (16GB) Amazon’s last-gen Kindle Colorsoft features a color E Ink screen, offering similar performance to the new 2026 model. It also offers eight weeks of battery life and a 7-inch display that’s great for comics and graphic novels. Read our review. Where to Buy: $249.99 $189.99 at Amazon $249.99 $189.99 at Best Buy $249.99 at Target Kindle Paperwhite The last-gen Kindle Paperwhite received a nice discount for Prime Day. It has the same screen as the new model, so you aren’t missing out on much. Read our review. Where to Buy: $199.99 $149.99 at Amazon Beats Powerbeats Fit A new version of the Fit Pro wireless earbuds, which are upgraded with a redesigned wing tip that Beats says is 20 percent more flexible, a smaller case, and other advantages. Where to Buy: $199.99 $159.95 at Amazon $199.99 $159.99 at Best Buy $199.95 $159.95 at B&H Photo Beats Powerbeats Pro 2 The latest Powerbeats Pro are a no-brainer for athletes. They pack fantastic sound and thumping bass, along with active noise cancellation, IPX4 water resistance, and heart rate monitoring. Read our review. Where to Buy: $278.99 $179.95 at Amazon (with 2 years AppleCare+) $249 $179.95 at Walmart $249.99 $179.99 at Best Buy Beats Studio Pro Despite the familiar design, there were plenty of upgrades in the latest Studio Pro, including noise cancellation, transparency mode, and lossless USB-C audio. Here’s our review. Where to Buy: $349.99 $149.95 at Amazon $349.99 $119 at Walmart $349.99 $149.99 at Best Buy Apple 13-inch MacBook Air (M5) Powered by Apple’s new M5 chip, the latest MacBook Airs are more powerful than prior models and offer double the base storage (512GB). They also support faster wireless standards, specifically Wi-Fi 7 and Bluetooth 6. Read our review. Where to Buy: $1299 $1099 at Amazon $1299 $1099 at Best Buy Apple MacBook Air (15-inch, M5, 2026) For a slightly bigger MacBook Air, the 15-inch version is the one to get. It offers similar performance, but its battery is larger, and it has more speakers. Where to Buy: $1499 $1299 at Amazon $1499 $1299 at Best Buy iPad Mini (2024) The seventh-gen iPad Mini comes with Apple’s A17 Pro chip and support for Apple Intelligence. It’s also compatible with the Apple Pencil Pro and offers faster Wi-Fi and USB-C speeds. Read our review. Where to Buy: $599 $499 at Amazon (128GB, Wi-Fi) $599 $449 at Best Buy (128GB, Wi-Fi) $699 $599 at Amazon (256GB, Wi-Fi) Bose SoundLink Max Bose’s SoundLink Max improves on the smaller Flex with true stereo sound — and very powerful sound at that. It’s got a removable handle for easy transport, and there’s an aux input for playing audio when you want to listen at a higher quality than what Bluetooth can deliver. Read our review. Where to Buy: $399 $279 at Amazon $399 $279 at Best Buy $399 $279 at Bose Bose SoundLink Plus For something between Bose’s SoundLink Flex and the Max, the Plus strikes a good balance with booming bass, loud volume that doesn’t get distorted, and an easy-to-clean design. Read our review. Where to Buy: $269 $179 at Amazon $269 $179 at Best Buy $269 $179 at Bose Bose Soundlink Flex (second-gen) The second-gen SoundLink Flex builds on the original with more intuitive controls, including a new play / pause button. It also adds adjustable EQ and support for higher-quality audio via AAC and aptX, while retaining a rugged IP67-rated design and the ability to pair two speakers for stereo sound. Where to Buy: $159 $119 at Amazon $159 $119 at Walmart $159 $119 at Best Buy Belkin Charging Case for Nintendo Switch 2 The case features an integrated power bank and a small pocket to stow an AirTag (or other similarly sized Bluetooth tracker). Where to Buy: $69.99 $56.61 at Amazon (in black or sand) $69.99 $59.49 at Best Buy $69.99 $59.49 at Belkin Belkin MagSafe 15W 2-in-1 wireless charging dock A slick 2-in-1 charger that can charge your magnet-friendly iPhone or Pixel at a relatively speedy pace. Its extra charging pad supports AirPods, the Apple Watch, and other Qi-ready accessories. Where to Buy: $120 $59.99 at Amazon Asus ProArt 27-inch 1440p USB-C monitor An affordable color-accurate monitor that can easily connect to a MacBook or Windows machine that has USB-C video support. It’s a good price for a fully-featured 1440p monitor. Where to Buy: $299 $249 at Amazon Belkin Qi2.2 25W 2-in-1 foldable charging dock Slap a recent iPhone onto this charging pad and it’ll charge at fast 25W speeds. It can also charge AirPods, and includes a cord and wall adapter. Where to Buy: $60 $42.99 at Amazon $100 $75 at Amazon (w/ Apple Watch support) Xreal xbx A01 Plus Xreal’s most affordable set of USB-C display glasses yet. They lack three degrees of freedom, but are otherwise an awesome value for gaming or watching movies with your own huge, private screen. Read our hands-on. Where to Buy: $299.99 $254 at Amazon $299.99 at Best Buy $299.99 $254 at Xreal Nothing Ear 3A earbuds The Ear 3A are fantastic (and visually-striking) wireless earbuds for iPhone or Android selling at their best-ever price. Read our review. Where to Buy: $99 $79 at Amazon $99 $79 at Walmart $99 $79 at Nothing Eufy FamiLock S3 Max Get you a smart lock that has a digital peephole, and that can be unlocked with a wave. This is a nice discount off its original $400 price. Read our review. Where to Buy: $399.99 $279.99 at Amazon $399.99 $319.99 at Best Buy $399.99 $279.99 at Eufy Roborock Qrevo Curv 2 Flow Roborock’s first roller-mop robot vacuum, the Curv 2 Flow, features flagship specs at a midrange price, including excellent mopping, a retractable mop cover, 20,000Pa suction, AI-powered obstacle avoidance, and a compact design. Where to Buy: $999.99 $634.99 at Amazon $999.99 $699.99 at Best Buy $999.99 $699.99 at Roborock Roborock Saros 20 Roborock’s Saros 20 stands out for its ability to climb tall thresholds, avoid obstacles with impressive accuracy, and clean under low furniture thanks to its slim design. It also combines powerful 36,000Pa suction with great spinning mop pads, which is why we recommend it for homes with multiple floor types and tricky transitions between rooms. Where to Buy: $1599.99 $1179.99 at Amazon $1599.99 $1194.99 at Roborock Aqara Smart Lock U400 This innovative new smart lock uses the U1 ultra-wideband (UWB) chip in many iPhones and Apple Watches to automatically unlock your door as you approach. It will also work with the new Aliro standard and be compatible with Android phones for hands-free unlocking. Where to Buy: $269.99 $219.99 at Amazon $269.99 at Aqara Aqara Doorbell Camera G400 with chime The G400 was the first wired-only video doorbell to work with Apple’s HomeKit Secure Video feature. It has solid specs for the price, and includes a chime to sound indoors. Where to Buy: $99.99 $84.99 at Amazon Hatch Restore 3 The Restore 3 features more than 50 sleep sounds and 18 adjustable light colors, with access to hundreds more through the optional Hatch Plus subscription, which runs $4.99 per month or $49.99 per year. Where to Buy: $169.99 $135.99 at Amazon Kodak Charmera Keychain Digital Camera Described by our writer Andrew Liszewski as “terrible,” the Charmera is still worth getting if you want a keychain camera that’s a ton of fun to use. Read our coverage. Where to Buy: $34.99 $29.74 at Amazon LifeStraw personal water filter LifeStraw’s basic filter removes unwanted bacteria and microplastics as you drink, giving you a safe way to hydrate no matter where you are. Where to Buy: $17.95 $12.98 at Amazon $17.95 at Walmart $17.95 at Lifestraw TP-Link Tapo Matter-Certified Smart Plug Mini A smart plug adds functionality to an existing gadget rather than replacing it. Once the plug is connected to your Wi-Fi network and a gadget, you can turn it on and off using an app. TP-Link’s Tapo smart plug supports Matter, so you can add it to whichever smart home platform you use. Where to Buy: $19.99 $7.99 at Amazon TP-Link Tapo 2K Outdoor pan/tilt wired floodlight camera A semi-affordable (subscription-free) outdoor security camera that supplies both a floodlight and a pan/tilt design so that you can easily track visitors. Where to Buy: $99.99 $69.99 at Amazon Ugreen two-bay DH2300 NAS If you’re itching to locally host photos, files, videos, and more instead of paying for cloud storage, this entry-level NAS from Ugreen is discounted. You’ll just need to pack it with NAS-ready HDDs. Where to Buy: $269.99 $204.99 at Amazon Apple Watch SE 3 The Apple Watch SE 3 is a major glow-up, adding an always-on display, wrist-temperature sensor, a more powerful processor, and fast charging. Read our review. Where to Buy: $249 $199 at Amazon AirPods Pro 3 The AirPods Pro 3 have a new design that improves their fit, superior noise cancellation, better bass, and fairly accurate heart rate sensors. Read our review. Where to Buy: $249 $179 at Amazon $249 $179 at Walmart $249 $179 at Best Buy Anker UFO 3-in-1 Qi2 15W charging dock While not the fastest wireless charger at this price, Anker’s unique, UFO-styled 3-in-1 charging puck unfolds with pads for a phone, AirPods, and an Apple Watch. Where to Buy: $89.99 $59.99 at Amazon Anker Nano 100W universal travel adapter Anker’s powerful Nano international travel charger is great if you have a lot of USB-C gadgets to keep charged. While it lacks an AC plug, it supplies a screen that shows how much power you’re pushing to each port. Where to Buy: $79.99 $63.99 at Amazon Anker Nano 45W charger with display Anker’s latest single-port USB-C charger offers up to 45W of power, foldable prongs, and a front-facing “smart display” that lets you see the charge level, power flow, and other useful information at a glance. Where to Buy: $39.99 $23.99 at Amazon $39.99 $25.99 at Anker Philips Hue Festavia string lights These smart lights have beautiful colors, a nice selection of festive scenes, and an easy-to-use app. They are super reliable when paired with a Hue Bridge and also work over Bluetooth. They come in three lengths, work with all the major smart home platforms, and are Matter-compatible. Where to Buy: $259.99 $186.99 at Amazon (65-foot) $395.99 $305.97 at Amazon (130-foot) $259.99 at Philips Hue (65-foot) Philips Hue Essential four-pack of bulbs Philips Hue bulbs can be pricey, which is why the company’s four-pack of Essential A19 bulbs are a great buy. They’re cheaper, costing less now during Prime Day than usual. They have adjustable colors, brightness, and can be controlled with Bluetooth or with a Hue Bridge (sold separately). Where to Buy: $59.99 $44.97 at Amazon (four-pack) Bissell ProHeat 2X Revolution Pet Pro Plus carpet cleaner Bissell’s Little Green is handy, but doesn’t cut it for big jobs. If you have pets and a lot of carpet to clean, this is one of the most powerful upright carpet cleaners in its price range. Where to Buy: $279.99 $209.99 at Amazon $279.99 $237.99 at Best Buy $279.99 $209.99 at Bissell Govee Lightwall It’s a Lightwall. What more do you need to know? Fine, it’s a curtain of lights that’s 8.5 feet wide and 6.2 feet tall with 1,536 LEDs. You can program them to show anything you want. Where to Buy: $449.99 $369.99 at Amazon $449.99 $369.99 at Govee Govee outdoor lamp post light The outdoor lamp post light boasts full support for Google Assistant, Alexa, and Matter, so you can easily incorporate the lights into your smart home setup. Where to Buy: $259.99 $149.99 at Amazon (at checkout) $259.99 $159.99 at Govee Govee Table Lamp 2 The color-changing Govee Table Lamp 2 is an especially great pick for grads looking to make a new space feel like home. With adjustable warmth and brightness, plus lights that sync to music, it’s easy to set the mood for relaxing, focusing, or partying. It can also be controlled with voice assistants or a simple tap for added convenience. Where to Buy: $79.99 $53.99 at Amazon $79.99 $69.99 at Best Buy $79.99 $53.99 at Target Baseus AM52 power bank (with built-in cable) This 10,000mAh power bank is one of the best ones available at this price. It has a built-in USB-C cable, and it’s MagSafe-ready, supporting up to 25W wireless charging speed for recent iPhones. Read our coverage. Where to Buy: $79.99 $56.99 at Amazon The Blood of Dawnwalker A new third-person adventure game made by several developers responsible for The Witcher 3: Wild Hunt. Dawnwalker is similar in terms of its branching storyline and great side quests, but unique with how vampirism affects gameplay. Where to Buy: $69.99 $59.99 at Amazon Elgato Key Light A 2800-lumen light that can illuminate your desk area for video meetings, close work, and other uses. It includes a desk clamp to make it easy to fix to your working surface. Where to Buy: $179.99 $134.99 at Amazon Retroid Pocket 5 One of the most well-rounded Android gaming handhelds you can buy is the Retroid Pocket 5. It has a gorgeous 5.5-inch OLED screen, a PS Vita-like design, and enough power to play games up to the PS2 era thanks to its Snapdragon 865 processor. Where to Buy: $310 $219 at Amazon Google Pixel Watch 5 Google’s latest smartwatch that launched in August has already had a big price drop. While the fourth iteration is cheaper, this model has superior GPS and gesture controls. Read our review. Where to Buy: $399.99 $334.99 at Amazon $399.99 $350 at Google $399.99 $350 at Best Buy Nothing Headphone 1 Nothing’s first pair of over-ear headphones feature a retro transparent design and high-end features like active noise cancellation, spatial audio with head tracking, and plush ear pads. They also feature a paddle button that allows you to control music playback. Read our review. Where to Buy: $299 $189 at Amazon $299 $199 at Nothing Corsair Xeneon Edge screen The Xeneon Edge is a multipurpose touchscreen for your PC that gives you easy access to controls, various metrics, and widgets of your choosing through Corsair’s marketplace. Where to Buy: $250 $199 at Amazon Lenovo Slim 7i Aura Edition laptop $1,000 doesn’t usually get you all that much in a laptop these days, but it does during October Prime Day. This model has a 14-inch OLED screen, 16GB RAM, a 1TB SSD, and a capable Intel Core Ultra 7 CPU. Where to Buy: $1178 $999.99 at Amazon Toniebox 2 music player for kids A screen-free device for kids that plays songs or stories when you tap collectible Tonie figures on the top of it. It’s for entertainment, but can double as an alarm. Where to Buy: $209 $119.99 at Amazon Razer DeathAdder V3 Pro wireless mouse An incredible value if you want one of the most comfortable right-handed wireless mice currently available. This price applies to the black or white versions. Where to Buy: $150 $64.99 at Amazon Elgato Prompter A teleprompter is a luxury. They help you make it look effortless to look at your camera as you read from a script or a chat log. Elgato’s option includes a small screen and a mirror, the latter of which allows you to see what you need to look at without breaking eye contact with viewers. Where to Buy: $299.99 $219.99 at Amazon $299.99 $219.99 at B&H Photo Elgato Stream Deck MK. 2 The MK.2 version of the standard Stream Deck comes with 15 programmable buttons, a swappable faceplate, and a detachable stand. Where to Buy: $149.99 $109.99 at Amazon $149.99 $119.99 at Best Buy $149.99 $119.99 at B&H Photo Anker Laptop Wall Charger (140W) This wall adapter can deliver up to 140W when you’re using just one of its four ports. But even with to four gadgets, it can divvy up 140W so each gets a good amount of power. Where to Buy: $79.99 $59.99 at Amazon $79.99 $55.99 at Best Buy $79.99 $55.99 at eBay (via Best Buy) Samsung Q990F Soundbar System If you want to bring your home theater to the next level, the Samsung Q990F is the answer. The Q990 series has been at the top of best lists for years, and for good reason. It delivers an excellent Atmos experience with clear dialogue and booming bass to fully immerse you in whatever you’re watching. Where to Buy: $1997.99 $999.99 at Amazon $1999.99 $950.99 at Best Buy Sonos Era 300 The hourglass-shaped Sonos Era 300 is designed from the ground up for spatial audio and Dolby Atmos. It supports the same Bluetooth and line-in features as the Era 100. Where to Buy: $499 $399 at Amazon $499 $399 at Sonos $499 at Best Buy Acer Aspire Lite 14 Those in need of a capable, compact, and somewhat affordable Windows laptop should consider the Aspire Lite 14. It’s an ARM-based machine with 16GB of speedy RAM, half a terabyte of storage, and a slick design. Where to Buy: $749 $649 at Amazon Shokz OpenRun Pro 2 The OpenRun Pro 2 are Shokz’s best bone conduction headphones yet, with better sound and more bass than their predecessor. Our reviewer Victoria Song praised their cozy fit as well as their USB-C charging (goodbye, proprietary charger!). Read our review. Where to Buy: $179.99 $124.99 at Best Buy $179.95 $124.99 at REI Star Wars Zero Company This XCOM-inspired twist of a Star Wars tactics game is as good as it sounds. Snag the game on its first-ever discount. Where to Buy: $59.99 $47.99 at Amazon $59.99 $47.99 at Best Buy WiiM Sound Smart Speaker A smart speaker with a HomePod-like design that’s compatible with many more services. It even has a cool, little screen on the front. Where to Buy: $299 $239.2 at Amazon $299 $239.2 at WiiM Meta Quest 3S The Meta Quest 3S is a battery-powered standalone VR headset that has the same chipset as the pricier Quest 3, but with the same lenses and screen resolution as the Quest 2. In addition to being able to play many games from the Meta Store, it can also be connected to a gaming PC to play VR games like Half-Life Alyx. Read our review. Where to Buy: $349.99 $297.99 at Amazon (128GB) $349 $297.99 at Walmart (128GB) $349 $297.99 at Best Buy (128GB) Microsoft Surface Laptop (13.8-inch, 2026) A powerful tablet that can turn into a laptop when you purchase the keyboard+trackpad accessory. This model features an OLED screen, the Snapdragon X2 Elite, 16GB RAM and a 512GB SSD. Read our coverage. Where to Buy: $1599.99 $1999.99 at Best Buy (16GB RAM/512GB) $1599.99 $1299.99 at Microsoft Ozlo Sleepbuds 2 Launched in late July, the Sleepbuds 2 have a small design that’s ideal for side sleepers. They can supply audio with 14 hours of battery life, and even a private alarm that’ll wake you (and not others in bed). Where to Buy: $279 $237 at Best Buy Fujifilm Instax Mini Evo Fujifilm’s stylish Instax Mini Evo is the best instant camera overall. With it, you can choose which photos to print, while also boasting good image quality. Where to Buy: $234 $199.99 at Amazon $234.99 $199.99 at Best Buy $234 $199.99 at B&H Photo LG C6 OLED TV While a relatively minor upgrade over the C5 if you’re getting a 65-inch or smaller screen, the 77- and 83-inch C6 utilize an improved Tandem OLED screen with incredible brightness. Where to Buy: $2699 $1499.99 at Amazon (65-inch) $2699 $1499.99 at Best Buy (65-inch) Microsoft Surface Pro (13-inch, Snapdragon X2 Elite) The latest Surface Pro is speedy and elegant, with a 13-inch OLED touchscreen and the Snapdragon X2 Elite processor. It doesn’t include a keyboard, though. Where to Buy: $1799.99 $1299.99 at Best Buy (16GB RAM, 512GB SSD) Apple iPad Air M4 The latest iteration of Apple’s iPad Air features an M4 processor and better connectivity under the hood, resulting in great performance whether you’re gaming or doing AI-related tasks. Read our review. Where to Buy: $749 $649 at Amazon (128GB, Wi-Fi) $749 $649 at Best Buy (128GB, Wi-Fi) Fujifilm Instax Mini 13 The Fujifilm Instax Mini 13 is a fun gift for students starting a new chapter. It prints credit card-sized photos in seconds, and the new self-timer makes it easier to snap group photos with friends. Where to Buy: $93.95 $79.99 at Amazon $93.99 $79.99 at Best Buy $93.99 $79.99 at Target iPad (2025) Apple’s entry-level iPad is an excellent tablet for casual use, even if it is getting a little long in the tooth. Its high-res screen is great for watching video, and its A16 processor is still fast enough to handle light games and productivity apps. Read our review. Where to Buy: $449 $399 at Amazon (128GB, Wi-Fi) $449 $399 at Best Buy (128GB, Wi-Fi) Sony WH-1000XM5 The XM5 deliver better audio and noise cancellation than the XM4 (and even the refreshed XM4C that cost more), though they aren’t as compact. Read our review. Where to Buy: $399.99 $198 at Amazon $399.99 $198 at Best Buy Sony WH-1000XM6 headphones Sony made subtle improvements to every facet of the WH-1000XM6, from sound quality to ANC performance, while wisely bringing back the foldable, travel-friendly design last seen on the XM4. Where to Buy: $458 $378 at Amazon $458 $378 at Best Buy $458 $378 at B&H Photo Sony Bravia 6 OLED TV The first Sony OLED with four HDMI 2.1 ports. It competes with the LG C6 in terms of brightness and specs, and this is its first big price drop. Where to Buy: $1500 $1098 at Amazon (55-inch) $2000 $1298 at Amazon (65-inch) Sony WF-1000XM6 earbuds The Sony WF-1000XM6 earbuds have top-notch noise-canceling performance with excellent, balanced sound, if you can get a good seal in your ears. Read our review. Where to Buy: $329.99 $258 at Amazon $329.99 $259.99 at Best Buy $329.99 $258 at Sony Nothing Ear 3 Fantastic audio and great design are hallmarks of Nothing earbuds, but the Ear 3 push the boundaries with a case that can record audio. Read our review. Where to Buy: $149 $99 at Amazon $149 $99 at Best Buy $149 $99 at Nothing Pokémon Legends: Z-A Pokémon Legends: Z-A is the first game in the main series with a real-time battling system instead of the traditional turn-based formula. You’re still catching pokémon, leveling up, trading, and battling in the game’s Paris-inspired setting, but the more action-oriented battles and smooth performance (on the Nintendo Switch 2) are very welcome. Where to Buy: $69 $39.99 at Amazon (Switch 2) Pragmata Capcom’s latest IP is a thrilling third-person action shooter with a unique hacking mechanic that’s integral to combat. Where to Buy: $59.99 $39.99 at Amazon AirPods 4 Apple’s AirPods 4 are last-gen wireless earbuds, but they’re still great. The hard, plastic buds feature improved audio over the third-gen model, along with deep iOS integration and spatial audio with head tracking. Read our review. Where to Buy: $129 $79 at Walmart LG UltraGear Glossy OLED gaming monitor (27-inches) The 27GX704A-B is a glossy OLED monitor with a 240Hz refresh rate, G-Sync compatibility, HDMI 2.1 ports, a DisplayPort input, and other nice-to-have features. Where to Buy: $449 $349.99 at Amazon $449 $349.99 at LG Alienware 34-inch AW3426DW curved OLED gaming monitor This ultrawide (21:9) QHD OLED gaming monitor has a 280Hz refresh rate, a fast response time, and a slick design. It’s tough to get more OLED for your money than with this model when it’s discounted. Where to Buy: $799.99 $629.99 at Amazon Lexar 2TB NVMe SSD with heatsink It’s still tough to find a 2TB SSD for under $300, but Lexar’s is a rare example of one that meets this criteria. Great for PS5 or PC. Where to Buy: $319.99 $271.99 at Amazon",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261006/p31#a261006p31",
+      "title": "Meta, Walmart, Instinct, Shopify, Sierra, Stripe, and others publish the Personal Agent Protocol to standardize and secure how AI bots interact with businesses (Kate Rooney/CNBC)",
+      "url": "https://www.techmeme.com/261006/p31#a261006p31",
+      "author": null,
+      "publishedAt": "2026-10-06T18:55:00.000Z",
+      "content": "Kate Rooney / CNBC: Meta, Walmart, Instinct, Shopify, Sierra, Stripe, and others publish the Personal Agent Protocol to standardize and secure how AI bots interact with businesses — A month after Meta's launch of Muse, the personal agent that quickly turned into a viral sensation, a group of companies …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1004180",
+      "title": "The Sonos Beam 2 soundbar is $140 off",
+      "url": "https://www.theverge.com/gadgets/1004180/sonos-beam-2-soundbar-prime-day-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-10-06T19:00:00.000Z",
+      "content": "The Sonos Beam Gen 2 in white. | Photo by Chris Welch / The Verge The Sonos Beam Gen 2 soundbar is on sale for $359 at Amazon and Best Buy during October Prime Day, a healthy $140 discount from its usual price, and $10 lower than the previous Prime Day price. The biggest draw here may be obvious — its native connectivity to other Sonos products — though it’s also a really nice upgrade from your TV’s built-in speakers. Sonos Beam (Gen 2) The Beam isn’t as powerful as the Sonos Arc, nor can it match the flagship soundbar’s Dolby Atmos immersion bubble. But you still get room-filling surround sound for less money — and the Beam ties into the Sonos ecosystem for added convenience. Read our review. Where to Buy: $499 $359.99 at Amazon $499 $359 at Sonos $499 $359.99 at Best Buy Notably, the latest version of the Beam also adds Dolby Atmos support, albeit without upward-firing drivers to help complete the experience. Compared to the Beam Ultra that’s $699 that has those drivers, the Beam virtualizes the effect to give you a little taste of how Atmos sounds with a pricier system. It also supports eARC for shared power and volume controls with your television, so you won’t need multiple remotes. Read our Sonos Beam Gen 2 review. window.HYPE_DESK_CONFIG = { productImageUrl: \"https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/ChatGPT-Image-Sep-22-2026-10_07_15-AM.png\", productImageAlt: \"Roborock Qrevo Edge 3 Pro\", productTitle: \"Roborock Qrevo Edge 3 Pro\", shortDescription: \"A powerful, highly automated robot vacuum and mop designed to clean complex homes with minimal intervention.\", longDescription: \"The more complex your home is, the more you’ll appreciate a robot that can navigate, clean, and adapt with minimal help. The Roborock Qrevo Edge 3 Pro combines 36,000Pa HyperForce suction with a DuoDivide anti-tangle system for powerful vacuuming across carpets and hard floors. Its AdaptiLift Chassis 3.0 navigates thresholds and thick carpets, while its low-profile design reaches beneath furniture. Intelligent recognition of more than 300 objects helps it avoid everyday obstacles, and the multifunctional dock automatically washes the mops with hot water and handles routine maintenance for a more hands-free cleaning experience.\", purchaseUrl: \"https://fas.tl/3d79c0e3\", purchaseLinkText: \"SHOP AT AMAZON\" };",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-s-gemini-live-now-talks-blind-users-through-their-camera",
+      "title": "Google's Gemini Live Now Talks Blind Users Through Their Camera",
+      "url": "https://alphasignal.ai/news/google-s-gemini-live-now-talks-blind-users-through-their-camera",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-06T19:00:23.000Z",
+      "content": "Google turns Gemini Live into a conversational sighted guide for Android, trained with Aira interpreters across tens of thousands of hours of real-world scenes.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-opens-claude-opus-5-5-to-security-teams-who-found-134-500-bugs",
+      "title": "Anthropic Opens Claude Opus 5.5 to Security Teams Who Found 134,500 Bugs",
+      "url": "https://alphasignal.ai/news/anthropic-opens-claude-opus-5-5-to-security-teams-who-found-134-500-bugs",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-06T19:00:33.000Z",
+      "content": "Anthropic opens its most capable Claude models to vetted security teams, with new tiers for penetration testing and critical infrastructure red-teaming.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261006/p32#a261006p32",
+      "title": "Mistral says ML4 was trained using 3,800 Nvidia Grace Blackwell GPUs in its own data centers in Europe and much of its training data was multilingual (Mistral Blog)",
+      "url": "https://www.techmeme.com/261006/p32#a261006p32",
+      "author": null,
+      "publishedAt": "2026-10-06T19:00:52.000Z",
+      "content": "Mistral Blog: Mistral says ML4 was trained using 3,800 Nvidia Grace Blackwell GPUs in its own data centers in Europe and much of its training data was multilingual — Le Chonk — Today, we're launching a public preview of Mistral Large 4. Unofficially ML4, very officially: le Chonk.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1006103",
+      "title": "Alexa can’t control the aux input on Amazon Echo speakers anymore",
+      "url": "https://www.theverge.com/tech/1006103/amazon-alexa-aux-voice-commands",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-10-06T19:03:56.000Z",
+      "content": "If you've been using an older Amazon Echo device as a speaker through its 3.5mm aux input, Alexa voice commands to play or pause from line in may stop working. Ars Technica points to this Reddit poster claiming they received a message from Amazon about the change, which the company has confirmed. According to Amazon spokesperson Claudia Chavira Velez, \"We recently notified the very small number of customers using voice requests to play or pause audio from the aux audio input on select Echo devices that this functionality will no longer be supported.\" The message does not include any explanation for why the feature was removed. It also … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=123253",
+      "title": "How DOCA GPUNetIO Unifies GPU-Initiated Networking Across the NVIDIA Software Stack",
+      "url": "https://developer.nvidia.com/blog/doca-gpunetio-gda-ki-unified-gpu-networking/",
+      "author": "Elizabeth Goodman",
+      "publishedAt": "2026-10-06T19:07:02.000Z",
+      "content": "GPU applications increasingly need networking and data movement to behave like first-class GPU-controlled operations rather than host-driven services. When the... GPU applications increasingly need networking and data movement to behave like first-class GPU-controlled operations rather than host-driven services. When the CPU sits in the middle of every network transaction, it becomes a bottleneck on the critical path, adding latency and limiting how efficiently distributed applications can respond in real time. NVIDIA DOCA GPUNetIO… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Oct/6/datasette-parseable-opentelemetry/",
+      "title": "Using Parseable with Datasette for OpenTelemetry traces",
+      "url": "https://simonwillison.net/2026/Oct/6/datasette-parseable-opentelemetry/",
+      "author": null,
+      "publishedAt": "2026-10-06T19:07:31.000Z",
+      "content": "TIL: Using Parseable with Datasette for OpenTelemetry traces I saw Parseable in a Show HN today - it's a new observability platform with both an open source (AGPL) Rust implementation (a single ~180MB binary), an \"Enterprise\" version with extra features and a cloud hosted option. Since Datasette 1.0a41 added OpenTelemetry support (thanks, Alex Garcia), I decided to fire up Codex and have it figure out how to run Parseable and feed it traces from Datasette. Here's my (human-written) TIL showing the patterns that worked, and here's a screenshot of a Datasette trace displayed within the Parseable localhost web application: Tags: datasette, observability, alex-garcia, opentelemetry",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1006092",
+      "title": "Two mystery PlayStation products have leaked — one might be a PlayStation Portal OLED",
+      "url": "https://www.theverge.com/games/1006092/playstation-portal-oled-wi-fi-alliance-certifications",
+      "author": "Jay Peters",
+      "publishedAt": "2026-10-06T19:12:26.000Z",
+      "content": "Is Sony about to announce a new PlayStation Portal game streaming handheld? The Wi-Fi Alliance recently certified two unannounced PlayStation products of some kind, and the certification documents indicate that they could be updates to the PlayStation Portal, which might mean we're getting the OLED screen rumored earlier this year. The two devices, which are classified as \"Gaming Console/Peripherals,\" have model numbers of CFI-Y2000 and CFI-Y2105, which sound like a clear step up from the CFI-Y1001 model number for the currently available Portal. The docs say that the new models run on Android 15, which further indicates that they might be … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1005662",
+      "title": "Save on MacBooks, iPads and Apple Watches during October Prime Day",
+      "url": "https://www.theverge.com/gadgets/1005662/apple-ipad-macbook-airpod-prime-day-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-10-06T19:30:00.000Z",
+      "content": "The MacBook Air laptops are among the discounted Apple products. | Photo: Antonio G. Di Benedetto / The Verge Amazon’s October Big Deal Days are underway (lasting through tomorrow night), and we spotted a ton of Apple products and accessories in the sale, ranging from laptops and headphones to desktops and more. Some of the deals are only for Prime members, but other retailers are often matching or beating Amazon’s prices, and we’ll continue to update our coverage as we spot those deals. If your sights are set beyond what Apple makes, our main roundup has over 100 of the best deals from October Prime Day, and we’re keeping it updated throughout the sale. iPhone Air The iPhone Air is Apple’s thinnest iPhone yet at 5.6mm, featuring a 6.5-inch ProMotion display, a 48MP fusion camera, and an 18MP front camera with Center Stage support. But its single rear camera and “meh” battery life mean it’s not for everyone. Where to Buy: $999.99 $839.99 at Best Buy (256GB) iPhone 16E The iPhone 16E is the spiritual successor to the iPhone SE, bringing flagship-level performance for less than the standard 16. We really wish it included MagSafe for $599, but those upgrading from older iPhones will probably be satisfied with what’s included. Where to Buy: $599.99 $489.99 at Best Buy (128GB) Apple AirPods Max (second-gen) Apple’s second-generation AirPods Max have excellent sound and ANC performance, but are only a minor upgrade from the older pair. Read our review. Where to Buy: $549 $429 at Amazon $549 $429 at Best Buy Apple 13-inch MacBook Air (M5) Powered by Apple’s new M5 chip, the latest MacBook Airs are more powerful than prior models and offer double the base storage (512GB). They also support faster wireless standards, specifically Wi-Fi 7 and Bluetooth 6. Read our review. Where to Buy: $1299 $1099 at Amazon $1299 $1099 at Best Buy Apple MacBook Air (15-inch, M5, 2026) The 15-inch Apple MacBook Air features improved performance and better connectivity than the previous generation, and better speakers than the 13-inch model. Where to Buy: $1499 $1299 at Amazon $1499 $1299 at Best Buy iPad Mini (2024) The seventh-gen iPad Mini comes with Apple’s A17 Pro chip and support for Apple Intelligence. It’s also compatible with the Apple Pencil Pro and offers faster Wi-Fi and USB-C speeds. Read our review. Where to Buy: $599 $499 at Amazon (128GB, Wi-Fi) $699 $599 at Amazon (256GB, Wi-Fi) Belkin MagSafe 15W 2-in-1 wireless charging dock A slick 2-in-1 charger that can charge your magnet-friendly iPhone or Pixel at a relatively speedy pace. Its extra charging pad supports AirPods, the Apple Watch, and other Qi-ready accessories. Where to Buy: $120 $59.99 at Amazon Belkin Qi2.2 25W 2-in-1 foldable charging dock Slap a recent iPhone onto this charging pad and it’ll charge at fast 25W speeds. It can also charge AirPods, and includes a cord and wall adapter. Where to Buy: $60 $42.99 at Amazon $100 $75 at Amazon (w/ Apple Watch support) Apple Watch SE 3 The Apple Watch SE 3 is a major glow-up, adding an always-on display, wrist-temperature sensor, a more powerful processor, and fast charging. Read our review. Where to Buy: $249 $199 at Amazon AirPods Pro 3 The AirPods Pro 3 have a new design that improves their fit, superior noise cancellation, better bass, and fairly accurate heart rate sensors. Read our review. Where to Buy: $249 $179 at Amazon $249 $179 at Walmart $249 $179 at Best Buy Apple iPad Air M4 The M4-powered iPad Air excels at AI-powered tasks, and has great battery life, but the 60Hz screen feels underwhelming. Read our review. Where to Buy: $749 $649 at Amazon (128GB, Wi-Fi) $749 $649 at Best Buy (128GB, Wi-Fi) iPad (2025) Apple’s entry-level iPad is an excellent tablet for casual use, even if it is getting a little long in the tooth. Its high-res screen is great for watching video, and its A16 processor is still fast enough to handle light games and productivity apps. Read our review. Where to Buy: $449 $399 at Amazon (128GB, Wi-Fi) M6 Mac Mini Apple’s recently-updated Mac Mini packs surprising performance into a small package, and the discount helps offset a generational price bump. Read our review. Where to Buy: $899 $779.99 at Amazon Apple Watch Series 12 The newest generation of Apple Watch packs in a variety of upgrades, like faster charging and updated sensors, alongside new Siri and AI features. Read our review. Where to Buy: $399 $349.99 at Amazon (42mm, GPS) AirPods 4 Apple’s AirPods 4 are last-gen wireless earbuds, but they’re still great. The hard, plastic buds feature improved audio over the third-gen model, along with deep iOS integration and spatial audio with head tracking. Read our review. Where to Buy: $129 $79 at Walmart Apple iPhone 18 Pro Max TechWoven Case with MagSafe This Apple iPhone case features a woven fabric made from recycled polyester for a unique look and rugged protection. Where to Buy: $59 $50.99 at Best Buy Apple Pencil Pro The Apple Pencil Pro arrives with new features like Find My support so you can find the stylus when it gets lost, as well as new creative capabilities like squeeze gestures and the “Barrel Roll” gyroscope. Where to Buy: $129 $99 at Amazon $129 $99 at Walmart Apple Magic Keyboard Folio for iPad (A16) This keyboard for the iPad turns your tablet into a tiny laptop, and is detachable in case you’d rather just use the kickstand folio cover. Where to Buy: $249 $199 at Best Buy Speck Presidio2 Grip Case with MagSafe for Apple iPhone 18 Pro Max and iPhone 17 Pro Max This Speck case features specially designed grips that help prevent accidental drops, and is made from 50 percent recycled plastic. Where to Buy: $44.99 $35.99 at Best Buy Casetify Force Case for Apple iPhone 18 Pro and 17 Pro The Force Case from Casetify comes in a handful of trendy colors, and supports MagSafe accessories and chargers. Where to Buy: $55 $45 at Best Buy",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261006/p33#a261006p33",
+      "title": "Anthropic expands its Cyber Verification Program by integrating Project Glasswing and offering three tiers, all with access to its most capable Claude models (Anthropic)",
+      "url": "https://www.techmeme.com/261006/p33#a261006p33",
+      "author": null,
+      "publishedAt": "2026-10-06T19:35:03.000Z",
+      "content": "Anthropic: Anthropic expands its Cyber Verification Program by integrating Project Glasswing and offering three tiers, all with access to its most capable Claude models — We're launching a new, expanded version of our Cyber Verification Program (CVP), which makes advanced cyber capabilities …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261006/p34#a261006p34",
+      "title": "Mistral launches a preview of Mistral Large 4, or Le Chonk, a 1T model it claims tops any open model developed in the US or Europe; weights are due October 27 (Carl Franzen/VentureBeat)",
+      "url": "https://www.techmeme.com/261006/p34#a261006p34",
+      "author": null,
+      "publishedAt": "2026-10-06T19:45:01.000Z",
+      "content": "Carl Franzen / VentureBeat: Mistral launches a preview of Mistral Large 4, or Le Chonk, a 1T model it claims tops any open model developed in the US or Europe; weights are due October 27 — Mistral is launching a public preview of Mistral Large 4, a one-trillion-parameter multimodal model code-named “Le Chonk” …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261006/p35#a261006p35",
+      "title": "Sources: Waymo increased the size of its inaugural debt raise from $3B+ to $5B, as it grapples with rising AI costs and rapidly expands its robotaxi fleet (Bloomberg)",
+      "url": "https://www.techmeme.com/261006/p35#a261006p35",
+      "author": null,
+      "publishedAt": "2026-10-06T19:45:01.000Z",
+      "content": "Bloomberg: Sources: Waymo increased the size of its inaugural debt raise from $3B+ to $5B, as it grapples with rising AI costs and rapidly expands its robotaxi fleet — Waymo increased the size of its inaugural debt raise to $5 billion, tapping lenders to help fuel the robotaxi company's growth as it expands globally.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "deepmind-blog",
+      "externalId": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model/",
+      "title": "EmbeddingGemma 2: an open, lightweight multimodal embedding model",
+      "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model/",
+      "author": null,
+      "publishedAt": "2026-10-06T19:57:04.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1006020",
+      "title": "Amazon’s last-gen Kindle Paperwhite is 30 percent off",
+      "url": "https://www.theverge.com/gadgets/1006020/amazon-kindle-paperwhite-prime-day-deal-sale",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-10-06T20:00:00.000Z",
+      "content": "Calling something “last-gen” usually means it comes with big compromises compared to the latest version. That’s not as true for the last-gen Kindle Paperwhite as it is with some other tech. The newer version can open books 30 percent faster (not the same as page-turning speed), and its aluminum design is a millimeter thinner — but it costs $50 more. The 2024 edition has the same fantastic 300ppi screen, an auto-adjusting front light, and waterproof (IPX8) design. And the Signature Edition that’s discounted has no lockscreen ads, twice the storage (32GB) of the base model, plus wireless charging and an ambient light sensor, and it’s down to $169.99 (originally $249.99) at Amazon. Kindle Paperwhite Signature Edition The premium Kindle Paperwhite Signature Edition offers the same design and performance as the standard model but with more storage and support for wireless charging. Where to Buy: $249.99 $169.99 at Amazon $249.99 $169.99 at Best Buy $249.99 $169.99 at Target The standard Paperwhite is $149.99 (was $199.99) at Amazon, and while the lower price is nice, I’d suggest only opting for that model if you’re alright with what you’re giving up (which is a lot): it has half the storage, no wireless charging, and lockscreen ads.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nextjs-blog",
+      "externalId": "/blog/next-16-4",
+      "title": "Next.js 16.4",
+      "url": "https://nextjs.org/blog/next-16-4",
+      "author": null,
+      "publishedAt": "2026-10-06T20:00:00.000Z",
+      "content": "Next.js 16.4 introduces lazy compilation, smaller Turbopack output, React 19.3 features, Cache Components improvements, and new developer tooling.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261006/p36#a261006p36",
+      "title": "Anthropic says it found 5.5K+ verified vulnerabilities in April-October and Glasswing partners found 129K+ in April-July; 33K+ were critical or high severity (Reuters)",
+      "url": "https://www.techmeme.com/261006/p36#a261006p36",
+      "author": null,
+      "publishedAt": "2026-10-06T20:00:49.000Z",
+      "content": "Reuters: Anthropic says it found 5.5K+ verified vulnerabilities in April-October and Glasswing partners found 129K+ in April-July; 33K+ were critical or high severity — Anthropic is expanding a program that allows vetted cybersecurity professionals to test its most powerful AI models with fewer safeguards …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Oct/6/le-chonk/",
+      "title": "Introducing Mistral Large 4: Le chonk",
+      "url": "https://simonwillison.net/2026/Oct/6/le-chonk/",
+      "author": null,
+      "publishedAt": "2026-10-06T20:18:19.000Z",
+      "content": "Introducing Mistral Large 4: Le chonk Mistral are back in the game. Today they're releasing a preview of Mistral Large 4, a 1 trillion parameter, 49 billion active parameter model trained on their own cluster of 3,800 NVIDIA Grace Blackwell GPUs. The preview is available via their API. They promise to release the open weights model at the \"end of this month\". The model only supports two reasoning levels - \"none\" and \"high\" - via the Mistral API. Here are both pelicans - the \"high\" one looks better, though surprisingly it only used 2,717 output tokens compared to \"none\" which used 3,275: On Artificial Analysis it scores 38, just behind DeepSeek 4.1 Flash, which is a 552B model. It's a huge improvement on last December's Mistral Large 3, which drew this terrible pelican and scored 9 on AA. It's certainly not a Fable-class model, but it's great to see Mistral put out a model that's back to being maybe about 6 months behind the frontier. Via Hacker News Tags: ai, generative-ai, llms, mistral, pelican-riding-a-bicycle, llm-release",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261006/p37#a261006p37",
+      "title": "Capitolis, which develops tech for banks and financial institutions, raised $220M, including a $120M Series E at a $1.9B valuation, up from $1.6B in 2022 (Meir Orbach/CTech)",
+      "url": "https://www.techmeme.com/261006/p37#a261006p37",
+      "author": null,
+      "publishedAt": "2026-10-06T20:25:01.000Z",
+      "content": "Meir Orbach / CTech: Capitolis, which develops tech for banks and financial institutions, raised $220M, including a $120M Series E at a $1.9B valuation, up from $1.6B in 2022 — Citi, Bank of America, Nomura, Tradeweb, J.P. Morgan, UBS and other major financial institutions are backing the fintech as it expands …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1006082",
+      "title": "Google’s power-hungry data centers crave nuclear energy",
+      "url": "https://www.theverge.com/science/1006082/google-nuclear-energy-power-purchase-agreement-constellation",
+      "author": "Justine Calma",
+      "publishedAt": "2026-10-06T20:32:10.000Z",
+      "content": "Google announced a new agreement to update six nuclear power plant sites across the US as the tech giant seeks to generate more electricity for its power-hungry data centers. Google signed the 20-year deal with Constellation, the leading nuclear power plant operator in the US. The power purchase agreement is meant to guarantee the revenue needed to cover the cost of efficiency upgrades at existing nuclear plants and \"represents more than $4.3 billion of new investment by Constellation,\" according to the press release. Over the next five years, the companies expect new equipment at each site to collectively lead to 890 megawatts of addition … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.02331",
+      "title": "World Editing: Intervening on Executable Worlds at Increasing Depth",
+      "url": "https://huggingface.co/papers/2610.02331",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:50.475Z",
+      "content": "World Editing: Intervening on Executable Worlds at Increasing Depth",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.05750",
+      "title": "Beyond Semantic Similarity: Performance and Costs of Agentic Retrieval for Complex Tasks",
+      "url": "https://huggingface.co/papers/2610.05750",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:50.475Z",
+      "content": "Beyond Semantic Similarity: Performance and Costs of Agentic Retrieval for Complex Tasks",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2605.16817",
+      "title": "Adaptive Fused Prior Transfer for Controllable Generative Image Compression",
+      "url": "https://huggingface.co/papers/2605.16817",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:50.475Z",
+      "content": "Adaptive Fused Prior Transfer for Controllable Generative Image Compression",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.02076",
+      "title": "LLM-as-Jev: LLMs Are Already Jev-Style Decision Models -- When and How to Fine-Tune Them",
+      "url": "https://huggingface.co/papers/2610.02076",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:50.475Z",
+      "content": "LLM-as-Jev: LLMs Are Already Jev-Style Decision Models -- When and How to Fine-Tune Them",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.05898",
+      "title": "Collaborative Personalized Preference Alignment for LLMs under Data Deficiency",
+      "url": "https://huggingface.co/papers/2610.05898",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:50.475Z",
+      "content": "Collaborative Personalized Preference Alignment for LLMs under Data Deficiency",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.03252",
+      "title": "COSMI: COmpositional Synthesis of Multi-object Interactions",
+      "url": "https://huggingface.co/papers/2610.03252",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:50.475Z",
+      "content": "COSMI: COmpositional Synthesis of Multi-object Interactions",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.03978",
+      "title": "Learning Latent Protein Languages for Autoregressive Generation",
+      "url": "https://huggingface.co/papers/2610.03978",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:50.475Z",
+      "content": "Learning Latent Protein Languages for Autoregressive Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.06679",
+      "title": "Closing the Context Gap: Activation Alignment for Tabular In-Context Learning",
+      "url": "https://huggingface.co/papers/2610.06679",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:50.475Z",
+      "content": "Closing the Context Gap: Activation Alignment for Tabular In-Context Learning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.06804",
+      "title": "Sharpen Without Search: On-Policy Distillation of Sequence-Level Power Distribution",
+      "url": "https://huggingface.co/papers/2610.06804",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:50.475Z",
+      "content": "Sharpen Without Search: On-Policy Distillation of Sequence-Level Power Distribution",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.02586",
+      "title": "Labels Override Definitions in Jev-Style Typed Decision Models",
+      "url": "https://huggingface.co/papers/2610.02586",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:50.475Z",
+      "content": "Labels Override Definitions in Jev-Style Typed Decision Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+      "title": "EmbeddingGemma 2: an open, lightweight multimodal embedding model",
+      "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.154Z",
+      "content": "EmbeddingGemma 2: an open, lightweight multimodal embedding model deepmind.google2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://sierra.ai/blog/introducing-personal-agent-protocol",
+      "title": "Introducing Personal Agent Protocol",
+      "url": "https://sierra.ai/blog/introducing-personal-agent-protocol",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.156Z",
+      "content": "Introducing Personal Agent Protocol sierra.ai3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://haoailab.com/blogs/fasth3-rtx",
+      "title": "FastH3 on Consumer Hardware: RTX GPUs, DGX Spark and Macs, Plus FastH3 Trim",
+      "url": "https://haoailab.com/blogs/fasth3-rtx",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.156Z",
+      "content": "FastH3 on Consumer Hardware: RTX GPUs, DGX Spark and Macs, Plus FastH3 Trim haoailab.com10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thehackernews.com/2026/10/critical-atlassian-flaw-lets.html",
+      "title": "Critical Atlassian Flaw Lets Unauthenticated Attackers Read Known Files Across 8 Products",
+      "url": "https://thehackernews.com/2026/10/critical-atlassian-flaw-lets.html",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.157Z",
+      "content": "Critical Atlassian Flaw Lets Unauthenticated Attackers Read Known Files Across 8 Products thehackernews.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.anthropic.com/news/cyber-verification-program",
+      "title": "Expanding the Cyber Verification Program",
+      "url": "https://www.anthropic.com/news/cyber-verification-program",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.157Z",
+      "content": "Expanding the Cyber Verification Program anthropic.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here",
+      "title": "The results of the 2026 Developer Survey are here!",
+      "url": "https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.171Z",
+      "content": "The results of the 2026 Developer Survey are here! stackoverflow.blog5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.google/security/chromes-response-to-recent-cctld-registry-hijacks",
+      "title": "Chrome's Response to Recent ccTLD Registry Hijacks",
+      "url": "https://blog.google/security/chromes-response-to-recent-cctld-registry-hijacks",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.172Z",
+      "content": "Chrome's Response to Recent ccTLD Registry Hijacks blog.google2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/the-state-of-the-tech-industry-in",
+      "title": "The state of the tech industry in 2026",
+      "url": "https://newsletter.pragmaticengineer.com/p/the-state-of-the-tech-industry-in",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.174Z",
+      "content": "The state of the tech industry in 2026 newsletter.pragmaticengineer.com22 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wsj.com/tech/ai/ai-neocloud-lambda-is-raising-4-billion-in-final-round-before-planned-ipo-568182f9?st=4khCZp",
+      "title": "Sources: AI neocloud Lambda is raising up to $4B led by Blackstone and Coatue at a pre-money valuation of $14.5B in a final round before its planned IPO",
+      "url": "https://www.wsj.com/tech/ai/ai-neocloud-lambda-is-raising-4-billion-in-final-round-before-planned-ipo-568182f9?st=4khCZp",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.174Z",
+      "content": "Sources: AI neocloud Lambda is raising up to $4B led by Blackstone and Coatue at a pre-money valuation of $14.5B in a final round before its planned IPO wsj.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://projectzero.google/2026/10/emergency-patching.html",
+      "title": "How to fix a bug in a fix",
+      "url": "https://projectzero.google/2026/10/emergency-patching.html",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.175Z",
+      "content": "How to fix a bug in a fix projectzero.google9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://the-decoder.com/googles-new-image-model-nano-banana-2-1-generates-better-images-for-less-money",
+      "title": "Google's new image model Nano Banana 2.1 generates better images for less money",
+      "url": "https://the-decoder.com/googles-new-image-model-nano-banana-2-1-generates-better-images-for-less-money",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.180Z",
+      "content": "Google's new image model Nano Banana 2.1 generates better images for less money the-decoder.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://cagritemel.com/blog/agent-gate-measured-without-a-model.html",
+      "title": "I Measured an Agent Gate Without a Model in the Loop. Here Is What It Catches, and What It Costs.",
+      "url": "https://cagritemel.com/blog/agent-gate-measured-without-a-model.html",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.182Z",
+      "content": "I Measured an Agent Gate Without a Model in the Loop. Here Is What It Catches, and What It Costs. cagritemel.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://turbopuffer.com/v3",
+      "title": "Turbopuffer: turbopuffer v3 storage layout enables batched execution and 40% faster ORDER BY",
+      "url": "https://turbopuffer.com/v3",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.183Z",
+      "content": "Turbopuffer: turbopuffer v3 storage layout enables batched execution and 40% faster ORDER BY turbopuffer.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://airbnb.tech/infrastructure/beyond-synthetic-testing-capturing-and-replaying-real-database-workloads-at-airbnb",
+      "title": "Beyond synthetic testing: Capturing and replaying real database workloads at Airbnb",
+      "url": "https://airbnb.tech/infrastructure/beyond-synthetic-testing-capturing-and-replaying-real-database-workloads-at-airbnb",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.183Z",
+      "content": "Beyond synthetic testing: Capturing and replaying real database workloads at Airbnb airbnb.tech9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.microprocessorreport.com/p/trainium2-puts-aws-on-track-for-ai",
+      "title": "Trainium2 Puts AWS on Track for AI Model Training",
+      "url": "https://www.microprocessorreport.com/p/trainium2-puts-aws-on-track-for-ai",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.185Z",
+      "content": "Trainium2 Puts AWS on Track for AI Model Training microprocessorreport.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.janestreet.com/config-management-orchestrator-for-windows",
+      "title": "Building and testing a config management orchestrator for Windows",
+      "url": "https://blog.janestreet.com/config-management-orchestrator-for-windows",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.187Z",
+      "content": "Building and testing a config management orchestrator for Windows blog.janestreet.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.crowdstrike.com/en-us/blog/how-attackers-can-bypass-llm-safety-classifiers",
+      "title": "Request, Aggregate, Bypass: How Attackers Can Evade LLM Safety Classifiers",
+      "url": "https://www.crowdstrike.com/en-us/blog/how-attackers-can-bypass-llm-safety-classifiers",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.188Z",
+      "content": "Request, Aggregate, Bypass: How Attackers Can Evade LLM Safety Classifiers crowdstrike.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/tech-policy/2026/10/paramount-completes-111b-warner-merger-creating-skydance-behemoth",
+      "title": "Paramount completes $111B Warner merger, creating “Skydance” behemoth",
+      "url": "https://arstechnica.com/tech-policy/2026/10/paramount-completes-111b-warner-merger-creating-skydance-behemoth",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.190Z",
+      "content": "Paramount completes $111B Warner merger, creating “Skydance” behemoth arstechnica.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://linum.ai/field-notes/pyramid-jit",
+      "title": "Pyramid-JiT: Low-Res Drafts, High-Res Images",
+      "url": "https://linum.ai/field-notes/pyramid-jit",
+      "author": null,
+      "publishedAt": "2026-10-06T20:34:52.192Z",
+      "content": "Pyramid-JiT: Low-Res Drafts, High-Res Images linum.ai20 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
       ],
       "paywalled": false,
       "mediaType": "text"
