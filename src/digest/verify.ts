@@ -2,6 +2,7 @@ import * as cheerio from "cheerio";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { daysBefore, today } from "../day";
+import { truncate } from "../pipeline/adapters/clean";
 import { readPicks } from "../pipeline/picks";
 import { SEEN_DAYS } from "../pipeline/state";
 import { renderMarkdown } from "../site/markdown";
@@ -46,6 +47,36 @@ function publishedLinks(body: string): PublishedLink[] {
       return { url, bare: $(el).text().trim() === url };
     })
     .get();
+}
+
+// Threads and Hacker News are the two sections whose bullets are not entries.
+// Threads maps the day's stories onto each other and AGENTS.md asks those
+// bullets to name the entries they connect, not to link them: 26 of them
+// across 2026-09-25..29 carry no link on purpose. Hacker News is prose, so it
+// has no list items at all and is named here for the day one of them starts
+// with a list. Matched on the heading's own words, the way the Threads and
+// Hacker News section checks below are.
+const PROSE_SECTIONS = ["threads", "hacker news"];
+
+// AGENTS.md: "Every entry links inline to its best source url". The whole-body
+// check above only asks whether a digest links anything, so an entry that
+// leans on the one above it ("Bitget's hack (above) hit hot and warm wallets")
+// or follows up a previous day can ship with nothing for the reader to follow.
+// Reads the rendered body for the same reason publishedLinks does: an
+// autolinked bare url is a link on the page, so it counts as one here.
+function linklessEntries(body: string): string[] {
+  const $ = cheerio.load(renderMarkdown(body));
+  const entries: string[] = [];
+  $("li").each((_, el) => {
+    if ($(el).find("a[href]").length > 0) return;
+    // A digest renders flat, one h2 per section followed by its list, so the
+    // section an entry sits in is the h2 before the list it belongs to.
+    const list = $(el).parentsUntil("body").last();
+    const section = list.prevAll("h2").first().text().trim().toLowerCase();
+    if (PROSE_SECTIONS.some((name) => section.startsWith(name))) return;
+    entries.push($(el).text().replace(/\s+/g, " ").trim());
+  });
+  return entries;
 }
 
 // A hacker news story is ingested under the article's own url, so a digest
@@ -134,6 +165,11 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
   for (const url of new Set(published.filter((l) => l.bare).map((l) => l.url))) {
     warnings.push(
       `bare url as link text: ${url}; a link carries its own words ([title](url)), never the url itself`,
+    );
+  }
+  for (const entry of linklessEntries(body)) {
+    warnings.push(
+      `entry carries no link: "${truncate(entry, 70)}"; every entry links inline to its best source url (AGENTS.md)`,
     );
   }
   for (const url of links) {
