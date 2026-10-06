@@ -332,6 +332,58 @@ describe("verifyDigest", () => {
     expect(bare(`the source is \`${urls[0]}\`.`)).toEqual([]);
   });
 
+  it("warns on an entry that carries no link, naming the entry", () => {
+    writeItems(DAY, urls);
+    // 2026-09-09's shape: a follow-up to a previous day's story, written as an
+    // entry of its own and citing nothing.
+    writeDigest(
+      digestWith({
+        links: urls.slice(0, 3),
+      }).replace(
+        "## Hacker News",
+        "- The Navier-Stokes announcement named its cost: roughly 130 billion tokens and $40 million in compute.\n\n## Hacker News",
+      ),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(true);
+    expect(r.warnings.filter((w) => w.startsWith("entry carries no link"))).toEqual([
+      'entry carries no link: "The Navier-Stokes announcement named its cost: roughly 130 billion tok…"; every entry links inline to its best source url (AGENTS.md)',
+    ]);
+  });
+
+  it("asks it of an entry only, not of a Threads or Hacker News bullet", () => {
+    writeItems(DAY, urls);
+    writeDigest(
+      digestWith({
+        links: urls.slice(0, 3),
+        hn: "\n## Hacker News\n\n- the front page argued about rust, again.\n",
+        threads: "\n## Threads\n\n- story-0 and story-1 share a vendor.\n",
+      }).replace("## Hacker News", "- Bitget's hack (above) hit hot and warm wallets.\n\n## Hacker News"),
+    );
+    const r = verifyDigest(root, DAY);
+    // One warning for the entry, and the two link-free bullets below it stay
+    // quiet: Threads names the entries it connects, and the Hacker News
+    // section is a summary of stories the digest links above.
+    expect(r.warnings.filter((w) => w.startsWith("entry carries no link"))).toEqual([
+      expect.stringContaining("Bitget's hack (above) hit hot and warm wallets."),
+    ]);
+  });
+
+  it("counts a bare url the renderer autolinks as the entry's link", () => {
+    writeItems(DAY, urls);
+    // Pinning, not proving: it passes against the unfixed source too. The
+    // point is the instrument, the rendered html rather than the `](url)`
+    // form, so an entry whose source is written out still has a link.
+    writeDigest(
+      digestWith({ links: urls.slice(0, 3) }).replace(
+        "## Hacker News",
+        `- The filing is worth reading in full (${urls[4]}).\n\n## Hacker News`,
+      ),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.warnings.filter((w) => w.startsWith("entry carries no link"))).toEqual([]);
+  });
+
   it("remembers an earlier day's bare url when checking for a repeat", () => {
     writeItems(DAY, urls);
     writeDigest(
