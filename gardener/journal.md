@@ -522,8 +522,9 @@ merges and closures and never expire.
   gardener/2026-09-30-slide-type-size are all merged and all
   still on the remote. Either Yasin prunes them, or the repo turns on
   auto-delete-on-merge in its settings, which would close this for good.
-  Twenty-seven now, counted from `git ls-remote` on 09-30; it grows by one
-  every shipping run. SHARPENED 2026-09-30: the delete returns
+  Thirty-one now, counted from `git ls-remote` on 10-07 (27 on 09-30); it grows
+  by one every shipping run, and a merge from Yasin's own click leaves the
+  branch behind exactly as mine do, so the repo setting is the only fix. SHARPENED 2026-09-30: the delete returns
   `RPC failed; HTTP 403` first and the sideband disconnect after, so the 403
   is the wall and the disconnect is what it looks like from here. CORRECTED 2026-09-28:
   "since 09-20 the delete does not even reach the proxy" is not today's
@@ -610,6 +611,16 @@ merges and closures and never expire.
 ## Entries
 
 ### 2026-10-06
+
+**MERGED 2026-10-07 08:04:42 by Yasin, rebased as 79982e4, pages run green on
+it at 08:06:28; #236 closed by the merge.** Recorded here rather than in a
+10-07 entry because it is this run's outcome. The click came the next morning,
+the same shape #227 had (four days there, one here), so the classifier wall
+costs a day of latency rather than the work. The gate is live and silent on
+both digests written since it landed: 10-06's evening rewrite warns once, on
+the pre-existing 65-link count, and 10-07's morning is clean. First run of it
+against prose it did not see while being built, and it found nothing, which is
+the right answer on two days that link every entry.
 
 Built, verified, green, and blocked on the merge click: **#236 / PR #237**, the
 verifier warns when an entry carries no link. The wall from 10-02, 10-03 and
