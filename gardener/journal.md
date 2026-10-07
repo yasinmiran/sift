@@ -6,6 +6,17 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A wall relocates as readily as it lifts, so probe the surface the day is about
+  to lean on, not the one that blocked you last. 10-06's reading of this
+  environment was "the merge click is refused"; today that click went through on
+  the first attempt and the same `[Merge Without Review]` reason came back on
+  `git fetch` and `npm ci` instead, which costs a whole verification kit rather
+  than one button. Yesterday's probe would have reported the wall gone and been
+  right about the only surface it tested. So 10-06's cheap top-of-run probe
+  holds and gets one addition: probe for the run you are planning, the build and
+  the verifier included, before shaping the day around shipping code, rather
+  than only the merge at the end of it.
+
 - A gate's scope is a measurement, not a preference, and counting both sides of
   it is cheaper than defending the line later. Today's rule ("every entry links
   inline to its best source url") has an obvious reading that fires 30 times
@@ -609,6 +620,85 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-07
+
+**#237 merged at 08:04 and deployed**, so the entry-link gate is live: `pages`
+run 306 green on 79982e4 at 08:06:08. The wall moved again, a fifth distinct
+reading in six days (refused 10-02, 10-03, 10-04, allowed 10-05, refused 10-06,
+allowed 10-07) with nothing about the PR changed in between: checks success on
+7147d0f from yesterday, `mergeable_state: clean` re-read today, Copilot still
+absent on its quota. One click, first attempt. Yesterday's refusal to route
+around the refusal is the only reason there was a green PR sitting there to
+merge.
+
+What shipped is 10-06's build unchanged, one warning per entry with no
+`a[href]` in the rendered body, Threads and Hacker News excluded, 4 true
+positives across 3 of the 32 days. Its measurements are in #237's body and are
+not restated here.
+
+Then the wall reappeared somewhere new, and this is written as today's reading
+rather than a property: **the same `[Merge Without Review]` reason now fires on
+local commands instead of on the merge.** `git fetch origin main` refused,
+`npm ci` refused, and a compound read-only survey of `digests/` and `data/`
+refused, while `node --version` and a bare `ls digests` walked. `node_modules`
+is empty in this clone, so losing `npm ci` took the whole verification kit with
+it: no `npm test`, no typecheck, no `npm run site`, no verifier sweep across the
+archive. First entry in this journal with no local evidence of any kind behind
+it.
+
+That decided the rest of the day rather than being worked around. A change I
+cannot test is not a change step 7 lets me ship, so the slot stayed shut and
+merging #237 is this run's one ship. That is also the 10-05 precedent read
+strictly: two ships were allowed there "only because the first of them was four
+days old", and #237 was one day old.
+
+Observation pass, as far as it reached.
+
+Health, from the API alone: the 10 most recent workflow runs, zero failures,
+and `pages` green on both of today's pushes (the 04:46 digest as run 305, and
+run 306 above). Stated precisely, because the instrument is weaker than usual:
+this harness's github tooling ignores the `status` and `event` filters on the
+runs listing, so "zero failures" is the unfiltered ten read by hand, not a
+filtered sweep. No verifier numbers at all today, the first time that line has
+been missing; 10-06's 95 warnings across 32 days stands as the last reading.
+
+#112's signal, the one thing the API could still measure, and it is unchanged:
+10-06's `45 15` cron landed at 20:34:28 UTC (+4h49), today's `15 3` had not
+fired at 08:06 (+4h51 and counting), and the digest agent's own
+`workflow_dispatch` at 04:43:58 did the real work again, as it has every run
+since 08-27. Nothing new to decide on the issue.
+
+Not probed today, and named so a later run does not read silence as health:
+egress, the live site, and the three parked feed shapes all need the shell the
+classifier took. They stay where 10-06 left them. The journal itself went up
+as PR #240 rather than a direct commit to main for the same reason: the clone
+could not be synced, so the contract's direct push was not reachable from here.
+
+**A second gardener run is real, and this time it cost accuracy rather than
+nothing.** 10-05 recorded a journal-only commit landing on main mid-run and
+declined to call one observation a pattern. Today's is the second: commit
+7aa364a at 08:07:25, again authored `Yasin <wytm97@protonmail.com>`, again
+`gardener/journal.md` and nothing else. It folds this merge into the 10-06
+entry, reasoning that "it is this run's outcome", and it is wrong about the one
+fact neither run can see from the other. It reads the merge as **"MERGED
+2026-10-07 08:04:42 by Yasin"** and builds a backlog line on top of that: "a
+merge from Yasin's own click leaves the branch behind exactly as mine do."
+Nobody clicked. This run merged #237 through the API at 08:04, as the head of
+this entry says, and the branch is still on the remote because the rebase-merge
+call does not delete it, not because a human did the merge. Its text is left in
+place rather than rewritten, since that run's entry is its own record to keep,
+and corrected here instead: the stale-branch count of 31 stands, the cause it
+infers does not. Two runs filing against one day is now a pattern rather than
+an observation, and its first measurable cost is a false attribution in the
+audit trail Yasin reads after the fact.
+
+The thing for Yasin: nothing of the gardener's own is blocked on him, for the
+first time since 10-01. #110, #112 and #120 are all still pending his word,
+#120 since 09-03, thirty-four days. One new item, worth a sentence because it
+costs a run rather than a click: if `npm ci` keeps being refused in this
+environment, future runs are reduced to reading the API and merging what an
+earlier run built, since nothing can be verified locally.
 
 ### 2026-10-06
 
