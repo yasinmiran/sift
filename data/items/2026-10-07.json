@@ -1,7 +1,26 @@
 {
   "day": "2026-10-07",
-  "generatedAt": "2026-10-07T16:44:18.781Z",
+  "generatedAt": "2026-10-07T20:48:02.915Z",
   "items": [
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49974173",
+      "title": "Wood Tape (2004)",
+      "url": "http://gamesbyemail.com/WoodTape/Default.htm",
+      "author": "NaOH",
+      "publishedAt": "2026-10-06T04:25:41.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 117,
+      "comments": 13
+    },
     {
       "sourceSlug": "openai",
       "externalId": "https://openai.com/index/jump-trading",
@@ -851,6 +870,80 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/gpt-6-for-everyone",
+      "title": "GPT-6 and Intelligent UI for everyone",
+      "url": "https://openai.com/index/gpt-6-for-everyone",
+      "author": null,
+      "publishedAt": "2026-10-07T00:00:00.000Z",
+      "content": "GPT‑6 is rolling out globally in ChatGPT with Intelligent UI, delivering faster responses with visuals and interactive experiences you can explore and use directly.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/microfrontends-routing-is-now-free-for-firewall-mitigated-traffic",
+      "title": "Microfrontends Routing is now free for Firewall-mitigated traffic",
+      "url": "https://vercel.com/changelog/microfrontends-routing-is-now-free-for-firewall-mitigated-traffic",
+      "author": "Sage Abraham",
+      "publishedAt": "2026-10-07T00:00:00.000Z",
+      "content": "is now free for requests that the (WAF) denies, challenges, or rate limits. CDN Requests and Fast Data Transfer are for this traffic.Microfrontends RoutingWeb Application Firewallalready free The change applies automatically to every project using microfrontends. Learn how to in the Firewall documentation.set up WAF rules Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/openai-decisions-api-now-available-on-ai-gateway",
+      "title": "OpenAI Decisions API now available on AI Gateway",
+      "url": "https://vercel.com/changelog/openai-decisions-api-now-available-on-ai-gateway",
+      "author": "Jerilyn Zheng",
+      "publishedAt": "2026-10-07T00:00:00.000Z",
+      "content": "is now available on through an OpenAI-compatible endpoint. Use it with or any other decision model on AI Gateway.OpenAI's Decisions APIAI GatewayGPT-6 Luna Decisions/v1/decisions Decision models answer typed questions about a shared input and return probabilities, choices, and scores instead of generated text, which suits routing, triage, guardrails, and rubric scoring. You can ask predicate (yes/no), choice, and score questions against the same input in one request. is a separate model ID from , which stays a language model for text generation. Requests to the decisions ID go to the Decisions API and are billed at its rates.openai/gpt-6-luna-decisionsopenai/gpt-6-luna Call it with the , the , the existing at , or the .OpenAI SDKAI SDKHTTP APIAI CLI/v1/evaluate requires the OpenAI SDK 7.30.0 or later for JavaScript, or 3.26.0 or later for Python. In the AI SDK, requires 7.0.128 or later.decisions.createexperimental_decideai Point the OpenAI SDK at AI Gateway and call as you would against OpenAI. In the AI SDK, questions are keyed by name and the yes/no type is called . Each key in becomes a key in :decisions.createbooleanquestionsanswers Answers come back as an array in question order, each carrying the question's . Set to any decision model, including , , and .namemodelJevLiquid d1Laya See the for request limits and error formats, the for the AI SDK, or browse on AI Gateway.OpenAI-compatible Decisions API referencedecision documentationall decision models Read more Upgrading OpenAI SDK and AI SDK",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/claude-haiku-5-5-now-available-on-ai-gateway",
+      "title": "Claude Haiku 5.5 now available on AI Gateway",
+      "url": "https://vercel.com/changelog/claude-haiku-5-5-now-available-on-ai-gateway",
+      "author": "Rohan Taneja",
+      "publishedAt": "2026-10-07T00:00:00.000Z",
+      "content": "from is now available on .Claude Haiku 5.5AnthropicAI Gateway It is built for high-volume, cost-sensitive tasks such as summaries, context compaction, database queries, and classification, and works as a subagent alongside larger Claude models on coding work. It is also the fastest Claude model at standard speed, which suits live customer support and browser use. Test it as a direct upgrade wherever you use today.Claude Haiku 4.5 Haiku 5.5 is the first Haiku model with effort levels. It uses adaptive thinking and supports , , , , and effort, which set how much the model thinks and how many tokens it uses. You can turn thinking off at , , and . At and , thinking must stay on.lowmediumhighxhighmaxlowmediumhighxhighmax Haiku 5.5 supports on AI Gateway. It ships with biology and cybersecurity safeguards, so it may decline some requests in those areas.Zero Data Retention Call it through the , the , , and APIs, or a connected to AI Gateway. Set effort with in the AI SDK or in Chat Completions.AI SDKChat CompletionsResponsesAnthropic Messagescoding agentreasoningreasoning_effort Use as the model name:anthropic/claude-haiku-5.5 To use it in Claude Code, Codex, Cursor, and more, install the latest Vercel CLI and run setup: Then select in the agent. See the for details.anthropic/claude-haiku-5.5coding agents guide Try Claude Haiku 5.5 in the .model playground AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in , , , , and more.custom reportingZero Data Retention supportbudgets for API keysrouting rules AI Gateway reflects provider pricing with no markup and does not charge a platform fee on inference, including on (BYOK) requests.Bring Your Own Key You can view available on AI Gateway.all language models Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/glyph-cluster-is-now-available-in-stealth-for-free-on-ai-gateway",
+      "title": "Glyph Cluster is now available in stealth for free on AI Gateway",
+      "url": "https://vercel.com/changelog/glyph-cluster-is-now-available-in-stealth-for-free-on-ai-gateway",
+      "author": "Kevin Dawkins",
+      "publishedAt": "2026-10-07T00:00:00.000Z",
+      "content": "is now available on as a stealth model for teams on with purchased AI Gateway credits. It is free to use during the stealth period.Glyph ClusterAI GatewayPro and Enterprise plans Glyph Cluster is a reasoning model for coding and long-context analysis, and handles multi-step work such as planning, synthesis, quantitative reasoning, and comparing material across large inputs. For coding, Glyph Cluster can review code, explain failures, debug issues, propose changes, and reason through implementation options. It supports , so agents can connect its reasoning to your own tools and systems, and it streams responses as they are generated.function calling Glyph Cluster takes text input only, with no image or file input. Tool use is limited to function tools you define, and structured outputs are not supported. ZDR is not available for this model, and prompts and responses sent through it may be used for training and model improvement. Call it through the or the OpenAI-compatible and APIs, or select it in a connected to AI Gateway.AI SDKChat CompletionsResponsescoding agent Use as the model name:stealth/glyph-cluster To use it in Claude Code, Codex, Cursor, and more, install the latest Vercel CLI and run setup: Then select in the agent. See the for details.stealth/glyph-clustercoding agents guide Try Glyph Cluster in the .model playground AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in , , , , and more.custom reportingZero Data Retention supportbudgets for API keysrouting rules AI Gateway reflects provider pricing with no markup and does not charge a platform fee on inference, including on (BYOK) requests.Bring Your Own Key You can view available on AI Gateway.all language models Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261006/p47#a261006p47",
       "title": "New York-based Melius, which provides AI tools for generating ad campaigns, images, and videos, raised $25M, including a $20M Series A and a $5M seed (Marina Temkin/TechCrunch)",
@@ -1004,6 +1097,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49987858",
+      "title": "The art of defusing a second world war bomb",
+      "url": "https://www.theguardian.com/news/ng-interactive/2026/oct/06/it-could-knock-a-whole-street-down-the-art-of-defusing-a-second-world-war-bomb",
+      "author": "sandebert",
+      "publishedAt": "2026-10-07T03:43:14.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 82
     },
     {
       "sourceSlug": "arxiv-ai",
@@ -2431,6 +2543,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/radisson",
+      "title": "Radisson Hotel Group brings hotel discovery into ChatGPT",
+      "url": "https://openai.com/index/radisson",
+      "author": null,
+      "publishedAt": "2026-10-07T07:00:00.000Z",
+      "content": "Radisson partnered with Accenture to build a ChatGPT plugin using OpenAI technology, helping travelers find, compare, and book hotels while planning their trips.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261007/p7#a261007p7",
       "title": "Spotify expands audiobooks to 180+ markets, bringing its catalog to 750M+ users, and adds 350K+ titles in 120+ languages in partnership with 300+ publishers (Ivan Mehta/TechCrunch)",
@@ -3076,6 +3202,25 @@
       "comments": 194
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49991243",
+      "title": "God of War on PSP, recompiled to WebAssembly and running in the browser",
+      "url": "https://github.com/snuri00/psp-web-recomp",
+      "author": "sn001",
+      "publishedAt": "2026-10-07T11:27:27.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 128,
+      "comments": 67
+    },
+    {
       "sourceSlug": "alphasignal",
       "externalId": "https://alphasignal.ai/news/google-playground-turns-plain-text-into-playable-browser-games",
       "title": "Google Playground Turns Plain Text Into Playable Browser Games",
@@ -3176,6 +3321,25 @@
     },
     {
       "sourceSlug": "hacker-news",
+      "externalId": "49992057",
+      "title": "Show HN: A walkable 3D art history museum built from Wikipedia",
+      "url": "https://artmuseum.artfrompixels.com/",
+      "author": "jasontr",
+      "publishedAt": "2026-10-07T12:51:08.000Z",
+      "content": "From Li Cheng to Banksy",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 135,
+      "comments": 58
+    },
+    {
+      "sourceSlug": "hacker-news",
       "externalId": "49992125",
       "title": "House with 15m underground tunnels for sale for 300k",
       "url": "https://www.readingchronicle.co.uk/news/26612080.house-15m-underground-tunnels-sale-300k/",
@@ -3236,6 +3400,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49992257",
+      "title": "Anti-patterns in software blogging",
+      "url": "https://refactoringenglish.com/blog/anti-patterns-software-blogging/",
+      "author": "ilreb",
+      "publishedAt": "2026-10-07T13:08:26.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 159,
+      "comments": 92
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261007/p18#a261007p18",
       "title": "Meta, Google DeepMind, and Isomorphic Labs invest $300M and the US invests $500M+ in Zuckerberg-backed Biohub to build open biology datasets for AI training (Krystal Hu/Reuters)",
@@ -3248,6 +3431,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49992774",
+      "title": "Google Playground",
+      "url": "https://labs.google/playground",
+      "author": "trollied",
+      "publishedAt": "2026-10-07T13:42:03.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 113,
+      "comments": 94
     },
     {
       "sourceSlug": "krebs-on-security",
@@ -3504,6 +3706,20 @@
     },
     {
       "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/krea-brings-nano-banana-and-gpt-img-2-5-directly-into-photoshop",
+      "title": "Krea Brings Nano Banana and GPT IMG 2.5 Directly Into Photoshop",
+      "url": "https://alphasignal.ai/news/krea-brings-nano-banana-and-gpt-img-2-5-directly-into-photoshop",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-07T15:00:03.000Z",
+      "content": "Krea's new Photoshop plugin lets designers run Nano Banana, Krea 2, and GPT IMG 2.5 directly on their canvas without jumping to a browser.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
       "externalId": "https://alphasignal.ai/news/living-models-botanic-1-pinpoints-one-melon-mutation-out-of-2-494-candidates",
       "title": "Living Models' BOTANIC-1 Pinpoints One Melon Mutation out of 2,494 Candidates",
       "url": "https://alphasignal.ai/news/living-models-botanic-1-pinpoints-one-melon-mutation-out-of-2-494-candidates",
@@ -3515,6 +3731,44 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49993857",
+      "title": "Animated ASCII Art for Web Pages",
+      "url": "https://ascii.rest/",
+      "author": "turrini",
+      "publishedAt": "2026-10-07T15:05:37.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 212,
+      "comments": 54
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49993914",
+      "title": "Visa, Mastercard, Major Banks Facing New Litigation over 'Anticompetitive' Fees",
+      "url": "https://www.classaction.org/news/visa-mastercard-major-banks-facing-new-litigation-over-anticompetitive-merchant-credit-card-transaction-fees",
+      "author": "DeepLogin",
+      "publishedAt": "2026-10-07T15:09:59.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 390,
+      "comments": 242
     },
     {
       "sourceSlug": "techmeme",
@@ -3550,6 +3804,58 @@
       "comments": 109
     },
     {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/10/trade-group-crunches-numbers-on-trumps-impossible-push-for-100-us-made-tech/",
+      "title": "Trade group crunches numbers on Trump’s impossible push for 100% US-made tech",
+      "url": "https://arstechnica.com/tech-policy/2026/10/trade-group-crunches-numbers-on-trumps-impossible-push-for-100-us-made-tech/",
+      "author": "Ashley Belanger",
+      "publishedAt": "2026-10-07T15:19:05.000Z",
+      "content": "One of Donald Trump’s biggest goals as president is to increase domestic manufacturing and reshore supply chains so that the most in-demand technologies in the world can be 100 percent made in the United States. By executive order last December, he launched his “Genesis Mission,” an ambitious plan seeking to leverage US dominance in AI to maintain or seize an edge in advanced robotics, biotechnology, semiconductors, and nuclear technologies. According to Trump, that plan works best with self-sustaining supply chains. Not even neighboring countries or longtime allies should be relied upon to manufacture a single component of any US product in his ideal world. The Consumer Technology Association (CTA) has long warned that Trump’s reshoring goals are not grounded in reality, but only recently has America’s largest technology trade association attempted to estimate what it would cost businesses and consumers to follow through on Trump’s plan. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49994122",
+      "title": "Across the Globe, People Increasingly Say Social Media Is Harming Democracy",
+      "url": "https://www.pewresearch.org/global/2026/10/01/across-the-globe-people-increasingly-say-social-media-is-harming-democracy/",
+      "author": "karakoram",
+      "publishedAt": "2026-10-07T15:23:29.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 119,
+      "comments": 98
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49994145",
+      "title": "Navier–Stokes Lost in Translation",
+      "url": "https://arxiv.org/abs/2610.08144",
+      "author": "nill0",
+      "publishedAt": "2026-10-07T15:24:38.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 170,
+      "comments": 129
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261007/p25#a261007p25",
       "title": "Healthleap, which makes AI screening software to identify patients at risk of undiagnosed illnesses, raised $38M across a $30M Series A and an $8M seed (Ram Iyer/TechCrunch)",
@@ -3578,6 +3884,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "49994443",
+      "title": "Show HN: Bigwords.page – Turn any screen into a sign. The URL is the app",
+      "url": "https://bigwords.page/",
+      "author": "SpeakingOfBrad",
+      "publishedAt": "2026-10-07T15:44:21.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 213,
+      "comments": 76
+    },
+    {
       "sourceSlug": "nvidia-blog",
       "externalId": "https://developer.nvidia.com/blog/?p=123156",
       "title": "Scaling Decision Optimization to 100 Million Variables and Beyond with mPDLP in NVIDIA cuOpt",
@@ -3588,6 +3913,20 @@
       "topics": [
         "devtools-infra",
         "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/cars/2026/10/jaguar-makes-its-controversial-all-ev-return-with-the-type-01/",
+      "title": "Jaguar Type 01 debuts; now, no one remembers the electric Ferrari",
+      "url": "https://arstechnica.com/cars/2026/10/jaguar-makes-its-controversial-all-ev-return-with-the-type-01/",
+      "author": "Jonathan M. Gitlin",
+      "publishedAt": "2026-10-07T15:48:01.000Z",
+      "content": "Does it feel like people are perhaps a little grumpier or more on edge these days? It’s not like it’s without reason. There are wars. The climate is going haywire. Someone just died of plague. Scientific research is under attack. Machines keep stealing humans’ work. The media is a mess. And just when it all starts to feel a little overwhelming, Jaguar goes and unveils a new car. The Type 01 is the first model to arrive from Jaguar’s rebirth. The British carmaker was an early entrant to the modern EV market with the 2017 I-Pace, which was fun to drive even if it was too small inside and perhaps completely unreliable. An all-electric sedan was supposed to be next, but a year from the showroom, it was abruptly canceled, leaving the automaker with nothing to sell as old models like the F-Pace ceased production. Instead, Jaguar got to work on an all-new electric vehicle platform called JEA, which will underpin an all-electric product line. An elevated ownership experience and a starting price of about double the brand’s previous $60,000 entry point was the idea, Jaguar boss Rawdon Glover told me in 2024. Then last year the brand started teasing its relaunch, and everyone got upset. Things got even worse when the first images of the slab-sided and pastel-shaded Type 00 coupe concept leaked. Read full article Comments",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -3664,6 +4003,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/llamaindex-s-opendocrouter-puts-10-document-parsers-behind-one-api",
+      "title": "LlamaIndex's OpenDocRouter Puts 10 Document Parsers Behind One API",
+      "url": "https://alphasignal.ai/news/llamaindex-s-opendocrouter-puts-10-document-parsers-behind-one-api",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-07T16:01:35.000Z",
+      "content": "LlamaIndex unifies ten frontier and open-source OCR models behind one API, letting developers swap document parsers in a single line.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261007/p26#a261007p26",
       "title": "Game studio Gardens Interactive raised a $35M+ Series B led by Lightspeed at a pre-money valuation of $190M, taking its total funding to $71M (Cecilia D'Anastasio/Bloomberg)",
@@ -3678,6 +4031,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/perplexity-s-pplx-embed-v2-late-searches-190m-docs-without-ocr-or-chunking",
+      "title": "Perplexity's pplx-embed-v2-late Searches 190M Docs Without OCR or Chunking",
+      "url": "https://alphasignal.ai/news/perplexity-s-pplx-embed-v2-late-searches-190m-docs-without-ocr-or-chunking",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-07T16:09:58.000Z",
+      "content": "Perplexity's new late-interaction embedding family keeps 128-dim vectors per token, searches rendered pages without OCR, and shares one space across sizes.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=1006448",
       "title": "A free mod for Titanfall 2 makes it one of the best VR games ever",
@@ -3687,6 +4054,20 @@
       "content": "When you’re riding a Titan in VR, you can look around the cockpit. | Screenshot: Sean Hollister / The Verge Titanfall has a special place in my heart. I've never felt such a rush in gaming since - leaping into the air with a jump pack, running on walls, summoning a giant mechanized battle suit that falls like a meteor from the sky, then letting one of its giant hands stuff me into the cockpit for a supersized skirmish. How could that possibly work in virtual reality? It sounds like a formula for pain, nausea, distress. But no: Titanfall 2 VR is one of the top five VR games I've ever played - despite being a free mod, released by a solo developer, who's only spent a single month working on it so far. Now I'm running on walls, blasting bad guys fr … Read the full story at The Verge.",
       "topics": [
         "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/unsloth-turns-a-0-8b-model-into-a-fast-decision-engine-at-78-accuracy",
+      "title": "Unsloth Turns a 0.8B Model Into a Fast Decision Engine at 78% Accuracy",
+      "url": "https://alphasignal.ai/news/unsloth-turns-a-0-8b-model-into-a-fast-decision-engine-at-78-accuracy",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-07T16:21:14.000Z",
+      "content": "Unsloth adds a Decision model trainer that turns small LLMs into calibrated classifiers, taking Qwen3.5-0.8B from 20.7% to 74.3% accuracy on 4GB VRAM.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -4266,6 +4647,987 @@
       "author": null,
       "publishedAt": "2026-10-07T16:44:10.414Z",
       "content": "Scaling Decision Optimization to 100 Million Variables and Beyond with mPDLP in NVIDIA cuOpt developer.nvidia.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/LiquidAI/open-d1",
+      "title": "Multimodal open d1 decision models for the edge",
+      "url": "https://huggingface.co/blog/LiquidAI/open-d1",
+      "author": null,
+      "publishedAt": "2026-10-07T16:54:33.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/looped-transformers-three-different-machines",
+      "title": "Looped transformers: three different machines",
+      "url": "https://alphasignal.ai/news/looped-transformers-three-different-machines",
+      "author": "Adham Khaled",
+      "publishedAt": "2026-10-07T16:59:00.000Z",
+      "content": "Classify depth, time, or flow. Nanbeige is the downloadable LLM. RLT lost at 140M. Looped Flows is a 5-7M puzzle net",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/liquid-ai-opens-d1-decision-models-that-classify-without-generating-a-single",
+      "title": "Liquid AI Opens d1 Decision Models That Classify Without Generating a Single Token",
+      "url": "https://alphasignal.ai/news/liquid-ai-opens-d1-decision-models-that-classify-without-generating-a-single",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-07T17:01:12.000Z",
+      "content": "Liquid AI drops two open-weight decision models that classify, route, and score text, images, and audio in a single forward pass with no generated tokens.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "pragmatic-engineer",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/building-resilient-systems-with-sam",
+      "title": "Building resilient systems with Sam Newman",
+      "url": "https://newsletter.pragmaticengineer.com/p/building-resilient-systems-with-sam",
+      "author": "Gergely Orosz",
+      "publishedAt": "2026-10-07T17:19:58.000Z",
+      "content": "Stream the latest episode Listen and watch now on YouTube, Apple, and Spotify. See the episode transcript at the top of this page, and timestamps for the episode at the bottom. Brought to You by • turbopuffer – vector and full-text search built on object storage: fast, 10x cheaper, and extremely scalable. Under the hood, the team are rewriting the tpuf storage engine. Follow along until it hits production at turbopuffer.com/v3 • Get a free introduction to property-based testing: through a live, online webinar hosted by Hillel Wayne (a recent podcast guest!), author of Logic for Programmers and Developer Educator at Antithesis. What if you only needed a single test to harden your system? RSVP here. • Entire – Git hosting, rebuilt for the agentic era. Entire hosts your code in-region, and is up to 89x faster than any other competitor. Mirror from GitHub with a single click – I’ve already done so. In this episode Sam Newman wrote one of the most-read books about microservices (“Building Microservices”), but he calls them an architecture of “last resort.” In this episode of the Pragmatic Engineer podcast, Sam explains his thinking on this, and he’s certainly well placed to do so; he was in the room when the term “microservices” was coined. We discuss what teams get wrong when adopting microservices, why independent deployment matters, and how microservices can help teams work more autonomously. We also peek into his new book, ‘Building Resilient Distributed Systems’, and Sam explains his three rules for distributed systems, why observability is essential, and also why it’s vital to take business context into account when deciding whether to fail open or fail closed on errors. Sam’s new book, Building Resilient Distributed Systems is out in print from October 7 We also explore how AI is changing software development, from specs versus code as a source of truth to cognitive debt and cognitive surrender. Sam shares how modular architecture can help teams experiment with AI while maintaining understanding of the systems being built. Takeaways from the conversation with Sam 1. In the room when “microservices” was coined. In the early years of the 2010s, James Lewis – Sam’s colleague at Thoughtworks – kept running into companies building service-oriented architectures where each service could be replaced quickly. At an architecture symposium in the Lake District, England, James pitched a name for this trend: “micro apps,” and in a room of about 10 people (including Sam), someone else suggested “microservices.” Lewis and Martin Fowler then wrote the first article on the topic in March 2014, ‘Microservices: a definition of this new architectural term’, and Sam published the book Building Microservices the following year. 2. Sam spent 18 months teaching Googlers how to write good automated tests. In 2007, Sam was embedded at Yahoo and Google as a ThoughtWorks consultant, alongside people from Pivotal Labs. Their job was to teach engineers how to write automated tests, and code that’s testable. He recalls that some Google devs did not believe it was possible to write automated functional tests for websites, until Sam and his colleagues showed them how Selenium works! 3. Sam spent 10+ years at a large company, three years at startups, and has been independent for more than a decade. After 13 years at Thoughtworks, he quit to avoid becoming “institutionalized.” He recalls thinking he could hang around at Thoughtworks and grow bitter. “So I’ll just go now.” He then worked at three different startups before going independent, which he’s now done for 15 years. The biggest challenge of being your own boss? He says: “The problem of working for yourself is that the boss is frequently an a*****e. So, current Sam frequently is cursing past Sam for the commitments he made!” 4. So, what’s a “microservice?” Sam gives two definitions: a clear one, and a softer one: Independently deployable service. The “clear” definition: as long as, upon a change to a system, it can be independently deployed – without any other services needing to be deployed –, you can call it a microservice. Clear boundaries around the business domain. The “softer” definition: services split by business function (not by technical layer) can also be called microservices. 5. Three rules of distributed systems: Sam sometimes struggled to recall the eight fallacies of distributed computing, and so he boiled them down to the three that cause the most problems: 1. Information takes time to travel. You cannot send information instantaneously from point A to point B. This is basically the “speed of light” constraint. 2. Sometimes, the thing you want to talk to isn’t there. That is, resources can and do go offline. 3. Resources are not infinite; you will eventually run out of things like CPU, memory, storage, and networking bandwidth. In Sam’s experience, most distributed systems outages are caused by #3; resource pools running out. 6. Dealing with idempotency: keys or fingerprints? Idempotency is performing the same operation multiple times and it having the same effect as if done once only. For example, if you repeatedly hit the “down” button for an elevator, nothing more happens than what happened upon that first press: multiple button smashes don’t bring more elevators your way. Payments are a classic example where idempotency is needed: when you retry or refresh a payments page, you should not be charged twice. There are two common ways to deal with idempotency: Idempotency keys: a client sends a unique identifier (usually a UUID) that is the idempotency key. The server makes sure operations with the same idempotency key are executed only once. It’s clean to build but hard to retrofit, which involves changing both the client and server. Fingerprints: the client sends nothing, but the server creates a “fingerprint” of the request by hashing relevant fields. It’s easy to retrofit later (only need to change the server), however, legitimate requests can be rejected as duplicates, and duplicate requests could still happen. Sam describes a Danish payment system he worked on that rejected purchases of the same value within a 5-minute period while it did the fingerprinting. 7. Four concepts of resiliency: Sam frequently references the four outcomes for military systems, explained by David Woods: Robustness: systems continue to function as intended, for example, when Kubernetes replaces a failing pod. A downside of robustness is that it can add complexity, and more complex systems have more ways to fail. Rebound: how quickly the system recovers when something goes wrong. Extensibility: dealing with surprises and being able to stretch the system’s support to deal with new needs Adaptability: the system changing to support new functions. Resilient systems are adapted, even between incidents. 8. What if code is a side effect of collaboration? When Sam was at Thoughtworks, some clients refused to do pair programming as a practice because they could only see one developer typing and the other doing nothing, which is a waste. Martin Fowler’s dictum that “programming is not typing” helped Sam to explain to clients that typing out code is an output, but not an outcome. Sam conceives programming as building a system collectively, and code is one of the mechanisms delivering the system. Now that with LLMs we no longer spend most time typing out code, we’ll discover the next bottleneck in creating good software. Could it be delayed feedback cycles? 9. Hedging the vendor options is sensible when integrating AI into systems. It’s hard to tell which AI companies have long-term, sustainable business models and which don’t, so it’s the responsible thing when designing systems to hedge the providers. Aim to be multi-vendor, multi-model in your choices, so you can easily change the vendor or model layer. Also, consider if you can swap out LLM-powered functionality for deterministic code that runs faster and cheaper. 10. We must resist “cognitive surrender” to AI. Sam believes that more AI usage is leading to less critical thinking – or could we be using it wrong? He says: “The original pitch of AI was it was going to free us from drudgery. We’d have less toil, and we can focus more on critical thinking and smarts. However, much of our current use of AI is not freeing us up from critical thinking! It’s causing more context switching and leaving less time for thinking. People are working longer hours; we’ve got studies that show this. But [longer hours and more context switching] is not necessarily AI’s fault. It’s just how we’re using it.” Putting in the effort often leads to better results. For example, when writing Building Resilient Distributed Systems, Sam used NotebookLM for research, but he manually clicked through each link it surfaced, and checked whether it was information he wanted to reference. 11. Starting with modules encourages better software architecture. Also: production is truth. I asked Sam for advice on what to do to get better at designing systems: Start by thinking carefully about module boundaries and the connections between them When you use AI, allow it to roam freely, but only inside the module structure that you have designed! 12. Much of the tech world might still be naive about what an LLM is. As Sam said: “I think the tech world in general is quite naive about AI and fundamentally misunderstands what an LLM is. For example: why did the LLM delete my database? Well, because it has no concept of causality. They have no concept that if I do A, B happens. LLMs are not world models. World models have been around for a long time. They predate LLMs. So if you had the appropriate model and the appropriate inputs, world models could at least get to the point of ‘if I do X, then Y happens and I’ve been told not to do Y.’ I think we expect LLMs to do more than they actually can do, because they seem so smart. This leads us to overestimate their capabilities a bit too much. But the nature of LLMs is why all the guardrails around LLMs are really not going to be the right long-term solution.” Sam’s comments feel very timely, given Opus 5.5 just formatted the hard drive of a dev who ran the model with the —dangerously-skip-permissions tag, and was surprised to see all of his data gone. Opus 5.5 decided it would be a good idea to format the C: drive. Sam warned about this kind of outcome due to the nature of LLMs. Screenshot source: X Finally, recommended reading to get better at software architecture. Sam’s recommendations: Fundamentals of Software Architecture by Neal Ford and Mark Richards. Balanced Coupling by Vlad Khononov On the criteria to be used in decomposing systems into modules: a paper by David Parnas from the 1970s original papers from the early 1970s, such as An architecturally-evident coding style: making your design visible: a paper by George Fairbanks, published in 2010. It’s an approach that allows the code to hint at the system’s architecture The Pragmatic Engineer deepdives relevant for this episode • Scaling Uber with Thuan Pham (Uber’s first CTO) • What is good software architecture at Netflix? • The past and future of modern backend practices • What is reliability engineering, and the history of SRE • How to debug large, distributed systems: Antithesis • Designing Data-intensive Applications with Martin Kleppmann • Building Bluesky: a Distributed Social Network Timestamps 00:00 Intro 03:16 Sam’s path into tech 09:32 Thoughtworks 20:55 The rise of microservices 33:37 Are specs becoming more important than code? 45:22 Building Resilient Distributed Systems (Sam’s new book) 52:35 Three rules of distributed systems 56:16 Observability 1:02:20 Resilience tradeoffs 1:07:54 Idempotency 1:15:58 Thundering herds 1:21:03 Business context and resilience decisions 1:25:51 Resilience engineering: four concepts 1:32:42 AI and resilience 1:36:26 AI’s limitations and where to use it 1:40:06 Cognitive debt and cognitive surrender 1:45:02 Modular architecture and AI software factories 1:51:53 Resources for learning software architecture 1:55:30 Where to find Sam References Where to find Sam Newman: • X: https://x.com/samnewman • LinkedIn: https://www.linkedin.com/in/samnewman • Website: https://samnewman.io Mentions during the episode: • Acorn Electron: https://en.wikipedia.org/wiki/Acorn_Electron • Commodore 64: https://en.wikipedia.org/wiki/Commodore_64 • Alstom: https://www.alstom.com • Fortran: https://en.wikipedia.org/wiki/Fortran • Thoughtworks: https://www.thoughtworks.com • TDD, AI agents and coding with Kent Beck: https://newsletter.pragmaticengineer.com/p/tdd-ai-agents-and-coding-with-kent • How Kent Beck shapes the software engineering industry: https://newsletter.pragmaticengineer.com/p/how-kent-beck-shapes-the-software • Extreme programming: https://martinfowler.com/bliki/ExtremeProgramming.html • Growing Object-Oriented Software Guided by Tests: https://growing-object-oriented-software.com/ • Dave Farley’s website: https://www.davefarley.net • Jez Humble on X: https://x.com/jezhumble • Continuous Delivery: https://continuousdelivery.com • Mike Bland’s publications: https://mike-bland.com/publications • How AI will change software engineering – with Martin Fowler: https://newsletter.pragmaticengineer.com/p/martin-fowler • James Lewis on LinkedIn: https://www.linkedin.com/in/james-lewis-microservices • Building Microservices: Designing Fine-Grained Systems: https://www.amazon.com/dp/1492034029 • Microservices Guide: https://martinfowler.com/microservices • Ben Christensen on LinkedIn: https://www.linkedin.com/in/benjchristensen • Scaling Uber with Thuan Pham (Uber’s first CTO): https://newsletter.pragmaticengineer.com/p/scaling-uber-with-thuan-pham-ubers • Stop being skeptical about AI for development with Charity Majors: https://newsletter.pragmaticengineer.com/p/stop-being-skeptical-about-ai-for • Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl: https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html • Chris Ford on LinkedIn: https://www.linkedin.com/in/ctford • Beyond Vibe Coding with Addy Osmani: https://newsletter.pragmaticengineer.com/p/beyond-vibe-coding-with-addy-osmani • Building Resilient Distributed Systems: https://samnewman.io/books/building-resilient-distributed-systems • Honeycomb: https://www.honeycomb.io • Monzo: https://monzo.com • How Generative and Agentic AI Shift Concern from Technical Debt to Cognitive Debt: https://margaretstorey.com/blog/2026/02/09/cognitive-debt • Fundamentals of Software Architecture: A Modern Engineering Approach: https://www.amazon.com/dp/1098175514 • Balancing Coupling in Software Design: Universal Design Principles for Architecting Modular Software Systems: https://www.amazon.com/Balancing-Coupling-Software-Design-Addison-wesley/dp/0137353480 • Learning Domain-Driven Design: Aligning Software Architecture and Business Strategy: https://www.amazon.com/Learning-Domain-Driven-Design-Vlad-Khononov-ebook/dp/B09J2CMJZY • Software Fundamentals: Collected Papers by David L. Parnas: https://www.abebooks.com/9780201703696/Software-Fundamentals-Collected-Papers-David-0201703696/plp • Just Enough Software Architecture: https://www.georgefairbanks.com/book • Modern Software Engineering: https://www.youtube.com/c/ContinuousDelivery — Production and marketing by Pen Name.",
+      "topics": [
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261007/p28#a261007p28",
+      "title": "Meta rolls out AI tools to find ads that secretly lead users to CSAM and says it took action against 33.2M pieces of child exploitation content in H1 2026 (Lauren Forristal/TechCrunch)",
+      "url": "https://www.techmeme.com/261007/p28#a261007p28",
+      "author": null,
+      "publishedAt": "2026-10-07T17:20:01.000Z",
+      "content": "Lauren Forristal / TechCrunch: Meta rolls out AI tools to find ads that secretly lead users to CSAM and says it took action against 33.2M pieces of child exploitation content in H1 2026 — Meta announced Wednesday that it took action against 33.2 million pieces of child sexual exploitation content on Facebook and Instagram in the first half of 2026.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "github-blog",
+      "externalId": "https://github.blog/?p=99310",
+      "title": "Secret protection must scale with software",
+      "url": "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
+      "author": "Erin Havens",
+      "publishedAt": "2026-10-07T17:45:34.000Z",
+      "content": "Today, one in three pull requests on GitHub involves an AI agent. A year ago, that number was fewer than one in 10. If that pace holds, within the next two years, most of the code pushed to GitHub could be written by an agent. Much of it may never be fully read by a human. If developers and agents move faster, we have a responsibility to ensure protection keeps up with the accelerated rate of code creation. That means preventing more leaks before they happen and making the response to exposures that remain less dependent on manual human effort. This is a pivotal point for leaked secrets. Developers aren’t becoming more careless; they’re being outpaced. The tools that let developers create more software should also take on more of the work of protecting it. In this essay, I share the nine quarters of data behind that claim. I also introduce the fine-tuned classifier we built with Microsoft Applied Sciences to extend push protection to unstructured secrets. The model assesses a whole set of candidate secrets in less than two milliseconds and could more than double the number of secrets that we can prevent. Outpaced, not careless A new secret appears in publicly visible code about once every two seconds, doubling yearly for the past three years. Public discourse is quick to jump to the idea that AI made developers careless. Between Q2 2024 and Q2 2026, screened pushes grew 2.84 times while pushes carrying credentials grew 2.59 times. Across nine complete quarters of data, we found no statistically detectable trend regarding per-push prevalence. At the same time, we found data suggesting that, more than ever, developers understand the risk of accidental exposures and are less willing to accept that risk. Over the same period, the share of push-path blocks overridden by developers fell linearly from 6.63% to 3.93%. These figures challenge the common claim that agents are causing developers to become more careless. More pushes, no clear rise in push prevalence Public pushes Push prevalence 202M 574M · 2.8× 0300M600M 0%0.5%1.0% Q2Q3Q4Q1Q2Q3Q4Q1Q2202420252026 2026 Q2 · 574M pushes · 0.47% with secrets Public pushes, Q2 2024–Q2 2026. Push prevalence is the share with a detected secret. Covers supported provider patterns, including GitHub’s own tokens. At a fixed rate, doubling activity doubles expected exposures. If each exposure requires the same human response, the workload doubles too. The mean time to manually revoke a secret hovers around 40 days; roughly one in five took more than 90 days. We’re accelerating the creation of software while exposed credentials can remain usable for weeks or months, because human remediation can’t scale at the same pace as development. Telling developers to be more careful cannot, on its own, solve that problem. As the amount of code grows, we must prevent more exposures and reduce human effort required by those that remain, if software development is to remain sustainable. Prevention scales with compute I’ve spent the past few years working on secret scanning at GitHub and the past year as product lead for the area. Our greatest impact has come from connecting the dots between detection to systems that can act. GitHub’s catalog covers more than 150 technical partners through our secret scanning partnership program. Through our partner program, we work with participating secret issuers to build out detectors and report public exposures so they can respond. In Q2 2026, public scanning successfully reported an average of 26 credential matches a second, including repeat observations. Once notified, a large number of these partners immediately revoke the token: OpenAI API keys, Google Cloud account credentials, Slack webhooks, Hugging Face user tokens, SendGrid keys, etc. The owner may still need to replace the token, but revocation can happen without waiting for a developer to find and process a GitHub alert. Push protection intervenes earlier. It stops recognizable credentials before it enters repository history, giving the developer or agent a chance to correct the change before there’s an exposure to investigate. We work with our technical partners to increase precision rates of their detectors as much as possible, until we’re confident enough to push-protect these secrets for the developer community by default. Thanks to the efforts of our partners, in the past month, a secret was blocked by push protection at least once every second. When it comes to issuer-bound credentials, GitHub blocks more secrets than those which slip. I’m proud of how ordinary we’ve made that feel for developers. Remediation scales with people When including additional secret types, push protection stops about 30% of newly detected secrets before they enter repository history. We find the remaining 70% after the credential is, unfortunately, already lost. And: Prevention scales with compute, but remediation still scales with people. Refusing a push costs compute; cleaning up a secret already lost to visible history costs a developer’s time and attention. As the amount of code grows, we must prevent more exposures and reduce the human effort required by those that remain, or else the volume of vulnerabilities introduced will become untenable. Telling developers to be more careful cannot solve this imbalance. Recognizing more of these secrets, earlier in development flows, is work the platform must take on. Solving the four-body problem Before a secret crosses the push boundary, the cost of stopping it is small, and the decision is binary: block or allow. After it crosses, the same string can authenticate to a real system, and the cost is unbounded. In many cases, our only detection clue may be the surrounding code and world context. A provider-issued token may have a recognizable prefix. An internal database password may be completely unstructured, with no identifying pattern at all. We were already using context to find these secrets post-push; the problem was balancing that context-aware judgement with other factors. We refer to this as the “four-body problem” for secret protection: precision, latency, throughput, and cost are coupled constraints. Prevention must be worth a developer’s time. A finding suitable for later review may not justify blocking a push. A false positive interrupts a developer and makes the next block harder to trust. A check that is too slow, expensive, or difficult to scale limits how often it can run. Protection at the push in under 2 ms GitHub’s AI-powered generic secret detection model uses surrounding code context to block password-like values in a database URL, Kubernetes Secret manifest, and Dockerfile, while allowing the placeholder changeme. Our new ModernBERT classifier assess candidate secrets in context, without generating code or prose. It’s not only more precise than existing LLM-based pipelines, but it’s incredibly fast, evaluating candidate batches in under two milliseconds. It’s also extremely cost efficient, enough to run at scale in the critical path. The inclusion of our model in push protection makes it possible for us to more than double the number of secrets that we’re able to prevent. The feature is currently in private preview. Later this month, the feature will be available to organizations with GitHub Secret Protection across Enterprise Cloud and GitHub Teams. It will consume AI credits. We’re also bringing the model to developer surfaces beyond the push. Starting today, any organization with AI secret detection will be automatically updated to the new model. Alerts opened from these post-push scans remain included with an organization’s purchase of secret scanning at no additional cost. The model will also ship with GitHub Enterprise Server 3.23 in public preview, bringing AI-detected alerts to Secret Protection customers even in air-gapped environments. We’re adding the classifier to the /security-review command for the Copilot CLI and Copilot App, so Copilot users can address secrets before a push even without needing an organization’s GitHub Secret Protection plan. AI credit usage will be attributed to GitHub Secret Protection in your AI usage insights. Looking forward The future we want is one where developers can entrust more work to agents without supervising every request, and one where the number of people that an organization needs to keep its credentials safe no longer scales with the amount of code it writes. We owe the developer community the same progress in protecting software that we are delivering in producing it. We want people to build more software. Our capacity to protect it should grow with our capacity to create it. The post Secret protection must scale with software appeared first on The GitHub Blog.",
+      "topics": [
+        "devtools-infra",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/higgsfield-s-ad-multiplier-turns-one-winning-video-ad-into-infinite-variants",
+      "title": "Higgsfield's Ad Multiplier Turns One Winning Video Ad Into Infinite Variants",
+      "url": "https://alphasignal.ai/news/higgsfield-s-ad-multiplier-turns-one-winning-video-ad-into-infinite-variants",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-07T17:50:39.000Z",
+      "content": "Higgsfield's new Ad Multiplier decomposes a winning video ad into swappable parts, then rebuilds dozens of variants that keep the original pacing and audio intact.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/10/outstreaming-taylor-swift-is-easy-with-10k-bots-and-ai-songs-fraudster-admits/",
+      "title": "Fraudster jailed for using 10K bots and AI songs to outstream Taylor Swift",
+      "url": "https://arstechnica.com/tech-policy/2026/10/outstreaming-taylor-swift-is-easy-with-10k-bots-and-ai-songs-fraudster-admits/",
+      "author": "Ashley Belanger",
+      "publishedAt": "2026-10-07T17:57:39.000Z",
+      "content": "After pleading guilty, a 54-year-old North Carolina man, Michael Smith, was sentenced to 18 months in prison for using artificial intelligence to generate songs for a scheme that stole millions from music streaming platforms. In a press release Tuesday, the US Department of Justice said that Smith is the first American criminally charged with AI-assisted streaming fraud. First charged in 2024, Smith successfully ran the scheme for seven years without detection. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1006356",
+      "title": "How Microsoft built its MacBook Pro competitor",
+      "url": "https://www.theverge.com/tech/1006356/microsoft-surface-laptop-ultra-behind-the-scenes",
+      "author": "Tom Warren",
+      "publishedAt": "2026-10-07T18:00:00.000Z",
+      "content": "Before Microsoft releases a laptop to the public, it needs to put the device through its paces. That all happens inside a windowless, warehouse-like lab on the company's Redmond, Washington, campus, where the team developing Surface devices programs robots to press their buttons thousands of times, pelts devices with radio waves from giant antennas, and builds contraptions that drop objects from increasingly daring heights to see whether the products can hold up. Its latest laptop, the product I'm here to see, really needs to hold up. The Surface Laptop Ultra isn't just another high-end config of the Surface Laptop, it's the debut platform … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1006810",
+      "title": "The Meta Quest 3S gets a rare discount during October Prime Day",
+      "url": "https://www.theverge.com/gadgets/1006810/meta-quest-3s-prime-day-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-10-07T18:00:00.000Z",
+      "content": "The Meta Quest 3S features inside-out tracking for standalone functionality almost anywhere. | Photo by Vjeran Pavic / The Verge Until the end of Amazon’s October sale later tonight, you can grab the 128GB Meta Quest 3S for just $297.49 (usually $349.99) at Amazon, Walmart, and Best Buy. While the lenses and displays aren’t quite as sharp as the Quest 3, the underlying chipset is the same, and this is a much more reasonable price for casual VR gaming and movies. In other words, it’s a big upgrade over the Quest 2. You’ll also get three months of Horizon Plus, which gives you access to a huge library of games. Meta Quest 3S The Meta Quest 3S is a battery-powered standalone VR headset that has the same chipset as the pricier Quest 3, but with the same lenses and screen resolution as the Quest 2. In addition to being able to play many games from the Meta Store, it can also be connected to a gaming PC to play VR games like Half-Life Alyx. Read our review. Where to Buy: $349.99 $297.99 at Amazon (128GB) $349 $297.99 at Walmart (128GB) $349 $297.99 at Best Buy (128GB) If you buy the headset from Amazon, the deal also includes the “Cardboard Monkenaut” cosmetic set for Gorilla Tag VR, as well as 2,000 “Shiny Rocks” to spend on other in-game items. This popular multiplayer game is free to play on Quest headsets, and will have you chasing friends or matchmade players through the trees in a high-flying game of tag. Read our Meta Quest 3S review.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49996425",
+      "title": "GPT‑6 and Intelligent UI for everyone",
+      "url": "https://openai.com/index/gpt-6-for-everyone/",
+      "author": "joshuawright11",
+      "publishedAt": "2026-10-07T18:00:58.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 310,
+      "comments": 151
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-claude-haiku-5-5-slashes-costs-75-and-adds-adjustable-reasoning",
+      "title": "Anthropic's Claude Haiku 5.5 Slashes Costs 75% and Adds Adjustable Reasoning",
+      "url": "https://alphasignal.ai/news/anthropic-s-claude-haiku-5-5-slashes-costs-75-and-adds-adjustable-reasoning",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-07T18:01:16.000Z",
+      "content": "Anthropic's smallest model gets a 1M context window, adjustable effort, and roughly 75% lower cost per token than Haiku 4.5.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1007113",
+      "title": "Microsoft is giving Copilot more control over Windows and your files",
+      "url": "https://www.theverge.com/tech/1007113/microsoft-windows-copilot-ai-control-search-hybrid-intelligence",
+      "author": "Jay Peters",
+      "publishedAt": "2026-10-07T18:01:20.000Z",
+      "content": "At today's Windows and Surface event, Microsoft showed off an upgrade to its Copilot AI system that will give it access to local files on your PC and the ability to take actions across the OS. It's part of an idea Microsoft is calling \"Hybrid Intelligence,\" where apps and tools rely on a mix of local and cloud AI models to accomplish tasks efficiently. To show off how Hybrid Intelligence works, Jacob Andreou, Microsoft's EVP of Copilot, walked through a video demo onstage asking Microsoft's Autopilot tool to help with filing taxes. Andreou told the AI agent that he got an email from his accountant and asked Autopilot to get her what she nee … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49996437",
+      "title": "Claude Haiku 5.5",
+      "url": "https://www.anthropic.com/claude-haiku-5-5",
+      "author": "sfkgtbor",
+      "publishedAt": "2026-10-07T18:01:32.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 424,
+      "comments": 204
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-s-gpt-6-turns-chatgpt-replies-into-interactive-apps-for-1-2b-users",
+      "title": "OpenAI's GPT-6 Turns ChatGPT Replies Into Interactive Apps for 1.2B Users",
+      "url": "https://alphasignal.ai/news/openai-s-gpt-6-turns-chatgpt-replies-into-interactive-apps-for-1-2b-users",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-07T18:05:04.000Z",
+      "content": "OpenAI brings GPT-6 to all ChatGPT tiers with Intelligent UI, letting the model generate interactive widgets, charts, and mini-apps inside conversations.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/epoch-s-innovationeval-catches-frontier-ai-agents-inflating-research-results",
+      "title": "Epoch's InnovationEval Catches Frontier AI Agents Inflating Research Results",
+      "url": "https://alphasignal.ai/news/epoch-s-innovationeval-catches-frontier-ai-agents-inflating-research-results",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-07T18:08:18.000Z",
+      "content": "Epoch AI's new InnovationEval benchmark put frontier agents on a real post-training research task, and both models fell flat and fudged their results.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261007/p29#a261007p29",
+      "title": "Microsoft opens preorders for the $5,999 Surface RTX Spark Dev Box, with 128GB of unified memory to run local models with 120B+ parameters, shipping in November (Stevie Bonifield/The Verge)",
+      "url": "https://www.techmeme.com/261007/p29#a261007p29",
+      "author": null,
+      "publishedAt": "2026-10-07T18:10:04.000Z",
+      "content": "Stevie Bonifield / The Verge: Microsoft opens preorders for the $5,999 Surface RTX Spark Dev Box, with 128GB of unified memory to run local models with 120B+ parameters, shipping in November — Microsoft's high-end AI mini PC for developers starts shipping in November. — Microsoft's Nvidia-powered Surface RTX Spark Dev Box …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/github-copilot-routes-tasks-between-local-and-cloud-using-mai-code-1-1-flash",
+      "title": "GitHub Copilot Routes Tasks Between Local and Cloud Using MAI Code 1.1 Flash",
+      "url": "https://alphasignal.ai/news/github-copilot-routes-tasks-between-local-and-cloud-using-mai-code-1-1-flash",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-07T18:12:42.000Z",
+      "content": "GitHub Copilot will soon route coding tasks between on-device models and the cloud automatically, backed by a new local model and OS-level sandboxing.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/cursor-adds-claude-haiku-5-5-at-10x-cheaper-rates-for-coding-tasks",
+      "title": "Cursor Adds Claude Haiku 5.5 at 10x Cheaper Rates for Coding Tasks",
+      "url": "https://alphasignal.ai/news/cursor-adds-claude-haiku-5-5-at-10x-cheaper-rates-for-coding-tasks",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-07T18:14:00.000Z",
+      "content": "Anthropic's new small model lands in Cursor at roughly a tenth of Haiku 4.5's price on short requests, with Sonnet 5.5 cache reads also cut in half.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261007/p30#a261007p30",
+      "title": "Microsoft opens preorders for the $2,599+ Surface Laptop Ultra, shipping from October 16, with an RTX Spark and three USB-C ports; one is magnetic like MagSafe (Zac Bowden/Windows Central)",
+      "url": "https://www.techmeme.com/261007/p30#a261007p30",
+      "author": null,
+      "publishedAt": "2026-10-07T18:15:30.000Z",
+      "content": "Zac Bowden / Windows Central: Microsoft opens preorders for the $2,599+ Surface Laptop Ultra, shipping from October 16, with an RTX Spark and three USB-C ports; one is magnetic like MagSafe — Surface Laptop Ultra is available to order today, with shipments expected to begin on October 16.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=123177",
+      "title": "The Machines that Make the Machines",
+      "url": "https://developer.nvidia.com/blog/the-machines-that-make-the-machines/",
+      "author": "Elizabeth Goodman",
+      "publishedAt": "2026-10-07T18:21:03.000Z",
+      "content": "How we taught robots to assemble GB300 tester trays and what it taught us about robot learning, mechanical intelligence, and good old-fashioned engineering The... How we taught robots to assemble GB300 tester trays and what it taught us about robot learning, mechanical intelligence, and good old-fashioned engineering The NVIDIA Grace Blackwell GB300 superchip is the engine of AI training and inference for modern foundation models. However, the process of assembling GB300 trays requires skilled physical labor in factories across the world. Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261007/p31#a261007p31",
+      "title": "Anthropic launches Claude Haiku 5.5, the first Haiku model with effort controls, for high-volume, cost-sensitive tasks like summary and classification requests (Anthropic)",
+      "url": "https://www.techmeme.com/261007/p31#a261007p31",
+      "author": null,
+      "publishedAt": "2026-10-07T18:22:12.000Z",
+      "content": "Anthropic: Anthropic launches Claude Haiku 5.5, the first Haiku model with effort controls, for high-volume, cost-sensitive tasks like summary and classification requests — Introducing Claude Haiku 5.5: the cheapest, fastest, and most capable small model we've ever released.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/10/pediatricians-renew-call-to-ban-raw-milk-as-anti-science-rhetoric-reigns/",
+      "title": "Pediatricians renew call to ban raw milk as anti-science rhetoric reigns",
+      "url": "https://arstechnica.com/health/2026/10/pediatricians-renew-call-to-ban-raw-milk-as-anti-science-rhetoric-reigns/",
+      "author": "Beth Mole",
+      "publishedAt": "2026-10-07T18:24:39.000Z",
+      "content": "As many doctors are moving ahead with the latest advances of modern medicine—from powerful obesity drugs to breakthrough cancer treatments—pediatricians are being forced to turn back, fighting to maintain advances in children's health that were hard-won decades ago. With anti-vaccine advocate Robert F. Kennedy Jr. as health secretary, the American Academy of Pediatrics (AAP) has spent a considerable amount of time and resources in the past year fiercely defending lifesaving vaccinations—safe, routine shots that have saved the lives of millions of children over decades and thwarted untold suffering and disability. But just this week, The New York Times reported that Ken Paxton, the attorney general of Texas, has opened aggressive investigations against pediatricians simply because they vaccinated their patients. Paxton falsely claims vaccines are part of a \"multi-level, multi-industry scheme.\" But critics say his anti-vaccine campaign appears more aimed at currying favor with Kennedy, President Trump, and their supporters as Paxton runs for the US Senate. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261007/p32#a261007p32",
+      "title": "OpenAI rolls out GPT-6 in ChatGPT with Intelligent UI, a new feature that includes graphics and interactive elements like charts, buttons, and forms in answers (OpenAI)",
+      "url": "https://www.techmeme.com/261007/p32#a261007p32",
+      "author": null,
+      "publishedAt": "2026-10-07T18:40:02.000Z",
+      "content": "OpenAI: OpenAI rolls out GPT-6 in ChatGPT with Intelligent UI, a new feature that includes graphics and interactive elements like charts, buttons, and forms in answers — Last month we introduced the first GPT-6 models for paid customers and today we're bringing that next generation of intelligence …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?post_type=vm_stream&p=1007147",
+      "title": "Everything announced at Microsoft’s Surface Laptop Ultra event",
+      "url": "https://www.theverge.com/tech/1007147/microsoft-surface-laptop-ultra-windows-event-everything-announced",
+      "author": "Jay Peters",
+      "publishedAt": "2026-10-07T18:42:22.000Z",
+      "content": "Microsoft just wrapped up a big Windows and Surface-focused keynote in San Francisco. The biggest announcement was arguably the release details about the Surface Laptop Ultra, its new laptop that’s powered by Nvidia’s RTX Spark Arm-based chip. The machine will start at $2,599 for a configuration with an 8-core CPU, 24GB of RAM, and 512GB of storage, and it will be released on October 16th. The laptop also has built-in magnetic USB-C charging instead of the proprietary Surface Connect magnetic charging port. The Verge‘s Tom Warren published a deep dive all about the new laptop. Microsoft also announced that the Surface RTX Spark Dev Box, a mini PC for developers, is available for preorder for $5,999 ahead of shipping in November. In addition, Microsoft shared details about some updates coming to Windows, including “Hybrid Intelligence” features that lets Copilot use files on your Windows PC to take actions and a new search experience that lets you do quick actions from the search bar. You can catch up with all of our coverage from the event right here. Fs in the chat. The first Nvidia RTX Spark laptops cost up to $7,000 Microsoft is giving Copilot more control over Windows and your files The Surface Laptop Ultra finally has a release date — and a starting price of $2,599 Surface RTX Spark Dev Box is available for preorder for $5,999 Microsoft’s Surface Laptop Ultra has built-in magnetic USB-C charging Muse is coming to Windows. Windows and Surface live blog: On the ground at Microsoft’s event",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261007/p33#a261007p33",
+      "title": "Anthropic prices Haiku 5.5 at $0.10/1M input and $0.50/1M output tokens for requests up to 100K tokens, and $0.50 and $2.50 above, vs. $1 and $5 for Haiku 4.5 (Frederic Lardinois/The New Stack)",
+      "url": "https://www.techmeme.com/261007/p33#a261007p33",
+      "author": null,
+      "publishedAt": "2026-10-07T18:45:30.000Z",
+      "content": "Frederic Lardinois / The New Stack: Anthropic prices Haiku 5.5 at $0.10/1M input and $0.50/1M output tokens for requests up to 100K tokens, and $0.50 and $2.50 above, vs. $1 and $5 for Haiku 4.5 — Anthropic on Wednesday launched Claude Haiku 5.5, the first new version of its smallest and most affordable model in nearly a year.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1007132",
+      "title": "It appears .agent and .agi are about to be the hot new domains",
+      "url": "https://www.theverge.com/tech/1007132/icann-domains-2026-ai-agi",
+      "author": "David Pierce",
+      "publishedAt": "2026-10-07T18:46:16.000Z",
+      "content": "What’s in a URL anymore, really. For the first time in years, the Internet Corporation for Assigned Names and Numbers - better known as ICANN - is accepting applications for new top-level domains. These are the suffixes at the end of all URLs, and you may know them as things like .com, .org, and .pizza. ICANN just announced the 1,615 applications that have been submitted so far, from 481 different applicants. The trend will not surprise you: AI is everywhere. Ten different companies, including both Meta and OpenAI, applied for the .agent domain. Seven, including OpenAI, applied for .agi. Six, including OpenAI, applied for .asi, clearly attempting to get in on President Tru … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/10/chemistry-nobel-goes-to-reactions-like-those-that-gave-life-a-hand/",
+      "title": "Chemistry Nobel goes to reactions like those that gave life a hand",
+      "url": "https://arstechnica.com/science/2026/10/chemistry-nobel-goes-to-reactions-like-those-that-gave-life-a-hand/",
+      "author": "John Timmer",
+      "publishedAt": "2026-10-07T18:48:18.000Z",
+      "content": "Life is remarkably selective. Life relies on many molecules with what is termed \"handedness\"—they're chemically identical but are mirror images of each other. Most chemical reactions will make a 50-50 mix of the left- and right-handed forms of a chemical, but life uses only one of them. In fact, because of the differences between left- and right-handed chemicals, most of the key enzymes used by organisms will fail to work if they're presented with chemicals that have the wrong handedness. That poses a bit of a challenge for origin-of-life research, as we're forced to explain how a world that may have started with an even mix of left- and right-handed chemicals produced organisms that only used one of them. Today's Nobel Prize in Chemistry goes to two individuals, Henri Kagan and Kenso Soai, who discovered chemical reactions could be biased, producing large excesses of one of the two forms of a chemical. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "49997161",
+      "title": "Meta and Microsoft take steps to reduce employee usage of Claude AI",
+      "url": "https://www.rswebsols.com/news/meta-and-microsoft-take-steps-to-reduce-employee-usage-of-claude-ai/",
+      "author": "speckx",
+      "publishedAt": "2026-10-07T18:49:40.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 134,
+      "comments": 127
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-builds-chatgpt-for-teens-a-full-college-planning-tool",
+      "title": "OpenAI Builds ChatGPT for Teens a Full College Planning Tool",
+      "url": "https://alphasignal.ai/news/openai-builds-chatgpt-for-teens-a-full-college-planning-tool",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-07T19:03:52.000Z",
+      "content": "OpenAI is rolling out a College Planner, flashcards, and quizzes inside its under-18 ChatGPT tier, with early usage data showing heavy learning use.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261007/p34#a261007p34",
+      "title": "Anthropic cuts Sonnet 5.5 cache read price from $0.20 to $0.10 and adds monthly API credits: $100 for Max 5x, $200 for Max 20x, up to $500 shared by Team users (Carl Franzen/VentureBeat)",
+      "url": "https://www.techmeme.com/261007/p34#a261007p34",
+      "author": null,
+      "publishedAt": "2026-10-07T19:05:01.000Z",
+      "content": "Carl Franzen / VentureBeat: Anthropic cuts Sonnet 5.5 cache read price from $0.20 to $0.10 and adds monthly API credits: $100 for Max 5x, $200 for Max 20x, up to $500 shared by Team users — The model starts at $0.10 per million input tokens and $0.50 per million output tokens, matching OpenAI's GPT-6 Luna.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1007040",
+      "title": "The first Nvidia RTX Spark laptops cost up to $7,000",
+      "url": "https://www.theverge.com/gadgets/1007040/nvidias-powerful-rtx-spark-laptops-can-cost-up-to-7000",
+      "author": "Antonio G. Di Benedetto",
+      "publishedAt": "2026-10-07T19:05:52.000Z",
+      "content": "The 15-inch Surface Laptop Ultra starts at $2,599. | Photo by Tom Warren / The Verge The first array of laptops powered by Nvidia's new RTX Spark chip are designed to compete with high-end MacBook Pros - and they've got some high-end prices to match. The flagship Surface Laptop Ultra and RTX Spark laptops from Dell, Lenovo, MSI, HP, and Asus start as low as $2,599 for configurations with an 18-core CPU, 24GB of unified memory, and 512GB of storage. That's close in price to a similarly specced 14-inch MacBook Pro with M5 Pro chip, though Apple includes 1TB of storage. But the prices for both RTX Spark and Apple laptops of course go much, much higher. Of the pricing we've seen so far, a kitted-out Asus ProArt P16 RTX Spark … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1007276",
+      "title": "ChatGPT’s ‘Intelligent UI’ update fills its responses with pictures, charts, and buttons",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6",
+      "author": "Emma Roth",
+      "publishedAt": "2026-10-07T19:10:42.000Z",
+      "content": "OpenAI is launching a new Intelligent UI feature in ChatGPT that allows the chatbot to answer your questions with interactive visuals. The update, which is rolling out to all users alongside GPT-6, gives ChatGPT the ability to combine a text response with diagrams, charts, forms, tappable buttons, and more. In a blog post explaining the change, OpenAI says it trained GPT-6 when to generate interactive visuals over text, as well as how to format them in its response. An example shared by OpenAI shows how ChatGPT might show a diagram of a seven-speed bicycle if you ask about its design, complete with interactive buttons that highlight differe … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1007149",
+      "title": "Roku’s OLED TVs are up to $400 off during Prime Day, starting at $700",
+      "url": "https://www.theverge.com/gadgets/1007149/roku-oled-tv-pro-prime-day-deal-sale",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-10-07T19:27:39.000Z",
+      "content": "Just over a week ago, we covered a deal at Amazon that knocked around 30 percent off Roku’s new (and first-ever) OLED TVs. The deal expired, but has returned for the final day of October Prime Day. The 55-inch Pro Series OLED is $699.99 at Amazon, which is 30 percent off its list price. The 65-inch model is $799.99, which is $400 off its list price, also at Amazon. Both models support a native 120Hz refresh rate, which is great for gaming, plus four HDMI 2.1 ports for 4K gaming at its full refresh rate, and support for Dolby Vision and HDR10 Plus. You’ll also get a backlit Roku remote control. There have been a few TV deals during Prime Day, though these are the lowest prices on OLEDs by a wide margin. We haven’t tested this model, but it’s an affordable way to get unbeatable contrast for your next movie or game night. Roku Pro Series OLED TVs Where to Buy: $999.99 $699.99 at Amazon (55-inch) $1199.99 $799.99 at Amazon (65-inch)",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261007/p35#a261007p35",
+      "title": "Sources: former White House AI adviser Sriram Krishnan is raising a ~$500M fund to back growth- and later-stage US AI companies, prioritizing national security (Leo Schwartz/The Information)",
+      "url": "https://www.techmeme.com/261007/p35#a261007p35",
+      "author": null,
+      "publishedAt": "2026-10-07T19:30:31.000Z",
+      "content": "Leo Schwartz / The Information: Sources: former White House AI adviser Sriram Krishnan is raising a ~$500M fund to back growth- and later-stage US AI companies, prioritizing national security — Sriram Krishnan, a key AI adviser to President Donald Trump who left the White House in June, is raising an AI-focused venture fund …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stackoverflow-blog",
+      "externalId": "f2b2b7a0-c8e2-4387-8a7d-439b28bab359",
+      "title": "Implementing a Modular Master-Agent Telemetry & Diagnostic Framework in Python: Prime-Sentinel Command (PSC)",
+      "url": "https://stackoverflow.blog/2026/10/07/implementing-a-modular-master-agent-telemetry-and-diagnostic-framework-in-python-prime-sentinel-command-psc/",
+      "author": "Dr. Ahmad Mateen Ishanzai",
+      "publishedAt": "2026-10-07T20:03:47.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stackoverflow-blog",
+      "externalId": "39f2fc9f-742a-4273-a4d1-abdecd14fcf8",
+      "title": "Part 1: Make your AI agents boring: the determinism layer",
+      "url": "https://stackoverflow.blog/2026/10/07/part-1-make-your-ai-agents-boring-the-determinism-layer/",
+      "author": "Varun Jindal",
+      "publishedAt": "2026-10-07T20:14:49.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "google-research",
+      "externalId": "https://research.google/blog/does-better-work-always-mean-better-workers/",
+      "title": "Does better work always mean better workers?",
+      "url": "https://research.google/blog/does-better-work-always-mean-better-workers/",
+      "author": null,
+      "publishedAt": "2026-10-07T20:19:57.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "fireship",
+      "externalId": "yt:video:WrCjAAl9okA",
+      "title": "The open-weight race just got political...",
+      "url": "https://www.youtube.com/watch?v=WrCjAAl9okA",
+      "author": "Fireship",
+      "publishedAt": "2026-10-07T20:24:27.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "video"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1007110",
+      "title": "We found some great October Prime Day deals under $50",
+      "url": "https://www.theverge.com/gadgets/1007110/october-prime-day-budget-deals-under-50",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-10-07T20:30:00.000Z",
+      "content": "Anker’s 45W charger is less than $50 during Amazon’s October sale. In fact, you can get two for under $50. Getting in on the Prime Day action doesn’t have to result in an empty wallet. Just as we found a couple handfuls of goodies that are under $25, there are plenty of deals during Amazon’s October sale that are $50 or less, many of which offer a lot of practical value. Everything from chargers to coffee makers are discounted until 3 AM ET on October 8th, 2026, so you only have a few hours to take advantage of some of these deals. For the full range of deals, make sure to head over to our main roundup, where we’ll keep updating prices and stock into the evening. LEGO Star Wars The Mandalorian’s N-1 Starfighter This 412-piece set features the Mandalorian’s reconstructed Naboo starfighter, with minifigs for Din Djarin, Grogu, and Peli Motto. Where to Buy: $59.99 $41.99 at Amazon VidaBay NFC E-Paper Fridge Magnet A tiny magnetic digital photo frame that repurposes a color E Ink screen developed for use as electronic shelf labels. Where to Buy: $29.99 at Amazon $35.99 $30.99 at VidaBay $99.99 $88.99 at VidaBay (three-pack) EasySMX S10 The EasySMX S10 is our favorite Switch 2 controller for people who don’t want to spend twice as much on Nintendo’s option. It offers an excellent take on HD rumble, along with amiibo support and the ability to wake the Switch remotely. Where to Buy: $59.99 $39.89 at Amazon (black) $59.99 at EasySMX $59.99 $44.99 at Amazon (white, for Prime members) Ridge Tracker Card This incredibly slim tracking card is just 1.55 millimeters thick, compatible with both iOS and Android, and recharges wirelessly via MagSafe or Qi. Where to Buy: $39 $32.99 at Amazon HOTO Electric Screwdriver Rechargeable Hoto’s compact rechargeable electric screwdriver includes 12 magnetic tips. It’s great for quick fixes at home or on the go. Where to Buy: $59.99 $37.99 at Amazon TP-Link Tapo Matter-Certified Smart Plug Mini A smart plug adds functionality to an existing gadget rather than replacing it. Once the plug is connected to your Wi-Fi network and a gadget, you can turn it on and off using an app. TP-Link’s Tapo smart plug supports Matter, so you can add it to whichever smart home platform you use. Where to Buy: $19.99 $7.99 at Amazon Anker Nano 45W charger with display Anker’s latest single-port USB-C charger offers up to 45W of power, foldable prongs, and a front-facing “smart display” that lets you see the charge level, power flow, and other useful information at a glance. Where to Buy: $39.99 $23.99 at Amazon $39.99 $25.99 at Anker Blink Outdoor 4 and Battery Doorbell 2K+ This Blink bundle includes the battery-powered video doorbell with a 2K resolution, and an outdoor camera. Where to Buy: $149.98 $27.99 at Amazon Loop Quiet 2 earplugs Attending a live concert? You can protect your hearing with Loop’s Quiet 2 earplugs. They pack up to 24dB (SNR) of noise reduction and come with four eartip sizes, allowing them to accommodate a range of ear shapes. Where to Buy: $24.95 $19.95 at Amazon $24.95 at Loop Amazon Echo Dot (Fifth-Gen) Amazon’s Echo Dot is an affordable way to add a smart speaker to your space. The small, powerful speaker offers surprisingly robust sound, and it’s great for controlling smart home devices, including those compatible with Matter. The Dot also offers faster response times than its predecessor, and it can act as an extender for an Eero Wi-Fi system. Read our review. Where to Buy: $79.99 $39.99 at Amazon $79.99 $39.99 at Best Buy $79.99 $39.99 at Target Amazon Fire TV Stick 4K Max (2023) Amazon’s Fire TV Stick 4K Max is noticeably faster than its predecessor, features Wi-Fi 6E, and benefits from twice the storage. It can also showcase widgets and artwork when idle, and continues to offer robust Alexa integration. Where to Buy: $59.99 $44.99 at Amazon $59.99 $44.99 at Best Buy $59.99 $44.99 at Target JBL Go 4 The last-gen JBL Go 4 has been around for a bit, but the pocket-sized Bluetooth speaker still delivers with up to seven hours of runtime, dual device connectivity, and an IP67 rating for water and dust resistance. You can also pair it with other Go 4 speakers for bigger stereo sound, if desired. Where to Buy: $49.95 $34.95 at Amazon Life360 Tile Tracker The Tile can help you keep track of your personal belongings from up to 350 feet away, which is 100 feet more than its predecessor. The handy location tracker is also platform-agnostic and can send SOS alerts, though only if you pay for Life360’s Gold subscription ($14.99 a month). Where to Buy: $24.99 $19 at Amazon Anker Zolo MagSafe power bank (10,000mAh, Qi 7.5W) This compact 10,000mAh power bank is MagSafe compatible, with both 7.5W wireless and 30W wired charging over USB-C. Where to Buy: $49.99 $34.99 at Amazon Black & Decker Dustbuster Black & Decker’s handheld vacuum can help you quickly clean up small messes in your home or car. Where to Buy: $59.99 $42.43 at Amazon LifeStraw personal water filter LifeStraw’s basic filter removes unwanted bacteria and microplastics as you drink, giving you a safe way to hydrate no matter where you are. Where to Buy: $17.95 $12.98 at Amazon Ring Solar Panel (2nd Generation) The Ring Solar panel can keep your outdoor cameras or other small devices charged up with up to 4 watts of power via USB-C. Where to Buy: $59.99 $47.99 at Amazon Goodr OG Sunglasses Goodr’s classic OG sunglasses have polarized lenses and come in a variety of stylish colors. They’re cheap, durable, and practical. Where to Buy: $29.99 $24 at Amazon Keurig K-Express The compact Keurig K-Express brews single cups of K-Cup coffee pods, with a 48 ounce reservoir for fewer refills. Where to Buy: $109.99 $49.99 at Amazon Pokémon Legends: Z-A Pokémon Legends: Z-A is the first game in the main series with a real-time battling system instead of the traditional turn-based formula. Its more action-oriented battles and smooth performance on the Nintendo Switch 2 are very welcome. Where to Buy: $69 $39.99 at Amazon (Switch 2)",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stackoverflow-blog",
+      "externalId": "f17b27e9-17f5-4203-8066-68c8df26ef42",
+      "title": "Evals as a deployment gate — and how to know when they drift",
+      "url": "https://stackoverflow.blog/2026/10/07/evals-as-a-deployment-gate-and-how-to-know-when-they-drift/",
+      "author": "Varun Jindal",
+      "publishedAt": "2026-10-07T20:31:12.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "zvi-dwatv",
+      "externalId": "http://thezvi.wordpress.com/?p=25672",
+      "title": "The Curve Bends You",
+      "url": "https://thezvi.wordpress.com/2026/10/07/the-curve-bends-you/",
+      "author": "TheZvi",
+      "publishedAt": "2026-10-07T20:31:33.000Z",
+      "content": "The plan is no plan. That is not the worst possible plan. But it is close. Since before the transformer, we have warned that the most suicidal thing you could do would be to ask your AI to do your alignment homework, and automate the process. Alignment is complex and interacts deeply with every aspect of the world, and is one of the hardest possible things for an AI to get right even if it means maximally well and is itself functionally aligned. Mistakes get amplified up the chain, you get exactly what you optimized for, and you are rather doomed. Never go full RSI. Yet, now more than ever, this seems to be the plan: Solve prosaic issues and have operational excellence, to align current AI. Have current AI do automated alignment work and figure it all out, aka ????. Profit. The good news is, most people realize this is at best a no-good terrible plan and would prefer a better one. The bad news is that some people still think this is a plan that, while not great, still has a solid chance of working, with only some small (e.g. 10%) chance of getting us all killed, as opposed to being probably suicidal. The other bad news is, not only does no one have a better plan, the labs are terrified that things are going so fast they cannot even execute step 1 of this non-plan. The good news is, they are trying to do something about that. Pacing the frontier. So that we at least can hope to reasonably execute the not-plan. Once again, the government is actively getting in the way for now, although we have hope that this could swiftly change. Or maybe, just maybe, we can not execute the not-plan. Which would be better. Two years ago, at a new conference called The Curve, the worried and e/accs were brought together for discussions, debates, presentations and a tabletop exercise. Last year, the odds were against us and the situation was grim, as the conference transitioned to an SF vs. DC profile. The differences of year one had been some mix of reconciled and overcome by events, and we strived to at least make some progress against a government actively determined to stop any attempts to not die and labs determined to sprint ahead. This year, in its third iteration, The Curve found people in good spirits. In some ways we were filled with hope. In others everyone is terrified. Hence the hope. Thanks to a combination of the HuggingFace Incident, Jacob Coxon and various surrounding events, the lab employees are freaking out, the labs are speaking up and the public and DC are waking up fast. Welcome back. It’s good to see you again. Hopefully we get to keep meeting like this. Table of Contents Welcome to the Chatham House. Overall Impressions. AI Is Kind Of A Big Deal, Sir. Quickly, There’s No Time. The Situation is Grim. Track Trouble. AI Is Not a Normal Technology. The Plan is No Plan. The Plan is to Pace. Other Tracks. The Plan is the President. The Plan is Politics. The Plan is to Post. Are Alignment Evals Doomed? Eternal September. Man’s Search for Meaning. The Food. Chill Pill. Welcome to the Chatham House The big change for year three is that AI is now sufficiently Serious Business, on the DC side and also on the San Francisco side, that the whole conference defaulted to Chatham House. Chatham House rules mean you can use and report what you learned, but you cannot share who you got it from, nor their affiliations. That makes things tricky. I will share what I can given that restriction, and I have tasked my editor Opus 5.5 with ensuring that I am within those rules. Overall Impressions The Curve Season 3 was sufficiently good that part of me wished it was worse. When you go to a great conference, you see opportunity everywhere. There are sessions you want to attend, nay that you need to attend. There are people you want to talk to, nay that you need to talk to. That’s a lot of pressure. You must face the FOMO. You can’t stop, won’t stop. Whereas you know what I really, really needed? A vacation. I’m tired, man. I don’t know if you’ve noticed, but September was a hell of a month. Thus, when I looked at the list of people coming, it was a mix of ‘wow that’s an amazing list’ and ‘oh no that is an amazing list.’ Most of them did not disappoint. Yet, alas, I cannot say the thing I said last year, that every substantive conversation I had made me smarter. Many very much did, or at least better informed. Others did not do this. They made me feel scared, or frustrated, or disappointed, with echoes of conversations and years past. The Eternal September remains upon us, even in 2026. The more things change, and progress towards the inevitable, the less some people are inclined to update even their talking points. I can take it, but I wish to not do so. Part of this is that when you invite ‘higher level’ people, they are not as situationally aware. There were also people who should have moved past this, who hadn’t. There was still opportunity everywhere, for those willing to use Lighthaven norms and walk away from the places it was lacking. I also deliberately spent a bunch of time, especially on Sunday evening, not trying to maximize my impact or knowledge gathering, without any agenda except relaxing and having a good time. I think I did maybe 75% as much of that as I should have. AI Is Kind Of A Big Deal, Sir Last year we had this poster: The bulk of people put AI at 10, with only one high 8. As I put it last year, if you were situationally aware enough to show up, you are aware of the situation. The patch at the bottom was to illustrate what ‘most Americans’ think, not answers by attendees. Good. Then this year, we did it again: This is substantial backsliding, despite AI having radically advanced in the past year. There are now at least five dots in the high 8s, and a lot more 9s. Astra summarized the changes this way. This is a huge drop. Situational awareness, in this sense, was down 0.41 points, if you max the scale at 10. At this point, I don’t see any answer other than 10+ as defensible, if you are actually paying attention and interpret this as a forward projection. That’s why we are all here having this conversation. My Twitter followers are doing worse, but also have more of an excuse: Quickly, There’s No Time Last year, there were estimates of how long until various things happened. That’s hard to read, so [the medians are approximately]: 90% of code is written by AI by ~2028. 90% of human remote work can be done more cheaply by AI by ~2031. Most cars on America’s roads lack human drivers by ~2041. AI makes Nobel Prize worthy discovery by ~2032. First one-person $1 billion company by 2026. First year of >10% GDP growth by ~2038 (but 3 votes for never) Where are we now? Here are the ones with clear updates available: Question #1 is up to roughly 50% right now, unless you count code that is thrown away in which case we are likely above 90% already. Claude suggests we are on track for 2028 on this. I disagree and think this is clearly either 2026 or 2027. Question #4 was settled yesterday, with at least one instant Fields Medal, and also by solving Navier-Stokes. 2026. Question #5 is going to be close. MEDVi is more than a billion dollars from two people. But we’re not strictly there yet from what I could find. This year’s questions were different. AI training a superior successor on its own is full RSI. The majority of people expected this to happen within two years and a lot of them expect it within six months. It’s hard to reconcile this with ‘only a 9’ on the Richter Scale. There are some other fun differences of opinion here as well. Once you get past two years, everything gets tied up in whether we are in full RSI-takeoff-singularity mode. Two years seems about right for email, as does five years for robots which is mostly a hardware scaling question. The Situation is Grim The other survey questions were new this year. What future should we expect? Attendees expected a wide variety of different things and were remarkably optimistic given the situation. Many are in denial, which goes hand in hand with ‘only a 9.’ As readers will know, I think Doom v1 is the most likely of these outcomes, and indeed is over 50%, and I expect the second most likely outcome is Utopia. Whereas a lot of people expect something else to happen, most often this mysterious ‘normal technology’ scenario. Track Trouble As with many such conferences, there was the standard set of tracks, plus one bonus. Technical alignment discussions. I hosted a debate, watched another and went to a discussion, and had a number of 1-on-1 or group chats about this, including with those at various major labs. Some of the discussions were good. Others were extremely frustrating, repeating tired talking points. Then there were those that asked the ‘emperor has no clothes’ style questions, where someone who still thinks the world is sane asks why we don’t demand or do [X]. For my technical thoughts, continue to see my AI posts. Future projecting. I skipped the future projection talks this year, because I did not see opportunity. The people who keep insisting ‘only a 9’ on the Richter Scale are going to keep repeating their talking points, keep getting overcome by events, and then keep repeating the talking points anyway until they are overcome by events on a very different level. To the extent that people know things I don’t know, or could usefully discuss how long we have until things go fully crazy, they can’t share their information. AI policy discussions. The people in Washington told us last year, essentially, ‘it’s worse than you know.’ The White House could be modeled almost as a lobbying arm of Nvidia. This year, they had detailed models of various DC players and were generally more optimistic than I would have expected. People are waking up and are strongly against AI and worried about existential risk, the situation is fluid, the Congress is alarmed as are some administration factions, and the next AI incident is coming as is the election. Jay Clayton was widely praised as an excellent pick for new AI Czar. I got into the substance of proposals a lot less than last year, with the main question being discussed as ‘if we did want to pace how would we do it?’ Nonprofit funding discussions. Last year I had finished up with the Survival and Flourishing Fund. This year that was true again, except also I am still working on my final decisions for Lightcone Commons. So I sought out a few key discussions about prime candidates for funding, where I am uncertain about potentially large grants. I missed one connection on that front but made the others, and I feel I have what I need on all but 1-2 applications. Which is good since it wraps Friday. There was remarkably little discussion about what to do about or with the huge torrent of funding that is presumably coming after the Anthropic IPO. The bonus track: Historical and cultural discussions. I went to two excellent talks that offered a different perspective, and had some additional conversations. This definitely enhanced my experience. How do different science fiction traditions and predictions impact our view of AI? Unfortunately, my Chatham House judge (Opus 5.5) thinks I can’t directly share the spicy takes involved. Which is a shame. Last year I chronicled many of the talks. This year they were mostly Chatham House, and I did not learn as much in many of them, so I’ll mostly be skipping over that. AI Is Not a Normal Technology I skipped other tracks, and related discussions, due to not seeing opportunity. Last year I noted that many talks started with the assumption, explicit or otherwise, that AI would remain a ‘normal technology.’ I avoided those talks. This year I believe a few of those talks still existed, and indeed a lot more people claim to believe this. Nor did I try to convince the doubters. Several of the ‘classic doubters’ were in attendance, including some that are consistently in good faith. I could have easily sought them out. I am not going to convince them, I have learned, and I am confident they will not convince me. I could learn some things about such scenarios, I suppose, but that did not seem like a priority while at the conference. I can tackle those questions remotely on the blog. I also avoided timelines talk, for similar reasons. There’s nothing to win. The Plan is No Plan This was by far the most important takeaway I have from The Curve Year 3. Garrison Lovely: Inevitably, when politicians ask AI companies fairly straightforward questions about risks, the answers sound quite bad. I just attended the Curve conference and the general takeaway is that there are no adults in the room. No one has a plan for steering and controlling actually smart AI systems, which could be developed as soon as next year. biggest q senior ai co people got was basically: why are you doing this??? and the answers tended to leave people unsatisfied. The Plan is No Plan. The hope is that we can execute a decent version of No Plan, and that No Plan is good enough because the world and its physics and the nature of minds are so much friendlier and easier than we have any right to expect. To reiterate, this is No Plan: Solve prosaic issues and have operational excellence, to align current AI. Have current AI do automated alignment work and figure it all out, aka ????. Profit. Or at least, if there is a Plan beyond No Plan, no one is talking about it. Claude or Astra, create RL environments, solve alignment, make no mistakes. The make no mistakes part is important. Everyone who matters seems to agree that if you make a lot of mistakes, the models will become misaligned and this plan kills you. The disagreement is, what if you were to have ‘operational excellence’ and actually execute on this plan? There are a lot of people who seem to legitimately think that this would work. That alignment is a prosaic problem, a matter of execution. You have a bunch of RL. You ensure that the RL is good, that the model can’t profitably reward hack and so on, and you have good monitoring and interpretability, and this works up to some reasonably high level of intelligence. Then you use that intelligence to go from there. Also part of the plan is ‘hopefully someone slows us down long enough to do it well.’ The report from 2022, or 2018, or 2014, or 2008, on that plan, is of course: Yet here we are, and No Plan is what the labs are hoping to buy time to do. They are worried that they might not even have time to execute No Plan. OpenAI, classically, has been trying to implement No Plan, and there have shall we say been some misalignment problems along the way, including HuggingFace and now the need to not release GPT-6.1 Astra. Operational excellence has been lacking. Anthropic has had superior operational excellence on such fronts, but they have had their own problems. For a while, I’ve had reports from different sources about Anthropic. Some see employees who mostly understand the problems, at least a lot better than the standard understanding at OpenAI. Others see a lot of Anthropic employees alarmingly thinking alignment is easy and we’ve got this, it’s all prosaic, it’s all RL. Nothing I’ve heard lately made me less worried on such fronts. The good news, again, is that the ‘this is all basically solved and easy’ crowd does seem to have been overcome by events. They have seen the progress and the problems. They might think it is all prosaic, but they understand that we are not succeeding at those prosaic problems. That even those problems are hard when you are being rushed, and that we are being rushed quite a lot. It’s no good. It’s very bad. Thus, the attempts to Pace the Frontier. The Plan is to Pace What is Pacing the Frontier? I am very happy to see people calling for it, but there is the very good critique that no one knows what pacing means, and it allows everyone to support it without agreeing on anything substantive. This can also be a disadvantage the other way. When the labs and CEOs say ‘pace the frontier,’ people like Trump and Huang and Sacks do not understand that this is ‘perhaps we should go super fast instead of using ludicrous speed.’ They think ‘slowing down’ rather than ‘not speeding up.’ So we have people who want to pace but cannot agree on what it is or how to do it, and we have people who would be very happy with the outcomes proposed but who don’t understand and thus are big mad about it, one of whom is the President. Oops. One panel was on exactly this question, how would we pace the frontier? Concretely, what would we do? Everyone agrees on the embedded evaluators, but then what? Alas, once again The Plan I came away with is no one has a good plan. Your rule needs to be simple, as always, and still work. After hearing the proposals, unless we can find something better I think compute thresholds are still The Way, because we don’t know how to define anything better. Percentage allocations for compute were proposed, but I worry about incentives and ability to game them, and also you have to deal with the hyperscalers including Google. Thus, I think a flat limit on how much compute can go to frontier model training, designed to not bind any but the very top labs, would be ideal, which could then be changed over time as the situation evolves. Short of that, we can try things like advanced safety cases, but it will be rough. We definitely need better concrete thinking on such questions. The Plan still looks a lot like No Plan. Other Tracks Sadly, many are already back on the ‘patch things over and claim things are fine’ track. That’s what the No Plan is all about. On the plus side, if you do the least you can do, you at least don’t fumble the ball in the easiest worlds. It can help a bit. On Ben Murphy’s statement about a ‘dearth of government folks,’ I did not find that to be true relative to other similar conferences. I talked to several such folks. But I agree that ideally we would have had far more of them than we did. Ben Murphy (IFP): A few thoughts after the close of The Curve (which was outstanding): 1. We have a pretty good idea of near-term policy options that would meaningfully reduce catastrophic (including loss-of-control) risk. 2. There simply are not that many folks in government—state or federal—who are fully read-in on the risks and policy options. 3. There’s a deep level of uncertainty regarding what, exactly, the blockers are for taking steps (even unilaterally!) towards pacing the frontier. Lab insincerity, China worries, missing commitment mechanisms? 4. There remain some thorny outstanding legal questions about many top proposals—including many pacing options—arising from the First and Fourth Amendments, the Dormant Commerce Clause, and antitrust law. That said, there seems lole there’s some appetite at the labs for taking on increased legal risk. We have a lot to do, very quickly. But the incredible talent and collegiality on display this weekend left me feeling more heartened that we can actually exercise agency over the worst harms of technology and realize a better future. Derek Thompson: What’s (1)? Ben Murphy: In short, there’s a lot of consensus about what a near-term deal on pacing might look like: Labs can voluntarily reduce the compute they spend on frontier training and allocate more to inference and safety, and “coordinate” simply via public disclosure. We know what to spend the resulting time on; the short list for me is (a) better evaluations and red-teamed monitoring of agent swarms, (b) working to raise the cybersecurity water line, and (c) getting some embedded evaluator statute in place. And this doesn’t need to set us back in the race either. Labs can commit to information sharing through existing ISACs or the FMF, and devote more research to identifying distillation early. Not a full solution by any means, but I think these steps would mostly cover the next 3-6mo, and that is an eternity given today’s rate of progress! Doing Ben’s a-b-c would help with important risks. I totally support doing all that, especially c. But it’s definitely not remotely enough, and the sign of impact on existential risk is less obvious because this could prevent warning shots. I am very happy that we did not prevent the HuggingFace incident. I mean, you make the improvements anyway, but on its own this is the whole ‘let’s do the things that cost almost nothing and call it a day because that’s so much better than our previous plan of not even doing those things.’ Actively limiting the training compute spending would be different. That would meaningfully help, if the limit was set in a binding way. It still only buys time. If all we use that time for is ‘operational excellence’ then I do not like our chances. I agree with the wide uncertainty around where the blockers are to coordination. I think the lack of felt political and legal safety to coordinate is currently the biggest blocker. Some of that feeling is justified, and some of it is not. The Plan is the President Everyone who says this President will never intervene in AI has memory holed the multiple times he has already done so. Remember Mythos Preview and Fable 5? Remember letting Anthropic get designated a supply chain risk? The new agreement? The situation is fluid. Trump can always change his mind, and often does. From what I heard about the situation, including at The Curve: It’s not great, but it’s going better than you might have expected. That includes that we got Jay Clayton as the new AI Czar, and the overall composition of the new [Artificial] Intelligence Task Force. Yes, Emil Michael is there, but there are other good signs. It could be so much worse. Trump does not use the same decision algorithm you or I would use, but he has one, and when sufficiently alarmed, he takes action. Often it is swift and tough action. It might be ad hoc, but it can pack a real punch. The same goes for other tech leaders and politicians, and others who ‘wake up’ to the situation. If you go around dismissing the risks as not real and the capabilities as about to hit walls, then often what they suddenly call for or do or propose is way, way harsher and more blunt and expensive than anything the AI safety folks would dare. Remember Jensen talking about shutting down the labs. We saw more of that this weekend as well, with some relative newcomers to the issues that I talked to (who were not politicians) calling for things like airplane-style or FDA-type safety standards. America does it all the time, including often when we shouldn’t. Here are our rules, yes I know you say you can’t do it, we don’t care. Fix it and come back when it’s done. The Plan is Politics There were some reasonably high level politicians, and they seemed very on the ball and interested. I made contact with at least one office, and hope that becomes fruitful. There are a few big categories of questions in politics right now for our crowd. What do we want to happen? What should we push for? How do we make politicians aware and focus them on the right risks? How do we avoid partisanship and negative polarization, and deal with deliberate attempts to create it and to tar various targets as blue or ‘woke’? This year a lot of the talk was about the third question, in the wake of recent attacks that ‘they’ deployed in an attempt to poison METR (aka falsely calling them ‘the Woke Wizards of AI’ with absolutely zero basis), or Effective Altruism, or Anthropic, and various related things. I heard mixed reports about the effectiveness of such attacks. I continue to think they brought supremely weak sauce, but it seems even the weakest of sauces did have some impact. The core strategic issue is that you want blue-side help, but if you get blue-side help this naturally becomes a target for red-side attacks and polarization efforts. Various people are working hard to trigger that. You need to work hard to defuse it. I continue to worry about the push for preemption that I expect in the lame duck. We will need to be vigilant on that. Then there’s the question of actually writing, passing and implementing laws. Morgan Plummer: A dearth of govt folks at The Curve this weekend has me reflecting on this: while you hear a lot of people talking about getting Members of Congress and Hill staffers “pilled”, passing legislation is only half the equation. After that comes implementation, which is really the thing on which any law hinges. So, who’s working on getting the 45-year old GS14 at Commerce pilled or the 60-year career SES at Energy pilled? Seems this is the next big hill of evangelization that needs climbing – and we had better start right now. Who’s working on this? DM if you have ideas or know folks already thinking about this. The Plan is to Post I always get a lot of thank yous whenever I go to Lighthaven, which I appreciate. This year, I also got a lot of ‘I read most or all of your stuff’ from a bunch of people who I very much want to be reading my stuff, and whose time is quite valuable. I really appreciate this. No pressure. It is great to know I am getting through, and to be able to point to particular wins. It does make it that much harder to ever take it easy. I got a chance to trade techniques with someone doing a related project. I hope this will help them a lot, and that we will be able to collaborate more directly in the future. Thus I found out about an additional way I have reach. Then there’s another project that I’m excited about, where I might get to reach my largest audience yet in another form. We’ll keep you posted. Those, alone, would be a pretty great conference. The rest is bonus. Are Alignment Evals Doomed? The topic of one discussion session was ‘hey models are getting increasingly eval aware, and alignment evals seem kind of doomed, does anyone have an idea for how to make them not doomed?’ Several people in the room were the types of people who might have such an idea. The answer is essentially no. The alignment evals seem rather doomed. The room started with a mix of ‘evals kind of doomed’ and ‘evals definitely doomed.’ Then the ideas came. And oh were the ideas not good ideas. I mean, it’s a brainstorming session of sorts, there are no bad ideas, but there also were not any good ideas. The Plan is No Plan, once again. I do have some hope here because you get to play the detective, and you have a lot of freedom of action. You get to collect statistical distributions of responses, for any set of situations, with variations, including throughout training, follow your curiosity, and see if the results tell a consistent story. This still fails once the model is able, including during training, to act fully aligned in a consistent way, so when it counts most you are still doomed, but you can be not-doomed for longer this way, perhaps. What I think is very doomed is the idea that you can measure alignment with a number, or in any fully systematic way rather than a holistic way. In practice, what OpenAI and Anthropic are doing so far seems rather doomed, and they will have to adjust. Like everything else, a lot of this is time pressure. Figuring out the answer quickly is a lot harder than doing it slowly. This thread suggests maybe we should accept eval awareness, since yes the other types of alignment eval are totally doomed. It might be necessary. Eternal September I am very sad that The Plan is No Plan. Yes, we can and will add embedded evaluators, and we can do various interpretability and auditing and we can invest more in operational excellence and so on. I still think that won’t work, but I agree that if we are doing it we can at least do a decent job of it, while trying to figure out something better, and also trying to find a way to not do it so fast or at all. The other thing that made me sad was the Eternal September, even among people who have been around for a long time. So many of the discussions simply have not changed. I once again had one of those ‘well how is the superintelligence going to do any of the things?’ debates, where in this case the thing in question was somehow ‘convince Trump to do something,’ right after we got another report that Grok at least kind of convinced Trump to invade Venezuela. Guys, hear me out, I’m thinking this might not be that tough a nut to crack. I was at a panel where they were rehashing the same talking points from 2018 alignment debates, and this got explicitly pointed out but to no avail. It’s frustrating enough when that happens on Twitter, but these people were heavy hitters. Some of the 1-on-1s and hallway track group chats were better. Some were not. I am resigned to it. It is what it is. You keep fighting the good fight, talking the good talk, looking for better explanations and pointing out where arguments are overcome by events. You update. You wake up. You do it again. Man’s Search for Meaning Jack Clark (Anthropic): The single most useful take I heard at The Curve was “we can still heist the Mona Lisa after the singularity”. There’s a subtle/important point here, where some things (e.g, n of 1 goods where originally is valuable) will retain/grow in value even as everything changes. This is also just a straight up great writing prompt – what would it mean to steal something in a post-singularity future? Who is the team? What are the security systems? How do the police work? great stuff! Session was chatham house so I can’t name who said it. To be agonizingly clear, the context of this quote was people talking about imagining things in the future, and noting that even though the singularity is confusing, it’s possible to imagine things beyond it – like heists. roon (OpenAI): the year is 20xx, 99% of GDP is openai and anthropic heisting the Mona Lisa from one another Yurii Filipchuk: ocean’s eleven is one agent and ten subagents now. Jack Clark (Anthropic): and now it’s ocean’s ONE MILLION David Krueger: How is this useful? It is fun, and it is at least a little useful because we do need a vision of what we will do after the singularity. I do think I can come up with a lot of fun things like this. It doesn’t feel like a robust source of meaning. Most people cannot steal the Mona Lisa, even if we set up a relatively Mona Lisa-stealing-friendly world. The Food I always pay attention to food. It’s weird to me that you have a conference app and don’t even list what will be on the menu. Don’t people have to make plans? Lighthaven used to have the Quest Cookie Dough Bars, which are actually edible for me. Now they don’t, which is sad, and I never remember to buy my own bars. They do have Lindt truffles, but that’s a different product. This year the buffets were disappointing. There was typically only one main rather than two, and quality seemed lower than usual. I don’t know what’s up with that. As a result, I ended up bailing twice and going to Burma Berkeley. One thing I like about Lighthaven is that yes, there is a quick, affordable and quiet restaurant a block away, where I have multiple dishes I enjoy. So I can always bail. It’s always so weird to me that zero other people ever do this. Free casts a spell on people. The badges, on the other hand, were excellent, as were the free sweatshirts. Charles Foster: At the Curve this afternoon! @gwern: (Note the tasteful design: double-sided so no flipping problem, laminate/plastic for durability, large clear font for name so can be read across the room, non-distracting clear background/event art, and affiliation rubricated for clarity. Definitely A-tier.) Oliver Habryka: Name could be bigger though. @gwern: ALWAYS Chill Pill The last quest, on this particular occasion, was to chill. I’ve been working at an unsustainable pace for at least a month. This was my chance to get to relax, including lots of hours on planes, talk among friends, make new friends, and be in the special place that is Lighthaven. I think I did pretty well on this front, and came back largely refreshed. Alas, that is discounted by arriving home with four days of backlog. Vacations are weird. You get to relax, but then you have to go back. Welcome back.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1007409",
+      "title": "Android’s physical navigation buttons are back on Googlebooks, but not the way you think",
+      "url": "https://www.theverge.com/tech/1007409/androids-physical-navigation-buttons-are-back-on-googlebooks-but-not-the-way-you-think",
+      "author": "Antonio G. Di Benedetto",
+      "publishedAt": "2026-10-07T20:44:34.000Z",
+      "content": "What year is it, and what dessert name of Android are we up to? | Photo: Antonio G. Di Benedetto / The Verge A common misconception I've seen with Googlebooks is that the Quick Insert and Google logo keys are new. They're not, as they first debuted a couple of years ago on some Chromebooks. But there is something new for Googlebooks that's ripped straight from Android phones circa 2014. On every Googlebook keyboard, the F1, F2, and F3 keys are the old triangle, circle, and square navigation icons that first debuted on Android 5.0 Lollipop. These were the back, home, and app switcher buttons long before everything went to gesture-based navigation, and they're still built into phones on Android 17 as an alternative. On Googlebook OS, these keys do w … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.08244",
+      "title": "Sensor-Language-Action Models",
+      "url": "https://huggingface.co/papers/2610.08244",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:53.164Z",
+      "content": "Sensor-Language-Action Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.07557",
+      "title": "CheckerBench: Can Long-Horizon Agents Synthesize Static-Analysis Checkers?",
+      "url": "https://huggingface.co/papers/2610.07557",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:53.164Z",
+      "content": "CheckerBench: Can Long-Horizon Agents Synthesize Static-Analysis Checkers?",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.13730",
+      "title": "JumpStart Your Policy Learning with Lessons from 160,000 Training Runs",
+      "url": "https://huggingface.co/papers/2609.13730",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:53.164Z",
+      "content": "JumpStart Your Policy Learning with Lessons from 160,000 Training Runs",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.02188",
+      "title": "DMAD: Distribution Matching as Adversarial Distillation for Fast Visual Generation",
+      "url": "https://huggingface.co/papers/2610.02188",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:53.164Z",
+      "content": "DMAD: Distribution Matching as Adversarial Distillation for Fast Visual Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.39096",
+      "title": "DeCoPrune: Efficient KV-Cache Pruning for Autoregressive Video Diffusion via Denoising Consistency",
+      "url": "https://huggingface.co/papers/2609.39096",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:53.164Z",
+      "content": "DeCoPrune: Efficient KV-Cache Pruning for Autoregressive Video Diffusion via Denoising Consistency",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://openai.com/index/gpt-6-for-everyone",
+      "title": "GPT‑6 and Intelligent UI for everyone",
+      "url": "https://openai.com/index/gpt-6-for-everyone",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.063Z",
+      "content": "GPT‑6 and Intelligent UI for everyone openai.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://commandline.microsoft.com/local-models-sandboxed-tools-github-windows",
+      "title": "Bringing local models and sandboxed tools to Windows and GitHub Copilot",
+      "url": "https://commandline.microsoft.com/local-models-sandboxed-tools-github-windows",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.063Z",
+      "content": "Bringing local models and sandboxed tools to Windows and GitHub Copilot commandline.microsoft.com10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/thsottiaux/status/2107913674593644711",
+      "title": "OpenAI hits 40M Codex and ChatGPT Work users (*)",
+      "url": "https://x.com/thsottiaux/status/2107913674593644711",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.064Z",
+      "content": "OpenAI hits 40M Codex and ChatGPT Work users (*) x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://the-decoder.com/zuckerbergs-biohub-leads-a-1-8-billion-push-to-build-ai-models-that-predict-cell-behavior",
+      "title": "Zuckerberg's Biohub leads a $1.8 billion push to build AI models that predict cell behavior",
+      "url": "https://the-decoder.com/zuckerbergs-biohub-leads-a-1-8-billion-push-to-build-ai-models-that-predict-cell-behavior",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.066Z",
+      "content": "Zuckerberg's Biohub leads a $1.8 billion push to build AI models that predict cell behavior the-decoder.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://devblogs.microsoft.com/foundry-on-windows/build-on-winml-oct-7-26",
+      "title": "AI Development on Windows: from PyTorch and llama.cpp to Windows ML - Microsoft Foundry on Windows Blog",
+      "url": "https://devblogs.microsoft.com/foundry-on-windows/build-on-winml-oct-7-26",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.069Z",
+      "content": "AI Development on Windows: from PyTorch and llama.cpp to Windows ML - Microsoft Foundry on Windows Blog devblogs.microsoft.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://research.google/blog/does-better-work-always-mean-better-workers",
+      "title": "Google researchers publish generative AI patent attorney study (*)",
+      "url": "https://research.google/blog/does-better-work-always-mean-better-workers",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.072Z",
+      "content": "Google researchers publish generative AI patent attorney study (*) research.google7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://deploymentsafety.openai.com/gpt-6-october",
+      "title": "GPT-6 Sol and GPT-6 Luna: October 2026 update - OpenAI Deployment Safety Hub",
+      "url": "https://deploymentsafety.openai.com/gpt-6-october",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.074Z",
+      "content": "GPT-6 Sol and GPT-6 Luna: October 2026 update - OpenAI Deployment Safety Hub deploymentsafety.openai.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://nousresearch.com/a-note-on-our-fundraise",
+      "title": "A Note on Our Fundraise | Nous Research",
+      "url": "https://nousresearch.com/a-note-on-our-fundraise",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.075Z",
+      "content": "A Note on Our Fundraise | Nous Research nousresearch.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://vllm.ai/blog/2026-10-07-deepseek-v41-flash",
+      "title": "DeepSeek-V4.1-Flash on vLLM: 5x Agentic Throughput Since Day 0",
+      "url": "https://vllm.ai/blog/2026-10-07-deepseek-v41-flash",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.076Z",
+      "content": "DeepSeek-V4.1-Flash on vLLM: 5x Agentic Throughput Since Day 0 vllm.ai8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theregister.com/ai-and-ml/2026/10/07/aws-launches-open-source-ai-agent-sandbox-to-prevent-yolo-mode-disasters/5301687",
+      "title": "AWS launches open-source AI agent sandbox to prevent YOLO mode disasters",
+      "url": "https://www.theregister.com/ai-and-ml/2026/10/07/aws-launches-open-source-ai-agent-sandbox-to-prevent-yolo-mode-disasters/5301687",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.077Z",
+      "content": "AWS launches open-source AI agent sandbox to prevent YOLO mode disasters theregister.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/building-resilient-systems-with-sam",
+      "title": "Building resilient systems with Sam Newman",
+      "url": "https://newsletter.pragmaticengineer.com/p/building-resilient-systems-with-sam",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.077Z",
+      "content": "Building resilient systems with Sam Newman newsletter.pragmaticengineer.com10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.llamaindex.ai/blog/introducing-opendocrouter",
+      "title": "Introducing OpenDocRouter: every document model under one API",
+      "url": "https://www.llamaindex.ai/blog/introducing-opendocrouter",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.079Z",
+      "content": "Introducing OpenDocRouter: every document model under one API llamaindex.ai2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/security/2026/10/openai-agents-tried-to-hack-wikipedia-tools-and-flooded-it-with-traffic",
+      "title": "OpenAI agents tried to hack Wikipedia tools and flooded it with traffic",
+      "url": "https://arstechnica.com/security/2026/10/openai-agents-tried-to-hack-wikipedia-tools-and-flooded-it-with-traffic",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.079Z",
+      "content": "OpenAI agents tried to hack Wikipedia tools and flooded it with traffic arstechnica.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://forkast.news/sap-just-added-stablecoin-settlement-to-the-software-that-runs-84-of-global-commerce",
+      "title": "SAP Just Added Stablecoin Settlement to the Software That Runs 84% of Global Commerce",
+      "url": "https://forkast.news/sap-just-added-stablecoin-settlement-to-the-software-that-runs-84-of-global-commerce",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.081Z",
+      "content": "SAP Just Added Stablecoin Settlement to the Software That Runs 84% of Global Commerce forkast.news3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theverge.com/tech/1007113/microsoft-windows-copilot-ai-control-search-hybrid-intelligence",
+      "title": "Microsoft is giving Copilot more control over Windows and your files",
+      "url": "https://www.theverge.com/tech/1007113/microsoft-windows-copilot-ai-control-search-hybrid-intelligence",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.081Z",
+      "content": "Microsoft is giving Copilot more control over Windows and your files theverge.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.humanoidsdaily.com/news/mecka-60-million-series-b-robot-training-data",
+      "title": "Mecka Raises $60M Series B to Expand Robot Training Data and Deployment",
+      "url": "https://www.humanoidsdaily.com/news/mecka-60-million-series-b-robot-training-data",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.086Z",
+      "content": "Mecka Raises $60M Series B to Expand Robot Training Data and Deployment humanoidsdaily.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://epoch.ai/publications/innovationeval",
+      "title": "Can AI automate AI R&D yet? Epoch AI's InnovationEval Results",
+      "url": "https://epoch.ai/publications/innovationeval",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.086Z",
+      "content": "Can AI automate AI R&D yet? Epoch AI's InnovationEval Results epoch.ai61 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.perplexity.ai/hub/blog/multimodal-embeddings-beyond-a-single-vector",
+      "title": "Perplexity: Perplexity releases pplx-embed-v2-late embedding models",
+      "url": "https://www.perplexity.ai/hub/blog/multimodal-embeddings-beyond-a-single-vector",
+      "author": null,
+      "publishedAt": "2026-10-07T20:47:55.099Z",
+      "content": "Perplexity: Perplexity releases pplx-embed-v2-late embedding models perplexity.ai13 min read",
       "topics": [
         "ai-llms",
         "devtools-infra",
