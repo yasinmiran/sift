@@ -131,6 +131,47 @@ describe("altText", () => {
     );
   });
 
+  // 2026-10-05/pm/card-7, published as written here. Composed as "{title}:
+  // {desc}" it puts the desc's own semicolon at index 92 and the word boundary
+  // at 93, and there is no comma anywhere in it, so no other boundary in
+  // truncate can reach the same output: the semicolon is the only thing on test.
+  it("does not end a cut on the desc's own semicolon", () => {
+    const card = buildCards(DAY, {
+      ...POST,
+      slides: [
+        {
+          ...POST.slides[0]!,
+          title: "Google pauses its open source bug bounty over AI slop",
+          desc: "Most automated submissions were invalid; arXiv also rate-limited papers.",
+        },
+      ],
+    })[1]!;
+    expect(altText(card)).toBe(
+      "Google pauses its open source bug bounty over AI slop: Most automated submissions were invalid\u2026",
+    );
+  });
+
+  // The other half, and again comma-free so only one boundary can produce it: a
+  // 92-character title spends the budget alone, the word boundary falls on the
+  // space right after altText's joining colon, and the desc never arrives. The
+  // alt has to read as a cut-off title, not as one promising a clause that is
+  // not there.
+  it("does not end a cut on its own joining colon", () => {
+    const card = buildCards(DAY, {
+      ...POST,
+      slides: [
+        {
+          ...POST.slides[0]!,
+          title: "Google\u2019s Gemini 4 Argon tops coding benchmarks but only trusted cyber defenders get it first",
+          desc: "Access is restricted to vetted defenders",
+        },
+      ],
+    })[1]!;
+    expect(altText(card)).toBe(
+      "Google\u2019s Gemini 4 Argon tops coding benchmarks but only trusted cyber defenders get it first\u2026",
+    );
+  });
+
   it("caps alt text at instagram's 100 characters", () => {
     const long = buildCards(DAY, {
       ...POST,

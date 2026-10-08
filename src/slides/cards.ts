@@ -51,6 +51,14 @@ const dropUnpairedMarks = (s: string): string => {
 // boundary at all still cuts hard rather than vanishing.
 const KEEP = 0.8;
 
+// A cut ends on the words that survived it, never on the punctuation that was
+// joining them to the text now gone: altText's own ":" when a title fills the
+// whole budget, or a ";" the word boundary landed one character past. Both are
+// characters trimEnd() had no reason to take. The clause boundary picks the
+// index of its comma and so has never carried one here; the hard cut at
+// max - 1 respects no boundary at all and would, hence the comma in the class.
+const trimTail = (s: string): string => s.replace(/[\s,;:]+$/, "");
+
 function truncate(s: string, max: number): string {
   if (s.length <= max) return s;
   const cut = s.slice(0, max);
@@ -58,7 +66,7 @@ function truncate(s: string, max: number): string {
   const comma = cut.lastIndexOf(", ");
   const space = cut.lastIndexOf(" ");
   const at = comma >= floor ? comma : space >= floor ? space : max - 1;
-  return `${cut.slice(0, at).trimEnd()}…`;
+  return `${trimTail(cut.slice(0, at))}…`;
 }
 
 // Marks render with no width, so a string fits when its visible text does.
