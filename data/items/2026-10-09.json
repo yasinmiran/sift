@@ -1,6 +1,6 @@
 {
   "day": "2026-10-09",
-  "generatedAt": "2026-10-09T16:44:15.251Z",
+  "generatedAt": "2026-10-09T20:20:24.940Z",
   "items": [
     {
       "sourceSlug": "hacker-news",
@@ -717,6 +717,21 @@
       "content": "BAAI's AREX agent audits its own answers constraint by constraint, keeping verified pieces and researching only the gaps, hitting 82.5% on BrowseComp.",
       "topics": [
         "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/liquid-ai-d1-is-available-on-ai-gateway",
+      "title": "Liquid AI's d1 is available on AI Gateway",
+      "url": "https://vercel.com/changelog/liquid-ai-d1-is-available-on-ai-gateway",
+      "author": "Zachary Chen",
+      "publishedAt": "2026-10-09T00:00:00.000Z",
+      "content": "is now available on .Liquid d1AI Gateway d1 is a that evaluates shared state against typed questions for classification, routing, and scoring. It returns structured answers with probabilities without generating text tokens. d1 also has vision support: the model can answer typed questions about images for visual classification, inspection, and scoring.decision model Use through the , the , or the . These examples ask whether a support agent issued a refund:liquid/d1AI SDK decision APIOpenAI-compatible Decisions APITypeSafe-compatible API This example reads a local PNG named and asks which color it shows:square.png AI Gateway provides a unified way to access models and track usage and cost. Decision calls appear in and count toward alongside other model requests.logsbudgets See the for Choice, Score, and Boolean questions, or on AI Gateway.decision documentationbrowse all decision models Read more Image input",
+      "topics": [
+        "devtools-infra",
+        "frontend"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -1627,6 +1642,21 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/how-rillet-ships-3-faster-with-ai-agents-on-vercel",
+      "title": "How Rillet ships 3× faster with AI agents on Vercel",
+      "url": "https://vercel.com/blog/how-rillet-ships-3-faster-with-ai-agents-on-vercel",
+      "author": "Susan Aziz",
+      "publishedAt": "2026-10-09T04:00:00.000Z",
+      "content": "Rillet on Vercel Standardizing every internal agent on eve Running customer requests through agents, end to end Using AI Gateway to give every builder every model Managing builder access through Enterprise Managed Users Tripled shipping rate in three months with eve agents deployed on Vercel Two-person team closed 800+ Linear tickets in its first 4 months Builder access via Enterprise Managed Users, SSO, and Directory Sync Ships customer-requested changes to production in as little as two hours Gives every builder access to models through AI Gateway is an AI-native enterprise resource planning (ERP) platform. Their AI agents do accounting work inside a real-time general ledger, with human approval and a full audit trail. Rillet serves more than 600 customers working toward a zero-day close, reducing the time needed to close their books at month-end.Rillet A product that helps customers close their books in near real time needs a team that can respond quickly to their requests. Anthony Liang heads Rillet’s two-person frontend team, formed only a few months ago, and leads the push to put agents to work across internal workflows, from shipping customer fixes to reviewing code. The team builds agents with eve and runs them on Vercel, using Vercel Connect to give them access to Slack and Linear, while AI Gateway routes their model requests. Anthony had been building AI applications since the GPT-3.5 era and had evaluated nearly every agent framework on the market, from the major model providers' SDKs to the open-source ecosystem. Each gave him primitives for the model loop but left him to decide where instructions lived, how tools registered, and how an agent reached Slack and GitHub. Anthony could make those choices for his own agents, but he wanted conventions everyone at Rillet could follow, including people who had never touched TypeScript. Anthony chose , Vercel's open-source agent framework for building, running, and scaling agents that keeps instructions, tools, and skills together in one directory.eve People who know what an agent should do can shape its behavior through markdown instructions and skills without writing code, while its tools live in TypeScript files whose names become the API. Once an agent is ready, it can move from a laptop to Vercel without changing how it behaves. Rillet manages all of these deployments in one company-controlled Vercel organization. Rillet uses to give its agents access to Slack and Linear through reusable connections the team can attach to the projects that need them. Connect supplies short-lived tokens at runtime and handles refresh through its SDK, keeping long-lived provider secrets out of each application and giving builders fewer credentials to maintain. If a runtime token leaks, its expiration limits how long it can be used.Vercel Connect Anthony's team built a Slack bot that picks up tickets and opens PRs, while others run agents for incident analysis and Linear board management. Shared conventions make that work easier to reuse, and agent building has spread beyond engineering. Before, when a customer would ask for a change, and the request would scatter across a Linear ticket, a Slack thread, and a catch-up conversation with an engineer. By the time anyone had the full context, the fastest part of the job was writing the code. Rillet's customer success team now opens a Chrome extension alongside the Rillet app, highlights what the customer is seeing, and describes the change. The extension's eve agent captures the context and, if the change is safe and well-scoped, hands it to a coding agent that writes the spec, makes the change, and opens a pull request assigned to Anthony. Agents also spin up a browser in a sandbox to test the change and attach screenshots as proof, while Anthony reviews the pull request and merges it. If he requests changes, the agent resumes its session and addresses them. Rillet's CEO recently posted that the company shipped more in the past few weeks than in the entire first half of 2026, on top of tripling its shipping rate over the prior three months. Rillet’s CPA team ships customer requests through its in-house agent, Nebula, within two hours of the ask. As one of their customers put it, Rillet has \"completely ruined my expectations\" for how quickly software vendors should make changes. As more people at Rillet started building agents, connecting directly to Anthropic and OpenAI meant configuring access to each model provider separately. routes model requests to both through one integration, so builders can add an agent without setting up separate provider connections.AI Gateway In eve, builders choose the model by setting a string in the agent’s configuration: Agents deployed on Vercel authenticate to AI Gateway automatically. Builders can try different models for a task by changing the model string, without changing the integration. Usage breakdowns show Anthony which models the team uses and what they cost, helping him track spending and choose models as more people build autonomous agents. As more people are building agents, Rillet also needs to manage their access to Vercel. With , builders sign in through Google Workspace single sign-on using company-managed accounts rather than personal ones. adds and removes their access based on assignments in Rillet’s identity provider, so account administration follows the company’s directory.Enterprise Managed UsersDirectory Sync Rillet set up Enterprise Managed Users on its own and moved builders from personal to company-managed accounts in one transition, bringing their Vercel sign-in and account access under Rillet’s identity provider. Anthony is building what Rillet thinks of as its agent factory, so bigger features can follow the same pipeline as small fixes. One agent writes PRDs and technical specs, while another connects to Rillet's Linear boards, Miro diagrams, and knowledge base to give other agents the context they need. With subagents and delegation built into eve, Anthony can add these specialized agents as directories within the same framework. For a company whose mission is collapsing month-long processes into zero days, building agents in eve and running them on Vercel brings that same focus on speed to its internal tooling. is the AI-native ERP built for the era of agentic finance. By combining a real-time general ledger, continuous close architecture, and AI agents in one system, Rillet enables humans and agents to run finance together with full context, controls, and auditability. About Rillet:Rillet Read more An agent is a directory The person closest to the customer ships the fix The model is a string What's next",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261009/p1#a261009p1",
       "title": "Anthropic is setting up a \"presidential engagement\" program for the 2028 US elections that will offer AI policy education to candidates in both parties (Emily Forlini/Fortune)",
@@ -2375,6 +2405,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/asana-browser-agent",
+      "title": "Asana cuts model costs 76x in browser tests with GPT-6.1 Sol",
+      "url": "https://openai.com/index/asana-browser-agent",
+      "author": null,
+      "publishedAt": "2026-10-09T07:00:00.000Z",
+      "content": "Using GPT-6 Astra in Codex, Asana made its browser agent 76x cheaper and 5x faster in tests to offer customers more capable models.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=1008581",
       "title": "Microsoft 365 Family subscribers will finally be able to share AI benefits",
@@ -2401,6 +2445,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50017357",
+      "title": "Programming Isn't Special",
+      "url": "https://blog.glyph.im/2026/10/programming-isnt-special.html",
+      "author": "ingve",
+      "publishedAt": "2026-10-09T07:44:36.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 138,
+      "comments": 154
     },
     {
       "sourceSlug": "techmeme",
@@ -3266,6 +3329,21 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "figma-blog",
+      "externalId": "https://www.figma.com/blog/sightlines-issue-no3/",
+      "title": "Sightlines issue no.3: Raise the bar for how teams use AI",
+      "url": "https://www.figma.com/blog/sightlines-issue-no3/",
+      "author": null,
+      "publishedAt": "2026-10-09T14:05:00.000Z",
+      "content": "How do you drive AI adoption and make better decisions about what to build?",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261009/p14#a261009p14",
       "title": "Analysis of 857 releases from nine Chinese AI labs from 2021 to September 2026: just 3.6% included safety results from the developer and only 1.1% did at launch (SemiAnalysis)",
@@ -3412,6 +3490,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50021540",
+      "title": "Germany transforms former coal mines into Europe's largest lake landscape",
+      "url": "https://www.euronews.com/2026/04/14/almost-like-lake-como-germany-transforms-former-coal-mines-into-europes-largest-lake-lands",
+      "author": "ohjeez",
+      "publishedAt": "2026-10-09T15:05:24.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 147,
+      "comments": 80
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=1008707",
       "title": "The AI is in the computer",
@@ -3467,6 +3564,39 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/ai2-rebuilt-its-gpu-scheduler-and-cut-wait-times-by-87",
+      "title": "Ai2 Rebuilt Its GPU Scheduler and Cut Wait Times by 87%",
+      "url": "https://alphasignal.ai/news/ai2-rebuilt-its-gpu-scheduler-and-cut-wait-times-by-87",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-09T15:43:30.000Z",
+      "content": "Ai2 replaced its priority-based GPU scheduler with time budgets and fair-share allocation, cutting median queue wait from 5 minutes to 24 seconds.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50022292",
+      "title": "Triple-A Minesweeper",
+      "url": "https://minesweeper.mikelacher.com/",
+      "author": "robin_reala",
+      "publishedAt": "2026-10-09T15:51:05.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 233,
+      "comments": 58
     },
     {
       "sourceSlug": "github-blog",
@@ -3549,6 +3679,20 @@
       "content": "The Week in Short OpenAI’s annual recurring revenue is $20 billion less than news reports had indicated, spotlighting fuzzy math issues. Open-source models from the US and Europe launched to media fanfare this week and vowed to take on China, but national origin doesn’t matter much to the founders using them. Startup funding so far this year shatters 2021 records but slows in latest quarter. Singapore startup Manus raises after its forced split from Meta. Google’s AI push in the classroom proves a nightmare. Nvidia CEO Jensen Huang’s son-in-law takes on a bigger role inside the company. USV among the VC firms raising new funds. A new lawsuit over Groq’s deal with Nvidia could throw a wrench in the reverse acquihire strategy. Tech moguls get the Hollywood treatment. The Main Item OpenAI Wanted Its Revenue Run-Rate to Match Anthropic’s. Cue the Chaos AI stocks got hammered Thursday after the Financial Times reported that OpenAI was spinning its annualized revenue figure to investors in order to match Anthropic, and that its ARR was actually $20 billion below a widely cited $70 billion figure. On the one hand, it was simply a confusion about gross versus net revenue. On the other hand, OpenAI, Anthropic and the scoop-hungry media have been complicit in the confusion. OpenAI has long been complaining that its revenue figure looks feeble compared to Anthropic's because it’s been using a net figure while Anthropic has been using gross (ie Anthropic's number includes the sales of models by partners like Amazon and Microsoft, even though the partners take a percentage of those sales). But when the FT got its hands on OpenAI's latest revenue figure — circulated as part of the company's current funding round — the paper blew it up into a headline saying it was $20 billion below earlier reports. The story explained this, but stocks took a hit anyway. Bloomberg later reported that OpenAI is expecting to reach $70 billion annualized revenue by the end of the year — with the assumption that this is net and not gross. Investors and customers believe that Anthropic and OpenAI are running more or less neck-and-neck. The reality here is that sophisticated investors looking at these figures should understand the gross versus net discrepancy. But Dan Primack put it best: A lack of transparency is also at the heart of the tranched-round issue that we’ve been writing about, as Natasha Mascarenhas at Bloomberg points out: Deals at multiple valuations are becoming normalized, and the optics are one of the reasons. As journalists we’re pro-transparency in general, and there are real risks for investors, employees, and founders alike if the true valuation figures aren’t made clear. China Challenge Reflection AI, Mistral & Germany’s Aleph Alpha Aim to Invent Open-Source Business Models Until now, the policy debate over the possible risks of open-source AI models has been wrapped up in the China question. Not anymore. American and European companies this week took aim at red-hot Chinese rivals such as DeepSeek with the announcements of three new open models: Reflection’s Beam in the US, Mistral’s Large 4 in France, and Aleph Alpha’s Kolibri in Germany. All three startups were openly positioning their new models as the ones to pick if you’re concerned about AI sovereignty. Reflection’s new model enjoyed a blitz of coverage across Axios, Reuters, and Fortune, with the company press release explicitly saying it “advances the frontier for the Western open ecosystem.” Beam’s core claim is that it’s even more efficient on inference than Chinese model maker Z.ai’s highly touted GLM 5.2, though that isn’t Z.ai’s latest offering. Absent government pressure or new regulations, though, the sovereignty pitch may prove a tough one. Investors we spoke with this week said few of their portfolio companies were concerned about the national origins of their open-source models at this point, other than those working with sensitive trade or government data. They’d prefer a Western model in theory, but many will gladly use a Chinese one hosted by a US inference provider like Baseten, Fireworks, or Modal. Thus far, proponents of open source have prevailed in arguing against regulation. But the obvious risks of cutting-edge AI in the wrong hands, combined with the business threat that cheap open-source intelligence could pose to OpenAI and Anthropic, mean the question isn’t going away. Bill Gurley, a vocal open source backer, took to Substack this week to defend open source and pitch it as an ideal AI business strategy. Open models, he argues, are more secure than proprietary systems because the wider community stress-tests them — a concept that proved true in an earlier era of computing. Any regulation based on the potential dangers of open source will likely manufacture a monopoly for frontier labs, he says. “IBM was not allowed to outlaw Dell.” Benchmark even backed Singapore-based AI provider Manus and cashed in when it was bought by Meta, though that deal was unwound by Chinese regulators. Manus this week raised more than $500 million in fresh capital after its founders bought it back (see below). Menlo Ventures partner Deedy Das noted that cheaper, high-performance open models are great for the application-layer companies, and not such a big threat to the frontier model-makers. “I find it all very strange that people pit them against each other because I think there’s clearly a world where the pie grows faster and everyone grows,” he said. Is Open Source Cheaper? Reflection claims it can run comparable queries on a fraction of the compute needed before, so cost is certainly part of the pitch. Yet it’s not clear whether open-source models will ultimately retain a massive pricing advantage. Another investor we spoke with said implementing open-source models can get expensive quickly, given how much time and infrastructure spending is needed to customize them for specific tasks. Outsourcing it to an inference provider can be cheaper. But the total cost is still a function of how much you call on it, and the tokens add up. When it comes to underlying performance, the new Western rivals are comparable to the Chinese models on some benchmarks, but behind on overall capabilities. They haven’t yet dented the rankings when it comes to demand: Top Chinese models like GLM 5.3, Kimi K3, and DeepSeek V4.1 remain the most popular on the cloud platforms Baseten and Fireworks. And of course nothing is slowing down in China: DeepSeek is close to raising $12 billion in funding co-led by Tencent and battery company Contemporary Amperex Technology Co. per Bloomberg. How the business model for open-source LLMs will shake out remains an open question. Low prices are good for application-layer founders, of course, but LLM training remains very expensive. We have already seen some companies step away from this race. Databricks CEO Ali Ghodsi told Newcomer this summer that by the time Databricks released its own open-weight foundation model in 2024, he was ready to move on from such an expensive and laborious task that could only produce a product that quickly became obsolete. Tech giant Meta is still building open-source models, though it did pivot with its first-ever closed-source release this year, Muse Spark. The new open-source startups will need to be creative and nimble to avoid a similar change of course. AI 100 Newcomer Partners with Bessemer for AI 100 We’re thrilled to be producing this year’s AI 100 list alongside Bessemer Venture Partners to highlight the most important AI companies in Silicon Valley. Submissions for the list are due Oct. 15. We’ll share the full list on-stage at the Cerebral Valley AI Summit on Nov. 12. Submit the companies you want to see represented here. Submissions Two Big Charts Deal Value in 2026 Smashes 2021 Record, Q3 Slows to More Normal Pace It’s been a year of massive, concentrated bets in venture, pushing dollar totals to new heights. Deal value for US startups has already surpassed 2021’s record-breaking total by around 44%, according to the latest quarterly PitchBook-NVCA Venture Monitor report. Read more",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112434 at https://www.eff.org",
+      "title": "Organizing in the Town at Oakland Tech Week",
+      "url": "https://www.eff.org/deeplinks/2026/10/organizing-town-oakland-tech-week",
+      "author": "Hayley Tsukayama",
+      "publishedAt": "2026-10-09T16:41:43.000Z",
+      "content": "EFF was thrilled to join organizers, advocates, and activists in the East Bay for the second annual Oakland Tech Week last week. We are grateful to our friends at MediaJustice and Upturn for inviting us co-present this all-day event, “Building Beyond Big Tech: Organizing Oakland’s Future”, on Sept. 30. The event, hosted by the Kapor Center in downtown Oakland, offered a unique chance to spend time with people across The Town and the Bay Area working to create a better future for everyone. “We’re at this truly consequential moment,” said EFF executive director Nicole Ozer, in her speech kicking off the day’s events. “We know that in this community’s work—and communities across the country—our ability to ensure that technology empowers rather than oppresses is fundamental to the future of countries, our livelihoods, and, literally, our lives.” We also participated in a panel on the state of play in California, moderated by MediaJustice executive director Steven Renderos. Director of State Affairs Hayley Tsukayama joined reporter Khari Johnson of CalMatters and Crystal Zemero of People Over Billionaires to talk about the landscape at the state level. The day also included smaller conversations focused on building better tech and fine-tuning messaging, facilitated by our colleagues at MediaJustice. Seeing the people—our neighbors—who are fighting back against surveillance in their communities was inspiring. They’re casting doubt on the claims large technology companies make about what’s happening in their neighborhoods. They’re speaking up at council meetings and rallies. They’re seeking changes that would give their workplaces and neighborhoods a better, safer relationship with technology. It was so important to come together in solidarity to compare notes, spend time together, find opportunities to support each other, and scheme together. We can work together to build a future that works for everyday people. A better world is possible—and Oakland Tech Week was a great reminder that, all around us, folks are working together to tackle huge challenges. “There are formidable forces,” Ozer said. “But we can pierce the other side’s narrative of inevitability with our power of indignation. The future of AI and other technology is not written and we can work together to get it right.” Whether you’re in Oakland or Aukland, consider this a renewed invitation to join us. Join the Fight Become an EFF Member Today",
+      "topics": [
+        "security-privacy"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -3959,6 +4103,723 @@
         "ai-llms",
         "devtools-infra",
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1008812",
+      "title": "Apple and LG leak shows new ‘tap to control’ HomeKit features",
+      "url": "https://www.theverge.com/tech/1008812/apple-lg-homekit-tap-to-control-rumor",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-10-09T16:45:31.000Z",
+      "content": "A post on X from \"pdfu,\" who has previously posted leaks and renders of suspected Apple features and LG smart home gear, shows new details of rumored Apple Home accessories from LG. According to the new leak, they could include an NFC-based \"Proximity Control\" feature that pops up a hint for a device's controls in the iPhone's Dynamic Island, simply by putting the phone close to it. The post also says it's executed using the Matter protocol, but appears to be an Apple Home-specific feature, and follows yesterday's leak showing a \"tap to setup without power\" pairing feature and other upcoming devices. Apple's \"second-party\" LG accessories w … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/artificial-analysis-runs-30-edits-to-expose-how-image-models-drift",
+      "title": "Artificial Analysis Runs 30 Edits to Expose How Image Models Drift",
+      "url": "https://alphasignal.ai/news/artificial-analysis-runs-30-edits-to-expose-how-image-models-drift",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-09T16:47:24.000Z",
+      "content": "A 30-edit real estate staging stress test shows how much of the frame each top image model actually touches, and how fast errors compound.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1008806",
+      "title": "Frances Haugen hopes The Social Reckoning will inspire more whistleblowers",
+      "url": "https://www.theverge.com/policy/1008806/frances-haugen-social-reckoning-facebook-whistleblower",
+      "author": "Lauren Feiner",
+      "publishedAt": "2026-10-09T16:50:40.000Z",
+      "content": "NEW YORK, NEW YORK - OCTOBER 04: Frances Haugen attends the Social Reckoning world premiere at Regal Union Square on October 04, 2026 in New York City. (Photo by Sean Zanni/Getty Images for Sony Pictures Entertainment) | Getty Images for Sony Pictures E Facebook whistleblower Frances Haugen was mostly unfazed watching Oscar-winning actress Mikey Madison play a character named after her in The Social Reckoning, except for one thing: the wrist warmers. In Aaron Sorkin's new thriller, the fictional Haugen - who, like her nonfictional counterpart, leaks thousands of documents to Wall Street Journal reporter Jeff Horwitz - habitually dons the accessories. It's a character quirk that reflects real life, where they're a way to deal with the effects of a vasoconstrictive disorder. \"I've figured out lots of ways to minimize how much of an obstruction this is,\" she tells The Verge in an interview. … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261009/p19#a261009p19",
+      "title": "Blockchain.com seeks CFTC approval to offer event contracts and cryptocurrency derivatives in the US; it already offers some prediction markets internationally (Davis Giangiulio/CNBC)",
+      "url": "https://www.techmeme.com/261009/p19#a261009p19",
+      "author": null,
+      "publishedAt": "2026-10-09T16:55:02.000Z",
+      "content": "Davis Giangiulio / CNBC: Blockchain.com seeks CFTC approval to offer event contracts and cryptocurrency derivatives in the US; it already offers some prediction markets internationally — Blockchain.com, a digital asset platform, wants to get in on the prediction market boom in the U.S.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1008801",
+      "title": "Microsoft tries to spark new life into Windows",
+      "url": "https://www.theverge.com/tech/1008801/microsoft-windows-surface-event-hybrid-ai-notepad",
+      "author": "Tom Warren",
+      "publishedAt": "2026-10-09T17:00:00.000Z",
+      "content": "When Microsoft released Windows 11 five years ago, it felt like an operating system that was still being renovated, a work in progress. You'd think by now that those renovations would be complete, with Microsoft turning its attention to Windows 12. Instead, Windows 11 feels like it's here to stay, forming the foundation for Microsoft's next big ambition: transforming Windows into an agentic OS. At a Windows and Surface event this week, Microsoft laid out its plan to bring AI agents to Windows, including hybrid intelligence that lets Windows take advantage of free local models instead of expensive cloud ones. \"I think today is the day we'll … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stratechery",
+      "externalId": "https://stratechery.com/?p=20267",
+      "title": "2026.41: It’s Not You, It’s Me",
+      "url": "https://stratechery.com/2026/its-not-you-its-me/",
+      "author": "Ben Thompson",
+      "publishedAt": "2026-10-09T17:00:00.000Z",
+      "content": "(Photo by Justin Sullivan/Getty Images) Welcome back to This Week in Stratechery! As a reminder, each week, every Friday, we’re sending out this overview of content in the Stratechery bundle; highlighted links are free for everyone. Additionally, you have complete control over what we send to you. If you don’t want to receive This Week in Stratechery emails (there is no podcast), please uncheck the box in your delivery settings. On that note, here were a few of our favorites this week. Drifting Apart. For the last 25 years, Apple has been in a position where its computers were not only thought of as the best choice for everyday consumers, but also the most useful tools for technologists and hackers. However, I think those paths are diverging: in Apple and a Hacker’s Future I explain why I feel myself growing increasingly frustrated with Apple in the age of AI; that means that Apple partnering with LG to dramatically expand its home offering is not for me, which paradoxically means it’s a great idea. The future of consumer technology is likely completely custom on one hand, and completely integrated on the other. — Ben Thompson It’s Complicated. As someone who was born in D.C. and therefore takes an interest in politics as a birthright (or birth defect), I loved this week’s Stratechery Interview with author and political consultant Katie Harbath. Ben and Katie trace the early innings of tech’s impact on politics, including several flashpoints I’d forgotten (John Kerry and dolphins!), but then turn to ten years of Katie’s experience at Facebook. Her tenure coincided with seismic political shifts and subsequent sentiment shifts toward tech companies, and both Ben and Katie—who’ve been friends for 20 years—reflect on that era with an honest and fun look at evolving business imperatives, angry backlashes, and the explanatory power (or lack thereof) of tech as a political force. — Andrew Sharp Friends Without Benefits. Speaking of politics… Sharp China was off this week, but two weeks after Xi Jinping’s visit to D.C., I wrote about the delightful absurdity of U.S.-China dynamics in the current moment, and the quiet effectiveness of his administration’s campaigns to counter Beijing. One year after I wrote that China threatening to cut off the Western world from rare earths would do lasting damage to its global standing, Germany and France are now lobbying for new trade barriers and a “China kill switch” that could shut off Chinese imports entirely. Trump, meanwhile, is friendlier than ever with Xi, as the U.S. attempts to preserve stability while its policies complicate Beijing’s relationships everywhere else. — AS Stratechery Articles and Updates Apple and a Hacker’s Future — I was happy for years in Apple’s walled garden; with AI, however, their protections feel like limitations. Game Decompilation, Is This Legal?, A Well-Trodden Path — Games are being decompiled, but the real risk to gaming is new games and increased personalization. Apple and LG, The House For Everyone Else, Agent Standards and Amazon — Apple is taking a smarter approach to the home than I expected, leaning into integration (with partners); then, what Amazon should do about agents. An Interview with Katie Harbath About Disrupting Politics at Facebook — An interview with former Facebook Head of Global Elections Katie Harbath about her new book Disrupting Politics, and how things change for the company in the 2010s. Sharp Text by Andrew Sharp Friends Without Benefits — The Trump methods are often maddening, but the current administration’s strategy on China continues to be quietly effective. Dithering with Ben Thompson and Daring Fireball’s John Gruber Ben Gets Hacked Apple’s 2010s Mistakes Asianometry with Jon Yu The Fall of Brazil’s Armored Vehicle King TSMC is Coming to Texas? Greatest of All Talk Fraud Watch 2026, Sixth Men and 32 Teams and KAT, All Eyes on the Heat and the Southeast Sharp Tech with Andrew Sharp and Ben Thompson Two Paths for Apple and Its Users, More on Amazon and Advertising, OpenAI and 722 Mathematical Manuscripts This week’s Stratechery video is on Apps, Agents, and Aggregation.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50023450",
+      "title": "Typesafe AI raises $870M at $7.5B",
+      "url": "https://typesafe.ai/blog/series-ai",
+      "author": "tosh",
+      "publishedAt": "2026-10-09T17:02:31.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 128,
+      "comments": 95
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/xai-gives-grok-bot-its-own-email-inbox-to-act-without-you",
+      "title": "xAI Gives Grok Bot Its Own Email Inbox to Act Without You",
+      "url": "https://alphasignal.ai/news/xai-gives-grok-bot-its-own-email-inbox-to-act-without-you",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-09T17:16:51.000Z",
+      "content": "xAI's Grok Bot agent now ships with a native email inbox so it can sign up for services, verify accounts, and run outreach without borrowing yours.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/heygen-voice-beats-elevenlabs-and-alibaba-to-top-tts-rankings",
+      "title": "HeyGen Voice Beats ElevenLabs and Alibaba to Top TTS Rankings",
+      "url": "https://alphasignal.ai/news/heygen-voice-beats-elevenlabs-and-alibaba-to-top-tts-rankings",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-09T17:19:18.000Z",
+      "content": "HeyGen's new in-house TTS model debuts on top of the Controlled Voice Arena, beating Qwen-Audio-3.1-TTS-Plus and ElevenLabs' Eleven v4 Turbo.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1008833",
+      "title": "Amazon’s new Kindles appear to have a light leak problem",
+      "url": "https://www.theverge.com/tech/1008833/amazon-kindle-light-leak",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-10-09T17:25:39.000Z",
+      "content": "Some users are reporting that the new Kindles have a light leak issue that is especially apparent when using dark mode. The latest base-model Kindles have a flush bezel that gives them a sleek appearance and looks great… as long as you keep the lights on. But things can change once you turn down the lights and turn up the brightness on the e-reader. In some cases, users see shadows around the edges of the screen, or even visible LED strips. The issue appears to affect both the plastic and aluminum models in all colors. Some minor glowing around the edges might be a byproduct of the combination of front lighting and a flush screen. But Reddi … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261009/p20#a261009p20",
+      "title": "Vesta, which uses AI agents to automate much of the loan origination process, raised $30M led by Conversion, bringing its total funding to $85M (Dominic-Madori Davis/TechCrunch)",
+      "url": "https://www.techmeme.com/261009/p20#a261009p20",
+      "author": null,
+      "publishedAt": "2026-10-09T17:35:02.000Z",
+      "content": "Dominic-Madori Davis / TechCrunch: Vesta, which uses AI agents to automate much of the loan origination process, raised $30M led by Conversion, bringing its total funding to $85M — Vesta, an AI-native software startup that helps lenders originate mortgages, announced on Thursday that it raised a $30 million round led by Conversion Capital.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1008857",
+      "title": "The Samsung Galaxy S26 Ultra is down to $950 after Prime Day",
+      "url": "https://www.theverge.com/gadgets/1008857/samsung-galaxy-s26-ultra-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-10-09T17:41:24.000Z",
+      "content": "Amazon has the Samsung Galaxy S26 Ultra in black with 256GB of storage discounted to $949.99, a healthy discount from its usual price of $1,399.99. This phone’s standout feature is the adjustable privacy display, which can hide your entire screen, or just portions of it, from onlookers and strangers. It doesn’t meaningfully hurt the screen’s performance otherwise, and it’s only noticeable at steep angles, and it includes a built-in stylus for writing or drawing. Samsung Galaxy S26 Ultra Samsung’s 6.9-inch S26 Ultra is the only model in the lineup with the new privacy display, designed to limit what people around you can see on your screen. It also includes the S Pen and upgrades the camera hardware, adding dual telephoto lenses alongside a 200-megapixel main sensor. Read our review. Where to Buy: $1299.99 $949.99 at Amazon (256GB) $1299.99 $1079.99 at Best Buy (256GB) $1499.99 $1279.99 at Amazon (512GB) Even beyond the privacy display, the S26 Ultra is an impressive flagship phone for mobile enthusiasts. The upgraded camera hardware makes a big difference when it comes to photo quality, particularly in low lighting conditions. For better or worse, it’s still a sizable phone, with a 6.9-inch AMOLED display, but it’s slimmer and more comfortable than the S25 Ultra. Read our Samsung Galaxy S26 Ultra review.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/new-pro-teams-now-default-to-30-day-deployment-retention",
+      "title": "New Pro teams now default to 30-day deployment retention",
+      "url": "https://vercel.com/changelog/new-pro-teams-now-default-to-30-day-deployment-retention",
+      "author": "Pranav Kanchi",
+      "publishedAt": "2026-10-09T18:00:00.000Z",
+      "content": "New Pro teams now default to a 30-day deployment retention period. Coding agents have accelerated development, increasing deployment frequency and the amount of stored deployment history. Shorter retention keeps recent history available while limiting older history and its storage costs. You can choose a longer retention period in your team's settings when you need more history for inspection or rollback. Deployment Storage and Functions Storage each cost $0.10 per GB-month. Older deployments may be deleted under your retention policy. Deleted deployments cannot be restored or used for rollback. Review the and .Deployment Retention Policystorage optimization guide Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/deployment-storage-pricing-expands-to-existing-teams",
+      "title": "Deployment Storage billing begins for existing Pro teams",
+      "url": "https://vercel.com/changelog/deployment-storage-pricing-expands-to-existing-teams",
+      "author": "Jay Gengelbach",
+      "publishedAt": "2026-10-09T18:00:00.000Z",
+      "content": "and Functions Storage billing will begin for all Pro teams at $0.10 per GB-month. Check your email for details about when billing will start for your team. To keep storage costs low, the deployment retention window also changes to 30 days.Deployment Storage Deployments older than 30 days will be deleted starting October 23, unless you opt out in your retention settings before then. Retention settings already at 30 days or shorter are unchanged. Review retention periods for Pre-Production, Production, Canceled, and Errored deployments with a . Shorter periods reduce stored history, and deleted deployments cannot be used for rollback.Deployment Retention Policy See Deployment Storage and Functions Storage per project on the Usage page. Reduce future deployment size by removing unnecessary build files, moving large assets to Vercel Blob, and shrinking Function bundles. Read the .storage optimization guide Read more Control your Deployment Storage",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/turn-the-lights-on-before-you-start-blocking-ai-agents",
+      "title": "Turn the Lights On Before You Start Blocking AI Agents",
+      "url": "https://alphasignal.ai/news/turn-the-lights-on-before-you-start-blocking-ai-agents",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-09T18:01:00.000Z",
+      "content": "Security teams rolled out intrusion prevention and WAFs in monitor mode first. Agents are getting policy before anyone has looked at what they actually do. Ory's case for visibility before enforcement.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1008918",
+      "title": "Google teases Fitbit Edge launch next week",
+      "url": "https://www.theverge.com/tech/1008918/google-fitbit-edge-launch-next-week",
+      "author": "Emma Roth",
+      "publishedAt": "2026-10-09T18:05:55.000Z",
+      "content": "Google shared a closeup of its upcoming fitness tracker. | Image: Google It looks like Google is getting ready to take the wraps off its rumored Fitbit Edge next Monday. In a post on X, Google posted a picture of what appears to be the side of the fitness tracker, with the caption: \"Get an Edge on your health. 10.12.26.\" A trove of Fitbit Edge leaks has surfaced over the past couple of weeks. So far, details shared by Dealabs and Android Headlines suggest that the upcoming device could feature a 1.34-inch always-on OLED touchscreen, built-in GPS, and several other sensors, including an accelerometer, barometer, altimeter, and gyroscope. It may also come with optical sensors for measuring heart rate and blood oxy … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1008930",
+      "title": "Nikon microscopic video competition winner disqualified for using generative AI",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1008930/nikon-small-world-in-motion-winner-ai",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-10-09T18:06:57.000Z",
+      "content": "The original first place video used AI in post-processing. | Image: Dr. Ning Xu Nikon says the video that originally won first place in its Small World in Motion contest \"did not comply with the competition rules regarding generative AI.\" BBC reports that the original first place video from Dr. Ning Xu claimed to show \"tiny, hair-like structures called cilia moving in the airway of a child with the respiratory condition PCD.\" Nikon said last week that it was reviewing the video following skepticism online about its authenticity. In a comment on LinkedIn, Dr. Xu admitted to using AI for the video: \"An unsupervised neural-network method was subsequently used for AI-assisted post-processing to distinguish and visualize f … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-s-codex-now-predicts-your-next-coding-command-before-you-type",
+      "title": "OpenAI's Codex Now Predicts Your Next Coding Command Before You Type",
+      "url": "https://alphasignal.ai/news/openai-s-codex-now-predicts-your-next-coding-command-before-you-type",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-09T18:22:25.000Z",
+      "content": "Codex now drafts your next prompt for you, learning from how your conversation has unfolded and the way you naturally phrase requests.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/10/starlink-spectrum-deal-boosts-musk-plan-to-beat-att-t-mobile-and-verizon/",
+      "title": "Starlink spectrum deal boosts Musk plan to beat AT&T, T-Mobile, and Verizon",
+      "url": "https://arstechnica.com/tech-policy/2026/10/starlink-spectrum-deal-boosts-musk-plan-to-beat-att-t-mobile-and-verizon/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-10-09T18:24:39.000Z",
+      "content": "SpaceX has a deal to purchase nationwide low-band spectrum licenses for a planned terrestrial mobile network that would complement the space-based Starlink cellular service. SpaceX will buy up to 14 megahertz of spectrum in the 800 MHz band from investment firm Grain Management, which bought the spectrum rights from T-Mobile earlier this year. T-Mobile had obtained the spectrum when it bought Sprint in 2020 and was required to sell the licenses under a merger condition imposed by the US government. \"This prime low-band spectrum addresses one of the key remaining technical gaps that will pave the way for Starlink Mobile to become a major mobile carrier in the US,\" SpaceX said yesterday. SpaceX this week also received US approval to launch 15,000 satellites for an upgraded version of its mobile service that it says will be far more powerful than the current offering. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "cloudflare-blog",
+      "externalId": "01M4GV0DTKYJTCM5GPYBCME1T4",
+      "title": "Introducing Clef-omni with full multimodality, plus a faster Clef and a cheaper Clef-flash",
+      "url": "https://blog.cloudflare.com/clef-faster-cheaper-multimodal/",
+      "author": "Michelle Chen",
+      "publishedAt": "2026-10-09T18:27:34.000Z",
+      "content": "Following last week’s release of Clef and Clef-flash, Cloudflare’s open-weight decision models, we decided to bring forth more gifts. Today, we’re releasing Clef-omni, which takes in audio and video input alongside text and image. We also cut the price of Clef-flash so it is now cheaper than Jev, and we made Clef faster. Although the model game is still early for Cloudflare, innovation and iteration is in our DNA, and we apply these principles to everything we do. In fact, the story of Clef came together over the course of less than a week. We decided we wanted to do something in the decision model space on a Friday evening, trained the model over the weekend, and launched it on Thursday. Even with such a short timeline, we were able to ship performant, high-quality, open-weight models for the community — imagine what more we can do in the future. For today, we’re excited to keep up the momentum with new additions and improvements to our Clef family of models. This is just the beginning, and we’ll continue to get better, faster, cheaper, and more innovative. Clef-omni takes audio, video, image, and text input Our new Clef-omni model is able to take audio, video, image, and text input. This changes the paradigm for decision models, which have been largely text-only since the debut of Jev from TypeSafe. With Clef, we supported images and video frame arrays, but Clef-omni is able to take in audio (wav or mp3) and video (mp4 or webm) alongside text and images. Instead of setting up cascading pipelines of models that transcribe speech-to-text, or splitting audio and image channels from video, you can just call one model to make decisions across any modality. We are now one step closer to a model that is able to interact with the world as we experience it — through audio, visual, and textual communication, all in one. Check out our developer docs for the new Clef-omni model. We also released the model open-weights on HuggingFace. For a quick start, here’s how you can send new modality inputs to Clef-omni: Clef-omni expands our open-weight decision architecture to natively handle multimodal workflows. We built this on a Qwen3-Omni-30B-A3B-Instruct mixture-of-experts (MoE) foundation, where the model was already capable of processing text, imagery, audio, and video directly within a single pipeline. However, we adopt the primary comprehension backbone while discarding the text-to-speech output components. In production, Clef-omni executes a quick prefill pass across the complete payload, scoring all modalities and valid parameter options simultaneously. Because we skip output token generation since Clef models are not Large Language Models (LLMs), we remove the overhead of transcribing or captioning incoming files. Media elements map straight into the unified sequence, where video and audio are synced with visual frames for joint processing. Clef-omni then pulls candidate values directly from internal embeddings using our two-stage attention routing: every valid option gathers key evidence from the input (regardless if they are buried in text snippets, visual elements, or audio streams) before field vectors cross-attend across the full context to compute confidence scores. We add a built-in lexical grammar that preserves option semantics, so that we can deliver fast, schema-constrained scoring across every input type. We train the model with the same techniques as we did with Clef — freezing the Qwen3 backbone, training low-rank adapters (LoRA), and applying our standard post-training approach: combining label-smoothed cross-entropy loss with Brier score calibration. The result is a model that is resilient and designed to succeed regardless of schema variations, field ordering, and prompt structures. This brings several core upgrades to the Clef model family. Calibrated, schema-bound decisions now seamlessly handle text, images, audio, and synchronized video in a single API call. It's also fast. Text-only decisions return in about 130 ms at the median, image inputs in about 150 ms, and audio clips in a few hundred milliseconds. Even a full 21-second video clip with sound is scored in about 1.5 seconds, all in a single API call. Our benchmarking shows strong performance across benchmarks, even with new modalities and MoE architecture. Benchmark Clef-omni Clef Clef-flash Jev BFCL · case exact 98.2 98.47 98.76 95.75 ToolRet · nDCG@10 66.6 69.19 66.43 65.28 API-Bank · accuracy 92.7 91.93 93.11 88.19 Home appliances · case exact 69.3 82.95 97.73 52.27 When2Call · accuracy 63.3 72.37 65.58 80.97 BANKING77 · macro-F1 94.8 94.20 90.93 79.74 CLINC150+OOS · macro-F1 97.7 97.43 66.77 89.27 BRIGHT · nDCG@10 42.0 45.91 39.26 47.52 Amazon ESCI · macro-F1 57.8 57.48 57.39 55.21 PhishNChips · accuracy 73.2 79.60 75.05 62.55 We also benchmarked against the TypeSafe evals to show how Clef-omni performs. Workflow Metric Clef-Omni Clef Clef-flash Jev Invoice processing Exact actions 60.2 64.7 57.1 61.8 Invoice processing Primary action 82.0 86.2 73.3 83.1 Customer service Exact actions 71.6 76.3 77.0 76.0 Security incidents Exact actions 61.7 62.9 61.7 61.7 Agent trace observability Primary action 65.8 68.5 69.8 71.6 Clef-flash model is now cheaper We heard your feedback — you want a decision model affordable enough to incorporate into any workflow. We’ve made a few optimizations and can now offer Clef-flash at cheaper prices. We want Clef to be able to make decisions that scale for you across all your agentic workflows, and now our pricing also incentivizes that. We were able to optimize the model to the point where Clef-flash is now cheaper than Jev while still being performant and high-quality. Check out the developer docs for the most up-to-date pricing information at all times, including more detail on how image and audio modalities are converted to input tokens for pricing. Clef-flash – originally $0.09 per M input tokens, now $0.038 per M input tokens Clef – remains at $0.24 per M input tokens Clef-omni – launched today at $0.15 per M input tokens However, one trade-off we have to make in order to have cheaper pricing is to cut the context window of Clef-flash. The hosted version of Clef-flash now has a context window of 24k, instead of 64k as previously advertised. The model weights on Hugging Face are untouched and were trained to support a 256k context window should you choose to self-host it. From our usage data, we see that only 0.24% of requests exceed 24k input tokens. Based on this data, we decided to make the call to drop the context window to 24k for Clef-flash in order to price it at a more accessible entry point. Our Clef model remains at a 64k context window, and we encourage folks with larger context needs to switch to Clef instead of Clef-flash. Clef model is now faster Speeds are also faster for the Clef model, with new optimizations to the hosted version of Clef on Workers AI. No new model weights are released because most of the optimizations we made are at the serving infrastructure layer, not materially to the model weights or architecture. Check out our new speeds below: Input size Before: median / p95 (ms) Now: median / p95 (ms) Median speedup ~800 tokens 262 / 438 152 / 351 1.7× ~3,400 tokens 616 / 777 305 / 531 2.0× ~16,000 tokens 2,721 / 3,250 1,635 / 1,805 1.7× One of the optimizations we made was to move to SGLang for serving the model. We worked with the SGLang team and made pull requests to incorporate Clef (PR #42721), which will be released in SGLang 0.5.22. You can also self-host Clef since we released the weights, and the new SGLang launch commands are available on our updated Hugging Face repo as well as the SGLang cookbooks. How are people using Clef? At Cloudflare, we’ve had teams experimenting with Clef as a model that can help classify over general domains. The coolest thing about watching teams adopt Clef is that the capability to do detections and classifications have moved into the model layer, where it is accessible for anyone to start incorporating decision models into their use cases. Previously, even with zero-shot classifiers, the small models may not have been powerful enough to classify across any domain without further tuning. You might have needed to stand up a specialized machine learning team to help train over your particular domain, and gather a corpus of data in order to train a better model. Now, all you need to do is call a model to instantly parse through input data with precision. A few highlights of how teams at Cloudflare are using Clef: Our public GitHub docs repo uses Clef to instantly detect and close spam issues. EmDash, our content management system, moderates plugin libraries for phishing. Our data loss prevention team is scanning data for potential personally identifiable information (PII) like government IDs. And our threat intelligence team is using Clef to help detect malicious domains. Give it a try! We’re excited to bring you more from the Clef family of models, including new modalities like audio and video, as well as making the model more accessible with cheaper pricing and faster speeds. Clef is fully Jev-API compatible and available via AI Gateway, so it is as simple as changing the model ID to try out Clef today. Check out our developer docs for more information. Thank you for all the love and warm reception around Cloudflare’s first models — we are focused on bringing you more. Try out our Clef family of models, and tell us what you think.",
+      "topics": [
+        "security-privacy",
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=94215",
+      "title": "The Week’s 10 Biggest Funding Rounds: AI And Energy Top A Busy Lineup Of Large Rounds",
+      "url": "https://news.crunchbase.com/venture/biggest-funding-rounds-ai-energy-cloud-axiom-typesafe/",
+      "author": "Joanna Glasner",
+      "publishedAt": "2026-10-09T18:28:35.000Z",
+      "content": "Want to keep track of the largest startup funding deals in 2026 with our curated list of $100 million-plus venture deals to U.S.-based companies? Check out The Crunchbase Megadeals Board. This is a weekly feature that runs down the week’s Top 10 announced funding rounds in the U.S. Check out last week’s biggest funding deal roundup here. As the AI startup boom progresses, investors appear to be leaving few niches unfunded. That was apparent in this week’s lineup of large funding rounds, which featured AI infrastructure providers, a foundational model developer, a content protection platform for the AI age, and other AI-focused startups among the top investment recipients. The biggest investment, $2 billion, went to Axiom Solutions International, a spinout focused on cloud and power infrastructure that is hoping to benefit from the AI buildout. Other large rounds went to TypeSafe AI, developer of a fast-growing new model, and Oratomic, a quantum computing startup. 1. Axiom Solutions International, $2B, cloud and power infrastructure: Axiom Solutions International, a private cloud and power infrastructure company spun out of manufacturing services provider Flex, secured $2 billion in new financing. General Catalyst and Koch Equity provided the strategic investment by purchasing shares of Austin-based Axiom from Flex at an initial enterprise value of $37.5 billion. Flex says it plans to separate Axiom into an independent publicly traded company early next year. 2. TypeSafe AI, $870M, foundational AI: TypeSafe AI, developer of Jev, a recently launched AI model with a large and growing early following, raised $870 million in new funding with Andreessen Horowitz as the largest investor, according to a Bloomberg report. Sequoia Capital also participated in the round, which reportedly set a $7.5 billion valuation for San Francisco-based TypeSafe. 3. Oratomic, $475M, quantum computing: Pasadena, California-based Oratomic, a startup working on fault-tolerant quantum computers, raised $475 million in fresh funding led by Arch Venture Partners, Spark Capital, Khosla Ventures, Index Ventures, General Catalyst and Bezos Expeditions. The company previously raised $300 million in a July financing. 4. SignSplit, $400M, data and content protection: SignSplit, a provider of tools for protecting, licensing and contributing real-world human data and other forms of human contribution, emerged from stealth with $400 million in seed funding. W Group backed the round, setting a $1 billion valuation for the New York-based company, which was founded in 2024. 5. (tied) Vinci, $250M, AI for engineering: Vinci, developer of an AI computational platform for hardware engineers to design products, closed on $250 million in Series B funding at a $1.5 billion valuation. Advent, Temasek and Xora led the round for the Palo Alto, California-based company. 5. (tied) Atomic Machines, $250M, micro-manufacturing: Emeryville, California-based Atomic Machines, a startup working on AI-native digital manufacturing systems to build micro-machines directly from code, emerged from stealth and said it has raised $250 million to date from a long list of investors. 7. Voltus, $225M, energy distribution: Voltus, provider of a distributed energy platform aimed at bolstering grid flexibility, picked up $225 million in Series D funding. Generation Investment Management, Activate Capital and Vitol led the financing for the San Francisco-based startup. 8. (tied) Type One Energy, $200M, fusion: Knoxville, Tennessee-based Type One Energy, a developer of fusion energy technology, secured $200 million in Series B financing led by Breakthrough Energy Ventures and Clutterbuck Capital. 8. (tied) Ledgebrook, $200M, insurance: Ledgebrook, an AI-powered specialty insurance platform, closed on $200 million in equity financing co-led by Allianz X and Rockefeller Capital Management. The round brings total funding to date for Boston-based Ledgebrook to around $315 million, per Crunchbase data. 8. (tied) Arena, $200M, AI evaluation: Arena, provider of a platform for evaluating AI models, pulled in $200 million in Series B funding and said it has exceeded a $100 million annual revenue run rate. Lightspeed Venture Partners and Khosla Ventures led the round, which set a $3.1 billion valuation for the company. Methodology We tracked the largest announced rounds in the Crunchbase database that were raised by U.S.-based companies for the period of Oct. 3-9, 2026. Although most announced rounds are in the database, there may be a small time lag, as some rounds are reported late in the week.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1008950",
+      "title": "Brendan Carr says he’ll let Pete Hegseth decide whether TV networks can air the public execution",
+      "url": "https://www.theverge.com/policy/1008950/fcc-brendan-carr-pete-hegseth-execution-tv-networks-air",
+      "author": "Jay Peters",
+      "publishedAt": "2026-10-09T18:30:48.000Z",
+      "content": "FCC chairman Brendan Carr said he will defer to Secretary of Defense Pete Hegseth on whether TV networks can air the planned execution of convicted Fort Hood shooter Nidal Hasan by firing squad. The Pentagon has said the execution will be livestreamed, suggesting it'll appear on an online platform beyond the FCC's jurisdiction. But it's common for broadcast TV networks to air live video of government events, and Carr's agency does have a say over what happens on public airwaves. \"My understanding is it's not on broadcast TV, so I don't think there's a role for the FCC one way or the other,\" Carr said in a CNBC interview today. \"But I trust … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/10/your-artwork-could-be-featured-in-the-next-debian-release/",
+      "title": "Your artwork could be featured in the next Debian release",
+      "url": "https://arstechnica.com/gadgets/2026/10/your-artwork-could-be-featured-in-the-next-debian-release/",
+      "author": "Nick Indge",
+      "publishedAt": "2026-10-09T18:33:26.000Z",
+      "content": "The Debian Linux project has opened a call for community artwork submissions ahead of the release of the upcoming Forky (Debian 14). If you think you've got the artistic chops, your art could appear on the boot screens, login prompts, and desktop wallpapers of millions of users. The submission deadline is November 26. Continuing Debian's community-driven ethos, the artwork submission process mirrors that of previous releases. The artwork must feel distinctively \"Debian,\" integrate cleanly without the need for core software patching, and remain visually appealing for the long term. Elise Couper's \"Ceratopsian\" theme was chosen as the winning default for Debian 13 Trixie. For anyone who might not be up on the latest from the Toy Story franchise, the release names echo character names from the animated films. Trixie was a triceratops introduced in Toy Story 3, hence the \"Ceratopsian\" wink in the winning submission. It makes sense that the next version of Debian continues this trend with Forky, a character introduced in the franchise's fourth entry. The Debian team cautions against overly busy designs that may cause user fatigue, but if anyone can successfully incorporate Forky's googly eyes into the design somehow, know that you'd at least win the contest for my Debian desktop wallpaper. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/10/winning-nikon-small-world-in-motion-video-disqualified-for-ai-use/",
+      "title": "AI disqualification yields new Nikon Small World in Motion winner",
+      "url": "https://arstechnica.com/science/2026/10/winning-nikon-small-world-in-motion-video-disqualified-for-ai-use/",
+      "author": "Jennifer Ouellette",
+      "publishedAt": "2026-10-09T18:44:06.000Z",
+      "content": "Credit: Nguyen Nam Nhat. Last month we covered the winner of Nikon's Small World in Motion video: Ning Xu of Tsinghua University in China, whose video captured tiny cilia beating in the airways of a child with a rare respiratory disorder. But allegations surfaced about Xu's use of AI while making the video. Nikon launched an investigation and concluded that Xu's entry did not comply with competition rules. The new winner is Nguyen Nam Nhat of Vietnam with a video of a tiny roundworm and a single-celled organism (above). According to a BBC report, some researchers expressed concern that Xu's video had structural abnormalities and that cell features appeared and disappeared in a way one would not see in actual cellular biology. Others spotted what looked like AI watermarks embedded within the source files. Xu said he used AI “to distinguish and visualize features in the reconstructed grayscale images”; however, he denied that AI was used \"to generate the experimental movie, the cilia, or their motion.” Founded in 2011, the Nikon Small World in Motion competition is a spinoff of the company’s Small World Photomicrography Competition, which has been around since 1974. Both are meant “to showcase the beauty and complexity of things seen through the light microscope”—one through still photographs, the other through photovideography, taking advantage of all the technological advances that now allow users to make movies or time-lapse images through the microscope. The other winners also moved up a notch with Xu's disqualification. Benedikt Pleyer of Bavaria, Germany, placed second with a video of jellyfish larvae suspended in water droplets; Andrew Moore of Howard Hughes Medical Institute in the US placed third with a video of synchronized cell division in neighboring cells; Patrick Hickey of Hypha Research Ltd. in Edinburgh, Scotland, placed fourth with a video of the dynamics of mitochondria and chloroplasts in Turtle Vine leaf cells; and Igor Adameyko placed fifth with a video of a tiny, colorful sea slug (Cyerce kikutarobabai) on the move. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261009/p21#a261009p21",
+      "title": "A record 42 startups became decacorns so far in 2026, beating 2021's 34; PitchBook: the average time to hit $10B dropped to 5.5 years in 2025 vs. 9.4 in 2020 (Lucinda Shen/Axios)",
+      "url": "https://www.techmeme.com/261009/p21#a261009p21",
+      "author": null,
+      "publishedAt": "2026-10-09T18:50:00.000Z",
+      "content": "Lucinda Shen / Axios: A record 42 startups became decacorns so far in 2026, beating 2021's 34; PitchBook: the average time to hit $10B dropped to 5.5 years in 2025 vs. 9.4 in 2020 — We're in the golden age of decacorns. — The average time from launch to decacorn has been cut in nearly half, and some decacorns arrive literally overnight.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/information-technology/2026/10/pc-shipments-fall-20-1-percent-in-sharpest-decline-since-q1-2023/",
+      "title": "PC shipments fall 20.1 percent in “sharpest decline” since Q1 2023",
+      "url": "https://arstechnica.com/information-technology/2026/10/pc-shipments-fall-20-1-percent-in-sharpest-decline-since-q1-2023/",
+      "author": "Scharon Harding",
+      "publishedAt": "2026-10-09T18:54:52.000Z",
+      "content": "PC shipments saw a steep drop of about 20 percent in Q3 2026, analysts reported this week. The industry saw its “sharpest decline since “Q1 2023,\" Omdia said in an announcement toady. Global shipments of laptops, desktops, and workstations fell 21.2 percent year over year (YoY) to 58.1 million devices, the analyst said. Desktop PC shipments (including desktop workstations) decreased 23.5 percent to 11.7 million units, and laptop shipments (including laptop workstations) declined 20.6 percent to 46.4 million, per Omdia. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1008726",
+      "title": "‘Pure insanity’: Mathematicians will need years to make sense of OpenAI’s latest drop",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1008726/openai-mathematics-solutions-chaos",
+      "author": "Robert Hart",
+      "publishedAt": "2026-10-09T19:09:44.000Z",
+      "content": "\"Staggering.\" \"Overwhelming.\" \"Unprecedented.\" \"Surreal.\" \"Pure insanity.\" Those were among the descriptions more than three dozen mathematicians reached for in conversations with The Verge as they tried to make sense of the flood of mathematical results OpenAI abruptly dropped on the field this week. Amid the awe, excitement, and uncertainty over the sheer scale of the deluge was a deep-seated anxiety over what it all means - and what comes next. For all their different reactions, researchers agreed that simply understanding what OpenAI had released could take years, let alone figuring out where the mathematicians themselves fit in the fi … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/microsoft-s-decision-1-scores-ai-choices-35x-faster-than-gpt-6",
+      "title": "Microsoft's Decision-1 Scores AI Choices 35x Faster Than GPT-6",
+      "url": "https://alphasignal.ai/news/microsoft-s-decision-1-scores-ai-choices-35x-faster-than-gpt-6",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-09T19:14:11.000Z",
+      "content": "Microsoft's new decision-scoring model handles classification, routing, and verification tasks at 35x the speed of GPT-6 Sol with calibrated probabilities.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/nous-research-offers-step-5-preview-free-for-a-week-on-its-portal",
+      "title": "Nous Research Offers Step 5 Preview Free for a Week on Its Portal",
+      "url": "https://alphasignal.ai/news/nous-research-offers-step-5-preview-free-for-a-week-on-its-portal",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-09T19:19:03.000Z",
+      "content": "StepFun's 600B/27B mixture of experts model is free on Nous Portal for a week, scoring in GPT-6 Luna territory on agent benchmarks.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1008991",
+      "title": "Ohio blogger found guilty of harassment for sending Shrek nude to senator",
+      "url": "https://www.theverge.com/policy/1008991/ohio-blogger-harassment-shrek-nude",
+      "author": "Emma Roth",
+      "publishedAt": "2026-10-09T19:41:11.000Z",
+      "content": "A jury found an Ohio political blogger guilty of telecommunications harassment after he sent an explicit image of Shrek to a Republican state senator. On Friday, a judge ordered DJ Byrnes, owner of political commentary blog The Rooster, to pay a $200 fine, according to a report from the Columbus Dispatch. Byrnes texted Ohio Sen. Jerry Cirino in May after he dropped out of the state's Senate presidential race. As reported by the Columbus Dispatch, Byrnes sent a nude image of Shrek alongside the message: \"Good to see you finally made your humiliation public, Young Mussolini! THE PATRIOTS CAUCUS sends its regards!!!!!!!!!!\" Cirino filed a pol … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261009/p22#a261009p22",
+      "title": "Philadelphia police say Anthropic informed them on Oct. 7 that one of its models submitted a false tip about an unsolved murder via a public web form on July 18 (6abc)",
+      "url": "https://www.techmeme.com/261009/p22#a261009p22",
+      "author": null,
+      "publishedAt": "2026-10-09T20:00:49.000Z",
+      "content": "6abc: Philadelphia police say Anthropic informed them on Oct. 7 that one of its models submitted a false tip about an unsolved murder via a public web form on July 18 — Watch the 6abc Philadelphia 24/7 stream featuring Action News, AccuWeather and Entertainment — ShareFollow 6abc on Google",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.09146",
+      "title": "Frozen Models, Evolving Expertise: Model-Agnostic Learning from Deployment Experience for Multimodal Medical AI",
+      "url": "https://huggingface.co/papers/2610.09146",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:15.111Z",
+      "content": "Frozen Models, Evolving Expertise: Model-Agnostic Learning from Deployment Experience for Multimodal Medical AI",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.11169",
+      "title": "Skill Constellations: Tracing the Supply Chain of Agent Skills on GitHub",
+      "url": "https://huggingface.co/papers/2610.11169",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:15.111Z",
+      "content": "Skill Constellations: Tracing the Supply Chain of Agent Skills on GitHub",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2606.03335",
+      "title": "A GPU-Parallel Framework for Heterogeneous Multi-Task Reinforcement Learning",
+      "url": "https://huggingface.co/papers/2606.03335",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:15.111Z",
+      "content": "A GPU-Parallel Framework for Heterogeneous Multi-Task Reinforcement Learning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.35855",
+      "title": "Mara Chain: Rethinking Failure as a Stepping Stone for AI System Auto-Evolution",
+      "url": "https://huggingface.co/papers/2609.35855",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:15.111Z",
+      "content": "Mara Chain: Rethinking Failure as a Stepping Stone for AI System Auto-Evolution",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.08585",
+      "title": "Incidental information contaminates patient notes and disrupts clinical reasoning in large language models",
+      "url": "https://huggingface.co/papers/2610.08585",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:15.111Z",
+      "content": "Incidental information contaminates patient notes and disrupts clinical reasoning in large language models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.11975",
+      "title": "Predicting Cable Dynamics with Physical Attention Bias",
+      "url": "https://huggingface.co/papers/2610.11975",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:15.111Z",
+      "content": "Predicting Cable Dynamics with Physical Attention Bias",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://commandline.microsoft.com/microsoft-decision-1-model-foundry",
+      "title": "Introducing Microsoft-Decision-1, our model for fast decision-making",
+      "url": "https://commandline.microsoft.com/microsoft-decision-1-model-foundry",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:17.133Z",
+      "content": "Introducing Microsoft-Decision-1, our model for fast decision-making commandline.microsoft.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://letsencrypt.org/2026/10/07/64-day-certs",
+      "title": "64-Day Certificate Lifetimes Coming Feb 2027 - Let's Encrypt",
+      "url": "https://letsencrypt.org/2026/10/07/64-day-certs",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:17.148Z",
+      "content": "64-Day Certificate Lifetimes Coming Feb 2027 - Let's Encrypt letsencrypt.org2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blogs.windows.com/windowsdeveloper/2026/10/07/microsoft-execution-containers-policy-driven-containment-for-ai-agents",
+      "title": "Microsoft Execution Containers: Policy-driven containment for AI agents",
+      "url": "https://blogs.windows.com/windowsdeveloper/2026/10/07/microsoft-execution-containers-policy-driven-containment-for-ai-agents",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:17.149Z",
+      "content": "Microsoft Execution Containers: Policy-driven containment for AI agents blogs.windows.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/ai/2026/10/mistral-says-le-chonk-can-challenge-the-best-ai-models",
+      "title": "Mistral says \"Le Chonk\" can challenge the best AI models",
+      "url": "https://arstechnica.com/ai/2026/10/mistral-says-le-chonk-can-challenge-the-best-ai-models",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:17.150Z",
+      "content": "Mistral says \"Le Chonk\" can challenge the best AI models arstechnica.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theregister.com/networks/2026/10/09/spacex-to-buy-key-spectrum-that-could-help-starlink-mobile-become-major-us-cell-carrier/5302393",
+      "title": "SpaceX to buy key spectrum that could help Starlink Mobile become major US cell carrier",
+      "url": "https://www.theregister.com/networks/2026/10/09/spacex-to-buy-key-spectrum-that-could-help-starlink-mobile-become-major-us-cell-carrier/5302393",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:17.150Z",
+      "content": "SpaceX to buy key spectrum that could help Starlink Mobile become major US cell carrier theregister.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/ai/2026/10/ai-coding-agents-generate-more-code-but-not-more-software",
+      "title": "AI coding agents generate more code, but not more software",
+      "url": "https://arstechnica.com/ai/2026/10/ai-coding-agents-generate-more-code-but-not-more-software",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:17.151Z",
+      "content": "AI coding agents generate more code, but not more software arstechnica.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-10-09/softbank-backed-opay-wins-185-million-standard-bank-placement",
+      "title": "SoftBank-Backed OPay Wins $185 Million Standard Bank Placement",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-09/softbank-backed-opay-wins-185-million-standard-bank-placement",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:17.152Z",
+      "content": "SoftBank-Backed OPay Wins $185 Million Standard Bank Placement bloomberg.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://00f.net/2026/10/09/llvm-compiles-branch-free-code-into-branches-on-risc-v",
+      "title": "Branches in branch-free code",
+      "url": "https://00f.net/2026/10/09/llvm-compiles-branch-free-code-into-branches-on-risc-v",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:17.162Z",
+      "content": "Branches in branch-free code 00f.net5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://webhosting.today/2026/10/09/the-dns-root-changes-its-key-on-sunday-a-resolver-that-still-trusts-only-the-old-one-stops-resolving-everything",
+      "title": "The DNS Root Changes Its Key on Sunday. A Resolver That Still Trusts Only the Old One Stops Resolving Everything.",
+      "url": "https://webhosting.today/2026/10/09/the-dns-root-changes-its-key-on-sunday-a-resolver-that-still-trusts-only-the-old-one-stops-resolving-everything",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:17.163Z",
+      "content": "The DNS Root Changes Its Key on Sunday. A Resolver That Still Trusts Only the Old One Stops Resolving Everything. webhosting.today9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://mjtsai.com/blog/2026/10/09/openais-dots",
+      "title": "OpenAI’s Dots",
+      "url": "https://mjtsai.com/blog/2026/10/09/openais-dots",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:17.167Z",
+      "content": "OpenAI’s Dots mjtsai.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://the-decoder.com/anthropics-claude-can-now-orchestrate-up-to-1000-ai-agents-in-parallel-through-dynamic-workflows",
+      "title": "Anthropic's Claude can now orchestrate up to 1,000 AI agents in parallel through dynamic workflows",
+      "url": "https://the-decoder.com/anthropics-claude-can-now-orchestrate-up-to-1000-ai-agents-in-parallel-through-dynamic-workflows",
+      "author": null,
+      "publishedAt": "2026-10-09T20:20:17.168Z",
+      "content": "Anthropic's Claude can now orchestrate up to 1,000 AI agents in parallel through dynamic workflows the-decoder.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "figma-blog",
+      "externalId": "https://www.figma.com/blog/4-team-rituals-that-drive-ai-adoption/",
+      "title": "4 team rituals that drive AI adoption",
+      "url": "https://www.figma.com/blog/4-team-rituals-that-drive-ai-adoption/",
+      "author": null,
+      "publishedAt": "2026-10-10T02:12:00.000Z",
+      "content": "Elevating AI’s impact from individual productivity gains to team-wide wins requires meeting people where they are. Here’s how teams at Figma, Sephora, Mercari, and Atlassian are making it easier for people to drive real value with AI.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
       ],
       "paywalled": false,
       "mediaType": "text"
