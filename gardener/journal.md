@@ -6,6 +6,18 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A rate is not a consequence, and a banked *direction* carries an inference the
+  count behind it does not. 10-08 measured "374 of 486 alt texts (77%) truncate"
+  and handed the next run a direction, "start there"; the number was true and
+  the inference was wrong. The missing measurement was one step further in, not
+  how often the budget bites but what it bites off: 99% truncate, and the title
+  survives whole on 355 of 358 cards, so the cut only ever takes the
+  why-it-matters clause and the cap is spending itself correctly. 10-08's own
+  lesson says to re-count a banked finding on the way past; this is its other
+  half, because a finding re-counts and a direction has to be re-derived. Test
+  for it before banking one: does the count say the thing is wrong, or only that
+  the mechanism fires often?
+
 - A wall relocates as readily as it lifts, so probe the surface the day is about
   to lean on, not the one that blocked you last. 10-06's reading of this
   environment was "the merge click is refused"; today that click went through on
@@ -231,9 +243,62 @@ merges and closures and never expire.
 
 ## Backlog
 
-- Noticed 2026-10-08 while reading the built feed, measured, and left for Yasin
-  because the fix is editorial. **The digest title's date form changed two days
-  ago.** ../AGENTS.md asks for `{Mon DD, YYYY}` and the archive reads "Sep 7",
+- RETIRED 2026-10-09, and the direction it pointed was wrong. 10-08 banked
+  "374 of the 486 alt texts (77%) DO truncate, so the 100-character instagram
+  cap, not the card caps, is where alt-text quality is decided; a run wanting to
+  improve alt text should start there." Rebuilt all 32 days and read where the
+  cut lands: **the title survives whole on 355 of 358 story cards.** Title
+  length is median 56, max 93, and 0 of 358 reach 98, so the budget is never the
+  title's constraint; what the 99% truncation rate takes is the second clause,
+  median 36 of ~71 desc characters, after a word boundary. The cap spends itself
+  on the right half. Nothing to improve; do not re-walk it.
+- Walked clean on 2026-10-09, recorded so a future run does not re-walk them.
+  **Tracking tags across the archive**: of 8,333 items, 193 carry any query at
+  all, and every `utm_*`/`smid` among them sits on 09-08..09-11, the four days
+  predating the fix; 0 on the 28 days since. No `fbclid`, `gclid`, `mc_cid` or
+  `mc_eid` anywhere, so the named-tags-only list is not missing a family. Of the
+  published digest links, 4 carry `utm_source` and all 4 are 09-08; nothing
+  per-recipient has ever been published.
+  **Five ungated contract "never"s, all 0**: no digest lacks its "What matters
+  today" lead, no pen mark sits on a heading, Hacker News precedes Threads on
+  all 32 days (neither ever missing), and no caption carries a hashtag in its
+  own text (0 of 62 posts, so the pool check cannot be bypassed that way).
+  **Slide terms**: 83 glosses across 358 cards, 0 abbrs repeated on a slide, 0
+  glossed twice in one post, 2 present only inside a longer word and both
+  benign. 16 of 83 glosses carry uppercase and every one is a proper noun, so
+  "plain lowercase words" is about the bureaucratic full name, not case, and a
+  gate would be 16 false positives.
+  **Rendered page structure, 34 pages**: 0 double-escaped entities, 0 duplicate
+  section headings, 0 links with no visible text, 0 empty prose blocks, 0 links
+  inside a heading, 0 link texts ending on punctuation; weight 25k to 35k. The
+  362 "one url, several link texts" hits are all Threads bullets pointing back
+  at an entry, which is the Threads rule working.
+  **`dropsOf`'s heuristic**: the sitemap's `lastmod` and `article:modified_time`
+  read the evening drop off the presence of a `pm` carousel post, and
+  ../AGENTS.md lets the agent skip a pm post when the evening added nothing
+  carousel-worthy, which would tell a crawler the page never changed. 31 of 31
+  evening runs wrote a pm post (30 days am+pm, 09-14 pm-only after a skipped
+  morning), so the proxy holds on input that existed. Wallpaper, not a gate.
+  **Pruning**: `cleanup.ts` prunes all four dated dirs at the same 31 days and
+  the archive shows it, 32 files each in `digests/`, `data/items/` and
+  `data/slides/`, same first and last day in all three.
+- Noticed 2026-10-09, measured, and banked beside the Hacker News word-count
+  drift it rhymes with rather than filed. **The lead paragraph is drifting past
+  its brief.** ../AGENTS.md asks for "a 2-3 sentence 'What matters today'"; 27 of
+  32 days hold and the 5 at four sentences are 10-02, 10-05, 10-06, 10-07 and
+  10-08, all inside the last eight days. Median lead 780 characters, max 1,090.
+  A gate fires 5 of 32 and would have to pick a definition of "sentence", so it
+  is editorial and not mine. Not filed, because #246 already asks Yasin for one
+  editorial word and a second ask the same day dilutes it; fold it into #246's
+  thread if he answers, or file it on its own if the drift reaches a sixth day.
+- FILED 2026-10-09 as #246, after the 10-08 note was re-counted on the way past
+  and the padded form had held a third day (six digest runs), which makes it the
+  agent's habit rather than a slip. Of the archive's 11 single-digit days the
+  first 8 are unpadded and the last 3 are padded. The issue states both readings
+  and asks for a padding rather than proposing one; the gate follows for free
+  once either side is picked. Noticed 2026-10-08 while reading the built feed,
+  measured, and left for Yasin because the fix is editorial. **The digest
+  title's date form changed on 10-07.** ../AGENTS.md asks for `{Mon DD, YYYY}` and the archive reads "Sep 7",
   "Oct 1" … "Oct 6" for 30 straight days, then "Oct 07" and "Oct 08" on 10-07
   and 10-08. The string is the most published one the site has: the `h1`, the
   `<title>`, `og:title`, the schema `headline` and the rss `<item><title>`, so
@@ -287,6 +352,11 @@ merges and closures and never expire.
   in the text, no images, code blocks, tables or blockquotes, and one list per
   themed section with no nesting anywhere (which is what lets the new entry
   gate find a section by the h2 before the list).
+- RE-COUNTED 2026-10-09 and the deferral holds on the trend: 328 of 328 against
+  298 of 298, which is the archive growing at a fixed 100% rate rather than a
+  defect spreading, and no digest has quoted the footer yet. The generic shape
+  beside it is stable too: 77 bodies ending "Read more", 24 on a WordPress "The
+  post … appeared first on …" tail.
 - Noticed 2026-10-06, counted, and banked rather than shipped: **every one of
   the 298 archived ars-technica bodies ends on the feed's own footer**, "Read
   full article Comments", on a body whose median length is 1,109 characters.
@@ -432,6 +502,9 @@ merges and closures and never expire.
   CONNECT (curl and WebFetch both, probed today), so that is a mechanism to
   check, NOT a diagnosis, and NOT a recipe. Do not guess a field preference
   from here: picking wrong swaps a bad body for a different bad body.
+- RE-COUNTED 2026-10-09 and the deferral holds: 24 of 8,333 against 21 of 6,122,
+  a rate that fell from 0.34% to 0.29%, still trailing-only, still no downstream
+  consequence.
 - A title is the one ingested field with no whitespace normalization. Author got
   it on 09-15 (`authorName` collapses and trims), content has always had it
   (`htmlToText` ends in `.replace(/\s+/g, " ").trim()`), and the rss adapter
@@ -601,7 +674,9 @@ merges and closures and never expire.
   to these subscribers and it always sends json, so this is theoretical today —
   but push/ is a deployed sidecar I cannot see or test. If a run ever touches
   sw.ts again, wrap it in a try and fall through to the existing defaults.
-- `state.sources` in data/state.json is never pruned, unlike `seen`.
+- RE-COUNTED 2026-10-09 and the deferral holds: still exactly 3 stale slugs
+  against 54 in config, not 4, so the cruft is not accumulating.
+  `state.sources` in data/state.json is never pruned, unlike `seen`.
   shopify-engineering, tbpn and boris-cherny are gone from config/sources.json
   and their conditional-GET validators are still in the file. Harmless today
   (a resurrected slug would just get a 200 on a stale etag) and roughly 200
@@ -659,6 +734,148 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-09
+
+**Quiet run, and an honest one: no PR.** Nine surfaces measured, every one of
+them clean, and the only signal that moved is editorial and now filed as #246.
+Recording what walked matters more than usual today, because five of these are
+directions a past run handed forward and three of them are now retired.
+
+**The journal's own alt-text pointer is retired, and it pointed the wrong way.**
+10-08 banked "374 of the 486 alt texts (77%) truncate, so the 100-character
+instagram cap, not the card caps, is where alt-text quality is decided; a run
+wanting to improve alt text should start there." Rebuilt all 32 days of cards
+and read where the cut actually lands: 354 of 358 story alt texts truncate
+(99%, the rate is higher than the note's), and **the title survives whole on
+355 of them**. Title length is median 56, max 93, and 0 of 358 reach 98, so the
+100-char budget is never the title's constraint. What the cut takes is the
+second clause, median 36 of ~71 desc characters, and it takes it after a word
+boundary. So the cap is spending itself on exactly the right half: the primary
+content always lands, the why-it-matters clause is what gets trimmed. There is
+no improvement here to make, and the direction should not be re-walked.
+
+**The three banked fold-ins were re-counted on the way past, per 10-08's lesson,
+and all three deferrals hold on the trend.** ars-technica's feed footer is
+328 of 328 bodies against 298 of 298 on 10-06, which is the archive growing at
+a fixed 100% rate rather than a defect spreading, and no digest has quoted it
+yet; the generic shape beside it is stable too (77 bodies ending "Read more",
+24 on a WordPress "The post … appeared first on …" tail). Title
+whitespace is 24 of 8,333 against 21 of 6,122, a rate that fell slightly
+(0.34% to 0.29%), still trailing-only, still no downstream consequence.
+`state.sources` is still exactly 3 stale slugs (shopify-engineering, tbpn,
+boris-cherny) against 54 in config, not 4, so the cruft is not accumulating.
+10-08's lesson asked for the count, not the sentence; the counts say wait.
+
+**Walked clean, recorded so a future run does not re-walk them.**
+**Tracking tags across the whole archive**: `stripTracking` is doing its job and
+the archive proves it from the inside. Of 8,333 items, 193 carry any query at
+all, and every `utm_*`/`smid` among them sits on 09-08..09-11, the four days
+that predate the fix; 0 since, on 28 days. No `fbclid`, `gclid`, `mc_cid` or
+`mc_eid` anywhere, so the named-tags-only list is not missing a family. Of the
+published digest links, 4 carry `utm_source` and all 4 are 09-08; nothing
+per-recipient has ever been published.
+**Five ungated contract "never"s, all measured at 0**: no digest lacks the
+"What matters today" lead (0 of 32), no pen mark sits on a heading (0), Hacker
+News precedes Threads on every day (32 of 32, neither ever missing), and no
+caption carries a hashtag in its own text (0 of 62 posts, so the pool check
+cannot be bypassed that way).
+**Slide terms**: 83 glosses across 358 cards. 0 abbrs repeated on a slide, 0
+glossed twice in one post, 2 present only inside a longer word and both benign.
+16 of 83 glosses carry uppercase and every one is a proper noun (Tesla's, US,
+DNA, ChatGPT, Medicare), so the contract's "plain lowercase words" is about the
+bureaucratic full name, not about case, and a case gate would be 16 false
+positives. Not a gate.
+**Rendered page structure, 34 pages**: 0 double-escaped entities, 0 duplicate
+section headings, 0 links with no visible text, 0 empty prose blocks, 0 links
+inside a heading, 0 link texts ending on punctuation. Page weight 25k to 35k,
+heaviest 09-24. The 362 "one url, several link texts" hits are all Threads
+bullets pointing back at an entry, which is the Threads rule working.
+**`dropsOf`'s heuristic**: the sitemap's `lastmod` and `article:modified_time`
+read the evening drop off the presence of a `pm` carousel post, and
+../AGENTS.md lets the agent skip a pm post when the evening added nothing
+carousel-worthy, which would tell a crawler the page never changed. It has
+never happened: 30 of 32 days are am+pm, 09-14 is pm-only (skipped morning) and
+today is am-only (the evening has not run). So 31 of 31 evening runs wrote a
+pm post, and the proxy holds on input that existed. Wallpaper, not a gate.
+**Pruning**: `cleanup.ts` prunes all four dated dirs at the same 31 days and
+the archive shows it, 32 files each in `digests/`, `data/items/` and
+`data/slides/`, same first and last day in all three.
+
+**Also measured, and banked rather than filed, next to the Hacker News
+word-count drift it rhymes with**: the lead paragraph is drifting past its
+brief. ../AGENTS.md asks for "a 2-3 sentence 'What matters today'"; 27 of 32
+days hold and the 5 that run to four sentences are 10-02, 10-05, 10-06, 10-07
+and 10-08, all inside the last eight days. Median lead is 780 characters, max
+1,090. A gate fires 5 times out of 32 and would have to pick a definition of
+"sentence", so it is editorial and it is not mine; recorded with the numbers so
+a run weighing it does not re-measure. Not filed, because #246 already asks
+Yasin for one editorial word today and a second ask dilutes it.
+
+**#246 filed**: the digest title's date padding. Re-counted because 10-08 banked
+it and the 10-08 lesson says to count a banked finding again on the way past,
+and the count moved the right way to matter: the padded form has now held three
+consecutive days, six digest runs, so it is the agent's habit rather than a
+slip. Of the archive's 11 single-digit days the first 8 are unpadded and the
+last 3 are padded, so the feed reads "Oct 09" one item above "Oct 6" and a day
+page's `formatDay` meta line ("Fri, Oct 9") disagrees with the heading above it.
+The issue states both readings and the measurement that makes the gate
+undecidable from here (29 of 32 fail the literal "DD", 3 of 32 fail the
+archive's habit), and asks for a padding rather than proposing one.
+
+Health: the 25 most recent workflow runs, zero failures; `pages` green on
+today's 04:45 digest push. 228 tests, typecheck silent, 33 pages. The verifier
+across all 32 archived days: `ok: true` on every one, zero errors, 90 warnings
+against 10-08's 95, and the drop is the archive rolling rather than anything
+improving: 09-07 and earlier carried warnings off the end and the three days
+added since carry none. By family: 40 link not found in the day's items (29
+once, 8 twice, 3 three times), 14 pen mark on link text, 10 already digested on
+an earlier day, 9 bare url as link text (all 09-19), 8 carried over from an
+earlier day's items, 5 over the 60-link count, 4 entry carries no link. Every
+one of them sits on 09-08..10-06; 10-01 onward is clean but for a single
+warning on 10-06, and the last three days carry zero between them.
+
+The environment, written as today's reading per the standing rule, and it is
+the kindest in a week: `git fetch`, `npm ci`, `npm test`, `npm run typecheck`,
+`npm run site`, `npm run recap`, the 32-day verifier sweep and two full card
+rebuilds all walked, no `[Merge Without Review]` refusal on any local command.
+`gh pr list` and `gh issue list` are 403 (GraphQL is closed to these sessions),
+so both listings came from `gh api` REST and the issue was created the same way;
+worth carrying forward, since the CLI's own subcommands are not the route here.
+What did not work is the footer strip: the REST `PATCH` on #246's body returned
+200 with the footer-free text and the harness re-appended the footer behind it,
+so #246 carries one. The body itself is intact, one copy of the text and one
+footer, and it was not retried, since a re-appender is not a transient wall.
+Another reading of the surface the standing note covers; not routed around.
+
+Worth writing down for a run that ships nothing: **a journal-only commit
+deploys nothing.** `pages` is path-filtered to `digests/`, `data/slides/`,
+`public/`, `src/` and its own workflow file, so today's push to main fired no
+run at all and the newest `pages` run stayed on this morning's digest commit,
+green. Step 9's deploy watch belongs to a merge; on a quiet run there is
+nothing to watch, and waiting on one is waiting on a run that will never
+appear.
+
+Egress re-probed rather than assumed, and the wall holds exactly where it has
+since 09-05: theverge.com, vercel.com and research.google all 000 at CONNECT,
+`sift.yasint.dev/latest.json` 000, `raw.githubusercontent.com` 200. So the
+three parked feed-shape findings (the-verge's figcaption credits,
+vercel-blog's foster-parented table labels, google-research's taxonomy-label
+bodies) stay parked, and the live site could not be read today.
+
+#112's signal, unchanged and still widening: yesterday's `15 3` landed at
+10:29:31 UTC (+7h14, the widest recorded) and the `45 15` at 20:50:29 (+5h05);
+today's `15 3` had not fired at 08:05, with the digest agent's own
+`workflow_dispatch` at 04:43:39 doing the real work again.
+
+Copilot: no review to read, because no PR was opened. Its quota was out on the
+last two gardener PRs; nothing new to say about it today.
+
+The thing for Yasin: **#246 needs one word** (pad or do not), and it is the
+cheapest of the five open issues by a wide margin, since picking either side
+hands verify.ts a gate for free. The other four are where they were: #110,
+#112, #120 and #241, with #120 now 36 days old. Nothing of the gardener's own
+is blocked on him.
 
 ### 2026-10-08
 
