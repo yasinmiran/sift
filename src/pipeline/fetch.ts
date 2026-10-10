@@ -26,9 +26,20 @@ type MinimalResponse = {
 };
 export type FetchImpl = (url: string, headers: Record<string, string>) => Promise<MinimalResponse>;
 
+// The one identity every live request the pipeline makes goes out under, in
+// the form the field playbook (AGENTS.md) prescribes: a product token plus a
+// url a site operator can read to find out who is calling, which is how a
+// crawler is actually judged. Declared here because the three live fetchers
+// each wrote their own and so each sent something different: this token
+// without the url, a bare browser product token from the web adapter, and
+// nothing at all from hn, which left a block or a rate limit landing on
+// whichever identity happened to sit in that file. One string, so a wall is
+// a finding about sift rather than about three unrelated callers.
+export const USER_AGENT = "sift/1.0 (+https://sift.yasint.dev)";
+
 const liveFetch: FetchImpl = async (url, headers) => {
   const res = await fetch(url, {
-    headers: { "user-agent": "sift/1.0", ...headers },
+    headers: { "user-agent": USER_AGENT, ...headers },
     redirect: "follow",
     signal: AbortSignal.timeout(20_000),
   });

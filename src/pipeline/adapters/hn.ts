@@ -1,4 +1,5 @@
 import { info } from "../../log";
+import { USER_AGENT } from "../fetch";
 import { withRetry } from "../retry";
 import { htmlToText } from "./clean";
 import type { Adapter, JsonFetcher, RawItem } from "./types";
@@ -24,7 +25,10 @@ const ALGOLIA = "https://hn.algolia.com/api/v1";
 
 const liveFetch: JsonFetcher = async (url) =>
   withRetry(async () => {
-    const r = await fetch(url, { signal: AbortSignal.timeout(15_000) });
+    const r = await fetch(url, {
+      headers: { "user-agent": USER_AGENT },
+      signal: AbortSignal.timeout(15_000),
+    });
     if (!r.ok) throw new Error(`HN ${r.status} for ${url}`);
     return r.json();
   });
