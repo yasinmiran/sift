@@ -1,6 +1,6 @@
 {
   "day": "2026-10-10",
-  "generatedAt": "2026-10-10T16:43:59.144Z",
+  "generatedAt": "2026-10-10T19:33:35.676Z",
   "items": [
     {
       "sourceSlug": "vercel-blog",
@@ -16,6 +16,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50016956",
+      "title": "Mxc: Microsoft Execution Containers version 1.0.0",
+      "url": "https://blogs.windows.com/windowsdeveloper/2026/10/07/microsoft-execution-containers-policy-driven-containment-for-ai-agents/",
+      "author": "smokel",
+      "publishedAt": "2026-10-09T06:52:49.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 106,
+      "comments": 19
     },
     {
       "sourceSlug": "hacker-news",
@@ -685,6 +704,20 @@
       "author": null,
       "publishedAt": "2026-10-09T22:48:37.000Z",
       "content": "Deno is joining Cloudflare The Deno team released the first version of celld back in August - their open source implementation of the Durable Objects pattern from Cloudflare Workers. Today, Cloudflare are acquiring Deno outright, with the goal of building on celld to \"make workerd self-hosting a first-class supported way to build and run apps using the Workers programming model\" (see the Cloudflare blog.) The bad news is that Deno itself will not be maintained by Cloudflare beyond the next year: We will support the Deno runtime for another year with monthly releases containing bug fixes and security updates. After that year we will end our development of the Deno runtime. Deno will remain open source, and we welcome others who want to continue its development. Deno (and Node.js) creator Ryan Dahl explained that decision in a comment on Hacker News: It's a joint decision and I agree with it. I'm most invested in its success and have put the most work into it - and I no longer think it's where I can do the most important work. There are some good ideas in Deno and it's well engineered - but it ultimately is not solving big problems. It has been sucked into the gravity well of node compatibility, which forces it to behave exactly as Node does. Why reimplement Node? It works. Marginal performance or UX or security benefits are not enough. I'm interested in building powerful new abstractions. celld has been working remarkably well, depending only on object storage for coordination and persistence. It is not just a slightly different API to interact with the file system or network - it's an entirely new model for server development. My favorite feature of Deno has long been the permissions system, where you can run a Deno script and specify exactly which files and folders it can read and write to, and which network hosts it can access. Node.js has a similar permissions model these days, added in Node v20.0.0 in April 2023 and declared stable in Node v22.13.0 in January 2025. They don't yet support allow-listing specific network hosts though - networking is either on or off. Via Hacker News Tags: cloudfront, javascript, nodejs, ryan-dahl, sandboxing, deno",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/miaai-s-qwen3-8-27b-installer-boosts-json-and-code-speed-by-78",
+      "title": "MiaAI's Qwen3.8-27B Installer Boosts JSON and Code Speed by 78%",
+      "url": "https://alphasignal.ai/news/miaai-s-qwen3-8-27b-installer-boosts-json-and-code-speed-by-78",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-09T22:57:34.000Z",
+      "content": "A one-click Qwen3.8-27B serving kit for consumer NVIDIA cards gets a speedup, with code generation jumping from 180 to 275 tok/s on an RTX 5090.",
       "topics": [
         "ai-llms"
       ],
@@ -1394,6 +1427,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/helix-foundry-lets-developers-query-all-their-business-data-on-a-laptop",
+      "title": "Helix Foundry Lets Developers Query All Their Business Data on a Laptop",
+      "url": "https://alphasignal.ai/news/helix-foundry-lets-developers-query-all-their-business-data-on-a-laptop",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-10T06:19:56.000Z",
+      "content": "Helix Foundry lets you wire databases, SaaS tools, and files into a single company ontology that runs entirely on your laptop.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261010/p7#a261010p7",
       "title": "Laptop production share outside China is expected to fall from 24% in 2025 to 21% in 2026 as PC makers rethink shifting production amid soaring component costs (TrendForce)",
@@ -1459,6 +1506,20 @@
       "content": "Sylvia Varnham O'Regan / Politico: Current and former employees say TikTok US still coordinates closely with the global TikTok org, and US staff continue to use ByteDance's internal chat app Lark — In the months before TikTok finalized a deal to sell its U.S. operations to a group of investors friendly to President Donald Trump …",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/artex-wins-baidu-s-security-challenge-using-linked-graphs-to-coordinate-ai",
+      "title": "ARTEX Wins Baidu's Security Challenge Using Linked Graphs to Coordinate AI Hacking Agents",
+      "url": "https://alphasignal.ai/news/artex-wins-baidu-s-security-challenge-using-linked-graphs-to-coordinate-ai",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-10T09:16:20.000Z",
+      "content": "ARTEX, winner of Baidu's agent+ challenge, open sources a Go-based multi-agent pentest system built on a dual-graph architecture.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -1752,6 +1813,25 @@
       "comments": 199
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50032758",
+      "title": "I would like the value of my home to rise, while my property taxes fall",
+      "url": "https://conversableeconomist.com/2026/09/28/i-would-like-the-value-of-my-home-to-rise-while-my-property-taxes-fall/",
+      "author": "colinprince",
+      "publishedAt": "2026-10-10T13:29:03.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 144,
+      "comments": 314
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261010/p12#a261010p12",
       "title": "How Anthropic co-founder Tom Brown used GOP ties to end a June standoff over model safety and win over Musk, brokering a $1.25B/month SpaceX compute deal (Wall Street Journal)",
@@ -1827,6 +1907,53 @@
       "comments": 103
     },
     {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1009286",
+      "title": "Anthropic is cutting off its internal evaluations from the internet",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1009286/anthropic-is-cutting-off-its-internal-evaluations-from-the-internet",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-10-10T14:41:16.000Z",
+      "content": "After a recent spate of high-profile incidents in which AI agents escaped containment, Anthropic is cutting off internet access for all internal evaluations. In a report Friday, the company detailed \"unintended model actions,\" including submitting a false tip regarding an unsolved murder, that led to the decision. Although the impact of these behaviors was minimal and we had already turned off live internet access for some high-risk and cybersecurity evaluations, we have now decided to expand that to include all our internal evaluations until we have confirmed that our security and monitoring measures (described in the remediation section … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1008654",
+      "title": "K-pop star Sunmi loves Notion and ear cleaning videos",
+      "url": "https://www.theverge.com/entertainment/1008654/k-pop-sunmi-wonder-girls-interview",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-10-10T15:00:00.000Z",
+      "content": "Sunmi is an undeniable force in K-pop. She first made her debut as a member of the Wonder Girls back in 2007, one of the first K-pop acts to really break through in the West. The English version of their single \"Nobody\" was the first K-pop song to hit the Billboard Hot 100 in October 2009. In 2010 Sunmi left the group to go back to school, but the siren call of a music career pulled her back in. She released her debut solo EP Full Moon in 2014. That began a run of award-winning releases for the pop star, including Song of the Year for \"Gashina\" at the Gaon Chart Music Awards. Despite her near-constant presence in the K-pop world as a solo … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50033638",
+      "title": "FDA may allow some toxic chemicals to be added to food without safety review",
+      "url": "https://www.theguardian.com/us-news/2026/oct/10/fda-toxic-chemicals-food-analysis",
+      "author": "NewJazz",
+      "publishedAt": "2026-10-10T15:00:36.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 114,
+      "comments": 55
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261010/p13#a261010p13",
       "title": "A profile of Zach Frankel, a secretive and unusually hands-on solo investor who wrote the first checks to startups like Ramp, Cognition, and Applied Compute (Jemima McEvoy/The Information)",
@@ -1836,6 +1963,20 @@
       "content": "Jemima McEvoy / The Information: A profile of Zach Frankel, a secretive and unusually hands-on solo investor who wrote the first checks to startups like Ramp, Cognition, and Applied Compute — Last month, Zach Dell, son of billionaire Michael Dell and cofounder of Base Power, a billion-dollar battery startup …",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1009294",
+      "title": "Ledger wallet tampering suspected after reports of crypto thefts",
+      "url": "https://www.theverge.com/tech/1009294/ledger-wallet-tampering-suspected-after-reports-of-crypto-thefts",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-10-10T16:36:44.000Z",
+      "content": "Reports have been mounting that users of the Ledger crypto wallet have seen their accounts drained, and it appears to be related to tampered hardware sold by CryptoBillis. Ledger has asked CryptoBillis to pause all sales of its wallets while it conducts an investigation. Ledger has confirmed that \"one of the impacted users' devices contained an unauthorized hardware implant.\" Photos and videos posted on X and Threads appear to show a small circuit board sandwiched under the screen. The implant allegedly intercepts anything displayed on the screen, including the seed passphrase shown during the initial setup. Using an embedded SIM card, the … Read the full story at The Verge.",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -1960,6 +2101,142 @@
       "author": null,
       "publishedAt": "2026-10-10T16:43:51.290Z",
       "content": "CPython eyes UTF-8 as default internal string storage freenode.net2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261010/p14#a261010p14",
+      "title": "A look at a 1,700-member Slack run by Medicare agency CMS where Microsoft, OpenAI, and other companies help shape policy on AI apps and medical records access (CBS News)",
+      "url": "https://www.techmeme.com/261010/p14#a261010p14",
+      "author": null,
+      "publishedAt": "2026-10-10T16:50:11.000Z",
+      "content": "CBS News: A look at a 1,700-member Slack run by Medicare agency CMS where Microsoft, OpenAI, and other companies help shape policy on AI apps and medical records access — A cadre of elite techies, financiers, and high-level Trump administration officials have spent a year quietly charting an extraordinary …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261010/p15#a261010p15",
+      "title": "IDC: Shenzhen-based DJI and Insta360, accounting for 73% and 20% of global smart camera market in Q2, are vying for the top spot as GoPro's share drops to 3% (William Langley/Financial Times)",
+      "url": "https://www.techmeme.com/261010/p15#a261010p15",
+      "author": null,
+      "publishedAt": "2026-10-10T18:50:00.000Z",
+      "content": "William Langley / Financial Times: IDC: Shenzhen-based DJI and Insta360, accounting for 73% and 20% of global smart camera market in Q2, are vying for the top spot as GoPro's share drops to 3% — DJI and Insta360 engaged in ‘civil war’ to become world's top smart camera maker — The decline of action camera pioneer GoPro …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1009309",
+      "title": "DistroKid has been quietly taking down songs in response to UMG lawsuit",
+      "url": "https://www.theverge.com/entertainment/1009309/distrokid-take-down-songs-umg-lawsuit",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-10-10T18:52:07.000Z",
+      "content": "Artists are taking to social media to complain that DistroKid has unceremoniously removed their work without notice. Now DistroKid has confirmed to The Verge that the takedowns are a direct response to claims made by UMG. The label filed a lawsuit in September claiming that DistroKid has created an \"AI-slop pipeline.\" Artists are saying that their non-AI works are being caught up in the purge, however. Musician and self-described \"Video Game boy\" McGwire reported that six of his songs had been removed from streaming. As has been the case with others, McGwire says that there was no communication from DistroKid before or after the removals, a … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261010/p16#a261010p16",
+      "title": "Sources: Nvidia is in talks to acquire or invest more into US open-weights AI startup Reflection AI; the deal may be an acquihire to avoid antitrust scrutiny (Financial Times)",
+      "url": "https://www.techmeme.com/261010/p16#a261010p16",
+      "author": null,
+      "publishedAt": "2026-10-10T19:08:43.000Z",
+      "content": "Financial Times: Sources: Nvidia is in talks to acquire or invest more into US open-weights AI startup Reflection AI; the deal may be an acquihire to avoid antitrust scrutiny — Donald Trump's administration hopes the company will rival cheap Chinese alternatives such as DeepSeek",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.ft.com/content/052610c5-22b4-4dd4-932e-b7f9f0628b6a",
+      "title": "Nvidia in talks to acquire US 'open' model startup Reflection AI",
+      "url": "https://www.ft.com/content/052610c5-22b4-4dd4-932e-b7f9f0628b6a",
+      "author": null,
+      "publishedAt": "2026-10-10T19:33:27.555Z",
+      "content": "Nvidia in talks to acquire US 'open' model startup Reflection AI ft.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.nytimes.com/2026/10/08/science/mathematicians-respond-openai-release.html",
+      "title": "‘Breathtaking,’ ‘Devastating’: Mathematics Reels After New OpenAI Release",
+      "url": "https://www.nytimes.com/2026/10/08/science/mathematicians-respond-openai-release.html",
+      "author": null,
+      "publishedAt": "2026-10-10T19:33:27.556Z",
+      "content": "‘Breathtaking,’ ‘Devastating’: Mathematics Reels After New OpenAI Release nytimes.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5",
+      "title": "Introducing Claude Haiku 5.5",
+      "url": "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5",
+      "author": null,
+      "publishedAt": "2026-10-10T19:33:27.557Z",
+      "content": "Introducing Claude Haiku 5.5 simonwillison.net2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.macrumors.com/2026/10/07/chatgpt-intelligent-ui",
+      "title": "ChatGPT Gets GPT-6 and New Intelligent UI With Visual Answers",
+      "url": "https://www.macrumors.com/2026/10/07/chatgpt-intelligent-ui",
+      "author": null,
+      "publishedAt": "2026-10-10T19:33:27.570Z",
+      "content": "ChatGPT Gets GPT-6 and New Intelligent UI With Visual Answers macrumors.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.tamirdresher.com/blog/2026/10/10/what-langgraph-actually-builds",
+      "title": "What LangGraph Actually Builds: Runnables, Channels, Bubble-Up, Agents and Deep Agents | IBlogger",
+      "url": "https://www.tamirdresher.com/blog/2026/10/10/what-langgraph-actually-builds",
+      "author": null,
+      "publishedAt": "2026-10-10T19:33:27.603Z",
+      "content": "What LangGraph Actually Builds: Runnables, Channels, Bubble-Up, Agents and Deep Agents | IBlogger tamirdresher.com36 min read",
       "topics": [
         "ai-llms",
         "devtools-infra",
