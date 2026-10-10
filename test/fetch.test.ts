@@ -1,5 +1,7 @@
+import { readFileSync, readdirSync } from "node:fs";
+import { join, relative } from "node:path";
 import { describe, expect, it } from "vitest";
-import { fetchIfChanged } from "../src/pipeline/fetch";
+import { fetchIfChanged, USER_AGENT } from "../src/pipeline/fetch";
 
 const stub = (status: number, body = "", headers: Record<string, string> = {}) =>
   async () => ({ statusCode: status, body, headers });
@@ -74,6 +76,47 @@ describe("fetchIfChanged", () => {
       const res = await fetchIfChanged("https://x", {}, flaky as never);
       expect(res.changed).toBe(true);
       expect(calls).toBe(2);
+    }
+  });
+});
+
+// Every live fetcher is module-private on purpose (tests inject stubs, and a
+// stub never sees these headers), so the identity sift sends has no runtime
+// surface a test can read. The source does: the rule is that a file calling
+// the global fetch sends USER_AGENT and nothing else, which is also what the
+// field playbook asks for ("never impersonate a browser or evade a block").
+const BROWSER = /Mozilla|AppleWebKit|Chrome\/|Safari\/|Gecko/;
+
+function pipelineSources(): { file: string; src: string }[] {
+  const root = join(__dirname, "../src/pipeline");
+  const walk = (dir: string): string[] =>
+    readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory() ? walk(join(dir, e.name)) : e.name.endsWith(".ts") ? [join(dir, e.name)] : [],
+    );
+  return walk(root).map((file) => ({ file: relative(root, file), src: readFileSync(file, "utf8") }));
+}
+
+describe("the pipeline's user agent", () => {
+  it("names sift and carries a url an operator can read", () => {
+    expect(USER_AGENT).toMatch(/^sift\/\d/);
+    expect(USER_AGENT).toContain("(+https://sift.yasint.dev)");
+    expect(USER_AGENT).not.toMatch(BROWSER);
+  });
+
+  it("is the only identity any live fetch sends", () => {
+    const callers = pipelineSources().filter(({ src }) => /\bawait fetch\(/.test(src));
+    expect(callers.map((c) => c.file).sort()).toEqual([
+      "adapters/hn.ts",
+      "adapters/web.ts",
+      "fetch.ts",
+    ]);
+    for (const { file, src } of callers) {
+      expect(src, `${file}: a live fetch must send the shared USER_AGENT`).toContain(
+        '"user-agent": USER_AGENT',
+      );
+      expect(src, `${file}: never impersonate a browser (AGENTS.md field playbook)`).not.toMatch(
+        BROWSER,
+      );
     }
   });
 });

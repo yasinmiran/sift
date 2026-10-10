@@ -1,4 +1,5 @@
 import { info } from "../../log";
+import { USER_AGENT } from "../fetch";
 import { tldrExtract, tldrResolveLatest } from "./web-extractors/tldr";
 import { anthropicExtract } from "./web-extractors/anthropic";
 import { hfPapersExtract } from "./web-extractors/hf-papers";
@@ -18,7 +19,7 @@ export const resolvers: Record<string, LatestResolver | undefined> = { tldr: tld
 
 const liveFetch: HtmlFetcher = async (url) => {
   const res = await fetch(url, {
-    headers: { "user-agent": "Mozilla/5.0" },
+    headers: { "user-agent": USER_AGENT },
     redirect: "follow",
     signal: AbortSignal.timeout(15_000),
   });
