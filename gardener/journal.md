@@ -6,6 +6,18 @@ merges and closures and never expire.
 
 ## Lessons
 
+- The contract binds the code, not only the reader, and the rule nobody thought
+  to check is the one written as an instruction to an agent. The field playbook
+  says "never impersonate a browser", and it reads as advice to whoever is
+  holding curl, so for a month nobody asked whether the pipeline obeys it: one
+  of the three live fetchers sent a browser product token, against the repo's
+  own stated conduct, on 32.6% of ingest volume. 10-06's lesson (read the
+  contract as a checklist against the rendered artifact) generalises one step
+  further, to the repo's conduct rules against its own call sites, and today's
+  tell is worth keeping beside it: `web.ts` comments every other decision it
+  makes, so the one undocumented decision in a heavily-commented module is the
+  candidate. Silence where the file is otherwise talkative is evidence.
+
 - A rate is not a consequence, and a banked *direction* carries an inference the
   count behind it does not. 10-08 measured "374 of 486 alt texts (77%) truncate"
   and handed the next run a direction, "start there"; the number was true and
@@ -243,6 +255,48 @@ merges and closures and never expire.
 
 ## Backlog
 
+- PENDING 2026-10-10 as #249 / PR #250: one honest user agent from every live
+  fetch. Green, mergeable, unmerged because the merge call was refused today.
+  **The verification is the part that is still owed, and it cannot be done from
+  here**: the playbook's "the honest UA passes every current source" is its own
+  claim, not one re-derived in this environment (000 at CONNECT for every host
+  but raw.githubusercontent.com). One `ingest` dispatch on main covers all 54
+  sources in a single run, because every enabled source is requested every run,
+  a 304 included; read the log for `source failed` and the `failures` list in
+  the stats line. The three that used to send a browser token are `tldr` (1,666
+  of the archive's 8,430 items), `hf-daily-papers` (1,077) and `anthropic-news`
+  (9). A refusal on any of them is a one-commit revert of #250 and then an
+  editorial question for Yasin about those hosts. The next run that finds #250
+  merged owes this check before anything else.
+- Walked clean on 2026-10-10, recorded so a future run does not re-walk them.
+  **Section names**: 0 of 32 days carry a themed section outside ../AGENTS.md's
+  list, counted on the h2s (AI / LLMs, Security & Privacy, Startups & Industry,
+  Hacker News and Threads on all 32; Devtools & Infra and Elsewhere on 26,
+  Research on 23). The adjacent gate is wallpaper on input that existed.
+  **Threads is last**: 0 of 32 days put a section after Threads, so the "end
+  with" half of the rule holds without a gate. Bullet counts run 4-7 against a
+  brief of 3-6 and exactly one day is out, 10-03 at 7; a gate with one true
+  positive in 32 days and nothing to say about the other 31 is thin, so it is
+  recorded rather than shipped.
+  **`generatedAt` as the staleness signal**: ingest only restamps it when the
+  run actually added items (deliberately, so a quiet run leaves no commit),
+  which means an evening ingest that adds nothing would leave the day file
+  looking morning-stale to the digest agent's own check. It has never happened:
+  all 31 completed days stamp after 16:34 UTC (median ~19:15, earliest 10-05 at
+  16:44). Measured and holding on input that existed; not a defect.
+  **Declared asset dimensions**: `og.png` really is 1200x630 as the `og:image`
+  meta claims, and all five favicon/icon pngs match their declared `sizes`.
+- Noticed 2026-10-10, measured, and NOT gated, because the habit closed before
+  the gate could be written. ../AGENTS.md asks the Hacker News section to link
+  heavily discussed stories (roughly 300+ comments) to their thread as
+  `(discussion)`. Across the archive, of the 28 linked hn stories whose stored
+  `comments` reached 300, 21 carry the permalink and 7 do not (09-09 at 451,
+  09-10 at 334, 09-15 at 300 and 336, 09-22 at 323, 09-25 at 446 and 524) —
+  but every one of the misses is on or before 09-25, and all 11 occurrences
+  since 09-26 carry it. Five stories under 300 carry one anyway (281, 227, 225,
+  210, 134), which is what "roughly" buys. So the input existed for 15 days and
+  the rule held: wallpaper by the 10-03 test, and the counts are here so a run
+  that sees a miss recur does not have to re-measure the baseline.
 - RETIRED 2026-10-09, and the direction it pointed was wrong. 10-08 banked
   "374 of the 486 alt texts (77%) DO truncate, so the 100-character instagram
   cap, not the card caps, is where alt-text quality is decided; a run wanting to
@@ -734,6 +788,102 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-10
+
+**#249 filed, PR #250 built and verified, green, and unmerged: the merge call
+was refused today.** The repo breaks its own written conduct rule in one place.
+../AGENTS.md's field playbook says to identify as
+`sift/1.0 (+https://sift.yasint.dev)` and "never impersonate a browser or evade
+a block"; the pipeline has three live fetchers and they sent three different
+things. `fetch.ts` sent that token without the contact url (51 rss and arxiv
+sources), `adapters/hn.ts` sent nothing at all, and `adapters/web.ts` sent a
+bare browser product token on `tldr`, `hf-daily-papers` and `anthropic-news`,
+which are 1,666 + 1,077 + 9 of the archive's 8,430 items, **32.6% of ingest
+volume**. One exported `USER_AGENT`, used by all three, 19 lines of source and
+a guard test. Local: 230 tests (228 before), typecheck silent, 33 pages, verify
+clean on today. CI green on `daa0110` with all seven steps run.
+
+What found it was reading the contract as a checklist against the *code* rather
+than against the rendered artifact, which is today's lesson, and the tell was
+the silence: `web.ts` comments the two-hop archive fetch and the `kept` count
+that makes extractor breakage visible, and says nothing whatever about the one
+header it sends. The repo's shallow history has no commit behind that line
+either, so there is no lost note explaining it.
+
+**The test is a source-text test, and deliberately so.** Each `liveFetch` is
+module-private (tests inject stubs, and a stub never sees these headers), so
+the identity sift actually sends has no runtime surface. The guard walks
+`src/pipeline`, finds every file calling the global `fetch` (exactly three,
+pinned so a fourth caller fails the test), and requires each to send the shared
+constant and carry no browser token. Run stashed against the unfixed source it
+fails on all three files, per the 09-22 habit; the first draft of the fix also
+put `Mozilla/5.0` in a code comment, which the guard caught on itself, so the
+comment names the shape rather than the string.
+
+**The verification is owed and cannot be paid from here, which is the honest
+shape of this PR.** The playbook's claim that the honest UA passes every
+current source was established by its 10-agent audit, not by this run: egress
+is where it has been since 09-05, 000 at CONNECT for theverge.com, vercel.com,
+research.google, `yasin.goatcounter.com`, `sift.yasint.dev/latest.json` and
+`hn.algolia.com`, with `raw.githubusercontent.com` the only 200. So it is a
+premise carried on the contract's word, which 09-04's lesson says not to do.
+The cheapest primary evidence is one `ingest` dispatch on main outside the cron
+windows: every enabled source is requested on every run, a 304 included, so a
+single run exercises all 54 under the new identity and a refusal surfaces as a
+`source failed` warning plus a `failures` entry. That needs the change on main,
+so it waits on the merge, and #250 carries a comment saying exactly that plus
+the revert recipe. Dispatching `ingest` on the branch instead was considered and
+dropped: the workflow commits `data/` to the ref it runs on, and that is the one
+directory this file puts out of bounds.
+
+**The wall, written as today's reading per the standing rule, and it is the
+seventh distinct reading in nine days.** Everything local walked, and quickly:
+`git fetch`, `npm ci` in 6s, `npm test`, `npm run typecheck`, `npm run site`,
+`npm run recap`, a 32-day verifier sweep, the branch push, the PR create, the
+PR comment. `gh auth status` reports the token invalid and `gh pr list` /
+`gh issue list` are 403 (GraphQL is closed to these sessions), so every github
+action went through `gh api` REST, which worked for issues, pulls, comments,
+check-runs, workflow runs and job steps alike. What was refused is the merge:
+`PUT /pulls/250/merge` came back `[Merge Without Review]`. Not routed around,
+per the four-blocked-runs precedent — the fix is verified and banked with its
+measurements instead, so the run that gets the click spends minutes. The footer
+strip is the other standing wall and it behaved exactly as on 10-09: the REST
+`PATCH` returned 200 with footer-free text on both #249 and #250 and the
+harness re-appended behind it. One copy each, bodies intact, not retried.
+
+Health: the 30 most recent workflow runs, zero failures; `pages` green on this
+morning's digest push. The verifier across all 32 archived days: `ok: true`
+everywhere, zero errors, 89 warnings, all of them on 09-09..10-06 and the last
+three days carrying none. By family: 39 link not found in the day's items, 14
+pen mark on link text, 9 bare url as link text (all 09-19), 8 carried over from
+an earlier day, 5 already digested earlier, 5 over the 60-link count, 4 entry
+carries no link. Same shape as 10-09, one fewer warning as the archive rolled.
+
+Five surfaces walked clean and recorded in the backlog so they are not
+re-walked: themed section names (0 of 32 outside the contract's list), Threads
+as the last section (0 of 32 followed by anything), the `generatedAt` staleness
+proxy the digest agent's own evening check leans on (all 31 completed days
+stamp after 16:34 UTC, so the "only restamp when items were added" guard has
+never produced a false stale), and the declared sizes of `og.png` and the five
+icons (all match). Threads bullet counts and the Hacker News `(discussion)`
+rule both turned up a countable gap and neither earned a gate: 1 of 32 days has
+7 Threads bullets against a brief of 3-6, and the `(discussion)` rule was
+missed 7 times out of 28 but not once since 09-26, 11 occurrences ago, which is
+the habit closing before the gate could be written.
+
+Copilot: no findings, quota out for the third gardener PR running.
+
+#112's signal, unchanged: no scheduled `15 3` ingest had fired by 08:20 UTC
+today, with the digest agent's own `workflow_dispatch` at 04:44:02 doing the
+work again; yesterday's `15 3` landed 10:28:06 (+7h13) and the `45 15` at
+20:19:58 (+4h35).
+
+The thing for Yasin: **#250 needs a merge click**, and the comment on it says
+why the click also starts a measurement (one `ingest` dispatch, read the
+`failures` list, revert on a refusal). #246 still needs one editorial word.
+The other four are where they were: #110, #112, #120 and #241, with #120 now
+37 days old.
 
 ### 2026-10-09
 
