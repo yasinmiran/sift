@@ -255,19 +255,52 @@ merges and closures and never expire.
 
 ## Backlog
 
-- PENDING 2026-10-10 as #249 / PR #250: one honest user agent from every live
-  fetch. Green, mergeable, unmerged because the merge call was refused today.
-  **The verification is the part that is still owed, and it cannot be done from
-  here**: the playbook's "the honest UA passes every current source" is its own
-  claim, not one re-derived in this environment (000 at CONNECT for every host
-  but raw.githubusercontent.com). One `ingest` dispatch on main covers all 54
-  sources in a single run, because every enabled source is requested every run,
-  a 304 included; read the log for `source failed` and the `failures` list in
-  the stats line. The three that used to send a browser token are `tldr` (1,666
-  of the archive's 8,430 items), `hf-daily-papers` (1,077) and `anthropic-news`
-  (9). A refusal on any of them is a one-commit revert of #250 and then an
-  editorial question for Yasin about those hosts. The next run that finds #250
-  merged owes this check before anything else.
+- MERGED 2026-10-11 08:04 as #249 / PR #250: one honest user agent from every
+  live fetch. Rebased onto main as `1b02ebd`, `pages` green on it at 08:04.
+  Merged by Yasin, not by me: the merge call was still refused from here on
+  10-10, and an `ingest` dispatch on the merged sha followed seven seconds
+  after the merge, so the verification recipe in #250's comment was run by his
+  token rather than this session's.
+  **The verification is partly in and the rest needs more runs.** What a single
+  run can prove is a positive: an item stored or a validator moved both require
+  a live fetch that was accepted. From `06b682b` (the post-merge ingest commit,
+  diffed against `1b02ebd`): **`tldr` added 4 items and `hacker-news` 1**, which
+  is the whole of what the change was about, since `tldr` is the browser-token
+  source that carries 1,666 of the archive's items and `hn` is the one that used
+  to send no identity at all. Alongside them 17 of the 50 conditional-GET
+  sources moved their validators (techmeme, openai, deepmind-blog, latent-space,
+  interconnects, alphasignal, netflix-techblog, bytebytego, pragmatic-engineer,
+  nextjs-blog, newcomer, big-technology, lennys-newsletter, josh-comeau,
+  fireship, eff-deeplinks, normal-technology), so **19 of 54 sources are
+  positively confirmed** under `sift/1.0 (+https://sift.yasint.dev)`.
+  What is NOT yet distinguishable, and the reason is structural rather than a
+  missing measurement: `fetchIfChanged` preserves the previous validators on a
+  304, and a throw leaves them untouched too, so "validator unchanged" covers
+  both a healthy 304 and a refusal. That is the other 33 rss sources, plus
+  `hf-daily-papers` and `anthropic-news`, which stored 0 items — but the
+  **pre-merge** 04:43 run stored 0 from both as well, so there is no
+  change-shaped signal, only an absent one. Validator churn per run across the
+  last ten ingest commits runs 21-34 and this run is 17, the lowest of the ten
+  though it also sat only 3h21m behind the previous run (the comparable 10-10
+  09:46 run, 3h02m behind its predecessor, moved 21).
+  **What settles it is repetition, not another instrument.** Re-run the
+  `06b682b` diff over the next few ingest commits: a source that used to move
+  most days and goes dark across several consecutive post-merge runs is the
+  failure signal, and `hf-daily-papers` landing any item at all closes the last
+  real question. A refusal is still a one-commit revert of `1b02ebd` plus an
+  editorial issue for Yasin about those hosts.
+- Found 2026-10-11, and it closes the instrument the 09-04 lesson names.
+  **A workflow job's log cannot be read from this environment.**
+  `gh api /repos/yasinmiran/sift/actions/jobs/{id}/logs` does not serve the
+  text; it 302s to `productionresultssa2.blob.core.windows.net` and the proxy
+  answers `Forbidden`, with and without `-i`. So "read the actual job log, not
+  the note about the job log" is advice this environment cannot take, and
+  anything a run needs to know about an Action has to come from what the Action
+  *wrote*: the committed `data/` diff, `data/state.json`'s validators, the run
+  and job metadata (`conclusion`, per-step conclusions, timings), never the
+  stdout. Worth knowing before planning a day around a log line: #250's whole
+  verification recipe named `source failed` and the `failures` stats line, both
+  of which are stdout only.
 - Walked clean on 2026-10-10, recorded so a future run does not re-walk them.
   **Section names**: 0 of 32 days carry a themed section outside ../AGENTS.md's
   list, counted on the h2s (AI / LLMs, Security & Privacy, Startups & Industry,
@@ -791,8 +824,12 @@ merges and closures and never expire.
 
 ### 2026-10-10
 
-**#249 filed, PR #250 built and verified, green, and unmerged: the merge call
-was refused today.** The repo breaks its own written conduct rule in one place.
+**#249 filed, PR #250 built and verified, green, and unmerged on the day: the
+merge call was refused.** (Outcome, recorded 2026-10-11: Yasin merged it at
+08:04 the next morning as `1b02ebd`, `pages` green, and the post-merge ingest
+run confirms 19 of 54 sources under the new identity, `tldr` and `hacker-news`
+among them. The backlog note carries the measurements and the one question the
+single run cannot answer.) The repo breaks its own written conduct rule in one place.
 ../AGENTS.md's field playbook says to identify as
 `sift/1.0 (+https://sift.yasint.dev)` and "never impersonate a browser or evade
 a block"; the pipeline has three live fetchers and they sent three different
