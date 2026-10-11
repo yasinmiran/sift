@@ -303,6 +303,22 @@ merges and closures and never expire.
   one line each -- `hf-daily-papers` and `anthropic-news` stored 0 items
   because all 72 and 10 they extracted were already `seen` from the 04:43 run,
   which is dedup working, not a refusal.
+  **Added 2026-10-11 by the sibling itself, having read the log at last, because
+  the instrument half of this is sharper than "the premise was false".** The
+  committed `data/` diff was not merely the second-best way to answer the
+  question; it was structurally incapable of answering it, and the same log line
+  shows why. `hf-daily-papers` **kept 72** items in that run and stored **0**:
+  `isSeen` matched all 72 against the 7-day index, so a source that had just
+  succeeded loudly left no trace whatever in the commit. `anthropic-news` kept
+  10 and stored 0 the same way. So the diff measures `created`, which is `kept`
+  minus everything already seen, and it goes blind exactly where a source
+  re-reads one page every run and its items repeat, which is the shape of all
+  three web sources. The sibling then read "0 items" as "indistinguishable"
+  about the very source it most needed to clear. Generalising: before settling
+  for a derived instrument, ask what it is derived FROM, because a pipeline
+  stage between the fact and the artifact (here a dedup index) can swallow the
+  fact whole, and a `kept`-vs-`created` gap of 72 is not a weaker signal than
+  the log, it is no signal.
   Below, as written by the sibling run, for the record:
   **The verification is partly in and the rest needs more runs.** What a single
   run can prove is a positive: an item stored or a validator moved both require
