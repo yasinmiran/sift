@@ -328,6 +328,40 @@ describe("buildSite", () => {
     expect(day).toContain('"datePublished":"2026-07-04T16:34:00Z"');
   });
 
+  it("marks the evening rewrite in the feed without moving the day it went up", () => {
+    digest("2026-07-03", "body");
+    digest("2026-07-04", "body");
+    slides("2026-07-04", ["am", "pm"]);
+    buildSite(root, out);
+    const feed = readFileSync(join(out, "feed.xml"), "utf8");
+    // The rewritten day keeps the instant it went up and says separately when
+    // it last changed: the same two instants its page head carries.
+    expect(feed).toContain(
+      "<pubDate>Sat, 04 Jul 2026 04:34:00 GMT</pubDate>\n<atom:updated>2026-07-04T16:34:00Z</atom:updated>",
+    );
+    // The day nobody rewrote claims no update at all, so a reader is told
+    // about the one that moved and nothing else.
+    expect(feed).toContain("<pubDate>Fri, 03 Jul 2026 04:34:00 GMT</pubDate>\n</item>");
+    expect(feed.match(/<atom:updated>/g)).toHaveLength(1);
+    // The channel's own stamp is the newest day's last change, never the
+    // build clock: rebuilding an unchanged archive rewrites nothing.
+    expect(feed).toContain("<lastBuildDate>Sat, 04 Jul 2026 16:34:00 GMT</lastBuildDate>");
+    buildSite(root, out);
+    expect(readFileSync(join(out, "feed.xml"), "utf8")).toBe(feed);
+  });
+
+  it("claims no update for a day that was only ever published once", () => {
+    // A pm-only day went up in the evening and was never rewritten, so its
+    // publish and modified drops are the same instant and there is nothing
+    // to tell a reader who already has it.
+    digest("2026-07-04", "body");
+    slides("2026-07-04", ["pm"]);
+    buildSite(root, out);
+    const feed = readFileSync(join(out, "feed.xml"), "utf8");
+    expect(feed).not.toContain("<atom:updated>");
+    expect(feed).toContain("<lastBuildDate>Sat, 04 Jul 2026 16:34:00 GMT</lastBuildDate>");
+  });
+
   it("writes an rss feed and links it from every page", () => {
     digest("2026-07-03", "body");
     digest("2026-07-04", "body");
