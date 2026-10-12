@@ -236,6 +236,17 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
       .map((u) => `  <url><loc>${u.loc}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ""}</url>`)
       .join("\n")}\n</urlset>\n`,
   );
+  // The evening rewrite is a third more digest under the same url (median
+  // +3.1k bytes and +11 links across the archive's 30 two-commit days), and
+  // on the 10 of those where the description held, the item is otherwise
+  // byte-identical morning and evening. rss has no pubDate for "changed":
+  // moving it would restate when the day went up and reshuffle every
+  // reader's sort, and a fresh guid would publish the day twice. atom:updated
+  // is the element for it in the namespace this feed already declares, so the
+  // feed answers "when did this last change" with the same instant the page
+  // head and the sitemap do. lastBuildDate is the channel half, read off the
+  // newest day's drop rather than the build clock, so a rebuild that changes
+  // nothing leaves the feed byte-identical.
   writeFileSync(
     join(outDir, "feed.xml"),
     `<?xml version="1.0" encoding="UTF-8"?>
@@ -245,17 +256,21 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
 <link>${BASE_URL}/</link>
 <atom:link href="${BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
 <description>${escapeHtml(SITE_DESCRIPTION)}</description>
-<language>en</language>
+<language>en</language>${
+      newest ? `\n<lastBuildDate>${feedDate(newest.day, newest.modified)}</lastBuildDate>` : ""
+    }
 ${digests
-  .map(
-    (d) => `<item>
+  .map((d) => {
+    const updated = isoDate(d.day, d.modified);
+    const rewritten = updated !== isoDate(d.day, d.published);
+    return `<item>
 <title>${escapeHtml(d.title)}</title>
 <link>${BASE_URL}/${d.day}.html</link>
 <guid>${BASE_URL}/${d.day}.html</guid>
 <description>${escapeHtml(d.description)}</description>
-<pubDate>${feedDate(d.day, d.published)}</pubDate>
-</item>`,
-  )
+<pubDate>${feedDate(d.day, d.published)}</pubDate>${rewritten ? `\n<atom:updated>${updated}</atom:updated>` : ""}
+</item>`;
+  })
   .join("\n")}
 </channel>
 </rss>
