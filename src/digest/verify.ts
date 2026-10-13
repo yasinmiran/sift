@@ -79,6 +79,22 @@ function linklessEntries(body: string): string[] {
   return entries;
 }
 
+// AGENTS.md: "Then themed sections (AI / LLMs, Devtools & Infra, Security &
+// Privacy, Startups & Industry, Research, Elsewhere), only sections with
+// content". A heading whose section holds nothing publishes as a bare word
+// between two others, naming a section and handing the reader the next one:
+// 2026-10-12 shipped `## Elsewhere` directly above `## Hacker News` and every
+// check here stayed quiet. Read off the rendered body, the way publishedLinks
+// and linklessEntries are, so a prose section counts as content exactly the
+// way a list does.
+function emptySections(body: string): string[] {
+  const $ = cheerio.load(renderMarkdown(body));
+  return $("h2")
+    .filter((_, el) => $(el).nextUntil("h2").text().trim() === "")
+    .map((_, el) => $(el).text().trim())
+    .get();
+}
+
 // A hacker news story is ingested under the article's own url, so a digest
 // that links the discussion instead reads as a link outside the day's items
 // unless the permalink form is admitted too. The id is the item's
@@ -171,6 +187,9 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     warnings.push(
       `entry carries no link: "${truncate(entry, 70)}"; every entry links inline to its best source url (AGENTS.md)`,
     );
+  }
+  for (const name of emptySections(body)) {
+    errors.push(`section "${name}" carries no entries; a digest holds only sections with content (AGENTS.md)`);
   }
   for (const url of links) {
     if (!/^https?:\/\//.test(url)) errors.push(`non-http link: ${url}`);

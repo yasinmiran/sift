@@ -790,4 +790,27 @@ describe("verifyDigest", () => {
     expect(r.warnings).toContainEqual(expect.stringContaining(`already digested on 2026-07-03: ${urls[1]}`));
     expect(r.warnings).not.toContainEqual(expect.stringContaining(urls[2]!));
   });
+
+  it("fails on a themed section with no entries, naming it", () => {
+    writeItems(DAY, urls);
+    // 2026-10-12's shape exactly: `## Elsewhere` written and never filled, so
+    // the page names a section and hands the reader the next heading.
+    writeDigest(digestWith().replace("## Hacker News", "## Elsewhere\n\n## Hacker News"));
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(false);
+    // Only Elsewhere: the list sections and the prose Hacker News section both
+    // count as content, which is why the check reads the rendered body rather
+    // than counting list items.
+    expect(r.errors.filter((e) => e.includes("carries no entries"))).toEqual([
+      'section "Elsewhere" carries no entries; a digest holds only sections with content (AGENTS.md)',
+    ]);
+  });
+
+  it("catches an empty section at the end of the body", () => {
+    writeItems(DAY, urls);
+    writeDigest(`${digestWith({ threads: "" })}\n## Threads\n`);
+    const r = verifyDigest(root, DAY);
+    expect(r.ok).toBe(false);
+    expect(r.errors).toContainEqual(expect.stringContaining('section "Threads" carries no entries'));
+  });
 });
