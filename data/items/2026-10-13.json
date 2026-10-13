@@ -1,7 +1,26 @@
 {
   "day": "2026-10-13",
-  "generatedAt": "2026-10-12T22:36:50.801Z",
+  "generatedAt": "2026-10-13T04:44:33.538Z",
   "items": [
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50041866",
+      "title": "The baffling intelligence of a single cell (2024)",
+      "url": "https://jsomers.net/e-coli-chemotaxis/",
+      "author": "jsomers",
+      "publishedAt": "2026-10-11T11:02:30.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 149,
+      "comments": 14
+    },
     {
       "sourceSlug": "vercel-blog",
       "externalId": "https://vercel.com/changelog/muse-wonder-now-available-on-ai-gateway",
@@ -68,6 +87,25 @@
       "mediaType": "text",
       "points": 220,
       "comments": 55
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50056822",
+      "title": "Solar panels that plug into your wall",
+      "url": "https://www.nationalgeographic.com/environment/article/balcony-plug-in-solar-panels-renewable-energy",
+      "author": "speckx",
+      "publishedAt": "2026-10-12T14:19:04.000Z",
+      "content": "https://archive.ph/NEPz3",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 151,
+      "comments": 136
     },
     {
       "sourceSlug": "hacker-news",
@@ -194,6 +232,20 @@
     },
     {
       "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/microsoft-s-studentsim-trains-ai-tutors-on-synthetic-learners-beating",
+      "title": "Microsoft's StudentSim Trains AI Tutors on Synthetic Learners, Beating Supervised Methods by 15%",
+      "url": "https://alphasignal.ai/news/microsoft-s-studentsim-trains-ai-tutors-on-synthetic-learners-beating",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-12T16:34:31.000Z",
+      "content": "Microsoft Research built personalized AI student simulators that mimic real learners, giving tutor models fast feedback without costly human studies.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
       "externalId": "https://alphasignal.ai/news/yovoice-lets-you-clone-voices-locally-without-paying-elevenlabs",
       "title": "yovoice Lets You Clone Voices Locally Without Paying ElevenLabs",
       "url": "https://alphasignal.ai/news/yovoice-lets-you-clone-voices-locally-without-paying-elevenlabs",
@@ -205,6 +257,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50059096",
+      "title": "Launch HN: Agent37 (YC F26) – Low-cost agent sandboxes for running agents",
+      "url": "https://news.ycombinator.com/item?id=50059096",
+      "author": "vishnukool",
+      "publishedAt": "2026-10-12T16:46:34.000Z",
+      "content": "Hey HN, I’m Vishnu from Agent37 (https://agent37.com). We build sandboxes for running AI agents at under 10% of the cost of most sandbox providers. Our customers spend an average of $0.37/month per sandbox. You can view a video walkthrough of the product here: https://youtu.be/DK5ISR2tbNo We started as one of those OpenClaw wrapper companies back in February (yup.. judge me). In time we added more and more harnesses. One of the goals I had at the time was to offer a free plan to users, so as to gain more market share. But it was too cost prohibitive to do it right away. Especially since we were bootstrapped and servers were running on my savings. Today we’re actually able to offer the free plan thanks to the optimizations we’ve made since. Over 90% of the new signups we have are just free plan users and they host their personal Hermes/Openclaw/Claude Code etc on our cloud. Our infrastructure cost for the free sandboxes averages around $0.05 to $0.10 per user per month. Here are some techniques that have worked for lowering cost: * When you look at agent harnesses, they have certain patterns in the way they consume CPU and RAM. They need CPU in bursts when they’re initializing or performing certain tasks, but beyond that, they’re often not peaking. They need more RAM for things like browser and computer-use tasks. Once the task is done, usage often comes back down. This is a key insight in lowering cost, so by efficiently managing the CPU/RAM utilization we could lower the cost. * Secondly, you have to skip the hyperscalers when renting the Hosts. I worked at Amazon before and they have 80-90% margins on VMs. So it was an obvious choice once I looked at the prices to go one layer down to vendors like Hetzner and OVH. This alone was probably one of the biggest cost levers in reducing the cost. * Thirdly, you also want to pick a technology stack that lets you efficiently cache and share resources across the host. We use gVisor for better utilization and fast boot times. It lets us use available host memory across sandboxes without reserving a full VM’s memory for each one. There are tradeoffs: our gVisor sandboxes don’t support workloads like Docker-in-Docker or Android emulators. * And finally the size and shape of the hosts you buy also makes a big difference. RAM is typically the bottleneck when it comes to cost and not the CPU. This is specifically true for agent harness workloads, so when buying servers, we optimize for packing more RAM into a given host. We also host full VM sandboxes for workloads that need them, including running Docker at a slightly higher price, but they are still pretty low cost given the rest of the techniques. Overall, my learning has been that just by focusing on a niche of sandbox usecases, and optimizing for it you can give a much better cost/performance tradeoff. I was previously a Senior Software Engineer at Amazon and an Engineering Manager at Quantcast. I built Amazon's internal AI chatbot, Diya, and their internal coding harness, Ziya. If you’re someone who’s looking to run agents on sandbox and are exploring a sandbox vendor, come check us out. We’re particularly looking for developers building messaging agents to try their workloads and challenge the limits and economics of our platform. Thanks! https://agent37.com",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 122,
+      "comments": 80
     },
     {
       "sourceSlug": "hacker-news",
@@ -409,6 +480,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/a-7-esp32-lets-vision-models-fully-control-an-iphone-without-jailbreak",
+      "title": "A $7 ESP32 Lets Vision Models Fully Control an iPhone Without Jailbreak",
+      "url": "https://alphasignal.ai/news/a-7-esp32-lets-vision-models-fully-control-an-iphone-without-jailbreak",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-12T17:38:21.000Z",
+      "content": "A $7 ESP32-S3 board acts as USB mouse hands while AirPlay feeds eyes to a vision model, driving a stock iPhone with no Mac or Xcode required.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "github-blog",
       "externalId": "https://github.blog/?p=99409",
       "title": "GitHub Copilot app for Beginners: How to teach Copilot about your codebase",
@@ -547,6 +632,25 @@
     },
     {
       "sourceSlug": "hacker-news",
+      "externalId": "50060674",
+      "title": "Publishers Killed the Paperback, Then Blamed Readers",
+      "url": "https://jacobin.com/2026/10/books-publishing-reading-mass-market-paperback",
+      "author": "PaulHoule",
+      "publishedAt": "2026-10-12T18:27:26.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 116,
+      "comments": 73
+    },
+    {
+      "sourceSlug": "hacker-news",
       "externalId": "50060694",
       "title": "Codex CLI installs a persistent, self-updating background daemon by default",
       "url": "https://github.com/openai/codex/issues/48195",
@@ -655,6 +759,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50061791",
+      "title": "Making big downloads resumable in Firefox",
+      "url": "https://lunarwatcher.codeberg.page/til/firefox/resumable-big-downloads.html",
+      "author": "speckx",
+      "publishedAt": "2026-10-12T19:36:02.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 134,
+      "comments": 43
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261012/p38#a261012p38",
       "title": "Suki, an AI ambient scribe for healthcare providers, raised a $90M Series E led by Healthier Capital; a source says it projects $60M-$80M in revenue this year (Brock E.W. Turner/Axios)",
@@ -711,6 +834,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50063138",
+      "title": "Who is vfmaddrnd231pd?",
+      "url": "https://purplesyringa.moe/blog/who-is-vfmaddrnd231pd/",
+      "author": "pngmangi",
+      "publishedAt": "2026-10-12T21:12:43.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 148,
+      "comments": 15
+    },
+    {
       "sourceSlug": "meta-engineering",
       "externalId": "https://engineering.fb.com/?p=24657",
       "title": "OCP Summit 2026: Powering AI with Open Innovations in Scale-Up, Scale-Out, and Scale-Across Networks",
@@ -739,6 +881,63 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50063365",
+      "title": "Intel D270 GPU AI Accelerator–Up to 480 GB LPDDR5X",
+      "url": "https://www.intel.com/content/www/us/en/products/details/discrete-gpus/data-center-gpu/d-series.html",
+      "author": "hurricanepootis",
+      "publishedAt": "2026-10-12T21:35:35.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 126,
+      "comments": 48
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50063417",
+      "title": "Phreak.ing – Internet Phone Switch",
+      "url": "https://phreak.ing/",
+      "author": "rickcarlino",
+      "publishedAt": "2026-10-12T21:39:32.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 28
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50063427",
+      "title": "AI is a tool and using it well takes skill",
+      "url": "https://yyhh.org/blog/2026/10/ai-is-a-tool/",
+      "author": "layer8",
+      "publishedAt": "2026-10-12T21:40:18.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 282,
+      "comments": 237
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261012/p40#a261012p40",
       "title": "Anthropic researchers say small AI models may be months away from being able to self-replicate on IoT devices like smart ovens and off-brand Android TV boxes (Anthropic)",
@@ -748,6 +947,20 @@
       "content": "Anthropic: Anthropic researchers say small AI models may be months away from being able to self-replicate on IoT devices like smart ovens and off-brand Android TV boxes — Our experiments suggest that small AI models may be months away from being capable enough to self-replicate on commercial IoT devices …",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/10/39-year-old-unvaccinated-woman-becomes-6th-measles-death-in-pennsylvania/",
+      "title": "39-year-old unvaccinated woman becomes 6th measles death in Pennsylvania",
+      "url": "https://arstechnica.com/health/2026/10/39-year-old-unvaccinated-woman-becomes-6th-measles-death-in-pennsylvania/",
+      "author": "Beth Mole",
+      "publishedAt": "2026-10-12T21:54:35.000Z",
+      "content": "A 39-year-old unvaccinated woman in Franklin County, Pennsylvania, has become the sixth person to die of the highly infectious virus amid a state outbreak that has stricken over a thousand people since it began in April. The woman died on Saturday, October 10. She had several underlying health conditions and had recently tested positive for measles, according to an advisory posted on social media by Franklin County Coroner Jordan Conner. The advisory noted that the woman's death meets the definition of a measles death set by the state's health department. In an emailed statement to The Washington Post, the coroner's office said the primary cause of death was listed as \"probable acute cardiac event due to possible complications of the measles.\" Read full article Comments",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -765,6 +978,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50063831",
+      "title": "RJ Mitte has died",
+      "url": "https://news.sky.com/story/breaking-bad-star-rj-mitte-dies-aged-34-13598332",
+      "author": "austinallegro",
+      "publishedAt": "2026-10-12T22:15:29.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 175,
+      "comments": 53
     },
     {
       "sourceSlug": "zvi-dwatv",
@@ -1386,6 +1618,507 @@
       "author": null,
       "publishedAt": "2026-10-12T22:36:42.950Z",
       "content": "UK says it will again test OpenAI and Anthropic models before release thenextweb.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50064318",
+      "title": "I turned my unused Kindle into a photo frame with GPT-6 Astra",
+      "url": "https://nirajrajgor.com/blog/kindle-photo-frame-with-ai",
+      "author": "nirajrajgor",
+      "publishedAt": "2026-10-12T23:07:25.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 134,
+      "comments": 90
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50064536",
+      "title": "Blood cells from 80-year-old donor become stem cells with molecular age under 20",
+      "url": "https://doi.org/10.1111/acel.70751",
+      "author": "arunc",
+      "publishedAt": "2026-10-12T23:34:22.000Z",
+      "content": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13634082/",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 128,
+      "comments": 84
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/artificial-analysis-aa-3d-ranks-21-ai-models-by-3d-scenes-they-build",
+      "title": "Artificial Analysis' AA-3D Ranks 21 AI Models by 3D Scenes They Build",
+      "url": "https://alphasignal.ai/news/artificial-analysis-aa-3d-ranks-21-ai-models-by-3d-scenes-they-build",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-12T23:40:28.000Z",
+      "content": "Artificial Analysis released AA-3D, a benchmark that ranks 21 AI models by human-judged quality of interactive three.js scenes built from written briefs.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261012/p42#a261012p42",
+      "title": "Leading Chinese mathematicians launch an alliance, including eight orgs and aiming for 1,000+ scientists, to focus on developing specialized AI models for math (Chao Kong/South China Morning Post)",
+      "url": "https://www.techmeme.com/261012/p42#a261012p42",
+      "author": null,
+      "publishedAt": "2026-10-13T00:15:02.000Z",
+      "content": "Chao Kong / South China Morning Post: Leading Chinese mathematicians launch an alliance, including eight orgs and aiming for 1,000+ scientists, to focus on developing specialized AI models for math — Leading China's mathematicians joined forces in Beijing on Sunday to launch an alliance aimed at integrating artificial intelligence into mathematical research.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261012/p43#a261012p43",
+      "title": "Japanese manufacturer Omron says it will acquire US industrial PC firm OnLogic and its parent company, Interlogic, for $675M, to boost its \"physical AI\" efforts (Anton Bridge/Reuters)",
+      "url": "https://www.techmeme.com/261012/p43#a261012p43",
+      "author": null,
+      "publishedAt": "2026-10-13T01:35:00.000Z",
+      "content": "Anton Bridge / Reuters: Japanese manufacturer Omron says it will acquire US industrial PC firm OnLogic and its parent company, Interlogic, for $675M, to boost its “physical AI” efforts — Japanese manufacturer Omron (6645.T) will buy US industrial PC firm Onlogic and its parent company, Interlogic, for $675 million, the company said on Tuesday.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50065892",
+      "title": "Leaving Tech",
+      "url": "https://ryanbigg.com/2026/10/leaving-tech",
+      "author": "jonahx",
+      "publishedAt": "2026-10-13T02:39:35.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 137,
+      "comments": 134
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261012/p44#a261012p44",
+      "title": "Q&A with Mark Zuckerberg and Alexandr Wang on the Muse app, Muse Wonder, the risks of committing $100B+ to AI, rebooting Meta's AI team, agentic commerce, more (Cheeky Pint)",
+      "url": "https://www.techmeme.com/261012/p44#a261012p44",
+      "author": null,
+      "publishedAt": "2026-10-13T02:50:01.000Z",
+      "content": "Cheeky Pint: Q&A with Mark Zuckerberg and Alexandr Wang on the Muse app, Muse Wonder, the risks of committing $100B+ to AI, rebooting Meta's AI team, agentic commerce, more — As Meta scales its AI infrastructure past five gigawatts, Mark Zuckerberg (founder and CEO, Meta) and Alexandr Wang …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261012/p45#a261012p45",
+      "title": "Sources: NTT Data is in advanced talks to build a data center for Anthropic in Osaka of up to 500 MW, among Japan's largest, potentially costing $6.3B (Nikkei Asia)",
+      "url": "https://www.techmeme.com/261012/p45#a261012p45",
+      "author": null,
+      "publishedAt": "2026-10-13T03:15:01.000Z",
+      "content": "Nikkei Asia: Sources: NTT Data is in advanced talks to build a data center for Anthropic in Osaka of up to 500 MW, among Japan's largest, potentially costing $6.3B — TOKYO/OSAKA — NTT Data Group is in the final stages of talks to build a data center in western Japan for U.S. AI company Anthropic, multiple sources have told Nikkei.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261012/p46#a261012p46",
+      "title": "Anthropic says new measures like preserved thinking in Fable 5.1 and Opus 5.5 have reduced data harvesting through distillation attacks by about 90% to 99% (Anthropic)",
+      "url": "https://www.techmeme.com/261012/p46#a261012p46",
+      "author": null,
+      "publishedAt": "2026-10-13T03:45:01.000Z",
+      "content": "Anthropic: Anthropic says new measures like preserved thinking in Fable 5.1 and Opus 5.5 have reduced data harvesting through distillation attacks by about 90% to 99% — In recent months, we've made substantial progress on reducing the effectiveness of distillation attacks on Claude using new methods, as we outline in this blog.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261013/p1#a261013p1",
+      "title": "China-based Transsion, which dominates the market for smartphones in Africa, raised $390M from a Hong Kong share sale after pricing the deal near the top end (Sangmi Cha/Bloomberg)",
+      "url": "https://www.techmeme.com/261013/p1#a261013p1",
+      "author": null,
+      "publishedAt": "2026-10-13T04:20:01.000Z",
+      "content": "Sangmi Cha / Bloomberg: China-based Transsion, which dominates the market for smartphones in Africa, raised $390M from a Hong Kong share sale after pricing the deal near the top end — Shenzhen Transsion Holdings Co., which dominates the market for smartphones in Africa, raised HK$3.1 billion ($390 million) …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.13630",
+      "title": "Multi-Stream Attention Residuals",
+      "url": "https://huggingface.co/papers/2610.13630",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:24.134Z",
+      "content": "Multi-Stream Attention Residuals",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.13166",
+      "title": "Scaling Agentic Data for Long-Horizon Terminal Intelligence",
+      "url": "https://huggingface.co/papers/2610.13166",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:24.134Z",
+      "content": "Scaling Agentic Data for Long-Horizon Terminal Intelligence",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.39601",
+      "title": "GroundingPI: A Grounding Foundation Model towards Physical Intelligence with Visual Primitives",
+      "url": "https://huggingface.co/papers/2609.39601",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:24.134Z",
+      "content": "GroundingPI: A Grounding Foundation Model towards Physical Intelligence with Visual Primitives",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.13832",
+      "title": "SpatialASM: Internalizing Active Mentalization for Spatial Reasoning",
+      "url": "https://huggingface.co/papers/2610.13832",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:24.134Z",
+      "content": "SpatialASM: Internalizing Active Mentalization for Spatial Reasoning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.39600",
+      "title": "GroundAnything: Reconciling Parallel Decoding with Precise Visual Grounding at Flash Speed",
+      "url": "https://huggingface.co/papers/2609.39600",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:24.134Z",
+      "content": "GroundAnything: Reconciling Parallel Decoding with Precise Visual Grounding at Flash Speed",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.35965",
+      "title": "Systematic Multi-Agent Vision-and-Language Navigation: Formulation, Benchmark, and Method",
+      "url": "https://huggingface.co/papers/2609.35965",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:24.134Z",
+      "content": "Systematic Multi-Agent Vision-and-Language Navigation: Formulation, Benchmark, and Method",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.03308",
+      "title": "T3lescope: Arbitrary-Resolution High-Fidelity Generative Surface Reconstruction from Images",
+      "url": "https://huggingface.co/papers/2610.03308",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:24.134Z",
+      "content": "T3lescope: Arbitrary-Resolution High-Fidelity Generative Surface Reconstruction from Images",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.11765",
+      "title": "Thinking Inertia: LLMs Keep Thinking When Told Not To",
+      "url": "https://huggingface.co/papers/2610.11765",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:24.134Z",
+      "content": "Thinking Inertia: LLMs Keep Thinking When Told Not To",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.13361",
+      "title": "AgentSWE: Can Coding Agents Build the Agent You Actually Want?",
+      "url": "https://huggingface.co/papers/2610.13361",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:24.134Z",
+      "content": "AgentSWE: Can Coding Agents Build the Agent You Actually Want?",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.09396",
+      "title": "ARCS: Towards Precise Text-to-SQL via Structured Disambiguation",
+      "url": "https://huggingface.co/papers/2610.09396",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:24.134Z",
+      "content": "ARCS: Towards Precise Text-to-SQL via Structured Disambiguation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2609.33304",
+      "title": "Relevance Does Not Imply Applicability: Experience Activation for Personal GUI Agents",
+      "url": "https://huggingface.co/papers/2609.33304",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:24.134Z",
+      "content": "Relevance Does Not Imply Applicability: Experience Activation for Personal GUI Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.anthropic.com/research/distillation-defenses",
+      "title": "Strengthening our defenses against distillation attacks",
+      "url": "https://www.anthropic.com/research/distillation-defenses",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:25.564Z",
+      "content": "Strengthening our defenses against distillation attacks anthropic.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://linuxiac.com/python-3-15-released-with-faster-jit-lazy-imports-and-utf-8-by-default",
+      "title": "Python 3.15 Released with Faster JIT, Lazy Imports, and UTF-8 by Default",
+      "url": "https://linuxiac.com/python-3-15-released-with-faster-jit-lazy-imports-and-utf-8-by-default",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:25.565Z",
+      "content": "Python 3.15 Released with Faster JIT, Lazy Imports, and UTF-8 by Default linuxiac.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/tech-policy/2026/10/anthropics-claude-ai-submitted-false-murder-tip-to-philadelphia-police",
+      "title": "Anthropic's Claude AI submitted false murder tip to Philadelphia police",
+      "url": "https://arstechnica.com/tech-policy/2026/10/anthropics-claude-ai-submitted-false-murder-tip-to-philadelphia-police",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:25.567Z",
+      "content": "Anthropic's Claude AI submitted false murder tip to Philadelphia police arstechnica.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wsj.com/business/deals/quantum-computing-company-ionq-to-buy-cybersecurity-firm-for-up-to-1-3-billion-65af65bd",
+      "title": "Quantum-Computing Company IonQ to Buy Cybersecurity Firm for Up to $1.3 Billion",
+      "url": "https://www.wsj.com/business/deals/quantum-computing-company-ionq-to-buy-cybersecurity-firm-for-up-to-1-3-billion-65af65bd",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:25.573Z",
+      "content": "Quantum-Computing Company IonQ to Buy Cybersecurity Firm for Up to $1.3 Billion wsj.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/gaming/2026/10/report-epic-games-goes-all-in-on-ai-for-disney-collaboration",
+      "title": "Report: Epic Games goes all-in on AI for Disney collaboration",
+      "url": "https://arstechnica.com/gaming/2026/10/report-epic-games-goes-all-in-on-ai-for-disney-collaboration",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:25.574Z",
+      "content": "Report: Epic Games goes all-in on AI for Disney collaboration arstechnica.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://artificialanalysis.ai/articles/aa-3d",
+      "title": "AA-3D Elo vs. Early Visual Inspection",
+      "url": "https://artificialanalysis.ai/articles/aa-3d",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:25.575Z",
+      "content": "AA-3D Elo vs. Early Visual Inspection artificialanalysis.ai1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://slashdot.org/story/26/10/11/2355238/research-firm-calls-anthropics-upcoming-ipo-unprecedented-test-of-investor-gullibity",
+      "title": "Research Firm Calls Anthropic's Upcoming IPO 'Unprecedented Test of Investor Gullibity'",
+      "url": "https://slashdot.org/story/26/10/11/2355238/research-firm-calls-anthropics-upcoming-ipo-unprecedented-test-of-investor-gullibity",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:25.576Z",
+      "content": "Research Firm Calls Anthropic's Upcoming IPO 'Unprecedented Test of Investor Gullibity' slashdot.org1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://bart.degoe.de/rag-with-a-small-language-model-in-the-browser",
+      "title": "Running RAG with a (small) language model in the browser",
+      "url": "https://bart.degoe.de/rag-with-a-small-language-model-in-the-browser",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:25.579Z",
+      "content": "Running RAG with a (small) language model in the browser bart.degoe.de9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thewatershed.markpesce.com/this-years-model",
+      "title": "This Year's Model",
+      "url": "https://thewatershed.markpesce.com/this-years-model",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:25.598Z",
+      "content": "This Year's Model thewatershed.markpesce.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://cote.io/2026/10/10/relief-for-open-source-cve-explosion-hopefully.html",
+      "title": "Relief for open source CVE explosion, hopefully",
+      "url": "https://cote.io/2026/10/10/relief-for-open-source-cve-explosion-hopefully.html",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:25.603Z",
+      "content": "Relief for open source CVE explosion, hopefully cote.io1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://satnews.com/2026/10/11/spacex-acquires-grain-managements-800-mhz-spectrum-portfolio-to-launch-standalone-starlink-mobile-carrier",
+      "title": "SpaceX Acquires Grain Management’s 800 MHz Spectrum Portfolio to Launch Standalone Starlink Mobile Carrier",
+      "url": "https://satnews.com/2026/10/11/spacex-acquires-grain-managements-800-mhz-spectrum-portfolio-to-launch-standalone-starlink-mobile-carrier",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:25.604Z",
+      "content": "SpaceX Acquires Grain Management’s 800 MHz Spectrum Portfolio to Launch Standalone Starlink Mobile Carrier satnews.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://jhellerstein.github.io/blog/no-room-for-bugs",
+      "title": "No Room for Bugs",
+      "url": "https://jhellerstein.github.io/blog/no-room-for-bugs",
+      "author": null,
+      "publishedAt": "2026-10-13T04:44:25.605Z",
+      "content": "No Room for Bugs jhellerstein.github.io11 min read",
       "topics": [
         "ai-llms",
         "devtools-infra",
