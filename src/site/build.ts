@@ -127,8 +127,14 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
     // one and the earlier day the entry after. Both ends are open: the
     // archive is a rolling month, so the newest day has no later neighbour
     // and the oldest loses its earlier one as days drop off the end.
+    // "/", not "index.html": the index is the one page the site links back to
+    // from everywhere, and every other declaration of its url says the bare
+    // root -- the canonical tag, the sitemap, the manifest's start_url and
+    // sw.js's notification fallback. Linking the file name served it under a
+    // second url that nothing advertises, which goatcounter counts as its own
+    // page. The 404's crumbs already said "/".
     const body = `
-      <nav class="crumbs"><a href="index.html">&larr; all days</a></nav>
+      <nav class="crumbs"><a href="/">&larr; all days</a></nav>
       <main>
       <article>
       <header>
