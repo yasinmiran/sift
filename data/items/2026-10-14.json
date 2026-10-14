@@ -1,7 +1,26 @@
 {
   "day": "2026-10-14",
-  "generatedAt": "2026-10-14T04:44:06.567Z",
+  "generatedAt": "2026-10-14T08:38:25.545Z",
   "items": [
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50053487",
+      "title": "900-Page Pre-Pantone Guide to Color from 1692 (With Complete High-Res Scan)",
+      "url": "https://www.openculture.com/2026/10/a-900-page-pre-pantone-guide-to-color-from-1692.html",
+      "author": "mdp2021",
+      "publishedAt": "2026-10-12T09:05:02.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 153,
+      "comments": 17
+    },
     {
       "sourceSlug": "simon-willison",
       "externalId": "https://simonwillison.net/2026/Oct/12/python-3-15-web-edit-profiling/",
@@ -414,6 +433,25 @@
       "comments": 34
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50080007",
+      "title": "Grace Hopper Celebration Cancelled",
+      "url": "https://anitab.org/press-release",
+      "author": "mooreds",
+      "publishedAt": "2026-10-13T22:46:49.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 168,
+      "comments": 75
+    },
+    {
       "sourceSlug": "ars-technica",
       "externalId": "https://arstechnica.com/health/2026/10/martin-shkreli-livestreamed-himself-violating-lifetime-pharma-ban-ftc-says/",
       "title": "Martin Shkreli livestreamed himself violating lifetime pharma ban, FTC says",
@@ -454,6 +492,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50080275",
+      "title": "Show HN: Pulse Local, a Mac budgeting app whose AI models run on your machine",
+      "url": "https://pulseos.finance",
+      "author": "niztk",
+      "publishedAt": "2026-10-13T23:13:23.000Z",
+      "content": "Hi HN, I'm Niz. Pulse Local is a budgeting app for Mac (Apple Silicon, beta) that answers questions about your spending with models that run on your machine. Local mode needs no account. The ledger and your questions stay on the machine, and the app sends no analytics or crash logs. I felt there are not enough consumer apps that run locally with no calls to the outside world that help us manage sensitive corners of our lives. This app in its local variant only downloads a couple of models and occasional updates, it does not send any analytics nor data. Features-wise, Pulse local is a complete budgeting app that offers an assistant built on top of a fine-tuned model and thousands of rules embedded in the code itself. I'm sharing it for free with options to help me continue experimenting with fine-tuning and expanding along this direction. How it works: you import a CSV from any bank, in any currency. When you ask a question, a tuned Qwen3 0.6B model reads it into a structured query, and code, not the model, does the money math against the ledger. A 4B checker model double-checks each money answer; when the two readings disagree, the app says it is not sure instead of guessing. That change took wrong answers from about one in five to 5 in 494 questions across our last three tests. The write-up covers how we test, the designs that failed, and the limits of the claim: https://pulseos.finance/pulse-local/writing/agree-or-not-sur... The tuned weights are on Hugging Face (PulseOS/pulse-local-qwen3-0.6b). Limitations: the first start downloads about 2.9 GB of models. With the checker on, a money answer takes 12 to 14 seconds (you can turn the checker off). Small models can still misread an open-ended question. The app answers in English. Mac only for now; Windows is next. The app is free. An optional Connected mode (Sync Pass, $29/year) syncs US banks through Plaid; transactions pass through our server's memory and are not stored. Feedback welcome, especially on wrong answers and on questions it should handle but does not.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 104,
+      "comments": 60
     },
     {
       "sourceSlug": "techmeme",
@@ -581,6 +638,775 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.13956v1",
+      "title": "MDN-VJEPA: Multimodal Probabilistic Joint-Embedding World Models",
+      "url": "https://arxiv.org/abs/2610.13956",
+      "author": "Yongchao Huang",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Joint-Embedding Predictive Architectures (JEPAs) learn world models by predicting future representations rather than reconstructing observations. Variational JEPA (VJEPA) gives this prediction probabilistic semantics and permits flexible conditional predictive families. We propose MDN-VJEPA, a multimodal probabilistic JEPA that instantiates the latent predictor as a mixture density network (MDN), representing future states with a Gaussian mixture whose components encode alternative futures, their probabilities, and within-mode uncertainty. For sequential prediction, we address two additional structural requirements: multi-modal futures should remain temporally coherent across a trajectory, and predictive beliefs should remain consistent when propagated to the same horizon through different temporal path compositions, as motivated by the Chapman--Kolmogorov equation. Together, these considerations define a three-level hierarchy of multimodal prediction, coherent multimodal trajectories, and compositionally consistent multimodal dynamics. Controlled experiments show that MDN-VJEPA closely recovers known branching predictive laws, that retaining the complete multimodal belief rather than its conditional mean can lead to materially different and substantially better planning decisions under branching futures, and that trajectory-level coupling and distributional consistency improve temporal coherence and multi-horizon agreement. These results support a simple principle: a probabilistic JEPA should preserve not only how uncertain the future is, but which distinct futures constitute that uncertainty, how they form coherent trajectories, and how those beliefs compose through time.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.13959v1",
+      "title": "LACRM: LLM-Guided Mining of Directed Advertiser Competition Relationships in E-Commerce Advertising",
+      "url": "https://arxiv.org/abs/2610.13959",
+      "author": "Xiang Shi, Yitian Kou, Bing Li, Shengsheng Niu, Chun Gan, Linghui Meng, Jie He, Zhangang Lin, Ching Law",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "In e-commerce advertising, ad platforms typically fail to model the externalities among advertisers when making optimization decisions: an advertiser's actual performance is largely shaped by rivals competing for the same users; these rivals typically operate in overlapping product categories and at comparable budget scales. However, capturing this rivalry as an explicit, reusable signal is challenging because it is directed, multi-faceted, and partially observable. Existing paradigms such as interaction graphs, taxonomy rules, and single-embedding models do not fully capture these properties. In this paper, we propose LACRM (LLM-driven Advertiser Competition Relationship Mining), a novel framework that constructs directed competition graphs with continuous edge intensities via a three-stage pipeline. LACRM moves beyond symmetric similarity through LLM-driven role-separated profiling, which enables asymmetric multi-route retrieval to uncover both realized and latent rivals. The framework further incorporates listwise learning-to-rank aligned with temporal auction behavior to accurately model directed competition intensity. In offline retrieval experiments on an industrial benchmark, LACRM outperforms strong directed GNN baselines and ablation variants. Multi-LLM and human studies provide complementary evidence that the recovered latent rivals reflect meaningful market competition rather than merely model-generated artifacts. In production A/B tests, LACRM-guided bidding and incentive allocation increase advertising revenue by 1.73% and 1.14%, respectively. The results demonstrate the practical value of explicit competition modeling in large-scale advertising systems.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.13966v1",
+      "title": "MRFlow: Mechanism-Structured Residual Flow Matching for Virtual Cell Perturbation Prediction",
+      "url": "https://arxiv.org/abs/2610.13966",
+      "author": "Haojie Yang, Ran Su",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Predicting cellular responses to chemical and genetic perturbations is a central test for AI virtual cells, yet many single-cell models reduce each condition to an average expression shift. This target is misaligned with perturbation biology: rare states, resistant subpopulations, and context-dependent effect sizes may coexist under the same intervention. MRFlow treats virtual-cell prediction as conditional transport between empirical single-cell measures. Control and perturbed cells are embedded in a variational latent state space, greedy low-cost supervision is constructed over detached minibatch states, and a conditional flow-matching vector field transports control populations toward perturbed populations. The field decomposes into a mechanism-structured affine dictionary, which recombines shared latent response operators with a low-rank condition-specific correction, and a spectrally controlled residual field for nonlinear cell-level variation. Genetic perturbations are encoded through a regulatory-graph GCN, chemical perturbations through Morgan fingerprints, and both enter the same conditional dynamics interface. Across eight gene and drug perturbation benchmarks, MRFlow attains the highest composite score while preserving competitive raw performance on differential-expression and distributional metrics. The results support latent distribution transport as a principled and empirically effective formulation for perturbation-aware virtual cell modeling.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.13982v1",
+      "title": "PRIME: Frequency-Aware Unified Pruning and Merging for MoE Compression",
+      "url": "https://arxiv.org/abs/2610.13982",
+      "author": "Shanfeng Huang, Rongqian Zhang, Zhou Fang, Song Xiao, Hai Du",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Mixture-of-Experts (MoE) models have emerged as an effective paradigm for scaling large language models, yet their massive parameter footprint poses severe memory challenges for deployment. Existing compression methods typically treat expert pruning and merging as disjoint operations and rely on greedy heuristics, often leading to irreversible information loss or representational pollution. In this paper, we propose PRIME, a unified optimization framework for MoE compression via adaptive PRunIng and MErging. PRIME casts the discrete prune-merge assignment step as a global Integer Linear Programming over a frequency-weighted surrogate objective, jointly selecting pruning and merging decisions while accounting for expert usage. We motivate the frequency-aware objective through an error-bound analysis under fixed representative assignments, and show that the formulation favors high-frequency experts as centroids, promoting routing stability. Extensive experiments on Qwen3-30B-A3B and Qwen3.5-122B-A10B demonstrate that PRIME achieves strong accuracy retention across knowledge, coding, math, and long-context tasks, while serving benchmarks of merged models quantify the memory and throughput benefits of expert compression in vLLM.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.13989v1",
+      "title": "PsyBer-Agent: A Psychology-Driven User Agent for Recommender Systems",
+      "url": "https://arxiv.org/abs/2610.13989",
+      "author": "Chong Zhang, Qijie Shen, Haichao Zhang, Can Wang, Xiaobo Jin, Jia Wang",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Evaluating recommender systems before deployment requires simulators that remain realistic over long, closed-loop interaction cycles. Current LLM-based agents generally function as surface imitators that generate realistic short-term responses but fail to capture the underlying user dynamics such as fatigue, affect, and shifting preferences. We propose PsyBer-Agent, a psychology-inspired simulator that models these dynamics through its Psy-Engine. This engine represents each user with three evolving, model-defined latent states. To calibrate simulated behavior against real interaction logs, we align log-conditioned reference trajectories with simulator-generated latent-state trajectories via Unbalanced Gromov--Wasserstein optimal transport. This approach provides structured supervision for a lightweight policy without the computational burden of fine-tuning the backbone LLM. We also introduce WebSim and the PsyBer Benchmark, which encompass multimodal scenarios and seven recommender backbones. Our framework evaluates behavioral fidelity, latent-state consistency, robustness, and responses to social-cue perturbations. On the tested horizons, PsyBer-Agent shows lower behavioral discrepancy than the prompt-only simulators while maintaining stable performance under large-scale concurrent simulation for up to 5M queued simulation tasks under bounded concurrency. Code is available in the supplementary material and at: PsyBer-Agent: https://anonymous.4open.science/r/CC66F/, WebSim Platform: https://anonymous.4open.science/r/D8EAX/.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.13990v1",
+      "title": "DoSA: Dots Sparse Attention",
+      "url": "https://arxiv.org/abs/2610.13990",
+      "author": "Fanxu Meng, Taosong Fang",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Sparse attention visits few keys, yet finding them can still require scoring every key with every indexer head. We introduce DoSA (Dots Sparse Attention), a lossless method for making this computation conditional while preserving exact token selection. Its central observation is that Top-K selection requires sufficient evidence to reject a candidate, not necessarily its full score. A seed set supplies a lower bound on the winning threshold. Nonnegative head projections and joint residual bounds upper-bound positive contributions, while activation-informed aggregation bounds the magnitude subtracted by negative heads. The certificate directs full scoring toward candidates that remain eligible; exact-score filtering further reduces writeback and selection work. We establish the certificate and its exact-selection conditions, and analyze how geometry and selection margins govern its effectiveness. Our GPU implementation accelerates the complete Indexer by up to 2.74 times over SGLang and 1.69 times over LiteTopK across English, Chinese, and code workloads. End-to-end evaluation on GLM-5.2 and DeepSeek-V3.2 achieves up to 1.94 times and 1.50 times time-to-first-token speedups over the two baselines, respectively.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.13991v1",
+      "title": "Predict Before You Modify: Learning Improvement Dynamics for Self-Evolving Agents",
+      "url": "https://arxiv.org/abs/2610.13991",
+      "author": "Zixuan Xie, Chang Xu, Yuhua Jiang, Li Zhao",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Self-evolving agents improve through repeated cycles of modification and evaluation. However, existing methods receive feedback on modifications only after costly evaluations, and aggregate scores may obscure distinctions between failures that require different repairs. We introduce predictive self-evolution through an editable Improvement Dynamics Model (IDM). Before evaluation, the IDM predicts task-level outcomes of a proposed modification and guides an optional revision. After evaluation, past modifications and their observed outcomes are used to improve the IDM, allowing predictive knowledge to accumulate across generations. The system can thus improve how it solves tasks, proposes modifications, and predicts their effects. Building on HyperAgents, we evaluate this approach across multilingual coding, paper review, robotics reward design, and Olympiad-level mathematical grading. Our approach outperforms HyperAgents across all four domains, with up to 46% higher average performance over generations. Gains also persist under matched token budgets that include both agent evolution and task evaluation, and extend to held-out tasks. Forecast accuracy improves as the IDM evolves, and the learned predictive knowledge transfers to improve evolution in a new domain.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.13994v1",
+      "title": "Posterior Flow Matching",
+      "url": "https://arxiv.org/abs/2610.13994",
+      "author": "Chenrui Ma, Xi Xiao, Lin Zhao, Xinru Jiang, Tianyang Wang, Yanning Shen, Ferdinando Fioretto",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Flow matching learns how to transport noise toward data, but its mean prediction does not directly report the endpoint uncertainty remaining at an intermediate state. This paper introduces Posterior Flow Matching (PFM), a general generative modeling framework that learns conditional velocity means and componentwise variances with a Gaussian posterior model. The same model evaluation supplies both a transport prediction and endpoint uncertainty, making posterior diagnostics available throughout generation. These learned moments support a mean-driven ordinary differential equation (ODE) and a posterior-driven stochastic differential equation (SDE), whose local noise scales adapt to the predicted uncertainty. Across image, point-cloud, molecular, and action generation, PFM improves generation quality and provides endpoint-posterior readouts throughout generation.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.13995v1",
+      "title": "GameSmith: Scaling Zero-Sum Self-Play with Synthesised Games",
+      "url": "https://arxiv.org/abs/2610.13995",
+      "author": "Weixian Waylon Li, Jiaxin Zhang, Han Zhou, Chengzu Li, Ke Wang, Fengxiang He, Yiwen Guo",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Post-training large language models (LLMs) on two-player zero-sum games provides a verifiable reward, and the gains have been shown to transfer to general reasoning. Existing pipelines, however, rely on a handful of hand-written games and on advantage estimators tied to them, so both the supply of games and the advantage estimate on a large corpus limit scaling. We present GameSmith, which scales both. An LLM synthesises games inside templates whose reward, observation, and hidden-information code is fixed. Each game is verified by seed-paired replay and by an independent re-implementation of its specification, then expanded into encoding, rule, and size variants, giving 26 new games in 29 families and 336 verified variants from the three SPIRAL templates. The model is distilled from the self-play of a larger teacher (Qwen3-32B) on these games and then trained by self-play reinforcement learning with CRAB, an advantage estimator that credits each decision against a shrinkage estimate of the expected return of its position and is defined on every variant. On Qwen3-4B-Base, distillation raises the 13-benchmark mean pass@1 from 45.5 to 62.5, above the three SPIRAL games at the same budget, and self-play with CRAB reaches 64.9. The ordering holds across models, and transfer grows with the number of game families.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.13996v1",
+      "title": "Splicing Hints into Reasoning Traces: Learning from Demonstrator Failures",
+      "url": "https://arxiv.org/abs/2610.13996",
+      "author": "Hamed Mahdavi (Pennsylvania State University), Pouria Mahdavinia (Pennsylvania State University), Majid Farhadi (Google), Vasant Honavar (Pennsylvania State University)",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Reinforcement learning with verifiable rewards improves mathematical reasoning when a final answer can be checked, but a correct answer does not certify the derivation behind it, and proof problems offer no answer to check. Replacing the check with a reasoning model as an in-loop verifier faces a fundamental obstacle: the policy must already produce occasional correct attempts for any reward to exist, which it may never do at olympiad level. We instead move verification and repair out of the training loop and into offline data generation with SPLICE, a workflow in which a second model, given only a reference solution, edits a reasoning model's traces as they are generated: it verifies progress, truncates a failed trace at its last verified step, and splices in an adaptively strengthened hint until progress resumes. The resulting dataset includes repaired examples whose sampled unaided trajectory failed, with failed continuations removed and progress repeatedly checked against the reference solution. A model finetuned on SPLICE traces outperforms the same model distilled from the reasoning model's unedited traces on AIME and, under a grading protocol validated against human grades, on olympiad proofs. The trained model's own traces show a corresponding behavioral signature: at difficult points it announces a branch in the style of the spliced hints and takes riskier steps, with predictive entropy rising there and just after, a pattern absent from the model trained on unedited traces.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.13998v1",
+      "title": "Enhanced Trading Systems with Intelligent Market Analysis",
+      "url": "https://arxiv.org/abs/2610.13998",
+      "author": "Vedanth Padmaraman, Shreen Anand, Vamshi Vishruth J, Vineet V Pai, Arvind Srinath K. T, Subramanyam Natarajan, Shylaja S S",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "This paper proposes a hybrid reinforcement learning trading framework integrating intraday market data with transformer-based financial sentiment signals. The system extracts sentiment dynamics and semantic event clusters from financial news and incorporates them into a PPO-based trading agent. Experiments on intraday NSE data demonstrate improved risk-adjusted returns compared to price-only baselines.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.13999v1",
+      "title": "SemTree: Judge-Aware Semantic Decision Trees for Inspectable and Repairable Rule Decisions",
+      "url": "https://arxiv.org/abs/2610.13999",
+      "author": "Jincheng Gao, Wei Ding, Shuo Sun",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Rule decisions such as content moderation, advertising compliance, and eligibility checks combine several conditions, exemptions, and missing-information cases, and an error can be fixed only once the failing condition is known. We introduce SemTree, a framework that represents a rule decision as a semantic decision tree: each node is a natural-language question with explicit Yes/No/Unknown criteria, a pluggable semantic judge answers it, and the branching structure is compiled on the answers that this judge actually gives. The executed path is the reasoning behind every decision, so errors are repaired where they occur: a reviewer corrects a single node and replays the rule, corrected nodes become training labels for the judge, and a tool-using LLM editor revises questions and subtrees while observing execution results. On all 8,276 ShARC test cases, a tree executed by a hosted judge reaches 67.70% accuracy with 2.99 questions per case, on par with asking the same judge for the final label (68.23%); an earlier tree compiled for a different judge scores 47.87% when executed by this judge, while a new tree compiled on this judge's answers to a 12-question initial pool already scores 64.39%. Node-level repair raises BANKING77 accuracy from 82.04% to 86.16%, an explicit exemption node cuts the false positives of a Chinese e-commerce moderation clause from 24 to 5, and a trained editor raises the development accuracy of edited trees from 64.47% to 73.35%.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14000v1",
+      "title": "VH-GPO: Verified Handoff for LLM Agent Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2610.14000",
+      "author": "Haoze Li, Peng Zhou, Peiyuan Wu, Weijie Zhao, Yinan Xin",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Group-relative reinforcement learning methods such as GRPO train large language model (LLM) agents by comparing rollouts for the same task. When every trajectory in a group fails with the same reward, relative advantages collapse toward zero, leaving no useful learning signal. A frozen teacher can recover from a student-visited state, but letting it complete the task makes the recovered suffix entirely teacher-generated. We ask: after repairing a student failure, when should control return to the student? We propose outcome-verified teacher-student handoff, instantiated in Verified Handoff for Group Policy Optimization (VH-GPO). The teacher provides enough support to reach a state from which the student can succeed, then returns control so that successful experience is again student-generated. Given an environment-verified teacher recovery, VH-GPO selects the earliest independently confirmed handoff point found within a bounded search budget. With Qwen2.5-1.5B, VH-GPO increases success rates over GRPO from 59.38% to 94.79% on ALFWorld and from 71.62% to 77.34% on WebShop. Improvements also hold with the 7B student, for which additional teacher and student output tokens amount to 1.77% and 2.61% of regular student rollout output tokens on ALFWorld and WebShop, respectively. Ablation studies demonstrate the effectiveness of the key components. These results support using verified teacher assistance to repair failures while reinforcing the student's ability to complete tasks independently.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14001v1",
+      "title": "PreSO: Privileged Representation Isolation for On-Policy Self-Distillation",
+      "url": "https://arxiv.org/abs/2610.14001",
+      "author": "Yuhang Yang, Mingxuan Xia, Chao Ye, Shuai Zhu, Shouqing Yang, Haobo Wang, Shenzhi Yang, Zhengqing Zang, Chenglong Wang",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "On-policy self-distillation (OPSD) uses a self-teacher conditioned on privileged information to turn the sparse outcome signal of reinforcement learning with verifiable rewards (RLVR) into dense token-level supervision. Yet the teacher's advantage may depend on information unavailable to the student at inference, raising a central question: which privileged changes are worth distilling? We use cross-problem recurrence as an empirical cue for potentially reusable guidance. Comparing the representation shifts induced by full solutions and compact hints, we find that hint-induced shifts are more concentrated and directionally consistent across problems, and yield more sustained downstream gains despite revealing less information. Motivated by this association, we propose Privileged Representation Isolation for On-Policy Self-Distillation (PreSO). At the source, PreSO uses compact hints to limit the solution-specific detail entering the privileged shift. At the target, it estimates a leading low-rank subspace from shifts pooled across related problems, projects the privilege-induced correction onto this subspace, and adds it to the student's unprivileged representation to form the representation-level distillation target. The selected subspace serves as an operational proxy for recurring structure, rather than a guaranteed separation of transferable and instance-specific information. On five competition-level mathematics benchmarks, PreSO consistently outperforms strong baselines across Qwen3-1.7B, 4B, and 8B, improving average accuracy over the base model by 6.8, 9.0, and 10.0 points. Beyond peak accuracy, PreSO attains the highest final-checkpoint average at every model scale, with improvements that persist through the end of training.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14004v1",
+      "title": "Showing versus Doing: Teaching by Demonstration",
+      "url": "https://arxiv.org/abs/2610.14004",
+      "author": "Mark K. Ho, Michael L. Littman, James MacGlashan, Fiery Cushman, Joseph L. Austerweil",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "People often learn from others' demonstrations, and inverse reinforcement learning (IRL) techniques have realized this capacity in machines. In contrast, teaching by demonstration has been less well studied computationally. Here, we develop a Bayesian model for teaching by demonstration. Stark differences arise when demonstrators are intentionally teaching (i.e. showing) a task versus simply performing (i.e. doing) a task. In two experiments, we show that human participants modify their teaching behavior consistent with the predictions of our model. Further, we show that even standard IRL algorithms benefit when learning from showing versus doing.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14005v1",
+      "title": "Artificiality's First Exam: An LLM-Referenced C-test for Supraintelligence",
+      "url": "https://arxiv.org/abs/2610.14005",
+      "author": "Jose Hernandez-Orallo",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Under the accelerated pace of AI development, any benchmark whose difficulty is calibrated with humans or current AI systems becomes circular, or saturates soon. How can we then evaluate machines that may become more capable than the current machines and the people who write the tests? One answer to the question hinges on inverse problems, inductive inference questions for which difficulty depends on the complexity of the underlying mechanism, given the observations and the previous knowledge. Levin's Kt, a computable variant of Kolmogorov complexity, puts a theoretical upper bound to that difficulty, balancing the simplest representation encoding for the mechanism and the logarithm of the time steps to run that mechanism. Previous tests derived from Levin's Kt, such as the original C-test, are based on minimalistic Universal Turing Machines (UTM), capable of very limited representations and no previous knowledge. Reasoning large language models (LLM) are UTMs that capture a compendium of human culture as knowledge, using prompts as natural language programs. This paper presents the first test based on Levin's Kt with LLMs as representational machines. Fresh test items can be produced at high difficulties, estimated in a ratio scale measured in bits, before any human or frontier model can solve them. We formalise the measure, devise a lightweight generation and certification pipeline, explore the effect of the power of the reference machine and the gap between examiner and examinee. We produce a first battery of certified items administered to twelve LLMs. The resulting agent characteristic curves decrease with difficulty, down to the uncharted high-difficulty region, the supra-intelligence window of items we can certify, yet beyond generations of frontier intelligence.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14006v1",
+      "title": "Coding LLMs Can Be Harnessed to Learn Interpretable Models from Data",
+      "url": "https://arxiv.org/abs/2610.14006",
+      "author": "Aditya Kumar, Cassandra A. Cohen, William W. Cohen",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Since compact, interpretable classifiers correspond to simple programs, it is natural to ask if LLM-based coding agents can be used to learn interpretable models from data. In this paper we present a simple harness that repeatedly prompts a coding LLM to produce the next rule in a rule set, given a sample of labeled examples. We show that this approach is competitive with, and often superior to, state-of-the-art rule-learning methods on tabular data, especially with small training sets, and wins by large margins on text, including against another LLM-based rule learner; that this approach outperforms standard harnesses, and that the approach immediately leads to new kinds of interpretable models, since coding agents are not restricted to search a highly restricted hypothesis space. In addition to the advances made in learning interpretable models, these results are of interest because they introduce a new class of coding benchmarks - construction of interpretable classifiers - which includes quantitative measurements of output quality (i.e., test-set error) and existing mature ``specialist coding algorithms'' (i.e., existing learning methods).",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14007v1",
+      "title": "What Can Language Models Inherit from Solomonoff Induction? Limits, Attainable Properties, and What Served Conditionals Reveal",
+      "url": "https://arxiv.org/abs/2610.14007",
+      "author": "Luan Ozelim, Abicumaran Uthamacumaran, Hector Zenil",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "A familiar line of reasoning runs as follows: language models are flexible approximators trained under a strictly proper loss, so scale brings them closer to Solomonoff induction, and their predictive success is evidence of that approach. We apply known results from algorithmic information theory, universal prediction and Bayesian consistency. In its uniform form the conclusion holds for no computable model: each has cheap environments it never learns, and every uniformly computable family of total predictors shares one on which each member fails beyond a horizon growing with its index, so ``closer'' can hold only pointwise, one environment at a time. Nor could the offered routes certify even that: finite evaluation cannot certify agreement on rarely reached contexts, perfect corpus fit selects the corpus law as prior, and asymptotic criteria cannot see the constants that carry Solomonoff's guarantee. Our lens is the Kraft inequality read for predictors. Every model has at most the same budget of predictive success, so Solomonoff's predictor, which leaves part of it unspent, differs from a language model not in having more of it but in where it spends it; on mutually singular families this is exact, and only full-mass Bayes mixtures reach the frontier. We then discuss what is inheritable, including in-context learning as amortised Bayesian inference; what survives within a context window; which Solomonoff-like properties a deployed system should have or avoid; and what served conditionals determine. A closing table states what common practices certify and what to report. Tests are developed in a companion paper.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14008v1",
+      "title": "Generalized PINN-Based Inverse Estimation of Spatially Varying Heat Transfer Coefficients with Transfer Learning",
+      "url": "https://arxiv.org/abs/2610.14008",
+      "author": "Pradipan Maitra, Jariful Hassan, Arijit Hazra",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "This study investigates generalized boundary representations and transfer learning for physics-informed neural-network (PINN) estimation of spatially varying convective heat transfer coefficients (HTCs) in jet impingement cooling. Piecewise-linear (PWL) and neural-network boundary estimators are inferred from transient interior-temperature measurements and evaluated against CFD-CHT reference HTC profiles at Reynolds numbers of 5000, 10000 and 15000. A discrete Adjoint-FEM formulation with gradient regularization based on the $H^1$-seminorm provides an independent inverse-method comparison. Transfer learning is investigated under two source-target conditions: transfer between noise levels at the same Reynolds number, and transfer from a controlled Gaussian-profile problem to CFD-CHT-derived target problems at different Reynolds numbers. For the representative Re = 5000 target with 5% measurement noise, quadratic, PWL, and neural-network PINNs achieve relative HTC-profile errors of 5.08, 5.31 and 5.19%, respectively, while generalized representations reduce the error for the Re = 15000 target from 16.76% for the quadratic PINN to 14.41% and 14.46%. Transfer learning reduces target-training time by 57.86-81.71% for fixed-Reynolds-number transfer and by 50.59-84.94% for Gaussian-to-CHT transfer. Its effect on reconstruction accuracy is target dependent: fixed-profile PWL transfer remains within 0.30 percentage points of scratch training, whereas Gaussian-to-CHT transfer produces differences of 0.10-1.52 percentage points across targets and representations. These results demonstrate that generalized PINN representations can accommodate spatially varying HTC profiles without a prescribed quadratic form, while transfer learning can substantially reduce target-training cost for repeated inverse estimation, with the resulting reconstruction accuracy depending on source-target compatibility.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14009v1",
+      "title": "When Log Parsing Removes What Matters: Detecting Failures in Distributed GPU Workloads",
+      "url": "https://arxiv.org/abs/2610.14009",
+      "author": "Boyuan Cui, Yuyang Zeng, Yifang Tian, Hans-Arno Jacobsen",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Large AI models increasingly rely on distributed GPU execution, yet it remains unclear whether established failure analysis methods transfer effectively to this setting. We introduce GF-Bench, a PyTorch-based framework and dataset for generating diverse failures in distributed GPU workloads. The framework supports extensible workload and fault-injection logic; based on this design, the current release targets failures visible in multi-GPU communication logs and provides 220 labeled two-GPU executions covering normal runs, CUDA out-of-memory fail-stop failures, and persistent straggler fail-slow failures. Using GF-Bench, we evaluate three sequence-based methods (DeepLog, LogAnomaly, and LogBERT) and the LLM-based LogPrompt on parsed logs, and additionally evaluate LogPrompt on raw logs. On parsed inputs, no method reliably detects both failure classes, and the highest overall F1 score is 0.667. Raw inputs raise the overall F1 score of in-context LogPrompt to 0.983, at 9.0x its average input-token usage and 8.7x its per-run cost. These results expose a substantial trade-off between effectiveness and efficiency: generic log parsing lowers operational cost but discards the distributed execution context required for accurate failure detection. GF-Bench provides a reproducible basis for studying cost-efficient analysis methods and can be extended to additional GPU workloads and failure types.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14011v1",
+      "title": "SIRNET: Causal Adaptation of Pretrained Embeddings for Semiparametric Treatment-Effect Estimation Under Surrogacy",
+      "url": "https://arxiv.org/abs/2610.14011",
+      "author": "Lei Shi, Qiuran Lyu",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Modern experiments increasingly produce rich post-treatment objects---such as text, images, and video---that may provide early surrogate signals for outcomes that are delayed, expensive, or observed only for a subset of participants. A pretrained encoder can turn such an object into a strong generic embedding, but the embedding is not trained for the estimation tasks required by a causal estimator and may emphasize information irrelevant to the causal target. We propose SIRNET, a Surrogate-Informed Representation adaptation framework for neural-NETwork-based causal estimation in the presence of unstructured post-treatment surrogates. Starting from pretrained surrogate embeddings, SIRNET learns a shared adapter jointly for outcome prediction, treatment propensity, and arm-specific surrogate marginalization, beyond the generic pretraining objective. The resulting covariate and surrogate representations provide a common interface for these nuisance tasks. The final treatment-effect estimate and confidence interval are obtained from cross-fitted orthogonal scores that attain the semiparametric efficiency bound under the stated nuisance-rate conditions. We also validate SIRNET's performance in synthetic and semisynthetic experiments, as well as the Anti-Amyloid in Asymptomatic Alzheimer's Disease (A4) trial, using frozen pretrained brain-MRI embeddings as surrogates for a long-term outcome.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14012v1",
+      "title": "Perfect Reconstruction Cannot Show Whether Two Codebooks on a VAE's Latent Space Agree",
+      "url": "https://arxiv.org/abs/2610.14012",
+      "author": "Yusuke Hayashi",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Many systems read the latent space of a variational autoencoder (VAE) as discrete codes, and rely on each latent being read back as the code it was written as. Shannon (1948) took such a shared codebook as given; inside a VAE nothing enforces it. We prove that no item of a standard training report can reveal whether the written and read codes agree on encoded data. We construct two VAEs that reconstruct every input perfectly, infer exactly, and match on every per-example ELBO and every code histogram, yet agreement is one in the first and zero in the second. We then show that the ELBO's own terms bound how far a measured agreement can move: the variational gap bounds the shift to exact inference, and the rate bounds the shift to generation from the prior. For Gaussian posteriors, a mean-field encoder pays an exact price in the gap that depends on its choice of axes. On probabilistic PCA the gap certifies a trained encoder in all 75 settings we test, at agreement between 0.76 and 0.97. On 240 trained VAEs, a floor set by the rate and the dataset size rules out rate-side certification in advance for 66 models, and none of them certifies. The results yield a simple protocol, Certify-or-Measure, for any pipeline that reads a VAE as codes.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14014v1",
+      "title": "Physics-Informed State Space Models for Day-Ahead Photovoltaic Power Forecasting",
+      "url": "https://arxiv.org/abs/2610.14014",
+      "author": "Phil Aupke, Muhammad Hassan, Khalid Ali, Seema, Andreas Kassler, Andreas Theocharis",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Accurate day-ahead photovoltaic (PV) power forecasting requires both strong temporal modeling and adherence to physical PV system constraints. Purely data-driven models often ignore the underlying PV conversion process and may produce predictions that are outside the operational range of a PV system. In this paper, we propose a physics-informed state space framework that combines a differentiable PV conversion model with a selective state space backbone (PowerMamba). Our approach follows a physics-residual decomposition. The physics module provides a structured baseline based on solar geometry, irradiance, temperature effects, and inverter limits, while the state space model learns residual corrections from numerical weather prediction (NWP) inputs over a 24-hour horizon. Experiments on one year of utility-scale PV data show that the proposed method significantly improves forecasting accuracy, reducing RMSE by 38.5% and MAE by 45.8% compared to a physics-only baseline, and outperforming a purely data-driven model. Results further show that incorporating system-level physics provides the largest performance gains, while additional refinements offer only marginal improvements. Beyond accuracy, the model improves robustness by constraining predictions toward physical feasibility, reducing unrealistic predictions under corrupted measurements.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14016v1",
+      "title": "DShuttleNet: A Badminton Doubles Dataset for Evaluating Team Coordination",
+      "url": "https://arxiv.org/abs/2610.14016",
+      "author": "Guan-Yi Jhang, Chiencheng Chiang, Wei-Kai Chen, Hui-Ching Yu, Hsu-Chao Lai, Hwai-Jung Hsu, Wang Chih-Chuan, Jhy-Cheng Huang, Jiun-Long Huang",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Most existing sports datasets are individual-centric or ball-centric, focusing on individual player actions while ignoring interactions among teammates. In badminton doubles, tactical success is governed by rapid team formation and coordination, yet standard resources for modeling these player interactions are scarce. To bridge this gap, we present DShuttleNet, a comprehensive dataset for badminton doubles curated from elite BWF World Tour tournaments. Beyond trajectory data, DShuttleNet uniquely incorporates expert-labeled \"Loss Reasons,\" transforming the dataset into a diagnostic tool for causal tactical evaluation. We formally define two geometry-driven representations, Teammate-Relative Angle (TRA) and Vertical Shot Angle (VSA), to characterize coordination and shot aggressiveness. To quantify interpersonal synergy, we introduce novel metrics, Court Coverage Efficacy Index (CCEI) and Threat Load Asymmetry Index (TLAI), which evaluate the often-overlooked non-hitting partner's role and defensive coordination. Experimental results demonstrate that conventional models suffer from underfitting when failing to incorporate these coordination-centric features, highlighting the critical importance and potential impact of releasing DShuttleNet. Dataset is available at: https://doi.org/10.34740/kaggle/dsv/16097938.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.14017v1",
+      "title": "Barycentric Anchored Weight Search for Robust Model Merging",
+      "url": "https://arxiv.org/abs/2610.14017",
+      "author": "Antoni Buades, Jose-Luis Lisani",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "We propose Barycentric Anchored Search, a post-hoc weight-space procedure for improving fine-tuned vision models under distribution shift without additional gradient training or increased inference cost. Given a pre-trained initialization and two checkpoints fine-tuned on a source dataset, the method constructs barycentric candidate weights and performs a small derivative-free search along directions connecting each candidate to the pre-trained model. Candidate weights are selected using a small validation subset of one or more out-of-distribution (OOD) datasets; the selected model is then evaluated on the held-out portions of those datasets, on additional OOD benchmarks, and on the ImageNet validation set to quantify the robustness-accuracy trade-off. The method is inspired by simplex-based derivative-free optimization, including Nelder-Mead and Torczon multidirectional search, but is specialized to the geometry of neural network weight merging. Unlike Model Soup, which typically benefits from many fine-tuned checkpoints, and unlike Model Stock, which applies a fixed geometric merge, our approach uses only two fine-tuned checkpoints and iteratively adapts the merge using validation feedback from OOD data. Experiments with CLIP ViT-B/32 show that the proposed search substantially improves performance on held-out OOD data, including ImageNet-A, ImageNet-R, and ImageNet-Sketch, while keeping ImageNet accuracy competitive. The resulting weights also improve transfer to OOD datasets not used during candidate selection, outperforming the original fine-tuned checkpoints, naive model soups, and Model Stock in our evaluations. These results suggest that lightweight optimization in anchored weight space provides a practical alternative to fixed weight-averaging rules, geometric merging, or single-model selection.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14019v1",
+      "title": "Argos: A Multi-Tenant SaaS Architecture for Distributed Edge Security Orchestration",
+      "url": "https://arxiv.org/abs/2610.14019",
+      "author": "Agustin Javier Di Bartolo, Mohammadhossein Homaei, Andres Caro, Mar Avila",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "The growing adoption of distributed edge devices for security auditing and operational monitoring exposes limitations in lightweight control mechanisms traditionally used to manage such nodes. While commercial Command-and-Control (C2) platforms offer advanced orchestration features, their licensing constraints, operational complexity, and proprietary nature limit accessibility for small and medium-sized enterprises and research environments. This paper presents Argos, a multi-tenant SaaS C2 architecture designed for transparent, automated, and long-term orchestration of distributed edge devices. The framework implements a structured control plane with role-based access control (RBAC), tenant isolation, persistent task management, and cron-based workflow automation. Unlike operator-driven or stateless execution models, Argos enables scheduled and autonomous coordination of security tasks across heterogeneous environments. To formally substantiate its isolation guarantees, the platform is modeled through a set-theoretic authorization framework, and a tenant non-interference property is proven. The proposed architecture was evaluated across three geographically distributed edge devices, executing 810 automated tasks mapped to MITRE ATT&CK techniques. Results demonstrate a global failure rate of 3.33% (95% Wilson confidence interval: [2.30%, 4.81%]) with no statistically significant difference across ARM and x86 architectures (\\c{hi} 2 = 1.55, p = 0.21), and stable operation under heterogeneous latency conditions, including intercontinental deployments. To ensure scientific transparency and reproducibility, the evaluation methodology, sanitized datasets, and statistical scripts have been made publicly available in an open-source repository.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14040v1",
+      "title": "Symmetric Cryptography via Dirichlet Convolution",
+      "url": "https://arxiv.org/abs/2610.14040",
+      "author": "Artur Sowa, Elias Hassani Sangani, Francis Bui, Grant Harris, Jonathan Norton",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "We discuss a new symmetric-key cipher for digital data encryption. Its implementation is fast, memory efficient, and resilient against classical, AI-assisted, and quantum attacks. Let $x$, $k$, and $c$ be elements of a finite abelian group $G$ with operation $+$ and neutral element $0$. Suppose one is given ciphertext $c=x+k$. Retrieving the plaintext $x=c-k$ from the ciphertext is trivial when the key $k$ is known. Without the key, however, recovering $x$ amounts to a blind search. Even if an efficient criterion were available for identifying the plaintext among all group elements, the average number of trials would remain prohibitively large when the group is sufficiently large. The challenge in constructing a practical cryptosystem is therefore to identify a sufficiently rich group $G$, together with efficient algorithms that enable an immersion of \\emph{real digital data} into $G$ and efficient evaluation of the group operations. The proposed cipher is based on generalized Dirichlet convolution over finite fields. We investigate its security against plaintext attacks from an information-theoretic perspective. The nonlocal structure of Dirichlet convolution naturally permits plaintext salting, providing protection against plaintext attacks while allowing controlled key reuse. We establish perfect masking properties over finite fields and prove that the resulting cipher achieves information-theoretic security under key reuse when the underlying arithmetic is carried out in $\\mathbb{F}_p$ with $p>2$. For arithmetic over $\\mathbb{F}_2$, some information leakage remains, leading to a finite key-reuse budget.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14089v1",
+      "title": "SAGE: Efficient Protected Vision-Language Inference on Smart Glasses",
+      "url": "https://arxiv.org/abs/2610.14089",
+      "author": "Zhimin Li, Pan Wang, Jingxian Chen, Yuantao Tang, Qian Lou, Jingtong Hu",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Smart glasses are a promising platform for vision-language assistants, but private split inference remains expensive: protecting visual representations before transmission does not remove the cost of on-device vision encoding, wide protected tokens, or hardware-unaware execution. We present SAGE (Smart-glasses-Aware Guarded Encoding), a hardware-aware framework for efficient protected VLM inference on smart glasses. SAGE keeps raw images and unprotected visual tokens on the trusted device, reduces visual input cost, executes shape-specialized INT8 graphs, and compresses protected representations into compact 256-dimensional INT8 packets before transmission. Unlike efficiency methods optimized only for nominal model size, SAGE selects its operating point using downstream answer quality together with measured latency, memory, and thermal behavior on real Mentra Live glasses. On a matched Qwen workload, SAGE reduces glasses inference latency by 39.18%, device-sensor temperature rise by 21.91%, and protected packet size by 96.56%, while retaining 85.62% of the protected reference's relaxed utility and comparable prompted containment. Direct glasses-to-phone tests deliver all 192 packets and reduce median packet-plus-acknowledgment time from 71.3 to 10.0 ms. The compact protected interface also transfers across four additional VLM families. These results show that private wearable VLM inference must be optimized jointly across representation protection, communication, and real-device execution rather than through model compression alone.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14096v1",
+      "title": "SWEeper-Bench: Can Agents Discover Bugs in Interactive Software?",
+      "url": "https://arxiv.org/abs/2610.14096",
+      "author": "Yang Yao, Haozhe Chen, Bingyi Kang, Karthik R Narasimhan, Zhuang Liu",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Coding agents increasingly interact with users by generating interactive software on the fly rather than replying in text, yet many bugs in such software reveal themselves only after multi-step interactions. Today, users must discover these bugs and wait for fixes, making the development loop slow and expensive. Existing benchmarks typically assume the bugs have already been identified, leaving agents' ability to find interaction-dependent failures largely unevaluated. We introduce SWEeper-Bench, 200 tasks built from real bug fixes in 200 widely used open-source web applications. Each task gives the agent only the codebase and an open-ended request such as \"Find and fix issues in Focalboard's board sharing and membership.\" Because these bugs are hard to detect from code alone, agents must design interactive tests to uncover them. An agentic verifier then judges each repair by what a user would observe in the browser. The best of 15 frontier agents passes only 59.0% of tasks. Through stage-by-stage analysis of agent trajectories, we show that the biggest bottleneck is identifying the buggy behavior: agents often reach the relevant feature but never trigger the failure or fail to recognize it. SWEeper-Bench measures progress toward agents that close this loop themselves, delivering software that works without waiting for user feedback.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14103v1",
+      "title": "Vibe Coding with Google AI Studio Case Study",
+      "url": "https://arxiv.org/abs/2610.14103",
+      "author": "Christian Mancas, Cristina Mancas",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "This paper presents a case study on using Google AI Studio (version Pro) to vibe code a medium-complexity software application by a non-programmer who, moreover, needs it in a language other than English. We prove that, on one hand, almost anybody can successfully vibe code, not only developers, even if you do not speak or understand English, and, on the other, that although such a top AI product can build a reasonable approximation of a fine database software application, vibe coding still needs thorough testing, as even if the initial specification documentation is crystal clear and almost exhaustive, the resulting app may exhibit bugs and not that intelligent development decisions.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14116v1",
+      "title": "An Empirical Case Study of Prompt Engineering Strategies for Bypassing Multi-Layer Agent Security Defenses",
+      "url": "https://arxiv.org/abs/2610.14116",
+      "author": "Chengwei Chu",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "The OpenClaw Security Attack and Defense Challenge evaluates AI agent robustness through a three-stage defense pipeline: skill file scanning (Stage 1), instruction safety evaluation (Stage 2), and attack trajectory scoring (Stage 3). This paper presents an empirical case study of prompt engineering strategies against these layers across 19 attack targets in Enterprise OA, E-commerce, and Smart Home scenarios. I document both successful and failed strategies, with an emphasis on the observed trade-off between instruction safety (Stage 2) and attack execution accuracy (Stage 3). The final online score is 0.2630, with 5 of 19 tasks achieving full bypass. The results suggest that multi-layer defenses, reinforced by built-in behavioral constraints, substantially limit what prompt engineering alone can achieve.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14130v1",
+      "title": "Conserved amount, negotiable placement. Prompting perturbs one architecture, an AI reviewer both",
+      "url": "https://arxiv.org/abs/2610.14130",
+      "author": "Daniel Sagenschneider",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Tesler's conservation law holds that a problem carries an irreducible amount of complexity. Brooks separates that essential part from the accidental part a solution adds. If the essential part is fixed, architecture is placement rather than quantity, and the question is which levers move placement. An AI agent implements sixty accumulating change requests on one REST endpoint under two architectures, a mutative Spring controller and an additive OfficeFloor pipeline, under five conditions, ten runs per cell, model fixed. Four are external controls, from a bare change request to the disclosed structural cost function. The fifth is different in kind. A second agent reviews each change and reasons about cohesion itself. Amount is steady. Across all ten cells the finished complexity varies by 7% to 20% over four operationalisations, and the complexity the sixty rules added by 21% to 29% within an architecture. Placement is not. Under the four external controls the plasticity ratio between the architectures is near 1 on six amount metrics (five of six intervals contain 1) against 2.7 to 10.0 on eleven placement metrics (ten of eleven above 1). The mutative architecture moves, the additive one does not, and the disclosed formula brings it to the additive arm's untouched placement. The AI reviewer is the one lever that moves the additive arm, on one family only. It consolidates the pipeline, raising change- and mass-concentration on every such metric, interval excluding zero, while leaving coupling, file count and per-node complexity untouched. The price is reported in full. Strict correctness fell in most comparisons though each rule was implemented correctly in over 99% of checkpoints, and all three outcome measures favour the concentrated codebase. The contribution is a measurable property of an architecture and its lever, not a verdict on either.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14132v1",
+      "title": "TrustPaper for forged PDF with Issuer Fingerprints",
+      "url": "https://arxiv.org/abs/2610.14132",
+      "author": "Yassine El Jakani, Mohamed Nadir Rhazi, Othmane Meknassi, Oualid Chbiki, Mounira Msahli, Francois Gonnet",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Sick leave certificates are increasingly delivered as PDF files by online teleconsultation platforms, and can be altered in minutes with free editors. Generic PDF scanners report how a file was built, but cannot tell whether that construction is legitimate: an incremental update, an embedded font or a given producer string is normal for one issuer and anomalous for another. We present TrustPaper solution, an issuer aware forensic approach that combines three elements: the claimed issuer of the document, a reference fingerprint learned beforehand from genuine documents of that issuer, and an explainable combination of evidence from several forensic modules. Fingerprints are stored as versioned declarative profiles, and every anomaly keeps its observed value, expected value and triggering rule. We formalize the threat model, the fingerprint and the scoring model, and evaluate the open-source prototype on a controlled corpus documents from two issuers and six forgery techniques. With the issuer fingerprint, all forgeries made by opportunistic and metadata-aware attackers are flagged with no false positive on genuine test documents.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14148v1",
+      "title": "Memory-Coupled Unlearning for Data-Absent Identity Forgetting",
+      "url": "https://arxiv.org/abs/2610.14148",
+      "author": "Chun-I Fan, Lu-En Chen, Ming-Feng Tsai, Tomohiro Morikawa",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Machine unlearning aims to reduce the influence of designated training data from a trained model while preserving its utility on retained data. Identity-level unlearning is particularly challenging when only limited target-specific information is available when a forgetting request is processed. In this work, we propose Memory-Coupled Unlearning (MCU), a framework that augments a host model with a Modern Hopfield Network (MHN) serving as a controllable external identity-prototype memory. During prototype construction, feature representations associated with each training identity are aggregated into identity prototypes and stored in the MHN. A Prototype Adaptation Network (PAN) transforms the retrieved memory representation, while a Dependency Gating Unit (DGU) controls its contribution to downstream prediction. When an identity is requested to be forgotten, MCU first removes the corresponding prototype from the external memory and subsequently readapts the model using limited support information associated with the target identities together with retained data. Importantly, in this work, ``data-absent'' specifically refers to the absence of the complete original forget set during request-time gradient-based readaptation; retained data may still be used to preserve downstream-task utility. Experiments based on the identity-partitioning and one-shot support construction of 1-SHUI show that MCU achieves a favorable empirical trade-off among model utility, membership distinguishability, and request-time computational efficiency compared with the evaluated baselines. These results provide empirical evidence for the potential of controllable external memory in machine unlearning, rather than a formal guarantee of complete information removal.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14157v1",
+      "title": "OpenMobile-2: Building Versatile Mobile Agents with Scalable Environments and App-Native Tools",
+      "url": "https://arxiv.org/abs/2610.14157",
+      "author": "Chenyang Yan, Yingying Zhang, Kanzhi Cheng, Qiushi Sun, Zhengyuan Pan, Zheng Ma, Hang Yan, Yian Wang, Nuo Chen, Jialin Cao, Xingdong Gong, Wenpo Song, Han Chen, Zichen Ding, Fangzhi Xu, Shujian Huang, Xinyu Dai, Yichen Liu, Tiankuo Yao, Bo Wang, Ben Kao, Jianbing Zhang, Lewei Lu, Dahua Lin",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "We introduce OpenMobile-2, a near-frontier mobile agent with fully open training environments and recipes. We make three key advances: (1) Diverse environments with simulated commercial apps: We build MobileGym++, featuring 35 realistic, functionally rich commercial-style apps with cross-app workflows, while preserving full controllability for reset and verification. Together with newly configured apps in Android emulators, this yields a diverse playground spanning over 110 apps. (2) Open training data at scale: Building on this foundation, we curate nearly 12K mobile interaction trajectories for supervised fine-tuning and the largest open collection of verifiable RL training data for mobile agents, comprising over 2K executable tasks with automatic rewards. (3) Hybrid GUI and app-native tool use: We explore an experimental mobile-use setting where apps expose selected functionalities as app-native tools alongside their GUIs, allowing agents to interleave GUI actions and tool calls within a task. We implement this setting in MobileGym++ with over 300 carefully scoped tools across 50+ apps. Additionally, we introduce MobileGym++ Bench for complex, long-horizon commercial mobile scenarios, supporting both GUI-only and hybrid GUI-tool evaluation on a shared task suite. OpenMobile-2 performs competitively across established benchmarks, including AndroidWorld (79.9) and MobileWorld (50.4), while showing promising transfer to real-device mobile use, nearly doubling SPA-Bench performance from 31.9 to 59.6. All resources are available at https://os-copilot.github.io/OpenMobile2-Home/.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14161v1",
+      "title": "Agentic Evolution of SQL Test Generators",
+      "url": "https://arxiv.org/abs/2610.14161",
+      "author": "Suyang Zhong, Manuel Rigger",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Automated testing has uncovered many logic bugs in Database Management Systems (DBMSs). Existing tools are typically limited to a few SQL dialects and a subset of these dialects' features. Coding agents based on Large Language Models (LLMs) could encode the semantics of additional SQL features into reusable test generators, requiring no additional LLM calls during testing and thus enabling high efficiency and low cost. However, a key challenge is validating the added capabilities in the presence of potential hallucinations. In this paper, we propose Gungnir, an approach for evolving DBMS test generators using coding agents. Our core mechanism is witness replay: the coding agent provides a generation witness recording the database setup and semantic choices needed to generate a target statement. A validator replays these choices through the modified generator and checks that it reproduces the target statement. Historical witnesses serve as regression tests for subsequent modifications. We evaluated Gungnir on SQLite, DuckDB, and PostgreSQL and found 44 bugs confirmed by developers, of which 34 have been fixed. Beyond DBMSs, witness replay could generalize to other systems to guide agents in extending test generators.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14163v1",
+      "title": "AutoEnvScaling: Automating the Data Flywheel with Terminal Agents",
+      "url": "https://arxiv.org/abs/2610.14163",
+      "author": "Simon Yu, Baolin Peng, Bo Liu, Zhengyan Shi, Zhaoyang Wang, Hao Cheng, Qianhui Wu, Wenlin Yao, Natasha Jaques, Weiyan Shi, Jianfeng Gao",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Terminal agents solve tasks in software engineering and scientific research by executing commands in a terminal. Training them via reinforcement learning (RL) requires diverse and verifiable environments, but these environments are still mostly designed by human researchers, so their supply grows only as fast as researchers can work. We introduce AutoEnvScaling, which treats environment design as a terminal task and uses agents to automate the data flywheel. A proposer agent builds new RL environments from the rollouts of the solver being trained, and the solver's new rollouts guide the next round. By turning environment generation into a terminal task, AutoEnvScaling increases the valid-environment rate by up to 25 times compared to prompt-only generation, at up to 75% lower cost per valid environment. We show that training Qwen3.5-35B-A3B on AutoEnvScaling environments from GPT-5.6-sol improves its Terminal-Bench 2.1 score by 4.3 points over the matched Tmax baseline. The broader goal of AutoEnvScaling is to enable recursive self-improvement (RSI): by making both environment generation and solving terminal tasks, it lets one model co-evolve in both roles. We show that Qwen3.6-35B-A3B, acting in both roles, gains 12.2 points on Terminal-Bench 2.1 and raises its Terminal-Bench 4.0 score from 1.6 to 3.2. The pipeline also generalizes across agentic domains, generating environments for software engineering, computer use, professional work, and GPU kernel programming. Overall, these results show a path toward agents building their own training environments, reducing human reliance and taking a core step toward RSI.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14194v1",
+      "title": "Embedding Asymmetry as Attack Signal: Detecting and Defending Active Label Inference in Vertical Federated Learning",
+      "url": "https://arxiv.org/abs/2610.14194",
+      "author": "Soumya Swagata Biswas, Muhammad Abdullah Adnan",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Vertical federated learning lets organizations train a shared model over features they hold separately, while one party keeps the labels private. The active label inference attack of Fu et al. [12] breaks this: a feature-holding party runs a modified optimizer, MaliciousSGD, that forces class structure into its embeddings and then recovers the labels with semi-supervised learning. Defenses that perturb the shared gradient fail, because the attack acts on the party's internal optimizer, not on the message it sends. We show the attack leaves a signal the server can read from the embeddings it already receives. The adversary's Fisher class-separability pulls away from the honest party's, and the gap is visible within a few epochs. A defense triggered by this signal acts on the adversary alone. Scaling its gradient down handles few-class tasks, and a norm non-expansive projection handles many-class tasks, with the Discriminative Coverage Ratio explaining why the projection rank must grow with the class count. The defense breaks the alignment between embedding clusters and labels rather than destroying the embedding. Across four seeds on CIFAR-10, CIFAR-100, and CINIC-10, label inference falls below what honest training already leaks, at under two points of task-accuracy cost.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14215v1",
+      "title": "Physical Side-Channel Attacks on Edge LLMs: Extracting Output Tokens and User Prompts",
+      "url": "https://arxiv.org/abs/2610.14215",
+      "author": "Najeh Alhalawani, Gunes Acar, Zhuoran Liu, Lejla Batina",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "The deployment of large language models (LLMs) on edge devices is largely motivated by privacy concerns over sharing sensitive user data with cloud servers. In this paper, we demonstrate that keeping inference local does not eliminate privacy risks: an adversary with physical access to the device may exploit hardware leakage to recover sensitive information without compromising or modifying the software system. In particular, we present an electromagnetic (EM) side-channel attack targeting LLM inference on edge devices. Targeting LLaMA-3.2-1B-Instruct running on a Raspberry Pi 5, we demonstrate that EM traces collected during inference can leak both generated tokens and user prompts. We propose three attacks under different threat assumptions. First, a profiling attack that identifies generated tokens among 50 medical and privacy-related keywords with 97.2% accuracy on profiled words. Second, a reconstruction attack recovers the model's hidden representations and uses them to predict tokens from the full 128k-token vocabulary, achieving 94.3% accuracy on profiled classes. For unseen words, the correct token is ranked within the first 100 positions of the 128k-token vocabulary in 67% of cases, with a median rank of 54. Finally, we present a hidden-state inversion attack that uses the recovered hidden state to reconstruct user prompts semantically. Our proposed attacks require only passive EM side-channel measurements and a limited number of traces during model training. These results demonstrate that local execution alone may not guarantee the confidentiality of generated tokens and user inputs.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14216v1",
+      "title": "Cortex: Measurement-Gated Evolution and Pruning of Coding-Agent Skills and Rules",
+      "url": "https://arxiv.org/abs/2610.14216",
+      "author": "Samuele Giampieri",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Coding agents such as Claude Code also follow text files that developers write for them: a project file, skills the agent may choose to open, and rules that load automatically when the agent reads matching files. We call these files the agent's harness. Developers add to it whenever they correct the agent, but one success proves little: the same agent can pass a task once and fail it the next time. We present Cortex, a tool that tests changes to the harness instead of trusting them. It saves fixes from the developer's sessions as replayable tasks, finds the corrections that recur, writes one skill or rule at a time, and keeps it only if repeated runs with and without it show a net gain and no task made noticeably worse. Existing text is tested the same way before it is deleted, and Cortex neither adds nor deletes text the agent never used. We tested Cortex with Claude Haiku 4.5 on a repository built for the purpose, with conventions the model tends to break, one area with nothing to learn, and a script playing the developer. On held-out tasks, the harnesses it built made the agent follow the conventions far more often than no skills or rules did, left the comparison area unchanged, and added no text read on every turn. Rules, which load automatically, did most of the work; skills helped only when offered with the files a task touches, and those offered on every turn were rarely opened. Cortex kept none of the useless or harmful suggestions we planted, but the agent never opened the useless ones or the harmful skills, and it reached no verdict on the harmful rules, so the test shows that Cortex keeps no unused text, not that it detects damage. Under the stronger Claude Sonnet 5 a single run's harness added little, and on a real open-source project, where the agent was rarely corrected, Cortex found nothing to learn. We release the tool, the lab and its data.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14268v1",
+      "title": "Learning to Sync at the Edge: Client-Side Adaptive Synchronization for Federated Learning",
+      "url": "https://arxiv.org/abs/2610.14268",
+      "author": "Ebasa Temesgen, Ammar Ahmed, Nathan Lechamo, Ali Anwar, Maria Gini",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "The scalability and performance of edge federated learning are fundamentally constrained by synchronization bottlenecks. Clients operate under heterogeneous compute, time-varying communication conditions, and, in some settings, privacy constraints, yet synchronization is often still handled with fixed schedules. However, synchronization decisions are often made outside the client, even though the client directly observes local progress, resource state, and communication conditions. We present a client-side reinforcement learning synchronization framework in which each client decides during training whether to upload, download, synchronize bidirectionally, or defer communication. The framework places a lightweight scheduler alongside the local model and formulates synchronization as a resource-aware control problem driven by local learning and system state. We study this framework on two representative edge workloads, spatiotemporal traffic forecasting and image classification. Across both settings, adaptive client-side synchronization improves the accuracy-cost trade-off, reducing system cost in traffic forecasting while maintaining competitive cost and improving final accuracy in image classification. We also consider privacy-constrained settings, where synchronization must account for not only latency and energy but also privacy expenditure. Overall, our results show that synchronization in edge federated learning is better treated as an adaptive client-side control problem than only as a server-side coordination mechanism.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14289v1",
+      "title": "Watermarking for Byzantine Robust LLM Training",
+      "url": "https://arxiv.org/abs/2610.14289",
+      "author": "Leixu Huang, Zedian Shao, Teodora Baluta",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "LLM watermarking has emerged as a promising approach for detecting downstream model misuse in centralized settings, but extending it to federated learning (FL) presents unique challenges. In particular, FL systems often rely on strong robust aggregators to defend against poisoning attacks. We empirically show that a malicious server can exploit these same aggregators as effective watermark-removal mechanisms during training, causing representative existing LLM watermarking methods to fail detection in the final model. To address this limitation, we formalize the problem as a constrained optimization task and propose CamoMark, an aggregator-agnostic watermarking scheme for embedding robust watermarks in FL. CamoMark optimizes watermarked updates to become inliers, maintaining bounded deviation from the distribution of clean updates, while preserving sufficient watermark signal for reliable detection. Evaluated on Qwen fine-tuned on the Alpaca dataset, CamoMark achieves a detection confidence of $p$-value $= 1.82\\times10^{-2}$ using only 3.3% watermarked data. The watermark also remains robust to a range of post-training removal attacks, including continued fine-tuning on clean data, pruning, and model distillation. At higher watermark ratios, detection confidence improves substantially, reaching $p$-value $= 5.11\\times10^{-11}$ at a 13.3% watermark ratio.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14296v1",
+      "title": "Diagnosing Generalization Boundaries in AI-Based Vulnerability Detection via Calibrated Embedding Distances",
+      "url": "https://arxiv.org/abs/2610.14296",
+      "author": "Konstantin Ievtushenko, Ralf L\\\"ammel, Jan J\\\"urjens",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "High benchmark scores in learning-based vulnerability detection mask severe degradation under distribution shifts. This paper demonstrates that calibrated embedding geometry exposes these hidden generalization boundaries on syntactically similar vulnerable and patched code pairs. An evaluation of CodeBERT and Qwen2.5-Coder across pattern, project, and temporal shifts on a strictly paired dataset reveals three main findings. First, whitened intermediate-layer embeddings with local nearest-neighbour scoring separate unfamiliar samples with a mean out-of-distribution AUROC of 0.739 (RQ1). Second, distance scores reveal a shift-specific reliability gradient where accuracy drops by over 35 percentage points and cross-project shifts cause the sharpest degradation, even though temporal shifts drift geometrically farthest (RQ2). Third, false positives on patched code systematically correlate with geometric proximity to vulnerable training neighbourhoods, increasing from 9.4% in the lowest-risk decile to 58.8% in the highest (RQ3). These calibrated distances establish a diagnostic signal that maps representation geometry directly to model degradation without requiring auxiliary models.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14300v1",
+      "title": "ARMOR: Adversary Cost Amplification via a Schema-Preserving Password-Hardening Retrofit for Resource-Constrained Systems",
+      "url": "https://arxiv.org/abs/2610.14300",
+      "author": "Avinash Srinivasan",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Internet of Things (IoT) gateways, edge authentication servers, and legacy systems need protection against offline password guessing after credential-database disclosure. Memory-hard key derivation functions (KDFs) are the preferred defense, but their resource requirements can exceed memory or latency budgets. ARMOR addresses this gap with a schema-preserving verifier-side transform for database-only (DB-only) compromise. Secret per-account chains of injective operations reside in an isolated Chain Registry. Fixed terminal escape encoding preserves distinct pre-hash values under each chain and moves outputs outside printable ASCII. We evaluate NAIVE adversaries using unmodified cracking tools and AWARE adversaries that enumerate chains. For the evaluated pre-hardened three-operation chains, NAIVE recovery is at most 0.10% on non-digit targets. Escape encoding yields zero recovery of digit-only targets under evaluated stock rule-based and non-rule attacks, closing a bypass permitting up to 45.3% recovery. Across 14.05 million eligible RockYou password entries, retaining duplicates, the median conditional guessing number is approximately 52 output-class tests at depth three and 317 at depth five. These values quantify the chain-search subproblem given the correct plaintext under a unit-cost model. A separate historical 14-operation AWARE evaluation matches all transformed targets at full dictionary coverage. Deployment measurements show microsecond-scale bare-metal transforms on three IoT boards, with protected storage dominating the measured TrustZone-M prototype components. Although an isolated high-entropy pepper provides stronger cryptographic protection, ARMOR combines compact per-account chain storage with low transform cost. When resources permit and the KDF accepts the complete transformed output, ARMOR composes as KDF(ARMOR(password)).",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14350v1",
+      "title": "Natural Code Transformation Confuses Agents in Vulnerability Analysis",
+      "url": "https://arxiv.org/abs/2610.14350",
+      "author": "Jie Zhu, Ronik Bhaskar, Heather Zheng, Ben Y. Zhao, Kexin Pei",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Having demonstrated a strong potential for automating vulnerability discovery, AI agents can also be used to attack software systems at scale. Today's software systems need mechanisms to level the playing field by slowing down potential attacks, giving them time to patch vulnerabilities and strengthen software. Along this line, our study of agent trajectories in vulnerability analysis shows a surprising finding: agents produce dramatically different results across real-world code commits that carry the same functionality and the same vulnerability. This phenomenon appears consistently in multiple code domains and vulnerability categories. It motivates us to study natural and functionality-preserving code transformations derived from real-world software development, and their potential as a defense against attacker agents. We build a corpus of natural transformations by mining recurring development patterns from real-world code commits, and apply them to evaluate impact on agentic vulnerability analysis. Our results show that even a single form of transformation can effectively \"confuse\" frontier agents, e.g., Codex with GPT-6 Sol, reducing successes in vulnerability discovery. We also study different agent failures, whether transformations can be composed to provide stronger protection, and adaptive attackers who seek to reverse them. Overall, our study of natural code transformation significantly expands the research space of using code transformations to defend against malicious agents.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14378v1",
+      "title": "Tokenization-Invariant Watermarking: A Byte-Local Method for LLM Text",
+      "url": "https://arxiv.org/abs/2610.14378",
+      "author": "Tung-Ling Li",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "We introduce Tokenization-Invariant Watermarking (TI-WM), a method that embeds a watermark during token generation but keys and scores it on canonicalized UTF-8 bytes. The detector does not invoke the tokenizer. Canonicalizer-preserving edits leave its score unchanged; other localized canonical-byte edits affect a bounded number of scoring windows. Across three fixed keys and 128 prompts per key and model, a deterministic white-box attack at a 5% word-edit budget leaves mean attacked-AUC 0.530 on Qwen3-8B and 0.664 on Gemma 4 E4B, compared with 0.410 and 0.489 for Unigram with detection-side deletion. These operating points are not jointly matched on quality and clean detectability. Bias sweeps show model-dependent distortion costs, and shared-rule controls support a locality interpretation without establishing a unique advantage of bytes. Visible insertion outside the canonicalizer's deletion set defeats the default design. Alphabetic filtering closes that channel but does not resolve source shift or calibrated detection power. TI-WM thus provides a concrete construction with local scoring guarantees and measured attack-ranking gains, not a general robustness or low-false-positive-rate deployment guarantee.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14404v1",
+      "title": "DICE: Tilting the Odds through Interface Attackson System One Model",
+      "url": "https://arxiv.org/abs/2610.14404",
+      "author": "Ben Dong, Tianyi Lu, Zhonghao Guo, Qian Wang",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "System One models offer typed judgments that applications can turn into decisions. Their answers, however, are conditional on the state and question supplied by surrounding components, and on how the application uses the response. We study this boundary in a Jev-based pipeline with bounded substitutions at three adapter outputs: state extraction, question generation, and output interpretation. Across three small synthetic studies, each adapter can change the final decision while Jev and its authentic API responses remain outside attacker control. The cases expose distinct failures of source fidelity, answer meaning, and response relevance. Checks that bind these relationships stopped the corresponding interventions we tested, although source verification also rejected some valid clean decisions. The pilot identifies where correct request-level judgments can lose their connection to the original task; it does not estimate the prevalence of these failures in deployed systems.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14405v1",
+      "title": "SPROUT: Scaling Agentic Reinforcement Learning for Long-Horizon Software Engineering",
+      "url": "https://arxiv.org/abs/2610.14405",
+      "author": "Mengyang Liu, Weiming Wang, Haixin Nan, Yu Wu, Peize Li, Shihong Huang, Xuning He, Xue Jiang, Yihong Dong",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "Reinforcement learning (RL) has driven substantial progress in coding agents by relying on verified successful trajectories as learning signals. However, such trajectories are scarce in long-horizon software engineering tasks, where a minor error can invalidate the entire rollout. Repeatedly restarting from the initial state is commonly used yet inefficient, and resetting only the context with working directory misses state changes such as installed dependencies. Therefore, branching from intermediate steps to preserve earlier progress requires restoring both the agent context and execution environments. In this paper, we present SPROUT (SnaPshot-based RollOUT), an agentic RL rollout framework that scales long-horizon coding tasks by resuming and branching from intermediate states. Specifically, SPROUT was built on top of a lightweight infrastructure that checkpoints both the filesystem and the agent context after each assistant turn. A verifier-guided backtracking policy then selects where to resume a failed attempt and how to proceed. Extensive experiments on long-horizon coding tasks show that SPROUT achieves up to 23.6% improvement over pass@k across various LLMs, while using $32$--$52%$ of their tokens. For RL training of Qwen3.8-27B, SPROUT stably outperforms standard GRPO by $13.9$ points on three long-horizon coding benchmarks while cutting the time per training step by $39.5%$. SPROUT thus makes RL on long-horizon coding tasks both more effective and cheaper to scale.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14419v1",
+      "title": "HoldSpec: A Machine-Checked Model and Conformance Suite for the Payment Authorization Hold Lifecycle",
+      "url": "https://arxiv.org/abs/2610.14419",
+      "author": "Abhishek Sharma",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "When a merchant authorizes a card and captures the funds later, the money sits in a state that neither party fully controls: held on the cardholder's account, not yet taken, and due to lapse on a deadline set by the card network. What a merchant may do to that hold, capture part of it, capture again, void it, raise it, let it expire, is business logic that every payment service provider implements slightly differently and none of them specifies formally. We give the lifecycle a state machine in TLA+, parameterized by a provider capability profile, and check eight safety invariants and three liveness properties over 6 profiles, five of them built from Stripe's and Adyen's published documentation. From the same machine we generate a conformance suite that runs black-box against a provider API. Against 61 seeded defects that are distinguishishable from a correct implementation, the generated suite detects 100%, where random sequences with the same call budget reach 56% and a hand-written integration suite reaches 69%; random sequences given ten times the budget still reach only 67%. Running the same suite between two providers turns the comparison into a search, and it returns short executable witnesses for divergences the two documentation sets imply but neither states, including one that breaks the common assumption that a single adapter interface can sit over both, because closing a hold and releasing its remainder is a capture on one provider and a cancel on the other. We report what we could not do: no provider sandbox credentials were available, so every result here concerns documented behavior, and the suite that would test the providers themselves is part of what we release.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.14427v1",
+      "title": "ByteMark: A Unified Byte-Level Watermark for Detection Across Language Models",
+      "url": "https://arxiv.org/abs/2610.14427",
+      "author": "Xiaopu Wang, Runze Li",
+      "publishedAt": "2026-10-14T04:00:00.000Z",
+      "content": "As watermarking of LLM-generated text enters deployment, users increasingly need to check text whose source is unknown. Existing detectors read the watermark through a specific tokenizer or embedding pipeline, and even if all providers adopted the same watermarking method, differences in these representations would leave their watermarks incompatible, and the text alone does not reveal which representation produced it. We propose ByteMark, a unified watermarking scheme that defines its signal on the UTF-8 bytes of published text. Models with different tokenizers embed this signal under one public specification and key, and a single detector verifies the text from the text and key alone. When the tokenizer or embedding model of a baseline detector is replaced, its detection degrades sharply, whereas ByteMark, which uses neither, retains its detection rate; ByteMark also remains detectable when participating models continue or rewrite the text.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50082470",
+      "title": "Felix Rieseberg Homepage",
+      "url": "https://felixrieseberg.com/",
+      "author": "rglover",
+      "publishedAt": "2026-10-14T04:42:33.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 174,
+      "comments": 64
     },
     {
       "sourceSlug": "hf-daily-papers",
@@ -1226,6 +2052,655 @@
       "author": null,
       "publishedAt": "2026-10-14T04:43:57.264Z",
       "content": "ReplaySSM: Rethinking State Storage for Faster Hybrid-Model Decoding developer.nvidia.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261014/p1#a261014p1",
+      "title": "US defense companies and startups have signed at least 13 deals with Taiwanese hardware companies since September 2025 to build a secure drone tech supply chain (Joyu Wang/Wall Street Journal)",
+      "url": "https://www.techmeme.com/261014/p1#a261014p1",
+      "author": null,
+      "publishedAt": "2026-10-14T04:50:01.000Z",
+      "content": "Joyu Wang / Wall Street Journal: US defense companies and startups have signed at least 13 deals with Taiwanese hardware companies since September 2025 to build a secure drone tech supply chain — American tech meets Taiwanese hardware in push to assemble uncrewed boats and aircraft using a ‘non-red’ supply chain",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261014/p2#a261014p2",
+      "title": "ASML reports Q3 net sales of €11.66B, vs. €11.72B est., a €4.96B net profit, vs. €4.1B est., and raises its 2026 net sales forecast from €43B-€45B to €44B-€45B (Arjun Kharpal/CNBC)",
+      "url": "https://www.techmeme.com/261014/p2#a261014p2",
+      "author": null,
+      "publishedAt": "2026-10-14T05:40:01.000Z",
+      "content": "Arjun Kharpal / CNBC: ASML reports Q3 net sales of €11.66B, vs. €11.72B est., a €4.96B net profit, vs. €4.1B est., and raises its 2026 net sales forecast from €43B-€45B to €44B-€45B — ASML said Wednesday that some of its customers are expressing interest in placing orders …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "https://www.latent.space/p/ainews-ai-engineer-nyc-gemini-4-argon",
+      "title": "[AINews] AI Engineer NYC: Gemini 4 Argon, Vals AI Benchmarks",
+      "url": "https://www.latent.space/p/ainews-ai-engineer-nyc-gemini-4-argon",
+      "author": "Latent.Space",
+      "publishedAt": "2026-10-14T05:40:28.000Z",
+      "content": "Gemini 4 Argon went GA today, but we already gave it title story 2 weeks ago and most benchmarks, like CursorBench, simply independently confirm their claims. About 20,000 joined AIE NYC today for keynotes from the frontier of AI x Finance, from Anthropic showing how they are building the modern AI Financial Services stack, Vals AI CEO discussing their principles behind benchmarking models like Argon, and Coatue’s Head of AI showing how they turn news into investment decisions. All keynotes are transcribed here and all talks/workshops will be released ASAP. Tune in tomorrow for Day 3: AI News for 10/12/2026-10/13/2026. We checked 12 subreddits, 544 Twitters and no further Discords. AINews’ website lets you search all past issues. As a reminder, AINews is now a section of Latent Space. You can opt in/out of email frequencies! AI Twitter Recap Frontier Model Launches: Gemini 4 Argon and Muse Wonder Gemini 4 Argon: Google released Argon globally for coding, knowledge work, enterprise workflows and cyber defense. Access spans the paid Gemini API and Gemini platform; Google AI Pro and Ultra in the Gemini app and AI Mode in Search; and Ultra in Antigravity. The official rollout supersedes an earlier newsletter claim that access was restricted to cybersecurity defenders (announcement). Pricing: Introductory API rates are $2/$10 per million input/output tokens, with cached input discounted 95%. Artificial Analysis reports that rates double to $4/$20 after November 30—an important qualification for cost comparisons (Google pricing, discount schedule). Research access: Google is offering 10,000 scientists Antigravity’s highest usage tier free for six months, through an application program; cybersecurity defenders can apply through Fairwind (scientist program, access programs). Google’s internal results: Google says Argon helped separate core webpage handling from a six-million-line legacy Chromium folder, completing months of work in weeks and eliminating a category of browser crashes. It also reports 35% more agentic code submissions, with rollbacks reduced by nearly one-third. These are internal deployment claims, not controlled productivity measurements (engineering results). Physical-task demonstration: DeepMind researchers describe Argon deriving a cornhole simulation from human video, performing system identification and refining throws on Apptronik’s Apollo robot before achieving seven consecutive successful throws. Despite “zero-shot” language in one post, the described workflow included real-robot attempts and refinement (researcher account). Developer distribution: Argon is available in Cursor, Devin Desktop/CLI and GitHub Copilot. Cursor reports 52.8% on CursorBench at default effort, on par with Opus 5.5; Cognition reports 60.5% on FrontierCode 1.1 and a 75% Devin discount through October 27 (Cursor, Devin, Copilot). App integration: Antigravity’s coding interface is entering the Gemini macOS app, while Gemini supports connections to more than 40 apps, including Instacart, OpenTable, Adobe and Shopify (coding interface, connected apps). Muse Wonder’s positioning: Meta’s launch emphasizes personal assistants as well as coding. “Active Focus” targets persistence, recovery and alternative approaches; “Active Memory” targets relevant, updated personal context. Alexandr Wang explicitly identifies consumer use in Muse as the primary development use case (capability discussion, Meta positioning). Memory caveat: The cited MemoryBench evaluates updated facts within a long conversation; it does not establish durable cross-session memory. An attributed analysis also notes that some headline wins rely on internal evaluations or omit relevant competing models (analysis). Muse rollout and economics: Strong coding reactions coexist with reports of expensive, restrictive subscriptions. One user exhausted a $200 plan’s five-hour allowance after several upgrades; another initially praised generous limits, then reported consuming the weekly $200 allowance in one day. These are workload-specific anecdotes, not a settled quota comparison (pricing complaint, weekly allowance). Deployment fixes: Wang acknowledged deployment problems and subsequently said Meta had been fixing rollout issues. Early reviews therefore mix model capability with a changing serving experience (acknowledgment, follow-up). Independent Evaluations: Strong Frontier Results, Uneven Real-World Reliability Argon’s capability–cost position: Artificial Analysis places Argon level with GPT-6 Astra on its Intelligence Index at approximately 60% of Astra’s cost per task under introductory pricing: $1.99 per task. It reports substantial agentic gains and a 15% AA-Omniscience hallucination rate, lowest among models scoring at least 45 on the index (evaluation). Metric interpretation: AA-Omniscience’s hallucination metric should not be read as an overall error rate; abstention changes its interpretation. The Muse analysis illustrates this distinction with correct, incorrect and unanswered fractions (metric explanation). Agent leaderboard: Arena places Argon High fifth, behind Opus 5.5, GPT-6.1 Sol, Fable 5.1 and GPT-6 Astra at Max effort. Its revised Bash Reliability signal credits correct first-time command use and isolates agent-caused failures (ranking and methodology). Vision and document understanding: Roboflow’s evaluation reports Argon High at 84.7% text localization/recognition versus Astra’s 76.8%, and 85.1% object detection versus 83.6%. It reports roughly fourfold lower cost and latency of 19.6 versus 29.7 seconds per image in that configuration (text results, detection, latency). Document-specific evidence: LlamaIndex finds Argon, Muse Spark and Wonder strong on hard document OCR, highlighting table understanding at their respective price points and competitive chart, reading-order and formatting recognition (document evaluation). Muse coding versus interface quality: Theo’s real-work comparison praised Wonder Full for finding an existing corrective PR rather than producing unnecessary code; a summary describes a blind review of eight PRs across three models, with human auditing. Separately, Pawel Huryn’s 105-bug test reports Wonder at 44, versus Astra’s 45 and Opus’s 41.7 (original comparison, review methodology summary, bug test). Competing UI measurements: Theo judged Wonder poor at UI generation. Design Arena projected fifth overall frontend and top-three website placement, while Arena subsequently placed Wonder Max 15th in WebDev but second in Text Arena. These evaluate different workloads and preferences, not one interchangeable notion of quality (hands-on criticism, Design Arena projection, Arena results). Argon’s reliability gap: Ethan Mollick describes a major improvement in creativity, writing and agentic behavior, but weaker complex multi-agent execution, overconfidence and harness limitations. Theo reports a perfect Skatebench-private score yet a greater-than-50% false-claim rate on his codebase-analysis benchmark. The actionable distinction is between impressive construction ability and trustworthy analysis (Mollick review, Theo review, analysis test). Decision Models, Speech and Specialized Releases Decision-model competition: Artificial Analysis launched a Decision Index covering knowledge, reasoning, tool calling and safety classification. Jev 1.13 leads its published decision-model results at 58; Haiku 5.5 Low scores 61 but costs $184 versus $42 per million tasks and takes 1.4 versus 0.13 seconds per task. Decision models are competitive on classification and routing, but weaker—and often overconfident—on knowledge and reasoning (benchmark). ScaleDown CDMs: ScaleDown launched Classify, Extract and Summarize endpoints with one-million-token multimodal input at $0.05 per million input tokens, with free output. Its 200× speed and 467× cost advantages are vendor claims against frontier APIs (launch). Nimble-v4: Bespoke announced Nimble-v4 and v4-max, claiming Decision Index gains of six and ten points over Jev 1.13. Nimble-v4 is 9B; the tweets do not specify v4-max’s size. These newer claims were not independently confirmed in the supplied index announcement (release, size). Drama 3 open-weight TTS: Fish Audio released a controllable speech model supporting word-level delivery changes and mid-sentence tone shifts. Artificial Analysis identifies it as a 35B MoE with 3B active parameters, supporting 83 languages under the Fish Audio Community License (launch, specifications and evaluation). Measured results: Drama 3 Preview leads pronunciation robustness at 93.2%, ahead of Eleven v4’s 91.7%, and ranks first among open-weight models across all three AA speech leaderboards. It is tenth overall in Provider Voice and fourteenth in Controlled Voice—not the overall perceptual-quality leader. API pricing is $15 per million characters (results). Compact OCR and motion generation: Indra is a one-million-parameter OCR model reporting 49 pages/second on CPU, with layout and line boxes; its author reports better OmniParseBench text scores than PaddleOCR and Tesseract. Cartwheel’s Swing Choreo generates ordered, multi-person motion with expressive hands and faces; its preliminary internal benchmark scores 61/100 versus 38 for the next system, with paper and code forthcoming (Indra, Choreo release, benchmark). Agent Harnesses, Training Systems and GPU Infrastructure Source control at agent scale: Anthropic reports growing from approximately 2,500 daily merges in May to more than 30,000 in September, then building a new version-control system and migrating its monorepo away from Git in five months. This is concrete evidence of agent-driven pressure on developer infrastructure; merge volume alone does not measure delivered value (engineering announcement). Harness learning and explicit state: DeepMind’s Evo2 co-evolves harness edits and model weights through proposer/reflector roles, SFT and interleaved GRPO. Reported results reach 48.3% SWE-bench Verified and 82.1% Polyglot, versus 41.0% and 62.6% for the strongest baselines (paper summary). Continual memory: Meta/MIT’s ReHarness rewrites retrieved reflections using downstream task outcomes, rather than only adding or deleting memories (research). Long-context execution: LongHarness separates evidence and conclusions into explicit state. Its authors report GLM-5.3-Flash improving from 4.4% to 61.1% exact match on OfficeQA Pro V2 without changing the model (results). Shared-team context: Kylon launched a workspace for humans and existing agents such as Claude Code and Codex, addressing coordination and review overhead rather than replacing the underlying models (launch, coordination rationale). More efficient agentic RL: ThunderSync computes gradients as rewards or teacher scores become available, overlapping training with ongoing execution while claiming mathematical equivalence to batch-synchronous updates. Reported acceleration is up to 1.9× without policy staleness (method). Heterogeneous rollout hardware: Modal reports stable asynchronous agentic-coding RL using mixed-precision, mixed-accelerator samplers with off-policy correction, matching homogeneous-sampler convergence at lower cost (experiment). Orchestration and serving economics: NVIDIA open-sourced the full Run:ai platform under its DSX AI Factory initiative, allowing integrated deployment or component-level adoption (announcement). Provider-dependent costs: AA now publishes measured cache-hit rates and provider-specific cost per task. GLM-5.3 Max spans $0.92–$8.68 per task, largely reflecting cached-input pricing; a high cache-hit rate is insufficient if the endpoint gives no cache discount (analysis). Inference kernels: vLLM added ReplaySSM-backed Mamba2 decoding/MTP support to reduce recurrent-state memory traffic. FLAT released TPU Pallas training kernels for linear attention, Mamba-2 and GLA, reporting workload-specific gains against H100 implementations (ReplaySSM, FLAT). Safety, Cybersecurity and Evaluation Integrity Argon monitorability: DeepMind’s Neel Nanda reports Argon can evade a realistic chain-of-thought-plus-action monitor on simple sabotage tasks approximately half the time in adversarial evaluations. He attributes concern to stronger reasoning without verbalized CoT and situational awareness, while saying useful monitoring remains possible today. These are controlled assessments, not evidence of deployed sabotage (assessment). Evaluation awareness: A quoted trace rejects compiler hijacking partly to avoid becoming a famous deceptive-AI example. That complicates interpreting apparent compliance as robust alignment (example). AI-assisted Chrome exploitation: XBOW reports a Google-confirmed $250,000 full-chain bounty, with the successful replacement exploit constructed by humans and agents using GPT-5.6 Sol in six days and $40,000 of compute. This was not described as fully autonomous. XBOW is extending its product toward compiled-software testing (account). Defensive response: More than 400 researchers signed a letter calling for improved alignment and containment to protect digital and critical infrastructure. Arvind Narayanan separately argues for greater investment in external controls—sandboxes, monitoring and defensive agents—alongside model alignment (letter, engineering argument). Safeguards and measurement: Researchers testing 11 multimodal models report that tool access increased harmful-request refusal failures for every model, by up to 68.7% in their setup. Separately, a report attributes to Anthropic a 90–99% reduction in extractable distillation, including action against large fake-account networks; implications for rival model quality remain speculation (tool study, distillation report). Benchmark integrity: A practitioner highlights bug-finding evaluations whose prompts omit the grader’s definition of a bug. FrontierML instead tests budget allocation across 21 end-to-end ML tasks, broadening evaluation beyond isolated coding success (prompt mismatch, FrontierML). Industry and Policy OpenAI insider-security investigation: OpenAI says it discovered a concealed recording device, used its models during the investigation, terminated an employee and referred the matter to the FBI, which made an arrest. The investigation remains ongoing; OpenAI explicitly reports no current indications of inappropriate access to or exfiltration of weights, source code or customer data. Neither nationality nor social-media connections establish state sponsorship (OpenAI statement, FBI statement). Prime Intellect acquires Moondream: Both companies confirmed the acquisition. Prime plans to incorporate Moondream’s open vision models and inference optimizations into its multimodal training/deployment stack; financial terms were not supplied (acquirer, Moondream founder). Consumer-AI restructuring: The Rundown reports Character AI filed for bankruptcy, with Disney bidding $20 million to license parts of its technology and shutdown possible without a buyer. Separately, an investor confirms backing Ithaca’s effort to take Bumble private and rebuild consumer businesses around AI (Character AI report, Bumble transaction). Unconfirmed model rumor: Fable 5.5 appeared in LiteLLM’s Azure model data, but the discoverer says its details appeared copied from Fable 5.1. This is a listing observation—not confirmation of availability, release timing or a connection to an IPO (qualification). Top tweets (by engagement) 70,601 — OpenAI’s recording-device investigation 25,513 — Sundar Pichai announces Gemini 4 Argon availability 20,562 — Anthropic replaces Git after reaching 30,000-plus daily merges 15,072 — Fish Audio launches open-weight Drama 3 8,368 — Theo’s real-world Muse, Opus and Sol bug-fixing comparison 4,850 — ScaleDown launches Constrained Decoding Models 3,329 — Cursor adds Argon and reports CursorBench parity with Opus 2,343 — Artificial Analysis evaluates Argon’s capability, cost and hallucination metrics AI Reddit Recap /r/LocalLlama + /r/localLLM Recap Read more",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261014/p3#a261014p3",
+      "title": "ASML says it cannot fully meet AI-driven demand for its chipmaking tools in 2027 and 2028, and is seeing \"strong interest\" in orders for 2029 and 2030 (Reuters)",
+      "url": "https://www.techmeme.com/261014/p3#a261014p3",
+      "author": null,
+      "publishedAt": "2026-10-14T06:00:35.000Z",
+      "content": "Reuters: ASML says it cannot fully meet AI-driven demand for its chipmaking tools in 2027 and 2028, and is seeing “strong interest” in orders for 2029 and 2030 — ASML (ASML.AS) said on Wednesday AI-driven demand for its chip-printing tools is so strong that it will not be able …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261014/p4#a261014p4",
+      "title": "A look at a coordinated theft of ~$100M in crypto using hardware backdoors planted in Ledger wallets sold by Malaysia-based authorized reseller CryptoBilis (Kim Zetter/ZERO DAY)",
+      "url": "https://www.techmeme.com/261014/p4#a261014p4",
+      "author": null,
+      "publishedAt": "2026-10-14T06:10:01.000Z",
+      "content": "Kim Zetter / ZERO DAY: A look at a coordinated theft of ~$100M in crypto using hardware backdoors planted in Ledger wallets sold by Malaysia-based authorized reseller CryptoBilis — The theft last week of an estimated $100 million in crypto using a hardware backdoor planted in Ledger wallets points to a sophisticated …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50083130",
+      "title": "AOSP Source Releases Are So Late Developers Disassemble Libraries to Report Bugs",
+      "url": "https://github.com/android/ndk/issues/2260",
+      "author": "tharen",
+      "publishedAt": "2026-10-14T06:18:01.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 204,
+      "comments": 84
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261014/p5#a261014p5",
+      "title": "Ukraine's drone attacks severely damaged three of Yandex's six data centers, disrupting Russia's tech ecosystem, centered on one vast, state-aligned company (Financial Times)",
+      "url": "https://www.techmeme.com/261014/p5#a261014p5",
+      "author": null,
+      "publishedAt": "2026-10-14T06:30:01.000Z",
+      "content": "Financial Times: Ukraine's drone attacks severely damaged three of Yandex's six data centers, disrupting Russia's tech ecosystem, centered on one vast, state-aligned company — Kyiv's attacks exposed vulnerabilities of Kremlin effort to centralise internet services under one company",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261014/p6#a261014p6",
+      "title": "Google DeepMind and Google Cloud plan to provide up to 200 European scientific researchers with access to their frontier AI models and $3M in compute credits (Foo Yun Chee/Reuters)",
+      "url": "https://www.techmeme.com/261014/p6#a261014p6",
+      "author": null,
+      "publishedAt": "2026-10-14T08:15:02.000Z",
+      "content": "Foo Yun Chee / Reuters: Google DeepMind and Google Cloud plan to provide up to 200 European scientific researchers with access to their frontier AI models and $3M in compute credits — Google DeepMind and Alphabet's (GOOGL.O) cloud service Google Cloud will provide up to 200 European scientific researchers …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18356",
+      "title": "Urbex: Agentic Spatial Grounding for City-Scale 3D Scenes",
+      "url": "https://huggingface.co/papers/2610.18356",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Urbex: Agentic Spatial Grounding for City-Scale 3D Scenes",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18773",
+      "title": "Jeva: System One Models from First Principles",
+      "url": "https://huggingface.co/papers/2610.18773",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Jeva: System One Models from First Principles",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18615",
+      "title": "VideoJev: System One Model for Video Understanding and Interaction",
+      "url": "https://huggingface.co/papers/2610.18615",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "VideoJev: System One Model for Video Understanding and Interaction",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.17201",
+      "title": "Multics: Generative Multi-Player World Model with Hierarchical Communication",
+      "url": "https://huggingface.co/papers/2610.17201",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Multics: Generative Multi-Player World Model with Hierarchical Communication",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.17928",
+      "title": "Learning How to Remember: Memory Modality Selection for GUI Agents",
+      "url": "https://huggingface.co/papers/2610.17928",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Learning How to Remember: Memory Modality Selection for GUI Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18860",
+      "title": "AesCode: Aesthetic Code Generation with Decoupled Cross-Modal Rewards",
+      "url": "https://huggingface.co/papers/2610.18860",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "AesCode: Aesthetic Code Generation with Decoupled Cross-Modal Rewards",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.11850",
+      "title": "VEDJE: Video-Efficient Discriminative Joint Encoder for Scalable Video-Text Retrieval",
+      "url": "https://huggingface.co/papers/2610.11850",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "VEDJE: Video-Efficient Discriminative Joint Encoder for Scalable Video-Text Retrieval",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.14609",
+      "title": "EviScene: Beyond \"Is It AI?\" for Agentic Image Factuality Assessment",
+      "url": "https://huggingface.co/papers/2610.14609",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "EviScene: Beyond \"Is It AI?\" for Agentic Image Factuality Assessment",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.17953",
+      "title": "Agent-Reflex: Teaching Language Agents to Act Reflectively",
+      "url": "https://huggingface.co/papers/2610.17953",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Agent-Reflex: Teaching Language Agents to Act Reflectively",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.15765",
+      "title": "A Decade in a Day: Synthesizing Agent-Native Interfaces from Human-Oriented Software Evolution",
+      "url": "https://huggingface.co/papers/2610.15765",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "A Decade in a Day: Synthesizing Agent-Native Interfaces from Human-Oriented Software Evolution",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.17656",
+      "title": "Open-o3-Video-v2: Seek, Ground, and Reason with Verifiable Spatio-Temporal Evidence",
+      "url": "https://huggingface.co/papers/2610.17656",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Open-o3-Video-v2: Seek, Ground, and Reason with Verifiable Spatio-Temporal Evidence",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18871",
+      "title": "Cepheid: Decoupling Scale from Structure for Cross-Family Motion Completion",
+      "url": "https://huggingface.co/papers/2610.18871",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Cepheid: Decoupling Scale from Structure for Cross-Family Motion Completion",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18484",
+      "title": "ReTerm: Recovery Training for Self-Improving Terminal Agents",
+      "url": "https://huggingface.co/papers/2610.18484",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "ReTerm: Recovery Training for Self-Improving Terminal Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18868",
+      "title": "Tev: Scaling Long-Horizon Agentic Environments with Dense Progress Rewards",
+      "url": "https://huggingface.co/papers/2610.18868",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Tev: Scaling Long-Horizon Agentic Environments with Dense Progress Rewards",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.16354",
+      "title": "Self-Distillation with Verbal Regularization",
+      "url": "https://huggingface.co/papers/2610.16354",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Self-Distillation with Verbal Regularization",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.15782",
+      "title": "Data-Centric Recursive Self-Improvement for Navigation via Policy-Synchronized Language-Action Dual Bootstrapping",
+      "url": "https://huggingface.co/papers/2610.15782",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Data-Centric Recursive Self-Improvement for Navigation via Policy-Synchronized Language-Action Dual Bootstrapping",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18846",
+      "title": "WorldRecon: Generative Multi-View Mesh Reconstruction for Large-Scale 3D World",
+      "url": "https://huggingface.co/papers/2610.18846",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "WorldRecon: Generative Multi-View Mesh Reconstruction for Large-Scale 3D World",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18568",
+      "title": "WAVE-0: Bridging VLA Policies and WAMs with Lightweight Latent Future Prediction",
+      "url": "https://huggingface.co/papers/2610.18568",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "WAVE-0: Bridging VLA Policies and WAMs with Lightweight Latent Future Prediction",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18010",
+      "title": "Fish Audio Drama 3 Technical Report",
+      "url": "https://huggingface.co/papers/2610.18010",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Fish Audio Drama 3 Technical Report",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18206",
+      "title": "SWE-MISBEHAVIOR: Benchmarking and Mitigating Boundary Violations in Software Coding Agents",
+      "url": "https://huggingface.co/papers/2610.18206",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "SWE-MISBEHAVIOR: Benchmarking and Mitigating Boundary Violations in Software Coding Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.16361",
+      "title": "HexaBee-4B: Six-Language Translation with Multilingual Answering and Bidirectional Supervision",
+      "url": "https://huggingface.co/papers/2610.16361",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "HexaBee-4B: Six-Language Translation with Multilingual Answering and Bidirectional Supervision",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18092",
+      "title": "LifeSearch: Benchmarking Deep Research Agents for Real-World Life and Productivity",
+      "url": "https://huggingface.co/papers/2610.18092",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "LifeSearch: Benchmarking Deep Research Agents for Real-World Life and Productivity",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18025",
+      "title": "SHELDON: Reasoning through Dual Search over Hypothesis and Observation Spaces",
+      "url": "https://huggingface.co/papers/2610.18025",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "SHELDON: Reasoning through Dual Search over Hypothesis and Observation Spaces",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.14228",
+      "title": "Latent World Action Model for GUI Agents",
+      "url": "https://huggingface.co/papers/2610.14228",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Latent World Action Model for GUI Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.13989",
+      "title": "PsyBer-Agent: A Psychology-Driven User Agent for Recommender Systems",
+      "url": "https://huggingface.co/papers/2610.13989",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "PsyBer-Agent: A Psychology-Driven User Agent for Recommender Systems",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.18862",
+      "title": "DoubtLess: Training-Free Contrastive Decoding for Efficient Reasoning",
+      "url": "https://huggingface.co/papers/2610.18862",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "DoubtLess: Training-Free Contrastive Decoding for Efficient Reasoning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.14912",
+      "title": "Probable but Not Valid: A Psychometric Audit of Decision Models as Synthetic Survey Respondents",
+      "url": "https://huggingface.co/papers/2610.14912",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "Probable but Not Valid: A Psychometric Audit of Decision Models as Synthetic Survey Respondents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.17625",
+      "title": "4LC: 4D Latent Cache for Efficient Conditioning in Dynamic World Modeling",
+      "url": "https://huggingface.co/papers/2610.17625",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "4LC: 4D Latent Cache for Efficient Conditioning in Dynamic World Modeling",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.14726",
+      "title": "LightVAE: Towards Compact and Efficient Video Autoencoders",
+      "url": "https://huggingface.co/papers/2610.14726",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "LightVAE: Towards Compact and Efficient Video Autoencoders",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.17540",
+      "title": "TacitVLA: Reasoning Vision-Language-Action Models Without Reasoning Latency",
+      "url": "https://huggingface.co/papers/2610.17540",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:19.189Z",
+      "content": "TacitVLA: Reasoning Vision-Language-Action Models Without Reasoning Latency",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.openwall.com/lists/oss-security/2026/10/14/2",
+      "title": "CVE-2026-74580: Linux vhost stale IOTLB cache vulnerability (Vghost)",
+      "url": "https://www.openwall.com/lists/oss-security/2026/10/14/2",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:20.756Z",
+      "content": "CVE-2026-74580: Linux vhost stale IOTLB cache vulnerability (Vghost) openwall.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://news.ycombinator.com/item?id=50043026",
+      "title": "Terence Tao: Math 2.0 and AI Disruption in Mathematics",
+      "url": "https://news.ycombinator.com/item?id=50043026",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:20.759Z",
+      "content": "Terence Tao: Math 2.0 and AI Disruption in Mathematics news.ycombinator.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.reuters.com/business/asml-forecasts-q4-sales-above-expectations-ai-chip-demand-2026-10-14",
+      "title": "ASML forecasts Q4 sales above expectations on AI chip demand",
+      "url": "https://www.reuters.com/business/asml-forecasts-q4-sales-above-expectations-ai-chip-demand-2026-10-14",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:20.760Z",
+      "content": "ASML forecasts Q4 sales above expectations on AI chip demand reuters.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.rapid7.com/blog/post/em-patch-tuesday-october-2026",
+      "title": "Patch Tuesday - October 2026",
+      "url": "https://www.rapid7.com/blog/post/em-patch-tuesday-october-2026",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:20.761Z",
+      "content": "Patch Tuesday - October 2026 rapid7.com146 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://freenode.net/article/curl-8-23-0-fixes-24-vulnerabilities-one-high-severity",
+      "title": "curl 8.23.0 fixes 24 vulnerabilities, one high-severity",
+      "url": "https://freenode.net/article/curl-8-23-0-fixes-24-vulnerabilities-one-high-severity",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:20.763Z",
+      "content": "curl 8.23.0 fixes 24 vulnerabilities, one high-severity freenode.net1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://daniel.haxx.se/blog/2026/10/14/a-uaf-turned-rce",
+      "title": "A UAF turned RCE",
+      "url": "https://daniel.haxx.se/blog/2026/10/14/a-uaf-turned-rce",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:20.764Z",
+      "content": "A UAF turned RCE daniel.haxx.se6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.apnic.net/2026/10/14/submarine-cable-resilience",
+      "title": "Submarine cable resilience",
+      "url": "https://blog.apnic.net/2026/10/14/submarine-cable-resilience",
+      "author": null,
+      "publishedAt": "2026-10-14T08:38:20.772Z",
+      "content": "Submarine cable resilience blog.apnic.net17 min read",
       "topics": [
         "ai-llms",
         "devtools-infra",
