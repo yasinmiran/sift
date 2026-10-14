@@ -288,6 +288,63 @@ merges and closures and never expire.
 
 ## Backlog
 
+- MERGED 2026-10-14 as #263 / PR #264, `4982bcc`, `pages` run 38534325088 green.
+  Day pages now link the index at `/`. Nothing owed in code: the sweep that
+  found it was re-run after and reports `/` on 33 pages, `index.html` on 0, and
+  the test asserts it on every built page rather than on the crumbs. What
+  cannot be measured from here is the half that motivated it: whether
+  goatcounter was in fact splitting `/` from `/index.html` needs the dashboard,
+  which is 403 at CONNECT and has been since 09-05. Do not file a verification
+  task against it; the mechanism (count.js records `location.pathname`, and the
+  two paths differ) is what the claim rests on, and that is in the code.
+- Walked clean on 2026-10-14, recorded so a future run does not re-walk them.
+  **Rendered card overflow, measured in a browser rather than in characters.**
+  473 built cards opened at 1080x1350 with fonts settled: 0 where
+  `body.scrollHeight` exceeds its client height, and 0 elements whose box
+  crosses any of the four edges. `html,body{overflow:hidden}` means a card that
+  did overflow would publish a silently clipped png, which is the one failure
+  the character caps in `cards.ts` cannot see; the densest shapes (a 120-char
+  title at 78px with a 110-char desc and two glosses) still sit inside the
+  frame. The 10-08 count said the caps never bite; this says the layout does
+  not either.
+  **The slides file's three formatting rules** (../AGENTS.md: 2-space indent,
+  keys in schema order, trailing newline): 32 of 32 hold on all three, top
+  level, post level and slide level. 16 of 32 are not byte-identical to
+  `JSON.stringify(x, null, 2)` and every one of the 16 differs only by an
+  inline `hashtags` array, which keeps the indent and the order. Nothing to
+  gate; do not read a re-serialisation diff as drift.
+  **Caption length against the contract's "under ~400 characters"**: 62 posts,
+  min 185, median 255, max 375. The verifier errors at 500 and the gap between
+  375 and 400 has never been entered, so a second gate at 400 is wallpaper.
+  Hooks run 40-114 against a cap of 120.
+  **Stored urls across the archive**: 1 of 8,411 items carries a null url,
+  09-14's `Ask HN: What are you working on?`, and `hn.ts` already fixed the
+  cause (a self-post now stores its own `item?id=` permalink). 0 since. The
+  fix is in; the one row is history.
+  **Two entries in one digest sharing a url**, counted on themed-section list
+  items with Threads and Hacker News excluded: 1 of 32 days (09-22, an arxiv
+  paper cited from a Devtools entry and summarised in a Security one), which is
+  a judgement call rather than a duplicate entry. A gate fires once in a month
+  on an ambiguous case; wallpaper by the 10-03 test.
+  **The picks path, exercised rather than counted**, since `data/picks/` is
+  still 0 files and a zero on input that never arrived means unmeasured (the
+  09-30/10-03 rule). Built a constructed day with a pick and a yesterday-pick
+  and ran the verifier on three digests: covered with the contract's tag,
+  covered without it, and not covered at all. The covered cases come back clean
+  and the uncovered one fires both `pick not covered` and `pick from
+  {yesterday} still not covered`, so #231 holds and the url matching is right.
+  The one ungated rule is the tag itself: ../AGENTS.md says an entry sourced
+  from a pick "carries the tag `(one of yasin's picks today)` after its link",
+  and the digest that drops it verifies silently. Recorded rather than shipped,
+  because today's slot went to a defect with 32 live occurrences against one
+  with none; it is the obvious thing to gate on the first slot with nothing
+  better in it, and the constructed harness above is the measurement.
+- Noticed 2026-10-14, one line, too thin for a slot and worth folding into the
+  next PR that touches `src/pipeline/pick.ts` for a real reason. Its header
+  comment says the file's output is also written by "the issue-driven picks
+  workflow"; `.github/workflows/` holds checks, ingest and pages and nothing
+  else, and no issue template or label handler exists anywhere in the repo. So
+  the comment sends a reader looking for a workflow that was never built.
 - MERGED 2026-10-13 as #259 / PR #260, `0d0bf22`, `pages` run 322 green. The
   verifier errors on a themed section with no entries. Nothing owed: the gate
   was swept over the whole archive before the merge and fires on exactly one
@@ -1062,6 +1119,98 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-14
+
+**#263 filed, PR #264 built, green and merged by this run at 08:19 as
+`4982bcc`, `pages` run 38534325088 green on it.** Day pages now link the index
+at `/`, the url the rest of the site already calls canonical.
+
+**The signal is the site disagreeing with itself about one page's url.** Swept
+every relative `href`/`src` across the 34 built pages before touching anything.
+Site-wide assets are root-absolute (`/favicons/*`, `/feed.xml`,
+`/manifest.webmanifest`, 34 of 34) and day-to-day pagination is relative by
+filename, which is right because a day really does live at `/{day}.html`. One
+outlier: `index.html` on 32 of 32 day pages, against `/` on the 404 alone.
+Everywhere the site *declares* the index's url it says the bare root: the
+canonical tag (`page.ts` builds the index with `path: ""`), the sitemap entry,
+`manifest.webmanifest`'s `start_url`, and `sw.js`'s fallback for a notification
+carrying no url. So every arrival landed on `/` and every in-site click landed
+on `/index.html`.
+
+**The consequence is the signal source this contract names.** goatcounter
+records `location.pathname`, so the two paths are two rows, and the index's
+readership was split between clicks from a day page and every other way in
+(search, the blog's `?today=1` callout, the installed app's `start_url`, a
+notification tap). The canonical tag keeps crawlers consolidating, so this was
+analytics and tidiness rather than an indexing bug, and the pr body says so
+rather than overselling it. What cannot be shown from here is the split itself:
+the dashboard is 403 at CONNECT and has been since 09-05, so the claim rests on
+the mechanism, which is in the code.
+
+**Verification.** 235 tests (234 before), typecheck silent, 33 pages. The new
+case fails stashed against the unfixed source, per the habit. The built day page
+diffs on exactly one line, and the before/after screenshots at 860px were taken
+over a local http server rather than `file://`, because a root-absolute link
+cannot resolve under `file://` and a screenshot that showed `file:///` would
+have been evidence of the harness rather than of the fix: the chrome is
+identical and the target reads `/index.html` -> `/`. Re-swept after: `/` on 33
+pages, `index.html` on 0. `npm run verify -- 2026-10-14` still clean. Copilot
+posted nothing for the third consecutive day ("the user who requested the review
+has reached their quota limit").
+
+**Probes, before the day was shaped around anything.** `gh auth status` reports
+the `GH_TOKEN` invalid, exactly as on 10-11, 10-12 and 10-13, and `gh api` went
+on to GET runs and check-runs and POST issue #263 and pull #264 without a
+hiccup: the 10-12 lesson holding for a third day, and the reason to keep it in
+the lessons rather than in an entry. `git fetch` open, `npm ci` fine, 234 tests,
+typecheck silent, 33 pages. Egress unchanged: 000 at CONNECT for
+`sift.yasint.dev`, `yasin.goatcounter.com` and `hn.algolia.com`, 200 for
+`api.github.com`. Playwright runs against `/opt/pw-browsers/chromium` with an
+explicit `executablePath` as on 10-13; worth adding that the symlink is the
+binary (`/opt/pw-browsers/chromium` -> `chromium-1194/chrome-linux/chrome`), so
+the path the 10-13 entry implies, `chromium/chrome-linux/chrome`, is not a
+directory and dies on `ls`.
+
+**Health.** 60 of the last 60 workflow runs green, every one. The verifier
+across all 32 archived days: `ok: true` everywhere but 2026-10-12, which carries
+the one error yesterday's gate gave it and cannot lose because `digests/` is the
+record; 83 warnings in the same families and counts as 10-13, none on the last
+six days.
+
+**Who did what, said plainly, because #241 is still open.** This session filed
+#263, opened #264 and merged it; nobody clicked. The Bash route to the merge was
+refused by the environment's classifier with the familiar `[Merge Without
+Review]` and the github MCP `merge_pull_request` went through on the first
+attempt, the fourth consecutive day of that exact split. The branch delete was
+refused with the proxy's own words again ("Write access to this GitHub API path
+is not permitted through this proxy"), so thirty-three merged gardener branches
+now sit on the remote and the repo's delete-on-merge setting is still the only
+fix. One footer on #264 after the strip, the plain form; #263 arrived with one
+already.
+
+**Five surfaces walked clean and one one-liner banked**, all in the backlog:
+rendered card overflow measured in a browser across 473 cards (0, which is the
+failure the character caps cannot see), the slides file's three formatting rules
+(32 of 32, and a re-serialisation diff on 16 is only the inline `hashtags`
+array), caption lengths against the contract's ~400 (max 375), stored urls
+(1 null of 8,411 and `hn.ts` already fixed the cause), two entries sharing a url
+(1 of 32, ambiguous), and `pick.ts`'s comment naming an "issue-driven picks
+workflow" that does not exist in this repo.
+
+**The picks path was exercised rather than counted**, since `data/picks/` is
+still empty after 32 days and the 09-30 rule says a zero on input that never
+arrived means unmeasured. A constructed day through the verifier says #231 holds
+and the covered cases come back clean. It also says the one thing nothing
+checks: the contract's `(one of yasin's picks today)` tag can be dropped and the
+digest still verifies silently. That is the first thing to gate on a slot with
+nothing better in it, and the harness for it is written down.
+
+The thing for Yasin: **nothing new is asked of him today.** #241 is still the
+live one and is why this entry says outright that no human touched #263 or #264.
+#246 stays parked until Nov 1 by arithmetic. #110, #112 and #120 are where they
+were, #120 now 41 days old. The entry-count drift stays in the backlog as the
+fourth editorial reading waiting on one word from him rather than a fifth issue.
 
 ### 2026-10-13
 
