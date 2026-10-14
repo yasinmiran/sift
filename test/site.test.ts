@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { createHash } from "node:crypto";
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { buildSite } from "../src/site/build";
@@ -498,6 +498,30 @@ describe("buildSite", () => {
     const nf = readFileSync(join(out, "404.html"), "utf8");
     expect(nf).toContain('<nav class="crumbs">');
     expect(nf).toContain("<main>");
+  });
+
+  // The canonical tag, the sitemap, the manifest's start_url and sw.js's
+  // notification fallback all name the index "/", so a page linking the file
+  // name serves it under a second url nothing advertises and goatcounter
+  // counts separately. One url for one page, asserted on every built page
+  // rather than on the crumbs alone, since any new link home would drift the
+  // same way.
+  it("links the index at its canonical / from every built page", () => {
+    digest("2026-07-03", "body");
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const pages = readdirSync(out).filter((f) => f.endsWith(".html"));
+    expect(pages).toHaveLength(4);
+    for (const file of pages) {
+      const html = readFileSync(join(out, file), "utf8");
+      expect(html, `${file} links the index by file name`).not.toContain('href="index.html"');
+    }
+    for (const file of ["2026-07-03.html", "2026-07-04.html", "404.html"]) {
+      expect(readFileSync(join(out, file), "utf8")).toContain('<nav class="crumbs"><a href="/">');
+    }
+    expect(readFileSync(join(out, "index.html"), "utf8")).toContain(
+      '<link rel="canonical" href="https://sift.yasint.dev/">',
+    );
   });
 
   it("unescapes yaml quote escapes and keeps quotes attribute-safe", () => {
