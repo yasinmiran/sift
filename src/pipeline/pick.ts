@@ -3,7 +3,7 @@ import { join, resolve } from "node:path";
 import { applyPick, ensureScheme, pickDay, readPicks } from "./picks";
 
 // Records a hand-found link from the command line (CLI: npm run pick --
-// <url> [note...]); the issue-driven picks workflow writes the same file.
+// <url> [note...]) into data/picks/{day}.json, which the digest run reads.
 const invokedDirectly = process.argv[1]?.endsWith("pick.ts");
 if (invokedDirectly) {
   const [urlArg, ...noteParts] = process.argv.slice(2);
