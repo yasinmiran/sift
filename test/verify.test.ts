@@ -31,7 +31,11 @@ const writeItems = (day: string, itemUrls: string[]) =>
     }),
   );
 
-const digestWith = (opts: { front?: string; links?: string[]; threads?: string; hn?: string } = {}) => {
+const PICK_TAG = "(one of yasin's picks today)";
+
+const digestWith = (
+  opts: { front?: string; links?: string[]; threads?: string; hn?: string; tagged?: string[] } = {},
+) => {
   const front =
     opts.front ??
     `---\ntitle: "The day's tech, sifted: Jul 4, 2026"\ndescription: "one line"\ndate: "${DAY}"\n---`;
@@ -39,7 +43,7 @@ const digestWith = (opts: { front?: string; links?: string[]; threads?: string; 
   const hn = opts.hn ?? "\n## Hacker News\n\nThe front page argued about [Story 0](https://example.com/story-0).\n";
   const threads = opts.threads ?? "\n## Threads\n\n- story-0 and story-1 share a vendor.\n";
   return `${front}\n\nWhat matters today.\n\n## AI / LLMs\n\n${links
-    .map((u, i) => `- [Story ${i}](${u}) matters.`)
+    .map((u, i) => `- [Story ${i}](${u})${opts.tagged?.includes(u) ? ` ${PICK_TAG}` : ""} matters.`)
     .join("\n")}\n${hn}${threads}`;
 };
 
@@ -84,7 +88,12 @@ describe("verifyDigest", () => {
         ],
       }),
     );
-    writeDigest(digestWith({ links: [...urls, "https://found.example/a"] }));
+    writeDigest(
+      digestWith({
+        links: [...urls, "https://found.example/a"],
+        tagged: ["https://found.example/a"],
+      }),
+    );
     const r = verifyDigest(root, DAY);
     expect(r.errors).toEqual([]);
     expect(r.warnings.some((w) => w.includes("found.example/a"))).toBe(false);
@@ -105,7 +114,12 @@ describe("verifyDigest", () => {
   it("treats yesterday's pick as a known link, not a possible typo", () => {
     writeItems(DAY, urls);
     writePicks("2026-07-03", ["https://found.example/late"]);
-    writeDigest(digestWith({ links: [...urls, "https://found.example/late"] }));
+    writeDigest(
+      digestWith({
+        links: [...urls, "https://found.example/late"],
+        tagged: ["https://found.example/late"],
+      }),
+    );
     const r = verifyDigest(root, DAY);
     expect(r.errors).toEqual([]);
     expect(r.warnings.some((w) => w.includes("found.example/late"))).toBe(false);
@@ -125,10 +139,59 @@ describe("verifyDigest", () => {
   it("stays quiet when an earlier digest already covered yesterday's pick", () => {
     writeItems(DAY, urls);
     writePicks("2026-07-03", ["https://found.example/late"]);
-    writeDigest(digestWith({ links: [...urls, "https://found.example/late"] }), "2026-07-03");
+    writeDigest(
+      digestWith({ links: [...urls, "https://found.example/late"], tagged: ["https://found.example/late"] }),
+      "2026-07-03",
+    );
     writeDigest(digestWith());
     const r = verifyDigest(root, DAY);
     expect(r.warnings.some((w) => w.includes("still not covered"))).toBe(false);
+  });
+
+  it("warns when a linked pick does not carry the picks tag", () => {
+    writeItems(DAY, urls);
+    writePicks(DAY, ["https://found.example/a"]);
+    writeDigest(digestWith({ links: [...urls, "https://found.example/a"] }));
+    const r = verifyDigest(root, DAY);
+    expect(r.errors).toEqual([]);
+    expect(r.warnings.some((w) => w.startsWith("pick linked without its tag: https://found.example/a"))).toBe(
+      true,
+    );
+  });
+
+  it("reads the tag on the pick's own entry, not anywhere in the digest", () => {
+    writeItems(DAY, urls);
+    writePicks(DAY, ["https://found.example/a"]);
+    // The tag lands on a neighbouring entry: the file holds the words and the
+    // pick's own entry still publishes without them.
+    writeDigest(digestWith({ links: [...urls, "https://found.example/a"], tagged: [urls[0]!] }));
+    const r = verifyDigest(root, DAY);
+    expect(r.warnings.some((w) => w.includes("pick linked without its tag"))).toBe(true);
+  });
+
+  it("accepts the tag written with a typographic apostrophe", () => {
+    writeItems(DAY, urls);
+    writePicks(DAY, ["https://found.example/a"]);
+    writeDigest(
+      `---\ntitle: "The day's tech, sifted: Jul 4, 2026"\ndescription: "one line"\ndate: "${DAY}"\n---\n\nWhat matters today.\n\n## AI / LLMs\n\n${[
+        ...urls.map((u, i) => `- [Story ${i}](${u}) matters.`),
+        `- [The find](https://found.example/a) (one of yasin\u2019s picks today) matters.`,
+      ].join(
+        "\n",
+      )}\n\n## Hacker News\n\nThe front page argued about [Story 0](https://example.com/story-0).\n\n## Threads\n\n- story-0 and story-1 share a vendor.\n`,
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.warnings.some((w) => w.includes("pick linked without its tag"))).toBe(false);
+  });
+
+  it("warns when yesterday's pick is covered today without the tag", () => {
+    writeItems(DAY, urls);
+    writePicks("2026-07-03", ["https://found.example/late"]);
+    writeDigest(digestWith({ links: [...urls, "https://found.example/late"] }));
+    const r = verifyDigest(root, DAY);
+    expect(
+      r.warnings.some((w) => w.startsWith("pick linked without its tag: https://found.example/late")),
+    ).toBe(true);
   });
 
   it("passes over a malformed yesterday picks file", () => {

@@ -95,6 +95,39 @@ function emptySections(body: string): string[] {
     .get();
 }
 
+// AGENTS.md: an entry sourced from a pick "carries the tag `(one of yasin's
+// picks today)` after its link". It is the one rule in the picks path with
+// nothing behind it, and the tag is the only place the published page says a
+// find was Yasin's rather than a feed's: a digest that links the pick and
+// drops it verifies silently. Asked of the block the link sits in, not of the
+// whole body, so the tag travels with its own entry, and read off the rendered
+// html the way publishedLinks, linklessEntries and emptySections are.
+const PICK_TAG = "(one of yasin's picks today)";
+
+// The apostrophe is the digest agent's to type, and a typographic one reads
+// the same on the page.
+const tagText = (text: string): string =>
+  text.replace(/[\u2018\u2019]/g, "'").replace(/\s+/g, " ").toLowerCase();
+
+function untaggedPickLinks(body: string, pickUrls: string[]): string[] {
+  const wanted = new Set(pickUrls.map(normalize));
+  if (wanted.size === 0) return [];
+  const $ = cheerio.load(renderMarkdown(body));
+  const linked = new Map<string, string>();
+  const tagged = new Set<string>();
+  $("a[href]").each((_, el) => {
+    const url = $(el).attr("href")!;
+    const key = normalize(url);
+    if (!wanted.has(key)) return;
+    if (!linked.has(key)) linked.set(key, url);
+    // An entry is the li it renders as; a pick cited from the day's prose
+    // (What matters today, Hacker News) sits in a paragraph instead.
+    const block = $(el).closest("li, p");
+    if (tagText((block.length > 0 ? block : $(el)).text()).includes(PICK_TAG)) tagged.add(key);
+  });
+  return [...linked].filter(([key]) => !tagged.has(key)).map(([, url]) => url);
+}
+
 // A hacker news story is ingested under the article's own url, so a digest
 // that links the discussion instead reads as a link outside the day's items
 // unless the permalink form is admitted too. The id is the item's
@@ -272,6 +305,15 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
   const linked = new Set(links.map(normalize));
   for (const url of pickUrls) {
     if (!linked.has(normalize(url))) warnings.push(`pick not covered: ${url}`);
+  }
+
+  // Yesterday's picks are in because the contract asks a late pick to be
+  // covered "like one of today's picks", the tag included. A warning rather
+  // than an error: the same paragraph calls a story arriving via both a pick
+  // and a feed one entry, so "sourced from a pick" is a reading the digest
+  // agent can honestly land on either side of.
+  for (const url of untaggedPickLinks(body, [...pickUrls, ...prevPickUrls])) {
+    warnings.push(`pick linked without its tag: ${url}; an entry sourced from a pick carries "${PICK_TAG}" after its link (AGENTS.md)`);
   }
 
   // The agent-scripted carousel ships beside the digest; mechanical
