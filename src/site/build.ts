@@ -193,6 +193,12 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
         <span class="read">read the digest &rarr;</span>
       </a>`
     : `<p class="meta">nothing sifted yet.</p>`;
+  // The hero is a block link over its date, description and read-on line, and
+  // the rows under it used to link the date alone with the description sitting
+  // outside the anchor: 184x19 of a 350x154 row on a phone, so the sentence
+  // telling the reader what the day was about was the dead part of it. Both
+  // shapes now wrap the description, which is hit area only -- `.meta` keeps
+  // its own colour and size, so the row renders exactly as before.
   const list =
     rest.length === 0
       ? ""
@@ -200,8 +206,8 @@ fetch("${GOATCOUNTER_URL}/counter/" + encodeURIComponent(location.pathname) + ".
           .map(
             (d) => `
         <li>
-          <a href="${d.day}.html" data-day="${d.day}"><span class="when"><span class="mono">${d.day}</span> &middot; ${formatDay(d.day)}</span></a>
-          <p class="meta">${escapeHtml(d.description)}</p>
+          <a href="${d.day}.html" data-day="${d.day}"><span class="when"><span class="mono">${d.day}</span> &middot; ${formatDay(d.day)}</span>
+          <p class="meta">${escapeHtml(d.description)}</p></a>
         </li>`,
           )
           .join("")}</ul>`;

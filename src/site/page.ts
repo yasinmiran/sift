@@ -112,9 +112,11 @@ a:hover{color:var(--accent-hover)}
 .hero:hover .desc{color:var(--accent-hover)}
 .hero .read{display:inline-block;margin:.8rem 0 0;font-size:.9rem;color:var(--accent)}
 .days{list-style:none;margin:0;padding:0}
-.days li{padding:1rem 0;border-bottom:1px solid var(--border)}
+.days li{border-bottom:1px solid var(--border)}
 .days li:last-child{border-bottom:none}
-.days a{font-size:1.05rem}
+/* The row is the link, same as .hero: the padding lives on the anchor so the
+   description under the date is part of the target rather than beside it. */
+.days a{display:block;padding:1rem 0;font-size:1.05rem}
 .prose{margin-top:2rem;line-height:1.72}
 .prose p{margin:1.5em 0}
 .prose a{border-bottom:1px dotted var(--faint);overflow-wrap:break-word;transition:color .2s,border-color .2s}
