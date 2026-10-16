@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { load } from "cheerio";
 import { createHash } from "node:crypto";
 import { mkdirSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -58,6 +59,23 @@ describe("buildSite", () => {
     expect(day).toContain("<h2>Section</h2>");
     expect(day).toContain('href="https://example.com/a"');
     expect(day).toContain("The day&#39;s tech, sifted: 2026-07-03");
+  });
+
+  // The hero links its own description; the rows under it have to as well, or
+  // the sentence a reader is looking at is the one part of the row that is not
+  // the link. Asserted on the dom rather than on the string, since the only
+  // thing that matters is which element the paragraph sits inside.
+  it("makes every archived row's description part of its link", () => {
+    for (const day of ["2026-07-02", "2026-07-03", "2026-07-04"]) digest(day, "body");
+    buildSite(root, out);
+    const $ = load(readFileSync(join(out, "index.html"), "utf8"));
+    const rows = $(".days li");
+    expect(rows.length).toBe(2);
+    rows.each((_, li) => {
+      expect($(li).find("a p.meta").length).toBe(1);
+      expect($(li).children("p.meta").length).toBe(0);
+    });
+    expect($("a.hero p.desc").length).toBe(1);
   });
 
   it("escapes raw html instead of rendering it", () => {
