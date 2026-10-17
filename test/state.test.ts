@@ -8,8 +8,10 @@ import {
   loadState,
   markSeen,
   pruneSeen,
+  pruneSources,
   saveState,
   type IngestState,
+  type SourceState,
 } from "../src/pipeline/state";
 
 let dataDir: string;
@@ -34,5 +36,18 @@ describe("ingest state", () => {
     pruneSeen(state, "2026-07-04");
     expect(isSeen(state, "s:e1")).toBe(false);
     expect(isSeen(state, "s:e2")).toBe(true);
+  });
+
+  it("prunes validators for slugs the registry no longer carries", () => {
+    const validators = (): SourceState => ({ etag: 'W/"x"', lastModified: null, feedHash: "h" });
+    const state: IngestState = {
+      sources: { live: validators(), off: validators(), gone: validators() },
+      seen: {},
+    };
+    // The registry, not the enabled subset: `off` is configured and switched
+    // off, so its validators survive and its next fetch is still conditional.
+    pruneSources(state, ["live", "off"]);
+    expect(Object.keys(state.sources)).toEqual(["live", "off"]);
+    expect(state.sources.off!.etag).toBe('W/"x"');
   });
 });

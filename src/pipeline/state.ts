@@ -3,7 +3,10 @@
 // keyed by day so pruning old keys is a plain date comparison, and it
 // remembers item identity (`sourceSlug:externalId`) for SEEN_DAYS so a
 // story bouncing between feeds, or a feed replaying old entries, cannot
-// re-enter a later day.
+// re-enter a later day. Both halves are pruned every run: the index by
+// date, the validators by the registry, so a slug dropped from
+// config/sources.json cannot hand stale validators back to a slug of the
+// same name later and turn its first fetch into a 304 nobody ordered.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { daysBefore } from "../day";
@@ -50,6 +53,14 @@ export function markSeen(state: IngestState, day: string, key: string): void {
 export function pruneSeen(state: IngestState, today: string): void {
   const cutoff = daysBefore(today, SEEN_DAYS - 1);
   for (const day of Object.keys(state.seen)) if (day < cutoff) delete state.seen[day];
+}
+
+// Pruned against the whole registry, not the enabled subset the fetch loop
+// walks: a source switched off keeps its validators, so switching it back on
+// still costs one conditional GET rather than a full re-read.
+export function pruneSources(state: IngestState, slugs: Iterable<string>): void {
+  const known = new Set(slugs);
+  for (const slug of Object.keys(state.sources)) if (!known.has(slug)) delete state.sources[slug];
 }
 
 const statePath = (dataDir: string): string => join(dataDir, "state.json");
