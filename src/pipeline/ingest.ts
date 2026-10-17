@@ -25,6 +25,7 @@ import {
   loadState,
   markSeen,
   pruneSeen,
+  pruneSources,
   saveState,
   type IngestState,
   type SourceState,
@@ -57,7 +58,8 @@ export async function runIngest(
   const fileExisted = file.generatedAt !== "";
   const itemsBefore = file.items.length;
 
-  for (const source of (deps.sources ?? loadSources()).filter((s) => s.enabled)) {
+  const registry = deps.sources ?? loadSources();
+  for (const source of registry.filter((s) => s.enabled)) {
     stats.sources++;
     try {
       const adapter = adapterFor(source, deps.fetchers ?? {});
@@ -101,6 +103,7 @@ export async function runIngest(
     saveDay(dataDir, file);
   }
   pruneSeen(state, day);
+  pruneSources(state, registry.map((s) => s.slug));
   if (JSON.stringify(state) !== stateSnapshot) saveState(dataDir, state);
   return stats;
 }

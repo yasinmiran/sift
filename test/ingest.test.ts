@@ -184,4 +184,17 @@ describe("runIngest", () => {
     expect(stats.sources).toBe(1);
     expect(loadState(dataDir).seen).not.toHaveProperty("2020-01-01");
   });
+
+  it("drops validators for a slug the registry dropped, keeping a disabled one", async () => {
+    const validators = { etag: 'W/"stale"', lastModified: null, feedHash: "h" };
+    saveState(dataDir, { sources: { gone: { ...validators }, off: { ...validators } }, seen: {} });
+    await runIngest(dataDir, {
+      fetchImpl: stubFetch(rssFixture) as never,
+      sources: [src("on"), src("off", { enabled: false })],
+    });
+    const sources = loadState(dataDir).sources;
+    expect(sources).not.toHaveProperty("gone");
+    expect(sources.off).toEqual(validators);
+    expect(sources.on!.feedHash).toBeTruthy();
+  });
 });
