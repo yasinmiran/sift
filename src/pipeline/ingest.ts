@@ -36,12 +36,21 @@ import {
 // The seen index keeps the wider window from double-ingesting.
 const WINDOW_MS = 48 * 60 * 60 * 1000;
 
+// The run's whole summary, one json line on stdout. Every item an adapter
+// returns ends in exactly one of stale, dropped, duplicate or created, so
+// those four sum to the `kept` counts the adapters log per source: the line
+// closes its own arithmetic rather than leaving the remainder to be inferred.
+// `duplicate` is the one that needed naming and the largest in practice (200
+// of the 228 items the 2026-10-18 07:58 run handled): without it a source that
+// succeeds and re-offers what it offered this morning is indistinguishable
+// from one that is being refused, since both store nothing.
 export interface IngestStats {
   sources: number;
   created: number;
   skipped: number;
   dropped: number;
   stale: number;
+  duplicate: number;
   failures: string[];
 }
 
@@ -49,7 +58,7 @@ export async function runIngest(
   dataDir: string,
   deps: { fetchImpl?: FetchImpl; fetchers?: Fetchers; sources?: SourceConfig[] } = {},
 ): Promise<IngestStats> {
-  const stats: IngestStats = { sources: 0, created: 0, skipped: 0, dropped: 0, stale: 0, failures: [] };
+  const stats: IngestStats = { sources: 0, created: 0, skipped: 0, dropped: 0, stale: 0, duplicate: 0, failures: [] };
   const since = new Date(Date.now() - WINDOW_MS);
   const day = today();
   const state = loadState(dataDir);
@@ -87,7 +96,10 @@ export async function runIngest(
           continue;
         }
         const key = itemKey(item);
-        if (isSeen(state, key)) continue;
+        if (isSeen(state, key)) {
+          stats.duplicate++;
+          continue;
+        }
         file.items.push(toStored(item, source.topics));
         markSeen(state, day, key);
         stats.created++;
