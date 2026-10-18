@@ -52,10 +52,15 @@ describe("runIngest", () => {
     const unchanged = await runIngest(dataDir, { fetchImpl: stubFetch(rssFixture) as never, sources });
     expect(unchanged.created).toBe(0);
     expect(unchanged.skipped).toBe(1);
+    expect(unchanged.duplicate).toBe(0); // the feed never parsed, so nothing was deduped
     // Same guids, different body: feed hash changes, seen index must dedup.
+    // `created: 0` alone cannot say that happened -- an adapter that returned
+    // nothing passes it identically -- so the dedup is asserted on the count
+    // of items the seen index turned away.
     const touched = rssFixture.replace("alpha body", "alpha body edited");
     const reparsed = await runIngest(dataDir, { fetchImpl: stubFetch(touched) as never, sources });
     expect(reparsed.created).toBe(0);
+    expect(reparsed.duplicate).toBe(3);
     expect(loadDay(dataDir, today()).items).toHaveLength(3);
   });
 
@@ -122,6 +127,43 @@ describe("runIngest", () => {
     const items = loadDay(dataDir, today()).items;
     expect(items).toHaveLength(1);
     expect(items[0]!.title).toBe("Fresh story");
+  });
+
+  // The stats line is the run's whole summary, so it has to account for every
+  // item the adapters handed over: a pull-mode source whose items are all
+  // already seen must read as a healthy source, not as a silent one. Asserted
+  // as the identity rather than on one field, so a future counter that
+  // double-counts or skips a branch breaks it.
+  it("accounts for every kept item exactly once across created, stale, dropped and duplicate", async () => {
+    const now = Date.now();
+    const fresh = Math.floor((now - 2 * 60 * 60 * 1000) / 1000);
+    const stale = Math.floor((now - 49 * 60 * 60 * 1000) / 1000);
+    const hnFetchJson = async (url: string) => {
+      if (url.includes("tags=front_page"))
+        return {
+          hits: [
+            { objectID: "1", title: "Real story", points: 200, created_at_i: fresh },
+            { objectID: "2", title: "Great tool (Sponsor)", points: 200, created_at_i: fresh },
+            { objectID: "3", title: "Yesterday's story", points: 200, created_at_i: stale },
+          ],
+        };
+      if (url.includes("search_by_date")) return { hits: [] };
+      throw new Error("unexpected url " + url);
+    };
+    const kept = 3;
+    const hnSource: SourceConfig = { slug: "hacker-news", kind: "hn", topics: ["ai-llms"], enabled: true };
+    const deps = { fetchers: { fetchJson: hnFetchJson as never }, sources: [hnSource] };
+
+    const first = await runIngest(dataDir, deps);
+    expect(first).toMatchObject({ created: 1, stale: 1, dropped: 1, duplicate: 0 });
+    expect(first.created + first.stale + first.dropped + first.duplicate).toBe(kept);
+
+    // Same front page an hour later: the story stored last run is the one the
+    // seen index turns away, and it is the only number that moves.
+    const second = await runIngest(dataDir, deps);
+    expect(second).toMatchObject({ created: 0, stale: 1, dropped: 1, duplicate: 1 });
+    expect(second.created + second.stale + second.dropped + second.duplicate).toBe(kept);
+    expect(loadDay(dataDir, today()).items).toHaveLength(1);
   });
 
   it("stays quiet on a no-op run: day file and state bytes are unchanged", async () => {
