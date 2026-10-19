@@ -19,6 +19,8 @@ type FeedItem = ParsedFeed["items"][number] & {
 
 const parser = new Parser();
 
+const collapse = (s: string): string => s.replace(/\s+/g, " ").trim();
+
 // XML only defines five named entities; feeds routinely leak html ones. The
 // parse dies on an entity the parser does not know (&wibble;), so the
 // load-bearing half here is the fallback that neutralizes those. The map is
@@ -68,6 +70,29 @@ function sanitizeEntities(xml: string): string {
   return out + sanitizeMarkup(xml.slice(end));
 }
 
+// content:encoded and content are the full body where a feed sends one;
+// summary comes after them so a feed carrying both keeps the body and falls
+// back to the teaser only when there is no body, and contentSnippet is
+// rss-parser's own plain-text last resort. simonwillison.net is the shape
+// that needs the summary step: <summary type="html"> and no <content>.
+//
+// The pick is on the text a field renders to, never on the field existing.
+// ?? falls through on absent and an empty body element is not absent, so a
+// feed shipping one beside a real sibling used to store nothing at all.
+// Measured against rss-parser 3.13.0: an atom <content type="html"/>, an
+// empty <content></content> and a whitespace-only one all arrive as the
+// string `<div type="html"/>`, an empty <content:encoded> as "", and a
+// markup-only body as its own markup. All of them render to "" here and all
+// of them used to win the chain.
+function bodyText(e: FeedItem): string {
+  for (const field of [e["content:encoded"], e.content, e.summary, e.contentSnippet]) {
+    if (typeof field !== "string") continue;
+    const text = htmlToText(field);
+    if (text) return text;
+  }
+  return "";
+}
+
 export function createRssAdapter(opts: {
   slug: string;
   url: string;
@@ -95,17 +120,15 @@ export function createRssAdapter(opts: {
           sourceSlug: opts.slug,
           externalId,
           // Decode before stripping, so a watermark that arrives as &#8203;
-          // is a zero-width character by the time the stripper looks.
-          title: stripInvisibles(decodeNumericRefs(e.title)),
+          // is a zero-width character by the time the stripper looks, and
+          // collapse last: authorName and htmlToText both normalize their
+          // whitespace and a title was the one ingested field that did not,
+          // so a feed's trailing newline or decoded &nbsp; rode through.
+          title: collapse(stripInvisibles(decodeNumericRefs(e.title))),
           url: e.link,
           author: authorName(e.creator ?? e.author),
           publishedAt,
-          // content:encoded and content are the full body where a feed sends
-          // one; summary comes after them so a feed carrying both keeps the
-          // body and falls back to the teaser only when there is no body.
-          // simonwillison.net is the shape that needs it: <summary type="html">
-          // and no <content>, so the chain used to end in the empty string.
-          content: htmlToText(e["content:encoded"] ?? e.content ?? e.summary ?? e.contentSnippet ?? ""),
+          content: bodyText(e),
           mediaType: opts.mediaType ?? "text",
         });
       }
