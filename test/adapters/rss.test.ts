@@ -208,7 +208,9 @@ test("tolerates html-named entities that are not valid xml", async () => {
   if (a.mode !== "body") throw new Error("rss adapter must be body-mode");
   const items = await a.parse(feed, new Date(0));
   expect(items).toHaveLength(1);
-  expect(items[0]!.title).toContain("Security news: what’s new");
+  // The &nbsp; decodes and then collapses to a plain space, same as it
+  // already did in a body: a title is normalized like every other field now.
+  expect(items[0]!.title).toContain("Security news: what’s new");
   expect(items[0]!.content).toContain("body…");
 });
 
@@ -235,4 +237,56 @@ test("normalizes an author element that carries child elements, not text", async
   expect(items.map((i) => i.author)).toEqual(["Eileen Mannion", "Eric Berger", undefined]);
   // The job title inside that node never becomes the item's own.
   expect(items[0]!.title).toBe("Get closer to the game with Gemini and Pixel");
+});
+
+const atomFeed = (body: string) =>
+  `<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom"><title>t</title>
+    <entry><title>t</title><id>e1</id><link href="https://example.com/1" rel="alternate"/>
+    <published>${new Date().toISOString()}</published>
+    ${body}</entry>
+  </feed>`;
+
+// An empty body element is not an absent one: rss-parser hands an empty,
+// self-closing or whitespace-only atom <content> back as `<div type="html"/>`
+// and an empty <content:encoded> back as "", so the old `??` chain stopped on
+// both and stored nothing while the real text sat one field further down.
+test("falls past a body element that renders to nothing", async () => {
+  const cases = [
+    ['<summary type="html">the teaser</summary><content type="html"/>', "self-closing atom content"],
+    ['<summary type="html">the teaser</summary><content type="html"></content>', "empty atom content"],
+    ['<summary type="html">the teaser</summary><content type="html">   </content>', "whitespace atom content"],
+    ['<summary type="html">the teaser</summary><content type="html">&lt;div&gt;&lt;/div&gt;</content>', "markup-only atom content"],
+  ] as const;
+  for (const [body, shape] of cases) {
+    const items = await parseFeed("atom-empty", atomFeed(body));
+    expect(items[0]!.content, shape).toBe("the teaser");
+  }
+
+  const encoded = await parseFeed(
+    "rss-empty",
+    cdataFeed("<content:encoded></content:encoded><description>the teaser</description>"),
+  );
+  expect(encoded[0]!.content).toBe("the teaser");
+  const markup = await parseFeed(
+    "rss-markup",
+    cdataFeed("<content:encoded><![CDATA[<div></div>]]></content:encoded><description>the teaser</description>"),
+  );
+  expect(markup[0]!.content).toBe("the teaser");
+});
+
+test("stores an empty body when every field renders to nothing", async () => {
+  const items = await parseFeed("atom-blank", atomFeed('<summary type="html"></summary><content type="html"/>'));
+  expect(items[0]!.content).toBe("");
+});
+
+// A title was the one ingested field with no whitespace normalization, where
+// authorName collapses and trims and htmlToText ends on the same call. 28 of
+// the 8,602 archived titles change under it, 7 of them on a decoded &nbsp;.
+test("collapses and trims title whitespace", async () => {
+  const feed = cdataFeed("<description>body</description>").replace(
+    "<item><title>t</title>",
+    "<item><title>  a   spaced\n  title&#160;</title>",
+  );
+  const items = await parseFeed("spacey", feed);
+  expect(items[0]!.title).toBe("a spaced title");
 });
