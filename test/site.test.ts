@@ -453,6 +453,22 @@ describe("buildSite", () => {
     expect(day).not.toContain('id="notify"');
   });
 
+  it("sets the ios install path in a colour that passes AA", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    // The hint and the dialog's note are the only route to notifications for
+    // a reader whose browser has no PushManager, so neither may sit on
+    // --muted: 4.13:1 against --bg and 3.74:1 against the dialog's --surface,
+    // both under AA's 4.5 at these sizes. The hint carries --body outright
+    // rather than on :hover, which a touch-only device need never fire, and
+    // the note inherits the dialog's --body by declaring no colour at all.
+    expect(index).toMatch(/\.notify-hint\{[^}]*color:var\(--body\)/);
+    expect(index).not.toMatch(/\.notify-hint\{[^}]*color:var\(--muted\)/);
+    expect(index).toMatch(/\.install-help\{[^}]*color:var\(--body\)/);
+    expect(index).toMatch(/\.help-note\{(?![^}]*color:)[^}]*\}/);
+  });
+
   it("tells today's readers when the evening half lands, in their own time zone", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);
