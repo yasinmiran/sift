@@ -105,6 +105,7 @@ export function createRssAdapter(opts: {
       const feed = await parser.parseString(sanitizeEntities(body));
       const out: RawItem[] = [];
       let dropped = 0;
+      let bodyless = 0;
       for (const e of feed.items as FeedItem[]) {
         const publishedAt = new Date(e.isoDate ?? e.pubDate ?? Date.now());
         if (Number.isNaN(publishedAt.getTime()) || publishedAt < since) {
@@ -116,6 +117,8 @@ export function createRssAdapter(opts: {
           dropped++;
           continue;
         }
+        const content = bodyText(e);
+        if (!content) bodyless++;
         out.push({
           sourceSlug: opts.slug,
           externalId,
@@ -128,11 +131,18 @@ export function createRssAdapter(opts: {
           url: e.link,
           author: authorName(e.creator ?? e.author),
           publishedAt,
-          content: bodyText(e),
+          content,
           mediaType: opts.mediaType ?? "text",
         });
       }
-      info("rss parsed", { source: opts.slug, kept: out.length, dropped });
+      // kept and dropped both read healthy for a feed that has gone title-only,
+      // so a source whose body chain stops resolving is indistinguishable from
+      // one that is carrying the digest: huggingface-blog stored 37 of 37
+      // bodyless over a month and the only thing that ever said so was a sweep
+      // of the committed archive. The count is always printed, so a reader can
+      // tell zero from unmeasured, and fireship is expected to sit at kept
+      // (a youtube feed carries its description in media:group).
+      info("rss parsed", { source: opts.slug, kept: out.length, dropped, bodyless });
       return out;
     },
   };
