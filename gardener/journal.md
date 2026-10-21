@@ -1482,7 +1482,12 @@ GraphQL and 403 here, as 10-11 recorded; every `gh api` REST call worked, as
 both are in the lesson above: the strip works through the github MCP and never
 through `gh api -X PATCH`, and the delete is refused on both routes, which is
 why ten merged gardener branches are still on the remote. Copilot posted no
-review (quota limit), so the checks window carried no feedback to answer.
+review (quota limit), so the checks window carried no feedback to answer. One
+cheap fact for the next run, which cost this one seven minutes of polling for a
+run that cannot exist: **the journal commit never triggers `pages`.** The
+workflow is path-filtered to `digests/`, `data/slides/`, `public/`, `src/` and
+its own file, so step 10's direct commit to main is the one push in the loop
+with no deploy to watch; the deploy to confirm is the merge's.
 
 ### 2026-10-20
 
