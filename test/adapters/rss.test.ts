@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { expect, test } from "vitest";
+import { expect, test, vi } from "vitest";
 import { createRssAdapter } from "../../src/pipeline/adapters/rss";
 
 const xml = (p: string) => readFileSync(join(__dirname, "../fixtures/rss", p), "utf8");
@@ -289,4 +289,35 @@ test("collapses and trims title whitespace", async () => {
   );
   const items = await parseFeed("spacey", feed);
   expect(items[0]!.title).toBe("a spaced title");
+});
+
+// The log line is the pipeline's only account of a parse, and kept/dropped
+// both read healthy for a feed that has stopped shipping bodies: that is how
+// huggingface-blog stored 37 of 37 title-only items over a month with nothing
+// saying so. The count is of bodies, not of items, so the fixture keeps one
+// entry of each kind and drops a third on the window.
+test("names the kept items whose body renders to nothing", async () => {
+  const item = (id: string, title: string, body: string, at: Date) =>
+    `<item><title>${title}</title><guid>${id}</guid><link>https://example.com/${id}</link>
+     <pubDate>${at.toUTCString()}</pubDate><description>${body}</description></item>`;
+  const now = new Date();
+  const feed = `<?xml version="1.0"?><rss version="2.0"><channel><title>t</title>
+    ${item("e1", "has a body", "the whole post", now)}
+    ${item("e2", "title only", "   ", now)}
+    ${item("e3", "out of the window", "the whole post", new Date("2020-01-01"))}
+  </channel></rss>`;
+
+  const lines: string[] = [];
+  const spy = vi.spyOn(console, "log").mockImplementation((line: string) => void lines.push(line));
+  try {
+    const a = createRssAdapter({ slug: "mixed-bodies", url: "https://x" });
+    if (a.mode !== "body") throw new Error("rss adapter must be body-mode");
+    const items = await a.parse(feed, new Date(Date.now() - 48 * 60 * 60 * 1000));
+    expect(items.map((i) => i.content)).toEqual(["the whole post", ""]);
+  } finally {
+    spy.mockRestore();
+  }
+
+  const logged = lines.map((l) => JSON.parse(l)).find((l) => l.msg === "rss parsed");
+  expect(logged).toMatchObject({ source: "mixed-bodies", kept: 2, dropped: 1, bodyless: 1 });
 });
