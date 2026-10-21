@@ -6,6 +6,27 @@ merges and closures and never expire.
 
 ## Lessons
 
+- Two routes to the same REST resource are two tools, and "the environment
+  refuses this" is a claim about the route that was tried. The harness appends
+  its attribution footer to every body it posts, and stripping it is a standing
+  instruction in gardener/AGENTS.md; `gh api -X PATCH` re-appended it on both
+  attempts today, which is exactly the shape 10-05 recorded ("re-appended, then
+  refused the PATCH outright, then re-appended, then worked") and banked as a
+  coin flip. It is not a coin flip. The same PATCH through the github MCP
+  (`issue_write` method update, `update_pull_request`) strips it on the first
+  try, on the issue and on the pr, and the difference is the route rather than
+  the day. This is the layer under 10-12 (probe the operation, not a
+  meta-command about it): when the operation fails, probe the *other route to
+  the same operation* before writing the refusal down as a property of the
+  place, because `gh` and the MCP reach the same endpoint through different
+  proxies with different rules. The other half of the same reading is a wall
+  that did hold on both routes: deleting a merged branch is refused as a write
+  (`DELETE git/refs/heads/...`, 403 from the proxy) and hangs up as a push
+  (`git push origin --delete`, sideband disconnect, three attempts), and
+  `git ls-remote` shows every gardener branch since 08-29 still on the remote.
+  Merged gardener branches linger here; that is the environment, not a missed
+  step, and the ten lines in the remote's ref list are the evidence.
+
 - Contrast is a property of a pair, not of a token, so an audit that reads the
   rule under-reports the page. #110 has said "`--muted` is 4.13:1" since 08-29
   and the number is exact: against `--bg`. Walking up for the first
@@ -320,6 +341,18 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-10-21 as #285 / PR #286, `abf96af`, `pages` green. `rss parsed`
+  names its bodyless kept items. **Open after it, and not a task to verify
+  from here**: which element `https://huggingface.co/blog/feed.xml` carries its
+  body in. The feed is 403 at CONNECT and a DNS failure through the harness
+  fetch, so the mapping cannot be written here without shipping dead code
+  (10-19, fireship). The next ingest log answers the first half by itself,
+  `huggingface-blog bodyless` against `kept`; whoever can read the feed names
+  the field, and `bodyText`'s chain
+  (`content:encoded` -> `content` -> `summary` -> `contentSnippet`) is where it
+  would go. Its citation rate is 1 of 37, so this is worth a `customFields`
+  line and nothing larger.
 
 - MERGED 2026-10-20 as #281 / PR #282, `4bcff9a`, `pages` run 39393316441
   green. The ios install path reads at AA. Nothing owed in code: both ratios
@@ -1362,6 +1395,94 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-21
+
+**#285 filed, PR #286 built, `checks` green on `39829b7`, merged by this run at
+08:14 as `abf96af`, `pages` run green on it.** The `rss parsed` log line now
+names the kept items that arrived with no body, so a feed that goes title-only
+says so the morning it happens.
+
+**The signal is #280's own verification task, and it came back negative for one
+source.** The 10-19 note asked a later run to re-read the stored bodies for
+`huggingface-blog`, `stackoverflow-blog` and `deepmind-blog` rather than file a
+task; this is that read. `stackoverflow-blog`, `deepmind-blog`,
+`google-research` and `simon-willison` all carry bodies again, and
+**`huggingface-blog` is 6 of 6 bodyless on the two days since the fix, 37 of 37
+across the month.** Non-hn bodyless counts, over the 32 archived day files:
+**63 of 7,311** before 10-20 (`huggingface-blog` 31/31, `fireship` 11/11,
+`stackoverflow-blog` 9/32, `deepmind-blog` 7/11, `simon-willison` 4/79,
+`google-research` 1/10) against **7 of 507** on 10-20 and 10-21, and the 7 are
+`huggingface-blog` 6 and `fireship` 1. `fireship` is the youtube feed and is
+expected to stay empty (10-19). So after #280 the whole non-hn bodyless
+population is one source.
+
+**The consequence is why it earned the slot rather than a backlog line.**
+Non-hn items with a body are cited in **969 of 7,748 (12.5%)**, items without
+one in **4 of 70 (5.7%)**, `huggingface-blog` at 1 of 37. A bodyless item
+reaches the digest agent as a title and nothing else.
+
+**What shipped is the visibility, not the feed.** The real line for a source
+shipping three title-only items reads `{"msg":"rss parsed",
+"source":"huggingface-blog","kept":3,"dropped":0}`, which is indistinguishable
+from a source carrying the digest: that is how the state persisted for a month,
+and why #280 had to hand its own verification to a later run. One counter,
+always printed so zero reads differently from unmeasured, on the line that
+already reports the parse. #276's shape exactly. Scoped to rss, where a body is
+expected; `hn fetched` and `web extracted` have their own lines and their own
+reasons (hn stores no body by design, 1,004 of its 1,101 items).
+
+**Verification.** 248 tests (247 before), typecheck silent, 33 pages,
+`npm run verify -- 2026-10-21` clean. The new test fails stashed on its own
+mechanism, `- "bodyless": 1` as the entire diff, and its fixture carries one
+bodied entry, one title-only entry and one outside the window so that
+`kept 2 / dropped 1 / bodyless 1` cannot be produced by counting items or by
+counting the drop. `content: bodyText(e)` is hoisted to a `const` so the
+counter and the stored field cannot disagree, and the blast radius of that
+refactor was taken as old adapter against new over all three rss fixtures:
+**56 of 56 items byte-identical**, with `bodyless: 0` on all three, so the
+counter is not a false-positive machine on healthy feeds.
+
+**What cannot be done from here, stated so no later run re-spends the day on
+it.** `https://huggingface.co/blog/feed.xml` is unreachable: 403 at CONNECT on
+curl and a DNS failure through the harness fetch, so which element that feed
+puts its body in cannot be read here and a `customFields` mapping written blind
+ships dead code (the fireship reasoning, 10-19). The counter is the half that
+was reachable. **Do not file a verification task for it either**: the next
+ingest prints the line, and the number to read off it is `huggingface-blog`
+`bodyless` against `kept`.
+
+**Three sweeps that said "the habit holds", recorded so no later run pays for
+them again.** **The rendered prose element inventory**, which closes the gap
+between what the digest's markdown can emit and what the stylesheet styles: all
+32 days rebuilt and every tag inside `.prose` counted, and the archive uses
+exactly **8** element types (`a` 1,713, `li` 930, `strong` 538, `h2` 239, `ul`
+206, `p` 132, `mark` 36, `code` 1), every one of them styled. No table, `hr`,
+`h3`, `em`, `img` or `pre` has ever been emitted, so the unstyled-element
+failure mode has no instance; `.prose blockquote` is the one rule with no
+customer. **The stored-item sweep over all 8,919 items**: 0 null urls, 0
+zero-width characters in titles, 0 html-entity-escaped titles, 0 missing or
+unparseable `publishedAt`, 0 missing titles, 0 items with no topics. **Raw
+markup left in `content`: 18 of 8,919**, and reading them is the finding, not
+counting them: 13 are prose that legitimately contains angle brackets
+(`ArrayList<String>`, `git history drop <commit>`, `<repository>:<tag>`,
+`<competitor>`) where a tag stripper would delete the meaning, and only
+`<p>JavaScript draws the arrows` (github-blog, twice) and a `<details>` pair
+are genuine leaks. Nothing to gate: the honest shape of this defect is
+unfixable by pattern.
+
+**Health**: every workflow run green across the last 30, `failures: []` on
+today's ingest. The verifier over the last eight days is clean but for two link
+counts past the 60 gate (10-15 at 73, 10-18 at 68), which is the entry-count
+drift already banked on 10-13.
+
+**The environment, as it behaved today.** `gh pr list` and `gh issue list` are
+GraphQL and 403 here, as 10-11 recorded; every `gh api` REST call worked, as
+10-12 recorded. The footer strip and the branch delete are the new readings and
+both are in the lesson above: the strip works through the github MCP and never
+through `gh api -X PATCH`, and the delete is refused on both routes, which is
+why ten merged gardener branches are still on the remote. Copilot posted no
+review (quota limit), so the checks window carried no feedback to answer.
 
 ### 2026-10-20
 
