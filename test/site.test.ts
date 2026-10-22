@@ -623,4 +623,40 @@ describe("buildSite", () => {
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).not.toContain("beforeinstallprompt");
   });
+
+  // The claim is readability on paper, so assert the ratio rather than the
+  // hexes: chrome prints with background graphics off, which leaves the sheet
+  // white and every token as declared (--text 1.29:1 against it, --body 2.15).
+  // Computed from the print block's own :root, so a later retune that drops a
+  // token back below AA fails here even if it keeps the block's shape.
+  it("re-inks the palette for print so a printed digest reads on paper", () => {
+    digest("2026-07-04", "## Section\n\n- **lead**: [story](https://example.com/a) why it matters");
+    buildSite(root, out);
+    for (const file of ["index.html", "2026-07-04.html"]) {
+      const html = readFileSync(join(out, file), "utf8");
+      const block = /@media print\{([^]*?)\n\}/.exec(html);
+      expect(block, `${file} has no @media print block`).not.toBeNull();
+      const css = block?.[1] ?? "";
+
+      const channel = (c: number): number => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+      const onPaper = (hex: string): number => {
+        const n = Number.parseInt(hex.slice(1), 16);
+        const l =
+          0.2126 * channel(((n >> 16) & 255) / 255) +
+          0.7152 * channel(((n >> 8) & 255) / 255) +
+          0.0722 * channel((n & 255) / 255);
+        return 1.05 / (l + 0.05);
+      };
+      for (const token of ["text", "bold", "body", "muted", "faint", "accent"]) {
+        const hex = new RegExp(`--${token}:(#[0-9a-f]{6})`).exec(css)?.[1];
+        expect(hex, `${file}: print block leaves --${token} at its screen value`).toBeDefined();
+        expect(onPaper(hex!), `${file}: --${token} is ${hex} on paper`).toBeGreaterThanOrEqual(4.5);
+      }
+
+      // The sheet stays white even for a reader who prints backgrounds, and
+      // nothing that needs a tap or a clock comes with it.
+      expect(css).toContain("body{max-width:none;padding:0;background:none}");
+      expect(css).toContain(".crumbs,.pager,.notify,.today-note{display:none}");
+    }
+  });
 });

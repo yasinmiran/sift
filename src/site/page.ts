@@ -162,6 +162,22 @@ mark.pen{background-color:transparent;color:var(--bold)}
 .help-note{font-size:.85rem;margin:0 0 1.2rem}
 .notify-btn:hover{border-color:var(--accent);color:var(--bold)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Paper is the surface the palette cannot carry: chrome prints with
+   background graphics off, so the sheet is white while every colour stays as
+   declared -- --text at 1.29:1 against it, --bold 1.58, --body 2.15, --accent
+   2.49. The same ten hexes read the other way round, no new colour, with
+   --muted/--faint swapped because on paper the lighter one is the quieter.
+   background:none keeps the sheet white for the reader who does tick
+   backgrounds on. Hidden: navigation that cannot be followed, a button that
+   cannot be tapped, and the view-time notes (.today-note covers
+   .refresh-note), stale the moment they are printed. */
+@media print{
+:root{--text:#0d0c0b;--bold:#0d0c0b;--body:#1a1816;--muted:#5c564e;--faint:#7a7268;--accent:#0d0c0b;--accent-hover:#0d0c0b;--border:#b8b0a3}
+body{max-width:none;padding:0;background:none}
+body::before{display:none}
+.crumbs,.pager,.notify,.today-note{display:none}
+.prose code{background:none}
+}
 </style>
 </head>
 <body>
