@@ -6,6 +6,26 @@ merges and closures and never expire.
 
 ## Lessons
 
+- An artifact read fifty times has only been read in the medium it was built
+  for, and the medium nobody chose is where the unasked question lives. The
+  Signals list says "the built site itself ... page weight, semantics,
+  accessibility, meta and SEO", and every sweep since 08-29 obliged on a screen:
+  contrast against `--bg`, overflow at 390 and 860, tap targets, landmarks,
+  reference integrity. Paper was never asked, and paper is the one surface where
+  the palette inverts: `--text` measures 15.18:1 on screen and **1.29:1** on a
+  sheet, the same declaration, because chrome prints backgrounds off and the
+  white is the reader's, not the page's. The test for this is cheap and worth
+  running on anything the repo publishes: name the media and contexts the
+  artifact can be consumed in, then ask which of them no rule in the source
+  mentions. `@media print` appeared nowhere in `src/`, which was the whole
+  finding sitting in a grep. Its other half is the day's false positive, and it
+  is the 09-26 rebuild-and-read habit's blind spot: a page that composes a
+  string from the clock re-renders differently every few minutes, so two
+  screenshots of it are not a before and an after unless they were taken in the
+  same clock window. Today's first pair read DIFF on both day-page widths and
+  SAME on both index widths, which looks exactly like a regression in the day
+  template and was `timeLeft` rolling from "about 9 hours" to "about 8".
+
 - Two routes to the same REST resource are two tools, and "the environment
   refuses this" is a claim about the route that was tried. The harness appends
   its attribution footer to every body it posts, and stripping it is a standing
@@ -341,6 +361,56 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-10-22 as #289 / PR #290, `e0f7fb0`, `pages` run 39746969814
+  green. A printed digest reads on paper. Nothing owed in code: the after-state
+  was measured in the browser under print media (nothing on the sheet under AA,
+  the digest's own text at 17.70:1 or better) and the no-regression half is
+  byte-identical screen screenshots on all four page/width pairs. What cannot
+  be measured from here is whether anyone prints, which needs the goatcounter
+  dashboard (403 at CONNECT since 09-05); do not file a verification task
+  against it. **One thing the block deliberately cannot reach**: pen marks are
+  `background-image` svg data uris, so with background graphics off they do not
+  print at all; `mark.pen` keeps its colour, so a marked phrase reads as
+  ordinary text rather than as something broken. If a run ever wants them on
+  paper, the only shape that survives a background-less print is a real border
+  or text-decoration, which would change the screen too and is therefore a
+  proposal, not a fix.
+- Walked clean on 2026-10-22, recorded so a future run does not re-walk them.
+  **The paywall phrase path against the whole archive**: of 9,216 stored items,
+  128 carry `paywalled: true` and **127 of them are the domain rule**. Exactly
+  one is phrase-only (lennysnewsletter, "for paid subscribers" at offset 468 of
+  a 505-char body), which is a genuine teaser, and 0 are both. The false
+  positive this path invites, a full article that happens to contain "to
+  continue reading" mid-body, has no instance: `PAYWALL_PHRASES` scans the
+  whole body, and the count says that is not costing anything. Nothing to gate
+  or narrow.
+  **The Hacker News `(discussion)` rule** (../AGENTS.md: a heavily discussed
+  story, roughly 300+ comments, also links its `item?id=` permalink). Counted
+  by matching each day's digest links back to that day's `hacker-news` items:
+  **365 hn items linked across 32 days, 38 of them with 300+ comments, and 34
+  of the 38 carry the permalink.** All 4 misses are 09-22..09-25 and the last
+  **27 days are 0 of 0 missing**, so a gate here is wallpaper by the
+  09-30/10-03 test: the habit had every chance to break and stopped breaking a
+  month ago.
+  **The Hacker News section's shape**: "never bullets" holds at **0 of 32**
+  days, and the section is 1-3 paragraphs (one day at 3, 10-21). Its length is
+  the drift, see the editorial note below.
+- Noticed 2026-10-22, measured, and NOT filed, because it is the fifth and
+  sixth editorial drift waiting on Yasin and the 10-13/10-16 reasoning applies
+  verbatim. **The Hacker News section runs short of its brief and Threads runs
+  one bullet long.** ../AGENTS.md asks the HN section for "roughly 150-200
+  words"; across 32 days it is min 95, median 120, max 230, and **24 of 32 days
+  are under 150**, the last ten all between 98 and 150. It asks Threads for
+  "3-6 bullets"; the archive is min 4, median 5, max 7, with **2 of 32 at 7**
+  (10-03, 10-17). Re-counted in the same pass, the 10-09 lead drift holds and
+  is wider than it was: "a 2-3 sentence What matters today" measures 2-5
+  sentences, **11 of 32 days at 4 or 5**, all eleven since 10-02. Three numbers
+  in a contract the gardener may not edit, with nothing for verify.ts to gate
+  on the first two (the HN word count and the Threads bullet count are
+  judgement, and a gate on either would fire on the digest agent's own steady
+  habit rather than on a defect). Fold into whichever editorial issue moves
+  first; #246 and #112 are both waiting.
 
 - MERGED 2026-10-21 as #285 / PR #286, `abf96af`, `pages` green. `rss parsed`
   names its bodyless kept items. **Open after it, and not a task to verify
@@ -1395,6 +1465,95 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-22
+
+**#289 filed, PR #290 built, `checks` green on `89c0bb7`, merged by this run at
+08:21 as `e0f7fb0`, `pages` run 39746969814 green on it.** A day page saved as
+pdf or sent to a printer now reads as ink on paper instead of as the dark theme
+on a white sheet.
+
+**The signal is a surface this journal had never looked at.** Fifty sweeps of
+the built site and not one of them asked what the page does in the one medium
+it is not designed for. Chrome's print dialog ships with "background graphics"
+off, so the paper stays white while every colour stays exactly as declared for
+a dark page. Against white: **`--text` 1.29:1** (the h1 and every section
+heading), **`--bold` 1.58** (the bold lead of every entry), **`--body` 2.15**
+(the prose), **`--accent` 2.49** (every link). Only the two chrome tokens pass,
+`--muted` at 4.74 and `--faint` at 7.25, so on paper the most legible text on
+the sheet was the date line under the title.
+
+**Read off the artifact, not off the stylesheet.** `page.pdf({printBackground:
+false})` through chromium, rasterised with `pdftoppm`, and looked at: the
+headings are ghosts, the bold entry leads read paler than the prose under them,
+and the refresh note prints its countdown ("the evening update lands around
+18:45 (oslo time), in about 9 hours") onto a sheet where it is stale on
+arrival. Computed styles under `emulateMedia({media:"print"})` confirmed the
+cause rather than inferring it: nothing in the stylesheet changes for print,
+`h1` is still `rgb(232,226,217)`.
+
+**The change is one `@media print` block, six declarations, no new colour.**
+The same ten hexes read the other way round: `--text`/`--bold`/`--accent` to
+`#0d0c0b`, `--body` to `#1a1816`, `--muted`/`--faint` swapped, since on paper
+the lighter of that pair is the quieter one, and `--border` to `#b8b0a3` so a
+rule prints as a hairline. `body{background:none}` keeps the sheet white for
+the reader who does tick background graphics. Hidden: the crumbs, the pager,
+the notify button, and `.today-note` (which covers `.refresh-note`), all of
+them things that need a tap or a clock. The footer stays, AI disclosure
+included. After: every text element on the sheet at **7.25:1 or better**, the
+digest's own text at 17.70 to 19.54, measured in the browser against the colour
+actually painted behind each element rather than against the token.
+
+**Verification.** 249 tests (248 before), typecheck silent, 33 pages,
+`npm run verify -- 2026-10-22` clean, `test/contract.test.ts` green with all
+ten palette hexes still in the index. The new test asserts the **ratio** rather
+than the hexes: it extracts the print block's own `:root`, computes each text
+token against white and requires 4.5:1, so a later retune that keeps the shape
+and drops a token back under AA still fails. Both halves were made to bite
+separately, per 09-22: stashed it fails on `no @media print block`, and with the
+block in place but `--text` put back to `#b8b0a3` it fails on the arithmetic
+(`expected 2.147882359452784 to be greater than or equal to 4.5`). No-regression
+half: full-page screenshots of a day page and the index at 390px and 860px,
+**byte-identical on all four**. Cost +954 bytes raw, +366 gzipped per page,
+after the comment was cut from a first draft that cost +1,470/+589; the 10-20
+lesson about naming a cost instead of paying it was the reason to cut it.
+
+**A trap for any future visual diff on a day page, found by walking into it.**
+The first before/after screenshot pair came back DIFF on both day-page widths
+and SAME on both index widths, which reads exactly like a regression confined
+to the day template. It was the clock: the refresh note counts down in the
+reader's browser, and between the two captures `timeLeft` rolled from "in about
+9 hours" to "in about 8 hours". Re-taken inside one minute, all four are
+byte-identical. 10-09 swept this component's output across 1440 minutes and
+called it a string composed at view time; this is the same fact arriving as a
+false positive. **A screenshot of a day page is only comparable against another
+taken in the same clock window.**
+
+**Health**: 25 of the last 25 workflow runs green. The verifier over the last
+eight days is clean but for three link counts past the 60 gate (10-15 at 73,
+10-18 at 68, 10-21 at 64), which is the entry-count drift already banked on
+10-13. `gh pr list` returns nothing because there was nothing open; four issues
+are, #246, #241, #120 and #112, all of them waiting on Yasin and none greenlit,
+so today's slot went to a new observation.
+
+**The environment, as it behaved today.** Every `gh api` REST call worked,
+including POSTing the issue and reading check runs; `gh pr list` is still
+GraphQL and still 403, and the 403 body is worth keeping because it has grown
+useful: it names the REST equivalents and a set of CCR routes on
+api.github.com for the things GraphQL used to carry
+(`/pulls/{n}/ccr/review_threads`, `/ccr/comments/{id}/resolve`,
+`/ccr/auto_merge`, `/ccr/ready_for_review`, `/ccr/convert_to_draft`). Untried
+today, recorded for the run that needs a review thread resolved. The footer
+strip worked on the **first** MCP try on both the issue and the pr, as 10-21
+found, and never needed `gh api -X PATCH`. The branch delete is still refused
+as a write through the proxy (`DELETE git/refs/heads/...`, 403), so
+**45 gardener branches** are now on the remote, counted off `git ls-remote`
+rather than incremented from 10-17's forty. Copilot posted no review (quota
+limit again), so the checks window carried no feedback to answer; netlify's
+three neutral `sift-push` checks and a cancelled deploy preview are the
+sidecar's, not this repo's. The live site is 403 at CONNECT as always, so the
+green `pages` run is the whole of the deploy confirmation available here.
+
 
 ### 2026-10-21
 
