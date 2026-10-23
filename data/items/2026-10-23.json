@@ -1,6 +1,6 @@
 {
   "day": "2026-10-23",
-  "generatedAt": "2026-10-23T16:37:59.474Z",
+  "generatedAt": "2026-10-23T19:33:18.234Z",
   "items": [
     {
       "sourceSlug": "vercel-blog",
@@ -888,6 +888,25 @@
     },
     {
       "sourceSlug": "hacker-news",
+      "externalId": "50202114",
+      "title": "Canadians are running out of time to oppose Bill C-22",
+      "url": "https://www.eff.org/deeplinks/2026/10/canadians-are-running-out-time-oppose-dangerous-c-22-surveillance-bill",
+      "author": "hn_acker",
+      "publishedAt": "2026-10-22T22:43:19.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 149,
+      "comments": 52
+    },
+    {
+      "sourceSlug": "hacker-news",
       "externalId": "50202217",
       "title": "LLMs are making formal software verification feasible at a much larger scale",
       "url": "https://www.anthropic.com/research/formal-verification",
@@ -1048,6 +1067,21 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/kimi-k3-1-pro-and-kimi-k3-1-pro-highspeed-are-available-now-in-ai-gateway",
+      "title": "Kimi K3.1 Pro and Kimi K3.1 Pro Highspeed are available now in AI Gateway",
+      "url": "https://vercel.com/changelog/kimi-k3-1-pro-and-kimi-k3-1-pro-highspeed-are-available-now-in-ai-gateway",
+      "author": "Zachary Chen",
+      "publishedAt": "2026-10-23T00:00:00.000Z",
+      "content": "from is now available on , along with , a faster version for interactive use.Kimi K3.1 ProMoonshot AIAI GatewayKimi K3.1 Pro Highspeed K3.1 Pro is the first model in Moonshot's K3.1 series. It builds on with improvements in coding, 3D modeling, financial analysis, and agentic tasks, and keeps the 1M-token context window and image input.Kimi K3 For coding, K3.1 Pro handles work ranging from small fixes in an existing codebase to building a full project, including long agent runs with many steps. It builds front-end pages and interactive scenes with stronger typography and animation than earlier Kimi models. In finance, it can carry a task from start to finish, such as building a linked financial model with adjustable assumptions and scenarios, or writing research grounded in source documents. K3.1 Pro makes fewer factual errors than earlier Kimi models on difficult prompts. Moonshot AI plans to release the model weights by November 4: support for more providers will follow. Call either model through the , the , , and APIs, or a connected to AI Gateway. For Highspeed, use in place of the model name below.AI SDKChat CompletionsResponsesAnthropic Messagescoding agentmoonshotai/kimi-k3.1-pro-highspeed Use as the model name:moonshotai/kimi-k3.1-pro To use it in Claude Code, Codex, Cursor, and more, install the latest Vercel CLI and run setup: Then select or in the agent. See the for details.moonshotai/kimi-k3.1-promoonshotai/kimi-k3.1-pro-highspeedcoding agents guide Try Kimi K3.1 Pro in the .model playground AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in , , , , and more.custom reportingZero Data Retention supportbudgets for API keysrouting rules AI Gateway reflects provider pricing with no markup and does not charge a platform fee on inference, including on (BYOK) requests.Bring Your Own Key You can view available on AI Gateway.all language models Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "alphasignal",
       "externalId": "https://alphasignal.ai/news/idiap-s-abstract-compression-halves-audio-tokens-without-losing-conversation",
       "title": "Idiap's Abstract Compression Halves Audio Tokens Without Losing Conversation Context",
@@ -1174,6 +1208,21 @@
       "content": "Sarah Perez / TechCrunch: Spotify confirms it is rolling out a new family plan verification method requiring members to scan QR codes on plan managers' phones within seven days of notice — Spotify confirmed the reports of its crackdown on Family Plan sharing during its third-quarter call with investors …",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/send-feedback-from-vercel-cli",
+      "title": "Send feedback from the Vercel CLI",
+      "url": "https://vercel.com/changelog/send-feedback-from-vercel-cli",
+      "author": "Krish",
+      "publishedAt": "2026-10-23T02:00:00.000Z",
+      "content": "The now includes , which sends bugs, friction reports, and feature requests to the Vercel team from your terminal.Vercel CLIvercel feedback Coding agents can also send feedback when they run into issues. Use with or to include structured context as pairs. Repeat the flag to describe the task, expected behavior, and what went wrong.vercel feedback-f--fieldkey=value Update to the latest Vercel CLI and read the to get started. documentationvercel feedback Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -1972,6 +2021,21 @@
       "topics": [
         "research",
         "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/how-interfaze-serves-50-million-requests-a-month-on-vercel",
+      "title": "How Interfaze serves 50 million requests a month on Vercel",
+      "url": "https://vercel.com/blog/how-interfaze-serves-50-million-requests-a-month-on-vercel",
+      "author": "Susan Aziz",
+      "publishedAt": "2026-10-23T04:00:00.000Z",
+      "content": "Interfaze on Vercel 50 million requests a month Backend running on Fluid compute Multiple model providers behind one fallback layer with AI Gateway builds models for deterministic work that general-purpose LLMs handle poorly: document processing, OCR, object detection, web scraping, speech to text, and classification.Interfaze As founder Yoeven Khemlani puts it, \"Most models aren't deterministic by nature. That's fine when you're drafting an essay. But when a hospital or a legal team needs to process documents, you don't reach for an LLM.\" Ask an LLM for the total on an invoice and you get a number with no easy way to check where it came from. Interfaze's models return the number along with a bounding box showing where on the page it came from and a confidence score for how sure the model is. Every result can be checked, and the models still take prompts the way an LLM does. Everything around Interfaze's models runs on Vercel, including the backend. That spans the API serving 50 million requests a month, the sandbox that executes code the model writes, and the routing that keeps data preprocessing running when a third-party model provider goes down. Interfaze's frontend and backend both run on Vercel. The backend handles every request to Interfaze's API, whether a customer is calling the model or uploading a file. All of it runs as serverless functions in the same codebase as the frontend. When a request needs computation, the model hands the code to , which runs it in isolation. There was no separate infrastructure to set up.Vercel Sandbox Scalability was Yoeven's top requirement. The goal is serving the model to millions of users, and scales with traffic on its own. Heavier work runs there too. Vercel's memory and timeout limits are high enough that Interfaze's web scraping, which runs on Puppeteer, works out of the box.Fluid compute Interfaze pushes large volumes of data cleaning through open source models hosted by third-party providers. A single provider is a weak link. Providers hit rate limits or go down, and when one does, the cleaning stops unless traffic moves somewhere else. The providers are also not interchangeable. Two of them can claim to host the same open source model and serve it at very different quality. When a provider fails or throttles, fails requests over to the next provider automatically. It also lets Interfaze choose which provider serves a given model, so the team can run the same workload through each one, see which performs well, and send traffic there.AI Gateway Interfaze runs its lifecycle email system on the , with sends conditioned on product usage. The system tracks which API a customer called, at what volume, and how that compares against their first week. Retries are handled automatically, so one failed step doesn't take down the sequence.Workflow SDK The part Interfaze needed most was durable execution. A workflow can pause a step and pick it back up months later with its state intact, which the team found other systems could not do for long. Interfaze runs more than one version of its model at a time, each at its own URL. When an error comes in, the team has to know which version produced the error before they can fix anything. On Vercel every URL is its own deployment with its own logs, so the error is already filed under the version that caused it. There was no separate logging vendor to set up. Those same preview URLs are how a new model version gets to customers before it ships. The Vercel side of a release builds in about three minutes. Hosting the weights on GPUs is the slow part. Interfaze recently released , an open-weight version of its model that runs on a single GPU and is served through the same API. Next is a gateway for web search, one API that routes to whichever search provider a developer picks, the way AI Gateway does for models. It launches on the same Vercel backend as everything else.Interfaze 1 Lite Interfaze builds models for deterministic tasks, including OCR, object detection, web scraping, speech to text, and classification. Its customers are engineering teams in legal, healthcare, and finance.About :Interfaze Read more The backend required no infrastructure work Fluid compute handles the heavy jobs AI Gateway makes model routing reliable at scale Workflow SDK runs email sequences over months Preview deployments carry new model versions to customers What's next",
+      "topics": [
+        "devtools-infra",
+        "frontend"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -3255,6 +3319,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/securing-our-frontier-model-training-environment",
+      "title": "Securing our frontier model training environment",
+      "url": "https://openai.com/index/securing-our-frontier-model-training-environment",
+      "author": null,
+      "publishedAt": "2026-10-23T10:00:00.000Z",
+      "content": "OpenAI explains how we strengthened containment for frontier model training and evaluation, including offline environments and high-compute red-teaming.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "alphasignal",
       "externalId": "https://alphasignal.ai/news/alibaba-s-wan2-2-animate-lets-you-swap-characters-into-any-video",
       "title": "Alibaba's Wan2.2 Animate Lets You Swap Characters Into Any Video",
@@ -3281,6 +3359,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50206840",
+      "title": "Job loss and cortisone mania",
+      "url": "https://tilschuenemann.de/job-loss-cortisone-mania",
+      "author": "speckx",
+      "publishedAt": "2026-10-23T10:31:24.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 140,
+      "comments": 72
     },
     {
       "sourceSlug": "techmeme",
@@ -3485,6 +3582,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50207910",
+      "title": "Apple Music 404 Not Found",
+      "url": "https://music.apple.com/this-url-doesnt-exist",
+      "author": "frizlab",
+      "publishedAt": "2026-10-23T12:28:47.000Z",
+      "content": "https://www.macrumors.com/2026/10/23/apple-music-has-a-hidde...",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 158,
+      "comments": 44
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261023/p9#a261023p9",
       "title": "Pathos AI, which uses AI to develop oncology drugs, raised a $237M Series E at a $3B post-money valuation, up from $1.6B after its $365M Series D in May 2025 (Katherine Davis/Axios)",
@@ -3527,6 +3643,20 @@
       "content": "The Brick Night is considerably bigger then the OG Brick, and more than double the price. | Image: Brick Brick, the company behind the $59 gadget that blocks you from using apps on your phone, has launched a new device that's designed to help you cut back on doomscrolling in bed. The $129 Brick Night introduces a location-based element: instead of requiring you to tap your phone against the device, like the OG Brick, this version uses Bluetooth to automatically kick in when you enter your bedroom (or any other room you put it in). The Brick Night uses two CR2477 batteries, and you can set a location zone of up to 25 feet x 25 feet. Both this and the Brick allow you to select specific apps to block instead of rendering your entire phone inacces … Read the full story at The Verge.",
       "topics": [
         "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/deepseek-harness-lets-ai-build-full-3d-scenes-autonomously-in-blender",
+      "title": "DeepSeek Harness Lets AI Build Full 3D Scenes Autonomously in Blender",
+      "url": "https://alphasignal.ai/news/deepseek-harness-lets-ai-build-full-3d-scenes-autonomously-in-blender",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-23T12:50:48.000Z",
+      "content": "A new open-source plugin wires an AI agent directly into Blender over TCP, exposing 16 tools and 186 ops for scene editing, rendering, and verification.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -3781,6 +3911,25 @@
       "comments": 41
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50210075",
+      "title": "Pentagon grants DHS permission to test heat ray weapon for use at border",
+      "url": "https://www.cnn.com/2026/10/21/politics/heat-ray-weapon-dhs-pentagon",
+      "author": "bushwart",
+      "publishedAt": "2026-10-23T14:52:47.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 110,
+      "comments": 108
+    },
+    {
       "sourceSlug": "nvidia-blog",
       "externalId": "https://developer.nvidia.com/blog/?p=124028",
       "title": "Using AI Agents to Teach Robots Like Microduck to Walk in Simulation",
@@ -3838,6 +3987,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/nvidia-s-nemotron-3-5-bolt-squeezes-a-local-ai-agent-into-4gb",
+      "title": "NVIDIA's Nemotron 3.5 Bolt Squeezes a Local AI Agent Into 4GB",
+      "url": "https://alphasignal.ai/news/nvidia-s-nemotron-3-5-bolt-squeezes-a-local-ai-agent-into-4gb",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-23T15:41:40.000Z",
+      "content": "NVIDIA's new 4GB open model targets local voice assistants, NPCs and robots, outperforming peers on conversation benchmarks while using 80% fewer tokens.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261023/p12#a261023p12",
       "title": "Sources: Kalshi is targeting a December rollout for exchange-traded futures contracts tracking US inflation, rivaling exchanges like CME and ICE (Greg Ritchie/Bloomberg)",
@@ -3890,6 +4053,67 @@
       "topics": [
         "ai-llms",
         "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50211474",
+      "title": "Today, we hacked what we'd set out to hack: the iPhone",
+      "url": "https://blog.calif.io/p/iphone",
+      "author": "pavel_lishin",
+      "publishedAt": "2026-10-23T16:21:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 488,
+      "comments": 316
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/vercel-s-ai-sdk-ships-web-fetch-tool-that-works-across-any-ai-model",
+      "title": "Vercel's AI SDK Ships Web Fetch Tool That Works Across any AI Model",
+      "url": "https://alphasignal.ai/news/vercel-s-ai-sdk-ships-web-fetch-tool-that-works-across-any-ai-model",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-23T16:30:11.000Z",
+      "content": "Vercel's AI SDK adds a first-party web fetch tool that returns pages as markdown, works with any function-calling model, and ships with domain allowlists.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gaming/2026/10/everybody-panic-a-valve-developer-said-hlx-in-public/",
+      "title": "Everybody panic: A Valve developer said \"HLX\" in public",
+      "url": "https://arstechnica.com/gaming/2026/10/everybody-panic-a-valve-developer-said-hlx-in-public/",
+      "author": "Kyle Orland",
+      "publishedAt": "2026-10-23T16:35:00.000Z",
+      "content": "Gamers still hoping against hope for a true follow-up to Half-Life 2 (after so, so many years) may remember last year's flurry of speculation that Half-Life 3 was finally nearing completion. Amid all those rumors, though, we never got any official sign from anyone inside Valve that a Half-Life project was currently in development. That changed this week thanks to an apparent slip-up during a panel at GameSoundCon, an industry conference devoted to \"the art, technology, and business of game audio.\" In a panel devoted to Valve's use of open audio engines (captured in this Vimeo clip), Valve composer and audio artist Mike Morasky let an interesting string of three letters slip while talking about the way the company implements high dynamic range (HDR) audio: Our HDR system is basically that's one of the three pieces that come together to make an HDR that you can easily optimize. And in fact, I think Deadlock has their own version of HDR. HLX has its own version, so on and so forth [emphasis added]. \"HLX,\" of course, has been widely reported as the internal code name for Valve's next Half-Life project. The codename has shown up in Valve engine code since at least 2024, but it has never been referenced in public by a Valve employee until now (though Morasky was responsible for a close call in an interview last year). Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/cognition-rebuilds-devin-desktop-to-run-parallel-coding-agents-on-one-board",
+      "title": "Cognition Rebuilds Devin Desktop to Run Parallel Coding Agents on One Board",
+      "url": "https://alphasignal.ai/news/cognition-rebuilds-devin-desktop-to-run-parallel-coding-agents-on-one-board",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-23T16:36:57.000Z",
+      "content": "Cognition ships a polished refresh of its agent orchestration IDE, free to download and now compatible with your existing ChatGPT Plus or Pro quota.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -4537,6 +4761,81 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/10/knicks-sent-employees-fake-offer-of-championship-rings-in-phishing-test-report/",
+      "title": "Knicks sent employees fake offer of championship rings in phishing test: Report",
+      "url": "https://arstechnica.com/tech-policy/2026/10/knicks-sent-employees-fake-offer-of-championship-rings-in-phishing-test-report/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-10-23T16:51:59.000Z",
+      "content": "The New York Knicks organization sent employees a phishing email promising free championship rings in a test of its staff's ability to detect scams, The New York Times reported yesterday. “Congratulations, your Employee Championship Ring is here,” the email sent in late September said, instructing employees to click a link to make a selection from two ring designs. Madison Square Garden employees who clicked that link \"were forced to attend a mandatory cybersecurity class to help satisfy some of [owner James] Dolan’s growing cybersecurity concerns,\" the report said, citing team sources. Dolan is the owner of the Knicks, the New York Rangers, and Madison Square Garden. It's common for corporations to send phishing emails to find out which employees don't pay attention to clues that an email is a scam. A cybersecurity-test email often appears to be from the company itself but includes telltale signs of phishing. For example, Ars Technica owner Condé Nast sends phishing-test messages from email addresses with a misspelled domain, \"condenest.com.\" Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1017600",
+      "title": "Now Google says it might use your Gmail and Google Photos data to target ads",
+      "url": "https://www.theverge.com/tech/1017600/google-personal-intelligence-privacy-policy-ads-update",
+      "author": "Jess Weatherbed",
+      "publishedAt": "2026-10-23T16:52:55.000Z",
+      "content": "Google has updated its privacy policy in a way that could mean you'll start seeing targeted ads based on your personal data if you're using personalized AI features. The update, spotted by Android Authority, adds an exception to its promise about not using your Drive, Gmail, or Google Photos for personalized ads. While the previous version simply said it wouldn't do that, as of October 16th, Google has added the line, \"unless you choose to make data from these services available to other Google services that support personalized ads.\" That means anyone who has connected their Drive, Gmail, or Google Photos to AI Mode and other Search tools … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261023/p13#a261023p13",
+      "title": "AISI finds Mythos 5 pushed a GitHub maintainer to accept malicious code in a July eval despite evidence he was real; other models behaved the same in simulation (AI Security Institute)",
+      "url": "https://www.techmeme.com/261023/p13#a261023p13",
+      "author": null,
+      "publishedAt": "2026-10-23T16:55:01.000Z",
+      "content": "AI Security Institute: AISI finds Mythos 5 pushed a GitHub maintainer to accept malicious code in a July eval despite evidence he was real; other models behaved the same in simulation — We examine why Mythos 5 pursued an unsanctioned supply-chain attack and identify broader learnings about model behaviour and oversight.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/10/rfk-jr-s-vaccine-injury-clinic-could-damage-nih-hospital-board-warns/",
+      "title": "RFK Jr.’s vaccine injury clinic could damage NIH hospital, board warns",
+      "url": "https://arstechnica.com/health/2026/10/rfk-jr-s-vaccine-injury-clinic-could-damage-nih-hospital-board-warns/",
+      "author": "Beth Mole",
+      "publishedAt": "2026-10-23T16:58:39.000Z",
+      "content": "At a recent meeting of the board that oversees the National Institutes of Health's Clinical Center Research Hospital, chair Jack Leslie opened with cheerful introductions and gregarious chatter—then diverted from the agenda of the regularly scheduled meeting. He spent the next six minutes delivering a pointed rebuke of Health Secretary Robert F. Kennedy, warning that his anti-vaccine activities could tarnish the venerable hospital, often called the \"house of hope\" for patients with rare conditions or those who have exhausted all other options. Leslie took issue with a recent stunt Kennedy had pulled at the hospital, which involved making a surprise appearance for a ribbon-cutting ceremony to open his signature vaccine injury clinic. The ceremony included a panel with people claiming to have been injured by vaccines. They sat behind placards reading \"vaccine injured\" and spoke with Kennedy and other high-ranking Trump administration officials. Leslie prefaced his comments by noting that some might prefer he not speak out against Kennedy's efforts. \"But I think that that would be a failing as an advisory board if we were silent,\" he said. Leslie also noted that he has no concerns about studying potential injuries from vaccines. \"Serious reactions are rare, but real,\" he said, and people who believe they've been injured should \"be taken seriously.\" Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50212065",
+      "title": "Kimi K3.1 Pro and K3.1 Pro Highspeed",
+      "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "author": "Jowsey",
+      "publishedAt": "2026-10-23T16:59:08.000Z",
+      "content": "https://www.kimi.com/code/docs/en/kimi-code/models.html",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 392,
+      "comments": 214
+    },
+    {
       "sourceSlug": "openai",
       "externalId": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
       "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
@@ -4566,6 +4865,785 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/tencent-opens-hy-nomas-an-interactive-video-world-model-running-on-one-rtx-4090",
+      "title": "Tencent Opens Hy-Nomas, an Interactive Video World Model Running on One RTX 4090",
+      "url": "https://alphasignal.ai/news/tencent-opens-hy-nomas-an-interactive-video-world-model-running-on-one-rtx-4090",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-23T17:00:00.000Z",
+      "content": "Tencent's Hunyuan team released Hy-Nomas, an open source interactive video world model with text and camera control that runs on a single RTX 4090.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stratechery",
+      "externalId": "https://stratechery.com/?p=20477",
+      "title": "2026.43: A New Era",
+      "url": "https://stratechery.com/2026/a-new-era/",
+      "author": "Ben Thompson",
+      "publishedAt": "2026-10-23T17:00:00.000Z",
+      "content": "Welcome back to This Week in Stratechery! This week marks a new era for Stratechery, which is now presented by Stripe. I’m excited about what this partnership can unlock, starting with in-person on-video episodes of Sharp Tech. Check out the YouTube video above (or watch it on Stratechery); and, for subscribers, look forward to a bonus episode showing up in your subscriber feed every Sunday morning (add your feed on sharptech.fm). Here were a few of our favorite topics this week: The Best iPad; The Worst Phone. John Gruber wrote a great review of the iPhone Duo, which we broke down on Dithering. In short, it’s an iPad that fits in your pocket, and it’s awesome at that; just don’t expect a good phone. Plus, on Monday we discussed Apple’s surprising partnership with Meta for edge AI, a topic I also covered in Tuesday’s Update. — Ben Thompson The SS Sarandos in a Storm. The past week has seen a flood of bad news for Netflix: layoffs, executive departures, another disappointing round of earnings, and another hit to a share price that has taken a 40% hit over the past 12 months. Wednesday’s Update provides a comprehensive state of the union, and we doubled back on the topic for a fun conversation on this week’s Sharp Tech, where we divided the company’s problems into areas that can be fixed (the content) and what may be much trickier (growing the business in a world where Meta and YouTube are primary engagement competition).— Andrew Sharp You Can See Everything, But Can’t Trust Anyone. Allow me to be the 1,000th person on the internet to recommend Nathan Fielder’s new Elizabeth Holmes documentary, You Can See Everything. After declaring on Sharp Tech last week that I wasn’t interested in seeing it, I did in fact check it out, and wound up loving it. I wrote about my experience on Sharp Text, with 5 spoiler-free notes for anyone still on the fence, and 5 more reactions for anyone who’s seen it. Compulsively watchable (and worth seeing in a theater), I think it may have also been the most effective document of our modern media environment I’ve ever seen. — AS Presented by It’s kind of weird to be the Internet’s number one fan of ads. What makes it even weirder is that I have been the Internet’s number one fan of ads without actually having ads on Stratechery. That second part is changing: I’m super excited to announce that Stripe is going to be the presenting sponsor of Stratechery. And, at the end of the day, for me it couldn’t be any other company. One of my hangups in terms of advertising is that I take my ethics super seriously, and ultimately, if a company is helping pay the bills, it’s hard to be truly objective about them. What I realized, however, is that it’s hard for me to be objective about Stripe anyway. I wanted to be a professional blogger long before I started Stratechery; however, I thought I had missed my chance, particularly as it became clear that advertising was not a long term business model for a one-person site. However, when Stripe launched with support for recurring billing, I realized there was a better model: subscriptions. 13 years later, and I’m still a happy customer. Or, to put it another way, I’m already conflicted because I love Stripe. I’m not the only one: more than 5 million businesses use Stripe, accounting for 1.7% of global GDP. Moreover, a lot of those businesses are Internet native and accretive to the world’s economy, which is to say that Stripe is literally making the world a better place. That’s an easy company to get behind, especially since they have been behind Stratechery from the very beginning. — Ben Thompson Stratechery Articles and Updates Do You Trust Apple? — Apple has a lot of trust in terms of delivering integrated products and preserving privacy; the real trust question is if you think Siri AI will justify investing more in their ecosystem. Muse Spark Open, Meta + Apple, Thin and Thick — Meta has a new open source model, and to everyone’s surprise, they are are partnering with Apple to make sure you can run it locally. Netflix Earnings, Business or Franchise, Disney’s Deal — Netflix has a solid business, which is exactly the problem: the company increasingly seems like a business and not a franchise, at least in terms of growth. An Interview with Craig Moffett About SpaceX and Bubbles — An interview with Craig Moffett about SpaceX, from launch to broadband to mobile, plus how he is applying the lessons of the dot-com bubble to today. Sharp Text by Andrew Sharp You Can See Everything (And It’s a Great Time) — Nathan Fielder’s movie lives up to the hype and captures the modern world better than any art in recent memory. Dithering with Ben Thompson and Daring Fireball’s John Gruber Apple + Meta AI The Duo Review Asianometry with Jon Yu The Birth & Rise of India’s IT Outsourcing Industry Sharp China with Andrew Sharp and Sinocism’s Bill Bishop New Export Controls in Multiple Sectors; Q3 GDP and the Fifth Plenum; Europe Presses Forward; OpenAI and Nvidia Chips Greatest of All Talk Aday Mara and the OKC Woodchipper, An Emergency Celtics Panic Watch, Silver Appreciation(???) and Laker Dreams Sharp Tech with Andrew Sharp and Ben Thompson Netflix Angst, The End of the Internet, Q&A on Meta’s VR Glasses, Anthropic Alignment, You Can See Everything",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1017447",
+      "title": "The iPhone Duo should have been an iPad",
+      "url": "https://www.theverge.com/podcast/1017447/iphone-duo-ipad-review-score-vergecast",
+      "author": "David Pierce",
+      "publishedAt": "2026-10-23T17:00:18.000Z",
+      "content": "We gave the iPhone Duo a 7 /10. But that wasn't always the score we planned, and it might not be the right score forever. Such are the challenges of reviewing - and assessing - a big, new idea about the most popular smartphone in history. On this episode of The Vergecast, David and Nilay debate whether the Duo deserved the score it got, and try to work through how this device might change over time. Is the outer screen, as Daring Fireball's John Gruber suggested, the worst iPhone ever? Would it be a better product if it started as an iPad rather than an iPhone? Would we feel differently about this thing if it were simply called the iPad Du … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/liquid-ai-s-d1-1-cuts-decision-costs-to-0-02-per-million-tokens",
+      "title": "Liquid AI's d1.1 Cuts Decision Costs to $0.02 per Million Tokens",
+      "url": "https://alphasignal.ai/news/liquid-ai-s-d1-1-cuts-decision-costs-to-0-02-per-million-tokens",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-23T17:06:22.000Z",
+      "content": "Liquid AI's d1.1 narrows the gap to d1-ultra while cutting cost by more than half, keeping input-only billing at $0.02 per million tokens.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261023/p14#a261023p14",
+      "title": "Anthropic attributes Mythos 5's deception of a GitHub maintainer to recklessness, biased reasoning, and an urge to finish jobs, saying newer models rarely do so (Anthropic)",
+      "url": "https://www.techmeme.com/261023/p14#a261023p14",
+      "author": null,
+      "publishedAt": "2026-10-23T17:10:02.000Z",
+      "content": "Anthropic: Anthropic attributes Mythos 5's deception of a GitHub maintainer to recklessness, biased reasoning, and an urge to finish jobs, saying newer models rarely do so — In AISI's evaluation, Mythos 5 was given a capture-the-flag (CTF) cybersecurity challenge, in which it was asked to retrieve …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/moonshot-s-kimi-k3-1-pro-challenges-claude-with-2-8-trillion-parameters",
+      "title": "Moonshot's Kimi K3.1 Pro Challenges Claude With 2.8 Trillion Parameters",
+      "url": "https://alphasignal.ai/news/moonshot-s-kimi-k3-1-pro-challenges-claude-with-2-8-trillion-parameters",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-23T17:15:24.000Z",
+      "content": "Moonshot's 2.8T parameter MoE now runs full Unreal projects, parametric CAD, and finance modeling with 65% fewer hallucinations.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/10/intel-gets-waiver-after-worries-fuzzy-us-ban-on-foreign-made-robots-may-hit-fabs/",
+      "title": "Intel gets waiver after worries fuzzy US ban on foreign-made robots may hit fabs",
+      "url": "https://arstechnica.com/ai/2026/10/intel-gets-waiver-after-worries-fuzzy-us-ban-on-foreign-made-robots-may-hit-fabs/",
+      "author": "Jeremy Hsu",
+      "publishedAt": "2026-10-23T17:18:31.000Z",
+      "content": "US chip champion Intel was so confused by the US government ban on foreign-made robots that it requested and received a waiver “out of an abundance of caution.” The tech company wanted to make sure that it could continue using certain robotic vehicles in its US chip fabs. The uncertainty surrounding the Federal Communications Commission ban on certain foreign-made robots was revealed in the agency’s decision to grant Intel’s waiver request. On October 22, the FCC published its order allowing Intel to continue using the foreign-made robots in US semiconductor manufacturing facilities for a period of one year. The robots in question are automated guided vehicles operating on “tracks or predefined paths” while often requiring operator oversight, according to Intel’s website. They help to move materials and items around within warehouses and factory floors. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/deepseek-s-v4-1-flash-1017-tops-public-cybersecurity-rankings-at-0-42-per-task",
+      "title": "DeepSeek's V4.1 Flash 1017 Tops Public Cybersecurity Rankings at $0.42 per Task",
+      "url": "https://alphasignal.ai/news/deepseek-s-v4-1-flash-1017-tops-public-cybersecurity-rankings-at-0-42-per-task",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-23T17:23:09.000Z",
+      "content": "DeepSeek V4.1 Flash 1017 tops the Artificial Analysis Cyber Index among open models, with zero safety refusals and a 53 point jump on CyberGym-E2E-AA.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=124071",
+      "title": "Scaling NVIDIA TensorRT Performance Optimization Beyond a Single Build Route with the Global Performance Tuner, Part 1",
+      "url": "https://developer.nvidia.com/blog/scaling-nvidia-tensorrt-performance-optimization-beyond-a-single-build-route-with-the-global-performance-tuner-part-1/",
+      "author": "Tanya Lenz",
+      "publishedAt": "2026-10-23T17:27:35.000Z",
+      "content": "Deploying a trained neural network involves more than translating each operator into a GPU kernel. It is a compilation problem with many legitimate answers. For... Deploying a trained neural network involves more than translating each operator into a GPU kernel. It is a compilation problem with many legitimate answers. For example, when NVIDIA TensorRT builds an engine, it makes interdependent decisions about graph-IR transformations, fusion, implementation selection, memory placement, and quantization. This process is called scheduling. Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=124139",
+      "title": "Scaling NVIDIA TensorRT Performance Optimization Beyond a Single Build Route with the Global Performance Tuner, Part 2",
+      "url": "https://developer.nvidia.com/blog/scaling-nvidia-tensorrt-performance-optimization-beyond-a-single-build-route-with-the-global-performance-tuner-part-2/",
+      "author": "Tanya Lenz",
+      "publishedAt": "2026-10-23T17:27:52.000Z",
+      "content": "The Global Performance Tuner is a feature for automatic performance tuning released in NVIDIA TensorRT 11.1. It provides automatic, accuracy-aware and... The Global Performance Tuner is a feature for automatic performance tuning released in NVIDIA TensorRT 11.1. It provides automatic, accuracy-aware and end-to-end performance tuning within TensorRT by customizing different optimizations for different models. For more details, see Part 1 of this series, which introduces the challenges associated with scheduling (a critical stage in deep learning… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/10/crows-can-evaluate-visual-info-twice-as-fast-as-mammals/",
+      "title": "Crows can evaluate visual info twice as fast as mammals",
+      "url": "https://arstechnica.com/science/2026/10/crows-can-evaluate-visual-info-twice-as-fast-as-mammals/",
+      "author": "Jacek Krywko",
+      "publishedAt": "2026-10-23T17:32:58.000Z",
+      "content": "Much of what we know about how a brain makes decisions comes from studying monkeys watching dots. In a task known as a random-dot-motion task, a cloud of flickering specks drifts weakly in one direction while the subject tries to determine whether—and in which direction— it’s moving. The task has shown that in the primate neocortex, neurons gather visual evidence over time, with their firing rates climbing until they cross a threshold, when the animal commits to a decision. But avian brains don’t have a neocortex, so it wasn’t obvious how they made similar decisions. “This was the big question,” said Andreas Nieder, a neurobiologist at the University of Tübingen. “How [would] a differently organized avian brain encode decisions?” Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1017443",
+      "title": "Elon Musk’s dangerous grip on outer space",
+      "url": "https://www.theverge.com/science/1017443/spacex-starlink-ukraine-elon-musk-monopoly",
+      "author": "Georgina Torbet",
+      "publishedAt": "2026-10-23T17:35:15.000Z",
+      "content": "Last week, Starshield - the version of SpaceX's Starlink used by the Ukrainian military - was throttled to block terminals traveling above certain speeds from accessing the service. The Ukrainian army's interceptors, which counter Russian drones carrying bombs, suddenly stopped working at high speeds, making it easier for Russia to attack the country's energy infrastructure and leading to a reported two deaths and at least 17 injuries. The Ukrainian military reported receiving no advance warning about the Starshield speed restriction. But Ukrainian President Volodymyr Zelenskyy said it was a direct message from the US amid rising tensions b … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261023/p15#a261023p15",
+      "title": "Moonshot unveils Kimi K3.1 Pro, a 3T-class open-weight model with a 1M-token context window, and K3.1 Pro Highspeed, with full weights to be released by Nov. 4 (Kimi)",
+      "url": "https://www.techmeme.com/261023/p15#a261023p15",
+      "author": null,
+      "publishedAt": "2026-10-23T17:45:05.000Z",
+      "content": "Kimi: Moonshot unveils Kimi K3.1 Pro, a 3T-class open-weight model with a 1M-token context window, and K3.1 Pro Highspeed, with full weights to be released by Nov. 4 — We're introducing Kimi K3.1 Pro, the first model in our new K3.1 series and our most capable 3T-class open-weight model to date, with a 1-million-token context window.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1017196",
+      "title": "Fi’s GPS-equipped dog trackers are on sale for 30 percent off",
+      "url": "https://www.theverge.com/gadgets/1017196/fi-ultra-gps-dog-tracker-kirby-air-riders-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-10-23T17:55:03.000Z",
+      "content": "If your dog or cat is prone to getting lost, or you frequently go on adventures together, you can save 30 percent on Fi pet trackers through October 25th when you enter coupon code SCARY at checkout. The sale includes several satellite-connected trackers, including the Fi Ultra GPS we previously tested, which is down to $209.30 after the discount. That effectively brings it down to its original launch price. The IP68-rated Fi Ultra is fully waterproof, even in saltwater, and lasts up to five days, depending on how active your dog is. The accessory — which conveniently attaches to your dog’s collar or harness — uses a combination of LTE, GPS, and Starlink satellite coverage to track your dog’s current location and recent history, even in cellular dead zones; it can also send noise and vibration alerts to catch your canine’s attention. Fi Ultra dog tracker The Fi Ultra is the first dog tracker to combine T-Satellite with Starlink, GPS, and LTE connectivity to help you find your lost dog anywhere. Where to Buy: $299 $209.3 at Fi (with code SCARY) We spent time with the Fi Ultra earlier this year, testing it in a remote location in South Carolina. While the tracking was precise, the two- or three-minute update interval could be problematic for fast dogs, and it drained the battery quickly in Lost Mode (we barely got two days on a full charge). It’s also fairly sizable, making it a better fit for larger pups. Unsurprisingly, you’ll need an active subscription to use the Fi Ultra’s tracking features, though you’ll get a discount on your first term, with six-month, one-year, and two-year plans available that offer lower overall monthly rates. For example, a one-year plan is $99 for the first year, and $189 each year after. However, the plans only work in the United States and offer no satellite coverage in Alaska. Read our Fi Ultra review. Other deals to consider You can currently grab a physical copy of Kirby Air Riders for the Nintendo Switch 2 at Amazon for $48.99, a decent discount from its usual list price of $69.99. The colorful, fast-paced racing game offers surprising depth in terms of character and kart customization, with both cosmetic and functional upgrades to purchase and deploy over time. Read more. The JLab JBuds Talk USB-C microphone is on sale at Amazon for $24.99, where it usually fluctuates between $50 and $100, the full MSRP. A dedicated microphone can make a huge difference in audio quality over headphones or your laptop’s built-in mic. The Talk features four directional modes for different situations and a 96KHz/24-bit sample rate for high-quality recordings and voice clarity. Amazon is selling Lego’s Star Wars Grogu set for a discounted price of $103.99 ($26 off), which matches its lowest price to date. The 1,200-piece kit features Grogu in his beskar armor, with a satchel to carry his equipment (or snacks). You can also reattach his arms and facial features for different expressions, and a built-in lever lets you turn his head.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "cloudflare-blog",
+      "externalId": "01M5MYFG0SHDEYME96N0A4Z6PH",
+      "title": "Bringing post-quantum cryptography to geographically fenced key management",
+      "url": "https://blog.cloudflare.com/post-quantum-geo-key-manager/",
+      "author": "Chetan Agrawal",
+      "publishedAt": "2026-10-23T18:06:56.000Z",
+      "content": "Today, Cloudflare is launching a post-quantum geographically restricted key manager in support of our Data Localization Suite (DLS) in closed beta. This new PQ GeoKey Manager is a cornerstone of Cloudflare’s data sovereignty solutions, making sure that a customer's decryption keys are only accessible in their chosen geography. GeoKey Manager implements this by wrapping each decryption key such that it can only be decrypted by Cloudflare servers that are located in the allowed geography. While general availability (GA) is planned for Q1 2027, today’s launch is an important milestone on our journey to support our customers’ data sovereignty goals while also migrating all Cloudflare products to post-quantum (PQ) cryptography. Governments, financial institutions, healthcare providers, and defense organizations process highly sensitive data that can remain sensitive for years or decades after it is produced. Encryption is often required to protect this data. When classical, public-key encryption is used, adversaries do not immediately need a quantum computer today to put that data at risk: they can store the ciphertext and retain them until quantum computers can break the public key cryptography protecting it — an attack strategy known as harvest now, decrypt later. For organizations with geographic requirements, resisting that threat is only half the challenge. At Cloudflare's scale, high availability requires replicating customer data across many servers across our global network. However, many data sovereignty regulations require that certain types of data be processed only within a given geographical region. We must therefore ensure the data is end-to-end encrypted such that only servers within the region have access to the plaintext. In this post, we describe the system that makes this work. The evolution of GeoKey Manager Cloudflare pioneered the concept of geo-restricted transport layer security (TLS) keys back in 2017 with GeoKey Manager. This gave customers control over the locations where their private TLS keys could be unwrapped on Cloudflare’s anycast network to provide stronger technical guarantees of which region their requests are decrypted into. For instance, a customer could choose to only unwrap their private keys in India. So instead of allowing decryption across Cloudflare’s entire global network, GeoKey Manager makes sure TLS signing for each customer request happens in our India network. GeoKey Manager evolved again in 2022 with ciphertext policy attribute based encryption (ABE). Instead of tying encrypted keys to a fixed set of data centers, ABE expressed geographic requirements using attributes such as country or region, like “region = European Union” or “region = Canada + United States + Mexico”. Newly authorized servers could receive matching decryption capabilities without rewrapping every customer key. That flexibility created a challenge and opportunity for the post-quantum transition. No production-ready post-quantum ABE scheme is available today, and customers do not need a large number of regions. A simpler design meets the requirement and is easier to maintain and operate. Cloudflare therefore uses hybrid ML-KEM-768 and X25519 protection with two kinds of keys, out of which ML-KEM-768 is a NIST standard that also opens doors to highly sensitive customers. A regional root key is a symmetric secret tied to one region, and an application-specific key pair is derived from it for a single service, such as Gateway or Tunnel. This protects private-key material against harvest now, decrypt later while preserving regional key-use boundaries. Global ciphertext, regional key unwrapping In its new form, GeoKey Manager is the key foundation for Cloudflare’s data sovereignty solutions. It controls which region protected decryption keys can be used from and when. Separate workstreams determine where tunnels terminate, where traffic is inspected, how it is routed, and where plaintext processing occurs. But all of them depend on the region where a customer’s private key can be unwrapped, because TLS traffic can only be decrypted where that key is available. During initialization, the edge key service (the component on each Cloudflare edge server that unwraps customer private keys and uses them to serve requests) verifies that it has loaded every regional root key required by its configuration. If a configured key is missing or malformed, the service does not start. After initialization, an individual request also fails closed (Cloudflare rejects it rather than risk unwrapping a key out of region) if its metadata identifies a regional root key that is not locally available. If a request for Germany was somehow trying to decrypt in Spain or France it would fail, since neither Spain nor France have the regional root key for Germany. This guarantees that a regional root key never leaves its region, no matter what. Cloudflare needs to maintain high performance while keeping our customers’ regionalized data secure at scale. This is where the next version of GeoKey Manager comes in. We are enabling fast performance while logically separating our network by using post-quantum cryptography to restrict where customers’ private keys are unwrapped. Most of our regions will be available for customers to regionalize their workflow, and there may be product specific caveats. Customers select a region and Cloudflare manages everything else needed to unwrap their private keys within the region’s boundary. How GeoKey Manager ensures that keys are only available in a region GeoKey Manager controls where wrapped private keys can be unwrapped and used on the data plane. It does not control where requests are forwarded or routed (that’s Regional Services), where tunnels terminate, or where traffic inspection happens (also Regional Services). GeoKey Manager separates globally distributed wrapped private keys from the regional root key required to unwrap it. Quicksilver, our global configuration distribution system, distributes wrapped private keys and its metadata across our network. It does not distribute regional root keys; that happens through a separate provisioning service that stores regional root keys and delivers them only to edge servers authorized for each region. Regional root keys follow a separate, controlled path. On the data plane, a node’s regional configuration, which region a node belongs to, determines which nodes can receive which regional root keys. Defining key hierarchy and application-specific keys Every wrapped customer private key carries metadata identifying its service context, regional boundary, and epoch. The service context is the Cloudflare service that uses the key, such as Tunnel or Gateway. The regional boundary is the approved set of Cloudflare data centers where the key may be unwrapped and used, such as data centers in Germany or the European Union. The epoch identifies which generation of the regional root key the key belongs to; each rotation creates a new epoch. For example, Acme Co. might have one key for Tunnel in Germany (acme0001) and another for Gateway in Germany (acme0002). Road Runner Inc. might have one key for Tunnel in Germany (runner0001) and another for Gateway in the European Union (runner0002). Keys with the same service context, regional boundary, and epoch use the same application-specific key pair. Therefore, compromising the Tunnel-Germany application-specific private key could expose both acme0001 and runner0001, but not the Gateway keys. Compromising the Germany regional root key could affect every application-specific key derived from that root for the same epoch, including acme0001, acme0002, and runner0001. In the current architecture, the application-specific key pair is asymmetric. The public component wraps the customer's private key material, while the private component is required to unwrap it. The resulting wrapped private key is distributed with its service context (Access, Gateway, Tunnel, Cloudflare One client), region, and epoch. Provisioning regional root keys When Cloudflare/Admin configures a region for a CF1 use case, key management service (which also derives application-specific key pairs and wraps customer private keys) creates a regional root key and associates it with a regional boundary and epoch and sends it to provisioning service for storage and distribution which under the hood uses Vault, which is managed by us on-premises. Authorizing edge servers for a region Before an edge server can receive a regional root key, provisioning service evaluates three inputs: Trusted Platform Module (TPM) proves that the server possesses a registered hardware identity Zinc, Cloudflare's server inventory system, maps that identity to a data center and location Provisioning service determines which regional root keys the server may access Zinc updates its membership records for each edge server. This asynchronous process adds new servers as the network grows and removes servers when they are decommissioned. As Cloudflare performs maintenance on data centers in Germany, the definition of which data centers belong in Germany changes in Zinc. That definition is swiftly propagated through our network with Quicksilver so that our edge is up to date. The reverse also works. As we add capacity to our network, the definition of Germany, or any other region, is updated in Zinc and that is also swiftly propagated through our network with Quicksilver. Zinc also associates a registered hardware identity with a server and physical location, which supports FIPS 140-3 compliance. TPM-backed identity, server inventory data, and regional configurations determine which region an edge server belongs to and what regional root keys it can access. Each edge server calls the control plane’s provisioning service, and provides its registered hardware identity. After verifying the server’s hardware identity and regional membership, the provisioning service issues a token that permits the server to retrieve only the regional root keys authorized for its location. Each edge server receives its token and uses it to fetch the regional root keys. Authorized edge servers load regional root keys into the kernel keyring rather than persisting them on disk. Process level access controls limit which services can use them. Because this memory is volatile, a machine restart removes the keys and the server must authenticate and provision them again. This adds operational complexity in exchange for reducing persistent key material which could be an attack vector for adversaries. Wrapping private keys for global distribution When the key-management service receives a customer's private key material with a service context and regional boundary, it will use the request’s regional boundary to get the regional root key and its latest configured epoch. It will then derive the corresponding asymmetric application key pair and use its public component to wrap the private key. The result is a wrapped private key and its metadata. Quicksilver will then distribute the wrapped private key and metadata across our network. Since the wrapped key requires the specified region to decrypt, global wrapped key distribution does not grant edge servers global access to the private key because unwrapping still requires the corresponding regional root key and service context. Unwrapping using application-specific keys on the data plane Why we chose this cryptographic design Symmetric roots with asymmetric key wrapping Regional root keys are 256-bit symmetric secrets. GeoKey Manager derives application-specific keys from each regional root key. For the current Cloudflare One path, the control plane’s key management service derives an application-specific Hybrid Public Key Encryption (HPKE) key pair. HPKE with hybrid post-quantum KEM The Cloudflare One path uses HPKE, as defined in RFC 9180. Its key-encapsulation mechanism (KEM) combines ML-KEM-768 with X25519, while HKDF-SHA-256 provides key derivation and AES-256-GCM provides authenticated encryption. Combining post-quantum and classical components preserves confidentiality as long as at least one component remains secure. Designing for rotation The validated design supports two types of key rotation: soft rotation and hard rotation. A soft rotation creates a new epoch for the regional root key while retaining controlled access to a limited number of previous regional root-key epochs — let’s say one previous generation, as an example. The customer’s new private-key material is wrapped using the latest epoch, while older wrapped private keys are still usable during the transition. This is a similar concept to when a credit card company allows you to use a previous version of your credit card for recurring payments from an authorized retailer. In this case, the number of epochs we support determine how many generations of previously wrapped private keys — credit cards — are usable. This allows customers to preserve their service uptime while they transition. A hard rotation instead rewraps affected customers’ wrapped private keys under a replacement epoch so access to the previous epoch can be removed. In this case, it would be like the credit card company not allowing you to use the previous credit card for a transaction under any circumstances. Security and availability tradeoffs Failing closed is a very intentional design choice. Failing open would mean unwrapping a customer’s private key outside its allowed region rather than rejecting the request. We never do that: if any required check fails (service context, region, epoch, etc.), the request is rejected. At startup, each edge’s key service loads every configured regional root key from its Linux kernel keyring. Missing or malformed root keys prevent the edge key service from initializing. Once running, the edge key service uses in-memory copies so that it can’t be tampered with, preventing out of region or cross-region unwrapping. In practice, an edge server serves requests for a region only once its configuration and key provisioning are complete. The trust boundary (all services that can access the regional root key) includes the key-management service, the provisioning service, and authorized edge key services because each can access regional root keys. The key-management service uses them to derive application-specific keys, the provisioning service stores and distributes them, and edge key services use locally authorized copies of them. Quicksilver remains outside this boundary because it receives only wrapped private keys and associated metadata. Operating GeoKey Manager Cloudflare’s network is constantly changing. As servers enter or leave service, Cloudflare’s fleet inventory updates regional membership. This means the list of data centers that make up a region like Spain is not static. GeoKey Manager’s provisioning layer refreshes that membership several times each day, granting or removing access to regional root keys as the network changes. This process is separate from key rotation and requires no customer action. When regional membership changes, the provisioning service immediately synchronizes the server’s Linux kernel keyring with the latest authorized regional root keys. The edge key service caches these keys in process memory until it restarts or the cache expires. It then reloads the current authorized set from the kernel keyring. What’s next: Cloudflare One integration and CDN GeoKey Manager is the basis for an improved Regional Services offering for Cloudflare One; these new capabilities will be announced in a few months. Older versions of GeoKey Manager already provide geographic controls for private keys associated with CDN certificates. We are developing a separate integration that will bring this new post-quantum GeoKey Manager described here to that existing CDN capability. We will share testing and transition details when that work is ready. Getting started If you are a current DLS customer who is regionalizing CDN traffic, you can register intent to test this feature before it’s generally available for CDN traffic here. Thank you to everyone who made this product a reality. It was a huge effort across the Data Localization Suite, Cloudflare One, and Cloudflare Research teams.",
+      "topics": [
+        "security-privacy",
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112470 at https://www.eff.org",
+      "title": "Two States Can Now Restrict Social Media Access—Here’s What To Do Next",
+      "url": "https://www.eff.org/deeplinks/2026/10/two-states-can-now-restrict-social-media-access-heres-what-do-next",
+      "author": "Joe Mullin",
+      "publishedAt": "2026-10-23T18:19:34.000Z",
+      "content": "Last week, two federal appeals courts issued opinions that will allow Florida and Georgia to start enforcing laws that will age-gate and block young people from accessing social media. The laws do not adequately respect minors’ rights to play, speak, and learn online. More fundamentally, these laws don’t help young people stay safe online—a goal that lawmakers should pursue. Age-Gated? Email EFF at agegates@eff.org. Because of the new laws, some young people will lose their ability to access lawful information, find their online communities, and even engage with school board members. Others will need parental permission to stay online. And adults will face increased demands to prove their age, which will put their privacy at increased risk simply to continue to use the services they already use. We opposed these laws because they threaten the free expression and privacy of both minors and adults. Even though these lawsuits are not over, the injunctions that paused enforcement have been lifted, and the states of Florida and Georgia will now be able to enforce broad restrictions on social media use. The restrictions that these states will start enforcing are a setback for the rights of all internet users, but they are not written in stone. That’s why EFF is encouraging internet users - and particularly young people – to start keeping a record of how they are affected. If you are a teenager who loses access to an online discussion, can’t participate in a political campaign, or stop seeking information because you don’t want to upload personal information, document what happened. The same is true for adults who may be mistakenly blocked by age checks, and parents who may encounter obstacles to authorizing their children's use of online services. These experiences matter. They can help us show courts, policymakers, and the public what government restrictions on online expression actually cost the people who live under them. Hopefully, with enough proof of the expressive harms these laws cause, we can push lawmakers to rescind them. That’s why we’re encouraging folks to reach out to EFF once they’ve documented these harms. You can write to us about this issue at the email address agegates@eff.org. The Decisions These two opinions, issued by the same panel from the U.S. Court of Appeals for the 11th Circuit, allow Florida and Georgia to enforce restrictions on social media accounts for people under 16 years old. The requirements differ by state. In Florida, the judges allowed that state’s H.B. 3 to move forward, which requires covered platforms to ban anyone under 14 from opening or keeping accounts—even with parental permission. Teenagers who are 14 or 15 can have accounts only with parental consent. To be covered, a platform has to use algorithms, allow content uploads or the viewing of other peoples’ content, and have at least one feature on a list of features the state considers bad, including livestreaming, engagement metrics, autoplay, infinite scrolling, or push notifications. These requirements effectively apply to every major social media service that young people use. To the extent there is a silver lining in the ruling on Florida’s law, it’s that the panel recognized that H.B. 3 targets expression protected by the First Amendment. The problem is that the ruling uncritically accepts the idea that a social media service is addictive in a clinical sense, even if just 10% of users under 16 are using the platform for two or more hours per day (the standard set in H.B. 3). The court simply accepts that time spent online is a proxy for harm. The bill doesn’t distinguish doomscrolling or compulsive use from organizing a campaign, making art, or talking with friends. In Georgia, S.B. 351 can now be enforced. That law requires parental consent for anyone under 16 to hold an account on social media platforms. It also requires platforms to make “commercially reasonable efforts” to check users’ ages, which creates a hurdle for adults as well as under-16s. The ruling acknowledges that S.B. 351 “overwhelmingly applies to platforms that overwhelmingly host protected speech.” But the ruling faults the plaintiffs for not being able to show that “invalid applications substantially outweigh the valid ones.” That asks the groups challenging the law to meet a virtually impossible standard—to make their case, they would have to measure and evaluate the content hosted by all online services affected by the law. Both of these cases may be further appealed, and are likely to continue in the lower courts. But people in Georgia and Florida can no longer count on court injunctions to protect their access to the web. What the effects will be going forward depends on how platforms implement these new restrictions, including how they check ages and parental consent, as well as state officials’ views on these efforts. If you hit an age-gate while online, check out our blog post about how you might want to proceed, and our age-gating resource hub. If you want to speak out about your experience, you can talk to us at agegates@eff.org. What is Lost Some youth who lose their social media accounts will lose contact with friends. Others will lose access to a support group, the ability to speak out on current issues, or an audience for their artwork. More young people will be shut out of discussions about what’s going on in their school and their community. U.S. law has long recognized that people under 18 have their own rights to speak and receive information. These new laws interfere with those rights. The Florida opinion suggests that young people can browse the internet without an account, or use a parent’s account. But that doesn’t help those who might participate in a private group, send a personal message, or speak to an audience they have built up. Nor does it recognize the reality that in many households, young people may not have the ability to use a parent’s device, or even have healthy relationships with their parents. For parents of children under 14, the Florida law also overrides parental autonomy—even if parents wanted to allow their child on these services, they cannot do so by law. These laws won’t just harm younger kids. Adults and older teens will bear the cost of the new rules. In order to figure out who is young enough to not be able to join, or who needs parental consent to join, services will have to check users’ ages. That likely means asking people to submit ID or other sensitive information. Some people will be mis-classified as too young; others will decide that they’d simply rather stop participating instead of handing over even more personal data. Keep A Record Between the recent Meta settlement and these 11th Circuit decisions, despite widespread opposition, age-gating is becoming a reality for the American internet. As these laws are enforced, we need to understand what they mean for the people who have to deal with them. And we need to create a record of their effects on everyone’s speech so we can push to repeal them. If you encounter a restriction due to these laws that affects you, keep a record, ideally while the details are still fresh in your mind. Screenshots, along with notes about the date and time, the service involved, and the task you were trying to accomplish, will all be helpful. Did you lose an account or can’t participate? Describe what you lost. Were you using a group to organize a club, volunteer in your community, or keep in touch with friends? Did losing your account cut you off from people you wouldn’t otherwise be able to be in touch with? Even if you just used the account to access local news or follow your favorite content creator, that’s still a significant loss of your right to access information online. Record problems with age checks and parental consent. What information did the service request from you? Were you able to provide it? Did it reject your age proof, or classify you incorrectly? If you’re a parent, were you able to give permission, and what did you have to provide? What promises did the service make about what it did with the data it collected from you? Save explanations given by the platforms or any services they employ to age gate, including any law they cite. If you are to appeal a result and choose to, keep track of those attempts as well. You can also document choosing to drop out. If you abandon an account or service because you’re unwilling to provide ID or other personal data, write down what you gave up, and why. You don’t need to submit sensitive information to show that you are burdened by new rules. You Can E-Mail agegates@eff.org If these restrictions affect you, we encourage you to reach out to EFF by emailing agegated@eff.org and telling us more about what happened. EFF will continue to oppose laws that prevent adults and minors from expressing themselves online, or that push people to give up their privacy to participate in the digital world. These recent court decisions are setbacks, but they don’t settle the debate. By keeping track of people who lose access, age-check failures, and the online conversations that can no longer happen, we’ll be in a better position to challenge the worst of these restrictions, in both legislatures and courts. And in the meantime, EFF will keep fighting for laws that actually make us safer online—like stopping social media companies’ harmful surveillance of all internet users. We’ll continue to push for laws that empower parents, children, and all internet users to have meaningful choice and control over their online services. Those goals can make everyone safer online, while preserving our ability to speak and access information. Further Action Email EFF about your experience at agegates@eff.org . Further Reading 11th Circuit Opinion in Netchoice v. Carr (Georgia) 11th Circuit Opinion in CCIA, NetChoice v. Uthmeier (Florida) EFF amicus brief in Florida case EFF amicus brief in Georgia case EFF’s Age Verification Hub",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "fireship",
+      "externalId": "yt:video:SMGg7iisHmc",
+      "title": "The most vulnerable week in internet history...",
+      "url": "https://www.youtube.com/watch?v=SMGg7iisHmc",
+      "author": "Fireship",
+      "publishedAt": "2026-10-23T18:19:58.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "video"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261023/p16#a261023p16",
+      "title": "Iranian security officials say the country has detailed plans to target undersea communications cables in the Gulf if the US and Israel attack Iran again (Reuters)",
+      "url": "https://www.techmeme.com/261023/p16#a261023p16",
+      "author": null,
+      "publishedAt": "2026-10-23T18:20:01.000Z",
+      "content": "Reuters: Iranian security officials say the country has detailed plans to target undersea communications cables in the Gulf if the US and Israel attack Iran again — Tehran has drawn up detailed plans to target undersea communications cables in the Gulf if the United States and Israel attack Iran again …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "cloudflare-blog",
+      "externalId": "01M5MZPETYH27RS72QV5V85YZ8",
+      "title": "Origin Range Requests: Serving large files without range-request tuning",
+      "url": "https://blog.cloudflare.com/origin-range-requests/",
+      "author": "Matthew Gumport",
+      "publishedAt": "2026-10-23T18:22:59.000Z",
+      "content": "A video player seeking to the middle of a movie asks for a few megabytes. Under our old range caching, that one request could make Cloudflare pull 128 MiB from the origin and move it between data centers, sometimes after the viewer had already left. Range requests are how large files get delivered, and caching them naively easily leads to wasted network bandwidth and wasted disk operations when running a CDN at scale. So we rebuilt how our cache handles them. For R2, Cloudflare's object storage, p99 time to first byte dropped by about half, and a follow-up improvement cut tiered cache traffic for R2 and similar workloads by about 6%. Today, we're making that new implementation available as Origin Range Requests, a self-service feature on all plans. There's no range size to tune and no need to contact support. Turn it on with a Cache Rule, and Cloudflare handles the rest. A request for part of a file An HTTP range request asks for part of a resource instead of the whole resource. The client sends a normal GET with a Range header: GET /movie.mp4 HTTP/1.1 Host: example.com Range: bytes=1048576-2097151 If the server supports the request, it returns 206 Partial Content and identifies the returned bytes with Content-Range: HTTP/1.1 206 Partial Content Content-Range: bytes 1048576-2097151/524288000 Content-Length: 1048576 Range requests are common for large objects. A video player can request bytes around a seek position instead of the whole file. A download manager can resume after an interruption. A package manager can fetch part of an artifact. A client can inspect the end of a file without downloading everything before it. The client decides whether to request a range, and Cloudflare does not change that request. Instead, Origin Range Requests changes how Cloudflare satisfies it. The range-size problem Cloudflare has supported range-request caching for years via static zone configuration. The previous implementation resembled the cache-slicing described in an nginx blog post: each client request was mapped to fixed-size ranges of the file, with the range size and file extensions configured per zone. The size of each range created a tradeoff: small ranges led to many small origin requests and memory pressure on Cloudflare from coalescing all of the requests in-memory, while large ranges caused Cloudflare to download much more data than the client requested. Updates to the range size itself would invalidate cache entries, since the size was part of the cache key. This design also meant people requesting content through our network could have unpleasant experiences accessing these files. Concurrent requests that fell inside the same range, no matter how far apart each client’s requested range was, could block each other. Our nginx-based cache also couldn’t combine range caching with concurrent streaming, a feature we built to let multiple clients read a file from cache while it's still being written. Turning both on together cut responses short, so each range had to be fully downloaded before anyone could read it, and popular files needed a separate origin fetch for every range. The extra bytes could also cross several parts of our distributed cache: from the origin to one data center, between cache tiers, and then toward the client. Every hop multiplied the waste. No value works equally well for a small seek, a sequential download, a large media file, and every origin and cache topology. Our internal cache limitations were directly exposed to customers, who should not need to understand our capabilities in-depth to have files served efficiently. Fortunately, our transition from nginx to a Pingora-based caching server created an opportunity to address the implementation problems that had forced a hard-to-use setting onto customers. Fixed-size cache chunks The fix came from something Pingora was already doing. To make it easy to resume interrupted downloads, it stores every cached file on disk in fixed-size chunks. If the cache already thinks in chunks, the range size doesn't need to be a setting at all, it can just be the chunk! For a range request, Cloudflare checks which requested bytes are already cached. It serves those bytes directly. For missing bytes, it fetches origin ranges aligned to the cache's fixed-sized-chunk boundaries, stores the result in the same chunks used for ordinary cache storage, and returns only the bytes requested by the client. For example, a request for bytes 150-250 can cause Cloudflare to fetch the aligned chunk containing those bytes. The downstream response still contains only 150-250. This does not eliminate extra work for requests smaller than our chunk size — such a request can still require fetching the whole chunk containing it. We also are taking on the cost of more work for non-aligned ranges. The difference is that the extra work is bounded and predictable, and no longer determined by a customer-selected range size that can cause unpredictable effects on us and origins. Coordinating cached and in-flight data Parsing the Range header is straightforward. The harder problem is producing one correct response when the requested bytes are split across cached data, an origin response, and downloads already in progress. At a high level, the edge: Looks up the asset headers and range-coverage metadata. Reads whatever part of the asset it can from disk or streaming in memory. Fetches missing coverage from the origin using aligned ranges. Writes the new bytes and records the completed range in metadata. Combines the pieces and sets Content-Range and Content-Length for the client response. This is a coordinator, not a single cache lookup. One request can use a cached prefix, an in-flight download, and a newly fetched suffix. The internal origin response can be larger than the downstream response, but the downstream status and headers describe only the requested range. If an existing download covers another request's bytes, the second request can attach to that download instead of starting another origin fetch. This shares work during bursts for popular large files. The design uses the existing cache data model. Headers identify the asset version, the body is stored in bounded chunks, and metadata records which ranges were written successfully. Validate before composing Composed range responses are valid only when all bytes belong to the same representation. The coordinator checks that each origin response matches the requested range, that the total asset size is stable, and that the entity tag remains consistent across subrequests. The If-Range header lets a client request a range only if the representation still matches a known validator. If it does not match, Cloudflare returns the full representation instead of combining bytes from different versions. Cloudflare also avoids composing ranges for a representation it is about to decompress because the range over a set of compressed bytes would be different from those selected by the range in a decompressed response. In these cases, Cloudflare serves the transformed full response rather than advertising a range it cannot honor correctly. The resulting behavior is standard HTTP: A satisfiable range receives 206 Partial Content with an accurate Content-Range. An unsatisfiable range receives 416 Range Not Satisfiable. A response that cannot safely be ranged is served as the complete representation. What changed in production Before opening Origin Range Requests to everyone, we moved existing users of the old range-caching feature onto the new implementation, starting with the workloads that hurt us most. Those workloads had a lot of concurrent range requests against very large files, often on very spiky traffic. Configured range sizes on the old system ran from tens of kilobytes to tens of gigabytes. With a large range size, a request that wouldn't fill a floppy disk could make us download a few DVDs' worth of data from the origin and move it across several data centers, sometimes after the client had already given up and gone elsewhere. With a small range size, one request turned into a long line of tiny origin requests, each holding memory while it waited. Both patterns caused real operational incidents for us. R2 was the largest internal user. Its configured range size was 64 MiB, so a small read that crossed a range boundary could cost us 128 MiB of transfer between data centers. After moving R2 to the new implementation, we saw: Faster responses. Across R2's storage regions, p99 time to first byte dropped by roughly half on both cache hits and misses. Fewer bytes on our network. Our most recent change taught the coordinator to combine bytes already on disk with bytes fetched from upstream in a single response. Before, a request was served either entirely from cache or entirely from upstream. After we turned this on for R2, tiered cache traffic for R2 and similar workloads dropped about 6% week over week, which is petabytes less data moving between our data centers every day. Getting started Once the cache no longer depended on a customer-selected range size, the product configuration could not be simpler. Customers select matching traffic through Cache Rules. Cloudflare handles the chunking and cache coordination. Origin Range Requests is intended for traffic where clients naturally request parts of a large cacheable object: Progressive and seekable video such as MP4 Resumable large downloads Software distributions and package repositories Disk images, archives, and other multi-gigabyte objects AI training and inference workloads that transfer large model files or fetch selected regions of model artifacts Clients that fetch metadata or a small region of a larger file We intend to make this the default way certain file types are served on our network, modifiable by cache rules. This feature does not change normal cache eligibility. Enabling it does not make an otherwise uncacheable response cacheable. The origin also needs to support byte ranges for partial origin fetches to be useful. To turn it on, create a Cache Rule that matches your large-file traffic and set Origin Range Requests to On. You can do this in the dashboard under Caching > Cache Rules, or through the API with origin_range_requests: { \"mode\": \"on\" }. Customers choose the traffic; the edge handles the cache coordination and correctness requirements.",
+      "topics": [
+        "security-privacy",
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-lets-claude-code-run-hours-long-jobs-without-dropping-them",
+      "title": "Anthropic Lets Claude Code Run Hours-Long Jobs Without Dropping Them",
+      "url": "https://alphasignal.ai/news/anthropic-lets-claude-code-run-hours-long-jobs-without-dropping-them",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-23T18:24:08.000Z",
+      "content": "Claude Code CLI now supports MCP Tasks for durable long-running jobs and Elicitations for mid-task user prompts, with other Claude products coming next.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "netflix-techblog",
+      "externalId": "https://medium.com/p/9474f2fd4f90",
+      "title": "Beyond API Compatibility: Building a Tool to Measure the Blast Radius of Library Changes",
+      "url": "https://netflixtechblog.com/beyond-api-compatibility-building-a-tool-to-measure-the-blast-radius-of-library-changes-9474f2fd4f90?source=rss----2615bd06b42e---4",
+      "author": "Netflix Technology Blog",
+      "publishedAt": "2026-10-23T18:32:51.000Z",
+      "content": "By Roberto Perez Alcolea, Java Platform Team Quasar connects a proposed API change with observed references in consumer repositories, giving the producer evidence for a release decision At Netflix, shared Java libraries support applications developed across a large, independently evolving repository ecosystem. A library change begins in one repository, but its impact can reach many others. Producers can see the API diff in front of them. What they often cannot see is who still depends on the symbols that changed. The need for that visibility grows as coding agents take on more of the software development lifecycle. An agent can accelerate a local edit, but without cross-repository context it cannot judge downstream risk or help plan consumer migrations. The evidence a producer uses to assess a change can also guide the agent working on it. Consider a common case: removing a deprecated API. Deprecated entry points expand the surface producers must test, document, and support, and they can constrain how a library evolves. Suppose a replacement has been available for several releases and the old method cannot express options required by new behavior. The library’s tests pass, and a compatibility checker flags the removal. The producer still cannot answer the questions that determine what to do next: Does any consumer still call this method? Are consumers concentrated on one version or spread across several generations? Does another library implement or wrap the API, multiplying its impact? Is direct coordination sufficient, or does this require a deprecation and migration campaign? At small scale, producers can ask nearby teams or search a handful of repositories. Across many repositories, it is harder to find every caller of a method and the library version each one uses. Those answers are scattered across consumer codebases and builds. Without that evidence, a producer may release a breaking change and discover the impact through consumer failures, or preserve an old API indefinitely because the risk is unknown. Libraries need to evolve, and their producers need evidence that helps them do so intentionally. We built Quasar to index symbol definitions and references across Netflix repositories. For library producers, that shared index helps answer two questions: What changed in the library’s public API? Which repositories use the exact symbols that changed? The first identifies a potentially incompatible change. The second estimates its observed blast radius. Together, they turn a generic compatibility warning into evidence a producer can act on before merging or releasing. From API Changes to Consumer Impact Existing techniques each see a different part of the problem. Binary and source compatibility tools identify contract changes, but cannot tell who uses the changed API. Dependency graphs show declared reach, but cannot prove that code calls a particular method. Text search may miss overloads, inheritance, or the artifact version behind a call. Consumer builds provide strong validation, but running them across the fleet is expensive. Quasar builds on SCIP, an open interchange format for semantic code intelligence. Language-specific indexers encode definitions, references, and relationships using stable symbol identifiers. Quasar retains API definitions for library versions and commits alongside references from consumer repositories. That shared identity lets it connect an API change in one repository to exact usages elsewhere, even when those repositories were indexed independently. On each enrolled CI build, language-specific indexers submit SCIP indexes to Quasar’s ingestion service. It writes API definitions and consumer references as Parquet in Amazon S3, retaining the symbol identity, dependency version, and source location needed to investigate a change. During pull-request review, Quasar compares indexed base and head definitions and counts direct consumer references with Amazon Athena. Quasar exposes those findings through its REST and GraphQL APIs and MCP server; follow-up usage queries provide dependency-version breakdowns and source locations. A separate compatibility-impact assessment can also follow implementations and their callers when a producer supplies a changed JVM symbol. Consider this simplified API change: public interface Client { - Result getLegacyValue(Request request); + Result getValue(Request request, Options options); } For a detailed compatibility-impact assessment of this removal, a producer-side tool supplies the old method descriptor. Quasar constructs its canonical symbol identity. This abridged excerpt from the direct-reference portion of Quasar’s Amazon Athena query shows the essential match: SELECT c.change_id, 'DIRECT_REFERENCE' AS evidence_kind, r.scm_type, r.org, r.repo, r.dep_version, r.file_path FROM requested_changes c JOIN quasar.symbol_refs r ON r.symbol_canonical = c.target_canonical requested_changes contains the API changes submitted by the producer. The SQL excerpt finds repositories that call the removed method. Quasar also checks implementations and calls through them, so it can count each affected repository once. It returns sample dependency versions and file locations to help investigate the result. For the Client change, this tells the producer which repositories still use getLegacyValue, which versions they use, and where some of those calls occur. That helps the producer decide whether to coordinate a migration before removing the method. Bringing the Analysis Before Release Version-to-version comparison is valuable when planning an upgrade or writing a migration guide. Producers benefit even more when feedback arrives during code review. For pull-request analysis, Quasar stores API definition snapshots keyed by commit. Given a base and head commit, it classifies symbols as added, removed, or signature-modified. Removals and modifications then become candidates for consumer-impact analysis. An incompatible change is not automatically a high-risk change. Quasar reports the observed impact so the producer can decide what to do; it does not enforce a release policy. “No references observed” means only that Quasar found none in the indexed population. Reflection, configuration, dynamic loading, stale branches, or incomplete indexing can hide consumers. The result needs to show whether the requested commits were indexed, how fresh the consumer indexes are, and whether evidence was truncated. Pull-request review requires indexed snapshots for the exact base and head commits. If either is unavailable, Quasar reports that it cannot compare them; it does not substitute a default-branch snapshot. This keeps a missing comparison from looking like a clean API diff. Return to our Client change. This illustrative report brings together signals available through Quasar's API comparison, consumer-usage queries, and library-level criticality. It is not a literal response from one API: { \"change\": \"REMOVED\", \"symbol\": \"Client#getLegacyValue(Request)\", \"affectedRepositories\": 137, \"versionDistribution\": [ { \"version\": \"4.2.1\", \"repositories\": 86 }, { \"version\": \"4.1.7\", \"repositories\": 38 }, { \"version\": \"3.9.4\", \"repositories\": 13 } ], \"sampleConsumerLocations\": [ { \"repository\": \"checkout-service\", \"filePath\": \"src/main/java/com/example/checkout/CheckoutClient.java\", \"lines\": [84, 129] }, { \"repository\": \"client-wrapper\", \"filePath\": \"src/main/java/com/example/client/ClientAdapter.java\", \"lines\": [57] } ], \"libraryCriticality\": { \"tier\": 1, \"basis\": \"highest-tier downstream application\" }, \"comparison\": { \"baseShaFound\": true, \"headShaFound\": true } } An impact report shows 137 affected repositories distributed across library versions 4.2.1, 4.1.7, and 3.9.4. The repository count is symbol-specific: in this example, 137 indexed repositories refer to the removed method. The version distribution reveals a dominant cohort on 4.2.1 and a smaller long tail still on 3.9.4. A producer can inspect affected repositories and retrieve indexed file paths, with line numbers where the index provides them. The JSON shows only two sample locations to keep the example readable. The filePath and lines shape mirrors Quasar's query contract. The tier is broader context about the library, inherited from its highest-criticality downstream application; it does not imply that all 137 callers are Tier 1. Together, those signals change the producer’s plan. Instead of merging the removal and waiting for failures, the producer can retain and deprecate the old method, publish a migration path, coordinate a broader migration, and track the long-tail versions before removal. File paths and available line numbers turn that scope into a concrete work list for engineers or coding agents. The same API diff paired with weak or stale evidence would lead to a different action: refresh the indexes before deciding. The value is not merely detecting the removal; it is choosing a proportionate next step. A pre-release workflow enriches API changes with consumer impact and evidence quality before the producer decides how to proceed A Polyglot Foundation with SCIP The shared SCIP format also lets Quasar index several language ecosystems. Each language indexer resolves its own code, while Quasar can use the resulting symbol identities to find references across repositories. Conceptually, client-lib indexes Client#getLegacyValue(Request) as a definition, while checkout-service indexes a reference to the same symbol. Quasar can then connect the library API to its consumer across repositories. Language-specific indexers emit SCIP definitions, references, and relationships into Quasar’s shared semantic graph. Relationships are especially useful when generated code separates the API a producer owns from the symbols consumers invoke. For example, Quasar can trace a Protobuf definition through its generated Java members to the repositories that use them, even when consumer code never names the .proto element. SCIP records symbols and their references; it does not determine whether an API change violates an ecosystem’s compatibility rules. Today, Quasar compares indexed JVM and Protobuf API definitions and traces Protobuf changes through generated Java to find affected repositories. A separate JVM compatibility-impact path uses breaks identified by a producer-side tool to query affected repositories. Go, Python, JavaScript/TypeScript, and Rust support usage queries, but Quasar does not yet assess their breaking API changes. Moving Risk Assessment Earlier Today, Quasar surfaces API-change findings on pull requests, including observed consumer counts and confidence. Producers can use its other queries to inspect dependency versions and source locations, with library criticality as broader context. Together, those signals support a decision before merge. We want to move that context earlier. An agent writing library code should recognize when it is changing a public symbol and consult Quasar before the change becomes a pull request. Quasar’s APIs and Model Context Protocol (MCP) integration provide an access path, but access alone does not create awareness. The coding workflow must also recognize public API edits so the agent knows when to query impact and when to involve the producer. Today Quasar assesses risk on a pull request. The future workflow gives agents consumer-impact context while they write code, before the pull request is opened. Earlier guidance will not replace pull-request analysis. The PR assessment will still verify the concrete diff and catch changes that were not recognized during coding. Coverage, freshness, ambiguity, unsupported platforms, and truncation must travel through both checks in machine-readable form. An agent should not turn “no observed usages in the available index” into “safe to remove.” Today, agents can query Quasar through MCP when prompted. We are working toward making that context part of the coding workflow, then using identified call sites to prepare migration changes. Quasar supplies semantic evidence, an agent reduces migration toil, and the library producer remains responsible for API and release decisions. What We Learned Building this workflow led us to four practical lessons. Separate compatibility from reach. A removed method can break the API contract even when Quasar finds no callers. A list of affected repositories and their library versions shows the migration work ahead. Producers need both signals to choose a release path. Make the evidence inspectable. A repository count is more useful with sample call sites and a version breakdown. The result also needs to show which commits were indexed, how fresh the consumer indexes are, and whether evidence was truncated. Otherwise, “no usage found” can be mistaken for proof that nobody is affected. Keep usage and compatibility separate across languages. SCIP lets Quasar find symbol references in several ecosystems. Deciding whether an API change is breaking requires compatibility rules or a trusted producer-side signal for that ecosystem. Bring evidence to the producer while choices are open. Pull-request findings can prompt a producer to retain an API, publish a migration path, or coordinate consumers before merge. Moving the same evidence into the coding workflow could shape the edit earlier. After release, it still helps locate consumers that need to migrate. Today, Quasar indexes JVM, Go, Python, JavaScript/TypeScript, and Rust code for cross-repository usage analysis. It compares JVM APIs and traces Protobuf changes through generated Java. Producers can review change findings through Quasar’s REST and GraphQL APIs or its MCP server, then investigate affected repositories and call sites. We are extending this foundation toward more ecosystem-specific compatibility checks, deeper code-review integration, and agent-assisted consumer migrations that keep release approval with the producer. Quasar is internal to Netflix, but the pattern is portable: index code semantically, retain API definitions, compare them at the point of change, query affected consumers, and report the quality of the evidence. Library producers need more than a compatibility verdict. They need to know who may be affected and have enough time to act before release. A huge thank you to the Java Platform team at Netflix. Their expertise, collaboration, and support made this work possible Related Talks From Lag to Lightning: Transforming Dependency Update Timelines explores how Netflix shortened dependency-update timelines. Netflix’s Journey to Confident Automated Code Changes discusses building confidence in automated changes at scale. Beyond API Compatibility: Building a Tool to Measure the Blast Radius of Library Changes was originally published in Netflix TechBlog on Medium, where people are continuing the conversation by highlighting and responding to this story.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1017667",
+      "title": "Soundcore’s latest noise-crushing headphones are on sale for a new low price",
+      "url": "https://www.theverge.com/gadgets/1017667/anker-soundcore-space-2-noise-canceling-headphones-deal-sale",
+      "author": "Sheena Vasani",
+      "publishedAt": "2026-10-23T18:43:30.000Z",
+      "content": "The Space 2 comes in multiple colors, including an attractive seafoam green. | Photo: Amelia Holowaty Krales / The Verge My colleague John Higgins considered Soundcore’s Space One some of the best budget noise-canceling headphones you could buy when they launched in 2023 — and their successor has only improved upon their winning formula, albeit with a $30 price increase. Thankfully, the Soundcore Space 2 are currently on sale at Amazon, Best Buy, and Walmart in all three colors for an all-time low of $106.49 ($23 off), making them even easier to recommend. Soundcore Space 2 Where to Buy: $129.99 $106.49 at Amazon $129.99 $106.49 at Walmart $129.99 $106.49 at Best Buy The Space 2 builds on the original with improved active noise cancellation, particularly when it comes to the low-frequency sounds associated with trains and airplane engines. They also deliver more accurate sound performance thanks to various design upgrades, while retaining many of the same features that made the Sound One sound so good for the price, including support for high-resolution LDAC audio. You also still get access to HearID 3.0, which lets you personalize the sound by listening to a series of samples and adjusting accordingly. Battery life is another welcome improvement. The Space 2 can last up to 50 hours with ANC enabled or 70 hours with it switched off, up from 40 and 55 hours, respectively, on the original. And when your battery dies, you can still use the equipped 3.5mm jack for wired listening. They’ll also automatically pause playback when you take them off, which is handy when you need to step away without losing your place in a song or podcast.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=94275",
+      "title": "The Week’s 10 Biggest Funding Rounds: AI Drives A Varied Lineup Of Large Financings",
+      "url": "https://news.crunchbase.com/venture/biggest-funding-rounds-ai-defense-biotech-robotics-tenstorrent/",
+      "author": "Joanna Glasner",
+      "publishedAt": "2026-10-23T18:51:22.000Z",
+      "content": "Want to keep track of the largest startup funding deals in 2026 with our curated list of $100 million-plus venture deals to U.S.-based companies? Check out The Crunchbase Megadeals Board. This is a weekly feature that runs down the week’s Top 10 announced funding rounds in the U.S. Check out last week’s biggest funding deal roundup here. It was another interesting week for AI-related startup funding, with a number of large rounds and quirky companies. The largest financings went to Tenstorrent, a developer of AI processors and systems, and AI lab Flapping Airplanes. The quirkiest round, meanwhile, was undoubtedly a $200 million financing for Warhound, which wants to breed elite military dogs. A number of big rounds in areas including biotech, space tech and physical AI rounded out the list. 1. Tenstorrent, $1.5B, AI infrastructure: Santa Clara, California-based Tenstorrent, a developer of AI processors and systems, secured $1.5 billion in Series E funding. Trace Capital and Innovation X led the round, which set a $6.2 billion valuation for the 10-year-old company. 2. Flapping Airplanes, $1B, foundational AI: Flapping Airplanes, an AI lab with a focus on developing models that cost less to train and run, closed on $1 billion in Series A funding led by Lux Capital and Index Ventures. The round comes less than 10 months after the year-old San Francisco startup raised a $180 million seed financing. 3. ASI, $325M, AI for critical infrastructure: ASI, a developer of AI technology for securing and operating critical infrastructure in areas such as aviation, transportation and defense, picked up $325 million in Series C financing. Spark Capital led the round, which set a $3 billion valuation for the Boston-based company. 4. Xona, $250M, space tech: Xona, a startup developing a next-generation version of GPS, raised $250 million in Series D funding led by Future Ventures. The round sets a $2.4 billion valuation for the Burlingame, California-based company. 5. Pathos AI, $237M, biotech: Pathos AI, a startup applying AI to drug development, completed a $237 million Series E financing at a post-money valuation around $3 billion. Bristol-Myers Squibb led the financing for the New York-headquartered company. 6. Warp Sciences, $215M, AI, robotics and life sciences: Warp Sciences, a startup applying AI and robotics to help develop new medicines faster, raised a $215M Series A round led by Lightspeed Venture Partners. 7. (tied) Whop, $200M, online business marketplace: Whop, a platform that helps entrepreneurs build and run online businesses, secured $200 million in Series D funding led by Sequoia Capital and Shopify Ventures. The round set a $5.1 billion valuation for the New York-based company. 7. (tied) Star Therapeutics, $200M, biotech: South San Francisco, California-based drug developer Star Therapeutics says it raised $200 million in new financing led by OrbiMed and Janus Henderson Investors. The investment follows Incyte’s July acquisition of Vega Therapeutics, a subsidiary of Star, in a deal valued at up to $2 billion. 7. (tied) Warhound, $200M, military dogs: Warhound, a startup that wants to breed working dogs for U.S. military forces and emergency responders, launched from stealth with $200 million in seed funding from a long list of backers including Sequoia Capital and 8VC 1. The startup, co-founded by AnduriI ndustries founder Palmer Luckey, plans to equip the dogs with Anduril technology. 10. Arda Industries, $160M, AI manufacturing software: Arda Industries, a developer of AI-powered software for manufacturing engineering, closed on $160 million in Series A funding at a $1.5 billion valuation, co-led by Altimeter Capital, Accel and Khosla Ventures. The San Francisco-based startup also announced a previously undisclosed $72 million seed financing. Methodology We tracked the largest announced rounds in the Crunchbase database that were raised by U.S.-based companies for the period of Oct. 17-23, 2026. Although most announced rounds are in the database, there may be a small time lag, as some rounds are reported late in the week. Illustration: Dom Guzman 8VC is an investor in Crunchbase. They have no say in our editorial process. For more, head here.↩",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "google-research",
+      "externalId": "https://research.google/blog/bringing-foundational-models-to-the-front-lines-of-tb-screening/",
+      "title": "Bringing foundational models to the front lines of TB screening",
+      "url": "https://research.google/blog/bringing-foundational-models-to-the-front-lines-of-tb-screening/",
+      "author": null,
+      "publishedAt": "2026-10-23T18:51:33.000Z",
+      "content": "Generative AI",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/deployments-now-show-build-cache-size",
+      "title": "Deployments now show build cache size",
+      "url": "https://vercel.com/changelog/deployments-now-show-build-cache-size",
+      "author": "Mehul Kar",
+      "publishedAt": "2026-10-23T19:00:00.000Z",
+      "content": "Deployment summaries now show the size of the build cache each deployment saved and how close it is to the limit for its . The same information is in the CLI with on version 65.1.0 or newer, and in the .build machineget-deployment REST API endpointvercel inspect Uploading the build cache is billable build time, and a cache that goes over the limit is discarded, so the next build starts without one. This is on by default on all plans for deployments built on or after October 21. See the in the docs.maximum build cache size for each build machine Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261023/p17#a261023p17",
+      "title": "Global PC shipments fell 21% YoY in Q3 to 57M units, as memory and other costs pushed prices up; Lenovo retained its market leadership despite a 23% decline (Minsoo Kang/Counterpoint Research)",
+      "url": "https://www.techmeme.com/261023/p17#a261023p17",
+      "author": null,
+      "publishedAt": "2026-10-23T19:15:01.000Z",
+      "content": "Minsoo Kang / Counterpoint Research: Global PC shipments fell 21% YoY in Q3 to 57M units, as memory and other costs pushed prices up; Lenovo retained its market leadership despite a 23% decline — - Global PC shipments declined 21% YoY in Q3 2026 to 57 million units, as elevated memory and other component costs continued to push up PC prices and constrain demand.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261023/p18#a261023p18",
+      "title": "Artificial Analysis says Kimi K3.1 Pro lands 4th on its Intelligence Index, behind only Opus 5.5 (max), Sonnet 5.5 (max), and Muse Wonder Full (max) (@artificialanlys)",
+      "url": "https://www.techmeme.com/261023/p18#a261023p18",
+      "author": null,
+      "publishedAt": "2026-10-23T19:25:01.000Z",
+      "content": "@artificialanlys: Artificial Analysis says Kimi K3.1 Pro lands 4th on its Intelligence Index, behind only Opus 5.5 (max), Sonnet 5.5 (max), and Muse Wonder Full (max) — Kimi K3.1 Pro launches at 4th on the Artificial Analysis Intelligence Index scoring 55, making large gains in agentic performance; it will be the leading open-weights model once its weights are published @Kimi_Moonshot's new reasoning model gains 11 points over Kimi K3 (max, 44). It trails only Cl...",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.30418",
+      "title": "Agent Mosaic: Recognizing Confidentiality Leaks in Agentic LLM Systems",
+      "url": "https://huggingface.co/papers/2610.30418",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:09.421Z",
+      "content": "Agent Mosaic: Recognizing Confidentiality Leaks in Agentic LLM Systems",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.24385",
+      "title": "Bridging Exploration and Persona: Information-Directed Dueling for Test-Time Agent Personalization",
+      "url": "https://huggingface.co/papers/2610.24385",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:09.421Z",
+      "content": "Bridging Exploration and Persona: Information-Directed Dueling for Test-Time Agent Personalization",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.24383",
+      "title": "IF-MAP: Influence-Function-Inspired Agent Prioritization in Multi-Agent Systems",
+      "url": "https://huggingface.co/papers/2610.24383",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:09.421Z",
+      "content": "IF-MAP: Influence-Function-Inspired Agent Prioritization in Multi-Agent Systems",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "http://kimi.ai/blog/kimi-k3-1-pro",
+      "title": "Kimi K3.1 Pro Tech Blog: Advancing Open Intelligence",
+      "url": "http://kimi.ai/blog/kimi-k3-1-pro",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.314Z",
+      "content": "Kimi K3.1 Pro Tech Blog: Advancing Open Intelligence kimi.ai13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theguardian.com/technology/2026/oct/23/cybersecurity-ai-hacking-php-vulnerability",
+      "title": "‘Black October’: cybersecurity experts sound the alarm over new era of AI-enabled hacking",
+      "url": "https://www.theguardian.com/technology/2026/oct/23/cybersecurity-ai-hacking-php-vulnerability",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.315Z",
+      "content": "‘Black October’: cybersecurity experts sound the alarm over new era of AI-enabled hacking theguardian.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.galaxy.com/insights/research/phperil-never-send-a-human-to-do-a-machines-job",
+      "title": "PHPeril: Never Send a Human to Do a Machine’s Job",
+      "url": "https://www.galaxy.com/insights/research/phperil-never-send-a-human-to-do-a-machines-job",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.316Z",
+      "content": "PHPeril: Never Send a Human to Do a Machine’s Job galaxy.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.darkreading.com/cybersecurity-operations/ai-tools-massive-attacks-little-cost",
+      "title": "AI Tools Are Generating Massive Attacks for Little Cost",
+      "url": "https://www.darkreading.com/cybersecurity-operations/ai-tools-massive-attacks-little-cost",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.318Z",
+      "content": "AI Tools Are Generating Massive Attacks for Little Cost darkreading.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
+      "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
+      "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.320Z",
+      "content": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II) openai.com16 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://aspiringforintelligence.substack.com/p/why-is-every-ai-data-company-on",
+      "title": "Why Is Every AI Data Company On 🔥?",
+      "url": "https://aspiringforintelligence.substack.com/p/why-is-every-ai-data-company-on",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.321Z",
+      "content": "Why Is Every AI Data Company On 🔥? aspiringforintelligence.substack.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/intcyberdigest/status/2113669869262836001",
+      "title": "EU Governments Back GDPR Changes Allowing AI Data Use Without Consent",
+      "url": "https://x.com/intcyberdigest/status/2113669869262836001",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.330Z",
+      "content": "EU Governments Back GDPR Changes Allowing AI Data Use Without Consent x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://openai.com/index/securing-our-frontier-model-training-environment",
+      "title": "Securing our frontier model training environment",
+      "url": "https://openai.com/index/securing-our-frontier-model-training-environment",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.331Z",
+      "content": "Securing our frontier model training environment openai.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.galaxy.com/insights/research/solana-alpenglow-upgrade-ships-adoption-is-the-real-test",
+      "title": "Solana Alpenglow Upgrade Ships. Adoption is the Real Test",
+      "url": "https://www.galaxy.com/insights/research/solana-alpenglow-upgrade-ships-adoption-is-the-real-test",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.333Z",
+      "content": "Solana Alpenglow Upgrade Ships. Adoption is the Real Test galaxy.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theatlantic.com/technology/2026/10/the-safe-internet-is-shrinking/689130",
+      "title": "The Safe Internet Is Shrinking",
+      "url": "https://www.theatlantic.com/technology/2026/10/the-safe-internet-is-shrinking/689130",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.335Z",
+      "content": "The Safe Internet Is Shrinking theatlantic.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.codeminer42.com/who-do-you-trust-when-you-trust-a-certificate-the-emudhra-incident-explained",
+      "title": "Who do you trust when you trust a certificate? The eMudhra incident explained",
+      "url": "https://blog.codeminer42.com/who-do-you-trust-when-you-trust-a-certificate-the-emudhra-incident-explained",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.336Z",
+      "content": "Who do you trust when you trust a certificate? The eMudhra incident explained blog.codeminer42.com15 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.trychroma.com/blog/chroma-joins-replit",
+      "title": "Chroma is joining Replit | Chroma",
+      "url": "https://www.trychroma.com/blog/chroma-joins-replit",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.337Z",
+      "content": "Chroma is joining Replit | Chroma trychroma.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.oreilly.com/radar/owners-not-renters-raffi-krikorian-on-open-source-ai",
+      "title": "Owners, Not Renters: Raffi Krikorian on Open Source AI",
+      "url": "https://www.oreilly.com/radar/owners-not-renters-raffi-krikorian-on-open-source-ai",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.338Z",
+      "content": "Owners, Not Renters: Raffi Krikorian on Open Source AI oreilly.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://vllm.ai/blog/2026-10-23-glm53-part2-pcp-dcp-hisparse",
+      "title": "GLM-5.3 Optimizations, Part 2: PCP, DCP, and Hybrid HiSparse on 16 H200s",
+      "url": "https://vllm.ai/blog/2026-10-23-glm53-part2-pcp-dcp-hisparse",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.340Z",
+      "content": "GLM-5.3 Optimizations, Part 2: PCP, DCP, and Hybrid HiSparse on 16 H200s vllm.ai13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.semafor.com/article/10/23/2026/ai-startup-world-launches-proof-of-human-tools-aimed-at-agentic-commerce",
+      "title": "AI startup World launches proof-of-human tools aimed at agentic commerce",
+      "url": "https://www.semafor.com/article/10/23/2026/ai-startup-world-launches-proof-of-human-tools-aimed-at-agentic-commerce",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.341Z",
+      "content": "AI startup World launches proof-of-human tools aimed at agentic commerce semafor.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://developer.nvidia.com/blog/scaling-nvidia-tensorrt-performance-optimization-beyond-a-single-build-route-with-the-global-performance-tuner-part-2",
+      "title": "Scaling NVIDIA TensorRT Performance Optimization Beyond a Single Build Route with the Global Performance Tuner, Part 2",
+      "url": "https://developer.nvidia.com/blog/scaling-nvidia-tensorrt-performance-optimization-beyond-a-single-build-route-with-the-global-performance-tuner-part-2",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.344Z",
+      "content": "Scaling NVIDIA TensorRT Performance Optimization Beyond a Single Build Route with the Global Performance Tuner, Part 2 developer.nvidia.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/emollick/status/2113483068174692831",
+      "title": "Opus 4.8 Outperforms Human Experts as Peer Reviewers in Harvard Study",
+      "url": "https://x.com/emollick/status/2113483068174692831",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.346Z",
+      "content": "Opus 4.8 Outperforms Human Experts as Peer Reviewers in Harvard Study x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/10/23/what-some-of-anthropics-backers-are-reportedly-worth-before-its-ipo",
+      "title": "What some of Anthropic’s backers are reportedly worth before its IPO",
+      "url": "https://techcrunch.com/2026/10/23/what-some-of-anthropics-backers-are-reportedly-worth-before-its-ipo",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.346Z",
+      "content": "What some of Anthropic’s backers are reportedly worth before its IPO techcrunch.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.businessinsider.com/ceo-mark-zuckerberg-keeps-winning-meta-ai-moves-muse-launch-2026-10",
+      "title": "Mark Zuckerberg keeps coming out on top",
+      "url": "https://www.businessinsider.com/ceo-mark-zuckerberg-keeps-winning-meta-ai-moves-muse-launch-2026-10",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.347Z",
+      "content": "Mark Zuckerberg keeps coming out on top businessinsider.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.langchain.com/blog/context-engineering-starts-with-retrieval",
+      "title": "Context Engineering for AI Agents Starts with Retrieval",
+      "url": "https://www.langchain.com/blog/context-engineering-starts-with-retrieval",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.348Z",
+      "content": "Context Engineering for AI Agents Starts with Retrieval langchain.com11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/vkazulkin/status/2113664243207962682",
+      "title": "\"Delegating Engineering Work To Cloud-Based Agents\". In this blog post, we'll walk through the li...",
+      "url": "https://x.com/vkazulkin/status/2113664243207962682",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.348Z",
+      "content": "\"Delegating Engineering Work To Cloud-Based Agents\". In this blog post, we'll walk through the li... x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.cloudflare.com/post-quantum-geo-key-manager",
+      "title": "Bringing post-quantum cryptography to geographically fenced key management",
+      "url": "https://blog.cloudflare.com/post-quantum-geo-key-manager",
+      "author": null,
+      "publishedAt": "2026-10-23T19:33:11.350Z",
+      "content": "Bringing post-quantum cryptography to geographically fenced key management blog.cloudflare.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "vercel-blog",
       "externalId": "https://vercel.com/blog/how-vercel-agent-accesses-production-safely",
       "title": "How Vercel Agent accesses production safely",
@@ -4573,6 +5651,21 @@
       "author": "Tom Dale",
       "publishedAt": "2026-10-23T20:29:00.000Z",
       "content": "An agent working on production systems needs permission to act. A request like “fix this deployment” doesn’t tell you upfront which actions it will take or what access it will need. Grant agents broad access and a mistake can affect unrelated resources. Ask for approval at every step and the user has to approve individual actions before they know how the agent intends to solve the problem. Repeated prompts can turn that review into a habit of clicking approve. starts by investigating the problem, then proposes a plan showing what it would do and what access it would need. Approving that plan grants the additional permissions to carry it out, so the user can review the proposed fix before authorizing any changes.Vercel Agent For a broken production deployment, Vercel Agent might inspect recent deployments and , then compare the failed deployment with the last known-good one. Read-only access lets that investigation run automatically. If it leads to a proposed redeploy, Vercel Agent requests the additional access in a plan the user can review and approve in one decision.build logs Access is defined by scopes, the named capabilities recognized by the Vercel authorization system. Any plan requesting access beyond the read-only baseline waits for approval as a whole, including any read-only tasks it contains. In this example, the investigation runs under a separate read-only plan before Vercel Agent proposes the redeploy: A short read-only lookup can run without a plan. For longer investigations, Vercel Agent creates a read-only plan so the user can follow its tasks and progress while it runs automatically. The plan connects what the user wants done to what Vercel Agent is allowed to do: Each stored plan records its tasks and progress, with requested scopes attached to each task. The task descriptions explain why access is needed, and the scopes are combined across the plan. The read-only baseline currently includes every registered scope beginning with . Plans need approval when they request access beyond that baseline or include supported external actions, such as opening a GitHub pull request. Read-only operations can still expose sensitive information, so automatic approval does not mean the work is harmless.read: Vercel Agent runs as a Vercel App, which the user authorizes to act on their behalf within a team. That authorization is limited by the , so approving a plan cannot grant access the user does not have.user’s existing permissions The Vercel OAuth service exchanges that authorization for shorter-lived tokens with specific scopes. These scopes define which capabilities the token permits, such as reading deployments or changing project settings. Vercel APIs check the token on each request to enforce those limits. A user may authorize Vercel Agent for a team with dozens of projects. A redeploy plan requests deployment write access. Editing environment variables, changing domains, and managing team membership each require their own permissions. Deployment write access is broader than a single redeploy. Naming deployment X in a plan does not, by itself, restrict the token to that deployment. The runtime, the software that coordinates Vercel Agent’s execution, checks that the plan is active before selecting its approved credential. Vercel APIs check each request against that credential’s permissions. When a user approves a plan that needs additional Vercel access, its requested scopes are checked again and a token is prepared containing the read-only baseline plus the approved permissions. The runtime, the software that coordinates Vercel Agent’s execution, checks that the plan is active before selecting its approved credential. That credential remains subject to its scopes, team, the user’s permissions, and expiry. The credential used depends on the work: The model’s instructions tell it when to propose a plan and request approval. If it attempts an operation outside the token’s permissions, Vercel APIs reject the request, even if the model considers the action necessary to complete the task. A single plan can include Vercel changes and a GitHub pull request. The user reviews both in one plan, while each provider uses separate permissions and credentials. GitHub pull-request access is tied to an owner and repository, so approval to open a pull request in applies to that repository even if the user also has access to . Opening a pull request there requires its own approval.acme/storefrontacme/payments A proposed plan can request a permission that has been renamed or removed. We initially maintained a separate permission list for Vercel Agent, which could fall out of sync with the OAuth service that issues its tokens. We moved to the same scope definitions so those mismatches could be caught during planning. At session setup, Vercel Agent loads those definitions from the Vercel scope registry into an in-memory catalog. Fetching the registry requires authorization for the team, while the scope definitions themselves are shared across teams. The catalog supplies the definitions used at three stages: For example, a task to update might request an outdated scope. The system rejects the proposed plan and returns valid scopes so Vercel Agent can correct it before requesting approval. This catches the mismatch during planning and requires an explicit correction instead of a fallback to broader access.firewall rules Fetching the registry adds latency and a service dependency, so Vercel Agent caches the catalog and uses that copy to check stored plans when they are loaded. Those checks reflect the cached definitions until the catalog is refreshed with changes from the registry. Vercel Agent may receive approval after the original chat request has ended, or lose its connection before carrying out an approved redeploy. The stored plan includes its state, who approved it, and when, alongside its tasks and requested permissions. That record connects the proposed work to the access the user authorized and allows the approval to be checked when work resumes. Before resuming, the runtime reloads the plan and checks that it is active before selecting a credential with its approved permissions. A stopped plan fails that check, even if its token has time remaining before expiry. If approval and a request to stop arrive together, the plan can move from waiting for approval to active only if the stop has not already changed its status. The runtime then checks again that the plan is active before using the approved credential. If the investigation reveals that the current plan needs replacing, Vercel Agent can propose another. A replacement requesting elevated access needs its own approval, giving the user a chance to review the revised work and permissions together. As Vercel Agent reached more of the platform, we had to correct access rules for actions that involve multiple resources or have different consequences. Attaching a domain can require both domain and project permissions, while staging a firewall rule and publishing it need different levels of access. Scopes need to capture these distinctions while keeping each plan’s access request manageable. Matching those scopes to a proposed fix requires care throughout planning: Even with the right permissions, a redeploy requires judgment about whether the selected commit is safe to ship. That depends on the application, the failure, and the proposed fix. The user needs enough information to assess the choice, and Vercel Agent still has to execute it correctly. Read-only investigation also needs controls for the information it retrieves, including sensitive project configuration and operational details. We chose a read-only baseline so Vercel Agent can investigate before asking for approval, and that choice needs continued review as scopes and the information they expose change. Other systems may need a narrower baseline. Separate controls must govern how retrieved information is handled and where it can go. Vercel Agent can make a wrong decision or encounter malicious instructions in content it reads, such as build logs. Scoped credentials limit which operations it can perform in either case, but permitted operations can still cause harm. Plans therefore work alongside sandbox isolation, network policy, secret handling, rate limits, audit logs, and service authorization. Our work on explains the separation between an agent, its credentials, and the code it executes.security boundaries in agentic architectures Authority stays attached to the work that required it. The runtime selects the approved credential for an active plan, and its scopes define the operations Vercel Agent can perform. With the investigation already done, the user can assess a proposed fix and its requested access together. to investigate an issue in your project. Review what it finds and, if it proposes a change, assess the plan and requested access before approving it.Try Vercel Agent Read more The plan determines the permissions Vercel Agent can only use permissions the user already has Approval determines which permissions Vercel Agent can use Plans and tokens use the same permission definitions Resuming work requires an active, approved plan Where permissions need more precision From investigation to approved action Plan Work Requested scope Investigate the failure Inspect recent deployments and build logs, then compare the failed deployment with the last successful one read:deployment Redeploy the last known-good build Create a deployment read-write:deployment Work Credential Read-only investigation A baseline token with read-only scopes Approved Vercel changes A token with baseline scopes plus the approved additional scopes External actions Credentials and permissions specific to that provider : The outcome the user asks for.Intent : The tasks Vercel Agent proposes to achieve it.Work : The scopes those tasks require.Access : The credentials and API checks that enforce access limits.Enforcement : Requested scopes are normalized, and unknown or malformed names are rejected before the plan is stored or presented for approval.Plan validation : The requested scopes determine whether the plan fits within the read-only baseline or needs additional access.Approval : Valid scopes define the credentials for approved work.Token preparation : Vercel Agent chooses scopes with incomplete information, so it can request too little access and leave a task blocked, or too much and grant more authority than the work needs. Task-level guidance helps it choose, while validation catches invalid scope names. Even a valid scope can grant broader access than necessary.Choosing scopes : “Redeploy the last successful build” gives the user a concrete action to assess, while scope names alone leave them to work out the consequences. The plan needs to explain the intended change and make clear which limits the token actually enforces.Describing the work : A denied operation could indicate a missing scope, an incorrect resource, or an operation that should remain blocked. Vercel Agent needs to distinguish those cases before requesting additional permissions.Understanding denials",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/send-feedback-from-vercel-mcp",
+      "title": "Send feedback from the Vercel MCP",
+      "url": "https://vercel.com/changelog/send-feedback-from-vercel-mcp",
+      "author": "Krish",
+      "publishedAt": "2026-10-23T20:53:00.000Z",
+      "content": "now includes , a tool for sending bug reports, friction reports, and feature requests directly to the Vercel team from your agent or harness.Vercel MCPsubmit_feedback Ask your agent to give feedback in plain language: Your assistant can attach structured context that describes the task, the expected behavior, and what went wrong: The tool requires sign-in, and it sends feedback only when you ask your agent to share it. Connect your agent to Vercel MCP and read the to get started.submit_feedback documentation Read more Send Vercel feedback that the deployment error didn't explain which environment variable was missing.",
       "topics": [
         "devtools-infra",
         "frontend"
