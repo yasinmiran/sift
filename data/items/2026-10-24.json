@@ -1,6 +1,6 @@
 {
   "day": "2026-10-24",
-  "generatedAt": "2026-10-24T08:04:01.120Z",
+  "generatedAt": "2026-10-24T16:38:22.737Z",
   "items": [
     {
       "sourceSlug": "hacker-news",
@@ -67,6 +67,20 @@
       "author": "AlphaSignal Newsroom",
       "publishedAt": "2026-10-23T17:01:50.000Z",
       "content": "Replit is acquiring the vector database maker to build what both companies call the context layer for autonomous enterprise agents.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/llamaindex-s-ocria-1-parses-pdfs-75x-faster-than-gemini-at-a-third-the-cost",
+      "title": "LlamaIndex's OCRia-1 Parses PDFs 75x Faster Than Gemini at a Third the Cost",
+      "url": "https://alphasignal.ai/news/llamaindex-s-ocria-1-parses-pdfs-75x-faster-than-gemini-at-a-third-the-cost",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-23T17:06:45.000Z",
+      "content": "LlamaIndex's new 4B vision-language model tops ParseBench by 12 points and parses a typical page in 0.2 seconds, available now on OpenDocRouter.",
       "topics": [
         "ai-llms"
       ],
@@ -328,6 +342,25 @@
       "comments": 113
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50214373",
+      "title": "Show HN: Corgi, a helpful {agent, terminal} multiplexer",
+      "url": "https://corgi.computer/",
+      "author": "eiopa",
+      "publishedAt": "2026-10-23T19:46:38.000Z",
+      "content": "Hey everyone, Inspired by Herdr, I've built an agent multiplexer that I've been using as my daily driver for a few weeks now. I think I improved on the concept in a few ways, focusing on the ergonomics I always wished I had: I show you what the agents are up to, along with a running feed of their activity. There's also a simple shortcut (F1) to go to the next unread agent. I use multiple accounts, so I've added unified launcher for Codex/Claude Code/Pi. Theres some careful ergonomics there: fast search and resume over sessions, inline usage tracking etc. Many small quality of life improvements to the terminal experience: - Links can be copied with a click, so no need to drag-select over many lines - cmd+v just pastes images (even on SSH) - images have a thumbnail preview. - Built-in CPU/Memory/GPU usage tracking, broken down by workspace I assume you have access to cheap inference (Luna/Haiku/etc). It just reuses the agents to organize things for you: what is this http link? what is this worktree about? what is each agent doing? It's small but it made my environment feel more cozy. On a personal note, I've been on a frustrating sick leave for a while now. I created Corgi to challenge myself, and see if I can go back. The answer is more mixed than I had hoped, but I am happy with the result and thankful for the experience. I hope you like it! a few friends & myself have been using it for a few weeks and it's been pretty nice. There's still a lot to improve and some rough edges, so feedback would be greatly appreciated. Thank you :)",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 115,
+      "comments": 33
+    },
+    {
       "sourceSlug": "alphasignal",
       "externalId": "https://alphasignal.ai/news/openai-cuts-live-internet-access-from-frontier-model-training-after-security",
       "title": "OpenAI Cuts Live Internet Access From Frontier Model Training After Security Breach",
@@ -426,6 +459,20 @@
       "content": "Sundar Pichai believes the tech industry is far from the end state of recursive self-improvement. The Google CEO shared this belief in a Big Technology Podcast interview this week, along with plenty of other news nuggets. On Tuesday, we published the full transcript of the interview. Today, we share the eight newsiest bits of the conversation, spanning RSI, compute, and Google’s relationship with Apple. You can get the full interview on Apple Podcasts, Spotify, YouTube, or your podcast app of choice. Full recursive self-improvement is far away Some in the AI industry believe that an intelligence explosion is imminent. They say AI will soon improve itself autonomously, in a full loop without human intervention. Pichai, who has visibility into Google DeepMind’s cutting-edge research and is a major investor in Anthropic, disagrees. “To be very clear,” he said. “We are pretty far from the end state of RSI.” But AI models are helping make themselves better Fully autonomous RSI may be far away, but AI models are already playing a major role in improving the next versions of themselves. “You have RSI loops along with AI researchers in various aspects of model development,” Pichai said. “You almost have agents helping AI researchers in some automated way work together to build these models.” Everyone is short on compute Pichai said the entire tech industry is short compute given that today’s availability reflects decisions they made two years ago, when the technology was much less capable. “The compute we have today is a function of decisions I made in 2024,” Pichai said. “Today, obviously, when you sit and look at anything, everyone is short—not just us, other companies—and everyone wishes you had two times what you had planned for.” Google is sacrificing cloud profits for frontier AI research Google has limited compute, so it must make tradeoffs between today’s profits and tomorrow’s research. Google Cloud Platform has been growing ferociously over the past year, with 82% growth in the past quarter, and it can make even more profit with more GPUs, but Pichai said “ground zero” for Google is making sure frontier AI has enough compute to thrive. “Our cloud business is at any given moment in time forgoing short-term revenues because we are making compute trade-offs to support frontier AI development,” he told me. But Pichai believes some compute constraints are good for AI research Unlike most AI research outfits, which believe more compute leads to better models by definition, Pichai said some constraints could spark innovation. “Even our AI researchers have some constraints, which are also good,” he said. “That’s what inspires creativity. That’s what helps you come up with a more efficient algorithmic breakthrough.” Google’s big product ambition is a unified agent where you can use its services Asked when AI search within Gmail might work as well as Gmail search within ChatGPT, Pichai explained that Google’s priority has been bringing its product suite into a unified agent where services like Gmail will be accessible. This is what he envisions as the future interface. “You can address this agent whether you’re in Workspace, in Search, in Gemini,” he said. “We are putting a lot of time and effort into making sure, as we build out our agentic experience, that unification and that capability works well across all these services.” Google’s partnership with Apple is going strong Pichai said Google would like to do more work with Apple after helping the company improve Siri via the licensing of Gemini. “Apple has done a phenomenal job of incorporating… they customize these models and build it into Siri,” he said. “and it’s been great to see the reception. We are committed to doing more.” Datacenters in space: “Hello World” moment upcoming Pichai compared Google’s Project Suncatcher, where it is sending its TPUs to space, to Waymo: A technically challenging moonshot that could pay off perhaps not in years, but in decades. “With all these technologies, you’re at a moment in time where it looks a bit like sci-fi, but 10 to 20 years down the line, it’s actually working in a meaningful way.” Pichai said he expects a “Hello World” moment from the TPUs it sent to space “as we speak.” A MESSAGE FROM OUR SPONSOR What Makes a Company Exponential in the Age of AI? — With Anthony Pappas Anthony Pappas is the chief marketing officer of DXC Technology. Anthony joins Big Technology to discuss what makes a company an “Xponential Enterprise” in the age of AI. Tune in to hear the six principles behind DXC’s approach, how his team is transforming its marketing operations, and how he says those changes helped save $15 million. We also cover AI agents, controlling token costs, and whether companies will build their own AI tools instead of buying more software. Hit play for a practical look at turning AI into measurable business results, kicking off our new series in partnership with DXC Technology. Watch Now Thanks again for reading. Please share Big Technology if you like it! My book Always Day One digs into the tech giants’ inner workings, focusing on automation and culture. I’d be thrilled if you’d give it a read. You can find it here. This week on Big Technology Podcast: The PHP Bug’s Stunning Consequences + Cybersecurity’s Black October — With Alex Stamos Alex Stamos is the Chief Information Security Officer at Cognition. Ranjan Roy is the Author of Margins Stamos joins Big Technology to discuss a massive wave of cyberattacks unleashed by AI-discovered software vulnerabilities, including a critical PHP flaw that could put millions of websites at risk. Tune in to hear how hackers are exploiting these vulnerabilities, why AI is accelerating cyberattacks, and what the next several months could mean for businesses and everyday internet users. We also cover China's hacking ecosystem, the risks of giving AI agents access to sensitive accounts, and why Stamos believes we may need to rewrite much of the software underpinning the internet. Hit play for a fascinating and alarming look at how AI is transforming cybersecurity and what we can do to protect ourselves. Watch Now",
       "topics": [
         "startups-industry",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/cohere-locks-enterprise-ai-prompts-behind-hardware-encrypted-model-vault",
+      "title": "Cohere Locks Enterprise AI Prompts Behind Hardware-Encrypted Model Vault",
+      "url": "https://alphasignal.ai/news/cohere-locks-enterprise-ai-prompts-behind-hardware-encrypted-model-vault",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-23T20:45:10.000Z",
+      "content": "Cohere's Model Vault now runs on hardware-isolated NVIDIA H100 enclaves on Azure, letting enterprises verify their data stays private even from Cohere.",
+      "topics": [
         "ai-llms"
       ],
       "paywalled": false,
@@ -739,6 +786,25 @@
     },
     {
       "sourceSlug": "hacker-news",
+      "externalId": "50217495",
+      "title": "Around a dozen banking apps began specifically permitting GrapheneOS",
+      "url": "https://grapheneos.social/@GrapheneOS/117492375462459244",
+      "author": "privacyishuman",
+      "publishedAt": "2026-10-24T01:15:14.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 465,
+      "comments": 157
+    },
+    {
+      "sourceSlug": "hacker-news",
       "externalId": "50217500",
       "title": "Twelve years of distributed SQLite",
       "url": "https://philipotoole.com/twelve-years-of-distributed-sqlite/",
@@ -771,6 +837,44 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50217683",
+      "title": "Alzheimer's breakthrough: 2 hrs of sleep restored without clearing brain plaques",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261018084421.htm",
+      "author": "amichail",
+      "publishedAt": "2026-10-24T01:53:10.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 123,
+      "comments": 26
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50217903",
+      "title": "Apple Security Research Device",
+      "url": "https://security.apple.com/research-device/",
+      "author": "neom",
+      "publishedAt": "2026-10-24T02:36:38.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 122,
+      "comments": 68
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261023/p27#a261023p27",
       "title": "Andy Jassy says AWS capacity for 2027 is \"largely sold out\" and a \"good chunk\" of 2028 capacity is also sold, though AWS reserves some capacity for on-demand (Catherine Perloff/The Information)",
@@ -785,6 +889,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50218195",
+      "title": "How close can pure functional programming get to C?",
+      "url": "https://rtfeldman.com/fp-vs-c",
+      "author": "stmonty",
+      "publishedAt": "2026-10-24T03:43:54.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 201,
+      "comments": 57
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261023/p28#a261023p28",
       "title": "Google updates its privacy policy to clarify it could use data shared via Personal Intelligence from connected apps, including Gmail and Photos, to target ads (Shimul Sood/Android Authority)",
@@ -794,6 +917,20 @@
       "content": "Shimul Sood / Android Authority: Google updates its privacy policy to clarify it could use data shared via Personal Intelligence from connected apps, including Gmail and Photos, to target ads — Your inbox has secrets, and Google's ads might want in. — • … TL;DR — Google updated its privacy policy …",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Oct/24/battledrones/",
+      "title": "battledrones v14: Compass Rose, a four player map",
+      "url": "https://simonwillison.net/2026/Oct/24/battledrones/",
+      "author": null,
+      "publishedAt": "2026-10-24T03:59:57.000Z",
+      "content": "Release: battledrones v14: Compass Rose, a four player map I added four player online mode to Battledrones - previous maps were limited to two. Here's the initial prompt I used: Add a new map for a four player battle - four way rotational symmetry, up to four AI players, works with the WebSocket non-audio based multiplayer mode so up to four human players can join (any spare slots use AI) Claude Opus 4.5 added a new map called \"Compass Rose\" and modified the WebSockets multiplayer network code to support up to four players for that map, joining via share links or QR codes. The new teams use robots themed in purple and green, joining the existing blue and red designs. You can preview those colors in the updated model browser. Here's a replay link to watch a four way AI battle with the \"Goliath Armada\" mutator turned on, where each side starts with four giant Goliath mech units. Tags: game-design, projects, claude",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -1061,6 +1198,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50218430",
+      "title": "OBS Studio 33",
+      "url": "https://github.com/obsproject/obs-studio/releases/tag/33.0.0",
+      "author": "pentagrama",
+      "publishedAt": "2026-10-24T04:49:58.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 346,
+      "comments": 114
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261024/p1#a261024p1",
       "title": "The PHP Foundation, which coordinated fixes for two critical PHP flaws, operates on a shoestring budget with one full-time staff member and 14 contractors (Toby Sterling/Reuters)",
@@ -1073,6 +1229,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50218633",
+      "title": "Root shell on Samsung TV",
+      "url": "https://twitter.com/log4j/status/2113014142600953868?s=46",
+      "author": "testing22321",
+      "publishedAt": "2026-10-24T05:49:57.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 410,
+      "comments": 148
     },
     {
       "sourceSlug": "alphasignal",
@@ -1184,6 +1359,606 @@
       "author": null,
       "publishedAt": "2026-10-24T08:03:54.772Z",
       "content": "Epic vs. Apple AU:Court Orders Alt App Stores,Sideloading and 3rd Party Payments judgments.fedcourt.gov.au180 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50219177",
+      "title": "Node2Shell evolves to HTTP2Shell, blast radius affects many HTTP libs and apps",
+      "url": "https://www.aikido.dev/blog/python-packages-vulnerable-node2shell-brotli-cve-2026-111497",
+      "author": "theanonymousone",
+      "publishedAt": "2026-10-24T08:06:39.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 157,
+      "comments": 73
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50219666",
+      "title": "I Don't Understand Quantum Physics (2018)",
+      "url": "https://www.southampton.ac.uk/~doug/quantum_physics/index.html",
+      "author": "rramadass",
+      "publishedAt": "2026-10-24T09:53:26.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 196,
+      "comments": 138
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/comfy-org-rescues-stable-diffusion-1-5-with-1-5m-download-mirror",
+      "title": "Comfy-Org Rescues Stable Diffusion 1.5 With 1.5M-Download Mirror",
+      "url": "https://alphasignal.ai/news/comfy-org-rescues-stable-diffusion-1-5-with-1-5m-download-mirror",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-24T10:02:32.000Z",
+      "content": "Comfy-Org has published a repackaged archive of Stable Diffusion v1.5 on Hugging Face, preserving the original weights after RunwayML pulled its page.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261024/p3#a261024p3",
+      "title": "Inside Meta's law enforcement outreach team, which uses AI and human reviewers to analyze social media posts, aiming to prevent threats like school shootings (Rachel Monroe/New Yorker)",
+      "url": "https://www.techmeme.com/261024/p3#a261024p3",
+      "author": null,
+      "publishedAt": "2026-10-24T10:35:01.000Z",
+      "content": "Rachel Monroe / New Yorker: Inside Meta's law enforcement outreach team, which uses AI and human reviewers to analyze social media posts, aiming to prevent threats like school shootings — Algorithmic social media, which has helped create the conditions for the spread of such violence, is reckoning with how it can be part of the solution.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/10/ice-sheet-expansion-may-have-started-2000-years-go-but-we-canceled-that/",
+      "title": "Ice sheet expansion may have started 2,000 years ago, but we canceled that",
+      "url": "https://arstechnica.com/science/2026/10/ice-sheet-expansion-may-have-started-2000-years-go-but-we-canceled-that/",
+      "author": "Jacek Krywko",
+      "publishedAt": "2026-10-24T11:00:09.000Z",
+      "content": "Barnes Ice Cap sits on the central plateau of Baffin Island, in the Canadian Arctic. It is the last surviving fragment of the Laurentide Ice Sheet, the largest of the Pleistocene ice sheets, which at its peak buried most of Canada under two miles of ice and locked away around 80 meters of sea level. That remnant has now yielded direct physical evidence that ice sheets might have reversed their retreat and started to grow again thousands of years ago. In a recent Science study, researchers show that the Laurentide reached its smallest size about 3,600 years ago, then started re-expanding roughly 2,000 years ago, which the team interprets as the opening move of the next glaciation. Apparently, this brand-new ice age was on its way until about 1960, when human-caused climate warming reversed it. Frozen to the bed “Barnes is the last remaining piece of one of the domes of the Laurentide Ice Sheet,” says Nicolás Young, a geologist at Columbia University's Lamont-Doherty Earth Observatory and lead author of the study. As that enormous dome thinned through the Holocene, its margin withdrew up onto Baffin Island, and what's left today is the deflated core of something that was once two miles thick. The reason Barnes can testify about its own history, Young explains, comes down to the temperature at its base. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/10/a-1000-mile-cloud-on-mars-may-reveal-physics-never-seen-in-nature/",
+      "title": "A 1,000-mile cloud on Mars may reveal physics never seen in nature",
+      "url": "https://arstechnica.com/science/2026/10/a-1000-mile-cloud-on-mars-may-reveal-physics-never-seen-in-nature/",
+      "author": "Tereza Ondráčková, wired.com",
+      "publishedAt": "2026-10-24T11:50:28.000Z",
+      "content": "Every morning during the Martian spring and summer, a thin and extremely long cloud emerges, only to disappear again. The wispy formation appears near the volcano Arsia Mons and gradually elongates until it reaches over 1,000 miles—about the distance from New York to Kansas City as the crow flies—before dissipating. This cycle then repeats for several months. Since it was first recorded by a probe in 2018, scientists have been unable to find a plausible explanation for the existence of this cloud, often referred to as the Arsia Mons Elongated Cloud (AMEC). Until now. Recently, researchers successfully modeled the cloud’s formation for the first time, their results suggesting that it may be driven by a physical process that has never been directly observed in any planet's atmosphere. \"We found that we needed to include some exotic physics… physics that, while included in textbooks, is treated as theoretical and usually thought not to happen in nature. It certainly hasn’t been seen in action before,\" Jorge Hernández-Bernal, a planetary scientist at Paris’ Sorbonne Université and lead author of the study, said in a press release. \"Once we included this physics in our simulations, the AMEC emerged just as we hoped.” Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1017740",
+      "title": "Laika has spent 20 years building up to Wildwood",
+      "url": "https://www.theverge.com/entertainment/1017740/wildwood-stop-motion-interview-laika",
+      "author": "Andrew Webster",
+      "publishedAt": "2026-10-24T12:00:00.000Z",
+      "content": "Across several decades in Hollywood, Caleb Deschanel has seen a lot. He served as cinematographer on films like The Passion of the Christ and The Patriot, worked on sequences in The Godfather and Titanic, and directed a few episodes of Twin Peaks. Even still, nothing could quite prepare him for his first stop-motion project: working as the cinematographer on Wildwood, the latest release from Coraline studio Laika. While he knew that stop-motion was a long and involved process, he was still surprised by just how much work went into these movies. \"When I started I thought it was one thing, and then I quickly found out that it was another thing … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1018121",
+      "title": "It’s time to find a new browser",
+      "url": "https://www.theverge.com/tech/1018121/cod-4-claude-duet-wildwood-installer",
+      "author": "David Pierce",
+      "publishedAt": "2026-10-24T12:00:00.000Z",
+      "content": "Hi, friends! Welcome to Installer No. 149, your guide to the best and Verge-iest stuff in the world. (If you're new here, welcome, happy It Actually Feels Like Fall Now At Least In My Neighborhood), and also you can read all the old editions at the Installer homepage.) This week, I've been reading about Demis Hassabis and computer chips and permafrost, enjoying the first episodes of Machine Gods, filming the next season of Version History (pet season!), seeing You Can See Everything and then reading and listening to absolutely everything about it, painstakingly updating all the stuff in my 1Password, making tiny documents with Tiny Little O … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/datawhale-rebuilds-stanford-s-cs336-into-a-chinese-open-source-llm-course",
+      "title": "Datawhale Rebuilds Stanford's CS336 Into a Chinese Open-Source LLM Course",
+      "url": "https://alphasignal.ai/news/datawhale-rebuilds-stanford-s-cs336-into-a-chinese-open-source-llm-course",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-24T12:06:14.000Z",
+      "content": "A Chinese-language adaptation of Stanford's CS336 bundles 16 chapters and 6 hands-on assignments covering the full LLM stack, from BPE to GRPO.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1017888",
+      "title": "Lee Chang Dong ponders the ethics of the camera",
+      "url": "https://www.theverge.com/entertainment/1017888/possible-love-lee-chang-dong-director-interview",
+      "author": "May Jeong",
+      "publishedAt": "2026-10-24T12:30:00.000Z",
+      "content": "Lee Chang Dong's seventh feature film, Possible Love, is inspired by true events from 2009, when a Korean conglomerate fired a third of its staff - 2,600 employees - after which many died by suicide. Possible Love is the latest in a long line of Lee movies that engage with themes of class or labor or religion or compressed modernity, that uniquely Korean affliction, without feeling didactic. A different kind of movie would have captured the heat of that labor struggle. Possible Love picks up with the characters in the aftermath, a murkier time that defies easy understanding. The film opens with an epigraph: \"Thou shall not covet.\" What foll … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/ista-daslab-squeezes-deepseek-s-763b-model-onto-a-12-gb-gpu",
+      "title": "ISTA-DASLab Squeezes DeepSeek's 763B Model onto a 12 GB GPU",
+      "url": "https://alphasignal.ai/news/ista-daslab-squeezes-deepseek-s-763b-model-onto-a-12-gb-gpu",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-24T12:34:07.000Z",
+      "content": "ISTA-DASLab shrinks DeepSeek-V4.1-Flash-1017 to under 2 bits per weight, letting a 763B MoE run locally on a single 12GB consumer GPU.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50220913",
+      "title": "Elon Musk Just Gave Europe a Reason to Replace American Technology",
+      "url": "https://steveblank.com/2026/10/24/europe-gets-a-wake-up-call/",
+      "author": "sblank",
+      "publishedAt": "2026-10-24T13:09:28.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 311,
+      "comments": 338
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261024/p4#a261024p4",
+      "title": "Ukraine says Starshield was working normally again on Saturday morning; US officials said Trump asked Elon Musk to restore the service (Wall Street Journal)",
+      "url": "https://www.techmeme.com/261024/p4#a261024p4",
+      "author": null,
+      "publishedAt": "2026-10-24T13:35:02.000Z",
+      "content": "Wall Street Journal: Ukraine says Starshield was working normally again on Saturday morning; US officials said Trump asked Elon Musk to restore the service — Speed restrictions imposed by Elon Musk's SpaceX have hampered Ukraine's drone forces since Oct. 14 — KYIV—Ukraine's military Starlink system …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1018131",
+      "title": "I hope Apple’s touchscreen MacBook takes some lessons from this Lenovo laptop",
+      "url": "https://www.theverge.com/report/1018131/apple-macbook-touchscreen-stylus-pencil-lenovo-laptop-analysis",
+      "author": "Antonio G. Di Benedetto",
+      "publishedAt": "2026-10-24T14:00:00.000Z",
+      "content": "The Lenovo Yoga 9n is a pricey workstation laptop, but being a 2-in-1 also makes it fun. | Photo: Antonio G. Di Benedetto / The Verge It looks like the long-rumored touchscreen MacBook might actually get announced next week, and after using the Lenovo Yoga 9n for our testing of Nvidia's RTX Spark platform, it got me thinking: this is a lot of what I want from a touchscreen MacBook. Like the Apple silicon in modern MacBook Pros, RTX Spark is an Arm-based processor with a beefy integrated GPU and lots of unified memory. And the Yoga is the most fun RTX Spark laptop so far because it's a 16-inch 2-in-1 convertible with a stylus. Its Nvidia-powered compatriots also have touchscreens, like most Windows laptops, but they're conventional clamshell designs. The Lenovo Yoga d … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1018169",
+      "title": "What to expect from Apple’s ‘Pro and tell’ event",
+      "url": "https://www.theverge.com/tech/1018169/what-to-expect-apple-pro-and-tell-event-touchscreen-macbook-pro",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-10-24T14:15:00.000Z",
+      "content": "It feels like Apple's Welcome Home event just happened. And the iPhone Duo announcement isn't all that far in our rearview mirror, either. Yet, the company is back with another launch, focused on the MacBook Pro, it looks like. Its \"Pro and tell\" event is scheduled for October 28th at 1PM ET in Los Angeles. While obviously nothing is confirmed yet, it sure seems like we're finally going to get that long-rumored touchscreen MacBook Pro. Beyond that? There could be an OLED update for the iPad Mini, plus M6 updates across other devices, following the M6 debut with the Mac Mini in August. A touchscreen MacBook Pro A MacBook Pro with an OLED t … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261024/p5#a261024p5",
+      "title": "Block unveils Dessa, a \"true speech-to-speech\" AI model trained on \"nothing but human conversation\" that it says runs locally on a MacBook Pro M4 Max or newer (Jay Peters/The Verge)",
+      "url": "https://www.techmeme.com/261024/p5#a261024p5",
+      "author": null,
+      "publishedAt": "2026-10-24T14:30:01.000Z",
+      "content": "Jay Peters / The Verge: Block unveils Dessa, a “true speech-to-speech” AI model trained on “nothing but human conversation” that it says runs locally on a MacBook Pro M4 Max or newer — You have got to listen to these conversations with Block's new Dessa AI model.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50221676",
+      "title": "Google illegally cut down 250K trees in Finland for data center",
+      "url": "https://nypost.com/2026/10/24/business/google-illegally-tore-down-250k-trees-for-finland-data-center-infuriating-locals-report/",
+      "author": "rustybolt",
+      "publishedAt": "2026-10-24T14:38:34.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 229,
+      "comments": 162
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1017460",
+      "title": "Fielded is obsessed with scammers and unhinged Japanese cyberpunk",
+      "url": "https://www.theverge.com/entertainment/1017460/fielded-some-kind-of-animal-interview",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-10-24T15:00:00.000Z",
+      "content": "Lindsay Powell, who releases records under the name Fielded, has spent most of her career subverting expectations and genre conventions. According to their Bandcamp page, Fielded started as an experimental noise project before growing into something closer to R&B. But from moment one, her take on the genre was restless, relentlessly playing with what R&B even means. Her first album, Ninety-Thirty-Thirty, includes songs heavily indebted to '80s synth-pop and features multiple saxophone solos. Boy Angel is a quirky electronic exploration with huge saw-wave synths, jittery percussion, and sky-high vocal stacks. While 2020's Demisexual Lovelace … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1017768",
+      "title": "LG’s brilliant C6 OLED TV is already $400 off ahead of Black Friday",
+      "url": "https://www.theverge.com/gadgets/1017768/lg-c6-oled-tv-early-black-friday-2026-deal-sale",
+      "author": "Sheena Vasani",
+      "publishedAt": "2026-10-24T15:00:00.000Z",
+      "content": "LG’s C6 OLED TV is on sale in multiple sizes starting at $999.99 ($300 off). | Image: LG Black Friday is still over a month away, but if you’re hoping to upgrade your TV, you don’t need to wait until November. LG has already kicked off its early Black Friday sale, letting you save on the LG C6 and various soundbars through November 1st. Right now, for instance, you can snag a 55-inch C6 for an all-time low of $999.99 ($400 off), with Amazon and Best Buy matching said price. Other sizes are also discounted, including the 65-inch model, which is on sale for $1,399.99 ($300 off) from Amazon, Best Buy, and LG. If you purchase direct, you’ll also get a free Xbox Wireless Controller and a complimentary wall mount. LG C6 OLED TV Where to Buy: $1399.99 $999.99 at Amazon (55-inch) $1699.99 $1399.99 at Amazon (65-inch) $2499.99 $1999.99 at Amazon (77-inch) LG’s C6 OLED TV offers a few small but welcome upgrades over last year’s C5, including a faster Alpha 11 AI Gen3 processor designed to improve picture and sound quality, along with a brighter display. It also boasts a higher refresh rate of up to 165Hz for smoother gaming, up from 144Hz, while retaining four HDMI 2.1 ports and support for AMD FreeSync Premium and Nvidia G-Sync, the latter of which helps reduce unwanted screen tearing while gaming. Unsurprisingly, the C6 delivers the hallmarks of OLED technology, including inky blacks, vibrant color, and impressive contrast. Support for Dolby Vision and Dolby Atmos, meanwhile, helps make movies and shows appear more lifelike and immersive, while built-in access to Netflix, HBO Max, and the like lets you stream your favorite content without a dedicated streaming device. Google Cast and Apple AirPlay 2 also make it easy to share content from your phone, while Matter support lets you pair it with various smart home devices. Solid specs aside, we’d be remiss not to mention that researchers recently raised concerns about how LG’s smart TVs collect and log user data. LG has since responded to some of the accusations, saying its TVs don’t continuously record conversations, and that features like voice recognition and interest-based advertising are optional and disabled by default. While LG hasn’t addressed all concerns, similar data-collection practices aren’t necessarily unique to LG TVs, and they don’t detract from the C6’s impressive feature set.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "lennys-newsletter",
+      "externalId": "https://www.lennysnewsletter.com/p/community-wisdom-negotiating-a-lowball",
+      "title": "🧠 Community Wisdom: Negotiating a lowball offer, designers earning a seat in product decisions, resources for building an MCP server, and more",
+      "url": "https://www.lennysnewsletter.com/p/community-wisdom-negotiating-a-lowball",
+      "author": "Kiyani",
+      "publishedAt": "2026-10-24T15:11:42.000Z",
+      "content": "👋 Hello and welcome to this week’s edition of ✨ Community Wisdom ✨ a subscriber-only email, delivered every Saturday, highlighting the most helpful conversations in our members-only Slack community. Read more",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261024/p6#a261024p6",
+      "title": "An interview with Ciena CEO Gary Smith, a veteran of the 2001 telecoms crash, on AI demand outpacing supply for Ciena's optical networking chips, and more (Steven Rosenbush/Wall Street Journal)",
+      "url": "https://www.techmeme.com/261024/p6#a261024p6",
+      "author": null,
+      "publishedAt": "2026-10-24T15:40:01.000Z",
+      "content": "Steven Rosenbush / Wall Street Journal: An interview with Ciena CEO Gary Smith, a veteran of the 2001 telecoms crash, on AI demand outpacing supply for Ciena's optical networking chips, and more — Ciena CEO Gary Smith is ‘suitably paranoid,’ but optimistic — The historic telecommunications crash of 2001 is burned indelibly …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/comfy-org-s-qwen-image-edit-bundle-hits-1-68m-downloads-with-smarter-editing",
+      "title": "Comfy-Org's Qwen-Image-Edit Bundle Hits 1.68M Downloads With Smarter Editing",
+      "url": "https://alphasignal.ai/news/comfy-org-s-qwen-image-edit-bundle-hits-1-68m-downloads-with-smarter-editing",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-24T16:02:53.000Z",
+      "content": "Comfy-Org's drop-in bundle of repackaged Qwen-Image-Edit checkpoints for ComfyUI crossed 1.68M downloads, now covering the 2511 refresh and five LoRAs.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/10/24/nvidias-role-as-ai-financier-faces-first-big-test-as-neoclouds-take-market-hit.html",
+      "title": "Nvidia's role as AI financier faces first big test as neoclouds take market hit",
+      "url": "https://www.cnbc.com/2026/10/24/nvidias-role-as-ai-financier-faces-first-big-test-as-neoclouds-take-market-hit.html",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.956Z",
+      "content": "Nvidia's role as AI financier faces first big test as neoclouds take market hit cnbc.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://simonwillison.net/2026/Oct/23/kimi-k31-pro",
+      "title": "Introducing Kimi K3.1 Pro",
+      "url": "https://simonwillison.net/2026/Oct/23/kimi-k31-pro",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.957Z",
+      "content": "Introducing Kimi K3.1 Pro simonwillison.net1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.xda-developers.com/nvidia-rtx-spark-npu-barely-mentions-spent-week-figuring-out",
+      "title": "Nvidia's RTX Spark has an NPU it barely mentions, and I spent a week figuring out what it actually is",
+      "url": "https://www.xda-developers.com/nvidia-rtx-spark-npu-barely-mentions-spent-week-figuring-out",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.960Z",
+      "content": "Nvidia's RTX Spark has an NPU it barely mentions, and I spent a week figuring out what it actually is xda-developers.com29 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theinformation.com/articles/anthropics-margin-openais-opportunity",
+      "title": "Anthropic’s Margin is OpenAI’s Opportunity",
+      "url": "https://www.theinformation.com/articles/anthropics-margin-openais-opportunity",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.961Z",
+      "content": "Anthropic’s Margin is OpenAI’s Opportunity theinformation.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://kirahowe.com/2026/oct/23/agent-authority-and-context",
+      "title": "Personal agents need a new kind of harness",
+      "url": "https://kirahowe.com/2026/oct/23/agent-authority-and-context",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.962Z",
+      "content": "Personal agents need a new kind of harness kirahowe.com14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human",
+      "title": "Block’s new voice model sounds eerily human",
+      "url": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.964Z",
+      "content": "Block’s new voice model sounds eerily human techcrunch.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/10/24/forced-to-pick-groks-ai-model-chooses-republicans-openais-picks-democrats",
+      "title": "Forced to pick, Grok’s AI model chooses Republicans. OpenAI’s picks Democrats.",
+      "url": "https://techcrunch.com/2026/10/24/forced-to-pick-groks-ai-model-chooses-republicans-openais-picks-democrats",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.967Z",
+      "content": "Forced to pick, Grok’s AI model chooses Republicans. OpenAI’s picks Democrats. techcrunch.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://a16z.simplecast.com/episodes/amazon-ceo-220-billion-still-cant-meet-ai-demand-3QzhqLQK",
+      "title": "Amazon CEO Andy Jassy on Why Amazon Is Investing $220 Billion in AI",
+      "url": "https://a16z.simplecast.com/episodes/amazon-ceo-220-billion-still-cant-meet-ai-demand-3QzhqLQK",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.967Z",
+      "content": "Amazon CEO Andy Jassy on Why Amazon Is Investing $220 Billion in AI a16z.simplecast.com61 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://pournasserian.com/writing/mcp-2026-reference-architecture",
+      "title": "A reference architecture for MCP servers in production",
+      "url": "https://pournasserian.com/writing/mcp-2026-reference-architecture",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.973Z",
+      "content": "A reference architecture for MCP servers in production pournasserian.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.siliconcodesign.com/p/ocp-2026-co-designing-an-ai-cluster",
+      "title": "OCP 2026 - Co-Designing an AI Cluster",
+      "url": "https://www.siliconcodesign.com/p/ocp-2026-co-designing-an-ai-cluster",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.974Z",
+      "content": "OCP 2026 - Co-Designing an AI Cluster siliconcodesign.com22 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://github.com/Zagitta/gpu-unlock",
+      "title": "Zagitta/gpu-unlock: Unlock FP/BF16 instruction issue rate on Nvidia 3000 cards",
+      "url": "https://github.com/Zagitta/gpu-unlock",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.975Z",
+      "content": "Zagitta/gpu-unlock: Unlock FP/BF16 instruction issue rate on Nvidia 3000 cards github.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://pournasserian.com/writing/mcp-buyer-maturity-map",
+      "title": "MCP maturity in October 2026: what's stable, what's deprecated, what's still a bet",
+      "url": "https://pournasserian.com/writing/mcp-buyer-maturity-map",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.977Z",
+      "content": "MCP maturity in October 2026: what's stable, what's deprecated, what's still a bet pournasserian.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/10/21/meta-earnings-q3-2026-live-updates.html",
+      "title": "Meta (META) Q3 2026 earnings report: Live updates",
+      "url": "https://www.cnbc.com/2026/10/21/meta-earnings-q3-2026-live-updates.html",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.980Z",
+      "content": "Meta (META) Q3 2026 earnings report: Live updates cnbc.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://pournasserian.com/writing/mcp-2026-design-patterns",
+      "title": "MCP server design patterns and anti-patterns",
+      "url": "https://pournasserian.com/writing/mcp-2026-design-patterns",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.983Z",
+      "content": "MCP server design patterns and anti-patterns pournasserian.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://futurism.com/artificial-intelligence/meta-board-zuckerberg-ai-spending-compensation",
+      "title": "Behind the Scenes, Meta’s Board Is Battling With Mark Zuckerberg Over His Out-of-Control AI Spending",
+      "url": "https://futurism.com/artificial-intelligence/meta-board-zuckerberg-ai-spending-compensation",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.983Z",
+      "content": "Behind the Scenes, Meta’s Board Is Battling With Mark Zuckerberg Over His Out-of-Control AI Spending futurism.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://pournasserian.com/writing/mcp-buyer-governance-checklist",
+      "title": "An MCP governance checklist for the CTO",
+      "url": "https://pournasserian.com/writing/mcp-buyer-governance-checklist",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.984Z",
+      "content": "An MCP governance checklist for the CTO pournasserian.com10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://steveblank.com/2026/10/24/europe-gets-a-wake-up-call",
+      "title": "Elon Musk Just Gave Europe a Reason to Replace American Technology",
+      "url": "https://steveblank.com/2026/10/24/europe-gets-a-wake-up-call",
+      "author": null,
+      "publishedAt": "2026-10-24T16:38:15.984Z",
+      "content": "Elon Musk Just Gave Europe a Reason to Replace American Technology steveblank.com2 min read",
       "topics": [
         "ai-llms",
         "devtools-infra",
