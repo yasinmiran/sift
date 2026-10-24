@@ -235,12 +235,12 @@ function ctaBody(counter: string): string {
 <div class="bottom"><span style="font-size:30px" class="muted">free &middot; rss &middot; push notifications</span></div>`;
 }
 
-// The pages workflow copies this whole tree into the site, so every card and
-// every sheet is served from sift.yasint.dev alongside the day pages. Neither
-// is a reader surface: a card exists to be screenshotted and its visible text
-// is the digest's own sentences, which is what a thin duplicate of the day
-// page looks like to a crawler. The directive says so; it renders nothing, so
-// the pngs are untouched.
+// A card exists to be screenshotted and a sheet to be glanced at; neither is
+// a reader surface, and a card's visible text is the digest's own sentences,
+// which is what a thin duplicate of the day page looks like to a crawler. The
+// sheet is served from sift.yasint.dev and needs the directive; the cards stay
+// in the build tree, and keep it because the file is a document either way. It
+// renders nothing, so the pngs are untouched.
 const NOINDEX = '<meta name="robots" content="noindex">';
 
 /** One self-contained html document per card, 1080x1350. */
@@ -263,11 +263,17 @@ ${body}
 }
 
 /** A scrollable browser preview of one post's carousel at thumbnail scale. */
-export function renderSheetHtml(label: string, count: number): string {
-  const frames = Array.from(
-    { length: count },
-    (_, i) => `<div class="card"><iframe src="card-${i + 1}.html" loading="lazy"></iframe></div>`,
-  ).join("\n");
+export function renderSheetHtml(label: string, cards: SlideMeta["cards"]): string {
+  // The pngs, not the card html they came from: the sheet is the last look
+  // before the sidecar posts, so it shows the image that gets posted rather
+  // than a live re-render of it. It also keeps the card html, 150 KB apiece
+  // for the fonts baked into each one, out of the published tree.
+  const frames = cards
+    .map(
+      (card) =>
+        `<div class="card"><img src="${card.file}" alt="${escapeHtml(card.alt)}" loading="lazy" width="1080" height="1350"></div>`,
+    )
+    .join("\n");
   return `<!doctype html>
 <html>
 <head>
@@ -278,12 +284,12 @@ ${NOINDEX}
 body{margin:0;background:#1a1816;color:#b8b0a3;font-family:system-ui;padding:32px}
 h1{font-size:18px;font-weight:500;margin:0 0 24px}
 .grid{display:flex;flex-wrap:wrap;gap:24px}
-.card{width:378px;height:473px;overflow:hidden;border:1px solid #2a2622;border-radius:10px}
-iframe{width:1080px;height:1350px;transform:scale(.35);transform-origin:0 0;border:0;pointer-events:none}
+.card{width:378px;border:1px solid #2a2622;border-radius:10px;overflow:hidden}
+img{display:block;width:100%;height:auto}
 </style>
 </head>
 <body>
-<h1>sift slides &middot; ${label} &middot; ${count} cards</h1>
+<h1>sift slides &middot; ${label} &middot; ${cards.length} cards</h1>
 <div class="grid">
 ${frames}
 </div>

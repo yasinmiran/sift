@@ -318,12 +318,17 @@ describe("renderSlideHtml", () => {
     expect(html).not.toContain("fonts.googleapis.com");
   });
 
-  it("renders a scrollable preview sheet framing every card", () => {
-    const html = renderSheetHtml("2026-07-11 am", 4);
-    expect(html).toContain('src="card-1.html"');
-    expect(html).toContain('src="card-4.html"');
+  // The sheet is the last look before the sidecar posts, so it frames the
+  // rendered pngs rather than the card html they came from: what is on the
+  // sheet is what goes out, and the card html never has to leave the build
+  // tree. Alt text comes from the same meta the sidecar posts with.
+  it("renders a preview sheet framing every card's png", () => {
+    const html = renderSheetHtml("2026-07-11 am", slideMeta(DAY, POST, cards).cards);
+    expect(html).toContain('src="card-1.png"');
+    expect(html).toContain(`src="card-${cards.length}.png"`);
+    expect(html).not.toContain(".html");
+    expect(html).toContain('alt="sift, Sat, Jul 11:');
     expect(html).toContain("2026-07-11 am");
-    expect(html).toContain("scale(");
   });
 
   it("escapes html in agent-scripted text", () => {
@@ -333,10 +338,10 @@ describe("renderSlideHtml", () => {
     expect(html).toContain("&lt;b&gt;bold&lt;/b&gt;");
   });
 
-  // The pages workflow cp -R's the whole render tree into the site, so both
-  // documents are served from sift.yasint.dev and both have to say they are
-  // not pages. Asserted inside <head>, and over every card kind: the body is
-  // chosen per kind, which is where the directive could get lost.
+  // The sheet is served from sift.yasint.dev beside the day pages and has to
+  // say it is not one; the cards keep the directive too, since a card html is
+  // a document wherever it sits. Asserted inside <head>, and over every card
+  // kind: the body is chosen per kind, which is where it could get lost.
   it("tells crawlers the cards and the sheet are not pages", () => {
     const head = (html: string) => {
       const end = html.indexOf("</head>");
@@ -349,7 +354,7 @@ describe("renderSlideHtml", () => {
         '<meta name="robots" content="noindex">',
       );
     }
-    expect(head(renderSheetHtml("2026-07-11 am", 4))).toContain(
+    expect(head(renderSheetHtml("2026-07-11 am", slideMeta(DAY, POST, cards).cards))).toContain(
       '<meta name="robots" content="noindex">',
     );
   });
