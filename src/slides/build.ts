@@ -33,8 +33,9 @@ if (invokedDirectly) {
       cards.forEach((card, i) => {
         writeFileSync(join(out, `card-${i + 1}.html`), renderSlideHtml(card, i, cards.length));
       });
-      writeFileSync(join(out, "sheet.html"), renderSheetHtml(`${day} ${post.slot}`, cards.length));
-      writeFileSync(join(out, "meta.json"), `${JSON.stringify(slideMeta(day, post, cards), null, 2)}\n`);
+      const meta = slideMeta(day, post, cards);
+      writeFileSync(join(out, "sheet.html"), renderSheetHtml(`${day} ${post.slot}`, meta.cards));
+      writeFileSync(join(out, "meta.json"), `${JSON.stringify(meta, null, 2)}\n`);
       return { slot: post.slot, cards: cards.length };
     });
     return { day, posts };

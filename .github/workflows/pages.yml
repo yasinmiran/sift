@@ -42,6 +42,11 @@ jobs:
           npm run slides:render
           mkdir -p site/slides
           cp -R slides/. site/slides/
+          # The card html is the renderer's input, ~150 KB apiece for the four
+          # woff2 faces baked into each one so rendering never needs the
+          # network. The site serves what reads: the pngs, meta.json, and the
+          # sheet that frames them.
+          find site/slides -name 'card-*.html' -delete
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site
