@@ -6,6 +6,22 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A `cp -R` is a decision nobody made, and the repo had already said so out
+  loud. The whole of today's finding is one line in the pages workflow copying
+  the render tree into the site, and the thing that should have caught it is
+  sitting in `test/slides.test.ts`: a comment reading "the pages workflow
+  cp -R's the whole render tree into the site, so both documents are served
+  from sift.yasint.dev", written to justify a `noindex` tag. A run read that
+  sentence, agreed the cards needed the directive, and never asked the question
+  one step back, whether a document whose only reader is a screenshotter should
+  be on the site at all. 69 MB of base64 font rode on that unasked question for
+  two months. Two halves worth keeping. The 10-06 tell (the repo's own comments
+  are evidence) has a failure mode: a comment that explains a consequence reads
+  as having ratified it, and an explanation is not a decision. And weigh what
+  the pipeline emits, in bytes, not only in correctness: every sweep since
+  08-29 read the cards and the pages and none of them ever ran `du` on the
+  thing being uploaded, which is where a defect with no symptom hides.
+
 - A recurring check that lives only in a routine's habit has a half-life, and
   nothing in the repo announces when it has expired. Four runs between 09-01
   and 09-05 wrote `npm audit --omit=dev` zero into this journal; the line stops
@@ -379,6 +395,33 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- Walked clean on 2026-10-24, recorded so a future run does not re-walk them.
+  **The verifier's "link not found in the day's items" warnings**: 27 across the
+  archive and **every one of them is 09-23..09-29**, zero on the 25 days since.
+  The discontinuity reads mechanical and is not: 09-28's nine are
+  huggingface model pages, two arxiv abs links, a docker press release, a
+  google bughunters post and two funding press releases, all of them the
+  deliberate primary-source pattern. Editorial drift, not a verifier blind
+  spot, and nothing to gate.
+  **The `slides` step failing silently.** It is `continue-on-error: true`, so a
+  broken render would leave the job green and the carousel unposted with nobody
+  told. Checked the step's conclusion over the last 15 `pages` runs: **15 of 15
+  success**, and the slow ones (6.5 min on 10-23 against 46 s today) are the
+  `--with-deps` apt install varying, not a render failing. Wallpaper by the
+  09-30/10-03 test; leave it.
+  **The pages deploy path.** build 60-80 s typical, deploy 9 s to 2 min, so the
+  82 MB artifact was never costing minutes; what it was costing is the upload
+  and the storage, and the reason #295 was still worth a slot is that the
+  bytes bought nothing at all. Do not re-file this as a speed fix.
+- Noticed 2026-10-24 and NOT filed, because the cost is a parse rather than a
+  defect. **The `openai` feed ships ~1,318 entries and ingest keeps 4 of them**
+  (`kept:4, dropped:1314` in today's 08:03 run); `nextjs-blog` is 0 of 85,
+  `josh-comeau` 0 of 89. The drop is the 48h window doing its job, and rss
+  sources have no `maxItems` the way arxiv does. The whole ingest is 13 s, so
+  there is no measured consequence today; what would make this real is a feed
+  growing to where the parse starts failing or timing out. Re-read the
+  `dropped` counts in an ingest log before spending anything here.
 
 - MERGED 2026-10-23 as #292 / PR #293, `b452f08`, `pages` run 39923507105
   green on a hand dispatch. The lockfile is out of its high advisories.
@@ -1522,6 +1565,92 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-24
+
+**#295 filed, PR #296 built, `checks` green on `3fd3904`, merged by this run at
+08:19 as `3e37c6d`, `pages` run 40077623484 green on it.** The site publishes
+the carousel pngs and stops publishing the card html behind them. **The
+artifact went 81.9 MB -> 26.1 MB on the first live deploy**, measured off the
+upload step's own byte count both times.
+
+**The signal is an artifact every deploy builds and no run had ever weighed.**
+`cp -R slides/. site/slides/` has been copying the whole render tree since the
+carousel shipped. Of the 81.9 MB uploaded this morning, the site proper is
+**1.3 MB**; **69.0 MB is 470 `card-*.html`**, ~150 KB each because `cards.ts`
+base64-inlines all four woff2 faces (124 KB, ~165 KB encoded) into every single
+card. That inlining is right and stays: the renderer reads those files over
+`file://` and must never fall back to a system serif. It is just that the
+renderer is their only reader. On the site nothing points at a card html but
+`sheet.html`'s iframes, and the only machine fetching under `/slides/` is the
+instagram sidecar, which reads `meta.json` and `card-N.png` (`push/src/ig.ts`).
+../AGENTS.md already names the published shape as "pngs, a sheet.html preview,
+and meta.json", so the card html was never promised; it rode along on the `cp`.
+
+**The change puts the sheet on the pngs, which is the better artifact anyway.**
+`renderSheetHtml` frames `card-N.png` with the alt text from the same
+`slideMeta` the sidecar posts with, so the last look before a post goes out is
+the image that goes out rather than a live re-render of the html behind it. The
+workflow drops `card-*.html` after the copy. 69 changed lines over four files,
+and `renderSlideHtml` is not one of them.
+
+**Verification, and the strongest no-regression evidence this one could have.**
+249 tests (the sheet test rewritten, not added), typecheck silent, 33 pages,
+`npm run verify -- 2026-10-24` clean. Because `renderSlideHtml` is not in the
+diff, the 470 card html files hash **byte-identical** before and after
+(`e9628a98...`), so the pngs they produce are the same bytes: the posted
+artifact cannot have moved. Local tar+gzip-6 over the full 32-day tree read
+84.8 MB -> 32.1 MB and 1,115 -> 645 published files; the live zip did better
+than the local gzip, which is the only reason the merged number beat the
+predicted one. The rewritten test was made to bite per 09-22: with `cards.ts`
+stashed it fails on `expected ... to contain 'src="card-1.png"'`.
+
+**A defect the swap fixed on the way past, found by looking at the thing.** The
+before/after pair of the 10-24 am sheet, same width and same capture, shows
+every card reading the same except the last: **with iframes the 7th card
+renders blank**, because the frames are `loading="lazy"` and the bottom one had
+not loaded. The sheet is the one preview of a post that goes out with no human
+between it and instagram, and its last card has been invisible in a full-page
+look for as long as it has existed. Nothing in the repo could see that; the
+unit tests assert on the markup, and the markup was correct. This is the
+09-26 rebuild-and-read habit paying out again on a surface it had not been
+pointed at.
+
+**The decayed-habit check from yesterday, actually run.** `npm audit
+--omit=dev`: **0 vulnerabilities**, the first reading since #293 landed. `npm
+audit` full tree is still the 3 dev-only advisories on `vite`/`@vitest/mocker`
+that #292 declined with its cost measured; nothing re-probed there today, the
+npm here is still 10.9.4. Recording the number so the next run can grep for it
+rather than wonder, which is the whole of the 10-23 lesson.
+
+**Health**: 30 of the last 30 workflow runs green before this one. The verifier
+over the whole archive errors on nothing and warns on five link counts past the
+60 gate (09-23 at 64, 09-24 at 77, 10-06 at 65, 10-15 at 73, 10-18 at 68,
+10-21 at 64), the entry-count drift banked on 10-13. Four issues were open at
+the start of the run, #246, #241, #120 and #112, all waiting on Yasin and none
+greenlit, so the slot went to a new observation; #295 opened and closed inside
+it.
+
+**The environment, as it behaved today.** `gh auth status` says the token is
+invalid and every REST call worked anyway, which is now four days of the same
+reading and is the 10-11 lesson exactly: the status check validates through
+GraphQL and GraphQL is what is blocked. `gh pr list` and `gh issue list` are
+GraphQL and still 403; `gh api` carried the issue list, the run and job
+metadata, the check runs and the artifact sizes. **The merge went through on
+the github MCP on the first attempt and was not tried on Bash.** Job logs are
+403 at the blob url through `gh api` and read fine through the MCP's
+`get_job_logs`, same as 10-23. The footer: `issue_write` stripped it on the
+issue, `create_pull_request` **appended** it to the pr body, and
+`update_pull_request` stripped it on the first try. So the MCP is not uniformly
+clean the way 10-23 read it; the create appends and the update strips, which is
+cheap to check and worth checking every time. The live site is 000 at CONNECT
+as always, so the after-state was read off the artifact's byte count rather
+than off sift.yasint.dev. Playwright: the repo pins 1.61.1, which wants browser
+build 1228, and this container ships 1243 at `/opt/pw-browsers/chromium`, so
+`npm run slides:render` throws and a three-line script with `executablePath`
+set renders fine. 47 gardener branches on the remote; the delete is still
+refused.
+
 
 ### 2026-10-23
 
