@@ -45,6 +45,38 @@ const slides = (day: string, slots: ("am" | "pm")[]) => {
   );
 };
 
+// The shell script never runs under vitest, so drive the real emitted source
+// in a stand-in scope, the way test/sw.test.ts drives sw.js: `with` sends
+// every bare identifier through the proxy, so a denied storage throws on the
+// read itself rather than from a method, which is what safari's "block all
+// cookies" and chrome's block-all-site-data actually do.
+function runShell(html: string, denied: string[]) {
+  const source = html
+    .split(/<script[^>]*>/)
+    .map((chunk) => chunk.split("</script>")[0]!)
+    .find((chunk) => chunk.includes("sift-from"))!;
+  const registered: string[] = [];
+  const remembered: string[] = [];
+  const link: { href: string | null } = { href: null };
+  const bindings: Record<string, unknown> = {
+    location: { search: "?from=/notes", reload: () => {} },
+    sessionStorage: { getItem: () => "/earlier", setItem: (_k: string, v: string) => remembered.push(v) },
+    document: { querySelector: () => link, addEventListener: () => {} },
+    navigator: { serviceWorker: { register: (path: string) => registered.push(path) } },
+    matchMedia: () => ({ matches: false }),
+  };
+  const scope = new Proxy(bindings, {
+    has: () => true,
+    get: (target, key) => {
+      if (key === Symbol.unscopables) return undefined;
+      if (denied.includes(String(key))) throw new Error("SecurityError: the operation is insecure");
+      return key in target ? target[String(key)] : (globalThis as Record<string, unknown>)[String(key)];
+    },
+  });
+  new Function("scope", `with (scope) {${source}}`)(scope);
+  return { registered, remembered, href: link.href };
+}
+
 describe("buildSite", () => {
   it("renders an index newest-first and a page per digest", () => {
     digest("2026-07-03", "## Section\n\n- [story](https://example.com/a) why it matters");
@@ -440,6 +472,27 @@ describe("buildSite", () => {
     expect(sw).not.toContain('addEventListener("fetch"');
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     expect(day).toContain('serviceWorker.register("/sw.js")');
+  });
+
+  it("registers the worker even where the reader's browser denies site data", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    // Storage answering: the arrival is remembered and the backlink returns
+    // the reader to the page they left.
+    expect(runShell(day, [])).toEqual({
+      registered: ["/sw.js"],
+      remembered: ["/notes"],
+      href: "https://yasint.dev/earlier",
+    });
+    // Storage denied: the backlink quietly stays on yasint.dev's root, and
+    // the worker still registers. notify.ts un-hides the bell only from
+    // inside navigator.serviceWorker.ready, so losing this line loses push.
+    expect(runShell(day, ["sessionStorage"])).toEqual({
+      registered: ["/sw.js"],
+      remembered: [],
+      href: null,
+    });
   });
 
   it("offers push notifications on the index only", () => {
