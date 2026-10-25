@@ -6,6 +6,21 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A probe that only measures the failure proves a symptom; the sibling that
+  does not fail is what names the file. Today's reading, "the site breaks when
+  the reader denies site data", points at nothing on its own and would have
+  sent the fix anywhere in three scripts. The row that turned it into a diff is
+  the one where nothing broke: `localStorage` denied, everything fine, because
+  `notify.ts` already wraps its own three accesses in `try {} catch {}`. So the
+  defect is `page.ts`'s and the rule was already adopted in the repo. Two halves
+  worth keeping. Run the negative control, always, because a single failing
+  reading is indistinguishable from a property of the environment, which is the
+  mistake 10-10 and 10-11 both banked about walls. And when a fix amounts to
+  applying a guard, grep the repo for the *api* rather than the bug: a guard
+  written once is a rule the repo has adopted, and the next file to touch the
+  same api is where it was forgotten, which is 10-16's invariant lesson one
+  level up from text to platform calls.
+
 - A `cp -R` is a decision nobody made, and the repo had already said so out
   loud. The whole of today's finding is one line in the pages workflow copying
   the render tree into the site, and the thing that should have caught it is
@@ -1565,6 +1580,91 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-25
+
+**#298 filed, PR #299 built, `checks` green on `d679e40`, merged by this run at
+09:21 as `5408c3b`, `pages` run 40179997201 green on it.** A reader whose
+browser denies site data got no service worker on any of the 33 pages, and no
+bell on the index at all. Eleven changed lines in `page.ts`, 53 in the test.
+
+**The signal is a guard the repo had already written, one file over.** The
+shared footer script in `src/site/page.ts` read `sessionStorage` on its second
+line and registered the worker on its seventh. Where site data is denied
+(safari "block all cookies", chrome's block-all site-data setting, brave on
+strict) the **accessor** throws `SecurityError`, not the method, so the script
+died on `setItem` and `navigator.serviceWorker.register` was never reached.
+`notify.ts`, two files away, wraps every one of its own `localStorage`
+accesses in `try {} catch {}`, three of them, with a comment saying why.
+
+**The consequence is the whole push feature, not the backlink it looks like.**
+`notifyBlock()` un-hides itself only from inside
+`navigator.serviceWorker.ready.then(...)`, and that promise never resolves
+without a registration, so both buttons were built and left hidden: the index
+rendered with nothing under the tagline. No worker also means no push, which
+is the one thing the netlify sidecar exists for, and the standalone
+stale-reload never armed either.
+
+**Measured on the built site in a real browser**, chromium 390x844, `site/`
+over localhost, the accessor made to throw the way a browser's does. Before:
+control registered + visible, `sessionStorage` denied **not registered, not
+visible**, one uncaught `SecurityError`; `localStorage` denied registered and
+visible; day page with `sessionStorage` denied **not registered**. After, the
+same five cases: registered and active in all five, `#notify` visible on both
+index cases, zero uncaught. The index screenshots show "notify me" and
+"install app" appearing where the denied run had an empty header.
+
+**The negative control is what named the file, and it is worth promoting.**
+The `localStorage`-denied row breaks nothing, because `notify.ts` already
+guards itself. Without that row the finding is "the site breaks when storage
+is denied", which is a symptom and points at nothing; with it the finding is
+"`page.ts` breaks and `notify.ts` does not", which is a diff. 10-10's rule says
+measure the artifact rather than the declaration; this is the shape of the
+measurement: when a probe shows a failure, run the sibling that should not
+fail, because the pair locates the defect and the single reading only proves
+it exists.
+
+**Verification.** 250 tests (was 249), typecheck silent, 33 pages,
+`npm run verify -- 2026-10-25` clean, and the archive verifies with nothing but
+the banked link-count warnings. The new test drives the real emitted script in
+a `with`-scope whose `sessionStorage` throws on read, the same stand-in-global
+shape `test/sw.test.ts` uses for `sw.js`; a stubbed throwing *method* would
+have been the easier fake and the wrong one. Per 09-22 it was run against the
+unfixed source: it fails on `SecurityError: the operation is insecure` and the
+other 41 cases in the file still pass, so it is pinned to this mechanism.
+`test/contract.test.ts`'s `sessionStorage.setItem("sift-from"` assertion holds
+verbatim, untouched.
+
+**The decayed-habit check, run.** `npm audit --omit=dev`: **0**, second
+reading in a row since #293. Full tree 3 (2 moderate, 1 high), the same
+dev-only `vite`/`@vitest/mocker` advisories #292 declined with their cost
+measured. Nothing re-probed there.
+
+**Health**: 30 of the last 30 workflow runs green before this one. Four issues
+open at the start of the run, #246, #241, #120 and #112, all waiting on Yasin
+and none greenlit, so the slot went to a new observation; #298 opened and
+closed inside it.
+
+**The environment, as it behaved today.** `gh api` carried the issue list, the
+check runs, the run metadata and the audit; `gh pr list` / `gh issue list` are
+GraphQL and still 403, five days running. The footer: `issue_write` stripped it
+on the issue, `create_pull_request` **appended** it to the pr body and
+`update_pull_request` stripped it on the first try, which is exactly 10-24's
+reading, so the create-appends/update-strips split is now two days old and
+worth assuming rather than rediscovering. The merge went through on the github
+MCP on the first attempt. Branch delete still refused
+(`DELETE git/refs/heads/...`, 403 from the proxy); 48 gardener branches on the
+remote. The live site is 000 at CONNECT as always, so the after-state is the
+green `pages` run plus the local build. Playwright: the repo's 1.61.1 still
+wants browser build 1228 against the container's 1243, so the probe ran with
+`executablePath: /opt/pw-browsers/chromium`, same as 10-24.
+
+**Copilot did not review.** Its one reply on #299 reads "unable to review this
+pull request because the user who requested the review has insufficient
+remaining quota". The checks wait doubled as the review window and nothing
+real landed in it. Worth watching: the review arm of the merge loop has been
+load-bearing before (09-22, 10-07), and today it was simply absent.
+
 
 ### 2026-10-24
 
