@@ -184,14 +184,22 @@ body::before{display:none}
 ${body}
 ${footer(footNote)}
 <script>
+// First, because notify.ts waits on navigator.serviceWorker.ready to un-hide
+// the bell at all: nothing below may be able to stop this line being reached.
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
 // Visitors arriving from yasint.dev carry ?from=<path>; remember it for the
 // tab so the backlink returns them to the page they left, not the homepage.
+// Where the reader denies site data the accessor itself throws, so both ends
+// are guarded the way notify.ts guards its own localStorage. Returning
+// someone to the page they left is a nicety; the worker is the product.
 const from = new URLSearchParams(location.search).get("from");
-if (from && from.startsWith("/") && !from.startsWith("//")) sessionStorage.setItem("sift-from", from);
-const back = sessionStorage.getItem("sift-from");
+if (from && from.startsWith("/") && !from.startsWith("//")) {
+  try { sessionStorage.setItem("sift-from", from); } catch {}
+}
+let back = null;
+try { back = sessionStorage.getItem("sift-from"); } catch {}
 const link = document.querySelector("[data-backlink]");
 if (link && back) link.href = "https://yasint.dev" + back;
-if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
 // Installed apps resume from a snapshot with no refresh affordance; reload
 // on foreground when the copy is likely stale. Browser tabs keep their state.
 if (matchMedia("(display-mode: standalone)").matches || navigator.standalone === true) {
