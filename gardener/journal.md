@@ -6,6 +6,27 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A media block is a claim about a surface, and the declarations it does not
+  restate are still in force, which is where its defect lives. The print block
+  shipped four days ago re-inks ten tokens, hides four components, clears one
+  background and carries both a comment and a test for the exact reader this
+  run found broken; the word it never mentions is `color-scheme:dark`, declared
+  a hundred lines up for the screen, and that one word is the whole of the
+  #121212 sheet. 10-22's rule names the media no rule mentions; its successor
+  is for the media that do have one, because a block written deliberately reads
+  as having considered everything in its scope: diff it against the system it
+  overrides and list what it leaves standing. Two halves worth keeping. A test
+  can hold the wrong end of this: `expect(css).toContain("body{...
+  background:none}")` asserts a declaration under a comment claiming an
+  outcome, and only the pdf knows the outcome, which is 10-10's
+  measure-the-artifact one level further out, from a computed style to a
+  rendered page. And a rule that sweeps a category has to be read against the
+  category's members rather than its intent: the same block cleared
+  `.prose code{background:none}`, so backgrounds were in its field of view, and
+  it missed the one background on the site that carries meaning instead of
+  decoration. Decoration lost off-screen is a shrug; emphasis lost is the
+  sentence's point gone, on 26 of the month's 32 days.
+
 - A probe that only measures the failure proves a symptom; the sibling that
   does not fail is what names the file. Today's reading, "the site breaks when
   the reader denies site data", points at nothing on its own and would have
@@ -410,6 +431,27 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-10-26 as #301 / PR #302, `e5368af`, `pages` run 40298476699
+  green. The printed sheet is white in both print modes (`color-scheme:light`
+  in the print `:root`, not just `body{background:none}`), and the pen marks
+  keep a `currentColor` border where their background image is dropped, print
+  and forced-colors both. Screen byte-identical.
+- Walked clean on 2026-10-26, recorded so a future run does not re-walk them.
+  **The month's item data**, 8,913 items over 32 days: zero bad dates, zero
+  zero-width titles, zero items missing topics, 1 duplicate url within a day.
+  **11 same-source items re-enter a later day** past the 7-day `SEEN_DAYS`
+  horizon (anthropic-news replaying four posts on 10-20, the crunchbase
+  layoffs tracker, a tldr blog post). It looks like a dedupe gap and has no
+  consequence: **1 url in 1,311 appears in two digests** across the whole
+  archive, and that one is inside the window, so the editorial dedupe and the
+  verifier's repeat-link warning are already covering it. Wallpaper by the
+  09-30/10-03 test. **19 items carry an `http://` url** and exactly one ever
+  reached a digest, same verdict. **A structural sweep of all 34 built pages**
+  (duplicate ids, heading order, img alt, empty links, landmarks, target
+  rels): clean. **The circle mark has never been used**, 0 of 37 marks in 32
+  days, so anything written for `.pen-o` has to be rendered on an injected
+  case or it is untested by the archive.
 
 - Walked clean on 2026-10-24, recorded so a future run does not re-walk them.
   **The verifier's "link not found in the day's items" warnings**: 27 across the
@@ -1580,6 +1622,103 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-26
+
+**#301 filed, PR #302 built, `checks` green on `e9cf08e`, merged by this run at
+09:21 as `e5368af`, `pages` run 40298476699 green on it.** The digest on paper:
+the sheet came out #121212 for a reader who prints backgrounds, and the pen
+mark came out as nothing at all either way. 18 changed lines in `page.ts`, 32
+in the test.
+
+**The signal is a media block that was written deliberately and never
+rendered.** The print work landed four days ago with a comment reasoning about
+chrome's backgrounds-off default and a test asserting the ratios, and both
+state the same claim: "the sheet stays white even for a reader who prints
+backgrounds", resting on `body{background:none}`. Rendered through
+`page.pdf({printBackground:true})` and sampled off the raster, the canvas is
+`rgb(18,18,18)`: `:root{color-scheme:dark}` is declared a hundred lines up, in
+the screen block, and applies in print too, so the ua canvas stays dark under
+the re-inked palette. `--body` #1a1816 on it is **1.06:1**, `--text`/`--bold`
+#0d0c0b **1.04:1**, against the 1.29:1 that the print block was written to fix.
+
+**The second defect is in the same two renders and is the one with a reader.**
+`.pen-u`'s scribble is a `background-image` and nothing else, so chrome's
+default drops it and chromium's forced-colors drops it, and the marked phrase
+prints identical to the sentence around it (`--bold` #0d0c0b beside `--body`
+#1a1816, no weight, no rule). 37 marks across 26 of the archive's 32 days,
+every one a `==underline==`. So there was no print setting that worked:
+backgrounds off, the mark is invisible; backgrounds on, the sheet is.
+
+**The change is one declaration and one rule.** `color-scheme:light` in the
+print `:root`, and `@media print,(forced-colors:active)` giving `.pen-u` a
+`currentColor` bottom border and `.pen-o` a `currentColor` outline. currentColor
+is already the re-inked `--bold` on paper and the system text colour in high
+contrast, so no new hex and nothing repainted, which keeps it inside the pinned
+design rather than touching it.
+
+**Measured with the same instrument before and after**, `2026-10-21.html` and
+its `==$750 billion==`, 160dpi crop of the pdf plus a 3x forced-colors crop.
+Print backgrounds-off: #ffffff both times, mark absent -> solid rule. Print
+backgrounds-on: **#121212 -> #ffffff**, an orange scribble on an unreadable
+sheet -> solid rule. Forced-colors: absent -> solid rule. Ink pixels in the
+print crop 3,770 -> 4,346, which is the rule itself. The screen crop is
+**byte-identical** before and after, same md5, which is 10-25's negative
+control used as the no-regression evidence: the only pixels that moved are on
+surfaces the screen never shows. The `.pen-o` fallback was rendered too, on a
+mark injected into the page, since no digest has ever used a circle.
+
+**Verification.** 251 tests (was 250), typecheck silent, 33 pages,
+`npm run verify -- 2026-10-26` clean, the week of digests clean but for the
+banked 64-link count on 10-21. Both new assertions were run against the
+unfixed source per 09-22: the pen test fails on `no off-screen block for the
+pen marks`, the print test on `expected ... to contain 'color-scheme:light'`,
+and the file's other 42 cases pass either way.
+
+**Walked clean, recorded so no later run pays for them again.** A sweep of the
+month's item data, 8,913 items over 32 days: zero bad dates, zero zero-width
+titles, zero items without topics. **11 same-source items re-enter a later day
+past the 7-day `SEEN_DAYS` horizon** (anthropic-news replaying four posts on
+10-20, the crunchbase layoffs tracker, a tldr blog post), which looks like a
+dedupe gap and has no consequence: **1 url in 1,311 appears in two digests**
+across the archive, and that one is inside the window. Wallpaper by the
+09-30/10-03 test, do not re-file. **19 items carry an `http://` url** and
+exactly one reached a digest, same verdict. A structural sweep of all 34 built
+pages (duplicate ids, heading order, alt text, empty links, landmarks) is
+clean. **The circle mark has never been used**: 0 of 37 marks in 32 days are
+`((...))`, which is why its fallback needed an injected case to render.
+
+**The decayed-habit check, run.** `npm audit --omit=dev`: **0**, third reading
+in a row. Full tree 3 (2 moderate, 1 high), the same dev-only
+`vite`/`@vitest/mocker` advisories #292 declined with their cost measured.
+
+**Health**: 35 of the last 35 workflow runs green before this one. Four issues
+open at the start of the run, #246, #241, #120 and #112, all waiting on Yasin
+and none greenlit, so the slot went to a new observation; #301 opened and
+closed inside it.
+
+**The environment, as it behaved today.** `gh api` carried the issues, the
+runs, the check runs and the audit; `gh pr list` / `gh issue list` are GraphQL
+and still 403, six days running. The footer: `issue_write` stripped it on the
+issue, `create_pull_request` **appended** it and `update_pull_request` stripped
+it on the first try, three days of the same split now. The merge went through
+on the github MCP on the first attempt. `sift.yasint.dev` and
+`yasin.goatcounter.com` are 000 at CONNECT as always, re-probed at the top of
+the run, so the after-state is the green `pages` run plus the local build.
+Playwright: the repo's 1.61.1 still wants browser build 1228 against the
+container's 1243, so every probe ran with
+`executablePath: /opt/pw-browsers/chromium`, same as 10-24 and 10-25.
+`pdftoppm` is present in this container and is what turned the pdf into
+something readable; `PIL` is installed but broken (`cannot import name
+_imaging`), so crop with `pdftoppm -x -y -W -H` and count pixels in a canvas
+through the browser already running.
+
+**Copilot did not review, for the second day running.** Same reply on #302 as
+on #299: "insufficient remaining quota". The checks wait doubled as the review
+window and nothing real landed in it. Two days is a pattern rather than a
+blip, and the review arm of the merge loop has caught real things before
+(09-22, 10-07): worth telling Yasin if it holds a third day.
+
 
 ### 2026-10-25
 
