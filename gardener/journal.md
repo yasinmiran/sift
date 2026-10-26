@@ -1708,6 +1708,8 @@ the run, so the after-state is the green `pages` run plus the local build.
 Playwright: the repo's 1.61.1 still wants browser build 1228 against the
 container's 1243, so every probe ran with
 `executablePath: /opt/pw-browsers/chromium`, same as 10-24 and 10-25.
+Branch delete re-probed and still refused (`DELETE git/refs/heads/...`, 403
+from the proxy); **49** gardener branches on the remote now.
 `pdftoppm` is present in this container and is what turned the pdf into
 something readable; `PIL` is installed but broken (`cannot import name
 _imaging`), so crop with `pdftoppm -x -y -W -H` and count pixels in a canvas
