@@ -167,16 +167,28 @@ mark.pen{background-color:transparent;color:var(--bold)}
    declared -- --text at 1.29:1 against it, --bold 1.58, --body 2.15, --accent
    2.49. The same ten hexes read the other way round, no new colour, with
    --muted/--faint swapped because on paper the lighter one is the quieter.
-   background:none keeps the sheet white for the reader who does tick
-   backgrounds on. Hidden: navigation that cannot be followed, a button that
+   For the reader who does tick backgrounds on, background:none is half of
+   it: color-scheme stays dark otherwise, so the ua canvas prints #121212 and
+   the re-inked palette lands on it at 1.06:1. The scheme flips with the
+   hexes. Hidden: navigation that cannot be followed, a button that
    cannot be tapped, and the view-time notes (.today-note covers
    .refresh-note), stale the moment they are printed. */
 @media print{
-:root{--text:#0d0c0b;--bold:#0d0c0b;--body:#1a1816;--muted:#5c564e;--faint:#7a7268;--accent:#0d0c0b;--accent-hover:#0d0c0b;--border:#b8b0a3}
+:root{color-scheme:light;--text:#0d0c0b;--bold:#0d0c0b;--body:#1a1816;--muted:#5c564e;--faint:#7a7268;--accent:#0d0c0b;--accent-hover:#0d0c0b;--border:#b8b0a3}
 body{max-width:none;padding:0;background:none}
 body::before{display:none}
 .crumbs,.pager,.notify,.today-note{display:none}
 .prose code{background:none}
+}
+/* The pen marks are background images, so the two surfaces that are not a
+   screen both drop them and the one phrase a day is meant to stop on reads
+   as ordinary text: chrome prints backgrounds off, and forced-colors
+   repaints to the reader's own two colours. currentColor is already the
+   re-inked --bold on paper and the system text colour in high contrast, so
+   the scribble becomes a rule and the circle an outline, no new hex. */
+@media print,(forced-colors:active){
+.pen-u{background-image:none;border-bottom:2px solid currentColor}
+.pen-o{background-image:none;border:1.5px solid currentColor;border-radius:1.2em}
 }
 </style>
 </head>

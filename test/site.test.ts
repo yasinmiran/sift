@@ -267,6 +267,32 @@ describe("buildSite", () => {
     expect(day).toContain(".pen-o{");
   });
 
+  // A pen mark is a background image and nothing else, so both surfaces that
+  // drop backgrounds (chrome prints them off by default, forced-colors
+  // repaints to the reader's two colours) render the day's one marked phrase
+  // as ordinary text. The fallback has to reach both media and has to carry
+  // ink of its own, not merely clear the image it cannot paint.
+  it("gives the pen marks ink that survives print and forced colors", () => {
+    digest("2026-07-04", "a ==big deal== and ((circled)) figure");
+    buildSite(root, out);
+    for (const file of ["index.html", "2026-07-04.html"]) {
+      const html = readFileSync(join(out, file), "utf8");
+      const block = /@media print,\(forced-colors:active\)\{([^]*?)\n\}/.exec(html);
+      expect(block, `${file}: no off-screen block for the pen marks`).not.toBeNull();
+      const css = block?.[1] ?? "";
+      for (const cls of ["pen-u", "pen-o"]) {
+        const rule = new RegExp(`\\.${cls}\\{([^}]*)\\}`).exec(css)?.[1];
+        expect(rule, `${file}: .${cls} has no off-screen fallback`).toBeDefined();
+        expect(rule, `${file}: .${cls} keeps a background image where it cannot paint`).toContain(
+          "background-image:none",
+        );
+        expect(rule, `${file}: .${cls} drops the scribble and draws nothing in its place`).toMatch(
+          /border[^:]*:[^;]*currentColor/,
+        );
+      }
+    }
+  });
+
   it("lets a bare url in the prose break rather than widen the page", () => {
     digest(
       "2026-07-04",
@@ -707,7 +733,11 @@ describe("buildSite", () => {
       }
 
       // The sheet stays white even for a reader who prints backgrounds, and
-      // nothing that needs a tap or a clock comes with it.
+      // that takes both halves: background:none drops the page's own paint,
+      // color-scheme decides which ua canvas is under it. Left dark, the
+      // re-inked palette prints on #121212 at 1.06:1 and every ratio above
+      // is measured against a sheet the reader never gets.
+      expect(css).toContain("color-scheme:light");
       expect(css).toContain("body{max-width:none;padding:0;background:none}");
       expect(css).toContain(".crumbs,.pager,.notify,.today-note{display:none}");
     }
