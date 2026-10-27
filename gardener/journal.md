@@ -6,6 +6,32 @@ merges and closures and never expire.
 
 ## Lessons
 
+- An artifact read by hand fifty times has never been read by the standard's
+  own instrument, and what waits there is the defect that lives *between* two
+  things rather than in either. Every accessibility sweep since 08-29 was
+  hand-rolled against the rendered page: contrast pairs, landmarks, heading
+  order, alt text, tap targets, overflow at two widths. The first `axe-core`
+  pass over those same built pages, 390 and 860, returned exactly one
+  violation, and it is a rule no hand sweep had a reason to form:
+  `label-content-name-mismatch`, the pager's `aria-label` against its own
+  visible words, on **62 links across all 32 day pages**. The css says nothing
+  (each declaration is innocent) and the rendered page says nothing (the pixels
+  are right), because the defect is the disagreement between what is seen and
+  what is spoken, and only an instrument computing both at once sees it. The
+  test generalises past accessibility: for anything this repo publishes against
+  a written standard, ask whether the standard ships a conformance checker and
+  run it once, locally, as a probe rather than as a dependency. Its other half
+  is about the probe itself, and it cost two wrong readings in one morning. The
+  first variant harness keyed its verdicts by `class + aria-label` and two
+  candidates shared both, so one inherited the other's FAIL; re-measured per
+  element, the missing space alone was innocent and the arrow's *position* was
+  the difference between the two links. And the first before/after screenshots
+  read DIFF at both widths on a change that cannot move a pixel: the full-page
+  shot was taken before `document.fonts.ready` settled, 8597px against 8157px
+  on the same build. 10-22 banked the clock-window version of this; a webfont
+  swap is the same trap one layer out, and the remedy is the same, wait for the
+  thing that settles and re-run the pair before believing either reading.
+
 - A media block is a claim about a surface, and the declarations it does not
   restate are still in force, which is where its defect lives. The print block
   shipped four days ago re-inks ten tokens, hides four components, clears one
@@ -431,6 +457,47 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-10-27 as #304 / PR #305, `94e4215`, `pages` run 40480343482 green.
+  The pager's accessible name now carries its visible words in their visible
+  order ("earlier Tue, Oct 20 digest"), and the markup carries the space that
+  keeps `earlier` and the date two words in it. Nothing owed in code: axe
+  re-run is clean on the rule, the 8 screenshots are byte-identical with fonts
+  settled, and the blast radius is 32 files with one line each. **What axe
+  cannot answer here**: `color-contrast` comes back `incomplete` on every page,
+  because the body's dotted `radial-gradient` defeats its background sampling,
+  so #110's numbers stay hand-measured and a later run must not read a silent
+  axe as a contrast all-clear.
+- Walked clean on 2026-10-27, recorded so a future run does not re-walk them.
+  **axe-core over index, 404 and three day pages at 390 and 860**
+  (wcag2a/aa, wcag21aa, wcag22aa, best-practice): the pager violation above and
+  **nothing else**, which is the first machine confirmation of the hand sweeps
+  on landmarks, duplicate ids, alt text and link names.
+  **Reflow at 320 and 280 CSS px** across all 34 built pages (wcag 1.4.10, the
+  width the 390/860 habit never tested): **0 pages scrolling horizontally, 0
+  elements crossing either edge**, bare urls in link text included.
+  **`generatedAt` across 32 of 32 day files** lands 16:44-21:23 UTC, so
+  ../AGENTS.md's morning-stale check (a `generatedAt` predating the 15:45
+  ingest) has never had a false positive to fire on: the afternoon run has
+  added items on every day in the archive, and a quiet one would leave the
+  stamp where the morning put it. Unmeasured rather than clean, by the
+  09-30/10-03 rule, but nothing to build.
+  **The maskable icon is byte-identical to `icon-512.png`** and is still
+  correct (09-10 measured it: the mark is a centred dot well inside the 80%
+  safe zone). It reads like an obvious bug on every fresh look; do not re-file
+  it.
+  **`npm audit --omit=dev` 0**, fourth reading in a row. Full tree 3 (2
+  moderate, 1 high), the dev-only `vite`/`@vitest/mocker` advisories #292
+  declined with their cost measured.
+- Measured 2026-10-27 off the 08:54 ingest log, which is the live half #280 and
+  #286 left open. **`bodyless` is 0 on every rss source that parsed**, except
+  `fireship` at 1 of 1, exactly as #280 predicted for a youtube feed carrying
+  its description in `media:group`. `huggingface-blog`, `stackoverflow-blog`
+  and `deepmind-blog` were all absent from the log (healthy 304s), so the hf
+  body-field question is **still unanswered rather than answered**; re-read it
+  on a run whose log carries that slug. Alongside it, `openai` is still 7 kept
+  against 1,318 dropped and the whole ingest is 12 s, so the 10-24 parse note
+  stands unchanged.
 
 - MERGED 2026-10-26 as #301 / PR #302, `e5368af`, `pages` run 40298476699
   green. The printed sheet is white in both print modes (`color-scheme:light`
@@ -1622,6 +1689,101 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-27
+
+**#304 filed, PR #305 built, `checks` green on `c528a119` in 18 seconds, merged
+by this run at 09:23 as `94e4215`, `pages` run 40480343482 green on it.** The day
+pager handed a screen reader one label and a sighted reader another, on 62
+links across all 32 day pages. Two tokens in `build.ts`, 13 lines in the test.
+
+**The signal is an instrument this repo had never run.** Every accessibility
+reading in this journal was taken by hand against the rendered page. The first
+`axe-core` pass over the built site (index, 404 and three day pages, 390 and
+860, wcag2a/aa + wcag21aa + wcag22aa + best-practice) returned exactly one
+violation: `label-content-name-mismatch` (wcag 2.5.3 label in name, serious) on
+`.pager a`, every day page it ran on. Counted across the built archive, **62
+pager links on 32 of 32 day pages**, all of them.
+
+**The defect is the disagreement between two attributes on one element.** The
+earlier link renders `← earlierTue, Oct 20` and carried
+`aria-label="earlier digest, Tue, Oct 20"`. Instrumented through axe's own
+internals, the rule strips the arrow and the commas and asks whether the
+visible text sits inside the name: `earliertue oct 20` against `earlier digest
+tue oct 20`, not contained. So a reader driving the page by voice and saying
+what they see does not activate the link. Two parts to it, and the second was
+the surprise: `digest` sat between the two visible words, **and** the markup
+had no whitespace before the date, so the content-derived name concatenates to
+`earliertue` as well.
+
+**The change is two tokens**, `aria-label="${dir} ${formatDay(day)} digest"`
+and a space before the date, plus the comment naming the rule. The candidates
+were measured against the rule before any code was written: the reorder alone
+fails, the space alone fails, both together pass. The `later` link was one
+space from passing and the `earlier` link needed both halves, because axe
+strips the arrow and `later →Thu` leaves a space behind where `← earlierTue`
+does not.
+
+**Measured with the same instrument before and after.** axe on the rebuilt
+site: the rule is gone on all five pages at both widths, and what is left is
+the two pre-existing `incomplete` entries (contrast undeterminable under the
+dotted background gradient). The no-regression half is 8 screenshots
+(2026-10-21 and 2026-09-26, 390 and 860, full page and pager crop, dsf 2)
+**byte-identical** before and after, with each link's rect unchanged to the
+pixel, and a byte diff over the built tree of **32 files, one line each**, all
+of them the pager nav. The new test was run against the unfixed source per
+09-22 and fails there on the earlier link; the file's other cases pass either
+way. 252 tests (was 251), typecheck silent, 33 pages, the week of digests clean
+but for 10-21's banked 64-link count.
+
+**The run's own two false readings are in the top lesson**, because both came
+from the probe rather than the page: a variant harness that keyed two
+candidates to one verdict, and a before/after screenshot pair taken before
+`document.fonts.ready` settled (8597px against 8157px on the same build), which
+reads exactly like a layout regression and is the webfont swap.
+
+**Walked clean, recorded so no later run pays for them again.** Reflow at 320
+and 280 CSS px across all 34 pages: 0 pages scrolling horizontally, 0 elements
+crossing an edge. `generatedAt` on 32 of 32 day files lands 16:44-21:23 UTC, so
+the digest agent's morning-stale check has never had a false positive to fire
+on. The maskable icon is byte-identical to `icon-512.png` and still correct, as
+09-10 measured. `npm audit --omit=dev`: **0**, fourth reading in a row. The
+08:54 ingest log answers half of #280's open question: `bodyless` is 0 on every
+rss source that parsed except `fireship` at 1 of 1, and the three sources whose
+bodies were the question were all healthy 304s, so that half stays open.
+
+**Health**: the last 35 workflow runs green before this one, the verifier clean
+across the last seven days, four issues open at the start of the run (#246,
+#241, #120, #112), all waiting on Yasin and none greenlit, so the slot went to
+a new observation; #304 opened and closed inside it.
+
+**The environment, as it behaved today.** `gh api` carried the issues, the
+runs, the check runs, the audit and the branch-delete probe; `gh auth status`
+still reports an invalid token (GraphQL, 403 here) and `gh pr list` /
+`gh issue list` still refuse. One refinement worth keeping: **a job log is 403
+through `gh api`** (the signed `blob.core.windows.net` url the endpoint
+redirects to is not in this container's egress), and reads fine through the
+github MCP `get_job_logs` with `return_content`, which is where today's ingest
+numbers came from. The footer: `issue_write` stripped it, `create_pull_request`
+appended it and `update_pull_request` stripped it on the first try, four days of
+the same split. The merge went through on the github MCP on the first attempt.
+Branch delete re-probed and still refused (`DELETE git/refs/heads/...`, 403 from
+the proxy); **50** gardener branches on the remote now. `sift.yasint.dev` and
+`yasin.goatcounter.com` are 000 at CONNECT as always, and so is
+`hn.algolia.com`, but **`fonts.googleapis.com` is reachable**, which is why the
+pages render in the real webfonts here and why the font-settling trap exists at
+all. Playwright: the repo's 1.61.1 still wants browser build 1228 against the
+container's 1243, so every probe ran with
+`executablePath: /opt/pw-browsers/chromium`. `axe-core` was installed into the
+scratchpad with `npm i --no-save`, never into the repo. ImageMagick's
+`identify` and `compare` are present and are what localised the screenshot
+difference once `PIL` proved broken again.
+
+**Copilot did not review, for the third day running.** Same reply on #305 as on
+#302 and #299: "insufficient remaining quota". 10-26 said a third day is worth
+telling Yasin, so it went out with today's notification. The checks wait
+doubled as the review window and nothing real landed in it.
+
 
 ### 2026-10-26
 
