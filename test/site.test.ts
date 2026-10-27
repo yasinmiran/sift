@@ -576,6 +576,20 @@ describe("buildSite", () => {
     expect(day.indexOf('class="pager"')).toBeLessThan(day.indexOf('<footer class="foot">'));
   });
 
+  // wcag 2.5.3 wants a control's visible words inside its accessible name, in
+  // their visible order, which rules out both shapes the first version had:
+  // "digest" between the two words, and no space before the date (the link's
+  // two lines are flex items, so the name ran them together as "earlierFri").
+  it("names each pager link with its own visible text, in order", () => {
+    digest("2026-07-03", "body");
+    digest("2026-07-04", "body");
+    digest("2026-07-05", "body");
+    buildSite(root, out);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    expect(day).toContain('aria-label="earlier Fri, Jul 3 digest"><span class="mono">&larr; earlier</span> Fri, Jul 3</a>');
+    expect(day).toContain('aria-label="later Sun, Jul 5 digest"><span class="mono">later &rarr;</span> Sun, Jul 5</a>');
+  });
+
   it("leaves off the neighbour a rolling month does not have", () => {
     digest("2026-07-03", "body");
     digest("2026-07-04", "body");
