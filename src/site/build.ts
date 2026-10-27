@@ -86,12 +86,19 @@ const AUTHOR = { "@type": "Person", name: "Yasin", url: "https://yasint.dev" };
 // uses: at .85em of .95rem it is ~13px, where AA wants 4.5:1, and --muted is
 // 4.13:1 against --bg (that gap is #110, open since 08-29). Size and the mono
 // face carry the hierarchy here instead of colour.
+// The label reads "earlier Tue, Oct 20 digest", not "earlier digest, Tue,
+// Oct 20": wcag 2.5.3 wants the visible words contained in the accessible
+// name, in their visible order, so a reader driving the page by voice can say
+// what they see. `digest` between the two words broke that on every pager
+// link. The space before the date is the other half of the same rule -- the
+// link's two lines are flex items, so without it the name concatenates to
+// "earlierTue", and whitespace between flex items does not render.
 function pager(earlier?: string, later?: string): string {
   if (!earlier && !later) return "";
   const link = (day: string, dir: "earlier" | "later"): string => {
     const arrow = dir === "earlier" ? "&larr; earlier" : "later &rarr;";
     const rel = dir === "earlier" ? "prev" : "next";
-    return `<a class="${dir}" rel="${rel}" href="${day}.html" aria-label="${dir} digest, ${formatDay(day)}"><span class="mono">${arrow}</span>${formatDay(day)}</a>`;
+    return `<a class="${dir}" rel="${rel}" href="${day}.html" aria-label="${dir} ${formatDay(day)} digest"><span class="mono">${arrow}</span> ${formatDay(day)}</a>`;
   };
   return `<nav class="pager" aria-label="nearby days">${earlier ? link(earlier, "earlier") : ""}${
     later ? link(later, "later") : ""
