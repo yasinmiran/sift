@@ -140,8 +140,15 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
     // sw.js's notification fallback. Linking the file name served it under a
     // second url that nothing advertises, which goatcounter counts as its own
     // page. The 404's crumbs already said "/".
+    //
+    // The day page is the one page with two navigation landmarks, so both are
+    // named: an unnamed nav reaches a screen reader's landmark list as a bare
+    // "navigation" beside the pager's "nearby days", and the reader has to
+    // enter it to learn what it is. axe's landmark-unique keys on the
+    // role/name pair, so it passes either way; html-validate's unique-landmark
+    // and the aria practices want the name.
     const body = `
-      <nav class="crumbs"><a href="/">&larr; all days</a></nav>
+      <nav class="crumbs" aria-label="archive"><a href="/">&larr; all days</a></nav>
       <main>
       <article>
       <header>

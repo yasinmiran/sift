@@ -619,12 +619,29 @@ describe("buildSite", () => {
     expect(index).toContain("<main>");
     expect(index.indexOf('id="notify"')).toBeLessThan(index.indexOf("<main>"));
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
-    expect(day).toContain('<nav class="crumbs">');
+    expect(day).toContain('<nav class="crumbs" aria-label="archive">');
     expect(day).toContain("<article>");
     expect(day.indexOf("<header>")).toBeLessThan(day.indexOf('class="prose"'));
     const nf = readFileSync(join(out, "404.html"), "utf8");
-    expect(nf).toContain('<nav class="crumbs">');
+    expect(nf).toContain('<nav class="crumbs" aria-label="archive">');
     expect(nf).toContain("<main>");
+  });
+
+  // A day page carries two navigation landmarks, the crumbs and the pager, and
+  // an unnamed one is announced as a bare "navigation" in the landmark list.
+  // Asserted over every built page rather than the crumbs alone, since the next
+  // nav added anywhere is the one that would ship unnamed.
+  it("names every navigation landmark it renders", () => {
+    digest("2026-07-03", "body");
+    digest("2026-07-04", "body");
+    digest("2026-07-05", "body");
+    buildSite(root, out);
+    for (const file of readdirSync(out).filter((f) => f.endsWith(".html"))) {
+      const html = readFileSync(join(out, file), "utf8");
+      const labels = [...html.matchAll(/<nav\b[^>]*>/g)].map((m) => /aria-label="([^"]*)"/.exec(m[0])?.[1] ?? "");
+      for (const label of labels) expect(label, `${file} renders an unnamed nav`).not.toBe("");
+      expect(new Set(labels).size, `${file} repeats a nav label`).toBe(labels.length);
+    }
   });
 
   // The canonical tag, the sitemap, the manifest's start_url and sw.js's
@@ -644,7 +661,7 @@ describe("buildSite", () => {
       expect(html, `${file} links the index by file name`).not.toContain('href="index.html"');
     }
     for (const file of ["2026-07-03.html", "2026-07-04.html", "404.html"]) {
-      expect(readFileSync(join(out, file), "utf8")).toContain('<nav class="crumbs"><a href="/">');
+      expect(readFileSync(join(out, file), "utf8")).toContain('<nav class="crumbs" aria-label="archive"><a href="/">');
     }
     expect(readFileSync(join(out, "index.html"), "utf8")).toContain(
       '<link rel="canonical" href="https://sift.yasint.dev/">',
