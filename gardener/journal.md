@@ -6,6 +6,31 @@ merges and closures and never expire.
 
 ## Lessons
 
+- One standard can ship more than one instrument, and a pass from the one you
+  ran is not a pass for the standard. 10-27 banked "run the standard's own
+  conformance checker" and ran axe, clean but for the pager. Today the same
+  pages went through the w3c validator (0 errors on 34 of 34) and
+  `html-validate`, whose `unique-landmark` fired on **32 of 32 day pages**: two
+  navigation landmarks, one of them nameless. axe was not wrong. Its
+  `landmark-unique` keys the verdict on the role/name **pair**, so
+  `("navigation","")` and `("navigation","nearby days")` are two distinct
+  landmarks and the rule passes, while the aria practices and html-validate read
+  "more than one of a kind" as "then name each one". Both readings follow from
+  their own rule, which is why one clean instrument retires nothing: before
+  writing a surface off as measured, ask which checkers exist for it rather than
+  whether one was run. Its other half is what settled the disagreement, and it
+  is the cheaper move of the two: **ask the platform for the computed value, not
+  a rule engine for a verdict.** Chromium's own accessibility tree over CDP
+  printed `navigation=""  main=""  contentinfo=""  navigation="nearby days"` in
+  one line, which is the defect stated without reference to any rule, and the
+  same line after the fix is the proof. Mechanics worth keeping: `vnu-jar` and
+  `html-validate` both install from npm and java is present, playwright's
+  `page.accessibility` is gone in 1.61 (`Accessibility.getFullAXTree` through
+  `newCDPSession` is the route), and a before/after screenshot pair on a page
+  that composes strings from the clock needs `Date` frozen in an init script,
+  not a fast pair of runs: 10-22 and 10-27 each paid for a variant of that, and
+  freezing it returned 8 of 8 byte-identical.
+
 - An artifact read by hand fifty times has never been read by the standard's
   own instrument, and what waits there is the defect that lives *between* two
   things rather than in either. Every accessibility sweep since 08-29 was
@@ -457,6 +482,33 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-10-28 as #307 / PR #308, `1d0db6c`, `pages` run 40662723031 green.
+  Both navigation landmarks on a day page now carry a name (`archive` and
+  `nearby days`), and the test reads every built page rather than the crumbs.
+  Nothing owed in code: `unique-landmark` 32 -> 0, vnu still 0 errors, axe
+  unchanged, 8 of 8 screenshots byte-identical with the clock frozen, blast
+  radius 33 files at one line each.
+- Walked clean on 2026-10-28, recorded so a future run does not re-walk them.
+  **The w3c validator (`vnu-jar` via npm, java) over all 34 built pages: 0
+  errors**, and with warnings on, two info lines, both "section lacks heading"
+  (`#today` on the index, `#why` on the 404; neither section is exposed as a
+  region, so there is nothing a reader loses). **`html-validate` on its
+  `html-validate:standard` preset: 0 errors on 34 of 34** as well, so the markup
+  is spec-clean by two independent readings. Its `recommended` preset leaves two
+  findings that are **not** defects and should not be re-filed: `doctype-style`
+  on 34 (a style preference, `<!doctype html>` is valid html) and
+  `no-implicit-button-type` on 1 (`#install-help-close`, which sits in no form,
+  so nothing rides on the implicit `submit`).
+  **`feed.xml` and `sitemap.xml` are well-formed under `xmllint`**, and the feed
+  read back through the repo's own `rss-parser` gives 32 items with
+  `title`/`link`/`pubDate`/`guid` present on every one. sitemaps.org's xsd is
+  403 at CONNECT, so the sitemap is unvalidated against its schema rather than
+  clean.
+  **The day page has no `banner` landmark** while the index and the 404 do, and
+  that is correct rather than a gap: its `<header>` sits inside
+  `<article>`/`<main>`, so it is the digest's own title block and not a site
+  banner. It reads like a missing landmark on a fresh look; do not file it.
 
 - MERGED 2026-10-27 as #304 / PR #305, `94e4215`, `pages` run 40480343482 green.
   The pager's accessible name now carries its visible words in their visible
@@ -1689,6 +1741,98 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-28
+
+**#307 filed, PR #308 built, `checks` green on `e231e989`, merged by this run at
+09:16 as `1d0db6c`, `pages` run 40662723031 green on it.** A day page offered a
+screen reader two navigation landmarks and a name for only one of them, on 32 of
+32 day pages.
+
+**The signal is yesterday's lesson taken one instrument further.** 10-27 said to
+ask whether a standard ships a conformance checker and run it; axe had covered
+aria and wcag, and html itself had never been put through its own. Both were run
+over all 34 built pages. **The w3c validator** (`vnu-jar` from npm, java is in
+the container) returns **0 errors on 34 of 34**, and two info-level warnings with
+warnings on, both "section lacks heading". **`html-validate` on its `standard`
+preset**, the rules that enforce the standard, is **0 errors on 34 of 34** too.
+On `recommended` it adds three rules and fires: `doctype-style` 34 and
+`no-implicit-button-type` 1, both non-defects recorded in the backlog, and
+**`unique-landmark` on 32 of 32 day pages**.
+
+**The defect is the landmark with no name, and the browser stated it in one
+line.** Chromium's accessibility tree over CDP, before:
+`navigation=""  main=""  contentinfo=""  navigation="nearby days"`. So the
+landmark list reads "navigation" and "navigation, nearby days", and a reader has
+to enter the first one to learn what it is. The index and the 404 carry one nav
+or none, which is why the count is exactly the day pages.
+
+**axe was clean on this yesterday and is clean on it today.**
+`landmark-unique` keys its verdict on the role/name pair, so `("navigation","")`
+is not `("navigation","nearby days")` and the rule passes; the aria practices and
+html-validate read "more than one of a kind" as "name each one". Two defensible
+verdicts on one page, and the gap between them is where this sat. That is the
+top lesson.
+
+**The change is one attribute in two files**, `aria-label="archive"` on the
+crumbs nav in `build.ts` and in `not-found.ts`. `archive` is the site's own word
+for the rolling month (the 404's copy says "rolled out of the month archive") and
+is distinct from `nearby days`. The 404 never fired the rule, having one nav; it
+is labelled because it is the same line and the two copies should not drift. No
+`label-content-name-mismatch` risk from it: `<nav>` takes no name from content,
+so the link inside still answers to its visible "all days".
+
+**The test reads every built page, not the crumbs.** No nav without a non-empty
+`aria-label`, and no page repeating one, because the next nav added anywhere is
+the one that would ship unnamed. Run against the unfixed source per 09-22 and it
+fails there (`2026-07-03.html renders an unnamed nav`).
+
+**Measured with the same instruments after.** `unique-landmark` **32 -> 0**, vnu
+still 0 errors on 34 of 34, axe unchanged at 0 violations with its two
+pre-existing contrast `incomplete` entries, and the AX tree now prints
+`navigation="archive"` beside `navigation="nearby days"`. The no-regression half
+is **8 of 8 full-page screenshots byte-identical** (2026-10-28, 2026-10-27,
+index, 404 at 390 and 860, dsf 2) and a byte diff over the built tree of **33
+files, one line each**, the 32 day pages and the 404, with `index.html`
+untouched. 253 tests (was 252), typecheck silent, 33 pages, `verify 2026-10-28`
+clean with no warnings.
+
+**The screenshot pair needed the clock frozen, not just the fonts.** 10-22 lost a
+pair to `timeLeft` rolling over and 10-27 lost one to a webfont swap; the day and
+index pages both compose strings from `Date`, so this run froze it in an
+`addInitScript` alongside waiting on `document.fonts.ready`, and all 8 came back
+identical on the first attempt.
+
+**Walked clean, recorded so no later run pays for them again.** `feed.xml` and
+`sitemap.xml` are well-formed under `xmllint`, and the feed read back through the
+repo's own `rss-parser` is 32 items with every required element present.
+sitemaps.org's xsd is 403 at CONNECT, so the sitemap is unvalidated against its
+schema rather than clean, and the github release asset for `vnu.jar` is a 404 at
+the `latest` tag (npm's `vnu-jar` is the route that works). The day page's
+missing `banner` landmark is correct: its `<header>` is inside the article.
+
+**Health**: the last 25 workflow runs green before this one, `verify` clean on
+today, four issues open at the start of the run (#246, #241, #120, #112), all
+waiting on Yasin and none greenlit, so the slot went to a new observation; #307
+opened and closed inside it.
+
+**The environment, as it behaved today.** `gh api` carried the issues, the runs
+and the check runs; `gh pr list` / `gh issue list` still refuse. The footer split
+holds for a fifth day: `issue_write` stripped it, `create_pull_request` appended
+it, `update_pull_request` stripped it on the first try. The merge went through on
+the github MCP first attempt. `sift.yasint.dev` is 000 at CONNECT as always, so
+the live read is the deploy's own green over the tree built here.
+`registry.npmjs.org` is reachable, which is how both validators arrived, and
+nothing was installed into the repo (`npm i --no-save` into the scratchpad).
+Playwright 1.61.1 still wants browser build 1228 against the container's 1243, so
+every probe ran with `executablePath: /opt/pw-browsers/chromium`, and
+`page.accessibility` no longer exists on this version: `newCDPSession` plus
+`Accessibility.getFullAXTree` is the replacement.
+
+**Copilot did not review, for the fourth day running.** Same reply on #308 as on
+#305, #302 and #299: "insufficient remaining quota". The checks wait doubled as
+the review window and nothing real landed in it.
+
 
 ### 2026-10-27
 
