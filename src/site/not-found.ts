@@ -5,8 +5,10 @@ import { DROP_TIMES } from "./today";
 // that is not written yet (linked as "today") or one pruned from the rolling
 // month. The script tells those two apart from the requested path.
 export function notFoundPage(): string {
+  // Labelled like the day page's copy of the same markup: one nav here, two
+  // there, and the two should not drift apart.
   const body = `
-      <nav class="crumbs"><a href="/">&larr; all days</a></nav>
+      <nav class="crumbs" aria-label="archive"><a href="/">&larr; all days</a></nav>
       <header class="head"><div><h1>404<span class="dot">.</span></h1><p class="tag">nothing sifted here</p></div></header>
       <main>
       <section id="why" class="today-note">this page does not exist. head back to <a href="/">all days</a>.</section>
