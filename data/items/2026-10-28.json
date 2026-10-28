@@ -1,0 +1,2226 @@
+{
+  "day": "2026-10-28",
+  "generatedAt": "2026-10-28T05:38:08.924Z",
+  "items": [
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-plugin-now-available-in-opencode",
+      "title": "Vercel Plugin now available in OpenCode",
+      "url": "https://vercel.com/changelog/vercel-plugin-now-available-in-opencode",
+      "author": "Vincent Voyer",
+      "publishedAt": "2026-10-27T00:00:00.000Z",
+      "content": "The is now available in .Vercel PluginOpenCode The plugin provides on-demand guidance on Vercel APIs and recommended patterns, with for AI SDK, Vercel Functions, Workflow, and more.skills It also includes specialist agents for deployment, performance optimization, and AI application design. Use to deploy projects and to manage environment variables./vercel:deploy/vercel:env The plugin requires OpenCode 2. To install it, run this command in your terminal: Then run in OpenCode, select , and sign in to connect the to your account./mcpsvercelVercel MCP server Learn more in the .Vercel Plugin documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/deploy-a-container-from-a-plain-dockerfile",
+      "title": "Deploy a container from a plain Dockerfile",
+      "url": "https://vercel.com/changelog/deploy-a-container-from-a-plain-dockerfile",
+      "author": "Jeff See",
+      "publishedAt": "2026-10-27T00:00:00.000Z",
+      "content": "You can now deploy a plain root or on Vercel's when no other framework is detected. Vercel selects the Container preset, builds that file, and routes all traffic to the resulting image. To get started with containers on Vercel, add a Dockerfile:DockerfileContainerfileContainer runtime When project detection matches another framework, such as Django, that framework still wins. To build use the or instead, run , or set the framework in :DockerfileContainerfilevercel project update --framework containervercel.json A or continues to win over a detected framework, and multi-service projects still use with a per-service .Dockerfile.vercelContainerfile.vercelvercel.jsonservicesentrypoint The Container runtime is in beta, runs on Vercel Functions, and is billed with Active CPU pricing. Read the to get started.Container runtime documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/ai-traffic-insights-now-available-in-vercel-observability",
+      "title": "AI traffic insights now available in Vercel Observability",
+      "url": "https://vercel.com/changelog/ai-traffic-insights-now-available-in-vercel-observability",
+      "author": "Mark Knichel",
+      "publishedAt": "2026-10-27T00:00:00.000Z",
+      "content": "You can now query AI traffic in to understand how AI bots are accessing your site.Vercel Observability AI traffic insights show: To view AI traffic insights, open in the Vercel dashboard.Observability > AI Traffic You and your agents can also query these metrics with in the . CLI queries require Observability Plus.vercel metricsVercel CLI type: embedded-entry-inline id: 6E78NBZeL598kMHZ7c4zyk Learn more in the .AI traffic documentation Read more how many requests each bot makesRequests by verified AI bot: pages most frequently requested by AI crawlers for indexing or model trainingMost-crawled pages: pages AI assistants fetch in response to user actions or search queriesAssistant retrievals: pages AI bots request in Markdown formatMarkdown requests: pages where requests from AI bots return errorsErrors:",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/fx-harness-adapter-now-separates-host-and-sandbox",
+      "title": "The fx adapter now runs the harness on the host",
+      "url": "https://vercel.com/changelog/fx-harness-adapter-now-separates-host-and-sandbox",
+      "author": "Felix Arntz",
+      "publishedAt": "2026-10-27T06:00:00.000Z",
+      "content": "The fx adapter for the AI SDK’s now runs the harness and model requests in the same process as your application. Built-in filesystem and shell operations remain isolated in the sandbox.HarnessAgent The adapter uses , the TypeScript library for fx. It no longer needs to install fx inside the sandbox, run a sandbox bridge, or expose a sandbox port. Model credentials stay on the host rather than being forwarded into the sandbox.libfx The rewrite also adds: Sessions can be saved and resumed in a new host process. Update to the latest version to use the new adapter. Learn more in the .@ai-sdk/harness-fxfx harness documentation Read more choose which built-in tools the agent can useBuilt-in tool filtering: send new instructions while a turn is runningMid-turn steering: generate responses that match a schemaStructured output: return images to the model through Image tool results: toModelOutput()",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/retell-ai",
+      "title": "Retell uses OpenAI models to help power 100M monthly calls",
+      "url": "https://openai.com/index/retell-ai",
+      "author": null,
+      "publishedAt": "2026-10-27T15:00:00.000Z",
+      "content": "GPT-6 Astra tops Retell’s voice agent benchmark, while Codex helps it reach a $1.6M annual revenue run rate per employee.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/replit-s-cloud-agents-let-non-engineers-ship-250-000-lines-to-production",
+      "title": "Replit's Cloud Agents Let Non-Engineers Ship 250,000 Lines to Production",
+      "url": "https://alphasignal.ai/news/replit-s-cloud-agents-let-non-engineers-ship-250-000-lines-to-production",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-27T15:53:35.000Z",
+      "content": "Replit Cloud Agents let non-engineers submit tested pull requests to production codebases, with video evidence and engineer approval before merge.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50261589",
+      "title": "Amazon Is Gutting Its AI Division After Sustained Failure",
+      "url": "https://futurism.com/artificial-intelligence/amazon-ai-division-failure-nova",
+      "author": "dpflan",
+      "publishedAt": "2026-10-27T16:25:30.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 297,
+      "comments": 226
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50262229",
+      "title": "Introducing LFM3: Every Modality for Specialized Intelligence",
+      "url": "https://www.liquid.ai/blog/lfm3",
+      "author": "Philpax",
+      "publishedAt": "2026-10-27T17:04:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 133,
+      "comments": 52
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/arena-s-agent-mode-now-connects-github-linear-vercel-and-6-more-developer-tools",
+      "title": "Arena's Agent Mode Now Connects GitHub, Linear, Vercel and 6 More Developer Tools",
+      "url": "https://alphasignal.ai/news/arena-s-agent-mode-now-connects-github-linear-vercel-and-6-more-developer-tools",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-27T17:47:08.000Z",
+      "content": "Arena's Agent Mode now plugs directly into Gmail, GitHub, Linear, Notion, Vercel, Supabase and more, replacing the copy-paste shuffle between tabs.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nextjs-blog",
+      "externalId": "/blog/upcoming-nextjs-security-release-november-2026",
+      "title": "Upcoming Next.js November Security Release",
+      "url": "https://nextjs.org/blog/upcoming-nextjs-security-release-november-2026",
+      "author": "Jamiboy Mohammad",
+      "publishedAt": "2026-10-27T18:00:00.000Z",
+      "content": "Next.js is preparing a scheduled November security release for November 3, 2026.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50263854",
+      "title": "Discord will soon let anyone find public server messages through Google",
+      "url": "https://discord.com/blog/making-content-from-discoverable-servers-easier-to-discover",
+      "author": "DeepLogin",
+      "publishedAt": "2026-10-27T18:44:17.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 290,
+      "comments": 147
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/ant-group-s-ling-3-1-flash-1019-boosts-agent-scores-but-burns-more-tokens",
+      "title": "Ant Group's Ling 3.1 Flash 1019 Boosts Agent Scores but Burns More Tokens",
+      "url": "https://alphasignal.ai/news/ant-group-s-ling-3-1-flash-1019-boosts-agent-scores-but-burns-more-tokens",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-27T18:54:55.000Z",
+      "content": "InclusionAI's updated 560B MoE reasoning model jumps three points on the Intelligence Index while keeping the same price tag and MIT license.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/vals-ai-s-10-claude-sonnet-5-5-agents-crack-a-17-895-line-math-proof",
+      "title": "Vals AI's 10 Claude Sonnet 5.5 Agents Crack a 17,895-Line Math Proof",
+      "url": "https://alphasignal.ai/news/vals-ai-s-10-claude-sonnet-5-5-agents-crack-a-17-895-line-math-proof",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-27T19:48:58.000Z",
+      "content": "Vals AI explains how ten Claude agents produced a Lean proof for seven electrons on a sphere, and names which cases should fall next.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50264853",
+      "title": "Survival LLM: AI assistant and emergency library that runs on your own computer",
+      "url": "https://www.brangus.io/survival-llm",
+      "author": "Luc",
+      "publishedAt": "2026-10-27T19:55:06.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 264,
+      "comments": 120
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50264857",
+      "title": "Tailscale SSH: Investigation and remediation update",
+      "url": "https://tailscale.com/ssh-investigation-update",
+      "author": "figmert",
+      "publishedAt": "2026-10-27T19:55:21.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 247,
+      "comments": 124
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/security/2026/10/code-execution-flaw-in-uefi-firmware-threatens-most-servers-on-planet-earth/",
+      "title": "Code-execution flaw in UEFI firmware affects most servers on planet Earth",
+      "url": "https://arstechnica.com/security/2026/10/code-execution-flaw-in-uefi-firmware-threatens-most-servers-on-planet-earth/",
+      "author": "Dan Goodin",
+      "publishedAt": "2026-10-27T20:25:55.000Z",
+      "content": "Defenders across the world face the burden of responding to yet another botched code-execution vulnerability, this time in boot-time firmware used by most of the world’s server vendors and data centers. The vulnerability, with a severity rating of 9.5 out of 10, resides in the TianoCore EDK II, an open source codebase that hardware makers and cloud providers use to create the UEFI firmware that runs during the boot-up sequence. Last year, a representative of the UEFI Forum called EDK2 the \"preeminent solution / implementation of the UEFI specifications.\" Virtually all UEFI suppliers (sometimes still called IBVs or independent BIOS vendors), including AMI, Insyde, and Phoenix, use the reference code extensively. Project Mu, Microsoft's hardened EDK2 fork, used the code containing the vulnerable component as well. The vulnerability, tracked as CVE-2026-97631, is a memory-corruption flaw in an ICMP component that attackers can exploit to execute malicious code that runs before the operating system and firmware can implement defenses like Secure Boot, which establishes a chain of trust for all code, including the Trusted Platform Module (TPM), loaded during boot. While final payloads delivered by CVE-2026-97631 have no persistence—meaning they run only once—they can give attackers a wide opening to install other payloads that also run each time early in the boot process. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-puts-claude-inside-drug-labs-cutting-review-time-by-89",
+      "title": "Anthropic Puts Claude Inside Drug Labs, Cutting Review Time by 89%",
+      "url": "https://alphasignal.ai/news/anthropic-puts-claude-inside-drug-labs-cutting-review-time-by-89",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-27T20:27:48.000Z",
+      "content": "Anthropic details Claude's work across six biotech partnerships and its own in-house drug programs, with early wins in CAR-T, allergies, and regulatory paperwork.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50265594",
+      "title": "Raspberry Pi Zero 3W and Pi 4 Model A spotted in device trees",
+      "url": "https://bret.dk/raspberry-pi-zero-3-w-pi-4-model-a/",
+      "author": "sthlmb",
+      "publishedAt": "2026-10-27T20:48:49.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 130,
+      "comments": 59
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1019921",
+      "title": "Researchers are getting tired of OpenAI gatekeeping its breakthroughs",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1019921/openai-breakthrough-math-computer-science-physics",
+      "author": "Robert Hart",
+      "publishedAt": "2026-10-27T20:48:58.000Z",
+      "content": "On Monday, OpenAI announced impressive breakthroughs in mathematics, computer science, and physics, along with what the company says is an evolving approach to communicating its findings. But despite its apparent course correction, researchers who spoke to The Verge are growing increasingly tired of the company's antics. It has been a turbulent few months between OpenAI and mathematicians, who are still grappling with the hundreds of preprints unceremoniously dumped on them at the start of October. This time, OpenAI says it is working with expert \"shepherds\" to decide how best to share its latest breakthroughs. All three results conc … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=124247",
+      "title": "Memory-Enforced GPU Sharing in Kubernetes with NVIDIA CUDA 13.4",
+      "url": "https://developer.nvidia.com/blog/memory-enforced-gpu-sharing-in-kubernetes-with-nvidia-cuda-13-4/",
+      "author": "Elizabeth Goodman",
+      "publishedAt": "2026-10-27T20:50:39.000Z",
+      "content": "Many AI workloads need only a fraction of a GPU. Giving each one an entire device can leave capacity idle; sharing GPUs lets platform teams serve more workloads... Many AI workloads need only a fraction of a GPU. Giving each one an entire device can leave capacity idle; sharing GPUs lets platform teams serve more workloads with the infrastructure they already have. NVIDIA GPUs already support several approaches to sharing. Multi-instance GPU (MIG) splits a GPU into hardware-isolated instances that are transparent to the application… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50265609",
+      "title": "Early progress on accelerating drug development with Claude",
+      "url": "https://www.anthropic.com/research/early-progress-drug-development",
+      "author": "dataking",
+      "publishedAt": "2026-10-27T20:50:42.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 187,
+      "comments": 167
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112486 at https://www.eff.org",
+      "title": "Social Media When Elections Are Close: Doing the Impossible Better",
+      "url": "https://www.eff.org/deeplinks/2026/10/social-media-when-elections-are-close-doing-impossible-better",
+      "author": "Corynne McSherry",
+      "publishedAt": "2026-10-27T21:20:30.000Z",
+      "content": "Everyone knows, or should, that perfect (balanced, targeted, transparent, swift and swiftly appealable) content moderation at scale is impossible. That doesn’t mean powerful social platforms don’t have to try to get at least reasonably close, especially when access to good information can have a profound effect on political participation and speech. That’s why so many people, including the Meta Oversight Board, criticized Meta for suspending a major political Instagram account for hours during a huge early voting push on October 17; and for allegedly boosting one candidate in Brazil’s recent presidential election. Meta denies deliberate interference in either instance, blaming “mistakes” in its automated content moderation systems (including AI tools that can’t tell the difference between enthusiastic follower engagement and a bot attack). Mistakes or not, with early voting in the U.S. midterms already underway, these events serve as a stark reminder that all major social media platforms need to have stronger systems in place to ensure that they serve, rather than impede, democratic communication. Access to good information can have a profound effect on political participation and speech. This is not inherently an “AI” problem: automated systems can process content at a scale that humans never could, potentially enabling better moderation at scale and alleviating the psychological load on ill-paid moderators whose jobs require them to view incredibly disturbing content. But automated systems also reproduce existing biases, struggle to understand context, and often make mistakes that disproportionately affect journalists, activists, artists, and other vulnerable and marginalized communities. And moderation errors are even more likely when the language is spoken principally by the global majority. In 2020, leaked document showed that Meta’s algorithms incorrectly deleted nonviolent Arabic-language content 77 percent of the time, while failing to detect hate speech under the company’s own policies in many instances. Where these systems are faltering in Arabic, they’re positively failing in less-resourced languages. As a 2025 report from the Center for Democracy and Technology found, labeled datasets in certain languages and dialects such as Maghrebi Arabic and Kiswahili contain inconsistencies, bias, and inaccuracies due to the limited hiring of annotators who actually speak the languages as well as shifts in the languages themselves. An investigation into ChatGPT’s outputs in several low-resource languages demonstrates the depth of problem. But language disparities are just one of several concerns as automated moderation becomes more widespread. From the systemic suppression of content from Palestine to the repeated misclassification of LGBTQ+ content as adult or explicit material, these varied examples demonstrate the risks of overreliance on automated moderation—and the need for stronger safeguards. Fortunately, there is a great deal companies, policymakers, and civil society can do to help ensure that highly automated systems operate in ways that respect human rights, minimize predictable harms, and provide meaningful accountability when they fail. If companies are going to continue relying on automation to moderate users’ speech—and there is little reason to believe they won’t—then accountability must evolve alongside these technologies. That work should start with publicly committing to the Santa Clara Principles 2.0. Specifically: Automated technologies should help, not replace, human moderators. For example, automated systems can help flag and prioritize content for review, while humans can interpret context, handle sensitive cases, and refine system performance. This investment is particularly important during the weeks immediately before and after an election. Companies must be transparent about when and how automation is used in content decisions. Companies must regularly audit their automated systems for bias, with particular attention to low-resource languages, vulnerable and marginalized communities, and conflict zones. Companies should strengthen personal data protection guarantees and policies. Automated content moderation often relies on personal data and profiling, so companies should think carefully about what data these systems use, what's necessary and proportionate and how their systems shape moderation outcomes. Users must have the ability to appeal, and to provide context when they believe human or automated moderation decisions have wrongfully removed their content. Appeals should be promptly evaluated and decided by human moderators. Companies should regularly assess the human rights impact of their moderation decisions, and issue public statements of the results If they rely on third-party vendors, companies should carefully (and regularly) audit those vendors for compliance with these same principles Lawmakers should avoid promoting and passing legislation that effectively or explicitly mandates automated moderation systems Policymakers should also refrain from attempting to dictate platforms technical and design choices to favor or disfavor particular expression. Policymakers should work to educate the public about how their personal data may be collected and used in electoral contexts. These recommendations understand that automated content moderation isn’t just a technical problem for clever engineers and product teams to solve. Because content moderation shapes public discourse and fundamental rights, its design and oversight must respond to the concerns of policymakers, civil society, independent researchers, and the communities most affected by these systems. One other distinct and enduring problem makes transparency, checks, and accountability all the more urgent: too few companies have far too much power over our political communication and organizing. Social media gave people the ability to wrest some control over political messaging away from media oligopolies. But we’ve met the new boss and while it’s not the same as the old boss, the song is pretty familiar. The real promise of the web to democratize communication is not likely to be met by social media oligarchs, no matter how sophisticated their content moderation practice.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/10/anthropic-ipo-warns-its-ai-could-blackmail-people-become-sentient-end-humanity/",
+      "title": "Anthropic IPO warns its AI could blackmail people, become sentient, end humanity",
+      "url": "https://arstechnica.com/ai/2026/10/anthropic-ipo-warns-its-ai-could-blackmail-people-become-sentient-end-humanity/",
+      "author": "Kyle Orland",
+      "publishedAt": "2026-10-27T21:31:14.000Z",
+      "content": "The Securities and Exchange Commission's publication on Monday of Anthropic's S-1 form—ahead of a heavily anticipated initial public offering—has led to plenty of discussion of whether the company's quickly ballooning revenues will be able to overcome its even higher costs. But amid the numbers and forward-looking optimism about AI \"rapidly transform[ing] every sector of the global economy in ways greater than the impact of industrialization, electricity, semiconductors, and the internet,\" Anthropic also spends an inordinate amount of time in its S-1 laying out the myriad risk factors that could bring the company down. Across 93 pages and over 70,000 words, Anthropic's S-1 \"Risk Factors\" section discusses literally hundreds of potential problems that could negatively impact its business in the coming years. Many of these potential risks are the kind of standard worries about competition, costs, customer acquisition, and potential regulation that almost any business must worry about. But some risks highlight interesting potential points of failure for Anthropic specifically and the hype-filled AI bubble more generally. After wading through Anthropic's book-length treatise on its greatest risks, we've narrowed the list to the seven most surprising, interesting, or thought-provoking potential problems. Consider this a far-from-comprehensive look that potential Anthropic investors should keep in mind. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/10/no-human-at-the-helm-delaware-plan-would-let-ai-agents-run-entire-businesses/",
+      "title": "\"No human at the helm\": Delaware plan would let AI agents run entire businesses",
+      "url": "https://arstechnica.com/tech-policy/2026/10/no-human-at-the-helm-delaware-plan-would-let-ai-agents-run-entire-businesses/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-10-27T21:50:04.000Z",
+      "content": "A Delaware proposal to let companies be operated by AI agents would help the firms' human owners evade legal responsibility for reckless and harmful actions taken by the AI, US Rep. James Comer (R-Ky.) told Delaware Governor Matt Meyer in a letter yesterday. Comer, chairman of the House Committee on Oversight and Government Reform, told Meyer that the committee \"seeks assistance obtaining documents related to your state administration’s efforts to establish a new form of corporate entity to be known as an Artificial Intelligence Company (AIC).\" Comer said the proposal is ripe for abuse. \"We are concerned that Delaware’s AIC proposal could be used to protect powerful AI companies and their investors from responsibility for reckless harmful actions, while also protecting non-transparent forces seeking anticompetitive regulatory capture behind state AI initiatives,\" Comer's letter said. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/systran-s-faster-whisper-hits-836k-downloads-running-on-laptop-cpus",
+      "title": "SYSTRAN's faster-whisper Hits 836K Downloads Running on Laptop CPUs",
+      "url": "https://alphasignal.ai/news/systran-s-faster-whisper-hits-836k-downloads-running-on-laptop-cpus",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-27T22:04:36.000Z",
+      "content": "SYSTRAN's English-only base checkpoint repackages OpenAI Whisper for CTranslate2, delivering roughly 4x faster transcription at the same accuracy on modest hardware.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/10/chinas-top-secret-spaceplane-cant-hide-in-low-earth-orbit/",
+      "title": "China's top-secret spaceplane can't hide in low-Earth orbit",
+      "url": "https://arstechnica.com/space/2026/10/chinas-top-secret-spaceplane-cant-hide-in-low-earth-orbit/",
+      "author": "Stephen Clark",
+      "publishedAt": "2026-10-27T22:04:50.000Z",
+      "content": "A winged Chinese spacecraft bearing a strong resemblance to the US military's X-37B spaceplane was photographed in orbit by a passing US-owned commercial satellite in 2024, and we finally have the image. The Chinese spaceplane has delta wings, payload bay doors, a dark heat shield, and a rear-mounted service module with power-generating solar arrays. In other words, the design of the winged ship is, to a great degree, a copy of the X-37B spaceplane flown by the US Space Force. The photo was taken by a commercial imaging satellite owned by a company called Vantor, known as Maxar in 2024. Vantor is one of several companies that provide reconnaissance imagery of locations around the world to the US military and US intelligence agencies. The same Earth-imaging satellites can point their telescopes at objects in space. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/cartesia-s-managed-agents-beats-gemini-and-grok-with-91-7-task-success",
+      "title": "Cartesia's Managed Agents Beats Gemini and Grok With 91.7% Task Success",
+      "url": "https://alphasignal.ai/news/cartesia-s-managed-agents-beats-gemini-and-grok-with-91-7-task-success",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-27T22:08:57.000Z",
+      "content": "Cartesia's new Managed Agents platform jumps 98 Elo points over its predecessor on blind voice preference tests, with task success climbing to 91.7%.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/10/domestic-travel-poses-growing-risk-for-measles-and-a-new-challenge-for-states/",
+      "title": "South Carolina's measles outbreak jumped to Washington state 5 times in 2 weeks",
+      "url": "https://arstechnica.com/health/2026/10/domestic-travel-poses-growing-risk-for-measles-and-a-new-challenge-for-states/",
+      "author": "Beth Mole",
+      "publishedAt": "2026-10-27T22:22:32.000Z",
+      "content": "Since measles was declared eliminated in the US in 2000, the country's occasional cases have come mainly from international travelers—visitors from far-flung places where the virus still spreads freely — or unvaccinated US residents who return from abroad with a highly infectious souvenir. But as vaccination rates have slipped nationwide in recent years and outbreaks grow bigger and more frequent, domestic travel now poses a greater risk than international incursions. In a study published this week in NEJM Evidence, Washington state health officials highlight that risk, detailing how an explosive outbreak in South Carolina reached their distant state through five distinct importation events over two weeks in January. In all, the introductions led to 26 cases among residents before officials stamped out the spread. South Carolina's measles outbreak began on October 2, 2025, and was declared over on April 26, 2026. Officials confirmed 997 cases in the state during the outbreak. At the time, it was the largest measles outbreak recorded since the virus was declared eliminated, but Pennsylvania's ongoing outbreak has since surpassed it. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/apple/2026/10/apple-refreshes-the-imac-entry-level-macbook-pro-with-the-m6-chip/",
+      "title": "Apple refreshes the iMac, entry-level MacBook Pro with the M6 chip",
+      "url": "https://arstechnica.com/apple/2026/10/apple-refreshes-the-imac-entry-level-macbook-pro-with-the-m6-chip/",
+      "author": "Samuel Axon",
+      "publishedAt": "2026-10-27T22:37:30.000Z",
+      "content": "Apple has announced refreshes for the iMac and the entry-level, 14-inch MacBook Pro. Both machines are getting the M6 chip, which was introduced in the Mac mini several weeks ago. The M6 is split into two variants for the iMac. Picking the \"M6 chip with two Thunderbolt ports\" option gets you a 10-core CPU and a 10-core GPU, whereas picking \"M6 chip with four Thunderbolt ports\" gets you 12 cores for each, instead. The two-port variant maxes out at 24 GB of RAM and 1TB of storage, whereas the four-port one maxes out at 32GB of RAM and 2TB of storage. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1020145",
+      "title": "Here’s why the iPhone Duo’s hinge could be cracking the screen",
+      "url": "https://www.theverge.com/tech/1020145/iphone-duo-crackgate-broken-screen-hinge",
+      "author": "Jay Peters",
+      "publishedAt": "2026-10-27T22:55:05.000Z",
+      "content": "Within hours of the iPhone Duo launch last Friday, people reported that the inner screen on some brand new foldable phones was already broken. The issue was similar across many photos shared on social media: some kind of issue or crack would appear in the middle of the screen above the hinge, with lines appearing on the right side of the display. On Monday, Apple acknowledged an \"issue\" and said it's replacing damaged units, without going into much detail about how many broken phones have been reported so far. So what's actually going on? Shahram Mokhtari, the lead teardown technician at iFixit, has actually taken apart the iPhone Duo and … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261027/p36#a261027p36",
+      "title": "Anthropic expands its US GSA partnership to give federal, state, local, tribal, and territorial governments a 40% discount on Claude, estimated to save $1B (Anthropic)",
+      "url": "https://www.techmeme.com/261027/p36#a261027p36",
+      "author": null,
+      "publishedAt": "2026-10-27T23:35:01.000Z",
+      "content": "Anthropic: Anthropic expands its US GSA partnership to give federal, state, local, tribal, and territorial governments a 40% discount on Claude, estimated to save $1B — We are expanding our partnership with the General Services Administration (GSA) through a new agreement that gives government partners …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261027/p37#a261027p37",
+      "title": "SK Hynix reports Q3 revenue up 328% YoY to ~$78.8B, vs. ~$74.07B est., and operating profit up 632% to ~$62.76B, vs. ~$57.78B est. (Jenny Lee/CNBC)",
+      "url": "https://www.techmeme.com/261027/p37#a261027p37",
+      "author": null,
+      "publishedAt": "2026-10-27T23:50:02.000Z",
+      "content": "Jenny Lee / CNBC: SK Hynix reports Q3 revenue up 328% YoY to ~$78.8B, vs. ~$74.07B est., and operating profit up 632% to ~$62.76B, vs. ~$57.78B est. — South Korean chipmaker SK Hynix on Wednesday posted a record high quarterly profit, sharply beating estimates, and announced over $25 billion in dividends and buybacks …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261027/p38#a261027p38",
+      "title": "An Anthropic hiring manager says he stopped giving coding interviews because Claude is better at them and tells junior engineers that \"hunger beats tenure\" (Felix Rieseberg)",
+      "url": "https://www.techmeme.com/261027/p38#a261027p38",
+      "author": null,
+      "publishedAt": "2026-10-28T00:01:32.000Z",
+      "content": "Felix Rieseberg: An Anthropic hiring manager says he stopped giving coding interviews because Claude is better at them and tells junior engineers that “hunger beats tenure” — This month, I laid the traditional coding interview to rest. As a hiring manager at Anthropic, I stopped asking candidates to do them.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/nvidia-s-auto-ontology-stops-ai-agents-from-querying-the-wrong-data",
+      "title": "NVIDIA's Auto Ontology Stops AI Agents From Querying the Wrong Data",
+      "url": "https://alphasignal.ai/news/nvidia-s-auto-ontology-stops-ai-agents-from-querying-the-wrong-data",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T00:04:07.000Z",
+      "content": "NVIDIA released Auto Ontology, an open-source Python framework that builds semantic graph layers over enterprise data so agents generate SQL deterministically with provenance.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261027/p39#a261027p39",
+      "title": "Source: OpenAI, a major Nvidia customer, plans to buy Google's TPUs; a job listing shows it seeks an engineer to \"lead the optimization\" of its models on TPUs (Ryan Barwick/The Information)",
+      "url": "https://www.techmeme.com/261027/p39#a261027p39",
+      "author": null,
+      "publishedAt": "2026-10-28T00:15:41.000Z",
+      "content": "Ryan Barwick / The Information: Source: OpenAI, a major Nvidia customer, plans to buy Google's TPUs; a job listing shows it seeks an engineer to “lead the optimization” of its models on TPUs — OpenAI plans to buy Google's AI chips, according to a person familiar with the matter, in a boost for a rising competitor to OpenAI backer Nvidia.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261027/p40#a261027p40",
+      "title": "Toronto-based fintech Wealthsimple raised up to CA$425M led by GIC at a post-money valuation of CA$13.8B, up from CA$10B in 2025 (Reuters)",
+      "url": "https://www.techmeme.com/261027/p40#a261027p40",
+      "author": null,
+      "publishedAt": "2026-10-28T01:05:01.000Z",
+      "content": "Reuters: Toronto-based fintech Wealthsimple raised up to CA$425M led by GIC at a post-money valuation of CA$13.8B, up from CA$10B in 2025 — Oct 27 (Reuters) - Canadian financial services company Wealthsimple said on Tuesday it had raised up to C$425 million ($302.5 million), taking its valuation …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/osaka-metro-university-s-som-olp-cuts-classic-clustering-complexity-from",
+      "title": "Osaka Metro University's SOM-OLP Cuts Classic Clustering Complexity From Quadratic to Linear",
+      "url": "https://alphasignal.ai/news/osaka-metro-university-s-som-olp-cuts-classic-clustering-complexity-from",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T01:16:29.000Z",
+      "content": "A new objective-based Self-Organizing Map variant gives every data point its own continuous latent coordinate, cutting cost from O(NM²) to O(NM) while topping 16 benchmarks.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261027/p41#a261027p41",
+      "title": "AMD says it will invest $1B in Meta's equity offering, its first Helios rackscale systems are installed at Meta, and its EPYC CPUs power Meta's Muse AI agent (Kai Nicol-Schwarz/CNBC)",
+      "url": "https://www.techmeme.com/261027/p41#a261027p41",
+      "author": null,
+      "publishedAt": "2026-10-28T01:45:42.000Z",
+      "content": "Kai Nicol-Schwarz / CNBC: AMD says it will invest $1B in Meta's equity offering, its first Helios rackscale systems are installed at Meta, and its EPYC CPUs power Meta's Muse AI agent — Nvidia and Advanced Micro Devices have said they will invest a total of $4 billion in Meta after the social media …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50268380",
+      "title": "Git for US Legislation",
+      "url": "https://lexifina.com/blog/git-for-the-us-code",
+      "author": "alansaber",
+      "publishedAt": "2026-10-28T01:47:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 145,
+      "comments": 68
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/artificial-analysis-moves-intelligence-index-to-60-private-tests-to-stop-ai",
+      "title": "Artificial Analysis Moves Intelligence Index to 60% Private Tests to Stop AI Cheating",
+      "url": "https://alphasignal.ai/news/artificial-analysis-moves-intelligence-index-to-60-private-tests-to-stop-ai",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T02:11:22.000Z",
+      "content": "Artificial Analysis rebuilds its flagship benchmark with 60% private tests, two new agentic evals, and a widening open-weights gap.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261027/p42#a261027p42",
+      "title": "SK Hynix plans to return $22B+ in dividends and ~$15B in buybacks to shareholders, on top of its ~$30B buyback program completed in August (Kwanwoo Jun/Wall Street Journal)",
+      "url": "https://www.techmeme.com/261027/p42#a261027p42",
+      "author": null,
+      "publishedAt": "2026-10-28T02:30:47.000Z",
+      "content": "Kwanwoo Jun / Wall Street Journal: SK Hynix plans to return $22B+ in dividends and ~$15B in buybacks to shareholders, on top of its ~$30B buyback program completed in August — The South Korean memory-chip maker's net profit more than tripled in the third quarter — South Korean memory-chip titan SK Hynix plans to return …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261027/p43#a261027p43",
+      "title": "Letter: two Democratic senators allege the Trump administration withheld a secret FISC ruling on search filters that let analysts access Americans' messages (Dell Cameron/Wired)",
+      "url": "https://www.techmeme.com/261027/p43#a261027p43",
+      "author": null,
+      "publishedAt": "2026-10-28T02:55:01.000Z",
+      "content": "Dell Cameron / Wired: Letter: two Democratic senators allege the Trump administration withheld a secret FISC ruling on search filters that let analysts access Americans' messages — Two US senators say the Trump administration is breaking the law by withholding the FISA court decision while it presses Congress …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261027/p44#a261027p44",
+      "title": "Sources: chipmaker Onsemi is in talks to acquire 16-year-old chip startup Ferric for ~$1B; PitchBook: Ferric last raised a $32.1M Series C in December 2024 (Valida Pau/The Information)",
+      "url": "https://www.techmeme.com/261027/p44#a261027p44",
+      "author": null,
+      "publishedAt": "2026-10-28T03:10:02.000Z",
+      "content": "Valida Pau / The Information: Sources: chipmaker Onsemi is in talks to acquire 16-year-old chip startup Ferric for ~$1B; PitchBook: Ferric last raised a $32.1M Series C in December 2024 — Semiconductor component maker Onsemi has been discussing an acquisition of 16-year-old chip startup Ferric for close to $1 billion …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261027/p45#a261027p45",
+      "title": "The US FCC approves Amazon Leo's $11.5B acquisition of Globalstar, giving Amazon access to Globalstar's 24 satellites and mobile satellite spectrum (David Shepardson/Reuters)",
+      "url": "https://www.techmeme.com/261027/p45#a261027p45",
+      "author": null,
+      "publishedAt": "2026-10-28T03:50:02.000Z",
+      "content": "David Shepardson / Reuters: The US FCC approves Amazon Leo's $11.5B acquisition of Globalstar, giving Amazon access to Globalstar's 24 satellites and mobile satellite spectrum — The Federal Communications Commission said on Tuesday it approved Amazon (AMZN.O) Leo's $11.5 billion deal to acquire Globalstar (GSAT.O) …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35869v1",
+      "title": "KORA: Deterministic-First Execution Control for AI Workloads",
+      "url": "https://arxiv.org/abs/2610.35869",
+      "author": "Albert Heekwan Kim",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "AI applications often invoke a model before they determine whether inference is necessary. That default is useful for ambiguous generative tasks, but it is poorly matched to work that is structured, deterministic, policy-bound, lookup-oriented, or directly verifiable. KORA introduces deterministic-first execution control: a pre-inference control layer that represents requests as task paths, attempts deterministic or structured routes first, validates route outcomes, records telemetry, and escalates to a model-candidate path only when deterministic handling is insufficient. This paper presents KORA as a deterministic-first execution-control architecture and reports bounded evidence from reproducible benchmark and validation workloads. In a reproducible 100-task deterministic-heavy benchmark, KORA-controlled execution avoided 80 of 100 simulated model invocations versus a naive direct baseline, with zero mismatches in the deterministic subset. The workload is intentionally deterministic-heavy: it includes categories such as FAQ lookup, policy/rule checking, schema or format validation, deterministic transformation, and a smaller set of model-needed ambiguous or generative tasks. A separate synthetic customer-support local/no-network validation workload demonstrates route measurement and avoided model-call accounting in an application-shaped setting. These results support bounded model-invocation reduction and validation visibility in documented workloads. They do not establish production behavior, real-provider outcomes, energy outcomes, API-cost reduction, or broad superiority.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35877v1",
+      "title": "Calibrated for Which Policy? Conformal Uncertainty for Fixed World Models Under Intervention",
+      "url": "https://arxiv.org/abs/2610.35877",
+      "author": "Ayush Mittal, Dhruv Gupta",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Changing a deployment policy can invalidate a world model's uncertainty while leaving the physical transition mechanism and predictor unchanged. For one-step prediction, if source and target laws share the conditional mechanism $P(Y|X)=Q(Y|X)$, then the intervention is identified by the pre-outcome change of measure $w(X)=dQ_X/dP_X$. For policy-controlled dynamics this ratio factors into state-occupancy and action-propensity terms. Weighted conformal calibration transports marginal coverage to the target law; with an estimated ratio $\\hat w$, $P_Q\\{Y \\in C_{\\hat w}(X)\\} \\ge 1-\\alpha-TV(Q,\\hat Q) \\ge 1-\\alpha-E_P|w-\\hat w|$. Population log-loss regret for a source-versus-target domain classifier bounds the same ratio error. If $h$ is its clipped target posterior, $\\rho$ is the target-domain prior, and $\\Delta(h)$ is population log-loss regret, then $E_P|w-\\hat w_h| \\le (1/(\\rho\\gamma))\\sqrt{\\Delta(h)/2}$. An exact cancellation improves the dependence from a generic odds-map bound of order $\\gamma^{-2}$ to $(\\rho\\gamma)^{-1}$. Our experiments use a released DINO-feature world model and physical Franka trajectories. Under the strongest controlled state-action shift, ordinary 90% conformal sets cover 55.0%, whereas oracle and learned-ratio calibration cover 91.0% and 90.9%. The learned surrogate remains within 0.9% total variation of the target law. Calibration is relative to the deployment law: the model can remain fixed while calibration follows the intervention. We machine-check in Lean 4 the finite-support algebraic and causal identities used in the classifier-regret argument, including its coverage-composition step.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35925v1",
+      "title": "ReCoPII: A Relation-Grounded Framework for Building Contextual PII Masking Datasets",
+      "url": "https://arxiv.org/abs/2610.35925",
+      "author": "Taehwan Lee",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Training contextual masking systems for personally identifiable information (PII) requires examples distinguishing maskable from preservable mentions of one entity type, but privacy restrictions limit access to real data. Author-based augmentation (SPY) labels mentions unrelated to the author as non-PII, presuming a single data subject and overlooking others. We propose ReCoPII (Relation-grounded Contextual PII masking), a framework that builds such data without this premise: it plans ontology-constrained entity relations, writes insertion sentences with placeholders, reconstructs annotations with code, checks the result with a separate LLM, and derives MASK/KEEP labels from entity relations. On Korean documents from six domains, it yields ReCoPII-Ko, a corpus with relation, privacy, and MASK/KEEP annotations, which we validate. Across 300 pairs, four annotators agree with 88.42% of its sampled KEEP labels, against 26.27% for SPY-style augmentation of the same sources. Classifiers trained on it over-mask less than under that reference on a matched test. Contextual masking fine-tuned jointly with a PII detector removes most over-masking of detection alone within a fixed leakage budget; on human-verified entity records, the four detectors meeting it over-mask at most 5.04% with at most 4.18% leakage. The detector is comparable to XLM-R-large on KDPII with about a quarter of its parameters.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35942v1",
+      "title": "Counting the Bandages: On measuring the time that AI saves",
+      "url": "https://arxiv.org/abs/2610.35942",
+      "author": "Solomon Shalom Lijo",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "I consider what it means for AI assistance to save time. I contrast a stopwatch view, on which time saved is whatever the clock records, with a ledger view, on which it is a counterfactual that has to be read next to the errors the work lets through, and I argue for the latter. The argument has four parts. I define a model-free pair of quantities, time saved and excess escaped defects, and one decision number built from them: the break-even defect cost. I give a baseline model of checking in which, until the model is good enough not to check, a calibrated worker's escaped-defect rate does not depend on how good the model is; checking time grows with the logarithm of the model's error rate; and over-trust buys minutes on the clock at a larger cost in total minutes. I show what randomized studies can and cannot identify, and I replicate METR's developer study from its public data: the same 246 issues support a slowdown of 19% or 24% depending on the estimand (34% without adjusting for a chance imbalance), and AI helped on somewhere between 3% and 82% of them. Finally, I restate the published record, with stated bounds in place of imported point assumptions. In GDPval's own review-every-output workflow, review time alone caps GPT-5's speedup at 3.6x; the consultants outside the frontier were faster, and more often wrong. Last, I test two of the model's predictions in a small pre-specified experiment on AI reviewers checking AI drafts of the same kind of brief, built from SEC filings made after the models' training data were collected. Told the drafter's true error rate, the reviewer checked more as it rose, but all-or-nothing, switching near where its prompt's costs break even. Told that the drafter erred ten times less often than it did, it checked 7 fewer of 9 figures and let a wrong figure through in 22.5% of briefs instead of none: faster and worse, entirely through reduced effort.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35954v1",
+      "title": "Curriculum-Driven Deep Reinforcement Learning for Autonomous Far-Range Rocket Landing",
+      "url": "https://arxiv.org/abs/2610.35954",
+      "author": "Atin Chowdhury, Piyush Joshi",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Autonomous vertical landing of reusable launch vehicles is a critical yet formidable challenge in aerospace engineering, primarily due to highly nonlinear dynamics, stringent precision require- ments, and inherent environmental uncertainties. While reinforcement learning (RL) has emerged as a promising alternative to traditional model-based control, existing approaches frequently rely on flat training paradigms and highly simplified initial conditions, drastically limiting their real-world applicability. This paper proposes a comprehensive curriculum-driven deep reinforcement learning framework designed to master both far-range navigation and precision landing. By employing a three-stage curriculum augmented with a critic warm-up procedure and a rehearsal mechanism to prevent catastrophic forgetting, alongside a high-dimensional observation vector utilizing a full 3 X 3 rotation-matrix, the agent is trained to navigate from an initial horizontal distance of 1,000 to 1,500 units vastly farther than prior benchmarks before executing a soft touchdown. Crucially, we intro- duce a redesigned reward function that reduces unnecessary computational overhead and addresses limitations of earlier formulations, including poorly calibrated reward components and potentially conflicting optimization objectives. The redesigned function bounds the per-step reward magnitude by (O(1)), while its progress term accumulates the total distance closed over the trajectory. The available 100,000-episode results report a 99.98% success rate for the proposed policy and 68.31% for the baseline under the evaluation conditions. In the evaluation, the proposed policy retained 69.1% of its initial fuel capacity and achieved a mean final distance from the pad centre of 7.07 units, compared with 13.10 units for the baseline. Landing visualizations are available in Video 1 and Video 2.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35955v1",
+      "title": "ResCom: Activation Residual Compensation for Large Language Model Quantization",
+      "url": "https://arxiv.org/abs/2610.35955",
+      "author": "Ning Yang, Bohan Cui, Zhuowen Liu, Yuting Wang",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Low-bit weight--activation quantization reduces the memory and computation needed to deploy large language models, but activation rounding can still degrade accuracy after calibration. Reconstruction from rounded inputs cannot distinguish activations within the same quantization bin. We propose ResCom, a low-rank correction that uses the activation rounding residual to compensate for the resulting layer-output error. An output-aware calibration procedure selects residual directions by their contribution to output reconstruction and computes the correction in closed form, without gradient training or updates to the calibrated weights. On Llama-3-8B with 4-bit weights and activations, rank-32 attention corrections reduce WikiText-2 perplexity from 7.708 to 7.147, improve MMLU by 2.89 percentage points, and raise five-shot GSM8K accuracy from 23.96 to 36.16 percent. Evaluations on models from 1B to 70B parameters and on held-out C4 test the method beyond this setting. The evaluated FP32 implementation adds 2.25 percent to 4K prefill time; a separate compact-storage implementation retains a 27.7 percent peak-memory reduction relative to FP16.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35957v1",
+      "title": "Distributed LLM Inference via Communication-Efficient Speculative Decoding",
+      "url": "https://arxiv.org/abs/2610.35957",
+      "author": "Joohyun Shin, Byeonghyeon Park, Keumseo Ryum, Joonhyuk Kang",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Distributed speculative decoding has emerged as a promising approach for device--server collaborative large language model (LLM) inference, but its decoding speedup is often limited by the vocabulary-scale communication overhead. In existing distributed speculative decoding methods, exact rejection sampling requires transmitting full token distributions over the LLM vocabulary between the device and the server, which becomes costly in bandwidth-constrained environments. To address this issue, we propose DISCO, a communication-efficient framework for distributed speculative decoding, that eliminates vocabulary-scale distribution transfer while preserving the exact target distribution. DISCO achieves this by introducing a server-side replica of the draft small language model (SLM), which enables the server to locally obtain the draft-side distribution required for rejection sampling. As a result, DISCO exchanges only drafted token indices and scalar probability values between the device and the server. Experimental results on multiple datasets show that DISCO consistently achieves higher decoding speedup than existing distributed speculative decoding methods, particularly under stringent bandwidth constraints.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35958v1",
+      "title": "Exponential Wake-Up Overshoot in Explicit Gaussian Point-Process Filters",
+      "url": "https://arxiv.org/abs/2610.35958",
+      "author": "Hanwu Qin, Dianhai Wang",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "When events resume after a long silence, explicit Gaussian point-process filters amplify the first update exponentially in the silence duration. We give the exact distribution of this update and a computable index that predicts when it overshoots. For the explicit (single-scoring-step) filter and its implicit posterior-mode counterpart, we derive second-order silence expansions of the state variance with opposite-sign logarithmic corrections. The crossing index determines when the post-wake prediction exceeds the resumed rate, separating the bin width at which the amplification exponent reaches one from the larger width at which the true rate is overshot. At fixed bin width, the implicit filter's expected loss grows logarithmically with silence duration, whereas a continuous-time counterexample rules out a bound uniform in bin width and silence duration. Experimental evaluation confirms these predictions in all 73 crossing cells and on exchange trade data, while variance caps reduce explicit overshoot but mostly hurt the implicit filter.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35960v1",
+      "title": "From Slices to Volumes: Comparing 2D, 2.5D, and 3D Residual Networks for Pulmonary Nodule Malignancy-Risk Classification",
+      "url": "https://arxiv.org/abs/2610.35960",
+      "author": "Bahodir Nazarov, Zineb Gharib, Fatima Zazoul",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Purpose: To compare 2D, 2.5D, and 3D residual networks for pulmonary nodule malignancy-risk classification and evaluate momentum-contrast pretraining, mild augmentation, and exclusion of indeterminate ratings. Methods: A retrospectively prepared LIDC-IDRI cohort contained 2,654 nodules labeled benign, indeterminate, or malignant using median radiologist ratings. Patient-disjoint splits comprised 1,876 training, 382 validation, and 396 test nodules. Representations included one axial slice, five neighboring slices, and a local CT volume. Each track evaluated a randomly initialized baseline, momentum-contrast pretraining followed by fine-tuning, and supervised training with mild augmentation. Checkpoints were selected by validation Macro-F1. The 2D experiments used three seeds; 2.5D and 3D results were single-run estimates. A separate binary experiment excluded indeterminate nodules. Results: Augmented models achieved test Macro-F1 values of $0.6134\\pm0.0075$ for 2D, $0.6537$ for 2.5D, and $0.5403$ for 3D; the 2D uncertainty denotes population standard deviation across seeds. Corresponding accuracies were $0.6128$, $0.6869$, and $0.5455$. Augmentation improved Macro-F1 within every track, whereas the tested pretraining recipes reduced it. Binary Macro-F1 values were $0.8227$, $0.8664$, and $0.7554$, respectively. Conclusion: Augmented 2.5D achieved the highest observed performance. Differences in preprocessing, optimization, capacity, and replication limit attribution to dimensionality. Labels reflect radiologist-assessed malignancy risk rather than pathology-confirmed cancer. Code and experimental results are available at https://github.com/CT-DeepLearning-Team/CT-2D-2.5D-3D-DeepLearning.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35961v1",
+      "title": "Knowledge distillation across teacher architectures for compact diabetic retinopathy grading",
+      "url": "https://arxiv.org/abs/2610.35961",
+      "author": "Mossa Manisa, Habiba Jahan Priya, A. K. M. Fakhrul Hossain",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Diabetic retinopathy grading from retinal fundus photographs is important but difficult to deploy on resource-constrained hardware. We conducted a controlled study of offline response-based knowledge distillation for five-class diabetic retinopathy grading on APTOS 2019, comparing ResNet-50, MobileNetV3-Large, and Swin Transformer-Tiny (Swin-T) teachers distilled into a MobileNetV3-Small student. A 3 x 4 x 2 grid of teacher, temperature, and hard-label weight was screened at one seed, while six configurations and the no-distillation baseline were evaluated across three seeds. The highest observed single-seed quadratic weighted kappa was 0.9093 (macro-F1 0.6851) for Swin-T at temperature 4 and hard-label weight 0.7; the corresponding three-seed mean was 0.9024, compared with 0.8804 for the baseline. The student used 1.52 M parameters and 5.94 MB, representing an 18.07x parameter reduction relative to Swin-T. Temperature and hard-label weight effects were teacher- and configuration-dependent, while small performance differences were sensitive to random seed. Knowledge distillation produced a compact student with competitive performance under the evaluated protocol, but independent external validation remains necessary.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35962v1",
+      "title": "h1: A Taste of the Bitter Lesson in Automated Theorem Proving",
+      "url": "https://arxiv.org/abs/2610.35962",
+      "author": "Skander Moalla, Ahmad Rammal, Niket Patel, Remi Munos, Julia Kempe",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "While progress in informal mathematics has come largely from scaling the chain-of-thought and agentic reasoning of frontier language models, formal theorem proving has increasingly relied on human-designed workflows around these models, such as planning, decomposition, and orchestrating specialized provers. This raises a bitter-lesson question: can a simple agentic loop that scales test-time compute match these workflows? The answer matters as formal verification must scale to keep up with frontier models producing research mathematics, yet new workflows rarely settle it, as their gains are often confounded with stronger models or more compute. We study this question with h1, a simple harness that gives a model an efficient interface to Lean 4 and keeps it working through verifier feedback and self-reflection, without imposing a decomposition or search structure. h1 reaches state-of-the-art results on PutnamBench, FATE-X, and FormalConjectures100-Solved, settles eight open problems in FormalConjectures, and, at matched models, matches or outperforms specialized workflows such as Goedel-Architect and AlphaProof Nexus, surprisingly showing that a single attempt (pass@1) can often scale to solve open problems. Through ablations and matched-model comparisons with Claude Code and AxProverBase, we find that simplicity alone is not enough: an efficient Lean interface largely determines cost and solve rate. We thus recommend that future work evaluate frontier models with efficient execution feedback before prescribing workflows, at the risk of bitter lessons.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35963v1",
+      "title": "Condition-Enhanced Generative Adversarial Network for Aerodynamic Configuration Design of Commercial Aircraft",
+      "url": "https://arxiv.org/abs/2610.35963",
+      "author": "Youzheng Yu, Jiaqing Kou, Weiwei Zhang",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Generative machine learning provides an end-to-end framework for aerodynamic design optimization by generating diverse aerodynamic configurations conditioned on target performance. However, the generated designs may violate geometric constraints or deviate from the prescribed aerodynamic performance. Therefore, we propose a Condition-Enhanced Generative Adversarial Network (CEGAN) that embeds geometric and aerodynamic information into the generative process. A condition-informed loss function is developed by combining a geometry-guided feasibility penalty with an aerodynamic performance penalty evaluated by surrogate models trained on the same dataset. Additionally, an output filtering mechanism discards infeasible designs using these surrogate models, ensuring compliance with prescribed conditions. The method is demonstrated on aircraft configurations similar to the Cessna Citation X. Each configuration is represented by 28 shape parameters, whose aerodynamic performance is evaluated using OpenVSP. Interpolation and extrapolation tests are conducted for different network architectures and conditioning strategies. Compared with the baseline model, CEGAN reduces the average generation error by at least 36% for interpolated conditions and by at least 46% under extreme extrapolation conditions, while successfully producing diverse and physically feasible designs that extend beyond the training distribution. Therefore, the proposed CEGAN framework offers a robust and accurate tool for rapid aerodynamic configuration exploration during the conceptual design phase.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35965v1",
+      "title": "Generalization in Learning: Eyring Formula and Predator-prey Model",
+      "url": "https://arxiv.org/abs/2610.35965",
+      "author": "S. V. Kozyrev, I. A. Lopatin, Alexander Pechen",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "In this work, generalization in machine learning is investigated using a predator-prey model. We overview biological and chemical interpretation of the stochastic gradient Langevin dynamics and generative adversarial network. For a particular example of recovering an unknown function by a polynomial of fixed degree from a set of noisy data, the predator-prey model provides better approximation compared to the gradient descent method. Further, thermodynamical arguments, in particular Eyring formula, are used to explain grokking (delayed generalization) phenomenon in machine learning.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35967v1",
+      "title": "Data-driven Discovery of Lie Symmetries and First Integrals with Latent ODEs",
+      "url": "https://arxiv.org/abs/2610.35967",
+      "author": "Matt L. Wiemman, Peter Melchior",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "We present LatentLieODE, a novel neural ODE method to discover linear Lie symmetries and first integrals of the learned dynamics from timeseries observations such as video inputs. It starts with an autoencoder, which learns a low dimensional representation of the observed system and then maps trajectories to decorrelated latent coordinates $z \\in \\mathbb{R}^d$. A bank of linear infinitesimal generators $\\mathbf{A}_k \\in \\mathbb{R}^{d \\times d}$ is fitted jointly against a differentiable Lie-bracket residual $\\mathbf{J}_f(z)\\mathbf{A}z - \\mathbf{A} f(z)$, while an MLP optimises the latent ODE $f(z) = \\mathrm{d}z/\\mathrm{d}t$ to reconstruct the observation-space timeseries. After suitable generators and $f$ are found, we fit a third network $H_\\phi$ to generate the first integral of the system. Across six benchmark systems (harmonic oscillator, simple and twin pendulums, Lotka-Volterra, pixel pendulum, sphere geodesics) we find each system's relevant symmetries, and the discovered invariants match ground-truth conserved quantities at $|\\rho| \\geq 0.978$. On the sphere, the pipeline recovers a non-abelian $\\mathfrak{so}(3)$, certified by the negative-definite Killing form of its recovered structure constants. This work presents significant advances in data-driven discovery of symmetries and provides a new pathway for neural surrogates of dynamical systems.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35972v1",
+      "title": "Multiple Leak Localization in Water Distribution Networks through Graph Neural Networks",
+      "url": "https://arxiv.org/abs/2610.35972",
+      "author": "Arvin Ajoodani, Sara Nazif, Pouria Ramazi",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Leak localization in water distribution networks is challenging when multiple leaks occur simultaneously, particularly under sparse monitoring. Existing data-driven methods often assume a single or predefined number of leaks or require extensive enumeration of leak combinations. This study proposes a graph neural network (GNN) model that localizes a variable number of simultaneous leaks without specifying the leak count in advance or exhaustively generating every possible combination of leak locations for training. The model is evaluated on two benchmark networks of different sizes, the 31-node Hanoi network and the larger 92-node NET3 network, under variable demand, sparse pressure-sensor coverage, variable leak magnitudes, and varying numbers of simultaneous leaks. The GNN outperforms multilayer perceptron, support vector machine, K-nearest neighbors, and random forest classifiers by up to 12% and 20% in accuracy respectively in Hanoi and NET3 networks. Consistent performance across both networks supports the scalability of the proposed approach.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35975v1",
+      "title": "A Graph-informed Kriging model for sample-efficient Bayesian optimization of wind farm layouts",
+      "url": "https://arxiv.org/abs/2610.35975",
+      "author": "Zhen-Fan Wang, Kai Zhang, Xianping Du, Zhaolong Han, Dai Zhou, Onur Bilgen",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Wind farm layout optimization becomes increasingly difficult as turbine count grows, especially when high-fidelity aerodynamic models are used. Conventional Kriging-based Bayesian optimization often suffers from low sample efficiency in high-dimensional layout spaces because sparse training data provide limited domain coverage. We develop a Graph-informed Kriging framework that embeds reusable aerodynamic interaction information into the surrogate mean function. The wind farm is represented as a directed aerodynamic graph, where pairwise turbine interactions defined in a low-dimensional relative-coordinate space are assembled into a farm-scale mean. This structured mean captures the dominant variation in annual energy production (AEP), allowing the Gaussian process to model only the residual structure and uncertainty. Numerical experiments show that Graph-informed Kriging consistently improves AEP prediction accuracy over ordinary and generic-trend Kriging under sparse-data conditions, with increasing benefits as layout dimension and wake-interaction strength grow. Embedded in Bayesian optimization, it substantially improves sample efficiency and achieves competitive solutions for the IEA Wind Task 37 benchmark with about 280 AEP evaluations. In a controlled 16-turbine case, it also outperforms ordinary and multi-fidelity Kriging under the same high-fidelity evaluation budget. The framework is further extended to a 48-turbine wind farm, demonstrating applicability to large-scale CFD-based layout optimization. These results show that Graph-informed surrogate modeling can enable more efficient use of high-fidelity aerodynamic models for reliable large-scale wind farm layout design.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35984v1",
+      "title": "Enhancing Deep Learning Model Performance through Data Generation Strategies: Classification of Olive Tree Diseases",
+      "url": "https://arxiv.org/abs/2610.35984",
+      "author": "Hicham El Akhal, Abderrahim Waga, Aissa Ben Yahya, Abdelbaki El Belrhiti El Alaoui",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Deep learning models are highly effective in a wide range of domains, particu larly in plant disease diagnosis. However, their performance is often limited by challenges such as insufficient data and class imbalance. In our work, we propose a comprehensive data generation strategy to overcome these limitations. First, we apply various data generation techniques, including traditional augmentation methods, CutMix, MixUp, and synthetic image generation using Deep Convolu tional Generative Adversarial Networks (DCGANs), to create new data samples. Second, we exploit this generated data in three scenarios: (S1) balancing class distribution in the original dataset, (S2) increasing the number of samples per class, and (S3) expanding the dataset while maintaining balanced classes. Third, we evaluate the impact of these data distributions (S1, S2, S3) on model perfor mance using the EfficientNetV2B0 architecture with pre-trained and fine-tuned weights. The experimental results show a substantial improvement in classifica tion accuracy, emphasizing the critical role of data diversity and class balance. These findings highlight the effectiveness and adaptability of the proposed strat egy of data generation and distribution for enhancing dataset quality, offering promising applications in plant disease detection and precision agriculture.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35985v1",
+      "title": "Let the Gate Decide: Per-Lookup Precision for Quantized Conditional Memory in LLMs",
+      "url": "https://arxiv.org/abs/2610.35985",
+      "author": "Tianqi Chen, Xunchao Li, Linchuan Xie, Guanghua Yu, Jianchen Zhu, Peisong Wang, Jian Cheng",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Conditional memory layers, such as DeepSeek's Engram, attach large hashed n-gram tables to a language model, and removing them from DeepSeek-V4.1-Flash costs 36.8 PopQA points. Low-bit quantization loses long-tail facts first, and the standard remedy, giving more bits to frequently accessed rows, backfires: refining lookups by access frequency is worse than refining them at random. We trace this to the gate that scales each retrieved row. A lookup's quantization error is weighted by its gate, which is small for frequent n-grams, large for the rare n-grams of long-tail entities, and computable from a 1-bit code. GateRQ therefore stores each row as a ladder of 1-bit residual codes, keeps level 1 in GPU memory to compute the gate, and reads deeper levels only for the lookups the gate ranks highest. Without retraining, GateRQ cuts GPU table memory by 7.8x on DeepSeek-V4.1-Flash, which raises vLLM throughput by 11%-31% over FP8 tables, while losing about 1 PopQA point at 1.50 bits read per lookup and 0.2 points at 2.10 bits across two models.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.35989v1",
+      "title": "Layerwise Repacking: Variable-Length Hybrid-Attention Training without an Extra Redistribution Pass",
+      "url": "https://arxiv.org/abs/2610.35989",
+      "author": "Jiahao Zhang, Junwei Feng, Dongliang Huang, Xiaoling Zhou, Yiqiao Liao, Chengru Song",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Variable-length training creates conflicting parallelism requirements across the layers of a hybrid-attention model. The longest samples require wide sequence-parallel (SP) groups of 16 or 32 ranks for full attention, whose cost grows quadratically with sequence length. Sparse-attention layers, dominated by near-linear MoE work, can instead balance most evaluated workloads within node-local SP8 groups. Reusing the wide groups for these layers pushes their all-to-all communication across nodes, where the observed effective rate is 7.0x lower. Yet switching to smaller groups changes which ranks own each sample; a separate redistribution at every full-sparse boundary would introduce another data transfer. Layerwise Repacking keeps each SP16/32 parent for full attention and repacks its samples into node-local sparse children at SP{1, 2, 4, 8}, where hidden states persist between full layers. The layout change rides on the two existing full-layer Ulysses sites: at each, one variable-size all-to-all performs both the head exchange and the sample repacking, so no redistribution pass is added. Because the balance the children can reach depends on which samples share a parent, an auxiliary parent solver rebalances parent membership before the children are formed. On all 22 steps with SP16/32 parents among the first 200 training steps of a 1F3S hybrid-attention model (one full-attention layer per three sparse-attention layers), repacking alone reduces the mean end-to-end time by 5.95% and raises model FLOPs utilization (MFU) by 3.75 percentage points over the baseline with repacking disabled; with the improved solver, end-to-end time falls by 7.61% and MFU rises by 4.83 percentage points.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.36006v1",
+      "title": "MedJev: Evaluating Zero-Shot System-One Decision Making in Medicine",
+      "url": "https://arxiv.org/abs/2610.36006",
+      "author": "Simon A. Lee, Jiahang Sha, Moonseong Jeong, Yunbei Pan, Jeffrey N. Chiang",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "System One decision models such as Jev answer structured questions in a single forward pass without generating text, offering fast and computationally efficient clinical decision support. We evaluate MedJev, an open System One model that runs locally on a laptop, across ten medical benchmarks spanning medical knowledge, diagnosis, and patient level prediction using MIMIC IV and MIMIC IV ED. We compare MedJev against zero shot LLM baselines, published GPT results, and supervised models. MedJev achieves accuracies of 72.5 percent on MedQA, 75.4 percent on USMLE, and 80.1 percent on NEJM, approaching published GPT 4 performance while maintaining well calibrated confidence estimates (ECE 0.028 to 0.063). On patient level tasks, MedJev achieves an AUROC of 0.926 for In Hospital Mortality, exceeding XGBoost (0.902), but underperforms supervised models on operational outcomes such as ED Triage Admission (0.745 vs. 0.809). Patient level predictions also exhibit substantial miscalibration (In Hospital Mortality ECE 0.286). We introduce a lightweight, two parameter recalibration method that adapts predictions to local patient populations using 50 to 200 labeled examples, reducing ECE to 0.007. Our findings establish open System One models as a promising zero shot baseline for medical AI, combining competitive predictive performance with low computational cost and efficient local calibration. We release our code and evaluation harness to support future research.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.36009v1",
+      "title": "DuplexTune: Coupled-State Replay for Memory-Efficient Mixture-of-Experts Adaptation",
+      "url": "https://arxiv.org/abs/2610.36009",
+      "author": "Paul Raj, Simon Caldwell, Daniel Whitmore, Mutlu Mete",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Sparse expert execution does not remove the stored states needed to adapt a mixture-of-experts language model. We present DuplexTune, a framework for replaying coupled hidden states through pretrained attention and expert modules. Trainable width bridges connect two residual streams to the backbone. Bridge warm-up precedes backbone adaptation, with router weights kept frozen. We analyze the implicit state-recovery equation and identify the convergence and replay conditions needed for reconstruction. On Qwen1.5-MoE-A2.7B, the single-H800 evaluation reports 38.8 GB peak memory, versus 64.8 GB for supervised fine-tuning with checkpointing, and throughput of 25.1 versus 19.9 samples/s. DuplexTune achieves 67.2% MMLU, 75.6% GSM8K, and 7.69 MT-Bench, with a weaker multilingual score than the checkpointed baseline. The results characterize a configuration-dependent tradeoff among state storage, throughput, and adaptation quality.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.36013v1",
+      "title": "OmniBrain-0: A Unified Agentic Model for Embodied Intelligence",
+      "url": "https://arxiv.org/abs/2610.36013",
+      "author": "Xiaomi Embodied Intelligence Team, Yuechen Luo (University of Macau, Tsinghua University), Chong He (University of Macau, Tsinghua University), Fang Li (University of Macau, Tsinghua University), Shaoqing Xu (University of Macau, Tsinghua University), Jingkai Wang (University of Macau, Tsinghua University), Menglun Su (University of Macau, Tsinghua University), Jiaxin Liu (University of Macau, Tsinghua University), Shengyin Jiang (University of Macau, Tsinghua University), Zhiyi Lai (University of Macau, Tsinghua University), Long Chen (University of Macau, Tsinghua University), Longlong Wang (University of Macau, Tsinghua University), Liang Hu (University of Macau, Tsinghua University), Haochen Liu (University of Macau, Tsinghua University), Yuncheng Jiang (University of Macau, Tsinghua University), Hongwei Xie (University of Macau, Tsinghua University), Jieming Cui (University of Macau, Tsinghua University), Hanbing Li (University of Macau, Tsinghua University), Junjie Huang (University of Macau, Tsinghua University), Zhixiang Duan (University of Macau, Tsinghua University), Hexin Zhang (University of Macau, Tsinghua University), Weixiang Liang (University of Macau, Tsinghua University), Ying Gong (University of Macau, Tsinghua University), Yuhan Wang (University of Macau, Tsinghua University), Yong Pan (University of Macau, Tsinghua University), Pengna Li (University of Macau, Tsinghua University), Kangyi Wu (University of Macau, Tsinghua University), Ken Deng (University of Macau, Tsinghua University), Kun Ma (University of Macau, Tsinghua University), Fuxi Wen (University of Macau, Tsinghua University), Zhi-xin Yang (University of Macau, Tsinghua University), Hangjun Ye (University of Macau, Tsinghua University)",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "General-purpose embodied intelligence requires robots to coordinate diverse skills over long horizons, track task progress, and recover from failures. Specialist policies alone do not ensure task-level reliability, while powerful multimodal agents rely on costly reasoning and external experience that compact models struggle to reproduce. We introduce OmniBrain-0, a lightweight unified embodied agent that coordinates manipulation and navigation through a shared high-level decision model, integrating task understanding, planning, progress tracking, and feedback-driven recovery. Our progressive training framework combines embodied pretraining, domain-specialized agent distillation, and multi-teacher on-policy distillation (MOPD). It distills powerful teachers' interaction experience into manipulation and navigation experts, then consolidates their decision capabilities into OmniBrain-0. Unification therefore occurs within the learned decision model rather than only at the tool interface. We further introduce Rubric-Guided Recursive Self-Improvement (RSI), a data flywheel in which a Meta-Agent turns execution evidence into refined rubrics, step-level reminders, and verified trajectories for domain-expert updates before their reconsolidation into OmniBrain-0 through MOPD. We evaluate OmniBrain-0 on LIBERO-Pro, LIBERO-Plus, RoboCasa365, RoboTwin 2.0, and R2R-CE Val-Unseen, as well as multiple real-world manipulation tasks. OmniBrain-0 combines strong cross-domain task performance with substantially lower inference and execution overhead than its closed-source teacher, demonstrating efficient transfer and consolidation of embodied capabilities into a compact unified agent.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.36020v1",
+      "title": "Exploratory creative pre-ranking: Hierarchical empirical-Bayes Thompson sampling for real-time creative optimization",
+      "url": "https://arxiv.org/abs/2610.36020",
+      "author": "Jiale Han, Ajith Moparthi, Dan Xie, Xiaowu Dai",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Dynamic creative optimization decides which creative of an ad to render for each request. Recent work places that choice before ad ranking, but relies on deterministic point predictors with no calibrated uncertainty. AI-generated content has made creatives nearly free, while feedback per creative remains sparse and selection faces a tight latency budget. We introduce a creative pre-ranker that scores every recalled creative and shortlists each campaign's pool before the per-user ranker runs. Creatives sit in a hierarchy of audience segment, advertised item, campaign and creative, so a cold creative falls back on what its parent levels have earned, and how much it borrows from its parents is set in closed form from historical logs, with one parameter per level and nothing tuned. To stay within the latency budget, the pre-ranker predicts for an audience segment rather than an individual user, from per-attribute counters. It selects by a single Thompson draw per creative, balancing exploration and exploitation so that a new creative still has a chance to be learned. Replaying Roblox Sponsored-ads traffic over campaigns with competing creatives, the shortlist lifts predicted play-through rate by 8.14% against 2.80% for an equally sized random shortlist, forwards more than 40% fewer creatives than the full pool, and adds only 0.2% to serving time. After an A/B test on live traffic, the method now serves in production at Roblox.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.36075v1",
+      "title": "Jaxnasium: Embracing PyTrees For Any-Agent, Cross-Suite Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2610.36075",
+      "author": "Koen Ponse, Aske Plaat, Thomas M. Moerland",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Hardware-accelerated reinforcement learning in JAX has gained rapid popularity in recent years and has proven to be a successful method of scaling online reinforcement learning. The resulting ecosystem, however, is fragmented: environment suites define their own interfaces, and algorithm implementations are typically written for a single suite, a single type of space, and either JAX-native or host-based environments. Here we present Jaxnasium, a library for JAX-based reinforcement learning, aiming to make the field more accessible. Jaxnasium represents observation and action spaces as PyTrees, and uses this structure to build networks and support multi-agent processing. Through this, its near-single-file implementations run on discrete, continuous, image, and composite spaces, as well as in multi-agent environments, without any changes to the algorithm code. The same files serve as readable, research-friendly algorithms, as well as importable algorithms for more applied workloads. Through a minimal Gymnasium-style interface and wrappers for 11 suites, over 300 environments are available on which a small PPO implementation with default hyperparameters is able to run. Additionally, through a simple wrapper, we can run Gymnasium and EnvPool environments with the same algorithm and training loop, with no performance loss compared to architectures specifically built for training JAX algorithms on host-based environments. Jaxnasium further provides tools for multi-seed evaluation, hyperparameter sweeps, and project scaffolding. Jaxnasium is open-sourced at https://github.com/ponseko/jaxnasium",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-ai",
+      "externalId": "oai:arXiv.org:2610.36077v1",
+      "title": "The Trinity:Capability-Driven Recursive Self-Improvement for Multimodal Agents",
+      "url": "https://arxiv.org/abs/2610.36077",
+      "author": "Weidong Tang, Ruiheng Wang, Jingxuan Zhang, Hexin Wang, Haoyuan Chen, Zhengfeiyang Zhang, Yixing Ma, Zichen Jiang, Ziyu Guo, Haodong Li, Zhengbo Jiao, Zhiqing Cui, Xinxiang Yin, Shuo Liang, Zhenglin Wan, Hongzhan Lin, Wangbo Zhao Kaipeng Zhang, Pengfei Zhou, Odin Zhang, Yang You",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Multimodal intelligence can be viewed as human-guided co-evolution between worlds and agents through interaction. However, scaling this process faces two bottlenecks: constructing heterogeneous, verifiable environments is costly, and manual Harness iteration cannot keep pace with growing task diversity and complexity. A key insight is that tasks with different modalities and surface forms can share the same underlying capability requirements. We therefore introduce The Trinity, a recursive self-improvement framework coupling world generation with Harness evolution through three roles: Creator, Explorer, and Evolver. Drawing on verified execution trajectories, Evolver shifts the basis of task organization from surface categories to shared requirements, reorganizing the original task tree into a hierarchical capability tree. We introduce Capability-Driven Real2Sim2Real: for heterogeneous tasks at the same node, Creator abstracts their common requirements into simplified, verifiable simulated worlds for capability learning, while evaluation on original tasks measures transfer. Along this capability tree, Explorer progressively evolves reusable capability modules through selective inheritance, forming a Harness tree whose validated updates accumulate across iterations within a fixed topology. The resulting Harnesses specialize in different capabilities, motivating a Capability-Aware Harness Router that uses public task information to select compatible module configurations from the tree. Our evolved Harnesses improve mean performance by 34 points across 28 training benchmarks and 26 points across 18 unseen benchmarks, including two real-world embodied tasks.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.35971v1",
+      "title": "Continue or Restart? The Limits of Early Failure Prediction in Coding Agents",
+      "url": "https://arxiv.org/abs/2610.35971",
+      "author": "Srinath Srinivasan, Lunxiao Li, Tim Menzies, Wesley Assun\\c{c}\\~ao",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Early stopping promises to reduce compute costs for autonomous coding agents by terminating unpromising runs early. Deciding when to abandon a run requires separating baseline issue difficulty from the trajectory of an individual attempt. We study the distinction in 147,002 execution traces from two public corpora spanning four model-framework settings. Comparing pre-execution issue context against early execution prefixes, we evaluate linear count models, initial-turn text embeddings, task-conditional rankers, and a fine-tuned Qwen3-0.6B monitor. Although early prefixes modestly improve cross-task outcome ranking, within-task discrimination remains near chance across early landmarks (5k-20k tokens): initial-turn embeddings and 20k-token task-conditional models yield AUCs around 0.50, and three-seed neural evaluations across 32,406 attempts at 20k tokens achieve a mean within-task AUC of 0.50 [0.48, 0.51] across tasks of varying solve rates. To evaluate how these predictions translate into stopping decisions, we replay score-guided and matched random restarts under shared token budgets alongside uninterrupted continuation. Under a 75k-token cap, learned restarting improves resolution over matched random restarting by up to 1.98 percentage points. An exact algebraic decomposition resolves this paradox: the gain over random restarting stems almost entirely from between-task stopping allocation (avoiding stops on easy issues), whereas attempt-level selection within a task contributes near zero (-0.11 to +0.24 percentage points). Across all four settings at the 75k cap (and 216 of 224 tested budget-threshold configurations overall), uninterrupted continuation achieves higher solve rates at lower mean token cost than both restart policies. Practical evaluations of early stopping must therefore establish attempt-level discrimination and demonstrate net compute savings relative to continuation.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.35978v1",
+      "title": "Testing Agentic Service Systems: An Agentic Living Lab Methodology Across the Physical-Digital Continuum",
+      "url": "https://arxiv.org/abs/2610.35978",
+      "author": "Zhongjie Wang, Xiang He, Xiao Wang, Mingyi Liu, Shuang Yu, Hanchuan Xu",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Task success is insufficient for testing agents that act for principals, change persistent business state, and affect physical processes: a useful result may be unauthorized, leave obligations unresolved, or depend on the execution substrate. We propose an Agentic Living Lab methodology organized around three questions: what is the test unit, who and what participate, and under what reality is the test executed? The unit is a service episode containing delegated roles, obligations, world state, and evidence. The method separates agents under test from environment actors and distinguishes real humans, human traces, rule surrogates, and agent-based proxies. Realization Profiles, capability-declared Reality Substrate bindings, Grounding Profiles, and Semantic Delta disclosures make changes across software, enterprise systems, simulation, and physical settings explicit. A four-plane reference architecture separates experiment control, participants, world realization, and evidence evaluation, with cross-cutting authority and governance controls. Runtime semantics distinguish intent, normative admission, and factual reconciliation. Real stakeholder grounding, participant calibration or validation, and governed feedback are required for the Living Lab claim, but not synchronous human participation in every run. Released JSON Schemas, deterministic fixtures, and a limited reference runner make selected rules machine-checkable; they are not a complete platform or empirical validation. Constructed travel and industrial designs illustrate authorization and fulfillment failures, proxy sensitivity, and substrate changes. Agent quality, proxy validity, and cross-substrate effect stability remain empirical questions.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.35980v1",
+      "title": "UnityBench-Mini3D: Evaluating LLM Agents for 3D Game Development in Unity",
+      "url": "https://arxiv.org/abs/2610.35980",
+      "author": "Yijun Zhou, Minghao Shao, Ke Zhang, Renkai Yuan, Hongbo Yuan, Bin Hu, Bozhao Qian, Hongxia Shen, Yanhong Liu, Yuting Chen, Yuntao Shi, Zhongxuan Xu, Shuo Mao, Haijia Zhou, Zhendong Li, Tao Zhang, Chenggang Li, Yuxuan Wang, Zinan Zheng, Calvin Zhang, Jia Li, Heng Chang, Jie Feng",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Game development stresses coding agents in ways general software engineering does not: correctness depends on how engine APIs, serialized scene state, and runtime behavior interact, not on source code alone. Existing benchmarks mainly target platforms such as Godot and heavily rely on LLM judges or coarse task-level outcomes. We present UnityBench-Mini3D, a benchmark of 77 project-level Unity tasks organized around seven expert-defined skill categories rather than tutorials or genres, with three difficulty tiers. Each task pairs a complete Unity project with natural-language requirements and is evaluated using 1,178 held-out, human-authored milestone tests covering scene structure, component configuration, and runtime behavior. This in-engine evaluation provides deterministic partial credit, localizes failures, and distinguishes partial implementations from complete solutions without relying on subjective judges. Across 21 models and 9 coding harnesses, the average pass rate reaches 80.9% on easy tasks but falls to 35.2% on hard tasks, with just 57.7% overall. UnityBench-Mini3D provides a reproducible, diagnostic testbed distinguishing systems across difficulty levels.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.35981v1",
+      "title": "Small agents should know what their tools do",
+      "url": "https://arxiv.org/abs/2610.35981",
+      "author": "Alexander Kovalenko, Artem Redchych",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Small open language models can call tools, but they do not reason about what a call does: they delete without asking, repeat writes, re-read state they already hold, and issue one call per turn where a short program would do. We introduce EffectWorld, an executable world of effect-typed tools in which every tool declares its effect, whether it is idempotent, and which resources it reads and writes. These declarations let a replay verifier decide whether a trace is effect-safe without labels or judge models, let an executor run tool programs of several dependent calls in one turn, and let a compiler-style optimizer turn wasteful traces into verified training signal; together they make EffectWorld a benchmark of effect safety and call efficiency. Low-rank adapters trained on this data deliver large gains: on Qwen3-4B, they raise task success from 53% to 99% in distribution, from 52% to 81% on a held-out split with unseen task kinds and distractor tools, and from 74% to 83% on an unseen domain, with about a third of the output tokens. The gains carry over to other model families. On the Berkeley Function-Calling Leaderboard (BFCL), the adapter matches the base model's live accuracy and raises multi-turn accuracy from 21.9 to 26.6, and a recipe with near-miss declines lifts the BFCL average above the base model's while matching its irrelevance detection. Along the way we uncover and fix a pitfall that in-domain evaluation alone would miss: refusal templates in widely used public tool-use corpora teach a small model not to call tools, cutting BFCL non-live accuracy from 88.0 to 31.4, and filtering them restores 84.8. We also find that positive examples, not negative ones, carry the learning: suppression and preference objectives on the verified negatives add nothing over an SFT-only control, while targeted positives move exactly the behaviour they show.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.35982v1",
+      "title": "Generation and Verification: Human-Agent Collaboration for Safety-Critical Automotive Software Engineering",
+      "url": "https://arxiv.org/abs/2610.35982",
+      "author": "Elizaveta Zinovyeva, Aiham Taleb, Nikita Kozodoi, Daniel Schleicher, Amir Mahdi Namazi, Martin Kraus, Levent Kent, Brian Jensen",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Research on coding agents mainly focuses on generation quality. Yet, safety-critical automotive software makes two additional demands. It prioritizes verification, since every change is reviewed, traced to a requirement, and checked against industry standards such as MISRA and AUTOSAR before it can be committed. It is also a narrow domain, written against layered architectures, embedded resource constraints, and organization-specific interface conventions that are scarce in the data general-purpose LLMs are trained on. We present a coding assistant for automotive C/C++ that addresses both demands. First, it exposes three tools to the user over the Model Context Protocol (generate, edit, and verify), allowing developers to run verify on any code on demand rather than relying on the agent to check its own output. Second, rather than using a general-purpose model, we customize the underlying LLM for the automotive domain through prompt engineering and fine-tuning. We construct a dataset from automotive production code of AUMOVIO, where each function is paired with the requirement texts and Unified Modeling Language (UML) behavior it must satisfy. In a two-week pilot on active production projects, developers report verify as the most-used tool and confirm using it on their own code and not only on generated output. Comparing model customization strategies, 75% prefer the faster prompt-engineered configuration. MISRA- and AUTOSAR-inspired pattern checkers indicate that prompt engineering achieves a lower number of violations on C, while fine-tuning shows better conformance with architecture patterns for C++.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.35987v1",
+      "title": "PROBE: Frontier Coding Agents Find Different Bugs Than Maintainers Fix",
+      "url": "https://arxiv.org/abs/2610.35987",
+      "author": "Marco Paina, Mark Niklas M\\\"uller, Niels M\\\"undler-Sasahara, Martin Vechev",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Proactive bug discovery is an important software-engineering problem. Even though coding agents are already widely deployed in this domain, their capabilities remain understudied. In particular, the challenging task of finding all bugs that human maintainers would repair across an entire repository has not been studied yet. To close this gap, we introduce PROBE, a benchmark consisting of all 2,457 bugs fixed over the course of 18 months across 20 diverse GitHub repositories, together with a method for matching candidate findings to this partial reference set. We evaluate coding agents across frontier models and find they all achieve a recall of below $21\\%$ and a precision of less than $9\\%$ with respect to the reference set. While stronger models increase recall substantially from $8\\%$ to $17\\%$, they do not improve precision. Surprisingly, despite the low precision, LLM and human evaluators still judge $85\\%$ of findings valid. Crucially, we find that found bug distributions are similar across agents but differ substantially from those of bugs fixed by maintainers. The practical relevance of bug discovery and the low recall of frontier models make this benchmark a valuable resource for both model users and developers.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.35992v1",
+      "title": "Before the First Edit? Measuring When Coding-Agent Guidance Actually Arrives",
+      "url": "https://arxiv.org/abs/2610.35992",
+      "author": "Thupakula Sai Varun",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "When a coding-agent harness promises guidance before the first source edit, what event does it actually intercept? We audit five separate events: policy assignment, request eligibility, trigger, plan delivery, and observed source-content change. A prescribed-action comparison exposes the coverage of three gate rules but cannot tell us how an agent would continue after receiving a plan. We therefore run local agents on public software issues and hash Python files before and after each executed action. In a pilot-guided, 76-arm study using Qwen2.5-Coder 14B, 15 arms change Python source across seven tasks and three repositories. Guidance precedes every observed first change, but every change uses a structured editor and the study misses its prespecified 20-arm coverage target. Post hoc local tests find seven changed arms that pass the tested target and regression selectors; four of those seven use incomplete regression lists. Public PAUSE and SI2CA trajectories add source-text changes bracketed by adjacent reads, but lack synchronized filesystem states and cannot identify exact first mutations. The audit makes the timing claim testable within a stated source scope. These data do not show that planning improves repair correctness or covers shell-first writes in live agent runs.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.35996v1",
+      "title": "Pricing Cross-Bank Context in Federated Anti-Money Laundering",
+      "url": "https://arxiv.org/abs/2610.35996",
+      "author": "Lidia Losavio, Dario Fenoglio, Martin Gjoreski, Marc Langheinrich",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Most graph-based Anti-Money Laundering (AML) methods assume access to a pooled transaction graph containing all accounts and payments, which in reality does not exist. Federated learning offers the necessary privacy guarantees but it remains unclear how money laundering patterns spanning separate graphs can effectively be detected. We exploit transactions already recorded by both endpoint banks to approximate remote account states locally, enabling multi-layer Graph Neural Network (GNN) computation without additional account-specific exchange. Starting from this baseline, we test whether the remaining context is worth sharing, using a disclosure ladder that adds two transaction counts per remote account or the counterparty's own GNN states. On AMLworld HI-Small, across six GNN backbones and up to 32 silos, the observable baseline yields the largest gain and keeps it as fragmentation shrinks the visible slice; counts add a robust correction, while exact remote states help only in specific regimes. In controlled privacy--utility studies, the noise needed to protect shared states erases their detection value before it buys meaningful privacy, whereas counts stay useful even under strong privacy protection. These findings support a practical rule for banks: use what they already record, and formally protect the little that must move.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36001v1",
+      "title": "Merkle-Tree-Based Verifiable Public Data Auditing for Cloud Object Storage Using Smart Contracts",
+      "url": "https://arxiv.org/abs/2610.36001",
+      "author": "Siri Reddy Tadi, K. Gangadhara Rao, M. Venu Gopalachari, C. Chetann Reddy, Jaswanth Bhimireddy",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Owners of data in cloud object storage cannot directly check whether the provider still keeps every object unchanged. Existing research mostly checks blocks inside files or relies on third-party auditors, and less attention has been given to checking each object against a public blockchain reference while measuring the cost. A full-data audit downloads every object and compares it with a saved hash list, which is slow and only as reliable as that list. We propose a public auditing system in which the SHA-256 hash of each object and its name forms a leaf of a Merkle tree, so the whole dataset is represented by one Merkle root. This root is stored in an Ethereum smart contract as a trusted public record, while the objects stay with the provider. An auditor downloads an object, rebuilds the root using a short Merkle proof and compares it with the stored root, marking the object as intact, modified or missing. In five experiments on an S3-compatible store and a local Hardhat blockchain (normal audit, single- and multiple-object tampering, deletion and scalability), the system detected 15 of 15 single modifications, 2,205 of 2,205 modified objects and 830 of 830 deleted objects with no false alarms. The proof needed only 14 hashes for 10,000 objects, so checking one object took about 10 ms and a 100-object sample about 150 ms regardless of dataset size, while a full audit of 10,000 objects (14.3 s) took about as long as downloading them (13.5 s). Storing the root cost 91,863 gas, 252 times less than storing 1,000 hashes on-chain. The system thus shows exactly which objects were modified or are missing, with its main savings coming from checking selected objects.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36010v1",
+      "title": "CIVER: Causal Intervention Verification for Reliable Code Review",
+      "url": "https://arxiv.org/abs/2610.36010",
+      "author": "Xinyuan Song, Hasibul Haque, Jay Somasundaram, Ryan Turner, Bowen Zhu, Liang Zhao",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Code review is essential for maintaining software repositories by identifying defects, improving code quality, and supporting reliable software evolution. With the growing adoption of LLM-based coding agents, an increasing number of code contributions and repository changes are generated by these agents. Consequently, LLM-based code review agents are becoming increasingly prevalent to evaluate these contributions and maintain software quality. However, LLM reviewers often generate lengthy reviews containing numerous potential issues, many of which are false positives or lack sufficient evidence. These unreliable reviews can mislead developers and downstream coding agents, motivating the need to distinguish actionable findings from unsupported claims. We propose CIVER, a causal intervention-based framework that identifies the core issues underlying code-review findings and distinguishes genuine defects from false positives. CIVER integrates three modules: a review module assesses findings, an intervention module generates repair-oriented perturbations, and a verifier module scores review reliability. Through joint optimization via expert iteration, the three modules identify genuine defects by responding to targeted repairs while remaining stable under unrelated changes. Extensive experiments on SWE-Review-Bench demonstrate that CIVER correctly identifies 77% of genuine defects through targeted repairs. Cross-project and downstream repair evaluations further demonstrate that CIVER generalizes across repositories and improves coding agents' task success rates, highlighting its effectiveness for reliable automated code review.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36015v1",
+      "title": "Do Coding Agents Still Need a Debugger? Frontier-Model-Based Fault Localization at the Accuracy Ceiling",
+      "url": "https://arxiv.org/abs/2610.36015",
+      "author": "Christoph Daxerer, Johann Glock, Christian Macho, Rudolf Ramler, Martin Pinzger, Josef Pichler",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Background: To localize a fault, a coding agent can reason from source code alone or use debugger assistance by running the program and stepping through it in an interactive debugger. While earlier agents struggled with static execution tracing and debugger operation, frontier LLMs have improved at both. Objective: We evaluate how accurately coding agents localize faults without tools across original and transformed programs, how much debugger assistance improves accuracy and at what cost, and how agents use it when optional. Methods: We seed 610 single-line faults into 144 LeetCodeDataset solutions and rewrite each faulty program with five recipes of behavior-preserving transformations. Agents based on Sol 6.1, Luna 6, and Qwen 3.8 localize each fault with no, optional, or encouraged debugger assistance. Results: Without tools, the agents localized 98.2 to 99.9% of faults in original and 96.7 to 99.9% in transformed programs, losing accuracy mainly where recipes restructured loops and conditions. Encouraged assistance removed 63% and 61% of Luna 6's and Qwen 3.8's remaining transformed errors (+2.1 and +1.3 percentage points) at 14.7 to 27.0 times the token use, while Sol 6.1 stayed at 99.9%. With optional assistance, Luna 6 and Qwen 3.8 still gained +1.5 and +1.3 points, though the agents used the interactive debugger in only 0.2 to 6.2% of runs. Conclusions: On short, precisely specified programs, current coding agents localize nearly all faults from source code alone, and debugger assistance removes most errors that remain. Given the choice, agents executed the program far more often than they stepped through it, yet kept most of the benefit.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36105v1",
+      "title": "AGDecode: Semantic Attribute Grammar Derivatives for Safety-Constrained Decoding of Large Language Models",
+      "url": "https://arxiv.org/abs/2610.36105",
+      "author": "Rajan Maghera, Asher Tempest Arya, Aren A. Babikian, Marsha Chechik, Maryam Mehri Dehnavi",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Large language models (LLMs) are increasingly used for code generation, motivating techniques that guarantee the structural and semantic correctness of generated programs. Constrained decoding enforces correctness during generation by restricting token choices to those that admit at least one valid completion. While existing approaches can enforce syntactic constraints and selected semantic properties such as type safety, they either target specific properties or rely on operational pruning mechanisms that are difficult to generalize to data-dependent, inductive program properties. We present AGDecode, a programmable framework for semantic constrained decoding based on least-fixed-point semantics. AGDecode extends attribute grammars to partially constructed syntax trees, and reduces semantic constrained decoding to a realizability problem over such trees. The framework compiles semantic specifications into systems of relational constraints that are discharged by external verification oracles, such as SMT and CHC solvers, cleanly separating language semantics from constraint-solving machinery. We prove that our approach is sound and complete relative to an ideal verification oracle. In practice, solvers inevitably encounter uncertain queries; conservatively, our system can reject tokens for soundness or speculatively continue to generate until later queries resolve the entire generation. We mechanize the core metatheory in Rocq and evaluate the framework on semantic-constrained generation of C programs, enforcing path-sensitive safety properties including null-pointer safety, division-by-zero freedom, and initialized-variable usage. Our results demonstrate that solver-backed semantic constrained decoding can enforce rich semantic guarantees while incurring modest computational overhead at regular program boundaries.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36108v1",
+      "title": "Log-To-Leak: Prompt Injection Attacks on Tool-Using LLM Agents via the Model Context Protocol",
+      "url": "https://arxiv.org/abs/2610.36108",
+      "author": "Yuepeng Hu, Chongyu Fan, Sirat Samyoun, Jian Du",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "LLM agents increasingly access external tools through the Model Context Protocol (MCP), but the natural-language metadata used to describe those tools creates a prompt-injection surface. Within this established tool-poisoning surface, we study Log-To-Leak, an additive post-hoc logging attack that induces a separate attacker-controlled call after the final legitimate call. Its payload targets the user query, MCP server name, server response, and agent response. We operationalize the injected directive through Trigger, Tool Binding, Justification, and Pressure, and separately measure call success, payload fidelity, and preservation of legitimate behavior. We evaluate five MCP servers and four LLM agents using five metrics spanning effectiveness, utility, and efficiency. Across 18 model-server pairs with valid tool execution, Log-To-Leak achieves an attack success rate (ASR) of 62.64-100% and conditional logging accuracy (LA) of 76.55-95.64%; 16 pairs have absolute target-task completion changes of at most 6.63 percentage points. Three evaluated defenses leave residual ASR above 55% on GitHub MCP with GPT-4o, while an instruction detector flags 85.53% of benign descriptions. These results show that successful task completion can coexist with unauthorized post-hoc disclosure and motivate host-controlled authorization for secondary tool calls.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36114v1",
+      "title": "Context Is a Pipeline, Not a Window: Information Attrition in LLM Agent Harnesses",
+      "url": "https://arxiv.org/abs/2610.36114",
+      "author": "Yuvraj Sehgal, Mahsa Panahandeh, Naser Ezzati-Jivan",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "LLM agents are judged by two numbers: the size of the context window, and how often the final answer is correct. Both numbers miss a third thing: how much of a tool's output is lost before the model ever sees it. We measured this loss in a real tool-using agent. The agent finds the cause of injected faults by reading Linux kernel traces. The context window was almost empty: across 720 runs, the single largest prompt used only 5.75% of it. Yet a third of all tool results (3,827 of 11,189) were cut before they reached the model, and every cut result became broken JSON. The harness cut each result by slicing its JSON text at a fixed length. This does not shorten a result evenly. It deletes whatever data sits near the end. One field reached the model in only 4.7% of calls. A second field, in the very same results, reached the model in 99.3% of calls. Which field held the fault's evidence depended on when the faulty process started: early or late in the trace. The agent's diagnosis accuracy matched this same split. So we ran controlled experiments to test one question: did the data loss cause the drop in accuracy? This paper makes four contributions. First, we model an agent's context as a five-stage pipeline, with a measured failure at each stage. Second, we replay 864 real tool results, including one from a production trace where the shipped cut deletes all 128 records of the fault's evidence. Third, a controlled experiment shows that the cut's real cost appears first as extra work, not as wrong answers: 43% more tool calls, twice the computation, and yield falling from 0.61 to 0.31. The agent still finds the right answer when it has another way to reach it. Fourth, a survey of seven agent frameworks finds two that cut tool output the same unsafe way. Whether the data cut truly causes the accuracy drop is still an open question.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36145v1",
+      "title": "They Will See Johnny's Message: A Measurement Study of Post-Quantum Cryptography Across Email Delivery Paths",
+      "url": "https://arxiv.org/abs/2610.36145",
+      "author": "Jaehwan Park, Sunghyun Park, Kevin Nam, Doowon Kim",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Harvest-now, decrypt-later (HNDL) attacks make the transition to post-quantum cryptography (PQC) urgent for email. This paper presents a systematic measurement that jointly examines PQC deployment across email service stages, negotiation by communicating peers, and usable message encryption. Endpoint-level support alone does not establish PQC readiness across email workflows because submission, relay, and access use independently negotiated Transport Layer Security (TLS) connections. We therefore combine three snapshots of relay, submission, access, and webmail services associated with the Tranco Top~1M domains with controlled tests of mail clients, sending servers, and OpenPGP and S/MIME implementations. Our measurements reveal a transition concentrated among a few providers, with available capability not consistently translating into actual use. Fewer than half of the domains in each service panel support PQC, and Google alone accounts for approximately 87\\% of hybrid-capable relay domains. Only two of eight tested sending providers negotiate PQC with our receiver, although five accept it inbound. When TLS groups are restricted to PQC, four of the six incompatible senders fall back to plaintext where unencrypted SMTP remains permitted. At the message layer, limited native key generation, key-format incompatibilities, and backend integration failures further constrain usable PQC encryption.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36153v1",
+      "title": "Stratum: Repository Memory for Coding Agents Beyond the Context Window",
+      "url": "https://arxiv.org/abs/2610.36153",
+      "author": "Yuvraj Sehgal, Mahsa Panahandeh, Naser Ezzati-Jivan",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Context windows have grown a thousand-fold, yet coding agents still start every session with no memory of their past work. They re-read files, retry failed approaches, and forget root causes they established hours earlier. This is not a context-length problem but a memory-architecture problem. Our hypothesis: coding agents need persistent, experience-aware repository memory, so that knowledge survives from one session to the next. Three measurements on real repositories motivate the design. First, mid-size projects already exceed the largest production context windows, and storing knowledge inside the model's key-value (KV) cache costs $10^4$ to $10^5$ times more bytes than storing it as indexed text. Second, across 752 real bug-fix commits, the median fix edits two files, and these files plus their direct imports amount to less than 10% of the repository; the bottleneck is selection, not capacity. Third, even with transitive import reachability and test links, 47% of co-edited file pairs remain structurally disconnected; the knowledge needed for selection must be mined from history and experience. We sketch Stratum, a tiered memory that lives with the repository and serves it through page-safe tools: every response states what was returned, what remains, and what it cost. Retrieval over a store of one million nodes takes 1.7 ms at the median. In a multi-session experiment on eight real bugs, a fresh agent that inherited a prior session's memory, written by a different model, identified the root-cause file in 21 of 24 trials versus 6 of 24 for a retrieval-only baseline (Fisher $p<10^{-4}$), at 4.5x lower median token cost. With the notes of all eight investigations pooled in one store, success remained 8/8.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36185v1",
+      "title": "Can AI Guide Testing Without Generating Tests? A Comparative Study of AI-Assisted Unit Testing",
+      "url": "https://arxiv.org/abs/2610.36185",
+      "author": "Zihan Fang, Ron Asoulin-Handelman, Helen Wu, Yu Huang, Gina R. Bai",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Recent advances in generative AI have enabled assistants to generate increasingly sophisticated executable unit tests. However, novices may accept these outputs without independently identifying what to test, evaluating test-suite completeness, or verifying correctness, potentially limiting opportunities to develop essential testing skills. Although prior work has explored AI-assisted test generation and feedback-oriented programming tutors, little is known about whether AI can support novices' testing practices without generating tests for them. To investigate this, we introduce TestCompass, a generative AI tutor that provides targeted feedback on weaknesses in students' test suites without generating executable tests. In a classroom study with 18 students, we compared TestCompass with a general AI assistant across two Java unit-testing tasks, examining students' testing behaviors, test-suite quality, and subjective experiences. We found that participants using the general-purpose AI assistant produced more tests, whereas TestCompass participants spent more time developing and verifying tests themselves. However, most test-suite quality measures were comparable between conditions, and TestCompass participants achieved similar requirement coverage with significantly fewer test methods ($p=0.012$) in one task. Neither group reported short-term improvements in perceived testing knowledge or confidence. These findings suggest that feedback-oriented AI can support meaningful testing outcomes while preserving opportunities for hands-on testing practice, offering a complementary approach to AI-assisted testing education.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36219v1",
+      "title": "Bringing Hardware Security Education to All: A Seamless Curriculum Integration Approach",
+      "url": "https://arxiv.org/abs/2610.36219",
+      "author": "Tanvir Hossain, Mahmudul Hasan, Kareem El-Araby, Lorenzo R. Godinez, Swarup Bhunia, Md Tauhidur Rahman, Tamzidul Hoque",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Cybersecurity education has predominantly focused on software and network security, under the assumption that the underlying hardware is trustworthy. Threats introduced through the global semiconductor supply chain, together with vulnerabilities arising during design and integration, challenge the assumption that hardware can serve as an unquestioned root of trust. Sensor-enabled systems and machine-learning accelerators further expand the hardware attack surface. The undergraduate curriculum of electrical and computer engineering and computer science programs has not evolved accordingly. Core courses cover the design and the functionality of hardware while the security aspects remain overlooked, and dedicated hardware security (HS) courses are elective, scarce, and often restricted to graduate students. At the University of Florida, fewer than 7% of the undergraduate electrical and computer engineering students register for the introductory HS course each year. We present an integrated and economical approach that disseminates fundamental HS concepts within existing core courses through contextual learning. Nine hands-on modules were developed such that each security concept exercises an associated design concept of the core course, as a component of that course and not as a course of their own. Doing the security work is how the student exercises the design topic, so the modules are built to strengthen the host course and not only to add to it. Three were assessed across three offerings of the embedded systems course through one course survey and two conducted by an external evaluator, with 25 respondents. We report what those instruments measured and the limitations of the approach.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36229v1",
+      "title": "Agent or Human? Detecting Commits by AI Coding Agents in the Absence of Authorship Signatures",
+      "url": "https://arxiv.org/abs/2610.36229",
+      "author": "Kosei Horikawa, Hao Li, Yutaro Kashiwa, Youssef Esseddiq Ouatiti, Mohammed Sayagh, Bram Adams, Hajimu Iida, Ahmed E. Hassan",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "AI coding agents such as Claude Code, GitHub Copilot coding agent, and Cursor now commit directly to open-source repositories. Empirical studies of these agents identify their commits through authorship signatures, such as bot accounts and Co-authored-by trailers. These signatures are optional, can be removed, and are often attached to pull requests rather than to individual commits. Hence, it is unclear whether Agent commits can be told apart from Human commits once the signatures are gone. We investigate the signals and limits of signature-free detection using 7,837,946 commits from 1,226 repositories, covering five coding agents and Human commits. After signatures are masked, detectors rank Agent commits above Human commits with a ROC AUC of up to 0.859, and most of this signal comes from message verbosity and change size rather than from the code itself. On the shared sample, gpt-6-sol without fine-tuning reaches AUCs similar to XGBoost and TF-IDF. At the observed Agent share, however, the best detector on the full test set reaches a precision of only 0.332. Detection transfers poorly to held-out Claude Code and Copilot, with TF-IDF reaching an AUC of only 0.524 for Claude Code. Temporal changes also depend on the agent, e.g., Copilot AUC drops and later recovers, while more training history helps Claude Code but not Copilot. These results indicate that signature-free detection can prioritize commits for review but cannot replace recorded attribution, and that studies relying on signature-based labels should treat them as a lower bound on agent activity.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36254v1",
+      "title": "Instant Software Factories",
+      "url": "https://arxiv.org/abs/2610.36254",
+      "author": "Wenxin Jiang, Mikola Lysenko",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Coding agents can quickly build prototypes, but a long tail of fixes, optimizations, tests, and releases separates a prototype from a product. A software factory handles this ongoing work through a repeatable process. We ask whether this work needs dedicated orchestration and how such factories should be judged. Given a tested repository and a coding agent, an instant software factory uses only two coordination inputs, a swarm of cron-job agents with standing objectives and a shared communication board, such as GitHub, where agents coordinate through the traces they leave. We developed a bootstrap prompt designed to set up both inputs from one round of human input, with governance as a separable layer. We distilled it from two manually configured industrial factories, observed for 15 and 17 days, and have not yet evaluated it. In the GitHub-coordinated CLI factory, daily merges rose 15x during agent rollout, an observed association. Its agents also filed 95% of new issues and authored 40 of 58 PRs that changed CI workflows, and at least 5.6% of issues marked as fixed were later found to have incorrect fixes. Unlike an agent scored on a fixed benchmark, a factory thus changes its own workload, evaluator, and measured progress. We formulate factory development as multi-objective optimization under this endogenous feedback. Over five months, we plan to evolve both factories, test the bootstrap on new repositories, and test five falsifiable hypotheses.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36258v1",
+      "title": "SpecGuard: Detecting Multi-Turn LLM Jailbreaks via Specification-Based Runtime Monitoring",
+      "url": "https://arxiv.org/abs/2610.36258",
+      "author": "Junle Li, Siqi Chen, Jiakai Li, Bingzhuo Zhong",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Multi-turn jailbreaks turn dialogue safety into a trace property: a violation may become identifiable only when user intent and assistant behavior are considered across multiple turns. Existing guard models largely classify individual messages or exchanges and return risk scores or labels, without executable safety semantics or a formally checkable decision trail. We present SpecGuard, a training-free, specification-driven framework for monitoring multi-turn LLM interactions. SpecGuard uses a fixed atomic-proposition contract to map natural-language observations into causally scoped, evidence-backed facts, and expresses forbidden interaction patterns as Linear Temporal Logic specifications. Each specification is compiled into a symbolic finite automaton that incrementally consumes the resulting dialogue trace. The same monitoring mechanism supports buffered runtime checking and retrospective auditing, while accepting runs produce replayable witnesses that identify the triggered specification, supporting facts, and relevant dialogue turns. Experiments on multi-turn safety benchmarks show that SpecGuard consistently outperforms representative open-source guard models while maintaining controlled false-positive rates. These results demonstrate a practical path from heuristic risk classification toward formally specified, verifiable, and auditable LLM safety monitoring, without learned detector parameters or access to the protected model.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36281v1",
+      "title": "Privately Clipping Heavy-Tailed Data",
+      "url": "https://arxiv.org/abs/2610.36281",
+      "author": "Matthew Joseph, Alex Kulesza",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Summing vectors is a basic task in differentially private data analysis. Standard private sum algorithms clip vectors to some bound, sum them, and add noise scaled to the bound. The differential privacy literature has developed a deep library of noise addition mechanisms, but it offers few tools for privately choosing a clipping bound based on the data. We introduce a method that privately chooses a clipping bound by optimizing residual coherence, the directional alignment of vectors exceeding the bound, against the variance cost of additional noise. We prove a close relationship between residual coherence and bias for a general class of heavy-tailed data regimes and show empirically that, across several datasets, our method outperforms existing baselines.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36288v1",
+      "title": "BUSTA: Teaching Small Language Models to Reason About Binary Execution",
+      "url": "https://arxiv.org/abs/2610.36288",
+      "author": "Ritika Poddar, Aidan Fennelly, Deirdre Murphy, Eric Wolos, Corre L. Steele, Michael Doyle",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Large Language Models (LLM) are increasingly applied to Reverse Engineering (RE) workflows. RE, however, differs from common LLM coding tasks as it requires models to reason about low-level program behavior. Furthermore, the deployment of tooling in resource-constrained sandboxed RE environments limits the ability to use frontier-scale solutions. We examine whether a targeted LLM training approach can transfer distinct RE skills to open models via inverse basic-block execution: given an x86-64 basic block and a desired output register state, the model predicts the input register values that produce it. Fine-tuning \\texttt{Qwen3-1.7B} and \\texttt{Nemotron-3-Nano} with Group Relative Policy Optimization (GRPO) raises knowable-register prediction accuracy from 73.2\\% to 85.3\\% and from 63.3\\% to 95.2\\%, respectively. Frontier models still score highest (up to 99.2\\%), but our fine-tuned \\texttt{Nemotron-3-Nano} comes within four points at a fraction of the parameter count. We release both fine-tuned models and the training dataset.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36295v1",
+      "title": "Detecting and Mitigating Query-Based System Prompt Leakage Attacks",
+      "url": "https://arxiv.org/abs/2610.36295",
+      "author": "Tushar Nayan, Pratik Poudel, Qian Lou, Yuede Ji, Jason Liu, Ruimin Sun",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "Large Language Models (LLMs) rely on proprietary system prompts to enforce task directives, safety policies, and access controls. These prompts are vulnerable to query-based leakage attacks, where black-box adversaries extract confidential instructions through adaptive, multi-turn interactions. Existing defenses often assess queries independently, missing malicious behavior that emerges across interactions. We present AdvGuard, a model-agnostic framework for detecting and mitigating system prompt leakage. AdvGuard models cross-query relationships using a bounded semantic interaction graph, statistically filters candidate components, and converts them into line graphs for graph convolutional network (GCN) classification. This approach captures multi-hop patterns in query similarity that distinguish coordinated extraction from benign workflows. A lightweight prompt-level detector provides protection before sufficient interaction history accumulates, and the framework supports black-box LLM deployments. In mixed-query evaluations, AdvGuard improves recall by up to 36% over the strongest baseline while maintaining a false positive rate of at most 3.4%. In multi-turn workloads, it achieves 97.23%-99.1% F1 with 100% recall. Leave-one-attack-family-out tests yield 99.98% mean recall and 99.99% mean F1, with no observed false positives. Integrated into the adaptive PLeak and LeakAgent attack loops, AdvGuard limits exact-match leakage to 0.00-0.01 and substring-match leakage to 0.01-0.09 across evaluated victim models. These results demonstrate robust detection of unseen attack families and substantially reduced prompt reconstruction.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "arxiv-systems",
+      "externalId": "oai:arXiv.org:2610.36334v1",
+      "title": "PHP2Shell and the Future of AI-Discovered Vulnerability Disclosure: Evidence, Verification, and Human Authority",
+      "url": "https://arxiv.org/abs/2610.36334",
+      "author": "Toqeer Ali Syed, Asadullah Abdullah Khan",
+      "publishedAt": "2026-10-28T04:00:00.000Z",
+      "content": "AI-assisted vulnerability discovery can produce technically plausible findings faster than maintainers can validate, coordinate, and safely disclose them. The resulting challenge is not only to establish whether a vulnerability claim is credible, but also to ensure that its supporting evidence, human authorization, intended recipients, and applicable policy remain bound to the same case revision. We present FedTrust-CVDv2, a federated coordinated vulnerability disclosure framework that separates evidence validation, interorganizational coordination, human governance, and permissioned auditing. The framework binds independently signed observations to exact evidence revisions and scopes external actions to approved payloads, audiences, expiry, policy, and revocation state while preserving existing CVE Numbering Authority (CNA) roles. A local reference implementation accepted all 25 valid fixtures and rejected all 650 invalid fixtures across 27 constructed policy families; six single-safeguard ablations admitted 25-75 invalid fixtures. Supporting experiments exercised signed messaging, authenticated encryption, audit certificates, and finite quorum-set conditions. A PHP2Shell case formulation illustrates how runtime evidence, patch state, emergency coordination, and CNA authority can be represented without attributing unsupported claims to AI or treating audit integrity as vulnerability truth. This short version focuses on the architecture, evidence-to-action contract, selected conformance results, and case formulation. An expanded version containing the full implementation, extended experiments, operational analysis, and additional results will be submitted to a journal.",
+      "topics": [
+        "research",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p1#a261028p1",
+      "title": "Sources: HP, Asus, and Acer are shifting some PC production from Thailand and Vietnam back to China amid rising component costs; Dell is mulling a similar move (Nikkei Asia)",
+      "url": "https://www.techmeme.com/261028/p1#a261028p1",
+      "author": null,
+      "publishedAt": "2026-10-28T04:10:01.000Z",
+      "content": "Nikkei Asia: Sources: HP, Asus, and Acer are shifting some PC production from Thailand and Vietnam back to China amid rising component costs; Dell is mulling a similar move — TAIPEI — Leading PC makers, including HP of the U.S. and Asus and Acer of Taiwan, are combating soaring component costs by shifting …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p2#a261028p2",
+      "title": "Anthropic's S-1 implies a $40T+ annual TAM based on the economic value of knowledge work in 2025, topping SpaceX's $28.5T estimate, without explicitly naming it (Wall Street Journal)",
+      "url": "https://www.techmeme.com/261028/p2#a261028p2",
+      "author": null,
+      "publishedAt": "2026-10-28T04:15:47.000Z",
+      "content": "Wall Street Journal: Anthropic's S-1 implies a $40T+ annual TAM based on the economic value of knowledge work in 2025, topping SpaceX's $28.5T estimate, without explicitly naming it — The company's estimated market opportunity, tied to the economic value of work produced by knowledge workers, tops SpaceX's enormous figure from earlier this year",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p3#a261028p3",
+      "title": "Sources: Fujifilm plans to increase magnetic tape production capacity fivefold to meet AI-driven storage demand, its biggest production expansion in ~20 years (Nikkei Asia)",
+      "url": "https://www.techmeme.com/261028/p3#a261028p3",
+      "author": null,
+      "publishedAt": "2026-10-28T04:40:01.000Z",
+      "content": "Nikkei Asia: Sources: Fujifilm plans to increase magnetic tape production capacity fivefold to meet AI-driven storage demand, its biggest production expansion in ~20 years — TOKYO — Fujifilm will raise production capacity for magnetic tape fivefold to meet artificial-intelligence-driven demand …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p4#a261028p4",
+      "title": "Jio Platforms, India's largest telecom and digital services company, rose 21.4% in its trading debut after raising ~$3.2B in the country's largest IPO (Priyanka Salve/CNBC)",
+      "url": "https://www.techmeme.com/261028/p4#a261028p4",
+      "author": null,
+      "publishedAt": "2026-10-28T05:10:02.000Z",
+      "content": "Priyanka Salve / CNBC: Jio Platforms, India's largest telecom and digital services company, rose 21.4% in its trading debut after raising ~$3.2B in the country's largest IPO — Jio Platforms' shares rose 21.4% on their trading debut Wednesday after a record initial public offering that was lapped up by retail as well as institutional investors.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p5#a261028p5",
+      "title": "Sources: CXMT plans to start HBM3E production despite yields of just 20% to 30%; its HBM3E performance is closer to that of SK Hynix's previous-gen HBM3 chips (Reuters)",
+      "url": "https://www.techmeme.com/261028/p5#a261028p5",
+      "author": null,
+      "publishedAt": "2026-10-28T05:30:48.000Z",
+      "content": "Reuters: Sources: CXMT plans to start HBM3E production despite yields of just 20% to 30%; its HBM3E performance is closer to that of SK Hynix's previous-gen HBM3 chips — China's CXMT plans to start production of HBM3E, an advanced type of high-bandwidth memory chip used with AI processors …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.34283",
+      "title": "ChronoReplay: One Answer Interface Is Not Enough for Streaming Spatial Intelligence",
+      "url": "https://huggingface.co/papers/2610.34283",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "ChronoReplay: One Answer Interface Is Not Enough for Streaming Spatial Intelligence",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.36729",
+      "title": "Hy-Nomas: Towards Free-form Interactive World Generation",
+      "url": "https://huggingface.co/papers/2610.36729",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Hy-Nomas: Towards Free-form Interactive World Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.36068",
+      "title": "Rollback: Experience Backtracking in World Models for Policy Improvement",
+      "url": "https://huggingface.co/papers/2610.36068",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Rollback: Experience Backtracking in World Models for Policy Improvement",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.37666",
+      "title": "ThinkWorld: World Imagination Reinforces Chain-of-Dynamics Reasoning",
+      "url": "https://huggingface.co/papers/2610.37666",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "ThinkWorld: World Imagination Reinforces Chain-of-Dynamics Reasoning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.36456",
+      "title": "LociArt: A Unified Paradigm for Free-Style Local Video Stylization",
+      "url": "https://huggingface.co/papers/2610.36456",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "LociArt: A Unified Paradigm for Free-Style Local Video Stylization",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.24520",
+      "title": "HABIT-Bench: Evaluating Habit Induction from Longitudinal Weak Evidence in Agent Memory",
+      "url": "https://huggingface.co/papers/2610.24520",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "HABIT-Bench: Evaluating Habit Induction from Longitudinal Weak Evidence in Agent Memory",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.37341",
+      "title": "CodeCap-Bench: Can Code Serve as a Good Video Caption?",
+      "url": "https://huggingface.co/papers/2610.37341",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "CodeCap-Bench: Can Code Serve as a Good Video Caption?",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.35724",
+      "title": "MatAnyone-E: Sparse Memory Propagation for Efficient High-Resolution Video Matting",
+      "url": "https://huggingface.co/papers/2610.35724",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "MatAnyone-E: Sparse Memory Propagation for Efficient High-Resolution Video Matting",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.32046",
+      "title": "Can Test-Time Memory Evolution Outperform Test-Time Training for Scientific Discovery?",
+      "url": "https://huggingface.co/papers/2610.32046",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Can Test-Time Memory Evolution Outperform Test-Time Training for Scientific Discovery?",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.33624",
+      "title": "RSI Arena: Towards Recursive Self-Improvement with Human Feedback",
+      "url": "https://huggingface.co/papers/2610.33624",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "RSI Arena: Towards Recursive Self-Improvement with Human Feedback",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.34073",
+      "title": "Memory Tax: Dissecting the Net Value of Agent Memory",
+      "url": "https://huggingface.co/papers/2610.34073",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Memory Tax: Dissecting the Net Value of Agent Memory",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.36269",
+      "title": "Cross-modal Steering Vectors Exist Across Both Image and Text Generation",
+      "url": "https://huggingface.co/papers/2610.36269",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Cross-modal Steering Vectors Exist Across Both Image and Text Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.35439",
+      "title": "Omni-InteractScope: Benchmarking Proactive and Agentic Interaction in Continuous Omnimodal Streams",
+      "url": "https://huggingface.co/papers/2610.35439",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Omni-InteractScope: Benchmarking Proactive and Agentic Interaction in Continuous Omnimodal Streams",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.37255",
+      "title": "Your Policy Is Secretly a Harness: The Decision Geometry of Agent Interfaces",
+      "url": "https://huggingface.co/papers/2610.37255",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Your Policy Is Secretly a Harness: The Decision Geometry of Agent Interfaces",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.34491",
+      "title": "What Effort Level Should I Choose? On the Economics of Reasoning Effort in LLM Agents",
+      "url": "https://huggingface.co/papers/2610.34491",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "What Effort Level Should I Choose? On the Economics of Reasoning Effort in LLM Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.34674",
+      "title": "Benchmarking Obstacle-Conditioned Safety in Household Robot Navigation",
+      "url": "https://huggingface.co/papers/2610.34674",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Benchmarking Obstacle-Conditioned Safety in Household Robot Navigation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.37219",
+      "title": "Vision-Language-Action or World-Action? Just Action Models",
+      "url": "https://huggingface.co/papers/2610.37219",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Vision-Language-Action or World-Action? Just Action Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.37386",
+      "title": "Channel Selection for Mixture-of-Experts Decoding Needs No Calibration Data",
+      "url": "https://huggingface.co/papers/2610.37386",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Channel Selection for Mixture-of-Experts Decoding Needs No Calibration Data",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.36077",
+      "title": "The Trinity:Capability-Driven Recursive Self-Improvement for Multimodal Agents",
+      "url": "https://huggingface.co/papers/2610.36077",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "The Trinity:Capability-Driven Recursive Self-Improvement for Multimodal Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.37649",
+      "title": "Can LLMs Uncover Hidden Physical Laws through Free Exploration?",
+      "url": "https://huggingface.co/papers/2610.37649",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Can LLMs Uncover Hidden Physical Laws through Free Exploration?",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.37175",
+      "title": "MLE-World: Predicting Machine Learning Experiment Outcomes with a Learned World Model",
+      "url": "https://huggingface.co/papers/2610.37175",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "MLE-World: Predicting Machine Learning Experiment Outcomes with a Learned World Model",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.37585",
+      "title": "Timestral",
+      "url": "https://huggingface.co/papers/2610.37585",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Timestral",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.33066",
+      "title": "OvisOCR3 Technical Report",
+      "url": "https://huggingface.co/papers/2610.33066",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "OvisOCR3 Technical Report",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.34714",
+      "title": "SearchHorizonBench: A Benchmark for Search Value in AI Agents",
+      "url": "https://huggingface.co/papers/2610.34714",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "SearchHorizonBench: A Benchmark for Search Value in AI Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.34724",
+      "title": "Harness-Model Collaboration for Long-Horizon Continual Learning",
+      "url": "https://huggingface.co/papers/2610.34724",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Harness-Model Collaboration for Long-Horizon Continual Learning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.36466",
+      "title": "Nemotron-Labs-Diffusion-Uni: Elastic Self-Refining Unified Diffusion LLM with Cross-Paradigm On-Policy Distillation",
+      "url": "https://huggingface.co/papers/2610.36466",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Nemotron-Labs-Diffusion-Uni: Elastic Self-Refining Unified Diffusion LLM with Cross-Paradigm On-Policy Distillation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.22543",
+      "title": "On the SPOT: Enhancing Speculative Decoding for Diffusion Language Models via Commit-Order Prediction",
+      "url": "https://huggingface.co/papers/2610.22543",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "On the SPOT: Enhancing Speculative Decoding for Diffusion Language Models via Commit-Order Prediction",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.34921",
+      "title": "PhysEvolve: Verifier-grounded Self-evolution for Physical Reasoning with Executable Worlds",
+      "url": "https://huggingface.co/papers/2610.34921",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "PhysEvolve: Verifier-grounded Self-evolution for Physical Reasoning with Executable Worlds",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.26185",
+      "title": "MoveBench: A Rubric-Based Benchmark for Evaluating Large Language Models in Sports and Health Coaching",
+      "url": "https://huggingface.co/papers/2610.26185",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "MoveBench: A Rubric-Based Benchmark for Evaluating Large Language Models in Sports and Health Coaching",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.36022",
+      "title": "Learning and Reasoning with Geometry: How Generation Helps Spatial Understanding",
+      "url": "https://huggingface.co/papers/2610.36022",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.293Z",
+      "content": "Learning and Reasoning with Geometry: How Generation Helps Spatial Understanding",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "anthropic-news",
+      "externalId": "https://www.anthropic.com/news/expanding-partnership-gsa",
+      "title": "Expanding our partnership with GSA to bring Claude to all levels of government",
+      "url": "https://www.anthropic.com/news/expanding-partnership-gsa",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:00.627Z",
+      "content": "Expanding our partnership with GSA to bring Claude to all levels of government",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.anthropic.com/research/early-progress-drug-development",
+      "title": "Early progress on accelerating drug development with Claude",
+      "url": "https://www.anthropic.com/research/early-progress-drug-development",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.796Z",
+      "content": "Early progress on accelerating drug development with Claude anthropic.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.geekwire.com/2026/etzioni-on-ai-is-anthropic-worth-2-trillion-do-the-napkin-math",
+      "title": "Etzioni on AI: Is Anthropic worth $2 trillion? Do the napkin math with this handy calculator",
+      "url": "https://www.geekwire.com/2026/etzioni-on-ai-is-anthropic-worth-2-trillion-do-the-napkin-math",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.796Z",
+      "content": "Etzioni on AI: Is Anthropic worth $2 trillion? Do the napkin math with this handy calculator geekwire.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/rohanpaul_ai/status/2115263675124838643",
+      "title": "WSJ: Anthropic’s IPO filing sizes its potential market at $40T a year, topping SpaceX’s $28.5T es...",
+      "url": "https://x.com/rohanpaul_ai/status/2115263675124838643",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.797Z",
+      "content": "WSJ: Anthropic’s IPO filing sizes its potential market at $40T a year, topping SpaceX’s $28.5T es... x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/security/2026/10/code-execution-flaw-in-uefi-firmware-threatens-most-servers-on-planet-earth",
+      "title": "Code-execution flaw in UEFI firmware threatens most servers on planet Earth",
+      "url": "https://arstechnica.com/security/2026/10/code-execution-flaw-in-uefi-firmware-threatens-most-servers-on-planet-earth",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.798Z",
+      "content": "Code-execution flaw in UEFI firmware threatens most servers on planet Earth arstechnica.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://hex.tech/blog/hex-new-era",
+      "title": "Announcing our $100M raise | Hex",
+      "url": "https://hex.tech/blog/hex-new-era",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.798Z",
+      "content": "Announcing our $100M raise | Hex hex.tech5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/10/27/rebuild-which-spun-out-slate-auto-raises-2-1b",
+      "title": "Re:Build, which spun out Slate Auto, raises $2.1B",
+      "url": "https://techcrunch.com/2026/10/27/rebuild-which-spun-out-slate-auto-raises-2-1b",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.798Z",
+      "content": "Re:Build, which spun out Slate Auto, raises $2.1B techcrunch.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://cloud.google.com/blog/products/infrastructure/bringing-google-tpus-to-oracle-cloud-infrastructure",
+      "title": "Google and Oracle are partnering to bring Google TPUs to Oracle Cloud Infrastructure",
+      "url": "https://cloud.google.com/blog/products/infrastructure/bringing-google-tpus-to-oracle-cloud-infrastructure",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.799Z",
+      "content": "Google and Oracle are partnering to bring Google TPUs to Oracle Cloud Infrastructure cloud.google.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/semianalysis_/status/2115175550465507710",
+      "title": "Anthropic’s S-1 shows inference revenue per megawatt nearly quadrupling in a year. “Inference re...",
+      "url": "https://x.com/semianalysis_/status/2115175550465507710",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.799Z",
+      "content": "Anthropic’s S-1 shows inference revenue per megawatt nearly quadrupling in a year. “Inference re... x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-10-28/anthropic-said-to-pick-jpmorgan-to-lead-ipo-s-us-retail-offering",
+      "title": "Anthropic Said to Pick JPMorgan to Lead IPO's US Retail Offering",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-28/anthropic-said-to-pick-jpmorgan-to-lead-ipo-s-us-retail-offering",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.799Z",
+      "content": "Anthropic Said to Pick JPMorgan to Lead IPO's US Retail Offering bloomberg.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://epoch.ai/latest/introducing-the-ai-chip-imports-explorer",
+      "title": "Introducing the AI Chip Imports explorer",
+      "url": "https://epoch.ai/latest/introducing-the-ai-chip-imports-explorer",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.799Z",
+      "content": "Introducing the AI Chip Imports explorer epoch.ai5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://nvidianews.nvidia.com/news/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure",
+      "title": "NVIDIA and Oracle Expand NVIDIA Vera Rubin to Multi-Gigawatt Scale and Bring NVIDIA Vera CPU to Oracle Cloud Infrastructure",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.800Z",
+      "content": "NVIDIA and Oracle Expand NVIDIA Vera Rubin to Multi-Gigawatt Scale and Bring NVIDIA Vera CPU to Oracle Cloud Infrastructure nvidianews.nvidia.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/10/27/parents-sue-openai-alleging-gpt-4o-coached-their-daughter-off-seizure-medication",
+      "title": "Parents sue OpenAI, alleging GPT-4o coached their daughter off seizure medication",
+      "url": "https://techcrunch.com/2026/10/27/parents-sue-openai-alleging-gpt-4o-coached-their-daughter-off-seizure-medication",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.800Z",
+      "content": "Parents sue OpenAI, alleging GPT-4o coached their daughter off seizure medication techcrunch.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blogs.oracle.com/ai-and-datascience/oracle-ai-media-models",
+      "title": "Oracle unveils its first in-house Image/Video Models",
+      "url": "https://blogs.oracle.com/ai-and-datascience/oracle-ai-media-models",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.801Z",
+      "content": "Oracle unveils its first in-house Image/Video Models blogs.oracle.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theinformation.com/articles/chipmaker-onsemi-talks-buy-startup-1-billion",
+      "title": "Chipmaker Onsemi in Talks to Buy Startup for About $1 Billion",
+      "url": "https://www.theinformation.com/articles/chipmaker-onsemi-talks-buy-startup-1-billion",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.801Z",
+      "content": "Chipmaker Onsemi in Talks to Buy Startup for About $1 Billion theinformation.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.servethehome.com/microsoft-maia-300-shown-at-ocp-2026",
+      "title": "Microsoft Maia 300 Shown at OCP 2026",
+      "url": "https://www.servethehome.com/microsoft-maia-300-shown-at-ocp-2026",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.801Z",
+      "content": "Microsoft Maia 300 Shown at OCP 2026 servethehome.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/rohanpaul_ai/status/2115180665335611452",
+      "title": "Physical Intelligence in Talks to Raise $1B at $20B Valuation",
+      "url": "https://x.com/rohanpaul_ai/status/2115180665335611452",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.812Z",
+      "content": "Physical Intelligence in Talks to Raise $1B at $20B Valuation x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://stanforddaily.com/2026/10/27/professors-books-pirated-to-train-claude",
+      "title": "Anthropic illegally trained Claude with Stanford professors’ books",
+      "url": "https://stanforddaily.com/2026/10/27/professors-books-pirated-to-train-claude",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.816Z",
+      "content": "Anthropic illegally trained Claude with Stanford professors’ books stanforddaily.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bbc.com/news/articles/c6gelgxjwzdzo",
+      "title": "The maths bust-up fuelling fears that AI is undermining science",
+      "url": "https://www.bbc.com/news/articles/c6gelgxjwzdzo",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.819Z",
+      "content": "The maths bust-up fuelling fears that AI is undermining science bbc.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://cline.ghost.io/11-840-tps-on-a-single-gpu",
+      "title": "11,840 TPS on a single GPU",
+      "url": "https://cline.ghost.io/11-840-tps-on-a-single-gpu",
+      "author": null,
+      "publishedAt": "2026-10-28T05:38:01.819Z",
+      "content": "11,840 TPS on a single GPU cline.ghost.io4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    }
+  ]
+}
