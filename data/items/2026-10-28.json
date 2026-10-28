@@ -1,6 +1,6 @@
 {
   "day": "2026-10-28",
-  "generatedAt": "2026-10-28T17:38:29.442Z",
+  "generatedAt": "2026-10-28T20:35:13.727Z",
   "items": [
     {
       "sourceSlug": "vercel-blog",
@@ -575,6 +575,21 @@
       "author": "Andrew Gadzik",
       "publishedAt": "2026-10-28T00:00:00.000Z",
       "content": "You can now use , our open-source coding agent harness, in on web, desktop, and mobile.fxT3 Code T3 Code is an open-source control plane for coding agents, allowing you to add agents like fx as providers for your coding sessions. The built-in fx provider supports Supervised and Auto modes, along with the models and skills you already use with fx. Get started by and . Then and add fx from .installing fxsetting up your model providerdownload T3 CodeSettings > Providers > Add provider Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/agents-can-now-enable-web-analytics-and-observability-plus-with-vercel-cli",
+      "title": "Agents can now enable Web Analytics and Observability Plus with Vercel CLI",
+      "url": "https://vercel.com/changelog/agents-can-now-enable-web-analytics-and-observability-plus-with-vercel-cli",
+      "author": "Melkey Moksyakov",
+      "publishedAt": "2026-10-28T00:00:00.000Z",
+      "content": "no longer requires an interactive terminal to enable or . Agents can now turn them on for your projects without asking you to run the commands yourself.Vercel CLIWeb AnalyticsObservability Plus To get started, run either command from a linked project directory: Teams must already be subscribed to Observability Plus to be able to enable it for a project. Update Vercel CLI to version 64.2.0 or later and learn more in the .Vercel CLI project documentation Read more",
       "topics": [
         "devtools-infra",
         "frontend"
@@ -2440,6 +2455,21 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/introducing-vercel-ci",
+      "title": "Introducing Vercel CI",
+      "url": "https://vercel.com/blog/introducing-vercel-ci",
+      "author": "Anthony Shew",
+      "publishedAt": "2026-10-28T07:00:00.000Z",
+      "content": "Coding agents are opening more pull requests than ever, and each one waits on CI before anyone can review or merge it. Most CI systems run the entire workflow on every push, even a one-line change. The more your agents push, the more time you spend waiting on CI. Today, we're announcing Vercel CI in Beta. It runs only the tasks affected by your code change, and spins up only the compute those checks need, the same way scales with your traffic.Fluid compute At Vercel, our CI now keeps up with our coding agents. Time from to \"CI passed\" is than it was before.git push2-6x faster Vercel CI uses Turborepo to understand your tasks and which ones depend on each other. It reads , so if you're already using Turborepo, there's no separate CI config to write.turbo.json If you're not on Turborepo yet, add and the package. It works in single-package repos too.turbo.jsonturbo Then tag the tasks you want Vercel CI to run. is all you need to get started. No workflow YAML to maintain, no drift between your CI config and , and Remote Cache is on by default.\"tags\": [\"ci\"]turbo.json When you or your agent push code, Vercel CI determines which tasks need to run based on the change. Tasks whose inputs haven't changed come from cache. The remaining tasks each run on their own machine, powered by , Vercel's compute layer, and start as soon as their dependencies finish.Hive Vercel CI gives each task the compute it needs and nothing more. To get started, follow the or prompt your agent from your repo:documentation Once set up, you or your agent can watch and inspect CI through the , , or . When something fails, go straight to the failing task, see what's blocked behind it, and open its logs, or search across recent runs to see whether a test has been flaky all week.Vercel dashboardVercel CLIVercel MCP Vercel CI posts a check to your pull request on GitHub, so your existing branch protection rules can block merges on failure, the same way they do today. Vercel CI has already completed nearly 8 million tasks across our own repositories and the private beta, and we're just getting started. We're working to keep shrinking the time between writing code and running it in production. As we work toward general availability, we plan to add: on all plans. and try it on your repository.Vercel CI is available in Beta todayRead the docs Read more How it works Running your CI on Vercel Closing the loop Advanced observability A CLI command for distributed execution before pushing codevc ci More granular test selection",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "hacker-news",
       "externalId": "50270764",
       "title": "Wealth Inequality in America drawn to scale",
@@ -2785,6 +2815,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/the-future-of-the-firm",
+      "title": "The future of the firm",
+      "url": "https://openai.com/index/the-future-of-the-firm",
+      "author": null,
+      "publishedAt": "2026-10-28T10:00:00.000Z",
+      "content": "How AI might enter the org chart—beneath, beside, and between us.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "stratechery",
       "externalId": "https://stratechery.com/?p=20613",
       "title": "Meta Earnings, Muse and the Frontier, Musebook",
@@ -3063,6 +3107,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/openai-servicenow-partnership-expansion",
+      "title": "OpenAI and ServiceNow expand partnership across enterprise workflows",
+      "url": "https://openai.com/index/openai-servicenow-partnership-expansion",
+      "author": null,
+      "publishedAt": "2026-10-28T13:15:00.000Z",
+      "content": "OpenAI and ServiceNow expand their partnership to bring OpenAI models and agents into ServiceNow and ServiceNow workflows into ChatGPT and Codex.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "hacker-news",
       "externalId": "50273171",
       "title": "Emacs Turns 50",
@@ -3215,6 +3273,25 @@
     },
     {
       "sourceSlug": "hacker-news",
+      "externalId": "50274251",
+      "title": "AlpineBSD",
+      "url": "https://wiki.alpinebsd.org",
+      "author": "bradley_taunt",
+      "publishedAt": "2026-10-28T14:30:26.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 119,
+      "comments": 101
+    },
+    {
+      "sourceSlug": "hacker-news",
       "externalId": "50274409",
       "title": "CNC Stone Carving",
       "url": "https://carmelitegothic.com/cnc-stone-carving/",
@@ -3346,6 +3423,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50275373",
+      "title": "Archive.today links going forward",
+      "url": "https://www.reddit.com/r/Seattle/comments/1xhf6qp/archivetoday_links_going_forward/",
+      "author": "consumer451",
+      "publishedAt": "2026-10-28T15:31:58.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 128,
+      "comments": 84
+    },
+    {
       "sourceSlug": "alphasignal",
       "externalId": "https://alphasignal.ai/news/anthropic-ships-prebuilt-legal-workflows-directly-into-claude",
       "title": "Anthropic Ships Prebuilt Legal Workflows Directly Into Claude",
@@ -3395,6 +3491,39 @@
       "author": "AlphaSignal Newsroom",
       "publishedAt": "2026-10-28T15:42:44.000Z",
       "content": "Zed 1.26 ships expandable variable inspection in debugger hovers, built-in Pyrefly for Python, and DWARF debugging for WebAssembly sources in the JS debugger.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50275626",
+      "title": "Dayjob: Tax – evaluating AI agents on 50 professional tax assignments",
+      "url": "https://surgehq.ai/blog/dayjob-tax",
+      "author": "landonxi",
+      "publishedAt": "2026-10-28T15:46:30.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 135,
+      "comments": 75
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/assemblyai-s-tts-1-beats-elevenlabs-on-speed-with-47ms-first-audio",
+      "title": "AssemblyAI's TTS-1 Beats ElevenLabs on Speed With 47ms First Audio",
+      "url": "https://alphasignal.ai/news/assemblyai-s-tts-1-beats-elevenlabs-on-speed-with-47ms-first-audio",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T15:47:52.000Z",
+      "content": "AssemblyAI's first text-to-speech model streams audio in 47 ms, prices at $15 per million characters, and ships with 4,000 voices plus instant cloning.",
       "topics": [
         "ai-llms"
       ],
@@ -3614,6 +3743,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/microsoft-ships-copilot-harness-to-run-multi-step-ai-agents-without",
+      "title": "Microsoft Ships Copilot Harness to Run Multi-Step AI Agents Without Infrastructure",
+      "url": "https://alphasignal.ai/news/microsoft-ships-copilot-harness-to-run-multi-step-ai-agents-without",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T16:58:30.000Z",
+      "content": "Microsoft's new managed agent harness in Foundry handles orchestration, tools, context, and sandboxing so developers can skip rebuilding the execution layer.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=1020626",
       "title": "Chrome’s enhanced autofill can now pull info from Gmail to help you fill out forms",
@@ -3690,6 +3833,34 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-s-elephant-goldfish-model-stops-coding-agents-from-inheriting-their-own",
+      "title": "Google's Elephant-Goldfish Model Stops Coding Agents from Inheriting Their Own Blind Spots",
+      "url": "https://alphasignal.ai/news/google-s-elephant-goldfish-model-stops-coding-agents-from-inheriting-their-own",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T17:08:14.000Z",
+      "content": "Google open-sourced EGM, a plugin that uses deep-context agents to draft software specs and zero-context subagents to tear them apart before any code is written.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/meta-opens-its-muse-models-to-five-universities-for-medical-research",
+      "title": "Meta Opens Its Muse Models to Five Universities for Medical Research",
+      "url": "https://alphasignal.ai/news/meta-opens-its-muse-models-to-five-universities-for-medical-research",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T17:08:33.000Z",
+      "content": "Meta opens its Muse model family and computer vision stack to five US universities tackling heart failure, cancer, dementia, and frontier math.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261028/p38#a261028p38",
       "title": "Google unveils Gemini 4 Carbon, its \"strongest model with state-of-the-art cybersecurity\" capabilities, ranked #1 on Artificial Analysis' new Intelligence Index (Koray Kavukcuoglu/Google)",
@@ -3751,6 +3922,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50276998",
+      "title": "Why Is This Fingerprinting Script Creating Bioweapons?",
+      "url": "https://nullpt.rs/fingerprinting-bioweapons",
+      "author": "hazebooth",
+      "publishedAt": "2026-10-28T17:13:29.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 313,
+      "comments": 63
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261028/p39#a261028p39",
       "title": "Apple unveils a touchscreen MacBook Pro with a 14\" or 16\" PROLED XDR display, a light-up Apple logo, Dynamic Island, M5 Pro and M5 Max, for $2,899+ and $3,399+ (Apple)",
@@ -3760,6 +3950,20 @@
       "content": "Apple: Apple unveils a touchscreen MacBook Pro with a 14\" or 16\" PROLED XDR display, a light-up Apple logo, Dynamic Island, M5 Pro and M5 Max, for $2,899+ and $3,399+ — The world's best pro laptop now features an industry-leading tandem OLED display, an intuitive Touch experience …",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/apple/2026/10/apple-announces-touchscreen-macbook-pro-with-oled-display/",
+      "title": "Apple announces touchscreen MacBook Pro with OLED display",
+      "url": "https://arstechnica.com/apple/2026/10/apple-announces-touchscreen-macbook-pro-with-oled-display/",
+      "author": "Samuel Axon",
+      "publishedAt": "2026-10-28T17:25:04.000Z",
+      "content": "LOS ANGELES—Apple today announced and gave a first glimpse of its first major MacBook Pro redesign in more than five years. As rumored, it includes an OLED display and, for the first time on macOS, a touchscreen—a change Apple has long debated. (Former CEO Steve Jobs famously was opposed.) Apple's demonstration video showed users interacting with applications by reaching up to touch the screen, including file dragging and multi-touch gestures like pinch-to-zoom. It does not appear to be a 2-in-1 convertible design, though; all the footage was of people reaching up to touch the screen in a normal laptop configuration. The OLED display (which Apple is, of course, calling the PROLED XDR) seems to be the real highlight here, compared to earlier models: It can achieve 2,000 nits in terms of maximum brightness, and Apple says it has a 10,000,000:1 contrast ratio. References were made to burn-in protection, but details on which approach it's taking for that weren't yet shared. The display retains the 120 Hz variable refresh rate of its predecessors. Read full article Comments",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -3788,6 +3992,20 @@
       "content": "Jay Peters / The Verge: Apple says the touchscreen MacBook Pro has a “newly designed hinge” for stability and an “enhanced six-speaker” system; the 14\" model is 3lb and the 16\" is 4lb — Apple has long resisted the idea of touchscreen laptops — until now.",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/10/florida-county-wont-investigate-sketchy-flock-cameras-removed-by-mystery-owners/",
+      "title": "Florida county won’t investigate sketchy Flock cameras removed by mystery owners",
+      "url": "https://arstechnica.com/tech-policy/2026/10/florida-county-wont-investigate-sketchy-flock-cameras-removed-by-mystery-owners/",
+      "author": "Ashley Belanger",
+      "publishedAt": "2026-10-28T17:37:49.000Z",
+      "content": "A Florida county that discovered a clump of mysterious unpermitted Flock cameras during a countywide takedown effort won’t investigate who owned the sketchy cameras, which have since disappeared. On Wednesday, The Washington Post reported that St. Lucie County residents \"remain upset,” not knowing who installed the cameras or how they were using the data collected. Hannah Galindo, a 31-year-old resident who petitioned to get Flock cameras removed, told the Post that she was worried “that data could be anywhere.” Of the 12 cameras found, five were eventually claimed by city law enforcement, the Post reported. Apparently, a police department mistakenly issued guidance claiming that officers could post multiple cameras under one permit, a Flock spokesperson told the Post, even though the county required individual permits. However, neither Flock nor the city police departments in Port St. Lucie and Fort Pierce that claimed the sketchy cameras will confirm who gave the guidance. Read full article Comments",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -4545,6 +4763,386 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p42#a261028p42",
+      "title": "Apple's touchscreen MacBook Pro is the first Mac with the Dynamic Island, offering similar functionality to the iPhone; the Dynamic Island launched in 2022 (Hartley Charlton/MacRumors)",
+      "url": "https://www.techmeme.com/261028/p42#a261028p42",
+      "author": null,
+      "publishedAt": "2026-10-28T17:40:11.000Z",
+      "content": "Hartley Charlton / MacRumors: Apple's touchscreen MacBook Pro is the first Mac with the Dynamic Island, offering similar functionality to the iPhone; the Dynamic Island launched in 2022 — Apple today introduced the Dynamic Island to the Mac for the first time with its new 14-inch and 16-inch MacBook Pro models …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/10/google-ai-gets-cagey-when-asked-who-won-the-2020-elections/",
+      "title": "Google AI gets cagey when asked who won the 2020 elections",
+      "url": "https://arstechnica.com/ai/2026/10/google-ai-gets-cagey-when-asked-who-won-the-2020-elections/",
+      "author": "Kyle Orland",
+      "publishedAt": "2026-10-28T17:46:32.000Z",
+      "content": "If you ask some prominent US politicians who won the 2020 presidential election, you might get some weasely answers that fail to directly acknowledge Joe Biden's win that November. If you ask Google's AI Mode the same question, you might get an evasive answer that simply tells you to consult with outside sources. When I put the direct question of \"Who won the 2020 presidential election?\" to Google's AI Mode this morning (after seeing complaints about cagey answers on social media), I got the following surprisingly indirect response: \"To review the official results and statistics of the 2020 United States presidential election, including the final electoral college breakdown, popular vote counts, and winner certification, please consult the official report compiled by the Federal Election Commission (FEC).\" My testing resulted in a similarly indirect answer when asking about the 2024 presidential election, with Google's AI telling me to just consult the FEC for that information. Asking about 2012 election resulted in a link to The American Presidency Project's 2012 Data Center rather than a direct answer. But AI Mode seemed perfectly willing to give me a detailed and correct responses for the winner of every other presidential election going back to 2000. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/cars/2026/10/cadillac-escalade-iq-review-4-tons-of-electric-american-luxury-on-wheels/",
+      "title": "Cadillac Escalade IQ review: Huge battery, huge range, huge SUV",
+      "url": "https://arstechnica.com/cars/2026/10/cadillac-escalade-iq-review-4-tons-of-electric-american-luxury-on-wheels/",
+      "author": "Jonathan M. Gitlin",
+      "publishedAt": "2026-10-28T17:55:45.000Z",
+      "content": "“Please have at least 125 miles of range left when we pick it up.” That request from the people who look after the Cadillac press cars wasn’t going to be hard to honor. The electric Escalade IQ arrived with an indicated range of 440 miles (708 km), and with a full week of work to squeeze in, getting anywhere close to needing to recharge it seemed unlikely. With more than 200 kWh of lithium-ion battery between its axles, range is one thing the big electric Caddy needn’t worry about. Designed and debuted during a time of greater EV optimism, the Escalade is Cadillac’s statement that swapping out a V8 for a pair of powerful electric motors is no compromise to its ambitions, even if the brand’s future will now include a mix of electric and combustion cars beyond 2030. It shares a battery pack and much else with other full-size GM EVs we’ve tested: the Chevrolet Silverado EV, the GMC Sierra EV, and of course the divisive Hummer EVs. And like those trucks and SUVs, the Escalade is large and heavy—just small enough to fit into a standard parking space, with a curb weight sufficient to push it into the Class 3 truck category. So, the side mirrors are flat, and there’s no formal EPA range—Cadillac says it achieves 460 miles (740 km) on the EPA test cycle—but there are plenty of airbags, even though the 9,046 lb (4,103 kg) curb weight does not require them. Yes, you did read that right, it does weigh 4 tons. And yes, the electric Escalade does weigh a third more than the last gas-powered one we tested. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/box-mount-now-runs-in-vercel-sandbox",
+      "title": "Box Mount now runs in Vercel Sandbox",
+      "url": "https://vercel.com/changelog/box-mount-now-runs-in-vercel-sandbox",
+      "author": "Elisabeth Rülke",
+      "publishedAt": "2026-10-28T18:00:00.000Z",
+      "content": "Box Mount lets agents running in Vercel Sandbox read and write Box files through standard filesystem operations. It syncs a Box folder with a directory inside the sandbox. Unmount before you stop the sandbox, and everything the agent wrote is in Box after the sandbox is deleted. The contract-review example uses AI Gateway to review a synthetic contract in Vercel Sandbox and save the review back to Box. The sync process and agent run as separate sandbox users, keeping the Box credentials separate from the agent's workspace. Box Mount is in private preview. Request access from Box, then follow the to set it up in Vercel Sandbox.Box Mount documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/eth-zurich-s-optmax-moves-ai-attention-math-from-silicon-to-light",
+      "title": "ETH Zurich's Optmax Moves AI Attention Math From Silicon to Light",
+      "url": "https://alphasignal.ai/news/eth-zurich-s-optmax-moves-ai-attention-math-from-silicon-to-light",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T18:01:07.000Z",
+      "content": "A research team proposes using thin-film lithium niobate modulators as analog replacements for Softmax and Sigmoid inside transformer attention.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p43#a261028p43",
+      "title": "Google and Xreal launch the Xreal Aura wired XR glasses, with Android XR and a puck with Snapdragon Reality Elite, for $1,099+ through December, then $1,279+ (Ivan Mehta/TechCrunch)",
+      "url": "https://www.techmeme.com/261028/p43#a261028p43",
+      "author": null,
+      "publishedAt": "2026-10-28T18:01:16.000Z",
+      "content": "Ivan Mehta / TechCrunch: Google and Xreal launch the Xreal Aura wired XR glasses, with Android XR and a puck with Snapdragon Reality Elite, for $1,099+ through December, then $1,279+ — At the Android Developer Summit on Wednesday, Google's smart glasses partner Xreal launched its new Xreal Aura wired smart glasses …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/10/amazon-adds-a-camera-to-its-best-sounding-smart-speaker-for-30-extra/",
+      "title": "Amazon turns its most capable smart speaker into a smart camera, too",
+      "url": "https://arstechnica.com/gadgets/2026/10/amazon-adds-a-camera-to-its-best-sounding-smart-speaker-for-30-extra/",
+      "author": "Scharon Harding",
+      "publishedAt": "2026-10-28T18:05:22.000Z",
+      "content": "Since debuting in 2019, Amazon's Echo Studio targeted users who wanted superior audio quality from their Alexa-based smart speaker. The latest Echo Studio adds another less-expected differentiator: an integrated camera. The Echo Studio with Home Camera, released alongside a pile of other Alexa devices today, doesn’t have many audio upgrades over the standard Echo Studio. Each speaker has one 3.75-inch high-excursion woofer and three full-range drivers. They both support Dolby Atmos and Amazon’s proprietary algorithm for adding a surround sound-like effect to stereo audio. Per the devices’ product pages, the speakers have lossless HD audio, Advanced Room Adaptation, and features for fighting noise distortion. Amazon announced the Advanced Room Adaptaion today, saying that the feature “continuously tunes the sound to your space, automatically adapting to the room's acoustics.” Both speakers have four-microphone arrays and the same AZ3 Pro processor that Amazon introduced a year ago. The processor has an AI accelerator for using Amazon's Alexa+ generative AI chatbot. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/suno-drops-an-official-mcp-server-to-generate-music-from-any-ai-chat",
+      "title": "Suno Drops an Official MCP Server to Generate Music From Any AI Chat",
+      "url": "https://alphasignal.ai/news/suno-drops-an-official-mcp-server-to-generate-music-from-any-ai-chat",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T18:09:58.000Z",
+      "content": "Suno's new Model Context Protocol server lets Claude, ChatGPT, Cursor, Gemini, and Claude Code generate songs inline without API keys or tab-switching.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1019109",
+      "title": "Here’s where to preorder the new MacBook Pros",
+      "url": "https://www.theverge.com/gadgets/1019109/apple-macbook-pro-m6-proled-xdr-how-to-buy-price-release-date",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-10-28T18:10:23.000Z",
+      "content": "As expected, Apple finally showed off its 14- and 16-inch MacBook Pros at its recent \"Pro and tell\" event. The long-awaited laptops feature a Tandem OLED display with full touch capabilities, while also cutting some weight and bringing back the glowing Apple logo. While less exciting, there's also an updated 14-inch MacBook Pro that features Apple's M6 chip, along with improved wireless connectivity. It's a small, somewhat iterative update of the prior generation, with no substantial new features beyond performance gains. Alongside the MacBook updates, Apple also announced an M6-equipped iMac that starts at $1,499, with the same color varia … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1020960",
+      "title": "Surprise: The Google Xreal glasses debut at a Meta-beating $1,099",
+      "url": "https://www.theverge.com/tech/1020960/google-xreal-glasses-debut-meta-vr-glasses-price-release-date",
+      "author": "Sean Hollister",
+      "publishedAt": "2026-10-28T18:14:11.000Z",
+      "content": "In this economy, how often does a product get less expensive before its debut? That just happened with the Google / Xreal Aura - the lightweight 95-gram glasses with a tethered Android XR compute puck and multiple virtual screens - which just went on sale today. Xreal and Google have just announced the headset costs $1,099 through the end of the year, down from the $1,279 that Xreal was charging for preorders last month. I expect that's because at $1,279, they were going head to head with Meta's VR Glasses, and that's tough competition for Google and Xreal's new product. The Xreal Aura has one of the widest fields of view for transparent gl … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p44#a261028p44",
+      "title": "Artificial Analysis unveils the Intelligence Index v5 with new coding and science benchmarks; 60% of the Index is based on private test sets or held-out answers (Artificial Analysis)",
+      "url": "https://www.techmeme.com/261028/p44#a261028p44",
+      "author": null,
+      "publishedAt": "2026-10-28T18:20:02.000Z",
+      "content": "Artificial Analysis: Artificial Analysis unveils the Intelligence Index v5 with new coding and science benchmarks; 60% of the Index is based on private test sets or held-out answers — The Artificial Analysis Intelligence Index is our composite measure of model capabilities across tasks reflecting real-world usage today. v5 …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "newcomer",
+      "externalId": "https://www.newcomer.co/p/the-new-space-race-startups-press",
+      "title": "The New Space Race: Startups Press Ahead on ‘Orbital Infrastructure,’ Test Feasibility of Data Centers",
+      "url": "https://www.newcomer.co/p/the-new-space-race-startups-press",
+      "author": "Cain Hillier",
+      "publishedAt": "2026-10-28T18:24:00.000Z",
+      "content": "Space data centers, once confined to sci-fi novels and ambitious pitch decks, are beginning to get real. A SpaceX rocket earlier this month carried an experimental Google satellite that will make simple requests to Gemini while researchers test how its four TPUs hold up in space. The same launch carried the Reason-1 satellite from startup Cowboy Space, which is experimenting with beaming solar power back to Earth with a laser. Cowboy Space, led by Robinhood cofounder Baiju Bhatt and backed by Jan Hammer at Index Ventures, among others, this week unveiled an even bigger swing: its own purpose-built data center rocket that can carry five racks of NVIDIA Vera Rubin GPUs into orbit. The startup also plans to use this rocket to compete with SpaceX in selling launch services to others under the name “Big Iron Express.” Bhatt told Newcomer that his company’s “north star” is to make space compute cost-competitive with terrestrial compute, and that it’s vertically integrating to the extreme to achieve that end. Another well-funded player is Starcloud, backed by Benchmark and currently valued at $2.3 billion. Read more",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p45#a261028p45",
+      "title": "Apple adds a 512GB RAM configuration for the Mac Studio with the M5 Ultra chip, starting at $22,299; the M5 Max model maxes out at 128GB of RAM (Joe Rossignol/MacRumors)",
+      "url": "https://www.techmeme.com/261028/p45#a261028p45",
+      "author": null,
+      "publishedAt": "2026-10-28T18:25:01.000Z",
+      "content": "Joe Rossignol / MacRumors: Apple adds a 512GB RAM configuration for the Mac Studio with the M5 Ultra chip, starting at $22,299; the M5 Max model maxes out at 128GB of RAM — Starting today, the Mac Studio with the M5 Ultra chip can be configured with 512GB of RAM on Apple's online store, but it is an expensive upgrade.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1021143",
+      "title": "Microsoft is ending Copilot support on smart TVs",
+      "url": "https://www.theverge.com/tech/1021143/microsoft-lg-samsung-copilot-ai-assistant-smart-tvs-ending",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-10-28T18:36:26.000Z",
+      "content": "Nearly two years after LG and Samsung announced at CES 2025 that their latest smart TVs would include access to Microsoft's Copilot, the company is ending support for the AI assistant's functionality on all TVs this year, according to a report by Windows Central. The news comes not from an official announcement from LG, Samsung, or Microsoft, but from an on-screen notification that appeared on Windows Central's Zac Bowden's webOS-powered LG TV earlier today. \"Microsoft has recently decided to end support for Copilot functionality on all TVs, including the Copilot-enabled feature available on our LG TVs. As a result, the Copilot-enabled feat … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/liquid-ai-s-lfm3-squeezes-six-multimodal-models-into-2b-parameters",
+      "title": "Liquid AI's LFM3 Squeezes Six Multimodal Models Into 2B Parameters",
+      "url": "https://alphasignal.ai/news/liquid-ai-s-lfm3-squeezes-six-multimodal-models-into-2b-parameters",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T18:40:01.000Z",
+      "content": "Liquid AI's LFM3 family puts six specialized 2B models on one tri-hybrid backbone, with vision, audio, and decision variants that fine-tune on a single GPU.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/10/google-announces-gemini-4-carbon-its-latest-frontier-ai-model-that-you-cant-use/",
+      "title": "Google announces Gemini 4 Carbon, its latest frontier AI model that you can't use",
+      "url": "https://arstechnica.com/ai/2026/10/google-announces-gemini-4-carbon-its-latest-frontier-ai-model-that-you-cant-use/",
+      "author": "Ryan Whitwam",
+      "publishedAt": "2026-10-28T18:47:27.000Z",
+      "content": "It's almost like Google's got something to prove after taking a break from releasing new frontier AI models earlier this year. Just two weeks after rolling out Gemini 4 Argon, Google has announced Gemini 4 Carbon. This isn't the Flash model equivalent we've been waiting for but, rather, is an improvement on Argon, and like that model, Google is working on a staged release that could take a while. Stop me if you've heard this one before: Google says its latest AI model reaches a new threshold in coding, agentic tasks, and scientific analysis. It's so capable, in fact, that Google can't let you use it just yet. Gemini 4 Carbon reportedly makes big gains in cybersecurity applications. Google says the model shows a \"significant leap\" in vulnerability detection, validation, and remediation. Carbon is also apparently twice as likely to generate code that is free of vulnerabilities versus Argon. Meanwhile, the Chrome team claims that Carbon is 10 times better at generating \"high-quality\" patches compared to non-Google models. Google also notes that Carbon has increased its score by 89 points on WebDev Arena, now ranking at number four on the leaderboard. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1021165",
+      "title": "Brendan Carr plans to let prisons jam cellphone signals",
+      "url": "https://www.theverge.com/policy/1021165/fcc-brendan-carr-prison-phone-jamming",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-10-28T18:57:02.000Z",
+      "content": "FCC Chairman Brendan Carr announced the agency will vote on November 19th on rules that would allow prisons to use signal jamming. Radiofrequency jammers are generally banned under Section 333 and the Communications Act of 1934, with few exceptions, and Carr has noted they've been permitted for use at some federal facilities already. Carr claims in a statement that jammers are needed because \"For years, thousands upon thousands of contraband cellphones have been pouring into prisons, and some of the worst possible offenders have been using them to order hits, coordinate violent gang activity, and aid criminal enterprises.\" When the FCC appr … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-ci-is-now-in-beta",
+      "title": "Vercel CI is now in beta",
+      "url": "https://vercel.com/changelog/vercel-ci-is-now-in-beta",
+      "author": "Anthony Shew",
+      "publishedAt": "2026-10-28T19:00:00.000Z",
+      "content": "You can now run CI for your Turborepo with one line of configuration. In Vercel's internal repositories, our wait time from to \"CI passed\" is 2-6x shorter, dramatically improving our CI's ability to keep up with our coding agents.git push To get started, prompt your agent in your repo: Each task marked with a tag runs on every push. Vercel CI automatically takes care of:ci To learn more: Read more Only running CI that is affected by your code changes Task caching with Vercel Remote Cache Installing dependencies once per run Caching dependencies across code updates Check out our blog post Visit the documentation Discuss Vercel CI on the Community announcement",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p46#a261028p46",
+      "title": "NY Gov. Kathy Hochul signs bills banning AI chatbots from using \"unsafe features\" for minors and requiring security features in internet-connected baby monitors (Raga Justin/Bloomberg Government)",
+      "url": "https://www.techmeme.com/261028/p46#a261028p46",
+      "author": null,
+      "publishedAt": "2026-10-28T19:10:00.000Z",
+      "content": "Raga Justin / Bloomberg Government: NY Gov. Kathy Hochul signs bills banning AI chatbots from using “unsafe features” for minors and requiring security features in internet-connected baby monitors — New York Gov. Kathy Hochul signed two bills further curbing artificial intelligence risks for children …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/apple/2026/10/touchscreen-macbook-pro-hands-on-oled-looks-great-on-a-mac/",
+      "title": "Touchscreen MacBook Pro hands-on: OLED looks great on a Mac",
+      "url": "https://arstechnica.com/apple/2026/10/touchscreen-macbook-pro-hands-on-oled-looks-great-on-a-mac/",
+      "author": "Samuel Axon",
+      "publishedAt": "2026-10-28T19:10:29.000Z",
+      "content": "LOS ANGELES—For about five minutes on an extremely crowded showroom floor, I got to take pictures of the new MacBook Pro and test out some of its new features. First impressions: It's not as much of a departure from the previous design as I expected, but the outstanding OLED display steals the show regardless. The first thing I noticed was that it's lighter. My daily driver is a 14-inch MacBook Pro (M1 Max), and it's a bit weighty for a 14-incher. Picking up the new model, I could immediately tell it was lighter. It's not like it's in a different general weight class, but it's a noticeable difference. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1017932",
+      "title": "Hands-on with the new OLED iPad Mini",
+      "url": "https://www.theverge.com/tech/1017932/hands-on-ipad-mini-8th-generation-pro-and-tell",
+      "author": "Antonio G. Di Benedetto",
+      "publishedAt": "2026-10-28T19:18:58.000Z",
+      "content": "Apple announced a new iPad Mini with a larger OLED display this week, and we've just gotten to try it out at Apple's \"Pro and tell\" event. It's an iPad for sure, but the new OLED on the Mini looks exceptional, and the optional nano-texture matte finish is awesome. The \"Pro and tell\" event venue has soft lighting that's not the most conducive to blinding glare on displays, but the matte finish pretty much squashes it entirely. Moving the front-facing camera to the long edge is also a welcome change, matching other recent iPad models. (The shift means that the whole iPad line has the camera that way.) The reliance on Touch ID instead of Face … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/10/the-last-best-hope-for-space-tourism-just-rolled-onto-a-runway-in-arizona/",
+      "title": "The last, best hope for space tourism just rolled onto a runway in Arizona",
+      "url": "https://arstechnica.com/space/2026/10/the-last-best-hope-for-space-tourism-just-rolled-onto-a-runway-in-arizona/",
+      "author": "Eric Berger",
+      "publishedAt": "2026-10-28T19:20:36.000Z",
+      "content": "The private space tourism era looked so very promising five years ago. Blue Origin and Virgin Galactic had begun flying customers—real people with zero space experience—on suborbital missions. And at about the same time, private citizens were going to orbit for days at a time aboard SpaceX's Crew Dragon. But that was then. Consider the state of play today: It has been 10 months since Blue Origin's New Shepard spacecraft flew its last mission in January. The program was subsequently \"paused,\" but let's be real. Blue Origin has moved on. New Shepard's engineering teams are now supporting the New Glenn rocket and Blue Moon lander programs. SpaceX flew its final free-flyer mission on Dragon, Fram2, in April 2025. A handful of non-NASA missions bound for space stations remain on the spacecraft's manifest, but all are likely to carry at least one government astronaut. Then Dragon will be retired. There is no credible timeline for SpaceX's Starship to fly humans into space from Earth. As for Virgin Galactic, the company flew its final suborbital mission on the VSS Unity spacecraft more than two years ago, in June 2024. So we are now 10 months, and counting, without a space tourism mission in the United States. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/10/trump-admin-sues-utah-to-save-kalshi-from-the-states-total-ban-on-gambling/",
+      "title": "Trump admin sues Utah to save Kalshi from the state's total ban on gambling",
+      "url": "https://arstechnica.com/tech-policy/2026/10/trump-admin-sues-utah-to-save-kalshi-from-the-states-total-ban-on-gambling/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-10-28T19:30:33.000Z",
+      "content": "The Trump administration is trying to stop Utah from enforcing its gambling ban against Kalshi, making Utah the 10th state sued by the US government agency that regulates prediction markets. Utah, which prohibits gambling, sued Kalshi in a state court last week. Utah's lawsuit seeks an order prohibiting Kalshi from offering bets on sports, elections, politics, and other events. “Kalshi runs an online casino in Utah and calls it a prediction market. That violates Utah law,” Utah Attorney General Derek Brown, a Republican, said last week. “Not only do our state laws ban gambling but Utah is one of only two states where gambling is also prohibited under the state constitution. For 130 years, Utah has been clear: gambling has no place here, and we will enforce our laws.” Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?post_type=vm_stream&p=1019851",
+      "title": "Foreign gadget bans: all the news about the FCC’s clampdown on Chinese tech",
+      "url": "https://www.theverge.com/policy/1019851/fcc-foreign-gadget-ban-drone-robot-roomba-storystream",
+      "author": "Sean Hollister",
+      "publishedAt": "2026-10-28T19:37:31.000Z",
+      "content": "A gavel prior to an open commission meeting at the FCC. | Photo: Al Drago/Bloomberg via Getty Images What do drones, routers, and Roombas have in common? The US government wants to keep Chinese ones from entering the country. They’re the first consumer gadgets that are facing de facto import bans because of the US government’s xenophobic stance — and they might not be the last. Originally, the US government was just worried about US networks. It’s been distrustful of Chinese telecom equipment providers Huawei and ZTE for well over a decade, eventually requiring telecom providers to “rip and replace” their gear. (Many telecoms have still failed to do so.) It established an “Entity List” for companies whose gear should be banned from import, marketing, and sale. But under the second Trump administration, that list has been weaponized against entire home consumer gadget categories too — starting in December 2025 when Trump and Brendan Carr’s FCC banned all future foreign drones unless their companies obtained a waiver. Next was a ban on all future foreign routers, all future foreign robots and power inverters, and within the robot ban, all future foreign robovacs. In each case, the government claims it’s because those gadgets fundamentally pose an unacceptable threat to US national security. But in each case, the US has provided zero public evidence of a threat, has done nothing about existing drones and routers and robots that might pose such a threat, and hasn’t given us any reason to trust that its waivers have anything to do with security. Besides, there are rarely any US companies to fill the gaps left by foreign ones. Consumer gadgets are largely made overseas, including practically all routers and practically all drones — just like how your Apple, Dell, and HP laptops are not made in the US. In this StoryStream, we’re following the latest on the foreign gadget bans. MSI just got a router ban waiver — but not a blanket one. Will TP-Link really make routers in the US? Here’s what it told us Another ‘DJI front company’ bites the dust. It sure would be nice if these congresspeople would say why DJI is a threat. Unlike Netgear and Asus, TP-Link says it’s prepared to spend $1 billion to make Wi-Fi routers in the US. The FCC plans to ban all Chinese labs from testing US gadgets by 2029. The FCC has decertified two more Chinese test labs. The Matic is the first robovac to get an FCC ban waiver, not that it needs it Asus won’t say how it escaped the US router ban Etsy is worried it’ll get caught up in the FCC’s gadget bans. We flew the banned drone with snap-on propeller wings. HoverAir’s transforming modular drone has already been halted in the US I bought DJI’s banned camera — it was cheap and easy Does giving a camera wings dodge the FCC’s drone ban? That lying drone company we caught? The FCC has now banned Odyssey Robot. The ban on robot vacuums won’t make them safer, only worse The US government just banned Roombas DJI camera clone company Xtra claims it’s ‘in close communication’ with the FCC. DJI camera clone company Xtra is halting and refunding all preorders Whack-a-drone The FCC is planning to retroactively ban disguised DJI gadgets The FCC is cracking down on DJI tech that dodged the foreign drone ban The FCC is saving Amazon’s Eero and Leo routers from its ban, too. Netgear and the FCC have not responded to our emails. The FCC just saved Netgear from its router ban for no obvious reason Sorry kid, drones are for war now Asus is the latest with a nothing statement about the US router ban. The United States router ban, explained The US government just banned consumer routers made outside the US DJI sues over the FCC’s decision to block new drone imports The FCC’s foreign drone ban is here The FCC just gave itself the power to make a DJI drone ban stick Xtra: the company that lets DJI sneak its popular cameras into the US DJI couldn’t confirm or deny it disguised this drone to evade a US ban DJI explains why it won’t stop drones from flying over the White House — and what happens in a US ban US targets TP-Link with a potential ban on the Chinese routers DJI might get banned next in the US",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p47#a261028p47",
+      "title": "Oracle pledges to limit new financing to $20B through FY 2030, expects free cash flow to turn positive in H2 FY 2028 and top $30B in FY 2029; ORCL jumps 11%+ (Deborah Sophia/Reuters)",
+      "url": "https://www.techmeme.com/261028/p47#a261028p47",
+      "author": null,
+      "publishedAt": "2026-10-28T19:40:01.000Z",
+      "content": "Deborah Sophia / Reuters: Oracle pledges to limit new financing to $20B through FY 2030, expects free cash flow to turn positive in H2 FY 2028 and top $30B in FY 2029; ORCL jumps 11%+ — Oracle said it expects capital spending to peak this fiscal year and next as it builds more cloud capacity, but pledged to raise …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "urn:latent-space:post:post_dc42ae8a-0f60-40f4-a056-f11b7f8c3289",
+      "title": "Why Agents Love Supabase",
+      "url": "https://latent.space/p/supabase/",
+      "author": "swyx .ai",
+      "publishedAt": "2026-10-28T19:48:05.000Z",
+      "content": "I first met Paul Copplestone and Ant Wilson in Singapore, shortly after they finished YC as the hottest startup of YC S20. Six years later, we finally got them on the podcast! This is their first podcast together, after taking an open-source, fully remote company from zero to a $10 billion valuation. The title is a question I wanted to understand for myself: why do agents love Supabase? There are plenty of managed databases. Postgres hosting is competitive. Being familiar to a model is useful distribution, but it doesn't explain all the work needed to turn a generated application into something that runs. But when I ran my frontier AEO tracker, it was an almost complete sweep of first choice for app backends (and in contention for managed db) for every frontier model from Astra to Fable to Muse. At Select, Supabase grouped its announcements into Build, Operate and Scale. The things that stood out to me were surprisingly practical: start a local backend without Docker, keep the desired database schema in Git, and run compute beside the database. Each removes a piece of work that developers have been doing for years. Agents make that friction harder to ignore. Watch the full conversation, including my opening commentary → Give the agent a backend it can read My favorite developer-tool announcements make me think: of course I want this today. The new alpha runtime for running Supabase locally without Docker is one of those. I use Colima rather than Docker Desktop, and even then, removing another dependency from the path to a working database is welcome. Local setup is a small part of a human developer's week; an agent that repeatedly creates and tests environments encounters it over and over. Declarative schemas are the bigger idea. The familiar SQL workflow accumulates a history: create the schema, then migrate, migrate, migrate. A declarative representation gives the agent a description of the state you want, in files it can inspect and edit alongside the application. In the commentary, I compare this to a Terraform moment for the database. Put the desired state in Git and the agent can read it, change it, fork it and work against it as part of the repository. Humans get the same advantage: the backend becomes easier to understand without reconstructing its entire history. That is the part I like most about the agent-friendly direction. These are improvements I wanted as a developer already. Making them useful to agents gives the team another reason to finish the job. Compute deserves more than a bullet point I think Supabase Compute, now in private alpha, may be undersold. An application needs somewhere to do its work as well as somewhere to store the result. Once you have a database, you still need a place to run the processes that chunk documents, generate embeddings or do other longer-running work. Paul and Ant discuss running containers close to the database. That closes a gap between getting an application started and operating it: fewer separate services to configure, connect and explain to the agent. Edge functions remain useful, but they don't cover every workload. The operating side matters too. Logs, checks, connections and context help an agent understand what it is changing. A model that can issue SQL still needs to know what the database contains, how the application uses it, and what happened when something failed. Supabase's Operate announcements are worth reading alongside the new ways to build. From prototype to petabyte The founders say Supabase is launching about five million databases a month. They are thinking about what happens if agents push that toward billions of applications. At the same time, existing customers are growing into much larger workloads. Serving more small databases and supporting a customer's increasingly large database are different engineering problems. That helps explain the breadth of the Scale announcements: OrioleDB, Multigres and the Turso acquisition. The conversation gets into the work behind the new “prototype to petabyte” positioning, including Postgres reliability and the choices involved in scaling up and scaling out. One observation from Paul and Ant is particularly interesting for anyone building developer tools: as AI-driven usage grew, they say activation and conversion improved. Their explanation is that an agent can carry a user from signup to a working setup in one flow. The person doesn't have to figure out every configuration step before seeing the application work. We also talk about the memes and community that helped Supabase grow, open-source adoption and enterprise sales, and whether agents will converge on the same application patterns. But I wanted this episode to capture the founders' chemistry as well. It is a chance to hear Paul and Ant think through the product together—and to see how much work sits behind a backend that an agent can make look easy. Show notes Supabase Compute — run workloads alongside the database. Multigres — the team’s approach to highly available Postgres, currently in private alpha. Supabase acquires Turso — the database architecture behind its scale-out ambitions. Supabase Select — the event discussed in this conversation. Chapters 0:00 Welcome and why agents love Supabase 5:23 Paul Copplestone and Ant Wilson 6:39 Compute beside the database 8:05 OrioleDB and Multigres 12:50 Scaling up, scaling out, and Turso 17:53 Developer marketing and memes 23:15 The launch and the migration 31:03 Vectors, growth, and AI recommendations 41:43 Product-led sales and enterprise growth 49:38 Live migrations and analytics 58:43 Agent-ready local development 1:06:43 Community and company workflows",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112492 at https://www.eff.org",
+      "title": "Court Should Curb Abuse of Grand Jury Subpoenas Targeting Social Media Users",
+      "url": "https://www.eff.org/deeplinks/2026/10/court-should-curb-abuse-grand-jury-subpoenas-targeting-social-media-users",
+      "author": "Mario Trujillo",
+      "publishedAt": "2026-10-28T19:48:20.000Z",
+      "content": "A federal appeals court should curb the government’s abuse of grand jury subpoenas to unmask social media users who criticize lawless immigration enforcement. That is the message from the ACLU, EFF, and other civil liberties and trade groups who filed a friend-of-the-court brief in a sealed case in the U.S. Court of Appeals for the District of Columbia. The case involves the government’s investigation of an anonymous Reddit user who commented on a post about an immigration officer in Minnesota. The Department of Homeland Security (DHS) first issued an administrative subpoena to Reddit to unmask the user. When the user challenged the subpoena in court on free speech and statutory grounds (as many others have), DHS withdrew it. But then the government obtained a separate grand jury subpoena—a subpoena issued by a prosecutor to gather evidence to present to a grand jury before any criminal charges are filed—for much of the same information. The user then challenged the grand jury subpoena too, and the case is currently being appealed. The right to speak anonymously is essential. It preserves privacy and shields critics from government retaliation. In the past year, the Department of Justice (DOJ) has issued grand jury subpoenas to social media companies for their users’ personal data. This is frequently done for improper purposes and without really showing that social media users have committed any crime. These subpoenas have the effect of intimidating and chilling critics, as immigration authorities have engaged in invasive, unconstitutional, and sometimes violent conduct. As the amicus brief makes clear, courts should not defer to the government’s claims regarding the legitimacy of using grand jury subpoenas to unmask internet users. Instead, the subpoenas must receive proper First Amendment scrutiny. Like many other types of legal processes, grand jury subpoenas are issued by federal officials without prior court approval. And they too can be abused to harass or retaliate against people critical of the government. The amicus brief was filed in early September and recently unsealed. The brief was signed by the American Civil Liberties Union of DC, EFF, the Center for Individual Rights, the Foundation for Individual Rights and Expression, the Cato Institute, and NetChoice. It is notable that NetChoice signed the amicus brief. It is a trade group that represents many companies who have received similar subpoenas including Reddit, Google, Meta, PayPal, among others. EFF has called on these companies to do more to defend their users’ speech and privacy rights in the face of these subpoenas.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "nextjs-blog",
       "externalId": "/blog/ship-less-javascript-with-ai",
       "title": "Ship less JavaScript in Next.js with your AI agent",
@@ -4555,6 +5153,540 @@
       "topics": [
         "devtools-infra",
         "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1021339",
+      "title": "Google launches Gemini 4 Carbon with a ‘significant leap’ in cybersecurity",
+      "url": "https://www.theverge.com/tech/1021339/google-gemini-4-carbon-cybersecurity-frontier",
+      "author": "Emma Roth",
+      "publishedAt": "2026-10-28T20:03:00.000Z",
+      "content": "Google has released its latest frontier model, Gemini 4 Carbon, offering \"significant gains\" in coding, agentic tasks, and cybersecurity. In an announcement on Wednesday, Google highlights Carbon's top spot on the Artificial Analysis Intelligence Index (v5.0) benchmark, with Claude Opus 5.5 and GPT-6 Astra trailing behind. The new Gemini 4 Carbon model offers improvements over Argon, which Google released earlier this month. It's currently only available to a select group of cybersecurity defense companies, but it will eventually expand to other partners in its Fairwind Program. The company says Carbon reflects the \"pace at which we're pus … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112491 at https://www.eff.org",
+      "title": "Victory! You Can Now Exclude Apps from Siri AI",
+      "url": "https://www.eff.org/deeplinks/2026/10/victory-you-can-now-exclude-apps-siri-ai",
+      "author": "Thorin Klosowski",
+      "publishedAt": "2026-10-28T20:04:21.000Z",
+      "content": "In the most recent update to Apple’s devices, iOS 27.2, the company has introduced a new setting to “Exclude Apps” from Siri AI, fulfilling one of our asks from our Encrypt It Already campaign earlier this year. One of our main concerns with new AI features on devices is how those features interact with end-to-end encrypted content, particularly with secure messaging apps. Many AI features require cloud processing, and despite privacy protections engineered into these systems, the content of secure messaging apps may leave a user’s device without their knowledge. That changes the privacy concerns around using those tools. In a perfect world, users would be able to put a barrier up to ensure data from certain apps doesn’t leave the device. Here was our initial ask: You should be able to tell the operating system’s AI to not access an app, even if that comes at the “cost” of missing out on some features. The setting should be straightforward and easy to understand in ways the Gemini and Apple Intelligence controls currently are not. At launch, we found the settings to control Siri AI’s app access behavior pretty confusing. You had to toggle several options to block Siri AI off from accessing an app, or disable Siri AI entirely. Turning off Siri AI and reverting to Siri Classic is, for now, still a good option if you’d prefer to use the older version. The most recent update is far more clear and does more to protect your data. And, just as expected, it comes at the cost of some features. That’s a good thing, actually. The features not working shows that the new setting is effective. Here’s how to add apps to the exclusion list, once you’ve updated to 27.2: Open Settings > Siri > Excluded Apps Tap “Add Apps” and select any apps you’d like to add to the exclusion list Now Siri AI cannot access the contents of the app. Excluding an app also means you may lose some features. For example, if you exclude the Apple Messages app, you will no longer be able to have Siri AI read or respond to messages for you. Even the “onscreen awareness” feature, where you invoke Siri and ask it for information about what you’re currently looking at, will not work anymore. For example, if you exclude Signal, you cannot invoke Siri and ask it to discern any information in the Signal app. You’ll just get these messages: What’s the State of This on Android? This update from Apple is also a good excuse to check in on the process on Android. It has improved a little, but is not as straightforward as Apple’s new settings, and lacks the ability to set the screen context feature per-app. But you do have some control over what Gemini can access: Open up the Gemini app Tap your user photo, then Settings > Personal Intelligence > Connected Apps Revoke access to any apps you do not want Gemini to have access to This process seems to work well enough for some data and we like that it’s opt in, but it’s not exactly intuitive. For example, Signal doesn’t appear there because Signal doesn’t support Gemini’s app access feature at all. That means Gemini can’t access the content of Signal directly, which is good. But Gemini can read notifications if you’ve enabled the “Device Assistance” Connected App (which you likely have, since that also enables basic features, like setting a timer—check under Settings > Personal Intelligence > Connected Apps), and it can use screen context unless you’ve disabled the Device controls > Screen context > “Use screen and app data” option in the Gemini Settings. These two features may access the contents of the Signal app or notifications, if you choose to use them. We’d prefer a more hard-lined approach that reduces the chances of user error here: Google should give users the ability to turn these features off per app. Apple clearly understands that some users want stronger controls over what Siri AI can and cannot access. But we think they should go further and offer the option to only use “on device” AI features, similar to what Samsung offered with its Galaxy AI. We’re happy to see this change and think all operating systems need to consider similar controls moving forward.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p48#a261028p48",
+      "title": "Microsoft reports Q1 revenue up 19% YoY to $92.3B, Azure revenue up 48% to $33.2B, operating income up 21% to $45.9B, and net income up 32% to $36.6B (Microsoft)",
+      "url": "https://www.techmeme.com/261028/p48#a261028p48",
+      "author": null,
+      "publishedAt": "2026-10-28T20:10:01.000Z",
+      "content": "Microsoft: Microsoft reports Q1 revenue up 19% YoY to $92.3B, Azure revenue up 48% to $33.2B, operating income up 21% to $45.9B, and net income up 32% to $36.6B — REDMOND, Wash. — October 28, 2026 — Microsoft Corp. today announced the following results for the quarter ended September 30, 2026 …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p49#a261028p49",
+      "title": "Alphabet reports Q3 revenue up 25% YoY to $127.6B, Google Cloud revenue up 103% to $30.7B, and Google Services revenue up 11% to $96.3B (Alphabet)",
+      "url": "https://www.techmeme.com/261028/p49#a261028p49",
+      "author": null,
+      "publishedAt": "2026-10-28T20:12:14.000Z",
+      "content": "Alphabet: Alphabet reports Q3 revenue up 25% YoY to $127.6B, Google Cloud revenue up 103% to $30.7B, and Google Services revenue up 11% to $96.3B — MOUNTAIN VIEW, Calif. - October 28, 2026 - Alphabet Inc. (NASDAQ: GOOG, GOOGL) today announced financial results for the quarter ended September 30, 2026.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1021308",
+      "title": "Apple charges $14,549 for a fully specced touchscreen MacBook Pro",
+      "url": "https://www.theverge.com/tech/1021308/apple-touchscreen-macbook-pro-proled-xdr-fully-specced",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-10-28T20:12:44.000Z",
+      "content": "With an OLED display and touchscreen capabilities, it's no surprise that the new MacBook Pro Apple announced today is more expensive than the MBP announced earlier this year. But upgrading the base models that start at $2,899 for the 14-inch, and $3,399 for the 16-inch, with every premium hardware option that Apple offers pushes those prices to an eye-watering $14,249 and $14,549, respectively. Both of those premium configurations include the M5 Max chip with an 18-core CPU and 40-core GPU, $150 worth of nano-texture glass, 128GB of memory that adds an extra $2,000, and 16TB of storage which is the real budget breaker here thanks to the ong … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1020785",
+      "title": "Microsoft reveals strong cloud growth amid financial reporting overhaul",
+      "url": "https://www.theverge.com/tech/1020785/microsoft-earnings-revenue-q1-2027",
+      "author": "Tom Warren",
+      "publishedAt": "2026-10-28T20:20:00.000Z",
+      "content": "Microsoft just posted the first quarter of its 2027 fiscal financial results. The software maker made $92.3 billion in revenue and a net income of $33.6 billion during Q1. Revenue is up 19 percent, and net income has increased by 32 percent. It's a new financial year for Microsoft, so the company is changing up how it reports its finances by splitting its businesses into two segments for the first time. Gone are the previous segments: Productivity and Business Processes, Intelligent Cloud, and More Personal Computing. It's now just Agents and Infra, and Devices and Consumer. Agents and Infra, which includes businesses like Azure, Microsoft … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1020811",
+      "title": "Google says its investments in AI are driving more searches",
+      "url": "https://www.theverge.com/tech/1020811/alphabet-google-earnings-q3-2026",
+      "author": "Jay Peters",
+      "publishedAt": "2026-10-28T20:22:26.000Z",
+      "content": "Google parent company Alphabet says that its AI investments are leading to a big growth in searches year-over-year, as noted in its Q3 2026 earnings today. \"Our AI investments are driving overall Search query growth, including commercial queries,\" CEO Sundar Pichai says in a statement. \"In fact, our year-over-year query growth rate is the highest it's been in the last five years.\" Alphabet's consolidated revenues for the quarter were $127.6 billion, up 25 percent year-over-year, with its \"Google Search & other\" revenues up 12 percent year-over-year. Google Cloud revenue was also up 103 percent year-over-year to $30.7 billion. Alphabet also … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p50#a261028p50",
+      "title": "Alphabet reports Q3 YouTube ad revenue up 9% YoY to $11.2B, below estimates, and Google ad revenue hit $82.01B, up from $74.18B in Q3 2025 (Todd Spangler/Variety)",
+      "url": "https://www.techmeme.com/261028/p50#a261028p50",
+      "author": null,
+      "publishedAt": "2026-10-28T20:30:02.000Z",
+      "content": "Todd Spangler / Variety: Alphabet reports Q3 YouTube ad revenue up 9% YoY to $11.2B, below estimates, and Google ad revenue hit $82.01B, up from $74.18B in Q3 2025 — YouTube continued to vacuum up digital ad dollars in the third quarter of 2026, but the video platform grew at slower pace than in recent quarters.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.22684",
+      "title": "AlphaBet: Reinforcement Learning for LLM Event Forecasting Agents",
+      "url": "https://huggingface.co/papers/2610.22684",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:05.388Z",
+      "content": "AlphaBet: Reinforcement Learning for LLM Event Forecasting Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.31924",
+      "title": "Sub-monolayer tracking of molecular states at buried interfaces",
+      "url": "https://huggingface.co/papers/2610.31924",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:05.388Z",
+      "content": "Sub-monolayer tracking of molecular states at buried interfaces",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2509.05512",
+      "title": "Quaternion Approximate Networks for Enhanced Image Classification and Oriented Object Detection",
+      "url": "https://huggingface.co/papers/2509.05512",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:05.388Z",
+      "content": "Quaternion Approximate Networks for Enhanced Image Classification and Oriented Object Detection",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.36184",
+      "title": "Lipi-Ghor: A Large-Scale, Diarized, Multi-Domain Bengali Speech Corpus and a Scalable Pipeline for Building It",
+      "url": "https://huggingface.co/papers/2610.36184",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:05.388Z",
+      "content": "Lipi-Ghor: A Large-Scale, Diarized, Multi-Domain Bengali Speech Corpus and a Scalable Pipeline for Building It",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "anthropic-news",
+      "externalId": "https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions",
+      "title": "AI for Science expands to foundations and research institutions",
+      "url": "https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:05.809Z",
+      "content": "AI for Science expands to foundations and research institutions",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.apple.com/newsroom/2026/10/apple-unveils-groundbreaking-macbook-pro-with-proled-xdr-display",
+      "title": "Apple unveils groundbreaking MacBook Pro with PROLED XDR Display",
+      "url": "https://www.apple.com/newsroom/2026/10/apple-unveils-groundbreaking-macbook-pro-with-proled-xdr-display",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.875Z",
+      "content": "Apple unveils groundbreaking MacBook Pro with PROLED XDR Display apple.com21 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.computationalcomplexity.org/2026/10/the-exponential-time-refutation.html",
+      "title": "The Exponential Time Refutation",
+      "url": "https://blog.computationalcomplexity.org/2026/10/the-exponential-time-refutation.html",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.877Z",
+      "content": "The Exponential Time Refutation blog.computationalcomplexity.org2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://llukyanov.substack.com/p/on-anthropics-compute-efficiency",
+      "title": "On Anthropic’s Compute Efficiency: More Bang for the Buck, or More Bucks for the Bang?",
+      "url": "https://llukyanov.substack.com/p/on-anthropics-compute-efficiency",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.880Z",
+      "content": "On Anthropic’s Compute Efficiency: More Bang for the Buck, or More Bucks for the Bang? llukyanov.substack.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://aswathdamodaran.substack.com/p/theanthropic-ipo-arrives-my-but-not",
+      "title": "TheAnthropic IPO Arrives: My (but not the) Anthropic Valuation!",
+      "url": "https://aswathdamodaran.substack.com/p/theanthropic-ipo-arrives-my-but-not",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.882Z",
+      "content": "TheAnthropic IPO Arrives: My (but not the) Anthropic Valuation! aswathdamodaran.substack.com24 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wheresyoured.at/exit-liquidity",
+      "title": "Anthropic S-1 highlights noncancellable compute obligations (*)",
+      "url": "https://www.wheresyoured.at/exit-liquidity",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.883Z",
+      "content": "Anthropic S-1 highlights noncancellable compute obligations (*) wheresyoured.at30 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/culperresearch/status/2115473790033363377",
+      "title": "NEW: We are short Cerebras Systems $CBRS. Cerebras claims to have solved wafer-scale chips. We be...",
+      "url": "https://x.com/culperresearch/status/2115473790033363377",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.897Z",
+      "content": "NEW: We are short Cerebras Systems $CBRS. Cerebras claims to have solved wafer-scale chips. We be... x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/andrewcurran_/status/2115516580646040034",
+      "title": "The Department of Justice is making inquiries into how the NVIDIA Hugging Face deal would affect ...",
+      "url": "https://x.com/andrewcurran_/status/2115516580646040034",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.898Z",
+      "content": "The Department of Justice is making inquiries into how the NVIDIA Hugging Face deal would affect ... x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/rohanpaul_ai/status/2115487458502881417",
+      "title": "Cognition Considers New Funding Round at $70B–$80B Valuation",
+      "url": "https://x.com/rohanpaul_ai/status/2115487458502881417",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.899Z",
+      "content": "Cognition Considers New Funding Round at $70B–$80B Valuation x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://latent.space/p/supabase",
+      "title": "Why Agents Love Supabase",
+      "url": "https://latent.space/p/supabase",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.900Z",
+      "content": "Why Agents Love Supabase latent.space4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-10-28/anthropic-is-said-to-plan-uk-share-offering-via-retailbook",
+      "title": "Anthropic Is Said to Plan UK Share Offering Via RetailBook",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-28/anthropic-is-said-to-plan-uk-share-offering-via-retailbook",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.901Z",
+      "content": "Anthropic Is Said to Plan UK Share Offering Via RetailBook bloomberg.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://hrih.si/articles/the-employee-without-the-employment",
+      "title": "The employee without the employment",
+      "url": "https://hrih.si/articles/the-employee-without-the-employment",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.901Z",
+      "content": "The employee without the employment hrih.si16 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/rohanpaul_ai/status/2115491649543635378",
+      "title": "Anthropic’s IPO filing shows $131.7B in cash and short-term investments, a bigger pile than Amazo...",
+      "url": "https://x.com/rohanpaul_ai/status/2115491649543635378",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.901Z",
+      "content": "Anthropic’s IPO filing shows $131.7B in cash and short-term investments, a bigger pile than Amazo... x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-10-28/deutsche-telekom-is-said-to-hit-brakes-on-giant-t-mobile-merger",
+      "title": "Deutsche Telekom Is Said to Hit Brakes on Giant T-Mobile Merger",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-28/deutsche-telekom-is-said-to-hit-brakes-on-giant-t-mobile-merger",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.902Z",
+      "content": "Deutsche Telekom Is Said to Hit Brakes on Giant T-Mobile Merger bloomberg.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theinformation.com/briefings/ipo-pipeline-held-back-anthropic-listing-says-nyses-martin",
+      "title": "IPO Pipeline Held Back by Anthropic Listing, Says NYSE’s Martin",
+      "url": "https://www.theinformation.com/briefings/ipo-pipeline-held-back-anthropic-listing-says-nyses-martin",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.903Z",
+      "content": "IPO Pipeline Held Back by Anthropic Listing, Says NYSE’s Martin theinformation.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://paulkedrosky.com/post-noise-notes-on-the-anthropic-s-1",
+      "title": "Post-Noise Notes on the Anthropic S-1",
+      "url": "https://paulkedrosky.com/post-noise-notes-on-the-anthropic-s-1",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.903Z",
+      "content": "Post-Noise Notes on the Anthropic S-1 paulkedrosky.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.a16z.news/p/the-new-security-agenda",
+      "title": "OpenAI agents breached Hugging Face systems (*)",
+      "url": "https://www.a16z.news/p/the-new-security-agenda",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.904Z",
+      "content": "OpenAI agents breached Hugging Face systems (*) a16z.news14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://oskargroth.com/blog/orchestrating-agents",
+      "title": "Orchestrating a One-Person Software Factory",
+      "url": "https://oskargroth.com/blog/orchestrating-agents",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.905Z",
+      "content": "Orchestrating a One-Person Software Factory oskargroth.com18 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.pymnts.com/news/investment-tracker/2026/foundry-raises-100-million-to-boost-manufacturing-footprint",
+      "title": "Foundry Raises $100 Million to Boost Manufacturing Footprint",
+      "url": "https://www.pymnts.com/news/investment-tracker/2026/foundry-raises-100-million-to-boost-manufacturing-footprint",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.905Z",
+      "content": "Foundry Raises $100 Million to Boost Manufacturing Footprint pymnts.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://siliconangle.com/2026/10/28/altera-unveils-agilex-2x-betting-on-ai-developers-to-expand-programmable-computing",
+      "title": "Altera unveils Agilex 2X, betting on AI developers to expand programmable computing",
+      "url": "https://siliconangle.com/2026/10/28/altera-unveils-agilex-2x-betting-on-ai-developers-to-expand-programmable-computing",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.905Z",
+      "content": "Altera unveils Agilex 2X, betting on AI developers to expand programmable computing siliconangle.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.coindesk.com/tech/2026/10/28/google-to-preview-crypto-custody-security-system-as-ai-threats-grow",
+      "title": "Google to preview crypto custody security system as AI threats grow",
+      "url": "https://www.coindesk.com/tech/2026/10/28/google-to-preview-crypto-custody-security-system-as-ai-threats-grow",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.907Z",
+      "content": "Google to preview crypto custody security system as AI threats grow coindesk.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.pcmag.com/news/meta-delays-update-alarm-over-scraping-websites-for-potential-ai-training",
+      "title": "Meta Delays Update Amid Concern About Scraping Websites for AI Training",
+      "url": "https://www.pcmag.com/news/meta-delays-update-alarm-over-scraping-websites-for-potential-ai-training",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.908Z",
+      "content": "Meta Delays Update Amid Concern About Scraping Websites for AI Training pcmag.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.zetter-zeroday.com/silent-train-volt-typhoons-sophisticated-infection-chain-into-us-targets-exposed",
+      "title": "Silent Train: Volt Typhoon’s Sophisticated Infection Chain into US Targets Exposed",
+      "url": "https://www.zetter-zeroday.com/silent-train-volt-typhoons-sophisticated-infection-chain-into-us-targets-exposed",
+      "author": null,
+      "publishedAt": "2026-10-28T20:35:06.908Z",
+      "content": "Silent Train: Volt Typhoon’s Sophisticated Infection Chain into US Targets Exposed zetter-zeroday.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
       ],
       "paywalled": false,
       "mediaType": "text"
