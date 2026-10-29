@@ -6,6 +6,37 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A deliberate trade is an unpaid bill until a run reads the other side, and
+  the comment that explains the trade is exactly where the reading does not
+  happen. `page.ts` has carried the font stylesheet as a preload flipped on
+  arrival "so the page paints in the fallback stacks straight away and swaps
+  when the webfonts land, which is what display=swap already asks for": a
+  sentence that states the benefit and names the cost without pricing it.
+  Priced today, the swap re-lays the prose by **137 to 330px on 16 of 16 day
+  page readings**, median CLS 0.1398 with 13 of 20 readings past the 0.1 good
+  line, landing 480 to 840ms in, which is while someone is inside the first
+  entry. 10-25 banked that an explanation is not a decision; this is the
+  sharper, cheaper version: **when the source explains a trade, go and measure
+  the side it does not quantify**, and `grep` the repo for the comments that
+  read as settled. Its other half cost the first cut of the fix. A font put
+  into a stack does not only change widths: it becomes the glyph source for
+  every character the primary font lacks, and Karla lacks both arrows the
+  chrome is written with, so version one quietly redrew **96 pager and crumb
+  arrows in Arial**. The tests were green on it and every CLS and reflow
+  number improved; what caught it was the before/after screenshot pair, as
+  1,433 pixels in one 73x15 box on every page, the 10-27/10-28 habit earning
+  its keep a third time. `unicode-range` is the scoping tool, and the question
+  to ask of a fallback is not only whether it measures like the real font but
+  **where it is allowed to stand in for it**. Mechanics worth keeping:
+  `fonts.googleapis.com` is reachable from here, `local("Arial")` is **not**
+  (fontconfig aliases the family name for css lookup, `local()` wants a real
+  installed name, and Liberation Sans is the metric-compatible stand-in that
+  does resolve); a layout-shift entry's `sources` list is **capped at five**,
+  so it names neither the biggest mover nor the whole story and a per-element
+  rect diff across `document.fonts.ready` is the honest instrument; and the
+  index and 404 readings are contaminated by their own js (the notify section
+  un-hides), so the day pages are the clean surface.
+
 - One standard can ship more than one instrument, and a pass from the one you
   ran is not a pass for the standard. 10-27 banked "run the standard's own
   conformance checker" and ran axe, clean but for the pager. Today the same
@@ -483,6 +514,24 @@ merges and closures and never expire.
 
 ## Backlog
 
+- MERGED 2026-10-29 as #310 / PR #311, `0ad1016`, `pages` run 40849689828
+  green. The body text now paints in an Arial-keyed face carrying Karla's
+  metrics, so the webfont swap re-wraps nothing a reader can see: worst move
+  per day-page reading 137-330px -> 0-165px (median 41), sum of document
+  height deltas 3899px -> 659px, median CLS 0.1398 -> 0.0121, 0 of 20 readings
+  past 0.25. 8 of 8 screenshots byte-identical settled, +514 bytes gzipped per
+  page, 52 lines across 2 files.
+- Noticed 2026-10-29 and NOT filed, because it cannot be measured honestly
+  from this container. **The heading fallback (Fraunces falling back to
+  Georgia) got no metrics face**: Georgia is not installed here and the
+  container aliases it to Liberation Serif, which is Times-metric and would
+  give a wrong adjust. Headings are a small share of the movement, so this is
+  worth a slot only if a run can get real Georgia advance widths without
+  inventing them. Alongside it, the floor of the remaining shift: after the
+  fix, 3 of 20 readings still score past 0.1 while moving at most one or two
+  lines, because the swap repaints every line at slightly different glyph
+  widths and no fallback removes that. Do not re-file the residual as a
+  regression.
 - MERGED 2026-10-28 as #307 / PR #308, `1d0db6c`, `pages` run 40662723031 green.
   Both navigation landmarks on a day page now carry a name (`archive` and
   `nearby days`), and the test reads every built page rather than the crumbs.
@@ -1741,6 +1790,91 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-29
+
+**#310 filed, PR #311 built, `checks` green on `607f4067`, merged by this run at
+09:26 as `0ad1016`, `pages` run 40849689828 green on it.** The site's own
+first-paint trade was costing every cold load 137 to 330px of reflow, on 16 of
+16 day page readings, and nothing in the repo had ever measured it.
+
+**The signal is the repo's own comment, read for what it does not say.**
+`page.ts` loads the font css as a preload flipped to a stylesheet on arrival so
+the page paints before the webfonts land. The comment above it explains that
+benefit in four lines. The cost it implies, that the prose is then re-laid when
+Karla arrives, is stated as a feature ("swaps when the webfonts land") and was
+never priced. Priced in chromium over the built site, every element's rect
+snapshotted at `domcontentloaded` and again after `document.fonts.ready`, 8 day
+pages plus index and 404 at 390 and 860: **worst vertical move 137 to 330px on
+16 of 16 day readings**, sum of document height deltas **3899px**, median CLS
+**0.1398** with **13 of 20** readings past the 0.1 good line and 3 past 0.25.
+The shift lands 480 to 840ms in.
+
+**The cause is width, not leading.** Every line-height on the site is a fixed
+number, so the fallback's taller line box changes nothing; what changes is
+where paragraphs wrap. Over the month's digests, 1,144 prose lines through
+canvas `measureText`: Karla / Arial **1.0207** (p10 1.0065, p90 1.0311), Karla
+/ the current fallback **0.9552**, so the fallback runs about 4.7% wide and
+every paragraph buys lines it gives back on the swap. Karla's
+`line-height:normal` is **117 of 100px** against an ascent of 92 and a descent
+of 25, so it carries no line gap, which is where `line-gap-override:0%` comes
+from rather than from a guess.
+
+**The change is two `@font-face` rules and one token in the body stack.**
+`size-adjust:102.1%` from the corpus ratio, ascent and descent overrides
+divided by it, and a second face at 700 with its own `99.4%`: a single face
+answers weight 700 with the regular glyphs, measured at 100px as 993px against
+Karla bold's 1065 and not looking bold either, where the dedicated face lands
+at 1055. A sweep either side (101.4, 101.7, 102.1, 102.5, 103.0) put the
+derived value at the flat bottom of the curve, so it stayed derived rather than
+tuned.
+
+**The first cut shipped a regression the numbers all approved of.** Every
+reflow and CLS figure improved and 254 tests passed, and the screenshot pair
+came back **8 of 8 DIFF**: 1,433 pixels in one 73x15 box on every page, which
+cropped out as the crumbs arrow. Karla has no `U+2190` or `U+2192`, so the new
+face had become the glyph source for the 96 arrows the chrome is written with,
+drawing them in Liberation Sans instead of the system stack. `unicode-range:
+U+0-FF` scopes the faces to what Karla actually draws (coverage measured
+char by char: latin-1 yes, arrows and latin extended-A no), the arrows went
+back to the stacks below, and the pair came back **8 of 8 byte-identical** with
+the clock frozen and the fonts settled.
+
+**Measured with the same instruments after.** Worst move per day reading
+**137-330px -> 0-165px**, median 41 and 13 of 16 at or under 55 (two lines);
+sum of height deltas **3899 -> 659px**; median CLS **0.1398 -> 0.0121**; past
+0.1 **13 of 20 -> 3 of 20**; past 0.25 **3 -> 0**. 254 tests (was 253),
+typecheck silent, 33 pages, page weight +514 bytes gzipped (10675 -> 11189),
+most of it the comment. The new test fails against main's `page.ts`, per 09-22.
+
+**What the CLS observer will not tell you.** A layout-shift entry's `sources`
+array is capped at five and ordered by area, so the element that actually moved
+furthest can be missing from it: one residual reading looked like five nodes
+with identical rects until the per-element diff showed the real mover. Read the
+geometry, use the score only as a summary.
+
+**Health**: 25 workflow runs green before this one, no open PRs at the start of
+the run, four issues open (#246, #241, #120, #112), none greenlit, so the slot
+went to a new observation; #310 opened and closed inside it.
+
+**The environment, as it behaved today.** `gh auth status` still reports the
+`GH_TOKEN` invalid, so every github call went through the MCP server: issues,
+runs, check runs, the PR and the merge, all first attempt. The footer split
+holds for a sixth day, `issue_write` stripping it and `create_pull_request`
+appending it for `update_pull_request` to strip. `git fetch` and `git push` of
+the branch both worked; **branch delete still fails**, this time as a
+`send-pack: unexpected disconnect` rather than the 403, so the gardener branches
+on the remote are now 51. `fonts.googleapis.com` is reachable, which is what
+made the whole measurement possible, and `sift.yasint.dev` is 000 at CONNECT as
+always, so the live read is the deploy's own green. Playwright 1.61.1 needs
+`executablePath: /opt/pw-browsers/chromium` as before, and a probe script in
+the scratchpad needs `node_modules` symlinked beside it: `NODE_PATH` does not
+reach an esm import.
+
+**Copilot did not review, for the fifth day running.** Same "insufficient
+remaining quota" on #311 as on #308, #305, #302 and #299. The checks wait was
+the review window and nothing real landed in it.
+
 
 ### 2026-10-28
 
