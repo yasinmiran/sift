@@ -256,6 +256,45 @@ describe("buildSite", () => {
     }
   });
 
+  // The preload flip above buys the first paint and bills it as reflow: the
+  // prose paints in the fallback and re-wraps when Karla lands, 137 to 330px
+  // of movement on 16 of 16 day page readings before the metrics-matched
+  // faces. So the stack has to name the fallback ahead of the generic
+  // families, every face has to carry the four descriptors that make it
+  // measure like Karla, and bold needs a face of its own: one face answers
+  // weight 700 with the regular glyphs, which neither looks bold nor wraps
+  // like bold.
+  it("gives the fallback text karla's metrics so the swap re-wraps nothing", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+
+    for (const file of ["index.html", "2026-07-04.html", "404.html"]) {
+      const html = readFileSync(join(out, file), "utf8");
+      expect(html).toContain('font:400 1rem/1.6 "Karla","Karla fallback",ui-sans-serif');
+      const faces = [...html.matchAll(/@font-face\{([^}]*)\}/g)]
+        .map((m) => m[1]!)
+        .filter((face) => face.includes('font-family:"Karla fallback"'));
+      expect(faces.length, `${file}: no metrics-matched fallback face`).toBeGreaterThan(0);
+      for (const face of faces) {
+        expect(face, `${file}: fallback face loads something other than a local font`).toMatch(
+          /src:local\(/,
+        );
+        for (const descriptor of [
+          "size-adjust",
+          "ascent-override",
+          "descent-override",
+          "line-gap-override",
+        ]) {
+          expect(face, `${file}: fallback face without ${descriptor}`).toContain(`${descriptor}:`);
+        }
+      }
+      expect(
+        faces.some((face) => face.includes("font-weight:700")),
+        `${file}: no bold fallback face, so strong text renders at 400 until karla lands`,
+      ).toBe(true);
+    }
+  });
+
   it("renders pen marks on day pages with the hand-drawn styles", () => {
     digest("2026-07-04", "a ==big deal== and ((circled)) figure");
     buildSite(root, out);

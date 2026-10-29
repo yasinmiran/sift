@@ -81,9 +81,21 @@ ${head}
 /* Type, palette and substrate mirror yasint.dev (its tailwind theme + global.css). */
 :root{color-scheme:dark;--bg:#0d0c0b;--surface:#1a1816;--text:#e8e2d9;--body:#b8b0a3;--bold:#d4cdc2;--muted:#7a7268;--faint:#5c564e;--accent:#d4976a;--accent-hover:#e8b08a;--border:#2a2622;--radius:9px}
 *{box-sizing:border-box}
+/* The font css above is not render-blocking, so every cold load paints the
+   prose in the fallback stack and re-wraps it when Karla arrives: 137 to
+   330px of movement on 16 of 16 day page readings, layout shift past the 0.1
+   good threshold on 13 of 20. Karla runs 2.1% wider than Arial over the
+   month's 1,144 digest lines and carries no line gap, so an Arial-keyed face
+   scaled to it wraps where Karla wraps. Bold needs a face of its own: one
+   face answers weight 700 with the regular glyphs. Latin-1 and no more,
+   because Karla draws all of that range and none of the chrome's arrows,
+   which stay with the stacks below; a reader with neither local name
+   (android, most linux) loads no face and is where they were before. */
+@font-face{font-family:"Karla fallback";src:local("Arial"),local("Liberation Sans");size-adjust:102.1%;ascent-override:90.1%;descent-override:24.5%;line-gap-override:0%;unicode-range:U+0-FF}
+@font-face{font-family:"Karla fallback";font-weight:700;src:local("Arial Bold"),local("Liberation Sans Bold");size-adjust:99.4%;ascent-override:92.6%;descent-override:25.2%;line-gap-override:0%;unicode-range:U+0-FF}
 html{scroll-behavior:smooth}
 @media (min-width:1536px){html{font-size:19px}}
-body{margin:0 auto;max-width:44rem;padding:3rem 1.25rem 5rem;background:var(--bg);color:var(--body);font:400 1rem/1.6 "Karla",ui-sans-serif,system-ui,sans-serif;background-image:radial-gradient(circle,rgba(168,159,147,.045) 1px,transparent 1.3px);background-size:22px 22px}
+body{margin:0 auto;max-width:44rem;padding:3rem 1.25rem 5rem;background:var(--bg);color:var(--body);font:400 1rem/1.6 "Karla","Karla fallback",ui-sans-serif,system-ui,sans-serif;background-image:radial-gradient(circle,rgba(168,159,147,.045) 1px,transparent 1.3px);background-size:22px 22px}
 body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
 h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:2.1rem;letter-spacing:-.02em;margin:0 0 .25rem;color:var(--text)}
