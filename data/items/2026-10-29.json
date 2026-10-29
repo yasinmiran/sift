@@ -1,0 +1,1251 @@
+{
+  "day": "2026-10-29",
+  "generatedAt": "2026-10-29T05:38:00.333Z",
+  "items": [
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/virtual-models-now-available-on-ai-gateway",
+      "title": "Virtual models now available on AI Gateway",
+      "url": "https://vercel.com/changelog/virtual-models-now-available-on-ai-gateway",
+      "author": "Rohan Taneja",
+      "publishedAt": "2026-10-28T00:00:00.000Z",
+      "content": "are now available on . Virtual modelsAI Gateway A virtual model is a saved configuration that tells AI Gateway which model and settings to use. Your apps and agents call it with a custom model ID, such as . You can change the model or settings centrally in AI Gateway without redeploying your apps or reconfiguring your agents.vmc/coding-agent Use virtual models to: To create a virtual model, open the and click . Enter a slug, choose the underlying model, configure the settings you want requests to use, and save.Virtual Models pageCreate Virtual Model Or create one with the :Vercel CLI To use a virtual model, replace the provider model ID in your AI SDK or compatible API requests with , such as .vmc/<slug>vmc/coding-agent For , connect to AI Gateway with if needed, then select your virtual model in the agent’s model picker or configuration.coding agentsvercel ai-gateway setup Virtual models work with every model type on AI Gateway. Read the for examples or learn more in the .launch postvirtual models documentation Read more Set reasoning effort, fast mode, prompt caching, and other options even when your agent doesn’t expose them.Configure coding agents: Choose providers, configure fallback models, and enforce requirements such as .Control routing and compliance:Zero Data Retention Attach tags to every request that uses the virtual model.Attribute spend:custom reporting",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/run-paseo-agents-on-vercel-sandbox",
+      "title": "Run Paseo agents on Vercel Sandbox",
+      "url": "https://vercel.com/changelog/run-paseo-agents-on-vercel-sandbox",
+      "author": "Elisabeth Rülke",
+      "publishedAt": "2026-10-28T00:00:00.000Z",
+      "content": "Paseo now supports running fx, Codex, Claude Code, OpenCode, and Pi in the cloud with the .Vercel Sandbox plugin You can now start an agent in Vercel Sandbox from Paseo on your laptop, then connect from your phone to control the same session, even when your laptop is closed. Stopping a sandbox saves your files and conversation history so you can pick up where you left off. Active processes stop with the sandbox. Enter your Vercel AI Gateway key once during setup. The plugin reuses it for model requests across your sessions, keeping the key outside the sandbox. To get started, enable plugins in Settings → Plugins in Paseo. Then install the plugin: Learn more in the , , and the Paseo .Sandbox documentationPaseo plugin listingrelated projects documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/particle-1-is-now-available-on-ai-gateway",
+      "title": "Particle-1 is now available on AI Gateway",
+      "url": "https://vercel.com/changelog/particle-1-is-now-available-on-ai-gateway",
+      "author": "Zachary Chen",
+      "publishedAt": "2026-10-28T00:00:00.000Z",
+      "content": "from Particle AI is now available on . It is post-trained on DeepSeek V4.1 Flash, with a focus on completing software engineering tasks using fewer tokens. Particle describes the gains as shorter reasoning, fewer rounds of trial and repair, and more focused exploration.Particle-1AI Gateway Use it for debugging, planning code changes, and breaking down multi-step engineering problems. Particle-1 has a 1M-token context window for working with code and extended task histories. Set in your environment. Use as the model name:AI_GATEWAY_API_KEYparticle/particle-1 To use it in Claude Code, Codex, Cursor, and more, install the latest version of Vercel CLI and run setup: Then select in the agent. See the for details.particle/particle-1coding agents guide Try Particle-1 in the .model playground AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in , , , , and more.custom reportingZero Data Retention supportbudgets for API keysrouting rules AI Gateway reflects provider pricing with no markup and does not charge a platform fee on inference, including on (BYOK) requests.Bring Your Own Key You can view available on AI Gateway.all language models Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/ai-gateway-virtual-models",
+      "title": "Introducing Virtual Models on AI Gateway",
+      "url": "https://vercel.com/blog/ai-gateway-virtual-models",
+      "author": "Rohan Taneja",
+      "publishedAt": "2026-10-28T07:25:00.000Z",
+      "content": "Today, we are introducing on .Virtual ModelsAI Gateway Virtual Models are an abstraction of the model string and configurations your apps and developers use. With a single virtual model ID, you can change and update models, configure fallbacks and priority, and enforce Zero Data Retention centrally. The virtual model configuration applies wherever the ID is used. Assign a virtual model ID to an agent task, and pass it as the model string wherever that task is called. You can then change the model and settings behind the virtual model ID in AI Gateway, and your apps and agents will pick up the new configuration automatically, without code changes or redeploys. In the last 90 days, 125 new models from more than 10 labs became available on AI Gateway. That adds up to about 10 a week. AI Gateway already makes switching a one-line change. You call any of those models by ID, and AI Gateway routes each request to a healthy provider and can fall back to others when one fails. That one line still lives in your code, so switching usually means a redeploy. Virtual Models move model selection and configuration to AI Gateway. You create an ID for a task, like , and then configure the model and the settings it should use:vmc/coding-agent You can then use that virtual model ID as the model string wherever the task runs: For like , , and others, connect them with , then select your virtual model in each harness's model picker or configuration.coding agentsClaude CodeCodexvercel ai-gateway setup When a different model is available, including one from another provider, . Every app and agent that calls picks it up within a few minutes, with no code change or deployment needed:edit the virtual modelvmc/coding-agent An agent task like support ticket triage can run hundreds of times an hour and needs to be cheap. Other tasks, like legal contract review, may only run a few times a day, but require a high level of reasoning. You can now give each task a purpose-built virtual model and easily evolve that model and configuration over time: Settings such as fallbacks, Zero Data Retention, and tags stay with the virtual model when you switch models. Provider options apply per provider, so an Anthropic-specific setting stops applying when you point the virtual model at an OpenAI model. Review your provider options whenever you switch providers. Before you switch a virtual model that serves production traffic, point a second one, like , at the new model and run your evals against it. If quality drops after the switch, point the original back at the previous model.vmc/coding-agent-candidate Anyone on your team can call a virtual model, and team roles control who can make changes to it. Platform and security teams can centrally govern and test models and settings, while still easily giving teams access to new models as they are released. Settings on a virtual model win over the same settings in a request, so callers can't override the provider order, fallbacks, or service tier you chose. For example, you can configure the fallback models for centrally, and every app using that virtual model ID will use the same failover configuration, even if a request specifies different fallbacks.vmc/storefront-assistant If a virtual model requires Zero Data Retention or providers that don't train on request data, those configurations are enforced even if a request explicitly sets or to false.zeroDataRetentiondisallowPromptTraining Tags on a virtual model replace any tags sent with the request, so spend lands on the task no matter how each app tags its calls. The shows requests, spend, and success rate for each task.Virtual Models page Create a virtual model from your or with the .team dashboardVercel CLI AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in , , , , and more.custom reportingZero Data Retention supportbudgets for API keysrouting rules AI Gateway reflects provider pricing with no markup and doesn't charge a platform fee on inference, including on (BYOK) requests.Bring Your Own Key Virtual Models work with every model type on AI Gateway, including image, video, speech, embedding, and realtime models, and with the AI SDK and the OpenAI- and Anthropic-compatible APIs. See the for every setting.Virtual Models documentation Read more New models use the same virtual model ID Give each task its own model Govern which models your team uses and how Get started About AI Gateway",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-container-registry-now-supports-2-gb-compressed-image-layers-new",
+      "title": "Vercel Container Registry now supports 2 GB compressed image layers",
+      "url": "https://vercel.com/changelog/vercel-container-registry-now-supports-2-gb-compressed-image-layers-new",
+      "author": "Andy Waller",
+      "publishedAt": "2026-10-28T09:32:00.000Z",
+      "content": "now supports up to 2 GB per compressed image layer, up from 500 MB, allowing larger layers to be pushed without splitting them. The total image size limit remains 15 GB.Vercel Container Registry The higher layer limit is useful for images with large toolchains or dependency sets, such as custom environments for coding-agent evaluations.Vercel Sandbox With Docker and the installed, run these commands from the directory containing your Dockerfile:Vercel CLI Read the to build, push, and pull your first container image.Vercel Container Registry getting-started guide Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "figma-blog",
+      "externalId": "https://www.figma.com/blog/source-material-brent-david-freaney/",
+      "title": "Source material: \"BRAT\" Art Director Brent David Freaney finds design inspiration from everyday life",
+      "url": "https://www.figma.com/blog/source-material-brent-david-freaney/",
+      "author": null,
+      "publishedAt": "2026-10-28T13:00:00.000Z",
+      "content": "The designer takes us through his world of color theory, photography, graphic systems, and found ephemeral.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50273731",
+      "title": "The Agent SDK",
+      "url": "https://cursor.com/blog/agent-sdk",
+      "author": "torutofu",
+      "publishedAt": "2026-10-28T14:02:20.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 110,
+      "comments": 116
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50275128",
+      "title": "Nvidia Nemotron 3.5 Transcribe: open ASR for 40 languages",
+      "url": "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary",
+      "author": "wondersky",
+      "publishedAt": "2026-10-28T15:17:53.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 116,
+      "comments": 20
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50275887",
+      "title": "Meta censored the No Kings Instagram account during a nationwide campaign",
+      "url": "https://paulfwalsh.substack.com/p/meta-censored-the-no-kings-instagram",
+      "author": "slowin",
+      "publishedAt": "2026-10-28T16:01:53.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 261,
+      "comments": 70
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/artificial-analysis-ranks-seedance-2-5-and-minimax-h3-in-video-ai-benchmark",
+      "title": "Artificial Analysis Ranks Seedance 2.5 and MiniMax H3 in Video AI Benchmark",
+      "url": "https://alphasignal.ai/news/artificial-analysis-ranks-seedance-2-5-and-minimax-h3-in-video-ai-benchmark",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T16:39:19.000Z",
+      "content": "Artificial Analysis just rolled out AA-Video-I2V v2.1, a 1080p image-to-video benchmark with 58,000+ blind human votes across 10 use cases and 10 capabilities.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/exa-opens-3-2m-podcast-transcripts-to-developers-through-one-search-api",
+      "title": "Exa Opens 3.2M Podcast Transcripts to Developers Through One Search API",
+      "url": "https://alphasignal.ai/news/exa-opens-3-2m-podcast-transcripts-to-developers-through-one-search-api",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T17:09:20.000Z",
+      "content": "Exa added 3.2 million podcast episodes with full transcripts to its search API, letting agents query 2.2 million hours of audio for free.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/pytorch-2-15-rebuilds-distributed-training-and-cuts-decoding-overhead",
+      "title": "PyTorch 2.15 Rebuilds Distributed Training and Cuts Decoding Overhead",
+      "url": "https://alphasignal.ai/news/pytorch-2-15-rebuilds-distributed-training-and-cuts-decoding-overhead",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T17:49:51.000Z",
+      "content": "The new release flips the rewritten NCCL backend on by default, adds one-sided transports, and accelerates NVFP4 decode on Blackwell.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50280178",
+      "title": "Google AI gets cagey when asked who won the 2020 elections",
+      "url": "https://arstechnica.com/ai/2026/10/google-ai-gets-cagey-when-asked-who-won-the-2020-elections/",
+      "author": "jacquesm",
+      "publishedAt": "2026-10-28T20:10:16.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 138,
+      "comments": 67
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50280662",
+      "title": "Leak website releases data on DHS employees",
+      "url": "https://www.reuters.com/legal/government/leak-website-releases-data-tens-thousands-dhs-employees-2026-10-28/",
+      "author": "wondersky",
+      "publishedAt": "2026-10-28T20:46:52.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 116,
+      "comments": 27
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50280722",
+      "title": "The case of the 9 bit AES key",
+      "url": "https://v12.sh/blog/the-case-of-the-9bit-aes-key",
+      "author": "ledoge",
+      "publishedAt": "2026-10-28T20:51:44.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 101,
+      "comments": 50
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50280864",
+      "title": "Leak Exposes 41,000 Homeland Security Workers–Including Undercover ICE Agents",
+      "url": "https://www.wired.com/story/massive-leak-exposes-41000-homeland-security-workers-including-undercover-ice-agents/",
+      "author": "Aboutplants",
+      "publishedAt": "2026-10-28T21:03:24.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 309,
+      "comments": 168
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50280974",
+      "title": "A Health Update",
+      "url": "https://furbo.org/2026/10/28/a-health-update/",
+      "author": "frizlab",
+      "publishedAt": "2026-10-28T21:13:21.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 167,
+      "comments": 25
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1020264",
+      "title": "Readwise is taking on Kindle and Kobo for ebook supremacy",
+      "url": "https://www.theverge.com/tech/1020264/readwise-books-launch-ebook-store",
+      "author": "David Pierce",
+      "publishedAt": "2026-10-28T21:16:18.000Z",
+      "content": "For the last several years, Readwise has been building tools for power readers. There's the eponymous product, Readwise, which stores and categorizes your Kindle highlights to help you remember what you've read. There's Readwise Reader, an app for reading newsletters, PDFs, and web articles you've saved for later. And now there's Readwise Books, a full-fledged platform for buying, reading, and talking about books. Readwise Books is currently in beta, available through invite or to existing Readwise subscribers. I've been testing the app for a few days, and it's a much bigger take on reading than most. Tristan Homsi and Daniel Doyon, Readwis … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50281044",
+      "title": "Formlabs Studio 1 $699 Resin Printer",
+      "url": "https://formlabs.com/products/form-studio-1-basic-founders-edition/",
+      "author": "mhb",
+      "publishedAt": "2026-10-28T21:19:30.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 156,
+      "comments": 106
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1021405",
+      "title": "Akai is embracing vibe-coded mods with an open-source MPC",
+      "url": "https://www.theverge.com/gadgets/1021405/akai-open-source-mpc-sample-key",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-10-28T21:34:04.000Z",
+      "content": "The MPC Sample Key looks like the MPC Sample just with keys instead of pads. | Image: Akai The MPC Sample Key isn't even formally announced yet, but Akai is already showing off what the modding community is cooking up through vibe coding. Akai has decided to embrace the explosion of hackers and custom firmware developers by giving them early access to the device, which will have open-source firmware. It will likely run some version of the same software found on the MPC Sample, but with tweaks to accommodate the traditional keyboard, pitch, and mod wheels. Unlike the higher-end MPC Key 37, however, the Sample Key doesn't have pads. Instead, you play back samples with the keys. View this post on Instagram I … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1021528",
+      "title": "A hacker stole more than 40,000 DHS employee records",
+      "url": "https://www.theverge.com/tech/1021528/ice-cbp-data-leak",
+      "author": "Emma Roth",
+      "publishedAt": "2026-10-28T21:57:45.000Z",
+      "content": "A hacker stole a trove of personal information from the Department of Homeland Security (DHS). The breach exposes the names, job titles, phone numbers, email addresses, and office locations of more than 41,000 employees, including those in US Immigration and Customs Enforcement (ICE) and Customs and Border Protection (CBP), according to TechCrunch and Wired. The data also linked the agencies to specific surveillance tools. As reported by TechCrunch, a hacker known as \"Department of Peace\" gained access to the data through Okta, an identity and access management service used by the DHS. Around 21,000 records pertain to CBP employees, and ne … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/ross-wightman-s-wide-resnet-pulls-850k-monthly-downloads-three-years-later",
+      "title": "Ross Wightman's Wide ResNet Pulls 850K Monthly Downloads Three Years Later",
+      "url": "https://alphasignal.ai/news/ross-wightman-s-wide-resnet-pulls-850k-monthly-downloads-three-years-later",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T22:04:41.000Z",
+      "content": "A classic Wide-ResNet-50-2 backbone retrained with the RACM recipe is quietly pulling 850K+ monthly downloads on Hugging Face for image classification work.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/10/peptide-peddlers-cheer-as-rfk-jr-unilaterally-grants-access-overruling-fda/",
+      "title": "Peptide peddlers cheer as RFK Jr. unilaterally grants access, overruling FDA",
+      "url": "https://arstechnica.com/health/2026/10/peptide-peddlers-cheer-as-rfk-jr-unilaterally-grants-access-overruling-fda/",
+      "author": "Beth Mole",
+      "publishedAt": "2026-10-28T22:17:15.000Z",
+      "content": "Anti-vaccine Health Secretary Robert F. Kennedy has unilaterally passed a rule that will allow specialty pharmacies to sell six specific peptide drugs, overruling scientists at the Food and Drug Administration. The peptides are popular among members of Kennedy's Make America Health Again movement and many prominent MAHA figures and Kennedy allies sell them. Kennedy said he uses some of the peptides and called himself a \"big fan.\" But FDA scientists continue to say there is insufficient evidence to show if they're effective and they are potentially dangerous. In 2023, the safety concerns led the FDA to remove the six peptides from a list of drugs that can be made by specialty pharmacies called compounding pharmacies—which make customized formulations of drugs for patients, or, in cases such as this, specialty drugs in bulk. Kennedy's new rule sidesteps the need to formally undo that FDA action. The rule is titled \"Enforcement Discretion Policy Regarding 503A Compounding Using Certain Peptide Bulk Drug Substances\" and was made available Wednesday on the Federal Register, with the final publication data set for October 30. The rule does not change the regulatory status of the peptide; instead, it states the Department of Health and Human Services (HHS) will no longer take enforcement action against compounding pharmacies for making the peptides, essentially giving them a green light to freely produce and sell them. Kennedy had quietly proposed this rule earlier this month. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/10/as-us-ties-fray-europe-plans-first-undersea-cable-link-to-greenland/",
+      "title": "As US ties fray, Europe plans first undersea cable link to Greenland",
+      "url": "https://arstechnica.com/gadgets/2026/10/as-us-ties-fray-europe-plans-first-undersea-cable-link-to-greenland/",
+      "author": "Jeremy Hsu",
+      "publishedAt": "2026-10-28T22:35:50.000Z",
+      "content": "The European Union plans to create the first subsea Internet cable directly connecting Europe to Greenland. The Pan-Arctic Cable project could also extend to Canada and eventually link with Japan and South Korea, notably bypassing the United States. The Pan-Arctic Cable is described as a European Union flagship project in a European Commission joint communication published on October 20, 2026. The policy document describes a new European strategy for the Arctic that supports “a sovereign, secure and resilient submarine cable connection linking Greenland directly to the EU,” while also suggesting that “like-minded partners like Canada” could provide a stepping stone for future cable expansion toward Asia. “It is interesting that this project is even being considered, because five years ago it would have seemed like not a particularly commercially attractive proposition,” Elisabeth Braw, a senior fellow at the Atlantic Council who leads the Threats to the Global Maritime Order Initiative, told Ars. “But the fact that it's being considered is very much on trend and a sign of our times.” Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/10/ulas-vulcan-rocket-is-set-to-return-to-flight-on-friday-the-13th/",
+      "title": "ULA's Vulcan rocket is set to return to flight on Friday the 13th",
+      "url": "https://arstechnica.com/space/2026/10/ulas-vulcan-rocket-is-set-to-return-to-flight-on-friday-the-13th/",
+      "author": "Stephen Clark",
+      "publishedAt": "2026-10-28T22:51:15.000Z",
+      "content": "United Launch Alliance announced Wednesday it plans to return its Vulcan rocket to service on November 13, nine months after a solid rocket booster anomaly threw the company's 2026 launch schedule into oblivion. The return-to-flight mission will launch 40 satellites for the Amazon Leo broadband constellation, the first of 38 Vulcan flights Amazon has booked to deploy the bulk of its network. The mission will lift off from Cape Canaveral Space Force Station, Florida, and ULA said the launch date is pending range approval. The launch is critical for ULA after its new flagship rocket suffered nozzle failures on its solid rocket boosters on two of its first four missions, most recently during a flight in February. In both cases, the rocket overcame the nozzle failure and completed its mission, but officials at the US Space Force, ULA's primary customer, lost confidence in Vulcan. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p57#a261028p57",
+      "title": "Sources: the US DOJ has inquired about the impact of Nvidia's Hugging Face deal on AI competition, as antitrust enforcers continue to probe Nvidia's conduct (Reuters)",
+      "url": "https://www.techmeme.com/261028/p57#a261028p57",
+      "author": null,
+      "publishedAt": "2026-10-28T23:00:49.000Z",
+      "content": "Reuters: Sources: the US DOJ has inquired about the impact of Nvidia's Hugging Face deal on AI competition, as antitrust enforcers continue to probe Nvidia's conduct — The US Department of Justice has made inquiries about how Nvidia's (NVDA.O) $12.93 billion deal to buy open-source platform Hugging Face …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1021644",
+      "title": "Adam Mosseri says negativity around AI is ‘going to get worse’",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1021644/adam-mosseri-instagram-ai-negativity",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-10-28T23:05:39.000Z",
+      "content": "Asked about AI and the trend of college students booing tech CEOs at graduation ceremonies, Instagram head Adam Mosseri acknowledged in an interview that a lot of people really don't like AI, and it's not just young people and creatives. Appearing on the Colin and Samir podcast to talk about the launch of widescreen and long-form video for Instagram, Mosseri said he thinks there's a trend of \"more anxiety and more frustration and more anger about AI,\" particularly in creative industries: It's not only getting worse, it's going to continue to get worse. I think we're going to see more frustration and anger, some of it founded, some of it un … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-gives-chatgpt-pro-subscribers-up-to-500-in-free-api-credits",
+      "title": "OpenAI Gives ChatGPT Pro Subscribers up to $500 in Free API Credits",
+      "url": "https://alphasignal.ai/news/openai-gives-chatgpt-pro-subscribers-up-to-500-in-free-api-credits",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-10-28T23:17:13.000Z",
+      "content": "OpenAI is now bundling monthly API credits into ChatGPT Pro and Business subscriptions, turning consumer plans into a launchpad for building apps and agents.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Oct/28/ted-sanders/",
+      "title": "Quoting Ted Sanders",
+      "url": "https://simonwillison.net/2026/Oct/28/ted-sanders/",
+      "author": null,
+      "publishedAt": "2026-10-28T23:23:21.000Z",
+      "content": "In general, LLM performance is incredibly multidimensional. There's no guarantee of a fixed ordering where the model that is best at math is also the model that's best at jokes. Despite that complexity, much of the variation in performance is explained by just a single variable: model size. In general, models that are bigger will (a) be more performant / reliable, (b) cost more per token, and (c) have better recall of esoteric facts. As you note, our models are ordered: Luna < Terra < Sol < Astra [...] These days, version number signifies a few things at once: the order of release, the relationship to other releases, and the magnitude of improvement. So something like 6.1 would indicate it was launched after 5.6, may share some similarities to other 6.1 models in terms of training data / personality (which is why it's not 5.7), and isn't a giant enough leap to merit the headlines and expectations that would come with a 7. — Ted Sanders, explaining OpenAI's model naming conventions Tags: generative-ai, gpt, openai, ai, llms, ted-sanders",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50282454",
+      "title": "StackOverflow now gets fewer than 1000 questions a month",
+      "url": "https://data.stackexchange.com/stackoverflow/query/1926661#graph?t=1",
+      "author": "babelfish",
+      "publishedAt": "2026-10-28T23:35:02.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 244,
+      "comments": 220
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p58#a261028p58",
+      "title": "Seoul-based AI chip startup FuriosaAI raised a $620M Series D at a $2.9B valuation, up from $735M in 2025; South Korea's National Growth Fund contributed $280M (Yoolim Lee/Bloomberg)",
+      "url": "https://www.techmeme.com/261028/p58#a261028p58",
+      "author": null,
+      "publishedAt": "2026-10-28T23:45:01.000Z",
+      "content": "Yoolim Lee / Bloomberg: Seoul-based AI chip startup FuriosaAI raised a $620M Series D at a $2.9B valuation, up from $735M in 2025; South Korea's National Growth Fund contributed $280M — South Korean AI chip startup FuriosaAI quadrupled its valuation to $2.9 billion in a fresh funding round, bolstering its bid to challenge the likes of Nvidia Corp.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50282544",
+      "title": "GitLab Security Incident: Attempted Exploitation of CVE-2026-97229",
+      "url": "https://alpinelinux.org/posts/GitLab-security-incident-CVE-2026-97229.html",
+      "author": "sashk",
+      "publishedAt": "2026-10-28T23:45:46.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 133,
+      "comments": 55
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p59#a261028p59",
+      "title": "Sources: AI coding startup Cognition weighs a new funding round before year's end after receiving offers valuing it at $70B-$80B, up from $48B in September (Katie Roof/Business Insider)",
+      "url": "https://www.techmeme.com/261028/p59#a261028p59",
+      "author": null,
+      "publishedAt": "2026-10-29T00:20:23.000Z",
+      "content": "Katie Roof / Business Insider: Sources: AI coding startup Cognition weighs a new funding round before year's end after receiving offers valuing it at $70B-$80B, up from $48B in September — Just weeks after announcing a new round of funding at a $48 billion valuation, AI coding startup Cognition is fielding new investor interest at a much higher price.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50282838",
+      "title": "Qwenputer: A functioning, deterministic RISC-V CPU inside Qwen3.5",
+      "url": "https://divagr.com/blog/qwenputer",
+      "author": "csmantle",
+      "publishedAt": "2026-10-29T00:25:45.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 259,
+      "comments": 60
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p60#a261028p60",
+      "title": "Zillow agrees to pay $212.5M to settle an investor class action over its failed Zillow Offers home-flipping venture, after SCOTUS refused to hear its appeal (Jonathan Stempel/Reuters)",
+      "url": "https://www.techmeme.com/261028/p60#a261028p60",
+      "author": null,
+      "publishedAt": "2026-10-29T00:30:00.000Z",
+      "content": "Jonathan Stempel / Reuters: Zillow agrees to pay $212.5M to settle an investor class action over its failed Zillow Offers home-flipping venture, after SCOTUS refused to hear its appeal — Zillow (ZG.O) said on Wednesday it will pay $212.5 million in cash to settle a class action accusing the online real estate marketplace …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p61#a261028p61",
+      "title": "Microsoft reports Q1 Xbox hardware revenue down 14% YoY, Xbox content and services revenue down 2%, and Windows OEM and Devices revenue down 22% (Tom Warren/The Verge)",
+      "url": "https://www.techmeme.com/261028/p61#a261028p61",
+      "author": null,
+      "publishedAt": "2026-10-29T01:01:40.000Z",
+      "content": "Tom Warren / The Verge: Microsoft reports Q1 Xbox hardware revenue down 14% YoY, Xbox content and services revenue down 2%, and Windows OEM and Devices revenue down 22% — Windows and Xbox revenues have declined during Microsoft's first quarter of the 2027 financial year. … Microsoft just posted the first quarter of its 2027 fiscal financial results.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p62#a261028p62",
+      "title": "The personal data of 41,000+ DHS employees and contractors, including CBP and ICE agents, leaks online after hackers claim they breached DHS' Okta login system (Wired)",
+      "url": "https://www.techmeme.com/261028/p62#a261028p62",
+      "author": null,
+      "publishedAt": "2026-10-29T01:55:02.000Z",
+      "content": "Wired: The personal data of 41,000+ DHS employees and contractors, including CBP and ICE agents, leaks online after hackers claim they breached DHS' Okta login system — The leaked records include the locations of ICE and CBP facilities, workers' cell phone numbers, and the members of groups tied …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p63#a261028p63",
+      "title": "Google is rolling out Gemini 4 Carbon to selected cybersecurity defenders through Fairwind at $2/1M input and $10/1M output tokens, rising to $4 and $20 later (Carl Franzen/VentureBeat)",
+      "url": "https://www.techmeme.com/261028/p63#a261028p63",
+      "author": null,
+      "publishedAt": "2026-10-29T02:00:02.000Z",
+      "content": "Carl Franzen / VentureBeat: Google is rolling out Gemini 4 Carbon to selected cybersecurity defenders through Fairwind at $2/1M input and $10/1M output tokens, rising to $4 and $20 later — Google announced its latest and most intelligent frontier AI model today: Gemini 4 Carbon promises improvements in cybersecurity …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1021554",
+      "title": "Anduril now says its BlueChip laptop will meet Buy American standards at launch",
+      "url": "https://www.theverge.com/policy/1021554/anduril-bluechip-65-percent-domestic-buy-american",
+      "author": "Sean Hollister",
+      "publishedAt": "2026-10-29T02:22:46.000Z",
+      "content": "On Tuesday, defense contractor Anduril and chipmaker Qualcomm announced a partnership to build laptops entirely in the United States, starting with a single model in 2027. They also announced a \"long-term goal\" of pushing the computer industry to create \"a fully domestic supply chain.\" Even a single Made-in-USA laptop would be a surprise, because no major US computer company builds its laptops here - not Apple, not Dell, not HP, not Microsoft. We're not aware of any company that does. But we are aware of companies that have briefly and strategically assembled computers here seemingly to appease President Donald Trump. We're also aware of … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p64#a261028p64",
+      "title": "Samsung reports Q3 revenue up 127% YoY to a record ~$146.3B and a record operating profit up 783% to ~$80.5B, both roughly in line with estimates (Jenny Lee/CNBC)",
+      "url": "https://www.techmeme.com/261028/p64#a261028p64",
+      "author": null,
+      "publishedAt": "2026-10-29T03:20:22.000Z",
+      "content": "Jenny Lee / CNBC: Samsung reports Q3 revenue up 127% YoY to a record ~$146.3B and a record operating profit up 783% to ~$80.5B, both roughly in line with estimates — - Samsung Electronics reported third-quarter earnings on Thursday, with operating profit broadly in line with analysts' estimates",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50284255",
+      "title": "Claude Code burns ~15–20% of your tokens on a 3-word status line",
+      "url": "https://gist.github.com/flamerix-ai/c3905705cc4205e5de3011fa2e74efce",
+      "author": "NikZaal",
+      "publishedAt": "2026-10-29T03:33:42.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 161,
+      "comments": 37
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261028/p65#a261028p65",
+      "title": "How surging demand from AI hyperscalers has quintupled flash memory prices and shifted market and negotiating power from Apple to suppliers like Kioxia (Rolfe Winkler/Wall Street Journal)",
+      "url": "https://www.techmeme.com/261028/p65#a261028p65",
+      "author": null,
+      "publishedAt": "2026-10-29T03:55:00.000Z",
+      "content": "Rolfe Winkler / Wall Street Journal: How surging demand from AI hyperscalers has quintupled flash memory prices and shifted market and negotiating power from Apple to suppliers like Kioxia — The iPhone maker for years bullied flash-storage makers into steep discounts—until AI hyperscalers bid up prices and gobbled up supply",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261029/p1#a261029p1",
+      "title": "Fragment, which uses AI to resolve purchasing and payment issues across manufacturing datasets, emerges from stealth with $56M from 8VC and others (Chris Metinko/Axios)",
+      "url": "https://www.techmeme.com/261029/p1#a261029p1",
+      "author": null,
+      "publishedAt": "2026-10-29T04:05:01.000Z",
+      "content": "Chris Metinko / Axios: Fragment, which uses AI to resolve purchasing and payment issues across manufacturing datasets, emerges from stealth with $56M from 8VC and others — Procurement startup Fragment is exiting stealth with $56 million raised, CEO Pranav Mulgund tells Axios Pro exclusively.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261029/p2#a261029p2",
+      "title": "DoorDash moves its Q3 earnings release from November 4 to before the market opens on October 29, amid reports of an imminent ~$17B deal to acquire Instacart (Ville Heiskanen/Bloomberg)",
+      "url": "https://www.techmeme.com/261029/p2#a261029p2",
+      "author": null,
+      "publishedAt": "2026-10-29T04:40:01.000Z",
+      "content": "Ville Heiskanen / Bloomberg: DoorDash moves its Q3 earnings release from November 4 to before the market opens on October 29, amid reports of an imminent ~$17B deal to acquire Instacart — DoorDash Inc., the food delivery provider in talks to take over Instacart, moved its earnings release date forward by almost a week.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261029/p3#a261029p3",
+      "title": "Google's search revenue rose 12% YoY to $63.25B in Q3 2026, down from 14.5% in Q3 2025, with Google attributing the slowdown to \"lower monetization\" in AI Mode (Simon Sharwood/The Register)",
+      "url": "https://www.techmeme.com/261029/p3#a261029p3",
+      "author": null,
+      "publishedAt": "2026-10-29T05:10:01.000Z",
+      "content": "Simon Sharwood / The Register: Google's search revenue rose 12% YoY to $63.25B in Q3 2026, down from 14.5% in Q3 2025, with Google attributing the slowdown to “lower monetization” in AI Mode — That's a problem, cos it just spent $51 billion on infrastructure and still needs to rent compute from others to run its cloud",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261029/p4#a261029p4",
+      "title": "Samsung expects capex to rise ~60% to ~$63B this year, with HBM capacity sold out through 2027 and 10 long-term supply deals secured with key customers (Bloomberg)",
+      "url": "https://www.techmeme.com/261029/p4#a261029p4",
+      "author": null,
+      "publishedAt": "2026-10-29T05:20:01.000Z",
+      "content": "Bloomberg: Samsung expects capex to rise ~60% to ~$63B this year, with HBM capacity sold out through 2027 and 10 long-term supply deals secured with key customers — Samsung Electronics Co. plans to hike spending more than 60% this year after selling out of high-end chips for 2027 …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261029/p5#a261029p5",
+      "title": "Samsung shares fall as much as 6.6% as a lack of a new shareholder return plan, higher capex, and its chip unit's profit miss weigh on investor sentiment (Bloomberg)",
+      "url": "https://www.techmeme.com/261029/p5#a261029p5",
+      "author": null,
+      "publishedAt": "2026-10-29T05:25:02.000Z",
+      "content": "Bloomberg: Samsung shares fall as much as 6.6% as a lack of a new shareholder return plan, higher capex, and its chip unit's profit miss weigh on investor sentiment — Samsung Electronics Co. shares reversed earlier gains to slide as much as 6.6% as the lack of a new shareholder return plan in its earnings disappointed investors.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261029/p6#a261029p6",
+      "title": "Google announces the expansion of ads in AI Mode into international markets, as growth in its core search advertising business slows (Lauren Forristal/TechCrunch)",
+      "url": "https://www.techmeme.com/261029/p6#a261029p6",
+      "author": null,
+      "publishedAt": "2026-10-29T05:30:11.000Z",
+      "content": "Lauren Forristal / TechCrunch: Google announces the expansion of ads in AI Mode into international markets, as growth in its core search advertising business slows — Google is bringing ads in its AI-powered Search experiences to international markets, betting that generative AI can open up new revenue opportunities …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.35201",
+      "title": "DTCA: Denoising Token Credit Assignment for Reinforcement Learning in Diffusion Language Models",
+      "url": "https://huggingface.co/papers/2610.35201",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:32.709Z",
+      "content": "DTCA: Denoising Token Credit Assignment for Reinforcement Learning in Diffusion Language Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.32749",
+      "title": "Efficient Streaming Audio-Visual Target Speaker Extraction for Real-World Acoustic Scenes",
+      "url": "https://huggingface.co/papers/2610.32749",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:32.709Z",
+      "content": "Efficient Streaming Audio-Visual Target Speaker Extraction for Real-World Acoustic Scenes",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.35684",
+      "title": "OmniShowcase: Omnidirectional Subject-Consistent Video Generation from Multi-View Images",
+      "url": "https://huggingface.co/papers/2610.35684",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:32.709Z",
+      "content": "OmniShowcase: Omnidirectional Subject-Consistent Video Generation from Multi-View Images",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.37230",
+      "title": "TAO: Tool-Aware Joint Scheduling for LLM-Based Agentic Serving",
+      "url": "https://huggingface.co/papers/2610.37230",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:32.709Z",
+      "content": "TAO: Tool-Aware Joint Scheduling for LLM-Based Agentic Serving",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2610.31670",
+      "title": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
+      "url": "https://huggingface.co/papers/2610.31670",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:32.709Z",
+      "content": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wsj.com/tech/apple-iphone-memory-chips-ai-c0084cc9",
+      "title": "The Beleaguered Chip Sellers Getting Their Revenge on Apple",
+      "url": "https://www.wsj.com/tech/apple-iphone-memory-chips-ai-c0084cc9",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.258Z",
+      "content": "The Beleaguered Chip Sellers Getting Their Revenge on Apple wsj.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://siliconangle.com/2026/10/28/energy-efficient-inference-chip-developer-furiosaai-raises-620m-to-solve-the-data-center-power-bottleneck",
+      "title": "Energy-efficient inference chip developer FuriosaAI raises $620M to solve the data center power bottleneck",
+      "url": "https://siliconangle.com/2026/10/28/energy-efficient-inference-chip-developer-furiosaai-raises-620m-to-solve-the-data-center-power-bottleneck",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.273Z",
+      "content": "Energy-efficient inference chip developer FuriosaAI raises $620M to solve the data center power bottleneck siliconangle.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/rohanpaul_ai/status/2115643355522896283",
+      "title": "Chinese labs moved their distillation efforts from Claude to OpenAI’s GPT-6 Astra per The Inform...",
+      "url": "https://x.com/rohanpaul_ai/status/2115643355522896283",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.273Z",
+      "content": "Chinese labs moved their distillation efforts from Claude to OpenAI’s GPT-6 Astra per The Inform... x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/trendforce/status/2115661151585305061",
+      "title": "Bloomberg reports that #Marvell is in advanced talks to acquire optical communications component ...",
+      "url": "https://x.com/trendforce/status/2115661151585305061",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.274Z",
+      "content": "Bloomberg reports that #Marvell is in advanced talks to acquire optical communications component ... x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/10/28/doj-questions-nvidias-12point9-billion-hugging-face-deal.html",
+      "title": "DOJ questions Nvidia's $12.9 billion Hugging Face deal",
+      "url": "https://www.cnbc.com/2026/10/28/doj-questions-nvidias-12point9-billion-hugging-face-deal.html",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.275Z",
+      "content": "DOJ questions Nvidia's $12.9 billion Hugging Face deal cnbc.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/10/28/upwind-raises-400m-after-walking-away-from-datadog-acquisition-offer",
+      "title": "Upwind raises $400M after walking away from Datadog acquisition offer",
+      "url": "https://techcrunch.com/2026/10/28/upwind-raises-400m-after-walking-away-from-datadog-acquisition-offer",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.276Z",
+      "content": "Upwind raises $400M after walking away from Datadog acquisition offer techcrunch.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.baseten.co/library/nvidia-nemotron-35-transcribe",
+      "title": "Baseten hosts NVIDIA Nemotron 3.5 Transcribe (*)",
+      "url": "https://www.baseten.co/library/nvidia-nemotron-35-transcribe",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.277Z",
+      "content": "Baseten hosts NVIDIA Nemotron 3.5 Transcribe (*) baseten.co1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/10/28/anthropic-pbc-what-its-structure-means-for-investors-.html",
+      "title": "Anthropic’s public benefit structure creates unusual risks for IPO investors",
+      "url": "https://www.cnbc.com/2026/10/28/anthropic-pbc-what-its-structure-means-for-investors-.html",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.277Z",
+      "content": "Anthropic’s public benefit structure creates unusual risks for IPO investors cnbc.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://jacquesmattheij.com/local-inference-with-large-language-models",
+      "title": "Local Inference with LLMs",
+      "url": "https://jacquesmattheij.com/local-inference-with-large-language-models",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.279Z",
+      "content": "Local Inference with LLMs jacquesmattheij.com24 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/features/2026-10-29/nscale-s-unproven-ceo-braves-ai-turmoil-in-bid-for-30-billion-neocloud-ipo",
+      "title": "Nscale's Unproven CEO Braves AI Turmoil in Bid for $30 Billion Neocloud IPO",
+      "url": "https://www.bloomberg.com/news/features/2026-10-29/nscale-s-unproven-ceo-braves-ai-turmoil-in-bid-for-30-billion-neocloud-ipo",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.279Z",
+      "content": "Nscale's Unproven CEO Braves AI Turmoil in Bid for $30 Billion Neocloud IPO bloomberg.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://openrouter.ai/blog/tutorials/prevent-prompt-injection",
+      "title": "How to Prevent Prompt Injection: 13 Attacks, Tested",
+      "url": "https://openrouter.ai/blog/tutorials/prevent-prompt-injection",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.279Z",
+      "content": "How to Prevent Prompt Injection: 13 Attacks, Tested openrouter.ai13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.airealist.ai/p/nvidia-geforce-half-rate",
+      "title": "GeForce vs Workstation GPUs: NVIDIA's Half Rate, Priced",
+      "url": "https://www.airealist.ai/p/nvidia-geforce-half-rate",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.280Z",
+      "content": "GeForce vs Workstation GPUs: NVIDIA's Half Rate, Priced airealist.ai19 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://armincat.com/articles/ai-agent-executed-same-query-254-times",
+      "title": "Our AI Agent Executed the Same Successful SQL Query 254 Times",
+      "url": "https://armincat.com/articles/ai-agent-executed-same-query-254-times",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.283Z",
+      "content": "Our AI Agent Executed the Same Successful SQL Query 254 Times armincat.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.thelec.net/news/articleView.html?idxno=14980",
+      "title": "Naver Signs $9 Billion AI Infrastructure Deal With Brookfield",
+      "url": "https://www.thelec.net/news/articleView.html?idxno=14980",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.283Z",
+      "content": "Naver Signs $9 Billion AI Infrastructure Deal With Brookfield thelec.net2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://hgpu.org?p=31447",
+      "title": "Reverse Engineering the CUDA Software Stack: A Clean-Room GPU Machine-Code Toolchain for the NVIDIA GB10 | hgpu.org",
+      "url": "https://hgpu.org?p=31447",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.283Z",
+      "content": "Reverse Engineering the CUDA Software Stack: A Clean-Room GPU Machine-Code Toolchain for the NVIDIA GB10 | hgpu.org hgpu.org2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://unmitigatedrisk.com/2026/10/agents-should-earn-authority-not-inherit-it",
+      "title": "Agents Should Earn Authority, Not Inherit It",
+      "url": "https://unmitigatedrisk.com/2026/10/agents-should-earn-authority-not-inherit-it",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.284Z",
+      "content": "Agents Should Earn Authority, Not Inherit It unmitigatedrisk.com21 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.coindesk.com/business/2026/10/28/wall-street-backbone-dtcc-brings-usd30-trillion-securities-closer-to-blockchain-with-major-banks",
+      "title": "Wall Street backbone DTCC brings $30 trillion securities closer to blockchain with major banks",
+      "url": "https://www.coindesk.com/business/2026/10/28/wall-street-backbone-dtcc-brings-usd30-trillion-securities-closer-to-blockchain-with-major-banks",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.285Z",
+      "content": "Wall Street backbone DTCC brings $30 trillion securities closer to blockchain with major banks coindesk.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.lesswrong.com/posts/LFrHfCiAxFQD3Ammy/ai-agents-protect-others-from-shutdown",
+      "title": "AI Agents Protect Others From Shutdown",
+      "url": "https://www.lesswrong.com/posts/LFrHfCiAxFQD3Ammy/ai-agents-protect-others-from-shutdown",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.286Z",
+      "content": "AI Agents Protect Others From Shutdown lesswrong.com11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/10/28/apples-touchscreen-macbook-pro-pushes-laptop-pricing-to-a-new-extreme",
+      "title": "Apple’s touchscreen MacBook Pro pushes laptop pricing to a new extreme",
+      "url": "https://techcrunch.com/2026/10/28/apples-touchscreen-macbook-pro-pushes-laptop-pricing-to-a-new-extreme",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.287Z",
+      "content": "Apple’s touchscreen MacBook Pro pushes laptop pricing to a new extreme techcrunch.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.macstories.net/stories/macbook-pro-with-touch-a-mac-for-the-ipad-generation",
+      "title": "MacBook Pro with Touch: A Mac for the iPad Generation",
+      "url": "https://www.macstories.net/stories/macbook-pro-with-touch-a-mac-for-the-ipad-generation",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.287Z",
+      "content": "MacBook Pro with Touch: A Mac for the iPad Generation macstories.net7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.latitudemedia.com/news/cracks-ai-race-for-onsite-gas-power",
+      "title": "The cracks in the AI race for onsite gas power",
+      "url": "https://www.latitudemedia.com/news/cracks-ai-race-for-onsite-gas-power",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.290Z",
+      "content": "The cracks in the AI race for onsite gas power latitudemedia.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://lsvp.com/stories/file-systems-for-agents",
+      "title": "File Systems For Agents",
+      "url": "https://lsvp.com/stories/file-systems-for-agents",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.290Z",
+      "content": "File Systems For Agents lsvp.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.ariwilson.com/writing/agent-effort-levels",
+      "title": "Bakeoff: More thinking isn’t (always) better",
+      "url": "https://www.ariwilson.com/writing/agent-effort-levels",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.291Z",
+      "content": "Bakeoff: More thinking isn’t (always) better ariwilson.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://bitbytebit.substack.com/p/ai-mass-deskilling-can-be-stopped",
+      "title": "AI mass deskilling can be stopped",
+      "url": "https://bitbytebit.substack.com/p/ai-mass-deskilling-can-be-stopped",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.292Z",
+      "content": "AI mass deskilling can be stopped bitbytebit.substack.com11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://socket.dev/blog/searchjacked",
+      "title": "Searchjacked: Hidden Browser Extensions Hijack Searches for 13 Million Users",
+      "url": "https://socket.dev/blog/searchjacked",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.293Z",
+      "content": "Searchjacked: Hidden Browser Extensions Hijack Searches for 13 Million Users socket.dev11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-10-29/tencent-s-cloud-boss-plays-long-game-to-patch-leaky-ai-ship",
+      "title": "Tencent’s Cloud Boss Plays Long Game to Patch ‘Leaky’ AI Ship",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-29/tencent-s-cloud-boss-plays-long-game-to-patch-leaky-ai-ship",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.297Z",
+      "content": "Tencent’s Cloud Boss Plays Long Game to Patch ‘Leaky’ AI Ship bloomberg.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theatlantic.com/technology/2026/10/vibe-coders-are-clogging-app-store-slop/689150",
+      "title": "Vibe Coders Are Clogging Up the App Store",
+      "url": "https://www.theatlantic.com/technology/2026/10/vibe-coders-are-clogging-app-store-slop/689150",
+      "author": null,
+      "publishedAt": "2026-10-29T05:37:34.315Z",
+      "content": "Vibe Coders Are Clogging Up the App Store theatlantic.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    }
+  ]
+}
