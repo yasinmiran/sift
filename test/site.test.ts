@@ -773,6 +773,28 @@ describe("buildSite", () => {
     expect(day).not.toContain("beforeinstallprompt");
   });
 
+  it("keeps the hidden attribute working on the notify block's buttons", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    const css = /<style>([^]*?)<\/style>/.exec(index)?.[1] ?? "";
+    // An author display declaration outranks the ua sheet's
+    // [hidden]{display:none} whatever the specificity, so a class here that
+    // sets display needs a guard of its own or el.hidden = true is a no-op on
+    // it. notify.ts builds the install button hidden and reveals it when the
+    // browser offers beforeinstallprompt; unguarded it shipped visible and
+    // dead instead, and at 120px beside the bell it took .notify to 241px,
+    // past .head's wrap point under ~480px, so the archive dropped 54px when
+    // the bell landed. .notify had the guard from the start; its buttons did
+    // not, which is the same rule forgotten one element down.
+    const sets = [...css.matchAll(/^\.(notify[a-z-]*)\{[^}]*display:(?!none)/gm)].map((m) => m[1]);
+    expect(sets).toContain("notify-btn");
+    for (const cls of new Set(sets)) {
+      expect(css, `.${cls} sets display with no [hidden] guard`).toContain(`.${cls}[hidden]{display:none}`);
+    }
+    expect(index).toContain("install.hidden = true");
+  });
+
   // The claim is readability on paper, so assert the ratio rather than the
   // hexes: chrome prints with background graphics off, which leaves the sheet
   // white and every token as declared (--text 1.29:1 against it, --body 2.15).
