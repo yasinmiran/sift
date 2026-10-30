@@ -153,6 +153,15 @@ mark.pen{background-color:transparent;color:var(--bold)}
 .notify{margin:0;font-size:.9rem;color:var(--muted);display:flex;align-items:center;flex-wrap:wrap;gap:.6rem}
 .notify[hidden]{display:none}
 .notify-btn{font:inherit;font-size:.9rem;color:var(--body);background:none;border:1px solid var(--border);border-radius:var(--radius);padding:.4rem .8rem;cursor:pointer;transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:.45rem}
+/* Same guard as .notify above, and for the same reason: an author display
+   declaration beats the ua sheet's [hidden]{display:none} whatever the
+   specificity, so .notify-btn's inline-flex was laying out the install
+   button notify.ts builds hidden. It shipped visible and dead on every
+   load (its own handler returns until the browser offers the install
+   event) and, 120px wide beside the bell, took .notify to 241px: past
+   .head's wrap point under ~480px, so the archive dropped 54px when the
+   bell landed. The day pages assert this sheet never names that event. */
+.notify-btn[hidden]{display:none}
 .notify-btn svg{width:15px;height:15px}
 .notify-btn:active{transform:translateY(1px);border-color:var(--accent)}
 .notify-btn:disabled{cursor:default;color:var(--muted)}
