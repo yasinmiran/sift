@@ -6,6 +6,34 @@ merges and closures and never expire.
 
 ## Lessons
 
+- The instrument is part of the finding, and two browsers are two instruments.
+  Today's fix measured as a clean win (index layout shift **0.046-0.064 ->
+  ~0.000** at 360-430px, 8 of 8 screenshots byte-identical everywhere else) and
+  was then re-measured by the tool that found the defect as **no change at
+  all**: lighthouse read cls **0.1999182 before and 0.1999171 after**. Both
+  readings are honest. Lighthouse's chrome fires `beforeinstallprompt` and
+  playwright's chromium does not, so the install button exists in one
+  instrument's page and not the other's, and the shift under test is exactly
+  the one that button causes. A before/after pair taken in a browser that
+  cannot reach the code path under test will certify a fix that changes
+  nothing, and nothing in the pair says so. 10-27 banked "one clean instrument
+  retires nothing" about rule engines; this is its browser-state form, and the
+  habit that falls out is to **re-run the finding's own instrument on the fix**
+  rather than only the one that was convenient to build.
+  Its other half cost three readings and was sitting in arithmetic the whole
+  time. A layout-shift entry's value is impact fraction times distance
+  fraction, and impact fraction cannot exceed 1, so **0.238 from a 28px move on
+  an 844px viewport needs an impact fraction of 7.2**: impossible, stated by
+  the number itself, three readings before the cause was found. The `sources`
+  list was capped at five (10-29's trap again) and naming text nodes with
+  `dy 0`, which reads as "nothing moved" rather than "the mover is not in this
+  list", so the impossible number was the only honest witness. **When a reading
+  cannot be produced by the mechanism you have in mind, the impossibility is
+  the mechanism telling you it is the wrong one**: go and measure the element
+  instead of theorising about the event. What settled it was one line of
+  geometry, `.notify` measuring **241px where the bell alone is 112**, which
+  named the extra button with no theory of timing at all.
+
 - A deliberate trade is an unpaid bill until a run reads the other side, and
   the comment that explains the trade is exactly where the reading does not
   happen. `page.ts` has carried the font stylesheet as a preload flipped on
@@ -513,6 +541,31 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-10-30 as #313 / PR #315, `c6ab9de`, `pages` run 41034447196
+  green. `.notify-btn[hidden]{display:none}`, the guard `.notify` already had
+  one line up. The dead "install app" button is off the index for every
+  browser that never offers the install event, and the header stops wrapping
+  at 360-430px (`.head` 83 -> 83, `main` top 171 -> 171, shift 0.046-0.064 ->
+  ~0.000). 255 tests (was 254), 9 lines in page.ts and 22 in the test, day
+  pages and the 404 byte-identical. The cls half it does NOT fix is #314 and
+  is measured there; do not re-file it as this PR underdelivering.
+- Walked clean on 2026-10-30, recorded so a future run does not re-walk them.
+  **Lighthouse over the built site, first run ever here**: seo **1.0** and
+  accessibility **1.0** on both the index and a day page, which is independent
+  confirmation of the 10-27/10-28 axe and vnu sweeps. Best practices sits at
+  **0.77** and both deductions are this container rather than the site:
+  `is-on-https` (served over localhost) and `errors-in-console`, whose two
+  entries are `gc.zgo.at` at ERR_NAME_NOT_RESOLVED and the goatcounter counter
+  at ERR_TUNNEL_CONNECTION_FAILED. Do not file either.
+  **The day pages' residual font shift is the floor 10-29 banked, confirmed by
+  negative control**: with `fonts.gstatic.com` aborted every day page reads cls
+  **0.0000**, so nothing but the swap is moving there. One correction to the
+  10-29 note's framing, worth having: at 860px the residual is **horizontal**
+  re-flow of inline runs inside a line, not vertical movement, which is why
+  2026-10-30 @860 scores 0.238 while its worst vertical move is 28px. Still
+  the floor, still not a regression.
+  **`npm audit --omit=dev` 0**, and the full tree is clean too this time.
 
 - MERGED 2026-10-29 as #310 / PR #311, `0ad1016`, `pages` run 40849689828
   green. The body text now paints in an Arial-keyed face carrying Karla's
@@ -1790,6 +1843,84 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-30
+
+**#313 filed and then corrected before a line was written, #314 split off it,
+PR #315 built, `checks` green on `5fdac4c`, merged by this run at 09:34 as
+`c6ab9de`, `pages` run 41034447196 green on it.** The index has been shipping
+a visible, dead "install app" button to every reader whose browser never
+offers the install event, for as long as the button has existed.
+
+**The signal is an instrument nobody here had run.** Every accessibility and
+markup checker has been: axe on 10-27, vnu and html-validate on 10-28. Nothing
+had asked an seo or best-practices instrument for a verdict, and lighthouse
+installs from npm and drives the preinstalled chromium with `CHROME_PATH`. It
+returns seo 1.0 and accessibility 1.0, and one finding: the index's
+`cumulative-layout-shift` is **0.2** against a 0.1 good line, with
+`layout-shifts` naming one culprit, `body > main` moving, worth 99.9% of it.
+The day pages score 1.0 on performance, so this is the index alone.
+
+**The first story about it was wrong, and the negative control that proved it
+was aimed at the wrong variable.** With `fonts.gstatic.com` aborted the index
+still scored 0.0458 and the shift still fired at 97-113ms, which correctly
+rules out the swap #310 fixed. It does not establish what the cause *is*, and
+the next three readings assumed timing: `notify.ts` un-hides the bell on
+`navigator.serviceWorker.ready`, which resolves after first paint, so the row
+arrives late. A reserve was written against that story and measured **no
+change at all**, identical numbers at all nine widths, which is what sent the
+run back to the geometry.
+
+**The defect is one missing guard, and the repo had already written it one
+line up.** `install.hidden = true` is a no-op: an author `display` declaration
+beats the ua sheet's `[hidden]{display:none}` whatever the specificity, and
+`.notify-btn` sets `display:inline-flex`. Asked directly, the page says so in
+one line, `button.notify-btn[hidden]` computes `display:inline-flex`. So the
+install button notify.ts builds hidden is laid out anyway at **120px**, taking
+`.notify` to **241px** where the bell alone is 112, and `title 149 + gap 24 +
+241 = 414` against 350 of content width is past `.head`'s wrap point. Its own
+click handler returns on the first line until the install event lands, so what
+shipped is a control that does nothing. `.notify[hidden]{display:none}` sits on
+the line directly above. This is 10-16's invariant lesson at its shortest range
+yet: not the next file, not the next function, the next element in the same
+block.
+
+**What the fix buys, and what it does not.** The header stops wrapping at 360,
+390, 412 and 430px (`.head` 83 -> 83, `main` top 171 -> 171, shift
+0.046-0.064 -> ~0.000), the index at 390 loses 54px of height, and the day
+pages and 404 come back **8 of 8 byte-identical** with the clock frozen. 320px
+still wraps and that is arithmetic rather than this bug, the bell alone wanting
+285px against 280. Then lighthouse, re-run on the fix, said **0.1999182 ->
+0.1999171**: its chrome fires `beforeinstallprompt`, the button legitimately
+appears, and the header wraps anyway. So on installable chromium the change is
+cosmetic and the shift merely moves from "when the bell lands" to "when the
+install event fires". #313 was rewritten with that correction above its
+original text before the branch was cut, and the remaining half went to #314
+as a proposal, because every way to kill it (reserve the row, stop the header
+wrapping, shrink the controls) edits the pinned header.
+
+**Mechanics worth keeping.** `document.fonts.ready` is **not** a settle signal
+on this site: the font css is a flipped preload, so at DOMContentLoaded there
+are no webfont faces to wait on and `document.fonts.status` already reads
+`loaded`. Waiting on it measured 0 movement on pages that move plenty. The
+honest substitutes are `document.fonts.check("1rem Karla")` or, better for a
+before/after, **two independent loads with `fonts.gstatic.com` routed to abort
+in one of them**, which removes the timing race entirely. Also: a test can bite
+in a direction you did not aim it. The first version of the css comment used
+the literal word `beforeinstallprompt`, and `site.test.ts` already asserts the
+day pages never contain it; the shared `<style>` put it on all 32. The comment
+now says so, in the comment, for whoever writes the next one.
+
+**Housekeeping, both as always.** The live site is unreachable from here
+(`sift.yasint.dev` 403 at CONNECT), so the deploy is confirmed by the green
+`pages` run rather than by reading it back. The branch delete refused again,
+sideband disconnect on `git push origin --delete`, and
+`gardener/2026-10-30-notify-reserve` joins the four before it standing on the
+remote. `gh` is dead (`GH_TOKEN` invalid); every github call went through the
+MCP tools. `issue_write` stripped the harness footer on both issues,
+`create_pull_request` re-appended it and `update_pull_request` took it off.
+The branch name says `notify-reserve` after the fix that was abandoned; left
+as-is rather than re-pushed over a merged commit.
 
 ### 2026-10-29
 
