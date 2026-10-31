@@ -13,10 +13,20 @@ const SPIN_ICON =
 // absence gets the install hint rather than a dead button. All failures
 // degrade silently back to the idle state. The install button appears only
 // when the browser offers beforeinstallprompt and the app is not standalone.
+//
+// showModal() makes everything outside the dialog inert, so the dialog's own
+// accessible name is the whole of a screen reader's orientation on entry, and
+// a native <dialog> takes none from its contents: chromium's tree printed
+// `dialog name=""` above the heading it sits on top of. aria-labelledby
+// points at that heading rather than repeating it in an aria-label, so the
+// name cannot drift from the words on screen. No instrument here reads it: a
+// closed dialog is absent from the tree entirely, axe's aria-dialog-name
+// selects [role="dialog"] and this element carries the role implicitly, and
+// html-validate ships no rule for it, so site.test.ts is the gate.
 export function notifyBlock(): string {
   return `<p id="notify" class="notify" hidden></p>
-<dialog id="install-help" class="install-help">
-<h2>get sift on your home screen</h2>
+<dialog id="install-help" class="install-help" aria-labelledby="install-help-title">
+<h2 id="install-help-title">get sift on your home screen</h2>
 <ol>
 <li>tap the share button in your browser's toolbar</li>
 <li>choose "Add to Home Screen" (in chrome it can sit further down the share sheet)</li>

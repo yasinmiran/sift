@@ -683,6 +683,39 @@ describe("buildSite", () => {
     }
   });
 
+  // showModal() makes everything outside the dialog inert, so the dialog's own
+  // accessible name is all a screen reader is given on entry, and a native
+  // <dialog> takes no name from its contents. Chromium's AX tree printed
+  // `dialog name=""` for the install help; axe is 0 violations on the open
+  // dialog because aria-dialog-name selects [role="dialog"] only, and
+  // html-validate has no rule for it, so the gate lives here. Asserted over
+  // every built page, since the next dialog added anywhere is the one that
+  // would ship unnamed.
+  it("names every dialog it renders", () => {
+    digest("2026-07-03", "body");
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    let dialogs = 0;
+    for (const file of readdirSync(out).filter((f) => f.endsWith(".html"))) {
+      const $ = load(readFileSync(join(out, file), "utf8"));
+      for (const el of $("dialog").toArray()) {
+        dialogs += 1;
+        const label = ($(el).attr("aria-label") ?? "").trim();
+        // A labelledby pointing at nothing, or at an element that renders
+        // empty, is the same unnamed dialog with an attribute on it.
+        const named =
+          label !== "" ||
+          ($(el).attr("aria-labelledby") ?? "")
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean)
+            .some((id) => $(`#${id}`).text().trim() !== "");
+        expect(named, `${file} renders a dialog with no accessible name`).toBe(true);
+      }
+    }
+    expect(dialogs).toBeGreaterThan(0);
+  });
+
   // The canonical tag, the sitemap, the manifest's start_url and sw.js's
   // notification fallback all name the index "/", so a page linking the file
   // name serves it under a second url nothing advertises and goatcounter
