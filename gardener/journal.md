@@ -6,6 +6,32 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A page has states, and the platform's own instrument only ever reads the one
+  the page loads in. 10-28 banked "ask the platform for the computed value, not
+  a rule engine for a verdict" and the AX tree duly named every landmark on 34
+  pages; the same tree, asked again today with nothing changed, reports
+  **`dialogs: 0`** on the index, the day page and the 404. A closed `<dialog>`
+  is not in the accessibility tree at all, so the sweep that found the unnamed
+  nav could not have seen the unnamed dialog two lines away from it, and
+  nothing in its output says a surface was missing. Opened, the tree is
+  `dialog name=""` on top of the heading it is sitting on, and because
+  `showModal()` makes the rest of the document inert that empty name is the
+  **whole** of what a reader gets on entry. The habit: after naming the media
+  an artifact is consumed in (10-22) and the instruments that exist for it
+  (10-27), name the **states** it can be in and drive the instrument into each
+  one. A dialog, an error, a loading spinner, a disabled control: every one of
+  them is a page the sweep has never read.
+  Its other half turns "the checker was silent" from an argument into a
+  reading. axe 4.14.0 returns 0 violations on the open dialog, and the
+  temptation is to explain that (native element, implicit role, probably out of
+  scope). The explanation is in the bundle: `aria-dialog-name` ships
+  `selector: '[role="dialog"], [role="alertdialog"]'`, which cannot match an
+  element carrying the role implicitly, and `html-validate` has no
+  dialog-naming rule in its tree at all. **A rule engine's silence is a
+  sentence you can go and read**, so read it rather than theorising about it,
+  the same way 10-30's impossible CLS number was settled by measuring the
+  element instead of the event.
+
 - The instrument is part of the finding, and two browsers are two instruments.
   Today's fix measured as a clean win (index layout shift **0.046-0.064 ->
   ~0.000** at 360-430px, 8 of 8 screenshots byte-identical everywhere else) and
@@ -541,6 +567,44 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-10-31 as #316 / PR #317, `87aa427`, `pages` run 41187896170
+  green. The install-help dialog carries `aria-labelledby` pointing at its own
+  `<h2>`, so chromium's tree reads `dialog name="get sift on your home
+  screen"` where it read `name=""`, and `site.test.ts` gates every built page
+  against a dialog with no name (a `labelledby` resolving to nothing counts as
+  unnamed). 256 tests (was 255), 2 attributes in `notify.ts` and 33 lines of
+  test, built tree diff 1 file, 4 of 4 index screenshots byte-identical with
+  the dialog closed and open.
+- Walked clean on 2026-10-31, recorded so a future run does not re-walk them.
+  **../AGENTS.md's "never" rules that carry no verifier gate, counted over the
+  32-day archive**: em/en dashes **0**, load-failure parentheticals (`title
+  only`, `did not load` and kin) **0**, pen marks in headings **0**, pen marks
+  in link text **0**, and engagement bait (`like if`, `tag someone`, `follow
+  for more`, `double tap`) across 63 slide captions **0**. Every one is
+  wallpaper by the 09-30/10-03 test: the input existed and the habit held, so
+  do not spend a slot gating them.
+  **The feed through a second independent parser.** 10-28 read `feed.xml` with
+  `xmllint` and the repo's own `rss-parser`; `feedparser` 6.0.14, the library
+  most readers are built on, returns `bozo: False`, `version: rss20`, 32
+  entries with title/link/id/published on every one, and picks up the
+  `atom:updated` the build emits on the 31 rewritten days as `entry.updated`.
+  So the atom-in-rss extension is not merely well-formed, it is read as
+  intended. Note for whoever reaches for the w3c validator itself: it is **not
+  installable** here, `feedvalidator` is absent from PyPI (the w3c codebase is
+  python 2), and feedparser is the substitute.
+  **`prefers-reduced-motion` is already honoured in four places** (scroll
+  behaviour, the refresh note's drain, the spinner, and the index/day notes
+  checking it in js), and **`theme-color: #0d0c0b` is not a light/dark
+  mismatch**: `color-scheme:dark` is declared unconditionally and the site has
+  no light mode. Both read like obvious gaps on a fresh look; do not file them.
+  **The AX tree in default state over index, day page and 404**: the only
+  unnamed landmarks are the singleton `banner`, `main`, `contentinfo` and
+  `article`, which is correct, and the dialog is absent entirely (see today's
+  lesson).
+  **PyPI is reachable from this container**, which is new information: `pip
+  download` and a venv both work, so python instruments are available the way
+  npm ones have been since 10-28.
 
 - MERGED 2026-10-30 as #313 / PR #315, `c6ab9de`, `pages` run 41034447196
   green. `.notify-btn[hidden]{display:none}`, the guard `.notify` already had
@@ -1843,6 +1907,91 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-10-31
+
+**#316 filed, PR #317 built, `checks` green on `b6782e9`, merged by this run at
+09:14 as `87aa427`, `pages` run 41187896170 green on it.** The one set of
+instructions an iphone reader gets for turning notifications on has been
+reaching a screen reader as an unnamed dialog for as long as it has existed.
+
+**The signal is the same instrument as 10-28, pointed at a state nobody had
+rendered.** Chromium's accessibility tree over the built index, with
+`install-help` opened, prints `dialog name=""` directly above
+`heading name="get sift on your home screen"`. `showModal()` makes everything
+outside the dialog inert, and the tree proves it: with the dialog open the
+whole document is four nodes and a list. So the empty name is not a missing
+nicety, it is the entire orientation a reader is handed on entry.
+
+**Why fifty sweeps missed it, measured rather than guessed.** Asked in the
+page's default state the same tree reports **`dialogs: 0`** on the index, the
+day page and the 404, because a closed `<dialog>` is not in the tree at all.
+Opened, **axe 4.14.0 is still 0 violations**, and the reason is a line in its
+own bundle rather than an inference: `aria-dialog-name` ships
+`selector: '[role="dialog"], [role="alertdialog"]'`, and the native element
+carries the role implicitly, so the rule cannot match. `html-validate` has no
+dialog-naming rule anywhere in its tree; its `recommended` preset on the index
+is still the two non-defects from 10-28, `doctype-style` and
+`no-implicit-button-type`.
+
+**Who actually reaches the dialog.** `notify.ts` wires it only where
+`PushManager` is absent, which on iphone is every safari tab, since apple
+exposes push to installed home-screen apps alone. The dialog's own copy says
+so. That makes it the ios reader's only route to notifications, which is what
+earned the slot over a prettier finding.
+
+**The change is two attributes and a gate.** `aria-labelledby` on the dialog
+pointing at the `<h2>` already on screen, rather than an `aria-label` carrying
+a second copy of the same words for the two to drift apart. The test reads
+every built page and treats a `labelledby` resolving to nothing, or to an
+element that renders empty, as the same unnamed dialog with an attribute on
+it, because the next dialog added anywhere is the one that would ship unnamed.
+Run against the unfixed `notify.ts` per 09-22 it fails there
+(`index.html renders a dialog with no accessible name`).
+
+**Measured after with the finding's own instrument**, per 10-30:
+`dialog name="get sift on your home screen"`, the heading unchanged beside it.
+256 tests (was 255), typecheck silent, 33 pages. The no-regression half
+is a built-tree diff of **1 file and 2 attributes**, `index.html` only with
+every day page and the 404 byte-identical, and **4 of 4 index screenshots
+byte-identical** at 390 and 860 with the dialog both closed and open, clock
+frozen and `document.fonts.ready` awaited. The open pair renders the dialog,
+so the pair reaches the code path under test rather than certifying a change
+it cannot see.
+
+**Where the slot nearly went instead, and why it did not.** Five of
+../AGENTS.md's ungated "never" rules were counted over the archive and all five
+are zero, so there is nothing to gate; the feed was re-read through feedparser
+as a second independent parser and is clean; `prefers-reduced-motion` and
+`theme-color` both read like gaps and are both already right. All recorded in
+the backlog so no later run re-walks them.
+
+**Health**: the last 25 workflow runs green before this one, `verify` clean on
+the last eight digests but for one `64 links` warning on 10-29 (editorial,
+inside the contract's own "readable in one sitting" guidance), no open PRs at
+the start of the run, five issues open (#314, #246, #241, #120, #112), none
+greenlit, so the slot went to a new observation; #316 opened and closed inside
+it.
+
+**The environment, as it behaved today.** `gh auth status` reports the
+`GH_TOKEN` invalid for the umpteenth day **and `gh api` works**: `gh api user`
+returns `yasinmiran` and `gh api repos/yasinmiran/sift` answers, which is
+10-12's lesson holding again (a status command is not a probe of the calls it
+describes). Everything github still went through the MCP tools and all of it
+landed first attempt. The footer split holds for a seventh day: `issue_write`
+stripped it, `create_pull_request` appended it, `update_pull_request` took it
+off. **Branch delete still fails**, `send-pack: unexpected disconnect` as on
+10-29, so the gardener branches standing on the remote are now 53. Copilot did
+not review, same as the five runs before; the checks wait was the review window
+and only the netlify bot landed in it. `sift.yasint.dev`, `yasin.goatcounter.com`
+and `hn.algolia.com` are all 000 at CONNECT, so the live read is the deploy's
+own green and there is no reader-analytics signal available. `fonts.googleapis.com`,
+`registry.npmjs.org` and **`pypi.org`** are reachable. Playwright 1.61.1 still
+needs `executablePath: /opt/pw-browsers/chromium`, a probe script in the
+scratchpad still needs `node_modules` symlinked beside it, and `npm i` inside
+that probe directory **replaces the symlink with a real tree**: install
+side-loaded packages (axe-core, html-validate) into a directory of their own
+and point at the file.
 
 ### 2026-10-30
 
