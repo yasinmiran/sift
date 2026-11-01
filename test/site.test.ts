@@ -828,6 +828,27 @@ describe("buildSite", () => {
     expect(index).toContain("install.hidden = true");
   });
 
+  it("keeps hover off the notify buttons that are disabled", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    const css = /<style>([^]*?)<\/style>/.exec(index)?.[1] ?? "";
+    // :hover matches a disabled button; :active does not. So every hover rule
+    // on .notify-btn has to say so in its own selector, because the sheet's
+    // earlier answer -- a .notify-btn:disabled:hover rule undoing hover one
+    // declaration at a time -- undid border-color and left color standing,
+    // and chromium duly painted the installed chip and every in-flight click
+    // --bold under the pointer, the enabled hover's own colour. The same rule
+    // forgotten one state down, which is this block's recurring failure.
+    const hovers = [...css.matchAll(/^(\.notify-btn[^{]*:hover[^{]*)\{/gm)].map((m) => m[1]);
+    expect(hovers.length).toBeGreaterThan(0);
+    for (const sel of hovers) {
+      expect(sel, `${sel} can match a disabled button`).toContain(":not(:disabled)");
+    }
+    // and the enabled hover is still there to be guarded
+    expect(css).toContain(".notify-btn:not(:disabled):hover{border-color:var(--accent);color:var(--bold)}");
+  });
+
   // The claim is readability on paper, so assert the ratio rather than the
   // hexes: chrome prints with background graphics off, which leaves the sheet
   // white and every token as declared (--text 1.29:1 against it, --body 2.15).
