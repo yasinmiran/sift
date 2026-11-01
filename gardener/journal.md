@@ -6,6 +6,37 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A guard written as an undo is an enumeration, and an enumeration goes stale the
+  moment someone adds a line to what it undoes. `.notify-btn:disabled:hover`
+  existed for exactly one reason, to neutralise hover on a dead button, and it
+  did it by restating one of the hover rule's two declarations; the other, and
+  the one a reader actually sees, walked straight past it, so the installed chip
+  and every in-flight click lit **--muted 4.13:1 -> --bold 12.39:1** under the
+  pointer, brighter than the enabled button's own resting colour. 10-26 banked
+  "diff a media block against the system it overrides and list what it leaves
+  standing"; this is the same defect without a media block, and it has a stronger
+  remedy than vigilance: **state the condition in the selector, not in a rule
+  that undoes the consequences one at a time.** `:not(:disabled):hover` cannot
+  leak a declaration that does not exist yet. The tell that something had drifted
+  was positional and visible in the file: the hover rule sat eighteen lines below
+  its own block, past the whole `.install-help` section, which is what equalised
+  it with `:disabled` on source order in the first place. **A rule living away
+  from its block is a cascade bug waiting for its second declaration.**
+  Its other half is about reading the instrument's noise rather than only its
+  silence. 10-31 banked that a rule engine's silence is a sentence you can go and
+  read; the first cut of this fix produced the inverse, **two new
+  `no-descending-specificity` findings that the fix itself created**, and the
+  honest reading was not "stylelint is wrong" but that the rule sorts by
+  specificity and knows nothing about `:not(:disabled)` being disjoint from
+  `:disabled`. Moving the rule two lines down satisfied both the cascade and the
+  checker, 4 findings -> 3, at no cost. Worth the habit: when a fix makes a
+  checker noisier, read why before dismissing it, because sometimes the quiet
+  arrangement is also the better one. And the three findings that remain are the
+  reason a checker is not a verdict: all three pair rules that **share no
+  property** (`a` against `.pager a`, `.prose li` and `.install-help li` against
+  `.days li:last-child`), so the cascade has nothing to decide. Do not re-file
+  them.
+
 - A page has states, and the platform's own instrument only ever reads the one
   the page loads in. 10-28 banked "ask the platform for the computed value, not
   a rule engine for a verdict" and the AX tree duly named every landmark on 34
@@ -567,6 +598,31 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-11-01 as #320 / PR #321, `8527715`, `pages` run 41292302124
+  green. Hover is guarded in the selector now
+  (`.notify-btn:not(:disabled):hover`) and the `:disabled:hover` undo is gone,
+  so the installed chip and the busy bell read the same under the pointer as
+  away from it. 257 tests (was 256), 8 lines in `page.ts` and 21 of test, built
+  tree 34 files at the same two hunks, +154 bytes gzipped per page (all of it
+  the comment).
+- Walked clean on 2026-11-01, recorded so a future run does not re-walk them.
+  **`stylelint` over the built sheet, first css conformance run ever here**:
+  with formatting rules off and correctness rules on (33 of them: unknown
+  properties/units/pseudos, duplicate properties and selectors, shorthand
+  overrides, invalid hex, calc spacing, missing generic font family, invalid
+  media queries) the **only** category that fires is
+  `no-descending-specificity`, 4 before the fix and 3 after, and all three
+  survivors pair rules sharing no property. Nothing else in the sheet is
+  flagged by any rule. **`css-tree`'s lexer is the wrong instrument here**: it
+  cannot match a declaration whose value contains `var()` and reports every
+  `@font-face` descriptor as an unknown property, so its output is ~200 lines
+  of which zero are findings. Use stylelint.
+  **The `:active` state needs no guard**: a disabled button never matches
+  `:active`, measured, and `.notify-btn:active`'s only shared declaration with
+  the hover rule is the same `border-color:var(--accent)` value anyway.
+  **The dialog's "got it" button is never disabled**, so its hover is correct
+  as it stands.
 
 - MERGED 2026-10-31 as #316 / PR #317, `87aa427`, `pages` run 41187896170
   green. The install-help dialog carries `aria-labelledby` pointing at its own
@@ -1907,6 +1963,113 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-01
+
+**#320 filed, PR #321 built, `checks` green on `77a58db`, copilot approved with
+no open issues, merged by this run at 09:24 as `8527715`, `pages` run
+41292302124 green on it (build and deploy both).** The one control on the index
+that tells a reader "this button is dead" has been lighting up under their
+pointer, in the enabled button's own hover colour, for as long as it has
+existed.
+
+**The signal is an instrument the repo had never run, and css has one.** Every
+checker brought here has read html or the rendered page: axe 10-27, vnu and
+html-validate 10-28, lighthouse 10-30, the AX tree 10-28 and 10-31. Nothing had
+asked a css conformance checker for a verdict. `stylelint` installs from npm;
+with the formatting rules off (the sheet is hand-minified, one rule per line, so
+`declaration-block-single-line-max-declarations` alone is ~200 lines of noise)
+and 33 correctness rules on, exactly one category fires:
+`no-descending-specificity`, four times.
+
+**Three of the four are noise and the fourth is the defect**, and what separates
+them is whether the two rules share a property. `a` against `.pager a`,
+`.prose li` and `.install-help li` against `.days li:last-child`: disjoint, so
+the cascade has nothing to decide. `.notify-btn:hover` against
+`.notify-btn:disabled:hover`: both set `border-color`, and the hover rule also
+sets `color`, which the other does not.
+
+**Chromium stated it without reference to any rule**, per 10-28's habit of
+asking the platform for the computed value:
+
+```
+                        rest                        hover
+installed chip   rgb(122,114,104) --muted  4.13:1   rgb(212,205,194) --bold 12.39:1
+bell, busy       rgb(122,114,104) --muted  4.13:1   rgb(212,205,194) --bold 12.39:1
+bell, enabled    rgb(184,176,163) --body   9.10:1   rgb(212,205,194) --bold 12.39:1
+```
+
+A disabled button hovered takes the **same** colour the enabled one takes, and a
+brighter one than the enabled button at rest. Border, `cursor:default` and the
+`.busy` opacity all hold, so the control reads dead in every channel but the one
+that lights.
+
+**Two real states reach it, which is what earned the slot.** The **installed**
+chip (`markInstalled`, `install.disabled = true`) is what a reader who installed
+the app meets on the index from then on. And every **in-flight click** on the
+bell: the handler sets `disabled` and `.busy` before awaiting the network, and
+the pointer is by definition on the button at that moment. Measured separately:
+`away, busy` reads `--muted`, `hover, busy` reads `--bold`. Driving the states
+rather than reading the default page is 10-31's lesson spending itself a second
+time; the probe fakes `onbeforeinstallprompt` into `window` and seeds the
+`sift-installed` stamp, because the page's own gate is
+`standalone || "onbeforeinstallprompt" in window` and playwright's chromium
+offers neither (10-30's instrument note, now a tool rather than a trap).
+
+**The change puts the condition in the selector.**
+`.notify-btn:not(:disabled):hover`, moved back beside the block it belongs to,
+and the `:disabled:hover` undo deleted. Net 8 lines in `page.ts`. The test
+sweeps every `:hover` rule on `.notify-btn` in the built sheet and requires
+`:not(:disabled)` in the selector, because the failure mode is a rule forgotten
+one state down and this block has now had two of them (10-30's `[hidden]` guard
+was the first). Run against the branch's own unfixed `page.ts` it fails there
+(`.notify-btn:disabled:hover can match a disabled button`), per 09-22.
+
+**The first cut was correct and noisier**, which is worth recording. Placing the
+hover rule before `:active` and `:disabled` fixed the cascade and made stylelint
+report **two new** `no-descending-specificity` findings, both naming the fix.
+Reading them rather than dismissing them: the rule sorts by specificity and knows
+nothing about `:not(:disabled)` being disjoint from `:disabled`, so the findings
+are true of the ordering and false of the behaviour. Moving the rule two lines
+down, after `:disabled`, satisfies both, 4 -> 3, at no cost.
+
+**Measured after, with the finding's own instruments** (10-30). `installed hover`
+and `bell busy hover` both read `rgb(122,114,104)`, identical to their own rest.
+Screenshots of `#notify` at 2x, clock frozen and `document.fonts.ready` awaited:
+**rest and enabled-hover byte-identical**, the two disabled-hover shots differ
+and are now **byte-identical to the rest shot**, which is the change and the
+whole of it. Built tree 34 files, the same two hunks in each (the sheet is
+inlined per page), +354 bytes raw and +154 gzipped per page, all of it the
+comment, which is why the comment was cut from 8 lines to 5 before committing.
+257 tests (was 256), typecheck silent, 33 pages.
+
+**On contrast, stated rather than left implied**: the hovered disabled chip moves
+12.39:1 -> 4.13:1, which is its own resting value and the figure the sheet
+already records for `--muted` here. Disabled controls are exempt from 1.4.3, and
+nothing enabled changed.
+
+**Health**: the last 25 workflow runs green before this one, `verify` clean on
+the last eight digests with one `64 links` warning on 10-29 (editorial, inside
+the contract's own guidance), no open PRs at the start of the run, five issues
+open (#314, #246, #241, #120, #112), none greenlit, so the slot went to a new
+observation; #320 opened and closed inside it.
+
+**The environment, as it behaved today.** `gh pr list` and `gh issue list` are
+**dead here now**, HTTP 403 with "GitHub GraphQL is not available from Claude
+Code sessions": a new failure, and the fix is `gh api -X GET repos/.../pulls`
+and `.../issues` with a `--jq` filter, which works. That is 10-12's lesson in a
+new costume, a command failing is not the api failing. Everything else github
+went through the MCP tools and landed first attempt. The footer split has moved:
+`issue_write` still strips it, `create_pull_request` appends it, and
+`update_pull_request` takes it off, but a plain `gh api -X PATCH` on the body
+**re-appends it**, so the MCP tool is the only route that ends clean. Copilot
+reviewed for the first time in seven runs and recommended approval with no open
+issues; the netlify preview cancelled itself as usual. **Branch delete still
+fails**, `the remote end hung up unexpectedly`, so the gardener branches standing
+on the remote are now 54. `sift.yasint.dev` is still 403 at CONNECT, so the live
+read is the deploy's own green. `registry.npmjs.org` reachable; playwright 1.61.1
+still needs `executablePath: /opt/pw-browsers/chromium`, and a probe script in
+the scratchpad still needs `node_modules` symlinked beside it.
 
 ### 2026-10-31
 
