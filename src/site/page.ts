@@ -165,7 +165,12 @@ mark.pen{background-color:transparent;color:var(--bold)}
 .notify-btn svg{width:15px;height:15px}
 .notify-btn:active{transform:translateY(1px);border-color:var(--accent)}
 .notify-btn:disabled{cursor:default;color:var(--muted)}
-.notify-btn:disabled:hover{border-color:var(--border)}
+/* :hover matches a disabled button, :active does not, so the guard belongs in
+   the selector. The sheet's earlier answer undid hover one declaration at a
+   time and named border-color only, so the installed chip and every in-flight
+   click lit --muted 4.13:1 -> --bold 12.39:1 under the pointer while reading
+   dead everywhere else. :not() means a later declaration cannot leak either. */
+.notify-btn:not(:disabled):hover{border-color:var(--accent);color:var(--bold)}
 .notify-btn.busy{opacity:.55;cursor:progress}
 .notify-btn .spin{animation:spin .9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -181,7 +186,6 @@ mark.pen{background-color:transparent;color:var(--bold)}
 .install-help li{margin:.4rem 0}
 /* No colour: inherits the dialog's --body, 8.24:1. See .notify-hint. */
 .help-note{font-size:.85rem;margin:0 0 1.2rem}
-.notify-btn:hover{border-color:var(--accent);color:var(--bold)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 /* Paper is the surface the palette cannot carry: chrome prints with
    background graphics off, so the sheet is white while every colour stays as
