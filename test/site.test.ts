@@ -518,6 +518,19 @@ describe("buildSite", () => {
     expect(index).not.toContain('<meta name="robots" content="noindex">');
   });
 
+  // A day page 404s forever once the rolling month passes it, and far more
+  // urls are in that state than out of it (123 days published, 32 live). The
+  // sentence those readers get has one link in it, so it has to land on the
+  // day rather than on digests/, whose history is every ingest commit the
+  // repo ever made.
+  it("sends a rolled-out day to its own file history, not the folder's", () => {
+    digest("2026-07-03", "body");
+    buildSite(root, out);
+    const nf = readFileSync(join(out, "404.html"), "utf8");
+    expect(nf).toContain('commits/main/digests/" + day + ".md');
+    expect(nf).not.toContain('commits/main/digests\\">');
+  });
+
   it("links the web app manifest in the shell and ships it with the site", () => {
     digest("2026-07-04", "body");
     mkdirSync(join(root, "public"), { recursive: true });
