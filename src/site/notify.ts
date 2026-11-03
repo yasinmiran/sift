@@ -114,14 +114,26 @@ export function notifyBlock(): string {
   };
   const btn = document.createElement("button");
   btn.className = "notify-btn";
-  slot.prepend(btn);
-  const render = (sub) => {
+  // The bell paints its idle face before it joins the row, because the row can
+  // be un-hidden by the install path (a standalone launch, or the 7-day
+  // installed flag) well before navigator.serviceWorker.ready lands. Appended
+  // empty and filled on that promise, it sat in an installed reader's header
+  // as a 28x15 blank button and took the archive down 54px when it filled:
+  // cls 0.1859 against 0.0000074 with the label there from first paint.
+  // Hiding it until ready instead measures worse (0.2177), because the row
+  // then wraps late rather than not at all. render() still owns the reveal.
+  const paint = (sub) => {
     btn.innerHTML = sub
       ? ${JSON.stringify(BELL_ICON)} + "<span>on</span>" + ${JSON.stringify(CHECK_ICON)}
       : label(${JSON.stringify(BELL_ICON)}, "notify me");
     btn.title = sub ? "tap to stop notifications" : "get a push when a new digest lands";
+  };
+  const render = (sub) => {
+    paint(sub);
     slot.hidden = false;
   };
+  paint(null);
+  slot.prepend(btn);
   const ready = navigator.serviceWorker.ready;
   ready.then((reg) => reg.pushManager.getSubscription()).then(render).catch(() => {});
   btn.addEventListener("click", async () => {
