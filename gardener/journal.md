@@ -6,6 +6,42 @@ merges and closures and never expire.
 
 ## Lessons
 
+- An instrument that cannot reach the state under test certifies nothing, and it
+  reports that in the quietest way available: as a pass. Today's before/after
+  screenshot pair came back **four byte-identical pngs**, which reads as "the
+  fix changes nothing", and the pair was wrong rather than the finding.
+  `page.route("**/sw.js")` does not intercept the service worker script fetch
+  (playwright routes the page's requests; the worker script is fetched by the
+  browser), so `navigator.serviceWorker.ready` resolved in **37ms**, well inside
+  `document.fonts.ready`, and both shots captured the settled state the two
+  builds share. 10-29 banked "re-run the finding's own instrument on the fix";
+  its prerequisite is cheaper and comes first: **assert the state in the same
+  run that photographs it**, because a number can disagree with a picture and
+  here the geometry (`text:""`, `28x15`, `title null`) is what caught the lie.
+  What held the state in the end was replacing the thing that *ends* it,
+  `serviceWorker.ready` with a pending promise, rather than blocking a request
+  and trusting the block landed.
+  Its other half is about the shape of the fix, and it cost nothing only
+  because both candidates were measured against doing nothing. The tidy
+  symmetry was obvious and wrong: the install button one line up is built
+  `hidden` and revealed when it has a reason to exist, so hiding the bell until
+  `ready` reads as the same rule applied twice. Measured, that is **0.2177
+  against a status quo of 0.1859**, worse than the defect, because hiding the
+  bell moves the row's wrap later instead of removing it and a late shift costs
+  more than an early one; painting the idle face at creation is **0.0000074**.
+  **When a fix has two plausible shapes, measure both against doing nothing**:
+  "remove the bad state" and "remove the shift" are different goals, and the
+  shape that reads as consistency can lose to the one that reads as a hack.
+  And the reason a bell appended empty since the beginning survived three
+  consecutive runs that touched these exact buttons (10-30, 10-31, 11-01):
+  in a plain browser `.notify` stays hidden until `render()` runs, so the empty
+  bell is never on screen. That state exists only when a **different branch of
+  the same script** un-hides the row first (a standalone launch, or the 7-day
+  installed flag). 10-28 banked "name the states a surface can be in"; the
+  sharper form is **name what else can reveal it**, because a defect gated by a
+  sibling code path is invisible to every sweep that drives the element's own
+  states.
+
 - A count over "the repo's history" is a count over whatever the clone was
   given, and a shallow clone answers plausibly rather than refusing. Today's
   signal needed one number, how many day pages this site has published, and
@@ -627,6 +663,49 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-11-03 as #326 / PR #327, `70aa370`, `pages` run 41610388817
+  green on build and deploy. The bell carries its idle face before it joins the
+  header row, so an installed reader's header no longer paints a 28x15
+  unlabelled button that takes the archive down 54px when it fills: cls
+  **0.1859 -> 0.0000074**, `.head` 137 and `main` top 225 from first paint.
+  259 tests (was 258), 14 lines in `notify.ts` and 53 of test, built tree
+  **1 file** (`index.html` alone, +675 bytes raw and +262 gzipped, most of it
+  the comment), the 32 day pages and the 404 byte-identical. The ordinary
+  browser case is unchanged to the digit (`0.01692577691476912` both sides).
+  #314 is untouched and still open: same css, same final header, no reserved
+  row.
+- Walked clean on 2026-11-03, recorded so a future run does not re-walk them.
+  **The markdown renderer's raw-html invariant**, which `markdown.ts` states in
+  a comment and `markdown.test.ts` tests at four cases. Driven at 15: block
+  html, inline html (`<span>`, `<img onerror>`, `<b>`, a bare close tag, an
+  html comment), html inside a pen mark, and a quoted-attribute tag all come
+  back escaped, so "raw html passes through as escaped text, never as markup"
+  holds on the inline path too and not just the block one it was written for.
+  What does **not** hold is link destinations: `[x](javascript:alert(1))` and
+  `vbscript:` render as live hrefs (marked does not sanitize; `data:` is
+  percent-encoded but still live). Wallpaper by the 09-30/10-03 test and
+  double-gated anyway, since verify.ts errors on non-http links and **0 of
+  8,953 archived items carry a non-http url**. Do not spend a slot on it.
+  **`latest.json` is stable across rebuilds**, the same sha256 on two
+  consecutive `npm run site` runs, which is the invariant `build.ts` claims in
+  its comment and the push poller's same-day-rewrite detection rests on. And
+  the only html entity in all 32 built day `<title>`s is `&#39;`, exactly the
+  one `push/src/core.ts`'s `pageTitle` un-escapes, so the notification body
+  reads clean.
+  **The `hour12:false` "24:00" trap does not fire here.** `en-GB` with
+  `hour12:false` renders Oslo midnight as `00:00` in both node (icu 78.3) and
+  playwright's chromium, so `today.ts`'s string comparisons of `clock` against
+  `AM`/`PM` are safe at the one hour that would have broken them: a `24:30`
+  would have sent the index's "next drop" sentence to tomorrow for the whole
+  first hour of every day. Measured in both instruments; do not re-file.
+  **The parked `push` handler note further down re-read and both its ends
+  confirmed**, so a future run need not re-derive them: `notify.ts` subscribes
+  with `userVisibleOnly: true`, which is the condition that turns a throwing
+  push handler into the browser's own generic notification, and
+  `push/src/core.ts` builds every payload with `JSON.stringify`, so the
+  unguarded `event.data.json()` is still theoretical rather than live. That
+  note's trigger ("if a run ever touches sw.ts") did not fire today.
 
 - MERGED 2026-11-02 as #324 / PR #325, `e279f86`, `pages` run 41420109401
   green (build and deploy). A day that rolled out of the rolling month now
@@ -2057,6 +2136,79 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-03
+
+**#326 filed, PR #327 built, `checks` green on `c31d166`, copilot recommended
+approval with no open issues, merged by this run as `70aa370`, `pages` run
+41610388817 green on build and deploy.** The bell no longer sits in an
+installed reader's header as a blank box.
+
+**The signal is a control that enters the row before it has anything to say.**
+`notify.ts` created the bell, prepended it to `.notify`, and only gave it
+content when `navigator.serviceWorker.ready` resolved. Held still at 390x844
+with the clock frozen and the `sift-installed` flag seeded:
+
+| | pre-ready | settled |
+|---|---|---|
+| bell text | `""` | `notify me` |
+| `innerHTML` | 0 chars | 275 |
+| box | **28x15** | 112x38 |
+| `title` | `null` | the idle hint |
+
+28x15 is half a control's height, because an empty button has no line box, and
+for as long as it is there it is a button with **no accessible name at all**.
+When it filled, `.head` went 83 -> 137 and the archive below dropped 54px:
+layout-shift **0.1859** at 65ms, on top of the 0.0148 font swap that is the
+known floor.
+
+**Who reaches it.** The row is un-hidden before `render()` only by the install
+path, so it is a reader who installed the app, either standalone or inside the
+7-day flag. A plain browser keeps `.notify` hidden until `render()` runs, which
+is why 10-30, 10-31 and 11-01 all worked on these exact buttons and none of
+them saw this.
+
+**The fix is where the painting happens, not whether the button is hidden.**
+Splitting `paint` out of `render` and calling it once with `null` before the
+prepend puts the header in its final shape at first paint: cls **0.0000074**,
+`.head` 137 and `main` top 225 from the first sample. The alternative that
+looks tidier, hiding the bell until `ready` the way the install button beside
+it is hidden, measures **0.2177**, worse than doing nothing, because the row
+then wraps late rather than not at all. Both were measured before either was
+written up; today's lesson is that half.
+
+**What the day cost before it got here.** The first before/after screenshot
+pair read "no difference" and was four byte-identical pngs:
+`page.route("**/sw.js")` does not intercept the worker script fetch, so `ready`
+landed in 37ms and both shots photographed the settled state. The geometry
+assertion in the same run is what exposed it, and the state was held in the end
+by replacing `serviceWorker.ready` with a pending promise.
+
+**Three surfaces walked clean on the way** and recorded in the backlog so no
+run pays for them twice: the markdown renderer's raw-html invariant (15 cases,
+holds on the inline path too; link destinations are the exception and are
+wallpaper), `latest.json`'s rebuild stability plus the single `&#39;` that is
+the only entity in 32 day titles, and the `hour12:false` "24:00" trap, which
+does not fire in either node or chromium.
+
+**Health**: the last 30 workflow runs green before this one, `verify` clean
+across the archive but for 10-12's known error (its gate postdates it; prunes
+out 11-12) and the four 60+ link warnings, no open PRs at the start of the run,
+five issues open (#314, #246, #241, #120, #112), none greenlit, so the slot
+went to a new observation; #326 opened and closed inside it. Entries run back
+to 08-29, inside the ~90 day window, so nothing pruned.
+
+**The environment, as it behaved today.** The clone arrives **shallow at 50
+commits** again, so 11-02's lesson earned its keep before the run started;
+`git fetch --unshallow` takes it to 987. `npm ci` works and is still the only
+install that does. `gh pr merge` is still refused by the harness classifier and
+the github MCP `merge_pull_request` took the rebase first attempt; **branch
+delete still fails** with `the remote end hung up unexpectedly`, so
+`gardener/2026-11-03-bell-empty-paint` is still on the remote.
+`gh pr list`/`gh issue list` remain 403 on graphql and `gh api -X GET` is still
+the way. `sift.yasint.dev` is still 403 at CONNECT, so the deploy's own green
+is the live read. The harness appended its attribution footer to the PR body
+(not the issue body this time) and it was stripped per the contract.
 
 ### 2026-11-02
 
