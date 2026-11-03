@@ -841,6 +841,59 @@ describe("buildSite", () => {
     expect(index).toContain("install.hidden = true");
   });
 
+  // The notify script never runs under vitest, so drive the shipped source in
+  // a stand-in dom the way sw.test.ts drives the worker: what the assertion
+  // reads is the bell at the moment it joins the row. serviceWorker.ready is
+  // left pending, which is every reader's state at first paint, and the
+  // install path un-hides that row from inside it (a standalone launch, or
+  // the 7-day installed flag). Appended empty, the bell sat in an installed
+  // reader's header as a 28x15 button with no text and no title, and took the
+  // archive down 54px when it filled: cls 0.1859 against 0.0000074 with the
+  // label there from the start. Hiding it until ready measures worse (0.2177),
+  // because the row then wraps late rather than not at all.
+  it("gives the bell its label before it joins the header row", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    const src = [...index.matchAll(/<script>([^]*?)<\/script>/g)]
+      .map((m) => m[1]!)
+      .find((s) => s.includes("PushManager"));
+    expect(src, "the notify script is not in the built index").toBeDefined();
+
+    type Node = { innerHTML: string; hidden: boolean; [k: string]: unknown };
+    const node = (): Node => ({
+      className: "",
+      innerHTML: "",
+      title: "",
+      hidden: false,
+      disabled: false,
+      classList: { add: () => {}, remove: () => {} },
+      querySelector: () => null,
+      addEventListener: () => {},
+      append: () => {},
+      prepend: () => {},
+    });
+    const joined: Node[] = [];
+    const slot: Node = { ...node(), hidden: true, prepend: (n: Node) => void joined.push(n) };
+
+    new Function("document", "navigator", "window", "matchMedia", "localStorage", src!)(
+      { getElementById: (id: string) => (id === "notify" ? slot : node()), createElement: () => node() },
+      { serviceWorker: { ready: new Promise(() => {}) } },
+      { PushManager: class {}, addEventListener: () => {} },
+      () => ({ matches: false }),
+      { getItem: () => null, setItem: () => {}, removeItem: () => {} },
+    );
+
+    // No install event in this stand-in, so the bell is the only control that
+    // reaches the row, and it carries the idle face rather than an empty box.
+    expect(joined).toHaveLength(1);
+    expect(joined[0]!.innerHTML).not.toBe("");
+    expect(joined[0]!.innerHTML).toContain("notify me");
+    expect(joined[0]!.title).toBe("get a push when a new digest lands");
+    // render() still owns the reveal: nothing un-hides the row before it.
+    expect(slot.hidden).toBe(true);
+  });
+
   it("keeps hover off the notify buttons that are disabled", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);
