@@ -1,6 +1,6 @@
 {
   "day": "2026-11-03",
-  "generatedAt": "2026-11-03T17:40:44.173Z",
+  "generatedAt": "2026-11-03T21:17:26.938Z",
   "items": [
     {
       "sourceSlug": "openai",
@@ -81,6 +81,25 @@
     },
     {
       "sourceSlug": "hacker-news",
+      "externalId": "50333332",
+      "title": "Why Don't We Live in an Art Nouveau World?",
+      "url": "https://asteriskmag.com/issues/16/why-don-t-we-life-in-an-art-nouveau-world",
+      "author": "shcallaway",
+      "publishedAt": "2026-11-02T05:05:11.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 111,
+      "comments": 102
+    },
+    {
+      "sourceSlug": "hacker-news",
       "externalId": "50334523",
       "title": "European RISC-V Industrial Computing Initiative",
       "url": "https://erici.eu",
@@ -108,6 +127,21 @@
       "content": "Pika Labs open-sources LoRA adapters that distill MiniMax H3 from 50 steps down to 6, generating 15-second video with synced audio in roughly 7 seconds on an H100.",
       "topics": [
         "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/vercel-security-review",
+      "title": "Introducing Vercel Security Review",
+      "url": "https://vercel.com/blog/vercel-security-review",
+      "author": "Nate McGrady",
+      "publishedAt": "2026-11-02T13:00:00.000Z",
+      "content": "Today, we are launching in public beta.Vercel Security Review Security Review is a new capability in , alongside Code Review and Investigation. Once enabled, it scans for vulnerabilities on every push to a team's connected GitHub repositories.Vercel Agent Findings appear as comments on pull requests, are listed in the Security dashboard, and are available via CLI. With your permission, Vercel Agent can also validate and push fixes for findings. Security reviews are triggered by GitHub push events, including direct pushes to your production branch. In monorepos, reviews are scoped to the project's root directory. Here is how it works: Each review compares the push against a base and covers only what changed. For deployments, the base is the branch’s previous deployment, so the agent reviews the change against what’s already running. Because it only scans the diff, Security Review finishes in seconds and can run on every preview and production deployment. The agent reads the diff along with the surrounding code, traces how the changed code can be reached, checks for existing protections, and rechecks each finding before reporting it. That process is how it catches logic flaws like missing authorization checks, which pattern-matching scanners miss. Each review also applies your team’s , which you can write in plain language and apply to specific projects or across your team. For example, a policy can require any endpoint that returns customer data to check that the requester owns it. You can also manage policies with the Vercel CLI, using .security policiesvercel security policy Each new finding is checked against ones that have already been reported, so the same issue isn’t flagged twice. Every finding is tied to the deployment where it first appeared and changes are followed from there. That means that when a vulnerable change from a pull request is merged into your production branch, the finding is flagged in production as well. When a later review no longer detects the issue in an environment, the agent marks the finding as no longer detected there. Every finding explains the vulnerability and how to fix it, with links to the commit and deployment where it first appeared. Findings are listed in the in the Security dashboard, where you can ask Vercel Agent to validate and commit fixes. Findings are also , so you can fix vulnerabilities with your own coding agent. Vulnerability viewavailable via CLI Each new finding generates an audit log event, which Enterprise teams can send to their SIEM through .Audit Log Drains Here is a demo of sample findings in the dashboard: When Vercel Agent can fix a finding, you will see the option to click on the finding page in the dashboard. After you click, the agent confirms the vulnerability still exists, then makes the smallest change that fixes it and updates the tests.Fix with Vercel Agent Say a developer pushes a change to an invoice download endpoint, and the lookup doesn't check which organization the invoice belongs to. Within seconds, Security Review flags that any signed-in user could download another organization's invoice by changing its ID. Vercel Agent's fix scopes the lookup to the user's organization: You can point your coding agent or other systems at the Vercel CLI to pull and fix vulnerabilities: Findings in the dashboard also give you the ability to copy details , making it easy to paste them into an agent conversation.as Markdown or JSON Frontier AI models are making vulnerabilities far easier to find and exploit. Last month, researchers turned two decade-old flaws in PHP core into with relatively little effort. working remote code execution exploits At the same time, agents are writing more of the code teams ship, and each handles security review its own way, or in many cases, not at all. With Vercel Security Review, you can scan every push on every project for vulnerabilities by default, using the security policies you set. Security Review starts with code pushed to GitHub. Next, we're bringing it to deployments from the Vercel CLI and v0, and to repositories that don't deploy on Vercel. We're also working on suggested fixes you can apply directly from the pull request. Vercel Security Review is available today in public beta for Pro and Enterprise teams. To get started, enable Security Review in . You can choose to run Security Review on all projects, or only the ones you choose. To learn more, read the and the . Vercel Agent SettingsChangelog entrySecurity Review documentation Security Review is billed at the , with model tokens at the provider's rate and no markup, plus $0.25 per million tokens.Vercel Agent rate Security reviews are free until November 10, 2026. Fixes made with Vercel Agent are billed at the rate above. Read more How it works Acting on findings Every code change needs security review What's next Get started You push code to a GitHub repository connected to a Vercel project. As soon as the push lands, Security Review scans the changed code for vulnerabilities like missing authorization checks or exposed secrets. Findings are posted to the Security dashboard. On private and internal repositories, Security Review also adds a GitHub check to the commit and comments on the pull request. You can fix findings by clicking in the dashboard, or use the CLI to pull findings and have your own coding agent implement changes. Fix with Vercel Agent When subsequent security reviews no longer detect a finding, it is marked as no longer detected in the dashboard, and the GitHub comment is closed. What the agent checks How findings are tracked Fixing vulnerabilities with Vercel Agent Fixing vulnerabilities with your own coding agent",
+      "topics": [
+        "devtools-infra",
+        "frontend"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -1853,6 +1887,35 @@
       "author": "Susan Aziz",
       "publishedAt": "2026-11-03T00:00:00.000Z",
       "content": "OpenEvidence on Vercel Serves 650,000 doctors with medical search Completes production deployments in about five minutes Absorbs traffic spikes without additional capacity provisioning Reduced serverless spend by 90% with Fluid compute Updates doctor- and patient-facing applications independently helps physicians find medical evidence during care, whether they’re checking a dosage on intensive care rounds or handling a case outside their specialty without a specialist nearby. Answers draw on peer-reviewed literature and include citations, so doctors can examine the sources behind them.OpenEvidence OpenEvidence’s small team began using Vercel to get early experiments online and kept that workflow as the product grew, relying on the platform to handle web deployments and capacity. The stakes are different when software helps inform medical decisions. An incorrect answer can affect how a doctor treats a patient, while an unavailable application can cut off access to evidence when it is needed. OpenEvidence supported . The company also reported that .more than 20 million clinical consultations in January 2026more than 100 million Americans were treated by doctors using OpenEvidence in 2025 \"Honestly, life or death is not inaccurate,\" says Kush Khosla, Engineering Lead at OpenEvidence. \"We operate in situations where it's an ER and they really need to know what's going on. Uptime is very, very important to us.\" \"A lot of doctors and medical professionals are used to really outdated software,\" says Andy Yoon, Engineering Lead at OpenEvidence. A more modern experience still needs to meet physicians' expectations of speed, stability, clarity, and information they can trust. The small team needs a way to test updates to the web application before putting them into production and to roll back if something goes wrong. Andy recalls why Vercel suited the team he joined at OpenEvidence. \"I was pretty much the only engineer on our team coming from an actual frontend background,\" he says. \"Most of our team works in Python and machine learning.\" He adds, \"Given the makeup of our engineering team, Vercel really scaled with our needs so well.\" The team builds its physician-facing web application with the . When engineers push changes to a development branch, Vercel , giving them a link they can use for live demos and share with colleagues to try new features. Pushing or merging into the production branch then triggers the production build and deployment. If a release needs reverting, the team can .Next.js frameworkbuilds and deploys a previewroll back to a previous deployment That workflow lets the team release multiple times a day, with each change becoming available to a physician audience that Kush thinks about whenever he ships something: Keeping that application available means handling demand the team can’t always anticipate. Andy was scrolling through Slack when he saw the message that OpenEvidence had gone viral on TikTok, reaching around two million views in under a week. He watched traffic climb and checked the logs. , and with no additional capacity to provision, he went back to his work.Response times stayed fast and error rates remained near zero Beyond sudden spikes, the team has accommodated sustained growth without rebuilding the web application. \"Not once have I had to think, now that we have five times as many doctors, what's happening to page loads or time to first paint,\" Kush says. \"The scaling has happened so naturally that we end up focusing on other things.\" As usage grew, VP of Engineering Micah Smith was watching compute costs. The team enabled for its functions on Vercel, and Micah alongside the wider infrastructure budget:Fluid computedescribed the result \"We reduced our serverless spend by 90% while maintaining the same performance, and even as we've scaled up to 1000x growth, Vercel is less than 5% of our overall infra spend.\" Fluid compute lets multiple requests share a running function instance, so it can handle other work while a request waits for another service, such as a database or an AI backend, to respond. With , that waiting time doesn’t incur CPU charges, though memory remains billed while requests are in progress.Active CPU pricing Take Home, OpenEvidence’s first patient-facing application, lets a doctor translate a clinical answer into plain language and share it with a patient, who logs in to review and save the evidence. Clinical-trial matching is also part of the application’s planned direction. To support this expansion, the team uses a pattern established through dozens of early proofs of concept, each deployed as its own with a custom domain. Stakeholders could open those applications and test the workflows for themselves. Getting new projects online in minutes helped the team find product-market fit and made it easier to win early enterprise partnerships.Vercel project Take Home has its own project and domain too, so engineers can update the patient experience without deploying the other applications. With Take Home, evidence that helps a doctor during a consultation can become something a patient returns to afterward. OpenEvidence helps healthcare professionals find medical evidence at the point of care, with answers sourced, cited, and grounded in peer-reviewed literature. Physicians use it daily across more than 10,000 hospitals and medical centers in the United States. Its mission is to help doctors save lives and improve patient care. Learn more at .About OpenEvidence:openevidence.com Read more Building software physicians depend on Keeping releases simple as the audience grows More doctors without more provisioning A 90% drop in serverless spend A familiar workflow for a new audience",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/jill-hazelbaker-chief-corporate-affairs-officer",
+      "title": "OpenAI appoints Jill Hazelbaker as Chief Corporate Affairs Officer",
+      "url": "https://openai.com/index/jill-hazelbaker-chief-corporate-affairs-officer",
+      "author": null,
+      "publishedAt": "2026-11-03T00:00:00.000Z",
+      "content": "Jill Hazelbaker will join OpenAI as Chief Corporate Affairs Officer, leading the company’s global communications and corporate positioning.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-cli-now-diagnoses-setup-problems-with-vercel-doctor",
+      "title": "Diagnose Vercel CLI setup problems with vercel doctor",
+      "url": "https://vercel.com/changelog/vercel-cli-now-diagnoses-setup-problems-with-vercel-doctor",
+      "author": "Melkey Moksyakov",
+      "publishedAt": "2026-11-03T00:00:00.000Z",
+      "content": "Vercel CLI now includes , which checks your setup and shows the command that fixes each problem it finds.vercel doctor It checks the CLI version and install, your login and current team, the project link, and your project configuration in . It also reports active incidents from the Vercel status page.vercel.json Each check reports OK, Warning, Failed, or Skipped. When vercel upgrade can't update the installed CLI, the install check shows where the CLI runs from and how to reinstall it. Doctor runs without a login or a linked project, and it never prompts, logs in, or links a project, so coding agents can run it before guessing at a fix. Add --json to get each check's status and suggested commands as structured output. Update to the latest CLI version and run to check your setup, or read the doctor command reference.vercel doctor Read more",
       "topics": [
         "devtools-infra",
         "frontend"
@@ -3619,6 +3682,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/cisco-cyber",
+      "title": "How Cisco defends at machine speed with OpenAI",
+      "url": "https://openai.com/index/cisco-cyber",
+      "author": null,
+      "publishedAt": "2026-11-03T08:00:00.000Z",
+      "content": "Cisco combines network intelligence with OpenAI models to strengthen enterprise security. Learn how it is building more adaptive defenses.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "stackoverflow-blog",
       "externalId": "744b8ec3-a144-4d46-b8f1-d7a80a534898",
       "title": "Oh, your agents need OAuth2, too",
@@ -4352,6 +4429,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/accelerating-engineering-for-the-physical-world",
+      "title": "Accelerating engineering for the physical world",
+      "url": "https://openai.com/index/accelerating-engineering-for-the-physical-world",
+      "author": null,
+      "publishedAt": "2026-11-03T12:00:00.000Z",
+      "content": "Discover how ChatGPT and Codex are helping engineers accelerate CAD, PCB design, simulation, and other workflows across the physical world.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "crunchbase-news",
       "externalId": "https://news.crunchbase.com/?p=94315",
       "title": "China’s Largest Startup Deal Ever Lifts Global Venture Funding To $59B In October",
@@ -4762,6 +4853,44 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50353300",
+      "title": "AI is destroying my CS degree",
+      "url": "https://lordtoots.bearblog.dev/ai-is-destroying-my-cs-degree/",
+      "author": "speckx",
+      "publishedAt": "2026-11-03T15:35:06.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 112,
+      "comments": 102
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50353335",
+      "title": "Study estimates 75% of NFL players who died over 15-year span had CTE",
+      "url": "https://www.nbcnews.com/health/health-news/study-estimates-75-nfl-players-died-15-year-span-may-cte-rcna605975",
+      "author": "gmays",
+      "publishedAt": "2026-11-03T15:38:04.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 232,
+      "comments": 185
+    },
+    {
       "sourceSlug": "ars-technica",
       "externalId": "https://arstechnica.com/tech-policy/2026/11/trump-wanted-to-give-no-kings-no-air-then-meta-suspended-its-instagram/",
       "title": "Trump wanted to give No Kings no air. Then, Meta suspended its Instagram.",
@@ -4902,6 +5031,44 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50354336",
+      "title": "Gitbook Breached",
+      "url": "https://news.ycombinator.com/item?id=50354336",
+      "author": "punchmesan",
+      "publishedAt": "2026-11-03T16:45:49.000Z",
+      "content": "We opened a ticket with support about Gitbook availability issues and got this in reply. We have yet to see any official customer communication or breach notification. Apologies for the formatting, did the best I could as it's a mobile paste. Update: GitBook security incident update Hey <$name>, The GitBook app, the GitBook API, and published docs are available again. A few services may still be degraded as we finish restoring everything to full performance. *What happened* GitBook has been the target of a sophisticated, highly targeted attack using AI agents. At 19:00 CET, November 2, the attacker gained unauthorized access to some of our infrastructure credentials. We detected the attack immediately and acted swiftly to block further impact. To make sure our infrastructure was fully secure, we then took the GitBook app and authenticated docs sites offline. We kept publicly published content live for as long as possible, using cached data. *What we did immediately* * Blocked the attacker and closed the vulnerabilities involved * Replaced every credential and secret across our infrastructure * Brought services back only once we were confident they were secure * Invalidated every customer’s API tokens on our platform *Your data* Our investigation shows that the attacker may have accessed the following: * Git Sync secrets. * GitBook API tokens. * Third-party API tokens used to connect external tools to GitBook. * Questions asked to GitBook Assistant by your site visitors. At this stage, we have found no evidence that any of your content in GitBook was modified. *What you need to do now* * Rotate any existing GitBook API tokens. We revoked all personal API tokens during the incident. * Rotate any third-party API tokens or secrets you use to connect other tools to GitBook. * If you have published integrations that use secrets, rotate those secrets. * If you use the GitBook MCP server, re-authenticate it. Please contact your GitBook organization’s admin to assist with this process. *What we are doing next* * Monitoring the situation in case of further attacks. * Introducing further security measures to our platform. * Writing a full post mortem that will be published soon with more detailed information about the incident. * If you have any further questions, please reach out to your account manager or our support team. You can also check status.gitbook.com for updates Thank you for your patience, and we apologize again for the disruption The GitBook team",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 121,
+      "comments": 28
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50354358",
+      "title": "Stringman, an $800 open-source room scale gripper robot",
+      "url": "https://neufangled.com/",
+      "author": "nharada",
+      "publishedAt": "2026-11-03T16:47:29.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 167,
+      "comments": 82
     },
     {
       "sourceSlug": "zvi-dwatv",
@@ -5046,6 +5213,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/boston-dynamics-rebuilds-stretch-gen-2-to-unload-1-000-boxes-per-hour",
+      "title": "Boston Dynamics Rebuilds Stretch Gen 2 to Unload 1,000 Boxes per Hour",
+      "url": "https://alphasignal.ai/news/boston-dynamics-rebuilds-stretch-gen-2-to-unload-1-000-boxes-per-hour",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-03T17:03:03.000Z",
+      "content": "Boston Dynamics rolls out a hardened Stretch Gen 2 built on 100,000 hours of field data, promising fewer breakdowns and up to 1,000 cases per hour.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "ars-technica",
       "externalId": "https://arstechnica.com/google/2026/11/google-dismantles-botnet-secretly-running-on-1-3-million-android-tv-boxes/",
       "title": "Google dismantles botnet secretly running on 1.3 million Android TV boxes",
@@ -5103,6 +5284,39 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/11/another-child-dies-of-measles-as-cdc-reportedly-holds-up-health-alert/",
+      "title": "Another child dies of measles as CDC reportedly holds up health alert",
+      "url": "https://arstechnica.com/health/2026/11/another-child-dies-of-measles-as-cdc-reportedly-holds-up-health-alert/",
+      "author": "Beth Mole",
+      "publishedAt": "2026-11-03T17:21:29.000Z",
+      "content": "A child in New York has died of measles, health officials in the state announced late Monday. It marks the first reported measles-associated death in New York in more than 30 years. It is the seventh measles-linked death reported in the US this year; all six of the other deaths were reported in Pennsylvania, which is experiencing a dramatic measles outbreak that has stricken over 1,430 people this year. Prior to the deaths, Pennsylvania hadn't seen a measles-related death in 35 years. The boom in vaccine-preventable outbreaks, cases, and tragic deaths is being fueled by slipping vaccination rates nationwide as health misinformation and anti-vaccine sentiments have taken hold. One of the most prominent anti-vaccine activists in the US currently serves as the US health secretary; Robert F. Kennedy Jr. spent decades prior to taking office attacking vaccines and spreading misinformation. He and his anti-vaccine organization, Children's Health Defense, have been one of the most prolific sources of anti-vaccine content. Since taking office, Kennedy has waged a multi-front war on vaccines that has included dismantling and obstructing federal vaccine recommendations; launching dubious studies to look for alleged, unspecified harms of vaccines; promoting alleged vaccine injuries; and continuing to spread misinformation about vaccines and vaccine-preventable illnesses. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50354960",
+      "title": "Postman silently auto-installs AI plugins and attempts to share all API data",
+      "url": "https://github.com/postmanlabs/postman-app-support/issues/14370",
+      "author": "sidgarimella",
+      "publishedAt": "2026-11-03T17:22:37.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 758,
+      "comments": 255
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=1025364",
       "title": "Moft’s new origami case adds a kickstand and grip to the iPhone Duo",
@@ -5115,6 +5329,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50355251",
+      "title": "Qwen 3.8 27B on my laptop can interpret model weights, too",
+      "url": "https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/",
+      "author": "theanonymousone",
+      "publishedAt": "2026-11-03T17:40:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 346,
+      "comments": 113
     },
     {
       "sourceSlug": "hf-daily-papers",
@@ -5900,6 +6133,769 @@
       "author": null,
       "publishedAt": "2026-11-03T17:40:23.745Z",
       "content": "AI chip smugglers exploit trade control loophole to bring banned HBM from South Korea into China — expensive memory chips packaged with cheap, unsanctioned processors to become legal exports tomshardware.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/11/google-will-let-schools-skip-ai-tools-but-they-have-to-give-up-search-too/",
+      "title": "Google will let schools skip AI tools, but they have to give up search, too",
+      "url": "https://arstechnica.com/ai/2026/11/google-will-let-schools-skip-ai-tools-but-they-have-to-give-up-search-too/",
+      "author": "Ryan Whitwam",
+      "publishedAt": "2026-11-03T17:54:43.000Z",
+      "content": "While Google is trying to move beyond Chromebooks, the ubiquity of these devices has made the company's education products huge in schools. Now, Google says it will let educators choose whether to allow its AI tools in the classroom. However, blocking AI tools also means giving up search, leaving schools with a difficult decision. Google's new overarching approach to AI in K-12 classrooms sounds good on the surface. After consulting educators, researchers, and lawmakers, Google has decided that schools using its education products will be opted out of AI tools by default. It will be up to administrators to manually enable them when these changes roll out in the coming months. When you look at what Google considers to be an AI tool, the nature of the Faustian bargain becomes clear. The affected products are Gemini, Gemini Notebook, Gemini in Classroom, and Google Search. There's no picking and choosing—you either allow all the AI or none of it. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-ci-no-longer-requires-a-linked-vercel-project",
+      "title": "Vercel CI no longer requires a linked Vercel project",
+      "url": "https://vercel.com/changelog/vercel-ci-no-longer-requires-a-linked-vercel-project",
+      "author": "Vojtech Miksu",
+      "publishedAt": "2026-11-03T18:00:00.000Z",
+      "content": "Vercel CI can now run on a GitHub repository that has no Vercel project. Until now you had to create an empty project just to connect the repository. To enable it, you need: Then, from a clone of the repository, run: CI is enabled for the team your CLI is set to. Pass to use a different one. From the next push, tasks run as configured in your repository.--scope <team> Private GitHub repositories only. Public repositories and other Git providers are not yet supported. Read the to configure tasks.Vercel CI documentation Read more The Vercel GitHub App installed with access to the repository Your GitHub account connected to your Vercel account Write or admin permission on the repository",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nextjs-blog",
+      "externalId": "/blog/november-2026-security-release",
+      "title": "November 2026 Security Release",
+      "url": "https://nextjs.org/blog/november-2026-security-release",
+      "author": "Jamiboy Mohammad",
+      "publishedAt": "2026-11-03T18:00:00.000Z",
+      "content": "The November 2026 security release for Next.js is now available",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261103/p23#a261103p23",
+      "title": "Sources: UK-based Google DeepMind employees urge leaders to drop non-disparagement clauses barring public warnings about AI risks even after they leave Google (Gerrit De Vynck/Washington Post)",
+      "url": "https://www.techmeme.com/261103/p23#a261103p23",
+      "author": null,
+      "publishedAt": "2026-11-03T18:00:38.000Z",
+      "content": "Gerrit De Vynck / Washington Post: Sources: UK-based Google DeepMind employees urge leaders to drop non-disparagement clauses barring public warnings about AI risks even after they leave Google — Employment contracts deter staff from warning the public about AI risks, current workers said. — SummaryLoading...",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-kills-repetitive-login-screens-for-claude-s-mcp-connectors",
+      "title": "Anthropic Kills Repetitive Login Screens for Claude's MCP Connectors",
+      "url": "https://alphasignal.ai/news/anthropic-kills-repetitive-login-screens-for-claude-s-mcp-connectors",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-03T18:09:42.000Z",
+      "content": "Claude now supports silent plugin connections through enterprise identity providers, removing per-service OAuth prompts for members of a Team or Enterprise workspace.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261103/p24#a261103p24",
+      "title": "AI inference startup Fal raised $1.3B led by Bessemer at a $16B valuation, up from $8B in April; a source says it hit $800M in annualized revenue this year (Natasha Mascarenhas/Bloomberg)",
+      "url": "https://www.techmeme.com/261103/p24#a261103p24",
+      "author": null,
+      "publishedAt": "2026-11-03T18:10:04.000Z",
+      "content": "Natasha Mascarenhas / Bloomberg: AI inference startup Fal raised $1.3B led by Bessemer at a $16B valuation, up from $8B in April; a source says it hit $800M in annualized revenue this year — Fal, an AI inference startup that hosts image, video and audio models for creators and developers, has doubled its valuation to $16 billion in a new round of funding.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1025596",
+      "title": "Indie games are missing launch dates because Steam is backed up",
+      "url": "https://www.theverge.com/games/1025596/valve-steam-indie-games-missing-launch-dates",
+      "author": "Jay Peters",
+      "publishedAt": "2026-11-03T18:14:50.000Z",
+      "content": "A screenshot from Food Devils, which is missing its planned launch today. Many indie game developers have recently posted on social media about unexpectedly long approval wait times for their game submissions on Steam, with some of the approvals causing developers to miss their planned launch dates. For example, Studio Daimon, the team behind an upcoming title called Food Devils, had planned to launch the game in early access today after submitting its build on October 12th. But the game is \"still awaiting approval,\" according to a post from game director Alfred Kamon. \"Even now, we don't know when Steam will give us the final OK to finally release our game. We sent another ticket last week saying that the situat … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/cars/2026/11/yes-to-storage-no-to-piano-black-how-car-interior-design-is-changing/",
+      "title": "Buttons are back and storage is king when it comes to car interiors",
+      "url": "https://arstechnica.com/cars/2026/11/yes-to-storage-no-to-piano-black-how-car-interior-design-is-changing/",
+      "author": "Jonathan M. Gitlin",
+      "publishedAt": "2026-11-03T18:19:31.000Z",
+      "content": "As with interior design for houses, interior design for vehicles is also subject to fashion trends. And like any fashion trend, even the best ideas can become stale and played out with overuse. Some ideas weren’t the best, either, like demonstrably worse human-machine interfaces that add to driver distraction; yet, they still proliferated throughout the industry and across the cars offered for sale. But the good news is that the pushback seems to be working. “When the trend of the Piano Black and the switchless interior was happening, it was during a time when designers and companies and engineers and everybody were thinking that, 'Hey, we can just get rid of all these switches on the interior. We can put it all in the software. It'll save money. It'll save us tooling up all these extra parts for unique cars and all this stuff and make the interior more like a software experience.' And it was done with those intentions,” said Hiren Patel, senior design manager at Nissan. That resulted in cars with minimalist interiors that looked good in the dealership. But people drive their cars on roads; they don’t just sit inside them, parked inside a dealership. “So lots of people were complaining about it and saying, 'Hey, it takes my eyes off the road to change the temperature or to adjust my seat or do whatever.' It's not as easy as doing something on your phone where it's just right at your fingertips and intuitive,” Patel said. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1025602",
+      "title": "Reddit is adding more ads",
+      "url": "https://www.theverge.com/tech/1025602/reddit-search-ads-test",
+      "author": "Emma Roth",
+      "publishedAt": "2026-11-03T18:26:36.000Z",
+      "content": "Reddit is testing ads on another area of its platform: search. With this update, ads will appear within your search results \"based on a range of factors, including contextual relevance to a search query,\" according to Reddit. That means searching for \"espresso station\" could present you with ads for espresso, machines, beans, or mugs, while a search for a \"home office setup\" may yield ads for monitors, desks, or office chairs. Reddit currently shows ads across its feeds in a variety of formats, including images, videos, sponsored posts, and AMAs. It also shows ads within threads. Reddit has announced a number of changes to its platform ove … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/nyt-demands-brave-shut-down-its-paywall-blocker-and-end-deals-with-ai-firms/",
+      "title": "NYT demands Brave shut down its paywall blocker and end deals with AI firms",
+      "url": "https://arstechnica.com/tech-policy/2026/11/nyt-demands-brave-shut-down-its-paywall-blocker-and-end-deals-with-ai-firms/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-11-03T18:30:27.000Z",
+      "content": "The New York Times and other newspaper companies sued Brave Software yesterday, alleging that the browser maker illegally bypasses paywalls and sells stolen news content to AI companies. \"Brave is the supplier, dealer, and distributor of stolen copyrighted content for its own users and many of the most prominent GenAI companies, including Anthropic, Perplexity, Mistral, xAI, and Cohere,\" the NYT alleged in a lawsuit filed in US District Court for the Southern District of New York. Citing third-party revenue estimates, the suit claimed that \"Brave has made more than $100 million by copying and reselling publishers’ work without consent or permission,\" while \"publishers have received nothing.\" The lawsuit said, \"AI companies pay Brave to provide them with real-time online content from the Brave search index,\" and use content from the Brave index \"to train their own AI models\" and \"to respond to specific user queries.\" The NYT lawsuit points to Brave's website, which says the Brave Search API is \"used by some of the biggest names in AI, including Cohere, Mistral, Perplexity, and You.com.\" Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1025482",
+      "title": "OpenAI says ChatGPT is catching up to Google in search",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1025482/openai-says-chatgpt-is-catching-up-to-google-in-search",
+      "author": "Hayden Field",
+      "publishedAt": "2026-11-03T18:30:42.000Z",
+      "content": "In many circles, \"Ask Chat\" has replaced \"Google it,\" and that's reflected in a new announcement from OpenAI: the volume of search queries run through ChatGPT now equals 20 percent of the volume run through Google. Adam Fry, OpenAI's consumer product lead for ChatGPT, made the announcement at a press event on Monday. He said the company defines a search as any time a user inputs a query that results in a web search, as opposed to tasks like defining a term or a simple how-to explanation. (Fry did not specify the source of the Google search volume number.) Having one-fifth as many searches as Google is still a long way from overtaking it, b … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1025002",
+      "title": "Apple’s latest watchOS beta includes its new always-on Audio Intelligence features",
+      "url": "https://www.theverge.com/tech/1025002/apple-watch-audio-intelligence-watchos-beta",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-11-03T18:31:00.000Z",
+      "content": "Starting today, Siri can tune into the Apple Watch's mic with Audio Intelligence features that are available in the new watchOS 27.3 developer beta rolling out now. The two new additions are Siri Recap, which uses \"ambient listening\" to generate summaries of your conversation, and Live Rewind, which generates text transcripts of the last 15 seconds of audio your watch's mic detected. Apple is also releasing its redesigned Health app for testing today in the iOS 27.3 developer beta, and announced expanded language support in global English, Chinese (Simplified and Traditional), French, Japanese, Korean, Norwegian, Portuguese, Spanish, Turki … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/prime-intellect-audit-reveals-ai-benchmarks-are-quietly-lying-about-model",
+      "title": "Prime Intellect Audit Reveals AI Benchmarks Are Quietly Lying About Model Rankings",
+      "url": "https://alphasignal.ai/news/prime-intellect-audit-reveals-ai-benchmarks-are-quietly-lying-about-model",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-03T18:54:46.000Z",
+      "content": "Prime Intellect audited popular LLM benchmarks and found broken graders, ambiguous tasks, and web-based cheating that significantly change reported model rankings.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261103/p25#a261103p25",
+      "title": "Sources: Meta eyes at least $20B from a potential cross-border bond offering, the company's first major debt sale in six months and its debut offering in euros (Bloomberg)",
+      "url": "https://www.techmeme.com/261103/p25#a261103p25",
+      "author": null,
+      "publishedAt": "2026-11-03T18:55:03.000Z",
+      "content": "Bloomberg: Sources: Meta eyes at least $20B from a potential cross-border bond offering, the company's first major debt sale in six months and its debut offering in euros — Meta Platforms Inc. is eyeing at least $20 billion from a potential cross-border investment-grade bond offering …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50356994",
+      "title": "Preparing for the Flipper One Kickstarter and opening pre-orders",
+      "url": "https://flipper.net/pages/flipper-one",
+      "author": "user_7832",
+      "publishedAt": "2026-11-03T19:32:13.000Z",
+      "content": "https://docs.flipper.net/one",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 108,
+      "comments": 47
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1025318",
+      "title": "This Election Day, remember which party ran against EVs and tethered us all to the gas pump",
+      "url": "https://www.theverge.com/transportation/1025318/trump-gop-ev-war-record-gas-prices-midterms",
+      "author": "Andrew J. Hawkins",
+      "publishedAt": "2026-11-03T19:44:46.000Z",
+      "content": "It's the midterms! Here's a fun fact for you as you head to the polls: Gas prices today are the highest ever recorded for a US Election Day. The national average for a gallon of gasoline is $4.12 and $6.28 for a gallon of diesel, according to GasBuddy. Meanwhile, the Strategic Petroleum Reserve, which is maintained by the US Department of Energy as a safeguard during energy crises, is down to 282.2 million barrels of crude, the lowest level in 44 years. Gas prices, along with other essential cost-of-living items, are certainly top of mind for many voters this election cycle. And perhaps many will also remember which political party ran o … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261103/p26#a261103p26",
+      "title": "How OpenAI, Anthropic, and others are trying to prevent anyone from using their AI tools to disrupt the US midterms, including Anthropic's first-ever \"war room\" (Steven Lee Myers/New York Times)",
+      "url": "https://www.techmeme.com/261103/p26#a261103p26",
+      "author": null,
+      "publishedAt": "2026-11-03T19:45:03.000Z",
+      "content": "Steven Lee Myers / New York Times: How OpenAI, Anthropic, and others are trying to prevent anyone from using their AI tools to disrupt the US midterms, including Anthropic's first-ever “war room” — OpenAI, Anthropic and other tech companies have vowed to protect Tuesday's elections from efforts to undermine democracy.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "fireship",
+      "externalId": "yt:video:k2ruCf_z75I",
+      "title": "The worst week in cybersecurity history... so far",
+      "url": "https://www.youtube.com/watch?v=k2ruCf_z75I",
+      "author": "Fireship",
+      "publishedAt": "2026-11-03T19:47:10.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "video"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1025673",
+      "title": "You can’t hit a wrong note when playing along with songs on Casio’s new keyboard",
+      "url": "https://www.theverge.com/tech/1025673/casio-digital-piano-keyboard-ct-fs1-feel-sync-technology",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-11-03T19:48:41.000Z",
+      "content": "Casio announced a new addition to its Casiotone line of portable electronic keyboards with a feature that could help aspiring musicians master skills like rhythm and timing without the frustrations or discouragement of hitting the wrong note. The Casiotone CT-FS1 is available now for $399.99 in a monochromatic black or white version where even the 61 touch-responsive keys are all the same color. It can run on AA batteries or a power adapter but at just under 10 pounds in weight it's definitely not the smallest of portable keyboards. There's built-in stereo speakers and Bluetooth connectivity if you're playing for others, as well as a physic … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-flashprove-cryptographically-proves-which-ai-model-answered-you",
+      "title": "Anthropic's FlashProve Cryptographically Proves Which AI Model Answered You",
+      "url": "https://alphasignal.ai/news/anthropic-s-flashprove-cryptographically-proves-which-ai-model-answered-you",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-03T19:54:41.000Z",
+      "content": "Anthropic's FlashProve generates cryptographic proofs that a response came from a specific LLM, running 70x faster than prior open-source systems.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-security-review-public-beta",
+      "title": "Vercel Security Review now in public beta",
+      "url": "https://vercel.com/changelog/vercel-security-review-public-beta",
+      "author": "Nate McGrady",
+      "publishedAt": "2026-11-03T20:00:00.000Z",
+      "content": "is now in public beta for Pro and Enterprise teams. Once enabled, every push to a connected GitHub repository is automatically reviewed for vulnerabilities, and findings are reported in the .Vercel Security ReviewVulnerabilities dashboard Security Review runs automatically when code is pushed to a connected GitHub repository. Because reviews start from push events rather than pull requests, direct and force pushes to your production branch are reviewed as well. Every project affected by a single push is reviewed together. Each finding records the project, environment, branch, and commit, with a summary, a suggested fix, and an AI-generated severity rating. Security Review adds its own GitHub check to each commit it reviews. When there's a pull request, it also posts findings as review comments that link back to each finding. On public repositories, finding details stay in the dashboard. Clicking on a vulnerability report hands the finding to Vercel Agent, which proposes a fix and opens a pull request for you to review. Nothing merges until you approve it.Fix with Vercel Agent To fix findings with your coding agent instead, use in the Vercel CLI, or copy any finding as Markdown or JSON.vercel security vulnerabilities Teams can write security policies in plain language, for all projects or specific ones, to give Security Review more context about how they build. Set a team policy in Agent settings and a project policy in the project's Security settings. Security Review analyzes source code. It isn't a security audit, and it doesn't perform runtime or penetration testing. It helps you find vulnerabilities but doesn't guarantee your application is free of them. Security Review is billed at the : provider inference at the underlying token rate with no markup, plus the Vercel Token Rate of $0.25 per million tokens (input, cached, output). Reviews run on each push to GitHub, so cost scales with how often you push and how much code changes.Vercel Agent rate Security reviews are free until November 10, 2026, and fixes made with Vercel Agent are billed at the Vercel Agent rate. Enable Security Review in your , or read the and the to learn more. The CLI command needs Vercel CLI 65.10.0 or later.team’s Agent settingsdocumentationannouncement Read more What triggers a review What a finding includes Fixes and resolution Security policies Limitations Pricing",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261103/p27#a261103p27",
+      "title": "Apple opens Siri AI to all developers with iOS 27.3 and other 27.3 OS betas, letting any app bring its content and actions into Siri AI by using App Intents (Apple Developer)",
+      "url": "https://www.techmeme.com/261103/p27#a261103p27",
+      "author": null,
+      "publishedAt": "2026-11-03T20:15:00.000Z",
+      "content": "Apple Developer: Apple opens Siri AI to all developers with iOS 27.3 and other 27.3 OS betas, letting any app bring its content and actions into Siri AI by using App Intents — Starting today with the iOS 27.3, iPadOS 27.3, macOS 27.3, and visionOS 27.3 betas, a new Developer Preview enables any developer …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1025694",
+      "title": "Apple starts giving Siri AI access to third-party apps",
+      "url": "https://www.theverge.com/tech/1025694/apple-siri-ai-third-party-apps",
+      "author": "Emma Roth",
+      "publishedAt": "2026-11-03T20:16:17.000Z",
+      "content": "Apple will now let Siri AI perform actions across third-party apps. As part of the iOS 27.3 update rolling out on Tuesday, Apple announced developers can now integrate Siri AI's new features in \"all apps,\" allowing the voice assistant to draw on a user's personal context, process natural language prompts, and use on-screen awareness to complete requests. The update, which is rolling out as part of a Developer Preview, also adds a new \"app skills\" feature that third-party developers can create to combine several tasks into a single action. In Apple's developer documentation, the company says users won't have to mention an app's name in their … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1025748",
+      "title": "iPhone 18 rumors suggest a bigger battery, higher price next year",
+      "url": "https://www.theverge.com/tech/1025748/apple-iphone-18-rumors-price-hike-battery",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-11-03T20:16:54.000Z",
+      "content": "The iPhone 17’s successor might cost more. | Photo by Amelia Holowaty Krales / The Verge After Apple raised iPhone prices earlier this year, a new rumor claims it plans to launch the base iPhone 18 with a higher price, too. A Weibo post from leaker Digital Chat Station, spotted by 9to5Mac, says the base iPhone 18 is getting a couple upgrades with the price hike, including a larger battery and a new 2-nanometer A20 chip. However, it reportedly won't have the smaller Dynamic Island featured on the iPhone 18 Pro and Pro Max. The base iPhone 18 wasn't included in Apple's fall iPhone launch event, but Digital Chat Station claims it will arrive early next year, in line with previous reports. It's rumored to launch alongside a second- … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1025466",
+      "title": "The Pixel Buds Pro 2 have returned to their lowest price to date",
+      "url": "https://www.theverge.com/gadgets/1025466/google-pixel-buds-pro-2-borderlands-goty-nintendo-switch-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-11-03T20:29:26.000Z",
+      "content": "Android owners looking for an earbud upgrade are in luck. The Google Pixel Buds Pro 2 are back down to $169 at Amazon, Best Buy, and the Google Store, matching the lowest price we’ve seen. Google’s site claims the deal will last until 11:59PM PT on November 8th, and other retailers will likely follow suit. Some colors are already sold out, however, so it’s worth checking multiple retailers if you don’t see your preferred option. Google Pixel Buds Pro 2 Where to Buy: $229 $169 at Amazon $229 $169 at Google Store $229 $169 at Best Buy The Pro 2 are great for Android owners and work particularly well with Pixel phones, which receive some extra tricks, including tighter Gemini integration. We praised the wireless earbuds for their improved design, which cut both weight and size while improving the comfort and fit. They have more powerful noise cancellation and a better transparency mode, though they still don’t quite match up to some of the best in the industry, like the latest Bose Ultra Earbuds. The default tuning leans towards clarity and crisp detail, rather than boosted bass, with both presets and a five-band EQ to adjust them to your liking. Read our full Pixel Buds Pro 2 review. Other deals to consider Nintendo Switch owners can pick up Borderlands: Game of the Year Edition from the Nintendo Store for just $5.99, a steep discount from the usual price of $29.99. The updated version of the first game in Gearbox’s storied looter-shooter series features “bazillions” of guns, visual upgrades, and all four of the DLC packs. The deal runs until 11:59PM PT on November 6th. The refurbished Fellow Aiden is on sale at Fellow’s online storefront for $299.95, a $100 discount. The coffee maker brews anywhere from a single cup to a full carafe of pour-over-quality coffee, with scheduling available both on the machine and via the Aiden app. Refurb units have been thoroughly tested and come with a one-year warranty, too, just in case there are any issues. Prime Members can score a 26 percent discount on ESR’s Cyclone Magnetic Charging Pad at Amazon, lowering the price of the silver and black units to $36.99 ($13 off). The wireless charger supports up to 25 watts, with a built-in fan to keep both the charger and your device cool. The integrated stand also lets you use the charger while you catch up on YouTube, and the 5.9-foot cable means you aren’t glued to an outlet.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261103/p28#a261103p28",
+      "title": "CrowdStrike debuts an AI kill switch in Falcon Guardian to stop internal AI agents that go rogue, and announces a Falcon Guardian integration with Claude Cowork (Samantha Subin/CNBC)",
+      "url": "https://www.techmeme.com/261103/p28#a261103p28",
+      "author": null,
+      "publishedAt": "2026-11-03T20:30:02.000Z",
+      "content": "Samantha Subin / CNBC: CrowdStrike debuts an AI kill switch in Falcon Guardian to stop internal AI agents that go rogue, and announces a Falcon Guardian integration with Claude Cowork — CrowdStrike is betting that it has a solution to rogue artificial intelligence. — The cybersecurity vendor on Tuesday launched …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261103/p29#a261103p29",
+      "title": "Sources: US has held up approval for American chipmaking equipment needed by SK Hynix to expand in China, complicating its plans for new plants in New York (Karen Freifeld/Reuters)",
+      "url": "https://www.techmeme.com/261103/p29#a261103p29",
+      "author": null,
+      "publishedAt": "2026-11-03T20:45:05.000Z",
+      "content": "Karen Freifeld / Reuters: Sources: US has held up approval for American chipmaking equipment needed by SK Hynix to expand in China, complicating its plans for new plants in New York — US officials have held up approval for American chipmaking equipment needed by SK Hynix (000660.KS) to expand production in China …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261103/p30#a261103p30",
+      "title": "Apple launches iOS 27.3 beta, adding Apple Intelligence in China with an Alibaba-powered content filter, and watchOS 27.3 beta, with Siri Recap and Live Rewind (Bloomberg)",
+      "url": "https://www.techmeme.com/261103/p30#a261103p30",
+      "author": null,
+      "publishedAt": "2026-11-03T20:50:00.000Z",
+      "content": "Bloomberg: Apple launches iOS 27.3 beta, adding Apple Intelligence in China with an Alibaba-powered content filter, and watchOS 27.3 beta, with Siri Recap and Live Rewind — Apple Inc. rolled out the first developer beta versions of iOS 27.3 and watchOS 27.3 on Tuesday, putting new features …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261103/p31#a261103p31",
+      "title": "OpenAI hires Jill Hazelbaker, Uber's president and chief corporate affairs officer, as its new chief corporate affairs officer, reporting to Greg Brockman (Mike Allen/Axios)",
+      "url": "https://www.techmeme.com/261103/p31#a261103p31",
+      "author": null,
+      "publishedAt": "2026-11-03T21:00:53.000Z",
+      "content": "Mike Allen / Axios: OpenAI hires Jill Hazelbaker, Uber's president and chief corporate affairs officer, as its new chief corporate affairs officer, reporting to Greg Brockman — Jill Hazelbaker, Uber's president and chief corporate affairs officer, is moving to OpenAI in the new role of chief corporate affairs officer …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1025745",
+      "title": "Those Jeff Bezos hair transplant photos are very fake",
+      "url": "https://www.theverge.com/tech/1025745/fake-jeff-bezos-hair-replacement-photos-debunk",
+      "author": "Jess Weatherbed",
+      "publishedAt": "2026-11-03T21:01:07.000Z",
+      "content": "These edits of Jason Statham (left) and Jeff Bezos are a bit jarring, but that’s sort of the point. | Image: The Verge Amazon founder Jeff Bezos and actor Jason Statham have a distinctive feature in common: They're both famously bald, and that definitely hasn't changed in the last few days. However, there are some images of the two men circulating around X, Threads, and Bluesky in which they both have substantially more hair than their usual shaved look, which in Bezos' case appears to be very freshly transplanted. It's all just photo editing fakery, AI or otherwise. It's unclear how viral these posts are, but they're prevalent enough that a few members of the Verge team have encountered them in their social media feeds. Some people who shared them claimed … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261103/p32#a261103p32",
+      "title": "Anthropic releases FlashProve, open-source code that cryptographically verifies an AI response came from a given model, not a cheaper one swapped in by a router (Anthropic)",
+      "url": "https://www.techmeme.com/261103/p32#a261103p32",
+      "author": null,
+      "publishedAt": "2026-11-03T21:10:03.000Z",
+      "content": "Anthropic: Anthropic releases FlashProve, open-source code that cryptographically verifies an AI response came from a given model, not a cheaper one swapped in by a router — Roy Rinberg (Anthropic), Alex Allain (Anthropic); Alessandro Chiesa (EPFL, StarkWare), Miranda Christ (MIT, RESI), Rahul Dalal …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/03/ai-inference-startup-fal-doubles-its-valuation-to-16b-as-demand-surges",
+      "title": "AI inference startup Fal doubles its valuation to $16B as demand surges",
+      "url": "https://techcrunch.com/2026/11/03/ai-inference-startup-fal-doubles-its-valuation-to-16b-as-demand-surges",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.776Z",
+      "content": "AI inference startup Fal doubles its valuation to $16B as demand surges techcrunch.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://developer.apple.com/news?id=gdk2umrf",
+      "title": "Apple opens Siri AI to all developers with iOS 27.3 and other 27.3 OS betas, letting any app bring its content and actions into Siri AI by using App Intents",
+      "url": "https://developer.apple.com/news?id=gdk2umrf",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.777Z",
+      "content": "Apple opens Siri AI to all developers with iOS 27.3 and other 27.3 OS betas, letting any app bring its content and actions into Siri AI by using App Intents developer.apple.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://openai.com/index/accelerating-engineering-for-the-physical-world",
+      "title": "Accelerating engineering for the physical world",
+      "url": "https://openai.com/index/accelerating-engineering-for-the-physical-world",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.779Z",
+      "content": "Accelerating engineering for the physical world openai.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://newsletter.semianalysis.com/p/elon-is-doing-it-again-spacex-will",
+      "title": "Elon Is Doing It Again: SpaceX Will Be The World’s Biggest AI Cloud",
+      "url": "https://newsletter.semianalysis.com/p/elon-is-doing-it-again-spacex-will",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.780Z",
+      "content": "Elon Is Doing It Again: SpaceX Will Be The World’s Biggest AI Cloud newsletter.semianalysis.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://0xca333.substack.com/p/the-largest-bitcoin-miners-are-quietly",
+      "title": "TeraWulf and Anthropic sign 20-year AI compute lease",
+      "url": "https://0xca333.substack.com/p/the-largest-bitcoin-miners-are-quietly",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.781Z",
+      "content": "TeraWulf and Anthropic sign 20-year AI compute lease 0xca333.substack.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/ttunguz/status/2117683717250678858",
+      "title": "The Financial Engineering Essential for AI in 2027",
+      "url": "https://x.com/ttunguz/status/2117683717250678858",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.781Z",
+      "content": "The Financial Engineering Essential for AI in 2027 x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.brokk.ai/youre-paying-too-much-for-code-review",
+      "title": "You're paying too much for code review",
+      "url": "https://blog.brokk.ai/youre-paying-too-much-for-code-review",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.782Z",
+      "content": "You're paying too much for code review blog.brokk.ai4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/03/crowdstrike-to-shell-out-nearly-500m-for-2-ai-security-startups-as-the-market-for-securing-agents-takes-off",
+      "title": "CrowdStrike to shell out nearly $500M for 2 AI security startups as the market for securing agents takes off",
+      "url": "https://techcrunch.com/2026/11/03/crowdstrike-to-shell-out-nearly-500m-for-2-ai-security-startups-as-the-market-for-securing-agents-takes-off",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.782Z",
+      "content": "CrowdStrike to shell out nearly $500M for 2 AI security startups as the market for securing agents takes off techcrunch.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/kobeissiletter/status/2117691492537860427",
+      "title": "BREAKING: Anthropic is no longer expected to surpass SpaceX, $SPCX, as the largest IPO by market ...",
+      "url": "https://x.com/kobeissiletter/status/2117691492537860427",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.784Z",
+      "content": "BREAKING: Anthropic is no longer expected to surpass SpaceX, $SPCX, as the largest IPO by market ... x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/omarsar0/status/2117670953815564556",
+      "title": "Software that keeps itself running is where agents unlock the most value today. I build a lot wi...",
+      "url": "https://x.com/omarsar0/status/2117670953815564556",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.786Z",
+      "content": "Software that keeps itself running is where agents unlock the most value today. I build a lot wi... x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://socket.dev/blog/hardening-github-actions-against-outside-threats",
+      "title": "Hardening GitHub Actions Against Outside Threats",
+      "url": "https://socket.dev/blog/hardening-github-actions-against-outside-threats",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.786Z",
+      "content": "Hardening GitHub Actions Against Outside Threats socket.dev23 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnet.com/tech/tech-industry/apple-ceo-ternus-memory-price-hikes-shortages-continue-2027",
+      "title": "Apple CEO Ternus Says Memory Price Hikes and Shortages Will Continue Into 2027",
+      "url": "https://www.cnet.com/tech/tech-industry/apple-ceo-ternus-memory-price-hikes-shortages-continue-2027",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.787Z",
+      "content": "Apple CEO Ternus Says Memory Price Hikes and Shortages Will Continue Into 2027 cnet.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "http://www.vaines.org/posts/2026-11-03-github-actually-fixed-sha-pinning",
+      "title": "GitHub Actually Fixed SHA Pinning. I Wasn't Expecting That.",
+      "url": "http://www.vaines.org/posts/2026-11-03-github-actually-fixed-sha-pinning",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.788Z",
+      "content": "GitHub Actually Fixed SHA Pinning. I Wasn't Expecting That. vaines.org3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/02/apple-watchs-ai-features-for-rewinding-and-recapping-conversations-begin-beta-testing",
+      "title": "Apple Watch’s AI features for rewinding and recapping conversations begin beta testing",
+      "url": "https://techcrunch.com/2026/11/02/apple-watchs-ai-features-for-rewinding-and-recapping-conversations-begin-beta-testing",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.788Z",
+      "content": "Apple Watch’s AI features for rewinding and recapping conversations begin beta testing techcrunch.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345",
+      "title": "British fintech Revolut slashes AI coding costs 10x by cutting out Claude and going self-hosted",
+      "url": "https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.810Z",
+      "content": "British fintech Revolut slashes AI coding costs 10x by cutting out Claude and going self-hosted theregister.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://opensource.googleblog.com/2026/11/introducing-three-live-ai-generated-3d-ar-webxr.html",
+      "title": "Introducing Three-Live: turning AI-generated Three.js into interactive 3D, AR, and WebXR across web and mobile",
+      "url": "https://opensource.googleblog.com/2026/11/introducing-three-live-ai-generated-3d-ar-webxr.html",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.812Z",
+      "content": "Introducing Three-Live: turning AI-generated Three.js into interactive 3D, AR, and WebXR across web and mobile opensource.googleblog.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://developers.googleblog.com/cost-per-task-using-cheap-classifiers-to-route-across-gemini-models-and-thinking-levels",
+      "title": "Cost per task: Using cheap classifiers to route across Gemini models and thinking levels",
+      "url": "https://developers.googleblog.com/cost-per-task-using-cheap-classifiers-to-route-across-gemini-models-and-thinking-levels",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.812Z",
+      "content": "Cost per task: Using cheap classifiers to route across Gemini models and thinking levels developers.googleblog.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.crowdstrike.com/en-us/blog/crowdstrike-advances-ai-security-and-safety-falcon-guardian",
+      "title": "CrowdStrike Advances AI Security and Safety from Endpoint to Cloud",
+      "url": "https://www.crowdstrike.com/en-us/blog/crowdstrike-advances-ai-security-and-safety-falcon-guardian",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.813Z",
+      "content": "CrowdStrike Advances AI Security and Safety from Endpoint to Cloud crowdstrike.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://namespace.so/blog/mac-at-any-scale",
+      "title": "Mac at any scale | Namespace",
+      "url": "https://namespace.so/blog/mac-at-any-scale",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.814Z",
+      "content": "Mac at any scale | Namespace namespace.so14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://archil.com/article/do-ai-agents-need-a-sandbox-running-for-the-whole-session",
+      "title": "Do AI agents need a sandbox running for the whole session?",
+      "url": "https://archil.com/article/do-ai-agents-need-a-sandbox-running-for-the-whole-session",
+      "author": null,
+      "publishedAt": "2026-11-03T21:17:19.817Z",
+      "content": "Do AI agents need a sandbox running for the whole session? archil.com5 min read",
       "topics": [
         "ai-llms",
         "devtools-infra",
