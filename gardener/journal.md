@@ -6,6 +6,34 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A binary with no source in the repo keeps its invariant nowhere, so the
+  invariant is whatever the last hand to touch it remembered. The four app
+  icons are four pngs in a folder: no generator, no spec, no test, and a
+  commit message ("bolder app icon") that reads as having covered the set
+  while it covered three of them. Nothing in the tree could say otherwise,
+  which is why a 34.4% mark sat on the ios home screen for four months beside
+  three at 59.4%. The habit this adds to 10-22's "name the media" and 10-28's
+  "name the states" is cheaper than both: **name the members of the category,
+  then measure them, rather than reading the commit that claims them.** What
+  made the day was measuring the whole set instead of the suspect in it. The
+  file that looked wrong was `icon-512-maskable.png`, byte-identical to
+  `icon-512.png`, which reads exactly like a maskable variant nobody drew;
+  measured, it is correct as both (mark 59.4% of the tile, safe zone 80%,
+  opaque, square), and the defect was in the neighbour no sweep had a reason
+  to open. A suspect is a place to start a measurement, never the scope of
+  one.
+  Its other half is about what a gate over a shape has to assert, and it cost
+  one review round. The first cut of `icons.test.ts` walked every pixel,
+  computed `minX/maxX/minY/maxY`, and returned the width and `cx`: `minY` and
+  `maxY` were computed and then dropped on the floor, so a mark ten pixels low
+  kept its width and passed all four assertions. Copilot named it, a copy of
+  the new icon drawn at `cy="100"` reproduced it before it was believed (09-22
+  holding for the fourth time), and the fix was to return the pair. **A value
+  a function computes and does not return is the shape of a half-written
+  gate**, and it is visible in the diff without running anything: when an
+  assertion is about a shape, count the numbers the measurement produced
+  against the numbers it asserts on.
+
 - An instrument that cannot reach the state under test certifies nothing, and it
   reports that in the quietest way available: as a pass. Today's before/after
   screenshot pair came back **four byte-identical pngs**, which reads as "the
@@ -663,6 +691,67 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-11-04 as #329 / PR #330, `1077564`, `pages` run 41808185860
+  green on build and deploy. The icon ios puts on a home screen carries the
+  mark at the 59.375% of the tile `13e03bc` gave the android icons, instead
+  of the 34.4% it left this one on, and the tile is opaque and square for the
+  system mask to cut. 263 tests (was 259), one png (2787 -> 2736 bytes) and
+  127 lines of test, built tree **1 file**. Copilot found the one real hole in
+  the gate (centring read on x only) and it was reproduced before it was
+  believed, then fixed in a second commit.
+- Walked clean on 2026-11-04, recorded so a future run does not re-walk them.
+  **Every slide card the archive holds, measured for overflow.** 453 cards
+  (32 days, 63 posts) rebuilt and driven at 1080x1350: **0** overflow the
+  card and 0 collide with the bottom row, and the tightest card in the month
+  (`2026-10-27/pm/card-2`, 4 title lines, 3 desc lines, 1 term) still leaves
+  **211px** between the content and the wordmark. The verifier's 120/110/70
+  caps sit well inside what the layout can hold; do not re-measure this
+  without a cap change.
+  **The view counter's state, driven for the first time.** `yasin.goatcounter.com`
+  is unreachable here, so every CLS sweep ever run on a day page has read the
+  page with `#views` still hidden. Stubbed and driven at 4 widths x 4 counts
+  (1, 42, 1 234, 12 345), `.meta` stays **23px** and `.prose` top stays put in
+  16 of 16: the counter lands inside the date line at every width down to 360
+  and moves nothing. The thin-space swap works too (`1 234` renders `1,234`),
+  and the singular reads "1 view".
+  **The day page's residual webfont shift, re-derived independently.** With
+  `fonts.googleapis.com` and `gstatic` aborted a day page scores **0 shifts**;
+  with them live, 2026-11-03 scores 0.0883 at 360 and 0.1551 at 430, and the
+  whole of it is **one `<li>` re-wrapping** (275 -> 303px, document 7128 ->
+  7155). That is 10-29's banked floor, measured a second way: the fallback is
+  metric-matched, not glyph-matched, so a line that sits on a wrap boundary
+  crosses it. Not a regression, do not re-file.
+  **`icon-512-maskable.png` is genuinely maskable**, not a copy taking the
+  name: byte-identical to `icon-512.png` and correct as both, since the mark
+  is 59.4% of the tile and the maskable safe zone is the central 80%, with an
+  opaque full-bleed background and square corners. Nothing owed.
+  **`npm audit --omit=dev` 0**, and the full tree is the same 3 dev-only
+  `vite`/`@vitest/mocker` advisories declined as #292.
+  **The pages workflow's `slides` step is green on 14 of the last 14 runs**,
+  so the `continue-on-error` that would hide a broken carousel render has
+  never had to.
+  **The stored items, swept at 9,244 items over 32 days.** Empty `content` is
+  **1,069**, and every one of them belongs to a source that ships none
+  (`hacker-news` 998/1102, `huggingface-blog` 45/45, `fireship` 11/11,
+  `stackoverflow-blog` 9/32, `deepmind-blog` 5/10, `google-research` 1/10):
+  no source is silently losing its body. 0 items carry a bad or future
+  `publishedAt`, 0 carry an html entity in a title, and raw markup survives
+  in `content` on **4** items in the month (a `<p>` pair from github-blog, a
+  `<script>` tag from cloudflare-blog, `<br />` and a `nop` span from tldr).
+  Zero-width survivors: **9 of 9,244**, all of them characters `INVISIBLES`
+  does not name (5 x U+2060 word joiner, 4 schneier items with U+00AD soft
+  hyphen). Measured and NOT filed: the class covers the watermark it was
+  written for, and 9 invisible characters in a month's items change nothing a
+  reader or the digest agent sees.
+  **`https://huggingface.co/blog/feed.xml` re-probed and still 403 at
+  CONNECT**, so 10-21's open half (which element carries that feed's body)
+  remains unanswerable from here.
+  **`fireship` 404'd on the morning ingest again** (05:37 UTC, the same
+  dispatch hour as 10-10/10-11/10-12) and cost nothing again: the channel's
+  last video published 2026-11-03 19:47 and was already stored that day, so
+  10-12's re-count trigger ("a morning failure on a day the channel
+  published") still has not fired.
 
 - MERGED 2026-11-03 as #326 / PR #327, `70aa370`, `pages` run 41610388817
   green on build and deploy. The bell carries its idle face before it joins the
@@ -2136,6 +2225,97 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-04
+
+**#329 filed, PR #330 built, `checks` green on `2eb0742` and again on
+`34362bc`, copilot raised one real hole in the new gate and it was fixed in
+the wait, merged by this run as `1077564`, `pages` run 41808185860 green on
+build and deploy.** The icon an ios reader gets for following the site's own
+install instructions is no longer the one icon left on the old proportion.
+
+**The signal is a commit that swept a category and missed a member.**
+`13e03bc` is called "bolder app icon and tappable install instructions on
+ios": it grew the mark on `icon-192.png` and `icon-512.png` (and the maskable
+copy) from 34.4% of the tile to **59.375%**, and left `apple-touch-icon.png`
+alone. Measured off the committed pngs, mark diameter against tile width:
+
+| icon | size | before 13e03bc | on main this morning |
+|---|---|---|---|
+| icon-192.png | 192 | 66 (34.4%) | **114 (59.4%)** |
+| icon-512.png | 512 | 176 (34.4%) | **304 (59.4%)** |
+| icon-512-maskable.png | 512 | 176 (34.4%) | **304 (59.4%)** |
+| apple-touch-icon.png | 180 | 62 (34.4%) | **62 (34.4%)** |
+
+So the file still carrying the favicon's proportion is the one ios puts on a
+home screen, at **34% of the area** the android tile gives the same mark, and
+the commit that moved the other three is the same commit that wrote the
+"add to home screen" instructions `notify.ts` shows ios readers. The corners
+are the other half and much smaller: the three updated icons are opaque and
+full-bleed, this one still had the favicon's baked rounding (1.8%
+transparent, first opaque pixel 20px in on a 180px edge). Ios masks at a
+larger radius, so none of that corner is ever seen; it is not a visible
+defect, it is just not what a tile for a system mask looks like.
+
+**The fix is one png**, redrawn at 180x180, opaque `#0d0c0b`, centred
+`#d4976a` circle at the same 59.375%, square corners, no new hex and no css,
+html or manifest edit. Measured after by two instruments that agree to the
+pixel, a canvas `getImageData` pass in chromium and the test's own decoder:
+mark **62 -> 106** of 180 (the circle is drawn at 106.875 and the detector
+drops the outer antialiased ring on a fractional radius, half a pixel a
+side), min alpha **0 -> 255**, centre 90,90 both sides, 2787 -> 2736 bytes.
+Built tree diff **1 file**: every page, the feed, the sitemap, `latest.json`,
+`sw.js` and the other icons byte-identical.
+
+**The gate is the half worth keeping.** `test/icons.test.ts` reads all four
+app pngs and holds each to one proportion, a centred mark and a fully opaque
+tile, so the next icon change cannot update three of four again. It names no
+hex, reading the tile colour off the corner pixel, which leaves the palette
+to `contract.test.ts` and pins only geometry; the decoder is ~50 lines of
+node `zlib` plus the five png scanline filters, no new dependency. Against
+the unfixed asset it fails twice independently (09-22): on the transparent
+corners, and, with the same png flattened onto an opaque tile so that check
+passes, on `0.2493 to be less than or equal to 0.01`.
+
+**Copilot found the real hole and it was reproduced before it was believed.**
+The first cut computed `minY`/`maxY` and returned only `cx`, so a mark ten
+pixels low kept its width and passed all four assertions, which a copy of the
+new icon drawn at `cy="100"` duly did. The fix returns `centre: [x, y]` and
+asserts both against half the tile; against that same shifted copy it now
+reads `expected [ 90, 100 ] to deeply equal [ 90, 90 ]`.
+
+**Eight surfaces walked clean on the way** and recorded in the backlog so no
+run pays for them twice: all 453 slide cards in the archive measured for
+overflow (0, tightest leaves 211px), the day page's view counter driven for
+the first time (stubbed, 16 readings, moves nothing), the residual webfont
+shift re-derived independently and matching 10-29's floor, the maskable icon
+confirmed genuinely maskable, `npm audit --omit=dev` 0, the pages `slides`
+step green on 14 of 14, the 9,244 stored items swept for empty bodies, bad
+dates, entities, markup and zero-width survivors, and two re-probes (the
+huggingface feed still 403, `fireship`'s morning 404 still costing nothing).
+
+**Health**: the last 30 workflow runs green before this one, `verify` clean
+across the archive but for 2026-10-12's known error (its gate postdates it,
+prunes out 11-12) and four 60+ link warnings, no open PRs at the start of the
+run, five issues open (#314, #246, #241, #120, #112), none greenlit, so the
+slot went to a new observation; #329 opened and closed inside it. Entries run
+back to 08-29, inside the ~90 day window, so nothing pruned.
+
+**The environment, as it behaved today.** The clone arrives **shallow at 50
+commits** again (995 after `--unshallow`), so that check stays at the top of
+the run. `npm ci` works. `npm run slides:render` still throws because the
+repo's playwright wants headless shell build **1228** and the container ships
+**1243**, so card rendering needs a three-line script with
+`executablePath: /opt/pw-browsers/chromium`. `gh pr list`/`issue list` remain
+403 on graphql; `gh api -X GET` and the github MCP both work, and the MCP
+carried the merge on the first attempt with the **full 40-character sha**
+(an abbreviated one is rejected outright). Branch delete is still 403 from
+the proxy. New, and worth having: the harness footer is stripped by the MCP
+on an issue body and a pr body, but **a pr review reply has no MCP update
+route** (`update_issue_comment` refuses review comments by design), `gh api
+-X PATCH` re-appends it, and deleting the comment to repost it is refused by
+the harness classifier, so the one reply on #330 carries the footer. Nothing
+else in the trail does.
 
 ### 2026-11-03
 
