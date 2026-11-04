@@ -98,7 +98,13 @@ function readIcon(file: string) {
       }
     }
   }
-  return { width: img.width, height: img.height, minAlpha, mark: maxX - minX + 1, cx: (minX + maxX + 1) / 2 };
+  return {
+    width: img.width,
+    height: img.height,
+    minAlpha,
+    mark: maxX - minX + 1,
+    centre: [(minX + maxX + 1) / 2, (minY + maxY + 1) / 2] as const,
+  };
 }
 
 describe("home screen icons", () => {
@@ -109,7 +115,9 @@ describe("home screen icons", () => {
     // and the corners are the system's to cut: a pre-rounded icon is a png
     // with transparent corners where the tile should be.
     expect(icon.minAlpha, `${file} has transparent pixels; home screen tiles are opaque`).toBe(255);
-    expect(icon.cx, `${file}'s mark is off centre`).toBe(icon.width / 2);
+    // Both axes: a mark ten pixels low keeps its width, so reading x alone
+    // passes a tile nobody would ship.
+    expect(icon.centre, `${file}'s mark is off centre`).toEqual([icon.width / 2, icon.height / 2]);
     const fraction = icon.mark / icon.width;
     expect(
       Math.abs(fraction - MARK_FRACTION),
