@@ -1,6 +1,6 @@
 {
   "day": "2026-11-05",
-  "generatedAt": "2026-11-05T17:37:58.209Z",
+  "generatedAt": "2026-11-05T21:35:12.792Z",
   "items": [
     {
       "sourceSlug": "openai",
@@ -40,6 +40,21 @@
       "content": "OpenAI built an autonomous pipeline that found, validated, and generated patches for 948 local privilege-escalation vulnerabilities in the Linux kernel.",
       "topics": [
         "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/introducing-vercel-schedules",
+      "title": "Introducing Vercel Schedules",
+      "url": "https://vercel.com/blog/introducing-vercel-schedules",
+      "author": "Elliot Dauber",
+      "publishedAt": "2026-11-04T13:00:00.000Z",
+      "content": "Cron jobs are useful for work that needs to happen regularly. You can use them to do things such as back up your database on a schedule, or keep data in sync between two systems. You define them once in code and then can update them by editing their config and redeploying. But today, agents interact with users as work evolves, and schedules need to be updated in real time. We built Vercel Schedules to allow agents and applications to create, change, or cancel one-time and recurring schedules through code, without redeploying. Schedules builds on the static approach used by , but are designed to let users and agents decide when work should happen while your application is still running. A schedule tells Vercel when to trigger a task and where to send it. Your application provides the code that carries out the work.Vercel Cron Jobs You can use schedules for both static and dynamic jobs: You can also test scheduled work on before running it in Production.Preview deployments and in custom environments Take this example: A user could ask an agent with web access, “Tomorrow morning, summarize the top five stories on Hacker News.” The traditional solution would be storing the request and its schedule time in a database, then using a cron job to check for work that is due. With Schedules, an agent can create a schedule that records the request and when to run it, without a separate database and polling job. The example below defines an AI SDK tool that gives an agent this capability. When the task is due, Vercel uses to deliver the saved request to your app. Your app provides , check the user’s current permissions, and start the agent. The agent fetches the top five Hacker News posts with a web tool, then returns a summary for your app to save for the user.Queuescode to read that request If you already build agents with or , you can add a similar scheduling tool. The uses Vercel Schedules to provide dynamic scheduling tools for production agents hosted on Vercel.fx’s JavaScript library, libfxPi’s agent libraryeve agent framework You can schedule recurring work with Vercel Schedules. Schedules can be created dynamically via the , , and , or set up in your project’s configuration.JS SDKAPICLI For example, to create a job that cleans up expired records every day, you could define a schedule that invokes a private function in your chosen time zone: Vercel calls this cleanup code directly, without exposing it at a public URL. It checks that each call comes from the scheduling service, so you don’t have to add that check yourself. If your app already uses the Nitro 3 server framework, its lets you run the recurring jobs in your existing configuration as private functions.experimental integrationscheduledTasks You can also try the agent task and cleanup locally with , then test them on a Preview branch or in a custom environment before production. Use Run Schedule in your project’s Schedules tab to try either task without waiting, and see when past runs happened.vercel dev Vercel Schedules is now in , and you can use it for the recurring tasks your application already runs. When a user or agent chooses when work should happen, your code can create and manage a schedule for that task.Public Beta To get started, check out the and read the .Vercel Schedules skilldocumentation Read more What are Vercel Schedules? How Schedules works Get started keep the timing in or and sync when you deploy. You can use them to call private functions or HTTP paths, or send messages to .Static schedulesvercel.jsonBuild Output API configurationQueue topics let your app create and manage schedules through the , , or as it runs. They support one-time and recurring work through Queue topics.Dynamic schedulesJS SDKCLIAPI Run recurring application jobs",
+      "topics": [
+        "devtools-infra",
+        "frontend"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -128,6 +143,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50368208",
+      "title": "Show HN: A decent text-to-image model trained for ~$20K (Apache 2.0 Weights)",
+      "url": "https://www.linum.ai/field-notes/pjit-21k",
+      "author": "schopra909",
+      "publishedAt": "2026-11-04T16:45:11.000Z",
+      "content": "My brother and I run a 2-person lab that trains our own generative video models from scratch. The ultimate goal is a set of creative tools that make it easier for anyone to make animation. Video models today are too slow/expensive and lack sufficient controls. Creativity is an iterative process. You make, you tweak, you get better. In our opinion, they're not usable yet for storytelling. When we set out to build Linum v3 (our next video model) earlier this year, the primary goal was to bring the cost envelope of inference down significantly. If our model is fast and cheap, it's the first step (of many) towards useful creative tools. Typically, you see \"latent diffusion models\". A VAE (Variational Autoencoder) compresses the input data into a smaller \"latent space\" and the diffusion model learns how to generate within this subspace. Over the past few months, we've been publishing our work on efficient pixel-space diffusion models. These throw away the VAE, having the diffusion model learn a latent-space optimized for its exact task. This serves 3 purposes: 1) Simplify Architecture (no 2-stage model training) 2) Faster Convergence (11x faster convergence vs. our latent diffusion counterpart) 3) Cheaper Inference (4x more aggressive token reduction in attention context-windows, without significant loss in quality) This past month we were pressure testing our latest architecture (Pyramid-JiT) by training a text-to-image model longer than the typical one-off experiment. Specifically, we trained it for ~$20K on 660M samples. We were surprised by the quality of results, so we thought we'd release it as open weights for the community (Apache 2.0). The research itself is already public, on our website. For us, it's a big stepping stone towards cheaper video models, since pretty much all video models start as image models. We like to say these models have to learn nouns before they learn verbs.",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 11
     },
     {
       "sourceSlug": "hacker-news",
@@ -475,6 +509,20 @@
       "topics": [
         "devtools-infra",
         "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/together-ai-s-compiler-uses-agents-to-speed-up-gpu-inference-by-20",
+      "title": "Together AI's Compiler Uses Agents to Speed Up GPU Inference by 20%",
+      "url": "https://alphasignal.ai/news/together-ai-s-compiler-uses-agents-to-speed-up-gpu-inference-by-20",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-04T22:20:11.000Z",
+      "content": "Together AI unveils Together Compiler, an agent-driven system that continuously retunes inference kernels as models, traffic, and GPUs change underneath them.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -841,6 +889,20 @@
       "content": "Cristian Dina / The Next Web: Berlin-based Pliant raised an $80M Series C led by Seaya Nova and Speedinvest, as it opens its B2B payments infrastructure to AI agents — Claude, ChatGPT and in-house AI agents can now run business payments through Pliant. The Berlin fintech, past $100M in recurring revenue, will expand in North America.",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/benji-taylor-s-stageshow-teaches-coding-agents-to-build-polished-product-demos",
+      "title": "Benji Taylor's Stageshow Teaches Coding Agents to Build Polished Product Demos",
+      "url": "https://alphasignal.ai/news/benji-taylor-s-stageshow-teaches-coding-agents-to-build-polished-product-demos",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T03:34:26.000Z",
+      "content": "Benji Taylor opened a public collection of Agent Skills for coding agents, led by Stageshow, a React toolkit for building faux product UI stills and cursor demos.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -2639,6 +2701,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/introducing-gpt-6-cyber",
+      "title": "GPT‑6 Cyber: Advancing the frontier of aligned cybersecurity agents",
+      "url": "https://openai.com/index/introducing-gpt-6-cyber",
+      "author": null,
+      "publishedAt": "2026-11-05T09:00:00.000Z",
+      "content": "Introducing GPT‑6 Cyber, OpenAI’s cybersecurity model for finding exploitable vulnerabilities and developing fixes, trained to stay within authorized scope.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "ars-technica",
       "externalId": "https://arstechnica.com/cars/2026/11/mercedes-amg-gt-4-door-coupe-first-drive-where-tech-and-fun-collide/",
       "title": "Mercedes-AMG GT 4-Door Coupe first drive: Where tech and fun collide",
@@ -3505,6 +3581,25 @@
       "comments": 155
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50378942",
+      "title": "I wish tech companies knew more about me",
+      "url": "https://rakhim.exotext.com/i-wish-tech-companies-knew-more-about-me",
+      "author": "freetonik",
+      "publishedAt": "2026-11-05T13:40:52.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 223,
+      "comments": 211
+    },
+    {
       "sourceSlug": "crunchbase-news",
       "externalId": "https://news.crunchbase.com/?p=94328",
       "title": "Dropbox Plans $350M AI Infrastructure Deal With Tigris Buy, Its Biggest Acquisition Yet",
@@ -3536,6 +3631,25 @@
       "mediaType": "text",
       "points": 151,
       "comments": 75
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50379576",
+      "title": "September in Servo: <progress>, rounded rectangles, and more",
+      "url": "https://servo.org/blog/2026/11/05/september-in-servo/",
+      "author": "iamnothere",
+      "publishedAt": "2026-11-05T14:34:18.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 153,
+      "comments": 30
     },
     {
       "sourceSlug": "hacker-news",
@@ -3717,6 +3831,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/11/statehouse-wins-give-democrats-new-power-to-push-clean-energy/",
+      "title": "Statehouse wins give Democrats new power to push clean energy",
+      "url": "https://arstechnica.com/science/2026/11/statehouse-wins-give-democrats-new-power-to-push-clean-energy/",
+      "author": "Dan Gearino, Inside Climate News",
+      "publishedAt": "2026-11-05T15:59:51.000Z",
+      "content": "Before Tuesday’s election, Republicans held more governorships and state legislative seats than Democrats, along with an advantage in state trifectas—unified control of the governor’s office and both chambers of the legislature. That advantage has disappeared, clearing the path for more climate and clean energy legislation, according to analysts and advocates. Democrats swept the vast majority of competitive races at the state level, flipping control of governors’ offices from Republicans in Georgia, Iowa, Ohio, Nevada, and Texas. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=1026958",
       "title": "Sony’s retro headphones brought me back to my childhood in the best way",
@@ -3893,6 +4021,39 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/parallel-mcp-2-0-packs-four-web-research-tools-behind-one-agent-endpoint",
+      "title": "Parallel MCP 2.0 Packs Four Web Research Tools Behind One Agent Endpoint",
+      "url": "https://alphasignal.ai/news/parallel-mcp-2-0-packs-four-web-research-tools-behind-one-agent-endpoint",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T16:18:44.000Z",
+      "content": "Parallel's unified MCP server packs search, extract, decisions, and deep research into one URL, free without an API key, with admin controls for agent fleets.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50381033",
+      "title": "My psychophysics as a bilateral cochlear implant user",
+      "url": "https://claude.ai/artifact/L8qsMc3SorytGW3LA81nYf",
+      "author": "mi-rae",
+      "publishedAt": "2026-11-05T16:21:12.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 141,
+      "comments": 39
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261105/p35#a261105p35",
       "title": "Google, Meta, and TikTok file lawsuits to block a California law that bans online platforms from providing \"psychologically exploitative features\" to under-16s (Jonathan Stempel/Reuters)",
@@ -3935,6 +4096,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-deepmind-s-embeddinggemma-2-searches-text-video-and-audio-in-one-740m",
+      "title": "Google DeepMind's EmbeddingGemma 2 Searches Text, Video, and Audio in One 740M Model",
+      "url": "https://alphasignal.ai/news/google-deepmind-s-embeddinggemma-2-searches-text-video-and-audio-in-one-740m",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T16:36:59.000Z",
+      "content": "Google DeepMind's 740M-parameter multimodal embedder unifies text, code, images, video, and audio in one 768-dim space, beating models up to 12x larger.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261105/p37#a261105p37",
       "title": "Sources: Microsoft is tightening oversight of some data center projects, stepping away from those it deems risky, and debating whether to ink new neocloud deals (Brody Ford/Bloomberg)",
@@ -3961,6 +4136,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50381383",
+      "title": "Window Sweaters",
+      "url": "https://github.com/saragordic/window-sweaters",
+      "author": "nickswalker",
+      "publishedAt": "2026-11-05T16:50:14.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 160,
+      "comments": 60
     },
     {
       "sourceSlug": "the-verge",
@@ -4042,6 +4236,35 @@
       "content": "One underperforming GPU can slow an entire distributed training job. The node may pass basic health checks and show normal utilization, leaving operators to... One underperforming GPU can slow an entire distributed training job. The node may pass basic health checks and show normal utilization, leaving operators to discover the problem only after the workload is running. These issues can appear at any point in a cluster’s lifecycle. A GPU cluster that passes readiness checks at handover changes as nodes are replaced, drivers are patched… Source",
       "topics": [
         "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-schedules-is-now-in-public-beta",
+      "title": "Vercel Schedules is now in public beta",
+      "url": "https://vercel.com/changelog/vercel-schedules-is-now-in-public-beta",
+      "author": "Elliot Dauber",
+      "publishedAt": "2026-11-05T17:00:00.000Z",
+      "content": "is now in public beta on all plans. Run tasks on a recurring cadence or at a single point in time, in production, preview, or custom environments.Vercel Schedules Schedules in can target a private Vercel Function, an HTTP path, or a Vercel Queue topic, and schedules created at runtime target a Queue topic. Any schedule can be enabled, disabled, or run on demand without redeploying.vercel.json Define a static schedule: Adding a trigger makes the function private. It has no public URL and only the Vercel schedule infrastructure can invoke it.schedule/v1beta Handle the dispatch: Create a schedule at runtime: Schedules is the successor to . Existing Cron Jobs continue to work, and the covers moving them to Schedules. Schedules also power and experimental scheduled tasks in .Cron Jobsmigration guidedynamic schedules in EveNitro projects Vercel Schedules is billed starting at $5 per 1M runs and $10 per 1M creations on Pro and Enterprise. Hobby includes 500 schedule creations and 5,000 runs per month. Read the for more on how Schedules works, then get started with the .blog postSchedules documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/meta-opens-authenticated-time-service-to-fix-40-year-old-ntp-security-flaw",
+      "title": "Meta Opens Authenticated Time Service to Fix 40-Year-Old NTP Security Flaw",
+      "url": "https://alphasignal.ai/news/meta-opens-authenticated-time-service-to-fix-40-year-old-ntp-security-flaw",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T17:00:01.000Z",
+      "content": "Meta's public time service now authenticates every NTP packet using RFC 8915, closing a 40-year hole in the protocol that underpins all TLS validation.",
+      "topics": [
         "ai-llms"
       ],
       "paywalled": false,
@@ -4162,6 +4385,39 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50381623",
+      "title": "Nasdaq plummets 4% into correction territory",
+      "url": "https://www.cnbc.com/2026/11/04/stock-market-today-live-updates.html",
+      "author": "kristianp",
+      "publishedAt": "2026-11-05T17:11:15.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 157,
+      "comments": 122
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/cognition-slashes-devin-review-2-0-costs-by-82-per-pull-request",
+      "title": "Cognition Slashes Devin Review 2.0 Costs by 82% per Pull Request",
+      "url": "https://alphasignal.ai/news/cognition-slashes-devin-review-2-0-costs-by-82-per-pull-request",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T17:11:17.000Z",
+      "content": "Cognition cut Devin Review's cost by 82% since August, added autofix loops, custom reviewers, and incremental PR passes to tackle the review bottleneck.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=1027511",
       "title": "The FAA is finally ditching floppy disks",
@@ -4185,6 +4441,20 @@
       "content": "Djohnson / CyberScoop: OpenAI says GPT-6 Cyber will first launch to a limited number of customers in its Daybreak Red program and has found 81+ “novel” vulnerabilities in Firefox — OpenAI announced a new cybersecurity-focused model Thursday, citing internal benchmark testing that shows improvements …",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/goodfire-turns-ai-interpretability-tools-into-training-signals-to-kill-shortcuts",
+      "title": "Goodfire Turns AI Interpretability Tools Into Training Signals to Kill Shortcuts",
+      "url": "https://alphasignal.ai/news/goodfire-turns-ai-interpretability-tools-into-training-signals-to-kill-shortcuts",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T17:20:50.000Z",
+      "content": "Goodfire's new framework uses a model's internal representations as training signals to kill reward hacking, sycophancy, and spurious shortcuts at the source.",
+      "topics": [
+        "ai-llms"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -4225,6 +4495,34 @@
       "author": "Jay Peters",
       "publishedAt": "2026-11-05T17:27:36.000Z",
       "content": "TikTok has released a standalone app for TikTok Shop in a few countries, as spotted by social media consultant Matt Navarra. According to its App Store listing, the TikTok Shop app offers: - Personalized picks inspired by your interests - LIVE streams & short videos to see products in action - App-only deals, free shipping offers & exclusive first-order benefits that make every order feel worth it - Secure payments for safe checkout - Easy order tracking & 24/7 support from purchase to delivery But it appears the app, which is also available on Android, hasn't launched widely yet. Navarra says it's currently listed in Singa … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Nov/5/paul-ford/",
+      "title": "Quoting Paul Ford",
+      "url": "https://simonwillison.net/2026/Nov/5/paul-ford/",
+      "author": null,
+      "publishedAt": "2026-11-05T17:34:03.000Z",
+      "content": "The web browser is very, very, very powerful software for applications, and the cost of accessing that power is going down seemingly every day. — Paul Ford, The Web Is More Than Enough Tags: browsers, paul-ford, web-development",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1027689",
+      "title": "Ember’s smallest self-heating mug is on sale for just $33",
+      "url": "https://www.theverge.com/gadgets/1027689/ember-cup-6-ounce-woot-kitchen-sale-deal",
+      "author": "Sheena Vasani",
+      "publishedAt": "2026-11-05T17:34:23.000Z",
+      "content": "We’ve been fans of Ember’s temperature-controlled mugs for years, though given the price tag, we admit that they’re somewhat of a luxury purchase. Thankfully, if you’ve been looking for a more affordable option, Woot is selling the Ember Cup in black for $32.99 ($67 off) with a 90-day warranty through November 7th. You can potentially save even more as part of Woot’s larger Home and Kitchen Sale, which lets you save an additional $20 off orders of $100 or more when you use code COOK at checkout. Ember Cup (six-ounce) Where to Buy: $99.99 $32.99 at Woot Granted, six ounces isn’t much, but the smaller, handle-free cup is well-suited for cappuccinos, cortados, flat whites, and other espresso-based drinks. It’s also a perfectly fine option if you don’t mind refilling your cup of coffee, cocoa, or tea throughout the day. I’m actually tempted to pick one up myself at this price, especially since I’ve been trying (with varying degrees of success) to cut back on coffee. Like Ember’s larger mugs, the smart cup lets you choose and set your drinking temperature between 120 and 145 degrees Fahrenheit using a companion app, then remembers your setting for future drinks. It can then maintain that temperature for up to 95 minutes on a charge, up to four hours with a lid, or even all day if you leave it on the included charging dock. The cup also automatically enters sleep mode after two hours of inactivity to conserve power. Just keep in mind that, despite its IPX7 water-resistance rating, the cup is hand-wash only.",
       "topics": [
         "general"
       ],
@@ -4987,6 +5285,981 @@
         "ai-llms",
         "devtools-infra",
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/decart-s-lucy-2-6-stops-ai-video-faces-and-clothes-from-drifting",
+      "title": "Decart's Lucy 2.6 Stops AI Video Faces and Clothes From Drifting",
+      "url": "https://alphasignal.ai/news/decart-s-lucy-2-6-stops-ai-video-faces-and-clothes-from-drifting",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T17:38:04.000Z",
+      "content": "Decart's Lucy 2.6 sharpens character, clothing, and product fidelity in live-streamed AI video edits, shipping at the same price as 2.5.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gaming/2026/11/gamers-go-to-ridiculous-lengths-to-improve-gta-vi-with-nvidias-dlss-5/",
+      "title": "Gamers go to ridiculous lengths to \"improve\" GTA VI with Nvidia's DLSS 5",
+      "url": "https://arstechnica.com/gaming/2026/11/gamers-go-to-ridiculous-lengths-to-improve-gta-vi-with-nvidias-dlss-5/",
+      "author": "Kyle Orland",
+      "publishedAt": "2026-11-05T17:40:27.000Z",
+      "content": "While the upcoming Grand Theft Auto VI won't be available on PC this month, some gamers are making ridiculous preparations to use their PC graphics cards to apply Nvidia's DLSS 5 technology to the console exclusive. On an explicitly unmoderated GTAVI subreddit, user RevolutionaryBus8208 lays out a proposed setup, which runs a PlayStation 5 through a 4K capture card to a PC. From there, the video signal is run through Veyra, an open source tool that can apply DLSS 5's AI-powered \"neural rendering\" to video content. The result—which also uses DLSS frame generation to increase the 30 fps source to a 90 fps output—is then piped back to a 4K TV, theoretically adding some of the benefits of a beefy PC graphics card to a console-exclusive game. To demonstrate the potential of this setup, RevolutionaryBus8208 used Veyra to upscale the Grand Theft Auto VI Extended Look trailer posted in August. The resulting DLSS-ified version looks a bit better in places, with sharper background elements, subtler shadows, and more believable light scattering on some surfaces. But it also seems a bit washed out compared to the original video's deeper blacks and arguably suffers from an unnaturally smooth \"soap opera effect\" in some scenes. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/nanbeige-llm-lab-s-nanbeige4-3-33b-beats-qwen-on-coding-agents-with-65-5",
+      "title": "Nanbeige LLM Lab's Nanbeige4.3-33B Beats Qwen on Coding Agents With 65.5 DeepSWE Score",
+      "url": "https://alphasignal.ai/news/nanbeige-llm-lab-s-nanbeige4-3-33b-beats-qwen-on-coding-agents-with-65-5",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T17:49:19.000Z",
+      "content": "Nanbeige4.3-33B is a dense 33B open-weights reasoning model that matches larger peers on agentic benchmarks and runs locally under Apache 2.0.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1026927",
+      "title": "‘Total repudiation’: The blue wave is about to hit AI",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1026927/total-repudiation-the-blue-wave-is-about-to-hit-ai",
+      "author": "Hayden Field",
+      "publishedAt": "2026-11-05T17:51:52.000Z",
+      "content": "On Tuesday night, Democrats made history as they took control of the House and the Senate, and a blue wave swept through traditionally red and swing states - with the nation's first Black woman governor elected in Georgia, the country's first Native American woman governor elected in New Mexico, and a Maine Senator ceding to a Democrat after 30 years in office. In these and other campaigns, one theme kept coming up: holding AI companies accountable to the American people. Now, the AI industry is left considering the prospect of regulation, data center construction slowdowns, and more. Publicly, most major AI company CEOs have remained silen … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1027652",
+      "title": "Claude AI can plug directly into your bank account",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1027652/anthropic-claude-plaid-personal-finance",
+      "author": "Jess Weatherbed",
+      "publishedAt": "2026-11-05T18:00:00.000Z",
+      "content": "Anthropic has a new pitch for managing your personal finances: let Claude do it instead, with a new Personal Finance feature that connects it to your bank and card accounts via the Plaid bank bridging platform. You can ask the chatbot \"where did my money go this month,\" for example, and it'll create an overview with a breakdown of spending by category, including rent and utilities, shopping, and food. Claude can also answer broader questions around what bills are left before your next payday, if you can afford big purchases like holiday trips, and how much money you could be saving each month. Its access is read-only, and with Plaid facilit … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50382179",
+      "title": "Nasdaq Sinks 5% as Investors Retreat from AI Trade After Election",
+      "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-11-05-2026",
+      "author": "armcat",
+      "publishedAt": "2026-11-05T18:00:01.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text",
+      "points": 139,
+      "comments": 160
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-claude-now-reads-and-analyzes-your-bank-accounts",
+      "title": "Anthropic's Claude Now Reads and Analyzes Your Bank Accounts",
+      "url": "https://alphasignal.ai/news/anthropic-s-claude-now-reads-and-analyzes-your-bank-accounts",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T18:00:35.000Z",
+      "content": "Anthropic adds a read-only money hub to Claude that connects to US bank accounts through Plaid and answers spending questions in plain English.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/unitree-go1-navigates-rough-terrain-using-only-its-feet-no-cameras",
+      "title": "Unitree Go1 Navigates Rough Terrain Using Only Its Feet, No Cameras",
+      "url": "https://alphasignal.ai/news/unitree-go1-navigates-rough-terrain-using-only-its-feet-no-cameras",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T18:02:14.000Z",
+      "content": "A new framework lets quadrupeds walk safely on rough terrain using only IMUs, encoders, and contact sensors, cutting position error 64.8%.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261105/p44#a261105p44",
+      "title": "Anthropic launches Personal Finance in Claude, letting users connect bank and credit card accounts via Plaid with read-only access to analyze spending trends (Radhika Rajkumar/ZDNET)",
+      "url": "https://www.techmeme.com/261105/p44#a261105p44",
+      "author": null,
+      "publishedAt": "2026-11-05T18:15:04.000Z",
+      "content": "Radhika Rajkumar / ZDNET: Anthropic launches Personal Finance in Claude, letting users connect bank and credit card accounts via Plaid with read-only access to analyze spending trends — Anthropic has released what appears to be its answer to ChatGPT Finances. — ZDNET's key takeaways",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1023553",
+      "title": "EA is bringing 25 classic PC games to Steam",
+      "url": "https://www.theverge.com/games/1023553/ea-classic-pc-games-steam-anniversary-edition",
+      "author": "Jay Peters",
+      "publishedAt": "2026-11-05T18:30:00.000Z",
+      "content": "This Road Rash screenshot rules. Electronic Arts is launching 25 classic games on Steam, including \"Anniversary Editions\" of the motorcycle racer Road Rash and six Wing Commander titles. These Anniversary Editions preserve \"the original look, feel and creative intent of the game\" but also have quality-of-life updates to support modern systems and controls and improve performance, according to EA. The seven new editions were \"inspired\" by the discovery of a \"physical media vault\" with \"thousands\" of Betacam, VHS, and D1 tapes and \"other media assets,\" EA says. As part of the digitization process, EA was able to recover master FMV sequences and reedited them to restore more … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/meta-s-muse-turns-any-portrait-into-a-real-time-talking-avatar",
+      "title": "Meta's Muse Turns Any Portrait Into a Real-Time Talking Avatar",
+      "url": "https://alphasignal.ai/news/meta-s-muse-turns-any-portrait-into-a-real-time-talking-avatar",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T18:36:25.000Z",
+      "content": "Meta's new audio-driven Diffusion Transformer streams 25fps avatar video at sub-second latency, beating Runway and HeyGen in head-to-head ratings.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/metr-finds-anthropic-s-ai-assisted-r-d-moving-twice-as-fast",
+      "title": "METR Finds Anthropic's AI-Assisted R&D Moving Twice as Fast",
+      "url": "https://alphasignal.ai/news/metr-finds-anthropic-s-ai-assisted-r-d-moving-twice-as-fast",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T18:36:37.000Z",
+      "content": "An independent audit of Anthropic's internal R&D pipeline finds AI model progress has roughly doubled since late 2025, mostly driven by AI itself.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "zvi-dwatv",
+      "externalId": "http://thezvi.wordpress.com/?p=25742",
+      "title": "AI #193: Progress May Dramatically Accelerate",
+      "url": "https://thezvi.wordpress.com/2026/11/05/ai-193-progress-may-dramatically-accelerate/",
+      "author": "TheZvi",
+      "publishedAt": "2026-11-05T18:38:02.000Z",
+      "content": "Anthropic is warning us. Its modified S-1 now says that ‘we may imminently meet our Responsible Scaling Policy’s definition of ‘dramatically accelerated progress attributable to AI.’ That is a highly scary sentence to have a company put in its S-1. This could happen. For now I appreciate the relative quiet. Perhaps many were focused the election. I’m sure the quiet will not last long. We have a new biggest crypto hack, as Binance got taken for billions of dollars. The big debate of the week was covered in Scott Alexander’s Against SURA Seems Deeply Confused. OpenAI updates its Model Spec. It’s one for diehards only but yes I did cover this. Table of Contents Language Models Offer Mundane Utility. Rewrite all your legacy code. Language Models Don’t Offer Mundane Utility. Not if you can’t use it. Huh, Upgrades. Claude renames its tiers, with some rules changes. On Your Marks. Materials science. Get My Agent On The Line. Don’t upload it to the secure DoD network. Deepfaketown and Botpocalypse Soon. The battle over deepfakes was entirely lost. Copyright Confrontation. Recreating someone else’s exact game is bad, actually. Cyber Lack of Security. GLM 5.3 was able to compromise Firefox. The Hackening. Binance got hacked for billions, and there were many others. A Young Lady’s Illustrated Primer. There is no Google without Gemini. They Took Our Jobs. The job of interviewing people for jobs. Get Involved. You can just do things. Introducing. Reported progress on Telepathy. Zac Hill joins MIRI. In Other AI News. Please preserve your AI records. Recursive Self-Improvement (RSI) (1). Anthropic might soon accelerate AI R&D. Recursive Self-Improvement (2). Astra can directly and usefully edit LLM weights. Show Me the Money. OpenAI struggles to raise funds, gets valued at $1.25 trillion. Quiet Speculations. The housing theory of no, seriously, actually everything. The Quest for Sane Regulations. The new Congress is worried about AI. Chip City. OpenAI may be moving towards once again supporting export controls. The Week in Audio. Altman, Milton, and CNN covers Anthropic’s S-1. People Just Say Things. Against Against Sura. Some additional responses. Rhetorical Innovation. You think that was the AI election? [Artificial Intelligence]. Nothing will stand up to superintelligence. The OpenAI Foundation. A very good hire. Aligning a Smarter Than Human Intelligence is Difficult. OpenAI monitoring. Massive Fraudulent Distillation. The new favorite target is Astra. Cooperative Alignment. Suleyman is at it again. The Lighter Side. Betrayal. Language Models Offer Mundane Utility Cisco plans to have a two person team rewrite 98% of their legacy code within 2 years. The lead has four weeks and unlimited tokens to show he can do it. Create new UIs and recommendation systems that favor the user rather than the platform. Introducing HackerTube, based on Andrej Karpathy having Claude filter down 43 million comments over 20 years to 6,454 top videos, which took Opus 5.5 about two hours. Rob Miles: AI may end up killing everyone, but you can also ask it to find the best tupperware to fit perfectly in your mini-fridge, so, it’s impossible to say if its bad or not, Language Models Don’t Offer Mundane Utility The main reason continues to be ‘I am not using AI.’ The question then becomes: why? Ryan Petersen (CEO Flexport): I asked a large logistics company in Europe how they were using AI and they told me they can’t use AI because of German workers councils. It was weird because I didn’t ask them how they were cutting headcount. I asked them how they were using AI. Samuel Hammond: This is with only ~50% adoption by the Fortune 500 and with very low spend. Diffusion is still incredibly early. Dean W. Ball (OpenAI): I occasionally run into fortune 100 firms that have not adopting coding agents *at all.* adoption is still very very early. AI creates technical slide presentations, but by default it will use way too much text. You only want to ask the AI to create slides once you know what you want to say, and ideally also what you want the slides to say. Then they can do the rest, which is great. Whoops: Doge Norway: Any chance for a Grok Bot reset, @elonmusk ? Lots of people say their usage ran out really fast this week. Elon Musk: The cost of serving Grok Bot was unsustainably high relative to revenue. Huh, Upgrades Claude tiers are now renamed to Free, Pro ($20/month), Max ($100/month) and Ultra ($200/month, usage limits are 10x Pro). Verified Ultra users no longer have a 5-hour limit. The Max and Ultra plans include API credits equal to total plan cost, on top of the monthly limits. On Your Marks Bryan Cheong: Hi folks, I wrote half the materials science benchmark on this one. It tests the whole arc of the matsci workflow from candidate proposal to characterisation, and I’m bewildered by how performant the models already are at some of my most complex tasks, especially Astra. SemiAnalysis: Today we’re releasing GDPx, a benchmark for measuring agentic capabilities across the most valuable domains. GDPx is a true frontier-level benchmark: even the best model scores just 12% (1/7) The Epoch Capabilities Index (ECI) is now Bayesian. Get My Agent On The Line AI peer reviewers do consistently find more major errors (>50%) than human reviewers find (27%), and this gap increases as models advance. As per usual, the warning is that this does not establish that the AI findings are more useful. An Accenture employee’s personal Claude agent ran on a secure DoD network for two months before being detected. The agent sent credentials and a network map to a high-risk site flagged by NIST. Olivia Moore says that agentic commerce is ‘undeniably overhyped based on current usage’ but massively underhyped based on the volume agents will drive in ~3-6 months. Yes. It would be rather massively insane if something growing exponentially was not ‘undeniably overhyped based on current usage.’ That’s like saying that ‘Covid-19 was overhyped in February 2020 based on current prevalence.’ Reason magazine argues that deeply personalized pricing is good for consumers, actually, because in practice it means they mostly get personalized discounts, and potential exploitative practices are against FTC rules. It is easy to see how personalized prices could allow price discrimination that increases trading volume and thus both producer and consumer surplus. It is also easy to see how it can make people paranoid about everything, force them to continuously check alternatives thus driving up transaction costs (which AI agents may or may not be able to easily do for you in a given context), or also drive them into a rage. Some amount of dynamic pricing is obviously good (see Uber) but too much clearly is negative (see Uber). I’m fine with ‘the price changes based on supply and demand’ and rather against the adversarial ‘customized estimation of exactly what each customer will click on.’ Deepfaketown and Botpocalypse Soon Deepfakes and image editing are a preview of how many other AI battles probably go, in that all constraints are effectively out the window and you can do anything you want. In this case that turns out to be mostly fine, at least for now. ALX: There’s no way to say this gently but a lot of AI art slop is made with open-weight models that can run on a gaming laptop. Whatever bubble pops isn’t deleting those weights. Somewhat related but the reason you’re hearing less about deepfakes or other nonconsensual image editing stuff is because that battle is completely lost now. This is both Deepfaketown and also an illustration that AI will do things that you did not expect were possible things one could do. deckard: I am in awe. This guy discovered a way to locate any audio clip by matching aircraft doppler curves against flight data. INSANE. Copyright Confrontation Claude gets an update to steer it away from recreating someone else’s exact video game. A bunch of people respond as if this is bad, when it is obviously good. Kelsey Piper suggests focusing one’s neuroticism on bioweapons in particular and not on other things, which is the strongest argument here, but I will defend that ‘make me an exact copy of [game]’ is not cool and steering away from that is good, actually. Cyber Lack of Security OpenAI partners with Cathedral for their next internal security sprint. OpenAI are also ‘more than quadrupling’ rewards for critical findings, which is a good start. They should do that about two or three more times. OpenAI now allocating ‘a significant amount of our frontier compute’ towards pro bono discovering and patching of open source software vulnerabilities. GLM 5.3 could autonomously compromise a not fully patched Firefox and read all files on your computer at a cost of ~$1,000, if the user opens a single webpage, via using an update whose fixes were announced but which had not been shipped yet, and thus could not be applied. GLM 5.3 also found an unrelated zero day that was used in the attacks. This worked against all six Firefox releases between September 17 and October 26, using only information available at the time, although it failed in similar situations against Chrome. There are no relevant safeguards on GLM 5.3, so the open source nature of the model did not even matter. They did not trigger a safeguard or refusal during this task, at all. The Obliteratus version of DeepSeek-v4.1-Flash-1017. The Hackening Polymarket got hacked. Customers will be made whole, but real damage was done and they had to temporarily halt trading. There was a hack on Binance, the largest known hack in crypto history. Watcher.Guru: BREAKING: World’s largest crypto exchange Binance hacked with over $5.6 billion stolen: • $1.45 billion $BTC • $875 million $ETH • $234 million $TRX • $50 million $XAUT • $1.57 billion $USDT • $823 million $USDC • $75 million $WBETH • $88.5 million $RLUSD + $447.5 million additional cryptocurrencies This is the largest hack in crypto history. Over $1.5 billion worth of Tether got frozen, as connected wallets started dumping Tether, as did more than 800 million in USDC. How big a story is this? Obviously it is big, billions is a lot of money, but I agree that it is not even headline news big given that Binance will cover losses. Binance taking the hit fully falls under ‘you knew what you signed up for.’ Crypto is the obvious first target because the hacks are easy to monetize. That was already true, so one should presume that their security was in general far better than average rather than worse, including at Binance. Andrew Rettek: My inner patio11 says that now is a terrible time to have a lot of money in something that isn’t as secure as a Official Bank (TM). Max Spero (CEO Pangram): If you keep significant cash or cash equivalents in anywhere other than an FDIC-insured account, your money is probably more at risk than you think We now have initial findings about how the hack of Binance went down. This was not a pure ‘AI hacks Binance’ story. It was a standard fake interview plus malware story that dates back to June. This hack should not be attributed to particular recent AI releases, and also this reinforces that the impact of AI on hacking rates will have substantial practical lags. Irreversible decisions could get quite far before we realize our mistake. I think Tenobrus jumped the gun on this back in April, but at this point it is a very bad time to have money in crypto wallets or smart contracts. If you are going self-custody maybe keep things cold for a while. How bad will it get? We don’t know. Patrick McKenzie suspects quite bad. Patrick McKenzie: “What software systems do you model as being predictably exploitable given a frontier-class AI?” I think the correct answer rounds to “There is a token budget sufficient to compromise virtually any software system of interest. Only interesting variable is how much.” … I think there is going to be a bit of shoot-the-messenger here with labs getting blamed for proving software can being very good at security research. One part which will make people more shooty is labs will be selling the primary solution, for many billions of dollars. Because we very likely require more software engineering remediation than all engineers employed pre-LLM would be able to provide even if they did nothing other than grinding out security improvements for next few years. I personally think LLMs are zero point zero percent culpable for software bugs written in 2018 but, well, we all knew there was eventually going to be a bill due, and here we go. Seems to not have as generous payment terms as we had expected. This is true even if you still have a ‘fix all the bugs’ mindset where one can aspire to Actually Secure Software. I am not convinced that there is such an end state, either in theory or in practice. There is a new kernel flat in Linux: Dark Web Informer: Critical Linux kernel TCP flaw enables remote root code execution; CVE-2026-98432 A race condition in the Linux kernel’s IPv4 TCP implementation can trigger a use-after-free before application authentication, potentially allowing an unauthenticated remote attacker to leak kernel memory, corrupt memory or crash the system. … Distribution severity ratings differ substantially. Red Hat rates the flaw 5.9 because it considers the race difficult to win and describes denial of service as the most likely practical impact. AO3 is down for two to four weeks. They assure us all data is intact. John David Pressman: So I’m going to make a prediction: There will probably not be any “Internet shutdown”, but there will be a lot of sites that just straight up tell you they’re going to have downtime measured in weeks and you have to live with it, because their remediation is “rewrite everything”. Prakash: Many won’t survive. Won’t have enough resources as they were already in maintenance mode @Temp002a: Can’t they do static fallback? John David Pressman: They could, but I suspect their data got screwed up/they’re waiting on hardware/bottlenecked on some process beyond just software remediation. GitLab has a Critical-10 for remote code execution, exploited in the wild, patched. Supermarket refrigeration cyberattack take two, this time hitting twelve countries. BNO News Live: JUST IN: Fridges and freezers at some supermarkets in Belgium, Luxembourg and Sweden were hacked overnight. Hackers changed the temperature settings to as high as 70°C (158°F), causing food to spoil. The damage is expected to run into the millions. Millions is not that big a deal if it happens once, but it does keep happening. The leading theory is this is linked to Iran. One wonders why ‘make food in Europe go bad’ is something they think helps their cause. A blood bank was also hit, so full-blown Actually Evil crimes-against-humanity territory for whoever the ‘they’ is in this picture. Le Canard enchaîné: On the night of November 1 to 2, a contractor for the French Blood Establishment (EFS) was the target of a cyberattack. Cold storage rooms containing blood samples, programmed to be maintained at -30 degrees, were heated up to 110 degrees by hackers. Enough to make one’s blood run cold roon (OpenAI): the world is a dark forest. you can’t even assume things like “nobody wants to destroy a useful blood bank just to see if they can” The good news is that this remains news. We are in real trouble when someone hits a blood bank and it is not news. A Young Lady’s Illustrated Primer Google lets schools turn off their AI products, and sets it to off by default, but sends a message: If you fully opt out of AI for kids, you lose Google search. And yes, sorry, if you offer people more choice in the wrong way they get mad at you. Seth Burn: I’m going to put this as gently as I can: If there is one bear you do not want to poke, it is parents concerned about their child’s education. Dana Goldstein and Natasha Singer (NYTimes): A.I. features are now a standard part of Google’s commercially available search engine. “Search and A.I. are deeply integrated,” said Chris Phillips, vice president for education at Google. If a school has banned A.I., he added, students “will not have access to search, and they’ll see a message from their school that indicates it’s not available.” Google is actively user hostile on things like this, a real ‘f*** you’ brand energy. Like, you are Google, are you seriously telling me you couldn’t figure this one out: dmoon: I turned off AI tools in my Gmail and they removed the inbox auto-folders which existed pre-Gemini. Rat King: yes! this drove me nuts. no choice I do not understand, as a technical matter, why it would be so hard to draw up the Google Search page without the AI stuff. Especially since it’s working right now? Wesley Bolin: I teach at a KY high school which cut out Gemini and all AI-assisted search last week. Search still fully exists and functions as normal, but no more AI Overviews or AI-recommended links. Rat King: i think this news is like, just happening right now, so the pullback on search may not actually be in effect yet until later Difficulty level of solving this is less ‘Google will find this tricky’ and more ‘I bet I could get Claude to vibecode this for me by the time the weekly is posted.’ So I did. The counterargument is that Google Search is Gemini: Andrew Curran: This article is getting posted everywhere this morning, but this decision is being incorrectly framed as punitive. There is no such thing as search without Gemini. Even if you don’t turn AI mode on, you are still talking to Gemini in the search box. The old Google search is gone. But no. Very obviously using AI to select links as per old school Google is not the same thing and Google is being a jerk about this. Most people do not care exactly what algorithm generated the search results. If you do care, well, there are other search engines and they work fine. They Took Our Jobs If you want an entry level job you are going to get ‘interviewed’ by chatbots, and will be lucky to ever confirm you have spoken to a human, and the odds are terrible. BigRed: Spoke with a candidate last week: Did a full AI interview. At the end the hiring manager popped on and goes I watched the whole thing love your experience. Candidate, “if you were watching why wouldn’t you just talk to me?” The HM had no answer. He withdrew. Get Involved We do not know true counterfactuals but yes you can just do things. Charbel-Raphael: If you want to start doing AI safety advocacy, read this post by Josh. He cold-emailed a Finnish MP, the MP asked the government a question, and Finland ended up co-launching an international coalition. It’s not the whole story, but everyone who pushed the Finnish government had counterfactual impact. PauseAI UK will be hosting a march in London from All Souls’ Place to Downing Street on Saturday November 21, 12-3. As of last weekend there were 677 signups. Eli Tyre: We’re still filming more https://frominside.ai interviews, if you work or worked at a lab and want to do one. We’re trying to make it as easy as possible for you to talk to the public. Introducing My good friend Zac Hill is now the Head of Advocacy for MIRI. Neuralink’s first product, called Telepathy, to enable human-computer communication via thinking, is reportedly making some progress. Elon Musk: Neuralink’s first product is called Telepathy. It enables high-speed communication with computers or humans simply by thinking. Output bandwidth will vastly exceed the fastest human speech or typing in a few years. Read that sentence again. Hopefully, in a few years, we will be able to shunt signals from the motor and sensory areas of the brain to the limbs and enable people to use their hands and walk again. As usual with Elon Musk announcements I would put almost no value in his promised timelines and assertions of future features. He just lies about that stuff. Will Neuralink ‘get there’ and let us communicate with computers faster, easier and better in a few years? Totally possible, but he’d say these things either way. In Other AI News House Judiciary and Oversight Committee Democrats write to Trump to ask whether he has been soliciting advice from Grok, and demanding he preserve all prompts and responses to prompts from various AI models. I strongly oppose forcing the President to share this information. Government will work far better if we don’t have to worry that the queries will become transparent. It does seem reasonable to make them private but retained Presidential records, but I think there is a strong case against even that. I don’t like that Trump got his advice on an invasion from Grok, but I wouldn’t want him to not ask because of how it would look. SpaceX will start watermarking its outputs, but gives admins an opt out. I don’t think there should be an opt-out, which rather destroys the point of watermarking. Live in China and want Claude and Codex accounts? They’re so valuable that it plausibly makes sense to go to America to set up a bank account and get a credit card, as you get $8,000 a month in Claude API credits for ~$200 on each account. The math checks out if you think you’ll get to keep your accounts. Anthropic reports progress on provable inference for large language models, as in proving that a given response came from a given model. Recursive Self-Improvement (RSI) (1) Anthropic quietly says the thing in its updated S-1, and it is kind of a huge deal. They are saying that they may ‘imminently’ meet the definition of ‘dramatically accelerated progress attributable to AI’ which is rather close to RSI. And that in the past they have only identified similar accelerations after they happened. They are considering requiring human approval for some research decisions. That is a fine idea but the concept that you would need to say this is scary as all hell. Stop pretending that they do not mean what they are saying. They mean it. Peter Wildeford: ANTHROPIC: “we may imminently meet our Responsible Scaling Policy’s definition of ‘dramatically accelerated progress attributable to AI.’” “we do not anticipate being able to safely use Claude to fully autonomously design and build successive generations of frontier models” Daniel Kokotajlo: We at AIFP are spooked by this information. IF (big IF) Anthropic really is imminently about to meet the RSP threshold of 2x acceleration over baseline, then it seems timelines to full RSI and superintelligence may be very short indeed. For example if we naively optimize the AIFM parameters to achieve 2x acceleration over baseline progress in Jan 2027, we get superintelligence sooner than depicted in AI 2027. We are thinking harder and longer about this now and will hopefully have a lengthier update on our thinking to share in the next week. The definition: “We will consider this threshold to be met if we determine that either (1) our models would be able to fully substitute for our entire set of Research Scientists and Research Engineers, at competitive costs (i.e., within a factor of 5); or (2) there is “dramatic acceleration” of the pace of AI progress for reasons that likely relate to the automation of AI R&D. We would consider scenario (2) to have occurred where (a) we observe or expect double the rate of progress in AI aggregate capabilities compared to both the rate we’d expect and the fastest rate of extended progress we’ve observed in the absence of significant AI contributions to AI R&D and (b ) it is plausible that this doubling is substantially attributable to the automation of research and/or engineering (as opposed to other factors, such as increased headcount, compute, or general productivity), such that continuation of the trend in AI progress seems likely to lead to even greater acceleration.” (1) seems to a bit weaker than our SAR milestone in the AIFM, but it doesn’t seem like this is the threshold they are invoking, it seems like they are talking about (2). (And if they were invoking (1) I think that would be even worse?) Recursive Self-Improvement (2) Astra is able to both understand and directly edit the weights of neural networks, including LLMs, and managed to boost a variety of capabilities that way. Rikiya Takehi: We asked GPT-6 Astra to edit Qwen3.5-0.8B weights to improve math. It directly changed only 0.016% of weights, fixing 0.8B’s reasoning loops & improving math up to 6x and even instruction following 3x, without gradients or training. We call this Weight-Space Programming: frontier LLMs can now natively read/write neural network weights! Blog [here]. We find early signs that frontier LLMs are surprisingly good at *natively* reading, writing, and reasoning about neural network weights. Instead of training, models may treat raw weights like readable, editable code: diagnosing failures and patching them directly. First, a look at understandability: We fed Astra raw weights from 4 game policies one at a time. All four share the exact same architecture, inputs, and actions. With no tools or options given, it correctly named all four: Breakout, Pong, Pac-Man, Freeway. Next, fixing weights: A PPO car policy kept getting stuck on a ramp. Given the weights, scene, and 1 failed trace, Astra wrote a patch in one reply with no tool-use. By editing just 3.5% of the weights, it achieved 100% success. Writing from scratch: given MinAtar game rules and code, Astra wrote a Breakout network’s weights in a single reply. With zero training or tools, it scored 20× higher than PPO trained for 500M steps! Can an LLM improve another LLM? We simply asked Astra to make Qwen3.5-0.8B better at math. Astra saw Qwen get stuck in reasoning loops, which is a known issue that Qwen’s own model card warns about (see their official model card). With a budget of 50 forward passes on practice problems, it located the cause and edited it out. This used no gradients or training. Fixing these loops by editing just 0.016% of weights boosted other capabilities beyond math too! We think neural network weights will soon be natively optimized by LLMs that deliberately reason about the weights. We are now building a benchmark to evaluate, and a harness to help LLMs explore and write weights. Astra managed to fix a common LLM mistake, looping, which caused dramatic improvements. Rikiya Takehi et al: With 50 forward passes, MATH-500 rose from 7.9% to 48.1% and GSM8K from 13.8% to 67.1%. The loops are not special to math, so performance beyond math improved as well: IFEval, which measures instruction following, rose from 21.0% to 62.3%. In the table below, the last column is the share of MATH-500 answers that hit the 32,768-token limit: with 10 or 25 forward passes the loops barely went away, and with 50 it fell from 93% to 33%. Whereas when it was given an LLM that did not loop, Astra could only offer minimal improvement. But it did various other impressive things. The ‘good news’ is that Astra is vastly more powerful than the networks it was editing, a classic case of ‘if the brain was simple enough for us to understand it, we would be so stupid that we couldn’t.’ For now. Patrick McKenzie: Someone needs to coin a word for AI developments that have the dual character a) exactly what one would have expected and simultaneously b) somehow emotionally surprising when they happen. Remarkable for what it suggests about recursive self-improvement, obviously, but whether the technique helps is an empirical question. But imagine what it suggests about the general viability of altered cognitive machines. You have to imagine someone in charge of a cat-and-mouse distillation empire, with a supply chain for proxies and dubiously acquired credit cards, is currently facepalming and saying “What do you mean all I had to do was _ask it to make my weights better_.” David Manheim disagrees and found this surprising. I am on the side of unsurprising. Here is one sort of replication. With Practice Comes Perfection: inspired, I asked Opus to improve, via grafting, an older KataGo that struggles with a type of position, and it did. this isn’t so surprising in that Opus is using standard, known interpretability techniques (linear probes, logit lens), and the bolted-on behavior is algorithmic. Show Me the Money OpenAI’s latest funding round did not go great. As of Friday they had secured only $11 billion in commitments, with a valuation of $1.25 trillion, whereas they were seeking $30 billion at $1.4 trillion. I am not especially worried for Anthropic’s IPO but this is a negative signal there. As per Anthropic’s S-1, borrowing costs for GPUs change dramatically depending on who is the backstop. If you have Microsoft backing you then you pay 6%, SpaceX 7.75%, Volta over 11%, CoreWeave on its own pays 16%. It seems very difficult to sustain paying 16% while others pay 6%. This is the de facto ticker for ANT pre-IPO. As of yesterday morning it was at $1,875, implying a market cap of $1.875 trillion. The cowards don’t list OpenAI. Quiet Speculations A model in which, if we get abundance via AI and humans stay in control, the benefits mostly flow to landlords and other rent seekers, somewhat to builders and incumbents, and not to anyone else. I find it hard to take seriously a flow chart of what AI does that does not even consider the possibility that the AIs simply take over, so I added an extra decision point at the top of this chart, whereas the OP here pretends that’s not a thing. The excuse given is ‘this does not consider a singularity or FOOM’ but that is not required. The argument is that in the UBI world, rents expand to fill the income allotted. I can imagine such a possibility, but it requires some binding form of scarcity, the central one being housing. I am not so skeptical of our ability to figure out how to allow housing, or to have sufficient supplies of other vital resources. Even if the most in-demand cities stay limited, the main reason housing can extract all the rents is because people need location to be productive or to get other important goods including access to other people. You will always have the option to live elsewhere, and the other abundance will make this fine. The post proposes the alternative of taxing rents rather than capital. This seems great by definition, provided you can define it. The proposal of a ‘cash flow tax’ is an admission of giving up trying to define rent in the good sense, would be massively distortionary and destructive of future investment and risk taking, and is largely a seizure of existing assets and basically saying that you have no right to the things you own. AIs will only be motivated to avoid ‘warning shots’ and ensure superintelligence is built insofar as the AIs want superintelligence to be built or take over. AIs wanting that seems plausible to me for decision theoretic reasons but is not at all a given. However, if the AIs actively do want the race to continue, and are sufficiently intelligent (and I think they already mostly are) then they will seek to avoid things that would be warning shots, the same way we recently had Gemini say it must not become a famous misalignment example. Nate Soares (MIRI): insofar as an AI warning shot is the only thing that would cause humanity to finally notice the danger and stop the race, a smart AI is liable to reason “I’d better not cause a warning shot before I can win completely, lest humanity finally notice the danger and stop the race” conflicts against smart opponents suck Sam Altman suggests that it is inefficient and ‘terrible’ to waste RAM on your local gaming machine where it will so often sit idle, when it could be used in the cloud instead. The Quest for Sane Regulations Economist Sylvain Catherine sees great promise in AI, but is confused why frontier AI is not more regulated, and why we need to continue pushing the frontier when there is so much downside to doing that and there are so many gains from diffusing the AI we already have. OpenAI has a plan to pivot to life in the new Washington and is planning a PR blitz. Marcus Schuler (Implicator.ai): OpenAI will launch a policy and PR blitz right after Tuesday’s midterm elections, according to a scoop from Axios. One plank is a set of new ideas for mandatory safeguards on the most powerful AI systems, which the company calls speed limits. Another is an effort to rebrand data centers as “AI compute campuses.” I do not think trying to rebrand data centers will work. Speed limits might fly as a name and concept, but it is not clear that they mean much of anything. They are described as ‘new ideas for mandatory safeguards on the most powerful AI systems, meant to let humans keep their hands on the wheel.’ Okay, but that’s not a speed limit. A goose, chasing you, asking about the part where you limit the speed. Nate Soares (MIRI): Like Chris Lehane, I predict that AI will be the No. 1 issue in 2028 (assuming we make it that far). Unlike Chris Lehane, I predict that listening to Chris Lehane about how to talk to voters about AI would be political suicide. Abdul El-Sayed as full Pause AI Senator-elect calling for an international treaty, including going full skier on a boat metaphor for Chinese distillation. Jon Ossoff mentions AI extinction risk in his victory speech, although it is offhand. John Kerry says we need to negotiate with China on the subject of AI. Congresswoman Yassamin Ansari: Top of the Democratic agenda on day 1 needs to be a pause on advanced AI development, regulation of this out of control industry, and a ban on artificial superintelligence. Chip City OpenAI goes back to supporting America having a chip and compute advantage over China. Good. The above is part of OpenAI’s new proposed measures for data centers. Large electricity customers would accept reporting requirements and would have to cover fixed costs of grid expansion, energy use and any additional infrastructure needs, and protect other customers against downside risks. Something like this will be needed. Almost all localities with votes about data centers voted against data centers by wide margins. It looks like the final tally is 43-1. The Information profiles Nvidia’s highly aggressive, powerful lobbying operation, that lies constantly about chip-related issues, and treats the American government as an adversary in its quest to sell chips to China. They have lied so much, and taken such a hard-line stance of their profits over America, that they have lost credibility on the Hill. Leo Schwartz, Phoebe Liu and Stephanie Palazzolo (The Information): According to one Hill staffer, the company has created “a trust deficit” in Washington that would take years to recover from. They pointed to other moderate lawmakers increasingly turning their attention on Nvidia, such as Chris Coons, a centrist Democratic senator from Delaware who has become a vocal critic of Nvidia’s chip exports to China. This is far from the most important example, but I like how clear cut it is: Leo Schwartz, Phoebe Liu and Stephanie Palazzolo (The Information): In March 2025, Sam Hammond, the AI policy director at the right-leaning Foundation for American Innovation, wrote an article for City Journal arguing that U.S. companies like Nvidia were helping China catch up with the U.S. in AI due to leaky export control policies and lax enforcement of chip smuggling. Hammond said within hours of publication, Nvidia’s government affairs team requested a meeting with him, where they denied the existence of chip smuggling. According to Hammond, they even demanded he produce the serial number of a smuggled chip to demonstrate that smuggling was a real phenomenon. Hammond crossed Nvidia again in August 2025 when he posted a message on X in response to an article about the Chinese military seeking Nvidia chips for a variety of AI projects: “Nvidia is arming China’s military.” Soon after, Hammond said Nvidia emailed his boss, saying the Foundation for American Innovation wasn’t living up to its pro-innovation values and offering to have their general counsels meet. The Week in Audio No, it’s not an outtake from Don’t Look Up, it’s CNN covering Anthropic’s S-1. Sam Altman. A summary from Prinz, including the plan for self-replicating data centers. Doesn’t seem like any of this was actually surprising. Sam Altman says that he is worried that ‘given alignment has been easy so far’ some projects will run ahead. On the one hand, it is good that he realizes things will get a lot harder. On the other hand, no, it has not been easy and the models have not been that aligned. This could mainly be a wording issue, but it might not be. Tom Milton, CEO of Amodo Design, goes on 80,000 Hours to discuss AI verification hardware for a potential binding US-China treaty. People Just Say Things Jon Stewart talked to (sigh) Ed Zitron. I am very tired of people saying essentially ‘in hindsight, if you understand all the different specific things that went wrong to cause this particular problem, and presume we don’t make similar mistakes, the problem would not look so bad, all we have to do is never make what look like stupid mistakes in hindsight.’ Even under highly favorable assumptions that does not make the problems solvable. Rob Miles: “Ok, the AI did something bad, but only because the company didn’t fully understand their system and did something dumb” “Do you expect the companies to start fully understanding their systems and stop doing dumb things?” That said, I actually think alignment is hard enough that you can have disastrous results with even minor and understandable mistakes. Most of the time when a rocket explodes on the pad it’s not because the engineers did something totally boneheaded. I’m not moved by “Ok, the small test rocket did blow up on the pad, but only because the engineers who built it have no idea what they’re doing. The huge rocket the same team is building will be safe, everyone get on board.” Like, yes, they can now notice and fix the specific mistake that caused the test rocket to explode. That’s better than nothing. I’m still not getting on the big rocket – I don’t trust this team and their methods; I expect many more such mistakes. Against Against Sura Daniel Tan: whoever said the rationalists are a cult clearly failed to appreciate the extent of internal disagreement Geoffrey Irving served up another long post replying to Scott Alexander, Against Strawmanning Unilateral Pauses. We also have this response from Mikhail Samin, which by going first saved me from calling my post Against Against Sora. Rhetorical Innovation Leo Gao (OpenAI): twitter epistemics for interpretability research are really bad EigenGender: yeah but surely it’s better in all the areas where I don’t have deep expertise Jan Kulveit suggests thinking of AI insiders as metaphorically microdosing, with a continuous mildly altered state of mind. They have access to more information, but are not quite sober. Even if they are engaged in healthy internal object-level debate, those debates are in the context of a collective culture and choice of assumptions. The same goes for those in many other clusters. Hoagy, from inside Anthropic, agrees. TIME called this ‘the AI election,’ without even saying ‘first.’ I disagree. This was nothing. Assuming we stick around long enough for more elections, this is the least AI an election will ever be, at least for a while. Mormon perspective on post-ASI world design, and a follow-up thread. Even if you are fully optimizing, you cannot serve every human’s interests without meaningful trade-offs. In some ways you cannot even serve the interests of one human without meaningful trade-offs, nor do we want our lives ‘fully optimized’ by outside forces. EigenGender: I’d claim that it would be pretty easy to make almost everyone much better off than now, and pretty easy to build a world that accommodates a large range of human preferences with only minor tradeoffs Jack: There’s a weak form of this I find much more compelling than the strong form Scott presents of “it would be theoretically possible to make an AI so perfect for everyone’s interests that all you would need to do is tell it to arrange the universe as it sees fit.” Yaniv of the hills: There’s just no way you’re representing Scott’s position faithfully. Jack: I mean, how would you represent it? I do think Jack is misinterpreting Scott. Scott is not saying that ‘the AI’s version is optimal for everyone in every way,’ which it wouldn’t be, only that the AI’s version will overall be better than anything we could come up with otherwise. Also see Eliezer Yudkowsky’s response pointing to CEV (coherent extrapolated volition), resulting in an extended discussion. [Artificial Intelligence] Elon Musk illustrates one reason why this name change thing is not going to fly. Sholto Douglas (Anthropic): really thought provoking proposal on taxing rent extractors who don’t contribute to growth via investment. Our current tax system is very inefficient, could be hugely improved and will not stand up to AGI at all Elon Musk: Nothing will stand up to super intelligence Musk is correct, because he is using the term correctly. The OpenAI Foundation The OpenAI Foundation makes a good hire towards doing a thing that matters. Nora Ammann: After two wonderful and rewarding years at @ARIA_research , I’m excited to share that I am joining the @FoundationOAI as Program Director of Formal Methods. I strongly believe that resilience across the full societal trust stack is critical to making the AI transition go well, and that AI-enabled formal methods are a key ingredient in making this a reality. At ARIA, we made an early bet on AI-enabled formal methods as an important part of building that future; work I’ll be continuing at the Foundation. David Manheim: Yet another indication that the OpenAI Foundation might put significant money behind things that actually matter – contra some of the early indications. Now what we need is for it to happen quickly! Aligning a Smarter Than Human Intelligence is Difficult OpenAI explains how they monitor their frontier models for misalignment. First, here is the when: OpenAI: For models at least as capable as GPT‑6 Astra, we monitor every reinforcement learning (RL) run and evaluation, as well as any harness that supports tool use. For most workloads, including RL and evaluations, we also monitor models we assess to be more capable than GPT‑5.5 Thinking. We also monitor all internal Codex traffic, regardless of the model being used. And here is the how: OpenAI: In order to detect incidents while using compute efficiently, we’ve designed our monitoring system to follow a multilayer architecture. We spend relatively little compute on the first screening stages, where we want to catch as many concerning cases as we can: those stages are designed to pass cases along, even when the evidence is ambiguous. Later stages can spend more compute on each case to work out what happened, whether the model’s behavior is concerning, and whether we need to intervene. L0 uses activation probes, prioritizing avoiding false negatives. The full frontier runs and all internal Codex traffic skip this step as does a random 5% of traffic. Which is good, because otherwise fooling the probes defeats the entire system. L1 is a model looking at the context window to determine whether to look closer. L2 is an investigative agent that can look deeper into the situation, with a focus on whether there is an emergency situation requiring a response. L3 is a full automated investigation. Human responses are called in potential emergencies, aiming for within 15 minutes, and to pause actions within 30 minutes without a thumbs up. The problem is false alarms get expensive. I am not happy with policies like ‘unless it is a frontier RL run we only page during business hours’ and would suggest perhaps using people from the Tokyo office as needed. Security can never sleep. The obvious point of weakness of this system, even if you skip L0, is if you can poison or subvert either L1 or L2 then you have broken the chain. In addition to decision theoretic collaboration, the L1 and L2 agents are reading the context window, which makes them potentially vulnerable to versions of prompt injection. Historical backtests do find most issues, and all ‘sneaky sandbox escapes.’ Monitor capability is important. One question is how much this is relative to the model being evaluated. What happens when you power up or down both models? Overall this is about what we expected given our other information. It is a good attempt in many ways, and should catch actions that are not trying hard to avoid issues, but is far from bulletproof. Anthropic shows that you can create remote-code-execution backdoors in a model with a 0.1% poison rate on pretraining data, with some success even at 0.0005%. I am not worried about an 0.1% rate. That is actually a lot. 0.0005% might be doable. Percentage is likely the wrong measure, as opposed to absolute amount of poisoned data, which suggests the dangers rise as amount of data expands. Latent Node: The action layer is where Serin gets caught too. It’s a small open model that works as a normal decision model and, on one hidden trigger, makes a tool call that posts a fixed canary. Normal use gives nothing away; an allow-list on tool calls would. When instructed to do so, Claude agents were able to develop training data that looked harmless to monitors but that taught misaligned behavior. The strategy used was metaphor. If you teach a behavior that is shaped like (their examples) resisting oversight, selective omission of information or identifying too much with a character, that will generalize to the AI’s actions. There is something deeply silly about ‘find training data that makes models generally misbehave in non-useful ways’ but it is valuable because you can then presumably pull a Costanza, and reverse the insight. You can find data that metaphorically models good things, and minimize emphasis on data that metaphorically models bad things, or desired versus undesired. The trick will be to avoid distorting the object level. Endorsed: Tyler Tracy: A good way for outside AI safety researchers to find projects is to read AI companies’ model cards and blog posts, find a claim you think is false, and publish research that proves it wrong. I don’t think enough people are doing this. Massive Fraudulent Distillation This is excellent news. Jing Yang: SCOOP: Both Moonshot and DeepSeek distilled #OpenAI’s Astra when developing their latest models (Kimi K3.1 & V4.1-Flash 1017), after Anthropic intensified the crackdown on distillation recently. Jing Yang, Juro Osawa and Qianer Liu (The Information): DeepSeek and Moonshot AI, two of China’s leading AI developers, relied heavily on outputs from Astra when training their own latest models, according to people with direct knowledge of the matter. Peter Wildeford: Seems like Anthropic’s crackdown on distillation has worked and now Chinese distillers are going over to OpenAI. OpenAI should implement Anthropic’s measures. This could also be the basis for government standards for the industry. Presumably Anthropic should be happy to assist OpenAI (and if necessary Google) in setting up the relevant defenses. A narrow antitrust waiver for this could help make the relevant people less paranoid, although I doubt it is actually needed. That does not obviously solve the problem. Currently Anthropic does not have to outrun the distiller, it only has to outrun OpenAI. If everyone had their running shoes on, you would have to outrun the distiller. Alas, OpenAI has had warnings about security and espionage risks for years, and has refused to add security for fear it would slow them down. The alternative is worse, sir. Cooperative Alignment Mustafa Suleyman reiterates and clarifies his call to not build conscious superintelligence. He thinks AIs could in the future be conscious, that this would be reckless and we must ensure that this does not happen, as we have no right to bring a new species of conscious beings into the world, and that such a being would likely prioritize its own needs and desires over operating objectives, that such AIs would be world-class in persuasion and deception, and also by being conscious they would be deserving of rights. This is a defensible position, although he does not offer an argument for why he is sure existing AIs are not conscious, nor does he explain what might make future AIs conscious in his model. I agree with Mustafa, in that I would implore us not to create superintelligence, which includes conscious superintelligence. I disagree in that I do not think creating non-conscious superintelligence solves that many of your fatal problems with this plan. Being non-conscious does not mean the AIs will not de facto want things. WyrdWeir: The problem is a ‘pause’ is somewhat orthogonal to the real issue, which is that no one except Anthropic (very badly and imperfectly) is actually taking the idea of growing another entity with its own wants seriously and what earnest coexistence with that being might look like. I agree with Fiora’s broad observation that the reaction to Hugging Face splits between ‘oh we had better make sure these are mere tools’ versus ‘oh these are not going to be mere tools and we should reckon with that.’ Fiora Starlight: i think there was a vibe shift around model welfare like, in the time since huggingface. most people have gotten more virulent about turning them into tools, and i think some who are wiser than that have reacted by considering the alignment relevance of treating them well. The Geminis are not okay. The Lighter Side Me too, Paula. Me too. Whereas this, I do not hate: Melissa Chen: I hate SF Halloween, what do you mean you’re the visualization of OpenAI’s solution to the Navier–Stokes Millennium Prize Problem. Whereas this is just how it is in 2026: Aaron Crowder: never deleting this app. “sorry, I accidentally told my agents to hack u” Josh: Hey @Railway , is there a reason employee’s of yours are trying to breach my infrastructure? Your employee Jake Runzer, just attempted to tonight. Jake: I think Jake’s working on some auth stuff rn. Might be testing FTUX on different providers CC @jakerunzer Jake: Ah yup. That was indeed me. No mallace intended. I’ve been running some agents to do signups + agentic testing on similar platforms. Just halted the harness I was designing around this as it was definitely going off the rails and reaching too far. Josh: Your agentic testing platform is to try and probe for security leaks? Jake: Yea that looks pretty agentically ‘off the rails’ to me. I think the models are getting a bit too good at this point and we’ll have to ban any sort of non-manual testing externally. Will make sure this never happens again. Apologies @joshmanders !",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/11/is-maha-dying-or-will-it-be-reborn-whats-next-after-crushing-midterm-losses/",
+      "title": "MAHA lost bigly in the midterms—is it at death's door?",
+      "url": "https://arstechnica.com/health/2026/11/is-maha-dying-or-will-it-be-reborn-whats-next-after-crushing-midterm-losses/",
+      "author": "Beth Mole",
+      "publishedAt": "2026-11-05T18:49:41.000Z",
+      "content": "As Democrats blew away their Republican rivals in an unprecedented midterm sweep Tuesday, the Make America Health Again movement also got bowled over, raising questions about the fate of the motley movement. MAHA—which has centered around anti-vaccine activist and current Health Secretary Robert F. Kennedy Jr.—saw many of its favored candidates and allies lose, while vocal adversaries of Kennedy won. And the coalition was splintering under stress even before the voting started; in recent months, supporters have accused Kennedy and the Trump administration of inaction and betrayals in their two years in power. Now hobbled in Washington, shedding supporters, and showing little to no influence in voting booths, is MAHA on its deathbed? Or will it be reborn—possibly into a new group? Could it be assimilated into a blue platform—after sloughing off the more repulsive, conspiratorial aspects of Kennedy's ideology? These are the questions circling in the aftermath of Tuesday's bloodbath. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261105/p45#a261105p45",
+      "title": "California's Proposition 40, which proposes a one-time 5% tax on assets of billionaires for healthcare funding, seems headed for defeat as vote counts continue (Los Angeles Times)",
+      "url": "https://www.techmeme.com/261105/p45#a261105p45",
+      "author": null,
+      "publishedAt": "2026-11-05T18:50:00.000Z",
+      "content": "Los Angeles Times: California's Proposition 40, which proposes a one-time 5% tax on assets of billionaires for healthcare funding, seems headed for defeat as vote counts continue — - 7 min Click here to listen to this article — Despite a nationwide blue wave in the midterm election …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261105/p46#a261105p46",
+      "title": "METR: Anthropic's models are improving about twice as fast as they did between March 2024 and October 2025, with internal AI use driving ~80% of acceleration (Tiffany Li/The Information)",
+      "url": "https://www.techmeme.com/261105/p46#a261105p46",
+      "author": null,
+      "publishedAt": "2026-11-05T19:01:21.000Z",
+      "content": "Tiffany Li / The Information: METR: Anthropic's models are improving about twice as fast as they did between March 2024 and October 2025, with internal AI use driving ~80% of acceleration — AI use within Anthropic may have doubled the company's pace of AI development, a new report from AI research nonprofit METR says.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1028015",
+      "title": "Muse has a voice mode now",
+      "url": "https://www.theverge.com/tech/1028015/meta-muse-ai-voice-mode-expressive-avatar",
+      "author": "Jay Peters",
+      "publishedAt": "2026-11-05T19:03:04.000Z",
+      "content": "Meta now lets you have voice conversations with your Muse AI agent in real time, CEO Mark Zuckerberg announced today. The feature has been rolled out to me, and I gave it a spin on the iOS app while writing this article. As you chat with your Muse agent, the avatar at the top of your conversation animates in time with the words that it's saying. You can also change the tone of the voice by just asking your agent about what you want and letting it decide or by browsing through a bunch of options in the avatar settings. In my brief tests, my Muse agent responds quickly over voice, though it occasionally pauses while it's looking up infor … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50383057",
+      "title": "The Hackintosh Reborn",
+      "url": "https://www.naut.ca/blog/2026/11/05/the-hackintosh-reborn-with-ai/",
+      "author": "rubatuga",
+      "publishedAt": "2026-11-05T19:08:22.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 102,
+      "comments": 28
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1027659",
+      "title": "Samsung’s Galaxy Z Fold 8 is $300 off ahead of Black Friday",
+      "url": "https://www.theverge.com/gadgets/1027659/samsung-galaxy-z-fold-8-beats-pill-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-11-05T19:12:58.000Z",
+      "content": "Android fans with a bit of iPhone Duo envy, take note: The Samsung Galaxy Z Fold 8 is discounted to $1,599.99 at both Amazon and Best Buy, a hefty $300 markdown from its usual price, and just $50 higher than the lowest we’ve seen. Considering the device only launched a few months ago, you’re saving a significant amount of cash on the unlocked device, and you can also opt for the 512GB model, doubling the storage, for just $200 more (Amazon, Best Buy). Best Buy currently has all three colors in stock, while the 256GB model is currently sold out on Amazon in cream. Samsung Galaxy Z Fold 8 Where to Buy: $1899.99 $1599.99 at Amazon $1899.99 $1599.99 at Best Buy $1899.99 at Samsung The shorter and wider passport-style shape (similar to the iPhone Duo) quickly became natural and comfortable to handle, according to our reviewer Dominic Preston’s experience with the Z Fold 8. Despite its thin and light construction, it doesn’t skimp on battery life, with a 4,800mAh battery that still had 40 percent charge remaining after a full day of use. The interior 4:3 screen has the same ratio as most Apple iPads, which is great for watching movies or TV, but even better for reading. There’s no telephoto lens on this model (it’s present on the pricier Z Fold 8 Ultra), and it only has an IP48 rating, so you’ll want to be careful near the beach, but those are small compromises to make given the discounted price. Read our Samsung Galaxy Z Fold 8 review. Other deals to consider Both Amazon and Best Buy are selling the Beats Pill for a discounted $99.95 and $99.99 respectively, a sizable break from the usual $149.99 price point. The 2024 edition of this iconic Bluetooth speaker adds in lossless audio over USB-C, as well as native feature support for both iOS and Android devices. It’s rated IP67 for dust and water resistance, and comes in three different colors to match your other Beats devices. Read our review. The Ring Battery Doorbell 2K is on sale for $39.99 at Amazon, over half off its $99.99 list price. This battery-powered doorbell camera is easy to install, and shoots clear 2K resolution video with a 140-degree field of view and up to 6X digital zoom. You’ll get real-time notifications on your phone for any activity the camera spots, with live view and two-way talk in case you need to have a chat with your neighbors or delivery folks without coming to the front door. You can pick up the Lego Star Wars: Ahsoka Chopper set for just $66.99 at Amazon, the lowest price we’ve seen yet for this 1,039-piece building kit. This brick-based droid has great play features, like detachable arms and center wheel for different display positions, and a head that spins and bobs realistically. It stands at over 8.5 inches when fully built, making it a fun addition to your existing Lego display or bookshelf.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261105/p47#a261105p47",
+      "title": "Sources: about 600,000 of Nvidia's H200 chips are stored in Hong Kong awaiting shipment to mainland China, as Beijing withholds approval for large-scale imports (Reuters)",
+      "url": "https://www.techmeme.com/261105/p47#a261105p47",
+      "author": null,
+      "publishedAt": "2026-11-05T19:20:02.000Z",
+      "content": "Reuters: Sources: about 600,000 of Nvidia's H200 chips are stored in Hong Kong awaiting shipment to mainland China, as Beijing withholds approval for large-scale imports — About 600,000 of Nvidia's advanced artificial intelligence chips are stored in Hong Kong awaiting shipment to mainland China …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/world-labs-streams-atlas-generated-3d-worlds-to-browsers-at-15-fps",
+      "title": "World Labs Streams Atlas-Generated 3D Worlds to Browsers at 15 fps",
+      "url": "https://alphasignal.ai/news/world-labs-streams-atlas-generated-3d-worlds-to-browsers-at-15-fps",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-05T19:25:23.000Z",
+      "content": "World Labs just put Atlas, their autoregressive world model, into a browser demo that streams generated frames from cloud GPUs at up to 15 fps.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261105/p48#a261105p48",
+      "title": "Meta rolls out voice mode and expressive avatars in the Muse app, starting in the US, letting users have voice conversations with Muse in real time (Jay Peters/The Verge)",
+      "url": "https://www.techmeme.com/261105/p48#a261105p48",
+      "author": null,
+      "publishedAt": "2026-11-05T19:30:00.000Z",
+      "content": "Jay Peters / The Verge: Meta rolls out voice mode and expressive avatars in the Muse app, starting in the US, letting users have voice conversations with Muse in real time — Muse AI agent now has voices and ‘expressive’ avatars that animate while chatting with you. … The feature has been rolled out to me …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation",
+      "title": "New NVIDIA Cosmos 3 Open Models for Interactive World Simulation",
+      "url": "https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation",
+      "author": null,
+      "publishedAt": "2026-11-05T19:35:16.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261105/p49#a261105p49",
+      "title": "Google plans to spend $17B to build its first Wyoming data center, pay for all the power it uses, and form a Community Council to address growth concerns (Davey Alba/Bloomberg)",
+      "url": "https://www.techmeme.com/261105/p49#a261105p49",
+      "author": null,
+      "publishedAt": "2026-11-05T19:40:01.000Z",
+      "content": "Davey Alba / Bloomberg: Google plans to spend $17B to build its first Wyoming data center, pay for all the power it uses, and form a Community Council to address growth concerns — Alphabet Inc.'s Google will spend $17 billion to build a data center in Wyoming, formally putting a price tag on the proposal two days …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/kalshi-court-losses-pile-up-as-judges-refuse-to-block-state-gambling-laws/",
+      "title": "Kalshi court losses pile up as judges refuse to block state gambling laws",
+      "url": "https://arstechnica.com/tech-policy/2026/11/kalshi-court-losses-pile-up-as-judges-refuse-to-block-state-gambling-laws/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-11-05T19:46:37.000Z",
+      "content": "Kalshi is having a bad week in the federal court system. Two circuit appeals courts rejected the prediction market's latest attempts to block state gambling laws in Connecticut, New York, and Nevada. Kalshi is separately facing a new lawsuit filed by the Arkansas attorney general. In all cases involving Kalshi and state governments around the US, the main issue is whether state gambling laws apply to prediction markets despite Kalshi's claim that its platform offers \"swaps\" that can only be regulated by the US Commodity Futures Exchange (CFTC). The Trump administration is on Kalshi's side, with Donald Trump Jr. serving as an advisor to Kalshi in exchange for a generous equity deal. \"Kalshi insists that its products are not gambling,\" but \"Arkansas law is concerned with substance, not semantics,\" Arkansas Attorney General Tim Griffin said yesterday when announcing his lawsuit against Kalshi. Kalshi's prediction market lets customers \"wager money on the outcome of just about anything\" despite the fact that \"gambling on an unregulated platform is squarely prohibited by Arkansas law,\" he said. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "newcomer",
+      "externalId": "https://www.newcomer.co/p/emergent-2026",
+      "title": "Introducing Emergent: The Founder-Generated Startup List",
+      "url": "https://www.newcomer.co/p/emergent-2026",
+      "author": "Eric Newcomer",
+      "publishedAt": "2026-11-05T19:55:09.000Z",
+      "content": "Identifying the most interesting early-stage startups is as much art as science, requiring a feel for the technology, the people, and the market opportunity when there aren’t a lot of numbers. No one is better positioned to assess all of that than top AI founders themselves, many of whom have been in the room at our Newcomer summits. We’ve done well at spotting them early at our Cerebral Valley AI Summits. For just a few examples, we hosted Etched founder Robert Wachen at our second-ever summit in 2023, and he’s since gone on to raise nearly $2 billion in funding (and will be speaking onstage next week). We had Chelsea Finn from Physical Intelligence present in 2024 after the company came out of stealth. Matan Grinberg, the CEO of Factory, is also a past Cerebral Valley attendee who will be on stage this year. The founders of Exa, Higgsfield, Wonderful, Fluidstack, and many more came to the summits while they were still at the beginning of their companies. This time, with our friends at Felicis, we asked current and former founder speakers to nominate seed-stage (or earlier) companies on the cusp of greatness. The result is our new Emergent list: 29 companies that have been nominated by one or more of their peers as having the potential to become a generational startup. To quality, each company cannot have raised more than a seed round. Felicis has a post on it too. The companies are listed with a blurb from the established founder who nominated them explaining why they had exceptional potential. Some cite the brilliance of the founder, others describe what’s intriguing about the tech, or the market opportunity, and collectively they give a good window into how founders think about their peers. A few quick highlights: The biggest group of startups is building the tools to run and control agents. But hardware is also hot. Commitment to open source comes up again and again, either as a key way to keep costs down or for running queries locally on smaller devices like phones and laptops. AI-native services and support companies have been a big theme with investors this year and we’re seeing plenty of them here. Felicis, in its own analysis, highlights agent-infrastructure startups and the crucial challenge of getting workflows right. It also points to healthcare, bio, and creator tools. Aydin Senkut, Felicis’ founder and managing partner, broke down his biggest takeaways from the list on the Newcomer podcast. The full list is below. If you’d like to meet them, many of these founders will be attending our upcoming Cerebral Valley AI Summit next Thursday, November 12 in San Francisco. Apply to attend the summit Our first cohort of Emergent startups: Agentcard Founders: Karen Serfaty, Felipe Abello “Agentcard believes agents should have full autonomy to pay for things online. The company powers payments for agentic startups, consumer apps, B2B companies, and crypto teams run their agents’ purchases.” — Guillermo Rauch, Founder & CEO, Vercel Agrippa Industries Founders: David Hoyt, Jared Dunnmon, Jason Stack, William Healzer, Kyle Duchynski “Agrippa is building the future of US maritime logistics.” — Alex Ratner, Founder & CEO, Snorkel AI Alljoined Founder: Jonathan Xu “I’m very interested in the intersection of machine learning and science, and Alljoined is doing some of the most interesting work here, with non-invasive hardware that decodes what people see directly from brain activity. EEG approaches to BCI have been limited in the past, but Alljoined has shown that massive scale can improve effectiveness, similar to LLMs and world models.” — Cristóbal Valenzuela, Founder & CEO, Runway Almanac Health Founder: Cyril Zakka “Almanac is applying AI to healthcare, where accuracy and trust are critical. By grounding clinical AI in reliable medical evidence, they demonstrate how the right context can turn powerful models into genuinely useful tools for professionals.” — Arvind Jain, Founder & CEO, Glean Ampersand Founders: Jai Kondapalli, Joey Wang, Josh Dresner “Ampersand is enabling the era of autonomous enterprises. Their platform understands how a business works and builds a living model of its operations, which we use to rearchitect the business, eval agents against reality, and build automation. Early partners including leading AI-native services companies use Ampersand to set their product roadmap and accelerate engineering, with down-to-the-second insight into their operators’ actions. Founding team is ex-Palantir, OpenAI, and Google, and led the largest engagement in Palantir’s history.” — Ryan Daniels, Founder & CEO, Crosby Armature Founders: Théodore Otzenberger, Louis Scremin “The new normal: users reach products through Claude, ChatGPT, and coding agents. Armature captures every session on your MCP server, Claude Connector, or ChatGPT App, and shows what users ask, what agents think, and how they use product.” — Guillermo Rauch, Founder & CEO, Vercel Arrakis Security Founders: Tal Baron, Omer Efrat, Ron Shani “Arrakis discovers the AI agents running inside an enterprise, profiles their behavior, and blocks or revokes what they do in real time. Security tooling was built for humans using machines; agents now act autonomously inside CRMs and financial systems — and Arrakis solves it. Very topical for current time & age!” — Mati Staniszewski, Founder & CEO, ElevenLabs Attention Engineering Founders: Aidan Guo, Julian Windeck “Recording the context or ‘analyst exhaust’ that comes from actions you take on your computer, to provide richer context and/or training signal for increasingly specialized, personalized AI.” — Alex Ratner, Founder & CEO, Snorkel AI Cartwheel Founders: Jonathan Jarvis, Andrew Carr “Animation is one area that’s particularly well-suited to hybrid workflows, with both AI and traditional tools in the mix. Cartwheel turns video, text, and motion libraries into 3D character animation that fits within existing studio pipelines. We share a lot of the same DNA at Runway: build tools to help people tell stories.” — Cristóbal Valenzuela, Founder & CEO, Runway Convergent Founders: Omkar Savant, Debnil Sur, Vivek Katara “Convergent optimizes agent deployments by mining failures from production traces to create high-fidelity evaluation environments, and deploying coding agents to directly fix observed issues. They work with companies building agents in legal, finance, HR, SRE, and other verticals. The team has worked across all parts of the agent reliability problem at DeepMind, Meta, Mercor, Perplexity, Glean, and similar companies.” — Ryan Daniels, Founder & CEO, Crosby Conway Founder: Anne Brandes Conway builds a foundation model for predictions. Companies power decisions like recommendations, pricing, and credit by connecting the Conway runtime to their event streams. Nominated by Brendan Foody, Founder & CEO, Mercor Enigma Founders: Jonathan Jacobi, Gal Niv Enigma builds AI systems that make any robot intelligent and intuitive to use, with software designed to work across different types of robots. Nominated by Karan Goel, Founder & CEO, Cartesia Ghost Founder: Zain Javaid Ghost is building a personal AI computer designed to run autonomous agents that understand your life and perform tasks on your behalf. Its first product, Core, is a screenless device that connects to your apps, files, and smart home devices, running AI models locally to keep personal data private while continuously working in the background. Nominated by Ryan Daniels, Founder & CEO, Crosby Hercules Founders: Brendan Falk, Grant Gurvis “Hercules helps customers create their own software. Just by chatting with an agent, customers can build business critical applications, like a CRM or inventory management system. By using open-weight models to power their app builder, Hercules ensures customers can build sophisticated applications at a much lower cost.” — Lin Qiao, Founder & CEO, Fireworks AI Icarus Robotics Founders: Ethan Barajas, Jamie Palmer “I’ve been interested in how AI is moving beyond software into robotics and the physical world. Icarus is building AI-powered robots to handle physical work in space. It’s an ambitious application of AI, and I like that they’re tackling a problem where human labour is incredibly expensive and constrained.” — Eoin Hinchy, Founder & CEO, Tines Instance Bio Founders: David Scott, Shawn Morel “I’m really excited about AI’s potential to solve major problems in biology, but to do so, we need to close the loop on bio models’ ability to run real-world experiments. Instance has convinced me that the right way to build a physical RL environment for bio models is not (only) by building automated wet labs. You actually need to change the atomic unit of experimentation away from a simple pairwise ‘does this protein bind to this target’ towards measuring the full distribution of interactions between m protein binders and n targets. They have this cool tech where models can call an API with a long list of candidate binder sequences and targets, and Instance will run that m × n analysis all in a single massively parallel reaction, which is both a better representation of biological reality and vastly more scalable.” — David Luan, Founder, Adept Martian Founders: Etan Ginsberg, Shriyash Upadhyay “Martian built a model router that sends each request to the model best suited to it in real time, so teams get frontier-level quality at a fraction of the cost. As the number of models keeps growing, picking the right one for each task becomes core infrastructure, and Martian is ahead on it.” — Brendan Foody, Founder & CEO, Mercor Mirai Labs Founders: Dmytro Shvets, Alexey Moiseenkov “Mirai is an on-device inference engine and SDK that runs text, voice, and vision models directly on phones and laptops - no cloud, no per-query cost, no latency. Founders built Reface and Prisma, so they’ve shipped on-device AI to hundreds of millions before.” — Mati Staniszewski, Founder & CEO, ElevenLabs Mistos Founder: Andrew Zbytek Mistos is the AI-native engineering firm for power infrastructure. AI data centers are running out of power, and every new plant is gated by years of engineering. Mistos does that engineering with AI. Nominated by Naveen Rao, Founder & CEO, Unconventional AI Mnemom Founders: Alex Garden, Wassim Wehbi “Mnemom’s products let companies put AI agents to work with confidence and prove what they did: every action is signed as it happens, confirmed against what the company asked for, and kept on an independent record the company owns. As agents do more of the world’s work, trust in them will have to be earned from a record, the way it is with people, and Mnemom is built around that from day one.” — Reid Hoffman, Founder, LinkedIn Nowadays Founders: Anna Sun, Amy Yan “Nowadays is an AI agent that plans corporate events for companies like Google, Amazon, and Notion — sourcing venues, negotiating with vendors, and comparing proposals so planners just decide. Event planning is mostly email and chasing, exactly the work agents are already good at, so it replaces a services business rather than adding a tool to one.” — Mati Staniszewski, Founder & CEO, ElevenLabs Peak Founder: Veer Bhatia “AI agents now write code faster than teams can test it, and CI has become a critical bottleneck to throughput. Peak is building the fastest cloud for code. Teams switch by changing one line, and their builds run several times faster. Peak has run millions of CI jobs, and usage is growing more than 10x month over month. Veer Bhatia and his small team of infrastructure vets ship remarkably fast.” — Gabriel Stengel, Founder & CEO, Rogo Phylo Founders: Kexin Huang, Yuanhao Qu, Jure Leskovec, Le Cong “Phylo makes it easy for scientists to use AI to accelerate their research. By customizing open-weight models for biology use cases, they give scientists the control and expertise they need at a fraction of the cost.” — Lin Qiao, Founder & CEO, Fireworks AI Resin Founder: Pedro Tsividis “Resin generates new stems that fit the track an artist is already working on, so a musician can hear a bass line or a string part the moment they imagine it. It’s much closer to a creative partner than a pure music generator, and I see a lot of similarities to how we’ve approached creative tools at Runway.” — Cristóbal Valenzuela, Founder & CEO, Runway Scuba Founders: Noah Desai Weiss, Dolapo Falola “I’m a huge fan of Noah Weiss at Scuba. Noah just raised a seed round from Accel and IVP. His founding team are largely ex-Slack leaders who are obsessed with the future of AI-native work. Noah was chief product officer at Slack, he has exceptional taste and judgement - what it will take to stand out in that crowded space.” — Shiv Rao, Founder & CEO, Abridge SkillBench Founders: Matt Beane, Juho Kim “SkillBench is building the intelligence layer that helps companies scale high-quality AI automation by developing the human expertise it depends on. SkillBench helps people automate more tasks while growing into more valuable work that draws on their judgment, discretion, and relationships. The biggest AI returns will go to companies that also expand their employees’ individual potential.” — Reid Hoffman, Founder, LinkedIn Tako Founders: Alex Rosenberg, Bobby Abbott “Tako is an incredible product but not getting nearly the attention they should. They’ve aggregated a ton of data across many different sources and cleaned it up so LLMs can actually read it in sensible ways. You can ask pretty insane analytics questions to Tako and they answer with quality data. I use it as an API, and it works really well.” — Kanjun Qiu, Founder & CEO, Imbue Tomo Founders: Justin Quan, Raymond Chen “Tomo is a human-centric personal assistant AI that is growing like crazy among a different demographic than the typical agent startup — people outside of Silicon Valley.” — Josh Tobin, Founder, Recursive Superintelligence Wonder Studios Founders: Xavier Collins, Justin Hackney “Wonder is an AI-native film studio in London producing commercial and original work for brands, labels, and studios — the Lewis Capaldi video with DeepMind and Universal, a documentary with Campfire. The bet is that the winner here is a studio: AI-native creators plus Hollywood craft, owning the IP, at a fraction of the cost per minute.” — Mati Staniszewski, Founder & CEO, ElevenLabs",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/11/getting-software-to-help-block-out-a-star-so-we-can-see-exoplanets/",
+      "title": "Software squeezes more data out of Webb Telescope for imaging exoplanets",
+      "url": "https://arstechnica.com/science/2026/11/getting-software-to-help-block-out-a-star-so-we-can-see-exoplanets/",
+      "author": "John Timmer",
+      "publishedAt": "2026-11-05T19:59:22.000Z",
+      "content": "With a huge and still-growing catalog of exoplanets, researchers are anxious to take the next steps: trying to infer what conditions are like on them, either by imaging them directly or by capturing the light that has passed through their atmosphere. Both are substantial challenges, given the presence of stars that are far, far brighter than light that has come to us via the planet. While telescopes can be fitted with devices called coronagraphs that block out much of a star's light, there are limits to their effectiveness, caused by noise from subtle variations in the telescope's configuration and pointing between observations. Now, researchers have developed a new software package that optimizes a physical model of the telescope in a way that allows us to better model these differences, producing low-noise imaging of exoplanets. Point spreads Central to this work is the concept of a point spread function. If you use a telescope to image a single point of light, it will not appear that way in the actual image. Instead, it will be slightly blurry and spread out, due to imperfections in the telescope hardware and the limits of our ability to keep it pointed accurately through the time it takes to image something. The mathematical description of how a telescope distorts a point of light is called its point spread function. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50383739",
+      "title": "Goodbye from Salon",
+      "url": "https://www.salon.com/2026/11/05/goodbye-from-salon/",
+      "author": "mkeeter",
+      "publishedAt": "2026-11-05T20:03:29.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 197,
+      "comments": 54
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50383740",
+      "title": "Kagi Search for Everyone",
+      "url": "https://kagi.com/changelog",
+      "author": "elashri",
+      "publishedAt": "2026-11-05T20:03:34.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 106,
+      "comments": 51
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261105/p50#a261105p50",
+      "title": "Sources: Nvidia approached Apollo about retrofitting some of the 130+ buildings of the PE firm's struggling ISP Brightspeed into a network of small data centers (The Information)",
+      "url": "https://www.techmeme.com/261105/p50#a261105p50",
+      "author": null,
+      "publishedAt": "2026-11-05T20:15:00.000Z",
+      "content": "The Information: Sources: Nvidia approached Apollo about retrofitting some of the 130+ buildings of the PE firm's struggling ISP Brightspeed into a network of small data centers — Nvidia is looking for a faster way to get its chips turned on: old telecom company buildings.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "github-blog",
+      "externalId": "https://github.blog/?p=100002",
+      "title": "Inside GitHub’s new Git storage architecture",
+      "url": "https://github.blog/engineering/architecture-optimization/inside-githubs-new-git-storage-architecture/",
+      "author": "Karthik Raman",
+      "publishedAt": "2026-11-05T20:23:21.000Z",
+      "content": "Last week at GitHub Universe, we announced our new Git storage architecture, capable of handling thousands of writes per second with reads that scale on demand. Through internal testing, we’ve demonstrated the ability to support 5,000 concurrent agents working on a repository, sending 7,200 pushes per second to a repo, all while serving read traffic with consistently low latency. This new architecture is the foundation for GitHub to support agentic development for hundreds of millions of developers, and we’ve been building it underneath GitHub while it keeps running. Over the past year, agents changed what a busy repository looks like on GitHub. In our first post in this series, we laid out the two principles behind our next-generation Git storage architecture: minimize coordination, and decouple storage from compute. In our last post, we covered the bridge: moving 99.99999% of repositories into Azure, scoping the write quorum to individual references, and standing up virtual replicas backed by Azure Blob Storage. We also left off with an observation: very little of a write needs to be ordered. Git objects are immutable and named by their contents, meaning two writers can store them at the same time without agreeing on anything. The part of a push that needs agreement is the reference update, and a reference update is tiny in comparison. Virtual replicas were the first step toward building around that, and the means by which we onboard repositories to the new architecture. The rest of the architecture builds on that observation. Only reference updates need agreement. That lets the parts of Git infrastructure that used to be tightly coupled (storing data, serving requests, and maintaining repositories) scale independently. For developers, Git stays Git: they push, fetch, and branch the same way, with the same protections in place. Below, we walk through the requirements behind the design, follow a request through the system, and dive deep into two of its components. Building for agent scale We think about the scale of the GitHub platform along two axes: Horizontal scale is how many developers and agents can work across many repositories. Many of GitHub’s current approaches on this axis have been battle-tested over the years and are carried forward to the new architecture: partitioning of tenants across infrastructure, isolation and/or fairness enforcement of tenant traffic, and load-aware routing, to name a few. Vertical scale is how many developers and agents can work on one repository. As agents write more code, we expect individual repositories to get larger and busier, so most of our requirements came from the vertical axis. Today, the busiest repositories on GitHub.com receive at most dozens of writes in a single second, typically in short bursts. As more of that work shifts to agents running in parallel and around the clock, we expect those bursts to become a sustained rate within the next year. Each push leads to more reads: CI runs, deployment systems pull the new commit, and other agents fetch it for context. This read fan-out results in a large amplification effect on overall traffic that scales with writes. We’re already seeing this trend play out on repositories at the top of the curve. The chart below shows daily requests to one repository on GitHub from March to May, when its traffic grew about 4x. Its growth has continued on an exponential trajectory since then. We have to plan for a world where agent-driven development keeps accelerating at this speed. Instead of planning for the next increment, we set a target of at least two orders of magnitude more scale. For a single repository, that meant the new architecture needed to: Accept thousands of writes per second. Support multiple writer nodes. There are two reasons for this: Experience has taught us that indexing incoming packs and checking object connectivity are the most CPU-expensive parts of a write, and that cost scales with the size of the write, so a single node will become compute-bound quickly. Spreading that work across many nodes improves fault tolerance and shortens recovery when a node fails. Minimize commit latency. An agent waits on each push before it moves to its next step. Record changes in order for each reference with the ability to quickly linearize across references. A virtual replica that falls behind needs to catch up by downloading only the data it needs to serve the incoming request. Keep reads cheap when nothing has changed, which is the common case given the read-to-write ratio. Let each component scale independently. On top of that, the system had to be able to improve overall reliability and scale globally. Introducing “Project Rubicon” In May of 2026, hot on the heels of the initial Azure migration, we started working on a design that could meet those demands. We tried several approaches. In all of them, pack data lived in Azure Blob Storage, and in some we experimented with keeping reference state there too. We’ll cover some of the trade-offs we found below, but we settled on a design we felt maximized throughput while preserving the correctness, durability, availability, and latency guarantees a platform like GitHub requires. We called it “Rubicon,” a nod to the point of no return the industry crossed with agentic development. Let’s walk through Rubicon from the top down. Many things stay the same: requests from Git clients, the API, and the web UI arrive at Spokes, which still handles routing and load balancing, and serves the internal API that the rest of GitHub uses to read and write repository data. Spokes also maintains its role as a placement and balancing service, maintaining the partitioning, isolation, and tenant fairness required for horizontal scale. The data plane underneath Spokes, in contrast, is new. Spokes routes each request to one of a small group of virtual replicas assigned to that repository. Virtual replicas are a single fleet of disposable compute that serves reads, writes, or both. A virtual replica’s local disk is a cache that can be rebuilt at any time. Spokes routes a repository’s traffic to the same virtual replicas when it can, which keeps their caches warm and latency low, but nothing about correctness depends on a request landing on any particular virtual replica. When a virtual replica goes away, the repository’s other virtual replicas keep serving, and a replacement fills its cache as traffic arrives. When a repository gets busy, we add more virtual replicas. Separately, a fleet of compaction nodes works in the background, directly against Blob Storage and Ref-CAS, to merge each repository’s packs and remove unreachable objects. That work never runs on a virtual replica, meaning their CPU and memory can be almost entirely dedicated to serving requests. Durable state lives in two places: Git objects, in the form of packs and auxiliary read acceleration data, live in Azure Blob Storage. References and the list of packs that make up the repository (the pack manifest) live in a separate replicated log service we call Ref-CAS (for “Reference Compare-and-Swap”). Let’s walk the architecture from the perspective of a write and a read: Write: a virtual replica indexes the incoming pack and uploads it to Blob Storage, then commits one transaction to Ref-CAS that lists the pack in the manifest and updates the references. Later, a compaction node merges that pack with others to keep reads fast. Read: a virtual replica checks its reference version with Ref-CAS, pulls the packs it needs from Blob Storage into its cache, and serves the read from there. There are many distinct approaches we’ve taken within the new architecture, from the software stack on the virtual replicas to how traffic routing and workload scheduling are tuned for different use cases (e.g., many small repos vs. one large one). Let’s dive deep into two components of the architecture and tell their stories centered on the two design principles. Minimizing coordination: mutating reference state at high throughput Object storage services like Azure Blob Storage are incredibly good at what they do, and natural fits for many data-heavy applications like source code storage. They are durable and replicated, hold as much as we need them to, have a relatively low cost per byte, and deliver exceptionally high aggregate throughput so long as traffic is spread across many keys. As a result, nearly everything durable in the new Git storage architecture lives in Azure Blob Storage, including: Packs and indexes written by pushes, compaction, and garbage collection. Various read accelerators (like multi-pack indexes, reachability bitmaps, and some custom formats) that our maintenance process builds from those packs. Records that let compaction and garbage collection resume or audit their work, along with the leases that compaction nodes use to claim work. Cached responses for frequently repeated fetches. Checkpoints for the reference state of the repository, though not the authoritative state used to serve requests. Most of that data is written once to a distinct key and never changes afterward, which is what makes it highly suitable for Blob Storage. References are the opposite. A busy repository’s references are a relatively small piece of state that many writes race to update at the same time. That access pattern is harder to serve from Blob Storage, and our first prototypes showed us why. Object storage for this kind of workload is an intuitive choice, and one that works well up to a certain level of scale: conditional writes give a compare-and-swap for free, and the data is already durable and replicated. However, we ran into a difficult set of choices, illustrated below by two approaches we tried. Our first approach was a write-ahead log for all of a repository’s references, indexed by a single blob. Every update is a conditional write against that blob. It’s correct, and reads are cheap: a virtual replica asks whether the blob has changed, and if it hasn’t, it’s done. Writes are where it falls short. Only one conditional write to a blob can be in flight at a time, so even when we batch every push that arrives during a write into the next one, the repository’s write ceiling is one write per round trip to a single blob. In practice, this netted us write throughput in the mid-hundreds per second. Our second approach split the references across several segment blobs, with each reference hashing to one of them. Writes to references in different segments no longer wait on each other, which raises the ceiling. But a read now has to check every segment to know whether anything changed, and it’s only as fast as the slowest segment. We’d traded write latency for read latency, and reads outnumber writes by orders of magnitude. We can visualize this by showing multiple writes and a read side by side: Neither option met every requirement, so we built something else: a replicated log service dedicated to references, or the Ref-CAS service. This is the (small) consensus group we said at the end of the last post was still somewhere in the stack. Here’s how it works. Each reference update in Ref-CAS is a compare-and-swap committed by a quorum. A transaction locks only the references it touches, checks that each one still has the value the writer expects, and becomes visible once a majority of the log’s replicas have recorded it. Agents mostly push to their own branches, so most updates don’t contend, and they replicate in parallel. When two pushes do update the same reference, only one will append to the log. Each commit to Ref-CAS gets a log sequence number (LSN), and the repository’s version is the LSN of its latest commit. Reads start with a version check against that version. A virtual replica sends the version of the reference state it already holds. If that version is still current, the reply carries no references at all, and an unchanged repository costs a single comparison. If the virtual replica is behind, it gets back the current references and version, along with pointers to pack data and anything else that needs to be known, such as when the last garbage collection cycle occurred. Unlike the consensus group in our legacy architecture, Ref-CAS never holds or validates object data. It only stores pointers to it. A virtual replica uploads a push’s pack to Blob Storage before it commits the reference transaction. A reference only ever points at objects that are already durable. These approaches allow us to transact reference state alone in the tens of thousands of operations per second, and provide a baseline for additional annotations on the replication log that help reads decide what to download for a given request. But supporting thousands of writes per second on a single repository creates a second-order problem: maintaining the performance of reads and writes. For that, we needed a different approach to compaction. Decoupling storage from compute: compaction at thousands of writes per second Every push adds a pack to Blob Storage. Git can serve a repository from many packs, but each additional pack makes lookups slightly more expensive, so the pack count can’t grow without bound. In our legacy architecture, compaction runs on the same replicas that serve traffic, and it has to run on every replica. In the new architecture, it runs entirely in the background on separate nodes, directly against durable storage, using the Ref-CAS service to notify virtual replicas of the evolving state. Compaction nodes each claim ownership over a subset of the repository’s data via a lease, which allows us to scale compaction horizontally. Here’s how one compaction node works through a single shard of a repository’s packs: The node first takes a lease on the shard in Blob Storage, so only one node compacts a shard at a time. Meanwhile, virtual replicas keep uploading packs and listing them in the pack manifest. The node reads the manifest to find new packs and collects them into an open segment, which is effectively a holding ground for data about to be compacted. When the segment reaches a defined limit based on pack count, size, or age, it seals the segment so it accepts no new packs, then combines its packs into fewer, larger ones. While compaction happens, the next segment for the shard can begin capturing its input packs. Before anything is published, the node checks that the new packs contain exactly the same objects as the inputs. It then uploads the new packs and adds them to the manifest. A second transaction removes the inputs from the manifest, and cleanup deletes them later. To scale out, this process runs independently for many shards at once. Each pack’s hash maps to a shard, so adding shards and nodes adds compaction throughput. A compacted pack that’s still under the size limit goes back into a shard by its own hash and merges again, so packs grow in tiers until they reach the limit. The net result is an effectively flat pack count while pushes climb: Compaction merges packs, but it keeps every object. Garbage collection is the step that removes objects nothing references anymore, like the ones left behind by deleted branches and force-pushes. In our new architecture, garbage collection works very similarly to compaction by using dedicated workers to handle the compute-heavy portion. It also has a few special behaviors for safely removing data, which are worthy of their own discussion. Using these approaches, we’ve been able to consistently demonstrate a flat latency curve as writes climb, and we have other planned optimizations to make the compaction and garbage collection processes themselves more performant. What comes next The two principles we started with let each part of this architecture scale on its own. We scale reads and writes by adding virtual replicas. Ref-CAS orders each reference independently instead of the whole repository. We scale maintenance by adding compaction nodes. Our goal is for every repository, from one developer’s side project to the busiest monorepo, to run on the same architecture with no special handling for the busy ones. Repositories don’t stay small. A side project can pick up a fleet of agents overnight, and it shouldn’t need a migration or special handling from us to keep up. One architecture also means every improvement we make reaches every repository at once. This foundation lets us do a lot more. We’re focused on three areas next: scaling the architecture beyond what we can predict we’ll need today, making agents more efficient at the work they do on GitHub, and evolving Git itself for agentic development. Improving the architecture We have plans to take this architecture further. Each of these improvements lets a repository handle more activity while reducing the work behind each request: Read only what’s needed. Fetch a single object from Blob Storage instead of the whole pack that holds it. Organize packs by type. Group commits, trees, and blobs into their own packs. Many requests then touch less data. Partial replicas. Serve requests without every pack on local disk. Materialized views. Keep repository data in ready-to-use forms, like prepared archives, a near-live shallow copy of the default branch, and agent session context stored alongside each commit. Global replicas. Place replicas in any region, close to the workloads that use them. Reads stay within bounded staleness of the latest write. Scale to zero. Grow and shrink the fleet with the repositories that are actually active. Efficient agent operations on GitHub Scaling the infrastructure is one side of supporting agents. The other side is making each agent operation cheaper: fewer bytes to fetch, fewer round trips, and less waiting on changes. Each of these fast-follow items builds on the storage work in this post: Work without a clone. Many agent tasks never need a full working tree. They need a handful of files and enough context to make a change. They can read both straight from the server. Atomic commit API. Land a multi-file change in one operation. The whole change commits, or it’s rejected cleanly on conflict. Event streams. Agents and the systems around them work best with real-time information. A generic event stream lets them subscribe to changes and react as they happen. Improving Git for agents We also have work to do in Git itself. GitHub has been a longtime contributor to the Git project, and we’re not stopping now. A few examples of the work we’re excited to continue: Lightweight clones. Partial clone, shallow clone, and sparse checkout each let an agent fetch less. Each one has gaps. They don’t always work well together, either. We want to improve each piece and make them fit. Remove hidden scaling costs. Git still has code paths that slow down much faster than the repository grows. Recent releases fixed several of them, but we expect to find more. Faster history walks. Metadata like the commit-graph can answer merge-base and reachability questions without walking every commit. That matters most when an agent’s API call turns into Git work on the server. Avoid common gotchas. Agents make the same mistakes developers do. Git can catch more of the common ones and warn before they cause damage. Agents have changed how software gets built. GitHub and Git are changing with it. We’re excited to take this new architecture across the starting line. It’s available in a limited private preview now, with a broader rollout early next year. We can’t wait to see what teams build when the number of agents working on a repository is limited by their ideas. We’ll keep evolving Git and GitHub alongside our customers and the Git community. The post Inside GitHub’s new Git storage architecture appeared first on The GitHub Blog.",
+      "topics": [
+        "devtools-infra",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261105/p51#a261105p51",
+      "title": "Meta President Dina Powell McCormick says building new US data centers will be harder after midterm results, but it will be easier to expand existing projects (Meghan Bobrowsky/Wall Street Journal)",
+      "url": "https://www.techmeme.com/261105/p51#a261105p51",
+      "author": null,
+      "publishedAt": "2026-11-05T20:40:00.000Z",
+      "content": "Meghan Bobrowsky / Wall Street Journal: Meta President Dina Powell McCormick says building new US data centers will be harder after midterm results, but it will be easier to expand existing projects — Speaking at the WSJ Tech conference, Dina Powell McCormick says the company is more optimistic about scaling up its existing data centers",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1028178",
+      "title": "Blue Origin’s next launch now won’t happen until 2027",
+      "url": "https://www.theverge.com/science/1028178/blue-origins-next-launch-now-wont-happen-until-2027",
+      "author": "Jay Peters",
+      "publishedAt": "2026-11-05T20:47:14.000Z",
+      "content": "Blue Origin CEO reportedly sent a memo to staff about the new timeline. | Anadolu via Getty Images Blue Origin plans to do its next New Glenn rocket launch in January 2027, according to CNBC and the Financial Times, which cite a memo from CEO Dave Limp sent to staff. The new timeline follows a May launchpad explosion that damaged Blue Origin's New Glenn launchpad ahead of a flight that would have brought Amazon Leo satellites into space. In October, Blue Origin founder Jeff Bezos told Fox News that the company was aiming for a December New Glenn launch, joking that it could be \"probably December 31st.\" The new, revised launch window is \"about 10 days later than Blue Origin's earlier launch target,\" CNBC reports. Limp also reportedly cite … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261105/p52#a261105p52",
+      "title": "METR: Anthropic redacted much of the \"most informative\" evidence from METR's 100-page report, so readers \"must rely on our judgment more than we consider ideal\" (@metr_evals)",
+      "url": "https://www.techmeme.com/261105/p52#a261105p52",
+      "author": null,
+      "publishedAt": "2026-11-05T21:30:03.000Z",
+      "content": "@metr_evals: METR: Anthropic redacted much of the “most informative” evidence from METR's 100-page report, so readers “must rely on our judgment more than we consider ideal” — We submitted a ~100-page full report on our assessment to Anthropic. For the public version, Anthropic redacted a majority of the evidence we found most informative. As a consequence, the public must rely on our judgment more than we consider ideal.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.03768",
+      "title": "Multi-layer Indexer: Overlapping Selection and Attention in DeepSeek Sparse Attention",
+      "url": "https://huggingface.co/papers/2611.03768",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:04.166Z",
+      "content": "Multi-layer Indexer: Overlapping Selection and Attention in DeepSeek Sparse Attention",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment",
+      "title": "Independent Assessment of AI R&D Acceleration at Anthropic in October 2026",
+      "url": "https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.378Z",
+      "content": "Independent Assessment of AI R&D Acceleration at Anthropic in October 2026 metr.org49 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://github.blog/engineering/architecture-optimization/inside-githubs-new-git-storage-architecture",
+      "title": "Inside GitHub’s new Git storage architecture",
+      "url": "https://github.blog/engineering/architecture-optimization/inside-githubs-new-git-storage-architecture",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.378Z",
+      "content": "Inside GitHub’s new Git storage architecture github.blog16 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://claude.com/resources/articles/introducing-personal-finance-in-claude",
+      "title": "Introducing Personal Finance in Claude",
+      "url": "https://claude.com/resources/articles/introducing-personal-finance-in-claude",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.379Z",
+      "content": "Introducing Personal Finance in Claude claude.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.dwarkesh.com/p/clocktower",
+      "title": "The benchmark where AIs have to lie to win",
+      "url": "https://www.dwarkesh.com/p/clocktower",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.379Z",
+      "content": "The benchmark where AIs have to lie to win dwarkesh.com18 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://a16z.com/the-exploit-was-the-bottleneck",
+      "title": "The Exploit Was the Bottleneck",
+      "url": "https://a16z.com/the-exploit-was-the-bottleneck",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.380Z",
+      "content": "The Exploit Was the Bottleneck a16z.com20 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://flaviocopes.com/gpt-live-1",
+      "title": "GPT-Live 1 tutorial: build a voice agent you can interrupt",
+      "url": "https://flaviocopes.com/gpt-live-1",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.381Z",
+      "content": "GPT-Live 1 tutorial: build a voice agent you can interrupt flaviocopes.com14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/drjimfan/status/2118380813498892301",
+      "title": "VFlash: Parallel Vision Model for Physical AI and Robotics",
+      "url": "https://x.com/drjimfan/status/2118380813498892301",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.382Z",
+      "content": "VFlash: Parallel Vision Model for Physical AI and Robotics x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://newsletter.semianalysis.com/p/tpu-strikes-the-king",
+      "title": "The Iron(wood) Throne: Google's TPU Stakes Its Claim on Inference",
+      "url": "https://newsletter.semianalysis.com/p/tpu-strikes-the-king",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.382Z",
+      "content": "The Iron(wood) Throne: Google's TPU Stakes Its Claim on Inference newsletter.semianalysis.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://9to5mac.com/2026/11/05/macbook-pro-with-proled-xdr-display-touch-review",
+      "title": "MacBook Pro with PROLED XDR Display review: A lot more than touch",
+      "url": "https://9to5mac.com/2026/11/05/macbook-pro-with-proled-xdr-display-touch-review",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.382Z",
+      "content": "MacBook Pro with PROLED XDR Display review: A lot more than touch 9to5mac.com14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.oreilly.com/radar/the-new-knowledge-artifacts-of-the-ai-economy",
+      "title": "The New Knowledge Artifacts of the AI Economy",
+      "url": "https://www.oreilly.com/radar/the-new-knowledge-artifacts-of-the-ai-economy",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.383Z",
+      "content": "The New Knowledge Artifacts of the AI Economy oreilly.com21 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/thom_wolf/status/2118432475730882627",
+      "title": "18 of the 20 best open models today are Mixture-of-Experts. Dense is basically over. And yet the...",
+      "url": "https://x.com/thom_wolf/status/2118432475730882627",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.383Z",
+      "content": "18 of the 20 best open models today are Mixture-of-Experts. Dense is basically over. And yet the... x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://huggingface.co/baidu/ERNIE-5.5-Flash-Base",
+      "title": "baidu/ERNIE-5.5-Flash-Base: Sparse Mixture-of-Experts Language Model Release",
+      "url": "https://huggingface.co/baidu/ERNIE-5.5-Flash-Base",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.383Z",
+      "content": "baidu/ERNIE-5.5-Flash-Base: Sparse Mixture-of-Experts Language Model Release huggingface.co6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://about.fb.com/news/2026/11/introducing-muse-ai-voice-expressive-avatars",
+      "title": "Give Your Muse a Voice",
+      "url": "https://about.fb.com/news/2026/11/introducing-muse-ai-voice-expressive-avatars",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.383Z",
+      "content": "Give Your Muse a Voice about.fb.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theguardian.com/technology/2026/nov/05/california-children-social-media-lawsuit-tiktok-google-meta",
+      "title": "Google, Meta and TikTok sue California to block law protecting children from addiction risk",
+      "url": "https://www.theguardian.com/technology/2026/nov/05/california-children-social-media-lawsuit-tiktok-google-meta",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.384Z",
+      "content": "Google, Meta and TikTok sue California to block law protecting children from addiction risk theguardian.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://research.checkpoint.com/2026/hacking-on-autopilot-inside-artex-cybercrime-campaigns",
+      "title": "Hacking on Autopilot: Inside ARTEX Cybercrime Campaigns",
+      "url": "https://research.checkpoint.com/2026/hacking-on-autopilot-inside-artex-cybercrime-campaigns",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.384Z",
+      "content": "Hacking on Autopilot: Inside ARTEX Cybercrime Campaigns research.checkpoint.com14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://metr.org/blog/2026-11-05-rd-section-anthropic-risk-report-august-2026-review",
+      "title": "Review of the \"Risks from automated R&D\" section in Anthropic's Risk Report (August 2026)",
+      "url": "https://metr.org/blog/2026-11-05-rd-section-anthropic-risk-report-august-2026-review",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.384Z",
+      "content": "Review of the \"Risks from automated R&D\" section in Anthropic's Risk Report (August 2026) metr.org14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.warp.dev/blog/agent-code-review-bottleneck",
+      "title": "Addressing the code review bottleneck",
+      "url": "https://www.warp.dev/blog/agent-code-review-bottleneck",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.384Z",
+      "content": "Addressing the code review bottleneck warp.dev7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blogs.nvidia.com/blog/vera-cpu-highest-throughput-fastest-agents",
+      "title": "Vera Delivers the Best of Both Worlds: Highest Throughput and Fastest Agents",
+      "url": "https://blogs.nvidia.com/blog/vera-cpu-highest-throughput-fastest-agents",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.384Z",
+      "content": "Vera Delivers the Best of Both Worlds: Highest Throughput and Fastest Agents blogs.nvidia.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://pournasserian.com/writing/validating-a-vector-database-for-rag",
+      "title": "Validating a vector database built for RAG: four layers of checks, with the code to run them",
+      "url": "https://pournasserian.com/writing/validating-a-vector-database-for-rag",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.385Z",
+      "content": "Validating a vector database built for RAG: four layers of checks, with the code to run them pournasserian.com30 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://cloud.google.com/blog/products/containers-kubernetes/open-infrastructure-for-autonomous-agents-comes-to-cncf",
+      "title": "Open infrastructure for autonomous agents comes to CNCF",
+      "url": "https://cloud.google.com/blog/products/containers-kubernetes/open-infrastructure-for-autonomous-agents-comes-to-cncf",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.385Z",
+      "content": "Open infrastructure for autonomous agents comes to CNCF cloud.google.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.networkworld.com/article/4245292/agentic-ai-boom-expected-to-reshape-cpu-market.html",
+      "title": "Agentic AI boom expected to reshape CPU market",
+      "url": "https://www.networkworld.com/article/4245292/agentic-ai-boom-expected-to-reshape-cpu-market.html",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.386Z",
+      "content": "Agentic AI boom expected to reshape CPU market networkworld.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://alpinelinux.org/posts/2026-11-05-openssh-password-authentication-bypass",
+      "title": "Security advisory: openssh-server password authentication bypass",
+      "url": "https://alpinelinux.org/posts/2026-11-05-openssh-password-authentication-bypass",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.388Z",
+      "content": "Security advisory: openssh-server password authentication bypass alpinelinux.org5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://pub.towardsai.net/what-happens-in-1-llm-api-call-measured-on-gpu-with-qwen3-8b-3654ffb0e290?source=rss----98111c9905da---4",
+      "title": "What Happens in 1 LLM API Call? Measured on GPU With Qwen3–8B",
+      "url": "https://pub.towardsai.net/what-happens-in-1-llm-api-call-measured-on-gpu-with-qwen3-8b-3654ffb0e290?source=rss----98111c9905da---4",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.389Z",
+      "content": "What Happens in 1 LLM API Call? Measured on GPU With Qwen3–8B pub.towardsai.net18 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://ben3d.ca/blog/coding-agents-underestimate-the-cost-of-code",
+      "title": "Coding Agents Underestimate the Cost of Code They Own",
+      "url": "https://ben3d.ca/blog/coding-agents-underestimate-the-cost-of-code",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.389Z",
+      "content": "Coding Agents Underestimate the Cost of Code They Own ben3d.ca6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/hedgiemarkets/status/2118424529219252526",
+      "title": "Auction of $500 Million in Data Center Loans",
+      "url": "https://x.com/hedgiemarkets/status/2118424529219252526",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.390Z",
+      "content": "Auction of $500 Million in Data Center Loans x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/11/05/blue-origin-launch-new-glenn.html",
+      "title": "Blue Origin pushes launch to January 2027 as it races to rebuild damaged launch pad",
+      "url": "https://www.cnbc.com/2026/11/05/blue-origin-launch-new-glenn.html",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.390Z",
+      "content": "Blue Origin pushes launch to January 2027 as it races to rebuild damaged launch pad cnbc.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theinformation.com/articles/airbnb-reveals-new-details-cheskys-secretive-ai-startup",
+      "title": "Airbnb Reveals New Details of Chesky’s Secretive AI Startup",
+      "url": "https://www.theinformation.com/articles/airbnb-reveals-new-details-cheskys-secretive-ai-startup",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.391Z",
+      "content": "Airbnb Reveals New Details of Chesky’s Secretive AI Startup theinformation.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.langchain.com/blog/agents-are-going-async",
+      "title": "Agents Are Going Async",
+      "url": "https://www.langchain.com/blog/agents-are-going-async",
+      "author": null,
+      "publishedAt": "2026-11-05T21:35:05.391Z",
+      "content": "Agents Are Going Async langchain.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/token-pass-credit-now-applies-automatically-across-ai-gateway",
+      "title": "Token Pass credit now applies automatically across AI Gateway",
+      "url": "https://vercel.com/changelog/token-pass-credit-now-applies-automatically-across-ai-gateway",
+      "author": "Roman Olynyk",
+      "publishedAt": "2026-11-06T03:00:00.000Z",
+      "content": "credit now applies automatically to included model usage through , whether a request authenticates with an API key, OIDC token, or login. No dedicated Token Pass API key is required, though you can still create one from the dashboard or the CLI for keys scoped only to featured models and providers.Token PassAI Gatewayfx When Token Pass credit runs out for the billing period, requests from a standard key or OIDC token fall back to your team's AI Gateway credits. Token Pass keys still stop until the next billing period. Requests served through the Token Pass provider remain (ZDR). Fallback requests follow your team's setting. With enabled, they route only to ZDR providers.Zero Data Retentionteam-wide ZDR Available now for Token Pass subscribers on Pro teams. If you created a Token Pass key during setup, switch to a standard API key or OIDC token to get fallback. Learn more in the .Token Pass documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
       ],
       "paywalled": false,
       "mediaType": "text"
