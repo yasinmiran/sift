@@ -692,6 +692,49 @@ merges and closures and never expire.
 
 ## Backlog
 
+- FILED 2026-11-05 as #332, not shipped, because the remedy is a placement on
+  32 pages and the design is pinned. **The subscribe control is on 1 of 34
+  built pages and every push notification opens one of the other 33.**
+  `id="notify"` and the `install-help` dialog are in `index.html` alone;
+  `serviceWorker.register` is in all 34. `push/src/core.ts:104` sends
+  `url: "/${day}.html"`, so a notification tap, every one of feed.xml's 32
+  item links, 32 of sitemap.xml's 33 urls and every shared og url land on the
+  page family with no bell, and the bell is also the off switch. The day
+  page's own refresh note names notifications while offering none. Nobody is
+  stranded (`nav.crumbs` is one click from the index), which is why this is an
+  issue and not a defect. If #332 is greenlit the open question is the mount
+  point: the index uses `header.head`, the day page has no `.head`.
+- Walked clean on 2026-11-05, recorded so a future run does not re-walk them.
+  **Reflow at the WCAG 1.4.10 width, measured here for the first time.** Index,
+  two day pages and the 404 driven at 320, 360, 390 and 430 with the webfonts
+  live: `scrollWidth === clientWidth` in 16 of 16 and **0** elements crossing
+  either edge, so the 320px floor holds with room, not just the 360/390/430 the
+  CLS sweeps have used.
+  **Target sizes at 390.** The only standalone interactive boxes under 24px are
+  `← all days` (74.8x19), the footer byline (35.2x17) and `rss` (20.3x17); all
+  three clear SC 2.5.8 on the inline/spacing exceptions, and every `.prose`
+  link is exempt as inline text. Nothing owed, do not re-measure without a
+  layout change.
+  **axe-core 4.10.2 over the built pages, including the states it normally
+  cannot reach.** 0 violations on index, two day pages and the 404 at 390 and
+  1280, and still 0 with the notify row and install chip force-revealed and the
+  `install-help` dialog open, on both the wcag ruleset and best-practice. The
+  10-31 dialog-name gate holds from the instrument's side too.
+  **The three contract "never" rules on pen marks that carry no gate, counted
+  over the 32-day archive.** 31 marks total: **0** inside link text, **0** in a
+  heading, **0** longer than 60 characters. Wallpaper by the 10-03 test, so no
+  verify.ts gate is owed; the per-day spread is 1-2, never past the warn line.
+  **`generatedAt` across all 32 stored day files.** `runIngest` only restamps
+  when `file.items.length > itemsBefore`, so an afternoon ingest that creates
+  nothing leaves the file reading morning-generated and the contract's evening
+  staleness check would call it stale. Measured, every one of the 32 is stamped
+  after 15:45 UTC (earliest 16:44, 10-05 and 10-12), so the read has never once
+  been wrong and the gap is theoretical. Re-check only if an evening ever logs
+  `created: 0`.
+  **The verifier across the archive**: 1 error, 2026-10-12's known empty
+  `## Elsewhere` whose gate postdates it (prunes out 11-12), plus the four
+  60+ link warnings. Nothing new.
+
 - MERGED 2026-11-04 as #329 / PR #330, `1077564`, `pages` run 41808185860
   green on build and deploy. The icon ios puts on a home screen carries the
   mark at the 59.375% of the tile `13e03bc` gave the android icons, instead
@@ -2225,6 +2268,79 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-05
+
+**A quiet run: nothing earned a change, so nothing shipped. #332 filed and
+left for a greenlight, five surfaces measured clean and recorded.** Six
+instruments were pointed at the site, the archive and the pipeline today and
+every one of them came back green, which is the outcome this file says to
+write down rather than work around.
+
+**What was measured.** Reflow at **320px**, the WCAG 1.4.10 width and one the
+CLS sweeps have never used (they run 360/390/430): index, two day pages and
+the 404, webfonts live, `scrollWidth === clientWidth` in 16 of 16 and 0
+elements over either edge. Target sizes at 390: three standalone links under
+24px (`← all days` 74.8x19, the byline 35.2x17, `rss` 20.3x17), all three
+clearing SC 2.5.8 on the inline and spacing exceptions. **axe-core 4.10.2**,
+0 violations on four pages at two widths, and still 0 in the state axe cannot
+normally reach, with the notify row and install chip force-revealed and the
+`install-help` dialog open, on wcag and best-practice both. The three pen-mark
+"never" rules with no gate behind them, counted over the month: 31 marks, 0 in
+link text, 0 in a heading, 0 past 60 characters. And `generatedAt` on all 32
+stored day files, because `runIngest` only restamps when items were actually
+created and the contract's evening run reads that stamp as "did the afternoon
+ingest run": all 32 land after 15:45 UTC, earliest 16:44, so the read has never
+been wrong. Each is in the backlog so no later run pays for it twice.
+
+**The one finding is a design question, so it is an issue.** The subscribe
+control lives on **1 of 34** built pages. `id="notify"` and the `install-help`
+dialog are in `index.html` alone; `serviceWorker.register` is in all 34. Every
+route in that is not the index is a day page: `push/src/core.ts:104` sends
+`url: "/${day}.html"`, so a notification tap opens a page with no bell, and
+the bell is also the off switch; so do feed.xml's 32 item links, 32 of
+sitemap.xml's 33 urls and every shared og url. The day page's refresh note
+even names notifications ("notifications ping you in case you have them on")
+on a page that offers no way to turn them on. The remedy is `notifyBlock()`
+on the day page, same component and css, but the mount point is a visual
+change to the opening of 32 pages (the index uses `header.head`; the day page
+has no `.head`) with the cls surface #326 just paid for. Hard limits put the
+design with Yasin, so #332 carries the counts, both candidate placements and
+what the PR would ship if it is greenlit.
+
+**What was looked at and left alone**, so the reasoning is on the record: the
+slide cards (today's 8 rendered and read; the counter sits at 2.70:1 and the
+term glosses at 4.13:1 on `#0d0c0b`, both deliberate palette tokens doing the
+quiet job they were picked for, and moving either is repainting); a verify.ts
+gate for marks in link text or headings (0 occurrences in 32 days, wallpaper by
+the 10-03 test, same drawer as the declined verify-on-push job); `manifest`
+hardening (`id`, `screenshots`) and `twitter:image:alt`, which are fashion with
+no measured deficiency behind them; and an offline fetch handler for the
+installed app, which contradicts `sw.ts`'s stated push-only design and is a
+proposal, not a slot.
+
+**Health**: the last 30 workflow runs green, today's ingest 54 sources / 144
+created with the one standing `fireship` 404 (the channel's last video was
+already stored, so it cost nothing again, and 10-12's re-count trigger still
+has not fired), `verify` clean across the archive but for 2026-10-12's known
+error and the four 60+ link warnings, `npm test` 263 passing, typecheck and
+`npm run site` clean. No open PRs at the start of the run; five issues open
+(#314, #246, #241, #120, #112), none greenlit, none commented on since
+10-20, so the slot was free for a new observation and the observation turned
+out to be someone else's call. Entries run back to 08-29, inside the ~90 day
+window, so nothing pruned.
+
+**The environment, as it behaved today.** The clone arrives **shallow at 50
+commits** again (1004 after `--unshallow`), and it arrives on a **detached
+HEAD**, which is new and wants `git checkout main` before anything reads
+`gardener/journal.md` as current. `npm ci` works. `npm run slides:render`
+still throws on the headless-shell version gap, so cards need the three-line
+script with `executablePath: /opt/pw-browsers/chromium`. `npm pack axe-core`
+reaches the registry, which is how axe got here without touching
+`package.json`. `gh api -X GET` works and `gh pr list`/`issue list` are still
+403 on graphql; the github MCP created #332 and stripped the harness footer
+from the body. `sift.yasint.dev` and `yasin.goatcounter.com` are both still
+403 at CONNECT, so there is still no reader-side signal from here.
 
 ### 2026-11-04
 
