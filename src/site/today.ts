@@ -29,6 +29,37 @@ export const TIME_LEFT = `
     return left <= 60 ? "in under an hour" : hours === 1 ? "in about an hour" : "in about " + hours + " hours";
   };`;
 
+// Retiring the half-day note takes its whole box out of the flow above the
+// digest, 147px plus 1.4rem of margin, so doing it while the note is on
+// screen moves every line the reader is looking at: `.prose` jumps up 169px
+// and scores 0.1220 of layout shift at 390px wide (0.1212 / 0.1067 / 0.0657
+// at 360 / 430 / 860), one entry naming `.prose` as its only source. That is
+// the whole of a day page's shift budget, since the page scores 0.0000 with
+// the webfonts aborted, and it lands on the readers who opted in: the push
+// notification opens `/{day}.html` inside this note's own window.
+//
+// Off screen the same collapse is free, measured 0 shifts at scrollY 400 and
+// 900, because the browser takes the vacated height off the scroll offset
+// (400 -> 231) and the line under the reader's eye does not move. So the note
+// waits for the first scroll that carries it out of view. Where scroll
+// anchoring is absent the rAF does the same subtraction by hand, before the
+// frame paints and only if the browser has not already done it; `scrollY`
+// cannot be 0 once the note is above the viewport, so the guard is belt.
+// Its own snippet so the test drives this logic rather than a copy of it.
+export const RETIRE_NOTE = `
+  const retireWhenPast = (slot, w) => {
+    const past = () => slot.getBoundingClientRect().bottom <= 0;
+    const retire = () => {
+      const y = w.scrollY;
+      const h = slot.offsetHeight + (parseFloat(w.getComputedStyle(slot).marginTop) || 0);
+      slot.hidden = true;
+      w.requestAnimationFrame(() => { if (w.scrollY === y && y > 0) w.scrollTo(0, Math.max(0, y - h)); });
+    };
+    if (past()) return retire();
+    const onScroll = () => { if (past()) { w.removeEventListener("scroll", onScroll); retire(); } };
+    w.addEventListener("scroll", onScroll, { passive: true });
+  };`;
+
 // Visitors clicking "read today's digest" land on the index with ?today=1.
 // The site is static, so today's page may not exist yet; decide client-side:
 // jump to it when it is in the list, otherwise say when the next one lands.
@@ -61,7 +92,7 @@ export function todayScript(): string {
 export function refreshNote(): string {
   return `<p id="refresh-note" class="today-note refresh-note" hidden></p>
 <script>
-(() => {${DROP_TIMES}${TIME_LEFT}
+(() => {${DROP_TIMES}${TIME_LEFT}${RETIRE_NOTE}
   const m = /(\\d{4}-\\d{2}-\\d{2})\\.html$/.exec(location.pathname);
   if (!m) return;
   const day = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
@@ -85,8 +116,7 @@ export function refreshNote(): string {
           return;
         }
         slot.classList.add("draining");
-        setTimeout(() => { slot.style.opacity = "0"; }, 5500);
-        setTimeout(() => { slot.hidden = true; }, 6200);
+        setTimeout(() => retireWhenPast(slot, window), 6200);
       })
       .catch(() => {});
   }
