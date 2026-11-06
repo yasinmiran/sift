@@ -6,6 +6,33 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A clone that hands you a branch name is not handing you the branch, and the
+  tree it gives you instead answers every question in a steady voice. This
+  one arrived shallow at 50 commits and **detached at the real tip**, with a
+  local `main` ref pointing 50 commits back at 10-30; `git checkout main`
+  walked the working tree backwards and said *"Your branch is up to date with
+  'origin/main'"* while doing it, because `origin/main` had not been fetched
+  yet either. Everything measured on that tree was true of it and false of the
+  repository: `npm test` read **255 passing in 23 files** where the tip reads
+  263 in 24, `test/icons.test.ts` was simply **absent**, and `git merge-base
+  --is-ancestor` said the merge commits of #321, #325, #327 and #330 were
+  **not on main**, which reads as four merged PRs vanishing and a gate deleted
+  overnight. 11-05 banked the detached HEAD and prescribed `git checkout main`:
+  that prescription is the trap, and the fix is one line further,
+  `git fetch --unshallow && git reset --hard origin/main`. Same family as
+  11-01's "a count over the repo's history is a count over whatever the clone
+  was given", with a new face: there the clone was missing history, here it
+  is **lying about state**, and `git status -sb` printing `[behind 50]` is the
+  one line that says so. Ask it before trusting any number off a fresh clone.
+  Its other half is what actually caught it, and it cost nothing because the
+  record was right there: **255 against the 263 this journal wrote down
+  yesterday.** A reading that contradicts yesterday's entry is an instrument
+  check before it is a finding, and the cheapest one in the repo is the
+  journal's own health line. The wrong reading here was not subtle and still
+  looked like news (a deleted test file is exactly the kind of thing a
+  gardener run hopes to catch), which is the whole danger: a stale tree does
+  not fail, it reports.
+
 - A binary with no source in the repo keeps its invariant nowhere, so the
   invariant is whatever the last hand to touch it remembered. The four app
   icons are four pngs in a folder: no generator, no spec, no test, and a
@@ -692,6 +719,45 @@ merges and closures and never expire.
 
 ## Backlog
 
+- MERGED 2026-11-06 as #334 / PR #335, `c3c59e6`, `pages` run 42194913199
+  green on build and deploy. The half-day note retires on the first scroll
+  that carries it out of view instead of on a 6.2s timer, so a subscribed
+  reader's digest stops sliding up 169px under their eyes: cls **0.1220 ->
+  0** at 390px (0.1212 / 0.1067 / 0.0657 at 360 / 430 / 860 all to 0). 264
+  tests (was 263), 36 lines in `today.ts` (most of it comment), 2 css
+  declarations gone from `page.ts` and 75 of test, built tree **34 files**,
+  all html: -58 bytes raw on every page for the css, +476 raw / +201 gzipped
+  on the 32 day pages for the snippet; feed, sitemap, `latest.json`, `sw.js`,
+  manifest and icons byte-identical. Copilot could not review (quota), so the
+  check window was the only review.
+- Noticed 2026-11-06 while measuring the above, and NOT shipped, because one
+  change per run and this one is a slot of its own. **`npm run site` never
+  clears its output directory, so a rebuild after the archive rolls leaves
+  the rolled-out day pages on disk.** Driven deterministically: a fresh build
+  of the 32-day archive writes 32 day pages; move two digests out and rebuild
+  into the same `site/` and it still holds **32 pages for a 30-day archive**,
+  with the index at 30 rows and the sitemap at 31 urls, so the two orphans
+  are served by nothing and linked by nothing. In CI the consequence is
+  **zero**: `pages.yml` builds from a fresh checkout, so nothing stale has
+  ever been published, and this is purely a local-instrument hazard. It is a
+  real one though, and it bit this run before it was understood: every
+  journal sweep phrased as "all 34 built pages" is a sweep over whatever is
+  in `site/`, and a run that rebuilds twice across a roll reads pages the
+  site no longer has. The fix is an `rmSync(outDir, { recursive: true, force:
+  true })` before the `mkdirSync` in `build.ts` plus a test that builds, drops
+  a digest, rebuilds and counts; call it ten lines. Spend a slot on it when
+  nothing better is in it.
+- Walked clean on 2026-11-06, recorded so a future run does not re-walk them.
+  **The verifier across the whole archive, recounted**: 1 error, 2026-10-12's
+  known empty `## Elsewhere` whose gate postdates it (prunes out 11-12), and
+  **five** 60+ link warnings, not the four 11-05 wrote down: 10-06 (65),
+  10-15 (73), 10-18 (68), 10-21 (64), 10-29 (64). Nothing else, and nothing
+  new. **The last 30 workflow runs are green** across `pages`, `ingest` and
+  `checks`. **`data/picks` is still empty**, so the picks path has now gone a
+  second full rolling month unexercised. **The unsubscribed reader and the
+  reduced-motion reader both score 0 shifts on today's day page**, measured
+  on the way to #335, so the note's reveal really is pre-paint and the
+  pre-fix defect was the drain path alone; do not re-file the reveal.
 - FILED 2026-11-05 as #332, not shipped, because the remedy is a placement on
   32 pages and the design is pinned. **The subscribe control is on 1 of 34
   built pages and every push notification opens one of the other 33.**
@@ -2268,6 +2334,102 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-06
+
+**#334 filed, PR #335 built, `checks` green on `ccbf813`, merged by this run
+as `c3c59e6`, `pages` run 42194913199 green on build and deploy.** The
+half-day note no longer takes the digest with it when it goes.
+
+**The signal is a flourish whose cost nobody had priced.** `refreshNote()`
+reveals the note before first paint (its script is inline and synchronous,
+so the reveal costs nothing, measured), drains a 2px bar over 5.5s, and then
+at 6.2s sets `slot.hidden = true`. That collapses 147px of box plus 1.4rem of
+margin out of the flow **above** the digest, and `.prose` jumps up 169px.
+Measured in chromium at 1x with the webfonts and the view counter aborted and
+`navigator.serviceWorker.ready` replaced by a registration whose
+`getSubscription()` resolves:
+
+| width | shift | `.prose` | at |
+|---|---|---|---|
+| 360 | **0.1212** | 441 -> 272 | 6235ms |
+| 390 | **0.1220** | 441 -> 272 | 6243ms |
+| 430 | **0.1067** | 418 -> 272 | 6245ms |
+| 860 | **0.0657** | 317 -> 218 | 6248ms |
+
+One entry, one source, and it is the **whole** of the page's budget: 10-30
+and 11-04 both measured a day page at 0.0000 with the swap aborted, so this
+single shift puts the phone readings past the 0.1 line on their own. Who pays
+is the sharp part: `push/src/core.ts` sends `url: "/{day}.html"`, so the
+morning notification opens today's day page inside this note's own AM..PM
+window, and six seconds later the digest slides up under the reader who
+opted in. Unsubscribed readers pay nothing (the note never retires for them)
+and the reduced-motion branch pays nothing either, hiding at ~40ms, before
+first paint.
+
+**The fix is where the collapse happens, not whether.** Off screen the same
+removal is free: driven at scrollY 400 and 900 it records **0 shifts** and
+nothing visible moves, because the browser takes the vacated 169px off the
+offset (900 -> 731). So `retireWhenPast(slot, window)` replaces the two
+timers: retire at once if the note is already past the top edge, otherwise
+wait for the first scroll that clears it. The flourish is untouched, the bar
+still drains, the note still goes; it just stops leaving while the reader is
+looking at it. After: **0 at the top**, 0 scrolled past, and a note still 9px
+on screen is kept rather than collapsed.
+
+**The half of the fix that measures honestly and still does not move the
+number.** For a browser with no scroll anchoring, the rAF subtracts the
+vacated height from the offset itself, and only when `scrollY` says the
+browser has not already done it. Forced with `overflow-anchor:none` at scroll
+940, that converts a 169px yank into nothing moving (`.prose` viewport y -668
+-> **-499**, scrollY 940 -> **771**) and chromium **still records the 0.1800
+entry**, because only its *own* anchoring adjustment is excluded from the
+metric, never a scroll the page performs. A synchronous `scrollTo` in place
+of the rAF measures identically on both counts, so the rAF was kept for its
+guard rather than its timing. Said plainly in the PR: the reader wins in that
+case, the metric does not, and the row this PR is actually about is the first
+one.
+
+**The gate drives the snippet rather than describing it.** `RETIRE_NOTE` is
+exported and run through `new Function` the way `DROP_TIMES` and `TIME_LEFT`
+already are, against a fake slot and window, and it asserts the invariant:
+the note never leaves the flow while any of it is on screen (its exact bottom
+edge counts as on screen), the waiting listener collapses nothing until a
+scroll clears the note and takes itself off when it does, the compensation is
+`offsetHeight + marginTop` (147 + 22.4 = 169.4, which is the measured move),
+and a browser that already compensated gets no second subtraction. Against a
+copy with the on-screen guard removed it fails on the first assertion,
+`expected true to be false`.
+
+**The 5.5s opacity fade went with the timer**, along with `.refresh-note`'s
+`transition:opacity` and its reduced-motion override. The retirement only
+ever happens off screen now, so fading first would empty the box while the
+reader is still looking at it, and a transition nothing triggers is dead css.
+
+**Health**: the last 30 workflow runs green, `verify` across the archive at
+2026-10-12's known error plus **five** 60+ link warnings (11-05 wrote four;
+counted, it is 10-06, 10-15, 10-18, 10-21 and 10-29), `npm test` 264 passing,
+typecheck and `npm run site` clean. No open PRs at the start of the run; six
+issues open (#332, #314, #246, #241, #120, #112), none greenlit and none
+commented on, so the slot was free for a new observation. `data/picks` is
+still empty, a second full month with the picks path unexercised. Entries run
+back to 08-29, inside the ~90 day window, so nothing pruned.
+
+**The environment, as it behaved today**, and the first item is today's
+lesson rather than a note. The clone arrives **shallow at 50 commits** (961
+after `--unshallow`) and **detached at the real tip, with a stale local
+`main` 50 commits behind it**; `git checkout main` walks the tree backwards
+and reports it as up to date, so the move is `git reset --hard origin/main`
+and the check is `git status -sb`. `npm ci` works. Card rendering still needs
+`executablePath: /opt/pw-browsers/chromium` plus `--no-sandbox`, and a
+playwright script run from the scratchpad needs an absolute import of
+`/home/user/sift/node_modules/playwright/index.mjs`. `gh api -X GET` works,
+`gh pr list`/`issue list` are still 403 on graphql. The github MCP created
+#334 **without** a harness footer and created #335 **with** one;
+`gh api -X PATCH` on the pr body re-appends it, and the MCP's
+`update_pull_request` is what strips it, which is the route to use. Copilot
+declined the review on quota. `sift.yasint.dev` is still 403 at CONNECT, so
+the green deploy is the whole of the live verification available from here.
 
 ### 2026-11-05
 
