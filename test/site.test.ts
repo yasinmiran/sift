@@ -5,7 +5,7 @@ import { mkdirSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { buildSite } from "../src/site/build";
-import { DROP_TIMES, TIME_LEFT } from "../src/site/today";
+import { DROP_TIMES, RETIRE_NOTE, TIME_LEFT } from "../src/site/today";
 
 let root: string;
 let out: string;
@@ -168,6 +168,79 @@ describe("buildSite", () => {
     expect(timeLeft(61)).toBe("in about an hour");
     expect(timeLeft(60)).toBe("in under an hour");
     expect(timeLeft(1)).toBe("in under an hour");
+  });
+
+  // Collapsing the note out of the flow above the digest moves `.prose` up
+  // 169px, 0.1220 of layout shift at 390px wide, so it may only happen once
+  // the note is off screen: there the browser (or the rAF below it) takes the
+  // same 169px off the scroll offset and nothing a reader is looking at
+  // moves. The gate is that invariant: the note never leaves the flow while
+  // any of it is on screen.
+  it("retires the half-day note only once it is scrolled out of view", () => {
+    const retireWhenPast = new Function(
+      `${RETIRE_NOTE}\nreturn retireWhenPast;`,
+    )() as (slot: unknown, w: unknown) => void;
+
+    const fakes = (bottom: number, scrollY = 0) => {
+      const slot = { hidden: false, offsetHeight: 147, bottom, getBoundingClientRect: () => ({ bottom: slot.bottom }) };
+      const w = {
+        scrollY,
+        frames: [] as (() => void)[],
+        handlers: [] as (() => void)[],
+        scrolledTo: null as number | null,
+        getComputedStyle: () => ({ marginTop: "22.4px" }),
+        requestAnimationFrame: (fn: () => void) => w.frames.push(fn),
+        scrollTo: (_x: number, y: number) => {
+          w.scrolledTo = y;
+        },
+        addEventListener: (_type: string, fn: () => void) => w.handlers.push(fn),
+        removeEventListener: (_type: string, fn: () => void) => {
+          w.handlers = w.handlers.filter((h) => h !== fn);
+        },
+      };
+      return { slot, w };
+    };
+
+    // Already past the top edge: collapsed, and the vacated box (its height
+    // plus its own margin) comes off the scroll offset in the frame before
+    // the paint, so the line under the reader's eye does not move.
+    const past = fakes(-1, 400);
+    retireWhenPast(past.slot, past.w);
+    expect(past.slot.hidden).toBe(true);
+    expect(past.w.handlers).toHaveLength(0);
+    expect(past.w.frames).toHaveLength(1);
+    past.w.frames[0]!();
+    expect(past.w.scrolledTo).toBe(400 - (147 + 22.4));
+
+    // Scroll anchoring got there first: no second subtraction.
+    const anchored = fakes(-1, 400);
+    retireWhenPast(anchored.slot, anchored.w);
+    anchored.w.scrollY = 231;
+    anchored.w.frames[0]!();
+    expect(anchored.w.scrolledTo).toBeNull();
+
+    // On screen, and its exact bottom edge counts as on screen: nothing is
+    // collapsed and a scroll listener waits. A scroll that leaves any of the
+    // note showing collapses nothing; the one that clears it retires the note
+    // and takes the listener with it.
+    const onScreen = fakes(409);
+    retireWhenPast(onScreen.slot, onScreen.w);
+    expect(onScreen.slot.hidden).toBe(false);
+    expect(onScreen.w.handlers).toHaveLength(1);
+
+    onScreen.slot.bottom = 0.5;
+    onScreen.w.scrollY = 408;
+    onScreen.w.handlers[0]!();
+    expect(onScreen.slot.hidden).toBe(false);
+    expect(onScreen.w.handlers).toHaveLength(1);
+
+    onScreen.slot.bottom = -0.5;
+    onScreen.w.scrollY = 409;
+    onScreen.w.handlers[0]!();
+    expect(onScreen.slot.hidden).toBe(true);
+    expect(onScreen.w.handlers).toHaveLength(0);
+    onScreen.w.frames[0]!();
+    expect(onScreen.w.scrolledTo).toBe(409 - (147 + 22.4));
   });
 
   it("carries the byline backlink and a github link in a shared footer", () => {
