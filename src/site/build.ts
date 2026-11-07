@@ -1,7 +1,7 @@
 // Renders digests/ into the static site: one page per day, the index,
 // sitemap, robots and the 404 page (CLI: npm run site).
 import { createHash } from "node:crypto";
-import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { parseFrontmatter } from "../digest/frontmatter";
 import { readSlidePosts } from "../slides/data";
@@ -123,6 +123,19 @@ export function buildSite(rootDir: string, outDir: string): { pages: number } {
     ...dropsOf(rootDir, d),
   }));
 
+  // The built tree is a function of digests/ and public/, so it starts empty.
+  // Writing into whatever was already there leaves the pages of a day that
+  // has rolled off the month behind: rebuilt over a 32-page build, a 30-day
+  // archive holds 32 day pages, and the two extras are named by nothing, not
+  // the index, not the sitemap, not the feed, not the oldest survivor's
+  // pager. Nothing stale has ever been published, because pages.yml builds
+  // from a fresh checkout; the cost is to every local read of site/, which is
+  // an instrument, and an instrument holding pages the site no longer has
+  // reports a month that is not there.
+  //
+  // Ordering: this clears the whole directory, so the pages workflow's slides
+  // step copies into site/ after `npm run site` and has to stay that way.
+  rmSync(outDir, { recursive: true, force: true });
   mkdirSync(outDir, { recursive: true });
   const pub = join(rootDir, "public");
   if (existsSync(pub)) cpSync(pub, outDir, { recursive: true });

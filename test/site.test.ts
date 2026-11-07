@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { load } from "cheerio";
 import { createHash } from "node:crypto";
-import { mkdirSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { buildSite } from "../src/site/build";
@@ -122,6 +122,33 @@ describe("buildSite", () => {
     const { pages } = buildSite(root, out);
     expect(pages).toBe(1);
     expect(readFileSync(join(out, "index.html"), "utf8")).toContain("nothing sifted yet");
+  });
+
+  // The archive is a rolling month, so days leave it, and a build that writes
+  // into the previous build's output leaves their pages behind: served under
+  // urls the index, the sitemap, the feed and the pager have all stopped
+  // naming. Asserted as the invariant rather than as the symptom, by building
+  // the same tree twice in two ways: into a directory a wider archive already
+  // filled, and into a fresh one. The two have to come out identical, which
+  // is the whole of "the built tree is a function of digests/ and public/".
+  it("builds the same tree whether or not a wider archive built here first", () => {
+    for (const day of ["2026-07-02", "2026-07-03", "2026-07-04"]) digest(day, "body");
+    buildSite(root, out);
+    expect(readdirSync(out).filter((f) => /^\d{4}-\d{2}-\d{2}\.html$/.test(f)).length).toBe(3);
+
+    rmSync(join(root, "digests", "2026-07-02.md"));
+    const { pages } = buildSite(root, out);
+    const fresh = join(root, "fresh");
+    buildSite(root, fresh);
+
+    expect(pages).toBe(3);
+    const tree = (d: string) =>
+      readdirSync(d)
+        .sort()
+        .map((f) => `${f} ${readFileSync(join(d, f), "utf8").length}`);
+    expect(tree(out)).toEqual(tree(fresh));
+    expect(readdirSync(out)).not.toContain("2026-07-02.html");
+    expect(readdirSync(out).filter((f) => /^\d{4}-\d{2}-\d{2}\.html$/.test(f)).length).toBe(2);
   });
 
   it("gives the index a today slot that redirects or reports the next drop", () => {
