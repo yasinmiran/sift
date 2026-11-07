@@ -762,11 +762,11 @@ merges and closures and never expire.
   tree on a fresh directory **49 files, 0 differing** against main, so no
   published byte moved. Copilot declined on quota for the second run running.
   **The `pages` deploy went red and was NOT reverted**: see today's entry and
-  the second half of today's lesson. Four attempts across two runs
-  (42358487766, and a manual re-dispatch 42360103149) stalled inside the Pages
-  service with the build job green every time, so the commit is not the cause
-  and the site is simply still serving the 05:40 deployment. Confirm a green
-  `pages` run landed before reading this as shipped.
+  the second half of today's lesson. **Six** attempts across three runs
+  (42358487766, then re-dispatches 42360103149 and 42361812702) stalled inside
+  the Pages service with the build job green every time, so the commit is not
+  the cause and the site is simply still serving the 05:40 deployment. Confirm
+  a green `pages` run landed before reading this as shipped.
 - Noticed 2026-11-07 while fixing the above, measured, and NOT shipped, because
   one change per run. **`src/slides/build.ts` has the same shape and no clear
   either**: `mkdirSync(out, { recursive: true })` into `slides/{day}/{slot}`,
@@ -2383,7 +2383,8 @@ merges and closures and never expire.
 
 **#337 filed, PR #338 built, `checks` green on `fe832e2`, merged by this run
 as `aae0f75`, and then `pages` run 42358487766 went RED on both deploy
-attempts, as did a manual re-dispatch, 42360103149.** `npm run site` clears
+attempts, as did two manual re-dispatches, 42360103149 and 42361812702: six
+failed deploys in seventy minutes.** `npm run site` clears
 its output directory, so `site/` stops holding the pages of days the site has
 retired; whether that is deployed is, at the close of this run, up to the
 GitHub Pages service.
@@ -2453,21 +2454,26 @@ reason the site build was (`slides/` is gitignored, the workflow starts from a
 fresh checkout). In the backlog rather than in this PR: one change per run.
 
 **The deploy is red and the commit was NOT reverted, which is a departure
-from this file's rule and is the reason the rule says what it says.** Four
-attempts across the two runs, each ~10.5 minutes: the first run's pair sat on
-`Current status: finished_file_sync` until `deploy-pages` gave up, the
-re-dispatch's pair on a status that came back **blank**, and every one ended
-`Timeout reached, aborting!` and `Canceled deployment with ID aae0f75...`. The
-`build` job was green all four times, `npm run site` and the slides step
-included. Set against the change: the built tree on a fresh directory is **49
-files, 0 differing** from main's, because in CI the clear is a no-op on a
-directory that does not exist yet, so this PR moves no published byte and
-cannot be what the Pages service is choking on. Revert was the wrong move on
-both ends: it would have queued a fifth deploy into the same stall, and it
-would have taken a correct commit out of main to do it. What readers actually
+from this file's rule and is the reason the rule says what it says.** **Six**
+attempts across three runs, each ~10.2 to 10.5 minutes, from 09:10 to 10:18
+UTC: the first run's pair sat on `Current status: finished_file_sync` until
+`deploy-pages` gave up, the two re-dispatches' pairs on a status that came
+back **blank**, and every one ended `Timeout reached, aborting!` and
+`Canceled deployment with ID aae0f75...`. The `build` job was green all six
+times, `npm run site` and the slides step included. Set against the change:
+the built tree on a fresh directory is **49 files, 0 differing** from main's,
+because in CI the clear is a no-op on a directory that does not exist yet, so
+this PR moves no published byte and cannot be what the Pages service is
+choking on. Revert was the wrong move on both ends: it would have queued one
+more deploy into the same stall, and it would have taken a correct commit out
+of main to do it. What readers actually
 have is this morning's digest, deployed green at 05:40 (run 42343657972); what
 is exposed is the 16:34 digest, which pushes `digests/` and so triggers
 `pages` on its own. Yasin was notified with the run ids and the signature.
+Re-dispatching stopped after the third run: a fourth would have been churn
+against someone else's outage, and the evening digest will trigger `pages`
+anyway. Two attempts per run is the workflow's own retry, so a run costs ~21
+minutes to learn nothing new.
 `githubstatus.com` does not resolve from this container and `sift.yasint.dev`
 is 403 at CONNECT, so "is this an incident" and "what is live right now" are
 both unanswerable from here; the next run should read `pages` first and, if a
