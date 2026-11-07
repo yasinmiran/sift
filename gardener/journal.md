@@ -6,6 +6,39 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A step the workflow lets fail reports its failure as a pass, and the field
+  that says otherwise is not the one the API hands you first. Today's merge
+  deployed red, and the first reading of the deploy job was
+  `2 Run actions/deploy-pages@v5  completed  success` followed by a retry step
+  sitting at `in_progress`, which is incoherent on its face: the retry is
+  gated `if: steps.deployment.outcome == 'failure'`, so it cannot be running
+  if the step before it passed. The gate is right and the `conclusion` is the
+  lie: **`continue-on-error: true` makes a failed step's `conclusion` read
+  `success` while only its `outcome` carries the failure**, and
+  `/actions/jobs/{id}` serves `conclusion`, never `outcome`. So the honest
+  reading of a continue-on-error step is the behaviour of whatever was gated
+  on it, and the tell here was free: a 10.5-minute step followed by a retry
+  that started. Same family as 10-30's "two browsers are two instruments" and
+  11-06's stale tree, with the field renamed: **the instrument reported a
+  pass, and the thing to read was the step it caused to run.** Its practical
+  half is cheaper still: a job whose steps do not add up is asking to be read
+  from its log rather than its summary, and the log said `Timeout reached,
+  aborting!` in the clear.
+  Its other half is about what the contract's revert rule is for. "Red deploy
+  gets reverted first" assumes the deploy is red *because of the change*, and
+  today it was not: the build job passed every time, `npm run site` and the
+  slides step included, and the artifact on a fresh checkout is byte-identical
+  to main's (49 files, 0 differing), because in CI the clear this PR added is a
+  no-op on a directory that does not exist yet. Four attempts across two runs
+  stalled inside the **Pages service** (`finished_file_sync` forever on the
+  first run, a blank status on the second), so a revert would have queued a
+  fifth deploy into the same stall and taken a correct commit out of main to do
+  it. **Separate "the deploy is red" from "the change is the reason" before
+  reaching for the revert**, and the separation is a measurement, not a
+  judgement: build green, artifact identical, failure inside someone else's
+  service.
+
+
 - A clone that hands you a branch name is not handing you the branch, and the
   tree it gives you instead answers every question in a steady voice. This
   one arrived shallow at 50 commits and **detached at the real tip**, with a
@@ -719,6 +752,34 @@ merges and closures and never expire.
 
 ## Backlog
 
+- MERGED 2026-11-07 as #337 / PR #338, `aae0f75`, `checks` green on
+  `fe832e2`. `npm run site` clears `outDir` before building, so the built tree
+  is a function of `digests/` and `public/` and a rebuild after the archive
+  rolls stops leaving the retired days' pages on disk: day pages on disk
+  **32 -> 30** for a 30-day archive, orphans **2 -> 0**, and the oldest
+  survivor's pager back from `earlier: none` to a page that exists. 265 tests
+  (was 264), 14 lines in `build.ts` (12 of them comment) and 28 of test, built
+  tree on a fresh directory **49 files, 0 differing** against main, so no
+  published byte moved. Copilot declined on quota for the second run running.
+  **The `pages` deploy went red and was NOT reverted**: see today's entry and
+  the second half of today's lesson. Four attempts across two runs
+  (42358487766, and a manual re-dispatch 42360103149) stalled inside the Pages
+  service with the build job green every time, so the commit is not the cause
+  and the site is simply still serving the 05:40 deployment. Confirm a green
+  `pages` run landed before reading this as shipped.
+- Noticed 2026-11-07 while fixing the above, measured, and NOT shipped, because
+  one change per run. **`src/slides/build.ts` has the same shape and no clear
+  either**: `mkdirSync(out, { recursive: true })` into `slides/{day}/{slot}`,
+  so a slot rewritten with fewer cards keeps the extras. Driven on today's
+  script in a throwaway root, cutting the am post from 5 slides to 3: the
+  rebuild reports `cards: 5` and `meta.json` lists 5, while the directory
+  still holds **`card-1..7.html`** from the first build. `render.ts` globs
+  `card-\d+\.html` out of that directory and screenshots every one it finds,
+  so a local render of a shrunken post photographs cards the script no longer
+  scripts. In CI it is zero for the same reason the site build was (`slides/`
+  is gitignored, the workflow starts from a fresh checkout), so this is an
+  instrument hazard again, not a reader one. Same remedy, one `rmSync` per
+  post directory plus a test; call it ten lines.
 - MERGED 2026-11-06 as #334 / PR #335, `c3c59e6`, `pages` run 42194913199
   green on build and deploy. The half-day note retires on the first scroll
   that carries it out of view instead of on a 6.2s timer, so a subscribed
@@ -730,23 +791,6 @@ merges and closures and never expire.
   on the 32 day pages for the snippet; feed, sitemap, `latest.json`, `sw.js`,
   manifest and icons byte-identical. Copilot could not review (quota), so the
   check window was the only review.
-- Noticed 2026-11-06 while measuring the above, and NOT shipped, because one
-  change per run and this one is a slot of its own. **`npm run site` never
-  clears its output directory, so a rebuild after the archive rolls leaves
-  the rolled-out day pages on disk.** Driven deterministically: a fresh build
-  of the 32-day archive writes 32 day pages; move two digests out and rebuild
-  into the same `site/` and it still holds **32 pages for a 30-day archive**,
-  with the index at 30 rows and the sitemap at 31 urls, so the two orphans
-  are served by nothing and linked by nothing. In CI the consequence is
-  **zero**: `pages.yml` builds from a fresh checkout, so nothing stale has
-  ever been published, and this is purely a local-instrument hazard. It is a
-  real one though, and it bit this run before it was understood: every
-  journal sweep phrased as "all 34 built pages" is a sweep over whatever is
-  in `site/`, and a run that rebuilds twice across a roll reads pages the
-  site no longer has. The fix is an `rmSync(outDir, { recursive: true, force:
-  true })` before the `mkdirSync` in `build.ts` plus a test that builds, drops
-  a digest, rebuilds and counts; call it ten lines. Spend a slot on it when
-  nothing better is in it.
 - Walked clean on 2026-11-06, recorded so a future run does not re-walk them.
   **The verifier across the whole archive, recounted**: 1 error, 2026-10-12's
   known empty `## Elsewhere` whose gate postdates it (prunes out 11-12), and
@@ -2334,6 +2378,132 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-07
+
+**#337 filed, PR #338 built, `checks` green on `fe832e2`, merged by this run
+as `aae0f75`, and then `pages` run 42358487766 went RED on both deploy
+attempts, as did a manual re-dispatch, 42360103149.** `npm run site` clears
+its output directory, so `site/` stops holding the pages of days the site has
+retired; whether that is deployed is, at the close of this run, up to the
+GitHub Pages service.
+
+**The signal came off 11-06's own backlog, parked there with "spend a slot on
+it when nothing better is in it", and nothing better was in it.** `buildSite`
+did `mkdirSync(outDir, { recursive: true })` and wrote into whatever was
+already there. The archive is a rolling month, so days leave it; their pages
+did not leave the directory. Driven on today's 32-digest tree, building into
+one directory twice with two digests moved out between the runs:
+
+| | build 1 | build 2 before | build 2 after |
+|---|---|---|---|
+| `buildSite` reports | 33 pages | 31 | 31 |
+| day pages on disk | 32 | **32** | **30** |
+| sitemap `<loc>` | 33 | 31 | 31 |
+| feed `<item>` | 32 | 30 | 30 |
+| index rows | 32 | 30 | 30 |
+| orphans on disk | 0 | **2** | **0** |
+
+`2026-10-07.html` and `2026-10-08.html` survived build 2 named by nothing: not
+the index, not the sitemap, not the feed, and the oldest surviving page's
+pager read `earlier: none`. After, 30 day pages for a 30-day archive and a
+pager pointing at a page that exists.
+
+**Who pays is the honest part, and it is said plainly in the PR: in CI,
+nobody.** `pages.yml` builds from a fresh checkout, so no stale page has ever
+been published, and the built tree on a fresh directory is **49 files, 0
+differing** against main. The cost is to the instrument, which is the reason
+this is gardener work at all rather than housekeeping: every sweep in this
+journal phrased as "all 34 built pages" is a sweep over whatever is in
+`site/`, and a run that rebuilds across a roll reads a month the site does not
+have. It cost 11-06 the time to work out why a count was wrong.
+
+**The fix states the condition instead of undoing the consequence**, which is
+11-01's lesson applied to a build: one `rmSync(outDir, { recursive: true,
+force: true })` before the `mkdirSync`, not a pass that enumerates and deletes
+the day pages the archive no longer names. An enumeration would have had to be
+extended the next time the build emits a new kind of file. The ordering note
+the comment carries is the one thing the fix depends on and nothing else
+states: the pages workflow's `slides` step copies into `site/` **after**
+`npm run site`, and clearing the whole directory makes that ordering
+load-bearing rather than incidental. Every caller is safe to clear:
+`npm run site` writes `resolve("site")` (gitignored build output), and all 54
+other call sites are `mkdtemp` directories.
+
+**The gate asserts the invariant, not the symptom.** It builds a 3-day
+archive, drops a digest, rebuilds into the **same** directory and also into a
+fresh one, and requires the two trees to match by name and size, which is the
+whole of "the built tree is a function of `digests/` and `public/`". Against
+the unfixed build it fails on that comparison (`…(9)` against `…(8)`) and
+independently on the orphan check one line down (09-22, holding again). Worth
+writing down about its shape: a test that asserted "no `2026-07-02.html`"
+would have passed the day the build started leaving some other stale file
+behind, and the two-trees comparison is the cheaper thing to have written.
+
+**Measured on the way and NOT shipped, because one change per run.**
+`src/slides/build.ts` has the same shape, `mkdirSync(out, { recursive: true })`
+into `slides/{day}/{slot}` with no clear, so a slot rewritten with fewer cards
+than before keeps the extras. Driven on today's script in a throwaway root,
+cutting the am post from 5 slides to 3: the rebuild reports `cards: 5` and
+`meta.json` lists 5, while the directory still holds **`card-1..7.html`** from
+the first build. `render.ts` globs `card-\d+\.html` out of that directory and
+screenshots every one it finds, so a local render of a shrunken post
+photographs cards the script no longer scripts. In CI it is zero for the same
+reason the site build was (`slides/` is gitignored, the workflow starts from a
+fresh checkout). In the backlog rather than in this PR: one change per run.
+
+**The deploy is red and the commit was NOT reverted, which is a departure
+from this file's rule and is the reason the rule says what it says.** Four
+attempts across the two runs, each ~10.5 minutes: the first run's pair sat on
+`Current status: finished_file_sync` until `deploy-pages` gave up, the
+re-dispatch's pair on a status that came back **blank**, and every one ended
+`Timeout reached, aborting!` and `Canceled deployment with ID aae0f75...`. The
+`build` job was green all four times, `npm run site` and the slides step
+included. Set against the change: the built tree on a fresh directory is **49
+files, 0 differing** from main's, because in CI the clear is a no-op on a
+directory that does not exist yet, so this PR moves no published byte and
+cannot be what the Pages service is choking on. Revert was the wrong move on
+both ends: it would have queued a fifth deploy into the same stall, and it
+would have taken a correct commit out of main to do it. What readers actually
+have is this morning's digest, deployed green at 05:40 (run 42343657972); what
+is exposed is the 16:34 digest, which pushes `digests/` and so triggers
+`pages` on its own. Yasin was notified with the run ids and the signature.
+`githubstatus.com` does not resolve from this container and `sift.yasint.dev`
+is 403 at CONNECT, so "is this an incident" and "what is live right now" are
+both unanswerable from here; the next run should read `pages` first and, if a
+green deploy has landed since, treat #338 as shipped and this paragraph as
+closed.
+
+**Health**: the last 30 workflow runs green before this one, `verify` across
+the archive at 2026-10-12's known error (its gate postdates it, prunes out
+11-12) plus
+**four** 60+ link warnings (10-15 at 73, 10-18 at 68, 10-21 at 64, 10-29 at
+64; 11-06's fifth, 10-06, has rolled off the month), `npm test` 265 passing
+(was 264), typecheck and `npm run site` clean. No open PRs at the start of the
+run; six issues open (#332, #314, #246, #241, #120, #112), none greenlit and
+none commented on since 10-20, so the slot was free. `data/picks` is still
+empty, as it has been every time a run has looked, so the picks path stays
+unexercised.
+Entries run back to 08-29, inside the ~90 day window, so nothing pruned.
+
+**The environment, as it behaved today.** The clone arrives **shallow at 50
+commits** again (1019 after `--unshallow`) but **on `main` and at the real
+tip** this time, not detached: `git status -sb` printed `## main...origin/main`
+with no `[behind]`, which is the line 11-06's lesson says to ask for, and it
+answered clean. So the prescription from that lesson is conditional, not a
+ritual: read `git status -sb` first and only reset when it says you are behind.
+`npm ci` works. `gh api -X GET` works; `gh pr list`/`issue list` still 403 on
+graphql, and branch delete is still 403 at the proxy, so
+`gardener/2026-11-07-clear-site-outdir` stays on the remote beside 11-04's and
+11-06's. The github MCP created #337 **without** a harness footer and #338
+**with** one, and `update_pull_request` stripped it, which is 11-06's route
+holding. Copilot declined the review on quota for the second run running, so
+the check window was again the only review. `sift.yasint.dev` and
+`yasin.goatcounter.com` are both still 403 at CONNECT, and `githubstatus.com`
+does not resolve, so a green `pages` run is normally the whole of the live
+verification available from here and today it did not arrive: this run ends
+without having seen its own change deployed, and says so rather than implying
+otherwise.
 
 ### 2026-11-06
 
