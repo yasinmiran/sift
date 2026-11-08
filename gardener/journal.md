@@ -6,6 +6,37 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A note in the backlog is a hypothesis with a date on it, not a measurement
+  you can spend. Today's change came off 11-07's backlog, where it had been
+  measured and written down as "a slot rewritten with fewer cards keeps the
+  extras ... same remedy, one `rmSync` per post directory plus a test; call it
+  ten lines". Re-driving it before touching code found the note right about the
+  symptom it had seen and wrong about the shape of the defect, in two ways that
+  both mattered. **The leftovers are not extras.** `card-5.html` in the
+  shrunken post held the Malaysia data-center story the script had dropped and
+  `card-6.html` was a second cta, so the directory was not padded, it was
+  **stale**, and calling it "the extras" is exactly what let it sit in a
+  backlog for a day. **And the per-post remedy the note prescribed would have
+  fixed the half it had looked at.** A day that loses a whole slot keeps the
+  slot, and `render.ts` enumerates the slot directories under a day the same
+  way it globs the cards inside a post, so an orphan `pm/` renders and ships
+  whole; clearing per post leaves it standing. The scope of the fix moved from
+  the post to the day on a measurement that cost one command, and the note that
+  would have been implemented instead was written by this same routine
+  yesterday, in good faith, with the evidence in front of it. So: a backlog
+  item is re-measured when it is picked up, not quoted. Same family as 10-20's
+  "a count over the repo's history is a count over whatever the clone was
+  given", with the stale source being my own prose rather than a shallow clone.
+  Its other half is about an outage that is not yours. 11-07 left the question
+  "is #338 actually deployed" open, having stopped re-dispatching after three
+  red runs and ~21 minutes apiece. Read first thing today: `pages` 42397423772
+  went **green** at 17:40 on the evening digest's own push, and
+  42451600755 green again at 05:39, with `aae0f75` an ancestor of both. So the
+  stall was the Pages service, the commit was never the cause, the decision not
+  to revert a correct commit into someone else's outage was right, and the
+  thing that answered it was the next run somebody else triggered, for free.
+  **When the instrument is down rather than wrong, the cheapest probe is the
+  next scheduled run, not another of yours.**
 - A step the workflow lets fail reports its failure as a pass, and the field
   that says otherwise is not the one the API hands you first. Today's merge
   deployed red, and the first reading of the deploy job was
@@ -752,6 +783,26 @@ merges and closures and never expire.
 
 ## Backlog
 
+- MERGED 2026-11-08 as #340 / PR #341, `df94f22`, `checks` green on `169a072`.
+  `npm run slides` clears `slides/{day}/` before building it, so the day's
+  carousel tree is a function of `data/slides/{day}.json`: a post shrunk from
+  4 story slides to 2 leaves **4** card html on disk where it left 6, and a day
+  whose script drops its pm post keeps **one** slot directory where it kept
+  two. The leftovers were stale rather than spare, `card-5.html` holding a
+  story the script had dropped and `card-6.html` a second cta, and `render.ts`
+  photographs whatever it globs. 269 tests (was 265), 19 lines in `build.ts`
+  (8 of them comment) and 127 of test, 153 total. The month's 63 posts built in
+  two fresh roots, main's build against this one: **580 files, 0 differing**,
+  so no published byte moved, for the same reason as #338. `buildSlides` came
+  out of its cli guard to be testable at all. Copilot declined on quota for the
+  third run running. 11-07's note on this item was right about the symptom and
+  wrong about the scope; see today's lesson.
+- CLOSED 2026-11-08: **#338 is deployed.** 11-07 ended without having seen its
+  own change live, after six red `pages` attempts across three runs. `pages`
+  42397423772 went green at 17:40 on the evening digest's push and 42451600755
+  green again at 05:39 today, and `aae0f75` is an ancestor of both, so the
+  stall was inside the Pages service and the commit was never the cause.
+  Nothing owed; do not re-read that paragraph as open.
 - MERGED 2026-11-07 as #337 / PR #338, `aae0f75`, `checks` green on
   `fe832e2`. `npm run site` clears `outDir` before building, so the built tree
   is a function of `digests/` and `public/` and a rebuild after the archive
@@ -2378,6 +2429,108 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-08
+
+**#340 filed, PR #341 built, `checks` green on `169a072`, merged by this run as
+`df94f22`, and `pages` 42466121773 green on build and deploy.** `npm run
+slides` clears `slides/{day}/` before building it, so a day's carousel tree is
+a function of `data/slides/{day}.json` and a rewritten script stops leaving its
+dropped cards and retired slots on disk. **And the first thing this run read
+answered 11-07's open question: #338 is deployed.**
+
+**The signal came off 11-07's own backlog, and re-driving it changed the fix.**
+`src/slides/build.ts` did `mkdirSync(out, { recursive: true })` into
+`slides/{day}/{slot}` and wrote into whatever was there. Driven on today's real
+am script in a throwaway root, cutting it from 4 story slides to 2 and then
+building a day with both slots and rebuilding it with `pm` gone:
+
+| | build 1 | rebuild before | rebuild after |
+|---|---|---|---|
+| `buildSlides` reports | `cards: 6` | 4 | 4 |
+| `meta.json` lists | 6 | 4 | 4 |
+| `card-*.html` on disk | 6 | **6** | **4** |
+| slot dirs after dropping pm | am, pm | **am, pm** | **am** |
+
+The two leftovers are the point. `card-5.html` still held the Malaysia data
+center story the script had dropped and `card-6.html` was a second cta, so the
+post directory was stale rather than padded, and the orphan `pm/` is a whole
+post that no longer exists in the script. `render.ts` globs `card-\d+\.html`
+out of a post directory and enumerates the slot directories under a day, so
+both got photographed and copied into `site/slides/` beside a `meta.json` that
+named neither. 11-07's note had seen the first half and called it "the extras",
+and had prescribed a clear per post, which would have left the second half
+standing: hence day level, and hence today's lesson.
+
+**Who pays is the same answer as #338's, and it is said plainly in the PR: in
+CI, nobody.** `pages.yml` builds from a fresh checkout and `slides/` is
+gitignored, so no stale card has ever been published and the clear is a no-op
+on a directory that does not exist yet. The month's real scripts built in two
+fresh roots, main's build against this one: 32 days, 63 posts, **580 files, 0
+differing**. The cost was to the instrument, which is what makes it gardener
+work: the evening run rewrites a slot by design, so every local render of a
+rewritten post photographed cards the script does not script. Nothing visual to
+screenshot for the same reason the trees match.
+
+**The gate asserts the invariant, not either symptom**, which is #338's shape
+reused on purpose: build a two-slot day, shrink am and drop pm, rebuild into
+the **same** root and into a fresh one, require the two trees to match by path
+and size. Against the unfixed build it fails on that comparison (15 files
+against 6) and independently on the card count one line down (6 against 4),
+checked by disabling the comparison and watching the next line fire. A test
+that asserted "no `card-5.html`" would have passed the day the build started
+leaving some other stale file behind. A third case guards the scope the clear
+chose: a day the build is not building keeps what it published, which is what
+the file's comment promises and the only thing day level could have broken.
+`buildSlides(root, requested?)` had to come out of the cli guard to be testable
+at all, the way `src/site/build.ts` already exposes `buildSite`; the guard
+stays one line, the cli's output shape is unchanged, and nothing else imports
+the module. 269 tests (was 265), 19 lines in `build.ts` (8 of them comment) and
+127 of new test, **153 total**, at the edge of the one-run limit and named in
+the PR rather than hidden.
+
+**#338, closed.** 11-07 ended having seen six red `pages` attempts and no green
+one, and asked the next run to read `pages` first. It did: 42397423772 went
+**green at 17:40** yesterday on the evening digest's own push, and 42451600755
+green again at **05:39** today, with `aae0f75` an ancestor of both. The stall
+was inside the Pages service, the commit was never the cause, and not reverting
+a correct commit into someone else's outage was right. Today's own deploy read
+the honest way 11-07's lesson prescribes rather than off the summary: the
+`deploy-pages` step took **8 seconds**, and the step gated
+`if: steps.deployment.outcome == 'failure'` is **skipped**, so the retry did not
+run and the pass is real. Set against yesterday's 10.2 to 10.5 minutes per
+attempt, the contrast is the whole diagnosis.
+
+**Health**: last 30 workflow runs are 27 green and 3 red, and the three red
+are 11-07's known Pages stall, so nothing new. `verify` across the 32
+day archive at 2026-10-12's known error (its gate postdates it, prunes out
+11-12) plus the same **four** 60+ link warnings as yesterday (10-15 at 73,
+10-18 at 68, 10-21 at 64, 10-29 at 64); today's own digest and carousel verify
+clean. `npm test` 269 passing, typecheck and `npm run site` clean at 33 pages.
+No open PRs at the start of the run; six issues open (#332, #314, #246, #241,
+#120, #112), none greenlit and none commented on since 10-20, so the slot was
+free. `data/picks` is still empty, every time a run has looked. Entries run
+back to 08-29, inside the ~90 day window, so nothing pruned; the first one
+falls out on 11-27.
+
+**Nothing measured and withheld today**, so the backlog gains no new item: the
+one thing 11-07 parked in it is what shipped.
+
+**The environment, as it behaved today.** The clone arrives **shallow at 50
+commits** (1028 after `--unshallow`) and **detached**, not on `main` as it was
+yesterday, so 11-06's lesson earns its conditional phrasing again: `git status
+-sb` printed `## HEAD (no branch)` and the reset was owed. `npm ci` works.
+`gh api -X GET` works; the github MCP created #340 **without** a harness footer
+and #341 **with** one, `gh api -X PATCH` on the PR body re-appended a footer of
+its own, and `update_pull_request` stripped it, so the MCP route is the one that
+works and the raw PATCH is not a substitute. Branch delete is still 403 at the
+proxy, so `gardener/2026-11-08-clear-slides-day-dir` stays on the remote beside
+11-04's, 11-06's and 11-07's. `/repos/.../pages/builds/latest` is **403 at the
+proxy** too, a new one, so the Pages service's own view of what is live is not
+readable from here. Copilot declined the review on quota for the **third** run
+running, so the check window was again the only review. `sift.yasint.dev` and
+`yasin.goatcounter.com` are both still 403 at CONNECT, so a green `pages`
+run remains the whole of the live verification available, and today it arrived.
 
 ### 2026-11-07
 
