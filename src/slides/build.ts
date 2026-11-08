@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { buildCards, renderSheetHtml, renderSlideHtml, slideMeta } from "./cards";
 import { readSlidePosts } from "./data";
@@ -7,11 +7,8 @@ import { readSlidePosts } from "./data";
 // meta.json per post (CLI: npm run slides -- {day}; no day builds every
 // scripted day that still has a digest, so published posts survive later
 // deploys until the rolling month prunes them).
-const invokedDirectly = process.argv[1]?.endsWith("build.ts") && process.argv[1]!.includes("slides");
-if (invokedDirectly) {
-  const root = resolve(".");
+export function buildSlides(root: string, requested?: string) {
   const dataDir = join(root, "data", "slides");
-  const requested = process.argv[2];
   if (requested && !readSlidePosts(root, requested)) {
     throw new Error(`no data/slides/${requested}.json; the digest agent scripts the carousel there (see AGENTS.md)`);
   }
@@ -26,8 +23,18 @@ if (invokedDirectly) {
       : [];
   const built = days.map((day) => {
     const dayPosts = readSlidePosts(root, day)!;
+    // slides/{day}/ is a function of data/slides/{day}.json, so clear it
+    // rather than writing into the last build: the evening run rewrites a
+    // slot by design, and a post that loses cards used to keep the dropped
+    // ones on disk, where render.ts globs card-*.html and photographs every
+    // one it finds. Clearing the day, not the post, also retires a slot the
+    // script no longer holds, which render.ts would otherwise enumerate.
+    // Only days in the build list are cleared, so a day whose digest has
+    // rolled out of the archive keeps the posts it already published.
+    const dayOut = join(root, "slides", day);
+    rmSync(dayOut, { recursive: true, force: true });
     const posts = dayPosts.posts.map((post) => {
-      const out = join(root, "slides", day, post.slot);
+      const out = join(dayOut, post.slot);
       mkdirSync(out, { recursive: true });
       const cards = buildCards(day, post);
       cards.forEach((card, i) => {
@@ -40,5 +47,10 @@ if (invokedDirectly) {
     });
     return { day, posts };
   });
-  console.log(JSON.stringify({ days: built.length, built }));
+  return { days: built.length, built };
+}
+
+const invokedDirectly = process.argv[1]?.endsWith("build.ts") && process.argv[1]!.includes("slides");
+if (invokedDirectly) {
+  console.log(JSON.stringify(buildSlides(resolve("."), process.argv[2])));
 }
