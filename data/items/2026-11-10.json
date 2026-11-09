@@ -1,0 +1,1764 @@
+{
+  "day": "2026-11-10",
+  "generatedAt": "2026-11-09T23:51:40.243Z",
+  "items": [
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/glm-5-3-flash-is-now-available-in-token-pass",
+      "title": "GLM 5.3 Flash is now available in Token Pass",
+      "url": "https://vercel.com/changelog/glm-5-3-flash-is-now-available-in-token-pass",
+      "author": "Roman Olynyk",
+      "publishedAt": "2026-11-09T00:00:00.000Z",
+      "content": "now includes , alongside Kimi K3, GLM 5.3, and DeepSeek V4.1 Flash (with more models to come). GLM 5.3 Flash is Z.ai's native multimodal coding model with a 1M-token context window.Token PassGLM 5.3 Flash Token Pass is a $30/month subscription on Pro teams that grants $80 in monthly credit and runs through . Use it with any coding agent such as , , , etc. or build your own with the AI SDK, with Zero Data Retention enabled by default.AI GatewayfxPiClineCommand Code Add GLM 5.3 Flash from the in your team's AI Gateway dashboard, or read the for setup.Token Pass pageToken Pass documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/workflow-writes-now-use-websockets-on-vercel",
+      "title": "Workflow SDK now writes over WebSockets on Vercel",
+      "url": "https://vercel.com/changelog/workflow-writes-now-use-websockets-on-vercel",
+      "author": "Alex Langenfeld",
+      "publishedAt": "2026-11-09T00:00:00.000Z",
+      "content": "The now sends event writes and stream writes to over a WebSocket by default, replacing one HTTP request per write, or per write group for streams. No code change is needed beyond upgrading to or later.Workflow SDKVercel Workflowsworkflow@5.2.0 Once you deploy the upgrade, new runs use it. In-flight runs finish on the deployment they started on. Existing streaming code works as is. A step that writes a burst of chunks, like AI tokens, sends them over the WebSocket once it opens: In a replaying an AI agent's token stream, v5.2.0, which writes streams over a WebSocket by default, delivered the full response 4.2× faster than v4.8.12, with no chunk delayed over a second.benchmark Every step start and completion is an event write, now sent over the WebSocket, so workflows with many steps make fewer HTTP requests. The added efficiency also improves performance and reduces costs. The queue handler opens the connection for every delivery. Read the to get started. If you're on 4.x, start with the , since v5 is a major release.Vercel World documentationupgrade guide Read more Streams keep pace with AI output Fewer HTTP requests for event writes Get started",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/build-disk-space-on-vercel-increased-to-64-gb",
+      "title": "Build disk space on Vercel increased to 64 GB",
+      "url": "https://vercel.com/changelog/build-disk-space-on-vercel-increased-to-64-gb",
+      "author": "Ali Smesseim",
+      "publishedAt": "2026-11-09T00:00:00.000Z",
+      "content": "Disk space for has increased from 32 GB to 64 GB on Basic and Standard machines, matching the capacity already available on Enhanced and Turbo.Vercel builds The additional space provides more room for the packages your project uses and the files generated during a build, reducing the risk of running out of disk space. The change applies automatically across all plans and build machine types at no additional charge, with no configuration changes required. Learn more in the .build machine documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-container-registry-now-supports-2-gb-compressed-image-layers",
+      "title": "Vercel Container Registry now supports 2 GB compressed image layers",
+      "url": "https://vercel.com/changelog/vercel-container-registry-now-supports-2-gb-compressed-image-layers",
+      "author": "Andy Waller",
+      "publishedAt": "2026-11-09T00:00:00.000Z",
+      "content": "now supports compressed image layers of up to 2 GB each, up from 500 MB, the total image size limit stays 15 GB. Vercel Container Registry The registry works with standard workflows like , , and , and pushing an image creates the repository on the fly.docker pushdocker pulldocker tag Repositories can be for read-only pull access by any Vercel team, or up to 100 from the dashboard or with . The Vercel Managed Images that Vercel Sandbox runs on are served from ordinary public repositories, built with the same public-repository feature any team can use for its own images.made publicshared with specific teamsvercel vcr permissions Manage repositories, images, and tags with the in Vercel CLI v58.3.0 or later, and log CI workflows in from GitHub Actions with the using GitHub OIDC, which removes the need for long-lived registry credentials. If background optimization of a pushed image fails, the image shows an error status in the dashboard, and pushing the same image again retries the conversion. CLI commandsvercel vcr actionvercel/vcr-action/login See the for the full setup.documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/claude-fable-5-2-now-available-on-ai-gateway",
+      "title": "Claude Fable 5.2 now available on AI Gateway",
+      "url": "https://vercel.com/changelog/claude-fable-5-2-now-available-on-ai-gateway",
+      "author": "Walter Korman",
+      "publishedAt": "2026-11-09T00:00:00.000Z",
+      "content": "from is now available on .Claude Fable 5.2AnthropicAI Gateway Fable 5.2 is built for open-ended technical work and improves on earlier Fable models in coding, reasoning, and vision. It can run long, ambiguous tasks unattended, and works as an orchestrator that hands simpler tasks to smaller models, or as an advisor that other Claude models consult on harder problems. It also communicates more clearly and generates output faster than earlier Fable models. Effort runs from to , with as the API default.lowmaxhigh Fable 5.2 has cybersecurity and biology safety classifiers enabled. Access to Claude Fable 5.2 requires data retention. Anthropic does not support for the model. Prompts and completions are retained for 30 days and are not used to train Claude. If your team has ZDR turned on, AI Gateway returns an error instead of sending the request to Fable 5.2.Zero Data Retention To keep requests served when a classifier is triggered, use . Add a array to , and AI Gateway tries each model in order when the cybersecurity classifier declines a request.model fallbacksmodelsproviderOptions.gateway Call it through the , the , , and APIs, or a connected to AI Gateway. Use as the model name:AI SDKChat CompletionsResponsesAnthropic Messagescoding agentanthropic/claude-fable-5.2 This request falls back to Opus 5.5, then Sonnet 5.5, if the cybersecurity classifier declines it. The option works the same way on every AI Gateway API format.models To use it in Claude Code, Codex, Cursor, and more, install the latest Vercel CLI and run setup: Try Claude Fable 5.2 in the .model playground AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in , , , , and more.custom reportingZero Data Retention supportbudgets for API keysrouting rules AI Gateway reflects provider pricing with no markup and does not charge a platform fee on inference, including on (BYOK) requests.Bring Your Own Key You can view available on AI Gateway.all language models Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/muse-ember-now-available-on-ai-gateway",
+      "title": "Muse Ember now available on AI Gateway",
+      "url": "https://vercel.com/changelog/muse-ember-now-available-on-ai-gateway",
+      "author": "Zachary Chen",
+      "publishedAt": "2026-11-09T00:00:00.000Z",
+      "content": "from is now available on . It is a lightweight reasoning model for the high-volume parts of an agent run, such as coding sub-tasks, tool calls, and document analysis.Muse EmberMetaAI Gateway Muse Ember handles the bounded tasks agents repeat many times in a single run, like implementing a helper function, calling a tool, or summarizing a document. The model accepts text, image, and video input with a 1M-token context window, so an agent can pass it code, screenshots, documents, and clips in the same run. Tool calling lets your application feed each result into the next step. Reasoning effort is adjustable from to .minimalmax Call it through the , the , , and APIs, or a connected to AI Gateway.AI SDKChat CompletionsResponsesAnthropic Messagescoding agent Use as the model name:meta/muse-ember To use it in Claude Code, Codex, Cursor, and more, install the latest Vercel CLI and run setup: Then select in the agent. See the for details.meta/muse-embercoding agents guide Try Muse Ember in the .model playground AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in , , , , and more.custom reportingZero Data Retention supportbudgets for API keysrouting rules AI Gateway reflects provider pricing with no markup and does not charge a platform fee on inference, including on (BYOK) requests.Bring Your Own Key You can view available on AI Gateway.all language models Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/ai-gateway-production-index-november-2026",
+      "title": "Decision models take 26% of requests; Anthropic now wins new teams 2:1",
+      "url": "https://vercel.com/blog/ai-gateway-production-index-november-2026",
+      "author": "Amelia Charles",
+      "publishedAt": "2026-11-09T05:00:00.000Z",
+      "content": "AI Gateway Production Index — November 2026 Every month, routes more than 100 trillion tokens between production applications and AI labs. That traffic gives us a view of what AI usage looks like in today’s enterprise and startup landscape across language, decision, voice, image, and video models. We publish it here monthly. See the Production Index reports from , , and .AI GatewayAugustSeptemberOctober Production AI is splitting into two jobs: generation and judgment. Until recently, when software needed to make a quick call, a team could use either a fixed rule that was cheap but rigid, or a language model that was smart but slow and expensive. Decision models are now a third option. They classify, score, or pick between choices instead of generating text, and cost about a seventieth as much per request as a language model. They arrived on AI Gateway in mid-September, and there are now 15 decision models available from eight different vendors. In October, nearly a third of paid teams on AI Gateway used a decision model. About 11% of paid teams used a decision model without sending a single request to a text-generating model. Decision models cost far less per token and give very short answers, so even though they received about one in four gateway requests in October, they accounted for just 0.53% of total spend. Almost all of that request volume went to Jev from TypeSafe AI, which alone received nearly four times Anthropic’s total requests. For every $1 teams spent on Jev, they spent $64 on Anthropic models. Decision models are most common among the teams that run the most AI. Just over one in five teams running fewer than 10 million tokens used a decision model in October. At 100 million to 1 billion tokens, nearly half used one. Above 10 billion, seven in ten did. This is partly because big teams use more of everything. The top 1% of teams by spend use a median of 29 different models, and the bottom tenth use only one. It’s also volume. The more requests a team sends, the more it has to gain from a model that makes simple decisions faster and far more cost-effectively. About one in nine paid teams used a voice model in October, up from one in 24 in July, an increase of 161%. New teams are using voice, and existing teams are adding it. Among teams that paid in both July and October, the share using voice went from 5% to 14%. Teams that use voice are also using more of it. The share of teams sending at least 100 voice requests a month grew fivefold, and six in ten of September’s voice teams returned in October, up from fewer than half in July. A spoken conversation with an AI app takes three steps: Most voice teams use just one or two of these pieces. Use of speech-to-text models has nearly tripled since July, and text-to-speech has more than tripled. Some models do all three steps on their own. In July, about a quarter of voice teams used one of these all-in-one models, and one in six assembled the pieces themselves. By October, those numbers had swapped. For most teams, voice is a new way for users to talk to an app or agent they already have. Teams’ preferred language models stay in the middle, and they can add voice at one end or both. Last December, 70 of every 100 paid teams on AI Gateway used an OpenAI model and 48 used an Anthropic model. By October, the two labs were nearly level, with OpenAI at 55 and Anthropic at 54. Both labs now reach more of the teams that have been on the gateway since December, but Anthropic’s reach grew more. The share of these teams using Anthropic rose from about half to two-thirds, while OpenAI’s rose from about three in four to four in five. Most of Anthropic’s gain came from new teams. In October, it was the first-choice lab for nearly twice as many of them as OpenAI. But among the biggest teams, both labs already have nearly everyone. More than nine in ten of the top 1% by spend use both Anthropic and OpenAI. With these teams, the labs now compete for how much of the work each one gets. On that measure, Anthropic still leads, but OpenAI has gained ground. OpenAI now takes nearly 15 cents of every dollar spent on the gateway, up from about 9 in December, while Anthropic’s halved to about 32 cents over the same period. Teams are moving to new models almost as fast as labs release them. More than half of October’s language-model requests went to models less than 60 days old. Before September, that share had never passed three in ten. Within each model family, a new version arrives every 61 days at the median, and a typical model peaks within a month of launch. Four weeks later, three in four of the teams using it at its peak aren’t using it anymore, whether or not a successor has shipped in the family. Most of those teams are still on AI Gateway, using other models. Teams switch models frequently, usually to something newer, and often to another lab. In October, about half of teams running at least 10 million tokens a month changed their most-used model. Four in five of those moved to a more recent release, and six in ten moved to a different lab. Older models stay in use, often alongside a newer primary model. Seven in ten teams running at least 10 million tokens a month still used a model at least ten months old in October, but for the typical team it ran less than 3% of its tokens. AI models now have a half-life of about six weeks. That means that, to the teams using them, labs are only as good as their latest model and have to re-earn their business with every new one. This report uses anonymized, aggregate traffic routed through Vercel AI Gateway through October 2026. A few notes on measurement: Read more about our , and .methodologyexplore or download the public data Read more November 2026 Summary About this data In six weeks, decision models grew to gateway requests, while accounting for of every dollar spent. of all paid teams used one in October. Among teams processing over 10 billion tokens a month, used a decision model.one in fourhalf a centClose to a thirdseven in ten About of paid teams used a voice model in October, up from in July.11%4% OpenAI and Anthropic now reach about the of paid teams, and new teams in October picked Anthropic . OpenAI’s share of gateway spend, meanwhile, is up by since December.same sharenearly two to onetwo-thirds of language-model requests went to models less than two months old, up from less than three in ten. Within one month of a typical model’s peak usage, of the teams using it have moved on.More than halfthree in four A voice model turns the user’s speech into text A language model writes the reply Another voice model reads the reply back to the user Opus 5.5 was the top model by spend in its first full month. It took about one in seven dollars across all teams. Four of the six most widely used models on AI Gateway are Anthropic’s: Sonnet 5.5 (reaching 26% of paid teams), Haiku 5.5 (22%), Haiku 4.5 (20%), and Opus 5.5 (18%). Jev (28%) and GPT-6 Luna (19%) are the other two. Image and video both had their biggest month yet on AI Gateway. More teams than ever are putting spend on them, and the largest teams are adopting them the fastest. About a third of the top 1% of teams by spend now use an image model, up from a quarter in July. One in six use a video model, up from one in ten. OpenAI’s newest image model, GPT-Image-2.5 Sunburst, took the lead in image spend in its first full month, followed by its Flare and GPT-Image-2 models. ByteDance’s Seedance 2.5 led video spend for a third month running, ahead of Google’s Veo 3.1 and Kuaishou’s Kling 3.0. Spend is estimated at published list prices; actual bills may differ. Paid teams are teams with at least one paid request in the month. Team size is measured by a team’s total tokens that month. Decision models are the models classified as decision models in the AI Gateway model list. Each model version is counted separately. A model’s age is measured from that version’s first day on AI Gateway, and gateway history begins October 20, 2025. Switching rates compare paid teams with at least 10 million tokens in both September and October. A team’s most-used model is measured by tokens. Voice figures begin June 22, 2026. Teams that “assembled the pieces” used speech-to-text, a language model, and text-to-speech on the same day. A new team’s first-choice lab is the lab it sent the most language-model requests to in its first month. All figures use the most recent data and protocol available; prior months may be revised as methodology is updated. Decision models account for 26% of all requests Voice adoption is up 2.6x since July Anthropic wins new teams two to one, and OpenAI’s share of spend is up two-thirds Most AI traffic now runs on models less than two months old Also in October’s data",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/coderabbit-codex-daybreak",
+      "title": "CodeRabbit scales agentic software development and ships 20x more",
+      "url": "https://openai.com/index/coderabbit-codex-daybreak",
+      "author": null,
+      "publishedAt": "2026-11-09T08:00:00.000Z",
+      "content": "CodeRabbit uses OpenAI models to govern and trust AI-generated code and Codex to ship 20 times more software with the same engineering team.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/kuken",
+      "title": "Kuken Industries searches 70 years of drawings in minutes",
+      "url": "https://openai.com/index/kuken",
+      "author": null,
+      "publishedAt": "2026-11-09T08:00:00.000Z",
+      "content": "Kuken Industries uses the OpenAI API to search 70 years of cooling tower drawings. Engineers can find the drawing for a repair in 4.5 minutes, down from nearly an hour.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/control-room",
+      "title": "Control Room: A central system to track and stop model workloads across our research infrastructure",
+      "url": "https://openai.com/index/control-room",
+      "author": null,
+      "publishedAt": "2026-11-09T13:00:00.000Z",
+      "content": "Learn how OpenAI’s Control Room tracks model workloads across our research infrastructure and can rapidly stop them when safety or security concerns arise.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/rgb-mocap-turns-phone-video-into-3d-animation-without-cloud-services",
+      "title": "RGB MoCap Turns Phone Video Into 3D Animation Without Cloud Services",
+      "url": "https://alphasignal.ai/news/rgb-mocap-turns-phone-video-into-3d-animation-without-cloud-services",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T13:22:16.000Z",
+      "content": "A free Windows app pipes video into editable 3D character animation locally, bundling six human-pose AI models with FBX, BVH, VMD and Blender export.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50425303",
+      "title": "Children of Men: The future is a mirror for the present",
+      "url": "https://reactormag.com/children-of-men-the-future-is-a-mirror-for-the-present/",
+      "author": "speckx",
+      "publishedAt": "2026-11-09T13:27:01.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 159,
+      "comments": 121
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50426175",
+      "title": "Magenta solar panels may be agrivoltaics' cleverest trick yet",
+      "url": "https://www.anthropocenemagazine.org/2026/10/magenta-solar-panels-may-be-agrivoltaics-cleverest-trick-yet/",
+      "author": "speckx",
+      "publishedAt": "2026-11-09T14:31:39.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 257,
+      "comments": 158
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50426207",
+      "title": "Zebkit – Chromium as an embeddable library",
+      "url": "https://github.com/ikey4u/zebkit",
+      "author": "Riiiiichard",
+      "publishedAt": "2026-11-09T14:34:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 109,
+      "comments": 42
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50426899",
+      "title": "Cryptocurrency lawsuit: Ethereum Foundation required \"suicide pledge\"",
+      "url": "https://www.denverpost.com/2026/11/06/ethereum-suicide-pledge-lawsuit-mandate-boulder-crypto/",
+      "author": "ceejayoz",
+      "publishedAt": "2026-11-09T15:23:57.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 185,
+      "comments": 174
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50427085",
+      "title": "The same H100 costs $2.69 or $12.29 an hour depending where you rent it",
+      "url": "https://github.com/datareceipts/data-receipts/tree/main/109-gpu-pricing",
+      "author": "datareceipts",
+      "publishedAt": "2026-11-09T15:39:01.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 164,
+      "comments": 84
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/meta-s-jittests-catches-74-privacy-bugs-before-they-hit-production",
+      "title": "Meta's JiTTests Catches 74 Privacy Bugs Before They Hit Production",
+      "url": "https://alphasignal.ai/news/meta-s-jittests-catches-74-privacy-bugs-before-they-hit-production",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T16:30:00.000Z",
+      "content": "Meta's LLM-powered test generator writes failing tests that prove bugs exist, catching 74 privacy incidents and cutting privacy SEVs 20 percent.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/11/claude-code-settings-files-expose-thousands-of-secrets-on-github/",
+      "title": "Claude Code is accidentally exposing secrets all over GitHub",
+      "url": "https://arstechnica.com/ai/2026/11/claude-code-settings-files-expose-thousands-of-secrets-on-github/",
+      "author": "Kyle Orland",
+      "publishedAt": "2026-11-09T17:24:26.000Z",
+      "content": "Claude Code is leaking sensitive information on public GitHub instances thanks to a partial oversight in the way its settings files are handled. That's the finding of AI security researchers at Apiiro, who discovered thousands of secrets, including database passwords, API tokens, and root logins, amid Claude Code settings files embedded in GitHub repositories. The leak stems from the way Claude Code handles user approval for automated shell commands. When a user chooses the \"Yes, and don't ask again\" option to approve running a command, that choice gets stored as part of a rule in the local \".claude/settings.local.json\" file on the user's computer. That rule is sometimes coded as a pattern, but the command itself is often written to that settings file as is, including any sensitive information that may be embedded within it. This isn't really a significant security issue if the settings file stays on the user's local machine (assuming that machine doesn't become compromised itself, of course). And Anthropic notes in its Claude Code documentation that this particular settings file gets added to the developer's global .gitignore list, which usually prevents it from being shared publicly. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/bytedance-s-seedream-5-5-survives-100-edit-rounds-without-destroying-your-image",
+      "title": "ByteDance's Seedream 5.5 Survives 100 Edit Rounds Without Destroying Your Image",
+      "url": "https://alphasignal.ai/news/bytedance-s-seedream-5-5-survives-100-edit-rounds-without-destroying-your-image",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T17:33:33.000Z",
+      "content": "ByteDance's new image model brings native transparent output, 100-round stable editing, and sharper text rendering, now available through Higgsfield.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50428724",
+      "title": "Going back two years on Hacker News is like entering another, better universe",
+      "url": "https://news.ycombinator.com/front?day=2024-11-08",
+      "author": "EmX_3000",
+      "publishedAt": "2026-11-09T17:36:20.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 285,
+      "comments": 178
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1030022",
+      "title": "James Gunn is out as DC movie leader",
+      "url": "https://www.theverge.com/entertainment/1030022/james-gunn-peter-safran-dc-studios-out-leaving",
+      "author": "Jay Peters",
+      "publishedAt": "2026-11-09T17:39:57.000Z",
+      "content": "Soon, James Gunn and Peter Safran will no longer head up Skydance's DC Studios. After taking the helm of DC Studios as co-CEOs in 2022, Gunn and Safran are being replaced by former Marvel SVP of Production and Development Jeremy Latcham, Deadline reports. However, Gunn and Safran will \"continue to produce on various DC projects\" and are still working on the Superman followup Man of Tomorrow, Deadline says. Gunn also posted on Instagram that he and Safran have \"just been engaged on another DC project which I'm writing.\" In his Instagram post, Gunn said that his time at DC Studios has been \"trying, to say the least. I dislike the at-times cor … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50428801",
+      "title": "When will this stop? The Raspberry Pi 5 16GB SBC now sells for $385",
+      "url": "https://www.cnx-software.com/2026/11/03/when-will-this-stop-the-raspberry-pi-5-16gb-sbc-now-sells-for-385/",
+      "author": "pera",
+      "publishedAt": "2026-11-09T17:42:55.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 274,
+      "comments": 240
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50428907",
+      "title": "Show HN: Every satellite that passed over any place this week, and its photos",
+      "url": "https://www.watched.earth",
+      "author": "a585gupt",
+      "publishedAt": "2026-11-09T17:51:31.000Z",
+      "content": "hey HN, i built this because i wanted to know what had actually photographed my street. type in any place and it finds every satellite that passed over it in the last 7 days (SGP4 on the CelesTrak catalog, runs in your browser in about half a second), then pulls the real Sentinel-2 / Landsat / NASA images from those passes. some fun bits: - the pass search can't skip a pass. checked it against a brute force on poles, the antimeridian and tiny swaths: 0 missed - all ~17k objects in orbit are drawn on the GPU, solving Kepler's equation every frame - Sentinel-2 timestamps are often 5-10 min off from when the sat actually crosses your spot, which was a fun one to figure out it only says \"watched\" if a real image exists, and it doesn't store your location. code: https://github.com/dev-Armaan/satellites would love feedback, especially on what data sources to add",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 202,
+      "comments": 43
+    },
+    {
+      "sourceSlug": "aws-news",
+      "externalId": "92fb165d30993e71e0cdd70801398f45f9518c7d",
+      "title": "AWS Weekly Roundup: AgentCore Runtime V2, Amazon DynamoDB bulk put items, and more (November 9, 2026)",
+      "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-agentcore-runtime-v2-amazon-dynamodb-bulk-put-items-and-more-november-9-2026/",
+      "author": "Daniel Abib",
+      "publishedAt": "2026-11-09T17:55:26.000Z",
+      "content": "Most of the cost of adopting something new isn’t the new thing, it’s the move. Moving a Hive table to Apache Iceberg has typically meant weeks of engineering work. Last week, Amazon S3 Tables turned that into three steps: start, sync as often as you need, complete. The source stays writable except for a few minutes at cutover. The same week, Amazon DynamoDB started loading data from S3 into tables that already exist. The pattern I like is that neither one asks you to stop what’s running. That’s also the way to read the agent news this week. The new Amazon Bedrock AgentCore Runtime is a single field on the runtime you already have, and Web Answer is a tool you attach to a gateway you already run. Now, let’s get into this week’s AWS news… Headlines The new AgentCore Runtime: elastic, optimized, and consistently fast starts – If you run agents on AgentCore and haven’t tried the new runtime since it became generally available, it’s worth a look. It changes two things. First, memory: sessions start small, page in more on demand, and give memory back when it goes cold instead of holding the peak, so you pay for what your agent uses. Second, cold starts: AgentCore prepares your environment once, snapshots it, and restores the snapshot for every new instance. In the team’s tests, that kept P75 cold starts at about 2 seconds for images from 200 MB up to 2 GB, while the original runtime rose from roughly 5.4 seconds to nearly 30 seconds as images grew. The per-unit rate is higher, but you use far fewer GB-hours, so the team expects most agents to see a lower bill, though that isn’t guaranteed. To opt in, you set platformVersion to V2 when you create or update a runtime. Create and update take several minutes while the snapshot is prepared, and your container must report healthy on /ping within 120 seconds, so report health only after initialization finishes. The docs cover how to optimize your agent for V2. V2 is available in 10 Regions, and committed baseline pricing is coming soon. Amazon S3 Tables now offer managed migration of Apache Hive tables to Apache Iceberg – You can now migrate Parquet tables registered in the AWS Glue Data Catalog into S3 Tables without building a pipeline or provisioning compute. S3 Tables validates the source and produces a compatibility report covering every object in scope. Each sync copies only what changed, so production keeps writing until cutover. Afterward you can query the table with Amazon Athena, Amazon SageMaker Unified Studio, or any engine that speaks the Iceberg REST API. You pay only for the data copied, with no charge for the conversion, and objects in S3 Intelligent-Tiering keep their tier. At launch it works within the same account and Region, in 10 Regions. Last week’s launches Here are some launches and updates from this past week that caught my attention: Amazon DynamoDB now supports bulk put items – You can now load line-delimited DynamoDB JSON or Amazon Ion files from Amazon S3 into existing tables as a managed, asynchronous job. Each record can carry its own condition expression, so one file can mix plain, insert-only, and version-guarded writes. Writes use dedicated system capacity and cost less than the equivalent per-request writes. An Accelerated tier handles deadline-bound jobs. The Database blog post gives illustrative Accelerated times of less than 1 hour for 100 million 1 KB items. One thing to know before you start: canceling doesn’t roll back items already written. Announcing Web Answer on Amazon Bedrock AgentCore – You can now give an agent a single tool call that returns a synthesized, cited answer to a natural-language question, instead of building your own search, retrieval, and citation pipeline. Web Answer plans its own searches, runs several in parallel, and decides when it has enough evidence. You attach it as a target on AgentCore Gateway and call it over MCP, and you can limit it with domain include and deny lists and publish-date filters. It’s available in US East (N. Virginia). The getting started post explains when to use it instead of Web Search, which returns ranked results for your own model to synthesize. AWS Lambda now supports queues for Apache Kafka in self-managed Kafka event sources – You can now process records from a single Kafka partition across many parallel AWS Lambda invocations. Classic consumer groups cap parallelism at the partition count. Queue mode uses Kafka share groups and needs Kafka 4.2 or later with share groups enabled. It works with self-managed clusters and managed offerings such as Confluent Cloud. You give up ordering and get at-least-once delivery, so your functions need to be idempotent. The Compute blog walkthrough covers poller scaling and when to keep stream mode. AWS announces AWS Interconnect – last mile preview with Equinix – You can now set up a private, managed connection from Equinix’s network of 282 data centers to AWS without ordering cross-connects or configuring routers. Capacity is quad-redundant across two locations and four links, with BGP and VLANs configured for you, a 99.99% availability SLA, and MACsec by default. You pick a Region, bandwidth, and AWS Direct Connect gateway, then paste the activation key into Equinix Fabric. The preview covers the San Jose metro and, as of last Thursday, Northern Virginia, with 1 Gbps connections at no charge. AWS Security Hub now provides an SBOM inventory for your compute resources – You can now see every software package installed across your organization’s Amazon EC2 instances, Amazon ECR images, and Lambda functions in AWS Security Hub, with each package’s version and how many resources run it. That’s the list you want the next time a widely used library has a vulnerability. The inventory builds on the SBOMs that Amazon Inspector already generates, so it fills in automatically wherever Inspector is enabled. It’s included in Security Hub Essentials at no additional cost. For a full list of AWS announcements, be sure to keep an eye on the What’s New with AWS page. Other AWS news Here are some additional posts and resources that you might find interesting: Serverless ICYMI Q3 2026 – Julian Wood’s quarterly recap is a quick serverless catch-up before re:Invent: Lambda SnapStart for container images, a 90-minute timeout on Lambda Managed Instances, Lambda MicroVMs in 10 Regions, 1 MiB payloads in Amazon SNS, and the new AgentCore Runtime. AWS contributes a large-transaction binary log optimization to MySQL – With binlog on, a huge transaction holds a global commit lock while its events are copied, blocking every other commit. The optimization, which Amazon Aurora MySQL has run in production since 2019, promotes the spill file into the binlog instead of copying it. In AWS’s tests, commit latency for a 50 GiB transaction dropped from about 7 minutes to about 2 to 2.5 seconds. It has now shipped to community MySQL. How OrderServ achieved up to 64% cost savings with multi-tenant ECS – Cognizant’s food-ordering platform went from one Amazon ECS cluster per brand on AWS Fargate to a shared cluster on EC2 Auto Scaling groups with warm pools. The 64% applies to a 3-year Compute Savings Plan (47% with a 1-year plan). Scaling time also fell from 5–7 minutes to 30–60 seconds. Upcoming AWS events Check your calendar and sign up for upcoming AWS events: AWS re:Invent – re:Invent returns to Las Vegas from November 30 to December 4. The event catalog is live and reserved seating is open, so register and claim your spots before they fill up. AWS Community Days – Community-led conferences planned and delivered by community leaders, with a few more before the year ends: Belém, Brazil (November 14), JAWS FESTA 2026 in Akita, Japan (November 17), and Port Harcourt, Nigeria (December 12). Join the AWS Builder Center to connect with builders, share solutions, and access content that supports your development. Browse here for upcoming AWS-led in-person and virtual events and developer-focused events. That’s all for this week. Check back next Monday for another Weekly Roundup! – Daniel Abib This post is part of our Weekly Roundup series. Check back each week for a quick roundup of interesting news and announcements from AWS!",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/nous-research-brings-hermes-cloud-s-desktop-agent-into-any-browser",
+      "title": "Nous Research Brings Hermes Cloud's Desktop Agent Into Any Browser",
+      "url": "https://alphasignal.ai/news/nous-research-brings-hermes-cloud-s-desktop-agent-into-any-browser",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T17:55:42.000Z",
+      "content": "Nous Research puts the full Hermes Desktop interface in a browser tab, letting cloud-hosted agents run 24/7 and stay reachable from any device.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50429024",
+      "title": "Our Smallest, Most Efficient Model: Muse Ember",
+      "url": "https://research.meta.ai/blog/muse-ember",
+      "author": "dvaplima",
+      "publishedAt": "2026-11-09T17:58:46.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 221,
+      "comments": 90
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/meta-releases-muse-ember-to-cut-ai-agent-costs-by-3x",
+      "title": "Meta Releases Muse Ember to Cut AI Agent Costs by 3x",
+      "url": "https://alphasignal.ai/news/meta-releases-muse-ember-to-cut-ai-agent-costs-by-3x",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T18:04:15.000Z",
+      "content": "Meta's new Muse Ember matches Claude Haiku 5.5 at a third the cost, with 1M context and native multimodal support for agent work.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/meta-releases-muse-ember-the-cheapest-agent-model-at-0-14-a-task",
+      "title": "Meta Releases Muse Ember, the Cheapest Agent Model at $0.14 a Task",
+      "url": "https://alphasignal.ai/news/meta-releases-muse-ember-the-cheapest-agent-model-at-0-14-a-task",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T18:07:16.000Z",
+      "content": "Meta's new efficient-tier model matches Claude Haiku 5.5 on intelligence at a third of the cost, with 1M context and native multimodal input.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1030061",
+      "title": "Instagram’s Effect Builder makes new filters from AI prompts",
+      "url": "https://www.theverge.com/tech/1030061/instagram-ai-effect-builder-filters",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-11-09T18:07:23.000Z",
+      "content": "After expanding its Edits app to macOS last week, Instagram's next move is launching this Effect Builder that generates custom filters for your Stories posts with AI. Available now for US residents who are over 18, it has a prompt box for describing your filter idea to the chatbot, with an option to attach style reference images. Then you can upload your own photos to preview the AI-generating effects, and ask for changes in follow-up prompts. There's also an option to allow Instagram's AI to rewrite your prompt, which turned my one-line test prompt \"Make a filter that turns photos into comic book pages\" into several AI-generated paragraphs … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261109/p35#a261109p35",
+      "title": "Meta releases Muse Ember, its smallest and most cost-efficient AI model yet, saying it delivers more intelligence per dollar than Haiku 5.5 and GPT-6 Luna (Russell Brandom/TechCrunch)",
+      "url": "https://www.techmeme.com/261109/p35#a261109p35",
+      "author": null,
+      "publishedAt": "2026-11-09T18:15:00.000Z",
+      "content": "Russell Brandom / TechCrunch: Meta releases Muse Ember, its smallest and most cost-efficient AI model yet, saying it delivers more intelligence per dollar than Haiku 5.5 and GPT-6 Luna — Meta Superintelligence Lab released a new AI model on Monday called Muse Ember, the lab's lightest and most cost-efficient AI model yet.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50429426",
+      "title": "Google Gemini routes personal Drive files and emails to human annotators",
+      "url": "https://github.com/thisisme6598/gemini_files/",
+      "author": "gf74918",
+      "publishedAt": "2026-11-09T18:24:38.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 290,
+      "comments": 58
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50429475",
+      "title": "Too many men suffering in silence, national health report finds (Canada)",
+      "url": "https://www.westcentralonline.com/articles/too-many-men-suffering-in-silence-national-health-report-finds",
+      "author": "nosecreek",
+      "publishedAt": "2026-11-09T18:27:58.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 315,
+      "comments": 465
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50429545",
+      "title": "DeepX claims inference up to 100B parameters at less than 5 W",
+      "url": "https://www.eetimes.com/deepx-tapes-out-second-gen-chip-projects-6-7x-performance-gain-with-lpddr5x-pim/",
+      "author": "giuliomagnifico",
+      "publishedAt": "2026-11-09T18:33:58.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 130,
+      "comments": 22
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261109/p36#a261109p36",
+      "title": "Elliptic: hackers behind the $6.3B Binance heist created at least six memecoins on the NEAR blockchain network to launder about $430,000 of stolen funds (Emily Nicolle/Bloomberg)",
+      "url": "https://www.techmeme.com/261109/p36#a261109p36",
+      "author": null,
+      "publishedAt": "2026-11-09T18:35:01.000Z",
+      "content": "Emily Nicolle / Bloomberg: Elliptic: hackers behind the $6.3B Binance heist created at least six memecoins on the NEAR blockchain network to launder about $430,000 of stolen funds — The hackers who stole $6.3 billion from Binance Holdings Ltd. in crypto's biggest ever heist have turned to one of the sector's …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1029998",
+      "title": "You can grab three months of Game Pass Ultimate for under $20 per month",
+      "url": "https://www.theverge.com/gadgets/1029998/game-pass-ultimate-three-months-lego-pokemon-pikachu-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-11-09T18:35:25.000Z",
+      "content": "The price of Xbox Game Pass Ultimate has fluctuated between $20 and $30 per month over the last year, but you can get three months of the top plan for around $19 per month. At Newegg, using the coupon code BNWF2656 at checkout knocks $11 off the usual cost of a three-month subscription. That brings the price down to just $57.99 for three months. In addition to full access to over 500 games on both Xbox consoles and Windows PC machines, the upgraded Ultimate plan includes EA Play and Ubisoft Plus Classics, which have their own libraries and benefits, and Fortnite Crew for full access to the Fortnite battles passes. On Xbox, Ultimate enables online multiplayer, as well. Xbox Game Pass Ultimate (three-month subscription) Where to Buy: $68.99 $57.99 at Newegg (w/ promo code BNWF2656) Previously a straightforward proposition, the service has undergone a variety of changes over the last year that has made it slightly less appealing. Xbox Game Pass Ultimate was previously $29.99 per month, but earlier this year Microsoft removed the Call of Duty games from the library, and in the process dropped the price to $22.99. More recently, Microsoft added hourly limits to cloud gaming. All Game Pass plan subscribers previously enjoyed an unlimited amount of cloud gaming on their computer or mobile device, but now plans scale the number of included hours, with the Ultimate plan including 15 hours per month. That news came just weeks before announcing pay-as-you-go plans for non-Game Pass subscribers. Other deals to consider The AMD Ryzen 7 9700X is discounted to $269 at various retailers, including Amazon, Best Buy, and B&H, a $70 break from the usual price. This eight-core, 16-thread desktop CPU is compatible with AM5 motherboards, and has a maximum boost clock of up to 5.5GHz out of the box, with full support for overclocking. It’s probably overkill for light gaming, but serious gamers and demanding PC users will get the a lot of bang for their buck with this AMD processor. The discounted price lets you reach near AMD’s fastest consumer chip offerings, and is much cheaper than the faster Ryzen 7 9800X3D. This Lego Pokémon Pikachu and Pokéball set is on sale for $159.95 at Amazon. That $40 discount is the largest we’ve seen since the collaboration launched back in March, and a remarkably good value for a set with 2,050 pieces. Once built, it’s a sizable set, standing 13.5 inches tall and 15.5 inches deep, and the Pikachu has posable ears and limbs. This seems like a fantastic gift, either to yourself or to another Pokémon fan you care about. Amazon has the Bose Lifestyle Ultra Soundbar marked down to $899, a $200 discount from the usual price. This Dolby Atmos-equipped soundbar supports eARC over HDMI, Wi-Fi and Bluetooth connectivity for easy adjustments or listening to music, and has Alexa voice commands for when you can’t find the remote. You can also combine the soundbar with Bose Lifestyle Ultra Speakers for a proper surround system.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50429734",
+      "title": "E-means: 10x faster k-means at equal loss",
+      "url": "https://e-means.github.io/",
+      "author": "porridgeraisin",
+      "publishedAt": "2026-11-09T18:45:43.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 238,
+      "comments": 13
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261109/p37#a261109p37",
+      "title": "Mavria, which aims to build modular data centers that can be shipped by trucks, raised $130M across pre-seed and seed rounds at a $1B valuation led by Paradigm (Jennifer Hiller/Wall Street Journal)",
+      "url": "https://www.techmeme.com/261109/p37#a261109p37",
+      "author": null,
+      "publishedAt": "2026-11-09T18:50:03.000Z",
+      "content": "Jennifer Hiller / Wall Street Journal: Mavria, which aims to build modular data centers that can be shipped by trucks, raised $130M across pre-seed and seed rounds at a $1B valuation led by Paradigm — Mavria has raised money at a $1 billion valuation to build modular data centers that can be shipped by truck",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50429906",
+      "title": "Claude Fable 5.2 and Mythos 5.2",
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+      "author": "meetpateltech",
+      "publishedAt": "2026-11-09T18:56:29.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 843,
+      "comments": 510
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-claude-fable-5-2-builds-a-working-os-from-an-empty-folder",
+      "title": "Anthropic's Claude Fable 5.2 Builds a Working OS From an Empty Folder",
+      "url": "https://alphasignal.ai/news/anthropic-s-claude-fable-5-2-builds-a-working-os-from-an-empty-folder",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T18:57:59.000Z",
+      "content": "Anthropic's new frontier models formalized Fermat's Last Theorem in 30 hours, scored 49.1% on FrontierCode 2.0, and dropped prices 20%.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1030005",
+      "title": "Anthropic launches new Claude Fable and Mythos 5.2 models",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2",
+      "author": "Jay Peters",
+      "publishedAt": "2026-11-09T19:00:00.000Z",
+      "content": "Anthropic is announcing two new models today: Claude Fable 5.2 and Claude Mythos 5.2, which it says are designed to take on \"daunting\" technical challenges. The company claims the new models show improvements in coding, reasoning, and vision, and can generate outputs faster than the 5.1 versions of the Fable and Mythos models. Claude Fable 5.2 is good at challenging software engineering problems, Anthropic says, and can orchestrate agent teams and tackle long-running projects. The new model has also solved some complex scientific problems, including two open theoretical physics problems. During prerelease testing, the two models have \"help … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/chatgpt-enterprise-aws-marketplace",
+      "title": "ChatGPT Enterprise now available in AWS Marketplace",
+      "url": "https://openai.com/index/chatgpt-enterprise-aws-marketplace",
+      "author": null,
+      "publishedAt": "2026-11-09T19:00:00.000Z",
+      "content": "ChatGPT Enterprise is now available through AWS Marketplace, helping organizations simplify procurement through existing AWS purchasing and billing relationships.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261109/p38#a261109p38",
+      "title": "Anthropic releases Mythos 5.2 and Fable 5.2, saying they are \"best for the most ambitious, open-ended technical work\", with outputs up to 30% faster than 5.1 (Anthropic)",
+      "url": "https://www.techmeme.com/261109/p38#a261109p38",
+      "author": null,
+      "publishedAt": "2026-11-09T19:02:08.000Z",
+      "content": "Anthropic: Anthropic releases Mythos 5.2 and Fable 5.2, saying they are “best for the most ambitious, open-ended technical work”, with outputs up to 30% faster than 5.1 — We've upgraded Claude Fable and Claude Mythos—models that are designed to tackle the most daunting technical challenges.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/epoch-s-ipi-shows-nvidia-gb300-delivers-25x-an-h100-s-real-inference-capacity",
+      "title": "Epoch's IPI Shows Nvidia GB300 Delivers 25x an H100's Real Inference Capacity",
+      "url": "https://alphasignal.ai/news/epoch-s-ipi-shows-nvidia-gb300-delivers-25x-an-h100-s-real-inference-capacity",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T19:06:45.000Z",
+      "content": "Epoch AI's new Inference Performance Index scores chips by memory and interconnect, not just FLOP/s, revealing GB300 serves 25x H100's load.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-claude-fable-5-2-tops-36-models-but-max-reasoning-backfires",
+      "title": "Anthropic's Claude Fable 5.2 Tops 36 Models but Max Reasoning Backfires",
+      "url": "https://alphasignal.ai/news/anthropic-s-claude-fable-5-2-tops-36-models-but-max-reasoning-backfires",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T19:08:19.000Z",
+      "content": "Claude Fable 5.2 tops the Vals Index at 71.31% while costing less than Opus 5.5 and GPT-6 Astra, with a surprising twist on reasoning effort.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/11/us-military-notionally-interested-in-satellite-constellation-around-moon/",
+      "title": "Pentagon mulls placing fleet of military satellites around the Moon",
+      "url": "https://arstechnica.com/space/2026/11/us-military-notionally-interested-in-satellite-constellation-around-moon/",
+      "author": "Stephen Clark",
+      "publishedAt": "2026-11-09T19:08:37.000Z",
+      "content": "The US military has published a Request for Information on a federal procurement website signaling interest in deploying a \"proliferated cislunar constellation\" consisting of an unspecified number of satellites performing an undisclosed mission in the vicinity of the Moon. The announcement follows statements in recent months from the Space Force's acquisitions chief for advanced programs, Maj. Gen. Stephen Purdy, that the military was getting serious about extending its reach to the Moon. The Space Force's most distant satellites today are in geostationary orbit, some 22,000 miles (36,000 kilometers) over the equator, collecting routine surveillance and missile warning data. Most recently, Purdy spoke of a shift in Pentagon leadership's thinking about the Moon following an executive order signed by President Donald Trump last December. The order set out the Trump administration's space policy. One section of the order deals with the US government's ability to detect, characterize, and counter threats to US space interests from low-Earth orbit to cislunar space, the term of art for the region of space around the Moon. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-claude-fable-5-2-tops-cognition-s-coding-benchmark-at-a-third-of",
+      "title": "Anthropic's Claude Fable 5.2 Tops Cognition's Coding Benchmark at a Third of the Cost",
+      "url": "https://alphasignal.ai/news/anthropic-s-claude-fable-5-2-tops-cognition-s-coding-benchmark-at-a-third-of",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T19:09:11.000Z",
+      "content": "Cognition rolled Claude Fable 5.2 into Devin Desktop and the Devin CLI, where it tops the FrontierCode 2.0 leaderboard at a third of Fable 5.1's cost.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=124655",
+      "title": "Make a Robot Arm Feel Weightless with NVIDIA Holoscan 5",
+      "url": "https://developer.nvidia.com/blog/make-a-robot-arm-feel-weightless-with-nvidia-holoscan-5/",
+      "author": "Elizabeth Goodman",
+      "publishedAt": "2026-11-09T19:09:32.000Z",
+      "content": "Picture guiding a robot arm by hand while its motors supply just enough torque to support its weight and keep the robot upright. This simple interaction, a... Picture guiding a robot arm by hand while its motors supply just enough torque to support its weight and keep the robot upright. This simple interaction, a useful starting point for robots that learn by demonstration, manipulate objects, or work alongside people, depends on a gravity-compensation loop. Building such a loop is only possible by continuously calculating the inverse dynamics of… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1030084",
+      "title": "Apple’s $50 Intelligence Usage Packs extend access to some AI features",
+      "url": "https://www.theverge.com/tech/1030084/apple-intelligence-usage-packs-ai-features-creator-studio-logic-pro",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-11-09T19:09:58.000Z",
+      "content": "After publishing a support article in early September outlining usage limits for some Apple Intelligence features, the company has updated Logic Pro with an option to \"Buy More Usage\" for a one-time purchase price of $49.99, as spotted by 9to5Mac. It has a built-in AI assistant to do things like \"start a new song, set up a vocal track from a single prompt, or refine an active project.\" These Intelligence Usage Packs, as Apple calls them, will allow users to continue accessing certain Apple Intelligence features that have usage limits because they rely on cloud-based AI models from OpenAI or Google Gemini. The Usage Packs can only be used … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261109/p39#a261109p39",
+      "title": "Anthropic says during prerelease testing Mythos 5.2 and Fable 5.2 formalized the proof of Fermat's Last Theorem and solved two open black hole physics problems (Jay Peters/The Verge)",
+      "url": "https://www.techmeme.com/261109/p39#a261109p39",
+      "author": null,
+      "publishedAt": "2026-11-09T19:15:01.000Z",
+      "content": "Jay Peters / The Verge: Anthropic says during prerelease testing Mythos 5.2 and Fable 5.2 formalized the proof of Fermat's Last Theorem and solved two open black hole physics problems — Claude Fable 5.2 is designed to take on big technical challenges, and it's available today.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-s-antigravity-lets-developers-control-coding-agents-with-their-voice",
+      "title": "Google's Antigravity Lets Developers Control Coding Agents With Their Voice",
+      "url": "https://alphasignal.ai/news/google-s-antigravity-lets-developers-control-coding-agents-with-their-voice",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T19:20:16.000Z",
+      "content": "Google Antigravity adds a Gemini Live voice mode that lets you dictate tasks, steer agents mid-run, and approve permissions out loud.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112521 at https://www.eff.org",
+      "title": "U.S. Supreme Court Deals Final Blow to Corporate Human Rights Accountability",
+      "url": "https://www.eff.org/deeplinks/2026/11/us-supreme-court-deals-final-blow-corporate-human-rights-accountability",
+      "author": "Sophia Cope",
+      "publishedAt": "2026-11-09T19:29:03.000Z",
+      "content": "For the past two decades, the U.S. Supreme Court has been slowly weakening the Alien Tort Statute (ATS), a key human rights law that allows foreign nationals to sue persons or entities in civil court for harms resulting from violations of international law. The court’s recent ruling in Cisco Systems, Inc. v. Doe I dealt the law a final blow, foreclosing—absent new legislation by Congress—any future ability by plaintiffs to use the law to hold technology companies accountable for aiding and abetting human rights abuses. EFF filed multiple amicus briefs in the case, including most recently in the Supreme Court. The Supreme Court Rejected New Causes of Action Under the ATS The ATS was passed by the very first Congress in 1789 and in just a few words gives U.S. federal courts jurisdiction to hear civil claims brought by foreign nationals against defendants who violated “the law of nations or a treaty of the United States.\" There has been a longstanding question about what counts as a valid civil claim under “the law of nations.” In Sosa v. Alvarez-Machain (2004), the Supreme Court had noted three historical international law claims that the First Congress likely had in mind: violation of safe conducts, infringement of the rights of ambassadors, and piracy, collectively known as the Blackstone Three. The Sosa court also held that federal courts may recognize other substantive causes of action under the ATS if they reflect international norms that are “specific, universal, and obligatory,” stating that this “door is still ajar subject to vigilant doorkeeping, and thus open to a narrow class of international norms today.” Thus, the Sosa court recognized that the ATS could be used to bring claims related to historical violations of international law as well as select newer claims reflecting modern concepts of human rights. In Cisco, the Supreme Court overruled the second Sosa holding. The majority held that the current case, a technology company aiding and abetting torture and other human rights abuses, was beyond the scope of the original three ATS claims and it was not for the court to create new ways of enforcing international law. The court said: [W]e close the door that Sosa cracked to judicially created ATS liability. We do not disturb Sosa’s holding that the ATS is a jurisdictional statute; nor do we revisit its assumption that causes of action are available for torts corresponding to the Blackstone three. We conclude only that Sosa was overly optimistic in its prediction that there might be a narrow class of cases in which courts may create ATS actions without infringing on the prerogatives of the political branches. In truth, this class is a null set. What result for this case? Cisco argues that the Ninth Circuit erred in holding that aiding-and-abetting liability exists under the ATS for the torts alleged by the plaintiffs. Cisco is correct. Courts cannot create new rights of action to remedy violations of international law, so there is necessarily no liability for aiding and abetting such violations. Plaintiffs’ ATS claims against Cisco must be dismissed. Cisco is Off the Hook for Aiding and Abetting Horrific Human Rights Abuses The Supreme Court’s ending of the plaintiffs’ case against Cisco is hugely disappointing given that the case has been going on since 2011 and the Ninth Circuit in 2023 allowed the case to move forward in an excellent and well-reasoned opinion. The court held, in part: We conclude that Plaintiffs’ allegations, accepted as true, are sufficient to state a plausible claim that Cisco provided essential technical assistance to the douzheng [violent struggle] of Falun Gong with awareness that the international law violations of torture, arbitrary detention, disappearance, and extrajudicial killing were substantially likely to take place. The plaintiffs sued Cisco for the company’s role in building and deploying the “Golden Shield,” also referred to as “The Great Firewall of China”—a vast surveillance system that Cisco began building in the late 1990s and that the company customized to enable the Chinese government to target disfavored minorities, including members of the Falun Gong religion. The thirteen plaintiffs—Falun Gong practitioners—alleged arrest, detention, and torture, including of themselves and family members, at least one of whom died by beating while being detained. The allegations were horrific: the plaintiffs were placed in forced labor camps, beaten with steel rods, shocked with electric batons, and endured sleep deprivation and violent force-feeding. Importantly, the plaintiffs also alleged that their private emails, text messages, and other information—intercepted by the Golden Shield—were shown to them and used as part of their torture and forced conversion sessions, which included threats to their family members and others who had communicated with them. And now, Cisco is off the hook for all of this. Congress Must Act to Hold American Tech Companies Accountable for Aiding and Abetting Human Rights Abuses As we argued in our amicus brief to the Supreme Court, a robust federal statute is necessary given that voluntary and informal mechanisms of corporate human rights accountability are inadequate. The plaintiffs filed their lawsuit in 2011. The following year, in 2012, Cisco first published its Global Human Rights Policy. Since then, the company has never provided redress to the plaintiffs, despite its currently operative human rights policy stating: Where we have identified that we have caused or contributed to an adverse human rights impact, we are committed to providing access to and cooperating in remediation for affected individuals, workers, and communities through legitimate processes. What’s more, the Associated Press conducted an extensive 2025 investigation, which recently won the Pulitzer Prize, further mapping Cisco’s and other American tech companies’ involvement in creating China’s surveillance state over the past three decades. When questioned by the AP reporters, the companies dismissed any notion of human rights obligations and simply “said they adhere to relevant export controls, laws and regulations where they operate.” In short, Cisco’s commitment to human rights is a fiction. Given that the U.S. Supreme Court has effectively read the ATS into non-existence, Congress must now step up. While there might be other avenues for redress including under state law, there must also be a comprehensive federal human rights law allowing any plaintiff to hold American companies—especially technology companies—accountable for aiding and abetting human rights abuses, with knowledge or intent that those abuses would occur, and whether the victims suffered those abuses in the U.S. or in foreign countries. The implications of this gap in U.S. human rights law are significant. As Prof. Harold Koh considered: [T]he Justices should ask whether affording such immunity in Cisco would implicitly signal to U.S. companies that they could not be held liable for assisting the U.S. government in committing gross violations. Such violations could include constructing a mass surveillance system that may be used to surveil, persecute, retaliate against, and punish real and perceived opponents and constructing systems that autonomously commit war crimes. American companies should not have a free pass to build out surveillance states (or other technologically sophisticated systems) that not only violate personal privacy or facilitate censorship, but that can also lead to real-world physical violence and even death. Related Cases: Doe I v. Cisco",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/perplexity-integrates-anthropic-s-fable-5-2-topping-web-research-benchmarks-at",
+      "title": "Perplexity Integrates Anthropic's Fable 5.2, Topping Web Research Benchmarks at $14 per Task",
+      "url": "https://alphasignal.ai/news/perplexity-integrates-anthropic-s-fable-5-2-topping-web-research-benchmarks-at",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T19:29:41.000Z",
+      "content": "Perplexity rolls out Anthropic's new agentic model across Computer and Search, posting a record 0.851 WANDR score at $14.51 per task.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50430621",
+      "title": "CUI – Native UI components for C",
+      "url": "https://yappologistic.github.io/CUI/",
+      "author": "hilti",
+      "publishedAt": "2026-11-09T19:35:16.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 133,
+      "comments": 71
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/security/2026/11/vulnerability-that-lets-hackers-ssh-into-linux-devices-is-under-active-exploitation/",
+      "title": "Vulnerability that lets hackers SSH into Linux devices is under active exploitation",
+      "url": "https://arstechnica.com/security/2026/11/vulnerability-that-lets-hackers-ssh-into-linux-devices-is-under-active-exploitation/",
+      "author": "Dan Goodin",
+      "publishedAt": "2026-11-09T19:41:34.000Z",
+      "content": "Hackers are actively exploiting a recently discovered critical vulnerability that allows them to log in to privileged accounts on many Linux systems, multiple researchers are reporting. The vulnerability, tracked under the name *sshole, arises from the interaction between OpenSSH and a code library known as musl. Linux systems that use both of these packages and meet certain other requirements can be hacked to give unauthenticated access to high-privilege accounts in a matter of seconds. *sshole became publicly known last Thursday and quickly stoked concerns it could lead to widespread compromise of Linux machines. Four days later, the prediction shows signs of becoming real. Attackers conducting \"mature intrusions\" Security firm Greynoise said Monday that honeypots it maintains in Southeast Asia have come under attack by a group it’s tracking as GT10. The group conducted “mature intrusions\" into the systems, which Greynoise uses to detect attempted or successful attacks in real time. Greynoise subsequently gained access to a GT10 server that revealed potential other victims and some of the tools used in the campaign. A backdoor the group is using in the attacks contains Chinese language comments and appears to be generated with the use of AI. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/cursor-s-claude-fable-5-2-tops-cursorbench-at-60-with-20-cheaper-tokens",
+      "title": "Cursor's Claude Fable 5.2 Tops CursorBench at 60% With 20% Cheaper Tokens",
+      "url": "https://alphasignal.ai/news/cursor-s-claude-fable-5-2-tops-cursorbench-at-60-with-20-cheaper-tokens",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T19:52:29.000Z",
+      "content": "Cursor adds Anthropic's updated Fable 5.2 model, pushing CursorBench to a new 60% ceiling while cutting token prices by 20% across the board.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50431058",
+      "title": "USPS now offers official ZIP Code boundary polygons",
+      "url": "https://postalpro.usps.com/zcb",
+      "author": "munro",
+      "publishedAt": "2026-11-09T19:58:59.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 373,
+      "comments": 187
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261109/p40#a261109p40",
+      "title": "Anthropic prices Fable 5.2 and Mythos 5.2 at $8/1M input and $40/1M output tokens, down 20% from 5.1; fast mode costs $16/1M input and $80/1M output tokens (Frederic Lardinois/The New Stack)",
+      "url": "https://www.techmeme.com/261109/p40#a261109p40",
+      "author": null,
+      "publishedAt": "2026-11-09T20:00:51.000Z",
+      "content": "Frederic Lardinois / The New Stack: Anthropic prices Fable 5.2 and Mythos 5.2 at $8/1M input and $40/1M output tokens, down 20% from 5.1; fast mode costs $16/1M input and $80/1M output tokens — On Monday, Anthropic launched Claude Fable 5.2 and Mythos 5.2, the latest versions of its duo of flagship models.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-s-dots-agents-can-now-control-multiple-computers-at-once",
+      "title": "OpenAI's Dots Agents Can Now Control Multiple Computers at Once",
+      "url": "https://alphasignal.ai/news/openai-s-dots-agents-can-now-control-multiple-computers-at-once",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T20:01:49.000Z",
+      "content": "ChatGPT dots can now be linked to several local machines at once, with per-task routing so a build can run on one Mac while you code on another.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50431144",
+      "title": "Claude Fable 5.2 Scores 65 on Artificial Analysis, Highest So Far",
+      "url": "https://artificialanalysis.ai/models/claude-fable-5-2",
+      "author": "theanonymousone",
+      "publishedAt": "2026-11-09T20:04:55.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 239,
+      "comments": 156
+    },
+    {
+      "sourceSlug": "google-research",
+      "externalId": "https://research.google/blog/exploring-the-worlds-languages-with-language-explorer/",
+      "title": "Exploring the world's languages with Language Explorer",
+      "url": "https://research.google/blog/exploring-the-worlds-languages-with-language-explorer/",
+      "author": null,
+      "publishedAt": "2026-11-09T20:29:39.000Z",
+      "content": "Natural Language Processing",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "lennys-newsletter",
+      "externalId": "https://www.lennysnewsletter.com/p/claude-fable-52-review-fast-creative",
+      "title": "Claude Fable 5.2 review: fast, creative, and finally not annoying",
+      "url": "https://www.lennysnewsletter.com/p/claude-fable-52-review-fast-creative",
+      "author": "Claire Vo",
+      "publishedAt": "2026-11-09T20:37:49.000Z",
+      "content": "Anthropic just released Fable 5.2, their new frontier model, and I spent two days actually building things with it before recording this. I made an animated marketing video from a single tweet, assembled a pile of unboxed furniture using only blurry floor photos, and extended our CXO brand sprites into a full bug-defense game complete with a trailer. In this episode I walk through what impressed me, what fell short, and how I’m thinking about routing tasks between Fable 5.2 and Opus 5.5 going forward. Listen or watch on YouTube, Spotify, or Apple Podcasts What you’ll learn: What Anthropic launched with Fable 5.2 and Mythos 5.2, and when to reach for Fable instead of Opus 5.5 My pros and cons after a couple of days of hands-on testing How Fable 5.2 turned a tweet and a brand book into an animated video that doesn’t look like slides The geometry test every other model failed: assembly instructions for flat-pack furniture with no manual How it handled a real re-architecture of ChatPRD’s product intelligence pipeline Why I still wouldn’t let it design a website on its own The 3D typewriter it built me, and how you can get access to the model In this episode, we cover: (00:00) Confessions of a Claude hater (02:54) What Anthropic launched: Fable 5.2 and Mythos 5.2 (03:16) When to use Fable 5.2 vs. Opus 5.5 (03:30) Black holes, coding claims, and benchmarks (04:40) Guardrails and anti-distillation safeguards (05:12) My high-level pros and cons (07:23) Video generation: turning a tweet into an animated film (09:47) Animating the invader bots (11:29) Flat-pack furniture with no instructions (13:09) The bug factory game and its trailer (15:16) Real engineering: re-architecting ChatPRD’s product intelligence pipeline (16:57) Where it falls down: web design (18:08) Claire’s typewriter (23:02) How I AI bench preview (23:34) How to get it: availability, fast mode, and Fable resets (24:13) Final take Tools referenced: • Claude Fable 5.2: https://www.anthropic.com/claude-fable-and-mythos-5-2 • Claude Opus 5.5: https://www.anthropic.com/claude-opus-5-5 • Claude Code: https://claude.com/claude-code • HyperFrames: https://hyperframes.heygen.com/ • typed.page: https://typed.page/ Other references: • Guillermo Rauch’s 3D record player: https://vinyl-gl.vercel.app/ • The bug factory game: https://www.cxo.dev/games/bug-factory Where to find Claire Vo: ChatPRD: https://www.chatprd.ai/ Website: https://clairevo.com/ LinkedIn: https://www.linkedin.com/in/clairevo/ X: https://x.com/clairevo Production and marketing by https://penname.co/. For inquiries about sponsoring the podcast, email jordan@penname.co.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/11/a-sam-altman-parody-offers-an-amusing-lesson-in-memory-management/",
+      "title": "A Sam Altman parody offers an amusing lesson in memory management",
+      "url": "https://arstechnica.com/gadgets/2026/11/a-sam-altman-parody-offers-an-amusing-lesson-in-memory-management/",
+      "author": "Nick Indge",
+      "publishedAt": "2026-11-09T20:49:09.000Z",
+      "content": "Sam Altman's recent comments on the Cheeky Pint podcast inspired developer Iain Kay to create a satirical script that allows users to email the OpenAI CEO once per day if more than 10 percent of their system RAM is reported as available. Ram-Altman is described by its creator as a \"parody project\" launched in response to Altman's viral remarks about RAM in your personal PC. As reported by The Verge, on the October 29 episode recorded with Stripe President John Collison, Altman said, \"A lot of people want local inference. And somehow, they assume that the problem is solved now because we are going to have open source models, we’re going to be able to run them on our computers, and so we’re not going to need all the stuff in the data center. But from a global allocation perspective, actually, it’s quite terrible to have everybody have a bunch of the world’s limited supply of DRAM sitting in their own computer and being used 5 percent of the time.\" Altman has since explained that his comments were taken out of context and briefly changed his display name to \"RAM Altman\" on X, which Kay calls on the project GitHub, \"objectively excellent and where the project gets its name.\" Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stackoverflow-blog",
+      "externalId": "fbc0f8b8-fad5-49c5-b515-a7ab8cf42768",
+      "title": "Never Share Your Password Again — The OAuth 2.0 Solution",
+      "url": "https://stackoverflow.blog/2026/11/09/never-share-your-password-again-the-oauth-2-0-solution/",
+      "author": "Srikanth Srinivas",
+      "publishedAt": "2026-11-09T20:50:38.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-sandbox-snapshot-creation-is-now-up-to-10x-faster",
+      "title": "Vercel Sandbox snapshot creation is now up to 10x faster",
+      "url": "https://vercel.com/changelog/vercel-sandbox-snapshot-creation-is-now-up-to-10x-faster",
+      "author": "Andy Waller",
+      "publishedAt": "2026-11-09T21:00:00.000Z",
+      "content": "now creates snapshots up to 10x faster. Median time to snapshot is under 0.4 seconds, down from 4.4 seconds. Snapshot restore speed has also improved by 50% from 500ms to 250ms at p50.Vercel Sandbox Snapshots are now able to write and restore by re-using frames within the Vercel Hive Snapshot (VHS) format. VHS now indexes data in a more efficient way which means that more read and write operations can be done in parallel. Snapshots can now restore more of your Sandbox base image in parallel with user data, leading to overall faster operations. Persistent sandboxes, the default, snapshot automatically when a session stops and resume from the latest snapshot. This applies to all new snapshots, with nothing to configure. Existing snapshots keep the previous format. Learn more in the .snapshots documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261109/p41#a261109p41",
+      "title": "SpaceX plans a gas-fired power plant and super-compute facility in Starbase, TX, with ~$24B of investment for initial phases, per a public hearing notice (Bloomberg)",
+      "url": "https://www.techmeme.com/261109/p41#a261109p41",
+      "author": null,
+      "publishedAt": "2026-11-09T21:00:48.000Z",
+      "content": "Bloomberg: SpaceX plans a gas-fired power plant and super-compute facility in Starbase, TX, with ~$24B of investment for initial phases, per a public hearing notice — SpaceX plans to construct, own and operate a gas-fired power plant and super-compute facility at its company town in Starbase, Texas …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1030252",
+      "title": "The global pledge to use AI for climate good is a cruel joke",
+      "url": "https://www.theverge.com/science/1030252/ai-data-center-climate-pledge-united-nations-cop31",
+      "author": "Justine Calma",
+      "publishedAt": "2026-11-09T21:13:16.000Z",
+      "content": "Murat Kurum (left), Turkey’s minister of Environment, Urbanisation and Climate Change; and Chris Bowen, Australia's minister for Climate Change and Energy, raise their hands together at the COP31 UN Climate Change Conference in Antalya, Turkey, on November 9th, 2026. | Photo: AFP via Getty Images At this point, reading through the latest splashy pledge to use AI for the good of the environment feels like downing a nonalcoholic beer. Admittedly, I'm suspicious from the onset. How can this be good? But I love beer and our planet enough to give it a whirl - and hey, why not try a little harm reduction? Negotiators from more than 190 countries around the world are in Antalya, Turkey, this month for the annual United Nations climate summit, called COP31 (the 31st \"Conference of the Parties\" that ratified the UN Framework Convention on Climate Change). Turkey previewed its Antalya Artificial Intelligence Pledge ahead of the convening, inv … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/man-who-lost-308000-on-sports-bets-sues-kalshi-for-offering-illegal-gambling/",
+      "title": "Man who lost $308,000 on sports bets sues Kalshi for offering illegal gambling",
+      "url": "https://arstechnica.com/tech-policy/2026/11/man-who-lost-308000-on-sports-bets-sues-kalshi-for-offering-illegal-gambling/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-11-09T21:13:39.000Z",
+      "content": "A man who lost over $308,000 making sports wagers on Kalshi is suing the prediction market for violating the state of Washington's ban on online gambling. He's trying to turn those losses into an overall victory with a lawsuit seeking a payment of over $580,000. Bellevue, Washington, resident Scott Bright's \"wagering occurred at a time when it was unlawful in Washington and when the Washington Attorney General had already sued KalshiEX LLC in this Court alleging precisely that,\" said the gambler's lawsuit filed on September 24 in King County Superior Court. Kalshi has since filed a motion to dismiss the lawsuit. While state attorneys general throughout the US are trying to shut down Kalshi for allegedly violating state gambling laws, Bright's case tests whether unsuccessful gamblers can obtain restitution from the company through individual lawsuits. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261109/p42#a261109p42",
+      "title": "AI infrastructure provider Fireworks says hackers accessed some customers' datasets, incomplete model weights, and billing information over the past month (Anna Tong/Forbes)",
+      "url": "https://www.techmeme.com/261109/p42#a261109p42",
+      "author": null,
+      "publishedAt": "2026-11-09T21:15:14.000Z",
+      "content": "Anna Tong / Forbes: AI infrastructure provider Fireworks says hackers accessed some customers' datasets, incomplete model weights, and billing information over the past month — Two customers told Forbes they had already substantially moved their business off Fireworks' systems, with one describing a series …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-claude-fable-5-2-beats-gpt-6-astra-with-a-rare-five-point-jump",
+      "title": "Anthropic's Claude Fable 5.2 Beats GPT-6 Astra With a Rare Five-Point Jump",
+      "url": "https://alphasignal.ai/news/anthropic-s-claude-fable-5-2-beats-gpt-6-astra-with-a-rare-five-point-jump",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T21:22:14.000Z",
+      "content": "Anthropic's new frontier model lands at 174 on Epoch's Capabilities Index, five points above the prior leader and above the reasoning-model trendline.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112522 at https://www.eff.org",
+      "title": "Why Fewer People Are Challenging Bad Patents",
+      "url": "https://www.eff.org/deeplinks/2026/11/why-fewer-people-are-challenging-bad-patents",
+      "author": "Betty Gedlu",
+      "publishedAt": "2026-11-09T21:40:14.000Z",
+      "content": "The number of petitions being filed at the Patent Trial and Appeal Board (PTAB) has collapsed. That’s not reason for celebration. The PTAB is an important line of defense against low-quality software patents being used in lawsuits against people and companies. The drop didn’t happen because suddenly patents have become higher quality. It’s simply because USPTO leadership is increasingly refusing to consider good challenges to patents, for reasons unrelated to the merits. The process has become so unreliable that many would-be patent challengers aren’t even trying. Inter partes review (IPR) is a process that allows people to challenge patents at the Patent Office, rather than having to fight an expensive lawsuit in federal court. It’s one of the most important ways to get bad patents out of the system. In the third quarter of 2026, July through September, only 97 IPR petitions were filed at the PTAB, compared to 327 petitions during the same period in 2025. Similarly, only 37 IPR petitions were filed in September 2026, compared to 129 petitions in December 2024—the last full month before the current USPTO leadership began reshaping how the Board handles patent challenges. This dramatic decline shouldn’t just concern patent lawyers. EFF has fought bad patents because so many software and internet patents make claims to the basic tools of free expression online, like sending email, using online ads, or publishing web pages. When bad patents go unchallenged, they affect everyone who cares about the freedom to write new code and make new technology. That’s why EFF has defended IPR since it came on the scene more than a decade ago. It provides a faster and less expensive way to challenge patents that should never have been granted. Congress created IPRs because the Patent Office makes mistakes. District court litigation is an extraordinarily expensive way to correct them. Without a meaningful administrative review process, bad patents remain powerful weapons in the hands of patent trolls and others seeking to extract settlements from companies that often did nothing wrong. Now, USPTO leadership is dismantling that safeguard. Petitions and Institution Rates Are Falling Since Congress created the IPR patent challenge process in 2012, the PTAB has always had some discretion in deciding which petitions deserve review. But institution rates today are much lower than their typical historical range. Between fiscal years 2022 and 2024, the PTAB instituted between 66% and 68% of IPR petitions. In fiscal year 2026, which concluded in September 2026, the institution rate fell to 41%. And institution is only the first step of an IPR—it means the PTAB has agreed to hear the challenge, not that the challenger won, and the patent will be invalidated. That decline helps explain why fewer petitions are being filed in the first place. Preparing an IPR petition takes substantial time and money. While cheaper than federal court, it’s still a complicated administrative process. Before filing, a challenger typically needs to search for prior art, hire experts, and develop detailed technical and legal arguments about why the patent never should have been granted. Companies were willing to pay for IPRs because, historically, they could expect a predictable process. Petitions that met the statutory standard generally had a reasonable prospect of being heard and decided on the merits. But the USPTO has made it harder to get petitions heard and is throwing them out for reasons that have nothing to do with the merits of the challenges. Faced with these odds, many potential challengers aren’t filing at all. Even After a Challenge Is Accepted, The USPTO Director Can Cancel It When the PTAB decides to hear an IPR case, that means the petition has been “instituted”—but that has never meant that the petitioner will definitely win. It means the PTAB has determined the challenge warrants a full merits review, and the parties could expect the proceeding to continue toward a final written decision. But under the current USPTO leadership, that expectation has disappeared. The PTAB’s institution decisions are being repeatedly vacated by the Director. USPTO Director John Squires has vacated at least 29 decisions granting institution of IPR proceedings, and subsequently denied the petitions, terminating those proceedings before a final written decision. These include cases that PTAB judges had already agreed to hear, as well as proceedings that Squires himself had previously allowed to proceed. This level of retroactive intervention is unprecedented. In some cases, the parties had already invested substantial time and money litigating before the PTAB, only to have the proceeding terminated based on new reasoning by the Director’s office that arose after institution. For example, in Revvo Technologies v. Cerebrum Sensor Technologies, the Director vacated an institution decision and remanded the case to the Board. The Board then instituted review again, but the Director reversed that decision. Using a new approach, the Director said that the petition had inconsistencies between claim construction positions taken before the PTAB and in district court. Since then, that decision has been cited as a basis for terminating several other instituted proceedings. The result is another layer of uncertainty for people who want to challenge bad patents. Getting through the front door of an institution decision is much harder than it used to be—and now, even getting through that door doesn’t mean the PTAB will decide your challenge. Predictability is one of the things that made IPRs work. Congress Created the PTAB To Avoid Costly Litigation Congress created IPRs in part because challenging a questionable patent in federal court is enormously expensive and risky. Patent examiners work under serious time constraints, and some patents that shouldn’t have been granted will inevitably issue. Not every patent dispute requires years of expensive district court litigation. Congress recognized that, and created an administrative process, staffed with experts more capable of correcting those mistakes. That system has benefited the public. Since 2012, it has helped invalidate thousands of patent claims that never should have been issued. The IPR process has protected startups, software developers, nonprofits, and small businesses that otherwise would have faced crushing litigation costs simply for building products or offering services that use everyday internet technology. EFF supports a balanced IPR system because it should be easier to fight against bogus patents that should never have been issued. The cost of fighting a patent can be a weapon in itself, and weak patents don't just burden large technology companies. Patent trolls routinely target small businesses and independent developers, and have gone after podcasters, retailers, and even coffee shops and nonprofits. These organizations have neither the resources nor the desire to spend years litigating over potentially invalid patents in federal court. IPR offers a chance to challenge those patents before litigation costs get out of control. If we weaken the IPR system, bad patents become much harder and more expensive to challenge. We Shouldn't Accept This as the New Normal Some defenders of the current approach argue that lower institution rates reflect more balance in the patent system. But institution rates at the PTAB have plummeted from 68% to 41% in just two years—a nearly 40% decline. IPR petition filings have reached historic lows. And even proceedings that have already been instituted can now be terminated months later, without a decision on the merits. These developments send a troubling message to members of the public who might want to use the PTAB: don't bother. The PTAB doesn’t need to institute every petition. But it does need to provide a process that is transparent, predictable, and fair. Right now, confidence in the system is disappearing. If companies, individuals, and nonprofits conclude that IPRs aren’t worth pursuing, the consequences won't stop at the PTAB. More weak patents that never should have been granted will survive, and patent trolls will use them. That means more defendants facing expensive district court litigation or paying settlements driven by the cost of litigation. That's not what Congress intended when it created IPRs. It should not become the PTAB's “new normal.”",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1030262",
+      "title": "MSI’s refurbished QD-OLED gaming monitor is on sale for under $300",
+      "url": "https://www.theverge.com/gadgets/1030262/msi-mag-272qp-qd-oled-x24-monitor-woot-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-11-09T21:43:41.000Z",
+      "content": "One of the best upgrades you can make to your PC gaming setup is an OLED monitor. Fortunately, MSI’s factory-reconditioned Mag 272QP X24 is on sale at Woot through November 18th with a 180-day manufacturer warranty for $290.99, which is more than $100 cheaper than the full MSRP of $399.99. MAG 272QP QD-OLED X24 (refurbished) Where to Buy: $399.99 $290.99 at Woot MSI’s 27-inch screen is well-featured for the price, with 1440p resolution, a 240Hz refresh rate, and both G-Sync and FreeSync compatibility, which help reduce screen tearing when your FPS is below the max refresh rate. PC games are particularly well-suited to take advantage of the deep black levels OLED panels produce, too, giving every game you play a deeper, more immersive feel. MSI’s budget OLED also features quantum dots for fuller, more vivid colors. It doesn’t cut corners on ports either, with two HDMI 2.1, one DisplayPort 1.4a, and one USB Type-C DP Alt input.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/culture/2026/11/dcu-shake-up-james-gunn-and-peter-safran-out-post-merger/",
+      "title": "DCU shake-up: James Gunn and Peter Safran out post-merger",
+      "url": "https://arstechnica.com/culture/2026/11/dcu-shake-up-james-gunn-and-peter-safran-out-post-merger/",
+      "author": "Jennifer Ouellette",
+      "publishedAt": "2026-11-09T21:55:35.000Z",
+      "content": "It's barely been two months since the controversial Paramount and Warner Bros. merger, and we've already got a shockingly unexpected ouster: Co-CEOs of the rebooted DC Universe, James Gunn and Peter Safran, are stepping down from that role despite the Hollywood rumor mill assuming that the duo would be safe. It's unclear whether the pair chose to resign or were forced out, or what will happen to their planned slate of projects beyond 2028's Superman: Man of Tomorrow, which is in post-production. Producer Jeremy Latcham—a protege of Marvel's Kevin Feige who worked with Gunn on Guardians of the Galaxy among other MCU films—will replace them. Per Gunn and Safran's joint statement: Four years ago, we set out to unite DC under one creative vision. In that time, we helped restore Superman to the heart of DC, while opening new doors and telling new stories in film and television with Peacemaker, Creature Commandos, Lanterns and Clayface. We’re immensely proud of the team that turned that ambition into something real, including the actors, crews and executives we had the opportunity to collaborate with. We’ve shared a creative history with Jeremy going back to Marvel, and we’re eager to see the perspective he brings to DC’s next chapter. We’re excited to return to what drew us to this job in the first place, which is telling the stories we love, including the next chapter of Clark and Lex’s journey in Man of Tomorrow. DCU fans are mourning the news and what it could mean for the franchise. My feelings are mixed. On the one hand, I'm on record that I’ve found the rebooted DC Universe films released thus far to be enjoyable but rather forgettable, even when the positives outweigh the negatives. (I have yet to see Clayface, which debuted to good reviews and a solid box office showing.) But HBO has done right by the DCU: I loved both seasons of Peacemaker; Lanterns is a shining beacon of what is possible when someone is allowed to get really creative within the genre; and I'm very much looking forward to next year's Jimmy Olsen (Skylar Gisondo) series The People v. Gorilla Grodd—described as a “mockumentary crime comedy superhero series.” Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50432831",
+      "title": "TPUs",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+      "author": "_benx_",
+      "publishedAt": "2026-11-09T21:56:57.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 120,
+      "comments": 15
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261109/p43#a261109p43",
+      "title": "Jensen Huang's affair shines a spotlight on Nvidia's weak board and opaque succession planning at what has become the world's most important company (Semafor)",
+      "url": "https://www.techmeme.com/261109/p43#a261109p43",
+      "author": null,
+      "publishedAt": "2026-11-09T22:00:35.000Z",
+      "content": "Semafor: Jensen Huang's affair shines a spotlight on Nvidia's weak board and opaque succession planning at what has become the world's most important company — Nvidia CEO Jensen Huang's spy scandal shines a spotlight on thin corporate governance and opaque succession planning at what has become the world's most important company.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-s-control-room-stops-rogue-ai-models-in-35-seconds",
+      "title": "OpenAI's Control Room Stops Rogue AI Models in 35 Seconds",
+      "url": "https://alphasignal.ai/news/openai-s-control-room-stops-rogue-ai-models-in-35-seconds",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T22:01:00.000Z",
+      "content": "OpenAI's new Control Room service centralizes kill-switch authority over every research inference job and can halt model output within 35 seconds.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-s-antigravity-drops-a-knowledge-work-view-for-non-coders",
+      "title": "Google's Antigravity Drops a Knowledge Work View for Non-Coders",
+      "url": "https://alphasignal.ai/news/google-s-antigravity-drops-a-knowledge-work-view-for-non-coders",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T22:02:39.000Z",
+      "content": "Google Antigravity adds a Knowledge Work layout that strips terminals, diffs, and Git plumbing while keeping the same agent, plugins, and MCP tools.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/xenova-s-bge-small-brings-private-semantic-search-directly-to-javascript",
+      "title": "Xenova's BGE-Small Brings Private Semantic Search Directly to JavaScript",
+      "url": "https://alphasignal.ai/news/xenova-s-bge-small-brings-private-semantic-search-directly-to-javascript",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-09T22:04:53.000Z",
+      "content": "An ONNX port of BAAI's 33M-parameter embedding model runs entirely in the browser through Transformers.js, hitting 850K monthly downloads.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112525 at https://www.eff.org",
+      "title": "We’re Asking an Appeals Court to Require a Warrant for ALPR Searches",
+      "url": "https://www.eff.org/deeplinks/2026/11/were-asking-appeals-court-require-warrant-alpr-searches",
+      "author": "Andrew Crocker",
+      "publishedAt": "2026-11-09T22:09:24.000Z",
+      "content": "Today, along with the ACLU, EFF filed an amicus brief in the Sixth Circuit court of appeals in United States v. Sturdivant, a case where police warrantlessly tracked a suspect’s movements using Automated License Plate Reader (ALPR) data. Our brief details the vast, interconnected network of ALPRs that constantly track drivers around the country and argues that this tracking is a “search” under the meaning of the Fourth Amendment. Sturdivant involves a series of robberies in and around Cleveland, Ohio. Using surveillance camera footage, police identified the make, model and color of the robber’s car, but they did not know its license plate number. After running an open-ended search of two ALPR databases, Flock and ELSAG, officers learned a car belonging to the defendant had been tracked near sites of the robberies, eventually leading to his arrest. Faced with a motion to suppress the ALPR evidence, the district court held that Mr. Sturdivant had no reasonable expectation of privacy in his license plate number because it could be observed by members of the public, and that therefore he had no Fourth Amendment interest in not having his car tracked in public places. But ALPRs are simply not comparable to observing an individual license plate on a passing car. As we’ve explained in many amicus briefs and in our lawsuits directly challenging ALPR use in San Jose, California and Wisconsin, ALPRs give law enforcement “a virtual time machine to view suspects’, or anyone else’s, past movements (and much more) with just the click of a button.” Just last month, a federal district court agreed and held that ALPRs are a “form of indiscriminate mass surveillance” that can violate the Fourth Amendment. We hope the Sixth Circuit will reverse the lower court in this case and hold that ALPR searches require a warrant. Related Cases: Wisconsin Council of Churches v. Milwaukee, Racine, Kenosha & Green Bay SIREN and CAIR-CA v. San Jose",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261109/p44#a261109p44",
+      "title": "Trump says the FBI is \"looking into\" Jensen Huang's affair, and the Nvidia CEO told him he \"had absolutely no idea that the person in question was a spy\" (Associated Press)",
+      "url": "https://www.techmeme.com/261109/p44#a261109p44",
+      "author": null,
+      "publishedAt": "2026-11-09T22:40:01.000Z",
+      "content": "Associated Press: Trump says the FBI is “looking into” Jensen Huang's affair, and the Nvidia CEO told him he “had absolutely no idea that the person in question was a spy” — President Donald Trump said Monday that Nvidia CEO Jensen Huang should not worry about the FBI looking …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261109/p45#a261109p45",
+      "title": "Apple is now offering additional AI access via one-time $50 \"intelligence usage packs\" when monthly usage caps are met, starting in its Creator Studio apps (Ryan Christoffel/9to5Mac)",
+      "url": "https://www.techmeme.com/261109/p45#a261109p45",
+      "author": null,
+      "publishedAt": "2026-11-09T23:05:00.000Z",
+      "content": "Ryan Christoffel / 9to5Mac: Apple is now offering additional AI access via one-time $50 “intelligence usage packs” when monthly usage caps are met, starting in its Creator Studio apps — Apple has said it will eventually charge for expanded usage of select AI features. Now the first 'intelligence usage packs …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?post_type=vm_stream&p=1030422",
+      "title": "Everything we know so far about the Nvidia spy scandal targeting CEO Jensen Huang",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang",
+      "author": "Richard Lawler",
+      "publishedAt": "2026-11-09T23:07:59.000Z",
+      "content": "The leather-jacketed CEO of Nvidia, Jensen Huang, has acknowledged an affair with Megaspeed exec Alice Huang, spurring an investigation by his company and intense discussions worldwide. Recent reporting noted that since last year, US intelligence reports had identified Alice Huang (no relation) as not only the exec for an AI compute company renting access to Nvidia GPUs, but also a spy for China’s Ministry of State Security. In recent years, Nvidia has become a key part of the Trump administration’s AI push, a central figure in negotiations over potential Chinese access to cutting-edge AI hardware, and a company that has used its now $4 trillion-plus market cap to finance other AI companies, including the “neoclouds” like Coreweave who have been some of its biggest customers. So far, Nvidia and Jensen Huang have said that they have “no reason to believe that either national security or NVIDIA secrets were compromised,” but that hasn’t settled things as the investigation continues. Here’s what Trump said he knew about Jensen Huang The future of AI hinges on… Jensen Huang’s sex life? Here’s the full text of Jensen Huang’s memo to Nvidia Nvidia is investigating Jensen Huang’s relationship with an alleged Chinese spy",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261109/p46#a261109p46",
+      "title": "A report by short seller Culper Research from May is resurfacing because it had flagged Jensen Huang's relationship with Alice Huang as \"uncomfortably close\" (Sarah Perez/TechCrunch)",
+      "url": "https://www.techmeme.com/261109/p46#a261109p46",
+      "author": null,
+      "publishedAt": "2026-11-09T23:35:01.000Z",
+      "content": "Sarah Perez / TechCrunch: A report by short seller Culper Research from May is resurfacing because it had flagged Jensen Huang's relationship with Alice Huang as “uncomfortably close” — Six months before the Nvidia spy scandal emerged, the New York-based short seller firm Culper Research …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1030446",
+      "title": "Here’s what Trump said he knew about Jensen Huang",
+      "url": "https://www.theverge.com/tech/1030446/trump-jensen-huang-press-conference",
+      "author": "Jay Peters",
+      "publishedAt": "2026-11-09T23:47:46.000Z",
+      "content": "Jensen Huang and President Trump. | Getty Images President Trump held a White House press briefing earlier today and responded to several questions about his knowledge of Nvidia CEO Jensen Huang's affair with an alleged Chinese spy. Huang said this weekend that he had been \"unfaithful\" to his wife, and the company has opened an investigation into Huang. Recent articles from The New York Times indicated that Trump had been aware of a relationship between Huang and Alice Huang, the suspected spy, before information about it became public. In October, The New York Times reported that Trump had been briefed \"roughly a year ago\" on intelligence that Huang and the alleged spy, Alice Huang, ha … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+      "title": "Introducing Claude Fable 5.2 and Claude Mythos 5.2",
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.365Z",
+      "content": "Introducing Claude Fable 5.2 and Claude Mythos 5.2 anthropic.com19 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://research.meta.ai/blog/muse-ember",
+      "title": "Introducing Our Smallest, Most Efficient Model: Muse Ember",
+      "url": "https://research.meta.ai/blog/muse-ember",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.366Z",
+      "content": "Introducing Our Smallest, Most Efficient Model: Muse Ember research.meta.ai4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://claude.dev/blog/safely-scaling-multi-agent-teams-with-fable-5-2",
+      "title": "Safely scaling multi-agent teams with Claude Fable 5.2",
+      "url": "https://claude.dev/blog/safely-scaling-multi-agent-teams-with-fable-5-2",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.382Z",
+      "content": "Safely scaling multi-agent teams with Claude Fable 5.2 claude.dev10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://epoch.ai/publications/inference-performance-index",
+      "title": "Inference Performance Index: changing the way we measure inference capacity",
+      "url": "https://epoch.ai/publications/inference-performance-index",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.383Z",
+      "content": "Inference Performance Index: changing the way we measure inference capacity epoch.ai8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/09/a-short-seller-flagged-nvidia-ceos-ties-to-a-suspected-chinese-spy-six-months-before-the-scandal",
+      "title": "A short seller flagged Nvidia CEO’s ties to a suspected Chinese spy six months before the scandal",
+      "url": "https://techcrunch.com/2026/11/09/a-short-seller-flagged-nvidia-ceos-ties-to-a-suspected-chinese-spy-six-months-before-the-scandal",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.384Z",
+      "content": "A short seller flagged Nvidia CEO’s ties to a suspected Chinese spy six months before the scandal techcrunch.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://research.nvidia.com/labs/gear/gr00t-2",
+      "title": "GR00T 2: Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation",
+      "url": "https://research.nvidia.com/labs/gear/gr00t-2",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.385Z",
+      "content": "GR00T 2: Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation research.nvidia.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.oneusefulthing.org/p/fable-52-and-jagged-agi",
+      "title": "Fable 5.2 and Jagged AGI",
+      "url": "https://www.oneusefulthing.org/p/fable-52-and-jagged-agi",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.386Z",
+      "content": "Fable 5.2 and Jagged AGI oneusefulthing.org14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/ornnexchange/status/2119839768355778637",
+      "title": "Will Anthropic Grow Into Its Compute Bill?",
+      "url": "https://x.com/ornnexchange/status/2119839768355778637",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.387Z",
+      "content": "Will Anthropic Grow Into Its Compute Bill? x.com10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/09/jensen-huangs-affair-with-alleged-chinese-spy-puts-nvidias-china-ambitions-under-scrutiny",
+      "title": "Jensen Huang’s affair with alleged Chinese spy puts Nvidia’s China ambitions under scrutiny",
+      "url": "https://techcrunch.com/2026/11/09/jensen-huangs-affair-with-alleged-chinese-spy-puts-nvidias-china-ambitions-under-scrutiny",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.388Z",
+      "content": "Jensen Huang’s affair with alleged Chinese spy puts Nvidia’s China ambitions under scrutiny techcrunch.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/09/the-race-is-on-to-sue-nvidia",
+      "title": "The race is on to sue Nvidia",
+      "url": "https://techcrunch.com/2026/11/09/the-race-is-on-to-sue-nvidia",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.388Z",
+      "content": "The race is on to sue Nvidia techcrunch.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.anthropic.com/research/claude-electronics-design",
+      "title": "Testing Claude on real-world electronics design",
+      "url": "https://www.anthropic.com/research/claude-electronics-design",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.389Z",
+      "content": "Testing Claude on real-world electronics design anthropic.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.technologyreview.com/2026/11/09/1148194/the-backlash-about-data-centers-might-really-just-be-about-electricity",
+      "title": "The backlash about data centers might really just be about electricity",
+      "url": "https://www.technologyreview.com/2026/11/09/1148194/the-backlash-about-data-centers-might-really-just-be-about-electricity",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.391Z",
+      "content": "The backlash about data centers might really just be about electricity technologyreview.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://newsletter.posthog.com/p/decision-models",
+      "title": "How we use decision models",
+      "url": "https://newsletter.posthog.com/p/decision-models",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.392Z",
+      "content": "How we use decision models newsletter.posthog.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.axios.com/2026/11/09/nvidia-investors-rush-to-keep-jensen-huang-despite-private-disappointment",
+      "title": "Nvidia investors rush to keep Jensen Huang despite private disappointment",
+      "url": "https://www.axios.com/2026/11/09/nvidia-investors-rush-to-keep-jensen-huang-despite-private-disappointment",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.395Z",
+      "content": "Nvidia investors rush to keep Jensen Huang despite private disappointment axios.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.semafor.com/article/11/09/2026/with-a-weak-board-and-no-successor-nvidia-confronts-a-governance-crisis",
+      "title": "With a weak board and no successor, Nvidia confronts a governance crisis",
+      "url": "https://www.semafor.com/article/11/09/2026/with-a-weak-board-and-no-successor-nvidia-confronts-a-governance-crisis",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.397Z",
+      "content": "With a weak board and no successor, Nvidia confronts a governance crisis semafor.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://github.com/thisisme6598/gemini_files",
+      "title": "thisisme6598/gemini_files: Documentation of Gemini File Leaking Behavior",
+      "url": "https://github.com/thisisme6598/gemini_files",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.398Z",
+      "content": "thisisme6598/gemini_files: Documentation of Gemini File Leaking Behavior github.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://forge-blog.github.io/posts/rust-std-memory-safety",
+      "title": "Memory Safety Bugs in Rust Standard Library · FORGE Lab",
+      "url": "https://forge-blog.github.io/posts/rust-std-memory-safety",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.399Z",
+      "content": "Memory Safety Bugs in Rust Standard Library · FORGE Lab forge-blog.github.io19 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/dr_cintas/status/2119873989199778299",
+      "title": "Lightricks releases LTX-2.5 open world model for video generation",
+      "url": "https://x.com/dr_cintas/status/2119873989199778299",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.400Z",
+      "content": "Lightricks releases LTX-2.5 open world model for video generation x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://mitln.github.io/moe-inference-engine",
+      "title": "I ran 120B MoE models on my M1 Max",
+      "url": "https://mitln.github.io/moe-inference-engine",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.401Z",
+      "content": "I ran 120B MoE models on my M1 Max mitln.github.io5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://aaif.io/blog/when-good-agents-make-bad-systems",
+      "title": "When Good Agents Make Bad Systems: Multi-Agent Failures - Agentic AI Foundation (AAIF)",
+      "url": "https://aaif.io/blog/when-good-agents-make-bad-systems",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.402Z",
+      "content": "When Good Agents Make Bad Systems: Multi-Agent Failures - Agentic AI Foundation (AAIF) aaif.io9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://claude.dev/blog/which-claude-model-should-you-build-with",
+      "title": "Which Claude model should you build with? Fable, Opus, Sonnet, or Haiku",
+      "url": "https://claude.dev/blog/which-claude-model-should-you-build-with",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.406Z",
+      "content": "Which Claude model should you build with? Fable, Opus, Sonnet, or Haiku claude.dev12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://news.berkeley.edu/2026/11/09/recent-advances-in-ai-are-creating-a-paradigm-shift-for-robotics",
+      "title": "Recent advances in AI are creating a 'paradigm shift' for robotics - Berkeley News",
+      "url": "https://news.berkeley.edu/2026/11/09/recent-advances-in-ai-are-creating-a-paradigm-shift-for-robotics",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.407Z",
+      "content": "Recent advances in AI are creating a 'paradigm shift' for robotics - Berkeley News news.berkeley.edu5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.ariwilson.com/writing/bakeoff-harness",
+      "title": "Bakeoff: Same fixes, 1.8x the bill, depending on the harness",
+      "url": "https://www.ariwilson.com/writing/bakeoff-harness",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.409Z",
+      "content": "Bakeoff: Same fixes, 1.8x the bill, depending on the harness ariwilson.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://joshua.hu/npm-pack-ignore-scripts-npm-extension-arborist",
+      "title": "npm pack –ignore-scripts, .npm-extension",
+      "url": "https://joshua.hu/npm-pack-ignore-scripts-npm-extension-arborist",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.412Z",
+      "content": "npm pack –ignore-scripts, .npm-extension joshua.hu7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://fervoenergy.com/fervo-energy-reports-third-quarter-2026-results",
+      "title": "Fervo Energy Reports Third Quarter 2026 Results",
+      "url": "https://fervoenergy.com/fervo-energy-reports-third-quarter-2026-results",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.413Z",
+      "content": "Fervo Energy Reports Third Quarter 2026 Results fervoenergy.com12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.mbi-deepdives.com/ant-vs-meta",
+      "title": "Anthropic vs Meta: Room to Be Wrong",
+      "url": "https://www.mbi-deepdives.com/ant-vs-meta",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.414Z",
+      "content": "Anthropic vs Meta: Room to Be Wrong mbi-deepdives.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://driveteslacanada.ca/news/tesla-crystal-sun-earthworks-fort-bend",
+      "title": "Tesla has started construction at $10.1 billion Project Crystal Sun site",
+      "url": "https://driveteslacanada.ca/news/tesla-crystal-sun-earthworks-fort-bend",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.414Z",
+      "content": "Tesla has started construction at $10.1 billion Project Crystal Sun site driveteslacanada.ca2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wsj.com/opinion/nvidia-gets-a-chinese-honeypot-lesson-25b45560",
+      "title": "Nvidia Gets a Chinese Honeypot Lesson",
+      "url": "https://www.wsj.com/opinion/nvidia-gets-a-chinese-honeypot-lesson-25b45560",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.415Z",
+      "content": "Nvidia Gets a Chinese Honeypot Lesson wsj.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://openai.com/index/control-room",
+      "title": "Control Room: A central system to track and stop model workloads across our research infrastructure",
+      "url": "https://openai.com/index/control-room",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.417Z",
+      "content": "Control Room: A central system to track and stop model workloads across our research infrastructure openai.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theguardian.com/technology/2026/nov/09/who-is-alice-huang-the-woman-linked-to-nvidias-ceo",
+      "title": "Who is Alice Huang, the woman linked to Nvidia’s CEO?",
+      "url": "https://www.theguardian.com/technology/2026/nov/09/who-is-alice-huang-the-woman-linked-to-nvidias-ceo",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.417Z",
+      "content": "Who is Alice Huang, the woman linked to Nvidia’s CEO? theguardian.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://americanbuildout.com/stargate-milam-county",
+      "title": "Stargate Milam County",
+      "url": "https://americanbuildout.com/stargate-milam-county",
+      "author": null,
+      "publishedAt": "2026-11-09T23:51:35.418Z",
+      "content": "Stargate Milam County americanbuildout.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    }
+  ]
+}
