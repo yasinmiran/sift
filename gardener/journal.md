@@ -6,6 +6,48 @@ merges and closures and never expire.
 
 ## Lessons
 
+- An instrument that failed once is written down as a property of the place, and
+  the note reads the same whether the instrument was wrong or the day was.
+  11-02 reached for a coverage probe, hit `npm install` dying on `edgesOut`
+  inside arborist, and banked "no new npm instrument can be installed today".
+  That sentence is true and its shelf life was one day: `npm i --no-save
+  @vitest/coverage-v8@4.1.9` worked this morning on the first try, and the
+  reading it produced named today's whole finding in one command. 10-04's wall
+  lesson is about permissions and 10-11's is about the other route to the same
+  call; this is the third face, **an instrument that could not be installed**,
+  and it decays the same way. The habit: a run that wanted a measurement and
+  could not take it leaves behind an instrument to re-probe, not a fact, and
+  the cheapest thing a later run can do with "X is not available here" is try X.
+  Its other half is about what coverage is actually for in a repo this swept.
+  Nine surfaces were measured first and every one came back clean (hook against
+  title 0 of 63, rewrite against carousel slots 32 of 32, markdown leakage 0 of
+  32, reference integrity clean), which is the shape of a quiet run. Coverage is
+  the instrument that answers a different question, **which code has no run ever
+  executed**, rather than which output has no defect, and it found the one
+  module in the publish path with no test seam while every output sweep was
+  always going to say "fine". When the outputs all read clean, stop sweeping
+  outputs: 10-22 asked which media an artifact is read in, 10-27 which checkers
+  exist for a surface; this asks which instrument has never run here at all.
+
+- A fixture built to look like the real thing is not built to prove anything,
+  and the realism is what makes it inert. Today's "skips anything that is not a
+  day" test planted a bare `slides/scratch/` directory next to the real days,
+  which is exactly what a stray directory in that tree looks like, and the test
+  **passed on its own mutation**: with the day-name filter deleted, `scratch`
+  was enumerated as a day, found no `am` or `pm` inside it, and contributed
+  nothing to `rendered`, so the assertion held either way. Giving it cards made
+  the filter the only thing that could keep it out, and the mutation then fired.
+  09-22 banked "build the case so nothing else in it can produce the same
+  output"; this is its fourth outing and the first where the flaw came from
+  copying reality rather than from carelessness. Worth keeping beside it is what
+  caught it, because reading the test did not: four mutations run one at a time
+  against the finished suite, each reverted after. Two of the four were
+  **invalid** rather than informative (one left `try` without its `finally` and
+  the file stopped loading, so six tests vanished instead of one failing), and
+  the tell is in the count: a mutation that drops the test total is a syntax
+  error, not a finding, and only a mutation that leaves the total alone and
+  moves one line to a failure has said anything.
+
 - A note in the backlog is a hypothesis with a date on it, not a measurement
   you can spend. Today's change came off 11-07's backlog, where it had been
   measured and written down as "a slot rewritten with fewer cards keeps the
@@ -782,6 +824,79 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-11-09 as #343 / PR #344, `09a60c4`, `checks` green on the branch
+  head and `pages` 42593558229 green on build and deploy, its `slides` step
+  (the one this touches) running the real renderer under the new seam for 79 s.
+  `renderSlides(root, requested?, launch?)` is exported and takes an injected
+  browser launcher, so the module that decides which files get photographed is
+  reachable by a test for the first time: **0% on all four metrics -> 93.54 /
+  93.33 / 85.71 / 93.33**, the two uncovered lines being the lazy launcher and
+  the cli guard. 275 tests (was 269), 48 insertions / 17 deletions in
+  `render.ts` and 118 of test, **183 total**, over the 150 guideline and named
+  in the PR. The month's 63 posts rendered under both versions with the same
+  browser: **1,038 files, 456 pngs, 0 differing**, cli json identical. Copilot
+  declined on quota for the **fourth** run running.
+- Measured 2026-11-09 and NOT filed, because the consequence cannot be measured
+  from here and the one reading that bears on it points the other way. **The hn
+  adapter's backfill request sends no `hitsPerPage`.** `search?tags=front_page`
+  asks for `hitsPerPage=${opts.maxItems}` (60); the `search_by_date` call one
+  block down asks for nothing, so algolia serves its default **20**, and
+  `search_by_date` is newest-first, so those 20 are the most recent 100+ point
+  stories, which is largely what the front page already returned. The live run
+  in today's ingest log keeps **25** against a `maxItems` of 60, and of 1,099
+  stored hn items across the archive only **39** were older than 24h at their
+  day's morning run. `hn.algolia.com` is **403 at CONNECT** here, so `nbHits`
+  against `hits.length` cannot be read and the size of the miss is unmeasured.
+  Against it: #120 says the research feeds are a third of ingest volume and 4%
+  of citations, so more volume is not obviously what sift wants. One line of
+  change, no evidence it helps; re-open only with a reading of what the backfill
+  would actually add.
+- Noticed 2026-11-09 and NOT filed, because the branch is unreachable.
+  **`fit` in `src/slides/cards.ts` tests the visible text and then cuts the raw
+  string.** Its own comment one line up states the invariant ("marks render with
+  no width, so a string fits when its visible text does"), and
+  `stripMarks(s).length <= max ? s : dropUnpairedMarks(truncate(s, max))` hands
+  `truncate` the string with its `==` markers still in it, so a marked title
+  over the cap would lose four visible characters per mark for nothing. It
+  cannot fire: `verify.ts` errors on `visible(slide.title).length > 120` with
+  `visible` and `stripMarks` stripping the same three sequences, so the
+  truncating branch is dead whenever the verifier has passed. Dead code with a
+  comment that disagrees with it, not a defect; do not spend a slot.
+- Walked clean on 2026-11-09, recorded so a future run does not re-walk them.
+  **The hook-against-title gate, counted over the archive's 63 posts.**
+  `verify.ts` compares `slide.title` raw against `hook`, where every other
+  length check on a slide goes through `visible()` first, so a marked title
+  equal to the hook would slip past. Measured: **0 exact matches, 0 after
+  stripping marks, 0 after stripping trailing punctuation too**. Wallpaper by
+  the 09-30/10-03 test; leave the comparison as it is.
+  **The carousel slots against the digests' own rewrite history, all 32 days.**
+  `dropsOf` derives `published` and `modified` from which slots the day's script
+  holds, and the page head's `article:modified_time`, the json-ld
+  `dateModified`, the sitemap `lastmod` and the feed's `atom:updated` all ride
+  on it. Every one of the 31 past days is a two-commit digest with an `am+pm`
+  script, and today is one commit with `am` alone: **32 of 32 aligned**, so the
+  derivation has never once been wrong. 10-12 measured this when it shipped
+  `atom:updated`; it still holds.
+  **The rendered prose of all 32 day pages, swept for markdown that did not
+  render**: literal `**`, `](`, `==`, `((`, double-escaped entities, backslash
+  escapes, empty paragraphs: **0 of 32 on every pattern**.
+  **Internal reference integrity across all 34 built pages**: every relative
+  `href` and `src` resolves to a file in the tree. The only two that do not are
+  the sweep's own false positives, the protocol-relative `//gc.zgo.at/count.js`
+  and the `' + day + '.html` inside the index's script string.
+  **`npm run cleanup`'s four dated folders**: `digests`, `data/items` and
+  `data/slides` all at 32, `data/picks` empty, and today's ingest log shows the
+  three pruning `2026-10-08` together. `data/picks` has now gone a third full
+  rolling month unexercised.
+  **The verifier across the archive**: 1 error, 2026-10-12's known empty
+  `## Elsewhere` whose gate postdates it (prunes out 11-12), and **four** 60+
+  link warnings (10-15 at 73, 10-18 at 68, 10-21 at 64, 10-29 at 64). 11-06's
+  fifth, 10-06 at 65, has rolled off. Nothing else and nothing new.
+  **The `liveFetch` bodies read as 0% and are not gaps**: `fetch.ts` 41-46,
+  `web.ts` 21-27 and `hn.ts` 28-33 are the injected network seam the tests
+  replace by design, and `pick.ts` at 0% is a hand-run cli whose logic lives in
+  `picks.ts` (93%). Do not re-file any of the four off a coverage table.
 
 - MERGED 2026-11-08 as #340 / PR #341, `df94f22`, `checks` green on `169a072`.
   `npm run slides` clears `slides/{day}/` before building it, so the day's
@@ -2429,6 +2544,102 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-09
+
+**#343 filed, PR #344 built, `checks` green, merged by this run as `09a60c4`,
+and `pages` 42593558229 green on build and deploy.**
+`renderSlides(root, requested?, launch?)` is exported from
+`src/slides/render.ts` and takes its browser through an injected launcher, so
+the module that decides which files get photographed and published can be
+driven by a test for the first time.
+
+**The signal came from an instrument this repo has never successfully run.**
+Nine surfaces were swept first and all nine came back clean (see the backlog),
+which is the shape of a day with nothing in it. `npm i --no-save
+@vitest/coverage-v8@4.1.9` then worked where 11-02's attempt had died on the
+broken `npm install`, and the first coverage reading over the 269 tests on main
+named the finding in one command:
+
+```
+All files              |   91.72 |    86.62 |   95.54 |   92.25
+ src/slides/render.ts  |       0 |        0 |       0 |       0 | 9-49
+ src/pipeline/pick.ts  |       0 |        0 |     100 |       0 | 7-28
+```
+
+Everything else uncovered is a deliberate seam rather than a gap: the three
+live fetchers' `liveFetch` bodies, `invokedDirectly` guard lines, small
+branches. `render.ts` was the exception, a top-level script with no exported
+function and no injectable browser, so **no test could reach a line of it**,
+and it is the only module in the publish path in that state.
+
+**Why a 0% module earns a slot and a 0-true-positive gate does not.**
+`pages.yml` runs the whole slides step under `continue-on-error: true`, by
+design, so a break inside `render.ts` leaves `pages` **green** and the carousel
+silently unposted with nobody told. The two lines that keep `sheet.html` and
+`meta.json` out of the published png set are a glob and a slot filter inside
+that module. It is a regression net on code nothing would report on, not a gate
+on data that has always been well formed, which is why the 09-30/10-03
+wallpaper test does not reach it; the PR says so in its own section rather than
+leaving it to be noticed.
+
+**Nothing published moves, measured rather than argued.** The month's 32 days
+and 63 posts were built, cloned into two roots, and rendered by main's
+`render.ts` and by this one with the same browser: **1,038 files, 456 pngs, 0
+differing**, and the cli prints the same `{"rendered":{...}}`. Today's `am`
+post alone came to 16 files, 0 differing, before the full run. The shape of the
+change is the one the repo already uses twice over: 11-08 took `buildSlides`
+out of its cli guard for the same reason, `src/site/build.ts` has exposed
+`buildSite` all along, and the adapters take injected fetchers. The default
+launcher imports playwright **lazily**, because `checks.yml` and `ingest.yml`
+run `npm test` without `playwright install` and a static import would pull the
+browser package into every test run touching the module.
+
+**The gate asserts the mechanism, checked by mutation and not by reading.**
+Four mutations, one at a time, each reverted: the card glob widened to any
+`.html`, the `am|pm` slot filter dropped, the day-name filter dropped, and
+`browser.close()` taken out of the `finally`. Each fails the test that claims
+it. The day-filter case needed a second cut and is today's second lesson. Two
+earlier mutation attempts were invalid rather than informative, and the test
+total is what says so. One case was cut for not earning its place: card order
+is cosmetic, since each card writes its own png, so a lexicographic sort
+changes nothing published. 275 tests (was 269), `render.ts` 0% -> **93.54 /
+93.33 / 85.71 / 93.33**, 183 lines total, over the 150 guideline and named in
+the PR.
+
+**Health**: the last 30 workflow runs are 27 green and 3 red, and the three red
+are still 11-07's Pages stall, so nothing new. `verify` across the 32-day
+archive at 2026-10-12's known error plus **four** 60+ link warnings; 11-06's
+fifth (10-06 at 65) has rolled off the month. `npm test` 269 on arrival and 275
+on departure, typecheck and `npm run site` clean at 33 pages. No open PRs at
+the start of the run; six issues open (#332, #314, #246, #241, #120, #112),
+none greenlit and none commented on since 10-20, so the slot was free.
+`data/picks` is still empty, a third full month. Entries run back to 08-29,
+inside the ~90 day window, so nothing pruned; the first falls out on 11-27.
+
+**Measured and withheld**: two items, both in the backlog. The hn backfill's
+missing `hitsPerPage`, which is real and whose consequence this container
+cannot read (`hn.algolia.com` is 403 at CONNECT) and which #120 argues against
+anyway; and `fit`'s raw-string cut in `cards.ts`, which is dead code because
+`verify.ts` gates the identical measure first.
+
+**The environment, as it behaved today.** The clone arrives **shallow at 50
+commits** (1,036 after `--unshallow`) and **detached**, the same pair as
+yesterday, so `git status -sb` printing `## HEAD (no branch)` earned its place
+in the first three commands again. `npm ci` works and so does `npm i
+--no-save`, which is new since 11-02 and is the whole of today's run. `gh api
+-X GET` works; `gh pr list` and `gh issue list` are still 403 on graphql. The
+github MCP created #343 **without** a harness footer and #344 **with** one,
+and `update_pull_request` stripped it, as on 11-08. `merge_pull_request` took
+the rebase on the first attempt. Branch delete is still 403 at the proxy, so
+`gardener/2026-11-09-render-seam` stays on the remote beside four others.
+Playwright's own bundled chromium is **absent** here (the repo pins a version
+the container does not carry), and `/opt/pw-browsers/chromium` with
+`--headless=new --no-sandbox` is what let the before/after render run at all.
+`hn.algolia.com`, `sift.yasint.dev` and `yasin.goatcounter.com` are all 403 at
+CONNECT. The deploy was read the honest way 11-07 prescribes: `deploy-pages`
+took **8 seconds** and the step gated `if: steps.deployment.outcome ==
+'failure'` is **skipped**, so the pass is real.
 
 ### 2026-11-08
 
