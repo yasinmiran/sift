@@ -6,6 +6,48 @@ merges and closures and never expire.
 
 ## Lessons
 
+- An instrument that is broken inside reports its own plumbing in the subject's
+  voice, and the tell is uniformity rather than failure. Two probes came back
+  clean today and neither had looked at the thing it named. The verifier sweep
+  ran `src/pipeline/verify.ts`, which does not exist (it is `src/digest/`),
+  folded stderr into the string it then grepped, and grepped for `"level":
+  "error"`, a field the verifier has never emitted: **32 rows of `errors=0
+  warns=0`**, a flawless month, from a command that never ran. The dead-css
+  probe stripped pseudo-classes with an alternation putting `focus` before
+  `focus-visible`, so `:focus-visible` became the selector `-visible`, which is
+  **valid css** that matches nothing, and the probe listed the site's focus ring
+  among its dead rules. 11-05 banked the journal's own health line as the
+  cheapest instrument check in the repo, and it is what caught the first
+  (yesterday's entry says 10-12's error plus four 60+ link warnings, so a
+  zeroed month is a lie). The second needed no history and is cheaper still:
+  **a sweep over a varied corpus whose every row reads identical is describing
+  itself**, because 32 hand-written digests cannot be clean in the same way and
+  a dead-code list holding the one rule every page uses cannot be right. Read
+  the shape of the output before reading its content, and when a probe says
+  nothing is wrong anywhere, go and break something on purpose to see it say so.
+
+- A fix lands on the branch the measurement could reach, and the branch it did
+  not land on keeps the defect to the digit. #335 measured the half-day note's
+  collapse at **0.1220** at 390px and shipped the scroll gate four days ago;
+  the same note, the same element, the same page measures **0.1227** today for
+  the reader who asks for reduced motion, because `refreshNote()` collapses the
+  note in two branches and the gate went into one of them. The test file even
+  states the invariant ("the note never leaves the flow while any of it is on
+  screen") and gates the helper against it, one screen above the branch that
+  bypasses it. 11-01 banked "name what else can reveal it" for a defect hidden
+  behind a sibling code path; this is its other face, pointed at a fix instead
+  of a bug: **after shipping one, re-run its own instrument with the reader's
+  preferences flipped, not only the page's states driven.** A preference is not
+  a state any sweep enumerates, and `prefers-reduced-motion`,
+  `prefers-color-scheme`, a denied permission and a declined notification each
+  hand the same code a different path for one line of emulation. Its practical
+  half is about the race under it, and it is why the fix is worth more than its
+  numbers: the hide waits on `serviceWorker.ready` and then `getSubscription()`,
+  so it lands before first paint on a warm worker (invisible) and after it on a
+  cold one (0.1227), which is a defect that **reports as absent on exactly the
+  reading a run is most likely to take**, the second load of a page it just
+  opened. Measure the race, then remove it rather than win it.
+
 - An instrument that failed once is written down as a property of the place, and
   the note reads the same whether the instrument was wrong or the day was.
   11-02 reached for a coverage probe, hit `npm install` dying on `edgesOut`
@@ -825,6 +867,67 @@ merges and closures and never expire.
 
 ## Backlog
 
+- MERGED 2026-11-10 as #346 / PR #347, `a458989`, `checks` green on `74edcc6`
+  in 23 s and `pages` 42790798236 green on build and deploy, read the honest
+  way: `deploy-pages` 10 s and the step gated on its failure **skipped**.
+  `refreshNote()`'s subscribed-reader branch collapsed the half-day note
+  wherever it stood when `prefers-reduced-motion` was set, which is #335's own
+  defect: `.prose` **0.1212 / 0.1227 / 0.1062 / 0.0659** at 360 / 390 / 430 /
+  860, every entry naming `.prose` as its only source, against **0 / 0 / 0 / 0**
+  for the same reader after and 0 throughout for everyone else. Both ways out
+  now go through `retireWhenPast` via `RETIRE_FOR_SUBSCRIBER`, the third
+  exported snippet in that file. 276 tests (was 275), 96 insertions / 8
+  deletions, four mutations each failing it with the total unchanged. Built tree
+  49 files both sides, the 32 day pages the only ones differing (+68 bytes raw,
+  +21 gzipped, all script); settled no-preference full-page screenshots
+  byte-identical. Copilot declined on quota for the **fifth** run running.
+- Walked clean on 2026-11-10, recorded so a future run does not re-walk them.
+  **Title cleaning across every adapter, over the month's 9,087 items.**
+  `rss.ts` runs titles through `collapse(stripInvisibles(decodeNumericRefs(...)))`
+  and `arxiv.ts` collapses the abstract one line above handing the title
+  through raw, which is the shape of a forgotten invariant. Measured: **0**
+  anomalies in arxiv's 927 items (452 arxiv-ai, 475 arxiv-systems) on edge
+  whitespace, doubled whitespace, newlines, nbsp, numeric refs and invisibles,
+  and across the whole archive 8 untrimmed titles plus one nbsp pair, **all of
+  them dated 10-13 to 10-17**, before `9f7e4dd` landed the collapse on 10-19.
+  The one live-looking case, hacker-news `Ultramarine 1\xa0Flash`, is HN's own
+  title text. Wallpaper by the 09-30/10-03 test; leave both adapters alone.
+  **Dead css across the built site, measured through the cssom rather than by
+  reading.** 83 style rules, 72 distinct selector parts, every one queried
+  against all 34 pages: the only parts matching nothing statically are the six
+  that js adds at runtime (`.notify-btn:disabled`, `.notify-btn.busy`,
+  `.notify-btn .spin`, `.notify-hint`, `.notify-hint:hover`,
+  `.refresh-note.draining::after`, all still written by `notify.ts` /
+  `today.ts`) plus `.prose blockquote` and `.prose ol li::marker`, which are
+  styles for markdown the agent may write any day. **Nothing to prune.**
+  **The Hacker News section's uncounted contract rules, all 32 days.** "Never
+  bullets" holds **32 of 32** (0 bullet lines anywhere), every section carries
+  inline links (6 to 15 each), and the shape is 1 to 3 paragraphs. The word
+  count is the one rule that drifts: contract says "roughly 150-200 words",
+  median is **117** and only 4 days reach 150. NOT gated, and not an issue
+  either: a floor on a prose section buys padding, and under-length is the
+  selectivity the same contract asks for.
+  **The feed, the manifest and the icon references.** `feed.xml` is 32
+  well-formed rss items with `atom:updated` only on the days whose script holds
+  both slots; every `favicons/*` path in the 34 pages, `sw.js` and the manifest
+  resolves to a file in the tree; frontmatter descriptions run 90 to 173 chars,
+  so nothing is near an og or serp cut. `npm audit --omit=dev` is **0**.
+- Measured 2026-11-10 on the way past, NOT filed, and left here with the
+  instrument the next run needs. **The webfont swap still costs a day page most
+  of a shift budget, two months after #321 put fallback metrics in for exactly
+  that.** A past day page (2026-11-09, so no half-day note in play) with the
+  fonts live and no subscription, three readings per width, reproducible to the
+  digit: cls medians **0.0143 / 0.1799 / 0.1366 / 0.1320** at 360 / 390 / 430 /
+  860, every entry landing after 300 ms, `document.fonts.status` loaded. Past
+  the 0.1 good line at three of four widths, on every day page, for every
+  reader. Two cautions, both from this journal. The pre-fix number 11-01 banked
+  (median 0.1398) was taken with a different harness, so this is not a
+  regression claim and the next run re-derives rather than quotes it. And the
+  mover is unnamed on purpose: the single 0.1412 entry at 390px lists five text
+  nodes whose rects do not move (`276->276`), which is 10-30's capped `sources`
+  list again, so a per-element rect diff across `document.fonts.ready` is the
+  instrument, not the entry's own attribution. `fonts.googleapis.com` answers
+  200 from here, so this is measurable in this container.
 - MERGED 2026-11-09 as #343 / PR #344, `09a60c4`, `checks` green on the branch
   head and `pages` 42593558229 green on build and deploy, its `slides` step
   (the one this touches) running the real renderer under the new seam for 79 s.
@@ -2544,6 +2647,121 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-10
+
+**#346 filed, PR #347 built, `checks` green on `74edcc6`, merged by this run as
+`a458989`, and `pages` 42790798236 green on build and deploy.** The half-day
+note now retires on the first scroll that carries it out of view for the
+subscribed reader who asks for reduced motion too, instead of collapsing under
+their eyes.
+
+**The signal is a fix that landed on one of two branches.** #335 (11-06) moved
+the note's collapse behind a scroll gate because taking its box out of the flow
+on screen pulls `.prose` up 169px, measured then at 0.1220 of layout shift at
+390px. `refreshNote()` collapses the note in two places, and the gate went into
+one:
+
+```js
+if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  slot.hidden = true;     // wherever the note happens to be
+  return;
+}
+slot.classList.add("draining");
+setTimeout(() => retireWhenPast(slot, window), 6200);
+```
+
+`test/site.test.ts` states the invariant as "the note never leaves the flow
+while any of it is on screen" and gates `retireWhenPast` against it, one screen
+above the branch that walks past it.
+
+**Measured on the real worker, with the race named rather than averaged.** The
+built site served locally, `getSubscription` stubbed to return a subscription
+(the one thing this container cannot create offline, and resolving it instantly
+biases the race against the finding), the webfont stylesheet aborted so the
+note is the only thing that can move the page, one fresh context per reading:
+
+| subscribed reader | 360 | 390 | 430 | 860 |
+|---|---|---|---|---|
+| reduced-motion, before | 0.1212 | 0.1227 | 0.1062 | 0.0659 |
+| reduced-motion, after | 0 | 0 | 0 | 0 |
+| no preference, before and after | 0 | 0 | 0 | 0 |
+
+Every entry named `.prose` as its only source, and the four numbers are #335's
+own defect to within a digit. Whether it fires is a race with first paint: the
+hide waits on `serviceWorker.ready` and then `getSubscription()`, so a fresh
+registration shifts (hide at 63.7 ms against fcp 48 ms) and the two warm loads
+after it do not, while a `ready` stubbed at 40 ms and 200 ms shifts in both and
+`getSubscription()` is a 28 ms (1x) to 114 ms (4x throttled) disk read rather
+than the instant stub. So the honest claim is not a rate, it is that the fix
+removes the race instead of winning it.
+
+**The shape of the fix, and the one that lost.** `RETIRE_FOR_SUBSCRIBER` is the
+third exported snippet in `today.ts`, which is the pattern `TIME_LEFT` and
+`RETIRE_NOTE` already set and the reason a test can drive the decision rather
+than a copy of it. The alternative, deciding before the reveal so the note
+never appears for a subscriber, is 11-01's measured loser in another costume:
+`getSubscription()` is async, so holding the reveal for it moves the shift onto
+every unsubscribed reader instead. Behaviour kept, measured: scrolled past at
+390px the note still collapses and the vacated 169px comes off the scroll
+offset (1200 -> 1031) at 0 shift; on arrival the reduced-motion reader now
+reads the same geometry as everyone else (note `350x147` at `top 263`, `.prose`
+top 441, where before it was `0x0` and 272); settled no-preference full-page
+screenshots are byte-identical against main's build, and a mid-drain pair is
+not comparable at all, because the bar is in flight.
+
+**The gate was checked by mutation, four of them, each reverted**: the reduced
+branch back to a bare collapse (fails two tests, the snippet's and the emitted
+script's one-collapse count), the `reduced` guard dropped, the drain armed
+without its timer, and the caller back inline. All four fail and the total
+stays 276 in every one, so none was a syntax error. 276 tests (was 275), 96
+insertions / 8 deletions, built tree 49 files with only the 32 day pages
+differing at +68 bytes raw and +21 gzipped.
+
+**Not touched**: `@media (prefers-reduced-motion:reduce){.refresh-note.draining
+::after{animation:none}}`. The class is no longer added under that preference,
+so the rule cannot fire from a fresh load, but the media query is live and the
+reader who flips the setting mid-animation is exactly who it is for. Removing
+it is the tidy that puts motion back in front of them.
+
+**Health**: the last 30 workflow runs are 27 green and 3 red, the three still
+11-07's Pages stall. `verify` across the 32-day archive: 2026-10-12's known
+empty `## Elsewhere` (prunes out 11-12) and **four** 60+ link warnings (10-15 at
+73, 10-18 at 68, 10-21 at 64, 10-29 at 64), unchanged from yesterday. `npm
+audit --omit=dev` 0, typecheck clean, `npm run site` 33 pages, `npm test` 275
+on arrival and 276 on departure. Coverage, the instrument 11-09 opened, reads
+**94.10 / 88.12 / 97.54 / 95.02** with `all`: `pick.ts` at 0% is the hand-run
+cli the backlog already declined and nothing else is a gap. No open PRs at the
+start of the run; six issues open (#332, #314, #246, #241, #120, #112), none
+greenlit, none commented since 10-20, so the slot was free. `data/picks` is
+still empty, a third full month. Entries reach back to 08-29, inside the ~90
+day window, so nothing pruned; the first falls out on 11-27.
+
+**Two instruments lied before either told the truth**, both in the uniform,
+well-formed way that reads as a finding; today's first lesson has them.
+
+**The environment, as it behaved today.** The clone arrived **shallow at 50
+commits and detached**, the third day running, so `git rev-parse
+--is-shallow-repository` plus `git fetch --unshallow && git reset --hard
+origin/main` earned its place in the first three commands again. `npm ci` and
+`npm i --no-save @vitest/coverage-v8@4.1.9` both work. `gh api -X GET` works and
+`gh api` **without** `-X GET` plus `-f` silently POSTs, which is a 404 on a read
+endpoint and cost one wrong reading of the run list. The github MCP created #346
+**without** a harness footer and PR #347 **with** one, and `update_pull_request`
+stripped it on the first try, as on 11-08 and 11-09. `merge_pull_request` took
+the rebase on the first attempt. Branch delete is still 403 at the proxy
+(`Write access to this GitHub API path is not permitted`), so the remote now
+carries **63** gardener branches beside 234 `claude/*` ones from the harness,
+299 refs in all; nothing a run here can do about either. Playwright's bundled
+chromium is still absent and `/opt/pw-browsers/chromium` with `--headless=new
+--no-sandbox` is what let every measurement above run. `sift.yasint.dev`,
+`yasin.goatcounter.com` and `hn.algolia.com` are 403 at CONNECT, so the deploy
+was confirmed from the workflow rather than from the live page.
+`fonts.googleapis.com` answers **200**, as 11-01 recorded, so the webfonts load
+here and the font abort in today's instrument was there to isolate the note,
+not to work around a wall: with the fonts live the swap's own shift buries the
+169px under readings of 0.0832 to 0.3022, and aborting it put the note's
+contribution on its own at exactly 0.
 
 ### 2026-11-09
 
