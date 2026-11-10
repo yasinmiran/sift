@@ -60,6 +60,22 @@ export const RETIRE_NOTE = `
     w.addEventListener("scroll", onScroll, { passive: true });
   };`;
 
+// A subscribed reader is told about the evening update twice, so the note has
+// done its job and retires. The drain bar is the only part of that a
+// reduced-motion reader skips: the collapse itself still waits for the note to
+// leave the viewport, because taking its box out of the flow on screen moves
+// `.prose` up 169px and scores 0.1227 of layout shift at 390px (0.1212 /
+// 0.1062 / 0.0659 at 360 / 430 / 860), which is the shift the scroll gate
+// above exists to prevent. Routing both ways through retireWhenPast is also
+// what keeps that gate's invariant true of the whole file rather than of one
+// branch. Its own snippet so the test drives this decision rather than a copy.
+export const RETIRE_FOR_SUBSCRIBER = `
+  const retireForSubscriber = (slot, w, reduced) => {
+    if (reduced) return retireWhenPast(slot, w);
+    slot.classList.add("draining");
+    w.setTimeout(() => retireWhenPast(slot, w), 6200);
+  };`;
+
 // Visitors clicking "read today's digest" land on the index with ?today=1.
 // The site is static, so today's page may not exist yet; decide client-side:
 // jump to it when it is in the list, otherwise say when the next one lands.
@@ -92,7 +108,7 @@ export function todayScript(): string {
 export function refreshNote(): string {
   return `<p id="refresh-note" class="today-note refresh-note" hidden></p>
 <script>
-(() => {${DROP_TIMES}${TIME_LEFT}${RETIRE_NOTE}
+(() => {${DROP_TIMES}${TIME_LEFT}${RETIRE_NOTE}${RETIRE_FOR_SUBSCRIBER}
   const m = /(\\d{4}-\\d{2}-\\d{2})\\.html$/.exec(location.pathname);
   if (!m) return;
   const day = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
@@ -111,12 +127,7 @@ export function refreshNote(): string {
       .then((reg) => reg.pushManager.getSubscription())
       .then((sub) => {
         if (!sub) return;
-        if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          slot.hidden = true;
-          return;
-        }
-        slot.classList.add("draining");
-        setTimeout(() => retireWhenPast(slot, window), 6200);
+        retireForSubscriber(slot, window, matchMedia("(prefers-reduced-motion: reduce)").matches);
       })
       .catch(() => {});
   }
