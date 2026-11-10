@@ -5,7 +5,7 @@ import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSyn
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { buildSite } from "../src/site/build";
-import { DROP_TIMES, RETIRE_NOTE, TIME_LEFT } from "../src/site/today";
+import { DROP_TIMES, RETIRE_FOR_SUBSCRIBER, RETIRE_NOTE, TIME_LEFT } from "../src/site/today";
 
 let root: string;
 let out: string;
@@ -268,6 +268,72 @@ describe("buildSite", () => {
     expect(onScreen.w.handlers).toHaveLength(0);
     onScreen.w.frames[0]!();
     expect(onScreen.w.scrolledTo).toBe(409 - (147 + 22.4));
+  });
+
+  // Both ways out of the note go through the gate above. A reduced-motion
+  // reader skips the drain bar and nothing else: collapsing the note while it
+  // is on screen is the 0.1227 shift (390px) #335 removed, and handing it to
+  // the reader who asked for less movement is the one branch that still did.
+  it("retires the subscribed reader's note on scroll in both motion modes", () => {
+    const retireForSubscriber = new Function(
+      `${RETIRE_NOTE}${RETIRE_FOR_SUBSCRIBER}\nreturn retireForSubscriber;`,
+    )() as (slot: unknown, w: unknown, reduced: boolean) => void;
+
+    // On screen, which is where a reader who has just opened the page is.
+    const fakes = () => {
+      const slot = {
+        hidden: false,
+        offsetHeight: 147,
+        bottom: 409,
+        classes: [] as string[],
+        classList: { add: (c: string) => slot.classes.push(c) },
+        getBoundingClientRect: () => ({ bottom: slot.bottom }),
+      };
+      const w = {
+        scrollY: 0,
+        frames: [] as (() => void)[],
+        handlers: [] as (() => void)[],
+        timers: [] as { fn: () => void; ms: number }[],
+        getComputedStyle: () => ({ marginTop: "22.4px" }),
+        requestAnimationFrame: (fn: () => void) => w.frames.push(fn),
+        scrollTo: () => {},
+        setTimeout: (fn: () => void, ms: number) => w.timers.push({ fn, ms }),
+        addEventListener: (_type: string, fn: () => void) => w.handlers.push(fn),
+        removeEventListener: (_type: string, fn: () => void) => {
+          w.handlers = w.handlers.filter((h) => h !== fn);
+        },
+      };
+      return { slot, w };
+    };
+
+    // Reduced motion: no drain class, no timer, and the note stays in the
+    // flow with a scroll listener holding it there.
+    const quiet = fakes();
+    retireForSubscriber(quiet.slot, quiet.w, true);
+    expect(quiet.slot.classes).toEqual([]);
+    expect(quiet.w.timers).toHaveLength(0);
+    expect(quiet.slot.hidden).toBe(false);
+    expect(quiet.w.handlers).toHaveLength(1);
+    quiet.slot.bottom = -0.5;
+    quiet.w.scrollY = 409;
+    quiet.w.handlers[0]!();
+    expect(quiet.slot.hidden).toBe(true);
+
+    // No preference: the drain bar runs first and the note is still in the
+    // flow until the timer arms the same gate.
+    const animated = fakes();
+    retireForSubscriber(animated.slot, animated.w, false);
+    expect(animated.slot.classes).toEqual(["draining"]);
+    expect(animated.w.timers.map((t) => t.ms)).toEqual([6200]);
+    expect(animated.w.handlers).toHaveLength(0);
+    expect(animated.slot.hidden).toBe(false);
+    animated.w.timers[0]!.fn();
+    expect(animated.w.handlers).toHaveLength(1);
+    expect(animated.slot.hidden).toBe(false);
+    animated.slot.bottom = -0.5;
+    animated.w.scrollY = 409;
+    animated.w.handlers[0]!();
+    expect(animated.slot.hidden).toBe(true);
   });
 
   it("carries the byline backlink and a github link in a shared footer", () => {
@@ -710,6 +776,17 @@ describe("buildSite", () => {
     expect(day).toContain("in case you have them on");
     expect(day).toContain("your time");
     expect(day).toContain("left * 60000");
+    // The subscribed reader's retirement is wired to the gated helper, and
+    // nothing in this script collapses the note on its own.
+    const note = [...day.matchAll(/<script>([^]*?)<\/script>/g)]
+      .map((m) => m[1]!)
+      .find((src) => src.includes("refresh-note"));
+    expect(note, "the refresh-note script is not in the built day page").toBeDefined();
+    expect(note).toContain("retireForSubscriber(slot, window, matchMedia(");
+    // One collapse in the whole script, the gated one inside retireWhenPast:
+    // the branch this replaced carried a second.
+    expect(note!.match(/slot\.hidden = true/g)).toHaveLength(1);
+    expect(note!.slice(note!.indexOf("slot.hidden = true"))).toContain("requestAnimationFrame");
   });
 
   it("walks a day page to its neighbours in both directions", () => {
