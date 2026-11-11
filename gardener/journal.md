@@ -6,6 +6,42 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A probe built beside the artifact is not the artifact, and when the two
+  disagree the artifact wins without a hearing. Today's width probe, an
+  offscreen span with `font-family` swapped per measurement, reported the
+  `"Karla fallback"` face **12.6% wider** than Karla. Believed, that is the
+  day's whole story (the fallback metrics are wrong by an order of magnitude,
+  #321 never worked) and a PR goes out against a number. The page it was
+  measuring refuted it in one command: with the font css blocked the day page
+  is **7791px** tall and live **7763**, 0.36%, where a body font 12% wider
+  would have added hundreds of pixels; the same stack driven in both paints
+  over the page's own 28 prose blocks reads **0.9993 median**; and CDP's
+  `CSS.getPlatformFontsForNode`, the one instrument here that names what
+  actually painted rather than what was asked for, says `.prose p` is Karla
+  live and Liberation Sans blocked, exactly as the stack intends. The probe's
+  own tell was sitting in its output too: `Karla` alone measured 440.8 and
+  `Karla, "Karla fallback"` measured 496.53, **identical to the fallback
+  alone**, so an offscreen span resolved a two-family stack to a family the
+  page's own paragraph does not resolve it to. Why is unchased and does not
+  matter. Same family as 11-10's "a sweep whose every row reads identical is
+  describing itself", with the shape inverted: that one agreed with itself,
+  this one disagreed with everything around it, and both are read off the
+  output's shape before its content. **When a probe and the thing it measures
+  disagree, re-measure the thing**, and prefer the instrument that reports what
+  the browser did over the one that reports what you asked for.
+  Its other half is what a pixel diff is actually saying. Swapping a native
+  state for an aria one silently drops every rule keyed to the native state,
+  and the first cut here duly repainted: `.notify-btn:disabled` stopped
+  matching, so the busy label came up `--body` where it had been `--muted`, a
+  thing no test in the repo would have caught and the screenshot named at once.
+  But the diff that survived the fix was **not** a repaint: 137 of 10452 pixels,
+  all accent at the outline band, the focus ring that exists again because the
+  fix keeps focus. Re-entered with the mouse so `:focus-visible` is out of play,
+  the same state reads 37 pixels at one channel step. So a visual diff on a fix
+  for an interaction is read twice: once for what the change painted, and once
+  **re-driven by an input that does not carry the fix's own side effect**,
+  because the first reading cannot tell a regression from the thing you shipped.
+
 - An instrument that is broken inside reports its own plumbing in the subject's
   voice, and the tell is uniformity rather than failure. Two probes came back
   clean today and neither had looked at the thing it named. The verifier sweep
@@ -866,6 +902,37 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-11-11 as #350 / PR #351, `be1c5ff`, `checks` green on `afe5c9f`
+  and `pages` 42994976884 green on build and deploy, its gated retry skipped.
+  The bell's busy window moved from the `disabled` property to
+  `aria-disabled` + `aria-busy` + a closure flag, so chromium stops yanking
+  focus off the button the reader pressed: `activeElement` **BUTTON -> BODY at
+  +150ms and BODY at +2000ms** before, BUTTON throughout after, in both
+  permission outcomes, and the a11y tree **`disabled=true` with no focusable
+  and no focused** before against **`disabled=true focusable=true focused=true
+  busy=1`** after. Both pressed states took the matching `:not([aria-disabled
+  ="true"])` guard. 277 tests (was 276), 150 insertions / 9 deletions, six
+  mutations each failing it with the total unchanged. Idle, hover and focus
+  shots byte-identical; busy differs only by the restored focus ring (37 px at
+  one channel step once the mouse enters it instead of the keyboard). Copilot
+  declined on quota for the **sixth** run running.
+- FILED 2026-11-11 as #352, not shipped, because every remedy is a loading
+  decision a reader sees. **The webfont swap costs a day page most of a shift
+  budget**: cls **0.1112 / 0.1283 / 0.2198 / 0.0295** at 360 / 390 / 430 / 860
+  on `2026-11-10.html`, fonts live, three readings per width, one entry at
+  ~600ms. 11-10's backlog note asked for a per-element rect diff and it named
+  the mover: 157 elements diffed blocked against live at 430px, document height
+  7791 -> 7763 (**0.36%**), 90 elements moving, **every height change exactly
+  +-27.5px**, one line at the prose's 1.72, all of it `ul` / `li` / `p`. **No
+  heading changes height**, so the un-adjusted Fraunces fallback is not the
+  mover and adding one is the wrong fix. #321's face holds (same stack in both
+  paints, **0.9993 median** over 28 prose blocks, 0.9846 to 1.0100), so the
+  residue is per-line spread flipping wraps, which `size-adjust` cannot reach.
+  Three ways out, all reader-visible: block on the font css (needs lcp both
+  ways), `display=optional` (zero cls, first-time readers get Arial and
+  Georgia), preload the woff2 (wins the race rather than removing it, which
+  11-10's lesson argues against). Greenlight picks one.
 
 - MERGED 2026-11-10 as #346 / PR #347, `a458989`, `checks` green on `74edcc6`
   in 23 s and `pages` 42790798236 green on build and deploy, read the honest
@@ -2647,6 +2714,104 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-11
+
+**#350 filed, PR #351 built, `checks` green on `afe5c9f`, merged by this run as
+`be1c5ff`, and `pages` 42994976884 green on build and deploy, read the honest
+way: `deploy-pages` passed and the step gated on its failure skipped.** The
+bell keeps the focus the reader put on it, so the press that turns
+notifications on is answered on the element they are still standing on.
+
+**The signal is a native state doing a second job badly.** `notify.ts` held the
+bell's busy window in the `disabled` property, and chromium drops focus from an
+element that becomes disabled. Measured on the built index at 430px, the bell
+focused and driven with `Enter`, `/subscribe` stubbed, both permission
+outcomes:
+
+| | before | after |
+|---|---|---|
+| idle | `BUTTON.notify-btn` | `BUTTON.notify-btn` |
+| +0ms | `BUTTON` (disabled, .busy) | `BUTTON` (aria-disabled, .busy) |
+| +150ms | **`BODY`** | `BUTTON.notify-btn` |
+| +2000ms | **`BODY`** | `BUTTON.notify-btn` |
+
+and through a held round trip (`getSubscription` stubbed to a subscribed
+reader, the DELETE held open, the only way to read the window at leisure) the
+a11y tree says the same in its own words: before, `disabled=true` with no
+`focusable` and no `focused`; after, `disabled=true focusable=true
+focused=true busy=1`. The cost was never the position in the page (the bell is
+tab stop **1 of 36** on the index, so Tab after the drop lands on stop 2 either
+way), it was the feedback: the label change the press exists for, `on` ->
+`notify me`, landed on an element nothing was reading, and `.busy` reached the
+tree not at all, being opacity `.55` and `cursor:progress`.
+
+**The fix is the attribute plus the flag the property was doing for free**:
+`aria-disabled="true"` and `aria-busy` for the window, `let busy` for the
+re-entry guard, and the install chip keeps the property because "installed" is
+terminal rather than a window. Both pressed states take the matching guard,
+since a button that keeps focus matches `:hover` and `:active` where a
+disabled one matched neither.
+
+**The first cut of that css repainted, and the screenshots said so**: swapping
+the native state for an aria one silently drops every rule keyed to `:disabled`,
+so the busy label came up `--body` where it had been `--muted`. Carrying
+`[aria-disabled="true"]` onto that rule restored it. Bell shots at dsf 2 with
+animations frozen, same build either side: `idle`, `idle-hover` and
+`idle-focus` **byte-identical**; the busy chip differs by **137 of 10452**
+pixels, all of them accent at the outline band, which is the focus ring the fix
+exists to restore. Re-entered with the mouse so no `:focus-visible` is in play:
+**37 pixels at a single channel step**, antialiasing.
+
+**Six mutations, each reverted, each failing exactly one test with the total
+steady at 277**: the property set again mid-window, `aria-busy` dropped, the
+second-press guard dropped, the `finally` cleanup dropped, and both css guards
+reverted. 277 tests (was 276), 150 insertions / 9 deletions with 126 of them
+test, built tree 42 files both sides, +152 bytes gzipped per day page (the
+sheet's comment) and +491 on the index.
+
+**Also filed, not shipped: #352, the webfont swap.** 11-10 left this in the
+backlog with an instrument; re-measured today rather than quoted, and the note
+was right about the size and wrong about the shape. `2026-11-10.html`, fonts
+live, three readings per width: cls **0.1112 / 0.1283 / 0.2198 / 0.0295** at
+360 / 390 / 430 / 860, past the good line at three of four widths on every day
+page for every reader. The attribution the note asked for, 157 elements diffed
+between the blocked paint and the live one at 430px: document height 7791 ->
+7763, **0.36%**, 90 elements moving, and **every height change exactly
++-27.5px**, one line at the prose's 1.72, on `ul` / `li` / `p`. No heading
+changes height, so the un-adjusted Fraunces fallback is not the mover and the
+obvious fix is the wrong one. #321 holds: the same stack measured in both
+paints over the page's own 28 prose blocks reads **0.9993 median** (0.9846 to
+1.0100), so what is left is per-line drift of ~1.5% flipping the wrap on lines
+that nearly fill the measure, which is spread, not mean, and no `size-adjust`
+reaches it. Every remedy left (block on the css, `display=optional`, preload
+the woff2) changes what a reader sees or when, so it is a proposal.
+
+**Health**: the last 30 workflow runs are **30 green, 0 red**, 11-07's Pages
+stall now rolled off. `verify` across the 32-day archive: 2026-10-12's known
+empty `## Elsewhere` (prunes out 11-12) and the same **four** 60+ link warnings
+(10-15 at 73, 10-18 at 68, 10-21 at 64, 10-29 at 64), unchanged for a third
+day. `npm audit --omit=dev` 0, typecheck clean, `npm run site` 33 pages. No
+open PRs at the start of the run; six issues open (#332, #314, #246, #241,
+#120, #112), none greenlit, none commented since 10-20, so the slot was free.
+`data/picks` is still empty, a third full month. Entries reach back to 08-29,
+inside the ~90 day window; the first falls out on 11-27.
+
+**The environment, as it behaved today.** The clone arrived **shallow at 50
+commits and detached**, the fourth day running, and `git fetch --unshallow &&
+git reset --hard origin/main` plus `git checkout -B main origin/main` is still
+the first thing that has to happen. `npm ci` works. Playwright's bundled
+chromium is still absent; `/opt/pw-browsers/chromium` with `--headless=new
+--no-sandbox` ran every measurement above, and CDP (`CSS.getPlatformFontsForNode`,
+`Accessibility.getPartialAXTree`) through `newCDPSession` is reachable and was
+the day's decisive instrument twice. A probe script must live under the repo to
+resolve `playwright`, so `.claude/probe/` (gitignored) rather than the
+scratchpad. `gh api -X GET` works for reads and the github MCP for writes; it
+created #350 and #352 **without** a harness footer and PR #351 **with** one,
+and `update_pull_request` stripped it on the first try. `merge_pull_request`
+took the rebase on the first attempt. `sift.yasint.dev` is still 403 at CONNECT,
+so the deploy was confirmed from the workflow. Copilot declined on quota for the
+**sixth** run running.
 
 ### 2026-11-10
 
