@@ -1071,6 +1071,115 @@ describe("buildSite", () => {
     expect(slot.hidden).toBe(true);
   });
 
+  // Same stand-in, driven one step further: the click handler, with the round
+  // trip parked on a gate so the busy window is open while the assertions run.
+  // Chromium takes focus off an element that becomes disabled, so the reader
+  // who pressed enter on the bell was dropped onto <body> for the whole trip
+  // (activeElement BUTTON -> BODY at +150ms, in both permission outcomes, the
+  // a11y tree's focused flag with it) and the label change the press exists
+  // for, notify me -> on, landed on an element nothing was reading. The gate
+  // is the property: the handler holds its window in aria instead, so the
+  // button stays focusable, and the closure flag does the guarding the
+  // property used to do for free.
+  it("keeps the bell focusable while it works, and says so in aria", async () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const index = readFileSync(join(out, "index.html"), "utf8");
+    const src = [...index.matchAll(/<script>([^]*?)<\/script>/g)]
+      .map((m) => m[1]!)
+      .find((s) => s.includes("PushManager"));
+    expect(src, "the notify script is not in the built index").toBeDefined();
+
+    type Fake = {
+      disabled: boolean;
+      hidden: boolean;
+      attr: Record<string, string>;
+      cls: Set<string>;
+      clicks: Array<() => Promise<void>>;
+      getAttribute: (n: string) => string | null;
+      [k: string]: unknown;
+    };
+    const node = (): Fake => {
+      const attr: Record<string, string> = {};
+      const cls = new Set<string>();
+      const clicks: Array<() => Promise<void>> = [];
+      return {
+        className: "",
+        innerHTML: "",
+        title: "",
+        hidden: false,
+        disabled: false,
+        attr,
+        cls,
+        clicks,
+        setAttribute: (n: string, v: string) => void (attr[n] = v),
+        removeAttribute: (n: string) => void delete attr[n],
+        getAttribute: (n: string) => attr[n] ?? null,
+        classList: { add: (c: string) => void cls.add(c), remove: (c: string) => void cls.delete(c) },
+        querySelector: () => null,
+        addEventListener: (t: string, fn: () => Promise<void>) => void (t === "click" && clicks.push(fn)),
+        append: () => {},
+        prepend: () => {},
+      };
+    };
+    const joined: Fake[] = [];
+    const slot: Fake = { ...node(), hidden: true, prepend: (n: Fake) => void joined.push(n) };
+
+    // The reader is already subscribed, so the press is the unsubscribe trip:
+    // one DELETE and one unsubscribe(), both behind a gate this test holds.
+    let open: () => void = () => {};
+    const gate = new Promise<void>((resolve) => (open = resolve));
+    let deletes = 0;
+    const dropped: string[] = [];
+    const sub = {
+      endpoint: "https://push.test/ep",
+      unsubscribe: async () => void dropped.push("gone"),
+    };
+    const ready = Promise.resolve({ pushManager: { getSubscription: async () => sub } });
+
+    new Function("document", "navigator", "window", "matchMedia", "localStorage", "fetch", src!)(
+      { getElementById: (id: string) => (id === "notify" ? slot : node()), createElement: () => node() },
+      { serviceWorker: { ready } },
+      { PushManager: class {}, addEventListener: () => {} },
+      () => ({ matches: false }),
+      { getItem: () => null, setItem: () => {}, removeItem: () => {} },
+      async () => {
+        await gate;
+        deletes += 1;
+        return { ok: true };
+      },
+    );
+
+    const bell = joined[0]!;
+    expect(bell.clicks).toHaveLength(1);
+    const press = bell.clicks[0]!;
+    const inFlight = press();
+    await new Promise((r) => setTimeout(r, 0));
+
+    // mid-window: the button is still the focusable thing the reader pressed
+    expect(bell.disabled, "a disabled button loses focus in chromium").toBe(false);
+    expect(bell.getAttribute("aria-disabled")).toBe("true");
+    expect(bell.getAttribute("aria-busy")).toBe("true");
+    expect(bell.cls.has("busy")).toBe(true);
+    expect(deletes, "the round trip is parked on the gate").toBe(0);
+
+    // and a second press inside the window is still a no-op, which is the one
+    // thing the disabled property was doing for us
+    await press();
+    await new Promise((r) => setTimeout(r, 0));
+    expect(deletes).toBe(0);
+    expect(dropped).toHaveLength(0);
+
+    open();
+    await inFlight;
+    expect(deletes, "one press, one round trip").toBe(1);
+    expect(dropped).toHaveLength(1);
+    expect(bell.disabled).toBe(false);
+    expect(bell.getAttribute("aria-disabled")).toBe(null);
+    expect(bell.getAttribute("aria-busy")).toBe(null);
+    expect(bell.cls.has("busy")).toBe(false);
+  });
+
   it("keeps hover off the notify buttons that are disabled", () => {
     digest("2026-07-04", "body");
     buildSite(root, out);
@@ -1083,13 +1192,26 @@ describe("buildSite", () => {
     // and chromium duly painted the installed chip and every in-flight click
     // --bold under the pointer, the enabled hover's own colour. The same rule
     // forgotten one state down, which is this block's recurring failure.
-    const hovers = [...css.matchAll(/^(\.notify-btn[^{]*:hover[^{]*)\{/gm)].map((m) => m[1]);
+    // aria-disabled is that one state down: the bell's busy window lives there
+    // now so it keeps focus, and a focusable button matches :active as well as
+    // :hover, so both pressed states need the guard the property gave for free.
+    const hovers = [...css.matchAll(/^(\.notify-btn[^{]*:hover[^{]*)\{/gm)].map((m) => m[1]!);
     expect(hovers.length).toBeGreaterThan(0);
     for (const sel of hovers) {
       expect(sel, `${sel} can match a disabled button`).toContain(":not(:disabled)");
+      expect(sel, `${sel} can match the bell while it works`).toContain(':not([aria-disabled="true"])');
+    }
+    const actives = [...css.matchAll(/^(\.notify-btn[^{]*:active[^{]*)\{/gm)].map((m) => m[1]!);
+    expect(actives.length).toBeGreaterThan(0);
+    for (const sel of actives) {
+      // :active cannot reach a disabled button at all, so that guard is the
+      // aria one only.
+      expect(sel, `${sel} can match the bell while it works`).toContain(':not([aria-disabled="true"])');
     }
     // and the enabled hover is still there to be guarded
-    expect(css).toContain(".notify-btn:not(:disabled):hover{border-color:var(--accent);color:var(--bold)}");
+    expect(css).toContain(
+      '.notify-btn:not(:disabled):not([aria-disabled="true"]):hover{border-color:var(--accent);color:var(--bold)}',
+    );
   });
 
   // The claim is readability on paper, so assert the ratio rather than the
