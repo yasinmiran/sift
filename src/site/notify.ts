@@ -136,9 +136,22 @@ export function notifyBlock(): string {
   slot.prepend(btn);
   const ready = navigator.serviceWorker.ready;
   ready.then((reg) => reg.pushManager.getSubscription()).then(render).catch(() => {});
+  // The busy window is held in aria, not in the disabled property. Chromium
+  // drops focus from an element that becomes disabled, so the reader who
+  // pressed enter on the bell was dropped onto <body> for the whole round trip
+  // (activeElement BUTTON -> BODY at +150ms, the a11y tree's focused flag with
+  // it) and never told how it ended: the label change this interaction exists
+  // for, notify me -> on, landed on an element nothing was reading. The
+  // attribute says the same "not now" without taking the button out of the
+  // tree or the tab order, aria-busy puts the .busy opacity in words, and the
+  // closure flag is the guard the property used to be. The install chip keeps
+  // the property: "installed" is terminal, not a window.
+  let busy = false;
   btn.addEventListener("click", async () => {
-    if (btn.disabled) return;
-    btn.disabled = true;
+    if (busy) return;
+    busy = true;
+    btn.setAttribute("aria-disabled", "true");
+    btn.setAttribute("aria-busy", "true");
     btn.classList.add("busy");
     const span = btn.querySelector("span");
     btn.innerHTML = label(${JSON.stringify(SPIN_ICON)}, span ? span.textContent : "");
@@ -164,7 +177,9 @@ export function notifyBlock(): string {
       if (sub) await sub.unsubscribe().catch(() => {});
       render(null);
     } finally {
-      btn.disabled = false;
+      busy = false;
+      btn.removeAttribute("aria-disabled");
+      btn.removeAttribute("aria-busy");
       btn.classList.remove("busy");
     }
   });

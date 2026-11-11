@@ -163,14 +163,18 @@ mark.pen{background-color:transparent;color:var(--bold)}
    bell landed. The day pages assert this sheet never names that event. */
 .notify-btn[hidden]{display:none}
 .notify-btn svg{width:15px;height:15px}
-.notify-btn:active{transform:translateY(1px);border-color:var(--accent)}
-.notify-btn:disabled{cursor:default;color:var(--muted)}
+.notify-btn:not([aria-disabled="true"]):active{transform:translateY(1px);border-color:var(--accent)}
+/* The bell holds its busy window in aria-disabled, not the property, so it
+   keeps focus; the attribute is here so the window paints as it always did. */
+.notify-btn:disabled,.notify-btn[aria-disabled="true"]{cursor:default;color:var(--muted)}
 /* :hover matches a disabled button, :active does not, so the guard belongs in
    the selector. The sheet's earlier answer undid hover one declaration at a
    time and named border-color only, so the installed chip and every in-flight
    click lit --muted 4.13:1 -> --bold 12.39:1 under the pointer while reading
-   dead everywhere else. :not() means a later declaration cannot leak either. */
-.notify-btn:not(:disabled):hover{border-color:var(--accent);color:var(--bold)}
+   dead everywhere else. :not() means a later declaration cannot leak either.
+   aria-disabled needs the same guard twice over: a button that keeps focus
+   matches :active as well, which the property would never have let it do. */
+.notify-btn:not(:disabled):not([aria-disabled="true"]):hover{border-color:var(--accent);color:var(--bold)}
 .notify-btn.busy{opacity:.55;cursor:progress}
 .notify-btn .spin{animation:spin .9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
