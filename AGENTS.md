@@ -392,8 +392,9 @@ must never be committed. `warnings` need judgment: a link outside the
 day's items is fine when you deliberately linked a primary source and
 a bug when it is a typo or an invented url; a link an earlier digest
 already used is fine only as a deliberate update (see Continuity); an
-uncovered pick, more than 3 pen marks, thin digests, a digest past 60
-links, a missing items file (links cannot be cross-checked), a
+uncovered pick, a link the day's items flag as paywalled carrying no
+`(paywalled)` badge, more than 3 pen marks, thin digests, a digest
+past 60 links, a missing items file (links cannot be cross-checked), a
 missing Threads section, a missing Hacker News section, a missing
 carousel script (expected only for backfilled days), an am slide url orphaned by the evening rewrite
 (keep am stories linked, see Instagram slides), caption voice slips
