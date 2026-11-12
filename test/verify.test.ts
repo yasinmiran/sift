@@ -21,13 +21,19 @@ beforeEach(() => {
 
 const urls = Array.from({ length: 10 }, (_, i) => `https://example.com/story-${i}`);
 
-const writeItems = (day: string, itemUrls: string[]) =>
+const writeItems = (day: string, itemUrls: string[], paywalled: string[] = []) =>
   writeFileSync(
     join(root, "data", "items", `${day}.json`),
     JSON.stringify({
       day,
       generatedAt: "2026-07-04T04:00:00.000Z",
-      items: itemUrls.map((url, i) => ({ sourceSlug: "src", externalId: String(i), title: `t${i}`, url })),
+      items: itemUrls.map((url, i) => ({
+        sourceSlug: "src",
+        externalId: String(i),
+        title: `t${i}`,
+        url,
+        paywalled: paywalled.includes(url),
+      })),
     }),
   );
 
@@ -157,6 +163,97 @@ describe("verifyDigest", () => {
     expect(r.warnings.some((w) => w.startsWith("pick linked without its tag: https://found.example/a"))).toBe(
       true,
     );
+  });
+
+  it("warns when a link the day's items flag as paywalled carries no badge", () => {
+    writeItems(DAY, urls, [urls[3]!]);
+    writeDigest(digestWith());
+    const r = verifyDigest(root, DAY);
+    expect(r.warnings.some((w) => w.startsWith(`paywalled link without its badge: ${urls[3]}`))).toBe(true);
+  });
+
+  it("stays quiet on a paywalled link that carries the badge", () => {
+    writeItems(DAY, urls, [urls[3]!]);
+    writeDigest(
+      digestWith({
+        links: urls,
+      }).replace(`[Story 3](${urls[3]}) matters.`, `[Story 3](${urls[3]}) (paywalled) matters.`),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.warnings.some((w) => w.includes("paywalled link without its badge"))).toBe(false);
+  });
+
+  it("reads a badge written a few words into the sentence, not only flush against the link", () => {
+    // 2026-11-09's bloomberg entry put it 16 characters on: "...to track users
+    // (paywalled).", which is the one of the archive's ten that is not flush.
+    writeItems(DAY, urls, [urls[3]!]);
+    writeDigest(
+      digestWith().replace(
+        `[Story 3](${urls[3]}) matters.`,
+        `[Story 3](${urls[3]}) to track users (paywalled).`,
+      ),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.warnings.some((w) => w.includes("paywalled link without its badge"))).toBe(false);
+  });
+
+  it("asks per link, so one badge in a paragraph does not cover the other paywalled link", () => {
+    // The shape 2026-11-03 and 2026-11-12 both publish: one Hacker News
+    // paragraph, two paywalled links. Both orders, because each one pins a
+    // different edge of the window. Badge first catches a check that asks
+    // whether the block holds the word anywhere; badge second catches a
+    // forward window that runs on past the next link and borrows its badge.
+    writeItems(DAY, urls, [urls[0]!, urls[1]!]);
+    const paragraph = (first: string, second: string) =>
+      digestWith({
+        hn: `\n## Hacker News\n\nThe front page argued about [Story 0](${urls[0]})${first} and [Story 1](${urls[1]})${second}\n`,
+      });
+    const unbadged = () =>
+      verifyDigest(root, DAY).warnings.filter((w) => w.includes("paywalled link without its badge"));
+
+    writeDigest(paragraph(" (paywalled)", " too."));
+    expect(unbadged()).toHaveLength(1);
+    expect(unbadged()[0]).toContain(urls[1]!);
+
+    writeDigest(paragraph("", " (paywalled) too."));
+    expect(unbadged()).toHaveLength(1);
+    expect(unbadged()[0]).toContain(urls[0]!);
+  });
+
+  it("sees a link wrapped in emphasis, badged or not", () => {
+    // Both directions, because the silent half alone is also what a walk that
+    // never looks inside <em> would produce: it would not find the link at
+    // all and would warn about nothing either way.
+    writeItems(DAY, urls, [urls[3]!]);
+    const emphasised = (tail: string) =>
+      digestWith().replace(`- [Story 3](${urls[3]}) matters.`, `- *[Story 3](${urls[3]})*${tail}`);
+    writeDigest(emphasised(" (paywalled) matters."));
+    expect(
+      verifyDigest(root, DAY).warnings.some((w) => w.includes("paywalled link without its badge")),
+    ).toBe(false);
+    writeDigest(emphasised(" matters."));
+    expect(
+      verifyDigest(root, DAY).warnings.some((w) => w.startsWith(`paywalled link without its badge: ${urls[3]}`)),
+    ).toBe(true);
+  });
+
+  it("does not take a badge from the block after the link", () => {
+    writeItems(DAY, urls, [urls[3]!]);
+    writeDigest(
+      digestWith().replace(
+        `- [Story 3](${urls[3]}) matters.`,
+        `- [Story 3](${urls[3]}) matters.\n- (paywalled) sits on the next entry.`,
+      ),
+    );
+    const r = verifyDigest(root, DAY);
+    expect(r.warnings.some((w) => w.startsWith(`paywalled link without its badge: ${urls[3]}`))).toBe(true);
+  });
+
+  it("says nothing about an unbadged link the items do not flag", () => {
+    writeItems(DAY, urls);
+    writeDigest(digestWith());
+    const r = verifyDigest(root, DAY);
+    expect(r.warnings.some((w) => w.includes("paywalled link without its badge"))).toBe(false);
   });
 
   it("reads the tag on the pick's own entry, not anywhere in the digest", () => {

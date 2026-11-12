@@ -13,6 +13,7 @@ interface DayItem {
   url?: string;
   sourceSlug?: string;
   externalId?: string;
+  paywalled?: boolean;
 }
 
 export interface VerifyResult {
@@ -126,6 +127,55 @@ function untaggedPickLinks(body: string, pickUrls: string[]): string[] {
     if (tagText((block.length > 0 ? block : $(el)).text()).includes(PICK_TAG)) tagged.add(key);
   });
   return [...linked].filter(([key]) => !tagged.has(key)).map(([, url]) => url);
+}
+
+// AGENTS.md: "prefer un-paywalled links and mark paywalled ones
+// `(paywalled)`". `isPaywalled` already computes the flag per item at ingest
+// and the loop below already loads the day's items to cross-check links, so
+// the badge was the one half of that sentence with nothing comparing the two.
+// Counted over the archive before it was gated: 11 digest links point at a
+// flagged item, 10 carry the badge, and 2026-11-09's economist link does not.
+const BADGE = "(paywalled)";
+
+// Asked per link rather than per block, which is where this departs from
+// untaggedPickLinks above. A pick tag travels with its own entry; the badge
+// travels with its own link, and the Hacker News section routinely puts a
+// dozen links in one paragraph, two of them paywalled (2026-11-03,
+// 2026-11-12). Asking the block whether the word appears anywhere in it would
+// have let either of those days drop one badge and stay quiet. So the window
+// runs forward from the anchor and the next anchor closes it, and it never
+// leaves the block, which is the other half of the same idea.
+function unbadgedPaywalledLinks(body: string, paywalled: Set<string>): string[] {
+  if (paywalled.size === 0) return [];
+  const $ = cheerio.load(renderMarkdown(body));
+  const linked = new Map<string, string>();
+  const badged = new Set<string>();
+  $("p, li").each((_, block) => {
+    // Document order, anchors and the text between them, flattened: a link
+    // wrapped in <em> or <strong> is still the thing the badge follows.
+    const seq: { url?: string; text?: string }[] = [];
+    // Typed off the tree being walked, so the node union comes from cheerio's
+    // own value and the repo takes no dependency on domhandler by name.
+    const walk = (node: (typeof block.children)[number]): void => {
+      if (node.type === "text") seq.push({ text: node.data });
+      else if (node.type === "tag" && node.name === "a") seq.push({ url: $(node).attr("href") ?? "" });
+      else if (node.type === "tag") node.children.forEach(walk);
+    };
+    block.children.forEach(walk);
+    for (const [at, node] of seq.entries()) {
+      if (node.url === undefined) continue;
+      const key = normalize(node.url);
+      if (!paywalled.has(key)) continue;
+      if (!linked.has(key)) linked.set(key, node.url);
+      let window = "";
+      for (const after of seq.slice(at + 1)) {
+        if (after.url !== undefined) break;
+        window += after.text ?? "";
+      }
+      if (window.toLowerCase().includes(BADGE)) badged.add(key);
+    }
+  });
+  return [...linked].filter(([key]) => !badged.has(key)).map(([, url]) => url);
 }
 
 // A hacker news story is ingested under the article's own url, so a digest
@@ -287,6 +337,12 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
         const seen = unknown.get(key);
         if (seen) seen.count += 1;
         else unknown.set(key, { url, count: 1 });
+      }
+      for (const url of unbadgedPaywalledLinks(
+        body,
+        new Set(items.filter((i) => i.paywalled && i.url).map((i) => normalize(i.url!))),
+      )) {
+        warnings.push(`paywalled link without its badge: ${url}; mark it "${BADGE}" (AGENTS.md)`);
       }
       // Only a day with something unexplained pays for reading the archive.
       const carried = unknown.size > 0 ? carriedOver(rootDir, day) : new Map<string, string>();
