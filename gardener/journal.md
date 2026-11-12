@@ -6,6 +6,34 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A mutation that passes is a sentence about your test's name, not about your
+  code. Today's gate reads a window forward from a link, and the test written
+  to prove that, "asks per link, so one badge in a paragraph does not cover the
+  next paywalled link", was built from the shape the archive publishes: a
+  hacker news paragraph with two paywalled links, the **first** badged. It
+  passed. So did the mutation that deletes the window's forward bound and lets
+  it run on past the next anchor, which is the one property the test's own name
+  claims. The reason is arithmetic rather than subtle: with the badge sitting
+  *before* the second link, a forward window cannot reach it whether it is
+  bounded or not, so the case pinned the window's **start** and said nothing
+  about its **end**. What looked like one property ("per link") was two, and
+  the test had been named for the pair while testing one. The mirror order,
+  badge on the *second* link with the first unbadged, fails the unbounded
+  mutation at once. 09-22 banked "a test that passes before and after the fix
+  is not a regression test"; this is its other face, and the cheaper tell:
+  **when a mutation you expected to be decisive survives, do not go looking for
+  a better mutation, go and count the properties the test's name is claiming**,
+  because a window, a range or an interval has two edges and one case can only
+  hold one of them down. Worth keeping beside it: six mutations ran here and
+  the two that mattered were the two I had merged into one idea in my head.
+  Its other half is about where a type comes from. The walk needed cheerio's
+  node union and the obvious import is `domhandler`, which cheerio depends on
+  and this repo does not: a type-only import with no runtime cost, and still a
+  module specifier the repo has not declared. `(typeof block.children)[number]`
+  off the value already in hand is the same type with nothing added to the
+  dependency surface. **When a type is needed from a transitive package, derive
+  it from a value the direct dependency already hands you.**
+
 - A probe built beside the artifact is not the artifact, and when the two
   disagree the artifact wins without a hearing. Today's width probe, an
   offscreen span with `font-family` swapped per measurement, reported the
@@ -902,6 +930,67 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-11-12 as #355 / PR #356, `6604286`, `checks` green on `4f4f34b`
+  and `pages` 43190508654 green on build and deploy, read the honest way:
+  `deploy-pages` passed and the step gated on its failure **skipped**. The
+  verifier now warns when a digest links a story the day's items flag
+  `paywalled: true` and the entry carries no `(paywalled)` badge, which was the
+  half of that contract sentence with nothing comparing the two. Counted before
+  the code: **11 of the archive's digest links point at a flagged item, 10
+  carry the badge, 1 does not** (2026-11-09's economist link, in the hacker news
+  paragraph). Scope settled on the counts rather than on a reading of the rule:
+  the hacker news section badges **6 of its 7**, so that day is a lapse. Asked
+  per link, not per block, because the section routinely puts a dozen links in
+  one paragraph with two of them paywalled (11-03, 11-12) and a block check
+  would let either drop one badge and stay quiet; the window runs forward from
+  the anchor, the next anchor closes it, and it never leaves the block. 9 of
+  the 10 badges sit one character after the closing paren and one sits 16 on,
+  so the window's shape is the archive's. A warning, not an error: the flag's
+  phrase branch can misfire on an article *about* paywalls, and across the
+  month's 9,595 items **199 are flagged, all 199 by domain, 0 phrase-only**, so
+  the false-positive surface measures zero. 284 tests (was 277), 158 insertions
+  / 4 deletions with 101 of them test, six mutations each failing a test with
+  the total steady. No new dependency: the walk's node type is derived from
+  cheerio's own value. Copilot declined on quota for the **seventh** run.
+- Walked clean on 2026-11-12, recorded so a future run does not re-walk them.
+  **The stricter typescript flags, as an instrument that had never run here.**
+  `tsconfig.json` is already `strict` with `noUncheckedIndexedAccess`, and
+  eight further flags were run one at a time over `src` and `test`:
+  `noUnusedLocals`, `noUnusedParameters`, `noFallthroughCasesInSwitch`,
+  `noImplicitReturns`, `useUnknownInCatchVariables` and `noImplicitOverride` are
+  **0 errors each**. `exactOptionalPropertyTypes` is 4, all of them an explicit
+  `undefined` handed to an optional property in the three adapters plus the
+  registry, which `JSON.stringify` drops anyway; `noPropertyAccessFromIndexSignature`
+  is 19 and stylistic. Wallpaper by the 09-30/10-03 test: no defect behind
+  either, and turning one on is churn in the files the pipeline runs on.
+  **`latest.json`'s stated invariant.** `build.ts` says the hash "only changes
+  when the digest file itself does, never on code deploys" and it is hashing
+  the raw `digests/{day}.md`, so a gardener PR that moves every day page by
+  +200 bytes cannot notify a subscriber. Read because this run's own PRs are
+  exactly what would have broken it; nothing to do.
+  **`feed.xml`, read for what a feed reader needs rather than for well-formedness.**
+  32 items, `atom:link rel="self"` present, `guid` a permalink url with no
+  `isPermaLink` to contradict it, `lastBuildDate` and per-item `pubDate` in
+  RFC 822, `atom:updated` only on the days whose script holds both slots.
+  Items carry `description` alone and no `content:encoded`, which is the
+  one-sentence-and-click-through shape the site is for, not a defect.
+  **The walls, re-probed at the top of the run** per the 11-02 lesson:
+  `sift.yasint.dev`, `yasin.goatcounter.com` and `hn.algolia.com` are all
+  still **000 at CONNECT**, so there is still no reader-side signal and no
+  live-site read from here; `fonts.googleapis.com` answers.
+- Read but NOT measured on 2026-11-12, left with the instrument the next run
+  needs. **Text zoom is the one medium this journal has never named**: "zoom"
+  appears 0 times in 9,284 lines, and WCAG 1.4.4 (resize text to 200%) is not
+  the same instrument as the 320px reflow 11-05 walked clean, because page zoom
+  is a narrow viewport and **text-only** zoom scales the root font alone. What
+  the stylesheet says, read rather than driven: type and containers are rem
+  throughout (`body{max-width:44rem}`, `html{font-size:19px}` past 1536px), so
+  the measure grows with the text and overflow is unlikely; the px left are
+  `.notify-btn svg{width:15px}` and the two pen-mark stroke widths. That is a
+  prediction, not a reading. Chromium has no text-only zoom, so the honest
+  instrument is a root `font-size` override at 200% against the built pages, or
+  the minimum-font-size setting over CDP. Cheap, and nobody has run it.
 
 - MERGED 2026-11-11 as #350 / PR #351, `be1c5ff`, `checks` green on `afe5c9f`
   and `pages` 42994976884 green on build and deploy, its gated retry skipped.
@@ -2714,6 +2803,109 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-12
+
+**#355 filed, PR #356 built, `checks` green on `4f4f34b`, merged by this run as
+`6604286`, and `pages` 43190508654 green on build and deploy, read the honest
+way: `deploy-pages` passed and the step gated on its failure skipped.** A
+digest that links a hard paywall now has to say so, or the verifier says it
+instead.
+
+**The signal is half a contract sentence with no gate behind it.** AGENTS.md
+asks the digest to "prefer un-paywalled links and mark paywalled ones
+`(paywalled)`". `isPaywalled` computes the flag per item at ingest, the
+verifier already loads the day's items to cross-check every link, and nothing
+compared the two, which is the shape the 10-06 lesson says to go and count.
+Counted over the 32-day archive before a line of code:
+
+| | |
+|---|---|
+| digest links pointing at an item flagged `paywalled: true` | **11** |
+| carrying the badge | **10** |
+| not | **1**, 2026-11-09's economist link, bare in the hacker news paragraph |
+
+**The scope question dissolved on the counts rather than on a reading.** The
+badge rule sits under Editorial rules, which govern entries, and the one miss
+is in prose, so the first honest question is whether the hacker news section
+is in scope at all. It is, by the digest's own practice: paywalled links there
+are badged **6 of 7** (10-13, 10-17, 11-03 x2, 11-12 x2). 11-09 is a lapse,
+not a reading, and 10-20's habit of counting both sides of a gate's line
+before writing it is what turned that from a judgement into a number.
+
+**The fix is asked per link, which is where it departs from the neighbour it is
+modelled on.** `untaggedPickLinks`, one screen up, asks the *block* whether the
+pick tag appears in it, because a tag travels with its entry. A badge travels
+with its link, and the hacker news section routinely puts a dozen links in one
+paragraph with two of them paywalled (11-03, 11-12): a block check passes both
+of those days and would let either drop one badge and stay quiet. So the window
+runs forward from the anchor, the next anchor closes it, and it never leaves
+the block. The window's shape is the archive's, not a number I picked: **9 of
+the 10 badges sit one character after the closing paren**, one sits 16 on ("to
+track users (paywalled)"), and a *backward* window would have credited 11-03's
+and 11-12's second paywalled link with the first one's badge, which is exactly
+how a gate like this goes quiet on the thing it exists for.
+
+**A warning, not an error, and the reason is measured.** `paywall.ts` is crude
+by its own comment, and its riskier half is the phrase branch, which can
+misfire on an article *about* paywalls. Across the month's 9,595 items **199
+are flagged and all 199 are domain-flagged, 0 phrase-only**, and all 11
+candidate links are on the domain list with no unlock token, so the gate's
+false-positive surface measures zero over the archive. An error on a crude
+check would block a publish; a warning is the level the repo already uses for
+"resolve this consciously".
+
+**Two instruments, one answer.** The gate reads the rendered DOM, the way
+`publishedLinks` defines "the digest's links"; the probe that found the defect
+first read the markdown with a regex. Both name the same single link and both
+stay silent on the other 31 days and all 10 badges.
+
+**Six mutations, each reverted, each failing a test with the total steady at
+284**: the warning deleted (4 fail), the window widened to the whole block (the
+per-block check), the forward window left unclosed by the next anchor, the walk
+left at the top level so a link inside `<em>` is invisible, `normalize` dropped
+on the items side (16 fail), and the flag ignored so every linked item reads as
+paywalled. **The second and third are the day's lesson**: the test written to
+prove "per link" held only one edge of the window, and the mutation that
+survived is what said so. 284 tests (was 277), 158 insertions / 4 deletions
+with 101 of them test, which is over the ~150 guideline on the total and named
+in the PR; 61 lines of source and contract. `AGENTS.md`'s Verify list gains the
+one clause, same PR, since the digest agent reads that list to know what warns.
+No visual surface, so no screenshots, and no new dependency.
+
+**Health**: the last 30 workflow runs are **30 green, 0 red**. `verify` across
+the 32-day archive: 2026-10-12's known empty `## Elsewhere` (today's ingest
+prunes the day out) and the same **four** 60+ link warnings (10-15 at 73, 10-18
+at 68, 10-21 at 64, 10-29 at 64), unchanged for a fourth day. `npm audit
+--omit=dev` 0, typecheck clean, `npm run site` 33 pages, `npm test` 277 on
+arrival. No open PRs at the start of the run; seven issues open (#352, #332,
+#314, #246, #241, #120, #112), none greenlit, none commented since 10-20, so
+the slot was free. `data/picks` is still empty, a third full month. Entries
+reach back to 08-29, inside the ~90 day window; the first falls out on 11-27.
+
+**One reading worth not mistaking for a finding.** Today's morning digest
+verifies with **23 warnings**, every one of them "carried over from
+2026-11-11's items, not today's". That is the shape of a morning run rather
+than a defect: the 03:15 UTC ingest writes the Oslo day file in the small
+hours, so the overnight window the 04:34 digest covers is largely yesterday's
+late-evening items, and the evening rewrite retires the warnings. The archive
+cannot show this because every past day in it is an evening rewrite; 11-12 is
+the only morning-only digest on disk. Nothing owed, and `digests/` is the
+record, not mine.
+
+**The environment, as it behaved today.** The clone arrived **shallow at 50
+commits and detached**, the fifth day running, and `git fetch --unshallow &&
+git reset --hard origin/main` plus `git checkout -B main origin/main` is still
+the first thing that has to happen (1,060 commits after). `npm ci` works. No
+playwright needed today: the change has no visual surface. `gh api -X GET`
+works for reads and `gh pr list` / `gh issue list` are still 403 on GraphQL,
+which the error message itself redirects to REST. The github MCP created #355
+**without** a harness footer and PR #356 **with** one, and
+`update_pull_request` stripped it on the first try, as on 11-08 through 11-11.
+`merge_pull_request` took the rebase on the first attempt with
+`expectedHeadSha`. `sift.yasint.dev` is 403 at CONNECT, so the deploy was
+confirmed from the workflow. Copilot declined on quota for the **seventh** run
+running.
 
 ### 2026-11-11
 
