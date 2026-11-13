@@ -506,13 +506,41 @@ describe("buildSite", () => {
     buildSite(root, out);
     const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
     // Both halves matter. A bare url has to reach the page as an anchor, since
-    // the wrap rule is on .prose a; and the anchor has to be allowed to break
-    // mid-token, since a url offers no break opportunity at / or . and 515px
-    // of unbreakable link text widens the whole page on a 375px screen.
+    // the wrap rule inherits from body down to it; and the anchor has to be
+    // allowed to break mid-token, since a url offers no break opportunity at
+    // / or . and 515px of unbreakable link text widens the whole page on a
+    // 375px screen.
     expect(day).toContain(
       '<a href="https://grapheneos.social/@GrapheneOS/117282080803799576">https://grapheneos.social/@GrapheneOS/117282080803799576</a>',
     );
-    expect(day).toMatch(/\.prose a\{[^}]*overflow-wrap:break-word/);
+    expect(day).toMatch(/\bbody\{[^}]*overflow-wrap:break-word/);
+  });
+
+  it("breaks an over-long word in the digest's own text, not only in its links", () => {
+    digest(
+      "2026-07-04",
+      "**Superintelligence**: a word no wider than the measure, and a BleepingComputer one that is.",
+    );
+    buildSite(root, out);
+    const day = readFileSync(join(out, "2026-07-04.html"), "utf8");
+    const index = readFileSync(join(out, "index.html"), "utf8");
+
+    // The declaration lives on body, not on a prose rule, and that placement
+    // is the test. A digest's words reach three surfaces: the day page prose,
+    // the hero description and an older row's. At 320px with the text at
+    // 200%, 11 of the archive's 32 day pages overflowed on one unbreakable
+    // word (30.5px at the widest) while the index, whose descriptions no rule
+    // covered at all, was one long product name away from the same thing.
+    expect(day).toMatch(/\bbody\{[^}]*overflow-wrap:break-word/);
+    expect(day).not.toMatch(/\.prose[ a-z-]*\{[^}]*overflow-wrap/);
+    expect(day).toContain("BleepingComputer");
+    expect(index).toContain("top story of 2026-07-04");
+
+    // And nothing downstream hands the measure back: a later rule setting
+    // overflow-wrap or word-break on any of those surfaces would inherit over
+    // the body declaration without a line of this file changing.
+    expect(day).not.toMatch(/overflow-wrap:(?!break-word)/);
+    expect(day).not.toMatch(/word-break:/);
   });
 
   it("emits structured data for the site and each day", () => {
