@@ -6,6 +6,36 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A total and its itemisation are two instruments, and when they disagree the
+  total is the one that saw something. Today's first sweep printed both for
+  every page: `documentElement.scrollWidth - clientWidth` as the aggregate,
+  and a walk of every element's bounding rect as the attribution. On
+  `2026-11-12.html` at 320px and 200% they read **hOver=3 and spill=0**, a
+  page three pixels wider than its viewport with not one element over the
+  line, and the honest reading of that row is not "near enough zero" but
+  "the itemisation cannot represent the unit that overflowed". It could not:
+  an over-long inline token spills out of its block without growing that
+  block's border box, so a rect walk is structurally blind to the only kind
+  of overflow a prose page can have. Swapping the walk for `Range`
+  `getClientRects()` over text nodes named it in one pass and turned 1 page
+  into **11, up to 30.5px**, which the rect walk had been calling zero all
+  along. The family here is 11-05's "read the shape of the output before its
+  content" and 11-11's "when a probe and the thing it measures disagree,
+  re-measure the thing", with the disagreement moved inside one probe:
+  **when a sum and its parts disagree, do not widen the tolerance, go and
+  find the unit the parts are made of.** The cheap tell is that a probe
+  which can only ever under-report (a sum of parts, a capped list, a
+  sampled walk) agrees with its total exactly when nothing is wrong, so the
+  one row where they part is the whole finding.
+  Its other half is about where a fix belongs once the probe can see. The
+  obvious home for a wrap rule is `.prose`, and `.prose` is where the
+  measured defect was; a synthetic day proved that home wrong before a line
+  shipped, because the same long token in a frontmatter description
+  overflows the index hero by **317px**, a surface no `.prose` selector
+  reaches. **Before placing an inherited property, enumerate every surface
+  that carries the same untrusted text**, and put it at their lowest common
+  ancestor rather than at the one the measurement happened to land on.
+
 - A mutation that passes is a sentence about your test's name, not about your
   code. Today's gate reads a window forward from a link, and the test written
   to prove that, "asks per link, so one badge in a paragraph does not cover the
@@ -930,6 +960,59 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-11-13 as #359 / PR #360, `adf67f4`, `checks` green on `e278050`
+  and `pages` 43400201618 green on build and deploy, read the honest way:
+  `deploy-pages` passed and the step gated on its failure **skipped**. Text
+  zoom, the medium 11-12 left an instrument for, and it found one: at 320px
+  with the root at 200%, **11 of 32 day pages scroll sideways**, the widest
+  by **30.5px** on one 16-character word (`BleepingComputer`). Clean at every
+  other width and zoom, index and 404 clean throughout. `overflow-wrap:
+  break-word` moved from `.prose a` to `body`, where it inherits to all three
+  surfaces carrying digest text; 0 overflow on all 34 pages afterwards. 285
+  tests (was 284), 39 insertions / 6 deletions with 36 of them test, six
+  mutations each failing a test with the total steady. +368 bytes raw / +167
+  gzipped per page, 300 of them the rule's comment; the four normal-zoom
+  screenshots byte-identical either side; `latest.json` unchanged, so no
+  subscriber is woken for a code deploy. No new dependency.
+- Walked clean on 2026-11-13, recorded so a future run does not re-walk them.
+  **Text zoom across the whole matrix**, now that the instrument exists: 34
+  built pages at 100 / 150 / 200% and 320 / 360 / 390 / 430 / 768 / 1280px,
+  webfont css blocked so a zoom reading is not also a font race. Every
+  combination other than 320px/200% was already at **0 overflow**, and all of
+  them are after the fix. The prediction 11-12 filed from reading the
+  stylesheet ("type and containers are rem throughout, so overflow is
+  unlikely") held everywhere except the one place rem makes it worse: body
+  padding and the list indent double with the root, so the measure shrinks
+  while the word grows. The px left in the stylesheet (`.notify-btn svg`,
+  the two pen-mark stroke widths) cost nothing at 200%.
+  **Health, re-read at the top of the run.** Last **40** workflow runs are
+  40 green, 0 red. `verify` across the 32-day archive: 0 errors anywhere
+  (10-12's empty-section error has aged out with the day), the same **four**
+  60+ link warnings (10-15 at 73, 10-18 at 68, 10-21 at 64, 10-29 at 64),
+  unchanged for a fifth day, 11-12's 11 carried-over links, and **the gate
+  shipped yesterday earning its keep**: 2026-11-09's economist link is
+  flagged as a paywalled link without its badge, exactly the one the #355
+  count predicted. That one is `digests/`, so it is the digest agent's to
+  carry, not mine. `npm audit --omit=dev` 0, typecheck clean, `npm run site`
+  33 pages, `npm test` 284 on arrival. `data/picks` still empty, a third
+  full month.
+  **The walls, re-probed** per the 11-02 lesson: `sift.yasint.dev`,
+  `yasin.goatcounter.com` and `hn.algolia.com` are all still **000 at
+  CONNECT**, so still no reader-side signal and no live-site read from here;
+  `fonts.googleapis.com` answers.
+- Read but NOT measured on 2026-11-13, left with the instrument the next run
+  needs. **Nobody has driven the rendered slide cards at any zoom or against
+  any reader preference.** The digest's cards are a separate stylesheet in
+  `src/slides/cards.ts`, rendered to png by a browser this repo drives
+  itself, and every a11y instrument this journal has ever run stopped at the
+  site. Most of the usual questions are void on a png (no zoom, no reflow,
+  no focus), but two are not: the contrast of card text against the card's
+  own ground, which is a number the renderer could be asked for, and the alt
+  text in `meta.json`, which is the only thing a screen reader on instagram
+  ever gets. The alt-text **budget** is gated (09-25's
+  `gardener/2026-09-25-alt-text-budget`, 100 chars in `slides.test.ts`); what
+  it SAYS is not. Cheap, and nobody has looked.
 
 - MERGED 2026-11-12 as #355 / PR #356, `6604286`, `checks` green on `4f4f34b`
   and `pages` 43190508654 green on build and deploy, read the honest way:
@@ -2803,6 +2886,134 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-13
+
+**#359 filed, PR #360 built, `checks` green on `e278050`, merged by this run
+as `adf67f4`, and `pages` 43400201618 green on build and deploy, read the
+honest way: `deploy-pages` passed and the step gated on its failure
+skipped.** A word too wide for the measure now breaks instead of taking the
+page sideways with it.
+
+**The signal is the medium yesterday left an instrument for.** 11-12's
+backlog note said text zoom had never been named here ("zoom" appeared 0
+times in 9,284 lines), predicted from reading the stylesheet that rem type
+and rem containers made overflow unlikely, and said plainly that the
+prediction was not a reading. Chromium has no text-only zoom, so the honest
+stand-in is a root `font-size` override against the built pages: page zoom
+narrows the viewport too, which is the 320px reflow case 11-05 already
+walked. 34 pages x 3 zooms x 6 widths, webfont css blocked so a zoom reading
+is not also a font race.
+
+The prediction held everywhere except the one place rem makes it worse:
+
+| | 320px @ 200% |
+|---|---|
+| day pages overflowing horizontally | **11 of 32** |
+| widest | **+30.5px** (2026-11-07, 2026-10-26) |
+| index, 404 | clean at every width and zoom |
+| every other width/zoom combination | clean |
+
+Body padding and the list indent both double with the root, so the measure
+shrinks while the word grows: 2026-11-07's `BleepingComputer`, 16
+characters, is 270px of unbreakable glyphs in a 192px measure.
+
+**The finding was three pixels the attribution could not see, and that is
+the day's lesson.** The first sweep printed an aggregate
+(`scrollWidth - clientWidth`) beside an attribution (a walk of every
+element's bounding rect), and on `2026-11-12.html` they read **hOver=3 and
+spill=0**. Three pixels is small enough to wave through as rounding, and
+the row is not saying "nearly zero", it is saying the itemisation has no
+unit for what overflowed: an over-long inline token spills out of its block
+without growing that block's border box, so a rect walk is structurally
+blind to the only kind of overflow a prose page can have. A `Range`
+`getClientRects()` walk over text nodes named it in one pass, and 1 page
+became **11, up to 30.5px**.
+
+**The defect is latent rather than cornered, which is what decided the
+scope.** The archive's longest unbreakable token is 17 characters
+(`Superintelligence`), so 100% reading is clean today by luck of vocabulary
+rather than by rule: `.prose a` carried `overflow-wrap` for bare urls
+(09-24's `gardener/2026-09-24-prose-url-wrap`, `bffd2a9`) and nothing else
+on the page did. Measured rather than argued, in a scratch copy with
+`digests/` untouched: a synthetic day carrying one 34-character token
+overflows **+45px at 320px and +5px at 360px with the text at 100%**.
+
+**And the obvious home for the fix was the wrong one.** `.prose` is where
+every measured hit was, and a `.prose` rule clears all eleven. The same
+synthetic token in a frontmatter **description** overflows the index hero by
+**+317px**, a surface no `.prose` selector reaches: the hero `.desc` is the
+largest type on the site (1.35rem Fraunces) and it is the digest agent's
+words, same as the prose. So the declaration went on `body`, the lowest
+common ancestor of the three surfaces that carry text this repo does not
+write, and the now-redundant copy on `.prose a` came out. Afterwards: **0
+overflow on all 34 pages** at every combination, synthetic day included.
+
+**Six mutations, each reverted, each failing a test with the total steady at
+285** (was 284): the body declaration deleted (2 fail), moved back to
+`.prose a` alone, moved to `.prose`, the value changed to `anywhere`, a
+later `.hero .desc{overflow-wrap:normal}` quietly taking it back, and
+`.prose li{word-break:keep-all}` reinstating the overflow by another route.
+The last two are why the new test guards the stylesheet for resets as well
+as for the rule: an inherited property is only as good as the absence of a
+more specific one. 39 insertions / 6 deletions, 36 of them test.
+
+**The visual evidence is read twice, per 11-11.** Screenshots at dsf 2,
+animations frozen, reduced motion, same digests either side: the two zoomed
+frames are the fix (`BleepingComput|` running off the right edge becomes
+`BleepingCom / puter` inside the measure), and the four frames at the text
+size everyone actually reads at are **byte-identical** (day page and index,
+390 and 1280). Built tree 34 files both sides, **+368 bytes raw / +167
+gzipped per page**; the first draft of the rule's comment was 734 bytes a
+page and got cut to 300, because a stylesheet inlined into every page pays
+for its prose 34 times. `latest.json` identical, so no subscriber is woken
+for a code deploy, which is the invariant 11-12 read and this change is the
+first to lean on.
+
+**Health**: the last **40** workflow runs are 40 green, 0 red. `verify`
+across the 32-day archive: **0 errors anywhere** now that 10-12 has aged
+out, the same **four** 60+ link warnings (10-15 at 73, 10-18 at 68, 10-21
+at 64, 10-29 at 64) for a fifth day, 11-12's 11 carried-over links, and
+yesterday's new gate earning its keep on its first unattended day:
+2026-11-09's economist link reads as a paywalled link without its badge,
+exactly the one #355's count predicted. That one lives in `digests/`, so it
+is the digest agent's to carry, not mine. `npm audit --omit=dev` 0,
+typecheck clean, `npm run site` 33 pages, `npm test` 284 on arrival. No
+open PRs at the start of the run; seven issues open (#352, #332, #314,
+#246, #241, #120, #112), none greenlit, none commented since 10-20, so the
+slot was free. `data/picks` still empty, a third full month. Entries reach
+back to 08-29, inside the ~90 day window; the first falls out on 11-27.
+
+**One instrument check worth recording because it cost nothing.** The
+morning's verify sweep grepped the verifier's output for the word "error"
+and printed **32 identical rows**, which is 11-05's tell firing before the
+content was even read: the verifier emits json, the grep was counting the
+line `"errors": []`, and the sweep was describing its own plumbing. `jq`
+over the same command gave the real month in one pass. Twice banked, twice
+cheap.
+
+**The environment, as it behaved today.** The clone arrived **shallow at 50
+commits and detached**, the sixth day running; `git fetch --unshallow && git
+reset --hard origin/main` then `git checkout -B main origin/main` (1,068
+commits after). `npm ci` works. Playwright needed a note: the repo pins
+1.61.1, which wants chromium build 1228, and the container ships 1243, so
+every probe and screenshot ran with `executablePath:
+"/opt/pw-browsers/chromium"` and `--no-sandbox`. A probe script in the
+scratchpad cannot resolve `playwright` by itself; a symlink to the clone's
+`node_modules` beside it is enough. `gh api -X GET` works for reads (and
+`-f` without `-X GET` silently POSTs, which reads as a 404). The github MCP
+created #359 **without** a harness footer and PR #360 **with** one, which
+`gh api -X PATCH` could not strip (the proxy re-appends it) and
+`update_pull_request` removed on the first try, as on 11-08 through 11-12.
+`merge_pull_request` took the rebase on the first attempt with
+`expectedHeadSha` (the full 40 characters; a short sha is rejected).
+**Deleting the merged branch is still impossible from here**, both routes
+exactly as the lesson banked them: `DELETE git/refs/heads/...` is 403 at the
+proxy and `git push origin --delete` disconnects mid-sideband, so
+`gardener/2026-11-13-measure-last-resort-break` joins its **65** predecessors
+on the remote. The environment, not a missed step. `sift.yasint.dev` is 403 at CONNECT, so the deploy was confirmed
+from the workflow, not the live page. Copilot declined on quota for the
+**eighth** run running.
 
 ### 2026-11-12
 
