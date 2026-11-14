@@ -94,82 +94,186 @@ describe("altText", () => {
     expect(altText(cards[3]!)).toBe("sift.yasint.dev: the day's tech, sifted twice daily");
   });
 
-  // The regression: composed as "{title}: {desc}", this alt has its last
-  // clause boundary at 44 and its last word boundary at 94. Stopping at the
-  // comma cut it to 45 of the 100 characters on offer and lost the desc
-  // whole, so the exact string below is only reachable by taking the later
-  // boundary.
+  // A story alt hands over whole sentences or none, so every property below
+  // about where a cut lands now lives on the cover, which composes
+  // "sift, {day}: {hook}" and has nothing droppable to give back. The prefix's
+  // own commas sit at 4 and 9, under truncate's 0.8 floor, so they are rejected
+  // in all four and only the hook can reach the boundary on test.
   it("spends the budget rather than stopping at an early clause boundary", () => {
     const card = buildCards(DAY, {
       ...POST,
-      slides: [
-        {
-          ...POST.slides[0]!,
-          title: "Uber cuts 3,300 jobs across its delivery arm, a tenth of the global workforce",
-          desc: "Redirecting the savings into its robotaxi buildout",
-        },
-      ],
-    })[1]!;
+      hook: "The FAA grounded every departure in America for several hours on Friday night after a network update failed",
+    })[0]!;
     expect(altText(card)).toBe(
-      "Uber cuts 3,300 jobs across its delivery arm, a tenth of the global workforce: Redirecting the\u2026",
+      "sift, Sat, Jul 11: The FAA grounded every departure in America for several hours on Friday night\u2026",
     );
   });
 
   it("still ends on a clause when the comma is late enough to afford it", () => {
     const card = buildCards(DAY, {
       ...POST,
-      slides: [
-        {
-          ...POST.slides[0]!,
-          title: "Anthropic and Akamai signed a seven-year cloud deal worth eleven point six billion, the largest yet",
-          desc: "Akamai stock jumped twenty percent after hours",
-        },
-      ],
-    })[1]!;
+      hook: "Microsoft said email started coming back after almost two days of outage, with no cause named yet",
+    })[0]!;
     expect(altText(card)).toBe(
-      "Anthropic and Akamai signed a seven-year cloud deal worth eleven point six billion\u2026",
+      "sift, Sat, Jul 11: Microsoft said email started coming back after almost two days of outage\u2026",
     );
   });
 
-  // 2026-10-05/pm/card-7, published as written here. Composed as "{title}:
-  // {desc}" it puts the desc's own semicolon at index 92 and the word boundary
-  // at 93, and there is no comma anywhere in it, so no other boundary in
-  // truncate can reach the same output: the semicolon is the only thing on test.
-  it("does not end a cut on the desc's own semicolon", () => {
+  // The semicolon lands at 95 and the word boundary at 96, so the slice ends on
+  // it and only trimTail can take it off: without the ";" in its class the alt
+  // reads "invalid;\u2026".
+  it("does not end a cut on the hook's own semicolon", () => {
+    const card = buildCards(DAY, {
+      ...POST,
+      hook: "Most of the automated bug submissions sent to the project turned out invalid; nothing usable arrived",
+    })[0]!;
+    expect(altText(card)).toBe(
+      "sift, Sat, Jul 11: Most of the automated bug submissions sent to the project turned out invalid\u2026",
+    );
+  });
+
+  // The same arithmetic one character along, for the other half of trimTail's
+  // class: a colon at 95, the word boundary at 96, "founder:\u2026" without it.
+  it("does not end a cut on a colon inside the hook", () => {
+    const card = buildCards(DAY, {
+      ...POST,
+      hook: "Nvidia named an interim chief after thirty-three years of one single founder: the board moved fast",
+    })[0]!;
+    expect(altText(card)).toBe(
+      "sift, Sat, Jul 11: Nvidia named an interim chief after thirty-three years of one single founder\u2026",
+    );
+  });
+
+  // 2026-11-14/am/card-3, published as written here. The title is 84 of the 100
+  // characters and the desc is 72, so the old composition spent the remaining 14
+  // on "A leaked plan\u2026" and threw the point away. 337 of the archive's 338
+  // story alts read like that; the title alone is a whole sentence.
+  it("drops the desc whole rather than handing over a fragment of it", () => {
     const card = buildCards(DAY, {
       ...POST,
       slides: [
         {
           ...POST.slides[0]!,
-          title: "Google pauses its open source bug bounty over AI slop",
-          desc: "Most automated submissions were invalid; arXiv also rate-limited papers.",
+          title: "Amazon plans to catalog nearly every product sold online, even ones it does not sell",
+          desc: "A leaked plan aims to make its index the one AI shopping agents rely on.",
         },
       ],
     })[1]!;
     expect(altText(card)).toBe(
-      "Google pauses its open source bug bounty over AI slop: Most automated submissions were invalid\u2026",
+      "Amazon plans to catalog nearly every product sold online, even ones it does not sell",
     );
   });
 
-  // The other half, and again comma-free so only one boundary can produce it: a
-  // 92-character title spends the budget alone, the word boundary falls on the
-  // space right after altText's joining colon, and the desc never arrives. The
-  // alt has to read as a cut-off title, not as one promising a clause that is
-  // not there.
-  it("does not end a cut on its own joining colon", () => {
+  // 2026-11-13/am/card-7, published as written here: 32 characters of room and a
+  // first sentence of 17, so the budget buys a clause that closes.
+  it("keeps as many of the desc's sentences as fit", () => {
     const card = buildCards(DAY, {
       ...POST,
       slides: [
         {
           ...POST.slides[0]!,
-          title: "Google\u2019s Gemini 4 Argon tops coding benchmarks but only trusted cyber defenders get it first",
-          desc: "Access is restricted to vetted defenders",
+          title: "The FAA takes its AI rerouting advice nationwide after 180 flights",
+          desc: "Airlines back it. The controllers' union says it was not involved in design or testing.",
         },
       ],
     })[1]!;
     expect(altText(card)).toBe(
-      "Google\u2019s Gemini 4 Argon tops coding benchmarks but only trusted cyber defenders get it first\u2026",
+      "The FAA takes its AI rerouting advice nationwide after 180 flights: Airlines back it.",
     );
+  });
+
+  // "As many as fit" is two sentences fitting, not one: with 39 characters of
+  // room and stops at 9 and 34, taking the first fitting stop rather than the
+  // last would publish "A record." and keep the point to itself.
+  it("keeps every sentence that fits, not only the first", () => {
+    const card = buildCards(DAY, {
+      ...POST,
+      slides: [
+        {
+          ...POST.slides[0]!,
+          title: "Microsoft patched more than 1,400 flaws in one single batch",
+          desc: "A record. The largest of the year.",
+        },
+      ],
+    })[1]!;
+    expect(altText(card)).toBe(
+      "Microsoft patched more than 1,400 flaws in one single batch: A record. The largest of the year.",
+    );
+  });
+
+  // The two edges of the room, one character apart on the same title, because
+  // one case can only hold one of them down: 39 characters of room against a
+  // desc of 39 and a desc of 40. Either edge off by one either overruns
+  // instagram's budget or throws away a sentence that was paid for.
+  it("keeps a desc that ends exactly on the budget", () => {
+    const card = buildCards(DAY, {
+      ...POST,
+      slides: [
+        {
+          ...POST.slides[0]!,
+          title: "Microsoft patched more than 1,400 flaws in one single batch",
+          desc: "A record batch, the largest in the run.",
+        },
+      ],
+    })[1]!;
+    const alt = altText(card);
+    expect(alt).toBe(
+      "Microsoft patched more than 1,400 flaws in one single batch: A record batch, the largest in the run.",
+    );
+    expect(alt.length).toBe(100);
+  });
+
+  it("drops a desc that overruns the budget by one character", () => {
+    const card = buildCards(DAY, {
+      ...POST,
+      slides: [
+        {
+          ...POST.slides[0]!,
+          title: "Microsoft patched more than 1,400 flaws in one single batch",
+          desc: "A record batch, the largest of the year.",
+        },
+      ],
+    })[1]!;
+    expect(altText(card)).toBe("Microsoft patched more than 1,400 flaws in one single batch");
+  });
+
+  // A period is a sentence end only when whitespace follows it, which is the
+  // whole of the guard: the desc's only real stop is its last character, 50 of
+  // the 36 characters on offer, so the desc goes. Reading "$1.4T" as a boundary
+  // instead would fit and publish "\u2026inference chips: A $1.".
+  it("does not take a period inside a number as a sentence end", () => {
+    const card = buildCards(DAY, {
+      ...POST,
+      slides: [
+        {
+          ...POST.slides[0]!,
+          title: "Fractile raises seven billion dollars to build inference chips",
+          desc: "A $1.4T valuation, about 12% up on the last round.",
+        },
+      ],
+    })[1]!;
+    expect(altText(card)).toBe("Fractile raises seven billion dollars to build inference chips");
+  });
+
+  // The case that used to leave a cut sitting on altText's own joining colon
+  // (an 88-character title, the word boundary falling on the space right after
+  // the colon, the desc never arriving). A title that fills the budget is now
+  // handed over as itself: no joiner, no ellipsis, nothing promised.
+  it("hands over a budget-filling title with no joiner and no ellipsis", () => {
+    const card = buildCards(DAY, {
+      ...POST,
+      slides: [
+        {
+          ...POST.slides[0]!,
+          title: "Nvidia's board approached the Arm chief about succeeding Jensen Huang, sources say today",
+          desc: "The approach was informal",
+        },
+      ],
+    })[1]!;
+    const alt = altText(card);
+    expect(alt).toBe("Nvidia's board approached the Arm chief about succeeding Jensen Huang, sources say today");
+    expect(alt.endsWith("\u2026")).toBe(false);
+    expect(alt).not.toContain(": ");
   });
 
   it("caps alt text at instagram's 100 characters", () => {

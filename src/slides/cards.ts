@@ -92,10 +92,38 @@ export function buildCards(day: string, post: SlidePost): SlideCard[] {
 
 const MAX_ALT = 100;
 
+// The ends a desc can be handed over on: each of its own sentence stops, plus
+// its end for a desc that carries no final punctuation. An inner "." only
+// counts when whitespace follows, which keeps $1.4T and 50 C. whole; across
+// the archive's 338 descs all 57 inner stops are real sentence ends, so no
+// abbreviation list earns its place here.
+const sentenceEnds = (s: string): number[] => [
+  ...[...s.matchAll(/[.?!](?=\s|$)/g)].map((m) => m.index + 1),
+  s.length,
+];
+
+// A story card's alt is the only thing a screen reader on instagram is ever
+// given, and "{title}: {desc}" runs 147 characters at the median against a
+// 100-character budget: the cut landed inside the why-it-matters clause on 337
+// of the archive's 338 story cards, leaving a median of 25 desc characters and
+// an ellipsis where the point should be. A second clause promised and not
+// delivered reads worse than no second clause, so the desc now arrives in whole
+// sentences or not at all. It costs little: every title in the archive fits the
+// budget on its own (median 68, max 96), and 13 cards still carry a desc
+// sentence. `truncate` stays for a title that one day does not fit.
+function storyAlt(card: StoryCard): string {
+  const title = stripMarks(card.title);
+  const desc = stripMarks(card.desc);
+  const room = MAX_ALT - title.length - ": ".length;
+  const end = sentenceEnds(desc).filter((i) => i <= room).pop();
+  return end === undefined ? truncate(title, MAX_ALT) : `${title}: ${desc.slice(0, end)}`;
+}
+
 /** Screen-reader text for a rendered card, capped to instagram's alt length. */
 export function altText(card: SlideCard): string {
+  // The cover has nothing droppable to give back, so its hook is still cut.
   if (card.kind === "cover") return truncate(`sift, ${formatDay(card.day)}: ${card.hook}`, MAX_ALT);
-  if (card.kind === "story") return truncate(stripMarks(`${card.title}: ${card.desc}`), MAX_ALT);
+  if (card.kind === "story") return storyAlt(card);
   return "sift.yasint.dev: the day's tech, sifted twice daily";
 }
 
