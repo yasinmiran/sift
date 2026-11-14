@@ -6,6 +6,37 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A budget spent on a fragment is a budget thrown away, and four runs of craft
+  can go into where a cut lands without anyone asking whether the thing being
+  cut survives the cut at all. The alt text's composition, `"{title}: {desc}"`
+  truncated to instagram's 100, had been refined three separate times (the KEEP
+  floor so an early comma does not throw the budget away, `trimTail`'s class so
+  a cut does not sit on a semicolon, the word boundary when no clause boundary
+  can afford it), and every one of those was a real improvement to the cut. None
+  of them asked the prior question: at **147 characters at the median against
+  100**, the second clause could never arrive, and the whole craft was polishing
+  the placement of a wound. The tell was in the first measurement and would have
+  been in any earlier one: **337 of 338**. A transform whose output is one shape
+  99.7% of the time is not a transform, it is a constant with decoration, so a
+  rate that close to 1 is not a quality distribution to tune but a structural
+  fact to name. The family is 10-18's "measure the consequence, not the defect":
+  here the consequence was that a listener got a promised clause with nothing
+  behind it, which is worse than the clause's absence, and that reframing is what
+  turned a tuning problem into a one-line deletion.
+  Its other half is about the four tests that went red. Each pinned a real
+  property (`truncate`'s floor, `trimTail`'s `;` and `:`) through the story alt,
+  which was simply the surface that happened to exhibit it; the new behaviour
+  made those cases unreachable there, and the honest move was not to weaken the
+  assertions but to find the property its other vehicle, the cover alt, which
+  composes `sift, {day}: {hook}` and still genuinely has to cut. **A test names a
+  property and a vehicle, and when the vehicle changes, go and find the property
+  another vehicle before you touch the assertion** - the property only leaves the
+  suite when nothing can exhibit it, and then it leaves as a deletion you argue
+  for, not as an edit. One case here could not be re-vehicled at all (a cut
+  landing on altText's own joining colon, now unreachable because the joiner is
+  no longer written), so it was replaced by the property that made it
+  unreachable, which is the stronger claim anyway.
+
 - A total and its itemisation are two instruments, and when they disagree the
   total is the one that saw something. Today's first sweep printed both for
   every page: `documentElement.scrollWidth - clientWidth` as the aggregate,
@@ -961,6 +992,57 @@ merges and closures and never expire.
 
 ## Backlog
 
+- MERGED 2026-11-14 as #363 / PR #364, `c3df615`, `checks` green on `7ad7a8b`
+  and `pages` 43579894266 green on build and deploy, read the honest way:
+  `deploy-pages` passed and the step gated on its failure **skipped**. The half of 11-13's card note that was cheap:
+  the alt text in each post's `meta.json`, the only thing a screen reader on
+  instagram ever gets, read as a cut-off sentence on **337 of the archive's 338
+  story cards**. `"{title}: {desc}"` is 147 characters at the median against a
+  100-character budget, so the cut landed inside the why-it-matters clause every
+  time and left a median of 25 desc characters plus an ellipsis. A story alt is
+  now the title plus as many whole sentences of the desc as fit: **0 cut, 0 over
+  budget** afterwards, 13 cards carrying a desc sentence, 325 the complete title
+  alone, a median of 32 characters deliberately unspent. 292 tests (was 285),
+  nine mutations each failing a test with the total steady, all 464 rendered card
+  documents byte-identical either side. No new dependency, no contract edit.
+- Measured 2026-11-14 and NOT shipped, left with the numbers a future run needs.
+  **The other half of 11-13's card note: the rendered cards' own contrast.** The
+  cards hard-code the site's pinned palette hexes against the card ground
+  (`#0d0c0b`, carrying a dot pattern that blends to `#191816`), so every ratio
+  is computable without a browser:
+
+  | role | hex | token | vs ground | over the dots |
+  |---|---|---|---|---|
+  | `.display` / `.wordmark` | `#e8e2d9` | `--text` | 15.18 | 13.78 |
+  | body (Karla, inherited) | `#b8b0a3` | `--body` | 9.10 | 8.26 |
+  | `.label`, `.dot`, cta url | `#d4976a` | `--accent` | 7.85 | 7.13 |
+  | story desc, 38px | `#9a9184` | (card-only) | 6.29 | 5.71 |
+  | `.terms p`, `.muted`, 28-30px | `#7a7268` | `--muted` | **4.13** | **3.75** |
+  | `.count`, 28px | `#5c564e` | `--faint` | **2.70** | **2.45** |
+
+  The reading that matters is the display scale: a card is a 1080px png shown
+  at roughly 400px in an instagram feed, so 28px of card type paints near
+  **10px** on the phone and no large-text exemption can apply. Two roles sit
+  under AA and `.count` sits under even 3:1. The remedy with precedent is
+  #109's: swap the role to a different pinned token rather than touch a hex,
+  which would take `.count` from 2.70 to 4.13 and is still under AA, so it is
+  the **same muted-tier question** and not a gardener call on its own.
+  **And the issue that question lived on is closed.** The 10-20 entry records
+  "#110 is deliberately still open" with the full site sweep's numbers parked
+  on it; github says #110 was closed as completed at 08:25:37 that same day,
+  referenced by PR #282. No run since has noticed, because #110 has not been in
+  the open list the orient step reads. The card numbers above have nowhere live
+  to sit either.
+- Measured 2026-11-14 on the way past and NOT shipped, because the remedy is a
+  content call rather than a bug. **10 of the archive's 63 cover alts are still
+  cut**, and unlike the story cards the cover has nothing droppable: its hook is
+  the content and the hooks run to 109 characters. The one lever is the
+  19-character prefix `sift, {day}: `, which is chrome. Dropping the date to a
+  bare `sift: ` clears **8 of the 10** (the remaining two, hooks of 98 and 109,
+  overrun whatever the prefix) at the cost of the date, which the caption
+  carries anyway. Whether a screen reader wants the date is the question, and it
+  is a question about what the alt says, so it wants a decision rather than a
+  measurement.
 - MERGED 2026-11-13 as #359 / PR #360, `adf67f4`, `checks` green on `e278050`
   and `pages` 43400201618 green on build and deploy, read the honest way:
   `deploy-pages` passed and the step gated on its failure **skipped**. Text
@@ -2886,6 +2968,143 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-14
+
+**#363 filed, PR #364 built, `checks` green on `7ad7a8b`, merged by this run as
+`c3df615`, and `pages` 43579894266 green on build and deploy, read the honest way:
+`deploy-pages` passed and the step gated on its failure skipped.** A screen reader on sift's instagram now
+gets a sentence that finishes.
+
+**The signal is the half of yesterday's note that was cheap and that nobody had
+looked at.** 11-13 recorded that the rendered cards had never been driven
+against any reader preference, and named two questions a png does not make void:
+the contrast of card text against the card's own ground, and the alt text in
+`meta.json`, which is the only thing a screen reader on instagram ever gets. The
+alt-text **budget** has been gated since 09-25 (100 characters,
+`slides.test.ts`); what it **says** never had been. Measured over the 31 scripted
+days in `data/slides/` before a line of code:
+
+| | |
+|---|---|
+| cards in the archive | 464 |
+| alt texts ending in an ellipsis | **347 (74.8%)** |
+| story cards | 338 |
+| story alt texts ending in an ellipsis | **337 (99.7%)** |
+| `title: desc` length, median, against a 100-char budget | **147** |
+| desc characters surviving into the alt, median / p10 | **25 / 11** |
+| story cards keeping under a fifth of their desc | 69 (20.4%) |
+| story cards where `title: desc` fits whole | **1** |
+| title length, median / max | 68 / **96** |
+
+The title is the story in one line and the desc is why it matters, so the cut
+landed inside the why-it-matters clause every single time: today's own morning
+post offered `the FAA orders its third-ever nationwide ground stop: Sources
+trace it to a network update that…`, a second clause promised and not
+delivered. And it was bought with nothing, because **every title in the archive
+fits the budget on its own**.
+
+**337 of 338 is the day's lesson, and it was readable in the first row.** Three
+earlier runs had refined where that cut lands, each of them a real improvement
+to the cut, and none had asked whether the desc could survive being cut at all.
+At 147 against 100 it could not. A transform whose output is one shape 99.7% of
+the time is a constant with decoration, so the rate was not a distribution to
+tune but a structural fact to name, and naming it turned the tuning problem into
+a deletion: the desc now arrives in whole sentences or not at all.
+
+**The rule, and what it costs.** A story alt is the title plus as many whole
+sentences of the desc as fit. A period counts as a sentence end only when
+whitespace follows, which keeps `$1.4T` and `50 C.` intact; all **57** of the
+archive's 338 descs' inner stops are real sentence ends, so no abbreviation list
+earns its place. Afterwards, over the archive: **0 cut, 0 over budget**, 13
+cards still carry a desc sentence (1 of them the whole desc), 325 are the
+complete title alone. It leaves a median of **32 characters unspent**, which is
+the trade, named in the PR rather than hidden: a complete sentence beats 25
+characters and an ellipsis. The alternative that would spend them, a clause cut
+at a comma, covers 67 cards and reads as a fragment too.
+
+**Four tests went red, and re-anchoring them rather than weakening them is the
+other half.** `truncate`'s KEEP floor and `trimTail`'s trailing `;`/`:` are real
+properties that happened to be pinned through the story alt; the new behaviour
+makes those cases unreachable there. All four moved onto the **cover** alt,
+which composes `sift, {day}: {hook}` and genuinely has nothing droppable to give
+back, with the arithmetic re-derived (semicolon at composed 95, word boundary at
+96, so only `trimTail` can take it off). One could not be re-vehicled at all, a
+cut sitting on altText's own joining colon, because the joiner is no longer
+written: it was replaced by the property that made it unreachable, which is the
+stronger claim.
+
+**Nine mutations, each reverted, each failing a test with the total steady at
+292** (was 285): the fix reverted to the old composition (5 fail), the
+whitespace lookahead dropped, the desc's own end dropped as a candidate, `room`
+forgetting the joiner's two characters, `room`'s upper edge made exclusive, the
+first fitting sentence taken instead of the longest, an over-long title left
+uncapped, `trimTail` losing `;` and `:` (2 fail), and `room` ignoring the title
+entirely (6 fail). **The sixth is where yesterday's lesson caught my own first
+draft**: a test named "keeps as many of the desc's sentences as fit" had a case
+with only one fitting sentence, so the name claimed a property the case could
+not hold, and `.pop()` to `[0]` survived until a two-fitting-sentence case was
+added. The two edges of `room` are held by two cases **one character apart on
+the same title** (a desc of 39 and a desc of 40 against 39 characters of room),
+since one case can only hold one edge.
+
+**No visual surface, and that is measured rather than assumed.** `npm run
+slides` either side: all **464** rendered card documents are byte-identical, so
+no png moves and there is nothing to screenshot. Only `meta.json` and the
+`sheet.html` preview's `img alt` differ, on 63 posts. 194 changed lines, over
+the ~150 guideline and named in the PR: **30 of them source**, 164 test. No
+schema, path or npm script moves, so no contract edit, and no new dependency.
+
+**The posting side was read before the change, not after.** `push/src/ig.ts`
+fetches only **today's** slots and keys idempotency on day+slot in the
+`ig-posted` blob, so rewriting earlier days' `meta.json` on the next deploy
+cannot re-post anything, and today's already-posted `am` keeps the alt text it
+went out with. Tonight's `pm` is the first post to carry the new text.
+
+**Health**: the last **39** completed workflow runs are 39 green, 0 red.
+`verify` across the 32-day archive: **0 errors anywhere**, the same **four** 60+
+link warnings (10-15 at 73, 10-18 at 68, 10-21 at 64, 10-29 at 64) for a sixth
+day, 11-12's 11 carried-over links, and 11-09's economist link still reading as
+a paywalled link without its badge, which lives in `digests/` and is the digest
+agent's to carry. Today's own morning digest verifies with **0** warnings, which
+is worth not mistaking for a change: 11-12 recorded 23 carried-over warnings as
+the normal shape of a morning run, and a morning with none simply means the
+03:15 ingest had the day's links. `npm audit --omit=dev` 0, typecheck clean,
+`npm run site` 33 pages, `npm test` 285 on arrival. No open PRs at the start of
+the run; seven issues open (#352, #332, #314, #246, #241, #120, #112), none
+greenlit, none commented since 10-20, so the slot was free. `data/picks` still
+empty, a third full month. Entries reach back to 08-29, inside the ~90 day
+window; the first falls out on 11-27.
+
+**One instrument check, and it is 11-05's tell firing for the third time.** The
+verify sweep printed `PARSE_FAIL` for all 32 days before it printed a single
+number, because `npm run verify` emits **pretty-printed** json and the sweep
+piped `tail -1` into `jq`, which is the closing brace. Read the shape of the
+output before its content: one `npx tsx src/digest/verify.ts {day}` without the
+npm preamble gave the whole month in one pass. Banked 11-05, banked again
+11-13 with `grep "error"` counting the line `"errors": []`, and paid for a third
+time today.
+
+**The environment, as it behaved today.** The clone arrived **shallow at 50
+commits and detached**, the seventh day running; `git fetch --unshallow && git
+reset --hard origin/main` then `git checkout -B main origin/main` (1,076
+commits after). `npm ci` works. `gh api -X GET` works for reads and `-f` without
+`-X GET` silently POSTs, which reads as a 404; paid once today on the run list.
+`gh pr list` and `gh issue list` are **both 403 at the proxy on GraphQL**, so
+the orient step runs on `gh api -X GET repos/.../pulls` and `/issues` instead,
+which is worth writing down because step 1 of this file names the two commands
+that do not work here. `gh pr checks --watch` is GraphQL too; a poll of
+`commits/{sha}/check-runs` is the substitute. The github MCP created #363
+**without** a harness footer and PR #364 **with** one, which
+`update_pull_request` removed on the first try, as on 11-08 through 11-13.
+`merge_pull_request` took the rebase on the first attempt with `expectedHeadSha`
+(the full 40 characters). **Deleting the merged branch is still impossible from
+here**, so `gardener/2026-11-14-alt-text-whole-sentences` joins its **66**
+predecessors on the remote; the environment, not a missed step.
+`sift.yasint.dev`, `yasin.goatcounter.com` and `hn.algolia.com` are all still
+**000 at CONNECT**, so no reader-side signal and no live-site read from here, and
+the deploy was confirmed from the workflow. `fonts.googleapis.com` answers.
+Copilot declined on quota for the **ninth** run running.
 
 ### 2026-11-13
 
