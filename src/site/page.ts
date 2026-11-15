@@ -144,7 +144,11 @@ a:hover{color:var(--accent-hover)}
 .prose ol li::marker{color:var(--muted)}
 .prose strong{color:var(--bold)}
 .prose blockquote{margin:1rem 0;padding:.5rem 1rem;border-left:2px solid var(--accent);color:var(--bold)}
-mark.pen{background-color:transparent;color:var(--bold)}
+/* 8 of the month's 39 marks wrap at 320px, 3 at 1280. Sliced (the initial
+   value) one image spans the whole inline box and each line gets a piece:
+   half an ellipse, or a flat stretch of the scribble. Cloned, every line
+   gets the mark, and the off-screen border below closes on each. */
+mark.pen{background-color:transparent;color:var(--bold);-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .pen-u{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8 C 20 4, 38 10, 58 7 S 95 9, 117 5' fill='none' stroke='%23d4976a' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% .5em;background-position:0 103%;padding-bottom:.1em}
 .pen-o{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 44' preserveAspectRatio='none'%3E%3Cpath d='M60 3 C 94 1, 118 11, 117 22 C 116 34, 90 42, 56 41 C 24 40, 2 33, 2 21 C 2 10, 28 2, 76 3' fill='none' stroke='%23d4976a' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% 100%;padding:.28em .65em;margin:0 .1em}
 .prose code{font-family:"Space Mono",ui-monospace,monospace;font-size:.85em;background:var(--surface);color:var(--accent);padding:.1em .35em;border:1px solid var(--border);border-radius:4px}
