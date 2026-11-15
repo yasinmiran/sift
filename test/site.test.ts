@@ -472,6 +472,38 @@ describe("buildSite", () => {
     expect(day).toContain(".pen-o{");
   });
 
+  // A mark that wraps is still one mark. box-decoration-break's initial
+  // `slice` lays the background out once across the whole inline box and
+  // gives each line the piece that falls in it: 8 of the month's 39 marks
+  // wrap at 320px and 3 still do at 1280, and the circle is the loud case,
+  // half an ellipse around "three" and the other half around "million lines".
+  // The declaration goes on mark.pen, the rule both kinds already share, so
+  // the underline and the circle cannot drift apart; it is also what closes
+  // the print and forced-colors border, which slice draws at the two ends of
+  // the box rather than around each fragment.
+  it("gives a wrapped pen mark the whole scribble on every line it takes", () => {
+    digest("2026-07-04", "a ==big deal== and ((circled)) figure");
+    buildSite(root, out);
+    for (const file of ["index.html", "2026-07-04.html"]) {
+      const html = readFileSync(join(out, file), "utf8");
+      const shared = /mark\.pen\{([^}]*)\}/.exec(html)?.[1];
+      expect(shared, `${file}: no shared mark.pen rule`).toBeDefined();
+      // Safari still wants the prefix, so both spellings or neither.
+      expect(shared, `${file}: mark.pen does not clone its decoration`).toContain(
+        "box-decoration-break:clone",
+      );
+      expect(shared, `${file}: mark.pen is unprefixed only; safari keeps slicing`).toContain(
+        "-webkit-box-decoration-break:clone",
+      );
+      // And nothing downstream takes it back: a later rule on either class,
+      // on .prose or in the off-screen block would re-slice the mark without
+      // a line of this file changing.
+      expect(html, `${file}: something sets box-decoration-break back`).not.toMatch(
+        /box-decoration-break:(?!clone)/,
+      );
+    }
+  });
+
   // A pen mark is a background image and nothing else, so both surfaces that
   // drop backgrounds (chrome prints them off by default, forced-colors
   // repaints to the reader's two colours) render the day's one marked phrase

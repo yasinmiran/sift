@@ -330,6 +330,25 @@ describe("renderSlideHtml", () => {
     expect(titleMarked).toContain('<span class="pen-u">$50,000</span>');
   });
 
+  // A card title is set at 58-78px in a 904px measure, so a marked phrase
+  // wraps on 17 of the archive's 98 marked cards and one takes three lines.
+  // box-decoration-break's initial `slice` draws the scribble once across the
+  // whole inline box and gives each line a piece of it, which paints a flat
+  // segment where the curve should be; `clone` draws the stroke under every
+  // line. The png is posted with no human in between, so the stylesheet is
+  // the gate.
+  it("draws a full stroke under each line a wrapped underline takes", () => {
+    const html = renderSlideHtml(cards[1]!, 1, cards.length);
+    const rule = /\.pen-u\{([^}]*)\}/.exec(html)?.[1];
+    expect(rule, "no .pen-u rule on the card").toBeDefined();
+    expect(rule, ".pen-u slices its scribble across the lines").toContain("box-decoration-break:clone");
+    // Safari still wants the prefix, so both spellings or neither.
+    expect(rule, ".pen-u is unprefixed only; safari keeps slicing").toContain(
+      "-webkit-box-decoration-break:clone",
+    );
+    expect(html, "something sets box-decoration-break back").not.toMatch(/box-decoration-break:(?!clone)/);
+  });
+
   it("shows a lowercased date on the cover and flags the evening post in amber", () => {
     const cover = renderSlideHtml(cards[0]!, 0, cards.length);
     expect(cover).toContain("Sat, Jul 11");

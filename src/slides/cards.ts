@@ -171,7 +171,12 @@ background-image:radial-gradient(circle,rgba(168,159,147,.08) 1.4px,transparent 
 display:flex;flex-direction:column;padding:88px}
 .wordmark{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.02em;color:#e8e2d9}
 .display{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.005em;color:#e8e2d9;text-wrap:balance}
-.pen-u{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8 C 20 4, 38 10, 58 7 S 95 9, 117 5' fill='none' stroke='%23d4976a' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% .5em;background-position:0 103%;padding-bottom:.1em}
+/* A title's underline wraps on 17 of the archive's 98 marked cards, one of
+   them over three lines, and box-decoration-break starts at "slice": the one
+   scribble is laid across the whole inline box and each line gets the piece
+   that falls in it, a flat segment where the curve should be. "clone" draws
+   the stroke under every line. */
+.pen-u{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8 C 20 4, 38 10, 58 7 S 95 9, 117 5' fill='none' stroke='%23d4976a' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% .5em;background-position:0 103%;padding-bottom:.1em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .dot{color:#d4976a}
 .mono{font-family:"Space Mono",monospace}
 .top{display:flex;justify-content:space-between;align-items:baseline}
