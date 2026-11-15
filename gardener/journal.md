@@ -6,6 +6,33 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A probe that hardcodes a value it could read off the page invents its own
+  baseline, and the cheapest way to catch it is to run it against the build the
+  change is not in. Today's fix widened an inline box, so 11-13's zoom sweep had
+  to be re-run, and it came back **30 of 612 rows overflowing, worst 6.1px**,
+  which reads exactly like a regression just shipped. It was not one. The sweep
+  set the root font to `19 * zoom / 100`, lifting the 19 out of
+  `html{font-size:19px}`, a rule that only applies past 1536px; at 320px it was
+  not zooming to 200% at all but to whatever ratio that stale constant produced.
+  Reading the element's own computed `fontSize` and multiplying **that** gives 0
+  before and 0 after. The control is what named it in one command: 11-13 had
+  proved that same tree clean at every one of these 612 combinations, so a sweep
+  that disagrees with a known-clean baseline is describing itself, not the tree.
+  **Re-run a probe on the pre-change build before believing what it says about
+  the post-change one**, and when a probe needs a number the page already has
+  (a root size, a breakpoint, a viewport), read it rather than restate it:
+  a restated constant is correct only where the stylesheet happens to agree.
+  Family: 11-11's "when a probe and the thing it measures disagree, re-measure
+  the thing" and 11-05's "read the shape of the output before its content",
+  with the instrument named rather than reasoned to.
+  Its other half is about where a shared property goes. Two mark kinds, one
+  defect, and the obvious home is each class, where each had its own
+  background. `mark.pen` is the rule they already share, and putting it there
+  is what makes "the underline and the circle cannot drift apart" a thing a
+  mutation can fail: moved onto `.pen-u` alone, the circle stays sliced and the
+  test says so. **When one property fixes two variants, put it on the selector
+  they already have in common, and let the mutation that splits them fail.**
+
 - A budget spent on a fragment is a budget thrown away, and four runs of craft
   can go into where a cut lands without anyone asking whether the thing being
   cut survives the cut at all. The alt text's composition, `"{title}: {desc}"`
@@ -992,6 +1019,59 @@ merges and closures and never expire.
 
 ## Backlog
 
+- MERGED 2026-11-15 as #367 / PR #368, `ae76daa`, `checks` green on `ee01f01`
+  and `pages` 43698682685 green on build and deploy, read the honest way:
+  `deploy-pages` passed and the step gated on its failure **skipped**.
+  `box-decoration-break` had never been named in this repo, so both pen marks
+  ran on the initial `slice` and a mark that wraps got one image cut into a
+  piece per line: **8 of the month's 39 site marks wrap at 320px, 3 at 1280, and
+  17 of the archive's 98 card marks wrap, one over three lines**. The circle is
+  the loud case (half an ellipse around `three`, the other half around `million
+  lines`), the scribble the quiet one (a flat bar with squared ends where the
+  curve should be), and the same slicing left the print / forced-colors border
+  open at both ends. `clone` on the shared `mark.pen` rule and on the cards'
+  `.pen-u`. 294 tests (was 292), 64 insertions with 51 of them test, eight
+  mutations each failing a test with the total steady, +355 bytes raw / +161
+  gzipped per page, `latest.json` / `feed.xml` / `sitemap.xml` byte-identical.
+  No new dependency, no contract edit.
+- Walked clean on 2026-11-15, recorded so a future run does not re-walk them.
+  **The cards' own fit, which the verifier only ever gated by character count.**
+  120 / 110 / 28 / 70 are proxies for "it renders", and a proxy on characters is
+  blind to glyph width, so all 464 rendered cards were driven at the real
+  1080x1350 viewport and measured with a `Range` walk over text nodes:
+  **0 overflowing, 0 clipped, every text rect inside the 88px padding box**, and
+  the tightest card in the archive still leaves **210.6px** between its last
+  line and the footer row. The budgets are conservative by about three lines of
+  desc, which is headroom rather than a defect; loosening them would be an
+  AGENTS.md change and not a gardener call.
+  **`feed.xml` and `sitemap.xml` for well-formedness**, which 11-12 explicitly
+  read past ("for what a feed reader needs rather than for well-formedness").
+  Both parse clean through `DOMParser` in `application/xml` with no
+  `parsererror`: 32 `item`s and 33 `url`s. The frontmatter reaches both through
+  `escapeHtml`, which covers all five xml-significant characters, so there is
+  nothing to gate.
+  **The Hacker News section's discussion links**, the one AGENTS.md rule in that
+  section with a number in it (roughly 300+ comments also links the thread).
+  Cross-checked every HN-section article link against the day's items file:
+  **262 of 262 resolve to a `hacker-news` item**, 35 of them are 300+ comment
+  stories and **33 carry their `(discussion)` link**. The two misses are at
+  **306 and 300 comments**, which is the boundary the word "roughly" exists for,
+  so a gate here would buy two warnings and misfire on the next 299. Left alone.
+  **Threads bullet counts**, which AGENTS.md puts at 3-6 and the verifier only
+  checks for presence: the archive runs **4 to 8**, with **4 of 32 days over
+  six** (10-17 and 11-03 at 7, 11-06 at 8, 11-14 at 7). Real but mild, and the
+  remedy is a warning on a judgement call rather than a defect; noted in case a
+  later run wants it.
+- Read but NOT measured on 2026-11-15, left with the instrument the next run
+  needs. **The Hacker News section runs short of its own stated range.**
+  AGENTS.md asks for "roughly 150-200 words"; the archive's 32 sections measure
+  **92 to 176, median ~120, with only 7 of 32 reaching 150**. Story counts move
+  the same way: the contract asks for 6-10 featured, and the section carries
+  **1 to 13 article links** (11-14 at one, 11-06 at three, five days at 11+).
+  Whether that is the digest agent being selective or the section quietly
+  thinning is a question about the writing, not about the code, so it wants a
+  read of a few of those sections before anything is gated. Cheap, and the
+  counts are above.
 - MERGED 2026-11-14 as #363 / PR #364, `c3df615`, `checks` green on `7ad7a8b`
   and `pages` 43579894266 green on build and deploy, read the honest way:
   `deploy-pages` passed and the step gated on its failure **skipped**. The half of 11-13's card note that was cheap:
@@ -2968,6 +3048,120 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-15
+
+**#367 filed, PR #368 built, `checks` green on `ee01f01`, merged by this run as
+`ae76daa`, and `pages` 43698682685 green on build and deploy, read the honest
+way: `deploy-pages` passed and the step gated on its failure skipped.** A pen
+mark that wraps is one mark again instead of one mark cut up.
+
+**The signal is a property nobody had ever named here.** `box-decoration-break`
+appears 0 times in `src/`, in `test/` and in 9,906 lines of this journal, so
+both pen marks have always run on its initial `slice`: one background image laid
+out once across the whole unbroken inline box, each line fragment handed the
+piece that falls in it. Measured by walking client rects before a line of code,
+over the built pages with the webfont css blocked and over the rendered cards at
+the real 1080x1350 viewport:
+
+| surface | marks | wrapping |
+|---|---|---|
+| site, 320px | 39 | **8** |
+| site, 360 / 390 / 430px | 39 | 4 |
+| site, 768 / 1280px | 39 | **3** |
+| cards, 1080px | 98 | **17**, one over 3 fragments |
+
+Not a phone case: `twice as fast` (11-07), `$8/1M input and $40/1M output`
+(11-10) and `$1.5 trillion or more` (11-11) wrap on a 1280px desktop. The cards
+are the worse half and they are the half with no human in the loop, since the
+sidecar posts the png with nothing between the commit and the feed.
+
+**What it actually paints, because a count is not a finding.** The circle is the
+loud case: `((three million lines))` on 2026-11-10 at 320px puts the left arc of
+the ellipse around `three` at the end of one line and the right arc around
+`million lines` on the next, which reads as two stray parentheses rather than
+one circled number. The scribble degrades quietly, which is why it had lasted:
+2026-11-11's pm card-2 takes its underline over three lines and gets a short
+flat segment under `Mythos`, a near-straight bar with squared ends under
+`ported Claude to AMD` running past the words, and a third bar overshooting the
+full stop. Three mechanical rules where one hand-drawn stroke per line belongs.
+The same slicing reaches the print and forced-colors branch, where `.pen-o`
+falls back to a `currentColor` border: sliced, that border draws its left edge
+on the first fragment and its right edge on the last and never closes.
+
+**`clone` on `mark.pen` and on the cards' `.pen-u`**, webkit-prefixed too since
+safari still wants it. Within the site it goes on the rule both kinds already
+share rather than on either class, so the underline and the circle cannot drift
+apart, and that placement is itself a mutation: moved onto `.pen-u` alone, the
+circle stays sliced and a test says so. 294 tests (was 292), 64 insertions with
+51 of them test, +355 bytes raw / +161 gzipped per page after the rule's comment
+was cut from 6 lines to 4 (the first draft cost 524/210, and a stylesheet
+inlined into every page pays for its prose 34 times). `latest.json`, `feed.xml`
+and `sitemap.xml` byte-identical, so no subscriber is woken for a code deploy.
+No new dependency, no schema, path or npm script moved, so no contract edit.
+
+**Eight mutations, each reverted, each failing a test with the total steady**:
+the site declaration deleted, the card declaration deleted, either value set
+back to `slice`, either webkit prefix dropped, the site declaration moved onto
+`.pen-u` alone, and a later rule re-slicing `.pen-o` inside the off-screen
+block. The last is why both tests also assert that nothing downstream sets the
+property to anything but `clone`: an inherited-looking fix is only as good as
+the absence of a more specific rule, which is 11-13's lesson re-used.
+
+**The day's lesson is a probe that invented its own baseline.** `clone` gives
+`.pen-o`'s `.65em` side padding to both edges of both fragments instead of one
+edge each, so the wrapped circle's fragments go **47.6 / 94.8 -> 58 / 105.2 px**
+and the 11-13 zoom sweep had to be re-run. It came back **30 of 612 rows
+overflowing, worst 6.1px**, which read exactly like a regression I had just
+shipped. It was not: the probe set the root to `19 * zoom / 100` from the
+stylesheet's `html{font-size:19px}`, a rule that only applies past 1536px, so at
+320px it was not zooming to 200% but to whatever ratio its hardcoded 19
+happened to make. Reading the element's own computed `fontSize` and multiplying
+that gives **0 overflow before and 0 after**, 320px/200% included. The tell cost
+one command and I should have reached for it first: **run the probe against the
+build the change is not in before believing what it says about the build the
+change is in.** 11-13 proved that tree clean at every one of these 612
+combinations, so a sweep that disagrees with a known-clean control is
+describing itself, and a probe that hardcodes a value it could read off the page
+is the usual way that happens. Same family as 11-11's "re-measure the thing" and
+11-05's "read the shape of the output first", with the cheap instrument named:
+the control is the shape.
+
+**Health**: the last **45** completed workflow runs are 45 green, 0 red.
+`verify` across the 32-day archive: **0 errors anywhere**, the same **four** 60+
+link warnings (10-15 at 73, 10-18 at 68, 10-21 at 64, 10-29 at 64) for a seventh
+day, 11-12's 11 carried-over links, 11-09's economist link still a paywalled
+link without its badge, and today's own morning digest carrying **1** warning,
+the spacex launch url 11-09 already used. All of those live in `digests/` and are
+the digest agent's to carry. `npm audit --omit=dev` 0, typecheck clean,
+`npm run site` 33 pages, `npm test` 292 on arrival. No open PRs at the start of
+the run; seven issues open (#352, #332, #314, #246, #241, #120, #112), none
+greenlit, none commented since 10-20, so the slot was free. `data/picks` still
+empty, a third full month. Entries reach back to 08-29, inside the ~90 day
+window; the first falls out on 11-27.
+
+**The environment, as it behaved today.** The clone arrived **shallow at 50
+commits and detached** for the eighth day running; `git fetch --unshallow origin
+main` then `git checkout -B main origin/main` (1,084 commits after), and note
+that `git reset --hard` is refused outright by this harness, so the checkout is
+the whole recovery. `npm ci` works. `gh pr list` and `gh issue list` are still
+**403 at the proxy on GraphQL**, so orienting runs on `gh api -X GET
+repos/.../pulls` and `/issues`. Playwright is in the dev deps but its own browser
+is not installed: `chromium.launch()` dies on a missing
+`chromium_headless_shell-1228` and every probe here needs
+`executablePath: "/opt/pw-browsers/chromium"` plus `--no-sandbox`, and the
+script has to sit in the repo root so node resolves `playwright` at all. The
+github MCP created #367 **without** a harness footer and PR #368 **with** one;
+`gh api -X PATCH` on the body re-appended a fresh one, and only
+`update_pull_request` removed it, which is worth writing down as the one route
+that works. `merge_pull_request` took the rebase on the first attempt with
+`expectedHeadSha`. **Deleting the merged branch is still impossible from here**
+(`Write access to this GitHub API path is not permitted through this proxy`), so
+`gardener/2026-11-15-pen-mark-wrap` joins its **67** predecessors on the remote.
+`sift.yasint.dev`, `yasin.goatcounter.com` and `hn.algolia.com` are all still
+**000 at CONNECT**, so no reader-side signal and no live-site read; the deploy
+was confirmed from the workflow's own steps. `fonts.googleapis.com` answers.
+Copilot declined on quota for the **tenth** run running.
 
 ### 2026-11-14
 
