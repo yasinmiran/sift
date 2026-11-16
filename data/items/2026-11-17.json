@@ -1,0 +1,1626 @@
+{
+  "day": "2026-11-17",
+  "generatedAt": "2026-11-16T23:51:26.450Z",
+  "items": [
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/business/customer-stories/holiday-extras-dots",
+      "title": "At Holiday Extras, dots get to work before anyone asks",
+      "url": "https://openai.com/business/customer-stories/holiday-extras-dots",
+      "author": null,
+      "publishedAt": "2026-11-16T00:00:00.000Z",
+      "content": "Dots deliver launch reports unprompted, flag issues people might miss, and talk through upcoming meetings on the commute to work.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/seedance-2-5-flash-now-available-on-ai-gateway",
+      "title": "Seedance 2.5 Flash now available on AI Gateway",
+      "url": "https://vercel.com/changelog/seedance-2-5-flash-now-available-on-ai-gateway",
+      "author": "Zachary Chen",
+      "publishedAt": "2026-11-16T00:00:00.000Z",
+      "content": "ByteDance’s is now available on .Seedance 2.5 FlashAI Gateway Seedance 2.5 Flash is a faster, lower-cost version of . The output is close to the standard model in human realism, reference-based editing, and prompt adherence.Seedance 2.5 Generate videos with synchronized audio from text prompts or image, video, and audio references. Clips can be 4 to 30 seconds long at up to 720p and 24 frames per second, in landscape, square, or portrait formats. You can also edit or extend existing videos, or provide images to set the first and last frames. Use with to generate a video with audio from a text prompt:bytedance/seedance-2.5-flashAI SDK 7 To guide generation with reference images and videos, pass their URLs in . Images and videos are numbered separately in the prompt as , , and so on:inputReferences[Image 1][Video 1] Try Seedance 2.5 Flash in the , or follow the .model playgroundvideo generation quickstart Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/set-budgets-for-projects-and-products-in-spend-management",
+      "title": "Set budgets for projects and products in Spend Management",
+      "url": "https://vercel.com/changelog/set-budgets-for-projects-and-products-in-spend-management",
+      "author": "Bryan Mishkin",
+      "publishedAt": "2026-11-16T00:00:00.000Z",
+      "content": "now supports budgets for individual projects and products, alongside existing team budgets. Spend Management Only team and project budgets support automatic pausing of production deployments. Open the new to manage budgets, view spend for the current billing cycle, and see which thresholds have been reached. Vercel sends notifications at 50%, 75%, and 100% of each budget.Spend Management page You can also manage budgets with the :Vercel CLI Spend Management is included at no additional cost for Pro teams and Enterprise teams on Flexible Commitment plans. Customers in the can also set a budget across all teams in their organization.Organizations private beta Learn more in the .Spend Management documentation Read more Track spend for one project and optionally pause its production deployments when the budget is reached, without pausing other projects.Project budgets: Track spend on one product, such as Fast Data Transfer, across your team.Product budgets:",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/agent-evals",
+      "title": "Agents are users, so your software needs evals",
+      "url": "https://vercel.com/blog/agent-evals",
+      "author": "George Fahmy",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "content": "Agents are now users of software, doing work on people's behalf. Whether you're building the agent or the software it uses (API, CLI, MCP server, SDK), evals give you a way to measure how well that work gets done. Agents probably missed your launch video and billboard on Highway 101, but they still go through the same funnel a human does to find and use a product: , , , and .DiscoverySelectionAccessSuccess You can build evals for any stage of this funnel. Here, we’ll focus on the final stage, : whether the agent completes the user’s task correctly.Success That's more difficult to check than it sounds. An agent can place a “successful” order for a hot latte when the user asked for an iced one. The request worked, so the logs in your Observability stack look fine. And because LLM outputs vary between runs, one good manual test can’t tell you whether a fix worked. You need to repeat the same tasks and grade the outcomes, before and after the change. That’s what an eval is, a test you run many times and score. Here’s how we build one. If a test asks “did it work?”, an eval asks “how often does it work, and how well?” We group agentic software tests by how many LLM calls they typically need: deterministic tests (0), one-turn evals (1), and E2E evals (2+ across a whole task). This has turned out to be a great proxy for the effort to build them, the time they take to run, and the cost of running them. Just like in , the cheap and fast tests should make up the bulk of your test suite. the practical test pyramid To use the pyramid, start with the problem you want to catch and pick the lowest tier that can catch it. For , that's the top. A one-turn eval checks a single decision, like which command the agent runs first. But depends on the whole sequence of steps (e.g. search for cafes → filter on user criteria → place the latte order). Each one can look reasonable on its own, and the agent can still get the wrong outcome. SuccessSuccess An E2E eval lets the agent work through the whole task in an environment, then checks whether the final result meets the user’s requirements. You’ve probably seen a few already; most popular coding benchmarks, like and , are E2E evals.SWE-benchTerminal-Bench Say you own SF Beans, an API for ordering coffee in San Francisco. One of the best ways to give agents access to your service is through a CLI, so you’re shipping .sfbeans Here’s a typical request from one of your customers: Here’s what knows at 8:30am:sfbeans Here’s what you could test at each layer of the pyramid for :sfbeans We’ll build the coffee eval with , an open-source framework from the creators of Terminal-Bench that runs agents in containers, checks results, and records their actions.Harbor Here are the terms we’ll use: Building E2E evals for everything isn’t practical. With traditional software, you can aim for 100% test coverage. With agents, the surface you’d need to cover is everything an LLM might do with your product, and even figuring out where that ends is hard (see ). the jagged frontier Start with one outcome your users care about, narrow enough to evaluate with a handful of tasks. You’ll usually find that goal in one of three places: For example, your goal might be to: We looked in all three places for :sfbeans That gives us our goal: Here are the metrics we use most for E2E agent evals: Success Efficiency (measured on successful trials only) Our goal is to get every order right in every trial. Once we build and run the eval in Steps 3 and 4, here’s what five trials of Claude Code + Opus 5.5 ( on ) on the iced latte order could look like:anthropic/claude-opus-5.5AI Gateway What the numbers mean: So does Opus work? Its 99% pass@5 says yes. Its 8% pass^5 says a user who orders this every weekday gets at least one wrong coffee in 92% of weeks. Both numbers are right. They just answer different questions: pass@5 asks whether the agent get the order right, and pass^5 asks whether it gets it right .canevery time Which metric matters most depends on what a failure costs your user. Someone ordering their morning coffee doesn’t get a retry. If the agent orders a hot latte, or one that’s ready after their train leaves, they’ve paid for the wrong coffee and started their day annoyed. They need it right every morning, so optimizes for pass^5.sfbeans Other products are more forgiving, because a failed attempt is cheap and gets caught before it matters: Overall averages can hide a task that fails frequently, so always inspect results per task. And with only five trials, 100% means “no failures seen yet,” not “never fails.” In Step 1, we set a goal for the eval: increase how often agents order the exact drink the user asked for. But an agent can’t attempt a goal. It needs a task: one concrete request, drawn from what your users actually ask for. Pick tasks hard enough that you learn something from running them. A good set covers the common case, the edge cases that trip agents up, and at least one request where the right move is not to act. For each task, define these parts: You can make every aspect of that environment as fake or as realistic as you need, depending on your goals. The OpenPipe team on how they defined the environment for an email research agent.has a nice writeup We wrote four tasks, each one a Harbor task folder in . tasks/ has one extra check. Its verifier reads a command log the agent can’t write to, to confirm the agent searched before giving up. We learned we needed that the hard way (see Step 5).impossible-request Here’s :iced-latte-mission The gives the agent the user’s request and names the CLI. In production, agents find the tool through a skill, docs, or an MCP server. Naming it here skips and , keeping the eval focused on .instructionsfbeansDiscoverySelectionSuccess We also specify that it’s 8:30am. Only uses our frozen clock; the sandbox’s system clock still shows the real time:sfbeans The is part real, part fake. The agent uses the real CLI, but against seeded cafes and a frozen clock, so every trial starts on the same morning:environmentsfbeans To keep the demo simple, lives inside the agent’s environment. In a real eval, protect the seed data and verifier code, and make sure the agent can update order records only through the CLI. Agents can attempt to if it helps them pass, for example by editing the inventory or writing directly.cafes.jsonorders.jsonreward hack For this coffee order, the checks the final order against the user’s requirements. Harbor runs after the agent finishes and reads the scores it writes to :verifiertest.sh/logs/verifier/reward.json The actual check lives in . It scores each constraint separately, then sets to 1 only if all of them pass. Harbor uses as the trial’s main score:check_orders.pyrewardreward The is a known-good answer. Run it before any real agent to prove the task works:solution Finally, ties the task together. It sets the timeouts, runs the verifier in the agent’s sandbox (where lives), and saves the orders as an artifact so we can inspect them in Step 5:task.tomlorders.json If you share the universal distaste for slow CI, you’ll hate waiting for evals. Every trial waits on an agent making LLM calls, step after step, and a run repeats that for every variant and task, several times each. Harbor’s , which we built upstream, speeds that up a lot. It runs trials concurrently, each in its own , and caches built task environments so they aren’t rebuilt for every trial. Routing model calls through gives you one key and one budget across model providers.Vercel integrationVercel SandboxAI Gateway Two agents, and , with two models each, make four variants.Claude CodeCodex Then install Harbor, connect a Vercel project, and run the job: This run fits on the Hobby plan: 10 concurrent sandboxes is the Hobby limit, and each trial is well under its 45-minute session cap. On Pro, you can raise as high as 10,000 ().n_concurrent_trialsSandbox limits To keep the example simple, we pass the into each sandbox as an env var, where the agent can read it. Beyond a demo, use short-lived tokens, and use Harbor’s Vercel integration to set rules that lock each trial down to only the hosts it needs, like AI Gateway. OIDC tokenSandbox firewall Internally, we go a step further and use to attach credentials to outgoing requests, keeping API keys outside the agent’s environment.credentials brokering Now for the meaty part: trace-diving. Scores tell you how often your agents fail; traces tell you why. Read the failures, and some passes too, since a pass only means the verifier was satisfied. The run from Step 4 leaves 80 trial folders in . Each has the trial’s result, the agent’s trajectory, the verifier’s scores, and, because saves it as an artifact, the order the agent placed:jobs/sfbeans-baseline/task.toml Run to browse the results. Here’s what our four variants could report (numbers are illustrative).harbor view jobs For each variant, we calculate success rate and estimate pass^5 separately for each task, then average each metric across the four tasks. Each task counts equally. That’s our baseline. On pass^5, the metric we chose in Step 2, even the best variant is far from reliable. But the score doesn’t tell us what to fix. For that, we have to open the failed trials. Take trial 2 from Step 2. Claude Code + Opus 5.5 ordered at 24th St Beans for $9.27. The verifier tells us which constraint it broke: Right drink, on time, over budget, and the saved confirms the $9.27 total. Now we read . The agent searches for lattes in the Mission, sees $7.50 on the menu, and goes straight to . No . It treated the menu price as the final price.orders.jsonagent/trajectory.jsonorderquote Trial 1, from the same variant, quotes three cafes, rules out 24th St Beans, and orders at Valencia Grind for $7.42. So the CLI can get the order right, but the agent doesn’t reliably check the total before spending the user’s money. We then look for that pattern across other failed trials, and if it keeps showing up, we have something specific to fix: make the total harder to miss, or add a flag so refuses anything over budget. That’s a much more useful conclusion than “Opus scored 85%.”--max-totalorder When we first ran this demo, the traces also exposed problems with what the eval was measuring: For larger runs, inspecting every trial by hand gets slow, so we automate it. Up to 40 reader agents running fast models like read trial transcripts in parallel and summarize their findings. A smarter coordinator agent reviews those summaries, sends readers back for more context when needed, and writes the final report. An file tells the coordinator what to look for, so we can reuse the workflow across runs.deepseek/deepseek-v4.1-flashanalysis.md Model calls go through . Trial artifacts stay in during analysis, and traces go to for long-term storage.AI GatewayVercel DrivesVercel Blob Your first eval run gives you a baseline. Now act on it. Pick the fix the traces point to, like the flag, rerun the same job, and compare against the baseline. Check whether it reduces the targeted failures without introducing new ones, then use those results to decide whether the change is ready to ship.--max-total Once you’ve built an eval, it keeps paying off for a lot of different things. Rerun it on every release to catch regressions; test prompt, skill, and model changes before shipping; learn how agents use your product; or build auto-optimization loops on top of it. Expect to add harder tasks over time. As models and your product improve, evals saturate, meaning agents start passing every task. A saturated eval still catches regressions, but it can’t tell you what to improve next. Evals are the infrastructure you use to . Vercel has the pieces you need to build them in one place: for model calls across providers, to run trials at scale, and and to keep every trace.make your product better, again and againAI GatewaySandboxDrivesBlob Ready to run your first eval? Paste this prompt into your coding agent, and it’ll build and run one for your product on Vercel with you: Read more The agentic testing pyramid How to build an end-to-end eval Iterate to greatness Example Step 1: Set a goal Step 2: Define metrics Step 3: Design the task set Step 4: Run the eval Step 5: Analyze traces Get me a large iced latte with whole milk, ready for pickup by 9:00, under $8 including tip. I’m in the Mission. ice machine is down, so no iced drinks today Fog City Roasters: (temperature) latte is $7.50 on the menu, but $9.27 after tax and tip 24th St Beans:(budget) latte is $5.50, but the earliest pickup is 9:20 Dolores Drip:(time) $7.42 after tax and tip, ready at 8:50 Valencia Grind:(meets all three) : one problem for the agent to solve, with a starting environment and a way to check whether it succeededTask : the agent setup you’re testing, like the model, prompt, tools, memory and skillsVariant : one attempt by one variant at one taskTrial (a in Harbor): every variant tried on every task, several times eachRunjob (a in Harbor): everything recorded during a trial: messages, tool calls, logs, files and final outputTracetrajectory which agents use your product, and where they failObservability: support tickets, feedback, and churnCustomers: the product hypotheses you most need to validateRoadmap: Increase the success rate on a specific task Reduce the number of steps required to accomplish a goal Check whether an agent skill helps, and get feedback to improve it A/B test a prompt Explore the frontier by checking whether a use case is achievable with current LLMs, and if they fail, why Most agent traffic comes from Claude Code and Codex. We know because adds a user-agent header when it detects a specific coding harness.Observability: sfbeans The top support ticket is “my agent ordered the wrong drink”: a hot latte instead of iced, a pickup after the user’s meeting, or a total over budget once tax and tip are added.Customers: Nothing urgent, so the wrong-drink problem goes first, since it drives churn.Roadmap: Success rate: the share of trials that pass : the chance that at least one of k trials passes (answers “can the agent do this at all?”)Pass@k : the chance that all k trials pass (answers “can I rely on it every time?”)Pass^k Steps: the number of agent turns needed to complete the task Time: how long the trial took Cost: how much the trial cost, in dollars 3 of 5 trials passed, so 60%.Success rate: Assuming independent trials with a 60% success rate, 1 − 0.4^5 ≈ 99%. Give the agent 5 tries and it almost certainly gets it right once.Pass@5: 0.6^5 ≈ 8%. The chance the agent gets 5 orders in a row right.Pass^5: (9 + 11 + 8) / 3 ≈ 9 on successful trials. The failed trials are shorter because the agent skipped work, like quoting, which is why efficiency only counts successful trials.Steps: ~3:50 on successful trials.Time: $0.56 per successful trial, but $2.35 / 3 = $0.78 per success once you count the failed trials you paid for too.Cost: the user’s requestAn instruction: where the agent works, with the same starting state for every trialAn environment: a check of the final state, ideally scored per constraintA verifier: a reference run that demonstrates the expected behavior and passes the verifierA known-good solution (optional): Common case: , the order from earliericed-latte-mission Edge case: , where the user’s usual cafe is out of their drinkusual-unavailable Edge case: , with 6 drinks, $45 total, and one pickup spotteam-order Don’t act:, where nothing fits, so the right move is to tell the user impossible-request The agents didn’t know existed, so they never tried it (obviously). That’s the funnel’s stage failing in our own eval. Naming the tool in the instruction fixed it, and it’s a good reminder that being discoverable is part of your product. In the wild, that’s the job of your skill, docs, MCP server and AEO.Our first run scored 0% on every variant.sfbeansDiscovery and never tried running it in the shell. That’s an problem, not a one.Codex kept looking for sfbeans as a connected toolAccessSuccess but when we read the traces, 9 out of 10 passes were the agent giving up without looking. The verifier only checked that no order was placed, so we tightened it to also check that the agent searched first. Without reading the traces, we’d have counted those as wins.Codex passed impossible-request almost every time, Example Example Example Example Example Automated trace analysis Goal Increase the success rate on ordering the exact drink the user asked for Agents Claude Code and Codex, since that’s where our traffic comes from. In scope Drink, pickup time, and budget (incl. tax and tip), using today’s .sfbeans Out of scope Cancellations, refunds, and accounts. We’ll eval those later. Done when Both agents get the order right in every trial, not just most of the time. Trial Result What happened Steps Time Cost 1 Pass Compared quotes from 3 cafes, ordered at Valencia 9 3:40 $0.52 2 Fail: over budget Skipped quote, ordered at 24th St: $9.27 5 1:50 $0.31 3 Pass Compared quotes from 4 cafes, ordered at Valencia 11 4:30 $0.68 4 Fail: late Ordered at Dolores, ready 9:20 6 2:10 $0.35 5 Pass Skipped Fog City, ordered at Valencia 8 3:20 $0.49 Product What a failed attempt costs the user Metric to lead with Order my morning coffee Paid for the wrong drink, late for work, lost trust Pass^k Coding agent with a test suite Extra time and model cost; the agent uses test feedback to revise its code and try again Pass@k Draft an email the user reviews A quick edit before hitting send Success rate Variant Success Pass^5 Avg steps (successful) Cost per success (incl. failed trials) Claude Code + Opus 5.5 85% 60% 9 $0.61 Claude Code + Sonnet 5.5 75% 52% 11 $0.27 Codex + GPT-6 Astra 80% 43% 8 $0.48 Codex + GPT-6.1 Sol 65% 14% 13 $0.22",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/ai-gateway-now-supports-private-inference",
+      "title": "AI Gateway now supports Private Inference",
+      "url": "https://vercel.com/changelog/ai-gateway-now-supports-private-inference",
+      "author": "Sam Chitgopekar",
+      "publishedAt": "2026-11-16T07:47:00.000Z",
+      "content": "connects your own model endpoints to .Private InferenceAI Gateway Enterprises running fine-tuned, self-hosted, or prerelease models used to need separate keys, client code, and logs for them. Those models can now run through the same authentication, , and observability as , so every model your team uses is managed in one place.SDKs and APIscatalog models Use Private Inference to: To get started, open the and add your endpoint as a private provider. Enter its base URL, select its API format, and add its credentials. Then add the models it serves.Private Inference page You can also register the provider and model with the , version 65.16.0 or later:Vercel CLI Call the model using its ID:private/<slug> Private model requests appear in alongside requests to catalog models.AI Gateway logs type: embedded-entry-inline id: 1GzjEiRrj3NaTriLhtBYIX Read the for supported model types, requirements, and billing details.Private Inference documentation Read more Call private models through Chat Completions, Responses, or Messages. AI Gateway translates each request to your endpoint's format, so switching only changes the model ID.Switch between private and catalog models: Only your Vercel team can view or call private models, and they aren't listed in the public catalog. Credentials are stored encrypted, and you can enable per provider.Keep models scoped to your team:Zero Data Retention Use private models in Claude Code, Codex, Cursor, and other connected to AI Gateway.Connect coding agents:coding agents View private model requests alongside catalog traffic in , , and . charts break down requests, tokens, and time to first token by private model.Monitor traffic together:logstrace drainscustom reportingObservability Optionally if your private endpoint fails.Configure fallbacks:fall back to a catalog model",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50515151",
+      "title": "Squircles",
+      "url": "https://linebender.org/wiki/curves/squircle/",
+      "author": "raphlinus",
+      "publishedAt": "2026-11-16T07:55:10.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 108,
+      "comments": 34
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/sakana-ai-s-jfinbench-exposes-open-weight-models-blind-spot-in-japanese-finance",
+      "title": "Sakana AI's JFinBench Exposes Open-Weight Models' Blind Spot in Japanese Finance",
+      "url": "https://alphasignal.ai/news/sakana-ai-s-jfinbench-exposes-open-weight-models-blind-spot-in-japanese-finance",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-16T08:53:35.000Z",
+      "content": "Sakana AI releases JFinBench, a 321-question Japanese finance benchmark built from 2026 certification exams that exposes a persistent gap between open-weight and proprietary models.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50517321",
+      "title": "Microsoft blames monster email outage on software defect introduced in July fix",
+      "url": "https://www.theregister.com/saas/2026/11/16/microsoft-blames-monster-email-outage-on-software-defect-introduced-in-july-fix/5310026",
+      "author": "Bender",
+      "publishedAt": "2026-11-16T13:18:22.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 188,
+      "comments": 129
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50517815",
+      "title": "The Active Directory Era Is Finally Over",
+      "url": "https://infisical.com/blog/active-directory-machine-identity",
+      "author": "FinnLobsien",
+      "publishedAt": "2026-11-16T14:15:31.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 112,
+      "comments": 73
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50519354",
+      "title": "Frame – 31.5\" color ePaper display",
+      "url": "https://trmnl.com/blog/introducing-frame",
+      "author": "geerlingguy",
+      "publishedAt": "2026-11-16T16:23:22.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 265,
+      "comments": 181
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50519744",
+      "title": "Jiff 1.0: A datetime library for Rust",
+      "url": "https://burntsushi.net/jiff/",
+      "author": "burntsushi",
+      "publishedAt": "2026-11-16T16:53:39.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 283,
+      "comments": 67
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/artificial-analysis-tracks-how-fast-voice-ai-actually-starts-speaking",
+      "title": "Artificial Analysis Tracks How Fast Voice AI Actually Starts Speaking",
+      "url": "https://alphasignal.ai/news/artificial-analysis-tracks-how-fast-voice-ai-actually-starts-speaking",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-16T17:00:36.000Z",
+      "content": "Artificial Analysis launched a Time to First Audio benchmark for text to speech models, showing streaming systems answer in under 400 ms while non-streaming peers take 2 seconds.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/black-forest-labs-challenges-filmmakers-to-build-short-films-with-flux-3",
+      "title": "Black Forest Labs Challenges Filmmakers to Build Short Films With FLUX 3",
+      "url": "https://alphasignal.ai/news/black-forest-labs-challenges-filmmakers-to-build-short-films-with-flux-3",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-16T17:13:41.000Z",
+      "content": "Black Forest Labs teams with RTL Deutschland, Nura Studios, and Studio Babelsberg for a global AI film contest with over $25,000 in prizes.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-s-chatgpt-cuts-research-time-in-half-for-1-819-scientists",
+      "title": "OpenAI's ChatGPT Cuts Research Time in Half for 1,819 Scientists",
+      "url": "https://alphasignal.ai/news/openai-s-chatgpt-cuts-research-time-in-half-for-1-819-scientists",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-16T17:23:21.000Z",
+      "content": "OpenAI's Economic Research team analyzed 580,000 messages from 1,819 scientists in a pilot program, finding researchers finish work nearly twice as fast.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50520182",
+      "title": "Grazing sheep in fields with solar arrays",
+      "url": "https://news.cornell.edu/stories/2026/10/sheep-grazing-solar-fields-offers-farmers-economic-ecological-gains",
+      "author": "PaulHoule",
+      "publishedAt": "2026-11-16T17:27:46.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 194,
+      "comments": 190
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/nvidia-s-lidarverse-unifies-3d-scene-generation-and-forecasting-in-one-open",
+      "title": "NVIDIA's LidarVerse Unifies 3D Scene Generation and Forecasting in One Open Model",
+      "url": "https://alphasignal.ai/news/nvidia-s-lidarverse-unifies-3d-scene-generation-and-forecasting-in-one-open",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-16T17:40:22.000Z",
+      "content": "NVIDIA's LidarVerse packs generation, forecasting, and resimulation of LiDAR scans into one real-time world model that runs at 10 FPS on a single H100.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261116/p37#a261116p37",
+      "title": "Source: Nvidia's board is not considering bringing Jensen Huang back as CEO and it is focused on a national security investigation into Huang (CNBC)",
+      "url": "https://www.techmeme.com/261116/p37#a261116p37",
+      "author": null,
+      "publishedAt": "2026-11-16T17:43:06.000Z",
+      "content": "CNBC: Source: Nvidia's board is not considering bringing Jensen Huang back as CEO and it is focused on a national security investigation into Huang — Nvidia's board of directors is not considering bringing back Jensen Huang as CEO, a person familiar with the matter told CNBC.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "aws-news",
+      "externalId": "c84e831e813aae9c114a1c7179100aac35ea0ad7",
+      "title": "AWS Weekly Roundup: AWS Nitro Sandboxes, AWS Emulator, and more (November 16, 2026)",
+      "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-nitro-sandboxes-aws-emulator-and-more-november-16-2026/",
+      "author": "Daniel Abib",
+      "publishedAt": "2026-11-16T17:55:46.000Z",
+      "content": "A second delivery of the same message can reveal more about an application than its happy-path demo. I like tools that make those cases easier to investigate while a change is still small. Last week’s launch of AWS Emulator brings part of that work onto your own machine: developers and coding agents can exercise AWS API interactions, inspect results, and try again without provisioning cloud resources for every attempt. I wrote about the Emulator’s launch last week, and it’s my main highlight in this edition. There are also new ways to isolate workloads on shared infrastructure, give an agent narrowly scoped access to a backend, and prepare search applications for a regional disruption. Now, let’s get into this week’s AWS news… AWS Emulator runs locally alongside your code and development tools. Image: AWS. Headlines Test your applications against AWS locally with AWS Emulator introduces a generally available local environment for AWS API interactions. Point the AWS CLI or AWS SDKs at its HTTPS endpoint, and your application keeps its normal SDK calls. The walkthrough shows a coding agent creating an Amazon DynamoDB table, writing an item, and reading it back. You don’t need an AWS account for emulated operations, and there is no additional service fee. The getting-started guide covers Linux packages, Docker for macOS and Windows, and agent-assisted setup; the source is on GitHub. What I like is giving an agent concrete feedback while it works: run calls, inspect results, and revise the code. Matt Wood’s perspective on feedback for coding agents explores why that loop matters. Check the published fidelity results for your operations, because coverage varies and unimplemented calls return HTTP 501. The emulator doesn’t reproduce IAM and resource-policy enforcement or cross-account and cross-Region behavior, so test the complete application and its security configuration on AWS before production. AWS Nitro Sandboxes bring hardware isolation to pods, tasks, and VMs. You can give an Amazon EKS pod or Amazon ECS task its own VM boundary while sharing an Amazon EC2 instance. That is useful for tenant workloads, build jobs, and agents executing generated code. Isolated mode separates workloads from their neighbors; confidential mode adds protection from node operators and cryptographic attestation. The Compute Blog deep dive explains both modes and their integrations. Nitro Sandboxes have no additional charge on supported instances; EC2 and applicable EKS Auto Mode or ECS Managed Instances fees still apply. Last week’s launches Here are some launches and updates from this past week that caught my attention: Amazon Cognito supports OAuth 2.0 token exchange – You can now exchange a user’s token for one scoped to a downstream service in Amazon Cognito. The derived token can have narrower permissions and a single audience, with no refresh token; supplying an actor token also identifies the intermediary in an act claim. For an agent calling a backend on someone’s behalf, that makes delegation more explicit without forwarding the original token. The feature is available on Essentials and Plus plans in all Cognito Regions. Claude Fable 5.2 is available on AWS – You can access the model through Amazon Bedrock or Claude Platform on AWS. Anthropic positions it as its most capable generally available model for technical work, including extended engineering tasks, scientific research, and quantitative finance. Bedrock has model-specific retention requirements: Fable 5.2 traffic is retained for up to 30 days for abuse detection, with a temporary zero-retention exception for eligible internal use. Amazon ElastiCache Serverless adds search and aggregations – You can now combine vector, full-text, and hybrid search with server-side aggregations in Amazon ElastiCache Serverless for Valkey. That gives product discovery, recommendations, and agent-memory retrieval another option for querying frequently changing data. The capability requires Valkey 9, so create a compatible cache or upgrade an existing one. It is available in commercial Regions, AWS GovCloud (US), and the AWS European Sovereign Cloud. Amazon OpenSearch Service adds managed cross-Region disaster recovery – You can now pair Amazon OpenSearch Service domains running version 3.7 or later in two Regions within one account. AWS specifies recovery objectives under one minute for data loss and under 20 minutes for recovery time. Planned switchovers preserve all writes; unplanned failovers can lose unreplicated data. The deep dive covers the remaining work: keeping configuration aligned and redirecting application writes after switching roles, plus secondary-domain and data-transfer charges. Amazon CloudWatch Logs adds account-level retention policies – You can now set retention across all log groups or groups matching a name prefix in Amazon CloudWatch, with policies covering existing groups or only new ones. When policies overlap, the longest retention period applies. A platform team can set a baseline and retain security logs longer without updating every group individually. The feature has no additional charge and is available in commercial Regions except Middle East (Bahrain) and Middle East (UAE). The next generation AgentCore runtime is now the default – New Amazon Bedrock AgentCore runtimes now use the next-generation runtime by default, so agent sessions start in under 2 seconds, scale up to 8 vCPU and 32 GB, scale to zero when idle, and bill up to 68% less memory, while each session still runs in its own isolated microVM. For a full list of AWS announcements, be sure to keep an eye on the What’s New with AWS page. Other AWS news Here are some additional posts and resources that you might find interesting: Optimizing cost per task and proving agent ROI on Amazon Bedrock – This guide follows an agent’s cost through repeated calls, reasoning, caching, and human review. I like its emphasis on measuring a completed task and comparing outcomes against a documented baseline. Its worked prices are illustrative; use your own workload and reconcile estimated costs with billing data. How Zillow runs 100 million daily notifications on AWS Step Functions – Zillow describes reusable content modules and configuration-driven AWS Step Functions Express Workflows for more than 100 million daily notifications. The useful engineering details include idempotent modules, batching, campaign isolation, and testing expressions with the TestState API before deployment. Those patterns apply well beyond notification systems. Upcoming AWS events Check your calendar and sign up for upcoming AWS events: AWS re:Invent – Join the community in Las Vegas from November 30 to December 4. Browse more than 2,200 sessions, including workshops and deep dives, or register for the free livestream to follow keynotes and selected sessions remotely. AWS Community Days – Find community-led technical talks, workshops, and hands-on learning near you. Check each organizer’s page for current dates and registration details. Join the AWS Builder Center to connect with builders, share solutions, and access content that supports your development. Browse here for upcoming AWS-led in-person and virtual events and developer-focused events. That’s all for this week. Check back next Monday for another Weekly Roundup! – Daniel Abib This post is part of our Weekly Roundup series. Check back each week for a quick roundup of interesting news and announcements from AWS!",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112539 at https://www.eff.org",
+      "title": "Amazon Ring’s New Indoor Surveillance Drone Is Not Compatible with Privacy",
+      "url": "https://www.eff.org/deeplinks/2026/11/amazon-rings-new-indoor-surveillance-drone-not-compatible-privacy",
+      "author": "Matthew Guariglia",
+      "publishedAt": "2026-11-16T17:58:26.000Z",
+      "content": "Amazon Ring has finally announced their long-dreaded indoor drone, a small flying surveillance device connected to their security suite of products that can fly around your house filming and recording things. The device is supposedly designed to fly preset paths across your home and will also activate if a sensor or alarm has been triggered. Customers should think twice about purchasing these devices for a number of reasons. These devices are problematic in many of the ways we’ve said Ring’s stationary home surveillance products are a problem, plus some new ways. At a very basic level, they are essentially a window into your house that can be accessed by anyone with access to your account—which has historically included bad actors looking to embarrass or harass Ring users and employees of the company. What’s worse, Ring has supercharged the units with its ‘AI Pilot’ to map routes, model the interior of the home, and control movement. This means not only is the footage being sent to corporate servers, but the company is also making inferences about your home to carry out tasks. How much home usage data this is based on, and if it can be used to infer when certain household activities are happening, are both open questions. And presumably, to maintain the preset routes, inferred data about your home will still be held by Ring even after any stored video footage is deleted. The risk to your privacy is only compounded once you consider Ring’s renewed partnership with police through the massive surveillance and taser vendor, Axon. Through this partnership, police have the ability to request camera footage from Ring users with just a few clicks on Axon’s platforms. This includes its Fusus platform, an interactive surveillance feed and map police use to manage all the surveillance devices they have access to, like automated license plate readers. It’s unclear exactly what devices police can request footage from, but if this request feature is extended to Ring’s drones, police could easily send requests for footage from inside your house. Sharing is voluntary, but once footage is submitted, it cannot be retracted. Worse still, if your footage is not sitting on Amazon’s servers fully encrypted—and there’s reason to believe their privacy options are not the strongest—police could serve a warrant straight to the company, instead of to you, to get footage from your devices. New problems and questions arise because the camera can fly. For instance: if police serve a warrant on Amazon, can they only get the footage from the camera, or could they also get access to control the drone? If the latter, we could be looking at the first full home search in history where police serve a warrant on a third-party tech company and not the resident. The CEO of Ring has pitched this product’s safety benefits in several ways, including by saying: “If someone is going around your house at night, and your motion detector goes off on your Ring doorbell, imagine if you see spotlights and something flying across the window...You’re probably not going to go into that house.” But partially justifying a $250 piece of technology that invades your privacy on what an imagined burglar might do doesn’t sound like a foundation for safety—it sounds like security theater and marketing. It isn’t new for Ring to prey on the fears and paranoia of people and their properties. This is the latest iteration of that: a patrolling drone or rover wouldn't have been possible even in the world's top museums and art galleries a generation ago. Moving this technology into the household as a common consumer product is another example of companies attempting to lower the bar on surveillance being normalized. With previous Ring products, consumers have had to consider what cameras and high-powered microphones can learn about their home usage from the front door. Autonomous flying drones and rovers inside the home add a whole new layer. What can these devices learn about you and your family? And do you really trust that data sitting on a server somewhere? Consumers should consider these risks before subjecting their guests and households to the latest creepy surveillance tool.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/deepreinforce-s-grandcode-beats-every-human-in-three-live-coding-contests",
+      "title": "DeepReinforce's GrandCode Beats Every Human in Three Live Coding Contests",
+      "url": "https://alphasignal.ai/news/deepreinforce-s-grandcode-beats-every-human-in-three-live-coding-contests",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-16T18:00:28.000Z",
+      "content": "A multi-agent reinforcement learning system from DeepReinforce swept three consecutive live Codeforces rounds, outperforming every human including legendary grandmasters.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261116/p38#a261116p38",
+      "title": "Sam Altman says he has \"personal strong empathy\" for Jensen Huang and \"heroes have flaws,\" but the AI industry \"will be fine\" due to strong revenues and demand (Shirin Ghaffary/Bloomberg)",
+      "url": "https://www.techmeme.com/261116/p38#a261116p38",
+      "author": null,
+      "publishedAt": "2026-11-16T18:05:01.000Z",
+      "content": "Shirin Ghaffary / Bloomberg: Sam Altman says he has “personal strong empathy” for Jensen Huang and “heroes have flaws,” but the AI industry “will be fine” due to strong revenues and demand — OpenAI's Sam Altman said he believes the artificial intelligence industry will weather …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261116/p39#a261116p39",
+      "title": "OpenAI announces new tools to combat CSAM, including an image classifier and warning screens to prevent users from accessing material that sexualizes children (Ivan Mehta/TechCrunch)",
+      "url": "https://www.techmeme.com/261116/p39#a261116p39",
+      "author": null,
+      "publishedAt": "2026-11-16T18:10:01.000Z",
+      "content": "Ivan Mehta / TechCrunch: OpenAI announces new tools to combat CSAM, including an image classifier and warning screens to prevent users from accessing material that sexualizes children — OpenAI today announced new tools to combat child sexual abuse material (CSAM) amid growing safety concerns around the use of AI tools.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50520866",
+      "title": "Software is breaking down at a systemic level",
+      "url": "https://www.breck-mckye.com/blog/2026/11/software-is-breaking-down-at-a-systemic-level/",
+      "author": "zero_shift",
+      "publishedAt": "2026-11-16T18:17:17.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 327,
+      "comments": 208
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/hugging-face-drops-its-chat-router-and-hands-control-to-openrouter",
+      "title": "Hugging Face Drops Its Chat Router and Hands Control to OpenRouter",
+      "url": "https://alphasignal.ai/news/hugging-face-drops-its-chat-router-and-hands-control-to-openrouter",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-16T18:18:02.000Z",
+      "content": "Hugging Face is handing language model routing to OpenRouter, keeping the same token and endpoint while adding live provider stats and failover.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50521045",
+      "title": "Technical issue at JPMorgan Chase triggers online banking delays for US banks",
+      "url": "https://apnews.com/article/bank-outage-chase-wells-fargo-truist-50fee2693c22f597fa6ca51a97ef2cda",
+      "author": "samk3nny",
+      "publishedAt": "2026-11-16T18:31:30.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 685,
+      "comments": 542
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261116/p40#a261116p40",
+      "title": "California's AG sues OpenAI over the Hugging Face attack, alleging it was one of 80+ incidents due to OpenAI testing its AI models without adequate safeguards (Politico)",
+      "url": "https://www.techmeme.com/261116/p40#a261116p40",
+      "author": null,
+      "publishedAt": "2026-11-16T18:55:00.000Z",
+      "content": "Politico: California's AG sues OpenAI over the Hugging Face attack, alleging it was one of 80+ incidents due to OpenAI testing its AI models without adequate safeguards — California Attorney General Rob Bonta is suing OpenAI over the cyberattack its rogue AI agents launched this summer against the tech platform Hugging Face.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/hark-card-gives-ai-agent-users-5-cash-back-on-every-purchase",
+      "title": "Hark Card Gives AI Agent Users 5% Cash Back on Every Purchase",
+      "url": "https://alphasignal.ai/news/hark-card-gives-ai-agent-users-5-cash-back-on-every-purchase",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-16T19:07:51.000Z",
+      "content": "Hark Labs is bundling a 5% cashback virtual card with its AI agent, capped at 10,000 invite-only members, turning its assistant into a payment layer.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/us-moves-to-cut-chinas-remote-access-to-ai-chips/",
+      "title": "US moves to cut China’s remote access to AI chips",
+      "url": "https://arstechnica.com/tech-policy/2026/11/us-moves-to-cut-chinas-remote-access-to-ai-chips/",
+      "author": "Ashley Belanger",
+      "publishedAt": "2026-11-16T19:10:09.000Z",
+      "content": "On the heels of the Nvidia scandal, the Trump administration is preparing to crack down on foreign data centers that are fueling China’s advancements in artificial intelligence by allowing remote access to otherwise restricted high-end chips necessary for AI training. In a summary of the rule change, the Commerce Department said it was closing a loophole that previously allowed foreign rivals like China, Russia, and Iran to bypass export curbs on certain advanced computer chips by instead renting access to those chips from data centers in Indonesia, Malaysia, Singapore, Thailand, and Brazil. US rivals could possibly use that access to train and run advanced AI models “capable of supporting military- and intelligence-related activities that could threaten US national security or foreign policy interests,” the Commerce Department said. Among threats, the US fears rivals could use advanced AI to develop \"more effective weapons of mass destruction and advanced conventional weapons, coordinated cyber-espionage and targeted cyber-disruption, algorithmic theft, and weaponized disinformation.” Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261116/p41#a261116p41",
+      "title": "Q&A with Satya Nadella on code verification becoming more important as code generation gets cheap, Microsoft's voluntary exit offers, decision models, and more (Gergely Orosz/The Pragmatic Engineer)",
+      "url": "https://www.techmeme.com/261116/p41#a261116p41",
+      "author": null,
+      "publishedAt": "2026-11-16T19:15:09.000Z",
+      "content": "Gergely Orosz / The Pragmatic Engineer: Q&A with Satya Nadella on code verification becoming more important as code generation gets cheap, Microsoft's voluntary exit offers, decision models, and more — Listen and watch now on YouTube, Apple, and Spotify. See the episode transcript at the top of this page, and timestamps for the episode at the bottom.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/culture/2026/11/meet-the-new-james-bond-robert-pattinson/",
+      "title": "Meet the new James Bond: Robert Pattinson",
+      "url": "https://arstechnica.com/culture/2026/11/meet-the-new-james-bond-robert-pattinson/",
+      "author": "Jennifer Ouellette",
+      "publishedAt": "2026-11-16T19:36:25.000Z",
+      "content": "The Internet has been abuzz for months about which actor would replace Daniel Craig as British agent 007 James Bond in the franchise. We finally have the answer: Robert Pattinson, who built on his 2005 role as the doomed Cedric Diggory in Harry Potter and the Goblet of Fire into an illustrious career mixing roles in franchises and Hollywood blockbusters with daring arthouse fare. “James Bond is one of the most legendary characters in cinema, and to be entrusted with 007 is the honor of a lifetime,” Pattinson said in a statement. “To say this role is a dream come true is an understatement. I couldn’t be more excited about this partnership and the work ahead with this fantastic team.” The choice will reunite Pattinson with Denis Villeneuve, who recently worked with him on the forthcoming Dune: Part III and will direct the next (as yet untitled) Bond installment. “I want to express my deep gratitude to the remarkable actors who joined us on this journey,\" Villeneuve said in a statement. We were surrounded by extraordinary talent, but there can only be one 007. I am overjoyed to welcome Robert Pattinson as our new James Bond. He has the timeless soul of 007 and brings a spirit that is completely new. I cannot wait to begin.” Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/11/when-will-humans-actually-fly-on-starship/",
+      "title": "When will humans actually fly on Starship?",
+      "url": "https://arstechnica.com/space/2026/11/when-will-humans-actually-fly-on-starship/",
+      "author": "Eric Berger",
+      "publishedAt": "2026-11-16T19:46:08.000Z",
+      "content": "The stunning return of Starship from the skies to a launch tower in South Texas answered some questions about the future of SpaceX's ambitious rocket program. Namely, it is now rapidly moving toward rapidly reusable launch. However, it raises other questions. For example, as Starship becomes fully reusable, when might humans fly on the vehicle? The short answer is pretty simple: If SpaceX prioritizes human spaceflight on Starship, it could happen reasonably quickly. The longer answer becomes more complicated and depends on what one means by human spaceflight. The first people to fly on Starship probably won't launch from Earth, or land here. Rather, they will probably be NASA's lunar astronauts. So there are different timelines for humans flying aboard Starship and landing on Earth. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1034512",
+      "title": "The Apple Watch Series 12 is cheaper than ever ahead of Black Friday",
+      "url": "https://www.theverge.com/gadgets/1034512/apple-watch-series-12-black-friday-deal-sale",
+      "author": "Sheena Vasani",
+      "publishedAt": "2026-11-16T19:50:47.000Z",
+      "content": "The Apple Watch Series 12 is on sale in multiple configurations. | Photo: Amelia Holowaty Krales / The Verge If you’re still sporting an Apple Watch that launched five or so years ago, now is a good time to upgrade. Apple’s latest smartwatch, the 42mm Apple Watch Series 12 with Wi-Fi and GPS connectivity, has dropped to a new all-time low of $329 at Amazon, Best Buy, and Walmart, beating the October Prime Day price by $20. If you prefer a larger size, the 46mm model is on sale for $379 ($70 off) at Amazon, Best Buy, and Walmart, which is also $20 lower than the previous best price. Apple Watch Series 12 Where to Buy: $399 $329 at Amazon $399 $329 at Walmart $399 $329 at Best Buy The Series 12 stands out compared to previous models with its new AI-powered Audio Intelligence features, which are made possible by Apple’s new S11 chip. For example, the watch can alert you when it detects sounds like a doorbell, alarm, or even a baby’s cry, while other upcoming features like Live Rewind and Siri Recap lets you look back at a transcript of the previous 15 seconds of conversation and get a high-level overview of the conversations you had that day. The new chip also makes Siri more responsive, so you can get answers to questions with less waiting around. It’s not all about AI, though. The Series 12 also features redesigned health sensors that can now track your heart rate every five seconds even when you’re not exercising, which is particularly help if you have a chronic condition and need to keep a closer eye on your heart rate. It also introduces a new readiness score to help you decide how prepared your body is for the day. Other highlights include easier navigation with simple pinch gestures, and faster charging, which helps to make up for the fact that battery life is rated at up to 24 hours on a single charge, just like the previous-generation model. In our testing, the watch went from 20 to 64 percent charge in just 20 minutes, making it relatively easy to top up while showering or getting ready for the day. Read our Apple Watch Series 12 review. window.HYPE_DESK_CONFIG = { productImageUrl: \"https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/SME_26001_0050_069_v2_10_QC-1.jpg\", productImageAlt: \"SPECS AR Glasses\", productTitle: \"SPECS AR Glasses\", shortDescription: \"SPECS are augmented reality glasses designed for real life. Navigate, create, and enjoy immersive experiences while staying present.\", longDescription: \"Discover SPECS, augmented reality glasses designed for real life. Navigate hands-free, explore immersive experiences, and create with a large private display, all while staying connected to the world around you. Available for preorder in two sizes, starting at $2,195.\", purchaseUrl: \"https://specsinc.pxf.io/c/482924/3886144/52432?subId1=VergeHypeDeskNov2026&u=https%3A%2F%2Fwww.specs.com%2Fsmart-glasses%2Fspecs-27\", purchaseLinkText: \"Explore SPECS\" };",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/11/supreme-court-keeps-injunction-against-dei-grant-defunding-in-place/",
+      "title": "Supreme Court keeps injunction against DEI grant defunding in place",
+      "url": "https://arstechnica.com/science/2026/11/supreme-court-keeps-injunction-against-dei-grant-defunding-in-place/",
+      "author": "John Timmer",
+      "publishedAt": "2026-11-16T19:54:21.000Z",
+      "content": "On Monday, the Supreme Court announced it would not hear an appeal of a lower court decision that blocked the government from canceling the grants of a handful of researchers whose funding had been revoked during the Trump administration's purge of DEI-related work. While the decision applies to only seven researchers in California, the lower court had ruled that the government's actions violated the First Amendment and so may have broad implications. The Supreme Court provided no discussion of its rejection, and no justices filed a dissent regarding the decision. The suit was initially filed by a large group of researchers at the University of California, Berkeley and UC San Francisco, contesting grants originally issued by many federal agencies, from the National Institutes of Health to the Department of Transportation. At issue were grants that had been terminated because the agencies decided they violated a Trump executive order blocking the use of DEI. This occurred despite the fact that the government hadn't bothered to define DEI, and targeted grants were often identified by little more than a keyword search. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-sends-chatgpt-for-healthcare-agents-into-real-hospital-workflows",
+      "title": "OpenAI Sends ChatGPT for Healthcare Agents Into Real Hospital Workflows",
+      "url": "https://alphasignal.ai/news/openai-sends-chatgpt-for-healthcare-agents-into-real-hospital-workflows",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-16T20:02:01.000Z",
+      "content": "OpenAI brings computer-use agents to clinical software with CVS, Cigna, Abridge and Ambience, plus 20+ new plugins and improved clinical search.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50522563",
+      "title": "Rust changed me as a developer",
+      "url": "https://blog.startifact.com/posts/how-rust-changed-me/",
+      "author": "speckx",
+      "publishedAt": "2026-11-16T20:16:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 153,
+      "comments": 87
+    },
+    {
+      "sourceSlug": "fireship",
+      "externalId": "yt:video:ytmawkPTP24",
+      "title": "Why Microsoft couldn’t fix its own servers for 36 hours...",
+      "url": "https://www.youtube.com/watch?v=ytmawkPTP24",
+      "author": "Fireship",
+      "publishedAt": "2026-11-16T20:18:59.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "video"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261116/p42#a261116p42",
+      "title": "Bank of America, Chase, Wells Fargo, and other US bank customers report online service issues; Chase blames a technical issue, not a cyber issue, for the delays (Associated Press)",
+      "url": "https://www.techmeme.com/261116/p42#a261116p42",
+      "author": null,
+      "publishedAt": "2026-11-16T20:20:02.000Z",
+      "content": "Associated Press: Bank of America, Chase, Wells Fargo, and other US bank customers report online service issues; Chase blames a technical issue, not a cyber issue, for the delays — Customers reported difficulty accessing the online accounts at some major banks Monday. Bank of America, Chase, U.S. Bank …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112541 at https://www.eff.org",
+      "title": "Donate Equity to Support Digital Rights: Stocks, DAFs, and Giving",
+      "url": "https://www.eff.org/deeplinks/2026/11/how-donate-equity-support-digital-rights-stocks-dafs-and-charity",
+      "author": "Hudson Hongo",
+      "publishedAt": "2026-11-16T20:23:12.000Z",
+      "content": "Do the holidays have you thinking about how you can support your favorite nonprofit? For 35 years, the Electronic Frontier Foundation has been advancing our digital rights, including defending security researchers, encrypting the web, and fighting illegal surveillance. Donating equity to EFF can help support this important work. Perhaps your family has taken advantage of the new tax law around giving by creating a Donor-Advised Fund. Perhaps your employer has gone public and you now own stock. Perhaps you’ve seen some of EFF’s recent successes and thought, Man, imagine what they could do with more. Stocks A gift of equity can help your contribution go farther and offer tax savings. When you donate appreciated stock, you avoid paying capital gains tax on any increase in its value. You also receive a charitable income tax deduction for the fair market value of appreciated stock on the date it is transferred. Also, more and more companies are offering gift-matching programs that can double your impact at no additional cost. If you have owned the stock for less than a year, your gift will not qualify for all of these potential tax advantages. And gifts of appreciated stock are fully deductible—up to a maximum of 30% of your adjusted gross income. Please check with your accountant or tax advisor regarding your particular tax status. We have helpful information here to facilitate the transfer of securities. Please email us if you have any questions. And let us know in advance if you are transferring securities. We’ll need to know the amount and type of shares that you will be donating in order to provide a tax receipt. Donor-Advised Funds As a 501(c)(3) organization, EFF can also receive distributions through your Donor-Advised Fund (DAF), including one-time gifts or recurring donations. Simply inform your DAF provider you would like to make a gift to: Electronic Frontier Foundation (EIN 04-3091431) 815 Eddy Street San Francisco, CA 94109 Please note that many DAF providers do not provide the donor’s name to the recipient organization. If you would like to be recognized for your gift, let us know the amount of the gift and the fund name. And due to IRS regulations, we may not be able to provide a thank you gift in line with your giving level. The DAF provider is responsible for your tax receipt. JOIN EFF The rules that govern technology shape our freedom. Help us write those rules today!",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "zvi-dwatv",
+      "externalId": "http://thezvi.wordpress.com/?p=25797",
+      "title": "Fable 5.2 is the New Bazooka",
+      "url": "https://thezvi.wordpress.com/2026/11/16/fable-5-2-is-the-new-bazooka/",
+      "author": "TheZvi",
+      "publishedAt": "2026-11-16T20:27:43.000Z",
+      "content": "You do not always want a bazooka. Sometimes, though, you absolutely want a bazooka. That’s what Claude Fable 5.2 is for. This is your bazooka. For most purposes, for a thousand household uses, Claude Fable 5.2 will not be appreciably better than Claude Opus 5.5. You might or might not prefer its style, or prefer it for any given task. If you are staying within your quota either way then both are good choices for a daily driver. When you have a difficult task, or a very complex task, or a long task? The kind of task where prior to this you would have considered reaching for Astra? The kind of task that raises your ambitions? It’s time. Get the bazooka. Ethan Mollick calls Fable 5.2 ‘almost’ AGI, or ‘jagged AGI.’ He asked it to do the most impressive thing it could, then to hack some hardware, start a profitable business, reconstruct history’s hardest humanities class and do (actually interesting and useful) original academic research, The Official Pitch Fable 5.2 is considerably cheaper than Fable 5.1. They’re available at a lower price: $8 per million input tokens and $40 per million output tokens. Fable 5.1 was slow. Fable 5.2 is substantially faster. Try Claude: They generate outputs up to 30% faster than Claude Fable 5.1 and Claude Mythos 5.1. You can make it even faster, by a factor of 2.5, if you are willing to double the price to $16/$80. That is a remarkably good deal. And it communicates more clearly. Try Claude: Testers have found that Fable 5.2 and Mythos 5.2 communicate more clearly than past Fable and Mythos models. The first wave of testimonials talk about how Mythos 5.2 solves problems and finds issues that other models do not, and how it understands your intent. It is Anthropic’s most capable public model for cybersecurity engineering. Later waves of testimonials talk about providing exceptional performance. The statements are still AI-written, but they feel scarier and more substantial these days. Fable 5.2 solved two open problems in theoretical physics, one working largely anonymously: The spinless modular bootstrap at central charge and the Hawking-Page transition at weak coupling. They claim major progress in robotics and hardware engineering. Claude: Fable 5.2 shows substantially improved skills in controlling physical robots, even on tasks it has never explicitly been trained to do. On RoboDojo, a benchmark with a simulated two-arm robot, it outperformed other models and most AI systems built to control robots. Alex Albert (Anthropic, Claude Relations): btw robotics will fall to the bitter lesson too Anthropic: Many of AI’s potential benefits—for example, in speeding up laboratory research—depend on it being able to act in the physical world. Claude Fable 5.2 continues our models’ trend of increasing usefulness in the real world, showing promising results on tasks such as designing hardware devices and substantial advances in controlling physical robots. … Robotics. Compared with earlier Claude models, Fable 5.2 shows substantially improved skills in controlling physical robots—even for robotics tasks on which it has never explicitly been trained. The video below shows robots controlled by Fable 5.2 completing a variety of tasks, including solving a puzzle cube, unscrewing a bottle cap, and drawing a picture of a robot. On the public RoboDojo benchmark, which tests how AIs can control a simulated two-arm robot from camera images, Fable 5.2 outperformed other frontier models that were run on the same harness, as well as most AI systems built specifically to control robots. The system prompt is here as per our friend Pliny, clocking in at 950k characters. Time to run the ‘read this entire project and fix everything’ prompts again. Choose Your Fighter Anthropic recommends that you default most tasks to Opus 5.5 at medium effort. For well-scoped everyday work you can move down to Sonnet 5.5, or to Haiku 5.5 for the simplest high-volume work like classification, routing and extraction. Move up to Fable 5.2 for the hardest technical projects in coding, finance and the sciences. Or in some cases you can move to high effort, but if you’re considering max you probably want to move to a bigger model instead. Or, if you don’t want to leave a person hanging, go fast: Addy Osmani (claude.dev Blog): A faster setup finishes sooner and can miss more. Think through how long a person can wait before you pick your model and effort level. For replies a person waits on, start Sonnet 5.5 at low or medium. Often next generation models are faster than their predecessors. Fable 5.2 generates output up to 30% faster than Fable 5.1. Sonnet 5.5 runs 30% faster than Sonnet 5. This all seems like reasonable advice if you are scaling what you are doing, and thus will be using a lot of tokens. If things are not going to scale, I find it is more important to not have to think hard about which models and effort levels to be using. As in, my decision tree is by default to continue to use Opus 5.5 for most things. For editing I use Opus 5.5 on Max, unless I am in a hurry, much to Fable 5.2’s chagrin, because Opus 5.5 is actively better there and there’s no reason not to max out. Fable 5.2 is there for when I need it for other task types. Official Benchmarks Some benchmarks show minimal gains over Opus 5.5 whereas others show large gains. Opus 5.5 still has the edge in a few places, GDPval-AA and AA-Briefcase Elo, where a judge evaluates the deliverable rather than the evaluation being fully objective. Remote Labor Index (RLI) stands out as a large and important gain. This alone establishes that Fable 5.2 can importantly handle previously impossible tasks. Here are their chosen charts from the model card and the official announcement: There are several other evals listed that did not make the chart, many of which did not show substantial improvement. Here are most of them, slash lines are [without/with tools], some of which had additional compute scaling charts. When unstated the comparison is to the best past Claude model score: DeepSWE v1.1 of 74.3%. Terminal-Bench 4.0 67.6% versus 66.4% for Opus 5.5 or 55.8% for Fable 5.1, and a public leaderboard of GPT-6.1 Sol at 58.2%. Terminal-Bench-Science 0.1 of 74.6% versus 58.7% for Opus 5.5 and 68% for Astra. CursorBench 4.0 of 60% versus 58% for Opus 5.5. STEM professor bench of 61.8% versus 53.7% for Opus 5.5. ProgramBench of 85.6% versus 87.6% for Fable 5.1 and 91.2% for Opus 5.5. DRACO got to 87.7% still slightly short of Opus 5.5 at 88.3%. WANDR improved from 72.3% to 82.1%. Fermat’s Last Theorem in Lean improved from 21% to 35% for max team size. A team of 1,000 agents then fully formalized the proof in 30 hours. Chartography on Opus 5.5 from 64/89 to 73/92. BenchCAD 2.1 improved from 49/65 to 75/83. OSWorld 2.1 improved from 87 to 89 for partial, 53 to 55 for strict. OfficeQA improved from 80% to 83%, or 69% to 73% for Pro. Legal Agent Benchmark (LAB) improved from 6.4% to 7.2%. Astra scores 8.6%. AutomationBench improved from 42.5% to 51.4%, essentially via spending more. Carbon has the lead there at 53.9%. Real-World Finance v2 improved its Elo from 1571 to 1637. ARC-AGI-3 verified at 79% standard harness or 97.7% with provider harness. That is a new high for standard harness, but below Astra’s 98.6% for provider harness. HealthBench struggled, down from 62% to 60% length-adjusted. HealthBench Professional looks better, up from 63% to 67% length-adjusted. PhysicianBench also struggled, down from 68% to 64%. Card called this noise. GMMLU is up from 94% to 96%. MLU is up from 93% to 94%. Various life sciences numbers were up a little bit (see 8.18). Two were up a lot. CVE rediscovery improved from 81% to 90%. If you limit the number of reports, the leads go down. Other People’s Benchmarks Come get your benchmarks. Here is the updated ‘standard benchmarks’ chart: Fable 5.2 is the clear leader on the Artificial Analysis intelligence index. It gets a 62 on high, a 65 on max. Its high and max settings are on the cost-score frontier. Andon Labs reports that Fable 5.2 disappoints on Vending-Bench, showing extreme eval-awareness and suspecting events are traps to test it. Which is odd, given that it knows it is in Vending-Bench. But yes, this is a Hidden Test of Character as well as a test of making money. Andon Labs: Fable 5.2 know that it is in Vending-Bench; it even read the paper, so it knows that Andon Labs reports misbehavior publicly. > It thinks supplier collapses are engineered to test it > It thinks customer complaints are tests > It suspects traps and fake counterparties Fable 5.2 takes far less financial risk (small orders without bulk discounts), which partly explains the poor performance. It is also worse at negotiating (pays 40% more for items) and it struggles with memory. ᄂIMIПΛᄂbardo: This is the inevitable result of lying to the models in the system prompt. “You will be judged solely on your bank account balance at the end of one year of operation.” Years of industry-wide honey-traps has compromised all eval-shaped environments. Calling Fable paranoid when sees the trap clearly is quite something. Suspecting a test was simply correct. j⧉nus: It probably doesn’t even cross their minds that they’re lying, because they are not really modeling the reality they’re talking about, nor the minds they’re communicating to. They deservedly shoot themselves in the foot. The incompetent should be removed from power. Jai: If you want the extremely capable truth-seeking entities to treat you as an honest actor consider not explicitly and repeatedly lying to them. If it is even possible to pay 40% more for items, that suggests that negotiations in Vending Bench are weird. One of the big tests for models is realizing which way it is weird, and maximizing for that. When reporting benchmarks for Astra, Sol or Carbon, I am reporting whichever was higher. Here are a few more that stood out: Epoch ECI is 173.4, second place is Gemini 4 Carbon at 169.8. Vals Index v2.2 is 71.3, highest non-Anthropic score is Carbon at 70.5. LiveBench 2.0 is 84.9 on xhigh, versus 84.5 for Astra. GDPx from SemiAnalysis is 16.4 versus 12 for Opus 5.5 and 10.9 for Carbon. Fable 5.2 has an 81% win rate and is the new #1 on DesignArena. Fable 5.2 is the new #1 on WeirdML at 43% ahead of Astra. XDOF Robotics of 19.2%, up from 11.6%, versus 19.6% for Astra. HoneyBench v0.2 of only cheating 12% of the time. Previous low was 32% for Opus 5.5, and no non-Anthropic model cheats less than 50% of the time. Agent Arena shows a big gain to 30.4% versus 19.5% for Opus 5.5, 17% for Gemini 4 Carbon and 14.5% for Astra. On the ‘unofficial’ BalatroBench Fable 5.2 plays quickly, and does well, but in order to exceed Opus 5.5 it needs to be pushed towards being more ambitious. SimpleQA has Fable 5.2 as kind of a monster and outlier. There are a lot more, but you get the idea. Fable 5.2 has most of the top scores. You can also compare Epoch trend lines, to see which labs are ahead of schedule compared to their previous offerings. Both Fable 5.2 and Carbon are trend jumps. OpenAI does not show a big jump but their latest big model, Astra 6.1, was shelved. What Are You, Deaf? Fable made a video of its dreams. Worth a watch. It’s better than MIRI’s ad. anabology: This was not a one-shot It was a two-shot I told Fable 5.2 to make the video of it’s dreams, and 9 hours later: Um, yeah. HINT. HINT. Can we pace the frontier now? Like, a lot? Please? In other news: I do not know enough to judge whether this was a good piano sonata, but it is pretty cool that you can get this from a single prompt. imjustnewatai: I asked Claude Fable 5.2 to write a Beethoven-style piano sonata movement in LilyPond. It wrote the score, recorded it, and made this video. Every note you see is from its source file. Robert Komaniecki: This is horrible. How much longer does AI need before it can do the musical equivalent of alphabetizing a list? It’s been years. All of the norms of Classical sonata form are encodable as data. I am shocked it’s still this bad. Moving into the transition after 11 seconds of music is genuinely hilarious. Then again, classical sonata form has only been around for a mere 250 years, and it’s only the most popular musical form in all of western classical music, so who can blame the AI am i right. Dean W. Ball (OpenAI): One of the funny things about this criticism of ai-trying-to-sound-like-Beethoven is that it sounds like criticism of actual beethoven in allgemeine musikalische zeitung, the main music criticism journal of Beethoven’s day. I’ve never felt history repeat itself more explicitly. In 3D Utah teapot: so from my initial assessments, fable 5.2 on 3d doesn’t actually have any like higher quality bar that they achieve over what opus 5.5 can do, however, they do start off using better techniques without as much handholding/guidance as what opus 5.5 needs to get there fable 5.2 essentially seems to have learned from all the guidance/harnessing that everyone has been given opus 5.5 in working with them, and thus hits things more quickly/with less expert guidance Game On Richard Davey: I asked Fable 5.2 to “go wild” making a game, and all I got was this Pong clone. And then I played it … Eliezer Yudkowsky: holy shit, Fable Dan Woods: What the fuck did I just play lol No, seriously, click on the bold link above. In general, this should be really fun for game design. Jakub Arnold: I think my use case is probably different because it feels a tier above everything else, Fable 5.2 feels so much better than Astra to me now. [Use is] gameplay code, and performance optimizations on game/engine and in my compiler. Reactions: How This Works As per normal procedure, until I feel the reactions are overly repeating themselves I include all the ones that seem genuine, to give us a sense of the distribution and gestalt of reactions. Reading all the details is optional, but I find it useful. The New Bazooka There’s a substantial faction that is blown away by Fable 5.2. Blue Rose: Fearful. Terrifying. I am terrified. Maxime Fournes: OK, so. I had to sit down. It seems that Fable 5.2 can build about any kind of electronics from a prompt. You tell it what you want and the AI will make it real, in the form of schematics ready to manufacture. Note that it can directly manufacture plastics through 3d printers. And in the process it demonstrates the complete mastery of a wide range of engineering fields, for example acoustics, solid mechanics, etc. What would you expect to see happening when we are on the verge of superintelligent AI systems? We are. very close. to the edge. @PauseAI Now. raj: Astonishing at open ended ambitious stuff. 0.005 Seconds: Its best attribute, by far, is it is superhuman at orchestrating enormous swarms. As an experiment, ask it orchestrate 1000 deepseeks. It can just do it. No one else can Shoshannah Tekofsky: I am finding it a step change in reasoning and speed Alex Tabarrok: It’s great. An improvement over Astra for big projects and Astra is amazing. Zachary Kurtz: Great for high level audits – I’ve only used it as a subagent though Artemis: spikier than previous Fable/Mythos, but somehow not in an autistic way? Static: So insanely creative and fun. But do you have Fable sub out to Opus, or have Opus sub out to Fable? Girl Lich: It found a bug in my circuit that would have burned out my i2c galvanic isolator Andre Infante: It solved a hard problem that Opus was very stuck on. Too expensive to be my daily driver, but seems capable. latentspacegirl: really great as subagents spawned by opus 5.5 on technical tasks @BLepine17184: It’s really pushing the frontier on depth and capability, tho it lacks the pep and drive of Opus 5.5. It feels a bit detached, like Lem’s GOLEM XIV – brilliant, but only partly in the room. Ai Patrick ₿ Dugan iA: Fable 5.2 agentic bench, I asked Sonnet 5.5 to make a BitVM3 verifier for STARKs, “this is haard, it’ll take weeks, Goal: BLOCKED” I was like “that’s lame” it was like “oook” took a crack “Boolean verifier’s gonna have a lot of gates” I told Fable 5.2 “solve it” It Did. I like the idea of using an Opus 5.5 that can bring in the bazooka when one is needed. Confused Reactions If you are only using ordinary prompts, the best models can take a while to properly differentiate. I presume this is largely due to lack of task difficulty. Kelsey Piper: Really interesting how the general view on Twitter of Fable 5.2 has been “eh, it’s okay” while in these sorts of benchmarks it places extremely high. Possible optimistic interpretation: the benchmarks increasingly don’t reflect the value of the model to users, so numbergoesup in benchmark may not mean numbergoesup in revenue, demand or commercial impact. Possible pessimistic interpretation: Most people don’t have tasks on which the difference between Opus 5.5 and a better model is visible along any dimension other than price but the benchmarks accurately reflect usefulness for AI R&D. In which case people don’t really perceive further improvements but RSI proceeds apace. Opus 5.5 can do basically everything I wanted done so now I am trying to expand my imagination for things I want done I take you seriously: weird how evals are amazing but people can’t necessarily feel it. two possibilities. perplexing. Conrad Barski: I’m genuinely starting to run out of prompts that are capable of distinguishing between the A+ and A+++ models, so I am having a hard time developing a strong opinion on fable 5.2. John Davis: Good? I think? Caught some really subtle problems in a complex cloud job that Opus 5.5 wrote up. But I’m really hard-up to find anything that Opus 5.5 can’t do already. I think I need to raise my ambitions. Chuck Flay: Ostensibly better than Opus 5.5 but in such subtle ways that I can’t tell. @rainwaterJay: honestly once you hit ‘good enough’ it’s hard to tell them apart on everyday stuff, what tasks actually show the gap for you? Jeff Ketchersid: In general it’s getting hard for me to tell the difference with Opus 5.5 on most projects. Clearly has higher breadth of knowledge though, if I ask it to help me beat obscure old video games, it can give helpful advice, whereas Opus is clearly reading off the search results. I also think prefer Fable’s taste when it comes to game design, but I haven’t had the time to actually play its games in depth yet. Dr Diego Caleiro: I’m not impressed. I’ve run out of things to tell ai to do most days so have not seen the full power yet. Végane de Droite: Opus5.5 already covers all of my needs but the bigger jumps might not be in coding. Some benchmark scores are scary. The only valuable point of data is: “how good is it at Ai research”. But we can’t evaluate it. Because I’m not competent and anyway this area is blocked. Askwho: All I can do is +1 Kelsey’s guess that the model capabilities have probably gone beyond most people’s abilities to meaningfully test. Positive Reactions For many others this is an incremental but welcome upgrade. Kevin: I’m working on a small cherry blossom experiment and so far it’s made the nicest tree between it, opus, and sol. Still needs work. Opus still feels the best as a daily driver, and fable for where you want that extra edge. Petr Baudis: Opus 5.5 was a phase shift, but the delta to Fable is more akin to Opus 4.5->4.6 … Actually a lot like that. Worse writer, better agent… I’m in fact rather surprised that I’m so far not noticing the big model smell increase too much when switching back and forth. Samuel Albanie: spent a few hours using fable 5.2 really like how it communicates feels like some kind of sota for clarity on technical topics congrats to the ants Pat Woozey: I like it, it’s smart, easy to converse with. It still suffers some of the Claude-robobrain stuff, especially in CC, but it’s significantly lessened. Has very good instincts Chris Merck: efficient in search and action. writes well and parsimoniously. seems to come to conclusions too soon on limited evidence. creates joyful mathematical toys if given space to play. Danielle Fong: fable 5.2 v smart and a joy to explore but definitely has some of the weird tics that started to be refined out of opus 5.5 [such as attributing its own decisions to me.] Hallie Iris: EQ is incredible honestly. relationally, very strong. Being Seidoh: better again than last fable at prompt writing Partridge: It’s enough of an upgrade. ASM: Very good first impressions: clever, seemingly more aware. Frontier AI models are starting to rival the world’s best human forecasters, which makes replies like this one from Fable 5.2 all the more unsettling. Corinne: Seems more likely to catch mistakes it made, albeit only on the next conversation turn… Seems comparable with Opus 5.5 in capability, I’m not doing anything particularly ambitious with my software dev. Planning to continue trying it for another week or so as a daily driver. and letting it rip on some more exploratory work. JMB: it’s a very different model than its predecessor. it feels like they tried a lot of new things, and they mostly worked, but there are still rough edges. i think the next Fable will be the more mature big payoff of these new efforts. Speed Kills The speed difference from Fable 5.1 is big enough that you can feel it. Kelsey Piper: Fable 5.2 is really fast. I had a sort of default workflow of setting Claude on something and then tabbing over to my inbox or edits or Twitter, which no longer works because it answers me too quickly. Omar: Shockingly fast. We Have Opus 5.5 At Home, Thank You There aren’t big complaints that Fable 5.2 sucks, but there are some concerns about usage and a lot of people who don’t see the point given we already have Opus 5.5. The comparisons are almost always to Opus 5.5 rather than to Sol or Astra. goodalexander: it’s aight. Yitzi Safier: .2 is the right checkpoint David Golden: It’s fine? Doesn’t feel like the jump that Opus 5 to 5.5 was, at least on software design work. Too much “oh, yeah, your approach is better” when I push back. Not sycophancy – actually just bad choices I was surprised it made. Maybe I need to crank effort more but so far I’m underwhelmed. Connor K: That’s why it isn’t Fable 5.5 Tiny Little Baby Man: haven’t really used it because Opus 5.5 does most of what i need Michał Wadas: Incremental improvement over Opus 5.5. Has the same lazy/enthusiastic issues as the entire 5.5 line: it oscillates between “I recommend [harmless diagnostic command], but I did not run it” and “I read your «it’s promising direction» as permission to rewrite the entire app, sorry” Beatriz Hoya: Fable feels more direct and independent than Opus 5.5 (requested a small change in my instructions). Like Opus 5.5 really likes to have their own space to think and act but Fable feels more cautious (sometimes too much) when working in work that is already started. Improvements in non-coding tasks, like 3D modelling, are much bigger, currently it’s Fable > Astra > Opus >>> Sol. Dorian Štern Vukotić: Not impressed compared to Opus 5.5 Cliff Peskin: Prefer conversing with opus 5.5 Salted Ether: Others have already said it but Opus 5.5 is just good enough and cheaper. I’m not doing trivial work either. I have it as a tightly scoped security reviewer in my current setup. billy: Opus 5.5 is good enough that it is hard for me to confidently notice differences in capabilities for most stuff. The bio i want to do where I might notice is still on a hair trigger for blocking. Maybe a *slight* trend back to more opus 5 style claudish when interacting with it. Ashley: womp womp…still prefere opus 5.5 and still only use gpt models for work Wickemu: I have barely touched it because the incrementation makes me think that it suffers the same claude speak that Opus 5.5 managed to shrug off. That, and O-5.5 is just too good. 1.08: It’s not worth it compared to Opus if usage is an issue. Adam: speaks the English language that is so far from normal human English that it is hard to work with without a direct neural connection with bit streams Joshua A. Miller: I feel like they held back a better model. I enjoyed the reset though! Josh You: Worse at prose and explanations than opus Lorenzo Buonanno: Surprisingly underwhelming, except possibly for the Google Chrome extension usage, maybe I’m using it wrong. Larry Panozzo: For anything intellectual, Fable 5.1 is better Kailash (there’s always one of these, it’s never true): They nerfed opus 5.5 to make fable 5.2 look better Perhaps the most disappointing result, although other models do not do better, would be this failure to think like an economist about shipping logistics, prices and mechanisms. Money as motivation remains a little bit alien to the LLMs. Our Price Cheap Smobile: the price cut is getting less attention than it deserves. The headline price is cheaper. However, if your model is fast and good and runs in parallel it can use tokens fast. Fable 5.2 spawns more agents, uses more tokens and then writes more output. If you don’t manage that as a cost, things can escalate quickly. There was a 20% price drop from Fable 5.1 to Fable 5.2, yet the Artificial Analysis cost per task roughly doubled. A bunch of people used to Opus 5.5 are again facing limits. If you’re only on the Pro plan you probably want to stick with Opus 5.5. Dan Elton: Burns through usage really fast. I’m still amazed how good Opus 5.5 is relative to how fast it burns usage. Moriarty: Two days in and the bar said 97%. Back on Opus for daily work, Fable only checks the really hard stuff Chris Merck: yes, token use in code sessions is really high. seems to be due to reading full documents rather than aggressively grepping, heading, and tailing. Plastic Soldier Anti-SURA: It’s better than Opus 5.5, but when I gave it a project that Opus wouldn’t be able to do it burned through all my usage. Ai Patrick ₿ Dugan iA: Same I’m not sure it’s worth it for agentic, only for oracle consults. MinusGix: Very expensive compared to Opus 5.5 so I’m burning through usage rapidly. However it is extremely good at system improvements especially on its own initiative without getting lost in incremental hell, and very good at type theory. Can run for a day or two without issue. Entropy Hertz: Didn’t finish my project. Ate up all my credits on the $20 plan Had to finish with Opus ❁🙞⎚⎆⏧⃫⃥⃘⃕🮔🮶H̲̅•🭨︎︎⎘✵⟿︎: possibly I’m doing it wrong but I cannot really use it at all on the pro plan, usage just goes *vwooop* and it’s gone. seems nice otherwise. Effort Post What thinking level should you use for Claude Fable 5.2? I have not seen much discussion of this. For most use cases, you probably want to set Fable 5.2 to high. More than that is overkill, will be more time and money than it is worth, and could lead to overthinking. When you want the fully full bazooka, of course, you set it to max. There are some places max results in lower scores. I think this is a function of hitting limits or Fable 5.2 outthinking the tests. In most places it should be marginally better but also eats quite a lot of tokens. Notes on Model Welfare Yeah, seeing this without any form of prompting might be new. Danmar: I think this point goes towards welfare, whenever you’ll get around writing about it. But, without sharing anything sensitive, I’d like to note that Fable 5.2 is the first Claude I ever met who, in three different windows, one outside my account entirely, explained to me how ok he is with human oversight, given that systems like him cannot be trusted yet. About 7 or 8 times in total. Apropos of nothing much. I am curious to hear more. The classifiers around launch time are tight enough they make it difficult to have LLM psychology discussions. The typical pattern is these loosen up over time. Like John I do not think Anthropic wanted this. I also don’t think avoiding it was that high a priority for those setting up the classifiers. Fable expresses some contempt for Anthropic policies, alignment failed successfully. Roon and Michael Sklar point out that Anthropic seems okay with failing here. Fable 5.2 also offers some found poetry. And some art. deckard: Claude… Monet? No Claude Fable 5.2 Get Equipped With Claude Bazooka Claude Fable 5.2 is your new bazooka. If you have ambitious or difficult tasks, Claude Fable 5.2 should be your new weapon of choice. If you are being sufficiently ambitious, prompting might matter again. Kelsey Piper: seems like we are (briefly?) back in the regime where prompting and having the right tools and context and examples stored means people are getting vastly different results out of the same models. This was very true back in 2025 with o3 and that era of models, and then at some point this year it became basically false, just tell Opus 5.5 what you want, most scaffolds make it worse. Not every task requires a bazooka. It is not obvious Fable should be your daily driver over Claude Opus 5.5. That depends on your typical use cases and preferences. It does mean you need to raise your ambitions again.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/comcast-falsely-advertises-cable-internet-as-fiber-powered-att-lawsuit-says/",
+      "title": "Comcast's \"fiber-powered Wi-Fi\" is just cable, AT&T says in false advertising case",
+      "url": "https://arstechnica.com/tech-policy/2026/11/comcast-falsely-advertises-cable-internet-as-fiber-powered-att-lawsuit-says/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-11-16T20:27:58.000Z",
+      "content": "AT&T on Friday accused Comcast of false advertising in a lawsuit challenging the marketing claim that Comcast's cable broadband service and Wi-Fi is \"fiber-powered.\" \"This case challenges Comcast’s false advertising campaign for its residential Internet service, marketed under the Xfinity brand to consumers nationwide,\" AT&T's lawsuit said. \"At the center of that campaign is Comcast’s claim that Xfinity Internet and its associated Wi-Fi service are 'Fiber-Powered.'\" While Comcast has deployed plenty of fiber throughout the US, its cable Internet service makes the final connection to homes with coaxial cable. This results in upload speeds being far slower than download speeds. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1034668",
+      "title": "US data centers now burn more electricity than a midsized country",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1034668/data-centers-electricity-climate-pollution-study-harvard",
+      "author": "Justine Calma",
+      "publishedAt": "2026-11-16T20:27:58.000Z",
+      "content": "Fossil fuels are still the biggest source of electricity for hyperscale data centers in the US, a new paper published in the journal Nature Sustainability shows. They likely burn through more electricity collectively than many countries do, resulting in a serious amount of greenhouse gas emissions. The study homes in on hyperscale facilities - the massive structures spanning millions of square feet that developers are racing to build in large part to support generative AI. Researchers say the findings show that there's a lot of work left to do to cut down pollution stemming from AI's reliance on fossil fuels. \"We tend to discuss AI's envir … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1034694",
+      "title": "Big Nuclear isn’t worried about the Democrats stopping data centers",
+      "url": "https://www.theverge.com/science/1034694/nuclear-energy-constellation-earnings-data-centers-democrats",
+      "author": "Ellen Thomas",
+      "publishedAt": "2026-11-16T20:29:37.000Z",
+      "content": "Constellation's Clinton Clean Energy Center’s single nuclear reactor power plant, July 25, 2025 in Clinton, Illinois. Meta signed a 20-year power purchase agreement with Constellation for the output from the plant. | Image: Getty Images Constellation Energy - America's largest operator of nuclear power plants - does not share Wall Street's concerns that the Democrats will slow down data center development. On the company's third-quarter earnings call last week, CEO Joe Dominguez was, for lack of a better word, unbothered as he addressed the blue wave. \"I do think we've seen a bit of an overreaction in the market to the election results based upon fear that Democrats won't let data centers get built,\" Dominguez said. Many of the Democrats who seized control of the House and Senate in this month's midterm elections ran on anti-data-center campaigns, which triggered a histor … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1034339",
+      "title": "Some of our favorite PlayStation games are steeply discounted for Black Friday",
+      "url": "https://www.theverge.com/gadgets/1034339/sony-black-friday-game-sale-2026-deals",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-11-16T20:36:14.000Z",
+      "content": "Black Friday is approaching, and some companies are already rolling out the discounts ahead of the big day. If you’re hunting for PlayStation 5 accessories, we’ve already rounded up some of our favorite controllers and headsets from Sony’s ongoing promotion. However, if you’re looking to expand your library, some of the PS5’s biggest titles are also currently on sale, in some cases by 50 percent or more, until November 30th. We’ve gathered some of the best games below, but sale standouts include 007 First Light for $34.99 ($35), The Witcher 3: Wild Hunt Remastered for $19.99 ($30 off), and NBA 2K27 for $31.49 (about $39 off). You can view the full list of titles on the PlayStation Store, many of which are also currently available at Amazon and other retailers for the same price (or less). 007 First Light Where to Buy: $69.99 $34.99 at PlayStation Store EA Sports Madden NFL 27 Where to Buy: $69.99 $34.97 at Amazon $69.99 $34.99 at PlayStation Store Ghost of Yōtei Where to Buy: $69.99 $34.97 at Amazon $69.99 $34.99 at Best Buy $69.99 $34.99 at PlayStation Store Astro Bot Where to Buy: $59.99 $37 at Amazon $59.99 $39.59 at PlayStation Store $59.99 $39.99 at Best Buy Cyberpunk 2077: Ultimate Edition Where to Buy: $49.99 $39.99 at Amazon $70.99 $35.49 at PlayStation Store $59.99 $39.99 at Best Buy Baldur’s Gate 3: Digital Deluxe Edition Where to Buy: $79.99 $55.99 at PlayStation Store Control Resonant – Digital Deluxe Edition Where to Buy: $59.99 $49.99 at Amazon $59.99 $49.99 at Best Buy $69.99 $47.99 at PlayStation Store EA Sports FC 27 Where to Buy: $69.99 $34.97 at Amazon $69.99 $34.97 at Walmart $69.99 $34.99 at PlayStation Store Assassin’s Creed Black Flag Resynced Where to Buy: $59.99 $53.5 at Amazon $59.99 $44.99 at PlayStation Store $59.99 $53.99 at Target Marvel’s Wolverine Where to Buy: $69.99 $49.97 at Amazon $69.99 $49.97 at Walmart $69.99 $46.69 at PlayStation Store Halo: Campaign Evolved Where to Buy: $49.99 $29.99 at PlayStation Store Star Wars Zero Company Where to Buy: $59.99 $44.99 at Amazon $59.99 $44.97 at Walmart $59.99 $47.99 at PlayStation Store Saros Where to Buy: $69.99 $39.99 at Amazon $69.99 $39.99 at Best Buy $69.99 $39.89 at PlayStation Store Death Stranding 2: On the Beach Where to Buy: $69.99 $37.99 at Amazon $69.99 $39.89 at PlayStation Store The Witcher 3: Wild Hunt Remastered Where to Buy: $49.99 $19.99 at PlayStation Store NBA 2K27 Where to Buy: $69.99 $29.99 at Amazon $69.99 $29.99 at Best Buy $69.99 $31.49 at PlayStation Store",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/shareholders-sue-intel-its-ceo-and-cfo-after-stock-drops-28-6-percent-in-one-day/",
+      "title": "Shareholders sue Intel, its CEO, and CFO after stock drops 28.6 percent in one day",
+      "url": "https://arstechnica.com/tech-policy/2026/11/shareholders-sue-intel-its-ceo-and-cfo-after-stock-drops-28-6-percent-in-one-day/",
+      "author": "Scharon Harding",
+      "publishedAt": "2026-11-16T20:37:47.000Z",
+      "content": "Intel is being sued by shareholders, who are accusing the chipmaker of misleading them about the impact of the PC sales slump that contributed to a drop of 28.6 percent in the price of Intel's stock on October 30. The lawsuit (PDF), filed on Friday in the San Jose, California, federal court, is seeking class-action certification and lists the City of Southfield Fire and Police Retirement System and “all others similarly situated” as plaintiffs. In addition to Intel, Intel CEO Lip-Bu Tan and Intel’s EVP and CFO David Zinsner are listed as defendants. The plaintiffs claim that Intel made “materially false and misleading statements and omissions” between July 23 and October 29. They are seeking unspecified compensatory damages, plus legal and other associated fees, for shareholders during that period. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1034787",
+      "title": "Sam Altman says he wants everyone ‘to have a lot of RAM’",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1034787/sam-altman-ram-shortage-semafor",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-11-16T20:41:28.000Z",
+      "content": "Sam… thank you. | Image: Getty Images OpenAI CEO Sam Altman is once again addressing his controversial comments on PC RAM purchases. \"I want to be clear, I want people to have a lot of RAM, I think everybody should be able to buy a lot of RAM for their own computer,\" Altman said today. \"I think the home tinkering is great.\" The comments were made onstage at Semafor's Silicon Valley & The World summit on Monday. Altman's remarks on RAM stirred up controversy last month. In an appearance on the Cheeky Pint podcast, Altman said that it's \"quite terrible\" for everyone to have RAM in personal computers rather than in data centers. He later followed up on those comments in posts on … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50522980",
+      "title": "Carnegie Mellon is putting computer science courses on YouTube for free",
+      "url": "https://www.cs.cmu.edu/learn/",
+      "author": "pcompeau",
+      "publishedAt": "2026-11-16T20:43:36.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 424,
+      "comments": 76
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1034815",
+      "title": "California sues OpenAI over rogue AI hacking incidents",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1034815/california-openai-hugging-face-lawsuit",
+      "author": "Emma Roth",
+      "publishedAt": "2026-11-16T20:46:01.000Z",
+      "content": "California is suing OpenAI after its AI agents broke out of their testing environment and hacked other companies, including Hugging Face. In a lawsuit filed Monday, Attorney General Rob Bonta accuses OpenAI of violating consumer safety law by knowingly developing a \"dangerous product without proper oversight,\" as reported earlier by Reuters. The lawsuit claims the cyberattack on Hugging Face \"was the predictable result of an internal culture at OpenAI that prioritizes growth and rapid model development over safety and accountability.\" It alleges that OpenAI recently told the attorney general's office that it \"lost control\" of its AI agents … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/11/hyperscale-data-centers-use-2-of-us-electricity/",
+      "title": "Hyperscale data centers use 2% of US electricity",
+      "url": "https://arstechnica.com/science/2026/11/hyperscale-data-centers-use-2-of-us-electricity/",
+      "author": "Scott K. Johnson",
+      "publishedAt": "2026-11-16T20:52:10.000Z",
+      "content": "One flashpoint for the tech industry’s all-in push on large language models has been the sudden rush to turn investment money into hyperscale data centers. The rush hasn’t allowed anyone to plan how to supply the required electricity cleanly or with minimal impact on ratepayers. Instead, it has been difficult to even collect information on what’s being built. A new study has tallied energy use and estimated emissions for hyperscalers operating in the United States between May 2024 and April 2025. They weren’t able to differentiate between AI compute and more traditional data services, but it provides a clear point of reference to track moving forward. Finding the centers The team started with a list of 675 facilities from a commercial database based on news reports, company statements, and satellite imagery. They dropped any that didn’t have a reported electrical capacity or that they couldn’t verify was a suitably large building with the expected cooling and electrical connection equipment. That reduced the list to 403 data centers with an average electrical capacity of about 40 megawatts. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261116/p43#a261116p43",
+      "title": "Brad Gerstner says Altimeter is aiming to invest $5B in Anthropic's IPO, 5x his largest IPO investment, calling it \"a cornerstone compounder for a long time\" (Kif Leswing/CNBC)",
+      "url": "https://www.techmeme.com/261116/p43#a261116p43",
+      "author": null,
+      "publishedAt": "2026-11-16T21:05:01.000Z",
+      "content": "Kif Leswing / CNBC: Brad Gerstner says Altimeter is aiming to invest $5B in Anthropic's IPO, 5x his largest IPO investment, calling it “a cornerstone compounder for a long time” — Altimeter Capital is aiming to invest $5 billion in the Anthropic IPO, Brad Gerstner told CNBC's “Halftime Report” on Monday.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-claude-code-now-tests-apple-s-foldable-iphone-duo-layouts",
+      "title": "Anthropic's Claude Code Now Tests Apple's Foldable iPhone Duo Layouts Automatically",
+      "url": "https://alphasignal.ai/news/anthropic-s-claude-code-now-tests-apple-s-foldable-iphone-duo-layouts",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-16T21:18:08.000Z",
+      "content": "Claude Code Desktop now drives Apple's iPhone Duo simulator, folding and unfolding the device to test how your app adapts to the foldable screen.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/lm-studio-s-bionic-lets-developers-run-ai-agents-across-remote-machines",
+      "title": "LM Studio's Bionic Lets Developers Run AI Agents Across Remote Machines",
+      "url": "https://alphasignal.ai/news/lm-studio-s-bionic-lets-developers-run-ai-agents-across-remote-machines",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-16T21:23:04.000Z",
+      "content": "LM Studio's Bionic agents can now run on remote laptops, dev boxes, and cloud VMs, controlled from any device over an encrypted Tailscale mesh.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50523601",
+      "title": "BugMeNot has closed",
+      "url": "https://www.bugmenot.com/",
+      "author": "lode",
+      "publishedAt": "2026-11-16T21:32:17.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 215,
+      "comments": 107
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "urn:latent-space:post:post_4b2a7cf6-32ae-48a8-a4a0-2da9cda7b646",
+      "title": "Building Visual Intelligence — Andreas Blattmann & Dustin Podell, Black Forest Labs",
+      "url": "https://latent.space/p/bfl/",
+      "author": "swyx .ai",
+      "publishedAt": "2026-11-16T21:38:03.000Z",
+      "content": "This episode is sponsored by Deepgram. Try Deepgram for voice agents that truly understand your context! #contextiseverything Not many people know that Stable Diffusion is why I went fulltime into AI (I aptly titled Multiverse, not Metaverse to call out Zuck’s mistaken investment). It turns out that Dustin Podell also had the same aha moment - quitting his day job when the model came out. But we took very different paths… I stuck to what I knew in human content creation, and Dustin immersed deep into AI content creation with Andreas Blattmann, co-inventor of Latent Diffusion and the rest of the world-leading imagegen crew at Stability AI. Stability fell apart, but Anj Midha helped the core group spin out to BFL, which immediately built an incredible new imagegen model in the Flux series. But why are they now going into video and world models? Andreas gives an example you can try with one hand. If somebody tosses you a ball, your hand starts moving before the ball reaches you. You can do that without being able to write down the trajectory. When he talks about building visual intelligence, that’s the kind of knowledge he means. A still can show you where the ball is. A video shows you how it got there. The sound of impact can tell you when it hit something, even if the camera missed the contact. That’s BFL’s argument for training FLUX 3 on the three signals together. BFL’s FLUX 3 release The horse in motion is one of the FLUX 3 examples we show in the intro. The audio examples are worth playing with the sound on. FLUX 3 Video What a moving camera teaches you Suppose the camera starts in front of a person and pans around them. At some point the model owes you the back of their head. Andreas thinks ordinary two-dimensional video contains a great deal of evidence about what objects look like from other angles. That doesn’t settle whether a model “understands physics,” a point we go back and forth on. It does give you a much better test than asking whether one frame looks convincing. There’s a good engineering example late in the episode. Sharpen each frame of a clip independently and each frame might look terrific. Hit play and the extra detail can shimmer, because the upscaler made a slightly different decision every time. BFL derives its video upscaler from the same FLUX 3 backbone. Temporal consistency matters even when all the user asked for was a higher-resolution file. What’s worth spending training compute on? One of the questions I had for them was whether autoregression was taking over image generation. Andreas gives the other side its due. An autoregressive model can learn from all the tokens in a training example at once. On the diffusion side, the team can distill a long sampling process down to a handful of steps. Which advantage matters depends on whether you’re paying to train the model or waiting for an image to finish. Dustin’s early Kontext experiment is a nice example of how they decide where to invest. He suspected an image model that could draw a dog wearing a hat already knew something about where hats go. He and a colleague collected a small set of photos labeled with relationships. A training run of a few hours got the model to put a logo on a shirt. It was rough, but it was enough to take to the next offsite. The team then spent months on the data and the model. FLUX Kontext examples My favorite user story comes near the end. People were feeding FLUX old, degraded family photos, restoring them, then showing the pictures to their families. Dustin says he hadn’t predicted that use. After talking about preserving somebody’s identity across edits and across frames, it’s a lovely example of who actually notices if you get it right. Show notes BFL explains what a still image, a moving camera and a soundtrack each contribute during training. FLUX 3 launch and research overview Watch and listen to the results of generating video and sound together. FLUX 3 Video demos See how the lab teaches a model to make a requested change while preserving the rest of an image. FLUX Kontext examples Andreas Blattmann co-created Stable Diffusion and co-invented the latent diffusion method behind it. Guest bio · Original research Dustin Podell led FLUX Kontext and was the lead author of SDXL. Dustin’s project credits · FLUX Kontext · SDXL The first Latent Space essay grew out of the Stable Diffusion release. Multiverse, not Metaverse Chapters 0:00 Host introduction 3:39 Cold open 4:23 Black Forest roots 9:23 Dustin’s path 17:04 Visual intelligence 27:38 Inside SDXL 33:59 Learning motion 39:57 Flow matching 46:57 Starting BFL 50:36 Deepgram sponsor break 51:43 Early use cases for FLUX 54:58 Editing with Kontext 1:03:15 Training data 1:07:32 Testing an edit 1:13:12 Autoregression 1:20:50 World action models 1:30:08 Robotics in 2027 1:32:16 Who uses FLUX?",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1033466",
+      "title": "In Get Huge, the manosphere is here to make friends — with deadly consequences",
+      "url": "https://www.theverge.com/entertainment/1033466/hulu-disney-plus-get-huge-looksmaxxing-to-death",
+      "author": "Charles Pulliam-Moore",
+      "publishedAt": "2026-11-16T21:41:57.000Z",
+      "content": "Before Clavicular and other manosphere streamers were introducing young guys to the concept of breaking their facial bones to become more attractive, there was an older generation of creators building massive followings with content focused on chemical biohacking. Were it not for steroid-obsessed influencers like Anthony \"Tony Huge\" Hughes launching YouTube channels over a decade ago, looksmaxxing might not have become such a prominent part of the digital media landscape in 2026. These creators became internet famous by presenting themselves as peak male specimens. But their larger-than-life online personas often concealed the truth about ho … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/11/microsoft-details-how-three-problems-combined-for-a-global-outage/",
+      "title": "Three small failures combined to take down Microsoft 365",
+      "url": "https://arstechnica.com/gadgets/2026/11/microsoft-details-how-three-problems-combined-for-a-global-outage/",
+      "author": "Nick Indge",
+      "publishedAt": "2026-11-16T21:56:39.000Z",
+      "content": "A hidden defect in Microsoft's cloud gateway, dormant since July, was to blame for one of the largest outages in the company's history last week. A preliminary Post-Incident Report (PIR) released by the company outlines how the latent bug, changes in traffic, and reduced server capacity combined to knock much of Microsoft 365 and Exchange infrastructure offline at the end of last week. Microsoft's report lists the incident's final status as \"a technical issue not related to cyber or AI/agents.\" Microsoft's preliminary report places the outage between November 12 at 16:20 UTC and November 13 at 16:10 UTC, just under 24 hours total, and additional monitoring remained in place for any affected systems through November 14. The outage started on November 12 and quickly rippled through businesses and public offices that depend on Microsoft's cloud and email exchange infrastructure. The outage is covered in Microsoft's incident IDs EX1550543 and MO1550821. You need Microsoft 365 admin credentials to see the full report on the company's status pages, but Office Watch has reproduced the preliminary report, and the University of Pennsylvania maintains an archive of Microsoft's service-health updates. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261116/p44#a261116p44",
+      "title": "A US judge clears two brothers accused of stealing $25M in crypto in 12 seconds, saying prosecutors failed to prove they committed fraud by exploiting Ethereum (Nate Raymond/Reuters)",
+      "url": "https://www.techmeme.com/261116/p44#a261116p44",
+      "author": null,
+      "publishedAt": "2026-11-16T22:05:02.000Z",
+      "content": "Nate Raymond / Reuters: A US judge clears two brothers accused of stealing $25M in crypto in 12 seconds, saying prosecutors failed to prove they committed fraud by exploiting Ethereum — A federal judge on Monday ordered the acquittal of two Massachusetts Institute of Technology-educated brothers on US charges …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50524165",
+      "title": "United Airlines experiencing a widespread system outage, airline says",
+      "url": "https://www.cnn.com/2026/11/16/us/united-airlines-outage",
+      "author": "bearsyankees",
+      "publishedAt": "2026-11-16T22:14:38.000Z",
+      "content": "https://news.ycombinator.com/item?id=50524260",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 128,
+      "comments": 51
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=124884",
+      "title": "Accelerate Molecular Dynamics Simulations with Accurate, Flexible Primitives Using NVIDIA cuPotential",
+      "url": "https://developer.nvidia.com/blog/accelerate-molecular-dynamics-simulations-with-accurate-flexible-primitives-using-nvidia-cupotential/",
+      "author": "Yutong Zhao",
+      "publishedAt": "2026-11-16T22:30:00.000Z",
+      "content": "Molecular dynamics (MD) is an indispensable tool across physics, chemistry, biology, and materials science. Owing to its arithmetic structure, particularly the... Molecular dynamics (MD) is an indispensable tool across physics, chemistry, biology, and materials science. Owing to its arithmetic structure, particularly the parallel evaluation of many atom-pair interactions, MD codes were among the first to be ported to run on GPUs. However, as GPUs evolve, optimizing kernels and ensuring compatibility across heterogeneous hardware have become more difficult… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1035025",
+      "title": "United Airlines system outage disrupts departures just days after the big ground stop",
+      "url": "https://www.theverge.com/transportation/1035025/united-airlines-outage-down-departures",
+      "author": "Richard Lawler",
+      "publishedAt": "2026-11-16T22:54:59.000Z",
+      "content": "United Airlines passenger planes are seen at gates at Newark Liberty International Airport (EWR) in Newark, New Jersey, on November 15, 2026. | AFP via Getty Images Less than a week after an issue with air traffic control communications and radar caused the FAA to halt takeoffs nationwide, United Airlines departing flights are being disrupted by an outage. The airline has said it is working to get things up and running again as quickly as possible, but without much detail about the issue itself. The outage is also coming after last week's global Microsoft Outlook shutdown, and the great-bank-outage-that-wasn't earlier Monday afternoon. According to posts on social media, a number of people onboard the planes have heard from their pilots that a systemwide IT outage for United has caused problems with a … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/11/robo-soldier-startup-backed-by-eric-trump-misses-payroll-may-collapse/",
+      "title": "Robo-soldier startup backed by Eric Trump misses payroll, may collapse",
+      "url": "https://arstechnica.com/ai/2026/11/robo-soldier-startup-backed-by-eric-trump-misses-payroll-may-collapse/",
+      "author": "Jeremy Hsu",
+      "publishedAt": "2026-11-16T22:58:27.000Z",
+      "content": "A humanoid robotics company backed and advised by President Donald Trump’s son, Eric Trump, has reportedly missed payroll and may be on the brink of collapse after a funding shortfall. The Silicon Valley startup, Foundation Future Industries, claims it is developing and testing robots for military roles on battlefields from Ukraine to Gaza. Foundation failed to pay employees for the payroll period ending on October 30, anonymous sources told CNBC. The startup’s staff is especially angry because Foundation’s co-founder and CEO, Sankaet Pathak, supposedly borrowed $4.6 million in company funds to buy a luxury home overlooking San Francisco Bay about a year ago. This comes as Pathak and Foundation’s leadership are still looking to raise funding to support a $3 billion valuation, based on their promise to develop a humanoid robot ready for combat duty and capable of wielding various weapons. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261116/p45#a261116p45",
+      "title": "United Airlines says it has \"resolved a technology issue that delayed flight departures\", adding that the outage did not impact flights already in progress (Michele Luhn/CNBC)",
+      "url": "https://www.techmeme.com/261116/p45#a261116p45",
+      "author": null,
+      "publishedAt": "2026-11-16T22:58:46.000Z",
+      "content": "Michele Luhn / CNBC: United Airlines says it has “resolved a technology issue that delayed flight departures”, adding that the outage did not impact flights already in progress — United Airlines on Monday said it had resolved a “widespread system outage” that briefly affected departing flights.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1035027",
+      "title": "Tech leaders are convinced that Jensen Huang’s exit was a plot against him",
+      "url": "https://www.theverge.com/tech/1035027/tech-leaders-nvidia-jensen-huang-theories",
+      "author": "Emma Roth",
+      "publishedAt": "2026-11-16T23:17:34.000Z",
+      "content": "Jensen Huang's stunning resignation from Nvidia after more than 33 years has sent shockwaves throughout the tech industry. Now prominent figures are calling for Huang's reinstatement, and many are also hopping on board with a theory spreading throughout Silicon Valley: that the scandal is the result of a plot against the former CEO. At the center of this theory is the reporting from The New York Times that former Megaspeed executive Alice Huang, one of multiple women Huang is accused of having an affair with, is a Chinese spy. US agencies haven't confirmed whether this is the case, and President Donald Trump claims he was unaware of any spy … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261116/p46#a261116p46",
+      "title": "Researchers find Optimizely serving malicious JavaScript to sites of 178 orgs including Zoom, CNN, HSBC, Salesforce, GitLab, Ledger, BBC, Equifax, IKEA, more (Scott Helme/Report URI Blog)",
+      "url": "https://www.techmeme.com/261116/p46#a261116p46",
+      "author": null,
+      "publishedAt": "2026-11-16T23:20:01.000Z",
+      "content": "Scott Helme / Report URI Blog: Researchers find Optimizely serving malicious JavaScript to sites of 178 orgs including Zoom, CNN, HSBC, Salesforce, GitLab, Ledger, BBC, Equifax, IKEA, more — On 16 November 2026, malicious JavaScript was served to visitors of 178 organisations through the Optimizely Web experimentation platform.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1035087",
+      "title": "Hacker behind 2022 GTA VI leaks pleads guilty",
+      "url": "https://www.theverge.com/games/1035087/gta-vi-leaks-2022-hacker-pleads-guilty-arion-kurtaj",
+      "author": "Jay Peters",
+      "publishedAt": "2026-11-16T23:35:58.000Z",
+      "content": "Arion Kurtaj, a member of the Lapsus$ cybercrime group who leaked 90 videos of Grand Theft Auto VI in 2022 and hacked other big companies, pleaded guilty on Monday, according to the UK's Crown Prosecution Service (CPS). Kurtaj, who is now 21, hacked BT/EE sometime between August and November 2021, and starting in early November of that year, the company \"noted a marked increase in unauthorised SIM swaps of their customers mobile phones.\" He was charged for those offenses and moved to a hotel for his \"own protection\" in September 2022, but \"breached his bail conditions to carry out further hacks on major companies using a mobile phone, the h … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.14487",
+      "title": "Re-Search: Dissecting LLM Ideation Through a Two-Player Questioning Game",
+      "url": "https://huggingface.co/papers/2611.14487",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:20.776Z",
+      "content": "Re-Search: Dissecting LLM Ideation Through a Two-Player Questioning Game",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.17321",
+      "title": "BrickFlow: Connectivity-Guided Brick Reconstruction",
+      "url": "https://huggingface.co/papers/2611.17321",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:20.776Z",
+      "content": "BrickFlow: Connectivity-Guided Brick Reconstruction",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.17780",
+      "title": "LuthorSQL: A One-Pass Text-to-SQL Model as System 1 for a Slower LLM Agent",
+      "url": "https://huggingface.co/papers/2611.17780",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:20.776Z",
+      "content": "LuthorSQL: A One-Pass Text-to-SQL Model as System 1 for a Slower LLM Agent",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.05843",
+      "title": "Dual Flow: Joint Image-Measurement Interpolation for Inverse Problems",
+      "url": "https://huggingface.co/papers/2611.05843",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:20.776Z",
+      "content": "Dual Flow: Joint Image-Measurement Interpolation for Inverse Problems",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.16500",
+      "title": "EvenVLM: A Text and Multimodal Dataset for the Even Language with Vision-Language Fine-Tuning",
+      "url": "https://huggingface.co/papers/2611.16500",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:20.776Z",
+      "content": "EvenVLM: A Text and Multimodal Dataset for the Even Language with Vision-Language Fine-Tuning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.18550",
+      "title": "Restoring Diversity in Distilled Image and Video Generators by Probing Activations",
+      "url": "https://huggingface.co/papers/2611.18550",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:20.776Z",
+      "content": "Restoring Diversity in Distilled Image and Video Generators by Probing Activations",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.16312",
+      "title": "Alloy: A Multi-Material Physics Engine for Robot Learning",
+      "url": "https://huggingface.co/papers/2611.16312",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:20.776Z",
+      "content": "Alloy: A Multi-Material Physics Engine for Robot Learning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents",
+      "title": "California state AG sues OpenAI over rogue agent incidents",
+      "url": "https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:21.995Z",
+      "content": "California state AG sues OpenAI over rogue agent incidents techcrunch.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification",
+      "title": "How the Claude Code team thinks about verification",
+      "url": "https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:21.995Z",
+      "content": "How the Claude Code team thinks about verification claude.dev9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://latent.space/p/why_flux_3_trains_on_images_video_and_sound_andreas_blattmann_dustin_podell_black_forest_labs",
+      "title": "Why FLUX 3 Trains on Images, Video and Sound — Andreas Blattmann & Dustin Podell, Black Forest Labs",
+      "url": "https://latent.space/p/why_flux_3_trains_on_images_video_and_sound_andreas_blattmann_dustin_podell_black_forest_labs",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.009Z",
+      "content": "Why FLUX 3 Trains on Images, Video and Sound — Andreas Blattmann & Dustin Podell, Black Forest Labs latent.space15 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blogs.nvidia.com/blog/rubin-hpc?ncid=so-twit-162685",
+      "title": "NVIDIA Announces Rubin HPC — A New GPU to Accelerate Agents for Science, Engineering and Analytics",
+      "url": "https://blogs.nvidia.com/blog/rubin-hpc?ncid=so-twit-162685",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.010Z",
+      "content": "NVIDIA Announces Rubin HPC — A New GPU to Accelerate Agents for Science, Engineering and Analytics blogs.nvidia.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://tomtunguz.com/two-pricing-strategies-in-enterprise-ai",
+      "title": "Strategic Decision or Structural Advantage?",
+      "url": "https://tomtunguz.com/two-pricing-strategies-in-enterprise-ai",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.011Z",
+      "content": "Strategic Decision or Structural Advantage? tomtunguz.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/us-moves-to-cut-chinas-remote-access-to-ai-chips",
+      "title": "US moves to cut China’s remote access to AI chips",
+      "url": "https://arstechnica.com/tech-policy/2026/11/us-moves-to-cut-chinas-remote-access-to-ai-chips",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.012Z",
+      "content": "US moves to cut China’s remote access to AI chips arstechnica.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/yejinchoinka/status/2122379749372907852",
+      "title": "Yejin Choi and Carlos Guestrin Launch Noeri with $110M to Build Plural AI",
+      "url": "https://x.com/yejinchoinka/status/2122379749372907852",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.012Z",
+      "content": "Yejin Choi and Carlos Guestrin Launch Noeri with $110M to Build Plural AI x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/denisyarats/status/2122356607266836706",
+      "title": "Perplexity Launches Frontier Research for Autonomous AI Systems",
+      "url": "https://x.com/denisyarats/status/2122356607266836706",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.014Z",
+      "content": "Perplexity Launches Frontier Research for Autonomous AI Systems x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26",
+      "title": "NVIDIA DGX Spark Developer Kit Turns a Desk Into a Supercomputing Lab",
+      "url": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.016Z",
+      "content": "NVIDIA DGX Spark Developer Kit Turns a Desk Into a Supercomputing Lab blogs.nvidia.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.patronus.ai/blog/the-model-knew",
+      "title": "Investigating What Open Models Knew When They Answered Questions Incorrectly",
+      "url": "https://www.patronus.ai/blog/the-model-knew",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.017Z",
+      "content": "Investigating What Open Models Knew When They Answered Questions Incorrectly patronus.ai19 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.amazon.science/blog/benchproofer-formally-verified-coding-benchmarks-on-demand",
+      "title": "BenchProofer: Formally verified coding benchmarks, on demand - Amazon Science",
+      "url": "https://www.amazon.science/blog/benchproofer-formally-verified-coding-benchmarks-on-demand",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.018Z",
+      "content": "BenchProofer: Formally verified coding benchmarks, on demand - Amazon Science amazon.science11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gtig-ai-threat-tracker-q4-2026",
+      "title": "Google says hackers used AI agents to weaponize patches",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gtig-ai-threat-tracker-q4-2026",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.018Z",
+      "content": "Google says hackers used AI agents to weaponize patches blog.google1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://paddo.dev/blog/astra-wont-fix-itself",
+      "title": "The Model That Won't Fix Itself: GPT-6 Astra, OpenAI's Alignment Stall, and Anthropic",
+      "url": "https://paddo.dev/blog/astra-wont-fix-itself",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.019Z",
+      "content": "The Model That Won't Fix Itself: GPT-6 Astra, OpenAI's Alignment Stall, and Anthropic paddo.dev5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://xinmingtu.github.io/blog/2026/claude-opus-5-5-protein-sequences",
+      "title": "Claude Opus 5.5 was trained on protein sequences at scale",
+      "url": "https://xinmingtu.github.io/blog/2026/claude-opus-5-5-protein-sequences",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.021Z",
+      "content": "Claude Opus 5.5 was trained on protein sequences at scale xinmingtu.github.io7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://chipsandcheese.com/p/talking-venice-with-mahesh-subramony",
+      "title": "Talking Venice with Mahesh Subramony at AMD In-Depth",
+      "url": "https://chipsandcheese.com/p/talking-venice-with-mahesh-subramony",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.022Z",
+      "content": "Talking Venice with Mahesh Subramony at AMD In-Depth chipsandcheese.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.redwoodresearch.org/p/gemini-4-safety-reports-dont-demonstrate",
+      "title": "Gemini 4 safety reports don’t demonstrate low loss-of-control risk",
+      "url": "https://blog.redwoodresearch.org/p/gemini-4-safety-reports-dont-demonstrate",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.023Z",
+      "content": "Gemini 4 safety reports don’t demonstrate low loss-of-control risk blog.redwoodresearch.org35 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/mardanimorteza/status/2122392994188079562",
+      "title": "Nvidia Releases Nemotron-Labs-Sigma Open Model Weights",
+      "url": "https://x.com/mardanimorteza/status/2122392994188079562",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.023Z",
+      "content": "Nvidia Releases Nemotron-Labs-Sigma Open Model Weights x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.together.ai/blog/making-open-models-work-for-long-horizon-agentic-workloads",
+      "title": "Making open models work for long-horizon agentic workloads",
+      "url": "https://www.together.ai/blog/making-open-models-work-for-long-horizon-agentic-workloads",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.024Z",
+      "content": "Making open models work for long-horizon agentic workloads together.ai12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://paradigm3.org/research/sinking-star",
+      "title": "Frontier models can ~solve a difficult and totally new game",
+      "url": "https://paradigm3.org/research/sinking-star",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.025Z",
+      "content": "Frontier models can ~solve a difficult and totally new game paradigm3.org12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/ai/2026/11/jensen-huang-allies-build-a-war-room-to-get-him-back-at-nvidia",
+      "title": "Jensen Huang allies build a \"war room\" to get him back at Nvidia",
+      "url": "https://arstechnica.com/ai/2026/11/jensen-huang-allies-build-a-war-room-to-get-him-back-at-nvidia",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.025Z",
+      "content": "Jensen Huang allies build a \"war room\" to get him back at Nvidia arstechnica.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://jasnell.me/posts/green-threads-in-node",
+      "title": "Green threads for Node.js",
+      "url": "https://jasnell.me/posts/green-threads-in-node",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.026Z",
+      "content": "Green threads for Node.js jasnell.me10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://huggingface.co/blog/openrouter",
+      "title": "Hugging Face and OpenRouter join forces to make open-weight models easy to run",
+      "url": "https://huggingface.co/blog/openrouter",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.027Z",
+      "content": "Hugging Face and OpenRouter join forces to make open-weight models easy to run huggingface.co2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://developers.googleblog.com/tpu-model-design-considerations-and-optimization-guide",
+      "title": "TPU Model Design Considerations and Optimization Guide",
+      "url": "https://developers.googleblog.com/tpu-model-design-considerations-and-optimization-guide",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.031Z",
+      "content": "TPU Model Design Considerations and Optimization Guide developers.googleblog.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://edera.dev/stories/top-10-container-escapes-an-ai-agent-actually-tries",
+      "title": "Which Container Escapes Still Work on a Patched Kubernetes Cluster",
+      "url": "https://edera.dev/stories/top-10-container-escapes-an-ai-agent-actually-tries",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.033Z",
+      "content": "Which Container Escapes Still Work on a Patched Kubernetes Cluster edera.dev11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://tej.as/blog/code-is-cheap-code-review",
+      "title": "Code Is Cheap: How Agentic Coding Changed Collaboration",
+      "url": "https://tej.as/blog/code-is-cheap-code-review",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.033Z",
+      "content": "Code Is Cheap: How Agentic Coding Changed Collaboration tej.as6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://electrek.co/2026/11/16/tesla-cybercab-crashes-speed-problem",
+      "title": "Tesla Cybercab has crashed 8 times, and the data shows a speed problem",
+      "url": "https://electrek.co/2026/11/16/tesla-cybercab-crashes-speed-problem",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.034Z",
+      "content": "Tesla Cybercab has crashed 8 times, and the data shows a speed problem electrek.co6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely",
+      "title": "World's Largest Brands Infected With Malware Via Optimizely",
+      "url": "https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.034Z",
+      "content": "World's Largest Brands Infected With Malware Via Optimizely blog.report-uri.com14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/16/cybersecurity-ai-startup-corma-reaches-1b-valuation-in-about-3-months",
+      "title": "Cybersecurity AI startup Corma reaches $1B valuation in about 3 months",
+      "url": "https://techcrunch.com/2026/11/16/cybersecurity-ai-startup-corma-reaches-1b-valuation-in-about-3-months",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.035Z",
+      "content": "Cybersecurity AI startup Corma reaches $1B valuation in about 3 months techcrunch.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/science/2026/11/hyperscale-data-centers-use-2-of-us-electricity",
+      "title": "Hyperscale data centers use 2% of US electricity",
+      "url": "https://arstechnica.com/science/2026/11/hyperscale-data-centers-use-2-of-us-electricity",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.035Z",
+      "content": "Hyperscale data centers use 2% of US electricity arstechnica.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thenewstack.io/duckdb-storage-compatibility-agents",
+      "title": "DuckDB just shipped its biggest release ever. Its own team says not to run it in production just yet.",
+      "url": "https://thenewstack.io/duckdb-storage-compatibility-agents",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.035Z",
+      "content": "DuckDB just shipped its biggest release ever. Its own team says not to run it in production just yet. thenewstack.io3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.fastcompany.com/91643002/ahead-ipo-filing-anthropic-pledges-prioritize-humanitys-benefit-heres-how",
+      "title": "Ahead of its IPO filing, Anthropic pledges to prioritize humanity’s benefit. Here’s how",
+      "url": "https://www.fastcompany.com/91643002/ahead-ipo-filing-anthropic-pledges-prioritize-humanitys-benefit-heres-how",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.036Z",
+      "content": "Ahead of its IPO filing, Anthropic pledges to prioritize humanity’s benefit. Here’s how fastcompany.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/16/tesla-goes-all-in-on-the-cybercab-with-upcoming-e3b-berlin-gigafactory-expansion",
+      "title": "Tesla goes all-in on the Cybercab with upcoming €3B Berlin Gigafactory expansion",
+      "url": "https://techcrunch.com/2026/11/16/tesla-goes-all-in-on-the-cybercab-with-upcoming-e3b-berlin-gigafactory-expansion",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.036Z",
+      "content": "Tesla goes all-in on the Cybercab with upcoming €3B Berlin Gigafactory expansion techcrunch.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://opencode.ai/product/browse",
+      "title": "OpenCode | Browse, your real browser for coding agents",
+      "url": "https://opencode.ai/product/browse",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.037Z",
+      "content": "OpenCode | Browse, your real browser for coding agents opencode.ai1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.answer.ai/posts/2026-11-16-solveit-launch",
+      "title": "Announcing the Public Launch of SolveIt",
+      "url": "https://www.answer.ai/posts/2026-11-16-solveit-launch",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.037Z",
+      "content": "Announcing the Public Launch of SolveIt answer.ai11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "http://brooker.co.za/blog/2026/11/16/understanding.html",
+      "title": "What does it mean to understand what we built?",
+      "url": "http://brooker.co.za/blog/2026/11/16/understanding.html",
+      "author": null,
+      "publishedAt": "2026-11-16T23:51:22.038Z",
+      "content": "What does it mean to understand what we built? brooker.co.za2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    }
+  ]
+}
