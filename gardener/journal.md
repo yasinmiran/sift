@@ -6,6 +6,39 @@ merges and closures and never expire.
 
 ## Lessons
 
+- The journal is an instrument too, and the cheapest control in this repo is
+  the one already written down. Today's first candidate was a per-source
+  failure streak in `state.json`, justified by a number I had just
+  reconstructed from 40 Actions log fetches: **`fireship` 404s on 9 of its
+  last 10 scheduled morning runs, and nothing here says so**. The second half
+  of that sentence was false, and three lines of this file said so: 10-12
+  measured the same 404, named the defect in `fetch.ts` (`TRANSIENT_4XX`
+  excludes 404), measured the cost at zero, declined the fix, and left an
+  explicit re-count trigger ("only if a morning failure lands on a day the
+  channel published"); 11-02 re-counted it. So the instrument I was about to
+  build was the orient step I had already run, and the PR would have been
+  churn dressed as observability. **Before measuring a signal, grep the
+  journal for it: a past run may have measured it, priced it, and left the
+  condition under which it is worth re-opening.** The archaeology is not
+  wasted either, because it answers the trigger: the 11-09 23:51 and 11-10
+  05:37 runs both 404'd and the channel had published at 21:04, so the video
+  entered the day file at 11:04 and missed the 11-10 morning digest window.
+  The trigger fired on the mechanics and the consequence is still zero (the
+  digest has cited a fireship video once in 32 days), and the sharpened
+  numbers make the fix **less** attractive, not more: 9 of 10 at 05:37 and 0
+  of ~20 at every other hour is a wall at one hour of the day, which a 300ms
+  re-ask walks straight back into. Same family as 11-15's "run the probe
+  against the build the change is not in", with the control being prose
+  rather than a build.
+  Its other half is about what a past run's numbers are worth. 11-15 recorded
+  the Hacker News section as carrying "1 to 13 article links (11-14 at one,
+  11-06 at three)" under a heading that said **read but NOT measured**;
+  counted today, 11-14 carries **12** and 11-06 **9**. The entry was honest
+  about not having measured and the numbers still read like a baseline on the
+  next run's screen. **A count recorded by a run that says it did not measure
+  is a note, not a baseline**, and the fix is to re-count before building on
+  it, which cost one command here.
+
 - A probe that hardcodes a value it could read off the page invents its own
   baseline, and the cheapest way to catch it is to run it against the build the
   change is not in. Today's fix widened an inline box, so 11-13's zoom sweep had
@@ -1019,6 +1052,75 @@ merges and closures and never expire.
 
 ## Backlog
 
+- MERGED 2026-11-16 as #371 / PR #372, `77c14cc`, `checks` green on `982b9e2`
+  and `pages` 43839115856 green on build and deploy, read the honest way:
+  `deploy-pages` passed and the step gated on its failure **skipped**. The
+  source registry's primary key had no uniqueness check. `slug` keys the
+  conditional-GET validators in `state.json`, keys item identity in the seen
+  index (`itemKey`), and is every stored item's attribution, which `verify.ts`
+  branches on by value; `loadSources` validated presence, kind, topics and
+  `enabled` and never asked whether two entries shared one. Measured by
+  running `runIngest` against a two-entry registry, one slug, two urls:
+  distinct guids store both items under the one slug with **`skipped: 0` on
+  every run forever** (the entries clobber each other's `feedHash`, so neither
+  feed is ever 304-skipped again, against the 20-35 of 54 a live run skips);
+  a shared guid turns the second publisher's story away as a duplicate of the
+  first's, run one reading **`created: 1, duplicate: 1, failures: []`** with
+  that story nowhere on disk, which is the case that matters because 1 is
+  unremarkable against the 85-214 a live run reports. Fatal like an unknown
+  kind, and `npm test` loads the checked-in registry, so it fires in `checks`
+  on the pull request and in `ingest` before the run writes anything. 296
+  tests (was 294), 53 insertions with 34 of them test, four mutations each
+  failing a test with the total steady. `config/sources.json` untouched and
+  clean: 54 entries, 54 unique slugs. No new dependency, no contract edit.
+- Re-counted 2026-11-16 against 10-12's own trigger and still NOT shipped.
+  **`fireship`'s morning 404 is a wall at one hour, not a blip.** 10 of the
+  last 40 ingest runs failed on it: **9 of the 10 runs at 05:37 UTC and 0 of
+  the ~20 at every other hour**, plus one at 23:51. The trigger 10-12 left
+  ("re-count only if a morning failure lands on a day the channel published")
+  has now fired: the channel published 2026-11-09 at 21:04, the 11-09 23:51
+  and 11-10 05:37 runs both 404'd, and the item entered `data/items/
+  2026-11-10.json` at the 11:04 run, after the 11-10 morning digest window.
+  The consequence is still zero in the only place it could show: the archive
+  cites a fireship video **once in 32 days** (10-19), none of the month's ten.
+  And the sharpened split argues against the fix rather than for it, because
+  adding 404 to `TRANSIENT_4XX` buys a 300ms re-ask into a wall that holds for
+  the hour. Youtube is **000 at CONNECT** from this container, so the why is
+  not answerable from here. Leave it; re-open only if the digest starts citing
+  the channel.
+- Walked clean on 2026-11-16, recorded so a future run does not re-walk them.
+  **The Hacker News section against its own stated range**, the medium 11-15
+  left for today. Measured with links resolved and mark syntax stripped: words
+  run **92 to 176, median 130, 7 of 32 reaching 150** against AGENTS.md's
+  "roughly 150-200"; article links run **5 to 13, median 9, 17 of 32 inside
+  the stated 6-10**; discussion links 0 to 4. Read rather than only counted,
+  and the shortfall is the voice, not thinning: the trend runs the other way
+  (11-11..11-16 at 153, 120, 141, 173, 141, 163 against an October median
+  nearer 120), and 11-14's section puts 12 links in two paragraphs where most
+  carry a clause inside a cluster, which the contract explicitly allows
+  ("a single catch-all clause for one coherent cluster is fine"). A word-count
+  gate here would warn on judgement on 25 of 32 days. Left alone. Note that
+  11-15's counts for this were wrong (11-14 at one link, 11-06 at three; they
+  are 12 and 9), which is the day's second lesson.
+  **The digest's section vocabulary.** 32 days use nine distinct `## `
+  headings and eight are AGENTS.md's own; the ninth is **`## Policy` on 3
+  consecutive days** (11-04, 11-05, 11-06) and nowhere else. Threads is last
+  on 32 of 32 and Hacker News immediately before it on 32 of 32, so the
+  ordering rules hold without a gate. "What matters today" opens 32 of 32.
+  A heading gate would fire on one deliberate three-day coinage, so no.
+  **#246's signal has aged out.** The issue is open on "the digest title's
+  date padding changed on 10-07 and the archive now reads two ways"; all 32
+  titles now read `Mon DD, YYYY` zero-padded (`Nov 01`, `Oct 16`), so the
+  unpadded half has rolled off the rolling month. Not closed from here
+  (contract-side, Yasin's), recorded so a future orient step does not re-read
+  it as live.
+  **The paywall phrase branch, re-counted.** Across the month's **9,288**
+  items, **221 are flagged and all 221 by domain, 0 phrase-only**, unchanged
+  in shape from 11-12's count. Scanned 21 candidate stub phrases the list does
+  not carry and found no missed population: "read the full story" hits 478
+  times and is the-verge's own feed tail on a free site, and the one real
+  subscriber stub is a single stratechery item. Nothing to add, nothing to
+  remove (a dead guard on a surface that measures zero is not dead weight).
 - MERGED 2026-11-15 as #367 / PR #368, `ae76daa`, `checks` green on `ee01f01`
   and `pages` 43698682685 green on build and deploy, read the honest way:
   `deploy-pages` passed and the step gated on its failure **skipped**.
@@ -3048,6 +3150,105 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-16
+
+**#371 filed, PR #372 built, `checks` green on `982b9e2`, merged by this run as
+`77c14cc`, and `pages` 43839115856 green on build and deploy, read the honest
+way: `deploy-pages` passed and the step gated on its failure skipped.** The
+source registry's primary key is now a key.
+
+**The signal is what `slug` is used for.** `state.json` keys each feed's
+conditional-GET validators by it, the seen index keys item identity by it
+(`itemKey` = `sourceSlug:externalId`), every stored item carries it as its
+attribution, and `verify.ts` branches on one specific value of it
+(`sourceSlug === "hacker-news"`, for the hn permalink set). `loadSources`
+validated slug presence, kind, topics and `enabled`, and nothing asked whether
+two entries shared a slug. The registry is 54 hand-edited entries and a source
+is added by copying the entry above it, so a forgotten slug rename is the shape
+of the mistake rather than a hypothetical.
+
+**What it does, measured by running `runIngest` against a two-entry registry
+with one slug and two urls**, because the consequence is the finding and the
+registry has no duplicate today:
+
+| the two entries | what happens |
+|---|---|
+| distinct guids | both items store under the one slug, and **`skipped: 0` on every run, forever**: they clobber each other's `feedHash`, so neither feed is ever 304-skipped again |
+| a guid either has offered | the second publisher's story is turned away as a duplicate of the first's: run one read **`created: 1, duplicate: 1, failures: []`** with that story nowhere on disk |
+
+The second is the one that matters, and it matters because of how it reads: a
+duplicate count of 1 is unremarkable next to the 85-214 a live run reports,
+`failures` is empty, and the summary line looks healthy while a whole publisher
+is being discarded. The first is the quieter tax: live runs skip 20-35 of 54
+sources per run, and a duplicated slug takes both of its feeds out of that
+permanently and re-parses them twice a day.
+
+**Fatal, like an unknown kind, and placed after the per-entry validation** so a
+slug-less entry still reports the existing message. The leverage is that
+`npm test` already loads the checked-in registry (`sources.test.ts`), and that
+step runs in `checks` on every pull request and in `ingest` before
+`npm run ingest`: the guard fires on the commit, and a bad registry turns into
+a red run before any data is written rather than into a day of misattributed
+items at 03:15 UTC. 296 tests (was 294), 53 insertions with 34 of them test.
+`config/sources.json` is untouched and clean, 54 entries and 54 unique slugs;
+no new dependency, no schema, path or npm script moved, so no contract edit,
+and nothing visual.
+
+**Four mutations, each reverted, each failing a test with the total steady**:
+the throw deleted, `slugs.add` deleted, the set re-declared inside the loop
+(two tests each), and the check narrowed to `s.enabled` only, which fails the
+disabled case **alone**. That last one is why the second test case exists: the
+whole file is the key space, not the enabled subset, because `pruneSources`
+deliberately reads the full registry so a switched-off source keeps its
+validators, and a check scoped to enabled entries would let the collision sit
+in the file until the day the second one is switched on. One property, two
+edges, and the first case could only hold one of them.
+
+**The day's lesson is that I nearly shipped the orient step as a PR.** The
+first candidate was a per-source failure streak in `state.json`, argued from a
+number I had just rebuilt out of 40 Actions log fetches: fireship 404s on 9 of
+its last 10 morning runs and nothing here says so. The second clause was
+wrong, and this file said so in three lines. 10-12 had measured the same 404,
+named the defect in `fetch.ts`, priced it at zero, declined the fix and left a
+re-count trigger; 11-02 re-counted it. So the instrument was the grep I should
+have run first. **Before measuring a signal, grep the journal for it.** The
+archaeology still earned its keep by answering the trigger, which has now
+fired and still prices at zero (above), and by sharpening the split to 9 of 10
+at 05:37 against 0 of ~20 elsewhere, which argues against the retry fix rather
+than for it. Its other half: 11-15's article counts for the Hacker News
+section, recorded under a heading that said it had not measured, are wrong by
+an order of magnitude on two days. A count from a run that says it did not
+measure is a note, not a baseline.
+
+**Health**: the last **50** completed workflow runs are 50 green, 0 red.
+`verify` across the 32-day archive: **0 errors anywhere**, **three** 60+ link
+warnings now (10-18 at 68, 10-21 at 64, 10-29 at 64; 10-15's 73 has aged out
+with the day), 11-12's 11 carried-over links, 11-09's economist link still a
+paywalled link without its badge, 11-15's spacex link still flagged as already
+digested on 11-09, and today's morning digest clean. All of those live in
+`digests/` and are the digest agent's to carry. The one recurring live source
+failure in 40 ingest runs is fireship (10 runs, all 404) plus one alphasignal
+timeout; `npm audit --omit=dev` 0, typecheck clean, `npm run site` 33 pages,
+`npm test` 294 on arrival. No open PRs at the start of the run; seven issues
+open (#352, #332, #314, #246, #241, #120, #112), none greenlit, none commented
+since 10-20, so the slot was free. `data/picks` still empty, a third full
+month. Entries reach back to 08-29, inside the ~90 day window; the first falls
+out on 11-27.
+
+**The environment, as it behaved today.** The clone arrived **shallow at 50
+commits and detached** for the ninth day running; `git fetch --unshallow origin
+main` then `git checkout -B main origin/main` (1,092 commits after). `npm ci`
+works. `gh pr list` and `gh issue list` are still **403 at the proxy on
+GraphQL**, so orienting runs on `gh api -X GET repos/.../pulls` and `/issues`,
+and `gh api .../check-runs` is how a PR's checks are watched. A scratch script
+outside the repo needs the `.mts` extension or tsx compiles it as cjs and dies
+on top-level await. The github MCP created #371 **without** a harness footer
+and PR #372 **with** one, and `update_pull_request` removed it, same as 11-15.
+`merge_pull_request` took the rebase on the first attempt with
+`expectedHeadSha`. Branch deletion is still impossible from here, so
+`gardener/2026-11-16-duplicate-source-slug` joins its **68** predecessors on
+the remote. Copilot declined on quota for the **eighth** run.
 
 ### 2026-11-15
 
