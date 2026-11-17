@@ -1,0 +1,1836 @@
+{
+  "day": "2026-11-18",
+  "generatedAt": "2026-11-17T23:11:10.689Z",
+  "items": [
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/single-second-static-deployments-now-support-more-assets",
+      "title": "Single-second static deployments now support more assets",
+      "url": "https://vercel.com/changelog/single-second-static-deployments-now-support-more-assets",
+      "author": "Melkey Moksyakov",
+      "publishedAt": "2026-11-16T00:00:00.000Z",
+      "content": "let you deploy eligible static sites to Vercel in about a second, without a build step. They now support CSS, images, fonts, and other assets alongside HTML and Markdown.Instant deployments Deploy a landing page with its stylesheet and images, or a report created by your coding agent, through the or . With the CLI, run:Vercel CLIREST API Newly supported file types include: Instant deployments support up to 100 files totaling 25 MB or less. Vercel detects eligible deployments automatically, with no configuration required. Deployments that exceed these limits, include JavaScript or other unsupported files, or are triggered by Git still build as before. The same applies to projects with a framework preset, custom build settings, a root-level or Vercel configuration file such as , or a directory.package.jsonvercel.jsonpublic/ This update is rolling out across all plans. Learn more in the .deployment documentation Read more CSS, JSON, XML, plain text, and web manifestsStyles and data: SVG, PNG, JPEG, GIF, WebP, AVIF, and ICOImages: WOFF, WOFF2, TTF, OTF, and EOTFonts: PDF, MP4, WebM, MP3, WAV, and OGGDocuments and media:",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-sandbox-python-sdk-1-0-is-now-available",
+      "title": "Vercel Sandbox Python SDK 1.0 is now available",
+      "url": "https://vercel.com/changelog/vercel-sandbox-python-sdk-1-0-is-now-available",
+      "author": "Scott Trinh",
+      "publishedAt": "2026-11-16T00:00:00.000Z",
+      "content": "The has reached 1.0, stabilizing its public API and bringing feature parity with the TypeScript SDK. Use it to run AI-generated code, test changes, and analyze datasets in isolated sandboxes from your Python application.Vercel Sandbox Python SDK The SDK includes context managers for automatic sandbox cleanup and -based async support for and Trio. For synchronous code, use .AnyIOasynciovercel.sandbox.sync Install with and .uv add 'vercel-sandbox>=1.0'configure authentication If you’re upgrading from 0.x, review the for breaking changes, including the switch to bytes for command input and output.1.0 release notes Learn more in the .Python SDK documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/astra-law-6-2",
+      "title": "Astra for Law leads in legal intelligence",
+      "url": "https://openai.com/index/astra-law-6-2",
+      "author": null,
+      "publishedAt": "2026-11-17T00:00:00.000Z",
+      "content": "Astra for Law ranked first in a launch evaluation spanning 24 areas of law. Every ChatGPT Enterprise customer can now request access.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/eve-is-now-generally-available",
+      "title": "Introducing eve 1.0",
+      "url": "https://vercel.com/blog/eve-is-now-generally-available",
+      "author": "Andrew Barba",
+      "publishedAt": "2026-11-17T00:00:00.000Z",
+      "content": "Today we're announcing , the open-source framework for building production-ready agents.eve 1.0 Since the , we've worked with early adopters to prepare eve for 1.0, shipping 230+ releases and merging thousands of pull requests. With this release, eve is now generally available.public preview in June We've made eve faster, expanded integrations, and improved observability. Security controls let you decide which actions need approval and what data gets collected. We've also made it easier for coding agents to build with, measuring that experience with a rigorous evaluation suite. With eve handling your harness and infrastructure, you and your agent can focus on building instead. The harness in eve is the loop that calls models, runs tools, and delegates work to subagents. You choose the model, add or replace tools, edit instructions, and decide which actions need approval. The open-source saves progress as the agent runs, so it can pick up from its last completed step after a crash. Multiplayer sessions and agent-to-agent calls are built in.Workflow SDK For managed hosting, deploy your eve agent to Vercel. handles durable execution, and runs agent-generated code in isolation.Vercel WorkflowsVercel Sandbox Build software factories that turn requests into tested pull requests, company brains that answer questions from your business data, or customer-facing agents in your product. Thousands of businesses already run eve in production for internal and customer-facing agents. built a software factory on eve that takes in customer requests, converts them into specs, tests the changes, and opens PRs for human review. Rillet tripled its shipping rate in three months. built monty, a data agent that answers employees’ questions in Slack. Just over two months in, 30–40% of the company used it every week.RilletClay 's agent framework roundup names eve “Best for durable backend agents”.Lindy Multiplayer lets several people work with an agent in one shared session. eve keeps track of who said what and directs approvals and sign-ins to the right person. You can set up memory for each user or the whole team. In the native , each thread is one shared session. Approvals appear as buttons that only the right person can answer, and a live task card shows progress and timing. You can follow up in the thread without mentioning the agent again, cancel the current turn, or reset the session from Slack.Slack channel lets an agent listen in channels you choose, even without being mentioned. Guided by goals you set per channel, it decides when to speak up, help, or take on a task, and when to stay quiet. To limit model costs, a small decision model screens every message first, and only the ones that might be for the agent start a turn.Ambient mode Slack is one of several native channels, alongside Microsoft Teams, Discord, Telegram, GitHub, Linear, Twilio, Web Chat, and iMessage. The adds support for any Chat SDK platform adapter, including WhatsApp, Messenger, Google Chat, and email. Each channel is one file, and the same agent can work across all of them. See the for the full list.Chat SDK channelintegrations directory eve 1.0 expands our native integrations for Next.js, Nuxt, SvelteKit, TanStack Start, and Vite. The build your agent alongside your app and set up its routes. On Vercel, you can deploy the agent and your site as one project, or host them separately.framework integrations The client libraries let you work with tool calls, approval requests, and questions in a consistent way across frameworks. Use that session data to build custom UIs: stream replies into agent chats, embed an agent in a page, or show the agent's tool calls in your own components. Use to scaffold a chat app with components, or add eve's React, Vue, or Svelte bindings to an existing UI.eve add channel/webAI Elements One support-agent deployment can connect to each customer's ticketing system with their own credentials and apply that customer's approval rules. Your application authenticates the user and identifies which tenant they belong to. You can then set , , and for that tenant and user.memoryconnection credentialsapproval policy Before each model call in the main agent loop, load the agent's capabilities from the session and external data. In 1.0, they cover models, connections, and subagents as well as tools, skills, and instructions.dynamic definitions We added native so agents can carry context from one session to the next. You choose the memory's scope and can use the built-in file memory, a memory provider, or .memoryone you build yourself Built-in keeps data in memory in and in a you configure on Vercel.fileMemoryeve devprivate Vercel Blob store Other providers include , , , , , , and .claude-memHindsightKybernesis ArcanaMemantomemcoSupermemoryUpstash AgentKit We rebuilt eve’s tracing around , so you can follow an agent’s work in the tracing tools you already use. records traces locally by default. If you host eve yourself, you can export them to an OpenTelemetry backend, including one you run yourself.OpenTelemetryeve dev Tracing integrations include , with more options in the . Add one with , or use the to build your own integration.Raindropintegrations directoryinstrumentation APIseve add instrumentation/<name> Traces now show when an agent is waiting for a person, including tool approvals, questions, budget prompts, and sign-ins. They record model selections and approval decisions alongside model usage and cost, and follow calls into MCP servers and remote agents. You choose what eve collects for tracing. Content you exclude from collection stays out of every destination. You can filter out spans or redact inputs and outputs per destination. Private conversations in production send only metadata by default, without prompts or tool results. The explains these controls.OpenTelemetry guide On Vercel, uses the same traces to show sessions, model calls, tool execution, subagent activity, and approval decisions in the dashboard. When creates a new Vercel project, it sets up trace sampling automatically. See the for setup and configuration.Agent RunsAgent Runs guideeve deploy At the start of September, our hosted stress test on Vercel Workflows took a median of . In 1.0, the same 100-turn workload took . The sends messages one at a time, with one immediate mock-model response and no tool calls per turn. We measure from sending a message until the turn finishes, capturing eve and Workflow overhead without the time a model takes to generate a response.3.036s per turn414mstest We worked with the Workflow team on , which gives each run a single orchestrator so background steps no longer replay the workflow. The team also moved event and stream writes to WebSockets and cut redundant history reads. eve agents get these improvements through Workflow SDK.spec 9 eve also caches the information it needs to route messages to each session and can move idle sessions to a newer deployment between turns. Web UIs can before the first message arrives, so the first reply starts sooner.prewarm a session For a 50-turn Evo Docs session, the estimated Vercel Workflows cost drops from 5.4¢ to 1.3¢, about 76% lower. That assumes roughly two model steps per turn and 30-day retention. eve now uses Workflow SDK 5.5 and saves only the conversation data that changed between turns. We've also cut repeated work in workflow steps, checkpoints, and sandbox setup: The storage changes are part of the open-source Workflow SDK, so agents you host yourself on other Workflow backends also store less duplicate session data. The cost estimate above uses .Vercel Workflows pricing On Vercel, workflow steps run on . They need extra storage writes for inputs above the payload size limit, so sending less session data helps keep turn times consistent as sessions grow. Images and files can still require those writes.Fluid compute For model calls, tool and skill listings can stay out of the initial prompt until they're needed. Connection tools run through and , so each search no longer has to expand the model's tool list. We also changed how eve marks parts of a prompt for provider caching, so more content can be reused between calls.eve__searcheve__tool During an earlier migration to eve, an engineer at Evisions reported: Since the preview, we've added so teams can share tools, skills, instructions, connections, channels, schedules, hooks, and subagents without copying files between agents. You can use extensions from the or create your own with .extensionsextensions directorynpx eve@latest extension init <name> For example, adds browser automation, adds tools for video assets and clips, and adds wallet and purchase tools.agent-browserMux VideoLink eve builds workspace extensions from source and reloads changes during development. You can update shared capabilities in one package and try the changes in your agents as you work. The 1.0 builds on eve’s default file tools, adding coding instructions and skills that follow your repository’s . It's included in the package, so there's nothing extra to install. Give it a repository in its sandbox and your agent can investigate code, edit files, and run the project's checks. It uses the same harness and extension system as your other agents, so you can replace or disable tools, override skills, and add your own instructions.code extensionAGENTS.mdeve See the for comparisons with other coding harnesses using the same tasks and model.benchmark results Add the coding extension to your agent: The companion adds GitHub and pull request workflows, using credentials and authorization you configure. On Vercel, the optional remote self-modification extension lets your agent propose changes to its own source in a draft pull request. You review the changes, merge them, and deploy.eve/extensions/git We built eve's subagents, sleep, and question tools on the same workflow system you can use through . Your tools can return a result, start a background task, or keep accepting messages as a resumable task. They can wait for a person, webhook, or timer without keeping compute running, and their runs survive restarts. You don't need a separate background-job system to coordinate that work.defineWorkflowTool Once you've defined a subagent, this tool returns a receipt immediately. The body waits for the reviewer's result, which is delivered to the model in a later message:reviewertask If you already have an eve agent, the walks through the changes to extension builds, agent APIs, session events, clients, and saved history. Follow it before deploying your upgrade.1.0 upgrade guide eve follows , so breaking changes to stable APIs only happen in major releases. Experimental and internal APIs, including experimental fields, can change between major releases.semantic versioning To work through the upgrade with your coding agent, copy this prompt: Start in the terminal to build locally, use the browser builder to create and deploy an agent, or choose a template for your use case. Create a new agent from the CLI with Node.js 24 or newer: In an interactive terminal, this installs dependencies and opens the eve terminal UI. If your selected team has access, you can start chatting without creating a Vercel project or copying an API key. eve can use your existing to call models through AI Gateway locally. Use to sign in to other connections.AI GatewayVercel CLI credentials/login In , you can ask the agent to add a tool, change its instructions, or write a skill. With , it edits its own source and reloads the change for the next turn.eve devself-modification From the Vercel dashboard, the scaffolds an agent, creates its Git repo, and deploys it. Go to Add New → Agent, pick a model, and add web chat or Slack along the way.agent builder Choose an for your use case:eve template Learn more in the .eve docs Read more Build production agents on a harness you own Collaborate in multiplayer agent sessions Build agent UIs with Next.js and other frameworks Build multi-tenant agents Give agents memory across sessions Trace agents with OpenTelemetry Lower agent turn latency Lower workflow costs for long agent sessions Share agent capabilities with extensions Build coding agents with eve’s shared tools Build with the same public APIs eve uses Upgrade to eve 1.0 Create your first eve agent Hosted stress run Median turn latency p95 September 1, beta baseline 3.036s 3.692s November 15, 1.0.0 414ms 633ms Use case Templates Coding · · · Coding agentSoftware factoryGitHub maintainerIncident response Knowledge and data · · Company brainData analystShared files with Vercel Drives Apps and interfaces · · · Next.js chatTanStack Start chatVoice agentAgent with Python Messaging · · · SlackDiscordPersonal agentBELL Stack Memory · Memory agentMem0 Content and marketing · · · ContentfulSanity copilotContent agentMarketing team Workflow steps save changes and refer back to data already stored, instead of repeatedly copying a growing conversation into each step. Steps that don't need history no longer receive it. Checkpoints store references to image files returned by tools, so they don't have to copy the image bytes each time. Sandboxes from skip repeated setup. Stop a sandbox and keep its files for reuse. Cleanup starts when the session ends.prepared snapshots Start in the terminal Start in the browser Start from a template",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/decision-1-1-now-available-on-ai-gateway",
+      "title": "Decision-1.1 now available on AI Gateway",
+      "url": "https://vercel.com/changelog/decision-1-1-now-available-on-ai-gateway",
+      "author": "Kevin Dawkins",
+      "publishedAt": "2026-11-17T00:00:00.000Z",
+      "content": "from Microsoft AI is now available on AI Gateway. It is more accurate, better calibrated, and faster than Decision-1.Decision-1.1 The decision model returns structured answers instead of free-form text for tasks such as routing support requests, choosing which model should handle a request, selecting the next step in a workflow, or grading AI responses. Multiple questions can share the same input in one request. Better calibration means the model's probabilities track how often it is right, so your application can set thresholds for when to act, flag a case for review, or escalate. Decision-1.1 accepts the same request format as Decision-1. To switch, change the model ID to .microsoft/decision-1.1 Call it through the , the , or the . The examples below require 7.0.128 or later for TypeScript, or the OpenAI Python SDK 3.26.0 or later for Python.AI SDKOpenAI-compatible Decisions APIAI CLIai Decision requests appear in , count toward , and support .request logsbudgetsdecision fallbacks Try Decision-1.1 in the , or see the for request formats and question types.model playgrounddecision models documentation Read more Boolean: the probability that a condition is true Choice: a selected category and probabilities for each option Score: a numerical rating on a scale you define",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/mai-image-2-7-and-mai-image-2-7-flash-now-available-on-ai-gateway",
+      "title": "MAI-Image-2.7 and MAI-Image-2.7-Flash now available on AI Gateway",
+      "url": "https://vercel.com/changelog/mai-image-2-7-and-mai-image-2-7-flash-now-available-on-ai-gateway",
+      "author": "Kevin Dawkins",
+      "publishedAt": "2026-11-17T00:00:00.000Z",
+      "content": "Microsoft’s and are now available in public preview on . Both increase the maximum output size to 2048 x 2048 pixels and add transparent backgrounds for generated and edited images.MAI-Image-2.7MAI-Image-2.7-FlashAI Gateway Generate images from text or edit existing images with one AI Gateway API key, without a Microsoft account. Both models support photorealistic images, text rendering, and targeted edits to products, portraits, and layouts. Use up to five reference images to guide edits or combine subjects. Set the environment variable, then use either model ID with . To generate a transparent PNG, set to :AI_GATEWAY_API_KEYproviderOptions.azure.background'transparent'AI SDK 6 or later To edit an image, provide it as a reference and describe what to change: You can also generate and edit images from the terminal with the , using the same API key and model IDs:AI CLI Try or in the model playground, or follow the .MAI-Image-2.7MAI-Image-2.7-Flashimage generation guide Read more (): for final assets where image quality is the priorityMAI-Image-2.7microsoft/mai-image-2.7 (): for faster, lower-cost generation when exploring prompts or creating variationsMAI-Image-2.7-Flashmicrosoft/mai-image-2.7-flash",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/gpt-6-2-astra-and-sol-now-available-on-ai-gateway",
+      "title": "GPT-6.2 Astra and Sol now available on AI Gateway",
+      "url": "https://vercel.com/changelog/gpt-6-2-astra-and-sol-now-available-on-ai-gateway",
+      "author": "Zachary Chen",
+      "publishedAt": "2026-11-17T00:00:00.000Z",
+      "content": "and from are now available on .GPT-6.2 AstraGPT-6.2 SolOpenAIAI Gateway Use or as the model ID. For the API examples, set to your .openai/gpt-6.2-astraopenai/gpt-6.2-solAI_GATEWAY_API_KEYAI Gateway API key Both models also support the .Responses API For lower latency at higher per-token rates, both models support and OpenAI’s . To request Ultrafast, set to in the AI SDK, or set to in Chat Completions and Responses requests.fast modeUltrafast service tierproviderOptions.openai.serviceTier'ultrafast'service_tier'ultrafast' GPT-6.2 Astra’s Ultrafast output-token price is 60% lower than GPT-6 Astra’s. To use the models in coding agents like Codex, Cursor, and more, install the latest Vercel CLI and run setup: Then select or in the agent. See the for details.openai/gpt-6.2-astraopenai/gpt-6.2-solcoding agents guide Try or in the playground.GPT-6.2 AstraGPT-6.2 Sol Read more for complex, multi-step projects, with improvements to implementing and testing changes in existing codebases, following document templates, and computer useGPT-6.2 Astra: for everyday coding, writing, and agent workflows, including building interactive web applications from a written briefGPT-6.2 Sol:",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/pull-request-only-preset-now-available-for-preview-builds",
+      "title": "Pull-request-only preset now available for preview builds",
+      "url": "https://vercel.com/changelog/pull-request-only-preset-now-available-for-preview-builds",
+      "author": "Mehul Kar",
+      "publishedAt": "2026-11-17T02:37:03.997Z",
+      "content": "A new Ignored Build Step preset lets you skip preview builds for branches without an open pull request. Production deployments and previews for branches with open pull requests continue to build. On GitHub and GitLab projects, skipped preview deployments are canceled before consuming any Build CPU Minutes. To enable this, open your project’s . Under , select from the menu and click .Deployments > ConfigurationIgnored Build StepOnly build previews for pull requestsBehaviorSave Learn more in the .Ignored Build Step documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/introducing-chatgpt-for-sales",
+      "title": "Introducing ChatGPT for Sales",
+      "url": "https://openai.com/index/introducing-chatgpt-for-sales",
+      "author": null,
+      "publishedAt": "2026-11-17T08:00:00.000Z",
+      "content": "Explore the new Sales plugin and 30+ new and expanded partner plugins in ChatGPT to research prospects, prepare pitches, update your CRM, and move deals forward.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/native-lint-and-typecheck-deployment-checks-are-being-deprecated",
+      "title": "Native lint and typecheck Deployment Checks are being deprecated",
+      "url": "https://vercel.com/changelog/native-lint-and-typecheck-deployment-checks-are-being-deprecated",
+      "author": "Cody Wong",
+      "publishedAt": "2026-11-17T13:00:00.000Z",
+      "content": "Native lint and typecheck are being deprecated. Use or your own CI workflows to continue running these tasks.Deployment ChecksVercel CI These checks run your repository’s lint and typecheck tasks on Vercel in parallel with deployment builds. New checks can no longer be added. Existing checks continue running until November 30, 2026, when they’re removed. Other Deployment Checks and commands already running in GitHub Actions or your Build Command are unaffected. Affected checks appear as or entries with as the provider in your project’s . Move their commands before removal. For checks that block production releases, verify how the new workflow handles failures.LintTypecheckVercelBuild and Deployment settings You can also run these commands in your Build Command, though that may increase build time and an error will fail the deployment build. Try this prompt to ask your coding agent to help migrate your lint and typecheck tasks to Vercel CI: Read the to learn more.Vercel CI documentation Read more What this means How to migrate",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50532118",
+      "title": "Java4Shell: pre-auth RCE flaw in Java 17 puts servers at risk (CVE-2026-114938)",
+      "url": "https://www.aikido.dev/blog/java-17-rce-vulnerability-cve-2026-114938",
+      "author": "b33f",
+      "publishedAt": "2026-11-17T14:48:03.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 116,
+      "comments": 15
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/inception-labs-mercury-3-hits-981-tokens-per-second-on-reasoning-tasks",
+      "title": "Inception Labs' Mercury 3 Hits 981 Tokens per Second on Reasoning Tasks",
+      "url": "https://alphasignal.ai/news/inception-labs-mercury-3-hits-981-tokens-per-second-on-reasoning-tasks",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T15:02:37.000Z",
+      "content": "Inception's Mercury 3 Preview became the first diffusion LLM scored on ARC-AGI, averaging 981 tokens/sec and peaking at 1,743.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50532315",
+      "title": "Pentagon fails 9th financial audit in a row",
+      "url": "https://thehill.com/policy/defense/6224597-pentagon-fails-ninth-audit/",
+      "author": "zootedjordan",
+      "publishedAt": "2026-11-17T15:02:53.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 105,
+      "comments": 80
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50532385",
+      "title": "Show HN: Alloy CSS, dialogs, menus and tabs that work with JavaScript off",
+      "url": "https://alloyhtml.com/example.html",
+      "author": "prafandy",
+      "publishedAt": "2026-11-17T15:07:09.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 164,
+      "comments": 28
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/ifm-opens-k2-horizon-s-full-training-stack-across-six-ai-models",
+      "title": "IFM Opens K2-Horizon's Full Training Stack Across Six AI Models",
+      "url": "https://alphasignal.ai/news/ifm-opens-k2-horizon-s-full-training-stack-across-six-ai-models",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T16:00:02.000Z",
+      "content": "IFM drops a 134-page manual on training six open models up to 375B parameters, with new attention tricks and a diffusion decoder that cuts latency up to 2.2x.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/open-source-soduwork-unifies-9-coding-agents-under-one-reviewable-workflow",
+      "title": "Open-Source SoduWork Unifies 9 Coding Agents Under One Reviewable Workflow",
+      "url": "https://alphasignal.ai/news/open-source-soduwork-unifies-9-coding-agents-under-one-reviewable-workflow",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T16:45:36.000Z",
+      "content": "SoduWork is an open-source, self-hosted workbench that runs multiple coding agents side by side with built-in review, governance and plugin sharing.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/parallel-launches-image-search-api-built-specifically-for-ai-agents",
+      "title": "Parallel Launches Image Search API Built Specifically for AI Agents",
+      "url": "https://alphasignal.ai/news/parallel-launches-image-search-api-built-specifically-for-ai-agents",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T16:46:30.000Z",
+      "content": "Parallel launches an image search API built for agents, combining keyword queries with natural-language objectives, starting at $1 per 1,000 requests.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50534631",
+      "title": "Nvidia stopped disclosing Singapore sales as revenues hit $104B",
+      "url": "https://www.ft.com/content/dbde7a30-548c-4f9d-a4be-7898a0c24dcf",
+      "author": "louiereederson",
+      "publishedAt": "2026-11-17T17:12:06.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text",
+      "points": 291,
+      "comments": 155
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "title": "Introducing GPT-6.2 Astra and Sol",
+      "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "author": null,
+      "publishedAt": "2026-11-17T17:45:00.000Z",
+      "content": "Introducing GPT‑6.2 Astra and Sol, with better professional outputs, coding, computer use, and efficiency at lower cost across ChatGPT Work, Codex, and the API.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50535230",
+      "title": "GPT‑6.2 Astra and Sol",
+      "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+      "author": "jasondavies",
+      "publishedAt": "2026-11-17T17:46:43.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 985,
+      "comments": 610
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50535238",
+      "title": "Apple Services Down",
+      "url": "https://developer.apple.com/system-status/",
+      "author": "willy_k",
+      "publishedAt": "2026-11-17T17:47:14.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 581,
+      "comments": 316
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-s-gpt-6-2-astra-tops-leaderboards-while-slashing-api-costs-20",
+      "title": "OpenAI's GPT-6.2 Astra Tops Leaderboards While Slashing API Costs 20%",
+      "url": "https://alphasignal.ai/news/openai-s-gpt-6-2-astra-tops-leaderboards-while-slashing-api-costs-20",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T17:54:03.000Z",
+      "content": "OpenAI drops GPT-6.2 Astra and Sol into ChatGPT Work, Codex, and the API, promising frontier results at a third the cost per task.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-blob-now-supports-ttls-for-automatic-deletion",
+      "title": "Vercel Blob now supports TTLs for automatic deletion",
+      "url": "https://vercel.com/changelog/vercel-blob-now-supports-ttls-for-automatic-deletion",
+      "author": "Agustin Falco",
+      "publishedAt": "2026-11-17T18:00:00.000Z",
+      "content": "Vercel Blob can now delete blobs automatically. Pass when you write a blob and it is deleted that many days after upload, from 1 to 730 days. The TTL counts from the blob's upload date.ttlDays Use TTLs for blobs you would otherwise delete yourself, such as session transcripts, exports, and temporary uploads. works on , , , multipart uploads, and presigned upload URLs. Every write result and response now includes , so you know when a blob is due for deletion.ttlDaysput()copy()putImage()head()expiresAt changes or removes the TTL of blobs you already have, one URL or up to 1,000 at a time, without re-uploading them.setTtl() In and later, pass to , , or , and use on existing blobs.Vercel CLI 65.16.0--ttl-daysvercel blob putput-imagecopypresignvercel blob set-ttl Setting a TTL costs one per started 60 days, on top of the write. A 7-day TTL costs one, and the 730-day maximum costs 13. Clearing a TTL and the deletions themselves are free. You can track TTL operations in the Blob section of the Observability tab.Advanced Operation npm install @vercel/blob@2.9.0 Learn more in the .Vercel Blob documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/features/2026/11/sources-vulcan-launch-anomaly-investigation-is-complex/",
+      "title": "The data is very preliminary, but Vulcan failure may not be due to BE-4 engines",
+      "url": "https://arstechnica.com/features/2026/11/sources-vulcan-launch-anomaly-investigation-is-complex/",
+      "author": "Eric Berger",
+      "publishedAt": "2026-11-17T18:00:51.000Z",
+      "content": "United Launch Alliance (ULA) confirmed Tuesday morning that its return-to-flight launch of the Vulcan rocket began failing during the initial stages of the mission. \"While we appear to have lost telemetry and the mission at approximately 10 minutes into flight, early indications are that just after liftoff, the launch vehicle experienced low booster performance, resulting in stage separation occurring when the vehicle was low in altitude and below minimal velocity to reach orbit,\" the company said. The launch company also confirmed reporting by Ars that the Centaur V upper stage and the solid rocket boosters performed nominally during the flight. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-lets-saas-customers-pay-for-claude-without-sharing-api-keys",
+      "title": "Anthropic Lets SaaS Customers Pay for Claude Without Sharing API Keys",
+      "url": "https://alphasignal.ai/news/anthropic-lets-saas-customers-pay-for-claude-without-sharing-api-keys",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T18:00:53.000Z",
+      "content": "Anthropic launches linked billing in beta, letting customers approve third-party platforms like Linear, Factory, and Ramp without handing over API keys.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/politecnico-di-milano-s-shred-rebuilds-a-nuclear-reactor-s-full-state-from-3",
+      "title": "Politecnico di Milano's SHRED Rebuilds a Nuclear Reactor's Full State From 3 Sensors",
+      "url": "https://alphasignal.ai/news/politecnico-di-milano-s-shred-rebuilds-a-nuclear-reactor-s-full-state-from-3",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T18:01:05.000Z",
+      "content": "A three-sensor neural network trained on simulation data reconstructs the full temperature and flow fields of a real natural circulation nuclear test rig.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-s-gpt-6-2-astra-hits-record-29-on-ai-self-improvement-benchmark",
+      "title": "OpenAI's GPT-6.2 Astra Hits Record 29% on AI Self-Improvement Benchmark",
+      "url": "https://alphasignal.ai/news/openai-s-gpt-6-2-astra-hits-record-29-on-ai-self-improvement-benchmark",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T18:01:05.000Z",
+      "content": "Vals AI's pre-release testing shows OpenAI's newest model inching toward human-level autonomous AI research, matching references on pre-training while stumbling on post-training.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "lennys-newsletter",
+      "externalId": "https://www.lennysnewsletter.com/p/35-premium-tools-free-for-a-yearnow",
+      "title": "35 premium tools free for a year—now with OpenRouter, LangChain, Sentry, TextExpander, and Ploy 💥",
+      "url": "https://www.lennysnewsletter.com/p/35-premium-tools-free-for-a-yearnow",
+      "author": "Lenny Rachitsky",
+      "publishedAt": "2026-11-17T18:02:02.000Z",
+      "content": "→ Not a paid subscriber? An annual subscription is just $200 and comes with a full year free of 22 premium products, including Notion, Linear, Framer, PostHog, Waking Up, and the majority of today’s new products (see below). Each of these products is worth over $200 alone (the price of your subscription), and the collection is worth $37,062. Your paid subscription also unlocks every past newsletter post from the past seven years and an invite to our private Slack community. Unlock the Product Pass → Want a free year of Google AI Pro, the X Subscription, Lovable, and 30 additional products? Go Insider for $400/year. Many readers expense it out of their workplace’s L&D budget. Here’s an email to send your manager. I’m excited to welcome five incredible new partners to the Lenny’s Newsletter Product Pass: OpenRouter ($650 value, Insider only): One API and one bill for hundreds of AI models. Ploy ($600 value): AI agents that run growth marketing for your website (the #1 request from our community). Sentry ($360 value): Know the moment something you shipped breaks, and fix it fast. TextExpander ($300 value): Your best prompts, replies, and phrases, always just a few keystrokes away. LangSmith by LangChain ($468 value): See what your AI agents are actually doing, and make them better. This brings Lenny’s Product Pass to 35 products, worth $41,428 (!!) for Insider subscribers ($400/year), and 22 products worth $37,062 for Annual subscribers (just $200/year). This includes a full free year of Wispr Flow, Notion, Lovable, Linear, Higgsfield, Replit, ElevenLabs, Runway, Railway, Resend, Granola, the X Subscription (with Grok Bot, Cursor, and X), and so much more—all included in your Lenny’s Newsletter subscription. I’m pretty sure this is the greatest deal in the history of software. My mission is to give you all the advice, community, and tools you need to build a world-class product and career. These five new additions to the Pass are tools that round out your growing builder stack, helping you streamline your growth marketing, AI agent development, root cause resolution, model optimization, and . . . typing. They’re also the products our community has been asking for most. If you are already an Annual or Insider subscriber, grab your codes here. If you’re currently on a free or monthly plan, upgrade to immediately unlock the Product Pass. Codes are limited and first-come, first-served. The most popular products can sell out, so grab yours now. Grab your codes What’s new in the Product Pass today 1. OpenRouter What you get: One year of no platform or BYOK fees and $100 in OpenRouter credits ($650 value) What it is: OpenRouter gives you one API and one bill for hundreds of AI models. You can pick your model or let it choose the best one per prompt. Trying a model that just came out is a one-line change. You can also set spend limits per API key, control which providers see your data, and automatically swap models if one goes down. Why I love it: Our team has been an OpenRouter customer for about a year and a half. They make it easy to choose the right mix of quality and cost for everything we do, and being able to try out new models super quickly is so delightful. There’s a reason Stripe just acquired them for billions. How people use OpenRouter: Scaling from 11B to 1T+ monthly tokens while cutting cost per token ~60% Running a 35K-player game on 28+ models through one API Getting new models to users within hours of launch Capping spend on every key to avoid surprise bills Giving engineers open models their cloud doesn’t offer yet Rerouting 640K failed requests a month so users never see an outage Running a medtech company’s AI in the EU with zero data retention 2. Ploy What you get: One year free of Ploy Starter ($600 value) What it is: Ploy runs growth marketing for you. Point it at your website and it learns your brand, design, and business. Then AI agents build landing pages, launch ad campaigns, and grow organic traffic from Google and AI search. Watch the video below to see it in action. Why I love it: We did a poll within my newsletter Slack community, and Ploy was one of the most requested new products to join the Product Pass. This is one of those magical AI products that change how you think about what AI can do for you. How people use Ploy: Turning a research report into an interactive lead magnet and launching a 40+ skill marketplace in a month at Clay Shipping on-brand ABM pages at scale at Hex Enabling AEs to turn discovery calls into buyer-ready business cases and deal pages at Avoca Redesigning Volca’s whole site in days instead of paying an agency $30K Fixing the website and SEO at Once Reading Building a site chatbot and calculator at PEC360 3. Sentry What you get: One year of Sentry Team in credits ($360 value) What it is: Sentry shows developers and builders what’s broken in their code and helps them fix it fast. Why I love it: We’ve been Sentry customers for almost a year now, and rely on it to keep the Product Pass humming along. The in-depth details that Sentry provides help us quickly get to the root cause of issues and fix them. Such a good product. How people use Sentry: Getting an alert the moment something breaks in production, with error monitoring Gergely Orosz fixing a production bug with an AI-drafted PR Watching a replay of exactly what a user hit Following a slow request across services with tracing Swapping console.log for logs you can actually search Catching runaway AI token costs with alerts and tracing Sending errors to coding agents that open PRs for review, like Factory and Exa Grab your codes 4. TextExpander What you get: One year free of TextExpander Pro for up to five users ($300 value) What is it: TextExpander saves anything you type repeatedly as a snippet, then expands it with a short abbreviation in any app. These can be common email replies, AI prompts, addresses, wire information . . . anything. The snippets work in every app, and you can include fill-in-the-blank fields so each one is personalized. You can even share snippets with your teammates. Why I love it: I’ve been a customer since 2023. I tried every product in the space and kept coming back to TextExpander. It just works! I’ve got over 30 snippets set up at this point; here’s a peek. 👇 This product is a key tool in my “saying no” strategy. TextExpander built a set of “Builder Packs”—public snippet groups custom-made for my subscribers. Subscribers can pre-install them during onboarding. How people use TextExpander: Ensuring CloseKnit Health has a unified voice when they talk to patients across every system their team uses Building a library of snippets to save hundreds of hours: “Whenever I have written something more than twice, I make it a snippet. It’s the best thing ever. Every role I’ve been in, I’ve created more.” Storing AI prompts and context as snippets Saving an hour a day per team member 5. LangSmith by LangChain What you get: One year free of LangSmith Plus in credits ($468 value) What is it: LangSmith is a platform for building, testing, deploying, and improving agents. It helps you see what your agents are actually doing, understand where things go wrong, and continuously improve their performance. It includes observability, evals, deployment, and infrastructure. Originally built for engineers, it’s increasingly being used by PMs, especially those responsible for the quality and performance of agents. Why I love it: Some of my smartest tech friends now work at LangChain or use LangSmith for their agent work. That says a lot. How people use LangSmith: Catching regressions and continuously improving the quality of Rippling AI with traces, layered evals, and a self-healing loop Going from no visibility on inference spend to 99.5% cost reconciliation across providers with agent observability at Clay Shipping a consumer-grade travel agent that improves itself at Odessia Grab your codes Know before you subscribe You typically need to be a new customer of the product to redeem their offer. So if you’ve paid for one before, you usually can’t get the free year. Luckily, with 35 products, there are likely many you haven’t paid for yet. Codes can run out. So hop on the products you are most excited about! Insider subscribers get priority access. Some products are only available to Insider subscribers. Your free year starts when you redeem on the partner’s site, not when you subscribe. Some offers have a redeem-by date, so activate them with the partner as soon as possible after claiming. Lenny’s Product Pass is a perk of an Annual or Insider Lenny’s Newsletter subscription, not an independent offering. Our goal is to make this the most valuable newsletter subscription in the world and give builders the chance to try incredible products. Associated offers are intended for use only by the individual subscriber. Offers and Pass access may not be shared, sold, transferred, reused, or publicly distributed. Any account that violates our terms will lose access to this perk. Subscriptions with Product Pass access are nonrefundable, so make sure you review the collection and terms and conditions before subscribing. How to get your codes Step 1: Get an Annual or Insider subscription to Lenny’s Newsletter. Monthly plans don’t include the Product Pass. Step 2: Claim your codes. Codes are limited, so start with the products you’re most excited about. Step 3: Go build something. — Annual subscriptions ($200/year) include 22 products. Insider subscriptions ($400/year) include all 35 products, including Insider-only offers like OpenRouter, Lovable, Replit, and the X Subscription, plus priority access to new drops. Both plans come with every newsletter issue, the archive of more than 500 posts, and the private Slack community of over 30,000 members. Many readers expense this subscription out of their workplace’s learning and development budget. Here’s an email you can send to your manager. If that L&D budget resets in January, now might be a good time to use it. Buying for your team or as a gift? Yearly group seats and gift subscriptions come with the Product Pass too. Grab your codes Have a fulfilling and productive week 🙏 If you’re finding this newsletter valuable, share it with a friend, and consider subscribing if you haven’t already. There are group discounts and gift options available. Subscribe now Sincerely, Lenny 👋",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/hybrid-reasoning-agents-which-monitor-still-works",
+      "title": "Hybrid Reasoning Agents: Which Monitor Still Works",
+      "url": "https://alphasignal.ai/news/hybrid-reasoning-agents-which-monitor-still-works",
+      "author": "Adham Khaled",
+      "publishedAt": "2026-11-17T18:08:00.000Z",
+      "content": "A third of the steps go silent, the bill drops 2.7x, and the monitoring test only asked whether math answers were right.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/microsoft-s-mai-image-2-7-tops-editing-charts-at-one-sixth-the-cost",
+      "title": "Microsoft's MAI-Image-2.7 Tops Editing Charts at One-Sixth the Cost",
+      "url": "https://alphasignal.ai/news/microsoft-s-mai-image-2-7-tops-editing-charts-at-one-sixth-the-cost",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T18:11:34.000Z",
+      "content": "Microsoft's new MAI-Image-2.7 and 2.7-Flash take #1 on image editing at roughly one-sixth the cost of rival frontier models.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/california-sues-openai-to-stop-public-nuisance-of-out-of-control-ai-agents/",
+      "title": "OpenAI sued by California after admitting to 80 loss-of-control incidents",
+      "url": "https://arstechnica.com/tech-policy/2026/11/california-sues-openai-to-stop-public-nuisance-of-out-of-control-ai-agents/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-11-17T18:13:34.000Z",
+      "content": "California sued OpenAI yesterday, alleging it has tried to evade responsibility for the Hugging Face attack and about 80 other incidents in which the company lost control of its AI. The lawsuit was filed under the state's public nuisance and unfair competition laws. The July 2026 hack of Hugging Face and other attacks carried out by OpenAI's autonomous agents \"may just be the tip of the iceberg,\" said a lawsuit filed in a state court by California Attorney General Rob Bonta. \"OpenAI recently admitted to the Attorney General’s Office that it has lost control of its autonomous AI agents over 80 times during testing.\" OpenAI had publicly reported only 27 such incidents, showing that \"OpenAI’s public reports do not represent the full scope of loss-of-control incidents involving OpenAI’s models that have impacted third parties,\" the lawsuit said. OpenAI \"knowingly tested a dangerous product without proper oversight or safety procedures and misled the public about it,\" Bonta said in a press release. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/krea-s-video-swap-replaces-people-outfits-and-backgrounds-in-one-shot",
+      "title": "Krea's Video Swap Replaces People, Outfits, and Backgrounds in One Shot",
+      "url": "https://alphasignal.ai/news/krea-s-video-swap-replaces-people-outfits-and-backgrounds-in-one-shot",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T18:16:39.000Z",
+      "content": "Krea's new Video Swap lets creators replace people, outfits, products, or settings in existing clips while preserving motion, camera moves, and sound.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "github-blog",
+      "externalId": "https://github.blog/?p=100309",
+      "title": "Building the Agent Host Protocol for sessions that continue across devices",
+      "url": "https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/",
+      "author": "Connor Peet",
+      "publishedAt": "2026-11-17T18:20:40.000Z",
+      "content": "Models are now good enough to work for hours or even days on their own. You don’t have to watch over every thing they do, but you still need to be able to check in, no matter where you are. An agent can’t live only inside one application. The work should continue even If you close a window or switch devices. In GitHub Copilot you can start an agent session in one place and pick it up in another. This session continuity runs on the Agent Host Protocol (AHP), an open standard built first in VS Code and adopted across GitHub. Here’s how it works, what we learned building it, and how you can use it to bring your agents into your own apps and workflows. Why one integration per client stopped working GitHub Copilot was first built in VS Code as an extension that bundled its own harness. This gave you access to your agents in VS Code, but it tied their lifetime to the editor. Extensions are attached to a single VS Code window. Close that window, and the agent is gone. Update VS Code, and every agent stops as the application restarts. Connect to a remote machine, and you get an entirely new extension host commit-locked against the version of the VS Code workbench you have. At the same time, the Copilot app was being developed, alongside the existing GitHub mobile apps for iOS and Android. Each product was doing its own distinct integration with cloud-based agents to work towards delivering session continuity. Each of these integrations solved the problem for one product, but developers also still want to be able to pull their agents into their own workflows–whether that’s an editor, a terminal, a phone, or a tool they built themselves–and they can’t do that if every client needs its own one-off integration. That’s why developers needed a protocol: a standard, independently versioned language across versions of VS Code, the GitHub Copilot app, mobile apps, and any other client that might host an agent. A shared protocol means every client sees the same agents, history, and state without bespoke integrations, and you aren’t tied to one app’s idea of what an agent session is. Designing a protocol for agents on every client The protocol needed to allow multiple clients to interact with the same set of agents seamlessly. Start a session in the cloud from your phone, for example, then continue it from your laptop. It should tolerate network interruptions, reconnections, and concurrent client mutations. And it needed to be full-featured enough for you to do real work from each of your clients. At the same time, the protocol needed to stay out of agent behavior. Unlike the domains that produced the Language Server Protocol and Debug Adapter Protocol, the world of agents is evolving quickly. That’s why AHP avoids encoding how agents work, and instead focuses on how you want to interact with them. You also need the protocol to be simple enough to implement on your own client or server. While the full feature set would necessarily be extensive, the core protocol needed to be minimal. The result of these requirements is the Agent Host Protocol (AHP). It is oriented around URI-identified “channels”, which are the coarsest unit of functionality in the protocol. Every server must implement the root, session, and chat channels, but can also implement more channels that provide terminal support, MCP additions, or OTel reporting, for example. Within each channel is a reducer-based state object, which drives most of the logic for clients. The server is the arbiter of the state, and each client sends a sequence of actions that either mutate the state or trigger side effects, like sending a chat message. This provides a few very nice properties. Reconnection and replay in poor network conditions are easy: a client sends all queued actions, presents the right ‘loading’ state, and waits for the server to reconcile and acknowledge the actions before confirming them. Clients and servers are straightforward to debug. And reducer-based state also plays nicely with popular UI frameworks like React. Shipping five clients and two hosts Adopting the Agent Host Protocol in VS Code required building a new harness and agentic stack underneath it. The Copilot Chat extension, which used to provide all of VS Code’s AI and agentic capabilities, had been growing for over three years, reaching over 400,000 lines of TypeScript, not counting tests. But, as a VS Code extension, it was structured around the lifecycle of a VS Code window and depended entirely on the VS Code extension API. Neither that lifetime nor those APIs would be available in a standalone agent host process. As we started building the Agent Host Protocol in early 2026, the Copilot SDK was also being developed, and it made sense to leverage it as the foundation for the new agentic stack. This was a big transition. It’s easy to build a harness implementation that says hello and can edit files—we were using the agent host to develop the agent host after the first couple weeks—but it’s another thing to build one that covers the long tail of features developers had come to expect from Copilot Chat. GitHub has had Copilot cloud agents for a couple of years, allowing developers to run tasks in the cloud from any device. While VS Code was quietly developing the Agent Host Protocol, GitHub was looking to expand that capability to coordinate sessions running on your own devices via the Copilot app, or in cloud sandboxes. This was exactly the N:M problem that AHP was built to solve, so adopting the same technology made perfect sense. From the outset, the GitHub Agent Host had different requirements than VS Code’s implementation. VS Code runs the host locally and can drop its host on other compute over SSH, containers, WSL, or Dev Tunnels, and it is actually included as part of the VS Code Server bundle. The GitHub Agent Host needed to run in the cloud and across a much wider variety of infrastructure, environments, and security constraints. Those differing requirements are why they’re separate implementations written in different languages: VS Code’s in TypeScript and GitHub’s in Rust. For now, having two agent hosts has been a good acid-test for the protocol itself. How well does it work when two entirely different teams and sets of agents implement the same protocol independently? Pretty well, it turns out. Like MCP, the Agent Host Protocol provides escape hatches via custom methods and _metadata on objects that consumers can use for out-of-band signaling. After several months heads-down on our respective implementations, our first task as we worked toward unification was inventorying the ways each implementation had extended the protocol. Many of these extensions reasonably stay GitHub-specific, such as the GitHub Agent Host using metadata to link to project boards. In other cases, variance was a sign of a gap in the protocol; early versions, for example, could not accurately represent shell-type tool output that wasn’t backed by a PTY. And some were bad assumptions, like VS Code’s client assuming a particular structure for the session URIs it received from the agent host. A protocol with only one implementation isn’t truly portable; as we taught our clients and servers to talk to each other, AHP became portable in practice, not just in theory. Today, the Agent Host Protocol provides that same continuity across all VS Code and GitHub surfaces. Agent sessions running locally in the GitHub Copilot app, in cloud sandboxes, and in VS Code all share the same underlying protocol. To see how it’s used, read about how you can work from anywhere with the new connected Copilot cloud experience. Using the Agent Host Protocol AHP was designed to be easy to use in clients and servers. Agent Host Protocol libraries are available in Rust, TypeScript, Kotlin, Swift, .NET, and Go, and agents are able to build clients and servers with little prompting. I have a macropad sitting on my desk that reflects my agent’s state in real time, and others have built everything from smart watch apps to Kanban-style task management tools against the protocol. Whether you want a companion app for your own agents, a way to bring agent sessions into your team’s tools, or AHP support in your own editor or agent, the protocol is open for you to build on. You can connect to an agent host you implement in the Copilot app (enable Experimental > Direct Connections, then go to Environments > Add Agent Host Protocol Host) and in VS Code (via Add Remote Agent Host in the Agents window). You can spawn a standalone version of VS Code’s agent host by running code agent host in your terminal, or see the endpoints for the one in your editor by running code agent endpoints, and samples can help you and your agent get started. The Agent Host Protocol is an open standard, and questions and suggestions are welcome on GitHub. Happy coding! Explore the Agent Host Protocol on GitHub > The post Building the Agent Host Protocol for sessions that continue across devices appeared first on The GitHub Blog.",
+      "topics": [
+        "devtools-infra",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/mit-s-spaceship-ide-lets-developers-steer-ai-text-like-a-live-control-surface",
+      "title": "MIT's Spaceship IDE Lets Developers Steer AI Text Like a Live Control Surface",
+      "url": "https://alphasignal.ai/news/mit-s-spaceship-ide-lets-developers-steer-ai-text-like-a-live-control-surface",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T18:23:17.000Z",
+      "content": "An open-source browser experiment called Spaceship IDE lets you steer an LLM's next sentences with knobs, in realtime, like piloting a ship.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50535885",
+      "title": "MAI Code 2 and Code 2 Flash",
+      "url": "https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/",
+      "author": "lemonish97",
+      "publishedAt": "2026-11-17T18:25:13.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 240,
+      "comments": 111
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/culture/2026/11/humanity-braces-for-an-alien-invasion-in-3-body-problem-s2-teaser/",
+      "title": "Humanity braces for an alien invasion in 3 Body Problem S2 teaser",
+      "url": "https://arstechnica.com/culture/2026/11/humanity-braces-for-an-alien-invasion-in-3-body-problem-s2-teaser/",
+      "author": "Jennifer Ouellette",
+      "publishedAt": "2026-11-17T18:26:26.000Z",
+      "content": "You might be excused for forgetting about the existence of 3 Body Problem, Netflix's heady sci-fi series adapted from the award-winning novel The Three-Body Problem by Liu Cixin, the first book in his Remembrance of Earth’s Past trilogy. After all, it debuted in March 2024. But it was an exceptionally well-done, thematically rich series, and we're finally getting the second of a planned three seasons in January. Netflix just dropped the first teaser. (Spoilers for S1 below.) Created by David Benioff, D.B. Weiss (Game of Thrones), and Alexander Woo (True Blood), the first season followed two primary timelines. In the earlier one, a young Chinese astrophysicist, Ye Wenjie (Rosalind Chao), witnessed her father being beaten to death by Red Guards during the Cultural Revolution. Ye figured out a means of sending an interstellar message to possible extraterrestrial civilizations, receiving a response from a planet called Trisolaris. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/sybil-solutions-releases-open-source-agent-skill-that-doubled-local-llm-speed",
+      "title": "Sybil Solutions Releases Open-Source Agent Skill That Doubled Local LLM Speed",
+      "url": "https://alphasignal.ai/news/sybil-solutions-releases-open-source-agent-skill-that-doubled-local-llm-speed",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T18:29:09.000Z",
+      "content": "An open-sourced agent skill methodically hill-climbs local LLM serving speed across any hardware and quantization, with measured gains up to 2.1x on prefill.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "github-blog",
+      "externalId": "https://github.blog/?p=100215",
+      "title": "Maintainers don’t need more AI bug reports. They need fixes.",
+      "url": "https://github.blog/open-source/maintainers/maintainers-dont-need-more-ai-bug-reports-they-need-fixes/",
+      "author": "Ashley Wolf",
+      "publishedAt": "2026-11-17T18:29:29.000Z",
+      "content": "AI has made finding potential vulnerabilities fast and cheap. Fixing them still takes human judgment, and in open source, that work falls to maintainers. Many are already flooded with AI-generated security findings, including duplicates and reports that aren’t vulnerabilities at all. Another raw scan doesn’t help them. Anyone pointing a new model at a project should ask its maintainers first and come with fixes, not just findings. Maintainers are under intense pressure from this flood of reports. As Christian Grobmeier, a maintainer of Log4j, has put it, the AI defending open source has to be better than the AI attacking it. AI shouldn’t add to maintainers’ workload. So, with maintainers, GitHub and Microsoft ran a pilot together: could AI help maintainers ship fixes instead of handing them more findings? GitHub and Microsoft are using Codename MDASH, Microsoft’s multi-model agentic scanning harness, to find and fix security vulnerabilities in widely used open source software, strengthening the foundation that much of the world’s code is built on. The process Our pilot had two goals: send only findings that matter, and never send a maintainer an unverified finding. Here’s how it worked: Find. Codename MDASH, an AI system from Microsoft Security, scanned each project using Microsoft’s MAI Cyber model and suggested fixes for what it found. Filter. An AI triage agent from the GitHub Security Lab, built on tailored Copilot skills, removed duplicates, checked validity, and focused on high-impact bugs, so maintainers never had to review raw scan results. Verify. Researchers from Microsoft FORGE Lab checked every remaining finding by hand. Report privately. Reports reached maintainers through GitHub private vulnerability reporting, with a proof of concept and a suggested fix. Fix. Maintainers decided what to fix, how to fix it, and when. Reports and fixes stayed on GitHub, where maintainers already work. The result: Codename MDASH, using Microsoft’s MAI Cyber model, flagged thousands of possible issues across the six projects. After AI triage and hand review by seven Microsoft FORGE Lab researchers, maintainers received 99 private reports. As of November 15, they had fixed 55, and 14 of those fixes were already in a release. Participating projects Six projects took part, all alumni of the GitHub Secure Open Source Fund. Their maintainers agreed to the scan, received every report privately, decided what to fix, and shared what worked: AutoGPT, an AI agent platform Caddy, a web server Express, a web framework for Node.js FastMCP, a framework for building MCP servers ImageMagick, image processing software Netty, a networking framework for Java What we learned These lessons come from what the six projects fixed and what their maintainers chose to share. Six projects is a small sample, so read them as early lessons. 1. Fixes matter more than findings Fixing is where maintainers spend their time. So every report arrived already checked, with a suggested fix to review, adapt, and merge. Maintainers started from a well-scoped patch, not a raw finding. The first fixes shipped about a week after the initial scan. Caddy’s maintainers fixed all 22 of the reports they received in a week or less. Maintainers used the suggested fixes, some as written and some with changes. AutoGPT’s maintainers had recently shipped a new check, and it was broken. The report landed three days later and pointed at the right line. They took the fix further than the suggested patch, wrote it within a day, and had it in production less than a week later. Finding vulnerabilities is no longer our bottleneck. Fixing them is the hard part, and that depends on maintainers. Netty maintainer 2. Codename MDASH, with researcher review, gave maintainers high-quality findings with fixes Maintainers got a short list, not a flood. Express maintainers said the reports cut through the noise. Caddy maintainers said they surfaced obscure bugs and filled gaps that earlier reports had missed. For FastMCP, the scan went beyond what AI scanners had given them before. ImageMagick, maintained by a two-person team, received 22 reports. AI did the finding, researchers did the checking, and maintainers stayed in charge. One ImageMagick report looked like a kind of issue the maintainers had seen before. Its summary showed it wasn’t and pointed to the exact lines of code. They were able to push a fix in 15 minutes. Normally, a security advisory would take us around 30 minutes to 1 hour on average to read, understand, and make a fix. It is a huge difference. ImageMagick maintainer Codename MDASH was able to find unknown, obscure security bugs in our project with succinct reports, and it filled in gaps from some prior reports that hadn’t been noticed. Caddy maintainer 3. Open source still has gaps to close The pilot worked because people did careful work at every step, and that work doesn’t scale yet. Seven researchers spent about two days per project checking findings by hand. Meanwhile, low-quality reports still reach maintainers every day. For open source, fixes need to be delivered via private vulnerability reporting (PVR). Maintainers need to run CI/CD tests on private forks to verify those fixes. And to close the gap between defenders and attackers, maintainers need access to cyber-capable models to verify a proof of concept, before and after the fix. The Codename MDASH scan provided unique insights into the security of our project above and beyond what AI scanners have provided us in the past FastMCP maintainer Why it matters If you’re a maintainer, this approach changes what a security report costs you. A checked, private report that comes with a suggested fix takes less of your time. You shouldn’t have to triage a scanner’s output. That’s the sender’s job. If you use AI to find vulnerabilities in open source, maintainers’ feedback points to this standard: Check every finding before you send it, against what the project already knows and against its threat model and security policy. Report it privately. Include a suggested fix. Let maintainers set the pace. Features are easier and easier to ship, but in the future maintaining software will probably come down to who cares enough to manage the security. AutoGPT maintainer Codename MDASH is very useful for cutting through the noise of vulnerability reports. Express maintainer What you can do today If you maintain any open source project, turn on private vulnerability reporting so researchers can report security issues to you without making them public. If your project is on GitHub, turn on core security features in about two minutes with gh-secure. If you build on open source, turn on Dependabot alerts so you know when a dependency you use needs a security update. If you send AI-generated vulnerability reports to open source projects, hold them to the standard above before you send them. Repositories using GitHub code security can use agentic autofix to help automatically remediate their alerts with Copilot What happens next Fixes, where maintainers already work. GitHub is bringing these lessons into private vulnerability reporting and security advisories, where GitHub Security Lab is already investing to reduce the burden of low-quality reports on maintainers. MAI Cyber 2. Today Microsoft announced MAI Cyber 2. The Codename MDASH pilot ran on the earlier MAI Cyber model. GitHub and Microsoft will keep working together to help secure open source. Closing the gaps, starting with the GitHub Secure Open Source Fund. We’re working with Microsoft to scale researcher review without cutting corners. GitHub will offer every alumni project AI security scans, with findings checked before they’re reported privately. Alumni also get GitHub Copilot Max. We’ll bring this support to future sessions of the Fund. Everyone downstream benefits from this system. When a maintainer publishes a security advisory on GitHub and it’s reviewed for the GitHub Advisory Database, Dependabot can alert the repositories that depend on that package. That’s the idea behind the GitHub Secure Open Source Fund: 216 projects so far, with more than 300 maintainers fixing more than 4,000 vulnerabilities in software downloaded more than 20 billion times a month. Thank you To the maintainers of AutoGPT, Caddy, Express, FastMCP, ImageMagick, and Netty: thank you for your time, your trust, and your feedback. Thank you also to the Codename MDASH team at Microsoft Security, the MAI Cyber team, the researchers of Microsoft FORGE Lab, and GitHub Security Lab. Maintainers do the fixing. Our job is to make sure they never do it alone. Hear from maintainers about their experience with Codename MDASH. 👇 About the GitHub Secure Open Source Fund All six projects in this pilot are alumni of the GitHub Secure Open Source Fund, which gives each project $10,000 through GitHub Sponsors, plus security training and a supportive alumni community. The GitHub Secure Open Source Fund, powered by GitHub Sponsors, funds open source projects that underpin the digital supply chain, catalyze innovation, and are critical to the AI stack. Want your company to help secure the open source it depends on? Become a funding partner through the Fund page. Learn more about the Fund or apply. Through the Fund, maintainers receive security training and Azure credits from Microsoft for Startups. That support sits alongside Microsoft’s European Security Program and its Secure Future Initiative, whose principle is security above all else. Most organizations are downstream in the same way. If your software depends on open source, do the same: back the maintainers you rely on. All alumni of the GitHub Secure Open Source Fund AI, machine learning, and intelligent systems ACI.dev • AlbumentationsX • ArviZ • AutoGPT/GravitasML • CAMEL-AI • Caracal • CocoIndex • Code-Graph-RAG • CodeCarbon • Cognee • Deep Agents • DIPY • DocsGPT • FastMCP • Jupyter • LadybugDB • LangChain • Matplotlib • n8n-MCP • Nasiko • NumPy • Ollama • ONNX • OpenBB Platform • OpenClaw • OpenCV • OpenMetadata • OpenSearch • PageIndex • pandas • Pydantic • PyMC • Ruby-OpenAI • Scenic • scikit-learn • SciPy • Serena • TokenOps • TraceRoot • Zeus Build systems, supply chain, and release tooling Apache Airflow • Babel • Bluefin • bootc • Browserslist • Changesets • Colima • Concourse • Cucumber • CycloneDX Python Library • Flux • Foundry • Gitoxide • golangci-lint • GoReleaser • hardhat-deploy • Jenkins • JReleaser • Jupyter Docker Stacks • NixOS/Nixpkgs • node-lru-cache • oapi-codegen • PostCSS • PyPI/Warehouse • rimraf • Task • Termux • Terra • Turborepo • Warpgate • webpack • zizmor Core programming languages, runtimes, and foundational libraries Apache Commons • Apache Groovy • Byte Buddy • core-js • CPython • FS2 • Gleam • Himmelblau • htmx • LLVM • modernc.org/sqlite • NAPI-RS • Node.js • Pkl • Pyodide • Rustls • termcolor • time-rs Developer tools and productivity platforms AirQo • API Dash • ArduPilot • AssertJ • AsyncAPI Initiative • Bevy • Bootstrap • calibre • Charset Normalizer • Cheerio • Ciphey • Cobra • CodeRunner • CSS Declaration Sorter • DataJourney • Diesel • DIGIT • Electron • ERPNext • fabric.js • GitPython • Hoppscotch • ImageMagick • jQuery • js-yaml • jsoup • JUnit • libyt • LORIS • MapStruct • Mastodon • Mathesar • Mautic • Mermaid • MessageFormat • Mockoon • NativeScript • Next.js • Nuxt • nvm • Oh My Zsh • p5.js • Path-to-RegExp • Pelias Geocoder • Pest • Pillow • Polly • Proyecto Respira • PypeIt • python-benedict • qs • React Starter Kit • Readest • Resolve • Rocket.Chat • Selenium • shadcn/ui • Sphinx • Spyder • ssh_config • StackQL • Stirling PDF • Svelte • Thunderbird for Android • ToolJet • Two.js • Viper • virtualenv • Vuetify • Wagmi • WebdriverIO • xyflow • YAML • Yii Framework • Yjs Web, networking, APIs, and infrastructure services actix-web • aiohttp • Apache APISIX • Apache Shiro • Apache Solr • Apache ZooKeeper • Arkime • Caddy • cmux • Cryptomator • curl • CycloneDX .NET Library • CycloneDX cdxgen • Ente • etcd • evcc • Express • external-secrets • FastAPI • Fastify • Haraka • Helmet.js • Home Assistant • Hummingbird • jose • Keycloak • Keyshade • kgateway • Log4j • mimetype • NetBird • Netty • Oauth2 (Ruby) • OAuthlib • openapi-stack • OpenWISP • PGPainless • quic-go • ScanAPI • ScanCode • Sniffnet • Social Auth App Django • Stalwart • Starlette • UAParser.js • urllib3 • Vapor • varlock • Veramo • WebAuthn (Go) • ZITADEL The post Maintainers don’t need more AI bug reports. They need fixes. appeared first on The GitHub Blog.",
+      "topics": [
+        "devtools-infra",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50535992",
+      "title": "Phrack 73 Released",
+      "url": "https://phrack.org/issues/73/introduction_md",
+      "author": "notmine1337",
+      "publishedAt": "2026-11-17T18:31:25.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 213,
+      "comments": 20
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/microsoft-brings-mai-code-2-to-github-copilot-at-5-of-claude-s-cost",
+      "title": "Microsoft Brings MAI Code 2 to GitHub Copilot at 5% of Claude's Cost",
+      "url": "https://alphasignal.ai/news/microsoft-brings-mai-code-2-to-github-copilot-at-5-of-claude-s-cost",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T18:34:58.000Z",
+      "content": "Microsoft's new in-house coding models claim near-frontier quality at a fraction of the price, and they're already live inside GitHub Copilot.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p46#a261117p46",
+      "title": "Xreal Aura review: portable, crisp display, and runs multiple Android apps on a virtual display, but Android XR lacks unique apps and VR controller support (Scott Stein/CNET)",
+      "url": "https://www.techmeme.com/261117/p46#a261117p46",
+      "author": null,
+      "publishedAt": "2026-11-17T18:35:05.000Z",
+      "content": "Scott Stein / CNET: Xreal Aura review: portable, crisp display, and runs multiple Android apps on a virtual display, but Android XR lacks unique apps and VR controller support — The most fascinating and frustrating device I've used in a long time pushes at the edges of where headsets are heading, and glasses are evolving.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50536387",
+      "title": "Solid 2.0",
+      "url": "https://www.solidjs.com/blog/solid-2-0-the-long-hold/",
+      "author": "pier25",
+      "publishedAt": "2026-11-17T18:56:17.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 177,
+      "comments": 48
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p47#a261117p47",
+      "title": "Google updates Gemini Privacy Hub to extend its retention period for temporary chats and chats with history turned off from 72 hours to around two months (Jagmeet Singh/TechCrunch)",
+      "url": "https://www.techmeme.com/261117/p47#a261117p47",
+      "author": null,
+      "publishedAt": "2026-11-17T19:00:47.000Z",
+      "content": "Jagmeet Singh / TechCrunch: Google updates Gemini Privacy Hub to extend its retention period for temporary chats and chats with history turned off from 72 hours to around two months — Google is extending how long it keeps temporary Gemini chats and conversations made with chat history turned off to around two months …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/github-copilot-expands-agent-coding-to-azure-devops-and-browser-automation",
+      "title": "GitHub Copilot Expands Agent Coding to Azure DevOps and Browser Automation",
+      "url": "https://alphasignal.ai/news/github-copilot-expands-agent-coding-to-azure-devops-and-browser-automation",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T19:08:42.000Z",
+      "content": "GitHub's standalone Copilot app now clones Azure DevOps repos, drives PRs to merge with agents, and adds browser automation plus general availability for GHES.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p48#a261117p48",
+      "title": "Apple's System Status page shows an outage affecting some services; Apple says an \"internal update caused some outages\" (Sarah Perez/TechCrunch)",
+      "url": "https://www.techmeme.com/261117/p48#a261117p48",
+      "author": null,
+      "publishedAt": "2026-11-17T19:25:01.000Z",
+      "content": "Sarah Perez / TechCrunch: Apple's System Status page shows an outage affecting some services; Apple says an “internal update caused some outages” — After a recent slew of tech outages, service disruptions, and flight chaos this week, now it's Apple customers who are facing technical issues.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50536813",
+      "title": "350 years ago, Ole Rømer discovered that light has a finite speed",
+      "url": "https://www.sciencenorway.no/culture-history-history-of-science/350-years-ago-this-man-discovered-that-light-has-a-finite-speed/2737969",
+      "author": "dxs",
+      "publishedAt": "2026-11-17T19:25:27.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 198,
+      "comments": 63
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gaming/2026/11/civilization-studio-firaxis-games-lays-off-a-third-of-staff/",
+      "title": "Civilization studio Firaxis Games lays off a third of staff",
+      "url": "https://arstechnica.com/gaming/2026/11/civilization-studio-firaxis-games-lays-off-a-third-of-staff/",
+      "author": "Samuel Axon",
+      "publishedAt": "2026-11-17T19:45:25.000Z",
+      "content": "Firaxis Games, the studio behind the Civilization and XCOM franchises of computer strategy games, last week laid off about a third of its staff, totaling around 60 people. That's according to a recent report in Bloomberg. The report cites people \"familiar with the cuts,\" saying that the flagship game the studio is currently working on, a new entry in the XCOM series, \"has faced development struggles and missed a significant milestone.\" The departures also include the studio head, Heather Hazen. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/microsoft-launches-seven-mai-models-to-undercut-gpt-and-claude-costs",
+      "title": "Microsoft Launches Seven MAI Models to Undercut GPT and Claude Costs",
+      "url": "https://alphasignal.ai/news/microsoft-launches-seven-mai-models-to-undercut-gpt-and-claude-costs",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T19:48:14.000Z",
+      "content": "Microsoft AI drops seven models at Ignite that undercut GPT and Claude on price while matching performance on everyday coding, image editing, voice and security tasks.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p49#a261117p49",
+      "title": "GPT-6.2 Astra review: frustrating to use, the model has no concept of knowledge gaps, its outputs are very hard to parse, and it runs in circles on long tasks (@theo)",
+      "url": "https://www.techmeme.com/261117/p49#a261117p49",
+      "author": null,
+      "publishedAt": "2026-11-17T19:50:01.000Z",
+      "content": "@theo: GPT-6.2 Astra review: frustrating to use, the model has no concept of knowledge gaps, its outputs are very hard to parse, and it runs in circles on long tasks — Why I hate GPT-6.2 Astra",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50537156",
+      "title": "jQuery 4.1.0",
+      "url": "https://github.com/jquery/jquery/releases/tag/4.1.0",
+      "author": "petecooper",
+      "publishedAt": "2026-11-17T19:50:40.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 206,
+      "comments": 108
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/standard-build-billing-new-teams",
+      "title": "Standard builds move to usage-based billing for new teams",
+      "url": "https://vercel.com/changelog/standard-build-billing-new-teams",
+      "author": "Mehul Kar",
+      "publishedAt": "2026-11-17T20:00:00.000Z",
+      "content": "Starting today, new Pro and Enterprise teams no longer include a Standard build slot. This brings Standard builds under the same usage-based billing model as other build machines. On Pro, Standard builds cost $0.014 per build minute, and your monthly usage credit applies to build usage. Enterprise rates follow your contract. Standard builds remain billable after switching from Elastic to Standard for teams covered by this change. Select a build machine in or , or read more about .team settingsproject settingsmanaging your builds Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "nextjs-blog",
+      "externalId": "/blog/how-were-using-ai-to-make-nextjs-more-secure",
+      "title": "How we're using AI to make Next.js more secure",
+      "url": "https://nextjs.org/blog/how-were-using-ai-to-make-nextjs-more-secure",
+      "author": null,
+      "publishedAt": "2026-11-17T20:00:00.000Z",
+      "content": "Why you're seeing more Next.js security advisories, and what we're doing about it.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50537290",
+      "title": "Web Browser Engineering (2021)",
+      "url": "https://browser.engineering/",
+      "author": "ibobev",
+      "publishedAt": "2026-11-17T20:01:35.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 101,
+      "comments": 17
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p50#a261117p50",
+      "title": "California bans Waymo robotaxis from freeways after a viral video showed one failing to yield to the highway patrol; Waymo halts freeway service nationwide (Jeremy C. Owens/San Francisco ...)",
+      "url": "https://www.techmeme.com/261117/p50#a261117p50",
+      "author": null,
+      "publishedAt": "2026-11-17T20:10:01.000Z",
+      "content": "Jeremy C. Owens / San Francisco Business Times: California bans Waymo robotaxis from freeways after a viral video showed one failing to yield to the highway patrol; Waymo halts freeway service nationwide — California banned Waymo's robotaxis from driving on state freeways indefinitely after a viral video showed one of the cars failing …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50537441",
+      "title": "Israel vs. Wikipedia",
+      "url": "https://techforpalestine.org/wikipedia-report",
+      "author": "srvo",
+      "publishedAt": "2026-11-17T20:10:03.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 154,
+      "comments": 33
+    },
+    {
+      "sourceSlug": "cloudflare-blog",
+      "externalId": "01M7NJA4ESQ31MDVBT2RBP1ZHX",
+      "title": "Quad9’s withdrawal from France: A canary in the coal mine",
+      "url": "https://blog.cloudflare.com/quad9-withdrawal-from-france/",
+      "author": "Patrick Nemeroff",
+      "publishedAt": "2026-11-17T20:24:27.000Z",
+      "content": "Last month, the Swiss non-profit foundation Quad9 announced that it will withdraw its free public DNS resolver from France. This difficult decision followed months of litigation and a French court ruling that imposed daily financial penalties on Quad9 for failing to block domains associated with alleged copyright infringement. Quad9’s departure from France is both disheartening and understandable. The court’s ruling put the organization in the impossible bind of having to choose between crippling litigation and penalties, or fundamentally altering its service in a way that would undermine the privacy and security of its users. Left with no good option, Quad9 is choosing the exit door instead. The withdrawal of a basic infrastructure service from France fundamentally harms the free and open Internet, and it should serve as a warning of the damage that will result if rightsholders and policymakers continue demanding maximal blocking across every layer of the Internet. It not only deprives French Internet users of a trustworthy and important tool; it creates a real risk of disruption to their daily lives. Quad9’s resolver is used by a wide variety of individuals and organizations in France — including government bodies, educational institutions, hospitals, and utilities — and Quad9 has no way to directly notify those individuals and institutions that their resolver will soon stop working. If the affected parties do not change their resolver before Quad9 removes its service, their Internet will fail with no explanation. Quad9 is not the first public DNS resolver to withdraw from a country following blocking orders, and it almost certainly won’t be the last. Cisco previously withdrew its OpenDNS resolver from France, Portugal, and Belgium (temporarily) under similar circumstances. And a Belgian court recently issued an order that would impose substantial penalties if Cloudflare, Google, and Cisco do not begin blocking websites through their public resolvers by early January 2027. That’s something Cloudflare has never done. Cloudflare has spent years advocating against orders of this kind. We are concerned that rightsholders’ unrelenting demands for blocking by public DNS resolvers will end up causing real harm to the Internet. A refresher on DNS, the Domain Name System To understand why this is such a problem, it helps to understand how the Internet works under the hood. DNS resolvers are a foundational piece of the Internet’s infrastructure. DNS is the Internet’s address book: when you type a website name such as cloudflare.com, the DNS system translates that domain name into the IP address your device needs to connect to it. A DNS resolver is the service that looks up that address and sends it back to your device, much like an operator finding a phone number in a directory. DNS resolvers can be operated by anyone, but they are commonly run by Internet service providers (ISPs), mobile networks, businesses, and universities. If you’re reading this blog post at home and have never thought about DNS before, chances are that you’re using your ISP’s default resolver. Because you use your DNS resolver every time that you visit a website, it’s important for it to be reliable and trustworthy. And because the DNS resolver has access to all of your browsing activity, which resolver you use has real privacy implications. In addition to DNS resolvers that are provided by your local ISP, there are a variety of public DNS resolvers available. Cloudflare launched our public DNS resolver 1.1.1.1 in April 2018 to give back to the Internet. Our goal was to make a fast, reliable, privacy-first consumer DNS service available for free to everyone. We succeeded. 1.1.1.1 is among the fastest DNS resolvers in the world, including in Europe. Cloudflare's resolver doesn’t collect any user data, let alone sell it to advertisers. 1.1.1.1 has always been one of our favorite examples of Cloudflare fulfilling its mission to help build a better Internet. 1.1.1.1 is one of many public resolvers that anyone can use. In addition to 1.1.1.1 and Quad9’s 9.9.9.9, some of the other best-known public resolvers include Google’s 8.8.8.8 and Cisco’s OpenDNS. Just because these services are offered for free doesn’t mean they’re easy to provide. A well-run global public DNS resolver is an extraordinary engineering feat, built to securely and privately resolve hundreds of billions or even trillions of queries a day across a globally distributed network of hundreds of server locations. As Quad9 notes, there are many other DNS resolvers available to users, many of them offered by essentially anonymous services whose practices are unknown or undocumented. It’s easy to change your DNS resolver, and people do so for a variety of reasons including performance, reliability, or to access specific security features. Why public DNS resolvers should not be required to block Rightsholders have a legitimate interest in preventing online piracy. But trying to address online infringement through public DNS resolvers is fundamentally the wrong approach. Among other things, such blocking is ineffective. Think back to the analogy of an operator finding a phone number in a directory. If a court wants to shut down an illegal business, forcing the directory operator to cross the business's name out of the phone book doesn't actually close the business. The storefront is still open, the products are still there, and anyone who already knows the address, or uses a different phone book, can walk in. The same is true for the Internet. DNS resolvers are just one link in the transmission chain. The only way a DNS resolver can “block” content is by declining to return the IP address for a particular website. But a public DNS resolver cannot remove the actual infringing content from the Internet, nor can it take down the servers hosting it. Because of this, blocking by public DNS resolvers is remarkably easy to bypass. Any Internet user who wants to reach a blocked site can circumvent the block in less than a minute simply by switching to one of the thousands of other DNS resolvers available online. In fact, users don’t even need a resolver at all to reach infringing content if they already know the underlying IP address. Unsurprisingly, while blocking via public resolvers may inject some friction for some users when accessing content, there is no evidence that it actually reduces the total amount of online infringement that occurs. In addition to being ineffective, as we’ve written previously, DNS blocking is a blunt instrument that causes collateral damage. Because DNS operates at the domain level, a resolver cannot block a specific infringing video or file; it must block the entire domain. This affects all content on that domain, whether legal or illegal. It is also entirely opaque to the user: when a resolver is forced to block a domain, the website simply fails to load. The user receives no explanation or legal notice, making it impossible to know if the site is down for maintenance, if their network is broken, or if the site was blocked by a court order. The problem is substantially worse with respect to public DNS resolvers. Because public resolvers operate globally, any blocking will naturally cross borders, meaning that a single country could dictate what content is accessible around the world. For example, while the EU-dedicated DNS resolver DNS4EU operated by Whalebone blocks in response to country-specific orders, it does so across the entire EU. Efforts to reengineer public DNS resolvers to allow for more localized blocking would fundamentally alter the service, harming performance and resilience, undermining user privacy, and fragmenting the open Internet. For these reasons, Cloudflare, Google, Cisco, and Quad9 have all opposed efforts to mandate blocking by public DNS resolvers, with some success. Several years ago, courts in Germany ruled in favor of Cloudflare and Quad9, rejecting requests to require DNS blocking. More recently, a French court rejected penalties against Cloudflare for failing to block through 1.1.1.1, finding that other actions we had taken through our CDN and reverse-proxy service were sufficient to comply with the underlying order. Undeterred, rightsholders have continued to press for blocking by public resolvers with a level of determination that is hard to explain. A recent study found that the majority of online piracy in Europe is hosted in Europe. If rightsholders want to genuinely address online infringement, there are far better places to focus their efforts — most notably by requiring the hosting providers who actually store the pirated files to take them down. Forcing public DNS resolvers out of markets hurts the Internet The French court’s penalty order against Quad9 represents the culmination of these rightsholder efforts. As a small non-profit that only offers a public DNS resolver, Quad9 had no alternative methods for demonstrating compliance with the order. The French court therefore granted rightsholders’ request to issue penalties for non-compliance, forcing Quad9 to undermine its own service or leave the country. Quad9’s withdrawal from France represents a genuine loss for the Internet. In the short term, removal of Quad9’s resolver is likely to cause immediate and potentially severe disruptions to Internet access. Because of the way their service is set up to preserve privacy, Quad9 has no way to know who exactly is using its resolver, let alone to directly communicate to them about the upcoming withdrawal of services. That means that individuals, hospitals, universities, and government offices all may be caught unaware when the resolver stops working. Again, because of how DNS resolvers work, those users will not receive a detailed error message explaining what happened — their Internet will simply stop working. The problem will be even worse when devices like security systems or thermostats are hardwired to use Quad9’s resolver. Fixing these issues may be slow or even impossible. More generally, driving Quad9 out of France does absolutely nothing to prevent online infringement, but it does leave everyday Internet users with fewer safe, reliable options, particularly ones like Quad9 that also protect users from phishing and malware. Taking established public DNS resolvers away forces Internet users to fall back on the default resolvers offered by their ISPs (which may monetize their browsing data), try lesser-known resolvers operated by anonymous or less trustworthy organizations, or run their own resolver. The irony is that Quad9 and Cloudflare are being pulled into court precisely because we are transparent, reputable organizations. Penalizing transparent services only pushes users toward less accountable corners of the web. The way forward If nothing else, we hope that Quad9’s announcement may serve as a wake-up call to rightsholders and policymakers that seeking to block infringement at every layer of the Internet has real costs. We believe there are far better ways to work together to fight piracy without compromising the integrity of the Internet, and Cloudflare continues to pursue innovative collaborations to that end. Our collective efforts in addressing online infringement would be put to better use in seeking to have such content removed at the hosting provider, which would both achieve a more durable solution and avoid collateral damage to the Internet. In the meantime, we will keep resisting misguided efforts to require blocking by public DNS resolvers. Along with Google and Cisco, we have appealed the Belgian order that would impose penalties on us if we do not start DNS blocking by January 2027. We hope to get a resolution before the end of the year that would avoid another situation like the one Quad9 faces now in France. We have grave concerns about the disruption that would be caused if additional resolvers are forced to withdraw from markets, and we will continue to advocate against that possible result.",
+      "topics": [
+        "security-privacy",
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1035869",
+      "title": "Democrats try to figure out how not to get swept away by the blue wave",
+      "url": "https://www.theverge.com/policy/1035869/whats-next-majority-democrats-conference-denver-jeffries",
+      "author": "Gaby Del Valle",
+      "publishedAt": "2026-11-17T20:30:00.000Z",
+      "content": "House Democratic Leader Rep. Hakeem Jeffries (D-NY) watches protestors screaming at him while participating in a question and answer event during the What's Next summit at Mission Ballroom in Denver, Colorado. | Mark Makela/Getty Images On a harried Saturday afternoon at Denver International Airport, I had the good fortune of sitting just a few feet from Minneapolis Mayor Jacob Frey. It shouldn't have come as a surprise. He, I, and 3,500 or so others had just left \"What's Next,\" a conference organized by Majority Democrats, a group dedicated to charting a path for the suddenly - and shockingly? - victorious party. Frey, who rose to national prominence amid ICE's brutal Operation Metro Surge, had come to the conference in Denver to listen, not to speak. \"I've never been to one of these things before,\" he said. He had flown in for a day and, like everyone else in attendance, … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/trump-was-in-bed-with-jensen-critics-balk-at-huangs-wish-to-return-to-nvidia/",
+      "title": "“Trump was in bed with Jensen”: Critics balk at Huang’s wish to return to Nvidia",
+      "url": "https://arstechnica.com/tech-policy/2026/11/trump-was-in-bed-with-jensen-critics-balk-at-huangs-wish-to-return-to-nvidia/",
+      "author": "Ashley Belanger",
+      "publishedAt": "2026-11-17T20:32:55.000Z",
+      "content": "On Monday, large trucks began circling the streets of Washington, DC, carrying billboards urging Congress to investigate the Trump administration’s ties with Nvidia’s disgraced CEO Jensen Huang. “Jensen was in bed with a spy from China,” the billboards created by the Tech Oversight Project (TOP) alleged. “Trump was in bed with Jensen.” TOP is a nonprofit that describes itself as “dedicated to reining in Big Tech.” Currently, Trump is supporting a campaign to bring back Huang as Nvidia’s CEO—despite many Republicans calling it a “horrible idea.\" Breaking his silence, Huang issued a statement Tuesday saying he would be “honored” to return, but the board said reinstatement is not under consideration as an internal investigation into US spying claims remains ongoing. Huang used the moment to say that his interests align with the US's, saying: Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p51#a261117p51",
+      "title": "Sources: Ramp is in early talks to raise $1B or more led by Coatue and Thrive at a valuation of $70B+, in its third funding round in a year (Kate Clark/Wall Street Journal)",
+      "url": "https://www.techmeme.com/261117/p51#a261117p51",
+      "author": null,
+      "publishedAt": "2026-11-17T20:35:00.000Z",
+      "content": "Kate Clark / Wall Street Journal: Sources: Ramp is in early talks to raise $1B or more led by Coatue and Thrive at a valuation of $70B+, in its third funding round in a year — The financing round is the fast-growing company's third fundraise in a year — Corporate-card and expense-management startup Ramp is in early discussions …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p52#a261117p52",
+      "title": "Kalshi says the CFTC has ordered it to halt trading on \"mention markets\" tied to what President Trump will say during public events (Bobby Allyn/Bloomberg)",
+      "url": "https://www.techmeme.com/261117/p52#a261117p52",
+      "author": null,
+      "publishedAt": "2026-11-17T20:40:01.000Z",
+      "content": "Bobby Allyn / Bloomberg: Kalshi says the CFTC has ordered it to halt trading on “mention markets” tied to what President Trump will say during public events — Federal regulators ordered Kalshi Inc. to halt trading on markets tied to what President Donald Trump will say during public events …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p53#a261117p53",
+      "title": "Sources: AppLovin is among companies in talks to acquire ad tech company Criteo, which has a ~$1B market cap after its stock fell 50%+ over the past five years (Milana Vinn/Reuters)",
+      "url": "https://www.techmeme.com/261117/p53#a261117p53",
+      "author": null,
+      "publishedAt": "2026-11-17T20:45:03.000Z",
+      "content": "Milana Vinn / Reuters: Sources: AppLovin is among companies in talks to acquire ad tech company Criteo, which has a ~$1B market cap after its stock fell 50%+ over the past five years — US advertising technology firm AppLovin (APP.O) is among the companies in talks to acquire smaller Paris-based peer Criteo …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1035943",
+      "title": "Instagram is helping creators crack down on copycat videos",
+      "url": "https://www.theverge.com/tech/1035943/instagram-creators-crack-down-copycat-videos",
+      "author": "Jay Peters",
+      "publishedAt": "2026-11-17T20:46:31.000Z",
+      "content": "Instagram is beginning to roll out a \"content protection\" feature that lets creators see and review copies of their videos posted to the platform. \"For eligible creators who enroll, content protection is a tool that automatically looks out for visual matches of your original videos, alerts you when we find a match across Instagram and Facebook, and lets you decide what happens next,\" Meta says in a blog post. Meta launched a similar tool for Facebook last year to help users \"safeguard\" their Reels and \"maintain control\" over their creative work. When an Instagram creator is notified of a matched video, they can see how many views the match … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112547 at https://www.eff.org",
+      "title": "The Paramount-Warner Brothers Deal Could Usher in Another Age of Lost Media",
+      "url": "https://www.eff.org/deeplinks/2026/11/paramount-warner-brothers-deal-could-usher-another-age-lost-media",
+      "author": "Katharine Trendacosta",
+      "publishedAt": "2026-11-17T20:56:59.000Z",
+      "content": "There are all sorts of reasons to be against the merger of Paramount and Warner Brothers-Discovery. There's the obvious problem of increasing concentration in the already pretty-concentrated film and TV industry. People have problems with Paramount's owner Skydance interfering with its news coverage and late night comedy. But one of the biggest is the way we are losing choice and access to information and culture. In the context of the digital world, there are two major problems with these mega mergers. One, as we've said in the past, is that it further degrades the already awful state of mainstream streaming services. In short, by increasing the amount of legacy content under their control, major studios don't have to invest in either new content or well-engineered services to get users. Plus, they can pool the data they have on users together in an increasing assault on consumer privacy. A monthly subscription and more information about your habits and interests? Win-win for them. Another problem is the disappearing of content. In the digital era, there should be no more lost media. Making and storing copies of media is easier and cheaper than it ever has been. The idea of the persistence of content online has become the adage \"the internet never forgets.\" However, since more and more media is locked behind subscription services under the control of fewer and fewer companies—and as physical copies, or even just digital copies that are actually owned by consumers also vanish—access to our common culture is at risk. Incentives to take information and media offline should raise huge red flags. Unfortunately, they are multiplying. First, there's the impulse of merged companies to offset the cost of their merger by shelving projects and claiming them as tax write-offs. We saw this the last time Warner Brothers was taken over, with projects being ended in order to take advantage of a specific kind of tax benefit. It has little to do with the quality or even how much or how complete a project is—money is the driving factor and we as a culture are all poorer for it. And we all know it. That's why the outrage eventually led to Coyote vs Acme being released by a much smaller studio. But not every project can count on having the perfect storm that brings a movie or show back from the dead. Second, there's the imposition of a new owner's own goals and beliefs upon its new acquisition. Some choices might seem kind of benign, like Discovery axing a lot of family-friendly and kid-oriented content from HBO Max. Of course, when one of the things affected is a pillar of childhood like Sesame Street, the loss of access to old episodes becomes a loss to the culture and not just a change in direction. Another area where we might lose access to information is in the radical shift in direction for news reporting. Reporters have resigned and more are being offered buy-outs to support the change in direction. Whether this will escalate to older projects being removed from streaming services or quietly buried in the recommendation algorithm is yet to be seen, but remains a real possibility. And it's not lost on anyone that one of the outlets reporting on the chaos at CBS News was CNN, which is now owned by the same people who own CBS News. The loss of diverse sources of news, as imperfect as we may have thought they were, hurts all of us. It makes it harder to access information and diverse points of view. Finally, media disappears as licenses expire and as studios decide they no longer want to pay residuals or backend deals to the creative people who made the work in the first place. Again, this looks like business decisions but if the works were exclusively available via streaming, those movies disappear forever. That both contributes to the idea that works are disposable and that paying the workers who made the art is not as important as shareholder value. On top of all of this, draconian copyright regimes and the anti-user product designs they create have made it nearly impossible for people to archive this material on their own—as many used to using VCRs. It’s easy to see a crisis in access to culture and information brewing, at the same time that it should be easier than ever to preserve and make available our shared digital culture.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1035957",
+      "title": "Not even Sam Altman is safe from AI deepfakes on Instagram",
+      "url": "https://www.theverge.com/news/1035957/meta-alexandr-wang-sam-altman-instagram-ai-deepfake",
+      "author": "Mia Sato",
+      "publishedAt": "2026-11-17T21:00:55.000Z",
+      "content": "Open AI CEO Sam Altman does a television interview | Getty Images Instagram is filled with people posting deepfaked content - including, as of late, from one of Meta's most prominent executives. Earlier in November, Alexandr Wang, Meta's chief AI officer, shared a short clip to promote Muse, the company's consumer AI agent. In the AI-generated clip, Wang, Meta CEO Mark Zuckerberg, OpenAI CEO Sam Altman, and Jolly, the anthropomorphic mascot of Muse, are on a four-way video call. When Altman joins the call he's dressed like Jolly, wearing a furry hooded suit and face paint to look like the cutesy character. The clip is captioned \"When the homies meet about openai product strategy,\" a reference to the AI ag … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/openai-s-gpt-6-2-astra-wins-91-of-3d-coding-battles-against-all-rivals",
+      "title": "OpenAI's GPT-6.2 Astra Wins 91% of 3D Coding Battles Against All Rivals",
+      "url": "https://alphasignal.ai/news/openai-s-gpt-6-2-astra-wins-91-of-3d-coding-battles-against-all-rivals",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T21:03:16.000Z",
+      "content": "OpenAI's new flagship model wins 139 of 152 blind human comparisons on Artificial Analysis's AA-3D interactive 3D benchmark, beating Claude Fable 5.2.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p54#a261117p54",
+      "title": "Sources: the US SEC is investigating Nvidia, including whether the company's disclosures misled investors (Wall Street Journal)",
+      "url": "https://www.techmeme.com/261117/p54#a261117p54",
+      "author": null,
+      "publishedAt": "2026-11-17T21:05:01.000Z",
+      "content": "Wall Street Journal: Sources: the US SEC is investigating Nvidia, including whether the company's disclosures misled investors — Regulator's civil probe looks at whether company violated investor disclosure laws — The Securities and Exchange Commission is investigating Nvidia , whose star chief executive …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112549 at https://www.eff.org",
+      "title": "The Justice Department Wants To Give Patent Trolls More Power",
+      "url": "https://www.eff.org/deeplinks/2026/11/justice-department-wants-give-patent-trolls-more-power",
+      "author": "Joe Mullin",
+      "publishedAt": "2026-11-17T21:08:00.000Z",
+      "content": "Software patents are mostly vague, hard to define, and widely abused. Most tech patent lawsuits aren’t filed by companies that make real products. They’re filed by patent trolls, companies that acquire patents to extract payments through litigation and legal threats. A patent on one feature of a smartphone shouldn’t give the patent owner the power to threaten the existence of the entire product line. But that is exactly the leverage patent trolls want—and the current administration is helping them to get it. In two recent patent cases, Radian Memory Systems v. Samsung and Collision Communications v. Samsung, the Justice Department and the U.S. Patent and Trademark Office have asked courts to make it easier for patent owners to get injunctions. These are judicial orders that can force companies to stop selling products or remove features from them, rather than simply pay monetary damages. The threat of an injunction can pressure a company to pay far more than what a patent is actually worth. In 2006, NTP Inc., a patent holding company with no products of its own, was able to pressure BlackBerry manufacturer Research in Motion Ltd. to pay a $612 million settlement when it was on the verge of an injunction. Protection Against Patent Trolls In May 2006, the Supreme Court rejected the practice of granting permanent injunctions almost automatically after a finding of patent infringement. In eBay v. MercExchange, the high court held that patent owners must satisfy the same tough requirements that plaintiffs in non-patent cases must meet to get a permanent injunction. After eBay, patent owners had to show “irreparable harm,” that they can’t be adequately compensated by money, that the “balance of hardships” favors the plaintiff, and, critically, that an injunction would not harm the “public interest.” At EFF, we celebrated eBay v. MercExchange as a major win for internet users. More than twenty years ago, we saw that software patents were going to be a disaster—not just for small companies (which they are), but for freedom of expression online. As EFF explained in its brief: The United States Patent and Trademark Office has issued patents on methods fordownloading video programs, publishing web pages, sending email messages, making internet telephone calls, and even online fundraising methods. Injunctions against uses of these technologies—and many similar technologies—will inevitably affect, and may even chill, free expression on the internet. The eBay rules make sense because the monopolies provided by patents are only justified when they serve a public purpose: promoting scientific and technological progress. Enforcing patents is not supposed to come at the cost of later innovators, free expression, or people’s access to technology. Now, two decades after eBay, the government is urging courts to interpret those protections in ways that could give patent owners greater leverage. It’s unusual for the government to intervene in private patent disputes, but the current administration has done so repeatedly—and not on the side of the public. Patent Licensing Disputes Shouldn't Threaten Entire Product Lines In June 2025, the Justice Department and Patent Office filed a “statement of interest” in Radian Memory Systems v. Samsung, a dispute over patents involving solid-state drives (SSDs), the storage devices commonly used in modern computers. Radian, a patent assertion company tied to Fortress Investment Group, sought a preliminary injunction that would block sales of Samsung’s products even before a judge or jury had decided whether there was patent infringement. In its statement, the government argued that even a patent owner whose business depends entirely on patent licensing could suffer irreparable harm, because calculating how much money it should get might be difficult. “In cases of unique assets, courts have commonly found irreparable harm when damages are difficult to calculate,” the DOJ writes in its brief. But courts regularly resolve disagreements about patent royalty rates, a patent’s contribution, and comparable licenses. The fact that those disagreements exist does not, by itself, establish that monetary damages wouldn’t be enough to compensate the patent owner. If courts adopted the DOJ’s views here, a difficult but ordinary part of patent litigation could become a reason for finding irreparable harm, making it easier for patent owners to seek injunctions that threaten entire product lines. Pure patent-licensing businesses would love that—they would routinely start to ask for injunctions, since eBay’s most important protections would be weakened. The government also says that “the prospect of an injunction can facilitate negotiation among the parties.” That’s exactly the problem. A company negotiating under threat of shutdown might pay massive sums to patent litigation shops in order to avoid disruption to product lines or customers. The payment is more likely to reflect the value of the threat, rather than the value of a patent. Radian ultimately withdrew its request for a preliminary injunction, but the government's arguments about when injunctions should be available remain concerning. A Second Attempt To Weaken eBay Remarkably, the government returned to this argument in February of this year, in a case called Collision Communications v. Samsung, which had already gone to trial. In this case, Collision, a patent-licensing entity that acquired its patents from a defense contractor, was awarded a $445.5 million jury verdict for infringement of four patents, and then sought an injunction. Even though the jury had awarded Collision $445.5 million in damages, the government still intervened in the case, arguing that patent owners like Collision, which do not make products, should not be denied injunctions because they rely on patent licensing. They also argued that the difficulty of calculating monetary damages can support an injunction. Although the court agreed that Collision had suffered irreparable harm and that monetary damages would be inadequate, U.S. District Court Judge Rodney Gilstrap rejected Collision’s argument that ongoing patent infringement automatically establishes irreparable harm. He ultimately denied the injunction because Collision didn’t satisfy two other requirements of the eBay test: showing that the balance of hardships favored an injunction and that an injunction would not harm the public interest. Now Collision has appealed, and the argument is in front of the Federal Circuit, the nation’s top patent court. A brief from the Public Interest Patent Law Institute (PIPLI) explains what is at stake: when a patent owner doesn’t have any products, an injunction can prevent the public from accessing critical technology altogether. Since the patents here involve how mobile phones connect to cellular networks, “the effect on the public goes far beyond what these patents claim as improvements,” PIPLI explains. The outcome could extend well beyond these two companies. The eBay test requires courts to consider who a permanent injunction would hurt, and who would benefit—including the public. A patent owner’s desire for more negotiating leverage should not override the interests of millions of people who rely on their phones. Yet that’s exactly the kind of leverage the government’s arguments could make it easier for patent owners to obtain, at the expense of the public. The Government Should Protect the Public, Not Patent Owners Patent owners can already collect damages and royalties when their patents are infringed. But they should not get a shortcut to shutting down tech products just because calculating damages is hard work. The Justice Department should defend the eBay safeguard. Instead, this administration is helping patent owners find ways around it. Courts should reject those arguments. We shouldn’t even have to say it, but we do: making patent threats more valuable does not align with the public’s interest. This post is the second of a three-part series about how the current administration is using its power to give patent holders more power at the public’s expense. The final post will publish next week. See our previous post: How the USPTO is undermining patent reviews",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50538240",
+      "title": "Java4Shell: RCE in OpenJDK when processing Base64",
+      "url": "https://calif.io/java4shell/",
+      "author": "werrett",
+      "publishedAt": "2026-11-17T21:11:28.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 292,
+      "comments": 78
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-s-claude-code-rewrites-multi-tool-workflows-in-javascript-to-cut",
+      "title": "Anthropic's Claude Code Rewrites Multi-Tool Workflows in JavaScript to Cut Token Use",
+      "url": "https://alphasignal.ai/news/anthropic-s-claude-code-rewrites-multi-tool-workflows-in-javascript-to-cut",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T21:18:55.000Z",
+      "content": "Claude Code 2.1.323 ships an opt-in Code Mode where Claude writes JavaScript to batch tool calls, cutting token overhead on multi-step work.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p55#a261117p55",
+      "title": "Cybersecurity startup Calif says it used GPT-6 Cyber to uncover an RCE flaw in Java dubbed \"Java4Shell\"; Oracle has released a patch (New York Times)",
+      "url": "https://www.techmeme.com/261117/p55#a261117p55",
+      "author": null,
+      "publishedAt": "2026-11-17T21:20:04.000Z",
+      "content": "New York Times: Cybersecurity startup Calif says it used GPT-6 Cyber to uncover an RCE flaw in Java dubbed “Java4Shell”; Oracle has released a patch — The discovery by security company Calif shows A.I.'s ability to find gaping security holes in popular software.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p56#a261117p56",
+      "title": "Nvidia reports Q3 revenue up 103% YoY to $115.8B, above $109.1B est., Data Center revenue up 110% to $107.6B, and forecasts Q4 revenue above estimates (Nvidia Newsroom)",
+      "url": "https://www.techmeme.com/261117/p56#a261117p56",
+      "author": null,
+      "publishedAt": "2026-11-17T21:26:56.000Z",
+      "content": "Nvidia Newsroom: Nvidia reports Q3 revenue up 103% YoY to $115.8B, above $109.1B est., Data Center revenue up 110% to $107.6B, and forecasts Q4 revenue above estimates — - Revenue of $115.8 billion, up 103% from a year ago — Data Center revenue of $107.6 billion, up 110% from a year ago",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1035911",
+      "title": "Nike’s new air sole technology can mix soft and firm cushioning",
+      "url": "https://www.theverge.com/tech/1035911/nike-shoes-tuned-air-sole-printing-variable-cushioning",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-11-17T21:38:08.000Z",
+      "content": "In 2024, Nike announced its Air Max 1000 that were manufactured using a 3D-printing process resulting in a shoe that had a uniform silhouette but varying areas of support and flexibility throughout. The company is now doing something similar with its iconic air-filled soles using its new Tuned Air technology. While previously the level of cushioning in Nike Air shoes was uniform across the entire sole, a new manufacturing process can produce multiple air pockets with varying levels of cushioning and stability. Nike has been putting air pockets into its shoes for nearly 50 years as a way to increase comfort and cushioning while making them l … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1036032",
+      "title": "Nvidia’s Q3 earnings hit the mark, without mentioning the whole Jensen Huang thing",
+      "url": "https://www.theverge.com/tech/1036032/nvidia-q3-2027-jensen-huang",
+      "author": "Jay Peters",
+      "publishedAt": "2026-11-17T21:40:59.000Z",
+      "content": "Interim Nvidia CEO Colette Kress announced the company's Q3 earnings on Tuesday, without initially mentioning former CEO Jensen Huang or the details of his departure, or possible attempt at a return. On the earnings call accompanying the release, board chair Harvey Jones kicked things off by saying the board \"does not intend to reinstate Huang as CEO,\" and that \"we will not be addressing or taking questions on today's call regarding the circumstances of Jensen's resignation and the ongoing investigation,\" before Kress started with her comments on the results. As it predicted in the last financial update, Nvidia is now on the list of com … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p57#a261117p57",
+      "title": "Artificial Analysis shows GPT-6.2 Astra trailing only Claude Fable 5.2 in its main index, flat vs. GPT-6 Astra in coding; Epoch AI has Astra tied with Fable 5.2 (Matthias Bastian/The Decoder)",
+      "url": "https://www.techmeme.com/261117/p57#a261117p57",
+      "author": null,
+      "publishedAt": "2026-11-17T21:45:02.000Z",
+      "content": "Matthias Bastian / The Decoder: Artificial Analysis shows GPT-6.2 Astra trailing only Claude Fable 5.2 in its main index, flat vs. GPT-6 Astra in coding; Epoch AI has Astra tied with Fable 5.2 — Key Points … Ask about this article... GPT-6.2 Astra and Sol are available now for Plus, Pro, Enterprise, and Edu users in ChatGPT Work and Codex.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1035932",
+      "title": "The MacBook Neo is receiving a rare $50 discount ahead of Black Friday",
+      "url": "https://www.theverge.com/gadgets/1035932/apple-macbook-neo-black-friday-2026-deal-sale",
+      "author": "Brad Bourque",
+      "publishedAt": "2026-11-17T21:46:20.000Z",
+      "content": "This thing is poised to eat their lunch. | Photo: Amelia Holowaty Krales / The Verge If you’re looking for a new laptop or a gift for the student in your life, you can save $50 on the MacBook Neo at several retailers, in both storage sizes and all four colors. The 256GB model is currently discounted to $649 (Amazon, Best Buy, Target), while the 512GB model with Touch ID is down to $749 (Amazon, Best Buy, Target). None of the retailers currently list an end date for the discount, which is the biggest price drop we’ve seen since Apple raised the laptop’s MSRP by $100 in July in response to the ongoing RAM crisis. MacBook Neo Where to Buy: $799 $749 at Amazon (512GB) $699 $649 at Best Buy (256GB) $699 $649 at Amazon (256GB) Apple’s budget-friendly MacBook leverages the A18 Pro processor, a chip originally found in the iPhone 16 Pro, to keep costs down. Both the 256GB and 512GB models feature 8GB of memory, and my colleague Antonio G. Di Benedetto was impressed by the vivid 13-inch screen and speakers, the latter of which are better than those in many cheap (and even midrange) Windows laptops. The Neo isn’t super performant, especially in terms of storage speed and total memory, but it’s great for everyday tasks, casual use, and students. Read our Apple MacBook Neo review.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/unsloth-shrinks-ornith-1-5-122b-to-fit-on-a-single-48gb-gpu",
+      "title": "Unsloth Shrinks Ornith-1.5-122B to Fit on a Single 48GB GPU",
+      "url": "https://alphasignal.ai/news/unsloth-shrinks-ornith-1-5-122b-to-fit-on-a-single-48gb-gpu",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T22:00:23.000Z",
+      "content": "Unsloth's dynamic GGUF quants shrink Ornith-1.5-122B down to a 40GB file, letting a frontier-class reasoning and coding MoE fit on a single 80GB GPU.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1035465",
+      "title": "Nvidia says it does not intend to reinstate Jensen Huang as CEO",
+      "url": "https://www.theverge.com/report/1035465/nvidia-says-it-will-not-reinstate-jensen-huang-as-ceo",
+      "author": "Hayden Field",
+      "publishedAt": "2026-11-17T22:05:05.000Z",
+      "content": "Starting Nvidia's quarterly earnings call on Tuesday, new board chair Harvey Jones said that when former CEO Jensen Huang resigned, \"the Nvidia board unanimously accepted his resignation and does not intend to reinstate Jensen as CEO.\" Jones added, \"We will not be addressing or taking questions on today's call regarding the circumstances of Jensen's resignation and the ongoing investigation.\" Huang had publicly floated the idea of returning earlier on Tuesday. In a statement posted to X, he wrote that he \"did not live up to the standards expected of everyone\" at the company, that he regretted his mistakes, and that he would cooperate with … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p58#a261117p58",
+      "title": "Suno launches Visuals, letting users generate 15-second clips that can be spliced into a full music video, using a MiniMax-based model; video credits cost extra (Ashley Carman/Bloomberg)",
+      "url": "https://www.techmeme.com/261117/p58#a261117p58",
+      "author": null,
+      "publishedAt": "2026-11-17T22:05:10.000Z",
+      "content": "Ashley Carman / Bloomberg: Suno launches Visuals, letting users generate 15-second clips that can be spliced into a full music video, using a MiniMax-based model; video credits cost extra — Suno Inc., the artificial intelligence music startup that allows users to generate songs with a simple prompt …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p59#a261117p59",
+      "title": "On Q3 earnings call, Nvidia Chair Harvey Jones says the board does not intend to reinstate Jensen Huang as CEO (Hayden Field/The Verge)",
+      "url": "https://www.techmeme.com/261117/p59#a261117p59",
+      "author": null,
+      "publishedAt": "2026-11-17T22:15:01.000Z",
+      "content": "Hayden Field / The Verge: On Q3 earnings call, Nvidia Chair Harvey Jones says the board does not intend to reinstate Jensen Huang as CEO — The board said it would not take additional questions on the call about Huang's departure. … Starting Nvidia's quarterly earnings call on Tuesday, new board chair Harvey Jones …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/google-ai-studio-lets-developers-ship-apps-under-custom-domains-for-free",
+      "title": "Google AI Studio Lets Developers Ship Apps Under Custom Domains for Free",
+      "url": "https://alphasignal.ai/news/google-ai-studio-lets-developers-ship-apps-under-custom-domains-for-free",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T22:23:01.000Z",
+      "content": "Google AI Studio now lets you attach your own branded domain to apps built in Build mode, moving beyond the default ai.studio subdomains.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1036045",
+      "title": "iFixit’s Apple HomeView teardown reveals a device that will be difficult to repair",
+      "url": "https://www.theverge.com/tech/1036045/ifixit-teardown-apple-homeview-smart-home-hub",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-11-17T22:25:41.000Z",
+      "content": "After finding recent versions of Apple's iPads and HomePods much easier to disassemble for battery replacements or other repairs, iFixit assumed it would be the same story for Apple's new HomeView hub that looks like a seven-inch tablet stuck to a smart speaker. The reality was much different and by the time they got the HomeView apart iFixit's skilled techs had \"ripped a connector, snapped a speaker in two, and put more force on the poor logic board than any of us were comfortable with.\" The tablet section of the HomeView proved to be the bigger challenge to disassemble as a result of some questionable decisions with Apple's design. The … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/security/2026/11/malicious-code-delivered-through-optimizely-hits-visitors-to-hundreds-of-sites/",
+      "title": "Hundreds of websites deliver potent malware cocktail to unsuspecting visitors",
+      "url": "https://arstechnica.com/security/2026/11/malicious-code-delivered-through-optimizely-hits-visitors-to-hundreds-of-sites/",
+      "author": "Dan Goodin",
+      "publishedAt": "2026-11-17T22:32:16.000Z",
+      "content": "Hundreds of websites using the Optimizely website personalization platform served unsuspecting visitors a potent malware cocktail that targeted cryptocurrency wallets, stole payment card data, cookies, and screenshots, and delivered exploit kits for infecting iPhones and iPads, researchers said Tuesday. ReportURI said it identified 178 websites—including CNN, Zoom, the BBC, and Salesforce—that were affected. JavaScript digitally signed by Optimizely and then loaded into customer pages had been modified to include malicious components that attempted to infect visitor devices with multiple payloads. When wares were installed successfully, they swapped user cryptocurrency wallet addresses for the attackers. Other components skimmed payment cards, stole cookies and screenshots, and, on iPhones and iPads, delivered iOS exploit kits known as Coruna and DarkSword. Optimizely infrastructure delivers multipurpose malware Optimizely serves JavaScript “snippets” that include both company code and code that is provided by each customer. The JavaScript, which can be served directly from Optimizely or from a customer endpoint, runs on every page the customer serves. Somehow, the attackers wrote their own code into a portion of each affected customer’s JavaScript and then delivered it from cdn.optimizely.com. A valid certificate for that domain signed the JavaScript. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1036160",
+      "title": "Read everything that Nvidia’s board chair had to say about Jensen Huang",
+      "url": "https://www.theverge.com/tech/1036160/nvidia-earnings-harvey-c-jones-jensen-huang",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-11-17T22:32:50.000Z",
+      "content": "Nvidia's quarterly earnings call on Tuesday was its first with CFO and interim CEO Colette Kress at the helm alongside the company's first board chair, Harvey C. Jones. The leadership change followed Jensen Huang's resignation last week after reports he had multiple affairs - including one with former Megaspeed executive and alleged Chinese asset Alice Huang and one with a direct report, Kimberly Powell. Nvidia is investigating whether Huang's relationship with the former compromised national security or company secrets. Huang will also testify before lawmakers on December 1st. Ahead of Tuesday's earnings, Huang said he would be willing to … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/anthropic-gives-claude-desktop-users-early-access-to-fixes-before-stable-rollout",
+      "title": "Anthropic Gives Claude Desktop Users Early Access to Fixes Before Stable Rollout",
+      "url": "https://alphasignal.ai/news/anthropic-gives-claude-desktop-users-early-access-to-fixes-before-stable-rollout",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-17T22:35:53.000Z",
+      "content": "Anthropic adds an opt-in Latest release channel to Claude Desktop, letting users pull fixes and features ahead of the stable track.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1036110",
+      "title": "Jeff Bezos says he was ‘heavily involved’ in picking the new James Bond",
+      "url": "https://www.theverge.com/entertainment/1036110/jeff-bezos-james-bond-casting-amazon",
+      "author": "Charles Pulliam-Moore",
+      "publishedAt": "2026-11-17T22:38:41.000Z",
+      "content": "Robert Pattinson's casting as James Bond made enough sense given his recent work with director Denis Villeneuve, who's making the franchise's next film over at Amazon. But it turns out that Amazon founder Jeff Bezos played a significant role in making the final decision, too. During Semafor's Silicon Valley and the World conference today, Bezos said that he was \"heavily involved\" in the process of casting the newest 007: We ran a really tight process and we made the final decision on Friday. There was a big group initially, and we down-selected to five finalists. Then we did real old-fashioned screen tests of those five finalists, and it … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol/",
+      "title": "GPT‑6.2 Astra and GPT‑6.2 Sol",
+      "url": "https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol/",
+      "author": null,
+      "publishedAt": "2026-11-17T22:38:52.000Z",
+      "content": "GPT‑6.2 Astra and GPT‑6.2 Sol OpenAI: We’re introducing GPT‑6.2 Astra, our new frontier model for your hardest projects, and GPT‑6.2 Sol, our efficient, versatile model for everyday work. They're available in the API as gpt-6.2-astra and gpt-6.2-sol. I shipped LLM 0.38 with support for the new models. 6.2 Astra is 80% of the price of 6 Astra - $8/MTok input and $40/MTok output, the same price as Claude Fable 5.2 (which was also 80% of its predecessor). 6 Astra and Fable 5 were both $10/$50. The cached price is an even bigger discount - $0.40/million compared to $1/million for the older model. This is great news for longer running agentic sessions. GPT-6.2 Sol is the same $2/$10 price as 6.1 Sol and 6 Sol - which are half the price of GPT-5.6 Sol ($4/$20). Here are the pelicans for GPT-6.2 Sol and for GPT-6.2 Astra. The 6.2 Astra max pelican looks like this: I have a full comparison grid here, but here's how the high/xhigh/max pelicans compare with the previous Sol and Astra releases: I also ran my most recent benchmark prompt against the two models, using \"Ultra' effort levels in the Codex CLI: Make a three js animation where yonkers stands up as a big mech (cool stand up motion) and stomps around manhattan and queens and Brooklyn, use openstreetmap mapping data Here's Sol and here's Astra. Neither of them did a good enough job of morphing Yonkers into a big mech, at least in comparison to Claude Fable 5.2 and Gemini 4 Carbon. This video showing the Astra and Sol animations playing out at the same time: I created that video using GPT-6.2 Astra (Ultra) in the Codex desktop app by prompting: https://static.simonwillison.net/static/2026/yonkers-gpt-6.2-astra-ultra/index.html and https://static.simonwillison.net/static/2026/yonkers-gpt-6.2-sol-ultra/index.html are two videos of the same thing by two different models I need a video of the first 10 seconds where the top half of the video plays the first and the bottom half plays the second I need an overlaid label of \"GPT-6.2 Astra\" on the top half and \"GPT-6.2 Sol\" on the bottom half. These labels should be tastefully positioned. Make the video square and 2000x2000 pixels Then later: OK make it 20s Here's the exported transcript. The buzz around these new models is mixed at the moment. Astra 6.2 isn't scoring quite as high as Fable 5.2 on various benchmarks, and I've seen a few complaints that its communication style can be confusing. Theo Browne's review (in the form of a feedback letter he sent OpenAI during pre-release) has this useful example: When this model is working on long tasks, it can pull in a lot of subagents and manage them pretty well. It will then proceed to randomly ask you some weird internal implementation detail bullshit that you could not under any earthly circumstance understand, much less have input on. I sent \"/goal make a new level for Outer Wilds\". 2 hours in, it's \"blocked\" because it wanted to ask me \"does r24's reviewer write it's clips to 24_g521.mp4 or 24_p11.mp4?\" Tags: ai, openai, generative-ai, llms, llm-pricing, pelican-riding-a-bicycle, llm-release, theo-browne, gpt, yonkers-rising",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/11/yet-another-satellite-company-is-jockeying-for-a-rocket-but-this-one-makes-sense/",
+      "title": "Yet another satellite company is jockeying for a rocket—but this one makes sense",
+      "url": "https://arstechnica.com/space/2026/11/yet-another-satellite-company-is-jockeying-for-a-rocket-but-this-one-makes-sense/",
+      "author": "Stephen Clark",
+      "publishedAt": "2026-11-17T22:44:46.000Z",
+      "content": "Finnish satellite developer ICEYE announced Tuesday that it is seeking to buy Italian rocket-maker Avio for more than $2.2 billion in a transaction aimed at creating Europe's first true vertically integrated end-to-end space company. The announcement came as an all-cash voluntary tender offer from an Italian subsidiary of ICEYE to Avio's shareholders, led by the Italian defense conglomerate Leonardo. Avio said its board of directors \"has taken note of the notice\" from ICEYE and is considering the purchase offer. Avio builds the Vega C rocket, a solid-fueled launcher designed to carry up to 3.3 metric tons (7,300 pounds) of payload to low-Earth orbit. The Vega C has flown successfully seven times in eight attempts since 2022. It is a follow-on to an earlier version of the Vega rocket that amassed a 20-for-22 record since debuting in 2012. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261117/p60#a261117p60",
+      "title": "Sources detail how the Microsoft 365 outage began in Switzerland and spread as failover systems shifted traffic, leaving 80%+ of Exchange servers unresponsive (Tom Warren/The Verge)",
+      "url": "https://www.techmeme.com/261117/p60#a261117p60",
+      "author": null,
+      "publishedAt": "2026-11-17T22:50:01.000Z",
+      "content": "Tom Warren / The Verge: Sources detail how the Microsoft 365 outage began in Switzerland and spread as failover systems shifted traffic, leaving 80%+ of Exchange servers unresponsive — A bug took down Microsoft's email services for millions around the world. … At 9AM last Thursday, everything seemed normal.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/",
+      "title": "External sandboxes for coding agents",
+      "url": "https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/",
+      "author": null,
+      "publishedAt": "2026-11-17T22:52:29.000Z",
+      "content": "External sandboxes for coding agents I've been exploring new ways to sandbox code that is executed by agents, with a focus on making it safer to try out local models without worrying that a mistake or prompt injection attack might cause them to take damaging actions on a machine. I worked on this project with Prime Radiant, the AI research lab behind Superpowers and other projects. My post on the Prime Radiant blog introduces the external sandbox pattern, where code executed by the agent runs inside a dedicated sandbox while the agent itself lives outside of that sandbox. To demonstrate this pattern we've released three sandbox server implementations: external-sandbox-v86 runs a Node.js server which then uses v86 to run Alpine Linux inside WebAssembly. external-sandbox-container is a Python web server which runs the sandbox in Alpine Linux inside an Apple Containers instance. external-sandbox-quicksand is another Python web server, this time using Microsoft's Quicksand sandboxing library, which bundles QEMU and Alpine Linux in a Python package! Each of these implementations offers the same localhost API. You can then configure Pi, Claude Code, or Codex to send API calls to that sandbox any time they want to execute code. The sandboxes also include an optional HTTP/HTTPS allow-list proxy, so you can control exactly which hosts your agent's code is allowed to communicate with - plus a credential replacement mechanism to make authenticated API calls without sharing a secret with the agent. Here's the UI you can use to reconfigure that proxy while the sandbox is still running: I continue to be fascinated by the challenge of safely running untrusted code. This external sandbox pattern provides a neat way to experiment with different approaches. Tags: sandboxing, security, ai, webassembly, generative-ai, llms, coding-agents, claude-code, codex, pi",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.18330",
+      "title": "Marimba: A System One Model for Speech",
+      "url": "https://huggingface.co/papers/2611.18330",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:05.548Z",
+      "content": "Marimba: A System One Model for Speech",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.08977",
+      "title": "Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model",
+      "url": "https://huggingface.co/papers/2611.08977",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:05.548Z",
+      "content": "Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.17610",
+      "title": "More Agents, More Samples, or More Thinking? Untangling Coordination, Ensembling, and Test-Time Compute in Multi-Agent LLMs",
+      "url": "https://huggingface.co/papers/2611.17610",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:05.548Z",
+      "content": "More Agents, More Samples, or More Thinking? Untangling Coordination, Ensembling, and Test-Time Compute in Multi-Agent LLMs",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.20595",
+      "title": "Invariant-Aware Harness Enforcement to Protect LLM Agents from Silent API Failures",
+      "url": "https://huggingface.co/papers/2611.20595",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:05.548Z",
+      "content": "Invariant-Aware Harness Enforcement to Protect LLM Agents from Silent API Failures",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.16694",
+      "title": "When Expert Disagreement Hurts: Prestige and Selectivity in LLM Decision Revision",
+      "url": "https://huggingface.co/papers/2611.16694",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:05.548Z",
+      "content": "When Expert Disagreement Hurts: Prestige and Selectivity in LLM Decision Revision",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.21412",
+      "title": "Flexible Multi-Stack Super-Resolution of Clinical Brain MRI Using Hetero-Orientation Variational Encoding: Expert Reader Evaluation in a Nigerian Cohort",
+      "url": "https://huggingface.co/papers/2611.21412",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:05.548Z",
+      "content": "Flexible Multi-Stack Super-Resolution of Clinical Brain MRI Using Hetero-Orientation Variational Encoding: Expert Reader Evaluation in a Nigerian Cohort",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "title": "GPT‑6.2 Astra and Sol",
+      "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.440Z",
+      "content": "GPT‑6.2 Astra and Sol openai.com11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash",
+      "title": "MAI Code 2 and Code 2 Flash: Everyday coding at scalable prices",
+      "url": "https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.440Z",
+      "content": "MAI Code 2 and Code 2 Flash: Everyday coding at scalable prices microsoft.ai2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/17/nvidia-says-it-doesnt-plan-to-reappoint-jensen-huang-as-ceo",
+      "title": "Nvidia says it doesn’t plan to reappoint Jensen Huang as CEO",
+      "url": "https://techcrunch.com/2026/11/17/nvidia-says-it-doesnt-plan-to-reappoint-jensen-huang-as-ceo",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.441Z",
+      "content": "Nvidia says it doesn’t plan to reappoint Jensen Huang as CEO techcrunch.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027",
+      "title": "NVIDIA Announces Financial Results for Third Quarter Fiscal 2027",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.441Z",
+      "content": "NVIDIA Announces Financial Results for Third Quarter Fiscal 2027 nvidianews.nvidia.com14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://opensourcemalware.com/blog/agent-framework-pypi-compromised",
+      "title": "Official Microsoft agent-framework PyPI package compromised",
+      "url": "https://opensourcemalware.com/blog/agent-framework-pypi-compromised",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.442Z",
+      "content": "Official Microsoft agent-framework PyPI package compromised opensourcemalware.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://epoch.ai/publications/how-good-are-fable-5-2-and-gpt-6-2-astra-at-real-work",
+      "title": "How good are Fable 5.2 and GPT-6.2 Astra at real work?",
+      "url": "https://epoch.ai/publications/how-good-are-fable-5-2-and-gpt-6-2-astra-at-real-work",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.443Z",
+      "content": "How good are Fable 5.2 and GPT-6.2 Astra at real work? epoch.ai17 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/17/waymo-suspends-freeway-rides-nationwide-after-california-dmv-order",
+      "title": "Waymo suspends freeway rides nationwide after California DMV order",
+      "url": "https://techcrunch.com/2026/11/17/waymo-suspends-freeway-rides-nationwide-after-california-dmv-order",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.443Z",
+      "content": "Waymo suspends freeway rides nationwide after California DMV order techcrunch.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.isomorphiclabs.com/articles/isomorphic-labs-announces-series-c-investment-round",
+      "title": "Isomorphic Labs announces Series C investment round - Isomorphic Labs",
+      "url": "https://www.isomorphiclabs.com/articles/isomorphic-labs-announces-series-c-investment-round",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.443Z",
+      "content": "Isomorphic Labs announces Series C investment round - Isomorphic Labs isomorphiclabs.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/17/ai-models-can-be-tricked-into-identifying-civilians-as-military-targets-by-telling-them-its-a-game",
+      "title": "AI models can be tricked into identifying civilians as military targets by telling them it’s a game",
+      "url": "https://techcrunch.com/2026/11/17/ai-models-can-be-tricked-into-identifying-civilians-as-military-targets-by-telling-them-its-a-game",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.444Z",
+      "content": "AI models can be tricked into identifying civilians as military targets by telling them it’s a game techcrunch.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cerebras.ai/blog/cerebras-launches-disaggregated-inference",
+      "title": "Cerebras Launches Disaggregated Inference",
+      "url": "https://www.cerebras.ai/blog/cerebras-launches-disaggregated-inference",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.445Z",
+      "content": "Cerebras Launches Disaggregated Inference cerebras.ai3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://securitylabs.datadoghq.com/articles/java4shell-remote-code-execution-in-openjdk-cve-2026-114938",
+      "title": "Java4Shell: Remote Code Execution in OpenJDK (CVE-2026-114938)",
+      "url": "https://securitylabs.datadoghq.com/articles/java4shell-remote-code-execution-in-openjdk-cve-2026-114938",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.445Z",
+      "content": "Java4Shell: Remote Code Execution in OpenJDK (CVE-2026-114938) securitylabs.datadoghq.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices",
+      "title": "Building the Agent Host Protocol for sessions that continue across devices",
+      "url": "https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.445Z",
+      "content": "Building the Agent Host Protocol for sessions that continue across devices github.blog8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://cacm.acm.org/blogcacm/what-happened-in-fall-2026-ai-and-p-vs-np",
+      "title": "OpenAI claims Navier–Stokes Millennium solution",
+      "url": "https://cacm.acm.org/blogcacm/what-happened-in-fall-2026-ai-and-p-vs-np",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.447Z",
+      "content": "OpenAI claims Navier–Stokes Millennium solution cacm.acm.org6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blogs.windows.com/windowsexperience/2026/11/17/microsoft-ignite-2026-building-windows-for-the-next-era-of-work",
+      "title": "Microsoft Ignite 2026: Building Windows for the next era of work",
+      "url": "https://blogs.windows.com/windowsexperience/2026/11/17/microsoft-ignite-2026-building-windows-for-the-next-era-of-work",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.448Z",
+      "content": "Microsoft Ignite 2026: Building Windows for the next era of work blogs.windows.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theinformation.com/articles/anthropics-vc-investors-hit-10x-returns-ipo",
+      "title": "Anthropic’s VC Investors Hit 10X Returns in IPO",
+      "url": "https://www.theinformation.com/articles/anthropics-vc-investors-hit-10x-returns-ipo",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.448Z",
+      "content": "Anthropic’s VC Investors Hit 10X Returns in IPO theinformation.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://discuss.huggingface.co/t/i-built-a-zero-python-local-llm-inference-server-in-java-25-panama-ffm-cuda-flashinfer-marlin-onnx-genai-running-qwen3-8-27b-fp8-on-one-40gb-gpu-down-to-0-3b-3-8b-models-on-cpu-npu/191994",
+      "title": "Building a Zero-Python Local LLM Inference Server in Java 25",
+      "url": "https://discuss.huggingface.co/t/i-built-a-zero-python-local-llm-inference-server-in-java-25-panama-ffm-cuda-flashinfer-marlin-onnx-genai-running-qwen3-8-27b-fp8-on-one-40gb-gpu-down-to-0-3b-3-8b-models-on-cpu-npu/191994",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.448Z",
+      "content": "Building a Zero-Python Local LLM Inference Server in Java 25 discuss.huggingface.co5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://electrek.co/2026/11/17/tesla-powercore-solid-state-transformer-heron-link",
+      "title": "Tesla unveils 7.4 MW Powercore to take on ex-exec Baglino’s Heron Link",
+      "url": "https://electrek.co/2026/11/17/tesla-powercore-solid-state-transformer-heron-link",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.457Z",
+      "content": "Tesla unveils 7.4 MW Powercore to take on ex-exec Baglino’s Heron Link electrek.co5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.geekwire.com/2026/do-not-search-amazon-metas-muse-now-shops-elsewhere-by-default",
+      "title": "‘Do not search Amazon’: Meta’s Muse now shops elsewhere by default",
+      "url": "https://www.geekwire.com/2026/do-not-search-amazon-metas-muse-now-shops-elsewhere-by-default",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.458Z",
+      "content": "‘Do not search Amazon’: Meta’s Muse now shops elsewhere by default geekwire.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://developer.nvidia.com/blog/co-designing-sparse-attention-for-efficient-long-context-inference",
+      "title": "Co-Designing Sparse Attention for Efficient Long-Context Inference",
+      "url": "https://developer.nvidia.com/blog/co-designing-sparse-attention-for-efficient-long-context-inference",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.458Z",
+      "content": "Co-Designing Sparse Attention for Efficient Long-Context Inference developer.nvidia.com12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://microsoft.ai/models/mai-realtime-1",
+      "title": "Microsoft launches MAI Realtime 1 speech-to-speech model",
+      "url": "https://microsoft.ai/models/mai-realtime-1",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.459Z",
+      "content": "Microsoft launches MAI Realtime 1 speech-to-speech model microsoft.ai1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/17/model-ml-raises-250m-to-automate-investment-banking-grunt-work",
+      "title": "Model ML raises $250M to automate investment banking grunt work",
+      "url": "https://techcrunch.com/2026/11/17/model-ml-raises-250m-to-automate-investment-banking-grunt-work",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.459Z",
+      "content": "Model ML raises $250M to automate investment banking grunt work techcrunch.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.tomshardware.com/pc-components/cpus/nvidia-claims-its-vera-cpu-can-gain-up-to-39-percent-performance-boost-via-software-optimization-at-sc26-architectural-fine-tuning-is-needed-to-fully-unleash-custom-olympus-cores",
+      "title": "Nvidia claims its Vera CPU can gain up to 39% performance boost via software optimization at SC26 — architectural fine-tuning is needed to fully unleash custom Olympus cores",
+      "url": "https://www.tomshardware.com/pc-components/cpus/nvidia-claims-its-vera-cpu-can-gain-up-to-39-percent-performance-boost-via-software-optimization-at-sc26-architectural-fine-tuning-is-needed-to-fully-unleash-custom-olympus-cores",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.460Z",
+      "content": "Nvidia claims its Vera CPU can gain up to 39% performance boost via software optimization at SC26 — architectural fine-tuning is needed to fully unleash custom Olympus cores tomshardware.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/jalenluorion/status/2122758656668184633",
+      "title": "Qwen3.8-Flash-Next runs 180B offline on 16GB MacBook Pro",
+      "url": "https://x.com/jalenluorion/status/2122758656668184633",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.461Z",
+      "content": "Qwen3.8-Flash-Next runs 180B offline on 16GB MacBook Pro x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/jacsebl/status/2122725653833244769",
+      "title": "Coding agents force shift from human abstractions",
+      "url": "https://x.com/jacsebl/status/2122725653833244769",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.461Z",
+      "content": "Coding agents force shift from human abstractions x.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://protos.com/youtube-beat-wall-street-to-the-nvidia-scandal",
+      "title": "YouTube beat Wall Street to the Nvidia scandal",
+      "url": "https://protos.com/youtube-beat-wall-street-to-the-nvidia-scandal",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.461Z",
+      "content": "YouTube beat Wall Street to the Nvidia scandal protos.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wsj.com/finance/corporate-card-startup-ramp-raising-funds-at-70-billion-valuation-631b071a",
+      "title": "Corporate-Card Startup Ramp Raising Funds at $70 Billion Valuation",
+      "url": "https://www.wsj.com/finance/corporate-card-startup-ramp-raising-funds-at-70-billion-valuation-631b071a",
+      "author": null,
+      "publishedAt": "2026-11-17T23:11:06.462Z",
+      "content": "Corporate-Card Startup Ramp Raising Funds at $70 Billion Valuation wsj.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    }
+  ]
+}
