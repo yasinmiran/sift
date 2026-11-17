@@ -45,6 +45,22 @@ export const TIME_LEFT = `
 // anchoring is absent the rAF does the same subtraction by hand, before the
 // frame paints and only if the browser has not already done it; `scrollY`
 // cannot be 0 once the note is above the viewport, so the guard is belt.
+//
+// That subtraction has to be a jump, and `html{scroll-behavior:smooth}` in
+// page.ts makes every programmatic scroll on the page an animation, this one
+// included: the offset then arrives over ~190ms instead of in this frame, so
+// the collapse lands as the shift the gate exists to cancel (0.1893 / 0.1805
+// / 0.1422 / 0.0763 at 360 / 390 / 430 / 860 wide, `.prose` the only source,
+// against 0.0000 with the scroll taken out of the animation). It is the
+// browsers this branch is for that pay it, since the ones with anchoring
+// never reach the call: stable safari has no scroll anchoring and has had
+// css scroll-behavior since 15.4, and on ios a push subscriber, the only
+// reader this note ever retires for, is an installed home-screen app.
+// The inline declaration beats the author sheet whatever its specificity and
+// goes back the way it was found, in the same frame; `auto` rather than
+// `instant` on the call, which is one enum member and would throw where it
+// is not implemented. A reduced-motion reader was never affected: the media
+// query already turns the page's own scroll-behavior back to `auto`.
 // Its own snippet so the test drives this logic rather than a copy of it.
 export const RETIRE_NOTE = `
   const retireWhenPast = (slot, w) => {
@@ -53,7 +69,14 @@ export const RETIRE_NOTE = `
       const y = w.scrollY;
       const h = slot.offsetHeight + (parseFloat(w.getComputedStyle(slot).marginTop) || 0);
       slot.hidden = true;
-      w.requestAnimationFrame(() => { if (w.scrollY === y && y > 0) w.scrollTo(0, Math.max(0, y - h)); });
+      w.requestAnimationFrame(() => {
+        if (w.scrollY !== y || y <= 0) return;
+        const root = w.document.documentElement;
+        const was = root.style.scrollBehavior;
+        root.style.scrollBehavior = "auto";
+        w.scrollTo(0, Math.max(0, y - h));
+        root.style.scrollBehavior = was;
+      });
     };
     if (past()) return retire();
     const onScroll = () => { if (past()) { w.removeEventListener("scroll", onScroll); retire(); } };

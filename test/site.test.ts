@@ -208,24 +208,33 @@ describe("buildSite", () => {
       `${RETIRE_NOTE}\nreturn retireWhenPast;`,
     )() as (slot: unknown, w: unknown) => void;
 
-    const fakes = (bottom: number, scrollY = 0) => {
+    // `scrolledWith` is the page's scroll-behavior as the scroll was taken,
+    // which is the whole of what the fix asserts: the subtraction has to be a
+    // jump, and page.ts's html{scroll-behavior:smooth} would otherwise animate
+    // it over ~190ms and hand the reader the shift this gate removes.
+    const fakes = (bottom: number, scrollY = 0, scrollBehavior = "") => {
       const slot = { hidden: false, offsetHeight: 147, bottom, getBoundingClientRect: () => ({ bottom: slot.bottom }) };
+      const root = { style: { scrollBehavior } };
       const w = {
         scrollY,
+        root,
+        document: { documentElement: root },
         frames: [] as (() => void)[],
         handlers: [] as (() => void)[],
         scrolledTo: null as number | null,
+        scrolledWith: null as string | null,
         getComputedStyle: () => ({ marginTop: "22.4px" }),
         requestAnimationFrame: (fn: () => void) => w.frames.push(fn),
         scrollTo: (_x: number, y: number) => {
           w.scrolledTo = y;
+          w.scrolledWith = root.style.scrollBehavior;
         },
         addEventListener: (_type: string, fn: () => void) => w.handlers.push(fn),
         removeEventListener: (_type: string, fn: () => void) => {
           w.handlers = w.handlers.filter((h) => h !== fn);
         },
       };
-      return { slot, w };
+      return { slot, w, root };
     };
 
     // Already past the top edge: collapsed, and the vacated box (its height
@@ -238,13 +247,27 @@ describe("buildSite", () => {
     expect(past.w.frames).toHaveLength(1);
     past.w.frames[0]!();
     expect(past.w.scrolledTo).toBe(400 - (147 + 22.4));
+    expect(past.w.scrolledWith).toBe("auto");
+    // And the page gets its own scrolling back, as it was found: the
+    // suspension covers one scroll, not the rest of the reader's visit.
+    expect(past.root.style.scrollBehavior).toBe("");
 
-    // Scroll anchoring got there first: no second subtraction.
+    // An inline value already on the root is restored rather than cleared.
+    const inline = fakes(-1, 400, "smooth");
+    retireWhenPast(inline.slot, inline.w);
+    inline.w.frames[0]!();
+    expect(inline.w.scrolledWith).toBe("auto");
+    expect(inline.root.style.scrollBehavior).toBe("smooth");
+
+    // Scroll anchoring got there first: no second subtraction, and nothing
+    // touched on the root either.
     const anchored = fakes(-1, 400);
     retireWhenPast(anchored.slot, anchored.w);
     anchored.w.scrollY = 231;
     anchored.w.frames[0]!();
     expect(anchored.w.scrolledTo).toBeNull();
+    expect(anchored.w.scrolledWith).toBeNull();
+    expect(anchored.root.style.scrollBehavior).toBe("");
 
     // On screen, and its exact bottom edge counts as on screen: nothing is
     // collapsed and a scroll listener waits. A scroll that leaves any of the
@@ -268,6 +291,8 @@ describe("buildSite", () => {
     expect(onScreen.w.handlers).toHaveLength(0);
     onScreen.w.frames[0]!();
     expect(onScreen.w.scrolledTo).toBe(409 - (147 + 22.4));
+    expect(onScreen.w.scrolledWith).toBe("auto");
+    expect(onScreen.root.style.scrollBehavior).toBe("");
   });
 
   // Both ways out of the note go through the gate above. A reduced-motion
