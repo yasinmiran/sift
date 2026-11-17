@@ -6,6 +6,41 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A guarantee a call site writes down is only as good as the stylesheet it runs
+  under, because css configures the platform calls js makes. `retireWhenPast`
+  has said "before the frame paints" in a comment since #335, and it was true
+  of the code and false of the page: `html{scroll-behavior:smooth}`, declared
+  in another file eighty lines above the body rule, turns `scrollTo` into an
+  animation, so the subtraction that cancels a 169px collapse arrived over
+  ~190ms and the collapse scored **0.1805 at 390px** exactly as it did before
+  the gate existed. The family is 10-25's "an explanation is not a decision"
+  and 11-05's "the trade's unpriced side", with the gap moved from prose to
+  mechanism: **a comment that states a timing is a claim about an api's
+  configuration, so go and grep what the repo declares about that api before
+  believing it.** `scroll-behavior`, `overflow-anchor`, `scroll-snap-type`,
+  `touch-action`, `content-visibility` and `will-change` all do this, and the
+  tell here was free: the two files are read by different habits, so nobody
+  reading `today.ts` had the stylesheet on screen. Worth keeping beside it is
+  which reader pays. The branch only exists for browsers with no scroll
+  anchoring, and chromium has it, so **both arms of the first measurement read
+  0.0000 and the defect was invisible until the instrument was driven into
+  the condition the code names** (`overflow-anchor:none`, one line of css, the
+  property that exists for exactly that). 11-06 banked "re-run the fix's own
+  instrument with the reader's preferences flipped"; this is the same move
+  pointed at a platform feature rather than a preference, and the direction
+  inverted the usual one: the reduced-motion reader was the only one already
+  correct, because that media query turns the animation back off.
+  Its other half is about a probe that was wrong for a reason. Today's first
+  sweep walked the tab order of 34 pages and reported **3478 anomalies**, all
+  of them "focused offscreen", which reads as a broken site and was the probe
+  reading 80ms after a keypress whose scroll was still gliding. The honest
+  move with a false positive is not to discard the rows but to name what
+  produced them, and what produced them was the finding: smooth scrolling in
+  flight. **An instrument's error has a mechanism, and the mechanism is
+  sometimes the thing you were looking for**, so ask what made the probe wrong
+  before deleting the check. Re-run with the rows' cause removed, the same
+  sweep reads **4058 stops, 0 anomalies**.
+
 - The journal is an instrument too, and the cheapest control in this repo is
   the one already written down. Today's first candidate was a per-source
   failure streak in `state.json`, justified by a number I had just
@@ -1052,6 +1087,63 @@ merges and closures and never expire.
 
 ## Backlog
 
+- MERGED 2026-11-17 as #375 / PR #376, `02210b1`, `checks` green on `f1cb80b`
+  and `pages` 44055930738 green on build and deploy, read the honest way:
+  `deploy-pages` passed and the step gated on its failure **skipped**. The
+  half-day note's compensating scroll was an animation. `retireWhenPast`
+  collapses the note off screen and takes the vacated box off the scroll
+  offset in the next frame, for the browsers that have no scroll anchoring of
+  their own; `html{scroll-behavior:smooth}` in `page.ts` makes every
+  programmatic scroll on the page animated, `scrollTo` included, so the
+  subtraction arrived over ~190ms and the collapse landed as the shift the
+  gate exists to cancel: **0.1893 / 0.1805 / 0.1422 / 0.0763 at 360 / 390 /
+  430 / 860 wide** with anchoring disabled, `DIV.prose` the only source in
+  every entry, against **0.0000** after, two runs per cell both ways. With
+  chromium's anchoring left on both arms read 0.0000, so no chrome reader was
+  ever affected; the ones who were are the ones the branch is for, and on ios
+  a push subscriber (the only reader this note retires for) is an installed
+  home-screen app, which is webkit. The declaration on the root is suspended
+  for that one scroll and put back as it was found, `auto` rather than
+  `behavior:"instant"`, which is one enum member whose acceptance in safari I
+  could not confirm and which throws where it is missing. 296 tests
+  (unchanged: the assertions join the test that already owns the mechanism),
+  six mutations each failing one test with the file total steady at 57, built
+  tree 32 of 42 files differing and all 32 only in that block, `index.html` /
+  `feed.xml` / `sitemap.xml` / `404.html` / `latest.json` byte-identical,
+  +212 bytes raw and +53 gzipped per day page. No new dependency, no contract
+  edit.
+- Measured 2026-11-17 and NOT shipped, because it is a taste call on a pinned
+  design; recorded in #375 so it sits with the fix it collided with.
+  **`html{scroll-behavior:smooth}` has nothing on this site to serve.** Every
+  `#` href across the 32 day pages is cross-origin, so no anchor navigation
+  exists for it to animate, and its two live effects are the one the PR above
+  fixes and sequential focus scrolling: tabbing a day page, **10 of 70 stops
+  are still off screen 80ms after the Tab, against 0 of 70 for the
+  reduced-motion reader** whose media query turns it off. Deleting the
+  declaration would fix both in one line and change how the page feels under
+  the arrow keys for every reader, which is Yasin's call, not a gardener's.
+- Walked clean on 2026-11-17, recorded so a future run does not re-walk them.
+  **The site's keyboard tab order, the first instrument here ever pointed at
+  it** (no run had used the word `tabindex`). All 34 built pages at 390 and
+  1280, tabbing to the end of the document: **4058 stops, 0 anomalies**. Every
+  stop follows DOM order, every stop paints the `:focus-visible` ring
+  (`solid 2px --accent`), none is zero-size, invisible or outside the
+  document, and the closed `<dialog>`'s "got it" button is correctly absent
+  from the walk on the index while sitting in the markup (37 stops there, 61
+  to 65 on a day page). Do not re-walk without a chrome change.
+  **Health, the full sweep**: 296 tests in 26 files, typecheck clean,
+  `npm run site` 33 pages, `npm audit --omit=dev` **0**, and `gh run list`
+  shows **30 of the last 30 runs green** across ingest, checks and pages. The
+  verifier over 2026-11-11..17 is 0 errors on all 7 days and the only warnings
+  are deliberate: 11 carry-overs on 11-12, one already-digested spacex link on
+  11-15 (a follow-up), one primary-source anthropic link on 11-16.
+  **The walls, re-probed at the top of the run**: `sift.yasint.dev`,
+  `yasin.goatcounter.com`, `hn.algolia.com` and `youtube.com` are all **000 at
+  CONNECT**, `fonts.googleapis.com` is 200, and `npm i --no-save` of a probe
+  package outside the repo was refused today, so bcd was read through a search
+  rather than installed. The clone arrives shallow at 50 and detached, as
+  11-10 recorded: `git fetch --unshallow` takes it to 1100 commits, and the
+  296-test count matching yesterday's entry is what says the tree is the tip.
 - MERGED 2026-11-16 as #371 / PR #372, `77c14cc`, `checks` green on `982b9e2`
   and `pages` 43839115856 green on build and deploy, read the honest way:
   `deploy-pages` passed and the step gated on its failure **skipped**. The
@@ -3150,6 +3242,90 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-17
+
+**#375 filed, PR #376 built, `checks` green on `f1cb80b`, merged by this run as
+`02210b1`, and `pages` 44055930738 green on build and deploy, read the honest
+way: `deploy-pages` passed and the step gated on its failure skipped.** The
+half-day note's scroll compensation is a jump again.
+
+**The signal arrived as a probe's own false positive.** Health was clean on
+every instrument (296 tests, typecheck, 33 pages, audit 0, 30 of 30 workflow
+runs green, the week's verifier warnings all deliberate), so the day went
+looking for a surface no run had read, and the one the journal had never used a
+word for was keyboard tab order. The first sweep reported **3478 anomalies over
+34 pages**, every one of them "focused offscreen", which is not what a static
+reading site does. It was the probe: it read the focused element's rect 80ms
+after the keypress, and `html{scroll-behavior:smooth}` means the scroll that
+brings a focused link into view is an animation still in flight. The rows were
+wrong and their cause was the finding.
+
+**What the cause does, two files away.** `today.ts`'s `retireWhenPast` collapses
+the half-day note only once it is off screen, then subtracts the vacated box
+from the scroll offset by hand in the next frame, with a comment naming the
+reason: "where scroll anchoring is absent the rAF does the same subtraction by
+hand, before the frame paints". `scrollTo` is one of the calls
+`scroll-behavior` configures, so on the page that claim is false: the offset
+arrives over ~190ms, the content jumps 169px first, and the collapse lands as
+exactly the shift #335 shipped to remove.
+
+**Measured in the condition the branch names**, chromium with
+`overflow-anchor:none` (the property that exists for turning scroll anchoring
+off), the webfont css blocked so the known swap floor is out of the reading,
+two runs per cell and identical both times:
+
+| viewport | as shipped | after |
+|---|---|---|
+| 360x800 | **0.1893** | 0.0000 |
+| 390x844 | **0.1805** | 0.0000 |
+| 430x932 | **0.1422** | 0.0000 |
+| 860x1000 | **0.0763** | 0.0000 |
+
+`DIV.prose` is the only source in every one of those entries. With chromium's
+own anchoring left on, **both arms read 0.0000 at all four widths**: the hand
+branch never fires there, which is why a month of CLS sweeps on this page never
+saw it and why the first measurement had to be driven into the condition rather
+than taken as the page comes. The readers who pay are the ones the branch
+exists for, stable safari having no scroll anchoring and css `scroll-behavior`
+since 15.4, and `notify.ts` already records that an ios push subscriber can only
+be an installed home-screen app: the note only ever retires for a subscriber, so
+the ios half of them read the page a notification opens with the shift in it.
+The reduced-motion reader was the one already correct, because that media query
+turns the page's `scroll-behavior` back to `auto`, which inverts 11-11's finding
+on this same note.
+
+**The fix is the root declaration suspended for one scroll and put back as it
+was found**, inside the rAF that was already there. Not `behavior:"instant"` on
+the call: that is a single enum member, two searches could not confirm safari
+accepts it, and an unknown member throws, which would have cost the
+compensation outright in the browser the fix is for. A browser too old for
+`scroll-behavior` at all never had the bug and sees a no-op. 296 tests
+(unchanged, the three new assertions join the test that already owns this
+mechanism), 25 lines in `today.ts` with 18 of them comment, 33 of test.
+
+**Six mutations, each reverted, each failing one test with the file total steady
+at 57**: the suspension deleted, the restore deleted, the suspension set to
+`smooth`, the restore moved above the scroll, the restore hardcoded to `""`
+rather than the value found, and the guard inverted.
+
+**The before/after pair is a real pair this time**, both shots the same page at
+390x844 dpr 2 taken 60ms after the retire with anchoring off, each driving the
+snippet its own build ships rather than the source. Before: the page has slid
+114px, the `AI / LLMs` heading clipped by the top edge and every line of the
+entry under the reader's eye moved. After: `.prose` has not moved at all, 0px,
+`scrollY` already at its destination rather than two thirds of the way there.
+Built tree against main's: **32 of 42 files differ and all 32 differ only in
+that one block**, with `index.html`, `feed.xml`, `sitemap.xml`, `404.html` and
+`latest.json` byte-identical, so nothing wakes a subscriber for a code deploy.
+
+**What was left alone.** The declaration itself has no anchor navigation to
+serve here (every `#` href across the 32 day pages is cross-origin), so deleting
+it would fix the focus-scroll latency in the same line; it is also how the page
+feels under the arrow keys for every reader, which is a taste call on a pinned
+design and went into #375 rather than into the diff. Copilot declined on quota
+for the fourth run running. The merged branch is still on the remote: the ref
+delete is refused by this proxy, as every run since 10-07 has recorded.
 
 ### 2026-11-16
 
