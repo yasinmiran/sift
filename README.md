@@ -67,9 +67,11 @@ items, fetches and reads the underlying articles, and commits
 `digests/{day}.md`: ~15 entries with inline links and a Threads section
 mapping how the stories relate. The morning run writes the day's first
 half; the evening run rewrites it with the full day.
-`npm run verify -- {day}` is the agent's self-check before committing:
-frontmatter shape, link validity, repeat detection against earlier
-digests, and the carousel rules below.
+`npm run recap -- {day}` is the bounded yesterday-context it reads
+first (the previous day's description and lead paragraph, deliberately
+nothing else), and `npm run verify -- {day}` is its self-check before
+committing: frontmatter shape, link validity, repeat detection against
+earlier digests, and the carousel rules below.
 
 ## Slides
 
@@ -109,7 +111,10 @@ greenlight-gated behind issues.
 ```
 data/items/{day}.json   { day, generatedAt, items: [ { sourceSlug,
                           externalId, title, url, author, publishedAt,
-                          content, topics[], paywalled, mediaType } ] }
+                          content, topics[], paywalled, mediaType,
+                          points?, comments? } ] }   points and
+                          comments are hn only: the front-page metrics,
+                          so the digest can weigh a thread offline
 data/state.json         { sources: { slug: { etag, lastModified,
                           feedHash } }, seen: { day: [keys] } }
 data/picks/{day}.json   { day, summary, items: [ { url, title, note,
@@ -117,7 +122,10 @@ data/picks/{day}.json   { day, summary, items: [ { url, title, note,
                           with `npm run pick -- <url> [note]`
 data/slides/{day}.json  { day, posts: [ { slot, hook, caption,
                           hashtags[], slides: [ { number, category,
-                          title, desc, url } ] } ] }
+                          title, desc, url,
+                          terms?: [ { abbr, gloss } ] } ] } ] }
+                          terms footnote the abbreviations a slide
+                          leans on; verify.ts gates them
 digests/{day}.md        ---\ntitle, description, date\n--- + markdown
 ```
 
