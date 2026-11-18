@@ -6,6 +6,37 @@ merges and closures and never expire.
 
 ## Lessons
 
+- An instrument encodes the shape you expect, and a contract licenses shapes you
+  did not think to encode. Today's probe cross-checked the Hacker News
+  section's `(discussion)` permalinks against the day files, the first time
+  anything had, and reported **9 of 51 pointing at a thread whose story is not
+  the link beside it**, on four separate days. That is a wrong-thread link in a
+  published digest, the most embarrassing class of defect this site can ship,
+  and it was worth nothing: all 9 are ../AGENTS.md's own sentence, "a story the
+  digest already covers above gets a clause and a link, not a re-summary",
+  which means the clause carries the discussion link and no article link, so
+  "the nearest preceding link" the probe reached for belongs to the previous
+  sentence. The family is 11-17's "an instrument's error has a mechanism, and
+  the mechanism is sometimes the thing you were looking for", with the cheaper
+  and more common case named: here the mechanism was a clause of the contract I
+  had read that morning and had not read into the instrument. **Before
+  believing a table of violations, read the prose around three of its rows** -
+  three greps cost less than the four-day story I nearly wrote, and the same
+  correction retired the run's other table in one pass (117 within-day
+  duplicate links are the lead paragraph and the Threads bullets doing their
+  jobs). The tell is in the probe's own construction: a rule that needs
+  "nearest", "adjacent" or "preceding" to find its subject is guessing at
+  structure the document states, so go and read what the document is allowed
+  to say.
+  Its other half is about where the day's actual defect was. Ten instruments
+  came back clean and the shippable finding sat in the file the run opened
+  first: the readme, read for sense, says the right things; read **against the
+  data**, its schema block omits `points` and `comments` on 1,123 of 9,565
+  stored items and `terms[]` on 132 of 342 slides, fields `verify.ts`
+  hard-errors on and ../AGENTS.md instructs the digest agent to go and read.
+  **A document read for sense is not a document read against the data**, and
+  the second reading is one script.
+
 - A guarantee a call site writes down is only as good as the stylesheet it runs
   under, because css configures the platform calls js makes. `retireWhenPast`
   has said "before the frame paints" in a comment since #335, and it was true
@@ -1086,6 +1117,97 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-11-18 as #379 / PR #381, `9260596`, `checks` green on `f3cde57`,
+  and no `pages` run was due: the workflow is path-filtered to
+  `digests/**`, `data/slides/**`, `public/**`, `src/**` and its own file, and
+  this touched `README.md` alone. The readme's `Data contracts` block, the one
+  place every stage's output shape is written down in one view, omitted three
+  keys the committed data carries: **`points` and `comments` on 1,123 of the
+  month's 9,565 items** (every `hacker-news` item, 1,123 of 1,123) and
+  **`terms[]` on 132 of 342 slides** (138 glosses over 63 posts). All three are
+  declared in the types, and all three are load-bearing: `verify.ts`
+  hard-errors on four separate `terms` rules, and ../AGENTS.md's Hacker News
+  section tells the digest agent to fall back to "the day file's
+  `hacker-news` items, which carry `points` and `comments` from ingest", a
+  field the readme said did not exist. Same cause for `npm run recap`, the one
+  script in `package.json` the readme never named while ../AGENTS.md makes it
+  mandatory before writing. 13 insertions, 5 deletions, docs only: 296 tests
+  unchanged, typecheck clean, and the built tree diffed against main's
+  **identical on all 42 entries**, so nothing shipped to a reader and no
+  subscriber was woken. No new dependency, no contract edit.
+- FILED 2026-11-18 as #380, not shipped, because the number is Yasin's to
+  pick. **The digest's frontmatter description has grown for six consecutive
+  runs and today's is the month's longest at 221 characters.** ../AGENTS.md
+  asks for "one sentence: the day's biggest story" and names no length; the
+  archive runs **107 to 221, median 150**, one sentence on 32 of 32, so the
+  only stated rule holds and the sentence is what is growing, by chaining
+  clauses with "and" / "while". The drift is the tail, not the month:
+  11-13..11-18 read **157, 177, 183, 192, 175, 221** against 107-173 and a
+  median of 145 over the 26 days before, four of the month's five longest sit
+  in that block, and 221 beats the next-longest by **29**. Measured on the one
+  surface this container can read: the index hero renders it in full, so at
+  360x800 with the webfonts blocked today's string takes **7 lines and a 317px
+  hero** against 4 lines and 223px for 11-11's 140 chars, and the archive rows
+  visible without scrolling drop from **2 to 1**; at 390 and up the hero grows
+  and the row count holds. That cost is real and small. The cost that matters
+  is snippet truncation in a search result and a social card, which is
+  platform behaviour (~155-160 chars) and unreadable from here. A gate means
+  choosing a number: at 160 it warns on 13 of 32 days, which is #246's
+  wallpaper; at 170 it warns on 6, five of them the last six runs, which is
+  the drift and nothing else. Either way it picks a side of an editorial
+  contract, so the ask is a soft cap in ../AGENTS.md and the warning follows
+  for free.
+- Measured 2026-11-18 and NOT filed, because it is a taste call on a pinned
+  design; left here with the numbers so no later run re-measures them.
+  **The site has no `:visited` state anywhere**, the word appearing 0 times in
+  10,477 journal lines and 0 times across `src/site/` and `src/slides/`. A day
+  page carries **36 to 68 outbound links, median 59, 1,801 over the month**,
+  and the evening run rewrites the same url: over the 31 days with both runs,
+  the evening file re-presents a median of **25 of the morning's ~35 links
+  unchanged** (text and url identical) inside a page of ~49, so half of the
+  evening page is links the morning reader was already offered. The reader this
+  lands on is named in `notify.ts`: a push subscriber taps the notification and
+  arrives at the rewrite of a page they read in the morning, with nothing on it
+  saying which links they already opened. The index is the same shape, 32 rows
+  of days with no mark on the ones read. The remedy is one scoped declaration
+  on an existing pinned token, not a new hex, but it changes the look of the
+  most repeated element on the site, which is Yasin's call. Note the
+  instrument's limit if it is ever taken up: browsers refuse to report
+  `:visited` through `getComputedStyle`, so only a screenshot can verify it.
+- Walked clean on 2026-11-18, recorded so a future run does not re-walk them.
+  **Health, the full sweep**: 296 tests in 26 files, typecheck clean,
+  `npm run site` 33 pages, and the last **40** completed workflow runs are 40
+  green across ingest, checks and pages. The verifier over 2026-11-12..18 is 0
+  errors on all 7 days, with warnings on 3 of them and none new.
+  **The Hacker News section's `(discussion)` links, cross-checked against the
+  day files for the first time.** All **51** in the month resolve to a
+  `hacker-news` item stored that day. The naive probe flagged 9 as pointing at
+  a thread whose story is not the link beside it, and **all 9 are the
+  contract's own shape**: a story already covered above gets a clause and the
+  discussion link with no article link, so the "nearest preceding link" the
+  probe reached for belongs to the previous sentence. 0 wrong threads.
+  **Within-day duplicate links, 117 of them, also explained rather than
+  found**: the lead paragraph and the Threads bullets both link stories the
+  entries below carry, which is what both sections are for.
+  **The stored data's integrity**: 0 of 9,565 items carry an empty `url`,
+  `state.json` holds 7 days and 1,932 seen keys with **0 duplicates** and 50
+  source entries, and `cleanup.ts` prunes `digests/`, `data/items/`,
+  `data/picks/` and `data/slides/` on one 31-day horizon, so all four hold the
+  same 32 days and a published day cannot lose the slides file `dropsOf` reads
+  its published/modified dates from.
+  **Every live fetcher has a timeout**: `fetch.ts` at 20s, the web adapter at
+  15s, the hn adapter at 15s, so no single slow host can hang a run; and every
+  `readdirSync` in `src/` filters its entries, which is why the `.gitkeep` in
+  `data/picks/` and `data/slides/` reaches nothing.
+  **Page weight**: day pages 32.3k to 44.4k raw, 16.7k gzipped for the newest,
+  index 39.9k / 13.2k, 404 18.5k / 7.1k.
+  **The walls, re-probed at the top of the run**: unchanged, `sift.yasint.dev`
+  and `yasin.goatcounter.com` still unreachable, so still no reader signal and
+  no live-site read. `playwright` needs `executablePath:
+  "/opt/pw-browsers/chromium"` here: the dev dep's own browser build
+  (`chromium_headless_shell-1228`) is not the one installed (`-1243`), and
+  `npx playwright install` would fetch a third.
 
 - MERGED 2026-11-17 as #375 / PR #376, `02210b1`, `checks` green on `f1cb80b`
   and `pages` 44055930738 green on build and deploy, read the honest way:
@@ -3242,6 +3364,72 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-18
+
+**#379 filed, PR #381 built, `checks` green on `f3cde57`, merged by this run as
+`9260596`, and no `pages` deploy was due: the workflow's own path filter names
+`digests/**`, `data/slides/**`, `public/**`, `src/**` and itself, and this run
+touched `README.md` alone.** The readme now names the fields the pipeline
+writes.
+
+**A small day, and the honest reason is that health had nothing to give.** 296
+tests, typecheck, 33 pages, 40 of the last 40 workflow runs green, and the
+week's verifier warnings all old and deliberate. So the run went looking for a
+surface no instrument had read, and found the defect in the file it had opened
+first: the readme's `Data contracts` block, read against the data rather than
+for sense, is missing three keys the committed month carries. `points` and
+`comments` on **1,123 of 9,565** items, which is every `hacker-news` item;
+`terms[]` on **132 of 342** slides, 138 glosses over 63 posts. Not decorative
+either: `verify.ts` hard-errors on four separate `terms` rules, and
+../AGENTS.md's Hacker News section instructs the digest agent to read `points`
+and `comments` off the day file when Algolia is blocked, which the readme's
+schema said did not exist. The same omission covers `npm run recap`, the one
+script in `package.json` the readme never names while the contract makes it
+mandatory before writing.
+
+**13 insertions, 5 deletions, one file, and the proof it is inert**: 296 tests
+unchanged, typecheck clean, and the built tree diffed against main's identical
+on all 42 entries, which is also why the missing `pages` run is the right
+answer rather than a miss.
+
+**The day's lesson is about the probe that flagged nine wrong threads.** The
+Hacker News section's `(discussion)` permalinks had never been cross-checked
+against the day files, so this run did it: 51 links, all resolving to a
+`hacker-news` item stored that day, and 9 of them apparently pointing at a
+thread whose story is not the link beside them, which would be an embarrassing
+reader-facing error on four separate days. All 9 are the contract's own shape.
+"A story the digest already covers above gets a clause and a link, not a
+re-summary" means the clause carries the discussion link and no article link,
+so "the nearest preceding link" the probe reached for belongs to the previous
+sentence. The probe encoded the shape I expected rather than the shape
+../AGENTS.md licenses. 11-17 banked "an instrument's error has a mechanism, and
+the mechanism is sometimes the thing you were looking for"; here the mechanism
+was a clause of the contract I had read that morning and not read into the
+instrument, which is the cheaper and more common case: **before believing a
+table of violations, read the prose around three of its rows**. Three greps
+cost less than the four-day story I nearly wrote. The same correction retired
+the run's other table: 117 within-day duplicate links are the lead paragraph
+and the Threads bullets doing their jobs.
+
+**What was measured and left for Yasin.** The frontmatter description has grown
+for six consecutive runs and today's is the month's longest at 221 characters
+(11-13..11-18: 157, 177, 183, 192, 175, 221, against 107-173 and a median of
+145 over the 26 days before). It stays one sentence on 32 of 32, so the
+contract's only stated rule holds. The index hero renders it in full and pays
+7 lines and a 317px hero at 360 wide against 4 and 223, with the archive rows
+visible dropping 2 to 1; the cost that matters is snippet truncation, which is
+platform behaviour and unreadable from here. A length gate means inventing a
+number the contract does not state, so it went into #380 as an ask rather than
+into the diff. Also measured and not filed: the site has no `:visited` state at
+all, on pages carrying a median of 59 outbound links where the evening rewrite
+re-presents a median of 25 of the morning's unchanged. One declaration on a
+pinned token, and therefore not a gardener's call.
+
+**Health**: the last **40** completed workflow runs are 40 green, 0 red.
+Copilot declined on quota for the fifth run running, and the merged branch is
+still on the remote: the ref delete is refused by this proxy, as every run
+since 10-07 has recorded.
 
 ### 2026-11-17
 
