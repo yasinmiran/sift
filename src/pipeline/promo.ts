@@ -16,6 +16,23 @@ const LABELLED = /^\s*(sponsored|sponsor|advertisement|promoted|partner content)
 
 const looksPromotional = (text: string): boolean => TAGGED.test(text) || LABELLED.test(text);
 
+// The badge form, which carries no punctuation for either of the two above to
+// find. A feed that renders the slot's label in its own element beside the
+// headline hands the body over with the two fused: "Sponsor How a Robot Goes
+// from Demo to Every Shift tldr.tech/blog ...". A bare label word cannot carry
+// the decision alone, because a post may genuinely open "Promoted to staff
+// engineer", so it only counts when the item's own headline is what follows
+// it: a badge sits in front of the headline, prose does not. The stored
+// headline is truncated past 200 characters, so the ellipsis marking the cut
+// comes off before the comparison.
+const BADGE = /^\s*(?:sponsored|sponsor|advertisement|promoted|partner content)\s+(.*)$/is;
+
+function looksBadged(opening: string, title: string): boolean {
+  const afterBadge = BADGE.exec(opening)?.[1];
+  const headline = title.trim().replace(/…$/, "");
+  return afterBadge !== undefined && headline !== "" && afterBadge.startsWith(headline);
+}
+
 // Paid-placement utm values. utm_source stays out: newsletters stamp it on
 // editorial links too (utm_source=tldrnewsletter), so it carries no signal.
 const PROMO_UTM: Record<string, RegExp> = {
@@ -43,6 +60,9 @@ export function isPromotional({ title, content, url }: TitleLike): boolean {
   // Some feeds keep the headline clean and tag the body's opening line
   // instead. Full-text feeds render as one newline-free line, so cap the
   // scan: a tag past the opening marks an embedded ad, not the article.
-  const firstLine = ((content ?? "").split("\n", 1)[0] ?? "").slice(0, 200);
-  return looksPromotional(firstLine);
+  const opening = (content ?? "").split("\n", 1)[0] ?? "";
+  // The badge reads the line uncapped: it is anchored at the first character,
+  // so the cap would only ever truncate the headline it compares against.
+  if (looksBadged(opening, title)) return true;
+  return looksPromotional(opening.slice(0, 200));
 }
