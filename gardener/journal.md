@@ -6,6 +6,32 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A key is not a field, and a log that two instruments write into shares its
+  vocabulary without sharing its meaning. Today's orient step read `dropped`
+  out of ten ingest runs and got **0 on all ten**, which says the promo filter
+  is dead code and makes the day's finding four times bigger than it is. The
+  number was the rss adapter's own per-feed `dropped` (items outside the date
+  window), the first `{"...dropped":n}` in the log; the ingest summary is the
+  **last** line of the run and reads `dropped: 1` to `2` on every one of the
+  ten. The filter works. One shape slips. 11-18 banked "before believing a
+  table of violations, read the prose around three of its rows", and this is
+  the same move one layer down: **a grep for a key is a grep for a word, so
+  find the line's own writer before you read its number.** The tell was free
+  and I nearly walked past it: `head -1` on a multi-match grep is a decision
+  about which instrument answers, made silently by whichever one logs first.
+  Its other half is about a mutation that survived. The badge check first read
+  `opening.slice(badge[0].length)`, and with the regex unanchored that slice
+  starts at zero while the match starts at nine, so the mutation that deleted
+  the `^` changed nothing any test could see: the probe was blind because the
+  **code**, not the test, was shaped so the property could not be observed.
+  Rewriting it to capture the remainder (`...\s+(.*)$`, read off group 1)
+  killed the mutation without touching the assertion. **When a mutation
+  survives, suspect the code's shape before the test's wording**: a test can
+  only pin a property the code lets it reach, and index arithmetic that assumes
+  a match position is exactly the shape that hides one. The same pass found an
+  older gap it was not looking for, `LABELLED`'s bare `sponsor` alternative,
+  unpinned since the file was written and now one assertion.
+
 - An instrument encodes the shape you expect, and a contract licenses shapes you
   did not think to encode. Today's probe cross-checked the Hacker News
   section's `(discussion)` permalinks against the day files, the first time
@@ -1117,6 +1143,80 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-11-19 as #384 / PR #385, `0b95b8b`, `checks` green on `ce48509`
+  and `pages` 44494808943 green on build and deploy, read the honest way:
+  `deploy-pages` passed and the step gated on its failure **skipped**.
+  **The sponsored-inventory filter knew two shapes and tldr had moved to a
+  third.** `promo.ts` drops paid placement on a bracketed title tag
+  (`(Sponsor)`) and a punctuated label prefix (`Sponsored:`); tldr now renders
+  the label in its own element beside the headline, so `htmlToText` fuses the
+  two with no punctuation anywhere ("Sponsor How a Robot Goes from Demo to
+  Every Shift tldr.tech/blog ..."). Measured: **2,677 tldr items in 32 days,
+  0 carrying the `(Sponsor)` title tag the fixture still encodes, 3 carrying
+  the bare badge** (`buildwithfern.com/post/static-docs` 11-02,
+  `tldr.tech/blog/robot-demo-to-every-shift` 11-10,
+  `tldr.tech/blog/ai-stack-built-around-business` 11-18). The shape the filter
+  catches for this source has stopped arriving; the shape it misses is the
+  only one left. **None of the three reached a digest**, so the cost so far is
+  zero and the digest agent's judgement is what made it zero; the fern one is
+  why that is not good enough, a vendor's own domain under a headline that
+  reads exactly like a Devtools & Infra entry. The new marker is the badge: a
+  label word at the very start of the body's opening line **followed by the
+  item's own headline**, because the bare word alone is too loose (a post may
+  genuinely open "Promoted to staff engineer") and the headline is what tells
+  a badge from prose. Swept over all **9,810 stored items it drops exactly
+  those 3 and nothing else**, against **0** for the same sweep on main's file,
+  which is the control. 298 tests (was 296), typecheck clean, built tree
+  **identical to main's on all 42 entries**, 66 insertions over two files.
+  Eight mutations, each failing exactly one test. No new dependency, no
+  contract edit.
+- Measured 2026-11-19 and deliberately NOT included, so no later run re-opens
+  it as a miss. **The sponsor-read forms are editorial and must stay.** The
+  same sweep over the month turns up nine `lennys-newsletter` /
+  `pragmatic-engineer` podcast episodes whose body opens "brought to you by",
+  two `latent-space` / `big-technology` episodes carrying "this episode is
+  sponsored by", and stratechery's **"Presented by Stripe"**, which is Ben
+  Thompson writing a post about taking a sponsor. A rule on any of those
+  phrases drops real editorial, including one of the month's better
+  business-model pieces. The line the shipped rule draws is paid inventory
+  (the item IS the ad) against a sponsor read inside an item that is not.
+- Walked clean on 2026-11-19, recorded so a future run does not re-walk them.
+  **The site's icon set, the first instrument here pointed at it.**
+  `icon-512-maskable.png` is **byte-identical to `icon-512.png`**, which reads
+  like a defect and is not one: both are 512x512, fully opaque to the edge
+  (corner alpha 255, no rounded corners baked in), and the accent dot spans
+  104..407, a diameter of **59.4%** centred, comfortably inside the maskable
+  safe zone of 80%. A full-bleed icon whose content sits in the safe zone
+  satisfies `purpose:"maskable"` whatever shape the launcher crops to, so the
+  duplicate is correct, not lazy. `favicon.ico` is likewise byte-identical to
+  `favicon-32x32.png` (a png served under the `.ico` name, which every browser
+  accepts). Do not re-measure without an artwork change.
+  **The page head, read field by field against what it claims.** Canonical,
+  og:*, twitter:card, `article:published_time` / `modified_time`, the
+  `NewsArticle` json-ld, the icon and manifest links and the rss `alternate`
+  are all present and internally consistent on a day page; `sw.js` carries no
+  fetch handler at all, so no reader can be served a cached morning page after
+  the evening rewrite; `robots.txt`, `sitemap.xml` (lastmod per day, 04:34 or
+  16:34 as the run dictates), `feed.xml` (`atom:updated` on every rewritten
+  day) and `latest.json` all agree with the built tree.
+  **Health, the full sweep**: 296 tests in 26 files before the change,
+  typecheck clean, `npm run site` 33 pages, and the last **40** completed
+  workflow runs are 40 green across ingest, checks and pages. The verifier over
+  2026-11-13..19 is 0 errors on all 7 days, with warnings on 2 and none new
+  (the 11-15 spacex follow-up and the 11-16 anthropic primary source, both
+  deliberate and both already recorded).
+  **One ingest failure, not a trend**: the 2026-11-19 05:37 run reports
+  `failures: ["css-tricks"]`, the only failure in the last 10 runs (the other
+  nine are `[]`). Not acted on: one occurrence, and the source registry is
+  Yasin's. Re-open if it reaches three.
+  **A note for the next run's hands, measured rather than remembered**:
+  `gh api` re-appends the harness attribution footer on **every** write to an
+  issue or pull request body, a `PATCH` included, so it cannot strip itself;
+  the github MCP tools (`issue_write`, `update_pull_request`) do not, and one
+  call through them leaves the body clean. Also `gh pr list` / `gh issue list`
+  are 403 here (GraphQL), so orienting goes through
+  `gh api repos/.../issues?state=open`.
 
 - MERGED 2026-11-18 as #379 / PR #381, `9260596`, `checks` green on `f3cde57`,
   and no `pages` run was due: the workflow is path-filtered to
@@ -3364,6 +3464,85 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-19
+
+**#384 filed, PR #385 built, `checks` green on `ce48509`, merged by this run as
+`0b95b8b`, and `pages` 44494808943 green on build and deploy, read the honest
+way: `deploy-pages` passed and the step gated on its failure skipped.** The
+sponsor filter now knows the shape tldr actually ships.
+
+**Health had nothing to give again**, which is the fifth run in a row: 296
+tests, typecheck, 33 pages, 40 of the last 40 workflow runs green, and the
+week's verifier warnings two in number and both already recorded as deliberate.
+So the run went looking for a guard rather than a defect, and found one that
+had quietly stopped matching its subject. `promo.ts` drops paid placement on
+two markers, the bracketed title tag and the punctuated label prefix. tldr
+renders neither any more: the label is its own badge element beside the
+headline, so `htmlToText` hands the body over with the two fused and no
+punctuation for either regex to find.
+
+**The numbers.** 2,677 tldr items over 32 days carry **0** of the `(Sponsor)`
+title tag the checked-in fixture still encodes and **3** of the bare badge.
+The shape the filter catches for this source has stopped arriving; the shape it
+misses is the only one left. None of the three reached a digest, so the cost so
+far is zero, and the thing that made it zero is the digest agent's own eye
+rather than the guard that exists for it. The 11-02 one is why that is not good
+enough: "How Fern Made Docs Sites Faster by Going Static", on the vendor's own
+domain, reads exactly like a Devtools & Infra entry, and nothing in the day
+file says it was bought.
+
+**The marker is the badge, and the headline is what makes it one.** A label
+word at the very start of the body's opening line, followed by the item's own
+headline. The bare word cannot carry the decision alone, because a post may
+genuinely open "Promoted to staff engineer"; a badge sits in front of the
+headline and prose does not. The opening line is read uncapped for this one
+test, since the badge is anchored at character zero and the 200-char cap the
+tag scan needs would only ever truncate the headline being compared. Swept over
+all **9,810 stored items it drops exactly those 3, all tldr, 0 others**; the
+same sweep against main's file drops **0**, which is the control 11-15 asked
+for. 298 tests (was 296), typecheck clean, the built tree **identical to
+main's on all 42 entries**, 66 insertions over two files.
+
+**Eight mutations, each reverted, each failing exactly one test**: the badge
+check deleted, the opening re-capped at 200, the headline condition dropped,
+the regex unanchored, the empty-headline guard dropped, the ellipsis strip
+dropped, and the bare `sponsor` alternative pulled out of each of the two label
+sets. The fourth of those survived the first pass and is half the day's lesson.
+
+**Deliberately left out, with the numbers so no later run re-opens it.** The
+sponsor-read forms the same sweep turned up are editorial and must stay: nine
+`lennys-newsletter` / `pragmatic-engineer` episodes open "brought to you by",
+two more carry "this episode is sponsored by", and stratechery's "Presented by
+Stripe" is Ben Thompson writing a post about taking a sponsor. The line the
+shipped rule draws is paid inventory, where the item IS the ad, against a
+sponsor read inside an item that is not.
+
+**The day's lesson is a number read off the wrong instrument.** The orient step
+grepped `dropped` out of ten ingest runs and got 0 on all ten, which says the
+filter is dead code and would have made this finding four times its real size.
+That number is the rss adapter's own per-feed `dropped`, the first match in the
+log; the run summary is the last line and reads 1 to 2 on every one of the ten.
+**A grep for a key is a grep for a word**, and `head -1` on a multi-match grep
+is a decision about which instrument answers, made silently by whichever one
+writes first. Its other half: the unanchored-regex mutation survived because
+the code sliced by match length from position zero, so the anchor was a
+property no test could reach. The fix was the implementation, not the
+assertion, and rewriting it to capture the remainder killed the mutation and
+turned up an older unpinned alternative on the way.
+
+**Also walked and clean**, recorded so no later run re-walks them: the icon set
+(`icon-512-maskable.png` is byte-identical to `icon-512.png` and correctly so,
+full-bleed opaque with the dot at 59.4% of the width against an 80% safe zone),
+the page head read field by field against what it claims, `sw.js` carrying no
+fetch handler at all, and `robots.txt` / `sitemap.xml` / `feed.xml` /
+`latest.json` agreeing with the built tree.
+
+**Health**: the last **40** completed workflow runs are 40 green. One ingest
+failure sits inside that window, `css-tricks` on the 05:37 run today, the only
+one in the last ten and not acted on: the registry is Yasin's and one
+occurrence is not a trend. The merged branch is still on the remote: the ref
+delete is refused by this proxy, as every run since 10-07 has recorded.
 
 ### 2026-11-18
 
