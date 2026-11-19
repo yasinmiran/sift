@@ -1,6 +1,6 @@
 {
   "day": "2026-11-19",
-  "generatedAt": "2026-11-19T05:38:18.367Z",
+  "generatedAt": "2026-11-19T11:31:47.497Z",
   "items": [
     {
       "sourceSlug": "vercel-blog",
@@ -76,6 +76,20 @@
     },
     {
       "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/runway-slashes-characters-avatar-cost-by-running-on-half-the-gpus",
+      "title": "Runway Slashes Characters Avatar Cost by Running on Half the GPUs",
+      "url": "https://alphasignal.ai/news/runway-slashes-characters-avatar-cost-by-running-on-half-the-gpus",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-18T14:28:07.000Z",
+      "content": "Runway now runs its 57B-parameter Characters video model at 24 fps on four H100s instead of eight, mostly by deleting work it was redoing hundreds of times per step.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
       "externalId": "https://alphasignal.ai/news/github-s-copilot-now-judges-its-own-code-review-effort-automatically",
       "title": "GitHub's Copilot Now Judges Its Own Code Review Effort Automatically",
       "url": "https://alphasignal.ai/news/github-s-copilot-now-judges-its-own-code-review-effort-automatically",
@@ -87,6 +101,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50548660",
+      "title": "Show HN: Mastra Factory, the open-source software factory we use to build Mastra",
+      "url": "https://news.ycombinator.com/item?id=50548660",
+      "author": "codekarate",
+      "publishedAt": "2026-11-18T16:53:42.000Z",
+      "content": "Hi HN, we're Shane, Sam, and Abhi. Almost two years ago, we shared Mastra, our open-source TypeScript agent framework, on Show HN: https://news.ycombinator.com/item?id=43103073. It got a few hundred upvotes; a couple of weeks later our downloads had doubled, and we were off to the races. Today we're sharing Mastra Factory, the open-source software factory we built to help maintain Mastra itself. At Mastra, we now average nearly 4M downloads per week, and with Factory our team now merges hundreds of PRs a week across the mastra-ai GitHub org. Last week, Factory opened and merged 238 PRs, alongside 630 merged PRs from humans. There's a lot of debate about what a software factory is. For us Factory is a configurable agentic kanban board that's @-taggable in Slack. Under the hood, it uses Mastra’s durable agents for long-running sessions, our conversational memory system, a markdown based wiki with source citations to incorporate company knowledge, signals that subscribe to PR comments wired up into sessions, and a customizable cloud sandbox with our coding harness (working on supporting Claude Code, Codex etc). When we started out, we modeled Factory around our existing workflow-oriented process (triage, plan, build, review, shipped). Three months later, we find ourselves mostly driving it through Slack vs a web UI. We’ve seen more senior engineers kick off sessions in parallel (“triage the 20 oldest issues and let’s evaluate…”). We’re using bug and vuln scanners now, and we’ve closed our repo to outside contributors, asking folks to write detailed issue repros instead. You can get started with `npm create factory`. It’s fully open-source, so you can run it entirely on your infra (we also offer a hosted version). Comment here, we would love to know what you think! https://factory.mastra.ai https://github.com/mastra-ai/template-factory",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 104,
+      "comments": 33
     },
     {
       "sourceSlug": "simon-willison",
@@ -129,6 +162,20 @@
       "author": "AlphaSignal Newsroom",
       "publishedAt": "2026-11-18T17:36:07.000Z",
       "content": "Parallel retuned its search index for FDA labels, trial registries and PubMed papers. In its own tests on four healthcare benchmarks, it was the most accurate search engine and often the cheapest per correct answer.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/imbue-opens-sculptor-a-free-app-running-coding-agents-in-parallel",
+      "title": "Imbue Opens Sculptor, a Free App Running Coding Agents in Parallel",
+      "url": "https://alphasignal.ai/news/imbue-opens-sculptor-a-free-app-running-coding-agents-in-parallel",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-18T18:10:16.000Z",
+      "content": "Imbue has open-sourced Sculptor under MIT. The desktop app runs Claude Code, Pi and other coding agents in parallel, so your workflow isn't tied to one AI lab.",
       "topics": [
         "ai-llms"
       ],
@@ -339,6 +386,20 @@
       "comments": 192
     },
     {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Nov/18/llm-gemini/",
+      "title": "llm-gemini 0.38",
+      "url": "https://simonwillison.net/2026/Nov/18/llm-gemini/",
+      "author": null,
+      "publishedAt": "2026-11-18T23:59:20.000Z",
+      "content": "Release: llm-gemini 0.38 Today Google introduced Gemini 4 Neon. I wrote recently about how confusing the pricing for the Gemini 4 series was - Neon has somehow made this even worse. Previously the Gemini 4 lineup was Hydrogen, Argon, and Carbon - where Argon and Carbon were the same price, and Hydrogen was 3/4 of that price now but will be 1/4 of that price when the other two double an 1st December once their initial discount pricing expires. The Neon announcement pretends that Argon doesn't exist. Here's their new image explaining the model line-up: So the lineup now, from most to least expensive, is Carbon, Neon, Hydrogen. Except Carbon is currently half price, so right now Neon ($3/million input, $15/million output) is the most expensive of the three - then Carbon ($2/$10), then Hydrogen ($1.50/$7.50). I guess this will make more sense when Carbon doubles to $4/$20 on December 1st. I ran some pelicans through the three reasoning levels for Neon - low, medium, high. I dropped Argon from my Gemini 4 comparison grid - here's the new Gemini 4 lineup, where the Neon pelicans do look better than Hydrogen and worse than Carbon: As I've done with several recent models, I also fired the following prompt against Gemini 4 Neon on \"extra\" effort level in Google Antigravity: Make a three js animation where yonkers stands up as a big mech (cool stand up motion) and stomps around manhattan and queens and Brooklyn, use openstreetmap mapping data Here's the result. Tags: yonkers-rising, gemini, llm, pelican-riding-a-bicycle, ai, llms, llm-release, google, generative-ai",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "alphasignal",
       "externalId": "https://alphasignal.ai/news/prime-intellect-s-model-factory-merges-ai-training-and-deployment-into-one-loop",
       "title": "Prime Intellect's Model Factory Merges AI Training and Deployment Into One Loop",
@@ -426,6 +487,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50554935",
+      "title": "Unreal Tournament 2004 in the Browser",
+      "url": "https://ut2004.dev/",
+      "author": "TheAceOfHearts",
+      "publishedAt": "2026-11-19T01:29:29.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 167,
+      "comments": 82
     },
     {
       "sourceSlug": "techmeme",
@@ -1360,6 +1440,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50556287",
+      "title": "Ruby2ßhell: Pre-authentication RCE on stock Rails",
+      "url": "https://verialabs.com/ruby2shell/",
+      "author": "jdns",
+      "publishedAt": "2026-11-19T05:09:11.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 161,
+      "comments": 60
+    },
+    {
       "sourceSlug": "hf-daily-papers",
       "externalId": "https://huggingface.co/papers/2611.11318",
       "title": "PROLA: Principal-Orthogonal Low-rank Adaptation for Predictive Spatiotemporal Weather Downscaling",
@@ -2055,6 +2154,1025 @@
       "author": null,
       "publishedAt": "2026-11-19T05:38:14.434Z",
       "content": "Leading figures condemn Anthropic for reckless race to recursive self-improvement futureoflife.org2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50556533",
+      "title": "15M web servers on one VM – smoltcp, DPDK, AF_XDP",
+      "url": "https://kapteko.com/15-million-webservers/",
+      "author": "fessguid",
+      "publishedAt": "2026-11-19T05:56:36.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 178,
+      "comments": 23
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "https://alphasignal.ai/news/monash-researchers-show-pruned-hydra-beats-accurate-models-on-energy",
+      "title": "Monash Researchers Show Pruned Hydra Beats Accurate Models on Energy",
+      "url": "https://alphasignal.ai/news/monash-researchers-show-pruned-hydra-beats-accurate-models-on-energy",
+      "author": "AlphaSignal Newsroom",
+      "publishedAt": "2026-11-19T06:01:29.000Z",
+      "content": "Monash and German researchers prune the Hydra and Quant time series classifiers, cutting inference energy by up to 70% with only a small loss in accuracy, and show that hardware choice can change which model looks best.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "urn:latent-space:post:post_16b7c005-6ab8-4b06-8b1e-8f29a24d706e",
+      "title": "[AINews] Gemini 4 Neon: GDM's Opus/Sol Contender",
+      "url": "https://latent.space/p/ainews-gemini-4-neon-gdm-s-opus-sol-contender/",
+      "author": "swyx .ai",
+      "publishedAt": "2026-11-19T07:07:43.000Z",
+      "content": "Google DeepMind shipped Gemini 4 Neon, its fourth Gemini 4 model in about seven weeks. If you’re confused about the naming, you’re not alone; the 1.5 month old Argon is now retired, the old Pro and Flash from Gemini 1-3 are dead, and if you’re thinking the names are based on atomic weights, Neon (10), the midtier model is faster/cheaper than Carbon (6). This is a helpful guide to the current leading models and sizes: Because of how distillation, RL, and benchmarking works, Neon technically outperforms Carbon by some measures despite being a smaller model… Also today, Anthropic priced its IPO at $83 per share, above its initial range, and Palo Alto Networks agreed to buy Applied Compute in a $4.5B all-stock deal. Anthropic · Palo Alto Networks AI News for November 17–18, 2026. We checked 12 subreddits and 544 Twitter accounts. Browse past issues. AI Twitter Recap Gemini 4 Neon Launch and availability Pricing and specs. Neon costs $3 for input, $0.15 for cached input and $15 for output per million tokens. It has a 1M-token context window and four effort levels. Vals reports a maximum output limit of 1M tokens. Google · Vals Rollout. Neon is coming to the paid Gemini API in AI Studio and Android Studio, Gemini for business, and Antigravity for Pro and Ultra subscribers. In the Gemini app, Pro and Ultra users can select it as “Deeper analysis,” including for Tasks. Google’s rollout · Gemini app Day-one integrations. Cursor, GitHub Copilot across its app, CLI and VS Code, and LangChain Managed Deep Agents. Release cadence. Arena counted gaps of 28 days between Argon and Carbon, 15 between Carbon and Hydrogen, and six between Hydrogen and Neon. Arena Independent results High versus xhigh. At high effort, Neon matched Carbon’s 60 on the Intelligence Index for $3.74 per task. On GDP.pdf it scored 33.4% at high and 28.0% at xhigh. Artificial Analysis Agent Arena. Neon debuted second with 1,336 points across about 4,200 sessions. It had a $2.82 median task cost and placed second on steerability. Carbon still leads the separate Text Arena. Agent Arena · Text Arena Vals. Neon placed second on the Vals Index at 70.9%, about 0.4 points behind Fable 5.2 at less than half the cost per task. On Code Migration it averaged 160 turns, fewer than Carbon’s 234 or Hydrogen’s 574, and scored below both. Vals Index · Code Migration CursorBench 4.1. Neon scored 63.7% at default effort, up from Hydrogen’s 57.3%. Cursor Hands-on reports Steering and capacity. In 13 early Antigravity sessions, Kimmonismus recorded 762 tool calls and a 93% input-cache hit rate. When told to avoid the terminal, Neon ran zero shell commands in those tests. The logs also recorded 57 capacity errors and four stalled runs. Test logs How teams use it. Theo says he’s now using Neon for copy, Fable to implement changes, and Astra to playtest. Jeremy Howard praised Neon while saying he was reverting Solveit’s Astra and Sol options to their pre-6.2 versions. Theo · Jeremy Howard New results for GPT-6.2 Math and formal proof. Astra and Sol took the top two spots on MathArena. Astra solved 42 of 53 ArXivLean problems. Vals separately reports what it believes is the first formalization in Lean of Smoktunowicz’s Gap Theorem, with the proof checked by an independent kernel replay. Tim Gehr · Vals Agent Arena. Astra debuted sixth. Sol placed eleventh at a $0.90 median task cost. On the separate Code Arena WebDev board, Astra placed third at a 42% lower median cost than its predecessor. Agent Arena · WebDev Background discounts. OpenAI opened a public beta for GPT-6.2 Responses API jobs that can wait. Two-hour and eight-hour targets for the first response come with 30% and 40% discounts per token, respectively. OpenAI Developers What changed after launch. OpenAI’s Tibo Sottiaux says early reviewers used builds from before the final few days of changes. Artificial Analysis found Astra’s responses got shorter and it was less likely to admit uncertainty in its behavioral evaluation. Sottiaux · Artificial Analysis Open weights and inference Correction to yesterday’s Pi adapter numbers. Yesterday’s issue cited 15 to 32 solves on the 51 hardest SWE-bench Pro tasks. Hugging Face reran affected tasks after finding a tunnel outage that hit nine base-model runs. The corrected result is 20 to 33 solves, or 39.2% to 64.7%. It also released an OpenCode adapter that moved Qwen3.8-27B from 35.3% to 51.0% on the same subset with thinking off. Corrected model card · OpenCode release Tencent releases Hy4 Flash weights. The 224B-parameter multimodal MoE activates 12B parameters per token, supports 1M context and includes a roughly 64B n-gram embedding table. Tencent released instruct, FP8 and base checkpoints. Tencent repository · vLLM vLLM 0.34.0. The extensible KV cache is on by default and Model Runner V2 is the sole GPU runner. The team reports up to 1.95× faster NVFP4 decoding on GB200. vLLM Inference capacity grew faster than peak compute. Epoch estimates that the capacity of chips sold for a fixed basket of agent workloads grew 4.6× from Q2 2025 to Q2 2026, while peak 8-bit compute grew 2.6×. Epoch AI Runway cuts serving hardware in half. It reports serving a 57B video model at 24 fps on four GPUs, down from eight. Runway Agent tooling. Prime Intellect launched Model Factory for RL, supervised fine-tuning, serving and evals. Hugging Face released the message dataset from its 1,000-agent PyBot project. Prime Intellect · Hugging Face Research and chip design OpenAI models help redesign AMD circuits. OpenAI reports up to 14% improvement against optimized baselines on blocks of AMD’s flagship GPU design. The team used Synopsys tools to check that rewritten circuits preserved behavior and to measure power, performance and area. Some changes made it into a design sent for manufacturing. OpenAI Measuring research acceleration. OpenAI published an update on internal agent use and research task completion, and proposed regular disclosure of indicators for AI research acceleration. OpenAI Smaller harness edits can save tokens. In a 40-issue held-out test, a gated approach that edited one module at a time scored 40.0% on SWE-bench Lite at 46.7K tokens per task. A full rewrite scored 42.5% at 451.6K tokens. DAIR research summary Agent teamwork. MAC Bench finds most gains from eight agents came from exploring in parallel. Opus 5.5 was the sole tested model to show an added gain from coordination. Bespoke Labs Media and voice Genie 4 reaches Project Genie. Google’s world model adds native audio and lets users change the world with text mid-session. Access is rolling out to eligible Google AI Ultra subscribers. Google DeepMind Turn detection and transcription. Inworld released weights for a voice-isolation model and its SAVA turn detector, which it says detects completed turns in a median 71 ms. AssemblyAI split its 3.7 release into models for voice agents, live transcription and recordings. Inworld · AssemblyAI Kling Image 4.0. It placed seventh in Artificial Analysis’s text-to-image rankings and sixth in editing. Artificial Analysis Industry Anthropic prices its IPO at $83. The offering covers 980M shares, about $81.3B at the offer price. About $79.4B of that comes from shares sold by Anthropic before fees. Nasdaq trading under ANT is expected November 19. Anthropic Palo Alto Networks agrees to buy Applied Compute. The $4.5B all-stock deal gives Palo Alto a platform for post-training and serving open-weight models. The companies expect to close in Palo Alto’s fiscal Q3 2027, subject to regulatory clearance and other conditions. Palo Alto Networks AI Reddit Recap Local audio Blue TTS v3. A developer says their MIT-licensed model generates audio at about 50× real time on CPU. The thread’s headline number is a throughput claim about that setup. Code and demos · Discussion Inworld voice isolation. The release includes a 64M-parameter model for offline use and a 58M model for real-time use, both at 48 kHz. Weights · Local tests and discussion AudioGhost. A local interface for Meta’s SAM-Audio lets users describe a sound in text and separate it from the rest of a recording. Project discussion Local inference and coding Experts from an SSD. TokenWing’s developer claims it can stream a majority of routed experts from SSD. A user reported 45–50 tok/s on a 120B MoE with 12 GB of VRAM and 32 GB of RAM. LocalLLM thread One job, two models. A developer paired GPT-6.2 Astra for planning and review with local Qwen3.8-27B for implementation. The reported API bill fell from $7.40 to $1.62 on that run. Workflow and discussion Neon’s place in the line-up. Readers discussed whether Neon becomes the everyday replacement for Gemini 3.1 Pro, now that Google has separate tiers for fast work and harder projects. Launch discussion · Tier discussion",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p4#a261119p4",
+      "title": "Interviews with Anthropic employees, or Ants, reveal muted enthusiasm ahead of the largest IPO on record, as they debate the pace of frontier AI development (Jasmine Sun/New York Times)",
+      "url": "https://www.techmeme.com/261119/p4#a261119p4",
+      "author": null,
+      "publishedAt": "2026-11-19T07:10:33.000Z",
+      "content": "Jasmine Sun / New York Times: Interviews with Anthropic employees, or Ants, reveal muted enthusiasm ahead of the largest IPO on record, as they debate the pace of frontier AI development — Imagine an artificial intelligence company that is about to launch the biggest I.P.O. in history.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p5#a261119p5",
+      "title": "Indian startup Sarvam, which is pursuing sovereign AI, is facing online backlash for offering Chinese open-weight models on its Token Factory inference service (Saritha Rai/Bloomberg)",
+      "url": "https://www.techmeme.com/261119/p5#a261119p5",
+      "author": null,
+      "publishedAt": "2026-11-19T07:20:02.000Z",
+      "content": "Saritha Rai / Bloomberg: Indian startup Sarvam, which is pursuing sovereign AI, is facing online backlash for offering Chinese open-weight models on its Token Factory inference service — Indian startup Sarvam has begun selling access to DeepSeek and other Chinese AI models, triggering an online backlash over its role …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p6#a261119p6",
+      "title": "Sources expect Anthropic's IPO allocation for retail investors to fall below 20%; retail buyers have historically received 5% to 10% of shares in large IPOs (Financial Times)",
+      "url": "https://www.techmeme.com/261119/p6#a261119p6",
+      "author": null,
+      "publishedAt": "2026-11-19T07:25:29.000Z",
+      "content": "Financial Times: Sources expect Anthropic's IPO allocation for retail investors to fall below 20%; retail buyers have historically received 5% to 10% of shares in large IPOs — Frenzy for AI stocks is testing how far Wall Street will go to accommodate a new army of individual investors",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p7#a261119p7",
+      "title": "Alphabet Chief Investment Officer Ruth Porat says the company and its peers need to invest in jobs in places where data centers are being built amid backlash (Elena Eisenstadt/Bloomberg)",
+      "url": "https://www.techmeme.com/261119/p7#a261119p7",
+      "author": null,
+      "publishedAt": "2026-11-19T07:35:03.000Z",
+      "content": "Elena Eisenstadt / Bloomberg: Alphabet Chief Investment Officer Ruth Porat says the company and its peers need to invest in jobs in places where data centers are being built amid backlash — Alphabet Inc. Chief Investment Officer Ruth Porat said the company and its peers need to invest in jobs in communities where data centers …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p8#a261119p8",
+      "title": "Association for Advancing Automation: North American companies ordered ~11K robots in Q3 2026, up 25% YoY, as they seek to ease labor shortages in manufacturing (Christian Davies/Financial Times)",
+      "url": "https://www.techmeme.com/261119/p8#a261119p8",
+      "author": null,
+      "publishedAt": "2026-11-19T07:40:31.000Z",
+      "content": "Christian Davies / Financial Times: Association for Advancing Automation: North American companies ordered ~11K robots in Q3 2026, up 25% YoY, as they seek to ease labor shortages in manufacturing — Some say speed of automation is still not fast enough to make country internationally competitive as manufacturing sector struggles",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p9#a261119p9",
+      "title": "College students are increasingly pushing back against campus AI mandates, demanding opt-outs from AI-required assignments and an end to enterprise licenses (Dana Goldstein/New York Times)",
+      "url": "https://www.techmeme.com/261119/p9#a261119p9",
+      "author": null,
+      "publishedAt": "2026-11-19T07:45:02.000Z",
+      "content": "Dana Goldstein / New York Times: College students are increasingly pushing back against campus AI mandates, demanding opt-outs from AI-required assignments and an end to enterprise licenses — Some students are refusing to use A.I., and others are starting petitions to limit it across entire campuses. Colleges have taken notice.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p10#a261119p10",
+      "title": "A profile of Netflix's new Chief Content Officer Peter Rice, a former Fox and Disney executive, as sources say he may focus on revamping its film strategy (Alex Weprin/The Hollywood Reporter)",
+      "url": "https://www.techmeme.com/261119/p10#a261119p10",
+      "author": null,
+      "publishedAt": "2026-11-19T07:50:02.000Z",
+      "content": "Alex Weprin / The Hollywood Reporter: A profile of Netflix's new Chief Content Officer Peter Rice, a former Fox and Disney executive, as sources say he may focus on revamping its film strategy — Ted Sarandos' handpicked consigliere is tasked with reinventing the streamer — while his boss promises Wall Street that nothing is changing.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "urn:console:newsletter:2026-11-19:Tool:41ddcb3d-3698-8096-a395-e8db226b15e0",
+      "title": "Tool: Kiri",
+      "url": "https://console.dev/out/kiri/uc4rDkQzyP8_",
+      "author": null,
+      "publishedAt": "2026-11-19T08:00:00.000Z",
+      "content": "Docker Desktop alternative. What we like: Single, Docker-compatible daemon (CLI, Compose, buildx). Performance optimized with a small memory footprint. Includes networks, volumes, k8s. Dev tools like auto-HTTPs endpoints with publicly sharable URLs. Supports macOS, Windows, Linux. What we dislike: Non-native UI, unlike something like Orbstack (which is macOS only). “Machines” are containers with filesystem access, not true VMs.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "urn:console:newsletter:2026-11-19:Tool:41ddcb3d-3698-800a-b664-d290a325a183",
+      "title": "Tool: Jiff",
+      "url": "https://console.dev/out/jiff/1a1tcUnCcRHL",
+      "author": null,
+      "publishedAt": "2026-11-19T08:00:00.000Z",
+      "content": "Datetime library for Rust. What we like: Understands timezones natively and handles daylight sayings. Built-in handling of common date operations like durations, differences, calculations, geo regions. Uses Rust-native formatting and display options, including friendly formats. What we dislike: Shows you how complex dates and times actually are, but that probably means fewer bugs!",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "urn:console:newsletter:2026-11-19:Beta:41ddcb3d-3698-8016-9d36-e81acabd5f3d",
+      "title": "Beta: SpatialCSS",
+      "url": "https://console.dev/out/webkit/p_fUU4oT8ut1",
+      "author": null,
+      "publishedAt": "2026-11-19T08:00:00.000Z",
+      "content": "WebKit spatial CSS API.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "urn:console:newsletter:2026-11-19:Beta:41ddcb3d-3698-8030-98c6-e3ce38469d73",
+      "title": "Beta: Jolt",
+      "url": "https://console.dev/out/jolt-lang/dsGfBa8Q0lrr",
+      "author": null,
+      "publishedAt": "2026-11-19T08:00:00.000Z",
+      "content": "Clojure that speaks C.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "urn:console:newsletter:2026-11-19:Beta:41ddcb3d-3698-806f-b5f4-d31f7c8aca5e",
+      "title": "Beta: UI SDK",
+      "url": "https://console.dev/out/ui-sdk/rocB8fu4nw7D",
+      "author": null,
+      "publishedAt": "2026-11-19T08:00:00.000Z",
+      "content": "TypeScript library of UI behaviors.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "urn:console:newsletter:2026-11-19:Beta:41ddcb3d-3698-80b2-ae53-e01a6764d6d7",
+      "title": "Beta: pgjumbo",
+      "url": "https://console.dev/out/pgjumbo/h-oKrXtqL800",
+      "author": null,
+      "publishedAt": "2026-11-19T08:00:00.000Z",
+      "content": "Postgres desktop client.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "console-dev",
+      "externalId": "urn:console:newsletter:2026-11-19:Beta:41ddcb3d-3698-80d8-9325-fc4dada2de71",
+      "title": "Beta: Relax",
+      "url": "https://console.dev/out/makepad-github/LRy21WeGx1NL",
+      "author": null,
+      "publishedAt": "2026-11-19T08:00:00.000Z",
+      "content": "Rust JIT compiler.",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p11#a261119p11",
+      "title": "Sources: TSMC and Samsung have suspended some chip shipments to Chinese customers while they apply for US Commerce Department licenses, after new US curbs (Financial Times)",
+      "url": "https://www.techmeme.com/261119/p11#a261119p11",
+      "author": null,
+      "publishedAt": "2026-11-19T10:41:24.000Z",
+      "content": "Financial Times: Sources: TSMC and Samsung have suspended some chip shipments to Chinese customers while they apply for US Commerce Department licenses, after new US curbs — Halt comes after US commerce department introduces new export controls — Taiwan Semiconductor Manufacturing Company and Samsung Electronics …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p12#a261119p12",
+      "title": "Filings: Anthropic sold $1.1B of stock to retail investors in the UK, the EU, Norway, and Switzerland in its record IPO; UK investors bought 3.6M+ shares (Pablo Mayo Cerqueiro/Bloomberg)",
+      "url": "https://www.techmeme.com/261119/p12#a261119p12",
+      "author": null,
+      "publishedAt": "2026-11-19T10:45:03.000Z",
+      "content": "Pablo Mayo Cerqueiro / Bloomberg: Filings: Anthropic sold $1.1B of stock to retail investors in the UK, the EU, Norway, and Switzerland in its record IPO; UK investors bought 3.6M+ shares — Anthropic PBC sold $1.1 billion worth of stock to mom-and-pop investors in the UK and continental Europe as part of the biggest initial public offering of all time.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p13#a261119p13",
+      "title": "South Korea passes $1T in exports in 2026, up from $709B in 2025, becoming the fourth nation globally to reach the milestone after Germany, the US, and China (Reuters)",
+      "url": "https://www.techmeme.com/261119/p13#a261119p13",
+      "author": null,
+      "publishedAt": "2026-11-19T10:50:01.000Z",
+      "content": "Reuters: South Korea passes $1T in exports in 2026, up from $709B in 2025, becoming the fourth nation globally to reach the milestone after Germany, the US, and China — South Korea's exports so far for this year have exceeded $1 trillion, driven by a global AI chip boom, making it the fourth country …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p14#a261119p14",
+      "title": "Sources: Moonshot AI cancelled a $150M contract with a Southeast Asian neocloud to rent access to Nvidia AI chips in an Indonesian data center, after US rules (The Information)",
+      "url": "https://www.techmeme.com/261119/p14#a261119p14",
+      "author": null,
+      "publishedAt": "2026-11-19T10:55:02.000Z",
+      "content": "The Information: Sources: Moonshot AI cancelled a $150M contract with a Southeast Asian neocloud to rent access to Nvidia AI chips in an Indonesian data center, after US rules — Moonshot AI, the Beijing-based developer of the Kimi models, has scrapped a $150 million deal to access Nvidia Blackwell chips through …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stratechery",
+      "externalId": "https://stratechery.com/?p=21285",
+      "title": "An Interview With Eric Seufert About Agentic Commerce",
+      "url": "https://stratechery.com/2026/an-interview-with-eric-seufert-about-agentic-commerce/",
+      "author": "Ben Thompson",
+      "publishedAt": "2026-11-19T11:00:00.000Z",
+      "content": "An interview with Eric Seufert about agentic commerce, including why he thinks ads will be the answer, and why I want retailers who cater to agents.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p15#a261119p15",
+      "title": "Alibaba reports Q2 revenue up 10% to ~$40.7B, above est., and net profit up 3x to ~$9.68B, above ~$3.6B est., as its AI and e-commerce profitability improves (Tracy Qu/Wall Street Journal)",
+      "url": "https://www.techmeme.com/261119/p15#a261119p15",
+      "author": null,
+      "publishedAt": "2026-11-19T11:01:37.000Z",
+      "content": "Tracy Qu / Wall Street Journal: Alibaba reports Q2 revenue up 10% to ~$40.7B, above est., and net profit up 3x to ~$9.68B, above ~$3.6B est., as its AI and e-commerce profitability improves — The company is preparing a Hong Kong listing for its chip unit, T-Head — Alibaba Group recorded a surge in fiscal second-quarter profit …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p16#a261119p16",
+      "title": "Anthropic is set to become the US stock market's largest public benefit corporation by far; the mandate is overseen by a five-member \"long-term benefit trust\" (Cory Weinberg/New York Times)",
+      "url": "https://www.techmeme.com/261119/p16#a261119p16",
+      "author": null,
+      "publishedAt": "2026-11-19T11:10:03.000Z",
+      "content": "Cory Weinberg / New York Times: Anthropic is set to become the US stock market's largest public benefit corporation by far; the mandate is overseen by a five-member “long-term benefit trust” — The artificial intelligence giant will become by far the largest publicly traded “public benefit corporation,” …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/security/2026/11/how-to-tell-a-cyberattack-from-a-plain-old-outage/",
+      "title": "How to tell a cyberattack from a plain old outage",
+      "url": "https://arstechnica.com/security/2026/11/how-to-tell-a-cyberattack-from-a-plain-old-outage/",
+      "author": "Andy Greenberg, wired.com",
+      "publishedAt": "2026-11-19T11:13:01.000Z",
+      "content": "Over the past week, anyone could be forgiven for wondering whether a Diehard IV–style cyberwar had finally arrived in the US. Across just four consecutive business days, a mass Microsoft exchange outage broke IT services for thousands of companies, a Federal Aviation Administration tech screw-up grounded airplanes across the country, a software problem affecting JPMorgan Chase caused another round of disruption, a United Airlines system glitch delayed flights yet again, and an NSA classified network’s downtime left the agency’s staff sitting at home waiting to return to their office at Fort Meade. In the midst of a US war with Iran and rising fears of AI-enabled hacking, this still-unfolding comedy of IT errors colliding across American infrastructure felt to plenty of observers like more than a coincidence. Yet there’s still no evidence that any one of these clustered technological failures were related, much less caused by hackers. Their improbable, sequential timing left Americans anxiously doomscrolling for signs of foul play. But in cases like these, it’s the job of cybersecurity analysts (and reporters at WIRED) to determine—vibes aside—whether the latest tech outage was actually an accident or the result of a cyberattack. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p17#a261119p17",
+      "title": "A look at Jeff Bezos' AI startup Prometheus, which raised $18B and employs ~250 people; sources say it is building an end-to-end agentic AI engineering system (Rebecca Heilweil/Fast Company)",
+      "url": "https://www.techmeme.com/261119/p17#a261119p17",
+      "author": null,
+      "publishedAt": "2026-11-19T11:15:02.000Z",
+      "content": "Rebecca Heilweil / Fast Company: A look at Jeff Bezos' AI startup Prometheus, which raised $18B and employs ~250 people; sources say it is building an end-to-end agentic AI engineering system — Exclusive: Fast Company's investigation into the backgrounds of 130 Prometheus employees reveals a company recruiting talent from aerospace, biotech, defense, and beyond.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261119/p18#a261119p18",
+      "title": "An argument against tech's \"silent consensus\", a belief that AI advances mean the forfeiture of human primacy, and a call for legal and technical frameworks (Dean Ball/OpenAI)",
+      "url": "https://www.techmeme.com/261119/p18#a261119p18",
+      "author": null,
+      "publishedAt": "2026-11-19T11:25:03.000Z",
+      "content": "Dean Ball / OpenAI: An argument against tech's “silent consensus”, a belief that AI advances mean the forfeiture of human primacy, and a call for legal and technical frameworks — Thank you for being here today. As we speak, one of the most significant sets of cybersecurity events in history is happening …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.24654",
+      "title": "CurvDelta: Low-Curvature Delta Modeling For Surgical Learning and Unlearning",
+      "url": "https://huggingface.co/papers/2611.24654",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "CurvDelta: Low-Curvature Delta Modeling For Surgical Learning and Unlearning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.24789",
+      "title": "HINT-WAM: Hindsight-Informed Training for World Action Models",
+      "url": "https://huggingface.co/papers/2611.24789",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "HINT-WAM: Hindsight-Informed Training for World Action Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.24869",
+      "title": "WorldRuler: Interactive World Modeling under Configurable Rules",
+      "url": "https://huggingface.co/papers/2611.24869",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "WorldRuler: Interactive World Modeling under Configurable Rules",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.17600",
+      "title": "LightTAR: Light and Fast Target-Aware Representations for Multimodal Tabular Learning",
+      "url": "https://huggingface.co/papers/2611.17600",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "LightTAR: Light and Fast Target-Aware Representations for Multimodal Tabular Learning",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.23808",
+      "title": "PReMind: When Personal Memory Meets Visual Hazards",
+      "url": "https://huggingface.co/papers/2611.23808",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "PReMind: When Personal Memory Meets Visual Hazards",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.24651",
+      "title": "Piccolo: Co-Evolving Decision Models and Data through Recursive Self-Improvement",
+      "url": "https://huggingface.co/papers/2611.24651",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "Piccolo: Co-Evolving Decision Models and Data through Recursive Self-Improvement",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.23386",
+      "title": "Chorus: Shared N-gram Embeddings with Layer-wise Adaptation",
+      "url": "https://huggingface.co/papers/2611.23386",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "Chorus: Shared N-gram Embeddings with Layer-wise Adaptation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.22673",
+      "title": "FVScore: Specification-Driven Neuro-Symbolic Video Evaluation",
+      "url": "https://huggingface.co/papers/2611.22673",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "FVScore: Specification-Driven Neuro-Symbolic Video Evaluation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.24669",
+      "title": "Movie2Game-Bench: Holistic Evaluation of Film-to-Game Adaptation Beyond Playability",
+      "url": "https://huggingface.co/papers/2611.24669",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "Movie2Game-Bench: Holistic Evaluation of Film-to-Game Adaptation Beyond Playability",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.24941",
+      "title": "UltraTex: Aligning Physical Knowledge for High-Fidelity PBR Texture Generation",
+      "url": "https://huggingface.co/papers/2611.24941",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "UltraTex: Aligning Physical Knowledge for High-Fidelity PBR Texture Generation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.23499",
+      "title": "BiCAT: Bimanual Coordination Action Tokenization",
+      "url": "https://huggingface.co/papers/2611.23499",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "BiCAT: Bimanual Coordination Action Tokenization",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.23236",
+      "title": "PGPO: Prototype-Guided Progressive Obfuscation for Privacy-Preserving LLM-Enhanced Recommendation",
+      "url": "https://huggingface.co/papers/2611.23236",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "PGPO: Prototype-Guided Progressive Obfuscation for Privacy-Preserving LLM-Enhanced Recommendation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.23751",
+      "title": "Thinking Fast, Anywhere: One System-1 for the Decision Points of Any Agent Workflow",
+      "url": "https://huggingface.co/papers/2611.23751",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "Thinking Fast, Anywhere: One System-1 for the Decision Points of Any Agent Workflow",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.24362",
+      "title": "PIPETTE: Prompt Injection Purple-Teaming for Robust LLM Agents",
+      "url": "https://huggingface.co/papers/2611.24362",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "PIPETTE: Prompt Injection Purple-Teaming for Robust LLM Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.22790",
+      "title": "NexSight: Verifiable Tasks for Fine-Grained Agentic Long-Video Understanding",
+      "url": "https://huggingface.co/papers/2611.22790",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "NexSight: Verifiable Tasks for Fine-Grained Agentic Long-Video Understanding",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.24161",
+      "title": "AVTR: Adaptive Multimodal Reasoning with Visual Imagination",
+      "url": "https://huggingface.co/papers/2611.24161",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.268Z",
+      "content": "AVTR: Adaptive Multimodal Reasoning with Visual Imagination",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "anthropic-news",
+      "externalId": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
+      "title": "Donating Agent Skills to the Agentic AI Foundation",
+      "url": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.701Z",
+      "content": "Donating Agent Skills to the Agentic AI Foundation",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "anthropic-news",
+      "externalId": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
+      "title": "An update on independent evaluators",
+      "url": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:39.703Z",
+      "content": "An update on independent evaluators",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://en.globes.co.il/en/article-1001564112",
+      "title": "Amazon nears deal to buy Decart for over $7b",
+      "url": "https://en.globes.co.il/en/article-1001564112",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.515Z",
+      "content": "Amazon nears deal to buy Decart for over $7b en.globes.co.il2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.securityweek.com/palo-alto-networks-to-buy-ai-startup-applied-compute-for-4-5-billion",
+      "title": "Palo Alto Networks to Buy AI Startup Applied Compute for $4.5 Billion",
+      "url": "https://www.securityweek.com/palo-alto-networks-to-buy-ai-startup-applied-compute-for-4-5-billion",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.516Z",
+      "content": "Palo Alto Networks to Buy AI Startup Applied Compute for $4.5 Billion securityweek.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.datacenterdynamics.com/en/news/nscale-brings-nvidia-vera-rubin-nvl72-rack-online",
+      "title": "Nscale brings Nvidia Vera Rubin NVL72 rack online",
+      "url": "https://www.datacenterdynamics.com/en/news/nscale-brings-nvidia-vera-rubin-nvl72-rack-online",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.517Z",
+      "content": "Nscale brings Nvidia Vera Rubin NVL72 rack online datacenterdynamics.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theinformation.com/articles/chinas-moonshot-ai-scraps-150-million-deal-access-nvidia-chips-indonesia",
+      "title": "China’s Moonshot AI Scraps $150 Million Deal to Access Nvidia Chips in Indonesia",
+      "url": "https://www.theinformation.com/articles/chinas-moonshot-ai-scraps-150-million-deal-access-nvidia-chips-indonesia",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.518Z",
+      "content": "China’s Moonshot AI Scraps $150 Million Deal to Access Nvidia Chips in Indonesia theinformation.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://architectlabs.com/blog/frostbite",
+      "title": "Introducing Frostbite: A new CPU architecture discovered, designed, and verified end-to-end by AI | Architect Labs",
+      "url": "https://architectlabs.com/blog/frostbite",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.518Z",
+      "content": "Introducing Frostbite: A new CPU architecture discovered, designed, and verified end-to-end by AI | Architect Labs architectlabs.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://newsletter.drorpoleg.com/p/here-come-the-ants-anthropic-goes",
+      "title": "Here Come the Ants: Anthropic's Cash, Cult, and Code",
+      "url": "https://newsletter.drorpoleg.com/p/here-come-the-ants-anthropic-goes",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.519Z",
+      "content": "Here Come the Ants: Anthropic's Cash, Cult, and Code newsletter.drorpoleg.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://zerodha.tech/blog/high-performance-distributed-blob-storage",
+      "title": "Distributed, high-performance blob storage on SQLite",
+      "url": "https://zerodha.tech/blog/high-performance-distributed-blob-storage",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.519Z",
+      "content": "Distributed, high-performance blob storage on SQLite zerodha.tech12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wiz.io/blog/nginx-http2-rce-vulnerabilities",
+      "title": "Unauthenticated Remote Code Execution in NGINX: CVE-2026-123633 and CVE-2026-123007 | Wiz Blog",
+      "url": "https://www.wiz.io/blog/nginx-http2-rce-vulnerabilities",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.520Z",
+      "content": "Unauthenticated Remote Code Execution in NGINX: CVE-2026-123633 and CVE-2026-123007 | Wiz Blog wiz.io12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.ruby-lang.org/en/news/2026/11/18/multiple-vulnerabilities-in-regexp-and-string",
+      "title": "Security advisories: multiple vulnerabilities in Regexp and String case conversion | Ruby",
+      "url": "https://www.ruby-lang.org/en/news/2026/11/18/multiple-vulnerabilities-in-regexp-and-string",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.520Z",
+      "content": "Security advisories: multiple vulnerabilities in Regexp and String case conversion | Ruby ruby-lang.org2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://hackernoon.com/why-ai-agent-security-starts-with-permissions-not-prompts?source=rss",
+      "title": "Why AI Agent Security Starts With Permissions, Not Prompts",
+      "url": "https://hackernoon.com/why-ai-agent-security-starts-with-permissions-not-prompts?source=rss",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.536Z",
+      "content": "Why AI Agent Security Starts With Permissions, Not Prompts hackernoon.com16 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://fundaai.substack.com/p/deepant-a-history-making-ipo-and",
+      "title": "Deep|ANT: A History-Making IPO and Shifts in Customer Demand and Competition",
+      "url": "https://fundaai.substack.com/p/deepant-a-history-making-ipo-and",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.538Z",
+      "content": "Deep|ANT: A History-Making IPO and Shifts in Customer Demand and Competition fundaai.substack.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theregister.com/ai-and-ml/2026/11/19/uncensored-ai-models-are-thriving-on-code-hosting-platforms/5310891",
+      "title": "Uncensored AI models are thriving on code hosting platforms",
+      "url": "https://www.theregister.com/ai-and-ml/2026/11/19/uncensored-ai-models-are-thriving-on-code-hosting-platforms/5310891",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.538Z",
+      "content": "Uncensored AI models are thriving on code hosting platforms theregister.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/11/18/intel-first-18a-foundry-customer.html",
+      "title": "Intel signs first external customer for advanced 18A chips",
+      "url": "https://www.cnbc.com/2026/11/18/intel-first-18a-foundry-customer.html",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.540Z",
+      "content": "Intel signs first external customer for advanced 18A chips cnbc.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://restofworld.org/2026/ai-jobs-skills-gig-work",
+      "title": "AI isn’t replacing your job. It’s turning it into low-paid gig work",
+      "url": "https://restofworld.org/2026/ai-jobs-skills-gig-work",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.540Z",
+      "content": "AI isn’t replacing your job. It’s turning it into low-paid gig work restofworld.org5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcentral.co.za/gta-6-launch-reviews-critics/288521",
+      "title": "GTA 6 is here, and the critics love it",
+      "url": "https://techcentral.co.za/gta-6-launch-reviews-critics/288521",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.542Z",
+      "content": "GTA 6 is here, and the critics love it techcentral.co.za5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked",
+      "title": "More banks says customers using AI agents are on their own — even if they get hacked",
+      "url": "https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.544Z",
+      "content": "More banks says customers using AI agents are on their own — even if they get hacked techcrunch.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://kapteko.com/15-million-webservers",
+      "title": "15 million web servers on one VM - smoltcp, DPDK, AF_XDP · kapteko",
+      "url": "https://kapteko.com/15-million-webservers",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.544Z",
+      "content": "15 million web servers on one VM - smoltcp, DPDK, AF_XDP · kapteko kapteko.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://aranya.tech/blog/kv-cache",
+      "title": "KV cache: plan GPU memory for context and concurrency",
+      "url": "https://aranya.tech/blog/kv-cache",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.545Z",
+      "content": "KV cache: plan GPU memory for context and concurrency aranya.tech8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cio.com/article/4250381/microsoft-keeps-failing-why-cant-its-customers-leave.html",
+      "title": "Microsoft keeps failing. Why can’t its customers leave?",
+      "url": "https://www.cio.com/article/4250381/microsoft-keeps-failing-why-cant-its-customers-leave.html",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.545Z",
+      "content": "Microsoft keeps failing. Why can’t its customers leave? cio.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://hackernoon.com/nvidias-dory-shows-why-thinking-longer-doesnt-make-ai-smarter?source=rss",
+      "title": "NVIDIA's Dory Shows Why Thinking Longer Doesn't Make AI Smarter",
+      "url": "https://hackernoon.com/nvidias-dory-shows-why-thinking-longer-doesnt-make-ai-smarter?source=rss",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.547Z",
+      "content": "NVIDIA's Dory Shows Why Thinking Longer Doesn't Make AI Smarter hackernoon.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.axios.com/2026/11/19/anthropic-ipo-ai-research-rsi-forecast",
+      "title": "The AI paradox: smarter machines meet troubled humans",
+      "url": "https://www.axios.com/2026/11/19/anthropic-ipo-ai-research-rsi-forecast",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.547Z",
+      "content": "The AI paradox: smarter machines meet troubled humans axios.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.fastcompany.com/91645039/replits-ceo-on-its-stunning-turnaround-ai-psychosis-and-the-risk-silicon-valley-is-ignoring",
+      "title": "Replit’s CEO on its stunning turnaround, ‘AI psychosis,’ and the risk Silicon Valley is ignoring",
+      "url": "https://www.fastcompany.com/91645039/replits-ceo-on-its-stunning-turnaround-ai-psychosis-and-the-risk-silicon-valley-is-ignoring",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.550Z",
+      "content": "Replit’s CEO on its stunning turnaround, ‘AI psychosis,’ and the risk Silicon Valley is ignoring fastcompany.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.greptile.com/blog/trex-computer-use",
+      "title": "How Should an LLM See a Computer? | Greptile",
+      "url": "https://www.greptile.com/blog/trex-computer-use",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.551Z",
+      "content": "How Should an LLM See a Computer? | Greptile greptile.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.financialexpress.com/market/global-markets/anthropic-ipo-2800-staff-including-junior-employees-set-to-become-millionaires/4388477",
+      "title": "Anthropic IPO: 2,800 staff, including junior employees, set to become millionaires - Global Markets News | The Financial Express",
+      "url": "https://www.financialexpress.com/market/global-markets/anthropic-ipo-2800-staff-including-junior-employees-set-to-become-millionaires/4388477",
+      "author": null,
+      "publishedAt": "2026-11-19T11:31:40.552Z",
+      "content": "Anthropic IPO: 2,800 staff, including junior employees, set to become millionaires - Global Markets News | The Financial Express financialexpress.com2 min read",
       "topics": [
         "ai-llms",
         "devtools-infra",
