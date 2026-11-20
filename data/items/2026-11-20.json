@@ -1,6 +1,6 @@
 {
   "day": "2026-11-20",
-  "generatedAt": "2026-11-20T17:37:44.680Z",
+  "generatedAt": "2026-11-20T22:22:24.830Z",
   "items": [
     {
       "sourceSlug": "openai",
@@ -81,6 +81,21 @@
       "author": "Mark Knichel",
       "publishedAt": "2026-11-19T01:10:00.000Z",
       "content": "are now in public beta for Pro and Enterprise teams. This optional upgrade for individual Vercel projects adds bot and traffic-source signals, Page Integrity for monitoring and controlling client-side scripts and connections, and additional Firewall controls and alerts.Priority Projects is free on all plans. You can enable it to challenge non-browser traffic while allowing verified bots. Priority adds more detailed bot signals: categories, verification status, and names where available. Use these signals in:Bot protection Priority adds Traffic Sources labels for requests from Tor exit nodes, VPNs, open or anonymizing proxies, and residential proxies. It also labels traffic flagged by abuse blocklists. Use these labels in custom Firewall rules, analyze them in Firewall Observability, or read them from the request header in your application. A request can have multiple labels.x-vercel-waf-source Use the Traffic Sources managed ruleset to log, challenge, or block traffic by source category. Review matching traffic before enabling blocking, since these categories can also include legitimate users. To enable the Traffic Sources managed ruleset from the CLI, run . This stages the change; review it with , then apply it with .vercel firewall managed-rulesets enable traffic-sourcesvercel firewall diffvercel firewall publish Priority Projects get access to to monitor client-side scripts and connections, receive alerts when new scripts or connections are detected, and block unapproved resources.Page Integrity Page Integrity maintains a resource inventory and uses for discovery and enforcement, without adding client-side JavaScript.Content Security Policy (CSP) It operates in three stages: Page Integrity must be enabled separately. Configure monitoring and review resources in the dashboard; the CLI can also show its resource inventory: are available on all plans. Priority adds anomaly alerts for bot traffic and requests matching system or custom Firewall rules. Use these alerts to investigate potential attacks and unusual traffic patterns.DDoS alerts Configure notifications in your team’s , with delivery options including email, Slack, and webhooks.Settings > Alerts View recent alerts with . To manage alert configuration from the CLI, see .vercel alerts --since 24hvercel monitors On Pro, Priority lets you enable the to protect against common web application attacks. Enterprise projects can already enable it without Priority.OWASP Core Ruleset Add it as a team default from , or enable it for a linked project via the CLI with followed by . is billed separately per inspected request and GB of inspected payload.Security > RulesOWASP inspectionvercel firewall managed-rulesets enable owasp --yesvercel firewall publish Priority adds response conditions to the available on all plans. Count requests toward a limit only when their responses match specified HTTP status codes or response headers. For example, count responses from failed login attempts or responses for missing pages, rather than every matching request.rate-limit rules401404 Priority increases the following per-project limits (shown as standard → with Priority): Priority costs $200 per project per month. Enable it from your project’s or page, or with the CLI.FirewallSettings For the CLI, update to the latest version with , then enable Priority for the project you want to upgrade:vercel upgrade Page Integrity usage is billed separately. Its standard rate is $2 per 1,000 monitored page views, with each view covering up to 100 scripts. Learn more in the .Priority Projects documentation Read more Bot signals Traffic Sources Page Integrity Firewall controls and alerts Get started Match on , , , and in the dashboard or with .Firewall rules:bot_namebot_categorybot_statusbot_protectionvercel firewall rules add Read , , and from request headers in Routing Middleware and Vercel Functions. See the for verified and claimed bot names.Application code:x-vercel-bot-categoryx-vercel-bot-namex-vercel-verified-botheader reference Logs show the Firewall action on all plans. Priority adds the matched rule and bot details where available. In Firewall Observability, Priority adds for unverified traffic. Log Drains also include bot classifications.Logs and Observability:botCategory Discover scripts using report-only CSP headers on sampled requests.Detect: Approve or reject scripts and record business justifications.Review: Enforce a CSP that blocks scripts outside the approved inventory.Block: Anomaly alerts OWASP Core Ruleset Response-based rate limiting Higher Firewall limits",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/agents-can-now-find-vercel-cli-commands-by-describing-the-task",
+      "title": "Agents can now find Vercel CLI commands by describing the task",
+      "url": "https://vercel.com/changelog/agents-can-now-find-vercel-cli-commands-by-describing-the-task",
+      "author": "Melkey Moksyakov",
+      "publishedAt": "2026-11-19T05:00:00.000Z",
+      "content": "Coding agents can now use to find Vercel CLI commands by describing a task in plain language.vercel help search The search returns a list of matching commands. Add to include the help page for the first result in the same call. For example, returns the options and examples for .--with-helpvercel help search \"roll back production\" --with-helpvercel rollback Search also supports: Search recognizes common wording, such as “show” instead of “list,” and handles minor spelling mistakes. The CLI also includes a skill that tells coding agents to start with when looking for a command. Vercel doesn't log your search text.vercel help search Update to the latest Vercel CLI with .vercel upgrade Read more When a Vercel API endpoint matches the task, search returns a command with the request path and placeholders for every required input. The agent can fill in the values without guessing the path.API endpoints:vercel api Use to return search results as JSON. Combine it with to include usage instructions, options, and examples for the first result.JSON output:--json--with-help",
       "topics": [
         "devtools-infra",
         "frontend"
@@ -300,6 +315,49 @@
       "author": null,
       "publishedAt": "2026-11-20T00:00:00.000Z",
       "content": "Today Anthropic, PBC announced the closing of its initial public offering of an aggregate of 1,127,000,000 shares of its Class A common stock at a public offering price of $83.00 per share, including the full exercise by the underwriters of their option to purchase an additional 147,000,000 shares of Class A common stock from Anthropic at the initial public offering price.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/inkling2mini",
+      "title": "Welcome Inkling 2 Mini, Cutting-edge Performance for your Local Setup",
+      "url": "https://huggingface.co/blog/inkling2mini",
+      "author": null,
+      "publishedAt": "2026-11-20T00:00:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/business/customer-stories/hebbia",
+      "title": "Hebbia sees improvements in financial research with GPT-6 Astra",
+      "url": "https://openai.com/business/customer-stories/hebbia",
+      "author": null,
+      "publishedAt": "2026-11-20T00:00:00.000Z",
+      "content": "Hebbia tested GPT-6 Astra for financial research. Its prerelease evaluations found gains in source coverage, citation relevance, and presentation quality.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/introducing-medchembench",
+      "title": "Can AI help scientists identify promising drug candidates?",
+      "url": "https://openai.com/index/introducing-medchembench",
+      "author": null,
+      "publishedAt": "2026-11-20T00:00:00.000Z",
+      "content": "MedChemBench evaluates how well AI models interpret molecular structures, reason from experimental evidence, and select compounds in early drug discovery.",
       "topics": [
         "ai-llms"
       ],
@@ -1317,6 +1375,21 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/vercel-completes-iso-iec-42001-2023-certification",
+      "title": "Vercel completes ISO/IEC 42001:2023 certification",
+      "url": "https://vercel.com/blog/vercel-completes-iso-iec-42001-2023-certification",
+      "author": "Kacee Taylor",
+      "publishedAt": "2026-11-20T05:00:00.000Z",
+      "content": "Vercel has completed its ISO/IEC 42001:2023 certification, meeting the international standard for AI management systems. This certification gives our customers confidence to ship fast with agents on Vercel, demonstrating how Vercel designs, builds, operates, and governs our AI products. Our AI management system covers Vercel’s underlying infrastructure and core AI products, including AI Gateway, Vercel Agent, v0, AI-based open source software and frameworks, as well as the people and processes behind them. Vercel’s certificate is available , and additional audit documentation is available through our .hereTrust Center ISO/IEC 42001:2023 is the international standard for and applies to any organization that develops, provides, or uses AI.AI management systems An AI management system is the set of policies, roles, processes, and controls through which an organization consistently governs AI activities. The standard includes requirements for leadership accountability, AI risk assessment, lifecycle management, data governance, transparency, and continual improvement. The requirement that makes ISO 42001 distinct from security standards is the AI system impact assessment. Security frameworks cover how an organization protects information, but ISO 42001 covers how it builds and uses AI, including the assessment of how an AI system impacts the people it touches, and the benefits and harms that would result when that system materially changes. To obtain the certification, we underwent a two-stage audit performed by an independent, accredited certification body, which evaluated whether our AI management system is designed correctly and operates effectively. The certificate is valid for three years, with annual surveillance audits in between. “Enterprises want agents in production, but no one should have to choose between moving fast with AI and governing it well,” said Talha Tariq, CTO for Security. “We built our AI governance to run as continuously as we ship, and ISO 42001 is the independent check that it works.” AI moved into the critical path of how software gets built faster than the governance around it did. Teams are shipping agents, assistants, and model-backed features on Vercel every day, and the questions that follow are no longer hypothetical: We pursued ISO 42001 because we are committed to providing enterprise-grade AI products. This certification attests that we run deliberate, auditable AI systems. There are three primary ways AI is governed at Vercel. Impact assessments Vercel conducts AI system impact assessments which cover foreseeable benefits, harms, failures, and misuse. We reassess these risks and benefits when the system materially changes. Evaluations before release We maintain evals for our AI systems covering performance, safety, and security, with human review for material changes. Clear data commitments Where it is not the default option based on pricing plan, we provide customers the ability to set their data handling preferences ranging from zero data retention (ZDR) to training opt-out. Our AI policy is available at v0.app/policy. We are committed to helping teams ship fast with confidence in the way AI is built and governed at Vercel. ISO 42001 is proof of that commitment, giving our customers: AI is changing what people build on Vercel, and we intend for the governance around it to keep pace. We’ll continue to expand the scope of our certifications as our products grow. Read more What is ISO 42001? What this means for customers Ship fast, with confidence Who is accountable when a model behaves unexpectedly? What data reached a model? How is the system monitored once it’s live? Who decided the system was ready? Vercel’s AI systems have been audited, which means customers using our AI products start from a reviewed foundation instead of an unexamined one.Confidence in agentic infrastructure: Agents now drive the development and deployment of applications. Governance and oversight that occurs quarterly can’t govern software that changes hourly, so we built a system that reviews AI as continuously as we ship it.Governance can ship at the speed of the product: Customers and partners can rely on this certification, alongside our other compliance attestations, to meet AI governance diligence requirements for faster third-party vendor onboarding.Simplified and accelerated assurance: ISO 42001 requires that responsibilities be allocated across the AI supply chain. Our outlines what Vercel is accountable for and what remains yours, the same shared-responsibility model we use for security.Clear lines of responsibility:documentation Annual surveillance audits mean this isn’t a one-time claim. As our AI products change, the system that governs them stays under independent review.Discipline that holds over time: How we govern AI at Vercel",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "hacker-news",
       "externalId": "50570479",
       "title": "Google is pushing OEMs against GrapheneOS and bootloader unlocking",
@@ -2139,6 +2212,20 @@
       "mediaType": "text",
       "points": 122,
       "comments": 58
+    },
+    {
+      "sourceSlug": "openai",
+      "externalId": "https://openai.com/index/combatting-adversarial-distillation",
+      "title": "Combatting adversarial distillation",
+      "url": "https://openai.com/index/combatting-adversarial-distillation",
+      "author": null,
+      "publishedAt": "2026-11-20T10:00:00.000Z",
+      "content": "OpenAI’s layered approach to adversarial distillation combines model training, safeguards, detection, and enforcement to protect against capability extraction.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
     },
     {
       "sourceSlug": "hacker-news",
@@ -3044,6 +3131,21 @@
       "comments": 104
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/vercel-functions-now-support-request-bodies-up-to-20mib",
+      "title": "Vercel Functions now support request bodies up to 20MiB",
+      "url": "https://vercel.com/changelog/vercel-functions-now-support-request-bodies-up-to-20mib",
+      "author": "Gal Schlezinger",
+      "publishedAt": "2026-11-20T13:00:00.000Z",
+      "content": "now accept inbound request bodies up to 20MiB, up from 4.5MB, in Public Beta.Vercel Functions To turn this on, set the environment variable. The opt-in applies to the whole project in the environment where you set it, so you can test the larger limit on preview before enabling it in production. It requires the project's functions to use the performance memory setting of 4GB. It applies to functions on the Node.js, Python, and Bun runtimes, and to Routing Middleware. Functions and Routing Middleware on the Edge runtime keep the 4.5MB cap and return 413 on oversize bodies, so moving them onto the larger limit means switching to the Node.js runtime with , or in Next.js.VERCEL_SUPPORT_LARGE_REQUEST_BODY=1runtime: 'nodejs'proxy.ts When a project opts in, Routing Middleware receives request headers and metadata but no request body, enforced at the project level. Middleware still runs and still sees every other request header, so body-dependent middleware behavior is the one thing that becomes unavailable. This avoids sending the body twice, to both middleware and the target function, which would raise cost and time to first byte. When handling larger request bodies, read the body promptly and avoid holding it in memory to prevent backpressure and memory issues. Learn more in the .Vercel Functions limitations documentation Read more",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261120/p13#a261120p13",
       "title": "Uber quietly launched Uber Kids as a pilot in three US cities for kids as young as 10, building on its teen ride-hailing service for those aged 13 to 17 (Kirsten Korosec/TechCrunch)",
@@ -3283,6 +3385,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50576232",
+      "title": "Finite-time blow-up for the Navier–Stokes equations",
+      "url": "https://github.com/tristanbuckmaster/navier-stokes/",
+      "author": "trotro",
+      "publishedAt": "2026-11-20T15:34:31.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 227,
+      "comments": 75
+    },
+    {
       "sourceSlug": "newcomer",
       "externalId": "https://www.newcomer.co/p/after-anthropic-euphoria-nvidia-amd",
       "title": "After Anthropic Euphoria, Nvidia, AMD & the Broader Market Offer a Harsh Reality Check",
@@ -3372,6 +3493,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50577265",
+      "title": "Language Models Can Rewrite Their Own Weights",
+      "url": "https://arxiv.org/abs/2611.21885",
+      "author": "lwhsiao",
+      "publishedAt": "2026-11-20T16:29:06.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 298,
+      "comments": 99
+    },
+    {
       "sourceSlug": "simon-willison",
       "externalId": "https://simonwillison.net/2026/Nov/20/levent-alpoge/",
       "title": "Quoting Levent Alpöge",
@@ -3400,6 +3540,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50577901",
+      "title": "Google Workers Tell Their Employer Not to Punish Schools That Don't Want AI",
+      "url": "https://www.motherjones.com/politics/2026/11/google-alphabet-union-school-ai-protest-gemini-workers-petition/",
+      "author": "cdrnsf",
+      "publishedAt": "2026-11-20T16:59:27.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 216,
+      "comments": 154
+    },
+    {
       "sourceSlug": "the-verge",
       "externalId": "https://www.theverge.com/?p=1038692",
       "title": "Teenage Engineering’s first CD player puts the spinning disc on display",
@@ -3414,6 +3573,20 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "stackoverflow-blog",
+      "externalId": "a6ff6a3e-5185-475e-b87f-d6095b49844e",
+      "title": "Dispatches from O'Reilly: Inside a software factory",
+      "url": "https://stackoverflow.blog/2026/11/20/dispatches-from-o-reilly-inside-a-software-factory/",
+      "author": "Paul Iusztin",
+      "publishedAt": "2026-11-20T17:18:38.000Z",
+      "content": "Go from vibe coding to generating clean, maintainable code",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261120/p20#a261120p20",
       "title": "Scott Bessent says Trump and Xi agreed that military AI decisions should involve humans, and that the spying allegations involving Alice Huang didn't come up (Reuters)",
@@ -3423,6 +3596,39 @@
       "content": "Reuters: Scott Bessent says Trump and Xi agreed that military AI decisions should involve humans, and that the spying allegations involving Alice Huang didn't come up — US President Donald Trump and Chinese President Xi Jinping agreed humans should always be involved in military decisions …",
       "topics": [
         "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50578358",
+      "title": "Unforced Navier-Stokes Singularity and the Generalized Riemann Hypothesis",
+      "url": "https://terrytao.wordpress.com/2026/11/20/unforced-euler-singularity-unforced-navier-stokes-singularity-and-the-generalized-riemann-hypothesis/",
+      "author": "archon1410",
+      "publishedAt": "2026-11-20T17:21:36.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 251,
+      "comments": 77
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1035460",
+      "title": "Here are the Apple deals actually worth picking up ahead of Black Friday",
+      "url": "https://www.theverge.com/gadgets/1035460/best-early-black-friday-apple-deals-2026",
+      "author": "Sheena Vasani",
+      "publishedAt": "2026-11-20T17:33:59.000Z",
+      "content": "A new pair of AirPods or the latest Apple Watch can make a great holiday gift, but they can also take a pretty big dent out of your budget. That’s especially true this year, as rising hardware prices have made MacBooks and other Apple devices even more expensive. Fortunately, Black Friday offers a chance to save, especially since great deals are already available on a wide range of Apple devices. Some discounts even extend to recent releases like the Apple Watch Series 12 and touchscreen MacBook Pro, which have dropped to new lows. Most of the discounts below are promoted as Black Friday deals, but we’ve also included a few that aren’t technically part of the shopping event but have “coincidentally” dropped in price in the last week or so. Black Friday isn’t until November 27th, however, so some prices could fall further in the coming days. Apple is also kicking off its own Black Friday shopping event that day, offering up to $300 in gift cards with select purchases. That said, if you don’t want to wait, we think the deals below are already worth taking advantage of. Earbud and headphone deals AirPods Pro 3 The latest AirPods Pro offer improved noise cancellation and richer bass, along with built-in heart sensors that work with Apple’s Fitness app to monitor calories burned across more than 50 workouts. Read our review. Where to Buy: $249 $179 at Amazon $249 $179 at Walmart $249 $179.99 at Best Buy Beats Powerbeats Pro 2 Beats’ fitness-focused earbuds feature ear hooks designed to stay put during even the most intense workouts as well as built-in heart rate monitoring. They also deliver relatively bass-rich sound for their design, along with solid noise cancellation, wireless charging, and AirPods features like adaptive audio thanks to Apple’s H2 chip. Read our review. Where to Buy: $249 $179.95 at Amazon $249 $179.95 at Walmart $249.99 $179.99 at Best Buy You can buy the AirPods 4 on sale at Walmart for around $89 ($40 off), which is $20 shy of their best price. Apple’s last-gen earbuds lack active noise cancellation, but they still deliver good, relatively bass-rich sound, even if they don’t quite match the newer AirPods 5. They also offer voice call quality on par with the latest AirPods Pro. Read our review. The second-gen AirPods Max are down to $419 ($130 off) at Amazon, which is $19 shy of their best price to date (Best Buy and Target also have them for about $10 more). Like the original, Apple’s latest over-ear headphones feature a luxurious build consisting of aluminum, steel, and a mesh fabric, but they offer better sound and noise cancellation. The new H2 chip also enables features like adaptive audio and live translation. Read our review. Beats Studio Pro The latest Beats Studio Pro feature improved noise cancellation, sound quality, and comfort. They also support lossless audio over USB-C and offer native support for a range of iOS and Android features like other Beats headphones. Read our review. Where to Buy: $349.99 $139.95 at Amazon $349.99 $149 at Walmart $349.99 $149.95 at Best Buy Beats 360 headphones The Beats 360 are ANC headphones for people who prefer headphones over earbuds at the gym. They’re Beats’ first IP-rated cans, with ear cushions that you can easily remove for cleaning (or style points). They also stay in place during most exercises, while still delivering solid bass. Read our review. Where to Buy: $349.99 $249 at Amazon $349.99 $249.99 at Best Buy If you want over-ears and are comfortable going without active noise cancellation, the Beats Solo 4 are down to $79.99 ($120 off) at Target in pink and white through November 22nd, marking a new low price. Amazon also has the pink headphones on sale for $79.99, while other colors are $20 more at both retailers. The headphones are a noticeable improvement over their predecessor, delivering more detailed sound and support for lossless audio. They also last up to 50 hours on a single charge, while their memory foam ear cushions make them comfortable enough for long listening sessions. Read our review. The Beats Studio Buds Plus are down to around $89.95 ($80 off) at Amazon, Best Buy, and Target, nearly matching their lowest price to date. The wireless earbuds feature a slick, eye-catching transparent option and solid noise cancellation, especially at this price. They’re also exceptionally comfortable, with four ear tip sizes to help you find a secure fit. Sure, you don’t get wireless charging, but they offer IPX4 water resistance and up to nine hours of battery life on a single charge. Read our review. MacBook deals MacBook Neo Apple’s most affordable laptop uses the same A18 Pro chip found in the iPhone 16 Pro. It features a vibrant 13-inch display, surprisingly good speakers, and 8GB of RAM, making it a solid option for students and anyone who needs a laptop for everyday tasks. Read our review. Where to Buy: $799 $749 at Amazon (512GB) $699 $649 at Best Buy (256GB) $699 $649 at Amazon (256GB) The recently released 16.3-inch MacBook Pro with a PROLED XDR display, 24GB of RAM, and 1TB of storage is on sale starting at $3,249 ($150 off) — a new low price — at Amazon and Best Buy. The redesigned laptop is Apple’s first with an OLED touchscreen, which allows for rich colors and deep blacks. It’s also noticeably thinner and lighter than the non-touchscreen 16-inch MacBook Pro, and features a new Dynamic Island that replaces the notch and provides quick access to controls and notifications. Read our review. Apple MacBook Air (M5) Apple’s latest MacBook Air features an M5 chip and starts with 512GB of storage, with significantly faster performance than prior generations. It’s still an excellent machine despite the higher base price, especially given the battery life and speakers. Read our review. Where to Buy: $1299 $1049 at Amazon (13-inch, 512GB) $1299 $1049 at Best Buy (13-inch) $1499 $1249 at Amazon (15-inch, 512GB) The 14-inch M6-powered MacBook Pro is on sale starting at $1,849 ($150 off) at Amazon and Best Buy, which is a new low price. The Pro builds on its predecessor with a faster chip and support for Wi-Fi 7. In our testing, it handled multitasking, photo editing, and occasional video editing with ease while still delivering exceptional battery life. It lacks the newer MacBook Pro’s gorgeous OLED display, but its Mini LED screen still looks great, especially given its smooth 120Hz refresh rate. It also offers excellent speakers and a good selection of ports, including three Thunderbolt 4 ports, HDMI, and an SD card slot. Read our review. Apple Watch deals Apple Watch Series 12 The Apple Watch Series 12 introduces AI-powered Audio Intelligence features, including sound recognition alerts, Live Rewind, and Siri Recap. It can also track your heart rate every five seconds, even when you’re not exercising, and offers faster charging than prior models. Read our review. Where to Buy: $399 $329 at Amazon (GPS, 42mm) $399 $329 at Best Buy (GPS, 42mm) $449 $379 at Amazon (GPS, 46mm) The Apple Watch SE 3 is on sale in the 40mm / GPS configuration starting at $199 ($50 off) at Amazon, Best Buy, and Walmart, matching its best price to date. Apple’s newest entry-level smartwatch remains our top recommendation for anyone who wants a basic fitness tracker, as it offers all the essentials alongside an always-on display and Apple’s S10 chip, which enables on-device Siri requests. AirTags, chargers, and other deals Apple AirTag (second-gen) Apple’s latest AirTags feature an upgraded ultra-wideband chip for more precise location tracking, a noticeably louder speaker, and an expanded Bluetooth range. Read our review. Where to Buy: $29 $23 at Amazon $29 $23 at Walmart $29 $23 at Best Buy Baseus AM52 power bank (with built-in cable) The Baseus PicoGo AM52 is a 10,000mAh magnetic power bank that supports fast 25W Qi2.2 wireless charging and up to 45W wired charging via its built-in USB-C cable. It was one of the fastest wireless chargers we tested, bringing an iPhone 17 Pro Max to 65 percent in an hour. Read our guide to the best Qi2 batteries. Where to Buy: $79.99 $52.99 at Amazon (orange) $79.99 $56.98 at Amazon (black) $79.99 $59.99 at Amazon (pink) You can buy the last-gen iPad Mini with 128GB of storage and Wi-Fi on Amazon in select colors for $484 ($115 off), which is the best price we’ve seen since Apple’s recent price hikes. It has a smaller screen and a slower chip than the newer model, and it lacks an OLED screen, the Acoustic Display, and water resistance. Still, it’s a great option for reading and everyday use that’s currently more affordable than its $699 successor, with support for Apple Intelligence and the Apple Pencil Pro. Read our review. Sharge Icemag 3 Power Bank The Icemag 3 can wirelessly deliver up to 25W of power to compatible smartphones and up to 35W wired charging via USB-C. The 10,000mAh Qi2 charger can also act as a foldable kickstand, comes with an integrated USB-C cable that serves as a lanyard, and sports a transparent design with colorful RGB lighting. Where to Buy: $79.9 $63.9 at Amazon (black) $79.9 $63.9 at Amazon (white) $79.9 $63.9 at Sharge Apple Studio Display (2026) Designed to pair with a Mac, the latest Apple Studio Display features a sharp 5K Retina display, a great 12-megapixel Center Stage camera that keeps you in frame during video calls, and a good six-speaker sound system with spatial audio. Sadly, it only offers two Thunderbolt 5 ports in addition to a pair of USB-C ports. Read our review. Where to Buy: $1599 $1399 at Amazon Apple’s latest Magic Mouse is matching its all-time low of $59.99 ($20 off) at Amazon. The wireless mouse features a touch-sensitive surface that lets you scroll through documents and swipe between apps with simple gestures; it also pairs automatically with compatible Macs and offers support for USB-C.",
+      "topics": [
+        "general"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -4089,6 +4295,1286 @@
       "author": null,
       "publishedAt": "2026-11-20T17:37:36.969Z",
       "content": "Your AI agent’s “memory problem” may be something else thenewstack.io7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50578794",
+      "title": "Anthropic shares tank after IPO as the Nasdaq erases 2026 gains",
+      "url": "https://www.nbcnews.com/business/markets/anthropic-shares-markets-selloff-nasdaq-rcna610394",
+      "author": "lelanthran",
+      "publishedAt": "2026-11-20T17:44:01.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 169,
+      "comments": 167
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1038834",
+      "title": "Google says it’s going to shut off Google Assistant on smart speakers next year",
+      "url": "https://www.theverge.com/tech/1038834/google-assistant-smart-speakers-nest-app-killed-shut-down",
+      "author": "Jay Peters",
+      "publishedAt": "2026-11-20T18:00:00.000Z",
+      "content": "Google is announcing some significant changes to its smart home software. Starting next year, the company will shut down the Nest app in favor of the Google Home app and retire Google Assistant on its smart home devices. The Nest app shutdown takes place on January 25th, 2027, meaning you'll have to manage your Nest products, including Nest thermostats, cameras, and Nest Protect alarms, from the Google Home app instead. If you get the Google Home app set up, Google will move over your Nest devices, including cameras and video history, to the Home app on that January 25th date. The company will also automatically transfer Nest Aware (1st Gen … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1037749",
+      "title": "Multiplying your Switch 2’s storage costs less than usual right now",
+      "url": "https://www.theverge.com/gadgets/1037749/microsd-express-card-nintendo-switch-2-black-friday-2026-deal-sale",
+      "author": "Cameron Faulkner",
+      "publishedAt": "2026-11-20T18:15:00.000Z",
+      "content": "Expanding your Nintendo Switch 2’s 256GB of built-in storage with a microSD card is pricier than it was with Nintendo’s original console. That’s because microSD Express cards, while physically identical to ones you might have lying around, have faster read and write speeds. Thankfully, Samsung’s 256GB model has dropped to $44.99 at Amazon ahead of Black Friday, which is a few bucks off its usual price but still well below its $79.99 MSRP. Sandisk’s 256GB card, meanwhile, is available for $49.99 ($10 off Amazon’s typical list price) from Amazon and Sandisk, if you prefer one brand over the other for some reason. For those who don’t want to think about upgrading their Switch 2’s storage again, both brands’ 512GB microSD Express cards are selling for a fair $99.99 on Amazon. That gives you double the storage for roughly twice the price of a 256GB card, as it should be. Samsung P9 microSD Express Card Where to Buy: $79.99 $44.99 at Amazon (256GB) $149.99 $99.99 at Amazon (512GB) Sandisk microSD Express card Where to Buy: $166.99 $99.99 at Best Buy (512GB) $73.99 $49.99 at Amazon (256GB) $166.99 $98.99 at Amazon (512GB) I suspect the 256GB option will be enough for most Switch 2 players, unless you buy a lot of games. The Legend of Zelda: Ocarina of Time remake is 24.9 gigabytes, for example. Other Nintendo-developed games tend to be similar in install size, though it’s all over the place for third-party game makers; Resident Evil Requiem (which also recently dropped to $39.99 on Amazon) is relatively small at 28.7 gigs, while The Witcher 3: Wild Hunt — Remastered is about 50. Some games take up even more storage.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50579331",
+      "title": "We promoted developers into architects without informing them",
+      "url": "https://manidoraisamy.com/developer-to-architect.html",
+      "author": "QueensGambit",
+      "publishedAt": "2026-11-20T18:17:51.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 194,
+      "comments": 121
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50579568",
+      "title": "Hurried Announcement: Alessandro Masullo GRH",
+      "url": "https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/",
+      "author": "jasondavies",
+      "publishedAt": "2026-11-20T18:33:14.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 1146,
+      "comments": 535
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p23#a261120p23",
+      "title": "Trump says he would block US companies from building data centers overseas or impose a \"tremendous tax\" on them if they do (Julianna Bragg/Axios)",
+      "url": "https://www.techmeme.com/261120/p23#a261120p23",
+      "author": null,
+      "publishedAt": "2026-11-20T18:35:01.000Z",
+      "content": "Julianna Bragg / Axios: Trump says he would block US companies from building data centers overseas or impose a “tremendous tax” on them if they do — President Trump on Friday said he would block U.S. companies from building data centers overseas or impose a “tremendous tax” on them if they do.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p24#a261120p24",
+      "title": "Sources: YouTube reaches an agreement in principle to pay ~$3B to US school districts over claims YouTube fosters addiction; a final deal may be months away (Olivia Carville/Bloomberg)",
+      "url": "https://www.techmeme.com/261120/p24#a261120p24",
+      "author": null,
+      "publishedAt": "2026-11-20T18:50:02.000Z",
+      "content": "Olivia Carville / Bloomberg: Sources: YouTube reaches an agreement in principle to pay ~$3B to US school districts over claims YouTube fosters addiction; a final deal may be months away — Google's YouTube is finalizing a multibillion-dollar settlement payout to school districts across the US that have accused the company …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1038892",
+      "title": "Trump threatens ‘tremendous tax’ for moving AI data centers outside the US",
+      "url": "https://www.theverge.com/policy/1038892/trump-foreign-data-centers-tax",
+      "author": "Lauren Feiner",
+      "publishedAt": "2026-11-20T18:50:19.000Z",
+      "content": "President Donald Trump promised to put a \"tremendous tax\" on companies that build data centers outside of the US, even as states and cities around the country are placing restrictions on new applications to build them. \"We're not going to allow our companies to build data centers outside of our country,\" Trump said at a press conference Friday following his summit with China President Xi Jinping and Russia President Vladimir Putin. \"They allowed that to happen with chips and everything else, and it was very destructive to our country. It's where we started going behind.\" Should the US allow data centers to be built outside of the country, T … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p25#a261120p25",
+      "title": "METR updates its time horizon plot to add judgment-heavy tasks, finding some AI capabilities still grow exponentially but models lag at designing AI evaluations (Grace Huckins/MIT Technology Review)",
+      "url": "https://www.techmeme.com/261120/p25#a261120p25",
+      "author": null,
+      "publishedAt": "2026-11-20T19:05:01.000Z",
+      "content": "Grace Huckins / MIT Technology Review: METR updates its time horizon plot to add judgment-heavy tasks, finding some AI capabilities still grow exponentially but models lag at designing AI evaluations — A new report from the AI evaluation nonprofit METR finds that some AI capabilities are continuing to improve along an exponential trajectory …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stratechery",
+      "externalId": "https://stratechery.com/?p=21301",
+      "title": "2026.47: Down in DC",
+      "url": "https://stratechery.com/2026/down-in-dc/",
+      "author": "Ben Thompson",
+      "publishedAt": "2026-11-20T19:09:57.000Z",
+      "content": "Andrew made the fatal mistake of getting his hopes up for the Wizards; on Sharp Text he wonders how it all went wrong. (Photo by Todd Olszewski/Getty Images) Welcome back to This Week in Stratechery! As a reminder, each week, every Friday, we’re sending out this overview of content in the Stratechery bundle; highlighted links are free for everyone. Additionally, you have complete control over what we send to you. If you don’t want to receive This Week in Stratechery emails (there is no podcast), please uncheck the box in your delivery settings. On that note, here were a few of our favorites this week. Obituaries and Exceptionalism. After several days to mull the shocking departure of Jensen Huang, Ben’s article on Monday delivered an omnibus obituary for a variety of American eras that may now be ending. Tracing the decisions that made Huang great, the strategies that made him a target, the implications of his demise for the rest of the tech ecosystem, and a shift in the U.S. government’s perspective on tech companies — and specifically AI companies — to which Huang never quite adapted, Monday’s piece was both comprehensive and poignant. — Andrew Sharp Arguments About Agents. Recurring Stratechery guest and advertising expert Eric Seufert is often aligned with Ben in his view of the digital advertising landscape, which is why this week’s Stratechery Interview was fun: Ben is a big believer in the potential upside in agentic commerce, while Eric has been (correctly) calling BS on a variety of hyped agentic commerce stories and trends over the past year. Both of them made their case Thursday, and it was sandwiched between thoughts on how Muse plans to monetize, why the market have misread Google’s recent earnings report, and ChatGPT’s progress building an ads business. — AS Ben Gets a Duo. In the middle of a heavy week of Nvidia takes and ominous infrastructure failures, I was delighted to find out that Ben not only purchased an iPhone Duo, but loved it. Come for his review at the end of Tuesday’s Update, and then stay for his discussion with John Gruber on Tuesday’s Dithering. We doubled back (Duo’d back?) to discuss all of it at the end of this week’s Sharp Tech, including some hands-on testing, comparisons to the iPhone Air, and a variety of shots fired at the iPhone Pro. — AS Presented by As AI models improve, you might expect the market will consolidate around a handful of providers. But user data tells a different story. Among OpenRouter customers spending at least $100 a month, the median number of AI model families in use has doubled over the past year, from three to six. Even as AI models become more capable, businesses are using more models, not fewer. This makes sense when you consider that intelligence isn’t one-dimensional. A model that’s exceptional at writing code may not be the fastest at answering customer questions, or the most economical at processing millions of documents. The question is shifting from “which AI model should we build on?” to “which model should handle each task?” The answer, increasingly, is ‘it depends.’ Which is great for flexibility, less great for simplicity. OpenRouter, which recently joined Stripe, allows businesses to access and govern hundreds of models with the flexibility to optimize for cost, performance, and reliability as the market evolves. Learn more at openrouter.ai. Stratechery Articles and Updates Obituaries — The demise of Jensen Huang was the end of a great many things, including Nvidia’s long-term prospects, the AI bubble, and the exceptional way in which the U.S. viewed itself in the world. Apple Permissions Update, The New App Paradigm, My iPhone Duo Review — Apple doesn’t ruin the Mac, but they don’t fix the agent problem, raising questions if they can think outside the app paradigm. Then, my iPhone Duo review. Nvidia Earnings; Office Convergence; OS Wars, AI Edition — Nvidia’s earnings were boring, and also a statement as to why Jensen Huang probably isn’t coming back; then, Microsoft and Anthropic ship dueling operating system updates. An Interview With Eric Seufert About Agentic Commerce — An interview with Eric Seufert about agentic commerce, including why he thinks ads will be the answer, and why I want retailers who cater to agents. Sharp Text by Andrew Sharp Wizards Groundhog Day — Four more years of winter for basketball fans in Washington. Dithering with Ben Thompson and Daring Fireball’s John Gruber Ben Gets a Duo GTA and Windows Apps Asianometry with Jon Yu The Rise and Fall of the Soviet Union’s Workhorse Computer TSMC Making 3D DRAM? Greatest of All Talk The West Reigns Supreme (Again), The Micah Nori Sweepstakes, Trading Dejounte and Ice Earning Omissions Sharp Tech with Andrew Sharp and Ben Thompson Subscriber Mail: Intel, Anthropic’s IPO, Machiavellian Hyperscalers, and Push Notification Tyranny Jensen’s Not Coming Back, Adventures in Agentic Commerce, Q&A on United, GTA VI, iPhone Duo This week’s Sharp Tech is on Jensen’s Not Coming Back, Adventures in Agentic Commerce, Q&A on United, GTA VI, iPhone Duo.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1037933",
+      "title": "Eufy’s Omni C28 is 53 percent off ahead of Black Friday",
+      "url": "https://www.theverge.com/gadgets/1037933/eufy-omni-c28-robot-vacuum-deal-sale",
+      "author": "Sheena Vasani",
+      "publishedAt": "2026-11-20T19:15:00.000Z",
+      "content": "Hosting Thanksgiving can be fun, but cleaning up afterwards? Not so much. Eufy’s Omni C28 robot vacuum / mop hybrid can help, and thanks to an early Black Friday deal, you can pick it up at a new low price of $379.99 ($420 off its original price) at Amazon, Best Buy, or directly from Eufy (with code WS24C28200NEW1). While this model has dropped to around $499.99 a few times before, it commonly sells for a lot more, making now a great time to consider buying one. Eufy Omni C28 Where to Buy: $799.99 $379.99 at Amazon $799.99 $379.99 at Best Buy $799.99 $379.99 at Eufy (with code WS24C28200NEW1) The Verge’s smart home reviewer Jennifer Pattison Tuohy named the Eufy Omni C28 one of her top picks after testing 16 robot vacuum mops. She thinks it’s a particularly great fit for apartments and smaller homes. It offers features typically found in pricier flagship models, including a multifunction dock that automatically washes the mop roller with hot water and dries it with hot air, yet it doesn’t take up too much space. The robot itself is also relatively narrow and maneuvers easily around furniture and into tight spaces. It boasts excellent navigation, and had no trouble climbing over the legs of Jen’s lounger, which have tripped up many of the more expensive models she’s tested. The Omni C28 also does a great job cleaning with its mops, particularly on hardwood floors. Surprisingly, it’s powerful enough to lift up dried oatmeal. Unlike most other robot vacuums Jen’s tested, this one lacks a camera, making it a good option if you’re concerned about privacy. Unfortunately, the trade-off is mediocre obstacle detection, so you’ll want to pick up socks and cables before running it.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Nov/20/ravi-vakil/",
+      "title": "Quoting Ravi Vakil",
+      "url": "https://simonwillison.net/2026/Nov/20/ravi-vakil/",
+      "author": null,
+      "publishedAt": "2026-11-20T19:21:49.000Z",
+      "content": "Alessandro Masullo has a proposed proof of [Generalized Riemann Hypothesis], and Brian Conrad has been looking closely at it for months and gave extensive feedback which is being incorporated, and it is so far looking good. It is all human, with no AI. The hope was to bring Alessandro to Stanford for a year to polish the writing and then announce it after running it by enough people. Now it seems best to put out the current draft. — Ravi Vakil, Hurried Announcement: Alessandro Masullo GRH Tags: mathematics",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/11/outrage-questions-swirl-as-army-delays-blowing-up-stockpile-of-toxic-lead-azide/",
+      "title": "Army delays detonating \"catastrophically hazardous\" lead azide amid fear, anger",
+      "url": "https://arstechnica.com/science/2026/11/outrage-questions-swirl-as-army-delays-blowing-up-stockpile-of-toxic-lead-azide/",
+      "author": "Beth Mole",
+      "publishedAt": "2026-11-20T19:21:50.000Z",
+      "content": "In a swirl of questions, fears, and outrage, the US Army announced Thursday that it would delay a plan to blow up 68 deteriorating barrels of lead azide, which would launch toxic gas and lead into the air. A federal appeals court further halted plans later on Thursday with an emergency order. The plume, containing neurotoxic lead, could potentially drift 100 miles north of the Army installation housing it in Middletown, Iowa, according to modeling released by the Army earlier this week. The Army had planned to carry out two controlled detonations, set off simultaneously around noon Friday, to destroy the barrels where they lie, which is in earth-covered concrete containment structures (called earth-covered magazines or ECMs). Prior to the court stay, the Army rescheduled the blast until November 23 to provide more time to communicate about the situation with Iowans, who have reported being unaware of the detonations until earlier this week. \"Public communication is essential to public trust,\" Acting Secretary of the Army Adam Telle said in a post on social media at 7:31 pm ET Thursday. \"Therefore, the Army will continue to actively engage with state and local officials throughout the region to distribute accurate, up-to-date information.\" Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p26#a261120p26",
+      "title": "Trump says he \"would love to see\" Jensen Huang return as CEO, saying \"if they were smart\", Nvidia would \"accept an apology, and let him go back to work\" (Bloomberg)",
+      "url": "https://www.techmeme.com/261120/p26#a261120p26",
+      "author": null,
+      "publishedAt": "2026-11-20T19:35:00.000Z",
+      "content": "Bloomberg: Trump says he “would love to see” Jensen Huang return as CEO, saying “if they were smart”, Nvidia would “accept an apology, and let him go back to work” — President Donald Trump called for Jensen Huang to make a big apology and return as CEO of Nvidia Corp. …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1036279",
+      "title": "Rockstar says GTA VI made $3.79 billion in its first day",
+      "url": "https://www.theverge.com/games/1036279/gta-vi-sales",
+      "author": "Jay Peters",
+      "publishedAt": "2026-11-20T19:35:06.000Z",
+      "content": "GTA VI earned $3.79 billion in its first day of sales, which set \"a new record for entertainment across any medium,\" according to an announcement from Rockstar Games. The game also sold 32.5 million preorder copies. \"It is with immense gratitude that we enter a new chapter of Rockstar Games with the release of Grand Theft Auto VI,\" Sam Houser, Rockstar's president and founder, said in a statement. \"We are incredibly humbled by the response from players around the world and we couldn't be more excited to share this moment with you.\" Rockstar claims that the game's release, which happened Thursday, was \"the biggest entertainment launch in his … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "fireship",
+      "externalId": "yt:video:rMaMe32qQkA",
+      "title": "If you’ve deployed anything since 2015, I have bad news...",
+      "url": "https://www.youtube.com/watch?v=rMaMe32qQkA",
+      "author": "Fireship",
+      "publishedAt": "2026-11-20T19:49:02.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "video"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/prisons-get-ok-to-jam-contraband-phones-ctia-says-nearby-phones-will-be-jammed-too/",
+      "title": "Prisons get OK to jam contraband phones. CTIA says nearby phones will be jammed too.",
+      "url": "https://arstechnica.com/tech-policy/2026/11/prisons-get-ok-to-jam-contraband-phones-ctia-says-nearby-phones-will-be-jammed-too/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-11-20T19:52:59.000Z",
+      "content": "The Federal Communications Commission yesterday voted to let state and local prisons use jamming technology to block contraband cellphones, despite warnings that jammers will also block lawful phone calls outside the prisons. Wireless industry lobby group CTIA said a recent test it conducted with the Virginia Tech Applied Research Corporation and South Carolina Department of Corrections confirmed concerns that the jammers would block legitimate communications, including 911 calls. CTIA told the FCC in an October 1 filing: The pilot test was limited in the number of micro-jammers deployed, the spectrum bands they were authorized to jam, and the power levels at which they were permitted to operate. Even with these constraints, the micro-jamming system blocked 911 calls, interfered with public safety and other communications, and caused interference that impacted wireless network infrastructure up to two and a half miles away. At the same time, the pilot results show substantial gaps in jamming the targeted “contraband” devices, with testing scenarios in outdoor inmate recreation areas showing failure rates—meaning “contraband” device call completion—in one-half to two-thirds of call attempts. CTIA said the pilot test shows \"that current jamming technology seems to be both over and underinclusive at once—it risks blocking lawful communications even as it fails to block a significant portion of the targeted contraband device communications.\" Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "cloudflare-blog",
+      "externalId": "01M7X76K1JK00SF9K4YN83WANQ",
+      "title": "How Cloudflare WAF helps protect against phpAfterShell and other critical PHP flaws",
+      "url": "https://blog.cloudflare.com/phpaftershell-waf-protection/",
+      "author": "Daniele Molteni",
+      "publishedAt": "2026-11-20T20:00:45.000Z",
+      "content": "On November 19, 2026, the security research company depthfirst disclosed phpAfterShell (CVE-2026-126714), a vulnerability in PHP's default file-based session handler that can lead to remote code execution. Under the Common Vulnerability Scoring System (CVSS) 4.0, it scores 9.2 out of 10 (Critical). The PHP project fixed it the same day in versions 8.2.36, 8.3.37, 8.4.28, 8.5.13, and 8.6.0. These releases fix 16 other security vulnerabilities, six of them also rated critical. Cloudflare’s web application firewall (WAF) blocks known phpAfterShell attack patterns, including for customers on the Free plan. The protection comes from a PHP remote code execution rule we first deployed in October 2026 for the php2shell vulnerabilities. That rule already detected part of the phpAfterShell attack pattern before the vulnerability was disclosed, and on November 19 we updated its detection logic to cover phpAfterShell. The rule is part of both the Cloudflare Free Managed Ruleset and the Cloudflare Managed Ruleset, is enabled by default, and its default action is Block. In the same WAF release, we added three new rules to the Cloudflare Managed Ruleset for paid plans: one for a request smuggling flaw in PHP-FPM (CVE-2026-129289), and two for flaws in PHP's SOAP extension (CVE-2026-15353 and CVE-2026-129506) that PHP fixed in the same releases. These rules are enabled by default with the Log action, because the request patterns they look for can also appear in legitimate traffic, and blocking by default could disrupt it. Customers can review matching requests in Security Events now and change the action to Block once they confirm the rules do not affect legitimate traffic. The WAF is an additional layer of defense, not a replacement for the patch. Several of the critical flaws depend on server configuration or can be reached through paths a WAF does not see, and the only complete fix is to upgrade PHP and restart every worker. Our analysts continue to monitor attack activity and will update the rules as new techniques and variations appear. You can track rule changes in the WAF changelog and follow how the vulnerabilities develop in the dedicated Cloudflare Zero Wire briefing. There appears to be no indication so far that these vulnerabilities have been exploited. As of November 19, 2026, none of the 17 vulnerabilities was listed in CISA's Known Exploited Vulnerabilities catalog, and no source we reviewed reports exploitation in the wild. What we know about phpAfterShell PHP stores session data in files by default. When an application calls session_start(), PHP reads the session file and deserializes its content into the $_SESSION array. When the request ends, PHP writes the updated session back to the same file. phpAfterShell is triggered when that write is interrupted. The session file can then hold the beginning of the new session data followed by the end of the old one. On the next request, session_start() deserializes this mixed content. If an attacker controlled the old data, PHP can end up deserializing objects of the attacker's choice. An attacker trying to exploit the flaw is likely to first search for a way to place controlled data in the session. PHP's advisory names two: Session upload progress, a PHP feature that writes information about a running file upload into the session. A remote client can use it to shape the stored data. Applications that store large user-controlled strings in the session. According to PHP, code execution also requires an interruption at a useful point in the write and a suitable deserialization gadget chain in the application. depthfirst reports that it reached code execution without an application gadget by chaining a second, undisclosed memory-corruption bug in a PHP-native class. The sources we reviewed do not establish whether that second bug is fixed in the November 19 releases. depthfirst says it discovered and reported phpAfterShell. The CVE record credits Leo Lin and Asahi as reporters. The other critical flaws The same releases fix six more critical vulnerabilities. Each one needs a specific configuration to be exploitable: CVE Component Impact Conditions CVE-2026-129289 PHP-FPM An unauthenticated attacker can smuggle a second FastCGI request into PHP-FPM and run PHP code as the worker. A front end that reuses backend FastCGI connections (nginx with fastcgi_keep_conn on, Apache mod_proxy_fcgi with enablereuse=on, or HAProxy), an application path that opens php://input without reading it to the end, and the path of an existing PHP script. CVE-2026-115560 Session serializer Object injection through a mismatch between session serializers. First covered in our php2shell briefing, now fixed. Session upload progress enabled. PHP widened the scope: applications, pools or command-line jobs that use different serializers and share a session store are affected. CVE-2026-129496 Timezone cache Use-after-free that can crash a fresh worker and possibly run code. PHP demonstrated code execution locally with known memory addresses. Non-thread-safe builds where a startup diagnostic has been written to a PHP error log file. CVE-2026-129481 Session shutdown Use-after-free, described by PHP as an incomplete fix for CVE-2026-109619. No code execution demonstrated. PHP 8.3 and later. CVE-2026-129474 Fatal error backtraces Use-after-free in magic method backtraces. PHP 8.5 and later, where fatal error backtraces are enabled by default. Setting zend.exception_ignore_args=1, the php.ini-production default, blocks the demonstrated attack. CVE-2026-129182 Fatal error backtraces Use-after-free. No code execution demonstrated. PHP 8.5, specific path-level settings, and an Apache per-directory configuration or front end that produces an early diagnostic. Who is affected The vulnerable versions are PHP 8.2 before 8.2.36, 8.3 before 8.3.37, 8.4 before 8.4.28, 8.5 before 8.5.13, and the 8.6.0 release candidates. Whether a deployment is exposed depends on the conditions of each flaw. PHP 8.1 and earlier are end-of-life. depthfirst says the official 7.4, 8.0 and 8.1 end-of-life mitigation branches are not affected by phpAfterShell, but PHP says CVE-2026-129289 was introduced in PHP 5.6.0 and that releases older than 8.2 may also be affected by CVE-2026-115560. Linux distributions often backport fixes without changing the PHP version number. Check the full package version against your distribution's advisory. How Cloudflare WAF protects you PHP runs a large share of the web, often inside content management systems, plugins, and container images that teams do not update directly. Patching every PHP runtime takes time. Cloudflare WAF reduces your exposure while you patch. phpAfterShell: protection on every plan We released the original PHP remote code execution rules in an emergency release on October 21, 2026, after the php2shell vulnerabilities (CVE-2026-109618 and CVE-2026-109619) were disclosed. We extended them to CVE-2026-115560 on October 23 and refined them several times in the following weeks, based in part on reports from security researchers who took part in a PHP Capture the Flag (CTF) challenge. phpAfterShell shares an attack technique with php2shell: an attacker plants serialized PHP data in session storage and waits for PHP to deserialize it. Because of that overlap, the existing rule already matched part of the phpAfterShell attack pattern before disclosure. On November 19, we updated the rule's detection logic to cover phpAfterShell and added CVE-2026-126714 to its description. Rule description Rule ID Ruleset Default action PHP Remote Code Execution Attack (CVE-2026-109618, CVE-2026-109619, CVE-2026-115560, CVE-2026-126714) #6 19373a83abb840e18ab3ce5a7975ce1b Cloudflare Free Managed Ruleset (Free plan) Block PHP Remote Code Execution Attack (CVE-2026-109618, CVE-2026-109619, CVE-2026-115560, CVE-2026-126714) #6 4148ae686fdb4d01be673fab9d9c073d Cloudflare Managed Ruleset (Pro, Business and Enterprise plans) Block Free plan customers do not need to take any action. On paid plans, the rule is active wherever the Cloudflare Managed Ruleset is deployed. You can use the links in the Zero Wire briefing to go straight to the rules in your dashboard. New rules for PHP-FPM and SOAP flaws The three new rules are part of the Cloudflare Managed Ruleset (Ruleset ID efb7b8c949ac4650a09736fc376e9aee) and are available on Pro, Business and Enterprise plans. Rule description Rule ID Default action PHP-FPM - CVE:CVE-2026-129289 8ef1c34a424b4ccfa6f6fe186c6f42b2 Log PHP SOAP - CVE:CVE-2026-15353 5c5a9d6397e44837a3214b5ba54028d4 Log PHP SOAP - CVE:CVE-2026-129506 00a23de67a684876ba67c5d44521b819 Log To review their matches, go to Security > Analytics > Events and filter by rule ID. If the matches are not legitimate traffic, change the rule action to Block: go to Security > Settings, edit the Cloudflare Managed Ruleset, search for the CVE identifier and set the rule action to Block, or you can refer to the links in the Zero Wire briefing to go straight to the rules configuration. What the WAF cannot see A WAF can block an exploit when the malicious data arrives in an HTTP request that passes through Cloudflare. It cannot block every path to these vulnerabilities, including: The deserialization step. phpAfterShell's final step happens inside PHP, when it reads a corrupted session file. The WAF can block the requests that plant the payload, not the read itself. Session data from other sources. If an application copies user-controlled data into the session from a database, a queue or an upstream API, that data may never cross the WAF in a recognizable form. Flaws triggered by server state. CVE-2026-129496, CVE-2026-129481, CVE-2026-129474 and CVE-2026-129182 depend on error logs, diagnostics and worker lifecycle. They do not have dedicated WAF rules, and the patch and the configuration changes below are the way to address them. Traffic that bypasses Cloudflare. This includes internal traffic between services and PHP-FPM listeners exposed directly to a network. Adding defense in depth with WAF attack score WAF attack score adds a machine learning layer that scores each request for attack payloads. It is available on Business plans (cf.waf.score.class) and, with a dedicated remote code execution sub-score (cf.waf.score.rce) along with an overall score (cf.waf.score), on Enterprise plans. Attack score complements the managed rules. It will not recognize every serialized object or smuggled FastCGI record on its own, but a working exploit chain usually needs more than one request, and the later stages carry payloads the model is trained to score: Second-stage payloads. Once an attacker can run code, they still need to send commands: shell execution primitives (/bin/sh -c, system(), passthru()), PHP code evaluation (eval(), assert()) or reverse-shell strings in headers, query parameters or request bodies. Webshell traffic. Attackers often drop a small PHP webshell after the initial compromise. Requests that pass operating system commands to that webshell remain visible to attack score. Deploy protections and patch You can find more information on how to deploy managed rules and attack score in our WAF guide. In short: Check that phpAfterShell protection is active. On the Free plan, no action is needed. On paid plans, make sure the Cloudflare Managed Ruleset is deployed and that the PHP Remote Code Execution Attack #6 rule is set to Block. Review the new rules and switch them to Block. The CVE-2026-129289, CVE-2026-15353 and CVE-2026-129506 rules are in Log mode by default. Review their matches in Security Events, then change their action to Block. Layer attack score. Create a custom rule that blocks or challenges requests with a low remote code execution score, for example cf.waf.score.rce le 20 on Enterprise plans, or cf.waf.score.class eq \"attack\" on Business plans. Upgrade PHP. Move to 8.2.36, 8.3.37, 8.4.28, 8.5.13 or 8.6.0. Rebuild container images and restart the PHP-FPM master or Apache so every worker loads the new binary, then verify the version that serves web requests. After upgrading, check that no php.ini, FPM pool or virtual host still sets session.upload_progress.enabled=1, because an explicit setting overrides the new default. Apply interim mitigations if you cannot upgrade right away. Set session.upload_progress.enabled=0 and limit the untrusted data you store in sessions. Turn off FastCGI connection reuse. On PHP 8.5, set fatal_error_backtraces=0. Fix configuration errors that produce PHP startup warnings, or send PHP errors to syslog instead of a file. Keep PHP-FPM listeners off untrusted networks. These steps reduce exposure; they do not fix the flaws. For a prompt you can give an AI agent to inventory your PHP deployments and check each one against all seven critical CVEs, see the phpAfterShell page on Cloudflare Zero Wire. Update every PHP runtime now phpAfterShell turns an interrupted file write in PHP's default session handler into a path to code execution, and it arrived in the same release as six other critical flaws. With technical details now public, we expect exploit attempts to follow. Cloudflare WAF blocks known phpAfterShell attack patterns for every customer, including the Free plan, and paid plans have new rules for the PHP-FPM and SOAP flaws. The fix is still to upgrade PHP and restart the services that use it.",
+      "topics": [
+        "security-privacy",
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p27#a261120p27",
+      "title": "Take-Two says GTA VI generated $3.79B in day-one sales, surpassing the $2.9B lifetime box-office gross of the highest-grossing film Avengers: Endgame (Jennifer Maas/Variety)",
+      "url": "https://www.techmeme.com/261120/p27#a261120p27",
+      "author": null,
+      "publishedAt": "2026-11-20T20:01:14.000Z",
+      "content": "Jennifer Maas / Variety: Take-Two says GTA VI generated $3.79B in day-one sales, surpassing the $2.9B lifetime box-office gross of the highest-grossing film Avengers: Endgame — Crime pays: Rockstar Games' “Grand Theft Auto 6″ first-day sales reached $3.79 billion. — Per, Rockstar Games parent company …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50581084",
+      "title": "The stochastic parrots have apparently proved the Riemann Hypothesis",
+      "url": "https://scottaaronson.blog/?p=10344",
+      "author": "stratos123",
+      "publishedAt": "2026-11-20T20:03:07.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 123,
+      "comments": 79
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p28#a261120p28",
+      "title": "Sources: Helix Digital, launched by KKR to invest in data centers, is in talks to buy EdgeCore in a deal that values the data center operator at $8B to $10B (Bloomberg)",
+      "url": "https://www.techmeme.com/261120/p28#a261120p28",
+      "author": null,
+      "publishedAt": "2026-11-20T20:05:01.000Z",
+      "content": "Bloomberg: Sources: Helix Digital, launched by KKR to invest in data centers, is in talks to buy EdgeCore in a deal that values the data center operator at $8B to $10B — KKR & Co.'s Helix Digital Infrastructure, the company it launched this year to invest in data centers and other AI-related businesses …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p29#a261120p29",
+      "title": "Nvidia shares closed down 14% on Friday, sliding for a seventh straight day; the stock fell 44% over seven weeks, pushing the company's market cap down by $2.5T (Kif Leswing/CNBC)",
+      "url": "https://www.techmeme.com/261120/p29#a261120p29",
+      "author": null,
+      "publishedAt": "2026-11-20T20:10:01.000Z",
+      "content": "Kif Leswing / CNBC: Nvidia shares closed down 14% on Friday, sliding for a seventh straight day; the stock fell 44% over seven weeks, pushing the company's market cap down by $2.5T — The last time Wall Street was this down on Nvidia the chipmaker's flagship product was the GeForce graphics processor …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50581260",
+      "title": "Inkling 2 Mini",
+      "url": "https://thinkingmachines.ai/news/inkling-2-mini/",
+      "author": "jasondavies",
+      "publishedAt": "2026-11-20T20:12:19.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 384,
+      "comments": 57
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=94434",
+      "title": "The Week’s 10 Biggest Funding Rounds: $400M For Neurotech Leads, Followed By Big Deals For AI, Fintech, Biotech And More",
+      "url": "https://news.crunchbase.com/venture/biggest-startup-rounds-science-neurotech-model-ml-galvanize-therapeutics/",
+      "author": "Joanna Glasner",
+      "publishedAt": "2026-11-20T20:15:54.000Z",
+      "content": "Want to keep track of the largest startup funding deals in 2026 with our curated list of $100 million-plus venture deals to U.S.-based companies? Check out The Crunchbase Megadeals Board. This is a weekly feature that runs down the week’s Top 10 announced funding rounds in the U.S. Check out last week’s biggest funding deal roundup here. It was a big week for tech startup exits, headlined by Anthropic pulling off its massive IPO. On the down side, however, tech stocks took a huge dive in the past few days. Should that negative sentiment and downward pressure persist, we can expect it to spill over into private markets. For this past week, however, U.S. startups continued to secure sizable rounds, led by brain-computer interface company Science landing a fresh $400 million. Another seven American companies announced venture or growth funding of $100 million or more, and across the Atlantic, UK-based AI biotech startup Isomorphic Labs landed $5 billion, the largest financing of the week. 1. Science, $400M, neurotech: Science, a startup focused on brain-computer interface technology, and neural engineering, secured $400 million in Series D funding. The round brings total funding to date for the Alameda, California-based company to more than $900 million. 2. Model ML, $250M, AI and fintech: Model ML, an AI platform for financial and professional services, closed on $250 million in Series B funding at a $1.5 billion valuation. General Atlantic and QED Investors led the round for the three-year-old company, which is based in New York and London. 3. Galvanize Therapeutics, $130M, biotech: Redwood City, California-based Galvanize Therapeutics, a developer of pulsed electric field ablation technologies for oncology and chronic disease, picked up $130 million in Series D funding led by HealthQuest Capital. 4. General Flash, $128M, critical metals: General Flash, a developer of a new method to produce critical metals, announced that it has raised $128 million across seed and Series A rounds from a long list of investors. 5. Ramon.Space, $124M, space tech: Denver-based Ramon.Space, a developer of space computing infrastructure, pulled in $124M in Series B funding led by PSG. 6. Marrow Therapeutics, $120M, biotech: Watertown, Massachusetts-based Marrow Therapeutics, a developer of bone marrow-targeted therapies to treat severe blood disorders, announced its launch with a combined $173 million in Series A and B funding. Orbimed led its $120 million Series B round while Scion Life Sciences and venBio led the $53 million Series A. 7. Noeri, $110M, enterprise AI: Noeri, a developer of self-improving AI for enterprises and researchers, launched with $110 million in initial funding. Menlo Ventures led the round for the Palo Alto-based startup, which was founded by Stanford University computer science professors. 8. Seawolf Therapeutics, $100M, biotech: San Diego-based Seawolf Therapeutics, a biotech startup developing a novel DNA delivery platform, emerged from stealth and announced that it has raised $100 million in funding to date, with Versant Ventures, MPM BioImpact and Novartis Venture Fund as lead investors. 9. BrightAI, $97M, physical AI: BrightAI, a startup developing a sensor, drone and robotics-driven platform to bring continuous observability to infrastructure-heavy industries like power, water, and energy, secured $97 million in new funding. Smith Point Capital led the financing for the Silicon Valley-based company. 10. Vincue, $93M, vehicle intelligence platform: Kansas City-based Vincue, developer of a vehicle lifecycle intelligence platform, closed on $93 million in growth capital led by Wavecrest Growth Partners. And overseas: Isomorphic Labs, $5B, AI and biotech: London-based Isomorphic Labs, a startup that applies AI to drug discovery, secured $5 billion in Series C funding. Greenoaks and Sequoia Capital led the financing for the five-year-old company, which also has offices in Massachusetts and Switzerland. Methodology We tracked the largest announced rounds in the Crunchbase database that were raised by U.S.-based companies for the period of Nov. 14-20, 2026. Although most announced rounds are in the database, there may be a small time lag, as some rounds are reported late in the week. Illustration: Dom Guzman",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p30#a261120p30",
+      "title": "Sources: Nvidia board's main reason for ousting Jensen Huang was his \"lying\" and \"lack of candor\" from October 2025 until this fall over the Alice Huang affair (Wired)",
+      "url": "https://www.techmeme.com/261120/p30#a261120p30",
+      "author": null,
+      "publishedAt": "2026-11-20T20:20:01.000Z",
+      "content": "Wired: Sources: Nvidia board's main reason for ousting Jensen Huang was his “lying” and “lack of candor” from October 2025 until this fall over the Alice Huang affair — Amid allegations of multiple affairs, including with a direct report and an alleged Chinese intelligence asset …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50581438",
+      "title": "Nvidia accounting under SEC investigation, sources say",
+      "url": "https://finance.yahoo.com/markets/article/nvidia-stock-extends-25-trillion-rout-as-sec-probe-reportedly-investigates-its-accounting-194945274.html",
+      "author": "ftchd",
+      "publishedAt": "2026-11-20T20:22:41.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 127,
+      "comments": 44
+    },
+    {
+      "sourceSlug": "cloudflare-blog",
+      "externalId": "01M7X91JJQ5CWGQ65DZBAHW4Q9",
+      "title": "How Cloudflare WAF protects against ruby2shell (CVE-2026-132825)",
+      "url": "https://blog.cloudflare.com/ruby2shell-waf-protection/",
+      "author": "Daniele Molteni",
+      "publishedAt": "2026-11-20T20:24:38.000Z",
+      "content": "On November 19, 2026, the Ruby team disclosed ruby2shell (CVE-2026-132825), a heap buffer overflow in the way Ruby changes the case of strings. Ruby rates the flaw Critical and says it is aware of proofs of concept that achieve remote code execution in some scenarios. Fixes shipped in Ruby 3.3.14, 3.4.13, and 4.0.10. The reach is wide. Veria Labs reports that Ruby on Rails and classic-style Sinatra applications reach the bug in their default configuration, before any authentication. Self-hosted products that bundle Ruby, including GitLab, GitHub Enterprise Server, Mastodon, OpenProject, Discourse and Chatwoot, shipped an affected Ruby in their latest release at the time of disclosure. Cloudflare WAF blocks ruby2shell for all customers, including those on the Free plan. We have added two rules to both the Cloudflare Free Managed Ruleset and the Cloudflare Managed Ruleset, with Block as the default action: one for ruby2shell and one for GHSA-87fm-7w84-j2px, a related integer overflow in Ruby string case conversion fixed in the same releases. The WAF is a compensating control, not a replacement for patching. Exploits can reach the bug through paths a WAF does not see, and the only complete fix is to upgrade Ruby. Our team continues to monitor attack traffic and will update the rules as new techniques appear. You can track rule changes in the WAF changelog and get the latest on the vulnerability in the Cloudflare Zero Wire briefing. Cloudflare has patched its own systems that use Ruby, and we have found no indication of compromise. What we know about ruby2shell Ruby strings carry an encoding, and Ruby still supports many legacy single-byte encodings, such as ISO-8859-1 (Latin-1) and Windows-1252, alongside UTF-8. In a single-byte encoding each character takes one byte, so changing the case of a string usually produces output of the same length. The German sharp s (ß) breaks that assumption. Its uppercase form is two characters, SS. In 14 ISO-8859 and Windows-125x encodings, Ruby writes those two bytes but checks for room for only one. According to Veria Labs, a string with 21 sharp s characters overflows the output buffer by one byte. The methods that reach the bug are upcase, swapcase, downcase(:fold) and casecmp?. UTF-8 strings take a different code path and are not affected. A one-byte overflow can look harmless. In a memory-corruption exploit, though, a single byte written past the end of a heap buffer can be enough to corrupt an adjacent object or allocator metadata. Ruby says it is aware of proofs of concept that turn this flaw into code execution, and Veria Labs says it will publish its own proof of concept about a week after disclosure. We expect scanning to start soon after. Why default Rails and Sinatra apps are exposed HTML forms can only send GET and POST requests. To simulate PUT, PATCH, or DELETE, many web frameworks accept a _method parameter in a POST request. Rack, the interface most Ruby web frameworks build on, implements this in its MethodOverride middleware, which converts the value of _method to uppercase. Rails includes this middleware by default, and classic-style Sinatra applications enable it. An attacker can send a multipart POST request whose _method part declares a legacy character set and contains a run of sharp s characters. The framework upcases the value while it is still routing the request, before any application code or authentication check runs. Veria Labs reports that other frameworks and plain Rack applications are not exposed by default. Application code that changes the case of strings received in a legacy encoding may still be affected, wherever the string comes from. Who is affected Condition Details Ruby version Ruby 3.3.13 and earlier, 3.4.0 through 3.4.12, and 4.0.0 through 4.0.9. Veria Labs reports the bug has been present since Ruby 2.4.0. Ruby 3.2 and earlier have reached end of life and will not receive the fix. Framework Rails and classic-style Sinatra in their default configuration. Any other code that changes the case of attacker-controlled strings in a legacy single-byte encoding. Bundled software As of November 19, 2026, Veria Labs lists GitLab 19.6.0, GitHub Enterprise Server 3.22.5, Mastodon 4.7.5, OpenProject 17.9.7, Discourse 2026.10.1 and Chatwoot 4.20.0 as bundling an affected Ruby in their latest release. Discourse moved its Docker base image to Ruby 4.0.10 on November 19, so rebuilding a Docker install picks up the fix. Distribution packages can backport fixes without changing the Ruby version number, so check the full package version against your distribution's advisory. Six more Ruby flaws in the same release Ruby 3.3.14, 3.4.13, and 4.0.10 also fix six other memory safety flaws, and Ruby says several of them can lead to code execution. One, GHSA-87fm-7w84-j2px, is an integer overflow in the same string case conversion code, and our second WAF rule covers it. The other five are in Ruby's regular expression engine. Most of them require the application to compile or match a regular expression pattern supplied by the attacker. That is uncommon in web applications, but it does happen in search features, filtering rules and admin tools. How Cloudflare WAF protects you Upgrading every Ruby runtime takes time, especially when Ruby is bundled inside self-hosted products and container images. Cloudflare WAF reduces your exposure while you patch. New managed rules, on for every customer Both rules are part of the Cloudflare Free Managed Ruleset and the Cloudflare Managed Ruleset (Ruleset ID efb7b8c949ac4650a09736fc376e9aee), with Block as the default action. Rule description Rule ID Ruleset Default action Ruby - Heap Overflow - CVE:CVE-2026-132825 7328f23691e44b07892ebd25b19210f1 Cloudflare Free Managed Ruleset (Free plan) Block Ruby - Heap Overflow - CVE:CVE-2026-132825 1afa543a1ed84893b01df04c34402c88 Cloudflare Managed Ruleset (Pro, Business and Enterprise plans) Block Ruby - Integer Overflow - GHSA-87fm-7w84-j2px 8660e37e86444f9f9267ba22e9855f05 Cloudflare Free Managed Ruleset (Free plan) Block Ruby - Integer Overflow - GHSA-87fm-7w84-j2px 6defac6a52334542adf4a162daf25922 Cloudflare Managed Ruleset (Pro, Business and Enterprise plans) Block On the Free plan, the Cloudflare Free Managed Ruleset runs automatically, so there is nothing to turn on. On paid plans, the rules are active wherever the Cloudflare Managed Ruleset is deployed. Because paid plans give you more control over how rulesets are deployed, the Cloudflare Managed Ruleset may not be active on every zone. We recommend checking its status to confirm that it is running. You can use the links in the Zero Wire briefing to go straight to the rules in your dashboard. What the WAF cannot see A WAF can block an exploit when the malicious input arrives in an HTTP request that passes through Cloudflare. It cannot block every path to the vulnerable code: Traffic that bypasses Cloudflare. Requests sent directly to your origin IP address, and traffic between internal services, never reach the WAF. Configure your origin to accept traffic only from Cloudflare, for example with Cloudflare Tunnel or Authenticated Origin Pulls. Other entry points into the same code. Ruby code that changes the case of strings from email, file imports, message queues or background jobs can reach ruby2shell without an HTTP request. Adding defense in depth with WAF attack score Memory corruption is usually only the first step. To run commands, an attacker still has to deliver a second-stage payload, such as shell commands or a reverse shell, and then interact with the compromised server. WAF attack score uses machine learning to score each request for remote code execution payloads, which helps catch exploit variations and post-exploitation traffic that signature-based rules can miss. Create a custom rule that blocks or challenges requests with cf.waf.score.rce le 20 on Enterprise plans, or cf.waf.score.class eq \"attack\" on Business plans. Impact on Cloudflare infrastructure Cloudflare has patched its systems that use Ruby against ruby2shell. We have found no indication of compromise and continue to monitor. Patch now ruby2shell turns a one-byte miscalculation in string case conversion into a pre-authentication path to code execution in default Rails and Sinatra apps. With a public proof of concept expected within days, the window to patch is short. Here is what to do: Check your WAF coverage. On the Free plan, the ruby2shell rules are already blocking. On paid plans, confirm the Cloudflare Managed Ruleset is deployed and the rules have not been overridden. Upgrade Ruby to 3.3.14, 3.4.13 or 4.0.10 and restart every Ruby process, including background workers. Rebuild container images. Move applications on Ruby 3.2 or earlier to a supported series. Update self-hosted products that bundle Ruby, such as GitLab, GitHub Enterprise Server, Mastodon, OpenProject and Chatwoot, as each vendor releases a fix. Rebuild Discourse Docker installs now. Inventory your runtimes. The Zero Wire briefing includes a prompt you can give an AI agent to find every affected Ruby runtime in your infrastructure. Our WAF analysts will keep updating protections as new techniques appear. Follow the WAF changelog for rule updates.",
+      "topics": [
+        "security-privacy",
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p31#a261120p31",
+      "title": "Sources: the US SEC is probing Nvidia's accounting practices; last year, Nvidia changed how it reports revenue, removing Singapore from geographical breakdowns (Reuters)",
+      "url": "https://www.techmeme.com/261120/p31#a261120p31",
+      "author": null,
+      "publishedAt": "2026-11-20T20:25:00.000Z",
+      "content": "Reuters: Sources: the US SEC is probing Nvidia's accounting practices; last year, Nvidia changed how it reports revenue, removing Singapore from geographical breakdowns — The US Securities and Exchange Commission is probing Nvidia's accounting practices, said two people briefed on the matter …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/11/nasas-new-moon-plan-is-taking-shape-but-some-big-questions-remain/",
+      "title": "NASA’s new Moon plan is taking shape, but some big questions remain",
+      "url": "https://arstechnica.com/space/2026/11/nasas-new-moon-plan-is-taking-shape-but-some-big-questions-remain/",
+      "author": "Stephen Clark",
+      "publishedAt": "2026-11-20T20:26:33.000Z",
+      "content": "SpaceX's successful recovery of its Starship rocket last weekend cleared a major hurdle on NASA's path to the Moon, opening up possibilities for higher launch rates and an all-important, long-delayed orbital refueling demo next year. For SpaceX's purposes, Saturday's mid-air rocket catch will help engineers learn how to rapidly reuse Starships. That should expedite SpaceX's deployment of its newest generation of Starlink Internet satellites. NASA, meanwhile, believes a higher launch cadence will lead to faster learning as SpaceX develops a deep space version of Starship to ferry astronaut crews to the surface of the Moon. Early next year, SpaceX plans to bring online a second Starship launch site at Kennedy Space Center, Florida. A second Starship factory is also under construction at Kennedy, joining SpaceX's existing SpaceX production line at Starbase, Texas. With two launch sites, SpaceX will have the pieces in place to take the next leap with Starship. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p32#a261120p32",
+      "title": "Bitcoin falls to $57,000, its lowest level in over two years; it has lost more than half its value since reaching a peak above $126,000 in October 2025 (Bloomberg)",
+      "url": "https://www.techmeme.com/261120/p32#a261120p32",
+      "author": null,
+      "publishedAt": "2026-11-20T20:30:01.000Z",
+      "content": "Bloomberg: Bitcoin falls to $57,000, its lowest level in over two years; it has lost more than half its value since reaching a peak above $126,000 in October 2025 — Bitcoin fell to the lowest level in over two years, extending its reversal from market darling after the re-election of Donald Trump …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/science/2026/11/astronomers-watched-a-star-spiral-to-its-death-inside-a-giant-companion/",
+      "title": "Watching as a giant star swallowed its neighbor and exploded",
+      "url": "https://arstechnica.com/science/2026/11/astronomers-watched-a-star-spiral-to-its-death-inside-a-giant-companion/",
+      "author": "Jacek Krywko",
+      "publishedAt": "2026-11-20T20:41:17.000Z",
+      "content": "In the Andromeda Galaxy, a giant star about seven times as massive as the Sun spent nearly a decade slowly swallowing its much smaller companion. The process, known as common envelope evolution, was proposed in the 1970s to explain how some of the tightest pairs of stars in the Universe form, but no one had ever caught it in the act. In a new Nature study, astronomers led by Viraj Karambelkar, an astrophysicist at Columbia University, finally witnessed the entire spectacle from the decades before it began to the eruption that ended it in late 2025. “It lasts for a few years, maybe a few decades,” Karambelkar said. “Stars evolve on time scales of millions of years. So, it's really like a blip on the entire cosmic time scale.” Shared envelopes Some pairs of stars orbit so close to each other that they could not have formed at that distance, so their orbits must have shrunk. Common envelope evolution is the leading explanation for that shrinkage. When one star in a binary grows old, it expands into a giant, and its outer layers can engulf its companion. The two then share a single, loosely bound envelope of gas. As the engulfed star drags through it, it loses orbital energy to friction and spirals inward. Depending on how much of the envelope gets lost, the pair either ends up in a much tighter orbit or merges. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1039096",
+      "title": "YouTube is reportedly preparing to settle social media addiction claims for $3 billion",
+      "url": "https://www.theverge.com/streaming/1039096/youtube-social-media-addiction-school-districts-settlement",
+      "author": "Emma Roth",
+      "publishedAt": "2026-11-20T20:43:52.000Z",
+      "content": "YouTube is preparing to pay $3 billion to thousands of school districts to settle claims that its \"addictive design\" harmed kids, according to Bloomberg. Sources tell the publication that YouTube reached the agreement \"in principle,\" and that the deal would also include new safeguards for teens. The settlement would allow Google to avoid a wave of lawsuits filed by US school districts that accuse YouTube, Meta, Snap, and TikTok of negatively impacting the mental health of teen users. The first \"bellwether\" trial of these federal multidistrict litigation (MDL) cases was supposed to start in Kentucky in June, but all four companies settled fo … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/",
+      "title": "Researcher plants 2m canaries into the AI supply chain. A privacy disaster surfaced.",
+      "url": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/",
+      "author": "Dan Goodin",
+      "publishedAt": "2026-11-20T20:59:08.000Z",
+      "content": "Researchers planted 2 million digital tripwires in requests sent through a sprawling network of AI services to find out what happened to sensitive information entrusted to them. What they discovered was an ecosystem that leaked highly sensitive data like a sieve. The exposure was found through an ingenious experiment designed to test if sensitive information can leak through the vast chain of widely used AI services and how that information is exploited when it does. Many of today’s AI apps use services such as OpenRouter or Vercel that act as brokers. These “AI routers,” sometimes also known as “AI gateways,” receive large numbers of prompts sent from AI app end users and route them to an available inference engine based on criteria such as the one charging the lowest price or being best suited for the given task. Instead of using Anthropic, OpenAI, or another big provider, the developer hires an AI router to find the most suitable model. Security breaches, prompt theft, and privacy violations To test for potential leakage, researcher HD Moore assembled a collection of AWS access keys, functioning credentials tied to empty AWS accounts, passwords for services such as SSH, and unique URLs, DNS names, and private git repository references. None of the secrets had ever been used before, and he controlled the infrastructure that received any requests using the credentials. He then seeded each secret into exactly one prompt sent to a single provider. In the event any of the secrets were leaked, these “canaries”—so called because they resemble the role of that bird when taken into coal mines—would allow Moore to identify each link in the chain that was responsible. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p33#a261120p33",
+      "title": "TML releases Inkling 2 Mini, an open-weights 26.4B-parameter transformer that loops middle layers three times per token for better reasoning with fewer tokens (Thinking Machines Lab)",
+      "url": "https://www.techmeme.com/261120/p33#a261120p33",
+      "author": null,
+      "publishedAt": "2026-11-20T21:15:02.000Z",
+      "content": "Thinking Machines Lab: TML releases Inkling 2 Mini, an open-weights 26.4B-parameter transformer that loops middle layers three times per token for better reasoning with fewer tokens — Today we are releasing Inkling 2 Mini, a fast, powerful model that's small enough to run on your laptop.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "urn:latent-space:post:post_0e68157c-dcc4-4cb1-b11a-0d563d6bcc86",
+      "title": "The War Against Slop and an Emerging Weapon to Fight it: Formal Verification",
+      "url": "https://latent.space/p/formal-verification/",
+      "author": "Richard MacManus",
+      "publishedAt": "2026-11-20T21:18:41.000Z",
+      "content": "The word of the year in the AI industry over 2026 has been “slop” — meaning low-quality output from a large language model. And with so much code being AI-generated now, avoiding slop has become a daily concern for software engineers. So how to do that? One way is to use formal verification systems, which use mathematical proofs and logic to verify the correctness of software or hardware. With AI’s growing prowess at solving math problems, there’s now a number of AI companies offering formal verification systems. They include Harmonic, Theorem, Axiom Math, and a new entrant called &Truth (pronounced ‘and truth’). In this article we’ll look at some of the approaches these companies are taking. How formal verification is used in software and AI today In order to better understand the landscape of formal verification systems, we spoke to one of its leading proponents: Clark Barrett, &Truth’s co-founder and co-CEO. He’s also Corbel Professor (Research) of Computer Science at Stanford and was the co-creator of cvc5, a popular automated reasoning engine used in formal verification. Without getting too in the weeds, cvc5 is what’s called a “solver” for satisfiability modulo theories (SMT), which Barrett says is widely used in companies like Amazon. For instance, cvc5 is used for specification analysis and test generation in Kiro, Amazon’s agentic development environment. “It's been fun to see my tools go from a good idea in the lab to cvc5 is now called billions of times a day in production pipelines at Amazon,” Barrett told us. Via a 2022 paper about cvc5 co-authored by Clark Barrett. When AI coding agent companies talk about “verifying” their work, it typically means agents running tests, critiquing their own output, or having another AI model judge it. So I asked Barrett how far short of real verification does that fall? “The main difference is really just, how do you know when you're done,” he replied. “So if you're testing, patching, scanning — using all these existing tools — they're quite good. I mean, they find a ton of problems. They raise those issues. But you're never quite sure, did I find all of them [the issues] or is there one more lurking there that my tool can't find?” &Atlas, the first tool of &Truth; it’s “a map of the world’s open-source code, starting with code written in the C programming language.” Lean’s role in formal verification &Truth builds on Lean, an open-source programming language and proof assistant. The company combines AI with automated reasoning techniques to construct proofs that Lean can check. Lean is a language used by frontier models to solve all manner of supremely difficult math problems. For instance, just this week GPT-6.2 Astra produced what Vals believes is “the first Lean proof of Smoktunowicz’s Gap Theorem.” Vals added that Anthropic also used Lean to formalize Fermat’s Last Theorem, a project of 13 million lines. The latest big math news is a report that Anthropic mathematician Levent Alpöge claims he used Claude to prove the 167-year-old Riemann hypothesis — and he posted the proof in Lean. Example of Lean code; via Lean project website &Truth is building what it calls a “verification machine” on top of the Lean framework, with the ambition of reading code “in any language, proving whether it satisfies precisely stated requirements, and enabling humans to trust it without having to understand every line.” “What Lean does is it just checks that you didn't make a mistake,” explained Barrett. “So you can think of it as a very sophisticated checker for mathematics.” This has implications for model training too. Axiom Math uses formal verification to provide correctness feedback for training its mathematical reasoning systems, with proof attempts helping improve future models. In an interview with Latent Space in June, Axiom CEO Carina Hong made the point that formal verification — and what Lean enables — isn’t just a defensive measure. “Formal verification, or verified AI, to us it's not just about handling or kicking out the lousiness, the hallucinations, the mistakes. It's about scaling brilliance. It's about super-intelligence.” Axiom develops AxiomProver, an AI system that generates Lean proofs, alongside AXLE, its toolkit for exploring, validating, and manipulating those proofs. Harmonic’s Aristotle, an “automated theorem prover”, uses Lean heavily in its offering. “Inside Aristotle, AI writes the proofs and Lean checks every step of them, so a result never rests on the AI being right,” states the company on its website. Harmonic’s workflow Cybersecurity and LLM-scaled formal verification Given the heightened level of paranoia about cybersecurity these days — some might say in the days leading up to AGI — formal verification systems seem like they’re needed more than ever. And Barrett confirmed that cybersecurity is a key focus for &Truth. “One really powerful use case for our technology is going through all the C code in the world, whether it be open source or closed source, and trying to ensure that it's memory safe. And then if it's not memory safe, we can point to: here's a problem with this piece of code, you need to fix it so that it's safe.” Security is also a focus of Theorem, one of &Truth’s competitors. “Verification is the only defense that holds while adversaries scale,” Theorem states on its homepage. Theorem’s proof-efficiency eval: “KB of machine code verified per hour on our proof-efficiency eval, by model release date, with 95% intervals.” Theorem has also collaborated with Anthropic on this topic, resulting in a blog post entitled “LLMs are making formal software verification feasible at a much larger scale.” One of the more encouraging notes in the post is that formal verification, although currently token-expensive, is starting to get more token-efficient. On a set of 36 small verification tasks, Anthropic reported that Opus 5.5 reached a 50% solve rate using about 40% fewer tokens than Opus 5. This trend is expected to continue as more models are “trained on long verification tasks.” Theorem and Anthropic describe “LLM-scaled formal verification” as a promising approach to providing security guarantees at a previously impractical scale. Anthropic diagram: “from code to a machine-checked guarantee”; in this case using Rocq rather than Lean. The “veri-coding” experience for developers Lastly, how does formal verification fit into a developer’s workflow? On its website, &Truth states that developers will move from vibe-coding to “veri-coding” — meaning the verification layer is part of the workflow. “If you've got your verification machine connected to your agent, you can still say, ‘hey, I want you to build this,’ said Barrett. “Maybe there's a little bit of work to really nail down with the agent what the specification is of what you want to build. But then the agent can go under the hood, collaborate with the formal [verification] tool, and essentially what you'll see is almost no difference except your code will work the first time.” The idea, then, is that more of the developer’s time will be spent on spec writing and reviewing than on coding or reviewing code. Verify all the outcomes While I was finishing up this article, I came across this tweet by Cognition dev rel Nader Dabit: Whether the term “outcome engineering” sticks or not, he’s onto something in terms of where we are with coding. When you just tell your team of agents what you want and they go ahead and build it, you (the human developer) need a way to check the correctness of what your agents deliver. If companies like &Truth, Harmonic, Theorem and Axiom Math have their way, formal verification could become an increasingly practical way to check those outcomes.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p34#a261120p34",
+      "title": "Sources: CrowdStrike is in talks to acquire Zscaler, which would create a cybersecurity company with a combined market cap of ~$265B; ZS jumps 15%+ after hours (Bloomberg)",
+      "url": "https://www.techmeme.com/261120/p34#a261120p34",
+      "author": null,
+      "publishedAt": "2026-11-20T21:20:00.000Z",
+      "content": "Bloomberg: Sources: CrowdStrike is in talks to acquire Zscaler, which would create a cybersecurity company with a combined market cap of ~$265B; ZS jumps 15%+ after hours — CrowdStrike Holdings Inc. is in talks to acquire Zscaler Inc., according to people familiar with the matter …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p35#a261120p35",
+      "title": "Many longtime Etsy sellers say they are leaving after Etsy updated its terms to say Etsy and its third-party partners can use sellers' content for AI training (Reggie Ugwu/New York Times)",
+      "url": "https://www.techmeme.com/261120/p35#a261120p35",
+      "author": null,
+      "publishedAt": "2026-11-20T21:30:03.000Z",
+      "content": "Reggie Ugwu / New York Times: Many longtime Etsy sellers say they are leaving after Etsy updated its terms to say Etsy and its third-party partners can use sellers' content for AI training — Numerous longtime users of the online marketplace have left the platform because they do not want their work training artificial intelligence.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p36#a261120p36",
+      "title": "Sources: Cognition is considering raising $2B or more at a $75B valuation, after raising over $3B in 2026 so far, including $2B at a $48B valuation in September (Rebecca Torrence/Bloomberg)",
+      "url": "https://www.techmeme.com/261120/p36#a261120p36",
+      "author": null,
+      "publishedAt": "2026-11-20T21:35:00.000Z",
+      "content": "Rebecca Torrence / Bloomberg: Sources: Cognition is considering raising $2B or more at a $75B valuation, after raising over $3B in 2026 so far, including $2B at a $48B valuation in September — Artificial intelligence coding startup Cognition AI Inc. is in funding talks at a $75 billion valuation, just two months …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/11/meta-reconsiders-2030-net-zero-goal-amid-record-emissions-from-ai-data-centers/",
+      "title": "Meta reconsiders 2030 net-zero goal amid record emissions from AI data centers",
+      "url": "https://arstechnica.com/ai/2026/11/meta-reconsiders-2030-net-zero-goal-amid-record-emissions-from-ai-data-centers/",
+      "author": "Jeremy Hsu",
+      "publishedAt": "2026-11-20T21:47:10.000Z",
+      "content": "Meta’s executives are rethinking the company’s original goal of achieving net-zero emissions by 2030. That revelation in Meta’s latest sustainability report comes as the company reported a record percentage increase in greenhouse gas emissions that exceeds any other Big Tech competitor racing to build new AI data centers. The company’s 2026 sustainability report claims that “our long-term ambitions haven’t changed, but our operating environment has,” according to an introduction from Rachel Peterson, vice president of data centers at Meta, and Blair Swedeen, global head of net zero and sustainability at Meta. In the November 19, 2026, report, they attributed the changing conditions and the need for a rethink to how “demand for AI infrastructure has grown faster than almost anyone projected.” “We are re-evaluating our timelines, sequencing, and interim milestones—including the 2030 timeframe for our net zero emissions goal and our near-term intensity targets—so our approach reflects current operating realities while keeping progress transparent year over year,” Peterson and Swedeen wrote in the report. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112558 at https://www.eff.org",
+      "title": "EFF to Congress: Mass Surveillance Is Too Important to Shove into Must-Pass Bill",
+      "url": "https://www.eff.org/deeplinks/2026/11/eff-congress-mass-surveillance-too-important-shove-must-pass-bill",
+      "author": "Matthew Guariglia",
+      "publishedAt": "2026-11-20T21:52:51.000Z",
+      "content": "In June 2026, the surveillance authority Section 702 of FISA expired absent a consensus among lawmakers over the terms of its reauthorization. Now, with the program set to truly turn off within the next few months, surveillance hawks and national security maximalists are rushing to renew this secretive power by shoving it into a must-pass bill, like a continuing resolution to fund the government or the National Defense Authorization Act (NDAA) or an end of year, rushed, funding bill to prevent a shutdown. This would be both undemocratic and suppress any real chance at reform. In an effort to prevent that, EFF has singed into a letter with over 25 civil liberties organizations, including the ACLU, Color of Change, and the Brennan Center, to urge Congress not to allow such a significant and dangerous program to be tacked onto a must-pass bill. The letter says: “The NDAA is among the most important bills Congress considers each year. It should not be used as a vehicle to circumvent or to cut short this long-running bipartisan debate over Americans’ civil liberties and constitutional rights, nor to force lawmakers to choose between supporting our national defense and ending warrantless spying on Americans. Adding language in the NDAA conference to reauthorize Section 702 that has not been fully debated and voted on would be a serious procedural and substantive failure, and a betrayal of the democratic process.” You can read the entire letter here. Section 702 grants the government authority to compel a telecommunications company to hand over data to the National Security Agency (NSA) in an attempt to protect national security by monitoring communications overseas—but this is only a piece of what the law does. Because we live in a globalized world, communications between people in other countries and in the United States often gets hoovered up. Once it does, the Federal Bureau of Investigation (FBI) and several other agencies give themselves permission to search through U.S. persons’ data without a warrant. This is unconstitutional, undermines our right to private communications, and creates a dangerous and potent tool for would-be despots who might use that communication to discriminate, marginalize, or punish people based on their identities and political beliefs. This is not the kind of policy Congress should be considering without necessary reforms, open debate, and the ability for lawmakers to vote against without forcing them to vote “no” on all defense policy. We once again urge Congress not to put Section 702’s future in a must-pass bill like the NDAA.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/ai/2026/11/googles-latest-search-page-redesign-drops-the-search-button-adds-ai-sidebar/",
+      "title": "Google rolls out new search homepage with AI chat history and no search button",
+      "url": "https://arstechnica.com/ai/2026/11/googles-latest-search-page-redesign-drops-the-search-button-adds-ai-sidebar/",
+      "author": "Ryan Whitwam",
+      "publishedAt": "2026-11-20T21:58:29.000Z",
+      "content": "Google's flagship search experience is evolving into an AI experience with stunning speed. Even time-tested elements of search are getting AI makeovers, and the latest to get this treatment is the search homepage on Google.com. A redesign that's been in testing for the last few weeks is now official, bringing easier access to AI chats and dropping the dedicated search button entirely. Google search VP Robby Stein confirmed on X that Google is deploying the new desktop search page after a successful test. The page will now have a few more buttons under the search bar, all connected to AI features. There's an image generation button, one for analyzing files, and one for brainstorming with Gemini. The \"I'm Feeling Lucky\" button remains, but the Google Search button that used to sit next to it is gone. The search button has obviously been a part of Google's search page forever. However, it wasn't in a very convenient location in the modern interface. When you begin typing a query, the autocomplete suggestions cover that button. You have to click out of the text field to access the button, which is an extra step compared to simply mashing the Enter key to run your search. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72970",
+      "title": "Friday Squid Blogging: The Largest Squid Ever Filmed",
+      "url": "https://www.schneier.com/blog/archives/2026/11/friday-squid-blogging-the-largest-squid-ever-filmed.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-11-20T22:04:12.000Z",
+      "content": "This is the story of the largest squid ever filmed, in December 2006 near Japan’s Ogasawara Islands. As usual, you can also use this squid post to talk about the security stories in the news that I haven’t covered. Blog moderation policy.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p37#a261120p37",
+      "title": "Artificial Analysis says Inkling 2 Mini, with 5.4B active parameters, matches Qwen3.8 27B (xhigh) on its Intelligence Index with ~5x fewer active parameters (Artificial Analysis)",
+      "url": "https://www.techmeme.com/261120/p37#a261120p37",
+      "author": null,
+      "publishedAt": "2026-11-20T22:10:00.000Z",
+      "content": "Artificial Analysis: Artificial Analysis says Inkling 2 Mini, with 5.4B active parameters, matches Qwen3.8 27B (xhigh) on its Intelligence Index with ~5x fewer active parameters — Thinking Machines has released Inkling 2 Mini at 20 on the Artificial Analysis Intelligence Index, an open weights looped transformer …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/11/incoming-house-chair-threatens-spacex-funding-over-ukraine-controversy/",
+      "title": "Incoming House chair threatens SpaceX funding over Ukraine controversy",
+      "url": "https://arstechnica.com/space/2026/11/incoming-house-chair-threatens-spacex-funding-over-ukraine-controversy/",
+      "author": "Eric Berger",
+      "publishedAt": "2026-11-20T22:16:51.000Z",
+      "content": "The representative in the US House expected to chair the House Intelligence Committee in January, Jim Himes (D-Conn.), has threatened to withhold support for funding government-owned systems from SpaceX amid the ongoing inquiry into the use of Starshield in Ukraine. \"SpaceX's potentially unilateral modification of a U.S. Government contract, combined with its lack of responsiveness to congressional oversight, calls into question every contract the U.S. Government has with SpaceX,\" Himes wrote in a letter to SpaceX founder Elon Musk on Friday. CNN first reported the letter's existence. The network also reported that Himes sent a classified communication to Director of National Intelligence Jay Clayton with a similar message that it would be difficult for Congress to authorize funding for systems with SpaceX as the primary vendor. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "figma-blog",
+      "externalId": "https://www.figma.com/blog/workflow-lab-specs-and-the-figma-agent/",
+      "title": "Workflow lab: Turning context into a plan with Specs and the Figma agent",
+      "url": "https://www.figma.com/blog/workflow-lab-specs-and-the-figma-agent/",
+      "author": null,
+      "publishedAt": "2026-11-20T22:17:00.000Z",
+      "content": "Bringing scattered context onto the canvas helps teams connect the diagrams, designs, and technical decisions they need to build, all in one place. This workflow shows how Specs and the Figma agent provide a container for that context so implementation is easy.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.26627",
+      "title": "RL Post-Training in Diffusion Transformers Is Activation Steering",
+      "url": "https://huggingface.co/papers/2611.26627",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:17.999Z",
+      "content": "RL Post-Training in Diffusion Transformers Is Activation Steering",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.23875",
+      "title": "In Situ Training of Optical Neural Networks by Coding Agents",
+      "url": "https://huggingface.co/papers/2611.23875",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:17.999Z",
+      "content": "In Situ Training of Optical Neural Networks by Coding Agents",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.15941",
+      "title": "Lang-SVG: Hierarchical Image Vectorization with Language Priors",
+      "url": "https://huggingface.co/papers/2611.15941",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:17.999Z",
+      "content": "Lang-SVG: Hierarchical Image Vectorization with Language Priors",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.25200",
+      "title": "Squoosh Bench: Evaluating UX-1 on 318 Historical Website A/B Tests",
+      "url": "https://huggingface.co/papers/2611.25200",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:17.999Z",
+      "content": "Squoosh Bench: Evaluating UX-1 on 318 Historical Website A/B Tests",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thinkingmachines.ai/news/inkling-2-mini",
+      "title": "Introducing Inkling 2 Mini - Thinking Machines Lab",
+      "url": "https://thinkingmachines.ai/news/inkling-2-mini",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.941Z",
+      "content": "Introducing Inkling 2 Mini - Thinking Machines Lab thinkingmachines.ai19 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://metr.org/blog/2026-11-20-q4-2026-capability-update",
+      "title": "AI R&D-relevant model capabilities are improving rapidly and are getting harder to measure",
+      "url": "https://metr.org/blog/2026-11-20-q4-2026-capability-update",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.942Z",
+      "content": "AI R&D-relevant model capabilities are improving rapidly and are getting harder to measure metr.org128 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.take2games.com/ir/news/grand-theft-auto-vi-shatters-entertainment-box-office-records",
+      "title": "Grand Theft Auto VI Shatters Entertainment Box Office Records with $3.79 Billion in Day One Retail Sales | Take-Two Interactive Software, Inc.",
+      "url": "https://www.take2games.com/ir/news/grand-theft-auto-vi-shatters-entertainment-box-office-records",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.942Z",
+      "content": "Grand Theft Auto VI Shatters Entertainment Box Office Records with $3.79 Billion in Day One Retail Sales | Take-Two Interactive Software, Inc. take2games.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://decrypt.co/383744/nvidia-shares-sink-52-week-low-sec-probing-accounting",
+      "title": "Nvidia Shares Sink to 52-Week Low After Report SEC Is Probing Accounting",
+      "url": "https://decrypt.co/383744/nvidia-shares-sink-52-week-low-sec-probing-accounting",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.943Z",
+      "content": "Nvidia Shares Sink to 52-Week Low After Report SEC Is Probing Accounting decrypt.co3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/11/20/trump-data-centers-ai-companies-tax.html",
+      "title": "Trump vows to stop U.S. companies from building data centers abroad",
+      "url": "https://www.cnbc.com/2026/11/20/trump-data-centers-ai-companies-tax.html",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.943Z",
+      "content": "Trump vows to stop U.S. companies from building data centers abroad cnbc.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/11/20/zscaler-crowdstrike-deal.html",
+      "title": "Zscaler stock jumps 18% on report that CrowdStrike in talks to buy security vendor",
+      "url": "https://www.cnbc.com/2026/11/20/zscaler-crowdstrike-deal.html",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.943Z",
+      "content": "Zscaler stock jumps 18% on report that CrowdStrike in talks to buy security vendor cnbc.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://nebusec.ai/research/inside-meta-muse",
+      "title": "Inside Meta Muse: Browser, Sentinel and the Shared-Kernel Boundary",
+      "url": "https://nebusec.ai/research/inside-meta-muse",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.944Z",
+      "content": "Inside Meta Muse: Browser, Sentinel and the Shared-Kernel Boundary nebusec.ai13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://openai.com/index/combatting-adversarial-distillation",
+      "title": "Combatting adversarial distillation",
+      "url": "https://openai.com/index/combatting-adversarial-distillation",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.944Z",
+      "content": "Combatting adversarial distillation openai.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://latent.space/p/formal-verification",
+      "title": "The War Against Slop and an Emerging Weapon to Fight it: Formal Verification",
+      "url": "https://latent.space/p/formal-verification",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.945Z",
+      "content": "The War Against Slop and an Emerging Weapon to Fight it: Formal Verification latent.space6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.theregister.com/security/2026/11/20/china-attackers-deployed-ai-agents-that-autonomously-found-and-exploited-a-0-day-to-take-over-a-university-server/5311382",
+      "title": "China attackers deployed AI agents that autonomously found and exploited a 0-day to take over a university server",
+      "url": "https://www.theregister.com/security/2026/11/20/china-attackers-deployed-ai-agents-that-autonomously-found-and-exploited-a-0-day-to-take-over-a-university-server/5311382",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.945Z",
+      "content": "China attackers deployed AI agents that autonomously found and exploited a 0-day to take over a university server theregister.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://support.google.com/googlehome/blog/478236207/a-modern-foundation-for-your-smart-home-changes-coming-to-google-assistant-and-nest-app?hl=en",
+      "title": "A Modern Foundation for Your Smart Home: Changes Coming to Google Assistant and Nest App - Google Home & Nest Community",
+      "url": "https://support.google.com/googlehome/blog/478236207/a-modern-foundation-for-your-smart-home-changes-coming-to-google-assistant-and-nest-app?hl=en",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.945Z",
+      "content": "A Modern Foundation for Your Smart Home: Changes Coming to Google Assistant and Nest App - Google Home & Nest Community support.google.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://officechai.com/ai/hours-after-alpoges-ai-assisted-riemann-hypothesis-proof-ams-president-ravi-vakil-rushes-out-a-rival-all-human-proof-by-alessandro-masullo",
+      "title": "Hours After Alpöge’s AI-Assisted Riemann Hypothesis Proof, AMS President Ravi Vakil Rushes Out A Rival “All Human” Proof By Alessandro Masullo",
+      "url": "https://officechai.com/ai/hours-after-alpoges-ai-assisted-riemann-hypothesis-proof-ams-president-ravi-vakil-rushes-out-a-rival-all-human-proof-by-alessandro-masullo",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.946Z",
+      "content": "Hours After Alpöge’s AI-Assisted Riemann Hypothesis Proof, AMS President Ravi Vakil Rushes Out A Rival “All Human” Proof By Alessandro Masullo officechai.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://a16zfrontier.com/posts/article/deceiving-ai-hacking-agents",
+      "title": "How I tricked a hacking agent into running my code",
+      "url": "https://a16zfrontier.com/posts/article/deceiving-ai-hacking-agents",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.946Z",
+      "content": "How I tricked a hacking agent into running my code a16zfrontier.com10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://kernelspace.substack.com/p/can-you-beat-nvcc-with-a-rust-ptx",
+      "title": "Can you beat NVCC with a Rust PTX compiler?",
+      "url": "https://kernelspace.substack.com/p/can-you-beat-nvcc-with-a-rust-ptx",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.946Z",
+      "content": "Can you beat NVCC with a Rust PTX compiler? kernelspace.substack.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+      "title": "moonshotai/Kimi-K3.1-Pro: Open-weight multimodal agentic model with 2.8T parameters",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.947Z",
+      "content": "moonshotai/Kimi-K3.1-Pro: Open-weight multimodal agentic model with 2.8T parameters huggingface.co7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.figma.com/make",
+      "title": "Figma Make: Create with AI-Powered Design Tools",
+      "url": "https://www.figma.com/make",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.947Z",
+      "content": "Figma Make: Create with AI-Powered Design Tools figma.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://stripe.com/guides/indexing-the-ai-economy",
+      "title": "Indexing the AI economy | Stripe",
+      "url": "https://stripe.com/guides/indexing-the-ai-economy",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.949Z",
+      "content": "Indexing the AI economy | Stripe stripe.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://coder.com/blog/ai-agent-security-has-to-be-layered",
+      "title": "AI Agent Security Has to Be Layered",
+      "url": "https://coder.com/blog/ai-agent-security-has-to-be-layered",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.950Z",
+      "content": "AI Agent Security Has to Be Layered coder.com11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.lukew.com/ff/2173/crazy-agent-scale-companies-all-in-on-ai",
+      "title": "Crazy Agent Scale: Companies All-in on AI",
+      "url": "https://www.lukew.com/ff/2173/crazy-agent-scale-companies-all-in-on-ai",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.950Z",
+      "content": "Crazy Agent Scale: Companies All-in on AI lukew.com11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.semafor.com/article/11/20/2026/openai-tightens-grip-on-model-resellers",
+      "title": "OpenAI tightens grip on model resellers",
+      "url": "https://www.semafor.com/article/11/20/2026/openai-tightens-grip-on-model-resellers",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.951Z",
+      "content": "OpenAI tightens grip on model resellers semafor.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.youtube.com/watch?v=b9EbCb5A408",
+      "title": "We Studied 150 Developers Using AI (Here’s What's Actually Changed...)",
+      "url": "https://www.youtube.com/watch?v=b9EbCb5A408",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.951Z",
+      "content": "We Studied 150 Developers Using AI (Here’s What's Actually Changed...) youtube.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://terrytao.wordpress.com/2026/11/20/unforced-euler-singularity-unforced-navier-stokes-singularity-and-the-generalized-riemann-hypothesis",
+      "title": "Unforced Euler singularity, unforced Navier-Stokes singularity, and the Generalized Riemann Hypothesis",
+      "url": "https://terrytao.wordpress.com/2026/11/20/unforced-euler-singularity-unforced-navier-stokes-singularity-and-the-generalized-riemann-hypothesis",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.952Z",
+      "content": "Unforced Euler singularity, unforced Navier-Stokes singularity, and the Generalized Riemann Hypothesis terrytao.wordpress.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+      "title": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice: Technical Overview and Model Release",
+      "url": "https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.953Z",
+      "content": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice: Technical Overview and Model Release huggingface.co11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://serverlessland.com/explore/lambda-microvms",
+      "title": "AWS Lambda MicroVMs | Serverless Land",
+      "url": "https://serverlessland.com/explore/lambda-microvms",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.953Z",
+      "content": "AWS Lambda MicroVMs | Serverless Land serverlessland.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thenextweb.com/news/youtube-3b-settlement-school-districts-social-media-addiction",
+      "title": "YouTube nears a $3B settlement with US schools over addiction claims",
+      "url": "https://thenextweb.com/news/youtube-3b-settlement-school-districts-social-media-addiction",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.954Z",
+      "content": "YouTube nears a $3B settlement with US schools over addiction claims thenextweb.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://kyutai.org/blog/2026-11-20-aura",
+      "title": "AURA: Audio-Driven Streaming Avatars in Real Time",
+      "url": "https://kyutai.org/blog/2026-11-20-aura",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.965Z",
+      "content": "AURA: Audio-Driven Streaming Avatars in Real Time kyutai.org6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://a90.com/experiments/same-advice",
+      "title": "AI is giving everyone the same advice",
+      "url": "https://a90.com/experiments/same-advice",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.965Z",
+      "content": "AI is giving everyone the same advice a90.com14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://time.com/article/2026/11/20/anthropic-ipo-climate-energy",
+      "title": "The Climate Question Hanging Over Anthropic’s IPO",
+      "url": "https://time.com/article/2026/11/20/anthropic-ipo-climate-energy",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.966Z",
+      "content": "The Climate Question Hanging Over Anthropic’s IPO time.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://manidoraisamy.com/post/we-promoted-developers-into-architects-without-inf.anc-58cface0-6b25-43eb-8709-84a92c3a6c96.html",
+      "title": "We promoted developers into architects without informing them",
+      "url": "https://manidoraisamy.com/post/we-promoted-developers-into-architects-without-inf.anc-58cface0-6b25-43eb-8709-84a92c3a6c96.html",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.966Z",
+      "content": "We promoted developers into architects without informing them manidoraisamy.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://8thlight.com/insights/how-i-shipped-39-prs-to-prod-as-a-non-dev-2",
+      "title": "How I shipped 39 PRs to prod as a non-developer",
+      "url": "https://8thlight.com/insights/how-i-shipped-39-prs-to-prod-as-a-non-dev-2",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.967Z",
+      "content": "How I shipped 39 PRs to prod as a non-developer 8thlight.com11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://geopoliticsagi.substack.com/p/counter-ai-the-missing-layer-in-ai",
+      "title": "Counter-AI: The Missing Layer in AI Security Architecture",
+      "url": "https://geopoliticsagi.substack.com/p/counter-ai-the-missing-layer-in-ai",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.967Z",
+      "content": "Counter-AI: The Missing Layer in AI Security Architecture geopoliticsagi.substack.com20 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://gemini.google/desktop",
+      "title": "Gemini for desktop: download the AI app for Windows & macOS",
+      "url": "https://gemini.google/desktop",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.967Z",
+      "content": "Gemini for desktop: download the AI app for Windows & macOS gemini.google2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.youtube.com/watch?v=CiEGz7BHzLE",
+      "title": "AI Agents in Production: 6 Failure Modes and Their Fixes",
+      "url": "https://www.youtube.com/watch?v=CiEGz7BHzLE",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.968Z",
+      "content": "AI Agents in Production: 6 Failure Modes and Their Fixes youtube.com10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.youtube.com/watch?v=fFIjrtH6qjc",
+      "title": "Engineer Claims AI Breaks Pull Request Reviews",
+      "url": "https://www.youtube.com/watch?v=fFIjrtH6qjc",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.968Z",
+      "content": "Engineer Claims AI Breaks Pull Request Reviews youtube.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://openai.com/index/introducing-medchembench",
+      "title": "Can AI help scientists identify promising drug candidates?",
+      "url": "https://openai.com/index/introducing-medchembench",
+      "author": null,
+      "publishedAt": "2026-11-20T22:22:18.968Z",
+      "content": "Can AI help scientists identify promising drug candidates? openai.com5 min read",
       "topics": [
         "ai-llms",
         "devtools-infra",
