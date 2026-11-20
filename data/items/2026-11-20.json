@@ -1,6 +1,6 @@
 {
   "day": "2026-11-20",
-  "generatedAt": "2026-11-20T11:28:50.232Z",
+  "generatedAt": "2026-11-20T17:37:44.680Z",
   "items": [
     {
       "sourceSlug": "openai",
@@ -66,6 +66,21 @@
       "author": "Kevin Dawkins",
       "publishedAt": "2026-11-19T00:00:00.000Z",
       "content": "is now available on AI Gateway.GPT-Live 1.1 from OpenAI GPT-Live 1.1 is a full-duplex voice model, so it listens while it speaks and a caller can pause, interrupt, or add detail mid-reply. Compared with the previous GPT-Live model, it transcribes speech more accurately and keeps a more consistent accent and voice across languages. It uses the same Live endpoint and client delegation, so an existing GPT-Live integration only needs the new model ID. Run by itself:openai/gpt-live-1.1 Turn on client delegation, and use the session instructions to tell GPT-Live 1.1 when to ask for help. It asks by sending delegation-created. Answer with any text model on AI Gateway and return the result on the commentary channel for GPT-Live to speak. This example uses openai/gpt-6.2-sol and builds on the session above: Your application controls delegated work and its permissions, confirmations, and cancellation. Delegated model requests are billed separately through AI Gateway, and voice-session usage continues while they run. These snippets omit the WebSocket connection, event parsing, transcript assembly, audio streaming, and shutdown. See the for connection setup, audio streaming, and complete examples.GPT-Live guide Try GPT-Live 1.1 in the .model playground AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in , , , , and more.custom reportingZero Data Retention supportbudgets for API keysrouting rules AI Gateway reflects provider pricing with no markup and does not charge a platform fee on inference, including on (BYOK) requests.Bring Your Own Key You can view available on AI Gateway.all models Read more Simple example without delegation Delegate work and keep talking",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/priority-projects-now-in-public-beta",
+      "title": "Priority Projects now in public beta",
+      "url": "https://vercel.com/changelog/priority-projects-now-in-public-beta",
+      "author": "Mark Knichel",
+      "publishedAt": "2026-11-19T01:10:00.000Z",
+      "content": "are now in public beta for Pro and Enterprise teams. This optional upgrade for individual Vercel projects adds bot and traffic-source signals, Page Integrity for monitoring and controlling client-side scripts and connections, and additional Firewall controls and alerts.Priority Projects is free on all plans. You can enable it to challenge non-browser traffic while allowing verified bots. Priority adds more detailed bot signals: categories, verification status, and names where available. Use these signals in:Bot protection Priority adds Traffic Sources labels for requests from Tor exit nodes, VPNs, open or anonymizing proxies, and residential proxies. It also labels traffic flagged by abuse blocklists. Use these labels in custom Firewall rules, analyze them in Firewall Observability, or read them from the request header in your application. A request can have multiple labels.x-vercel-waf-source Use the Traffic Sources managed ruleset to log, challenge, or block traffic by source category. Review matching traffic before enabling blocking, since these categories can also include legitimate users. To enable the Traffic Sources managed ruleset from the CLI, run . This stages the change; review it with , then apply it with .vercel firewall managed-rulesets enable traffic-sourcesvercel firewall diffvercel firewall publish Priority Projects get access to to monitor client-side scripts and connections, receive alerts when new scripts or connections are detected, and block unapproved resources.Page Integrity Page Integrity maintains a resource inventory and uses for discovery and enforcement, without adding client-side JavaScript.Content Security Policy (CSP) It operates in three stages: Page Integrity must be enabled separately. Configure monitoring and review resources in the dashboard; the CLI can also show its resource inventory: are available on all plans. Priority adds anomaly alerts for bot traffic and requests matching system or custom Firewall rules. Use these alerts to investigate potential attacks and unusual traffic patterns.DDoS alerts Configure notifications in your team’s , with delivery options including email, Slack, and webhooks.Settings > Alerts View recent alerts with . To manage alert configuration from the CLI, see .vercel alerts --since 24hvercel monitors On Pro, Priority lets you enable the to protect against common web application attacks. Enterprise projects can already enable it without Priority.OWASP Core Ruleset Add it as a team default from , or enable it for a linked project via the CLI with followed by . is billed separately per inspected request and GB of inspected payload.Security > RulesOWASP inspectionvercel firewall managed-rulesets enable owasp --yesvercel firewall publish Priority adds response conditions to the available on all plans. Count requests toward a limit only when their responses match specified HTTP status codes or response headers. For example, count responses from failed login attempts or responses for missing pages, rather than every matching request.rate-limit rules401404 Priority increases the following per-project limits (shown as standard → with Priority): Priority costs $200 per project per month. Enable it from your project’s or page, or with the CLI.FirewallSettings For the CLI, update to the latest version with , then enable Priority for the project you want to upgrade:vercel upgrade Page Integrity usage is billed separately. Its standard rate is $2 per 1,000 monitored page views, with each view covering up to 100 scripts. Learn more in the .Priority Projects documentation Read more Bot signals Traffic Sources Page Integrity Firewall controls and alerts Get started Match on , , , and in the dashboard or with .Firewall rules:bot_namebot_categorybot_statusbot_protectionvercel firewall rules add Read , , and from request headers in Routing Middleware and Vercel Functions. See the for verified and claimed bot names.Application code:x-vercel-bot-categoryx-vercel-bot-namex-vercel-verified-botheader reference Logs show the Firewall action on all plans. Priority adds the matched rule and bot details where available. In Firewall Observability, Priority adds for unverified traffic. Log Drains also include bot classifications.Logs and Observability:botCategory Discover scripts using report-only CSP headers on sampled requests.Detect: Approve or reject scripts and record business justifications.Review: Enforce a CSP that blocks scripts outside the approved inventory.Block: Anomaly alerts OWASP Core Ruleset Response-based rate limiting Higher Firewall limits",
       "topics": [
         "devtools-infra",
         "frontend"
@@ -263,6 +278,35 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/harness-adapters-at-scale",
+      "title": "Introducing harness adapters: adapt your favorite model to your harness to improve performance and cost",
+      "url": "https://huggingface.co/blog/harness-adapters-at-scale",
+      "author": null,
+      "publishedAt": "2026-11-20T00:00:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "anthropic-news",
+      "externalId": "https://www.anthropic.com/news/ipo-close",
+      "title": "Anthropic announces closing of initial public offering, including full exercise of underwriters’ option to purchase additional shares, and closing of concurrent private placement",
+      "url": "https://www.anthropic.com/news/ipo-close",
+      "author": null,
+      "publishedAt": "2026-11-20T00:00:00.000Z",
+      "content": "Today Anthropic, PBC announced the closing of its initial public offering of an aggregate of 1,127,000,000 shares of its Class A common stock at a public offering price of $83.00 per share, including the full exercise by the underwriters of their option to purchase an additional 147,000,000 shares of Class A common stock from Anthropic at the initial public offering price.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261119/p55#a261119p55",
       "title": "Sources: Menlo invested $1B+ for a ~1.5% Anthropic stake, worth $20B+ at a $1.5T valuation; Lightspeed, the top financial investor, invested $3B+ and holds 2%+ (Krystal Hu/Reuters)",
@@ -389,6 +433,25 @@
       "mediaType": "text",
       "points": 114,
       "comments": 11
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50569519",
+      "title": "What Comes After AGI?",
+      "url": "https://institute.deepmind.com/essays/what-comes-after-agi/",
+      "author": "jdkee",
+      "publishedAt": "2026-11-20T02:44:13.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 139,
+      "comments": 266
     },
     {
       "sourceSlug": "simon-willison",
@@ -1969,6 +2032,63 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50572116",
+      "title": "Carnival Cruises emits ten times more sulphur oxide than all of Europe's cars (2019)",
+      "url": "https://ecohustler.com/article/one-corporation-to-pollute-them-all/",
+      "author": "sammatilda",
+      "publishedAt": "2026-11-20T09:13:09.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 403,
+      "comments": 244
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50572348",
+      "title": "Signal Is Serious About Protecting Your Privacy",
+      "url": "https://signal.org/blog/protecting-your-privacy/",
+      "author": "dotcoma",
+      "publishedAt": "2026-11-20T09:42:16.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 260,
+      "comments": 134
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50572355",
+      "title": "If you can't explain something in simple terms, you don't understand it (2017)",
+      "url": "https://kottke.org/17/06/if-you-cant-explain-something-in-simple-terms-you-dont-understand-it",
+      "author": "sammatilda",
+      "publishedAt": "2026-11-20T09:43:19.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 432,
+      "comments": 228
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261120/p7#a261120p7",
       "title": "An analysis of 10M job ads in China between 2021 and 2025 finds a double-digit decline in listings for roles more exposed to AI than for less-exposed positions (Bloomberg)",
@@ -1981,6 +2101,82 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50572430",
+      "title": "UK fridges secured from hackers",
+      "url": "https://www.bbc.co.uk/news/articles/c6eq49zyx7p4o",
+      "author": "tomnext",
+      "publishedAt": "2026-11-20T09:52:20.000Z",
+      "content": "https://www.pentestpartners.com/security-blog/the-fridge-hac...",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 129,
+      "comments": 118
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50572448",
+      "title": "What people are building, discovered through new domains",
+      "url": "https://startups.novumsignals.com/",
+      "author": "walterschnitzel",
+      "publishedAt": "2026-11-20T09:54:33.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 122,
+      "comments": 58
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50572503",
+      "title": "Frostbite: A new CPU architecture discovered, designed and verified by AI",
+      "url": "https://architectlabs.com/blog/frostbite",
+      "author": "shioyama",
+      "publishedAt": "2026-11-20T10:01:41.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 472,
+      "comments": 269
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50572822",
+      "title": "The Making of Oxygene",
+      "url": "https://jeanmicheljarre.com/aaa/the-making-of-oxygene",
+      "author": "hggh",
+      "publishedAt": "2026-11-20T10:41:10.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 145,
+      "comments": 56
     },
     {
       "sourceSlug": "techmeme",
@@ -2694,6 +2890,1205 @@
       "author": null,
       "publishedAt": "2026-11-20T11:28:44.602Z",
       "content": "Our S3 cache is full of holes. We put them there. — Berserk bzrk.dev8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1037667",
+      "title": "Why the robots are ditching Uber",
+      "url": "https://www.theverge.com/transportation/1037667/waymo-serve-robotics-ditch-uber-autonomous-partnerships",
+      "author": "Andrew J. Hawkins",
+      "publishedAt": "2026-11-20T12:00:00.000Z",
+      "content": "In a late August earnings call, Uber CEO Dara Khosrowshahi sounded optimistic about his company's \"very strong\" partnership with Waymo, the global leader in autonomous robotaxis. The two companies had been working together for years in several cities - including exclusively in Austin and Atlanta - and things were going swimmingly, according to Khosrowshahi. \"We believe we'll continue to operate next year in those marketplaces,\" he gushed. \"It's a terrific product, and the on-the-ground partnership continues to be very strong.\" The partnership would turn out to be more brittle than Khosrowshahi let on. Several weeks later, Waymo co-CEO Teke … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=94419",
+      "title": "What The Telecom Bust Taught Me About AI’s Debt Boom",
+      "url": "https://news.crunchbase.com/venture/telecom-bust-ai-startup-debt-boom-spreng-runway-growth/",
+      "author": "Guest Author",
+      "publishedAt": "2026-11-20T12:00:01.000Z",
+      "content": "By David Spreng The financing of the AI buildout is shifting from equity to debt, and those who invested through the telecom bubble may recognize what that shift tends to mean. There is an old story in Stephen Hawking’s “A Brief History of Time” about a scientist lecturing on the universe when a woman in the audience insists that the world rests on the back of a giant turtle. Asked what the turtle stands on, she replies that it’s “turtles all the way down.” Her response is what philosophers call infinite regress — a chain of claims in which each one rests on another of the same kind and solid ground never arrives. David Spreng is the founder, co-CEO and co-CIO of Runway Growth Capital. I think of it when I look at the AI buildout because its logic has taken the same shape. Valuations support borrowing, and borrowing builds capacity. The capacity then becomes proof that the valuations were right, so each claim stands on the one beneath it. Over the past year, more of the stack has started running on debt rather than equity, and in my experience, that crossing is the moment the telecom bubble becomes the relevant history given that debt may change how these stories end. Until recently, the AI buildout was largely an equity-financed story, with venture investment reaching record levels. Crunchbase data shows global venture funding totaled $679 billion through the first three quarters of 2026, the highest amount ever recorded for that period. AI companies attracted $102 billion in the third quarter alone, accounting for roughly 64% of global venture funding. A record 27 companies raised rounds of $1 billion or more during the quarter, collectively accounting for about a third of that total. Equity financing carries significant risks, but unlike debt, it generally does not impose fixed repayment obligations. When investments underperform, equity investors typically absorb losses through declining valuations, while companies may retain greater flexibility to pursue their long-term strategies. That debt is now arriving in size. Meta sold $30 billion of bonds last October in one of the largest corporate debt sales on record, then returned for $25 billion more in April, with investors reportedly demanding more compensation the second time. Amazon, Alphabet and Oracle have each borrowed tens of billions of their own, and Meta’s giant Louisiana data-center campus was financed with a record $27 billion bond raised by a joint-venture partner rather than by Meta itself. Morgan Stanley expects the big AI and cloud companies to spend about $3 trillion on infrastructure through 2028, with only about half of it expected to come from their own cash flow. The rest has to come from somewhere, and increasingly I think that somewhere is the bond market and private credit. I watched the earlier version of this from a front-row seat, first as a venture capitalist in the late 1990s and since then as a lender to growth-stage technology companies. Telecom borrowed staggering sums against a demand forecast that was widely repeated and rarely checked, the famous claim that internet traffic was doubling every 100 days. Traffic was actually doubling about once a year, spectacular growth but a fraction of what the borrowing assumed. By 2002 the telecom sector carried roughly $1 trillion in debt, much of which the chairman of the FCC told Congress would never be repaid, and WorldCom had entered what was then the largest bankruptcy in American history. Much of the fiber the industry laid sat dark for years and was finally put to work by buyers who paid pennies on the dollar for it in bankruptcy, through a decade of restructurings and private mergers that rebuilt entire cap tables. Some companies survived that process, and many did not. The demand narrative The echo that concerns me most is the demand narrative. Today’s version holds that data centers are effectively leased before they are built and that the only real mistake is building too little. That may prove correct, but it is repeated with the same uniformity the traffic forecast enjoyed in 1999, and much of it rests on projections supplied by the companies doing the building. What has changed in recent months is that investors have begun demanding an answer. Anthropic is now public, and once companies of that scale report financial results every quarter, investors can check the demand story against audited numbers. Some may argue, reasonably, that my comparison fails and that the companies doing the largest borrowing may be among the most profitable enterprises ever built, with cash flows the telecom carriers never approached. A few AI companies also appear to be reaching revenue scale faster than any businesses before them. And the internet really did change everything, just as the traffic really did arrive. All of that may be true, and none of it answers the question I think a lender has to ask, which is whether the cash arrives on the schedule the debt requires. Equity can generally wait out a wrong timeline in a way debt cannot, and when borrowed money builds capacity faster than revenue arrives to service it, in my opinion, the correction tends to come through restructurings rather than quiet markdowns. Enduring lessons None of this is a prediction that the AI buildout must end the way telecom did. The most durable lesson of the telecom bust, in my view, concerned capital structure, which decided who was still standing when demand finally caught up with capacity, long after the technology itself had been vindicated. I have spent years arguing that growth companies fear debt more than they should, and I still believe it, but the argument has always been conditional. Debt serves borrowers whose obligations are sized to revenue they can see and lenders who underwrite fundamentals instead of narratives, and it treats everyone else harshly. I believe the borrowing stacked beneath the AI boom will be judged by that standard. Every assumption in the stack may well hold, but what I learned the last time is that once investors begin asking what the turtles are standing on, they rarely stop until they reach something solid. David Spreng is the founder, co-CEO and co-CIO of Runway Growth Capital. He has more than 30 years of experience as a Silicon Valley venture capitalist and growth debt lender, has been involved in the formation and development of nearly 50 technology companies, and has appeared four times on the Forbes Midas List of top venture capitalists. He co-founded Decathlon Capital Partners in 2010, served on the board of the National Venture Capital Association and has participated as a panelist at the World Economic Forum in Davos. Note: This article expresses the author’s views as of the publication date and is provided for general informational and educational purposes. It is not investment advice or a recommendation to purchase, sell, or hold any security or to enter into any financing transaction. References to companies and transactions are illustrative and do not reflect a conclusion regarding their investment merits or creditworthiness. Historical market comparisons are inherently limited, and future conditions may differ materially. The author’s views may change without notice. Illustration: Dom Guzman",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "crunchbase-news",
+      "externalId": "https://news.crunchbase.com/?p=94408",
+      "title": "5 Interesting Startup Deals You May Have Missed: Reflecting Sunlight From Space, Better Breathing And Smarter Garbage Trucks",
+      "url": "https://news.crunchbase.com/venture/interesting-startup-deals-ai-solar-healthcare-space-tech/",
+      "author": "Marlize van Romburgh",
+      "publishedAt": "2026-11-20T12:00:25.000Z",
+      "content": "This is a monthly column that runs down five interesting startup funding deals that may have flown under the radar. Check out our previous entry here. What if solar farms could keep generating electricity after sunset with a little help from mirrors orbiting Earth? Or researchers could send an experiment into space for less than the price of a car? Those are two of the more unusual ideas that attracted startup investment in the past month. Our latest roundup also includes a company bringing AI to the old-school business of garbage hauling, another rethinking how factories are programmed, and a consumer brand betting that better breathing could become a big business. Let’s take a closer look. $73.5M to reflect sunlight from space Solar power has one rather obvious limitation: The sun goes down. To that end, Reflect Orbital is working on a solution that sounds straight out of science fiction. The Hawthorne, California-based startup wants to put giant mirrors in orbit to redirect sunlight toward specific locations on Earth, potentially allowing solar farms to keep generating electricity longer after sunset. The company recently announced $73.5 million in new funding, bringing its total funding to more than $102 million, per Crunchbase. Existing investors Sequoia Capital, Lux Capital and Starship Ventures participated, alongside new backers including Buckley Ventures, Convective Capital, The Uncommon Group and Salesforce Ventures 1. Reflect Orbital is developing lightweight, foldable reflectors that it says can be launched aboard satellites and deployed in low Earth orbit. The company envisions using them not only to extend solar power generation, but also to illuminate disaster zones for nighttime search-and-rescue operations or construction sites after dark. The idea remains unproven in orbit, however. Reflect Orbital is targeting the second quarter of 2027 for its first demonstration mission, which has received FCC approval. The funding will help support those initial launches, further development of its reflector technology, and commercial partnerships. The raise comes during a record year for space technology funding. By late August, investors had poured $20.3 billion into space- and satellite-related startups globally, per Crunchbase data, already comfortably exceeding previous annual records. Related Crunchbase queries: Space And Satellite Tech Startup Funding Global Cleantech Startup Funding In 2026 $62M to make better breathing a bigger business Nasal strips have been around for decades, but Intake Breathing Technology thinks there’s room for a serious upgrade. The Santa Barbara, California-based consumer wellness company recently announced a $62 million investment from Camino Partners, the investment platform founded by KIND Snacks entrepreneur Daniel Lubetzky. Intake makes a patented magnetic nasal dilator designed to open nasal passages and improve airflow. Rather than relying on a conventional adhesive strip stretched across the nose, its system uses adhesive tabs and a reusable magnetic band to pull the sides of the nose outward. The company markets its product to people looking to breathe more comfortably while sleeping, exercising or going about their daily routines. It says it has sold more than 100 million pairs of breathing tabs since 2023, with triple-digit revenue growth over the past three years. Intake plans to use the new capital to expand beyond its direct-to-consumer business and into more mainstream retail channels. That’s where Lubetzky’s experience building KIND into a household name could prove useful. Its funding comes as venture investors show renewed enthusiasm for fitness and wellness. Startups in those categories raised more than $3.6 billion globally in the first half of 2026, putting the sector on pace for its strongest funding year since 2022, Crunchbase data shows. Interestingly, much of this year’s investment into the sector has flowed to wearable devices and health platforms built around AI and data. Intake is a somewhat different bet: a relatively simple physical product that has apparently found a sizable audience without promising to reinvent healthcare through software. Related Crunchbase query: Global Fitness- And Wellness-Related Startup Funding In 2026 $12M to bring AI to the garbage-hauling business Taking out the trash isn’t exactly rocket science. But managing the businesses that collect it turns out to be surprisingly complicated. San Francisco-based TrashLab Software recently raised $12 million in a growth funding round led by Ventana, with participation from existing investors Bienville Capital, Harlem Capital and CreativeCo. The startup builds an AI-powered operating platform for waste-hauling businesses, an industry where many smaller operators still rely on spreadsheets, paper routes and clunky software to manage their fleets. TrashLab says its platform combines dispatching, route planning, customer management, billing and payments. Its AI agent, called Haul-E, can answer customer calls and take orders, while cameras in garbage trucks can help document problems such as overflowing dumpsters, blocked containers or bins that weren’t put out for collection. The company says hundreds of waste haulers across the U.S. and Canada now use its software, and that more than 5 million tons of material have been managed through its platform. It’s not the only startup finding an AI opportunity in the waste industry. We recently covered Greyparrot, a London-based company using computer vision to identify and analyze waste moving through recycling facilities. While Greyparrot focuses on what happens after trash reaches a processing plant, TrashLab is tackling the messy logistics of getting it there. Related Crunchbase query: Global Venture Funding To Waste Management Startups In 2026 $10M to let engineers program factories in plain English Factory automation has come a long way, but programming the machines that run industrial production lines can still require specialized expertise and a lot of time. Gardena, California-based Neuron Industries wants to make the process a lot simpler. The startup recently announced a $10 million seed round co-led by FCVC and Obvious Ventures, with participation from Y Combinator, Thin Line Capital, Zee Prime Capital and Founder Factor. Neuron is developing a new kind of industrial controller — the hardware that coordinates sensors, motors and other equipment in factories — alongside AI-powered software that lets engineers describe what they want a machine to do in ordinary language. Its system generates control code that engineers can inspect, modify and test in simulation before deploying it to real equipment. The goal is to reduce the time and specialized programming knowledge needed to get new production lines up and running. The startup says it has already demonstrated its technology on existing factory equipment, including replacing an aging controller on a wood-processing line with roughly three hours of engineering work and eight hours of downtime. It plans to release its Cortex AI Controller commercially in early 2027. The investment fits into a broader surge in funding for physical AI — technology that applies artificial intelligence to robots, autonomous vehicles, industrial equipment and other machines in the real world. Startups in those categories raised $47.4 billion globally across 521 deals in the first half of 2026, nearly 4x the amount invested in the second half of 2025, according to Crunchbase data. Related Crunchbase query: Global Physical AI Venture Funding In 2026 €6.9M to make space experiments more affordable Sending an experiment into space has traditionally required years of preparation, specialized engineering expertise and a very substantial budget. Austria-based Tumbleweed wants to bring the cost of entry down to as little as 15,000 euros. The Vienna startup recently raised 6.9 million euros (roughly $8 million) in seed funding led by PactVC, with participation from Vanagon Ventures, Prototype Capital and EWOR, among other investors. The company describes it as the largest space-tech seed round raised in Austria to date. Tumbleweed develops standardized containers, called Pods, that allow researchers and companies to conduct experiments in microgravity without building their own satellites or navigating the complex certification process required for space missions. Customers can place their experiments inside the pre-certified containers, which provide power and communications capabilities while in orbit. The startup handles the logistics of launching the payloads and transmitting experimental data back to Earth. Unlike many space startups still working toward their first launch, Tumbleweed has already put hardware in orbit. Its inaugural Oasis Alpha satellite launched in July carrying experiments for four paying customers, including research into biological processes and space-resource technologies. The mission was fully booked a year before launch. Tumbleweed says its new funding will help it carry out three more missions in 2027 and develop a next-generation spacecraft that would allow customers to bring physical samples back to Earth beginning in 2028. Tumbleweed is part of a growing European space startup ecosystem, although funding remains concentrated elsewhere. As of late August, European companies had attracted about 10% of global space-tech venture investment in 2026, compared with the more than 60% going to U.S. startups, Crunchbase data shows. Related Crunchbase query: Space And Satellite Tech Startup Funding Related reading: Sector Snapshot: Space Tech Startup Funding Orbits New Highs Sector Snapshot: Fitness Startup Funding Is Rebounding, But Investors Want AI And Data, Not Treadmills VCs Pour Billions Into Physical AI As The Next Wave Of AI Investing Takes Shape 5 Interesting Startup Deals You May Have Missed: AI For Everything From Recycling To Breathing To Winning Construction Bids Illustration: Dom Guzman Salesforce Ventures is an investor in Crunchbase. They have no say in our editorial process. For more, head here.↩",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/trump-admin-still-wont-let-wi-fi-giant-tp-link-sell-its-latest-routers-in-us/",
+      "title": "Trump admin still won't let Wi-Fi giant TP-Link sell its latest routers in US",
+      "url": "https://arstechnica.com/tech-policy/2026/11/trump-admin-still-wont-let-wi-fi-giant-tp-link-sell-its-latest-routers-in-us/",
+      "author": "Jon Brodkin",
+      "publishedAt": "2026-11-20T12:00:43.000Z",
+      "content": "TP-Link, which may be the top provider of wireless routers for US homes and small businesses, isn't allowed to sell its latest Wi-Fi routers in the US. The Trump administration imposed a sweeping ban on foreign-made consumer routers in March 2026, and TP-Link hasn't been able to obtain an exemption. The rules prevent the import or sale of all new router models that are manufactured, assembled, designed, or developed outside the US. The Trump administration has control over which router makers receive special permission to import and sell new products through a waiver-review process involving the Federal Communications Commission, the Department of Defense, and the Department of Homeland Security. While some of its competitors have obtained exemptions to the ban, TP-Link appears to be having a hard time making its case to government officials. Its routers approved before the March 2026 ban remain available for sale in the US, but its newly released Wi-Fi 8 routers cannot be imported or sold. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=72961",
+      "title": "Opening a 400-Year-Old Cryptex",
+      "url": "https://www.schneier.com/blog/archives/2026/11/opening-a-400-year-old-cryptex.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-11-20T12:04:46.000Z",
+      "content": "Researchers used CT scanning technology to recover the code and open a 400-year-old cryptex padlock. You can buy a USB-drive cryptex.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/staff/2026/11/science-has-a-home-here-at-ars-please-help-keep-it-that-way/",
+      "title": "Science has a home here at Ars—please help keep it that way",
+      "url": "https://arstechnica.com/staff/2026/11/science-has-a-home-here-at-ars-please-help-keep-it-that-way/",
+      "author": "John Timmer",
+      "publishedAt": "2026-11-20T12:15:36.000Z",
+      "content": "It's now been 21 years since I first published an article at Ars Technica. It has been the only home I've known as a writer, and it has been essential to my development from scientist to blogger to journalist. It's no exaggeration to say that Ars has helped make me who I am today. So, asking you to support Ars via a subscription is very personal (and a bit selfish) for me—I'd like to stay here! Jobs that give you this sort of independence, that let you both edit and write, are very rare in journalism, and I'm unlikely to find another. Helping secure Ars' future through your support will mean I don't have to. But I'd rather make a case for why you'll benefit from supporting Ars. In fact, I'll make three: the writing, the people, and the community. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/seminole-tribe-tries-to-stop-draftkings-illegal-gambling-in-florida/",
+      "title": "Only the Seminole Tribe can offer online gambling in Florida—and they're furious at DraftKings",
+      "url": "https://arstechnica.com/tech-policy/2026/11/seminole-tribe-tries-to-stop-draftkings-illegal-gambling-in-florida/",
+      "author": "Cyrus Farivar",
+      "publishedAt": "2026-11-20T12:30:29.000Z",
+      "content": "Last week, DraftKings asked a federal court in Florida to take over a lawsuit recently filed against it by the Seminole Tribe, opening another front in the nationwide online “swaps” debate. This Florida case adds to an already complex subplot involving Indigenous tribes, some of which are challenging prediction markets, while others are trying to get in on the action themselves. In the new lawsuit, the Seminole Tribe contends that two of DraftKings’ current online offerings—the fantasy sports-style “Pick6” and the “Super App” sportsbook—are “illegal\" in Florida. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1038390",
+      "title": "Signal is blocking Gemini and Siri AI from reading your screen",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app",
+      "author": "Jess Weatherbed",
+      "publishedAt": "2026-11-20T12:30:47.000Z",
+      "content": "Signal users on iOS will see this option to toggle blocking screenshots and preventing Siri AI from scanning on-screen content. | Image: Signal Signal is restricting the ability to take screenshots on Android and iOS devices in an effort to prevent AI agents from reading users' messages and other data. The agentic AI capabilities built into operating systems that analyze on-screen information to learn more about the user are \"undermining Signal's ability to independently guarantee privacy,\" Signal president Meredith Whittaker said in a blog post, while urging OS providers to make it easier for app developers to control what data agents can access. \"We want to be very clear: it is a serious problem that Signal - and application developers beyond - lack robust tools to prevent AI age … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p12#a261120p12",
+      "title": "Current and ex-staffers describe abusive behavior by Jensen Huang that goes back decades; Nvidia settled with two senior leaders who alleged abusive conduct (New York Times)",
+      "url": "https://www.techmeme.com/261120/p12#a261120p12",
+      "author": null,
+      "publishedAt": "2026-11-20T12:40:01.000Z",
+      "content": "New York Times: Current and ex-staffers describe abusive behavior by Jensen Huang that goes back decades; Nvidia settled with two senior leaders who alleged abusive conduct — The Nvidia co-founder's belittling behavior toward employees goes back decades. It once led to a confidential settlement agreement …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50573886",
+      "title": "If you stop writing code, you also get worse at reviewing it",
+      "url": "https://cekrem.github.io/posts/if-you-stop-writing-code-you-also-get-worse-at-reviewing-it/",
+      "author": "theanonymousone",
+      "publishedAt": "2026-11-20T12:41:38.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 192,
+      "comments": 104
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p13#a261120p13",
+      "title": "Uber quietly launched Uber Kids as a pilot in three US cities for kids as young as 10, building on its teen ride-hailing service for those aged 13 to 17 (Kirsten Korosec/TechCrunch)",
+      "url": "https://www.techmeme.com/261120/p13#a261120p13",
+      "author": null,
+      "publishedAt": "2026-11-20T13:10:02.000Z",
+      "content": "Kirsten Korosec / TechCrunch: Uber quietly launched Uber Kids as a pilot in three US cities for kids as young as 10, building on its teen ride-hailing service for those aged 13 to 17 — Uber has opened its ride-hailing service to children as young as 10 in three U.S. cities as the company tests whether there's a market …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50574383",
+      "title": "Global stock markets slump as Anthropic's record IPO fails to stem AI sell-off",
+      "url": "https://www.theguardian.com/business/2026/nov/20/global-stock-markets-slump-anthropic-ipo-ai-sell-off",
+      "author": "cdrnsf",
+      "publishedAt": "2026-11-20T13:29:59.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 150,
+      "comments": 162
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/11/rocket-report-a-weekend-of-ups-and-downs-stoke-celebrates-engine-milestone/",
+      "title": "Rocket Report: A weekend of ups and downs; Stoke celebrates engine milestone",
+      "url": "https://arstechnica.com/space/2026/11/rocket-report-a-weekend-of-ups-and-downs-stoke-celebrates-engine-milestone/",
+      "author": "Stephen Clark",
+      "publishedAt": "2026-11-20T13:35:45.000Z",
+      "content": "Welcome to Edition 9.20 of the Rocket Report! Last weekend was a picture of the US launch business in miniature, and emblematic of the opposing trajectories of two of the nation's most experienced rocket makers. First, on Saturday, SpaceX completed a perfect midair catch of its Starship upper stage at its launch pad in Texas after spending nearly a day in orbit. The Super Heavy booster was lost at sea, but SpaceX proved it can recover that piece of the rocket on previous flights. While SpaceX showed it is well on the way to fielding a fully reusable rocket, United Launch Alliance suffered its first-ever total launch failure with the Vulcan rocket. That is terrible news for not only ULA, but also the US Space Force and Amazon, which have booked some 70 launches on Vulcan over the next few years. Your faithful correspondents will take a break from the Rocket Report next week for the Thanksgiving holiday, so we'll see you again the first week of December. As always, we welcome reader submissions, and if you don't want to miss an issue, please subscribe using the box below (the form will not appear on AMP-enabled versions of the site). Each report will include information on small-, medium-, and heavy-lift rockets as well as a quick look ahead at the next three launches on the calendar. Europe's leading satellite startup eyes Italian rocket maker. Finnish satellite developer ICEYE announced Tuesday that it is seeking to buy Italian rocket-maker Avio for more than $2.2 billion in a transaction aimed at creating Europe’s first true vertically integrated end-to-end space company, Ars reports. Avio builds the Vega C rocket, a solid-fueled launcher designed to carry up to 3.3 metric tons (7,300 pounds) of payload to low-Earth orbit. ICEYE is, by far, the most successful space startup in Europe, with a valuation of more than $12 billion after the company's most recent fundraising round in June. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p14#a261120p14",
+      "title": "Anthropic raises an additional $12.2B as underwriters exercise their \"greenshoe\" overallotment of shares, bringing the total raised in its IPO to $93.5B (Ashley Capoot/CNBC)",
+      "url": "https://www.techmeme.com/261120/p14#a261120p14",
+      "author": null,
+      "publishedAt": "2026-11-20T13:50:01.000Z",
+      "content": "Ashley Capoot / CNBC: Anthropic raises an additional $12.2B as underwriters exercise their “greenshoe” overallotment of shares, bringing the total raised in its IPO to $93.5B — Anthropic underwriters have officially exercised their overallotment of shares in the historic initial public offering …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1038419",
+      "title": "The week everything fell apart",
+      "url": "https://www.theverge.com/podcast/1038419/outage-outlook-ground-stop-tech-failure-vergecast",
+      "author": "David Pierce",
+      "publishedAt": "2026-11-20T14:06:59.000Z",
+      "content": "There was a dayslong Outlook outage. A nationwide ground stop for only the second time in 25 years. Banks seemed to suddenly stop working. Even iCloud couldn't stay up and running. This week, it felt like the technological world simply collapsed. And it felt like this might be the beginning of something even bigger. On this episode of The Vergecast, Nilay and David go through the week's many calamities, and try to explain both what happened in each case - which was generally much milder than the conspiracy theories would have you believe - and why all these small issues might still add up to something worth worrying about. In a world filled … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/11/spacex-lenders-dont-want-elon-musk-launching-their-collateral-into-space/",
+      "title": "SpaceX lenders don’t want Elon Musk launching their collateral into space",
+      "url": "https://arstechnica.com/space/2026/11/spacex-lenders-dont-want-elon-musk-launching-their-collateral-into-space/",
+      "author": "Michelle Chan, Financial Times",
+      "publishedAt": "2026-11-20T14:15:21.000Z",
+      "content": "Lenders backing SpaceX’s latest $43 billion debt package, which is secured by its advanced AI chips, have tried to bar Elon Musk from firing the collateral into space as part of his plan for orbital data centers. The world’s richest man has outlined ambitious plans to power AI models with data centers cooled by the vacuum of space. That will require packing satellites full of advanced chips. SpaceX has said it plans to use the chips involved in the debt deal on Earth. But lenders have expressed concerns that if the group later decided to shoot the valuable chips that underpin their loans into space, it would prevent them from reclaiming and selling the semiconductors in the event of a default, according to people familiar with the matter. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50574968",
+      "title": "Anthropic employee claims general proof of the Riemann Hypothesis [pdf]",
+      "url": "https://alpo.ge/remark.pdf",
+      "author": "iamronaldo",
+      "publishedAt": "2026-11-20T14:16:21.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 1378,
+      "comments": 932
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p15#a261120p15",
+      "title": "Source: Coinbase is targeting H1 2027 to begin offering in-house event contracts in the US; it currently offers prediction markets through a Kalshi partnership (Bloomberg)",
+      "url": "https://www.techmeme.com/261120/p15#a261120p15",
+      "author": null,
+      "publishedAt": "2026-11-20T14:30:03.000Z",
+      "content": "Bloomberg: Source: Coinbase is targeting H1 2027 to begin offering in-house event contracts in the US; it currently offers prediction markets through a Kalshi partnership — Coinbase Global Inc. is targeting the first half of 2027 to begin offering in-house event contracts in the US, according to a person familiar with the matter.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/11/how-faa-can-modernize-us-national-airspace-system-without-emergency-ground-stops/",
+      "title": "US will soon announce root cause behind FAA nationwide ground stop",
+      "url": "https://arstechnica.com/gadgets/2026/11/how-faa-can-modernize-us-national-airspace-system-without-emergency-ground-stops/",
+      "author": "Jeremy Hsu",
+      "publishedAt": "2026-11-20T14:52:51.000Z",
+      "content": "The US government will announce soon the root cause of the router outage that led to the third-ever nationwide ground stop issued by the US Federal Aviation Administration. But questions remain about whether the FAA's effort to modernize the national airspace system is being done with all the proper risk assessments and adequate agency oversight of the private contractors involved. The nationwide ground stop blocked flight departures and impacted more than 1 million passengers across the United States for more than four hours on Friday, November 13. More than 12,000 flights were canceled on that day alone, with the number rising to more than 20,000 over the weekend as stranded travelers scrambled to find accommodations or alternative transportation. Some international flights were allowed to depart prior to the broader resumption of air traffic. Nearly one week later, FAA Administrator Bryan Bedford told news reporters that government investigators are “very close” to figuring out the root cause of the nationwide ground stop, according to CNN. Bedford also said that Transportation Secretary Sean Duffy plans to announce the findings at a news conference as soon as Friday, November 20. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1037545",
+      "title": "Let’s talk about GTA VI",
+      "url": "https://www.theverge.com/entertainment/1037545/gta-6-discussion",
+      "author": "Andrew Webster",
+      "publishedAt": "2026-11-20T15:00:00.000Z",
+      "content": "It's hard to believe, but Grand Theft Auto VI is now a real thing that we all can play. Thirteen years after GTA V, and eight years since Red Dead Redemption 2, Rockstar is back with its latest sprawling, extravagant open world. There's a lot to experience - and a lot to talk about. Perhaps the most impressive thing about GTA VI is how flexible it is, letting you mold the experience to your own play style. You can still be a maniacal criminal, but you can also focus on the new love story that includes an entire button dedicated to holding hands. Or you can spend the hours fishing or driving around listening to the radio. Maybe you just want … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1038450",
+      "title": "UN court cites military Facebook posts while finding Myanmar guilty of genocide",
+      "url": "https://www.theverge.com/policy/1038450/facebook-myanmar-genocide-un",
+      "author": "Emma Roth",
+      "publishedAt": "2026-11-20T15:02:13.000Z",
+      "content": "Rohingya refugees in Bangladesh watch the International Court of Justice’s ruling on Myanmar’s genocide against its Muslim minority. | Photo by Salahuddin Ahmed / AFP via Getty Images In its ruling that Myanmar committed state-sponsored genocide against the Rohingya people in 2016 and 2017, the United Nations' top court says that Facebook played a role in helping Myanmar's military spread hate speech against its Muslim minority. The ruling from the International Court of Justice determined that Facebook posts made by the country's military \"dehumanized\" the Muslim minority \"and at times encouraged and legitimized violence against them,\" as reported earlier by Reuters. The decision that Myanmar committed genocide comes after The Gambia sued the country in 2019 over the military's violent \"clearance operations\" targeting t … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50575644",
+      "title": "Why there are still no non-WebKit browsers on iOS",
+      "url": "https://blog.mozilla.org/en/mozilla/internet-policy/apple-ios-browser-engine-rules/",
+      "author": "lapcat",
+      "publishedAt": "2026-11-20T15:03:31.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 161,
+      "comments": 72
+    },
+    {
+      "sourceSlug": "css-tricks",
+      "externalId": "https://css-tricks.com/?p=397535",
+      "title": "Andy Clarke answers six questions about Standout Designs for the Web",
+      "url": "https://css-tricks.com/andy-clarke-standout-designs-for-the-web-interview/",
+      "author": "Geoff Graham",
+      "publishedAt": "2026-11-20T15:03:47.000Z",
+      "content": "Web designer, author, and Stuff & Nonsense founder Andy Clarke has released Standout Designs for the Web, a new e-book that encourages designers to move beyond familiar templates and conventional layouts to create more personality-driven websites. The book draws … Andy Clarke answers six questions about Standout Designs for the Web originally handwritten and published with love on CSS-Tricks. You should really get the newsletter as well.",
+      "topics": [
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p16#a261120p16",
+      "title": "Anthropic stock fell as low as $87.26 in the opening hours of its second day of trading, trimming gains from the $83 IPO price to as little as 5.1% (Bloomberg)",
+      "url": "https://www.techmeme.com/261120/p16#a261120p16",
+      "author": null,
+      "publishedAt": "2026-11-20T15:10:01.000Z",
+      "content": "Bloomberg: Anthropic stock fell as low as $87.26 in the opening hours of its second day of trading, trimming gains from the $83 IPO price to as little as 5.1% — Anthropic PBC shares erased much of their first-day jump on Friday, testing investors' faith after the AI lab delivered the biggest initial public offering in history.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p17#a261120p17",
+      "title": "Anthropic mathematician Levent Alpöge claims he used Claude to prove the 167-year-old Riemann hypothesis and posts the proof in the Lean programming language (Joseph Howlett/Scientific American)",
+      "url": "https://www.techmeme.com/261120/p17#a261120p17",
+      "author": null,
+      "publishedAt": "2026-11-20T15:20:00.000Z",
+      "content": "Joseph Howlett / Scientific American: Anthropic mathematician Levent Alpöge claims he used Claude to prove the 167-year-old Riemann hypothesis and posts the proof in the Lean programming language — An AI-generated solution of the 167-year-old problem, long considered far out of reach to human mathematicians …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p18#a261120p18",
+      "title": "Filings: Jensen Huang's charity committed $350M to rent compute from CoreWeave for its Computing Initiative for Open Science, and has already spent $108.3M (Bloomberg)",
+      "url": "https://www.techmeme.com/261120/p18#a261120p18",
+      "author": null,
+      "publishedAt": "2026-11-20T15:30:00.000Z",
+      "content": "Bloomberg: Filings: Jensen Huang's charity committed $350M to rent compute from CoreWeave for its Computing Initiative for Open Science, and has already spent $108.3M — Former Nvidia Corp. Chief Executive Officer Jensen Huang's charitable foundation plans to spend $350 million renting computer time from CoreWeave Inc.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "newcomer",
+      "externalId": "https://www.newcomer.co/p/after-anthropic-euphoria-nvidia-amd",
+      "title": "After Anthropic Euphoria, Nvidia, AMD & the Broader Market Offer a Harsh Reality Check",
+      "url": "https://www.newcomer.co/p/after-anthropic-euphoria-nvidia-amd",
+      "author": "Jonathan Weber",
+      "publishedAt": "2026-11-20T15:44:03.000Z",
+      "content": "The Week In Short AMD faces down investor fears that its AI deals are looking a bit too intertwined with customers. Gary Marcus explains why he thinks the big AI companies are on shaky ground on the podcast.The first Nvidia earnings call post-Jensen Huang beat Wall Street expectations, but that wasn’t enough to rally the stock for long. Google’s new model Gemini 4 Neon proves wrong the critics who said it fell out of the AI race. Palo Alto Networks scoops up Applied Compute for $4.5 billion. Kalshi faces multiple investigations around whether or not it’s circumventing state gambling laws. The cyber outages continue to pile up. California and Arizona take action against OpenAI. European VCs push to establish their standing at Slush. The Main Item Circular Financing & China Worries Hit Nvidia Rival AMD as Markets Turn Against the AI Trade It was remarkable to see Anthropic’s IPO plow through the various bits of worrying news that are piling up for the AI industry, with the core thesis of the investing mania very much intact. The argument that chip companies investing in their customers is a dangerous form of circular financing akin to the telecom bubble of the early 2000s is very much intact too. And it’s not just Nvidia. Hunterbrook, a short-seller that’s built an investigative journalism arm, said in a report entitled “Bank of AMD” that the number two player in AI chips has run an extensive customer-financing-and-investing operation that features “all of the circular financing of Nvidia, but without the margins or pricing power.” In a separate story, Hunterbrook said AMD has a China problem too, in the form of updated chip firmware being delivered to multiple blacklisted Chinese entities. The news added fuel to a broad selloff in tech stocks that was hitting even newly public Anthropic on Friday. Like Nvidia, AMD also sells lots of chips to Asian neoclouds that serve China’s big tech companies, and those revenues are at risk from new US government export control rules. AMD said the Hunterbrook reports didn’t properly represent its business, but shares fell almost 10% on the news. “If the smoke surrounding Nvidia becomes an inferno for the AI build-out, AMD will be engulfed by the flames,” Hunterbrook Capital said. It’s of course helpful for Jensen Huang and Nvidia if AMD’s CEO, the widely respected Lisa Su, was doing some of the same things in pushing the envelope on deal-making and China sales (though no one is accusing her of improper personal conduct). But it’s decidedly not helpful for the startup ecosystem if another company that has been a major financier of the AI buildout has to slow or stop spending. A lot of entities are getting cold feet about the bubbly extremes of the AI trade. Big Wall Street investment firms that promised in August to pony up some $500 billion in loans for data centers have yet to dispense a dime, the Wall Street Journal reported Wednesday. For months, investors have been waiting for the Anthropic IPO as the definitive validator of the industry and a counterpoint to all the talk about bubbles. It went off better than anyone could have expected. And yet, across the AI industry, a lot of people are selling on the news. Broader markets took a beating Thursday — it was only Anthropic that soared, and maybe not for long. Investors and entrepreneurs won’t be breathing easy for quite a while yet. Newcomer Podcast Is OpenAI Becoming the WeWork of AI? | Nvidia Woes Nvidia’s Earnings Call Couldn’t Quell Doubts About its Post-Jensen Huang Future Nvidia on Tuesday reported earnings that comfortably beat Wall Street expectations, with quarterly sales surpassing $100 billion for the first time. The figures were enough to rally the stock briefly, but it fell back Wednesday and closed down 3.3% at $146 Thursday. New board chair Harvey Jones didn’t sound like a replacement CEO was coming anytime soon and ruled out reinstating Jensen Huang as CEO following his forced resignation last week. Chatter about a Huang comeback kicked up again after he said he’d be willing to return as CEO if the board asked, and three directors have privately pushed for him to be reinstated, per Semafor. Yet the gravity of the allegations relating to possible export control violations, to say nothing of affairs with a major customer and employees, makes a comeback unlikely. Altimeter’s Brad Gerstner said the letter he sent the board Friday, widely seen as endorsing a Huang comeback, was not that, and he doesn’t want the board to “take shortcuts” in its investigation. Ben Thompson at Stratechery, meanwhile, wrote an informal obituary for the Nvidia of old and doesn’t see how the company can hold onto its status post-Huang, given how crucial his relationships were with TSMC, neocloud customers, and the startups he backed. The biggest immediate concern in startup land is interim CEO Colette Kress making it clear that she intends to dial back Huang’s aggressive dealmaking. Per data from Crunchbase, Nvidia and its venture arm, NVentures, have made a record 121 investments so far in 2026, with the pace of deals accelerating year by year since its 2023 base. The Empire Strikes Back Google Regains its Footing in the Frontier Model Competition Amidst all the Anthropic hoopla, it was easy to miss a hugely important piece of news: Google has reestablished itself in the AI model race. This week it released Gemini 4 Neon, a medium-sized model that had long been in the works. According to the benchmarks, Neon is ranking at or near the top of the most powerful models. And, maybe more importantly, it’s getting good reviews on X from the AI tastemakers who seem to have influence on how these models are adopted. Google has struggled with its latest Gemini models. Gemini 3.5 Pro was delayed and its previous smaller models were not matching up with Anthropic and OpenAI (and even SpaceX). That kicked off an increasing sense within the AI world that Google was struggling — SemiAnalysis went as far as to flatly declare it cooked and out of the race. “DeepMind is no longer a frontier lab,” they wrote. SemiAnalysis is a respected outfit when it comes to covering AI models and infrastructure, and kudos to them for going out on a limb with a bold declarative assessment. But it always rang hollow to anyone who has followed the progress of AI models. One of the recurring lessons of AI is that if a lab has the talent and the computing resources, it is never out of the mix. Certainly a lab can be waylaid by bad management and unsuccessful model runs, as DeepMind was, but to fully count them out doesn’t make sense. We’ve been here many times before: OpenAI after GPT-5, Anthropic after Opus 5, and xAI/SpaceX countless times. The individual moat for the frontier labs is far shallower than people like to think. SemiAnalysis was humble about it and (now former) DeepMind leader Demis Hassabis was good natured in response. But a lesson learned? Probably not. Six Notable Deals Applied Compute, Mailchimp, Isomorphic Labs, Genesis AI, Payhawk, Boltz Palo Alto Networks continues its AI shopping spree with Applied Compute. Plus, Isomorphic Labs and another UK AI biotech land big rounds. Read more",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1038410",
+      "title": "Andrey Zvyagintsev believes filmmakers know what the audience wants — not executives",
+      "url": "https://www.theverge.com/entertainment/1038410/andrey-zvyagintsev-minotaur-interview-director",
+      "author": "May Jeong",
+      "publishedAt": "2026-11-20T16:00:00.000Z",
+      "content": "The year is 2022. Vladimir Putin has announced the military draft. In Andrey Zvyagintsev's Minotaur, set in the fictional town of Krasoborsk, a quietly unhappy couple, called Gleb and Galina, carry on with their lives, or try to, geopolitics notwithstanding. For Galina, carrying on means an affair, which we deduce from a scene of her texting with a faint smile, her face lit in the dark by the light of her phone. (Minotaur is a remake of Claude Chabrol's 1969 film The Unfaithful Wife, whose title gives the plot away more readily than Zvyagintsev's.) Meanwhile, Gleb runs a kind of private contracting concern and is soon asked to scare up mili … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p19#a261120p19",
+      "title": "Linq, which offers texting and calling infrastructure for AI agents, raised a $90M Series B led by a16z, following a $20M Series A in February (Harper Harwell/Birmingham Business Journal)",
+      "url": "https://www.techmeme.com/261120/p19#a261120p19",
+      "author": null,
+      "publishedAt": "2026-11-20T16:00:53.000Z",
+      "content": "Harper Harwell / Birmingham Business Journal: Linq, which offers texting and calling infrastructure for AI agents, raised a $90M Series B led by a16z, following a $20M Series A in February — Just a few months after a major Series A funding round, one of Birmingham's fastest-growing startups will receive another monumental funding infusion.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50576855",
+      "title": "I'll never buy Framework hardware again",
+      "url": "https://poolp.org/posts/2026-11-20/ill-never-buy-framework-hardware-again/",
+      "author": "unchar1",
+      "publishedAt": "2026-11-20T16:06:30.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 376,
+      "comments": 243
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gaming/2026/11/valve-says-it-might-have-to-raise-the-price-of-supply-limited-steam-machines/",
+      "title": "Valve says it might have to raise the price of supply-limited Steam Machines",
+      "url": "https://arstechnica.com/gaming/2026/11/valve-says-it-might-have-to-raise-the-price-of-supply-limited-steam-machines/",
+      "author": "Kyle Orland",
+      "publishedAt": "2026-11-20T16:11:21.000Z",
+      "content": "When the Steam Machine first started shipping in June, Valve said it was producing fewer units at a higher price than initially planned because it couldn't secure supplies of scarce RAM and storage components at a reasonable cost. Now, as the last of the initial batch of Steam Machine reservations are finally being fulfilled, Valve says those supply and cost issues will continue into the foreseeable future and may even require a price change. \"We are continuing to build more Steam Machine units, but memory and storage costs continue to increase at unprecedented levels,\" Valve wrote in a blog post on Thursday. \"As a result we don't yet know the number we are able to make, and at what price we'll be able to offer them. The 2TB model in particular will be especially constrained.\" If Valve does have to raise the price of the Steam Machine, it will be in good company. All three major console manufacturers instituted historically atypical price increases in 2025, with additional price hikes happening this year. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1038444",
+      "title": "Boys Noize turns to the club (and an obscure Italian synth) for inspiration on 7LLVSION",
+      "url": "https://www.theverge.com/entertainment/1038444/boys-noize-7llvsion-interview",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-11-20T16:22:15.000Z",
+      "content": "If you're wondering how Alex Ridha's (aka Boys Noize) collaboration with Nine Inch Nails influenced his new record 7LLVSION, the answer is simple: It didn't. That's not to say Ridha didn't learn anything from the virtuosic production team of Trent Reznor and Atticus Ross, but most of the songs on 7LLVSION had been knocking around for some time. And as Ridha is quick to point out, these are not rock songs built for live performance; they're \"battle tested\" for clubs and DJ sets. \"I was kind of back on the usual kind of thing,\" he tells The Verge. \"I do the same I kind of always do. I go make coffee, go in my room, put on the machines, and I' … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Nov/20/levent-alpoge/",
+      "title": "Quoting Levent Alpöge",
+      "url": "https://simonwillison.net/2026/Nov/20/levent-alpoge/",
+      "author": null,
+      "publishedAt": "2026-11-20T16:30:48.000Z",
+      "content": "I believe I have, working with Claude, discovered a proof of the Riemann Hypothesis. In fact, the method easily extends much further, resolving the so-called Generalized Riemann Hypothesis, and I expect, with more time, the Extended Riemann Hypothesis too. Claude and I have also formalized the arguments without assumptions. It is natural to feel that this is an end, in my case a loss of a principal guiding light, but what I saw during the course of progress so amazed me that I believe it is one dawn across science of something far greater. [...] Claude and I have had a great time together with such breadth in recent months, but this time Claude far outpaced me near the finish line. No, Claude flew, and danced, and sparkled near that finish line. — Levent Alpöge, alpo.ge/remark.pdf Tags: anthropic, claude, generative-ai, mathematics, ai, llms, levent-alpoge",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1010051",
+      "title": "Anthropic mathematician claims to have solved prestigious Millennium Prize problem with Claude",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem",
+      "author": "Robert Hart",
+      "publishedAt": "2026-11-20T16:34:13.000Z",
+      "content": "Anthropic went public on November 19th, 2026. | Photo: Getty Images Anthropic mathematician Levent Alpöge claims he has proved the Riemann hypothesis, one of mathematics's most notoriously difficult problems, with the help of Claude, cracking a puzzle that has eluded some of the world's best mathematicians for decades. If verified, it would mark yet another seismic achievement for AI in mathematics and add to the upheaval already unleashed by OpenAI's previous, often inelegant forays into the field. Alpöge's solution has yet to be verified independently. Anthropic has not commented or involved itself in Alpöge's announcement. In a document on his website, Alpöge says he texted Anthropic CEO Dario Amodei abo … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1038692",
+      "title": "Teenage Engineering’s first CD player puts the spinning disc on display",
+      "url": "https://www.theverge.com/tech/1038692/teenage-engineering-ep-bc-1-cd-compact-disc-player-broadcast-series-bluetooth",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-11-20T17:05:52.000Z",
+      "content": "Teenage Engineering announced what it describes as \"a modern take on a classic CD player\" with its new EP/BC-1 featuring a slab-like design that leaves the spinning disc exposed instead of hiding it under a lid or inside a slide-out tray. The company says the EP/BC-1 is the first entry in its new broadcast series of products and was designed to bring \"physical audio formats into a modern context, evolved from a shared obligation within the company to preserve the formats they grew up with.\" The EP/BC-1 is available now through Teenage Engineering's online store for $299. The CD player joins the company's existing EP-series of audio devices … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261120/p20#a261120p20",
+      "title": "Scott Bessent says Trump and Xi agreed that military AI decisions should involve humans, and that the spying allegations involving Alice Huang didn't come up (Reuters)",
+      "url": "https://www.techmeme.com/261120/p20#a261120p20",
+      "author": null,
+      "publishedAt": "2026-11-20T17:20:01.000Z",
+      "content": "Reuters: Scott Bessent says Trump and Xi agreed that military AI decisions should involve humans, and that the spying allegations involving Alice Huang didn't come up — US President Donald Trump and Chinese President Xi Jinping agreed humans should always be involved in military decisions …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.25567",
+      "title": "Online Mistake Detection in Instruction-Conditioned Procedural Video",
+      "url": "https://huggingface.co/papers/2611.25567",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:35.970Z",
+      "content": "Online Mistake Detection in Instruction-Conditioned Procedural Video",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.26511",
+      "title": "Direct3D-V3: Latent-Free Diffusion Transformers in the Native Voxel Domain",
+      "url": "https://huggingface.co/papers/2611.26511",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:35.970Z",
+      "content": "Direct3D-V3: Latent-Free Diffusion Transformers in the Native Voxel Domain",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.25179",
+      "title": "Phantom Success, Silent Failure: Auditing the Success Checkers of Simulated Manipulation Benchmarks",
+      "url": "https://huggingface.co/papers/2611.25179",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:35.970Z",
+      "content": "Phantom Success, Silent Failure: Auditing the Success Checkers of Simulated Manipulation Benchmarks",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.21053",
+      "title": "System 1 agents: a method for local, reliable and fast agentic AI",
+      "url": "https://huggingface.co/papers/2611.21053",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:35.970Z",
+      "content": "System 1 agents: a method for local, reliable and fast agentic AI",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.26450",
+      "title": "A CPU Inside an LLM: Zero-Gradient Compilation of Exact Circuits into Pretrained Weights",
+      "url": "https://huggingface.co/papers/2611.26450",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:35.970Z",
+      "content": "A CPU Inside an LLM: Zero-Gradient Compilation of Exact Circuits into Pretrained Weights",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.21885",
+      "title": "Language Models Can Rewrite Their Own Weights",
+      "url": "https://huggingface.co/papers/2611.21885",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:35.970Z",
+      "content": "Language Models Can Rewrite Their Own Weights",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.26211",
+      "title": "SpecWM: Turning Verification into Refinement for Streaming World Models",
+      "url": "https://huggingface.co/papers/2611.26211",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:35.970Z",
+      "content": "SpecWM: Turning Verification into Refinement for Streaming World Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.19499",
+      "title": "Do Probing and Steering Favor the Same Directions Within and Across Language Models?",
+      "url": "https://huggingface.co/papers/2611.19499",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:35.970Z",
+      "content": "Do Probing and Steering Favor the Same Directions Within and Across Language Models?",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.26540",
+      "title": "AURA: AUdio-dRiven streaming Avatar",
+      "url": "https://huggingface.co/papers/2611.26540",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:35.970Z",
+      "content": "AURA: AUdio-dRiven streaming Avatar",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://alpo.ge/remark.pdf",
+      "title": "Anthropic employee claims general proof of the Riemann Hypothesis [pdf]",
+      "url": "https://alpo.ge/remark.pdf",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.913Z",
+      "content": "Anthropic employee claims general proof of the Riemann Hypothesis [pdf] alpo.ge9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://vettedconsumer.com/kimi-k3-1-pro-the-open-2-8t-coding-model-its-benchmark-audit-and-what-it-takes-to-run",
+      "title": "Kimi K3.1 Pro: The Open 2.8T Coding Model, Its Benchmark Audit, and What It Takes to Run",
+      "url": "https://vettedconsumer.com/kimi-k3-1-pro-the-open-2-8t-coding-model-its-benchmark-audit-and-what-it-takes-to-run",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.914Z",
+      "content": "Kimi K3.1 Pro: The Open 2.8T Coding Model, Its Benchmark Audit, and What It Takes to Run vettedconsumer.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://lambda.com/blog/roce-and-nvidia-quantum-infiniband-and-their-quantified-tradeoffs",
+      "title": "RoCE and NVIDIA Quantum InfiniBand, and their quantified tradeoffs",
+      "url": "https://lambda.com/blog/roce-and-nvidia-quantum-infiniband-and-their-quantified-tradeoffs",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.914Z",
+      "content": "RoCE and NVIDIA Quantum InfiniBand, and their quantified tradeoffs lambda.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://spectrum.ieee.org/fighting-back-against-deep-fakes",
+      "title": "I Don’t Trust Visual Recordings Anymore. But One Day I Will Again",
+      "url": "https://spectrum.ieee.org/fighting-back-against-deep-fakes",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.916Z",
+      "content": "I Don’t Trust Visual Recordings Anymore. But One Day I Will Again spectrum.ieee.org5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://oreillyradar.substack.com/p/claude-watermarks-your-words-and",
+      "title": "Claude Watermarks Your Words, and You Can’t Check Them (Yet)",
+      "url": "https://oreillyradar.substack.com/p/claude-watermarks-your-words-and",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.927Z",
+      "content": "Claude Watermarks Your Words, and You Can’t Check Them (Yet) oreillyradar.substack.com16 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://rocm.blogs.amd.com/artificial-intelligence/nitro-p/README.html",
+      "title": "Nitro-P: Pixel-Space Text-to-Image via Hierarchical Semantic-to-Pixel Generation",
+      "url": "https://rocm.blogs.amd.com/artificial-intelligence/nitro-p/README.html",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.928Z",
+      "content": "Nitro-P: Pixel-Space Text-to-Image via Hierarchical Semantic-to-Pixel Generation rocm.blogs.amd.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.paradigm.xyz/writing/effective-swarm-riding",
+      "title": "Author advocates self-hosted AI swarms",
+      "url": "https://www.paradigm.xyz/writing/effective-swarm-riding",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.928Z",
+      "content": "Author advocates self-hosted AI swarms paradigm.xyz5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://sandscale.dev/blog/isolating-ai-agent-code-containers-gvisor-firecracker",
+      "title": "Containers, gVisor or Firecracker: how to isolate code your AI agent wrote · Sandscale",
+      "url": "https://sandscale.dev/blog/isolating-ai-agent-code-containers-gvisor-firecracker",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.930Z",
+      "content": "Containers, gVisor or Firecracker: how to isolate code your AI agent wrote · Sandscale sandscale.dev11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.groundbrkr.com/p/mark-to-swap-how-the-market-is-mispricing",
+      "title": "Mark to Swap: How the Market is Mispricing the AI Boom",
+      "url": "https://www.groundbrkr.com/p/mark-to-swap-how-the-market-is-mispricing",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.930Z",
+      "content": "Mark to Swap: How the Market is Mispricing the AI Boom groundbrkr.com35 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bbc.co.uk/news/articles/c6808ym10vzgo?at_medium=RSS&at_campaign=rss",
+      "title": "Anthropic shares fall after blockbuster opening",
+      "url": "https://www.bbc.co.uk/news/articles/c6808ym10vzgo?at_medium=RSS&at_campaign=rss",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.931Z",
+      "content": "Anthropic shares fall after blockbuster opening bbc.co.uk1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arxiv.org/abs/2611.26358",
+      "title": "Beam Model Technical Report",
+      "url": "https://arxiv.org/abs/2611.26358",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.931Z",
+      "content": "Beam Model Technical Report arxiv.org1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.cnbc.com/2026/11/20/tech-download-anthropic-compute-access.html",
+      "title": "Anthropic IPO scrutiny over $901B compute commitments",
+      "url": "https://www.cnbc.com/2026/11/20/tech-download-anthropic-compute-access.html",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.932Z",
+      "content": "Anthropic IPO scrutiny over $901B compute commitments cnbc.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://wpcms.computer.org/publications/tech-news/trends/governing-ai-routing-developer",
+      "title": "Who Chooses the Model? Token Efficiency and the Case for a Governed Routing Layer in the Developer IDE",
+      "url": "https://wpcms.computer.org/publications/tech-news/trends/governing-ai-routing-developer",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.932Z",
+      "content": "Who Chooses the Model? Token Efficiency and the Case for a Governed Routing Layer in the Developer IDE wpcms.computer.org13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.mozilla.org/en/mozilla/internet-policy/apple-ios-browser-engine-rules",
+      "title": "Why there are still no non-WebKit browsers on iOS",
+      "url": "https://blog.mozilla.org/en/mozilla/internet-policy/apple-ios-browser-engine-rules",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.933Z",
+      "content": "Why there are still no non-WebKit browsers on iOS blog.mozilla.org2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://a16z.simplecast.com/episodes/why-the-agent-era-needs-a-new-operating-system-dhh-aj7iuAnL",
+      "title": "Why the Agent Era Needs a New Operating System | DHH",
+      "url": "https://a16z.simplecast.com/episodes/why-the-agent-era-needs-a-new-operating-system-dhh-aj7iuAnL",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.934Z",
+      "content": "Why the Agent Era Needs a New Operating System | DHH a16z.simplecast.com53 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://news.crunchbase.com/venture/telecom-bust-ai-startup-debt-boom-spreng-runway-growth",
+      "title": "What The Telecom Bust Taught Me About AI’s Debt Boom",
+      "url": "https://news.crunchbase.com/venture/telecom-bust-ai-startup-debt-boom-spreng-runway-growth",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.936Z",
+      "content": "What The Telecom Bust Taught Me About AI’s Debt Boom news.crunchbase.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://mlcommons.org/2026/11/mlperf-endpoints-how-to-submit",
+      "title": "Testing AI Exactly How It’s Used: MLPerf Endpoints v1.0",
+      "url": "https://mlcommons.org/2026/11/mlperf-endpoints-how-to-submit",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.936Z",
+      "content": "Testing AI Exactly How It’s Used: MLPerf Endpoints v1.0 mlcommons.org5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://cyb3rops.medium.com/the-sweet-spot-is-a-day-old-11881459f82b?source=rss-2fdc032a69b3------2",
+      "title": "The Sweet Spot Is a Day Old",
+      "url": "https://cyb3rops.medium.com/the-sweet-spot-is-a-day-old-11881459f82b?source=rss-2fdc032a69b3------2",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.937Z",
+      "content": "The Sweet Spot Is a Day Old cyb3rops.medium.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://fly.io/blog/petsem",
+      "title": "Petsem: Sometimes Dead Is Better",
+      "url": "https://fly.io/blog/petsem",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.938Z",
+      "content": "Petsem: Sometimes Dead Is Better fly.io6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://builder.aws.com/content/3MMlW5YAQBRGgDGX7yjuakmW0Cj/weve-never-written-code-faster-are-we-building-better-software",
+      "title": "We've never written code faster. Are we building better software? | AWS Builder Center",
+      "url": "https://builder.aws.com/content/3MMlW5YAQBRGgDGX7yjuakmW0Cj/weve-never-written-code-faster-are-we-building-better-software",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.939Z",
+      "content": "We've never written code faster. Are we building better software? | AWS Builder Center builder.aws.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://flowtivity.ai/blog/atlaskv-billion-triples-20gb-vram",
+      "title": "Does AtlasKV kill RAG? What 1 billion knowledge triples in 20GB of VRAM actually proves",
+      "url": "https://flowtivity.ai/blog/atlaskv-billion-triples-20gb-vram",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.940Z",
+      "content": "Does AtlasKV kill RAG? What 1 billion knowledge triples in 20GB of VRAM actually proves flowtivity.ai14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://rocm.blogs.amd.com/artificial-intelligence/world-model-npc/README.html",
+      "title": "From a Text Prompt to a Playable 3D World: World Models, LLM NPCs, and RL on AMD Radeon™ Graphics",
+      "url": "https://rocm.blogs.amd.com/artificial-intelligence/world-model-npc/README.html",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.941Z",
+      "content": "From a Text Prompt to a Playable 3D World: World Models, LLM NPCs, and RL on AMD Radeon™ Graphics rocm.blogs.amd.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://medium.com/@sebuzdugan/8-best-agent-gateways-in-2026-bifrost-kong-agentcore-gravitee-and-4-more-compared-a245d23fef35",
+      "title": "Agent Gateways Compared: Bifrost, Kong, AgentCore, Gravitee and 4 More",
+      "url": "https://medium.com/@sebuzdugan/8-best-agent-gateways-in-2026-bifrost-kong-agentcore-gravitee-and-4-more-compared-a245d23fef35",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.942Z",
+      "content": "Agent Gateways Compared: Bifrost, Kong, AgentCore, Gravitee and 4 More medium.com15 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://wsvincent.com/dune-machines",
+      "title": "The New Spice: Humans, AI, and Autonomy",
+      "url": "https://wsvincent.com/dune-machines",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.942Z",
+      "content": "The New Spice: Humans, AI, and Autonomy wsvincent.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arxiv.org/abs/2611.26603",
+      "title": "Depth Pro 2: Sharp and Temporally Consistent Metric Monocular Depth",
+      "url": "https://arxiv.org/abs/2611.26603",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.945Z",
+      "content": "Depth Pro 2: Sharp and Temporally Consistent Metric Monocular Depth arxiv.org1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://pub.towardsai.net/code-mode-a-new-way-to-call-tools-and-do-data-tasks-with-10-of-the-tokens-6754e70928a2?source=rss----98111c9905da---4",
+      "title": "Code Mode: A New Way to Call Tools and do Data Tasks With 10% of the Tokens",
+      "url": "https://pub.towardsai.net/code-mode-a-new-way-to-call-tools-and-do-data-tasks-with-10-of-the-tokens-6754e70928a2?source=rss----98111c9905da---4",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.945Z",
+      "content": "Code Mode: A New Way to Call Tools and do Data Tasks With 10% of the Tokens pub.towardsai.net9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://brajeshwar.com/misc/jj",
+      "title": "Jujutsu jj tutorial compares workflows to Git",
+      "url": "https://brajeshwar.com/misc/jj",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.947Z",
+      "content": "Jujutsu jj tutorial compares workflows to Git brajeshwar.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.thestack.technology/airbnb-just-gave-away-its-skipper",
+      "title": "Airbnb just gave away its Skipper",
+      "url": "https://www.thestack.technology/airbnb-just-gave-away-its-skipper",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.947Z",
+      "content": "Airbnb just gave away its Skipper thestack.technology4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://electrek.co/2026/11/20/tesla-fsd-italy-approval-assisted-driving",
+      "title": "Tesla FSD approved in Italy, the first big EU market to say yes",
+      "url": "https://electrek.co/2026/11/20/tesla-fsd-italy-approval-assisted-driving",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.948Z",
+      "content": "Tesla FSD approved in Italy, the first big EU market to say yes electrek.co4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-11-20/kkr-in-talks-to-buy-edgecore-at-valuation-of-at-least-8-billion",
+      "title": "KKR in Talks to Buy EdgeCore at Valuation of at Least $8 Billion",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-20/kkr-in-talks-to-buy-edgecore-at-valuation-of-at-least-8-billion",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.949Z",
+      "content": "KKR in Talks to Buy EdgeCore at Valuation of at Least $8 Billion bloomberg.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://huggingface.co/kyutai/AURA-1.3B",
+      "title": "kyutai/AURA-1.3B: Real-time streaming talking-head video model",
+      "url": "https://huggingface.co/kyutai/AURA-1.3B",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.950Z",
+      "content": "kyutai/AURA-1.3B: Real-time streaming talking-head video model huggingface.co2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/trump-admin-still-wont-let-wi-fi-giant-tp-link-sell-its-latest-routers-in-us",
+      "title": "Trump admin still won't let Wi-Fi giant TP-Link sell its latest routers in US",
+      "url": "https://arstechnica.com/tech-policy/2026/11/trump-admin-still-wont-let-wi-fi-giant-tp-link-sell-its-latest-routers-in-us",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.952Z",
+      "content": "Trump admin still won't let Wi-Fi giant TP-Link sell its latest routers in US arstechnica.com16 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://the-decoder.com/nvidia-bets-at-least-500-million-on-inceptions-diffusion-models-to-strengthen-its-open-source-nemotron-lineup",
+      "title": "Nvidia bets at least $500 million on Inception's diffusion models to strengthen its open-source Nemotron lineup",
+      "url": "https://the-decoder.com/nvidia-bets-at-least-500-million-on-inceptions-diffusion-models-to-strengthen-its-open-source-nemotron-lineup",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.952Z",
+      "content": "Nvidia bets at least $500 million on Inception's diffusion models to strengthen its open-source Nemotron lineup the-decoder.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thenewstack.io/ai-agent-memory-boundaries",
+      "title": "Your AI agent’s “memory problem” may be something else",
+      "url": "https://thenewstack.io/ai-agent-memory-boundaries",
+      "author": null,
+      "publishedAt": "2026-11-20T17:37:36.969Z",
+      "content": "Your AI agent’s “memory problem” may be something else thenewstack.io7 min read",
       "topics": [
         "ai-llms",
         "devtools-infra",
