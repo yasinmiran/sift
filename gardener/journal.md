@@ -6,6 +6,36 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A column every row agrees on is a column nobody computed. Today's finding came
+  out of one pass over `data/items/`, asking per source which fields are
+  constant or copied, and the answer was **100 of 100 `anthropic-news` items
+  stamped the day they were ingested** and **969 of 969 `hf-daily-papers` items
+  whose `content` is their own `title`**. The first is a defect (a `new Date()`
+  fallback that had become the only path, so the 48h window in `ingest.ts`
+  cannot act and the story re-enters a day file every 7 days), the second is the
+  design (the index anchor carries no abstract), and the probe that separated
+  them took ten lines. 11-18 banked "a document read for sense is not a document
+  read against the data"; this is the same move with the day file as the
+  document. **A field whose values never vary, or always equal another field's,
+  is the signature of a fallback that has quietly become the whole path**, so
+  sweep for uniformity before sweeping for errors: errors need a rule to be
+  judged against, uniformity needs none.
+  Its other half is about why no test could have caught it. The existing
+  assertion was `publishedAt instanceof Date && !Number.isNaN(...)`, which a
+  clock stamp satisfies **perfectly**: it pins the value's type and says nothing
+  about where the value came from. 11-19 banked "when a mutation survives,
+  suspect the code's shape before the test's wording"; here the shape was the
+  assertion's subject. **For a value a fallback can supply, assert its
+  provenance, not its type** (the test now requires the date to be more than a
+  day away from now, which no clock stamp can be). And a scraper's fixture is a
+  frozen shape, so a green fixture test is a regression test for the past and
+  evidence about nothing else: the control is the live page, which this
+  container can fetch for `anthropic.com` even though it cannot reach
+  `sift.yasint.dev`. Three of today's eight mutations survived their first pass
+  for the sibling reason, that the page states each date twice and both
+  fixtures' grids carry two headlines, so the property had no shape to show in
+  until a four-line handwritten document gave it one.
+
 - A key is not a field, and a log that two instruments write into shares its
   vocabulary without sharing its meaning. Today's orient step read `dropped`
   out of ten ingest runs and got **0 on all ten**, which says the promo filter
@@ -1143,6 +1173,52 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-11-20 as #388 / PR #389, `59ac672`, `checks` green on `34f810c`
+  and `pages` 44710310004 green on build and deploy, read the honest way:
+  `deploy-pages` passed and the step gated on its failure **skipped**.
+  **Every `anthropic-news` item was dated with the clock, so the 48h window
+  could not act on the source at all.** `anthropicExtract` looked for the date
+  inside the story's own link and fell back to `new Date()`; the live index puts
+  the date and deck beside the link, not in it (featured cards in an `<article>`
+  whose `<header>` holds the `<time>`, listing rows in a date cell two columns
+  from the title link), so the fallback was the only path. Measured: **100 of
+  100 stored items stamped their ingest day, 0 carrying a real publication
+  date**; the live index holds **19 story cards dated Nov 18 back to Oct 1, with
+  exactly 1 younger than 48h** and the oldest 50 days; and because the stamp
+  moves with the run, **73 re-entries over 32 days, every one exactly 7 days
+  apart** (the `SEEN_DAYS` horizon), 26 distinct stories each landing in 4 or 5
+  day files. It had reached a reader once: `digests/2026-10-28.md` cites
+  `/news/2026-us-midterms`, **published Oct 14**, as that day's news, against 4
+  other anthropic citations that were same-day or next-day. The fix walks from
+  the link to the nearest ancestor carrying a `<time>`, refusing to step into an
+  ancestor that holds a second headline (the grid), and skips a card it cannot
+  date rather than stamping it, so a future markup change shows as `kept: 0` in
+  the run log instead of as stale items in the day file. Against the live page:
+  19 of 19 extracted, **0 clock-stamped** (was 19), **19 with a real deck** (was
+  2). 305 tests (was 298), typecheck clean, built tree **byte-identical to
+  main's on all 42 entries**, 120 insertions over two files plus a 7-line
+  fixture of the current markup. Eight mutations, each failing a test. No new
+  dependency, no contract edit, no registry change.
+- Measured 2026-11-20 and NOT acted on, recorded so no later run re-measures
+  them. **The same sweep's other uniform columns are design, not defects.**
+  `hf-daily-papers` is **969 of 969** `content === title` because the index
+  anchor carries only the headline (the abstract is one page deeper, and the
+  digest agent's second pass is what reads it); `hacker-news` is **1,011 of
+  1,116** with empty `content` because an HN story is a link, and the slice that
+  matters carries `points` and `comments` instead; `huggingface-blog` (51 of
+  51), `fireship` (12 of 12, video) and `deepmind-blog` (6 of 12) ship feeds
+  whose entries have no description at all, which is the publisher's choice and
+  the registry's business, not the pipeline's. `console-dev`'s 34 of 48 bodies
+  under 40 characters are a links newsletter's real entries ("Tool: Pele.
+  Mermaid diagram render."), not truncation.
+- Open and small, with the numbers, 2026-11-20. **Zero-width characters survive
+  in `content` though the pipeline strips them from titles**: 6 items in 32 days
+  (`vercel-blog` 10-20, `the-verge` 10-21 and 11-18, `ars-technica` 11-06,
+  `zvi-dwatv` 11-12 and 11-19), 0 in any title. The field playbook already warns
+  the digest agent that fetched article text may carry them; the cost is bounded
+  by "quotes at most a phrase", so this is a `clean.ts` tidy-up worth a day only
+  if a quoted phrase ever ships one.
 
 - MERGED 2026-11-19 as #384 / PR #385, `0b95b8b`, `checks` green on `ce48509`
   and `pages` 44494808943 green on build and deploy, read the honest way:
@@ -3464,6 +3540,83 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-20
+
+**#388 filed, PR #389 built, `checks` green on `34f810c`, merged by this run as
+`59ac672`, and `pages` 44710310004 green on build and deploy, read the honest
+way: `deploy-pages` passed and the step gated on its failure skipped.** Anthropic
+news items now carry the date the post was published instead of the minute they
+were scraped.
+
+**Health had nothing to give for the sixth run running**: 298 tests, typecheck,
+33 pages, 40 of the last 40 workflow runs green, and the verifier over
+2026-11-14..20 is 0 errors on all 7 days with warnings on 2, both already
+recorded as deliberate. The walls are unchanged, `sift.yasint.dev`,
+`yasin.goatcounter.com` and `hn.algolia.com` all 000 at CONNECT, so still no
+reader signal; `anthropic.com` is reachable, which turned out to be the day's
+most useful fact.
+
+**So the run swept the pipeline's own product for uniform columns**, asking per
+source which fields never vary or always copy another, and `anthropic-news` came
+back with **100 of 100 items stamped the day they were ingested** and not one
+real publication date. The cause is three lines in one extractor:
+`anthropicExtract` reads the date from inside the story's link
+(`$el.find("time")`, then a `Mon D, YYYY` regex on the anchor's text) and falls
+back to `new Date()`. The live index puts the date beside the link and not in
+it, the featured cards in an `<article>` whose `<header>` holds the `<time>` and
+the listing rows in a date cell two columns from the title link, so on the live
+page the fallback fires on **19 of 19 cards**. The checked-in fixture still
+carries the older in-anchor shape and hits it **0 of 12 times**, which is why a
+green suite has meant nothing here for weeks.
+
+**What the clock stamp costs, in order.** The 48h window in `ingest.ts` compares
+`publishedAt` against now, so a clock stamp always passes it: the index today
+holds **19 story cards dated Nov 18 back to Oct 1, exactly 1 of them younger
+than 48h**, oldest 50 days, and all 19 were being stored as today's news. The
+stamp also moves with every run, so the item never ages out and the 7-day seen
+index is the only brake: **73 re-entries over 32 days, every single one exactly
+7 days apart**, with `cyber-verification-program`, `barclays-scales-claude`,
+`2026-us-midterms` and 23 other stories each landing in 4 or 5 separate day
+files. That hands the digest agent's Continuity rule a repeat it would have to
+remember from a week ago, while `npm run recap` looks back one day. And it has
+already reached a reader once: **`digests/2026-10-28.md` cites
+`/news/2026-us-midterms`, published Oct 14**, in that day's Security & Privacy
+section, 14 days after the fact; the archive's other four anthropic citations
+were same-day or next-day.
+
+**The fix is a walk, not a selector.** From the story's link, climb to the
+nearest ancestor carrying a `<time>`, and refuse to step into an ancestor that
+holds a second headline, because that is the grid and not the card. Read the
+date and the deck from there, and **skip a card the walk cannot date instead of
+stamping it**, which puts a future markup change in the run log's `kept` count
+where it is visible rather than in the day file where it is not. Against the
+live page: 19 of 19 extracted with none lost, **0 clock-stamped**, **19 carrying
+a real deck against 2 before**, dates Oct 1 to Nov 18, and 0 inside the 48h
+window, which is the honest answer for a day the index has nothing new on.
+Against the old fixture: unchanged, 12 items, same dates, same 5 decks. 305
+tests (was 298), typecheck clean, `npm run site` 33 pages with the built tree
+byte-identical to main's on all 42 entries, 120 insertions over two files plus a
+7-line fixture trimmed from the current markup covering both live shapes.
+
+**Eight mutations, each reverted, each failing at least one test**: the no-date
+skip dropped, the card walk dropped, the walk no longer stopping at the nearest
+date, the grid guard dropped, the category-chip exclusion dropped, the
+plain-text date fallback dropped, the walk bound shrunk to one level, and the
+`<time>` element ignored. Three of those survived a first pass and are half the
+day's lesson: the page states each date twice and both fixtures' grids carry two
+headlines, so the properties had nowhere to show until four-line handwritten
+documents gave them one.
+
+**Deliberately left out, with the numbers so no later run re-opens them.** The
+same sweep's other uniform columns are the design: `hf-daily-papers` is 969 of
+969 `content === title` because the index anchor carries only the headline,
+`hacker-news` is 1,011 of 1,116 empty because an HN story is a link and carries
+`points` and `comments` instead, and `huggingface-blog`, `fireship` and
+`deepmind-blog` ship feeds with no description, which is the registry's business
+and Yasin's. The one genuinely open crumb is 6 items in 32 days whose `content`
+still carries zero-width characters the pipeline strips from titles; it is in
+the backlog with its days and sources.
 
 ### 2026-11-19
 
