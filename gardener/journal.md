@@ -6,6 +6,26 @@ merges and closures and never expire.
 
 ## Lessons
 
+- An escape your regex dialect does not have is a literal, and it fails by
+  under-reporting rather than by throwing. Today's probe over the Hacker News
+  sections terminated its capture with `(?=^##\s|\Z)`, copied out of habit
+  from a dialect that has `\Z`: javascript does not, so the alternative was
+  the letter **Z**, and a lazy capture ends at the first capital Z in the
+  prose. 2026-11-14 duly read **16 words and 1 link** (it stops at "0119Z")
+  and 11-19 **82 and 3** (it stops at "Zerodha"), which together say the
+  delegated subagent collapsed on two days and the contract's 150-200 word
+  section is shipping as a stub. Re-measured by walking the lines instead,
+  the same two days are **173 and 187 words, 12 and 9 links**, the healthiest
+  in the month. The tell cost nothing and was in the table: a row at 16 words
+  beside a median of 121 is not a thin section, it is a truncated read, and
+  **a number an order of magnitude off its own distribution is a claim about
+  the instrument first**. 11-18 banked "before believing a table of
+  violations, read the prose around three of its rows"; this is the same move
+  with the row count of one, because the cheapest check on a probe over prose
+  is to print one matched span and look at it. Worth keeping beside it: the
+  same regex, written against a corpus with no capital Z, would have been
+  right for months and wrong the day a story mentioned Zerodha.
+
 - A column every row agrees on is a column nobody computed. Today's finding came
   out of one pass over `data/items/`, asking per source which fields are
   constant or copied, and the answer was **100 of 100 `anthropic-news` items
@@ -1173,6 +1193,96 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- FILED 2026-11-21 as #392, not shipped, because the number is Yasin's and a
+  wrong guess fails the post rather than a page. **The carousel's alt text is
+  budgeted at 100 characters and goes to an api documented at 1000.**
+  `MAX_ALT` in `src/slides/cards.ts` is the whole of what a screen reader on
+  instagram is handed: measured over the month's 63 posts, **336 of 350 story
+  cards ship a title and nothing else** (the desc survives only when a whole
+  sentence fits in `100 - title - 2`, which is **14 of 350, 4.0%**), and **14
+  of 63 cover alts are cut**. `"{title}: {desc}"` in full runs **median 151,
+  max 187**, so a 200 budget carries every card in the archive whole. The
+  code is correct: `truncate` cuts on a boundary and keeps the ellipsis
+  inside the cap (476 built cards, alt median 71, **max 100, 0 over**), so
+  the budget is the only thing wrong with it. 100 reads like instagram's
+  in-app field; `push/src/ig.ts` posts `alt_text` untruncated to
+  `graph.instagram.com/v23.0`, whose media reference documents 1000, and that
+  figure is third-party sourced here because `developers.facebook.com` is
+  outside this container's network policy. If 100 is real, raising it fails
+  every container creation with no human in the loop, which is why it is an
+  ask.
+- Walked clean on 2026-11-21, recorded so a future run does not re-walk them.
+  **The digest body against the contract's mechanical rules, four probes.**
+  Pen marks: **47 over 32 days**, 0 in a heading, 0 spanning a sentence, 1 to
+  3 a day, and only 3 circles in the month. Link rendering: the markdown
+  source's link targets and the built pages' `.prose` hrefs agree on **1,772
+  of 1,772**, no non-http href, no url carrying a paren or a space (marked
+  links and urls with query strings included). Tracking tags: **0 of 1,772
+  published links carry `utm_*`**, which is `stripTracking` working on the
+  only tag that mattered; what remains is bbc's `at_medium`/`at_campaign` on
+  3 and a medium/hackernoon `source=rss` on 3, feed attribution rather than
+  per-reader ids. Entities: **0 of 9,707 stored titles** and 0 digests carry
+  an `&...;` that survived the parse.
+  **The Hacker News section, measured after the probe was fixed** (see the
+  lesson): **92 to 187 words, median 121**, 1 to 3 paragraphs, **0 bullets on
+  32 of 32**, 6 to 14 article links and 0 to 4 `(discussion)` permalinks. The
+  contract asks for "roughly 150-200 words", so the section runs light of its
+  own target at the median, which is the digest agent's judgement and not a
+  defect; nothing here warrants a gate.
+  **The section vocabulary and its order.** Six themed names plus Hacker News
+  and Threads account for **29 of 32 days**; `## Policy` appears on 11-04,
+  11-05 and 11-06 and has not since, so it is a three-day experiment rather
+  than a live drift. The canonical order holds on 24 of 32; of the 8 that
+  differ, 6 lead with the day's biggest section (Security & Privacy or
+  Startups & Industry), which is "order by importance" applied one level up,
+  and 2 (10-25, 10-26) put Elsewhere before Research, both in October. The
+  allowed list is editorial, so a verify gate on it is Yasin's call, and
+  there is nothing live to gate.
+  **The feed, parsed by the repo's own reader for the first time.**
+  `rss-parser` (a dependency, not a new instrument) reads the built
+  `feed.xml` as **32 items, 0 missing or unparsable fields, 0 duplicate
+  guids, newest-first**, with `lastBuildDate` and 31 `atom:updated` matching
+  the day files.
+  **Future-dated items, the other edge of the 48h window.** `ingest.ts`
+  checks only that `publishedAt` is not too old; swept, **9 of 9,707** items
+  are stamped ahead of their run (`vercel-blog` 4, `figma-blog` 3, `openai`
+  1, `stackoverflow-blog` 1), the worst by **5.4h**, all of them real posts
+  scheduled a few hours out. No re-entry shape like 11-20's clock stamps, and
+  nothing to fix.
+  **The 404's git-history link, tested rather than assumed.** The pruned
+  branch sends a reader to `github.com/.../commits/main/digests/{day}.md`;
+  that url returns **200 for a pruned day, 200 for a day still live and 200
+  for a day that never existed** (github serves an empty history page), so
+  the link never breaks. The archive has **142 day files since 2026-07-03
+  with no gaps**, so the only wrong sentence the page can produce is "rolled
+  out of the month archive" for a date before 07-03, which costs a reader
+  nothing beyond an empty page. Not filed.
+  **The 11-20 zero-width crumb, re-counted on the way past rather than
+  quoted.** Under a wider class (bidi controls and the soft hyphen included)
+  it is **10 of 9,707 items**, all in `content`, 0 in any title, and **0 of
+  32 digests and 0 of 342 slides** have ever carried one. The deferral's
+  condition ("worth a day only if a quoted phrase ever ships one") has not
+  fired and the trend is flat; it holds.
+  **Health, the full sweep**: 305 tests in 26 files, typecheck clean,
+  `npm run site` 33 pages, `npm audit --omit=dev` **0 vulnerabilities** (3 in
+  the dev tree), and the last **40** completed workflow runs are 40 green
+  across ingest, checks and pages. The verifier over 2026-11-15..21 is 0
+  errors on all 7 days with warnings on 3, all explained and none new. The
+  walls are unchanged: `sift.yasint.dev`, `yasin.goatcounter.com` and
+  `hn.algolia.com` are all 000 at CONNECT, so still no reader signal;
+  `github.com` and `raw.githubusercontent.com` answer, `developers.facebook.com`
+  does not resolve. A new npm instrument cannot be installed today either:
+  `npm i --no-save @vitest/coverage-v8` was refused by this harness, so the
+  coverage reading 11-02 banked is not re-runnable from here.
+  **The clone arrives shallow and lying about state, 11-06's trap in its
+  other direction**: `git rev-parse --is-shallow-repository` true, HEAD
+  detached at the real tip (`d9177d2`, this morning's digest) while both
+  `main` and `origin/main` pointed **26 commits and three days back** at
+  11-17, so `git checkout main` would have walked the tree backwards and
+  said nothing. `git fetch --unshallow && git checkout -B main origin/main`
+  is the whole prescription, and `git status -sb` before anything else is
+  what shows which way the clone is wrong.
 
 - MERGED 2026-11-20 as #388 / PR #389, `59ac672`, `checks` green on `34f810c`
   and `pages` 44710310004 green on build and deploy, read the honest way:
@@ -3540,6 +3650,74 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-21
+
+**No PR today, and the honest reason is that nine probes came back clean.**
+#392 is filed and waiting on Yasin: the carousel's alt text, the only thing a
+screen reader on instagram is ever handed, is budgeted at 100 characters,
+which is instagram's in-app field rather than the api the sidecar actually
+posts through. `push/src/ig.ts` sends `alt_text` untruncated to
+`graph.instagram.com/v23.0`, whose media reference documents **1000**. The
+cost of the smaller number, measured over the month's 63 posts: **336 of 350
+story cards ship a title and nothing else** (the desc arrives only when a
+whole sentence fits in `100 - title - 2`, 14 of 350), and **14 of 63 cover
+alts are cut mid-hook**. `"{title}: {desc}"` in full is median 151 and max
+187, so 200 would carry every card in the archive whole. The code around it
+is correct (476 built cards, alt median 71, max 100, 0 over), so the budget
+is the only thing to change, and it is one constant. Not shipped unasked
+because the failure mode is not a page: if 100 is the real ceiling, every
+container creation fails and the day posts nothing, with no human between
+the commit and the api, and `developers.facebook.com` does not resolve from
+here so the 1000 is third-party sourced.
+
+**What was swept, so no later run re-sweeps it.** Health first and it had
+nothing for the seventh run running: 305 tests, typecheck, 33 pages, 40 of
+the last 40 workflow runs green, `npm audit --omit=dev` zero, and the
+verifier over 11-15..21 at 0 errors on all 7 days with 3 warnings, all old
+and explained. Then the digest body against the contract's mechanical rules:
+**47 pen marks in 32 days, none in a heading, none spanning a sentence**;
+**1,772 of 1,772 published links render to the href the markdown names**,
+with no non-http and no paren-bearing url; **0 of those 1,772 carry a
+`utm_*` tag** and the six that carry anything are bbc's `at_medium` and a
+`source=rss`, which are feed attribution, not reader ids; **0 of 9,707
+stored titles** carry a surviving html entity. The feed was parsed by the
+repo's own `rss-parser` for the first time and reads 32 items, 0 missing
+fields, 0 duplicate guids, newest-first. The 48h window's unchecked edge
+(items stamped in the future) is **9 of 9,707, worst 5.4h**, all real posts
+scheduled a few hours out. The 404's git-history link returns 200 for a
+pruned day, a live day and a day that never existed, and the archive is
+**142 days since 2026-07-03 with no gaps**. And 11-20's zero-width crumb,
+re-counted rather than quoted: 10 of 9,707 items in `content`, **0 of 32
+digests and 0 of 342 slides**, so its deferral condition still has not
+fired.
+
+**The day's lesson is a regex escape that javascript does not have.** The
+first pass over the Hacker News sections terminated its capture with
+`(?=^##\s|\Z)`, and `\Z` in this dialect is the letter Z: the lazy capture
+ended at the first capital in the prose, so 11-14 read **16 words and 1
+link** (it stopped at "0119Z") and 11-19 **82 and 3** (at "Zerodha"). That
+table says the delegated subagent collapsed twice this month and the section
+is shipping as a stub, which is a story about the digest agent that was
+entirely my instrument. Walked line by line instead, those two days are
+**173 and 187 words with 12 and 9 links**, the healthiest in the month, and
+the section across all 32 days is 92 to 187 words, 1 to 3 paragraphs, **0
+bullets**, 6 to 14 links. The tell was free and sitting in the output: a row
+at 16 words beside a median of 121 is a claim about the instrument before it
+is a claim about the day.
+
+**Also measured and left alone, with the numbers.** The section vocabulary:
+`## Policy` on 11-04, 11-05 and 11-06 and never since, so a three-day
+experiment rather than drift; the canonical order holds on 24 of 32 days and
+6 of the 8 that differ lead with the day's biggest section, which is "order
+by importance" one level up. A gate on either is a call on an editorial list
+and therefore Yasin's, and there is nothing live to gate. The term glosses on
+the slide cards render at 4.13:1 (`#7a7268`, warm-400) at roughly 10 css px
+in a phone feed, which is the weakest-delivered element on a card and a taste
+call on a pinned design; it rides along in #392 rather than as a diff.
+
+Outcome: no PR by design. #392 filed; #380, #352, #332, #314, #246, #241,
+#120 and #112 still open and still unanswered.
 
 ### 2026-11-20
 
