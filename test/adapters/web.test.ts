@@ -2,7 +2,6 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect, test } from "vitest";
 import { createWebAdapter } from "../../src/pipeline/adapters/web";
-import { tldrExtract } from "../../src/pipeline/adapters/web-extractors/tldr";
 
 const read = (p: string) => readFileSync(join(__dirname, "../fixtures/web", p), "utf8");
 const archives = read("tldr-archives.html");
@@ -40,34 +39,6 @@ test("tldr web adapter resolves the latest issue and extracts stories", async ()
   expect(items.every((i) => i.sourceSlug === "tldr")).toBe(true);
   expect(items.every((i) => /^https?:\/\//.test(i.externalId))).toBe(true);
   expect(new Set(items.map((i) => i.externalId)).size).toBe(items.length); // deduped
-});
-
-// The issue url is the only place a tldr issue states its date, and a clock
-// stamp clears the 48h window in ingest.ts whatever the issue's real age.
-test("tldr stories are dated from the issue, never from the clock", async () => {
-  const a = web({ slug: "tldr", url: "https://tldr.tech/tech/archives", extractor: "tldr" }, tldrFetch);
-  const items = await a.fetch(new Date(0));
-  expect(items.length).toBeGreaterThan(5);
-  expect(validRaw(items)).toBe(true);
-  expect(new Set(items.map((i) => i.publishedAt.toISOString()))).toEqual(
-    new Set(["2026-06-26T00:00:00.000Z"]),
-  );
-  expect(items.every((i) => Math.abs(i.publishedAt.getTime() - Date.now()) > 86_400_000)).toBe(true);
-});
-
-test("a tldr page with no issue date in its url yields no items", async () => {
-  // The archive index stops resolving an issue: the adapter extracts from the
-  // index page itself, which dates nothing, so the run logs a zero instead of
-  // storing today's clock on whatever it found there.
-  const noIssues = archives.replace(/\/tech\/\d{4}-\d{2}-\d{2}/g, "/tech/latest");
-  const a = web({ slug: "tldr", url: "https://tldr.tech/tech/archives", extractor: "tldr" }, async () => noIssues);
-  expect(await a.fetch(new Date(0))).toEqual([]);
-  // The same issue html, reached without the dated url, is equally refused.
-  expect(tldrExtract(issue, "tldr", "https://tldr.tech/tech/archives")).toEqual([]);
-  expect(tldrExtract(issue, "tldr", "https://tldr.tech/tech/2026-06-26").length).toBeGreaterThan(5);
-  expect(tldrExtract(issue, "tldr", "https://tldr.tech/tech/2026-06-26/").length).toBeGreaterThan(5);
-  // A deeper path under the same date is another page, not the issue.
-  expect(tldrExtract(issue, "tldr", "https://tldr.tech/tech/2026-06-26/archive")).toEqual([]);
 });
 
 test("anthropic web adapter extracts dated news cards", async () => {

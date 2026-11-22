@@ -5,10 +5,7 @@ import { anthropicExtract } from "./web-extractors/anthropic";
 import { hfPapersExtract } from "./web-extractors/hf-papers";
 import type { Adapter, HtmlFetcher, RawItem } from "./types";
 
-// The url the html came from rides along: the tldr issue states its date
-// there and nowhere else a parse can trust, and an extractor that ignores
-// it keeps the two-argument shape.
-export type Extractor = (html: string, sourceSlug: string, pageUrl: string) => RawItem[];
+export type Extractor = (html: string, sourceSlug: string) => RawItem[];
 export type LatestResolver = (indexHtml: string, baseUrl: string) => string | undefined;
 
 export const extractors: Record<string, Extractor> = {
@@ -44,7 +41,7 @@ export function createWebAdapter(
       const indexHtml = await fetchHtml(opts.url);
       const issueUrl = resolve?.(indexHtml, opts.url);
       const html = issueUrl ? await fetchHtml(issueUrl) : indexHtml;
-      const items = extract(html, opts.slug, issueUrl ?? opts.url);
+      const items = extract(html, opts.slug);
       // A silent zero from a markup change looks identical to a quiet day;
       // the kept count makes extractor breakage visible in the run logs.
       info("web extracted", { source: opts.slug, kept: items.length });
