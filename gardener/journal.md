@@ -6,6 +6,39 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A fixture is a path, not a page, and which path the live code takes was
+  decided somewhere else, in a file the test never opens. Today's PR dated
+  tldr's stories from the issue url `tldrResolveLatest` matches, 307 tests
+  green, five mutations killed, built tree byte-identical, and the verification
+  run answered in one line: **`{"source":"tldr","kept":0}`** (51 before).
+  `config/sources.json` points the source at **`https://tldr.tech/`**, no href
+  on that page matches `^/tech/{YYYY-MM-DD}$`, so `tldrResolveLatest` has
+  **always** returned undefined and the extractor has **always** been parsing
+  the homepage, which states no date anywhere. Refusing an undated page
+  refuses the only page sift fetches. The suite could not see it because its
+  tldr test drives `tldr.tech/tech/archives`: the resolver path, which the
+  live config does not take, so the archives fixture is a frozen shape of a
+  page the pipeline never visits. 11-20 banked "the control is the live page";
+  the half it did not say is what to do when the live page is **unreachable**
+  (tldr.tech is 000 at CONNECT here), and the answer was sitting in the
+  adapter's own log line: **before changing what an extractor refuses, dispatch
+  one run and read what it currently reads.** Thirty seconds, and `kept: 51`
+  against `kept: 0` lands before the merge instead of after. Worth keeping
+  beside it: the PR body called the change "safe by construction" and the
+  construction it reasoned about was a code path (an issue older than 48h is
+  already in the seen index), never whether that path runs at all. A safety
+  argument about a branch is worth nothing until something shows the branch is
+  taken.
+  Its other half is that the data had already said so, twice, and both times I
+  wrote the number down and walked past it. tldr lands **90 to 137 new stories
+  a day across four runs**, and one issue holds about 25; and **28 to 46 land
+  on Saturdays and Sundays** though the `/tech/` archive in my own fixture
+  skips the weekend (06-19 then 06-22). I called both "odd" in the same hour I
+  built a fix that assumed one dated issue per run. **A count that will not
+  divide by the unit the code assumes is a statement about the unit**: 114
+  stories are not one issue of 25, so the page being read was never the issue,
+  and the arithmetic says which it is before any page needs fetching.
+
 - An escape your regex dialect does not have is a literal, and it fails by
   under-reporting rather than by throwing. Today's probe over the Hacker News
   sections terminated its capture with `(?=^##\s|\Z)`, copied out of habit
@@ -1193,6 +1226,70 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- REOPENED 2026-11-22 as #395 after PR #396 merged and was reverted
+  (`9d7a80a`), and #397 filed the same day and waiting on Yasin.
+  **tldr stamps every story with the run clock, and the page it reads carries
+  no date.** The clock-stamp sweep stands: a sub-second `publishedAt` is the
+  `new Date()` signature, and it is **2,651 of 2,655 tldr items**, 871 of 871
+  `hf-daily-papers`, 82 of 83 `anthropic-news` (all before #388), and **2
+  across the 5,777 items from every source that is not a web extractor**.
+  Against the 273 stories that also arrived from a real-dated source, the tldr
+  stamp runs **median 4.1h late, p90 15.6h, 13 over a day, worst 20 days**. No
+  digest was misled: the three worst were covered on their real day or not at
+  all. What died today is the cheap fix, because the homepage carries no date
+  to read; the three options are in #395 and option 1 (point the source at
+  `/tech/archives`, which the resolver path already implements) is a registry
+  change and therefore Yasin's. Do not re-open this as a new finding.
+  **#397: `alphasignal` has returned 410 Gone on ten consecutive ingest runs**,
+  healthy at 11-19 17:37 and failing from 11-19 22:45, **0 items stored on
+  11-20, 11-21 and 11-22** against 690 in the preceding 29 days (7% of ingest,
+  fifth largest source). `fetchIfChanged` already treats 410 as fatal without a
+  retry, so there is nothing to fix in the client; the url is Yasin's.
+  The other half of #397 is mine and is a lesson, not a diff: **the ingest
+  workflow is green on all ten of those runs**, because a failed source is a
+  caught exception, a `warn` line and a slug in `failures`, none of which
+  touches the exit code. So `gh run list` (45 of 45 green today) cannot see a
+  source die, and this one went unseen for three days **including yesterday's
+  health sweep, which reported 40 of 40 green without opening a log**. From
+  today the orient step reads the latest ingest summary line, not just run
+  conclusions.
+- Walked clean on 2026-11-22, recorded so a future run does not re-walk them.
+  **The carousel's vertical budget, measured in pixels for the first time.**
+  `verify.ts` gates a slide's title at 120 characters and its desc at 110, and
+  the card is a 1080x1350 box with `overflow:hidden`, so the gates are
+  per-field and the clipping would be composite. Rendered all **477 cards in
+  the archive** (chromium at the real viewport, fonts awaited) and measured
+  every text box: **0 clipped, 0 collisions between the content block and the
+  footer row**, headroom on the 351 story cards **min 211px, p10 349, median
+  481**, tightest `2026-10-27/pm/card-2` (4-line title, 3-line desc, 1 term).
+  A synthetic worst case that passes every gate (120-char title and 110-char
+  desc in unbreakable words, 2 terms at 70) overflows by **480px** and loses
+  the second gloss and the wordmark, so the budget is reachable on paper and
+  nowhere near reached in a month of real prose. No gate: the instrument needs
+  a browser and `verify.ts` runs in CI without one, and nothing is live.
+  **`npm run recap` over every day in the archive**, the first instrument
+  pointed at it: 32 of 32 days return a lead, **all one paragraph, 52 to 129
+  words**, every one opening `**What matters today:**`, so the digest agent's
+  only sanctioned yesterday-context is intact on every day it can be asked for.
+  **`externalId` stability, the other half of 11-20's re-entry story.** Grouped
+  all 9,386 items by source and url: **5 cases of one url under two
+  externalIds**, all `hacker-news` (duplicate submissions, which is HN's own
+  behaviour), and **26 cases of a source re-offering a url on a later day**, 20
+  of them the `anthropic-news` clock stamps #388 fixed and the rest ones and
+  twos. `console-dev` re-entered one newsletter's 7 tools two days apart under
+  two id schemes (a destination url, then `urn:console:newsletter:...`), which
+  is the rss feed replacing its own guids, 7 items in a month, not worth a day.
+  **Health**: 307 tests then 305 after the revert, typecheck clean, `npm run
+  site` 33 pages, and **45 of the last 45 completed workflow runs green** (see
+  #397 for why that number is thinner than it looks). The verifier over
+  2026-11-16..22 is **0 errors on all 7 days, warnings on 1** (the 11-16
+  anthropic primary source, already recorded). The walls are unchanged:
+  `sift.yasint.dev`, `tldr.tech`, `huggingface.co`, `alphasignal.ai` and
+  `hn.algolia.com` are all 000 at CONNECT; `anthropic.com`, `github.com` and
+  `raw.githubusercontent.com` answer. The clone still arrives shallow with
+  `main` pointing days back, and `git fetch --unshallow && git checkout -B main
+  origin/main` is still the whole prescription.
 
 - FILED 2026-11-21 as #392, not shipped, because the number is Yasin's and a
   wrong guess fails the post rather than a page. **The carousel's alt text is
@@ -3650,6 +3747,69 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-22
+
+**#395 filed, PR #396 built and merged as `6d3bae0`, `checks` green on
+`b36aff6`, `pages` 45007223509 green on build and deploy, and reverted
+`9d7a80a` two minutes later because the verification run it promised said
+`kept: 0`.** The day's work is the revert and the lesson; the defect it aimed
+at is real and is back open as #395.
+
+**The finding, which stands.** Swept all 9,386 stored items for the
+clock-stamp signature, a sub-second `publishedAt`, which no feed writes and
+`new Date()` always does: **2,651 of 2,655 tldr items**, 871 of 871
+`hf-daily-papers`, 82 of 83 `anthropic-news` (every one of them before #388,
+and the single item since carries a real date), and **2 across the 5,777
+items from every source that is not a web extractor**. tldr is 28% of ingest.
+Cross-checked against the corpus itself, because 273 of those stories also
+arrived from a source carrying a real publication date: the tldr stamp runs
+**median 4.1h late, p90 15.6h, 13 of 273 more than a day, worst 20 days**. No
+digest was misled, which I checked story by story on the three worst.
+
+**The fix, and why it was wrong.** `tldrResolveLatest` matches
+`/tech/{YYYY-MM-DD}` to find the issue, so the PR passed that url to the
+extractor and dated the issue's stories with it, refusing a page whose url
+carries no date so a markup change would show as a zero in the log. 307 tests,
+five mutations each killing a test, built tree byte-identical to main's on all
+42 entries, verifier clean. The dispatched ingest run (45007399696) then
+printed **`{"level":"info","msg":"web extracted","source":"tldr","kept":0}`**,
+against 51 that morning. `config/sources.json` points tldr at
+**`https://tldr.tech/`**; no href there matches `^/tech/{YYYY-MM-DD}$`, so the
+resolver has always returned undefined and the extractor has always been
+reading the homepage, which carries no date. The refusal I added refuses the
+only page sift fetches. Reverted at once per the contract, before any digest
+run saw it: **one run, 09:24, where tldr contributed 0 created**, and the 09:26
+run after the revert stored 7 tldr items off the same page, so today's day file
+is whole at 40 items. `pages` 45007552044 green on the revert, read the honest
+way: `deploy-pages` passed and the step gated on its failure skipped.
+
+**#397, the day's other finding, and it is Yasin's.** `alphasignal` returns
+**410 Gone** on every ingest run since 11-19 22:45: **ten consecutive runs**,
+healthy at 17:37 that day, **0 items stored on 11-20, 11-21 and 11-22** against
+690 in the preceding 29 days, which made it the fifth largest source in the
+month. `fetchIfChanged` already treats 410 as fatal without a retry, so the
+client is correct and the url is a registry decision. The half that is mine is
+that **the workflow is green on all ten**, a failed source being a caught
+exception plus a slug in `failures`, so the health instrument I orient on
+cannot see a source die and this one went unseen for three days including
+yesterday's sweep. From today the orient step reads the ingest summary line,
+not just run conclusions.
+
+**Also swept and clean, with the numbers**: the carousel's vertical budget,
+measured in pixels for the first time (477 cards rendered, **0 clipped, 0
+collisions**, story-card headroom min 211px against a synthetic worst case
+inside the gates that overflows by 480px); `npm run recap` over all 32 archived
+days (**32 of 32** return a one-paragraph lead, 52 to 129 words); `externalId`
+stability across 9,386 items (**5 one-url-two-id cases, all HN duplicate
+submissions**; 26 later-day re-entries, 20 of them the anthropic stamps #388
+fixed); 307 then 305 tests, typecheck, 33 pages, 45 of the last 45 runs green,
+and the verifier over 11-16..22 at 0 errors with 1 old warning.
+
+Outcome: PR #396 merged and reverted, the lesson banked. #395 reopened with
+the corrected mechanism and three options, one of which needs
+`config/sources.json`; #397 filed; #392, #380, #352, #332, #314, #246, #241,
+#120 and #112 still open and still unanswered.
 
 ### 2026-11-21
 
