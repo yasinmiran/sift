@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { mkdtempSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { runIngest } from "../src/pipeline/ingest";
+import { failureAnnotations, runIngest, type IngestStats } from "../src/pipeline/ingest";
 import { today } from "../src/day";
 import { loadDay } from "../src/pipeline/day-file";
 import { loadState, saveState } from "../src/pipeline/state";
@@ -15,6 +15,8 @@ const rssFixture = `<?xml version="1.0"?><rss version="2.0"><channel><title>t</t
   <item><title>Second post</title><guid>a2</guid><link>https://example.com/2</link><pubDate>${new Date().toUTCString()}</pubDate><description>beta body</description></item>
   <item><title>Third post</title><guid>a3</guid><link>https://example.com/3</link><pubDate>${new Date().toUTCString()}</pubDate><description>gamma body</description></item>
 </channel></rss>`;
+
+const actions = { GITHUB_ACTIONS: "true" };
 
 const stubFetch = (body: string) => async () => ({ statusCode: 200, body, headers: {} });
 
@@ -227,6 +229,18 @@ describe("runIngest", () => {
     expect(loadState(dataDir).seen).not.toHaveProperty("2020-01-01");
   });
 
+  it("annotates the failing source it just isolated", async () => {
+    const fetchImpl = async (url: string) =>
+      url.includes("bad")
+        ? { statusCode: 500, body: "", headers: {} }
+        : { statusCode: 200, body: rssFixture, headers: {} };
+    const stats = await runIngest(dataDir, {
+      fetchImpl: fetchImpl as never,
+      sources: [src("good"), src("bad", { url: "https://bad.example" })],
+    });
+    expect(failureAnnotations(stats, actions)).toEqual(["::warning title=source failed::bad stored nothing this run"]);
+  });
+
   it("drops validators for a slug the registry dropped, keeping a disabled one", async () => {
     const validators = { etag: 'W/"stale"', lastModified: null, feedHash: "h" };
     saveState(dataDir, { sources: { gone: { ...validators }, off: { ...validators } }, seen: {} });
@@ -238,5 +252,36 @@ describe("runIngest", () => {
     expect(sources).not.toHaveProperty("gone");
     expect(sources.off).toEqual(validators);
     expect(sources.on!.feedHash).toBeTruthy();
+  });
+});
+
+// A run stays green when a source dies, so the annotation is the whole of
+// what shows without downloading a job log: one line per slug, named, and
+// nothing at all on a clean run.
+describe("failureAnnotations", () => {
+  const stats = (failures: string[]): IngestStats => ({
+    sources: 54,
+    created: 109,
+    skipped: 28,
+    dropped: 2,
+    stale: 21,
+    duplicate: 58,
+    failures,
+  });
+
+  it("writes one warning command per failed source, in the order they failed", () => {
+    expect(failureAnnotations(stats(["alphasignal", "css-tricks"]), actions)).toEqual([
+      "::warning title=source failed::alphasignal stored nothing this run",
+      "::warning title=source failed::css-tricks stored nothing this run",
+    ]);
+  });
+
+  it("says nothing when every source answered", () => {
+    expect(failureAnnotations(stats([]), actions)).toEqual([]);
+  });
+
+  it("stays quiet outside actions, where the line would be stdout noise", () => {
+    expect(failureAnnotations(stats(["alphasignal"]), {})).toEqual([]);
+    expect(failureAnnotations(stats(["alphasignal"]), { GITHUB_ACTIONS: "false" })).toEqual([]);
   });
 });

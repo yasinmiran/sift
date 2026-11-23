@@ -148,8 +148,25 @@ function toStored(raw: RawItem, topics: string[]): StoredItem {
   };
 }
 
+// A failed source is a caught exception, a `warn` line and a slug in
+// `failures`, and none of the three touches the exit code: `alphasignal` died
+// on 2026-11-19 and the next sixteen ingest runs all read `success`, with
+// `annotations_count` 0 on every one, so the only record was the summary line
+// at the bottom of a downloaded job log. A workflow warning annotation is the
+// one channel that shows on the run page and in the check-runs api without
+// claiming the run failed: the exit code, the summary line and the `warn`
+// events stay exactly as they were. Outside Actions the same line is not an
+// annotation, just noise in a stdout this repo keeps to one json event per
+// line, so the env is read here rather than at the call site: the gate is
+// then a property a test can hold down.
+export function failureAnnotations(stats: IngestStats, env: Record<string, string | undefined>): string[] {
+  if (env.GITHUB_ACTIONS !== "true") return [];
+  return stats.failures.map((slug) => `::warning title=source failed::${slug} stored nothing this run`);
+}
+
 const invokedDirectly = process.argv[1]?.endsWith("ingest.ts");
 if (invokedDirectly) {
   const stats = await runIngest(resolve("data"));
   console.log(JSON.stringify(stats));
+  for (const line of failureAnnotations(stats, process.env)) console.log(line);
 }
