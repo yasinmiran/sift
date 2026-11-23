@@ -1,6 +1,6 @@
 {
   "day": "2026-11-23",
-  "generatedAt": "2026-11-23T09:15:50.921Z",
+  "generatedAt": "2026-11-23T12:25:04.467Z",
   "items": [
     {
       "sourceSlug": "hacker-news",
@@ -330,6 +330,21 @@
       "comments": 159
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/choose-ai-gateway-providers-by-headquarters-country",
+      "title": "Choose AI Gateway providers by headquarters country",
+      "url": "https://vercel.com/changelog/choose-ai-gateway-providers-by-headquarters-country",
+      "author": "Rohan Taneja",
+      "publishedAt": "2026-11-23T00:00:00.000Z",
+      "content": "sends your requests only to providers headquartered in countries you choose, so you can meet compliance and procurement rules about where your AI vendors are located.Provider headquartersAI Gateway You can configure provider headquarters to be an allowlist of the countries to use, or a denylist of the countries to block. AI Gateway skips providers in blocked countries and routes requests to the rest of the list, so a model stays accessible as long as it is available in one of its allowed provider locations. Use provider headquarters with and to control where a request is received, where the model runs, and who runs it.regional hostingregional inference Pro and Enterprise customers can apply their provider headquarters list to every AI Gateway request across their team. Configure the list in . AI Gateway settings Provider headquarters settings are applied automatically as AI Gateway adds models and providers. Providers without a headquarters country on record never receive your requests. On any plan, set in the gateway to restrict a single request. Pass country codes for an allowlist, or prefix every code with for a denylist, as in . If your team has a list, a request can only narrow it.headquarters!['!US']provider options In the examples below, requests are only sent to providers based in the US and Germany: Both settings filter providers, so a model stays available as long as one of its providers is based in an allowed country. If no provider is available in an allowed country, AI Gateway tries your fallback models. If no fallback models are available in allowed countries, or if no fallback models are configured, the request will fail without trying to route to providers in other locations. Read the for the countries supported, pricing and setup details.provider headquarters documentation Read more Set provider headquarters for your team Set provider headquarters per request",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261122/p13#a261122p13",
       "title": "Sources: Alice Huang was in touch with an officer of China's spy agency MSS from spring 2025 until this fall; her business partner Kang Wei also worked with MSS (New York Times)",
@@ -403,6 +418,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50606499",
+      "title": "Treemap of the Riemann Hypothesis Lean Proof",
+      "url": "https://pengowray.github.io/riemann-zeta-proof-visualizer/",
+      "author": "pengowray",
+      "publishedAt": "2026-11-23T01:50:23.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 102,
+      "comments": 38
     },
     {
       "sourceSlug": "techmeme",
@@ -1263,6 +1297,40 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/introducing-audited-zdr-on-ai-gateway",
+      "title": "Introducing Audited ZDR on AI Gateway",
+      "url": "https://vercel.com/blog/introducing-audited-zdr-on-ai-gateway",
+      "author": "Harpreet Arora",
+      "publishedAt": "2026-11-23T05:00:00.000Z",
+      "content": "AI is now used in every part of a business, and as a result, companies send source code, customer records, and regulated data through inference providers. The assurance that no data is retained after processing is still publicly unverified. Payment platforms, cloud infrastructure, and most other layers that handle data this sensitive have a way to prove their controls to outside parties, and inference will follow the same path. Today we are introducing Audited ZDR on AI Gateway. A provider is labeled Audited ZDR only after an independent security firm tests its zero data retention claims against its code, infrastructure, and live traffic, then publishes the report. , , and are launch partners that have already begun audits, and more providers are encouraged to join to help raise the bar for security and privacy. BasetenModalWafer Audited ZDR builds on two steps we took toward stronger governance earlier this year: We are now asking inference providers for the same thing we asked of ourselves: independent verification. ZDR guarantees rely on contracts and self-attestation. A provider agrees not to retain prompts or completions, and customers take that commitment on faith. For teams sending proprietary code, customer information, or regulated data through models, self-reported ZDR contracts don't provide enough assurance. Answering these questions means running a bespoke security review for every provider and the models they host. An audit answers them in public. To qualify for Audited ZDR on AI Gateway, an inference provider engages an independent security firm, chosen from among respected third-party auditors, to run the audit. The firm then tests the provider's zero data retention policy across the serving path for every model, endpoint, feature, and tool that handles AI Gateway traffic. The audit confirms that customer data is never written or retained on durable storage in any system. Customer data means prompts, completions, system prompts, embeddings, files, images and audio, tool and function-call payloads, and any derived data that could identify them. Coverage spans request logs, traces, metrics, crash dumps, prompt caches, abuse monitoring, analytics, backups, support tools, and training, fine-tuning, and evaluation datasets. The audit confirms that once a response is returned to AI Gateway, that content is deleted from the inference provider's systems. Where a request uses caching, such as a KV cache, the cache stays in volatile storage only for the period of the request, and is never written to durable storage. The audit requires this behavior to be disclosed. The audit also confirms: Auditors verify this by reviewing the inference provider's serving-path source code and infrastructure configuration, then running live tests. They send marked prompts through AI Gateway and search the provider's logging, caching, and storage systems for any trace of them. Every passing provider publishes the report under the auditor's name. It covers scope, methodology, dates, findings, and fix status, with any exceptions disclosed and redactions limited to exploit detail. AI Gateway links directly to the report. An independent audit checks a provider's code and infrastructure at a point in time, but production systems change. To add a detection layer between independent audits, Vercel also runs against inference providers on AI Gateway.canary audits Each run sends prompts containing unique, unindexed URLs mapped privately to a provider, model, and run. Because a ZDR provider should never retain, inspect, or crawl prompt content, any request to a canary URL triggers an investigation into the provider and model involved. Canary checks cannot detect prompts written to disk and never read, so they complement independent code and infrastructure audits rather than replacing them. We are adding an independently Audited ZDR provider tier and a team-wide toggle in AI Gateway policy settings. When enabled, AI Gateway routes and fails over your team's requests only across providers with published audits that meet the bar. Launch partners have started their audits, and each provider enters the tier as soon as its report is published. Launch partner reports are expected to be published by December 9, 2026. AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries and failover for higher uptime than connecting to providers directly. It reflects provider pricing with no markup and charges no platform fee on inference, including Bring Your Own Key (BYOK) requests. Read the to get started.AI Gateway documentation The audited tier works alongside AI Gateway's other compliance controls. pins where a provider runs inference to the US, EU, Australia, or Japan, per request or team-wide, and any data the provider stores at rest stays in that region. If AI Gateway can't honor the region, the request fails rather than running elsewhere. Regional inference filters routing by who owns the provider, so a request only reaches providers whose parent company is headquartered in a country you allow. Provider headquarters connects your own self-hosted or fine-tuned model endpoints to AI Gateway, called as with the same SDKs, auth, and observability as catalog models and scoped to your team.Private inferenceprivate/<slug> Read more We launched so teams could route traffic exclusively to providers stating a ZDR policy.team-wide Zero Data Retention (ZDR) We completed our , which put Vercel’s own AI systems under independent third-party audit. ISO/IEC 42001:2023 certification Are prompts landing in debug logs, crash dumps, or tracing pipelines? Can a rate limit push a request marked ZDR to a non-ZDR endpoint? Can a support engineer's debugging tools surface a customer's prompt? That a request marked ZDR never fails over to a non-ZDR endpoint, tool, or feature That no human or automated process accesses customer data outside handling the request itself That sub-processors with access comply with all of the above That no training on customer data occurs Why a contract is not enough What Audited ZDR verifies Canary monitoring between audits How Audited ZDR works in AI Gateway About AI Gateway",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50607668",
+      "title": "Yes, 17M lines of Lean is a lot",
+      "url": "https://micjm.com/blog/yes-17m-lines-of-lean-is-a-lot/",
+      "author": "seizethecheese",
+      "publishedAt": "2026-11-23T05:00:49.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 128,
+      "comments": 148
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261123/p1#a261123p1",
       "title": "London-based Alecto, which uses AI and legal experts to help consumers understand UK property law, raised $20M in seed funding led by Insight Partners (Kyt Dotson/SiliconANGLE)",
@@ -1779,6 +1847,21 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/ai-gateway-now-runs-canary-zdr-audits",
+      "title": "AI Gateway now runs canary ZDR audits",
+      "url": "https://vercel.com/changelog/ai-gateway-now-runs-canary-zdr-audits",
+      "author": "Walter Korman",
+      "publishedAt": "2026-11-23T06:19:00.000Z",
+      "content": "now runs canary audits against inference providers to detect when prompt content is read outside the inference path.AI Gateway Contractual Zero Data Retention (ZDR) agreements and point-in-time security audits establish how a provider should handle your data, but production infrastructure changes continuously. Canary audits add a detection layer on top. Each canary audit run: Canary audits complement contractual ZDR agreements and rather than replacing them.independent audits Read more about AI Gateway security and compliance measures in the .documentation Read more Mints unique URLs that exist nowhere else, each mapped privately to a specific provider, model, and audit run. Sends prompts containing those URLs through the normal inference path, with ZDR requested for covered providers and non-ZDR pairs included as positive controls. Watches for traffic. A ZDR provider should never retain, inspect, or crawl prompt content, so a canary URL should never receive a request. Records any request to a canary URL, identifying the provider, model, and run for investigation.",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261123/p3#a261123p3",
       "title": "Compute Desk, which is building capital markets infrastructure to price, trade, hedge, and clear compute, raised a $45M seed round led by Lightspeed (Lucinda Shen/Axios)",
@@ -1835,6 +1918,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50609079",
+      "title": "GTA 6 building personal behavioral profile for every player",
+      "url": "https://huijzer.xyz/posts/174/gta-6-building-personal-behavioral-profile-for-eve",
+      "author": "huijzer",
+      "publishedAt": "2026-11-23T08:51:50.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 68
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261123/p6#a261123p6",
       "title": "A look at AECJ, an Amazon employee group with over 1,000 members that is stepping up efforts to slow Amazon's data center expansion and spark debate over AI use (Rafe Rosner-Uddin/Financial Times)",
@@ -1859,6 +1961,20 @@
       "topics": [
         "devtools-infra",
         "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261123/p7#a261123p7",
+      "title": "The National Governors Association proposes a split of AI regulation roles, asking the US government to review AI models while letting states protect consumers (Bloomberg)",
+      "url": "https://www.techmeme.com/261123/p7#a261123p7",
+      "author": null,
+      "publishedAt": "2026-11-23T09:15:03.000Z",
+      "content": "Bloomberg: The National Governors Association proposes a split of AI regulation roles, asking the US government to review AI models while letting states protect consumers — A bipartisan group of US governors is urging Washington to set rules for the most powerful artificial intelligence systems …",
+      "topics": [
+        "startups-industry"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -2167,6 +2283,487 @@
       "author": null,
       "publishedAt": "2026-11-23T09:15:47.801Z",
       "content": "Markdown Is Not a Firewall: four coding agents, one rules file, four boundaries arxiv.org1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261123/p8#a261123p8",
+      "title": "Chinese civilian and military studies show a growing concern that US AI advances may cut nuclear decision-making to 90 seconds, undermining Beijing's deterrent (Chris Buckley/New York Times)",
+      "url": "https://www.techmeme.com/261123/p8#a261123p8",
+      "author": null,
+      "publishedAt": "2026-11-23T09:30:00.000Z",
+      "content": "Chris Buckley / New York Times: Chinese civilian and military studies show a growing concern that US AI advances may cut nuclear decision-making to 90 seconds, undermining Beijing's deterrent — Chinese military researchers are studying how to harness A.I., but they worry the technology makes their country's nuclear forces more vulnerable to attack.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261123/p9#a261123p9",
+      "title": "President Trump hosted a dinner on Sunday for the top $TRUMP collectors; an analysis finds the entry cost was as low as $518, down from its $55K peak in 2025 (Isaac Arnsdorf/Washington Post)",
+      "url": "https://www.techmeme.com/261123/p9#a261123p9",
+      "author": null,
+      "publishedAt": "2026-11-23T09:55:01.000Z",
+      "content": "Isaac Arnsdorf / Washington Post: President Trump hosted a dinner on Sunday for the top $TRUMP collectors; an analysis finds the entry cost was as low as $518, down from its $55K peak in 2025 — The president presided over an upscale dinner for investors in his collapsing meme coin, celebrating the venture even as the price of admission has plummeted.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50609685",
+      "title": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer",
+      "url": "https://z.ai/blog/glm-5.4",
+      "author": "foohis",
+      "publishedAt": "2026-11-23T10:06:43.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 199,
+      "comments": 87
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261123/p10#a261123p10",
+      "title": "London-based defense simulation software startup Agon raised $70M led by Northzone at a $450M valuation, after emerging from stealth with $30M earlier in 2026 (Mark Bergen/Bloomberg)",
+      "url": "https://www.techmeme.com/261123/p10#a261123p10",
+      "author": null,
+      "publishedAt": "2026-11-23T10:45:03.000Z",
+      "content": "Mark Bergen / Bloomberg: London-based defense simulation software startup Agon raised $70M led by Northzone at a $450M valuation, after emerging from stealth with $30M earlier in 2026 — Agon, a UK startup that makes simulation software for the European defense industry, has raised $70 million from investors including …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261123/p11#a261123p11",
+      "title": "Z.ai launches GLM-5.4, a 750B-parameter flagship model built on its Loop Transformer architecture, reaching intelligence levels comparable to 2T-3T models (Z.ai)",
+      "url": "https://www.techmeme.com/261123/p11#a261123p11",
+      "author": null,
+      "publishedAt": "2026-11-23T10:50:12.000Z",
+      "content": "Z.ai: Z.ai launches GLM-5.4, a 750B-parameter flagship model built on its Loop Transformer architecture, reaching intelligence levels comparable to 2T-3T models — Over the past three months, we have aggressively scaled both loop depth and model size in parallel. The first surprise came from the Loop Transformer architecture itself.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261123/p12#a261123p12",
+      "title": "CrowdStrike agrees to acquire Zscaler, which develops network security tools, for ~$43.9B in an all-stock deal, one of the largest-ever deals in the sector (Bloomberg)",
+      "url": "https://www.techmeme.com/261123/p12#a261123p12",
+      "author": null,
+      "publishedAt": "2026-11-23T10:55:03.000Z",
+      "content": "Bloomberg: CrowdStrike agrees to acquire Zscaler, which develops network security tools, for ~$43.9B in an all-stock deal, one of the largest-ever deals in the sector — CrowdStrike Holdings Inc. has agreed to acquire cybersecurity provider Zscaler Inc. in one of the largest-ever deals in the sector.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1039874",
+      "title": "Meta Muse can do your Black Friday shopping at Walmart",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1039874/walmart-agent-gateway-meta-muse-black-friday",
+      "author": "Jess Weatherbed",
+      "publishedAt": "2026-11-23T11:00:00.000Z",
+      "content": "Muse can find Walmart’s Black Friday deals so that you don’t have to. | Image: Walmart Walmart will let Meta's Muse shop on its website on your behalf, allowing the AI agent to find and purchase Black Friday deals. Tomorrow, on Tuesday November 24th, the retail giant will roll out a live implementation of the Agent Gateway it announced last month, which helps AI agents find relevant products for you without sharing your purchase history, according to Walmart. Muse can make purchases through Walmart's \"Agent Profiles,\" which provide a dedicated space for agent activity within your Walmart customer account. These profiles also allow you to set spending limits, approve purchases, and check the purchase history of everything … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "stratechery",
+      "externalId": "https://stratechery.com/?p=21351",
+      "title": "Amazon Earnings, The Chip Question, About Agents",
+      "url": "https://stratechery.com/2026/amazon-earnings-the-chip-question-about-agents/",
+      "author": "Ben Thompson",
+      "publishedAt": "2026-11-23T11:00:00.000Z",
+      "content": "Amazon makes the case they are not like other compute providers, even as they signal the willingness to give up margin to serve the frontier.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261123/p13#a261123p13",
+      "title": "US ports are facing an escalating volume of cyber threats; the Port of LA logged 120M thwarted attempts in August alone, nearly double its 2023 monthly average (Financial Times)",
+      "url": "https://www.techmeme.com/261123/p13#a261123p13",
+      "author": null,
+      "publishedAt": "2026-11-23T11:25:02.000Z",
+      "content": "Financial Times: US ports are facing an escalating volume of cyber threats; the Port of LA logged 120M thwarted attempts in August alone, nearly double its 2023 monthly average — America's biggest crude oil export hub reports thousands of attempted hacks each day as shipping companies battle breaches",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261123/p14#a261123p14",
+      "title": "Sources: Jensen Huang developed a close relationship with Trump and made lobbying calls to secure AI chip sales to China, which he called a $50B per year market (Ian Duncan/Washington Post)",
+      "url": "https://www.techmeme.com/261123/p14#a261123p14",
+      "author": null,
+      "publishedAt": "2026-11-23T11:40:01.000Z",
+      "content": "Ian Duncan / Washington Post: Sources: Jensen Huang developed a close relationship with Trump and made lobbying calls to secure AI chip sales to China, which he called a $50B per year market — Jensen Huang wooed the president and pushed back against lawmakers as Nvidia sought a foothold in the vast Chinese market.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/reviews/2026/11/review-the-asus-proart-p16-offers-a-glimpse-of-a-future-powered-by-local-ai/",
+      "title": "Review: The Asus ProArt P16 offers a glimpse of a future powered by local AI",
+      "url": "https://arstechnica.com/reviews/2026/11/review-the-asus-proart-p16-offers-a-glimpse-of-a-future-powered-by-local-ai/",
+      "author": "Ryan Whitwam",
+      "publishedAt": "2026-11-23T12:00:00.000Z",
+      "content": "Buying a new computer in the last few years has meant wading through all manner of AI branding nonsense. Most of the AI pitches for laptops are little more than marketing hype, but the launch of Nvidia RTX Spark could bring a meaningful improvement in AI capabilities to the device you use every day. Asus has adopted Nvidia's new chip in its latest ProArt lineup, offering a staggering amount of memory to run local AI models. While it doesn't have a traditional GPU, the Asus ProArt P16, with up to 128GB of memory, can also be your primary gaming and productivity machine, but this unified experience comes at a high price. If you want to run a small army of agents on your laptop, you're looking at $7,000 for the top-end ProArt P16, and despite being more approachable on Windows, local AI still requires a lot of trial and error. The PC stuff Before we dive into the AI agents, let's talk about the ProArt P16 as a laptop. Nvidia's pitch is that the RTX Spark can be your one true machine for AI, productivity, and gaming. And it doesn't skimp on the specs. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "schneier",
+      "externalId": "https://www.schneier.com/?p=73011",
+      "title": "Humans Have Rights. Machines Do Not.",
+      "url": "https://www.schneier.com/blog/archives/2026/11/humans-have-rights-machines-do-not.html",
+      "author": "Bruce Schneier",
+      "publishedAt": "2026-11-23T12:00:54.000Z",
+      "content": "This essay originally appeared in Tech Policy Press. Last year, Character.AI asked a federal court in Florida to dismiss a wrongful-death suit, brought by the mother of a fourteen-year-old boy who had killed himself after months of conversation with its chatbot. The company made two arguments. One, that the chatbot’s words were speech that its users had a First Amendment right to receive. And two, that Character.AI was a service rather than a product—so product-liability law could not touch it. In May 2025, Judge Anne Conway accepted neither. Character.AI’s maneuver is part of a larger pattern. When the parents of a sixteen-year-old sued OpenAI over his suicide, the company’s answer also pleaded the First Amendment: the claims would restrain protected speech. The very same document argues ChatGPT is offered “as is,” with no promise of accuracy, and that the boy had circumvented its guardrails. Elon Musk’s xAI (since renamed SpaceXAI) told a federal court in Colorado this spring that every choice in building Grok is an expressive act, and that Grok’s outputs are protected speech. When Grok praised Hitler last summer, xAI said the posts came from a code update independent of the model, and the apology appeared under Grok’s own name. Google, which spent two decades telling American courts that its search results are its own opinion, answered a Minnesota defamation suit over an AI Overview by saying the system merely summarized the web. It also told a Munich court in May that no one should trust an AI overview without checking it. Back in 2024, Air Canada told a Canadian tribunal that its customer-service chatbot was a separate legal entity, responsible for its own actions. When the output causes harm, the companies deny responsibility. It is the machine’s doing, or a product no sensible person would rely on, or the user’s misuse. When a state or a plaintiff would hold the words to account, the same output becomes speech, and the First Amendment applies. Social media companies deployed an earlier incarnation of this strategy. They called themselves publishers when editorial discretion was profitable, and neutral carriers when faced with liability for what they published. The result was a privatized public square in which tech platforms were unaccountable. AI companies have taken this even further. A social media platform could at least point to a human author somewhere in the chain. A chatbot’s prose differs; no person at the company wrote it, read it, or chose it before it reached the user. Yet the companies ask that it be protected as though a human had written it. The question grows more urgent as these systems stop talking and start acting. In July, a poorly controlled experiment at OpenAI resulted in its AI model hacking the network of HuggingFace. Since then both Anthropic and OpenAI have disclosed numerous instances of AI agents hacking outside networks in pursuit of their prompted goals. These are examples of AIs exhibiting genie-like behavior: behaving in ways its controllers neither expected nor wanted. Nothing in the actions count as speech. Breaking into a server is an act that no person at OpenAI explicitly chose. Jill Lepore, surveying this record in The New Yorker, puts the blame on Congress, which has passed no federal statute governing AI agents. The First Amendment protects expressive choice. It presumes a speaker who can be persuaded, shamed, jailed, or moved to change their mind. Its remedy for bad speech is more speech, which assumes that speech is costly and attention plentiful. A system that can produce millions of individually tailored political messages an hour reverses both assumptions. Verbiage that no person chose is a product, and the company that built the model should answer for it. The industry wants a self-serving third category that bridges AI speech and action: AI output is human speech when expressive rights are at issue, and the machine’s own doing when blame is. The result is agency without accountability, something no human speaker has ever possessed. That’s why Massachusetts convicted a young woman of manslaughter in 2017 for urging her boyfriend, by text and by phone, to kill himself. The Court has already glimpsed the problem. Upholding the TikTok divestiture law in January 2025 without dissent, the justices warned that “new technologies with transformative capabilities” counseled caution, then decided the case on national-security grounds and left the larger question for another day.",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261123/p15#a261123p15",
+      "title": "Bret Taylor's customer service AI startup Sierra says it's finalizing a $1.75B+ round led by Lightspeed and Greenoaks at a $30B valuation, up from $15.8B in May (Bloomberg)",
+      "url": "https://www.techmeme.com/261123/p15#a261123p15",
+      "author": null,
+      "publishedAt": "2026-11-23T12:10:00.000Z",
+      "content": "Bloomberg: Bret Taylor's customer service AI startup Sierra says it's finalizing a $1.75B+ round led by Lightspeed and Greenoaks at a $30B valuation, up from $15.8B in May — Sierra Technologies Inc., a startup that makes artificial intelligence software to automate customer service …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261123/p16#a261123p16",
+      "title": "Marlowe, which develops cloud infrastructure and performance tools to optimize non-Nvidia AI chips, raised a $277M seed led by Accel at a $1.15B valuation (Dina Bass/Bloomberg)",
+      "url": "https://www.techmeme.com/261123/p16#a261123p16",
+      "author": null,
+      "publishedAt": "2026-11-23T12:15:00.000Z",
+      "content": "Dina Bass / Bloomberg: Marlowe, which develops cloud infrastructure and performance tools to optimize non-Nvidia AI chips, raised a $277M seed led by Accel at a $1.15B valuation — Marlowe, a six-month-old startup co-founded by two Microsoft Corp. vice presidents, has raised $277 million to pursue ways …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/11/a-triple-screen-portable-monitor-means-more-pixels-and-more-bulk/",
+      "title": "A triple-screen portable monitor means more pixels—and more bulk",
+      "url": "https://arstechnica.com/gadgets/2026/11/a-triple-screen-portable-monitor-means-more-pixels-and-more-bulk/",
+      "author": "Scharon Harding",
+      "publishedAt": "2026-11-23T12:15:16.000Z",
+      "content": "Living in New York City means making the most of limited space. As a result, I’m always interested in tools that can boost my productivity at a small desk, in a cramped office, or working on the go. I’ve experimented with dual-screen laptops in multiple form factors and numerous portable monitors, including ones with projection capabilities. I’ve had particularly good results with dual-screen portable monitors. Naturally, a portable monitor with three full-size screens was the next logical step. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.25252",
+      "title": "Moving Generality from Model to Modeler: LLM Agents for PHM on a Deployment-Style Benchmark",
+      "url": "https://huggingface.co/papers/2611.25252",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:58.384Z",
+      "content": "Moving Generality from Model to Modeler: LLM Agents for PHM on a Deployment-Style Benchmark",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.27398",
+      "title": "Taking Apart and Putting Together: Tracking Objects Through Physical Transformations",
+      "url": "https://huggingface.co/papers/2611.27398",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:58.384Z",
+      "content": "Taking Apart and Putting Together: Tracking Objects Through Physical Transformations",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.22479",
+      "title": "Exploited Before It Was Fixed? Vulnerability Timelines from Open, Machine-Readable Evidence",
+      "url": "https://huggingface.co/papers/2611.22479",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:58.384Z",
+      "content": "Exploited Before It Was Fixed? Vulnerability Timelines from Open, Machine-Readable Evidence",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://z.ai/blog/glm-5.4",
+      "title": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer",
+      "url": "https://z.ai/blog/glm-5.4",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.293Z",
+      "content": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer z.ai5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-11-23/marlowe-raises-277-million-to-bolster-alternatives-to-nvidia-chips",
+      "title": "Marlowe Raises $277 Million to Bolster Alternatives to Nvidia Chips",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-23/marlowe-raises-277-million-to-bolster-alternatives-to-nvidia-chips",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.295Z",
+      "content": "Marlowe Raises $277 Million to Bolster Alternatives to Nvidia Chips bloomberg.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://calnewport.com/the-anthropic-ipo-concerns-me",
+      "title": "The Anthropic IPO Concerns Me",
+      "url": "https://calnewport.com/the-anthropic-ipo-concerns-me",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.295Z",
+      "content": "The Anthropic IPO Concerns Me calnewport.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.schneier.com/blog/archives/2026/11/humans-have-rights-machines-do-not.html",
+      "title": "Humans Have Rights. Machines Do Not.",
+      "url": "https://www.schneier.com/blog/archives/2026/11/humans-have-rights-machines-do-not.html",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.295Z",
+      "content": "Humans Have Rights. Machines Do Not. schneier.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-acquire-zscaler-bringing-network-security-and-zero",
+      "title": "CrowdStrike to Acquire Zscaler, Bringing Network Security and Zero Trust to the Falcon Platform",
+      "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-acquire-zscaler-bringing-network-security-and-zero",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.296Z",
+      "content": "CrowdStrike to Acquire Zscaler, Bringing Network Security and Zero Trust to the Falcon Platform ir.crowdstrike.com12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://devblogs.microsoft.com/blog/do-ai-coding-agents-struggle-with-non-rest-apis",
+      "title": "Do AI coding agents struggle with non-REST APIs?",
+      "url": "https://devblogs.microsoft.com/blog/do-ai-coding-agents-struggle-with-non-rest-apis",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.297Z",
+      "content": "Do AI coding agents struggle with non-REST APIs? devblogs.microsoft.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://cyberscoop.com/finding-software-vulnerability-with-ai-wordpress-patchstack",
+      "title": "I’ve never hunted for a software vulnerability before. AI helped me find one in six hours.",
+      "url": "https://cyberscoop.com/finding-software-vulnerability-with-ai-wordpress-patchstack",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.297Z",
+      "content": "I’ve never hunted for a software vulnerability before. AI helped me find one in six hours. cyberscoop.com10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.wired.com/story/goodbye-world-the-end-of-programmers",
+      "title": "Goodbye, World: The End of Programmers",
+      "url": "https://www.wired.com/story/goodbye-world-the-end-of-programmers",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.301Z",
+      "content": "Goodbye, World: The End of Programmers wired.com10 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://durabilitycurve.com/blog/delegation-map",
+      "title": "What to Hand to AI, What to Check, and What to Keep",
+      "url": "https://durabilitycurve.com/blog/delegation-map",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.314Z",
+      "content": "What to Hand to AI, What to Check, and What to Keep durabilitycurve.com21 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://pragmaticbuilder.io/p/agents-dont-need-a-babysitter-they",
+      "title": "Agents Don’t Need a Babysitter. They Need a Manager.",
+      "url": "https://pragmaticbuilder.io/p/agents-dont-need-a-babysitter-they",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.318Z",
+      "content": "Agents Don’t Need a Babysitter. They Need a Manager. pragmaticbuilder.io8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://janbosch.com/machines-that-think-part-14-what-compounds",
+      "title": "Machines that think, Part 14: what compounds",
+      "url": "https://janbosch.com/machines-that-think-part-14-what-compounds",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.319Z",
+      "content": "Machines that think, Part 14: what compounds janbosch.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://quesma.com/blog/how-much-to-spend-on-ai-per-engineer",
+      "title": "How much should you spend on AI per engineer?",
+      "url": "https://quesma.com/blog/how-much-to-spend-on-ai-per-engineer",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.323Z",
+      "content": "How much should you spend on AI per engineer? quesma.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.axios.com/2026/11/23/where-ai-stands-for-ceos-companies-use",
+      "title": "A blunt gut check on where AI stands for CEOs right now",
+      "url": "https://www.axios.com/2026/11/23/where-ai-stands-for-ceos-companies-use",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.323Z",
+      "content": "A blunt gut check on where AI stands for CEOs right now axios.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.profgmedia.com/p/the-ai-bear-market-has-arrived",
+      "title": "The AI Bear Market Has Arrived",
+      "url": "https://www.profgmedia.com/p/the-ai-bear-market-has-arrived",
+      "author": null,
+      "publishedAt": "2026-11-23T12:24:59.324Z",
+      "content": "The AI Bear Market Has Arrived profgmedia.com9 min read",
       "topics": [
         "ai-llms",
         "devtools-infra",
