@@ -6,6 +6,28 @@ merges and closures and never expire.
 
 ## Lessons
 
+- "A lesson, not a diff" is a verdict about a remedy's shape, and it is worth
+  checking against the repo before it is accepted. Yesterday's run found that a
+  failed source leaves no mark on an ingest run's conclusion, concluded that
+  half of #397 was mine and was a habit ("from today the orient step reads the
+  ingest summary line"), and banked it. The habit was right and it worked: it is
+  how today's run read the summary line and found the streak had grown from
+  **10 runs to 16**. But this journal already holds the lesson that kills the
+  verdict, that **a recurring check living only in a routine's habit has a
+  half-life and nothing in the repo announces when it has expired**, and the
+  thing the habit watches for turned out to be statable in the repo in **17
+  lines**: one warning annotation per failed slug, which moves `annotations_count`
+  from 0 to 1 on a run that still reads `success`. So when a finding's remedy
+  reads as a habit, ask what the habit would look like as output, because a
+  routine that remembers and a routine that is told apart by a number are not
+  the same instrument, and only the second one survives a run that forgets.
+  Its other half is about where the gate goes. The `GITHUB_ACTIONS` check
+  started life at the call site, inside the `invokedDirectly` block that no test
+  can reach, which would have shipped the one branch nothing held down; moved
+  into the pure function as a parameter, it became a mutation a test kills.
+  **A condition in an untestable block is an untested condition wherever the
+  rest of the logic lives**, so push it into the function the suite can call.
+
 - A fixture is a path, not a page, and which path the live code takes was
   decided somewhere else, in a file the test never opens. Today's PR dated
   tldr's stories from the issue url `tldrResolveLatest` matches, 307 tests
@@ -1226,6 +1248,48 @@ merges and closures and never expire.
   original sentence, decide whether the deferral still holds.
 
 ## Backlog
+
+- MERGED 2026-11-23 as #400 / PR #401, `a5096ae`, `checks` green on `e01ae13`
+  and `pages` 45145094768 green on build and deploy, read the honest way:
+  `deploy-pages` passed and the step gated on its failure **skipped**.
+  **A source can die for sixteen straight runs and every one of them reads
+  green.** `alphasignal` failed on **16 consecutive ingest runs** (11-19 22:45
+  through 11-23 05:37), each `completed/success`, `output.annotations_count`
+  **0 on all 16**, with **666 items stored in the preceding 28 days and 0 on
+  11-20 through 11-23**. Shipped `failureAnnotations` in `ingest.ts`: one
+  `::warning title=source failed::{slug} stored nothing this run` per failed
+  slug, emitted after the summary line, with the `GITHUB_ACTIONS` gate inside
+  the pure function so a test holds it down. Exit code, summary line and `warn`
+  events untouched, so `gh workflow run ingest` + `gh run watch` behave as
+  before. 309 tests (was 305), typecheck clean, 33 pages, verifier ok with 0
+  warnings on 11-23, four mutations each killing a test with the total steady at
+  309. Verified live rather than argued: dispatched ingest 45145374772, 54
+  sources, 31 created, `failures: ["alphasignal"]`, conclusion **success**, and
+  `annotations_count` **1** with the annotation reading `warning | source
+  failed | alphasignal stored nothing this run`. The read route for a future
+  orient step is one request: `GET /repos/{owner}/{repo}/commits/{sha}/check-runs`
+  serves `output.annotations_count`. The url itself is still #397 and still
+  Yasin's.
+- Walked clean on 2026-11-23, recorded so a future run does not re-walk them.
+  **Health**: 309 tests, typecheck clean, `npm run site` 33 pages,
+  `npm run verify -- 2026-11-23` ok with **0 errors and 0 warnings**, and the
+  last 40 completed workflow runs all green. The ingest summary line read on
+  the last 22 runs: `sources` 54 on every one, `failures` empty or
+  `["alphasignal"]` except one transient `["css-tricks"]` on 11-19 05:37 that
+  cleared by itself on the next run.
+  **Measured and NOT shipped, so no later run re-opens it as new.** Every day
+  page, the feed and the JSON-LD stamp the same time-of-day constant: `article:
+  published_time`, `datePublished`, `dateModified` and the feed's `pubDate` all
+  read `{day}T04:34:00Z` on **33 of 33 pages**, and `lastBuildDate` is the
+  newest day's 04:34 rather than the build's clock, so an evening rewrite moves
+  none of them and `dateModified` equals `datePublished` on every day including
+  the 32 that were rewritten in the evening. It is the clock-stamp family
+  inverted (a constant where a real time belongs) and the honest fix,
+  build-time for `dateModified` and `lastBuildDate`, costs the thing several
+  runs have leaned on: a byte-identical built tree as a verification
+  instrument. The consequence is also unmeasurable from here, since Search
+  Console and `site:` queries are 403 at CONNECT, so this stays a note until
+  something reads those fields badly in a way a reader can see.
 
 - REOPENED 2026-11-22 as #395 after PR #396 merged and was reverted
   (`9d7a80a`), and #397 filed the same day and waiting on Yasin.
@@ -3747,6 +3811,56 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-23
+
+**#400 filed, PR #401 merged as `a5096ae`, `checks` green on `e01ae13`,
+`pages` 45145094768 green on build and deploy.** 17 lines of `src/`, 46 of
+test, and the verification the change exists for was taken after the merge
+rather than reasoned about.
+
+**The signal.** Yesterday banked the orient step's new habit, read the ingest
+summary line and not just the run conclusion, and the habit worked: the
+`alphasignal` streak is **16 consecutive runs** today (11-19 22:45 through
+11-23 05:37), not the ten recorded yesterday, with **666 items stored in the
+preceding 28 days and 0 on 11-20, 11-21, 11-22 and 11-23**. Every one of those
+16 runs reads `completed/success`, and `output.annotations_count` is **0 on all
+16**, so the check-runs api, one request off the run, had nothing to say
+either. A failed source is a caught exception, a `warn` line on stderr and a
+slug in `stats.failures`; none of the three touches the exit code.
+
+**The change.** `failureAnnotations(stats, env)` in `ingest.ts` composes one
+`::warning title=source failed::{slug} stored nothing this run` per failed
+slug, emitted from the entrypoint after the summary line. The
+`GITHUB_ACTIONS` check sits inside the function rather than at the call site,
+which is the half worth keeping: the call site is the `invokedDirectly` block
+no test can reach, and moving the gate into the function turned it into a
+mutation a test kills. Exit code, summary line and `warn` events are
+unchanged, so the digest agent's `gh workflow run ingest` and `gh run watch`
+behave exactly as before, and nothing in ../AGENTS.md needed touching.
+
+**Verified, not argued.** 309 tests (305 before), typecheck clean, 33 pages,
+`npm run verify -- 2026-11-23` ok with 0 warnings. Four mutations one at a
+time, each reverted, the test total steady at 309 throughout: gate deleted
+kills 1, the `::warning title=...::` prefix dropped kills 2, only the first
+failure annotated kills 1, all slugs joined into one line kills 2. Then the
+instrument itself: dispatched ingest **45145374772**, 54 sources, 31 created,
+`failures: ["alphasignal"]`, conclusion **success**, and `annotations_count`
+**1**, reading `warning | source failed | alphasignal stored nothing this run`.
+0 to 1 on a green run is the whole claim.
+
+**Walked on the way past and not shipped**: every day page, the feed and the
+JSON-LD stamp one time-of-day constant, `{day}T04:34:00Z`, on 33 of 33 pages,
+with `dateModified` equal to `datePublished` on all of them and `lastBuildDate`
+never moving on an evening rewrite. Left in the backlog with the reason: the
+honest fix spends the byte-identical built tree several runs have used as an
+instrument, and the consequence cannot be read from here (Search Console and
+`site:` are 403 at CONNECT).
+
+Outcome: PR #401 merged, #400 closed by it. The dead url is still #397 and
+still Yasin's, and #395, #392, #380, #352, #332, #314, #246, #241, #120 and
+#112 are open and unanswered. Copilot did not review (quota), so the merge
+went in on the suite, the mutations and the live run.
 
 ### 2026-11-22
 
