@@ -6,6 +6,21 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A gate that fires on an obedient day costs more than no gate, and the only
+  instrument that finds those days is the gate itself, run over the month
+  before it ships. Today's lead counter is five lines of arithmetic, and
+  **one of its five branches exists for exactly one day in 32**: without the
+  abbreviation guard, 2026-11-23's "senior levels of the U.S. government"
+  reads as two sentences and a day compliant at 3 gets warned. Counting both
+  ways across the archive and diffing is what turned that from a worry into a
+  named day, and the same diff retired two lines that looked prudent and were
+  not, the href and pen-mark stripping, because with and without them the
+  archive reads identically: a terminator that needs whitespace after it
+  cannot be invented by a url, so the stripping was a branch no mutation could
+  kill. **Before adding a guard, ask the archive which day it is for.** If
+  the answer is none, the guard is decoration, and decoration in a pure
+  function is an untested branch wearing a comment.
+
 - "A lesson, not a diff" is a verdict about a remedy's shape, and it is worth
   checking against the repo before it is accepted. Yesterday's run found that a
   failed source leaves no mark on an ingest run's conclusion, concluded that
@@ -1249,6 +1264,47 @@ merges and closures and never expire.
 
 ## Backlog
 
+- MERGED 2026-11-24 as #404 / PR #405, `cce7ebf`, `checks` green on `4d9a4ed`
+  and `pages` 45363427764 green on build and deploy, read the honest way:
+  `deploy-pages` passed and the step gated on its failure **skipped**.
+  **The digest lead is budgeted at 2-3 sentences and nothing read it.**
+  10 of 32 archived days run past 3 (10-26, 11-03 at 5, 11-05, 11-06, 11-08,
+  11-09, 11-13, 11-18, 11-19 at 5, 11-22), with the lead's length stepping
+  from a **72-word mean over the first 16 days to 99 over the last 16**, max
+  126 on 11-19. Shipped `leadSentences` in `verify.ts`: terminators counted
+  (whitespace or end required after one), the label's stop and an
+  abbreviation's not counted, warning past 3, no lower bound. 314 tests (was
+  309), typecheck clean, 33 pages byte-identical to main on all 49 entries,
+  verifier ok with 0 warnings on 11-24, five mutations each killing a test
+  with the total steady at 314, and the gate run over every archived day
+  naming exactly those 10 days at exactly the hand-read counts.
+  `AGENTS.md` untouched on purpose: its Verify list is a contract file's and
+  therefore Yasin's, and nothing the digest agent relies on moved.
+  **Re-verifying one of those 10 days warns. That is the finding, not a
+  regression, and no later run should file it as new.**
+  **Measured on the way past and NOT shipped**: the lead's word count is the
+  other half of the same drift (11-12 at 102 words and 11-15 at 116 both sit
+  inside the sentence count) and the entry count runs 18 to 31 a day against
+  the contract's "~15 entries". Both would mean inventing a number the
+  contract does not state, which is #380's shape and therefore Yasin's.
+- Walked clean on 2026-11-24, recorded so a future run does not re-walk them.
+  **Health**: 309 tests, typecheck clean, 33 pages, the last 40 workflow runs
+  green, and `npm run verify` over 11-18..24 at **0 errors and 0 warnings on
+  all 7 days**, the cleanest week recorded here. The ingest summary line and
+  #401's annotations read together: `annotations_count` **0** on today's
+  scheduled run, the instrument's first clean reading.
+  **alphasignal recovered without a registry change**: 50 items on 11-24
+  against 0 on 11-20 through 11-23, so #397's 410 ran 16 runs plus four empty
+  days and stopped. Commented there; the url stays Yasin's to close.
+  **#112 re-measured and worse**: 30 scheduled runs over 11-14..24, morning
+  **+7h03/+7h51/+9h10** (min/median/max) against Yasin's 10-20 read of
+  +4h29/+5h05/+7h27, evening **+4h22/+6h33/+10h50** against
+  +2h12/+3h52/+6h51, and still 0 of 30 landing before their window. New fact
+  commented there: 11-23's evening cron fired 11-24 02:35 UTC, so today is the
+  first morning with **no `workflow_dispatch` ingest** before the digest.
+  **The attribution footer cannot be stripped from this harness**: it is
+  appended server-side on every issue and PR write and a `PATCH` without it
+  gets it back deduped. Three attempts on #404. Do not spend calls on it.
 - MERGED 2026-11-23 as #400 / PR #401, `a5096ae`, `checks` green on `e01ae13`
   and `pages` 45145094768 green on build and deploy, read the honest way:
   `deploy-pages` passed and the step gated on its failure **skipped**.
@@ -3811,6 +3867,94 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-24
+
+**#404 filed, PR #405 merged as `cce7ebf`, `checks` green on `4d9a4ed`,
+`pages` 45363427764 green on build and deploy, read the honest way:
+`deploy-pages` passed and the step gated on its failure skipped.** 57 lines
+of `src/`, 64 of test, and the verifier now reads the one paragraph it never
+read.
+
+**The signal.** Health had nothing again: 309 tests, typecheck, 33 pages, the
+last 40 workflow runs all green, and `npm run verify` over 11-18..24 at **0
+errors and 0 warnings on all 7 days**, the cleanest week in the journal. So
+the run swept the digest body against the contract's own numbers and found
+one with nothing behind it. AGENTS.md budgets the lead at "a 2-3 sentence
+`What matters today`"; `verify.ts` had no notion of a lead at all.
+**10 of the 32 archived days run past 3 sentences** (10-26, 11-03 at **5**,
+11-05, 11-06, 11-08, 11-09, 11-13, 11-18, 11-19 at **5**, 11-22), and under
+the sentence count the lead is still growing: mean **72 words over the first
+16 days against 99 over the last 16**, max 126 on 11-19, whose lead names six
+stories that each have their own entry below. 11-12 and 11-15 sit inside the
+count at 102 and 116 words, so words and sentences are two different drifts
+and only one of them has a number in the contract. It compounds either way,
+because `recap.ts` hands that same first paragraph to the next day's run as
+its only sanctioned yesterday-context.
+
+**The change.** `leadSentences` in `verify.ts` counts terminators rather than
+splitting: a `.`, `!` or `?` counts only with whitespace or the end after it,
+so a url cannot invent one, which is also why hrefs and pen marks are
+deliberately left in place instead of being stripped in a branch no test
+could kill (confirmed: with and without the stripping the archive reads the
+same 10 days at the same counts). The label's own stop does not count, and
+neither does an abbreviation's. Upper bound only, warning only, and nothing
+here can fail CI, since `verify` is the digest agent's gate and not a
+workflow step.
+
+**The abbreviation guard is the half worth keeping, and it is one day.**
+Across the archive it changes the count on **1 of 32 days**: 11-23, where
+"senior levels of the U.S. government assured it" otherwise reads as two
+sentences and a compliant day at 3 warns. A gate that cries on an obedient
+day is worse than no gate, and the only way to know which day that was is to
+count both ways over the month.
+
+**Verified, not argued.** 314 tests (309 before), typecheck clean, 33 pages
+with the built tree **byte-identical to main's on all 49 entries**,
+`npm run verify -- 2026-11-24` ok with 0 warnings, and the gate run over
+every archived day names exactly the 10 days above with exactly the counts
+the hand read gives. Five mutations one at a time, each reverted, the test
+total steady at 314: abbreviation guard dropped kills 1, label strip dropped
+1, trailing-clause count dropped 1, bound raised to 4 kills 2, whitespace
+lookahead dropped 1. Two of those survived a first pass and are the day's
+lesson (below).
+
+**`AGENTS.md` deliberately untouched.** Its Verify list enumerates the
+warnings, so this one is missing from it, but the file is a contract file and
+its list is Yasin's. The warning quotes the rule it enforces and the contract
+already says to resolve every warning consciously, so nothing the digest
+agent relies on moved: no script, schema or path changed, and the output is
+still a string in `warnings`. #404 says so for the record.
+
+**alphasignal came back on its own**, which closes the loop on #397 without a
+registry change: **50 items today** against 0 on 11-20 through 11-23, so the
+410 ran 16 consecutive runs plus four empty days and then stopped. #401's
+instrument read both sides correctly, `annotations_count` 1 on the last
+failing run and **0** on today's scheduled run, its first clean reading.
+Commented on #397; the url is still Yasin's to close.
+
+**#112 re-measured and materially worse**, commented there rather than
+reopened: over 30 scheduled runs (11-14..24) the morning cron is
+**+7h03 min, +7h51 median, +9h10 max** against Yasin's 10-20 read of
++4h29/+5h05/+7h27, and the evening **+4h22/+6h33/+10h50** against
++2h12/+3h52/+6h51. Still **0 of 30** landing before the window they were
+written for. The new fact: 11-23's evening cron fired at **11-24 02:35 UTC**,
+two hours ahead of this morning's digest window, so the staleness check passed
+and **today is the first morning in the visible window with no
+`workflow_dispatch` ingest before it**. The workaround and the drift have
+crossed; which one feeds a given digest is now luck.
+
+**The harness cannot strip its own footer.** This file's Identity section says
+to strip the runtime's attribution footer from issue and PR bodies right after
+creating. It is appended server-side on every write, and a `PATCH` that sends
+the body without it gets it back, once, deduped: #404 and #405 both carry it
+and three attempts changed nothing. Not worth another call on a future run.
+
+Outcome: PR #405 merged, #404 closed by it. Copilot did not review (quota
+again, second day running), so the merge went in on the suite, the five
+mutations and the archive run. #397 is answered by the source itself but
+still open and Yasin's; #395, #392, #380, #352, #332, #314, #246, #241, #120
+and #112 open and unanswered.
 
 ### 2026-11-23
 
