@@ -649,6 +649,70 @@ describe("verifyDigest", () => {
     expect(r.warnings).toContainEqual(expect.stringContaining("2 links"));
   });
 
+  // AGENTS.md budgets the lead at 2-3 sentences and 10 of the 32 archived
+  // days run past it, so the count is the gate and the two ways of
+  // miscounting it are the tests: the label's own stop, and the full stop
+  // that closes an abbreviation rather than a sentence.
+  describe("the lead's sentence count", () => {
+    const withLead = (lead: string) => digestWith().replace("What matters today.", lead);
+    const leadWarning = (lead: string): string[] => {
+      writeItems(DAY, urls);
+      writeDigest(withLead(lead));
+      writeSlides();
+      const r = verifyDigest(root, DAY);
+      expect(r.ok).toBe(true);
+      return r.warnings.filter((w) => w.includes("the lead runs"));
+    };
+
+    it("warns past three, naming the count", () => {
+      expect(
+        leadWarning(
+          "**What matters today:** Nvidia reinstated its chief executive. The board said the risk was cleared. Two large deals followed. A short seller knocked 6% off AMD.",
+        ),
+      ).toEqual([expect.stringContaining("the lead runs 4 sentences")]);
+    });
+
+    it("stays quiet at three", () => {
+      expect(
+        leadWarning(
+          "**What matters today:** Nvidia reinstated its chief executive. The board said the risk was cleared. Two large deals followed.",
+        ),
+      ).toEqual([]);
+    });
+
+    // 2026-11-23's own lead, compliant at 3: a counter that reads every full
+    // stop as a sentence boundary makes it 4 and warns on a day that obeys
+    // the rule.
+    it("does not count the full stop that closes an abbreviation", () => {
+      expect(
+        leadWarning(
+          "**What matters today:** Nvidia's board reinstated Jensen Huang, saying senior levels of the U.S. government assured it his return poses no risk, per Dr. Chen. Amazon is taking most of Decart for approx. $7.5B. Two more deals followed.",
+        ),
+      ).toEqual([]);
+    });
+
+    // The words announcing the lead are not one of its sentences. Written
+    // unbolded, the way this file's own fixture writes them, the label's stop
+    // is followed by a space and otherwise spends one of the day's three.
+    it("does not count the label's own stop", () => {
+      expect(
+        leadWarning(
+          "What matters today. Nvidia reinstated its chief executive. The board said the risk was cleared. Two large deals followed.",
+        ),
+      ).toEqual([]);
+    });
+
+    // A lead that trails off still said its last thing, so the clause after
+    // the final stop is a sentence and the fourth one here is over budget.
+    it("counts a closing clause that carries no terminator", () => {
+      expect(
+        leadWarning(
+          "**What matters today:** Nvidia reinstated its chief executive. The board said the risk was cleared. Two large deals followed. And by evening Anthropic was said to be weighing an IPO price above its range",
+        ),
+      ).toEqual([expect.stringContaining("the lead runs 4 sentences")]);
+    });
+  });
+
   it("warns on em and en dashes in the body", () => {
     writeItems(DAY, urls);
     writeDigest(digestWith({ threads: "\n## Threads\n\n- story-0 — story-1, via – a vendor.\n" }));
