@@ -59,6 +59,53 @@ function publishedLinks(body: string): PublishedLink[] {
 // Hacker News section checks below are.
 const PROSE_SECTIONS = ["threads", "hacker news"];
 
+// AGENTS.md: "Lead with a 2-3 sentence 'What matters today'". The lead is the
+// body's first paragraph, the definition recap.ts already reads, and it is the
+// paragraph a reader meets under the h1 before anything else. Nothing here
+// read it until now, and it has been inflating: over the 32 archived days,
+// 10 run past 3 sentences (worst 5, on 2026-11-03 and 2026-11-19) and the
+// lead's length steps from a 72-word mean over the first 16 days to 99 over
+// the last 16, max 126. It compounds too, because recap.ts hands this same
+// paragraph to the next day's run as its only sanctioned yesterday-context.
+//
+// Upper bound only. The cost is a lead that grows into a sixth entry list
+// (2026-11-19 names six stories that each have their own entry below); a
+// short lead is the digest agent's call on a quiet day.
+const LEAD_MAX_SENTENCES = 3;
+
+// The label is not a sentence: ":" sits inside the bold on all 32 days
+// (`**What matters today:**`), but a day writing it with a full stop would
+// otherwise spend one of its three on the words announcing the lead.
+const LEAD_LABEL = /^[*_\s]*what matters today[*_\s:.]*/i;
+
+// Counted, not split, and an abbreviation's full stop does not count one:
+// without this, "senior levels of the U.S. government" reads as two
+// sentences and 2026-11-23 warns while being compliant at 3. Matched against
+// the text before the terminator, so a single letter covers the "U." half of
+// the same abbreviation and `[a-z]\.[a-z]` the "U.S" half.
+const ABBREVIATION =
+  /(?:^|\s)(?:[a-z]|[a-z]\.[a-z]|mr|mrs|ms|dr|prof|sr|jr|st|inc|corp|ltd|co|no|vs|approx|est|eg|ie|etc|jan|feb|mar|apr|jun|jul|aug|sept?|oct|nov|dec)$/i;
+
+// Hrefs and pen marks are left where they are on purpose: a terminator only
+// counts with whitespace or the end after it, and a url has no spaces and
+// closes on ")" inside a markdown link, so neither can invent a sentence.
+// Stripping them would be a branch no test could kill.
+function leadSentences(lead: string): number {
+  const plain = lead.replace(LEAD_LABEL, "");
+  let count = 0;
+  let after = 0;
+  for (const m of plain.matchAll(/[.!?]+["'”’)\]]?(?=\s|$)/g)) {
+    if (ABBREVIATION.test(plain.slice(0, m.index))) continue;
+    count += 1;
+    after = m.index + m[0].length;
+  }
+  // A lead that stops without a terminator still said its last thing.
+  if (plain.slice(after).trim()) count += 1;
+  return count;
+}
+
+const leadParagraph = (body: string): string => body.trim().split(/\n\s*\n/)[0]?.trim() ?? "";
+
 // AGENTS.md: "Every entry links inline to its best source url". The whole-body
 // check above only asks whether a digest links anything, so an entry that
 // leans on the one above it ("Bitget's hack (above) hit hot and warm wallets")
@@ -549,6 +596,16 @@ export function verifyDigest(rootDir: string, day: string): VerifyResult {
     if (linkText.some(([from, to]) => start < to && from < end)) {
       warnings.push(
         `pen mark on link text: ${prose.slice(start, end)}; the marked words lose the link's colour and the scribble lands on its underline, so the mark reads as link chrome (AGENTS.md: never on link text)`,
+      );
+    }
+  }
+
+  if (body) {
+    const lead = leadParagraph(body);
+    const sentences = leadSentences(lead);
+    if (sentences > LEAD_MAX_SENTENCES) {
+      warnings.push(
+        `the lead runs ${sentences} sentences; "What matters today" lands in 2-3 (AGENTS.md), and the rest of the day belongs in its entries`,
       );
     }
   }
