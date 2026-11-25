@@ -6,6 +6,26 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A character class is a claim about the locale, not about the characters.
+  This container runs `LC_CTYPE="POSIX"`, so a bash regex over non-ASCII
+  matches bytes: `grep -oP '[–—]'` over `digests/` named **three days with
+  em/en dashes** (11-02, 11-14, 11-16) and every match was a `€`, in "€6B",
+  "€805M" and "€1B". En dash is `E2 80 93`, em dash `E2 80 94`, euro
+  `E2 82 AC`, and a bracket expression read bytewise is the set
+  `{E2, 80, 93, 94}`, which any of the three opens. Node counts **0** em/en
+  dashes in the archive and `verify.ts` agrees, because its `/[–—]/` is a real
+  character class. The family is 11-14's "an escape your regex dialect does
+  not have is a literal", one layer down: there the dialect lacked `\Z`, here
+  the dialect is fine and the **locale** decides what a character is. The
+  diagnosis is two commands on a file holding one euro sign (`LC_ALL=C` says
+  1, `LC_ALL=C.UTF-8` says 0), so **pin the locale or count in node before
+  believing a bash probe over non-ASCII**. The tell was free and nearly
+  walked past: a context window printing `€` for a match on a dash class is
+  the instrument describing itself. Worth keeping beside it, the same probe
+  would have been right for months and wrong the first day a digest priced
+  something in euros, and three of the four non-ASCII characters this repo
+  writes rules about (`–`, `—`, `…`) share a leading byte with the fourth.
+
 - A gate that fires on an obedient day costs more than no gate, and the only
   instrument that finds those days is the gate itself, run over the month
   before it ships. Today's lead counter is five lines of arithmetic, and
@@ -1264,6 +1284,59 @@ merges and closures and never expire.
 
 ## Backlog
 
+- Walked clean on 2026-11-25, recorded so a future run does not re-walk them.
+  Nothing shipped; twelve probes, each clean or decoration.
+  **Health**: 314 tests, typecheck clean, 33 pages, the last 40 workflow runs
+  green, `npm run verify` over 11-19..25 at **0 errors**, and its only two
+  warnings are #405's own finding re-firing on 11-19 (5 sentences) and 11-22
+  (4), which this backlog already names as expected. The last four ingest
+  runs read `sources: 54, failures: []`, so #401's annotation channel has
+  nothing to say and alphasignal is on its second clean day.
+  **Zero-width characters**: 0 across 32 digests and 32 slide files, which
+  retires 11-20's conditional note ("worth a day only if a quoted phrase ever
+  ships one") - none has.
+  **Slide urls across the whole archive**: 357 slides in 63 posts, **357
+  unique urls, 0 repeats** between any two posts or days. The cross-day half
+  of the carousel's no-repeat rule is ungated and has never been broken.
+  **Hook against its own post's titles**: 0 containments and a top word
+  overlap of **0.32** (11-03 pm), with all of the top eight reading as
+  genuine reframes. The exact-match warning is not standing in for a missing
+  near-match gate; there are no near matches.
+  **Slide numbering**: 0 of 63 posts out of order (`readSlidePosts` errors on
+  it already).
+  **Gloss capitalization**: AGENTS.md asks for "plain lowercase words" and
+  **6 of 137** glosses open with a capital, all on five days between 10-26
+  and 11-09, none since, and the ones read are proper nouns ("Google's
+  chatbot-style search experience"). No day for a gate to act on.
+  **The same abbreviation glossed twice**: 15 of 113 abbreviations recur,
+  `Lean` seven times under four wordings. Each post is standalone on
+  instagram, so fresh wording is not a defect.
+  **False paywall badges**, the inverse of the shipped gate: **0**.
+  **`http://` links**: **2 published** (11-16 groundworkcollaborative.org,
+  11-21 ricapar.net) and **13 of 9,392 stored items** (7 `hacker-news`, 6
+  `tldr`). `safeHttpUrl` admits `http:` deliberately, so a warning would be
+  changing a stated position rather than enforcing one, and every candidate
+  host is 000 at CONNECT so which of them serve https cannot be read here.
+  **Query tags surviving `stripTracking`**, counted on stored items where
+  11-21 counted published links: 175 of 9,392 items carry any query at all,
+  and the attribution tags are `source=rss` **34**, `ref=console.dev` **24**
+  (console-dev only; 1 published, 11-12's aws-emulator link),
+  `at_medium`/`at_campaign` **5** each, `ncid` 1. 11-21 judged this family
+  "feed attribution rather than per-reader ids"; `ref` was not in its list
+  and is the largest of them, but the verdict survives it and 11-20's lesson
+  forbids shipping a rewrite whose result cannot be observed from here.
+  **`generatedAt` as the digest agent's staleness instrument**: `ingest.ts`
+  writes it only when `file.items.length > itemsBefore`, so a run that stores
+  nothing leaves it reading as the morning's and the evening run cannot tell
+  "ingest ran, nothing new" from "ingest never ran". **0 of the last 25
+  ingest commits left the day's items file untouched**, so `created` has
+  never been 0 and the gap has never fired; the honest fix also spends the
+  "quiet runs commit nothing" property `ingest.ts`'s own header claims.
+  Issue-shaped at best, and only once a run stores nothing.
+  **Exported symbols no test names**: 25 by grep, but the one that matters
+  (`safeHttpUrl`, the stored-href XSS guard) is held down by
+  `test/ingest.test.ts`'s `javascript:alert(1)` item. The grep counts
+  references, not coverage.
 - MERGED 2026-11-24 as #404 / PR #405, `cce7ebf`, `checks` green on `4d9a4ed`
   and `pages` 45363427764 green on build and deploy, read the honest way:
   `deploy-pages` passed and the step gated on its failure **skipped**.
@@ -3867,6 +3940,52 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-25
+
+**A quiet run: no issue, no PR, nothing shipped.** Twelve probes over the
+archive and the pipeline, every one clean or decoration, and the only thing
+the day produced is a lesson about my own instruments.
+
+**The signal was an absence of one.** Health had nothing: 314 tests,
+typecheck clean, 33 pages, the last 40 workflow runs green, and `npm run
+verify` over 11-19..25 at **0 errors**, its two warnings being #405's own
+finding re-firing on 11-19 and 11-22 exactly as the backlog says it should.
+The ingest summary line on the last four runs reads `sources: 54, failures:
+[]`, so #401's annotation channel is silent and alphasignal is on its second
+clean day. No open gardener PR, and no issue carries a greenlight.
+
+**So the run went looking, and the counts are in the backlog.** The three
+worth naming here are the ones that looked like findings and were not. The
+cross-day half of the carousel's no-repeat rule is ungated and the archive is
+**357 slides, 357 unique urls, 0 repeats**, so there is nothing to gate.
+Gloss capitalization runs against the contract's "plain lowercase words" on
+**6 of 137** glosses, all before 11-09 and all of them proper nouns on a
+read, which is 11-24's lesson verbatim: a guard with no day to act on is
+decoration. And `generatedAt` really does mean "when an item was last added"
+where ../AGENTS.md reads it as "when ingest last ran", but **0 of the last 25
+ingest commits** left a day file untouched, so the gap has never fired and
+the honest fix would spend the quiet-run no-op `ingest.ts` promises.
+
+**The one table that read like a story was my own grep.** `grep -oP '[–—]'`
+named three archived days as carrying em/en dashes; all three matches were
+the `€` in "€6B", "€805M" and "€1B", because `LC_CTYPE` is `POSIX` here and a
+bracket expression read bytewise opens on the shared `E2`. Node says 0, and
+`verify.ts` says 0 because its class is a real one. Banked as the day's
+lesson.
+
+**Nothing commented on GitHub.** #112's drift held and got worse in the
+small: the 11-24 `45 15` cron landed at **00:08 UTC**, today's `15 3` had
+still not fired at 09:14 (**+5h59 and counting**), and this is the second
+consecutive morning digest written with no `workflow_dispatch` ingest before
+it, off a day file stamped `00:08:29Z` with 134 items. Yesterday's 30-run
+comment on #112 covers the shape of that, so another comment would be churn;
+it is here instead.
+
+Outcome: no change, by the hard limit that says so. #397 is on its second
+clean day and still Yasin's to close; #395, #392, #380, #352, #332, #314,
+#246, #241, #120 and #112 open and unanswered. Journal pruning not due: the
+oldest entry is 2026-08-29, 88 days back.
 
 ### 2026-11-24
 
