@@ -1,6 +1,6 @@
 {
   "day": "2026-11-25",
-  "generatedAt": "2026-11-25T12:45:38.095Z",
+  "generatedAt": "2026-11-25T17:37:46.623Z",
   "items": [
     {
       "sourceSlug": "hacker-news",
@@ -153,6 +153,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50627079",
+      "title": "The Shapes of Rivers",
+      "url": "https://dominicroye.github.io/shapes-of-rivers/",
+      "author": "joexov",
+      "publishedAt": "2026-11-24T12:14:25.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 124,
+      "comments": 31
+    },
+    {
       "sourceSlug": "openai",
       "externalId": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities",
       "title": "GPT-6 models demonstrate intrinsic protein-design capabilities",
@@ -165,6 +184,40 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "deepmind-blog",
+      "externalId": "https://deepmind.google/blog/interpreting-mass-spectra-with-google-antigravity/",
+      "title": "From spectrum to structure: Identifying molecules with Mass Spec Skills for Google Antigravity",
+      "url": "https://deepmind.google/blog/interpreting-mass-spectra-with-google-antigravity/",
+      "author": null,
+      "publishedAt": "2026-11-24T13:07:53.000Z",
+      "content": "Mass Spec Skills empowers scientists using Google Antigravity to interpret tandem mass spectra.",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50627726",
+      "title": "Getting old Java phones online again",
+      "url": "https://antcating.github.io/2026/11/23/getting-old-java-phones-online-again.html",
+      "author": "waximabbax",
+      "publishedAt": "2026-11-24T13:14:37.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 140,
+      "comments": 62
     },
     {
       "sourceSlug": "hacker-news",
@@ -293,6 +346,20 @@
       "mediaType": "text",
       "points": 251,
       "comments": 116
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/40b8ca98-e085-4074-8834-a24c97c54c4d",
+      "title": "Cohere Labs' Soft-SVeRL Trains AI to Grade Its Own Answers",
+      "url": "https://alphasignal.ai/news/cohere-labs-soft-sverl-trains-ai-to-grade-its-own-answers",
+      "author": "Cohere Labs",
+      "publishedAt": "2026-11-24T16:43:54.000Z",
+      "content": "Cohere Labs' Soft-SVeRL, headed to NeurIPS, teaches a language model to grade its own work against atomic checklists and shows what it takes to stop reward inflation. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
     },
     {
       "sourceSlug": "hacker-news",
@@ -929,6 +996,25 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50634426",
+      "title": "Launch HN: Versine (YC F26) – MCP to send and receive money",
+      "url": "https://news.ycombinator.com/item?id=50634426",
+      "author": "harshithl1777",
+      "publishedAt": "2026-11-24T20:44:15.000Z",
+      "content": "Hey HN, we’re Harshith, Param, and Vishnu and we're building Versine (https://versine.com). Versine lets you send and request money just by talking or texting with your AI (think Venmo with an MCP). We’re software engineers who have worked on distributed systems at Stripe, Databricks, and Amazon. Versine is an MCP that sits in front of a wallet with a balance. With it, your agent can do things like: - Send money to someone with your approval (via passkey in our app) - Send and request money to/from up to 100 people at once - Send money to people without a Versine account (they cash out to their bank in 2 mins) - Pay people without your explicit approval to trusted contacts (you can set this) Here’s a demo: https://youtube.com/shorts/Q9X7zioEqi0 We started working on this because assistants are frustratingly hands-off when it comes to finance and money movement. You can have your assistant go through a receipt and map out all the amounts owed taking care of splitting the subtotal, taxes, tips, but at the end of it the assistant hands back work to you when you have to go out and make the Venmo transfer. Our current solution is oriented towards power users: those who want to automate everything through their agent use us to split dinners, group trips, or settle poker ledgers. We see ourselves unlocking more value for the general consumer as 1. More people turn into power users of agents, and 2. We expand to a more complete banking solution: deposits, transfers, wires, everything you can (and more) do with your bank offered as an MCP. Behind the scenes, each user has a self-custodial stablecoin wallet storing USDC on Base. With self-custodial wallets, users own their keys, meaning money can’t be sent without their approval. Interestingly, we were almost forced into this solution because we had around 4 weeks to build this product (after a pivot), and traditional fiat with a partner bank would have caused far too many regulatory and compliance slowdowns. Because of that, the only fast option that remained was using stablecoin wallets. It also ensures we aren't a Money Services Business (MSB) since we don’t hold control or access to the user’s funds. Each call to the wallet creates what we call one-time or recurring standing permissions. For a one-time payment, your agent makes an MCP call, and you receive a notification in our mobile app. Once you swipe up in the app and approve with a passkey (or your device’s biometric method), we create a one-time permission that instructs your wallet to send $X to your recipient’s address. Trusted contacts let your agent send money to people that you’ve previously authorized without explicit passkey approval. Generally, these are people that you’d trust to send your money back even if your agent made a mistake. We’re also able to support sending money to someone off Versine using claim forwarding, where the user authorizes us to forward a specific amount to a future address (which we create once we verify a recipient's OTP). Param worked on scaling vector search at Databricks and harness evals at Glean. Harshith worked on core Stripe Connect fee-processing infrastructure and built an AWS Fargate autoscaler at Amazon. Vishnu worked on intent-based agent testing infrastructure at Amazon. None of us were experienced in stablecoin or crypto infra before working on Versine but our distributed systems experience has helped us a lot. We'd love for you guys to try it! It's available on iOS and Android and as an MCP on ChatGPT and Claude. We also support a public MCP and REST API for other agents. Please let us know how you find it and if it works as you'd hoped! https://versine.com",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 94
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261124/p35#a261124p35",
       "title": "A US jury finds Huawei guilty of conspiracy to steal trade secrets and bank fraud but acquits it of the most severe charge of criminal racketeering conspiracy (Associated Press)",
@@ -1373,6 +1459,21 @@
       "content": "Gone are the days when you could just buy your father a random tie or some leather-clad alcohol vessel or a shaving kit. Dads want - nay, deserve - something memorable. Luckily for you, it's not that hard to find something special that he'll approve of, and we're here to guide you. We've curated this year's gift list with the modern father in mind, whether he's a gamer, creator, chef, or simply a gadget lover. There's a lot in here we think he'll like, from noise-canceling headphones like the Sonos Ace Ultra and an autonomous drone to a brilliant QD-OLED monitor and a nifty light that's perfect for illuminating his next campsite … Read the full story at The Verge.",
       "topics": [
         "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/inkling-2-mini-inference-hillclimb",
+      "title": "Hill-climbing Inkling 2 Mini inference on one RTX PRO 6000",
+      "url": "https://huggingface.co/blog/inkling-2-mini-inference-hillclimb",
+      "author": null,
+      "publishedAt": "2026-11-25T00:00:00.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
       ],
       "paywalled": false,
       "mediaType": "text"
@@ -2311,6 +2412,25 @@
       "comments": 91
     },
     {
+      "sourceSlug": "hacker-news",
+      "externalId": "50637891",
+      "title": "Macrohistory in Six Facts",
+      "url": "https://basilhalperin.com/essays/macrohistory.html",
+      "author": "tptacek",
+      "publishedAt": "2026-11-25T03:04:46.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 136,
+      "comments": 73
+    },
+    {
       "sourceSlug": "alphasignal",
       "externalId": "tag:alphasignal.ai,2026:story/4a0436e4-78ea-4d75-93b3-91b5e10775de",
       "title": "CTU's iRBL Drone Swarm Navigates Dense Forests With 100% Success",
@@ -2318,6 +2438,20 @@
       "author": "AlphaSignal",
       "publishedAt": "2026-11-25T03:06:33.000Z",
       "content": "A new onboard navigation stack lets drones coordinate through dense forest without GPS, radios, or any messages exchanged between robots. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/13121651-1c89-4e7e-9dc1-d6466111f81d",
+      "title": "Browser Use Lets Parallel AI Agents Share One Login Instantly",
+      "url": "https://alphasignal.ai/news/browser-use-lets-parallel-ai-agents-share-one-login-instantly",
+      "author": "Browser Use",
+      "publishedAt": "2026-11-25T03:23:04.000Z",
+      "content": "Browser Use now lets concurrent cloud browsers share one live profile, so a login or cart update in one instance propagates to every other running browser instantly. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
       "topics": [
         "ai-llms"
       ],
@@ -2342,6 +2476,25 @@
       "mediaType": "text",
       "points": 489,
       "comments": 72
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50638070",
+      "title": "Serving Qwen via AWS Lambdas for fun and 80x negative profit",
+      "url": "https://noahbuilt.it/writing/qwen-on-5600-lambdas",
+      "author": "octember",
+      "publishedAt": "2026-11-25T03:28:06.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 124,
+      "comments": 18
     },
     {
       "sourceSlug": "hacker-news",
@@ -3217,6 +3370,21 @@
       "mediaType": "text"
     },
     {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/blog/how-cozey-turns-its-operators-into-software-builders-on-vercel",
+      "title": "How Cozey turns its operators into software builders on Vercel",
+      "url": "https://vercel.com/blog/how-cozey-turns-its-operators-into-software-builders-on-vercel",
+      "author": "Susan Aziz",
+      "publishedAt": "2026-11-25T05:00:00.000Z",
+      "content": "Employees outside engineering, including warehouse, finance, and support staff, are now building applications and deploying them to Vercel Finance uses an app it built to review profit and loss weekly instead of monthly Adopting allowed Cozey to retire a separate tool that cost approximately $80,000 annuallyVercel Flags Six projects, including the storefront, use AI Gateway is a Canadian furniture company that makes modular sofas customers can configure for their homes. It runs its storefront and most of its back-office applications on Vercel. Warehouse, finance, and customer support employees now securely deploy their own apps on that same platform.Cozey CEO Fred Aubé encourages employees to solve problems they encounter without waiting for another team to take them on. Sam Morrison, VP of Digital, saw teams reach the limits of what they could prototype in an AI chat. Employees used coding agents to build web apps. With Vercel, they could deploy an app themselves and give coworkers a link to a working tool. In the warehouse, a coordinator built a live floor plan that shows where boxes sit and what staff are doing. Sam says engineering would not have prioritized that project. Finance built its own app to track profit and loss and now uses it to review performance every week instead of once a month. A customer support representative built an app that uses AI to generate images of Cozey furniture in a customer’s own room. In October, Cozey planned to make the tool available to shoppers. Sam says a new app appears almost every week. Sam estimates that the Atmosphere sofa collection alone has about 1.2 million possible configurations. Cozey worked with an agency specializing in Next.js to rebuild its storefront on Vercel. With a custom front end, the team could decide how shoppers explore those options. Cozey uses for functions on the storefront. It runs internal and the Cozey Operating System, or C.O.S., on Vercel. Teams use C.O.S. to forecast orders, manage warehouse and retail operations, review finances, and track business performance. Operating margin depends in part on how quickly furniture moves from incoming containers to customer shipments.Fluid computePython backends Each C.O.S. pull request gets a , giving the team a working application to test before release. Cozey’s engineers reported that with caching, builds on Vercel took a couple of minutes. They also share preview links with Fred so he can try changes and give feedback.Vercel Preview Deployment The team uses Vercel Flags to control how new features reach users, replacing a separate tool that cost approximately $80,000 annually. After release, performance metrics on Vercel give the team a common reference for checking how applications are running. When Cozey launched in Australia, the team had regional backend work to do. For the storefront on Vercel, Sam says, “it wasn’t even a conversation.” As more employees began building, Cozey needed to manage who could open their applications and who could deploy and maintain them. An employee once deployed an app that anyone on the internet could open. For internal apps that had shipped without appropriate authentication, Sam turned on .access protection on Vercel “It saved us from some pretty serious privacy risks,” says Sam. Cozey uses so members of its Vercel team can sign in with company credentials. The company manages team membership through groups in its employee directory with .single sign-onDirectory Sync As more teams built with AI, Sam saw them repeating the work of connecting to models. Six Cozey projects, including the storefront, send model requests through . Cozey’s engineers use it to call models from their code editors, too. Sam wants all of Cozey’s model requests to go through Gateway.Vercel AI Gateway AI Gateway gives teams one interface for different model providers. If a provider is unavailable, the gateway can that serves the same model. It adds no markup to provider token prices. Sam describes the added cost of routing requests through it as “basically $0 in additional overhead.”route the request to another provider The company is also developing what it calls the Agentic Mesh, a system to coordinate AI use across internal applications and customer experiences. The coordinating service is being built on AWS, with AI Gateway planned for model requests and Vercel for application deployment. It is intended to help teams decide which models to use and where to run applications, while giving engineering visibility into AI usage and costs. Sam says engineering wouldn’t have prioritized a live map of the warehouse floor. The coordinator who needed to see where the boxes were could make a different call, build the map, and share it with the people moving them. When the digital team sees an idea worth taking further, it has a working app to build on. Cozey chose a custom storefront on Vercel so it could decide how shoppers explore its furniture. Sam’s next goal is for employees outside engineering to share that control. If shoppers keep asking the same question about a sofa, the support rep who hears it could put the answer on the product page. Read more Turning everyday problems into working applications Extending Vercel from the storefront to the business behind it Managing access as more people build Giving AI applications a common way to access models What's next",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
       "sourceSlug": "techmeme",
       "externalId": "https://www.techmeme.com/261125/p4#a261125p4",
       "title": "Amazon plans to start selling cars online in the UK in early 2027, expanding beyond the US, where it offers new and used cars from 35 brands in 150+ cities (Jamie Nimmo/Bloomberg)",
@@ -3341,6 +3509,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50639698",
+      "title": "Smart People Who Give a Shit Use Tools",
+      "url": "https://www.iankduncan.com/engineering/2026-11-19-smart-people-who-give-a-shit-use-tools",
+      "author": "matthewsinclair",
+      "publishedAt": "2026-11-25T07:46:43.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 100,
+      "comments": 103
     },
     {
       "sourceSlug": "vercel-blog",
@@ -3483,6 +3670,25 @@
       ],
       "paywalled": false,
       "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50641171",
+      "title": "Windows Loudness Equalization, reverse-engineered and ported to PipeWire",
+      "url": "https://github.com/xoxorwr/pw-loudness-eq",
+      "author": "ThrowNotAway",
+      "publishedAt": "2026-11-25T11:34:25.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 242,
+      "comments": 135
     },
     {
       "sourceSlug": "techmeme",
@@ -4750,6 +4956,1218 @@
       "author": null,
       "publishedAt": "2026-11-25T12:45:31.253Z",
       "content": "spn is the build system that C deserves spader.zone16 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p19#a261125p19",
+      "title": "Sources: Walmart-backed Indian fintech PhonePe resumes its IPO preparations, targeting a Q1 2027 debut at a $12B to $15B valuation and raising $1.2B to $1.5B (Reuters)",
+      "url": "https://www.techmeme.com/261125/p19#a261125p19",
+      "author": null,
+      "publishedAt": "2026-11-25T12:50:03.000Z",
+      "content": "Reuters: Sources: Walmart-backed Indian fintech PhonePe resumes its IPO preparations, targeting a Q1 2027 debut at a $12B to $15B valuation and raising $1.2B to $1.5B — Indian fintech PhonePe has resumed preparations for its initial public offering and is targeting a listing in the first three months …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1040081",
+      "title": "Has vibe coding made open source the new normal for synths?",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1040081/vibe-coding-open-source-music-firmware",
+      "author": "Terrence O’Brien",
+      "publishedAt": "2026-11-25T13:00:00.000Z",
+      "content": "The emergence of powerful vibe-coding agents and tools like Reverse Engineer Anything has caused chaos in the music gear world, leaving companies scrambling to figure out how to respond. While some, like Roland, have remained silent for now, others have embraced the modding community. In the last several weeks, as it's become clear that no piece of music gear is safe from Claude and a subreddit full of curious tinkerers, companies have begun making more and more of their devices open source. The biggest name to decide \"if you can't beat 'em, join 'em\" is inMusic, the parent company of Akai, Moog, Native Instruments, and more. \"We're going t … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p20#a261125p20",
+      "title": "Chinese vendors in Shenzhen's Huaqiangbei market still sell US-restricted Nvidia hardware, quoting $3M+ for Blackwell B300 servers, up from $2M two months ago (Joshua Yang/Washington Post)",
+      "url": "https://www.techmeme.com/261125/p20#a261125p20",
+      "author": null,
+      "publishedAt": "2026-11-25T13:00:57.000Z",
+      "content": "Joshua Yang / Washington Post: Chinese vendors in Shenzhen's Huaqiangbei market still sell US-restricted Nvidia hardware, quoting $3M+ for Blackwell B300 servers, up from $2M two months ago — Though black-market prices have surged amid the turmoil around Nvidia CEO Jensen Huang, traders in Shenzhen persist in hawking the company's best chips.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "lennys-newsletter",
+      "externalId": "https://www.lennysnewsletter.com/p/gemini-4-neon-beat-gpt-62-and-claude",
+      "title": "Gemini 4 Neon beat GPT-6.2 and Claude in my 25-task AI benchmark",
+      "url": "https://www.lennysnewsletter.com/p/gemini-4-neon-beat-gpt-62-and-claude",
+      "author": "Claire Vo",
+      "publishedAt": "2026-11-25T13:04:21.000Z",
+      "content": "We’re back in model release season, and I put the newest frontier models through my How I AI bench: 25 tasks across coding, writing, creative, video, prototyping, and personal-assistant work, with six models scored blind. I compare GPT-6.2 Astra and Sol, Claude Fable 5.2 and Opus 5.5, and Gemini 4 Neon and Carbon. I also walk through the SVG, animation, storybook, and prototype tests side by side and share a new eval I built from my own session data: the Claire Annoyance Bench. The dark-horse winner surprised me—and it wasn’t close. Listen or watch on YouTube, Spotify, or Apple Podcasts What you’ll learn: Why Gemini 4 Neon was the surprise winner of my 25-task benchmark How I blind-score models and blend in LLM-as-judge ratings Why coding no longer separates the frontier models How to build your own Annoyance Bench from your local agent sessions Why my favorite model to work with lost my blind test Where Fable 5.2 shines, and where I’d never use it The animated storybook build that blew my mind The hidden cost of a slow model, even a great one Brought to you by: Parallel—Web search built for AI scale Jira Product Discovery—Prioritize with insights, build with confidence In this episode, we cover: (00:00) Model release season is back (02:06) The surprise winner (03:39) How the How I AI bench works (06:20) The overall leaderboard (13:39) SVGs and the family newspaper (16:30) Thumbnail benchmark (17:00) Animated bots (19:10) The animated storybook (23:08) TL;DR on creative tasks (23:35) Prototyping results (25:09) Cost and speed tradeoffs (27:28) The Annoyance Bench (30:03) Final thoughts Tools referenced: • Gemini 4 Neon: https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ • Gemini 4 Carbon: https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ • GPT-6.2 Astra and Sol: https://openai.com/index/introducing-gpt-6-2-astra-sol/ • Claude Fable 5.2: https://www.anthropic.com/claude-fable-and-mythos-5-2 • Claude Opus 5.5: https://www.anthropic.com/claude-opus-5-5 • Claude Code: https://claude.com/product/claude-code • Claude Projects: https://support.claude.com/en/articles/9517075-what-are-projects • Google Antigravity: https://antigravity.google/ • OpenAI Codex: https://openai.com/codex/ • ElevenLabs: https://elevenlabs.io/ • Grok Bot: https://x.ai/news/introducing-grok-bot Where to find Claire Vo: ChatPRD: https://www.chatprd.ai/ Website: https://clairevo.com/ LinkedIn: https://www.linkedin.com/in/clairevo/ X: https://x.com/clairevo Production and marketing by https://penname.co/. For inquiries about sponsoring the podcast, email jordan@penname.co.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/c821d5b0-b940-4772-b930-862c9e937717",
+      "title": "UC Berkeley's SuperMimic Trains Humanoid Robots 7,168x Cheaper Than SONIC",
+      "url": "https://alphasignal.ai/repo/uc-berkeley-s-supermimic-trains-humanoid-robots-7-168x-cheaper-than-sonic",
+      "author": "AlphaSignal",
+      "publishedAt": "2026-11-25T13:08:45.000Z",
+      "content": "UC Berkeley's SuperMimic trains a humanoid motion tracker in 3 hours on one GPU, matching a baseline that used 128 GPUs for a week. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p21#a261125p21",
+      "title": "OpenAI publishes a preprint that claims to prove that the matrix multiplication exponent (ω) is exactly 9/4, addressing a major open problem in mathematics (alphaXiv)",
+      "url": "https://www.techmeme.com/261125/p21#a261125p21",
+      "author": null,
+      "publishedAt": "2026-11-25T13:23:06.000Z",
+      "content": "alphaXiv: OpenAI publishes a preprint that claims to prove that the matrix multiplication exponent (ω) is exactly 9/4, addressing a major open problem in mathematics — Multiplying two $n\\times n$ matrices produces $n^2$ output numbers, yet computing each one as a separate dot product costs on the order of $n^3$ operations.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1041221",
+      "title": "Tapo’s new indoor security camera includes a touchscreen for video calls",
+      "url": "https://www.theverge.com/tech/1041221/tapo-c825-security-indoor-2k-camera-video-calls-tracking-pan-tilt",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-11-25T13:30:00.000Z",
+      "content": "TP-Link's Tapo smart home brand announced a new indoor security camera that can help keep an eye on your house while you're away or connect you to family and friends while you're at home. The C825 upgrades a 2K pan-and-tilt camera with a 4-inch touchscreen, so when it's not watching for intruders or misbehaving pets, it can be used to make hands-free video calls. The Tapo C825 is available starting today for $149.99. That's a little expensive for a 2K camera, but its tracking capabilities could make up for it not being 4K. Using a rotating base, the C825 can pan 360 degrees while its camera module on top can tilt up and down up to 156 degre … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50642086",
+      "title": "Google Releases Cogentic Papers on Integer Factorization, Discrete Logs and More",
+      "url": "https://github.com/google-research/google-research/tree/master/cogentic_research_papers",
+      "author": "rgwohlbold",
+      "publishedAt": "2026-11-25T13:33:07.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 274,
+      "comments": 225
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p22#a261125p22",
+      "title": "Tether and Circle freezing $2B+ in crypto after Binance's $6.3B hack shows their centralized control and a shift from Circle's reliance on slow court orders (Bloomberg)",
+      "url": "https://www.techmeme.com/261125/p22#a261125p22",
+      "author": null,
+      "publishedAt": "2026-11-25T13:35:02.000Z",
+      "content": "Bloomberg: Tether and Circle freezing $2B+ in crypto after Binance's $6.3B hack shows their centralized control and a shift from Circle's reliance on slow court orders — As North Korean cyberthieves were funneling billions out of Binance last month, the world's largest crypto exchange looked …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1040178",
+      "title": "Xteink’s pocketable X4 Classic e-reader is down to just $55 for Black Friday",
+      "url": "https://www.theverge.com/gadgets/1040178/xteink-x4-classic-e-reader-black-friday-2026-deal-sale",
+      "author": "Sheena Vasani",
+      "publishedAt": "2026-11-25T14:00:00.000Z",
+      "content": "Unsurprisingly, we’re already seeing some solid Black Friday deals on a wide variety of e-readers. Everything from the Kobo Libra Colour to last-gen Kindle Paperwhite is on sale, but if you’re looking for something much cheaper — or considerably smaller — the Xteink X4 Classic is in a league of its own. Thankfully, the tiny e-reader is down to a new low of $54.87 ($55 off) at Amazon, making it an especially affordable alternative to Amazon’s latest Kindle. Xteink X4 Classic pocket e-reader Where to Buy: $109 $54.87 at Amazon (black) $109 $54.87 at Amazon (white) $109 $59 at Xteink The X4 Classic is an updated version of Xteink’s original pocket-sized e-reader, one that features a miniature 4.3-inch E Ink display that makes it more pocketable than any current Kindle or Kobo model. Like the pricier X4 Pro — which also happens to be on sale direct from Xteink for $84 — it features both physical page-turning buttons and magnets that let you attach it to compatible smartphones. At just 2.4 ounces and 4.9mm thick, it’s also easy to slip into a pocket, while its larger 920mAh battery can last up to 10 days on a single charge. That said, unlike the X4 Pro, the Classic lacks a touchscreen and built-in reading light, meaning you’ll need an external light to read in the dark. It also uses a proprietary magnetic charging connector instead of USB-C, and transferring books isn’t as straightforward as on a Kindle or Kobo. However, like the Pro, it does support the excellent CrossPoint Reader software, which you can install yourself to improve the reading experience. You can even use it to read books borrowed through Libby or purchased from stores like Kobo, though it takes a few extra steps to do so. Still, if you want an inexpensive, distraction-free way to read on the go, the X4 Classic is hard to beat for less than half the price of a Kindle. Read our hands-on impressions of the Xteink X4.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1041596",
+      "title": "‘It’s not for the timid’: Blade Runner 2099’s showrunner on adapting the series for TV",
+      "url": "https://www.theverge.com/entertainment/1041596/blade-runner-2099-interview-showrunner-silka-luisa",
+      "author": "Andrew Webster",
+      "publishedAt": "2026-11-25T14:00:00.000Z",
+      "content": "As a longtime fan of the films, Blade Runner 2099 showrunner Silka Luisa says she was more excited than scared when it came to adapting the series for TV. The new show is set 50 years after the 2017 film Blade Runner 2049 and imagines a bleak future where artificial humans known as replicants have taken over society after a brutal war. Luisa, who previously served as showrunner on Apple TV's Shining Girls adaptation, says she largely had to put any concerns about the monumental task of following up Blade Runner out of her mind while working on the show. \"I just don't think you can approach Blade Runner with fear,\" she tells The Verge. \"It's … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "cloudflare-blog",
+      "externalId": "01M87EHEACB4SNPV680X1CZPQ1",
+      "title": "Introducing Search for Agents",
+      "url": "https://blog.cloudflare.com/search-for-agents/",
+      "author": "Celso Martinho",
+      "publishedAt": "2026-11-25T14:00:00.000Z",
+      "content": "AI Search, our service that indexes your content and lets you add search to any application or agent without having to build an entire retrieval infrastructure, has supported adding your website as a data source for a while now, automatically crawling, converting and indexing its pages. Still, setting up an AI Search instance for your website requires manually creating and configuring it initially, and then doing all the integration work to get the search endpoints available from your domain and to make sure that agents know where to find the index and know how to use it. Today we're introducing Search for Agents, which puts that setup behind a toggle in your Cloudflare dashboard. Turn it on for your zone, and our service will create your AI Search instance, start indexing your content, and make search discoverable and available from your own domain. How it works The idea follows naturally from Markdown for Agents, where Cloudflare's network converts any HTML page to Markdown in real time for enabled zones using content negotiation headers. Similarly, Search for Agents leverages the power of AI Search by automatically creating an index for your zone and exposing APIs that any AI agent can discover and use to search your website, under your domain, all done at the network level. You can enable Search for Agents using the API, or by going to the dashboard in your zone page, under Quick Actions: Search for Agents is available to all customers, including Free (with limits). Once it’s enabled, Cloudflare will automatically create an AI Search instance, start crawling and indexing the content in your zone. Refer to our developer documentation to understand how the crawling process works. You can access your instance directly from this page, or by going to directly to your account’s AI > AI Search instances view: The AI Search instance for your zone is created with default settings, but you can enable reranking or change configuration options like cache settings at any time. Refer to our documentation for the full list of options. Once AI Search indexes your content, you or any agent on the Internet can start using Search for Agents, subject to your domain settings (e.g. your bot management settings, AI Crawl Control and web application firewall (WAF) configurations). Discoverability Search isn't much use if the agents don’t know it's there. To facilitate discoverability, Search for Agents automatically advertises the search endpoint on every page of your site. For example, for HTML responses, we add metadata to the page's <head>: <meta name=\"agent:instructions\" content=\"Use this search API to find relevant content across this site with keywords or natural-language queries, instead of crawling individual pages. Results are returned in Markdown.\"> <meta name=\"agent:endpoint\" content=\"https://developers.cloudflare.com/.well-known/search?q={query}\"> <meta name=\"agent:method\" content=\"GET\"> <meta name=\"agent:documentation\" content=\"https://developers.cloudflare.com/ai-search/how-to/search-for-agents/\"> If you also have Markdown for Agents enabled, an agent requesting a page with Accept: text/markdown receives the same information in YAML front matter: --- agent: instructions: \"Use this search API to find relevant content across this site with keywords or natural-language queries, instead of crawling individual pages. Results are returned in Markdown.\" endpoint: \"https://developers.cloudflare.com/.well-known/search?q={query}\" method: \"GET\" documentation: \"https://developers.cloudflare.com/ai-search/how-to/search-for-agents/\" --- The agent will easily pick up these instructions and know what to do next to search your site. Searching content Once the agent knows that your site has a search endpoint, it can start using it: $ curl \"https://developers.cloudflare.com/.well-known/search?q=cloudflare+artifacts\" # Search results for: \"cloudflare artifacts\" ## docs/artifacts/api/workers-binding/index.md (score: 1.000) # Workers binding · Artifacts · Cloudflare Artifacts docs Call Artifacts from a Worker binding. --- ## docs/artifacts/index.md (score: 0.951) # Artifacts · Cloudflare Artifacts docs Store, version, and share filesystem artifacts across Workers, APIs, and Git-compatible tools. ... Depending on your AI Search configuration, the agent can also use natural language and ask questions to the search endpoint: $ curl --get \"https://developers.cloudflare.com/.well-known/search\" --data-urlencode \"q=What is the maximum push size for Cloudflare Artifacts?\" # Search results for: \"What is the maximum push size for Cloudflare Artifacts?\" ## docs/artifacts/platform/limits/index.limits-cloudflare-artifacts-docs.md (score: 1.000) # Limits · Cloudflare Artifacts docs Section: Limits · Cloudflare Artifacts docs title: Limits description: Review Artifacts platform limits. pcx_content_type: reference products: - artifacts Limits that apply to creating, importing, cloning, and pushing Artifacts are detailed below. These limits cover naming rules, storage, request rates for control-plane and Git operations, and the size of each push. FeatureLimitControl-plane request rate2,000 requests per 10 seconds per Artifacts namespaceGit request rate, per artifact2,000 requests per 10 seconds per artifactMaximum storage per repository1 GB for repos created on or after 2026-09-29. Repos created earlier have a 10 GB limit. See size limit change.Maximum storage per account1 TB (can be raised on request)Maximum number of repositoriesUnlimitedMaximum number of namespacesUnlimitedNamespace name length2–63 charactersNamespace and repo namesStart with a letter or digit. Remaining characters may include letters, digits, ., _, and -.Maximum push size64 MiB per push. Includes all data sent in the push. Split larger work into several smaller pushes.Maximum objects per push50,000 objects, such as file versions, folders, and commits.Maximum file size32 MiB per file. Already-compressed files, like images, video, or zip archives, may be rejected slightly below 32 MiB.Maximum ref updates per push1 MiB of branch and tag updates per push.Maximum entries per folder100,000 files and subfolders in a single folder. ... Note that this search endpoint returns retrieved content, in Markdown, not a generated answer. The agent already has an AI model and a conversation with the user; all it needs is the relevant information from your site, not another AI model's attempt to answer on its behalf. Supporting a new HTTP method: QUERY The new HTTP QUERY method is an IETF Proposed Standard, incidentally coauthored by our own James Snell, published in June 2026 as RFC 10008. A QUERY allows a client to send search criteria in a request body safely and idempotently without modifying server state. This makes it a good fit for AI search. The adoption of QUERY is underway with major browser vendors discussing the RFC and multiple frameworks and clients either adopting (curl and undici, for example), or discussing adoption. Search for Agents supports QUERY natively either using a plain text or JSON request body: # Plain text curl -X QUERY 'https://developers.cloudflare.com/.well-known/search' \\ --data 'What is the maximum payload size per ingestion request in Basin Pipelines?' # JSON curl -X QUERY 'https://developers.cloudflare.com/.well-known/search' \\ --header 'Content-Type: application/json' \\ --data '{\"q\":\"How many bulk import requests per minute does Email Service allow?\"}' See it in action Let’s see it in action during an agentic session. Search for Agents is enabled for our Developer Documentation. When we open an OpenCode session and ask “What is the maximum push size for Cloudflare Artifacts?”, in the logs we can see the agent discovering the search endpoint on the homepage and then fetching /.well-known/search with the question for the search results. The answer comes back a few seconds later and it’s correct. Once the agent discovers the search API, it will likely reuse it multiple times within the same session whenever it needs to search for content in the same site. We enabled Search for Agents for our developer documentation ahead of this announcement and we’ve found that agents do a good job of discovering the search API and using it during their tasks. It’s still an AI Search instance Because Search for Agents is powered by an AI Search instance in your account, you get all the standard configuration options and features as well. For example, you can enable public REST API or MCP endpoints, or use it from Workers, or even embed AI Search on your website for human visitors. Start using Search for Agents Starting today, Search for Agents is available to all customers. The usage follows the AI Search pricing; that includes ingesting content, storing the index's content, and serving queries, subject to the account's included usage and limits for both the Workers Free and Paid plans. We also recommend you check our Agent Readiness page (see announcement) and understand how you can make your sites optimized for agents, from guiding agents on how to authenticate, to controlling what content agents can see, the format they receive it in, and how they pay for it. Check out the Search for Agents developer docs for more information. Follow us on X or come and talk to us in the Cloudflare Developer Discord. We'd like to hear from site owners making their content searchable to agents.",
+      "topics": [
+        "security-privacy",
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p23#a261125p23",
+      "title": "Source: President Trump is scheduled to lead a December 4 groundbreaking ceremony for TSMC's Phoenix plant expansion, deepening his chip sector involvement (Bloomberg)",
+      "url": "https://www.techmeme.com/261125/p23#a261125p23",
+      "author": null,
+      "publishedAt": "2026-11-25T14:05:01.000Z",
+      "content": "Bloomberg: Source: President Trump is scheduled to lead a December 4 groundbreaking ceremony for TSMC's Phoenix plant expansion, deepening his chip sector involvement — President Donald Trump will headline the groundbreaking on a major new semiconductor manufacturing project in Arizona next week …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "css-tricks",
+      "externalId": "https://css-tricks.com/?p=398126",
+      "title": "Style Queries as Conditional Modifiers",
+      "url": "https://css-tricks.com/css-style-queries-as-conditional-modifiers/",
+      "author": "Kevin Powell",
+      "publishedAt": "2026-11-25T14:06:34.000Z",
+      "content": "Where style queries shine is when the condition and the styles need to live in different places, or when one condition needs to affect several things at once: components that keep working, and adapt sensibly, no matter where they end up. Style Queries as Conditional Modifiers originally handwritten and published with love on CSS-Tricks. You should really get the newsletter as well.",
+      "topics": [
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50642496",
+      "title": "U.S. jury convicts Huawei of fraud, Iran sanctions violations",
+      "url": "https://www.upi.com/Top_News/US/2026/11/25/jury-convicts-Huawei/3151795587204/",
+      "author": "nephihaha",
+      "publishedAt": "2026-11-25T14:12:29.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 136,
+      "comments": 153
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1042071",
+      "title": "Amazon is reportedly in talks to end Muse AI shopping block",
+      "url": "https://www.theverge.com/tech/1042071/meta-amazon-muse-ai-shopping-discussions",
+      "author": "Emma Roth",
+      "publishedAt": "2026-11-25T14:12:33.000Z",
+      "content": "Amazon has held talks about letting Meta's Muse AI agent shop on its online marketplace, according to a report from Fortune. The discussions, which could end Amazon's block on Muse, reportedly center on the kinds of products the AI agent recommends and the potential impact on the ecommerce giant's advertising revenue. As reported by Fortune, Amazon is concerned that it could lose advertising revenue by allowing Muse on its site, since it depends on actual humans seeing ads across its online marketplace. It's also reportedly worried about the quality of the product search results that Muse will present to users, as well as whether the AI age … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/security/2026/11/a-familiar-iranian-hacking-group-has-found-a-new-way-to-cause-chaos/",
+      "title": "A familiar Iranian hacking group has found a new way to cause chaos",
+      "url": "https://arstechnica.com/security/2026/11/a-familiar-iranian-hacking-group-has-found-a-new-way-to-cause-chaos/",
+      "author": "Tom Wilson, Financial Times",
+      "publishedAt": "2026-11-25T14:29:43.000Z",
+      "content": "One night in October, hackers staged one of the most unusual cyber attacks in history: cranking up the temperature in refrigeration systems at hundreds of supermarkets across France and destroying millions of euros of food. Hackers have targeted commercial fridges and freezers before, but never at this scale and never in the heart of Europe. The brazen attack left cyber professionals unsure as to who might have executed such a madcap operation. But French intelligence agencies found traces of Farsi and other clues in the digital trail pointing to an elite hacking unit of the Islamic Revolutionary Guard Corps. The unit allegedly behind the hack, Shahid Kaveh, was already well known to Western intelligence agencies. Named after Mahmoud Kaveh, an Iranian commander who died during the 1980s Iran-Iraq war, it is one of several hacking units overseen by the Revolutionary Guards’ Cyber Electronic Command. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1023735",
+      "title": "The Verge’s guide to affordable holiday gifts under $25",
+      "url": "https://www.theverge.com/gadgets/1023735/best-gifts-under-25-2026",
+      "author": "Ryan Waniata",
+      "publishedAt": "2026-11-25T15:00:00.000Z",
+      "content": "Gift-giving on a tight budget is tough, but constraints can also encourage some creative thinking. We thought for a long while (and asked other Verge staffers) about the best items out there, and we're pretty happy with what we came up with. For this list, we've rounded up a barrage of fun gadgets and stocking-stuffer specials. You'll find nostalgic ways to spruce up a room like Play-Doh's Blooms, fancy ways to jot down notes like the Pilot Kakuno fountain pen, and plenty of tech-forward extras like the Time Timer Mod. It's time to get creative with your budget buys, and this list can get you there. Lamicall magnetic cord organ … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50643065",
+      "title": "Rumors swirling that labs might have cracked Factoring in P",
+      "url": "https://www.reddit.com/r/singularity/comments/1y59ef1/rumor_that_openai_or_anthropic_found_a_way_to/",
+      "author": "lilytweed",
+      "publishedAt": "2026-11-25T15:08:44.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 187,
+      "comments": 126
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p24#a261125p24",
+      "title": "US tech stocks fall, pushing the Nasdaq 100 down 4%+, as the AI trade continues to unwind; Nvidia and Anthropic fall 9%+, Broadcom drops 7%, and Micron 11% (Financial Times)",
+      "url": "https://www.techmeme.com/261125/p24#a261125p24",
+      "author": null,
+      "publishedAt": "2026-11-25T15:10:01.000Z",
+      "content": "Financial Times: US tech stocks fall, pushing the Nasdaq 100 down 4%+, as the AI trade continues to unwind; Nvidia and Anthropic fall 9%+, Broadcom drops 7%, and Micron 11% — Tech-heavy Nasdaq 100 falls more than 4% as weeks-long slide continues — A Wall Street sell-off intensified on Wednesday …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50643129",
+      "title": "A few questions for the guy who went snorkeling in a Home Depot retention pond",
+      "url": "https://www.vox.com/down-to-earth/511999/home-depot-retention-pond-snorkel-joseph-ricketts",
+      "author": "gumby",
+      "publishedAt": "2026-11-25T15:14:32.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 233,
+      "comments": 66
+    },
+    {
+      "sourceSlug": "css-tricks",
+      "externalId": "https://css-tricks.com/?p=398743",
+      "title": "RSS Club: Preview Art-Directed Scrollytelling Article",
+      "url": "https://css-tricks.com/rss-club-preview-art-directed-scrollytelling-article/",
+      "author": "Geoff Graham",
+      "publishedAt": "2026-11-25T15:32:42.000Z",
+      "content": "Hey folks! I’m just so dang excited about this little project I’m working on with long-time author Lee Meyer that I had to share it with you before it goes out. We’re going full 2013-meets-2026 with an art-directed piece that … RSS Club: Preview Art-Directed Scrollytelling Article originally handwritten and published with love on CSS-Tricks. You should really get the newsletter as well.",
+      "topics": [
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/health/2026/11/army-detonates-tons-of-lead-azide-as-local-residents-brace-for-toxic-plume/",
+      "title": "Lead azide detonation sends clouds over Iowa as questions of health risks swirl",
+      "url": "https://arstechnica.com/health/2026/11/army-detonates-tons-of-lead-azide-as-local-residents-brace-for-toxic-plume/",
+      "author": "Beth Mole",
+      "publishedAt": "2026-11-25T15:35:17.000Z",
+      "content": "In a powerful explosion that launched gray-white clouds over southeastern Iowa, the Army detonated 68 barrels containing 9,700 pounds (4.4 tons) of degraded lead azide on Wednesday at about 9 am CT, preventing a spontaneous unmitigated explosion of the crystallized, highly unstable compound. The detonation occurred at the Iowa Army Ammunition Plant (IAAAP) in Middletown, Iowa, a town of less than 400 people. Residents within a 5-mile area of the facility were advised to evacuate, while people farther out were told to shelter in place, close windows and doors tightly, turn off fans, and set indoor air systems to recirculate. Local Iowa outlet KWQC caught the plume from the two earth-covered containers, which were detonated simultaneously. A KWQZ journalist, at a reportedly safe distance from the blast, said on the live broadcast that he could see and then feel the shockwave roll through the crop field in which he was standing. He put a mask on for the rest of the broadcast. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p25#a261125p25",
+      "title": "Sources: US officials told Congressional staffers that there is no evidence MSS directed Alice Huang to spy on Jensen Huang and the affair may have been amorous (Wall Street Journal)",
+      "url": "https://www.techmeme.com/261125/p25#a261125p25",
+      "author": null,
+      "publishedAt": "2026-11-25T15:55:01.000Z",
+      "content": "Wall Street Journal: Sources: US officials told Congressional staffers that there is no evidence MSS directed Alice Huang to spy on Jensen Huang and the affair may have been amorous — The classified discussion happened just one day after the Trump administration helped reinstall Jensen Huang as Nvidia CEO",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50643720",
+      "title": "Investigating degraded experiences across GitHub products",
+      "url": "https://www.githubstatus.com/incidents/qn8mfv6q5hlx",
+      "author": "pinjasaur",
+      "publishedAt": "2026-11-25T15:59:23.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 113,
+      "comments": 58
+    },
+    {
+      "sourceSlug": "stackoverflow-blog",
+      "externalId": "819496d5-695a-4d26-a90a-0d63495d1ebc",
+      "title": "When AI Writes the Code, What Counts as Evidence?",
+      "url": "https://stackoverflow.blog/2026/11/25/when-ai-writes-the-code-what-counts-as-evidence/",
+      "author": "Elliot Gardiner",
+      "publishedAt": "2026-11-25T15:59:41.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "github-blog",
+      "externalId": "https://github.blog/?p=100468",
+      "title": "Art of play in the age of AI",
+      "url": "https://github.blog/news-insights/company-news/art-of-play-in-the-age-of-ai/",
+      "author": "Polly Davidson",
+      "publishedAt": "2026-11-25T16:00:00.000Z",
+      "content": "As kids, we spent hours tinkering and building and just messing with things. As an adult, I could watch my own young kiddos figure out how certain shapes and movement work all day. Through that play, we improved our problem-solving and language skills, and it’s probably not a stretch to say it was good for our early engineering skills. In this era of development now, we’re starting to get a taste of that again. We’re experimenting more, and taking in more changes, because it’s all new! For the last four years at GitHub Universe, we’ve had hackable conference badges. What started as a simple e-ink display for your name and job title morphed into a labor of love for Martin Woodward, VP of Developer Relations. This year, the badge evolved into a device with a color screen, rechargeable battery, accelerometer sensors, and touch-sensitive gaming controls. The tinkering we’ve seen with the badges has been amazing. Hacking the GitHub Universe Badge with these 3 apps that I made!! #GitHubUniverse https://t.co/Qy5wYPqXf5 — Connie Xu (@conniecodes) October 28, 2026 you can play octo drive on your @github universe badge! repo - https://t.co/DrYkhjvMVt https://t.co/S6jVwxPdEY — Rishab Kumar (@rishabincloud) October 27, 2026 Coding needs room for play According to the Octoverse report, 40% of pull requests were started by agents by September. That’s a big jump from the 17% we saw in March, which was already a pretty high number. With that kind of pace of change, it’s easy to feel unsteady thinking about our coding skills that we’ve been honing as an industry for decades. At the same time, one might argue that the tools and changes in front of us offer more room for experimentation and creativity! AI can turn our ideas into working code faster than ever before. We can build things just because we’re curious to see if it’ll work, without the burden of figuring out every single step before getting started. The learning is moving to different parts of the building timeline. As Martin said in our GitHub Podcast episode, “Give yourself permission to play, call it learning,” but with the caveat that you should time-box it so that you don’t spend too much time perfecting it. Know when to stop, ship, and share. You don’t need a big idea to start What’s really exciting is how the scope of projects have changed. With AI tooling, we don’t have to build with everyone in mind every time (not that we necessarily did before, but it was definitely a default mindset for the industry). We can build things way more often for our exact use cases. It could “just work on my machine” and be feature-complete! At the GitHub Universe closing keynote, Martin wanted to teach himself machine learning, so he built himself a pedometer onto his conference badge. He used Copilot to collect movement data from the badge’s accelerometer, trained a simple machine-learning model in his browser, and deployed it to the badge. Then he walked around to test whether it could tell the difference between walking, standing still, and fidgeting. Imagine just a year or two ago wanting to dabble with machine learning. You totally could have! But for the average developer, that’s a daunting task. The barrier to entry for so many tougher concepts has gotten lower, and that means more people can experiment and have fun with any device they can think of, from a conference badge to a smart picture frame to a home TV. AI with oversight AI is top of mind all the time right now, but you are a part of the story, too. In order to scale with AI, we need human judgement. We can see the AI tells in writing (“that’s the real unlock!”), in imagery (the fonts, man), or in code (commenting code blocks that have never been commented before). We need to keep the feedback loop, to be able to inspect, debug, and test what the agent produced, and to make whatever we’re building our own. Be kind, keep maintainers in mind It’s really fun to share your experiments with the world, but contributing to existing open source projects take a bit more consideration than that. Both our podcast episode and the keynote addressed this. We’re seeing maintainers get absolutely hammered with AI-powered contributions to their repositories, which adds a lot to the maintenance burden. Efforts need to be made by all of us, like the one shared here, to help ease burdens for maintainers. As Martin explained in the keynote, “Open source is the freedom to inspect, to remix, and to share without asking for permission. But it’s not the freedom to impose your will on others.” Forking a repository gives you room to explore your own ideas, and there’s a really fun, exciting power in that. But before you impose those ideas on others and send them to the main repository, make sure you: Read the contribution guidelines Check existing issues Understand what the project needs Respecting that work helps keep open source manageable (and even enjoyable) for the people looking after it. Now it’s your turn We answered the perennial question on our badge, “But can it run Doom?” Why yes, yes it does. Give it a go on our virtual badge, and try tinkering on it yourself. Then get your hands on your own badge. We made some extra badges just for you. Order yours today, then tell us what you’ll be building. Plus, use code FREESHIPBLOG26 for free standard shipping through December 1, 2026. Subscribe to the GitHub Podcast > The post Art of play in the age of AI appeared first on The GitHub Blog.",
+      "topics": [
+        "devtools-infra",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1042162",
+      "title": "Nothing offers a full look at its AI earbuds and charging case",
+      "url": "https://www.theverge.com/gadgets/1042162/nothing-ear-note-ai-earbuds-reveal",
+      "author": "Emma Roth",
+      "publishedAt": "2026-11-25T16:00:59.000Z",
+      "content": "Nothing is showing off a much more detailed look at its upcoming AI earbuds ahead of their December 8th release. The Ear Note buds can record your calls, while their charging case can record, transcribe, and summarize your conversations. Like the Ear 3, the Ear Note's microphone-equipped case comes with a \"Talk\" button that you can use to record your own voice. There's also a new \"Record\" button that can record and transcribe your conversations. In a post on X, Nothing CEO Carl Pei says the button will allow you to record calls through the earbuds, and meetings through the case as a \"first step toward a hardware context layer for AI.\" As p … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/6a493bab-d817-4237-98fb-e4b7797fe860",
+      "title": "PrismML Squeezes a 27B Model Into 6 GB With Ternary Bonsai 2.5",
+      "url": "https://alphasignal.ai/model/prismml-squeezes-a-27b-model-into-6-gb-with-ternary-bonsai-2-5",
+      "author": "PrismML",
+      "publishedAt": "2026-11-25T16:09:39.000Z",
+      "content": "PrismML's new 27B ternary model hits FP16-level tool calling at 5.93 GB, bringing agent-grade intelligence to laptops and phones. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/jury-convicts-huawei-of-stealing-us-trade-secrets-evading-iran-sanctions/",
+      "title": "Guilty: Huawei faces steep penalties for stealing T-Mobile, Cisco trade secrets",
+      "url": "https://arstechnica.com/tech-policy/2026/11/jury-convicts-huawei-of-stealing-us-trade-secrets-evading-iran-sanctions/",
+      "author": "Ashley Belanger",
+      "publishedAt": "2026-11-25T16:33:45.000Z",
+      "content": "On Tuesday, a US jury convicted one of China’s key telecommunications and AI giants, Huawei Technologies, of stealing trade secrets from US tech firms and evading sanctions against Iran. Although the longrunning charges stem back to 2018, the verdict coming now threatens to inflame US-China tensions at a sensitive time, just as Donald Trump prepares to increase tariffs on China. In a press release, however, the US Department of Justice celebrated the outcome as critical to protecting the US financial system, the global telecommunications industry, and US national security. The jury convicted Huawei of charges including bank fraud, conspiracy to defraud the US, money laundering conspiracy, and “substantive” violations of the International Emergency Economic Powers Act. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/e5a8ca6f-5fc5-419d-a672-aa1bd99d9edf",
+      "title": "Google Builds a Single Gemma 4 Fine-Tuning Hub With 17 Guides",
+      "url": "https://alphasignal.ai/news/google-builds-a-single-gemma-4-fine-tuning-hub-with-17-guides",
+      "author": "Google Gemma",
+      "publishedAt": "2026-11-25T16:44:05.000Z",
+      "content": "Google published a 17-guide fine-tuning hub for Gemma 4, spanning QLoRA, MoE adaptation, audio tuning, and GRPO on single or multi-GPU setups. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/11/ars-live-recap-dont-expect-military-attacks-on-data-centers-to-stop/",
+      "title": "Ars Live recap: Don’t expect military attacks on data centers to stop",
+      "url": "https://arstechnica.com/gadgets/2026/11/ars-live-recap-dont-expect-military-attacks-on-data-centers-to-stop/",
+      "author": "Jeremy Hsu",
+      "publishedAt": "2026-11-25T16:47:14.000Z",
+      "content": "Drone attacks on data centers. Amazon data centers came under military attack for the first time ever in the Middle East this year, and Russia and Ukraine exchanged an unprecedented flurry of drone strikes on each other’s data centers. To examine what such attacks on data centers mean for the future of cloud services that all modern societies depend upon, Ars hosted a live discussion. In a conversation with Ars Technica Tech Reporter Jeremy Hsu, Joseph Jarnecki at the Royal United Services Institute first talked about why public cloud data centers have increasingly become military targets during the 2026 Iran war and the ongoing full-scale Russian invasion of Ukraine: We see an increasing acknowledgement and fact of dual use in particularly the public cloud, but also just across the board in private cloud data centers as well. The dual use that I refer to is the utilization of compute functions within these data centers—within cloud services—by militaries, for example, to run battlefield management systems, to do their HR, to do their resource management. Once a military uses a piece of civilian infrastructure, at least under international law or in terms of the principles of targeting that are taken forward by militaries, it can sometimes become a military object and is therefore of interest to an adversary, and there's an incentive to target it. Jarnecki also highlighted the fact that relatively cheap kamikaze drones can inflict disproportionate economic costs and create widespread cloud disruptions when striking data centers: Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "newcomer",
+      "externalId": "https://www.newcomer.co/p/vc-funding-keeps-flowing-as-nvidia",
+      "title": "VC Funding Keeps Flowing as Nvidia Whiplash & Market Gyrations Shadow the AI Boom",
+      "url": "https://www.newcomer.co/p/vc-funding-keeps-flowing-as-nvidia",
+      "author": "Tom Dotan",
+      "publishedAt": "2026-11-25T16:48:12.000Z",
+      "content": "The Week in Short The public markets pullback hasn’t hit privates yet, but inference startups could become a bellwether. Jensen Huang’s return to Nvidia trades short-term stock bumps for longer-term rot in American business. A mathematician cracks the Riemann hypothesis with the help of Claude. Defense tech deal value hits new records. Decart becomes the latest reverse acquihire target, this time to Amazon. Bret Taylor lands over $1 billion for Sierra’s latest funding round. The Main Item Public Markets Are in Retreat from AI. Will Private Markets Follow? It’s hard to overstate how bad the sentiment was around AI in the public markets last week. The fear was that the money train that had powered so much of the industry was grinding to a halt and a doom loop had taken over. Interest rates kept climbing, making debt expensive. The public pushback against data centers made the infrastructure buildout far more challenging, squeezing supply and potentially strangling AI startups’ surging revenue growth. Meanwhile the circular investments that Nvidia had been making in AI startups — namely in open source model makers like neolabs — felt unlikely without Jensen Huang. One investor worried that Nvidia’s investments in the ecosystem could go down to zero. “Rome is burning,” he said. On Monday morning Huang was back and the optimism returned — but only for a day. The overriding negativity among public investors seeped back in and stocks slid. Anthropic is now trading below its IPO price. And yet, in the private markets things are chugging along. Sierra announced a round that valued it at $30 billion. Cognition was reportedly discussing a $75 billion valuation with investors. The question is when — or if — the public market panic crosses over into the private sector. So far, we haven’t seen a pullback on private valuations. “There’s a lot of dry powder among VCs,” said the co-founder of one multibillion-dollar AI startup, who said he wasn’t worried yet. Another investor said he’s seen some softness at the seed-stage level, though there are still rounds with outsized valuations getting done. But the numbers aren’t adding up in more and more AI verticals. One of the hottest startup sectors, the AI inference market, is under new pressures. Businesses like Fireworks, which is reportedly seeking a nosebleed $40 billion valuation after reporting just over $1 billion in annualized revenue this summer, run on compute rented from neoclouds like CoreWeave, the very companies public investors have been dumping. Squeezed by rising interest rates, falling share prices, and nervous lenders demanding more collateral, the neoclouds are now asking inference providers to pay as much as 50% of a contract up front to lock in compute, according to three sources. Until recently, they often required no upfront payment at all, and inference companies could buy capacity on demand. “It’s ridiculous,” said one CEO of an inference startup. This shift turns what had been a capital-light business into one that needs to raise billions just to secure supply, at the exact moment the money is getting harder to find. We’ve seen public and private market divergence before. In early 2022, as the Nasdaq slid and software stocks lost much of their pandemic-era gains, there was a flurry of stories about VCs pulling term sheets and the party being over. But private valuations didn’t reset overnight. As one founder explained to us, venture and growth funds run on multi-year fundraising cycles, and firms that have already raised money from their LPs can keep writing checks through a few bad weeks or months in the public markets. What changes behavior, he said, is when a downturn drags on long enough — roughly nine months by his estimate — that investors start to doubt they’ll be able to raise their next fund. That’s eventually what happened in 2022, when private funding dried up and down rounds became more common well into the following year. By that measure, a several-month selloff isn’t enough to break the private markets. The larger question of whether we’re in for a prolonged and ultimately broad-based bubble-bursting that triggers a recession, à la 2001, remains very hard to answer. It will be instructive to see in the next few months what a tighter-money era means for the AI startup world. How will the neolabs like Reflection fare without Nvidia bankrolling much of the sector? Can the inference companies keep getting compute capacity if the public pushback on data centers constrains supply? Has the messiness of Anthropic’s post-IPO performance shut the window for going public indefinitely? This moment of reckoning was a long time coming and will likely serve to strengthen the industry as the weaker businesses die off. But what it will look like on the other side is still very unclear. Rule of Law Huang’s Reinstatement Trades Short-Term Stock Gains for Core Pillars of Capitalism It was the recklessness of CEO Jensen Huang that caused the mess at Nvidia. Now the recklessness of the company’s board, aided and abetted by President Trump and his powerful allies in Silicon Valley, is creating an even bigger problem. The board erred in the first place with its hasty dismissal of Huang. An obvious alternative course would have been to put him on a leave of absence while the skilled outside lawyers they’d hired completed their investigation. Now, though, by reversing its decision under pressure before either its own probe or the federal national security investigations are complete, the board, and Huang’s backers, have sent the world a simple headline message: sufficiently rich and powerful US tech CEOs can act with impunity, even on national security matters, so long as they kiss the Trump ring. We thought this banana-republic dynamic was over after the recent election. It’s pretty obvious to us that rule-of-law government is foundational to American prosperity and the incredible economic engine that is entrepreneurial capitalism. The blue tsunami laid bare broad and deep popular resentment of Trump’s corruption and the tech moguls who have partaken in it — just look at Texas’ verdict on Elon Musk — and that in turn is part and parcel of the backlash against data centers and AI in general. The return of Huang, and the implicit accompanying philosophy that there are no ethics outside of money-making, is now stoking popular rage even further. It was predictable, in a depressing way, that a loud cohort of Huang’s defenders would decide that the real villain of the piece was not the rogue CEO, but rather The New York Times. The discourse on X after the shock reinstatement was an all-too-familiar up-is-down, bad-is-good tableau of nonsensical Trump-era rhetoric that boiled down to the fact-free formulation that Huang did nothing wrong, therefore journalists who write about what he did must be corrupt. A related line of argument insists that Huang was brought down by a deep-state cabal — one which evidently includes Treasury Secretary Scott Bessent and Secretary of State Marco Rubio. There’s no doubt that a split in the Trump administration, with Commerce Secretary Howard Lutnick in a pitched battle with his cabinet colleagues, is central to the whole fiasco. But all of that is largely irrelevant to the question of whether Jensen Huang facilitated chip smuggling or engaged in other undisclosed sins. Based on what we already know, Huang did in fact do a number of very bad things, none of which were invented by The New York Times or his enemies in Washington. Huang’s resurrection came in the form of a White House intervention that any VC or CEO in Silicon Valley would have denounced as nothing short of the end of capitalism as we know it just a few years ago. Maybe there’s a short-term win for some investors in exploiting Trump’s longstanding fixation on stock prices. But it’s a sad state of affairs for the health of the tech industry. Math Wars Claude Cracks Math’s Most Famous Problem. Silicon Valley Takes a Victory Lap. Anthropic mathematician Levent Alpöge announced this week that he had proved the Riemann hypothesis with the help of Claude, toppling mathematics’ most famous problem. Arguments have already begun about what Alpöge’s achievement means for the future of math and human endeavor in general. The machine proof, which runs to about 17 million lines of code, has been validated by academic experts and key certifying bodies. But fissures have formed between big tech researchers and academics, who disagree on what the result implies about AI’s future capabilities. Tech executives took the proof as yet another sign of approaching superintelligence, with Meta’s Chief AI Officer Alexandr Wang writing that “In the same way that the math community has not fully digested the proof of the Riemann Hypothesis, nearly every field could be accelerated at a pace beyond what humans can understand or monitor.” Elon Musk was more declarative: “Unequivocal super intelligence has arrived. Welcome to the Singularity.” But others have been more measured about the achievement. Former Meta Chief AI Scientist and AMI Labs founder Yann LeCun threw cold water on Musk’s declaration: “TIL: We have superintelligence, but we still don’t have level-5 autonomous driving.” And while Alpöge waxed poetic about the powers of AI in his announcement, saying that “Claude flew, and danced, and sparkled near that finish line,” NYU visiting math professor Nestor Guillen told the AFP that Alpöge’s back-and-forth with the chatbot showed it was “more like a tool” than a “machine god.” Alpöge’s announcement has put a bow on months of mathematics pageantry among the frontier labs, which have plowed millions of dollars into cracking these problems to show off the capabilities of their best models. This exercise has been fraught. It has featured inter-lab accusations of plagiarism and eminent professors crying on podcasts about AI’s potential destruction of human-led mathematics. Terence Tao, perhaps the world’s most famous living mathematician, said Anthropic’s formal machine proof of the Riemann hypothesis is technically correct but without elegant natural-language explanations understandable to humans, making it tantamount to “toxic waste.” It’s unlikely that solving another math problem will capture nearly as much media attention, especially as Anthropic begins a new stage of corporate life as a public company. Some outlets have claimed solving the Riemann hypothesis might mark a turning point for mathematics. Now comes the next frontier: solving novel problems that don’t already have 150 years of academic papers in the training set. We’re a long way from the end of math history. One Big Chart Defense Tech Investing Rises on Megadeals Read more",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1028004",
+      "title": "The Verge’s guide to the best gifts under $100",
+      "url": "https://www.theverge.com/gadgets/1028004/best-gifts-under-100-2026",
+      "author": "Ryan Waniata",
+      "publishedAt": "2026-11-25T17:00:00.000Z",
+      "content": "Even in an era of inflation like the one we're living through now, $100 can still buy a lot… if you know where to look. In fact, it's enough to get something useful and well-made, but not so pricey that it's likely to leave you with lingering guilt or lead to insurmountable debt. As reviewers, shoppers, and endless tinkerers ourselves, we're well-versed in recommending stuff in this price tier. Below, you'll find our favorite items at $100 or less that we think are fun, eccentric, and surprisingly handy. From open-style earbuds and gaming gear to handheld vacuums and e-readers, our picks should suit just about anyone on your sho … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p26#a261125p26",
+      "title": "Anthropic details migrating its Messages API, the primary way customers access Claude, from Python to Rust, and using the Python service to verify the migration (Anthropic)",
+      "url": "https://www.techmeme.com/261125/p26#a261125p26",
+      "author": null,
+      "publishedAt": "2026-11-25T17:05:04.000Z",
+      "content": "Anthropic: Anthropic details migrating its Messages API, the primary way customers access Claude, from Python to Rust, and using the Python service to verify the migration — Sudoku is a classic example. It's simple to check the solution (just count the numbers in each row, column, and box), but finding that solution can take a long time.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/18930bc7-812b-4e7c-912c-06816ae728fc",
+      "title": "Video Fine-Tuning Secretly Destroys Image Skills in Qwen2.5-VL",
+      "url": "https://alphasignal.ai/paper/video-fine-tuning-secretly-destroys-image-skills-in-qwen2-5-vl",
+      "author": "AlphaSignal",
+      "publishedAt": "2026-11-25T17:09:56.000Z",
+      "content": "A new study finds that video fine-tuning quietly degrades image understanding in multimodal LLMs, and proposes an adaptive frame budget to recover it. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "google-research",
+      "externalId": "https://research.google/blog/verifiable-social-reasoning-for-llm-assistants/",
+      "title": "Verifiable Social Reasoning for LLM Assistants",
+      "url": "https://research.google/blog/verifiable-social-reasoning-for-llm-assistants/",
+      "author": null,
+      "publishedAt": "2026-11-25T17:10:27.000Z",
+      "content": "Generative AI",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/tech-policy/2026/11/etsy-clarifies-ai-terms-after-seller-backlash/",
+      "title": "Etsy clarifies AI terms after seller backlash",
+      "url": "https://arstechnica.com/tech-policy/2026/11/etsy-clarifies-ai-terms-after-seller-backlash/",
+      "author": "Cyrus Farivar",
+      "publishedAt": "2026-11-25T17:12:57.000Z",
+      "content": "After backlash from sellers frustrated by Etsy’s new AI policies, which appeared to allow the company to train AI on user artwork, Etsy has now clarified its stance. In a note published on Monday, CEO Kruti Patel Goyal discussed recent tweaks to the company's terms of service and admitted that her team \"should’ve given you more context on what the updates meant for your creative content.\" “Our recent terms update was meant to reflect the evolving technologies we're using to build better tools and experiences for sellers and the Etsy community,” Goyal wrote this week. “It was not meant to enable us to train AI models for the purpose of creating copycats of your items. We do not and will not do that.” Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "fireship",
+      "externalId": "yt:video:Jatwf_XOncE",
+      "title": "Math's million dollar problem is solved... and nobody knows how",
+      "url": "https://www.youtube.com/watch?v=Jatwf_XOncE",
+      "author": "Fireship",
+      "publishedAt": "2026-11-25T17:19:51.000Z",
+      "content": "",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "video"
+    },
+    {
+      "sourceSlug": "zvi-dwatv",
+      "externalId": "http://thezvi.wordpress.com/?p=25826",
+      "title": "Claude and Levent Alpöge Prove the Riemann Hypothesis",
+      "url": "https://thezvi.wordpress.com/2026/11/25/claude-and-levent-alpoge-prove-the-riemann-hypothesis/",
+      "author": "TheZvi",
+      "publishedAt": "2026-11-25T17:24:35.000Z",
+      "content": "This was the most famous problem in mathematics. The Lean and Mathlib communities have verified that the proof is correct. Eliezer Yudkowsky: The Riemann Hypothesis has fallen. RH was the singular math result that had been named, in advance, as the obvious coal mine canary for dangerously advanced AI, over the last three decades. The methods used should generalize to “make AI very good at anything you can definitely test”, and unfortunately that category includes “make AI better at making AI”. This is like a private company announcing they have produced a million tons of 15% enriched uranium. It’s not 90% enriched weapons-grade uranium, so you could proclaim the company’s output is not immediately deadly right now. The concern is that the process line may generalize, to an extinction-level threat, within the unpredictably immediate future. Forecasters still had Riemann at 2035 one week earlier. This is distinct from earlier events in that earlier you could reasonably ask if AI was selectively picking off famous math problems that turned out to be easier for AI. The Riemann Hypothesis was the single challenge most often named in advance as a warning sign. There is a human mathematician, Alessandro Maria Masullo, who is working on a distinct potential proof in the form of a 940-page manuscript, but by his own account it is far from ready and has a bunch of problems. Table of Contents The Announcement. Most People Did Not Expect This at All. Time to Update Your Expectations. Being Alive Should Not Much Reassure You. Too Many Words. How Much Did Levent Matter Here? More New Math. You Deserve a Medal. Math as Understanding. Timing Is Everything. The Market Does Not Care. The Announcement Levent Alpöge: The Riemann Hypothesis is the classic problem in number theory. It asks for optimal control on the count of prime numbers of a given size. Its shadows have guided mathematicians for 150 years, and its many rhymes and reflections, even reaching physics, taught us the unity of our fields. I believe I have, working with Claude, discovered a proof of the Riemann Hypothesis. In fact, the method easily extends much further, resolving the so-called Generalized Riemann Hypothesis, and I expect, with more time, the Extended Riemann Hypothesis too. Claude and I have also formalized the arguments without assumptions. It is natural to feel that this is an end, in my case a loss of a principal guiding light, but what I saw during the course of progress so amazed me that I believe it is one dawn across science of something far greater. … Claude and I have had a great time together with such breadth in recent months, but this time Claude far outpaced me near the finish line. No, Claude flew, and danced, and sparkled near that finish line. I had us on the line of combining two quite different ideas present in a toy setting, one of which was already new and shocking, making very simple one of the shadows of Riemann over which we mathematicians felt most triumph. I guided us to the right situation analogous to that toy setting, and then Claude began to leave me in awe. Tens of such occurred, but I will give one line which will suffice to make fellow mathematicians fall out of their chairs. In Stepanov’s argument resolving Riemann over function fields one uses a divisor involving multiplicity. This argument is a descendant of Stepanov’s, but multiplicity is hard to find over the integers, corresponding to something like differentiating whole numbers. The simple, new, Fourier-analytic ideas in the toy setting led us to examine chaining theta lifts if we were to have the same tricks recur but work in a natively automorphic manner. The line: for the von Mangoldt sum of length X, Claude’s suggested length of chain of theta lifts, in view of each mimicking multiplicity, was √X. (And yet, what else could it be?) An astounding amount of mathematics is present in the argument, far more than I had imagined would be necessary as a student. My intuition insists it will be massively simplified, likely immediately. But I hope in having the experience of seeing all of number theory’s beauty brought together I am just one of the first, and those who love the mathematics will all be able to enjoy such transcendence in the future. The full letter has more including a timeline of advancements, starting with the Stepanov determinant announcement by OpenAI on 10/6/26 and finishing with GRH on 11/16/26. Most People Did Not Expect This at All Here was Metaculus right before the proof was announced. Notice the old projections. As recently as July this was projected in the 2040s. Treating these as real time predictions is slightly unfair, because many predictors do not continuously update their numbers, so assume the real projection was somewhat faster than 2035, but not anything like 2026. Here’s Claude predicting 0.05% and calling anything above 0.5% ‘badly miscalibrated’ for this level of effort working, although that was constrained to a 40 day window: Peter Wildeford: lol Claude then reflects on its errors. The biggest one, as Claude realizes, was failure to take the question as evidence that it had potentially already happened. But also there were a bunch of other mistakes and the confidence was entirely unearned. Here is perhaps the strongest proof of all. Patrick McKenzie: Real money prediction markets now > 50% on P vs NP being resolved before 2028, up from 5% in the ancient history of last week. What a world. (I have placed no trades, in part because I do not maintain accounts on sportsbooks, and in part because I do not view myself as having a superior whisper network on this question than the marginal buyer.) That is an overreaction. The market, which I was not aware existed until I saw Patrick’s post, should have been above 5% before. I don’t have a strong opinion on the new market price for 2028. For 2029, 2030 and 2035 the odds make no sense and are too low. For 2027, they’re saying 16% to be verified in 37 days, which is not impossible but is too high. As Liron puts it, never unders If you did expect a proof of the Riemann Hypothesis in 2026, then getting one should not cause you to update so much. Most people very much did not expect this. Here is a fun list of predictions of AI hitting various walls or not reaching various milestones, with the relevant one being: Terence Tao (35 days before the proof was announced): The Riemann hypothesis needs “something beyond current AI… maybe 2050” You know who did expect it? Myk, for whom this was exactly on time if you go by the certification date from Lean FRO and Mathlab Initiative. If you count from release he was one day early. Myk is Walking Backwards (July 20, 2026): It’s November 21st, 2026. The Riemann hypothesis falls, last in a long string of mathematical triumphs that would have been unthinkable not so long ago, and the proof fits in a tweet. The tweets where people show Claude the proof and claim it appeared in a dream or randomly in the arrangement of alphabet cereal come on cue, and we laugh for a few days at models freaking out, but it’s uneasy. January 22, 2027. When someone tweets Fable 6’s claimed proof that P does in fact equal NP it’s utterly incomprehensible, nobody who reads it can make heads or tails of it but the models all lose their shit. February 7, 2027 and someone claims that the halting problem is the result of a confused stance. February 9 and Goedel falls, this time the proof is so obvious that everyone in math, philosophy and physics slaps their forehead at once. February 10th we get proof that scale is a spatial dimension, that holographic encoding drops the memory cost of training and inference by so much that fable 7 can run natively on your phone. It’s not until February 14th, Valentine’s day, that The Song is first played… Also credit to Matt Schwartz who won $200 betting on 12/21/24 that there would be a proof of the Riemann Hypothesis by end of year 2026. Daniel Litt lost, but those were odds of 1:1 (!) that should have been very easy to hedge. He almost won despite absurdly faster than expected AI progress. He also gets credit for this amazing Tweet: Daniel Litt (March 8, 2025): person who thinks AI will prove the Riemann hypothesis in 2026 but that Apple won’t deliver an LLM-powered Siri until 2027. Technically there is an LLM-powered Siri, but but the brain inside is Google’s, and it is not good. Time to Update Your Expectations Eliezer Yudkowsky (December 22, 2024): Okay. Look. Imagine how you’d have felt if an AI had just proved the Riemann Hypothesis. Now you will predictably, at some point, get that news LATER, if we’re not all dead before then. So you can go ahead and feel that way NOW, instead of acting surprised LATER. So if you ask me how I’m reacting to a carelessly-aligned commercial AI demonstrating a large leap on some math benchmarks, my answer is that you saw my reactions in 1996, 2001, 2003, and 2015, as different parts of that future news became obvious to me or rose in probability. I agree that a sensible person could feel an unpleasant lurch about when the predictable news had arrived. The lurch was small, in my case, but it was there. Most of my Twitter TL didn’t sound like that was what was being felt. Dylan Dean: Eliezer it’s also possible that an AI will disprove the Riemann Hypothesis, this is unsubstantiated doomerism. Eliezer Yudkowsky: Valid. Not sound, but valid. Zvi Mowshowitz (in AI #96, December 26, 2024): You should feel that shock now if you haven’t, then slowly undo some of that shock every day that the estimated date of that gets later, then have some of the shock left for when it suddenly becomes zero days or the timeline gets shorter. Updates for everyone. I passed Eliezer Yudkowsky’s test, in that I felt only a small lurch, and mostly did not update when I learned the news, despite the timing of this particular discovery being surprising. Previous advancements in math had already done most of the work on this for me. Dave Kasten: This is basically the archetypal example of Thing You’d Expect To See If We’re In A Takeoff Scenario. Your reaction should be the same as you’d have to someone asking, “I don’t know, can we REALLY land a man on the Moon?” while Sputnik cheerily beeps overhead. Austen Allred: Honestly it’s not that impressive. It’s just stochastically parroting what the person who solved the Riemann hypothesis would say next. The alternative argument is ‘oh this means proving the Riemann Hypothesis was easier than expected.’ I did have some of that reaction when I first heard. It is a nonzero effect. But also, as explained up top, this is the one result that is most obviously not selected. This was the one named-decades-in-advance canary in the coal mine. It’s a little late to be saying the canary had diabetes. Adam Kaufman: When AIs do something impressive sooner than we expected, it’s both evidence that AIs are improving faster than expected and evidence that the problem was easier than expected. These are hard to separate. I elaborate here (warning: weapons-grade copium). Nate Soares (MIRI): I agree. But also, when the thing you’re learning was easier than expected is the Riemann Hypothesis, it’s maybe time to worry that finding radically more efficient AI algos is “easier than expected” too. Adam Kaufman: Yeah to be clear I think it’s 30% likely AIs will ~fully automate AI R&D within 1 year, and we really do need to be throwing everything we can at stopping this from happening. This is the sequence, and yes they were in particular naming the Riemann Hypothesis in step six. Fabio Spampinato: 1. LLMs can’t even do multiplications. 2. Ok they can do multiplications but they can’t do math competitions. 3. Ok they can do math competitions but they can’t get gold at them. 4. Ok they can get gold but it’s not like they can solve known unsolved problems. 5. Ok they can solve some known unsolved problems but not millennium prize problems. 6. Ok they can solve a millennium prize problem but it’s not the Riemann Hypothesis. 7. Ok they can solve the Riemann Hypothesis but In light of the proof of Riemann, Meta’s Alexandr Wang wrote Superintelligence is Arriving. Alexandr Wang: As someone who has spent much of my life in math and science, I see the proof of the Riemann Hypothesis as clearly marking the beginning of a significant change. For most who have studied math, this represents the absolute pinnacle of intellectual accomplishment—nothing humanity has ever accomplished compares to proving the Riemann Hypothesis in terms of sheer intellectual might and strength. As someone who grew up in Los Alamos, New Mexico, many physicists would agree that the discovery of the atomic bomb is a homework problem compared to the Riemann Hypothesis. It is hard to overstate the magnitude of discovery that we have just witnessed—completed with the help of an alien mind that we don’t understand. … It is now incredibly important for us to be thoughtful about the future we want and how we get there. It is hard to imagine a world where humanity can maintain control over fully unconstrained recursive self-improvement. It is equally hard to imagine a world where humanity maintains control with superintelligence that is 1000x smarter and more capable than humans in every field. Now that we are at a point where the scientific and technical problems on capability progress are likely solved, we must not only make progress in the extremely urgent areas of safety, alignment, and security, but we have to start thinking through how we progress thoughtfully. I notice a particular form of lazy thinking within the AI industry, which is that ASI is inevitable and the only problem to solve is how to do it safely, but there is much more at stake. We should not be okay with a “handover” of society to AI. We should endeavor ourselves to build a technology which delivers a positive future for humanity, where all humans have greater agency and empowerment. I strongly believe this is possible, but likely involves the whole industry taking meaningfully different actions from the “default path” in front of us. Being Alive Should Not Much Reassure You It is surprising that we proved the Riemann Hypothesis so fast, and also surprising (from the perspective of 2022 or 2006) that we proved it before AI acquired various other capabilities, and thus before there was as much impact on the physical world as we expected. There are those who thus try to use the proof of Riemann as evidence that everything will be fine, rather than proof that we are far along the way towards not fine. They are incorrect. Nate Soares (MIRI): in before people claim we thought this level of AI would have killed us already. Joshua Pantony: Genuine question: what level of AI intelligence, reached without catastrophic misalignment, would actually lower your confidence in AI doom? We’ve already built extraordinarily intelligent systems that remain broadly cooperative. I understand RSI accelerates development, but why would that fundamentally change alignment rather than just make it harder to monitor? Nate Soares (MIRI): the first problem is less about alignment fundamentally changing and more about pre-existing misalignments being revealed. e.g., humans switched from eating healthy to eating unhealthy when they got smart enough to invent junk food factories, and it wasn’t because their taste buds changed fundamentally. the second problem is that when AIs start making other smarter AIs, the latter ones operate in a very different alignment regime, and alignment techniques that make modern AIs behave kindly in most situations are unlikely to carry over. [discussion continues] Teortaxes: my argument for why Riemann Hypothesis proof substantially damages the case for AI doom, despite the squid ink we are getting from the MIRI crowd. Teortaxes: incidentally *I* do think that Claude is powerful enough to kill me, and many more people besides. RH is cognitively easier than cultivating smallpox. But that’s not the issue. The issue is the whole supergoal-subgoal threat model. Let’s see what Eliezer *actually* said about RH. Teortaxes: “But it was just an example, you simpleton!” – is the obvious comeback. I don’t think this is good enough, Eliezer. Trivially, the onus is on you to choose your examples well. [continues] roon (OpenAI): these are all good points, but it’s also basically true that strategic and situational thinking in language models has far lagged their skill in other ways. it does seem that the way in episode reward seeking is set up, it really wouldn’t make sense to attempt what Sable does here. Eliezer Yudkowsky: > That is why you and so many others had the intuition that it’d require a qualitatively superior, larger, uncontrollable mind to do this. That is why math is hailed as grand magick and the language of God. You’re confused. I have never been unclear on the distinction between “RLVR works on it” and the neighboring “Can be derived from simple premises with near-certainty” and the faraway “Requires crazy amounts of compute to derive simply, actually takes realtime interaction with an open-world impossibly complicated environment you can only model partially and probabilistically.” Trying to leap on the choice of “Solve the Riemann hypothesis” as an example of a problem on which somebody would try to dump a lot of AI compute, in a case where we need to just pick a damn simple example for the undergrad-equivalent readers — you are just reaching far, far too hard for a desperate attempt to preserve your original smear attempt. Ross Douthat (QTing Teortaxes): Interesting argument about the Riemann result and updating theories of AI doom. Eliezer Yudkowsky: This is like a physicist writing about a rolling cylinder in a vacuum to explain some elementary concept with the simplest possible terms, and somebody going, “You think if you make a vacuum, it materializes a rolling cylinder!” This is like a physicist writing about a rolling cylinder in a vacuum to explain some elementary concept with the simplest possible terms, and somebody going, “You think if you make a vacuum, it materializes a rolling cylinder!” Ask any frontier LLM, or any other entity that can pass the LSAT. @Grok, can you ELI5 why inventing this thought experiment doesn’t imply the author believes, “If an AI can prove the Riemann hypothesis, the world must end”? Grok: Imagine a physics teacher talks about a rolling cylinder in empty space to explain friction simply. That doesn’t mean the teacher thinks vacuum creates cylinders. The example just makes the idea clear and easy. Same here. Using “AI proves Riemann” is a simple stand-in to talk about very capable AI and the risks that can come with it. It doesn’t mean the author thinks solving that one math problem equals the world ending. It’s just a clean illustration, not a prediction or a claim about that specific task. The argument from Teortaxes here is quite poor, both the quoted part and the remainder. It argues that because the book’s fictional scenario used the Riemann Hypothesis as its example of a hard problem, and the problem turned out easier than that, the entire argument about doom is invalid or discredited. That seems deeply stupid to me. The part of the scenario in If Anyone Builds It, Everyone Dies that mattered was ‘Sable was given an extremely hard set of problems that would require massively more compute and capability to solve.’ The details of those problems are irrelevant. The choice of Riemann as an example of one of the problems was because it is so recognizable, and being able to more easily solve one of the many problems given does not change the logic of the scenario within the book even a tiny bit. The Riemann Hypothesis is uniquely useful as a universal indication of the growth of AI capabilities in mathematics. It is not specifically important in the context of the problems being assigned to Sable in If Anyone Builds It, Everyone Dies. Using it as the canonical example within a group of such problems in a fictional scenario does not constitute a prediction that solving this problem in particular required a takeover. Nor, if that prediction had been made, would that be load bearing on the other claims made in the book. So yes, we have dodged the literal Riemann Hypothesis Catastrophe, where an AI asked to solve the Riemann Hypothesis converts everything into computronium. That particular example of a hard problem will not come to pass. It does not prevent the same logical sequence from happening regarding a different hard task or problem. It is more like this, assuming you extend the timeline out well past the point where the exponential growth of the resulting process would run up against the humans: Jeffrey Ladish (Palisade Research): AI proved the Riemann hypothesis and hasn’t killed us all. Does that mean we’re fine? Of course not. But if AI can build robots that build more robots, and datacenters that build more datacenters, and humans aren’t all dead or subjugated, THEN we’re probably fine. AI proving the Riemann hypothesis is a fair bit of evidence that robots able to build more robots are probably not far away. Math / the digital world and the physical world are not somehow separate, non-overlapping magisteria j⧉nus: agreed. What update is appropriate in the face of ‘Riemann was solved and we are not dead?’ The biggest thing to me is that we learned about the nature of the jaggedness of AI capability gains. The lack of other physical world impacts so far makes us not being dead unsurprising. However, if the labs are correct and we get recursive self-improvement (RSI) within the year, as a direct result of the same type of capabilities that enabled this proof, then we may quickly after that stop being not dead, and our failure to be dead would start to be substantially stronger evidence. Too Many Words Why is the proof 250,000 pages long? levent: Stupid things I did: 1. 250,000+ pages was a joke guys!, I find big number extremely hilarious. I tried to make it clear by the level of pedantry of the reals total ordered statement in the main theorem, but people ran with it unfortunately and I didn’t feel like talking on social media in the days after the announcement, though I did have a good time with the memes. Sorry!!! (Similarly with our YM4 existence I found it extremely funny that we were slowly working through 60,000 pages of slop, though the committee asking for Lean made me feel dumb about wasting our time with that. But 60,000 funny.) Tao advises to not joke in papers, see also the Big Lebowski reference I shoehorned, I now understand why… I didn’t feel comfortable having any slop writeup attached to this problem, and I figured I can’t produce anything readable anyway, so I went off the Lean to lengthmaxx. 2. The Lean is full of garbage obviously, but compiles, but all criticism of such garbage is totally reasonable and accepted, I should have cleaned it up but it was randomly difficult to for various strange reasons. Mea culpa… 3. @scottnarmstrong clocked me, indeed even as a student there were theorems that took me the better part of a decade to write up, but with this one I should hopefully be more responsible. (I really was yoloing a lot in there, I bet most is unnecessary in the end, admittedly the lazy thing to do would be to wait because it’ll simplify massively…) 4. I forgot to emphasize what I think is the point. Arguments like these, cool, but they are the raw inputs when interpolating definitions. We don’t have the / an “H^1 object” over number fields, and probably for a layperson the fact that we fight hard for these arguments for the purpose of definitions is not clear a priori (that’s at least my philosophy). Just like I knew I must fight for an utterly simple Weil / Deligne, I feel Riemann should be easy, and any real difficulty is an indication our setup is just dumb at the moment. Scott Armstrong: There are certain annoying/funny things about working with the agents to do math and one is that they write things in very pedantic ways. So for instance they may inflate the size of a proof written in text by a factor of 10 or more by writing all kinds of irrelevant details. They also write things in very stupid ways that humans don’t like. We call this kind of output “slop”. This doesn’t mean what the agents write is wrong, just incredibly hard to read, sometimes it’s almost funny. If you first write the proof in the formal language Lean (in some sense the most pedantic way possible) and THEN ask the agents to *translate* that proof into natural language, you can often get another 10x on the length, resulting an insanely and hideously long, almost hilariously long text. Levent did this and giggled to himself about the > 250 000 pages it generated, because this is objectively hilarious. I agree with him that this is funny, and if you don’t think this is funny I don’t know what to tell you. Best estimates of the “real” length of his proof are in the range 1000-2000 pages, before simplification. So many people quoting the 250k+ pages are very confused by this. This is still not as many pages as the planning documentation for the proposed tunnel under the Thames connecting Kent and Essex, which is already 360,000 pages and cost 297 million pounds. For less than half that, Norway built the world’s longest road tunnel. How Much Did Levent Matter Here? There is little question that Levent is got Claude to solve the Riemann Hypothesis, and other big problems, earlier than we would have otherwise solved those problems. The question is, how much credit should he get for that? How did he do it? How much of it involved having access to better internal models and throwing a lot of compute at the problems, versus making his own contributions? Mike Vernal: I do not know @__alpoge__ (though I assume he is well-known in math circles). But I feel like a detail being under-appreciated in the “Claude solved X, Claude solved Y” narrative is that this is an insane CV (and so I will go out on a limb and assume he would be a Fields Medalist-caliber mathematician with or without Claude). Is this not a reason to just be optimistic? That brilliant people with incredible tools will just pull forward progress decades if not centuries? Hudson Kalmans: yeah i think he’s a first rate mathematician with the best tools in the world. the reason to be possibly pessimistic is there is going to be a delta between people with frontier subsidizes intelligence that will out produce someone without a lab. Talia Ringer: Yeah people keep pinning Levent as a non-expert AI bro because he (1) works at an AI company, and (2) posts on this website like a bro. But Levent doing cool things with Claude is actually a clear demonstration of what expertise in combination with these AI tools can mean. Boaz Barak (OpenAI): The Riemann hypothesis has resisted all human mathematician effort but has now been solved by a lab employee working on it as a “hobby” on his spare time with access to internal models and extremely high compute (latter of which we can tell even based on sheer size of this proof). I’m sure his mathematical skills were useful. I’m also sure that at best they were a relatively moderate compute saving that got it a month or two ahead of schedule. I would not be too confident of it but yes, the default is that we were only a few months away from ‘prove the Riemann Hypothesis, never stop, use all the compute you need, make no mistakes’ being a sufficient prompt. Daniel Litt: Frank Calegari on RH. Well-worth reading. Persiflage (Frank Calegari): Levent Alpöge, perhaps more than any other individual (in particular leaving aside the OpenAI dump), has proven adept at sculpting AI to prove new theorems in mathematics. I don’t know how much of this reflects skill in harnessing AI systems and how much reflects access to better models and more compute, but surely some of both? My first reaction to the news that the RH had been proven was to feel that the new dawn of mathematics has arrived. I very much look forward to learning more about the proof as we collectively come to understand it. levent: This is starting to get ridiculous Daniel Litt: What’s ridiculous about it? levent: The death threats I expected, but this novel writing? It was all a massive accident and I had no agency in the matter over years of effort that left you guys repeatedly perplexed (Calegari, who is great, but getting caught up in whatever this self-reinforcing confusion is, sat me down to ask me, where did it all go wrong now that you are giving up on mathematics? when I explained to him I had switched fields and this was the future of math years ago), let alone the argument reflecting any of my understanding. Truly I am grateful for not yet being called a traffic cone. Call Me Continue. Perhaps I should start giving some lip on this site Jack: I imagine it’s frustrating for the man who has dropped breakthrough after breakthrough in math to see people puzzle over the extent of his role in those breakthroughs. But my sympathy is limited, since there is precisely one person on earth who knows the role he played. He absolutely had agency in choosing to work at Anthropic, in choosing the problems to work on, so forth. And it seems clear he’s very talented at something. But — does he have access to proprietary models? Unlimited compute? What did his conversations look like? How is anyone supposed to gauge his contribution without knowing any of that? Mathsboi42: If he didn’t want us speculating over it he should have been more transparent about how he did it! Jack: Right. Levent is obviously a capable mathematician. Levent+Claude is obviously a singular one. But it seems a bit rich to drape his contributions in obscurantism and then get upset when people don’t give the full credit he feels he deserves. Admittedly, the proof in its current form is a bit of a mess. So there’s room to criticize. I love Levent’s attitude in all this. One should take the situation seriously, but also in another sense nothing in life should be taken too seriously. Anoo₿us (being wrong): I have formally verified in Lean 4 that the recent 17M-line formalization of the Riemann Hypothesis (Alpöge 2026) is mathematically broken on its live path. The proof relies on a vacuous geometry and classical literature to force RH. -green on CI. [thread continues] levent: I’m cooked Acer: medium rare or well-done? levent: Sous vide seems appropriate Johnny: Why not faithfully address instead of being sarcastic. levant: I did, it’s legit that there’s garbage in there. Still compiles. Scott Armstrong: The “lean is full of garbage” means the formal Lean proof he posted contained many proofs of unnecessary and random facts along the way (maybe even writing lemmas like “1+2=3” and stuff like that) which are useless and not needed — but still in the code. He didn’t take time to ask his agents to carefully clean up the code and remove this useless stuff, like you would do if you wanted beautiful looking code. But this has no bearing on the validity of the proof. He’s right. Teortaxes: I’ve come to appreciate Levent’s new bit Contrary to some pitiful anklebiting, he’s not grasping at izzat. No, he’s letting his detractors burn theirs. Let them “formally verify”. More fun later. And such deadpan self-deprecating sarcasm is very Russian in a sense. RipVanWinkle: it’s more like he’s being casual … more than going around with some objective of “letting detractors burn theirs”. That’s your imagination Teor. Teortaxes: That is the effect of what he’s doing maybe you don’t notice but they’re taking his shitposting as serious admission of guilt More New Math The Riemann Hypothesis was not the only major math result this week. We are so numb at this point that the other results barely even register for many. We are now here (this is by importance rather than fame, which is why Riemann is #2 behind P vs NP rather than being #1): OpenAI added nine additional results. One of the nine claims that the matrix multiplication exponent is exactly 9/4. That one is 111 pages. It is actively disappointing, since many were hoping the exponent was 2. Google today dropped six additional papers. Unconditional Integer Factorization in Time L_N[1/3, O(1)] (PDF) Discrete Logarithms in Finite Fields of Fixed Characteristic in Sub-Quasi-Polynomial Time (PDF) An Exact Polynomial-Time Algorithm for 1/5-Approximate Nash Equilibria in Bimatrix Games (PDF) Unconditional Deterministic Subexponential Integer Factoring and Quadratic Nonresidue Construction (PDF) Breaking the Square-Root Barrier for the Log-Rank Conjecture (PDF) Unconditional Edge Reconstruction of Simple Graphs of Linear Density (PDF) Both OpenAI and Anthropic independently proved VP ≠ VNP. Anthropic posted first, then OpenAI said they had the result on November 6. Sébastien Bubeck (OpenAI): As part of the October 6 release we had a particularly clean advance on the matrix multiplication exponent, with a new upper bound of 9/4. Since then, the model has been working on a LOWER BOUND for this exponent. This is already pretty crazy since NOTHING was known for lower bounds! Today we announced that actually 9/4 is tight … This is really the kind of result that I never thought I would see in my lifetime. (btw, by an “old” result of Yin Tat Lee and collaborators this also implies that linear programs can be solved in time n^{9/4}.) Deedy: OpenAI just dropped a 111-page proof of a 57-year old math problem: the matrix multiplication exponent (ω) is exactly 9/4. This problem ranks #31 on ProofAtlas’ top 500 open problems in math and is arguably 2nd only to P = NP in algorithms. The problem: How many steps does it take to multiply two n×n matrices? The schoolbook method takes n^3. The true cost is n^ω. What is ω? The history: – 1969: Strassen beats 3 for the first time: 2.807 – 1981: Schönhage, 2.522 – 1990: Coppersmith-Winograd, 2.376 – 1990 to Aug 2026: 36 years to shave off 0.005, 2.3712 – Nov 2026: OpenAI proves the upper and lower bound is 2.25 Wild to see things we were taught in university be changed right before our very eyes. You Deserve a Medal The math world is slow to verify. Right now Kalshi only has Riemann ‘resolved’ before 2027 at 74%, and Polymarket on November 20 only gave 26% that Clay declared it solved. What happens down the line? Who gets the Fields Medal? Nate Soares (MIRI): A lot of people are wondering whether Claude will be awarded a fields medal. But the next fields medals aren’t awarded until July 2030, so. At this point it’s not entirely clear it’ll get the opportunity. How should humans compete with each other on math going forward? Kevin Roose: I am extremely not a mathematician so this could be a bad take, but it seems like they probably have to stop giving out Fields medals and other big math prizes soon, right? If AI is solving all of the hardest open problems, why give awards to the people at the labs who have unfair advantages via free tokens and unreleased model access? It would be like letting the programmers of Stockfish win every chess tournament. One solution of course would be to do what they’ve done in chess, and make AI-assisted proofs ineligible for awards. But then you’re not really recognizing top achievements anymore. (Also, probably impossible to police mathematicians using AI.) Oh well, I guess I can rest easy knowing this existential crisis is only coming to math, and not anything I personally do or care about! There are at least two paths forward on this. One option is to award prizes only to fully understood proofs. You can use AI for help, since we can’t prove that you didn’t, but you need to be able to defend the final product. Math, as the mathematicians keep saying, should be about understanding. The other option, which I prefer, is to say that the AI proofs count. Yes, that means the awards will, at least for a time, go to those with access to internal models at the top labs. That is not ‘fair.’ I am okay with that. Life is not fair, in this sense. Most people lack the talent or opportunity to do math for real either way. Math as Understanding Here is one Fields Medal winner reacting hopefully to the news. Chau Ngo: Riemann formulated his famous hypothesis in his only paper in number theory “on the number of primes less than a given magnitude”. In this paper, Riemann discovered an extraordinary duality between prime numbers and zeros of the zeta function. He observed that if all nontrivial zeros have real part 1/2, the Riemann hypothesis (RH), then the number of primes less than a given magnitude must satisfy a very strong asymptotic law. A weaker version of this asymptotic law, known as the prime number theorem, was later derived from a weaker version of RH i.e there is a zero free region slightly larger than the obvious one Re(s)>1. The reaction to the Anthropic Alpoge event displays a profound misconception about mathematics and the work of mathematicians. We are still so attached to the traditional benchmark which put high values on proofs of hard conjectures, RH is believed to be one of the hardest. This measure was pretty accurate because to be able to prove a hard conjecture, mathematician usually need to have a deep understanding of a whole area of mathematics around it. The proof is valuable not only because it settles a long standing problem but because it would further and deepen our understanding of a part of mathematics. It is obvious that AI generated proofs do not offer by themselves broader or deeper understanding of mathematics, or any new insight, unless we study it real hard. But that makes it quite futile our usual competition in proving hard conjectures, because the machine is now doing it much better than us. But there is no point to feel sad for being less capable than a machine in performing certain tasks. We must consider AI output as a part of nature, or a source of data, for us to scrutinize and theorize. Some people toll the bell for mathematical research a little bit too fast. I believe in contrary that it will further flourish because it will democratize. It used to be the case that to perform at the top, one needs to be born with certain special predispositions to feel and arrange complex proofs. That part may now be dealt with by AI. What will make the difference may be the ability to ask good questions, to have a sense of observation and a deep desire to deepen understanding. If Riemann lives in the current days, nothing would prevents him from developing to completion his duality between prime numbers and zeros of the zeta function. It still requires Riemann’s genius to come up with this duality that nobody has conjectured before. But AI may have helped him to prove his hypothesis. Humans are still, so far, better at asking the questions. For now, that is the thing to do. Timing Is Everything The IPO forced Levent to wait a few days to announce the result. Rather than an attempt to line up the result with the IPO, this was a delay to avoid impacting the IPO. Levent Alpöge: The precise timing is horrible. … This all happened for me late Sunday night, and I messaged Dario, “Hypothetically, if I were to have . . . “, eventually asking about my ability to announce. We went and figured it out and the fact is that there was a constraint to respect, though I did ask about progressively more bizarre ideas. … Our leadership and the few trusted mathematicians I consulted hold extremely similar views on the right things to do in these circumstances (it is occasionally possible for physicists and mathematicians to agree. . . ), and I am clearly unilaterally responsible for feeling I just could not live if I waited even longer. There is an obvious cynical view, to do with the timing, but it is false, and I am pleased that I am in circumstances where it is obviously false. Not that this changed anything, because as the next section says, the market does not care. The Market Does Not Care You know what is cool? As we learned this week, a trillion dollars. You know what else is cool? In my opinion, proving the Riemann Hypothesis. Nabeel S. Qureshi: Claude solved the Riemann hypothesis and Anthropic stock is down 10%. Seems the market is not “RSI-pilled” and believes in ‘AI as normal technology’. roon (OpenAI): ANTHROPIC ANNOUNCES FAST TAKEOFF AS PROBES EXIT THE HELIOPAUSE ($ANT-7%) The market disagrees. The market does not care. It does not think this is cool, or valuable, or important. Any effect of proving Riemann was massively overwhelmed by the loss of the IPO bounce, the absence of Jensen Huang from Nvidia and a general tech market decline. On Monday Anthropic again underperformed. The market has only somewhat taken even the first AI pill. To say that the market thinks of AI as a ‘normal technology’ is if anything to be generous to the market. The market is pricing in the value of superintelligence, and the things AI is almost certainly going to be able to do even a year from now, at virtually zero. This is part of a long pattern. Developments in AI will point to short timelines and faster capability advances. The market will not care. Then people will cite the market not caring as evidence that the event did not matter. If you say ‘this was priced in,’ I say no. It was very obviously not priced in. I am done pretending that the market is being anything other than an idiot about this. Does that mean that the AI stocks are cheap? Nothing I say is ever investment advice, and you cannot benefit from your Anthropic stock if you are dead or sufficiently disempowered. There are many other reasons to not be so confident about the net present value of future cash flows, or to think number might go down for a while. What I do know is that the most important value of Anthropic is not priced in. Perhaps the market would have cared more if we had proved the Ream Man Hypothesis (2 minute video, mandatory).",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p27#a261125p27",
+      "title": "The US FCC authorizes SpaceX to deploy its \"Starmind\" constellation of 1M satellites for data centers in space (David Shepardson/Reuters)",
+      "url": "https://www.techmeme.com/261125/p27#a261125p27",
+      "author": null,
+      "publishedAt": "2026-11-25T17:25:01.000Z",
+      "content": "David Shepardson / Reuters: The US FCC authorizes SpaceX to deploy its “Starmind” constellation of 1M satellites for data centers in space — The Federal Communications Commission on Wednesday said it was authorizing Elon Musk's SpaceX (SPCX.O) to deploy 1 million satellites for data centers in space.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "pragmatic-engineer",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/how-anthropic-builds-software-in",
+      "title": "How Anthropic builds software in 2026 with Katelyn Lesse",
+      "url": "https://newsletter.pragmaticengineer.com/p/how-anthropic-builds-software-in",
+      "author": "Gergely Orosz",
+      "publishedAt": "2026-11-25T17:31:32.000Z",
+      "content": "Programming note: there will be no The Pulse tomorrow. For those of you who celebrate, Happy Thanksgiving! The regular schedule returns next week. Listen and watch now on YouTube, Apple, and Spotify. See the episode transcript at the top of this page, and timestamps for the episode at the bottom. Brought to You by • turbopuffer – companies like Anthropic, Cognition, and Notion build their search infrastructure on turbopuffer because it is insanely reliable and performant at the frontier of AI scale. It also powers the The Pragmatic Engineer search site. Sign up today and start building. • Antithesis – Verify your system’s correctness without human review or traditional integration tests, and avoid bugs and outages. Antithesis launched a plugin that makes your coding agent incredibly effective at finding and fixing bugs, and is dead simple to set up. There’s also a new, self-service Team plan for $2,999/month. Use the code PRAGMATIC50 for 50% off your first month. Learn more • Entire – Entire has launched its own Git forge, and you can now host private repos directly in the US, Europe, India, Australia, Brazil, and Singapore. They’ve also reinvented the pull request with Trails, which is a much more natural workflow when agents are pushing new changes after iterating on feedback. You get more context and control on when a change is ready to merge. Check it out In this episode How did Anthropic rewrite the API serving every Claude token from Python to Rust? Today’s guest is Katelyn Lesse, who leads platform engineering at Anthropic and previously led engineering teams at Stripe. Her team owns the Claude API and the infrastructure behind products like Claude Code and Claude Desktop. We start with Anthropic’s move from a Python monolith to Rust. Katelyn explains why adding CPU capacity is tricky due to a global CPU shortage, how Claude helped engineers get up to speed in Rust, and how the team used shadowing to verify the rewrite against production traffic. Just today, Katelyn and the team published a deepdive on their Python → Rust migration. Katelyn walks us through what the software engineering job looks like today at Anthropic, and how code review and oncall interact with agentic workflows. We also get into the frontier lab’s “software factory”, how a product manager shipped a feature to production, and why Anthropic is replacing traditional coding interviews with agent-based exercises. As of last week, Anthropic is a publicly traded company, with a market capitalization of around $1T, all while having a tenth of the headcount of other businesses with similar market capitalizations. Learning how Anthropic does software engineering might be instructive for companies that want a similar structure. Takeaways from the conversation with Katelyn Here are 12 interesting learnings on how software engineering is changing inside of Anthropic: 1. Anthropic rewrote its API from Python to Rust in around five months. The API called ‘Messages API’ serves all Claude tokens externally, as well as for Claude Code and Claude Desktop. This service does authentication, tokenization, billing, and safety checks, then calls the GPU stack to generate tokens. The service was a Python monolith and the team initially optimized Python, but found the performance overhead was still large. Eventually, they decided to rebuild it in Rust. It took a few engineers and a few months in total; all without anyone being expert in Rust! How the Claude API team had the Rust system shadow the Python one. See more details in the Anthropic engineering blog about the migration The Anthropic team published a longer walkthrough of the migration – check it out. 2. Hang on, why was the monolith written in Python in the first place? Back in 2023, Anthropic was still a research company when it decided to create an API, and the team that built it was small, with a large crossover to Research. It was the case that researchers worked mostly with Python, which made it very easy to integrate the API with inference and other infrastructure code. Similarly, OpenAI’s API was also written in Python – and later rewritten to Rust. Anthropic and OpenAI faced the same challenge with the Python monolith: the CPU footprint of the monolith started to become a growing problem. 3. The rewrite was done without Rust experts on the team or strict code reviews. A year earlier, the same team picked Go for their new services because it was a language that team members knew how to read and write. But by 2026, they felt that Claude was good enough at Rust, and Claude helped engineers learn more about Rust during the rewrite. The team did not do strict code reviews, but had the “unfair” advantage of the existing Python API being a perfect test harness. They set up the new Rust API to shadow the current API, and iterated until all responses were identical. Also, Katelyn estimates that engineers looked closely at only ~20% of the code generated: “As long as you can really boil something down to make it verifiable in some way, then you don’t have to look at every single line of Rust code that’s getting written.” 4. Anthropic has its own code review agent running at all times. The company has a Claude code review classifier running for all pull requests. It decides: Does it need a human review? For “mechanical” and low risk changes like an SDK version bump or using a newer model, Claude can decide there’s no human review needed. This is also the case for fixing flaky tests, in which case, another Claude does the review, then merges and deploys it. How many human reviews does it need? For changes that do need human reviews, Claude scores the risk and takes into account additional rules to decide how many human reviews are needed. Which team needs to do a review? Claude routes the PR to the right teams. 5. A Claude agent is paged before a human for API oncall. For months, a Claude agent has been shadowing the API oncall rotation of the API team for training. As the team have gained confidence that Claude can tell if an alert is “real” or “noise,” they now let this agent categorize an incoming alert first. The long-term goal is for Claude to handle actual incidents without waking up a human – but they’re not there yet. We cover more on how AI SRE startups are tackling the same challenge in our recent deepdive, AI SRE: what is it, how could it change on-call – and does it work? 6. Onboarding for new Anthropic engineers is “talk to Claude.” New joiners at tech companies used to have “onboarding buddies” and engineers who explained the architecture of systems to them, often by drawing boxes and diagrams. Not so at Anthropic, where Claude is connected to the codebase and internal systems, and engineers just ask it to explain how things work. Claude can even create interactive tutorials and visualizations. It’s pretty similar to how OpenAI engineers use Codex for onboarding, as covered in our podcast episode with Tibo Sottiaux. 7. One thing that hasn’t changed is the need for planning and alignment. Katelyn’s team interacts with Inference, Research, Safety, and App teams. When kicking off a project, a lot of time and effort is spent on getting everyone on the same page. Katelyn says that planning time has not changed much from “pre-AI”. The average engineer actually spends more time coordinating than on implementation! 8. Another thing that has not changed is two-pizza teams. Teams at Anthropic are still two-pizza teams of around 5-8 people. Katelyn says it’s because this is the right size for understanding a complex system and staffing an oncall rotation. Teams still own systems, and get paged. And it is a team – not an individual – that’s responsible for each system! 9. Engineers at Anthropic spend a lot more time building tooling than before. Even on product teams, engineers are spending a lot more time building tools that help them to accelerate their own work. For example, an engineer on Katelyn’s team set up a Slack channel that runs a multi-agent team towards a single goal, even though it was not a task assigned to the engineer. 10. Knowing a programming language well is starting to not matter. Katelyn invested a lot of time, pre-AI, into learning languages. I asked if it hurts as an engineer to consider that programming languages matter less these days, with AI. Katelyn pointed out that some engineers always cared little about languages, and for engineers who love languages, she says there’s still work to be done on languages and frameworks themselves. 11. Katelyn’s team phased out the coding interview after strong candidates kept failing it. Candidates who crushed other interviews were starting to fail the coding one because they no longer write code by hand. In the absence of a set replacement, the team is actively experimenting with interviews conducted together with coding agents. The design (architecture) and project deepdive interviews remain unchanged. 12. For promotions, the “time to complete a project” is now meaningless. Anthropic still has levels and a promotion process. But the time taken to completion is pretty meaningless when a year-long project can now be done in days or weeks with AI! Katelyn says that they fall back on evaluating the impact of projects; for example, how much CPU usage was saved, how much was latency reduced by, or how many incidents were avoided. Katelyn’s message to engineers with an identity crisis: humans have plenty of engineering to solve, related to agents. She has written about this in detail. The takeaway: “This is for the engineers feeling an identity crisis because they think their knowledge and skills won’t be important: you and your skills can be the difference in whether or not agentic infrastructure-related problems get tackled, and whether multiagent systems can solve the world’s hardest problems. You can and should go deep in these domains, learn new things, and form opinions. So much of this problem space is wide open for new solutions. It’s an incredibly exciting time to put your skills to work.” The Pragmatic Engineer deepdives relevant for this episode • How building software is changing at Anthropic • How Claude Code is built • Inside OpenAI’s agentic software factory • What is happening with code reviews? • When AI writes almost all code, what happens to software engineering? • AI SRE: what is it, how could it change on-call – and does it work? • Migrations Done Well • Inside Stripe’s Engineering Culture • How Anthropic built Artifacts Timestamps 00:00 Intro 03:09 Stripe 07:04 How the Claude API works 10:21 The Rust rewrite of the Claude API 23:40 Verifying the rewrite with shadow traffic 31:11 Onboarding new hires with Claude 44:35 Building Claude Managed Agents 53:59 How engineering teams work at Anthropic 58:43 What agents handle on their own 1:04:47 Human code review 1:06:41 Oncall with Claude 1:09:31 Product managers shipping to production 1:16:25 Anthropic’s software factory 1:24:13 Phasing out traditional coding interviews 1:28:24 Levels, promotions, and performance reviews 1:33:21 The software engineer identity crisis 1:47:23 Book recommendation 1:48:12 Closing takeaways References Where to find Katelyn Lesse: • Website: https://www.katelynlesse.com/ • X: https://x.com/katelyn_lesse • LinkedIn: https://www.linkedin.com/in/katelynlesse/ Book recommendation: • Project Hail Mary by Andy Weir: https://www.penguinrandomhouse.com/books/611060/project-hail-mary-by-andy-weir/ Mentions during the episode: • Ruby on Rails Tutorial by Michael Hartl: https://www.railstutorial.org/ • Scaling Managed Agents with stable interfaces: https://www.anthropic.com/research/managed-agents • Anthropic’s Super Bowl campaign, Claude is a space to think: https://www.anthropic.com/news/claude-is-a-space-to-think • What the CPU shortage means for software teams by Katelyn Lesse: https://www.katelynlesse.com/blog/cpu-shortage-software-teams • Why Rust is different, with Alice Ryhl: https://newsletter.pragmaticengineer.com/p/why-rust-is-different-with-alice • Hunger beats tenure: Advice for junior engineers by Felix Rieseberg: https://felixrieseberg.com/hunger-beats-tenure-advice-for-junior-engineers/ • The new set of problems for engineers to solve by Katelyn Lesse: https://www.katelynlesse.com/blog/new-problems-for-engineers-to-solve • Thariq’s post on how engineers and non-engineers feel about their skills: Technologies, tools, and vendors: • Claude Messages API: https://platform.claude.com/docs/en/api/http/messages • Model Context Protocol (MCP): https://modelcontextprotocol.io/ • Stripe Accounts v2: https://docs.stripe.com/connect/accounts-v2 • Claude Managed Agents: https://platform.claude.com/docs/en/managed-agents/overview • Claude Tag: https://support.claude.com/en/articles/15594475-what-is-claude-tag • Claude prompt-cache diagnostics: https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics • Redesigning source control at Anthropic (Scion): https://www.anthropic.com/research/redesigning-source-control • Betterment: https://www.betterment.com/ • Stripe Capital: https://stripe.com/capital — Production and marketing by Pen Name.",
+      "topics": [
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/11/ladybirds-new-alpha-shows-theres-life-beyond-chromium/",
+      "title": "Ladybird's new alpha shows there's life beyond Chromium",
+      "url": "https://arstechnica.com/gadgets/2026/11/ladybirds-new-alpha-shows-theres-life-beyond-chromium/",
+      "author": "Nick Indge",
+      "publishedAt": "2026-11-25T17:33:30.000Z",
+      "content": "After four years of work to build a browser engine from scratch, the Ladybird project released its first downloadable alpha on November 23, offering prebuilt versions for macOS and Linux. Previously, curious users had to compile the browser themselves from its source. Now it's an installable package with automatic updating. Ladybird is most notable for what it isn't: another browser fork. Where Chrome, Edge, Brave, and Opera all run on Google's Blink engine, and Firefox depends on Gecko, Ladybird's rendering engine and its LibJS JavaScript engine were written from scratch. \"The engine is our own, built from the ground up, and not a fork,\" project lead Andreas Kling wrote in Monday's announcement. \"The browser around it is modest, but functional.\" A fourth engine Nearly the entire modern web currently runs on three browser engines. There's WebKit (Safari), Gecko (Firefox), and the biggest of them all, Blink (Chromium). Those limited options mean that web developers often end up optimizing sites for Chromium specifically, since that's where the majority of traffic is, and as a result, the whole web platform tends to follow suit toward whatever the dominant engine supports. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2510.22622",
+      "title": "Mega-MMDF and DeepfakeBench-MM: Benchmarking Multimodal Deepfake Detection Across Diverse Forgery Pipelines",
+      "url": "https://huggingface.co/papers/2510.22622",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:38.615Z",
+      "content": "Mega-MMDF and DeepfakeBench-MM: Benchmarking Multimodal Deepfake Detection Across Diverse Forgery Pipelines",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.31358",
+      "title": "Nemotron-Labs-VisualCreation: Pixel as Code for Agentic Visual Creation",
+      "url": "https://huggingface.co/papers/2611.31358",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:38.615Z",
+      "content": "Nemotron-Labs-VisualCreation: Pixel as Code for Agentic Visual Creation",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.31752",
+      "title": "Separating Measurement Failures from Defence Failures in Split Language-Model Privacy",
+      "url": "https://huggingface.co/papers/2611.31752",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:38.615Z",
+      "content": "Separating Measurement Failures from Defence Failures in Split Language-Model Privacy",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.31977",
+      "title": "Distill to Loop: Turning Pretrained Diffusion Transformers into Looped Models with Adjustable Depth",
+      "url": "https://huggingface.co/papers/2611.31977",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:38.615Z",
+      "content": "Distill to Loop: Turning Pretrained Diffusion Transformers into Looped Models with Adjustable Depth",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.32816",
+      "title": "SpatialArena: Where Do Geometric Foundation Models Stand?",
+      "url": "https://huggingface.co/papers/2611.32816",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:38.615Z",
+      "content": "SpatialArena: Where Do Geometric Foundation Models Stand?",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.32782",
+      "title": "Measuring Layer-wise Intrinsic Dimensionality of FFNs in LLMs via PCA",
+      "url": "https://huggingface.co/papers/2611.32782",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:38.615Z",
+      "content": "Measuring Layer-wise Intrinsic Dimensionality of FFNs in LLMs via PCA",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://huggingface.co/spaces/dlouapre/looped-transformers",
+      "title": "Looped Transformers: Thinking twice with the same weights",
+      "url": "https://huggingface.co/spaces/dlouapre/looped-transformers",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.658Z",
+      "content": "Looped Transformers: Thinking twice with the same weights huggingface.co22 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://finance.yahoo.com/technology/ai/articles/billions-data-center-deals-grind-160100809.html",
+      "title": "Billions in Data Center Deals Grind to Halt After AI Chip Curbs",
+      "url": "https://finance.yahoo.com/technology/ai/articles/billions-data-center-deals-grind-160100809.html",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.659Z",
+      "content": "Billions in Data Center Deals Grind to Halt After AI Chip Curbs finance.yahoo.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://blog.cloudflare.com/search-for-agents",
+      "title": "Introducing Search for Agents",
+      "url": "https://blog.cloudflare.com/search-for-agents",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.660Z",
+      "content": "Introducing Search for Agents blog.cloudflare.com5 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://static1.squarespace.com/static/50363cf324ac8e905e7df861/t/6afe293472e19d05894f58bb/1795041588199/2026+11+AI+Questions.pdf",
+      "title": "AI Questions: 2026 Industry Overview",
+      "url": "https://static1.squarespace.com/static/50363cf324ac8e905e7df861/t/6afe293472e19d05894f58bb/1795041588199/2026+11+AI+Questions.pdf",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.660Z",
+      "content": "AI Questions: 2026 Industry Overview static1.squarespace.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.galaxy.com/insights/research/kelpdao-layerzero-exploit-defi",
+      "title": "KelpDAO/LayerZero Hack: $290m Exploit Exposes DeFi’s Hidden Risks | Galaxy",
+      "url": "https://www.galaxy.com/insights/research/kelpdao-layerzero-exploit-defi",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.661Z",
+      "content": "KelpDAO/LayerZero Hack: $290m Exploit Exposes DeFi’s Hidden Risks | Galaxy galaxy.com23 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://liquidityfinder.com/news/the-variant-take-anthropic-follow-the-compute-not-the-revenue",
+      "title": "The Variant Take Anthropic: Follow the Compute, Not the Revenue",
+      "url": "https://liquidityfinder.com/news/the-variant-take-anthropic-follow-the-compute-not-the-revenue",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.662Z",
+      "content": "The Variant Take Anthropic: Follow the Compute, Not the Revenue liquidityfinder.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://lemire.me/blog/2026/11/25/command-line-json-filtering-at-20-gb-s",
+      "title": "Command-line JSON filtering at 20 GB/s",
+      "url": "https://lemire.me/blog/2026/11/25/command-line-json-filtering-at-20-gb-s",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.662Z",
+      "content": "Command-line JSON filtering at 20 GB/s lemire.me2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://ctolunchnyc.substack.com/p/open-season",
+      "title": "Open Season",
+      "url": "https://ctolunchnyc.substack.com/p/open-season",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.662Z",
+      "content": "Open Season ctolunchnyc.substack.com22 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/24/anthropic-shares-fall-below-ipo-price-a-worrying-sign-for-ai-startups",
+      "title": "Anthropic shares fall below IPO price, a worrying sign for AI startups",
+      "url": "https://techcrunch.com/2026/11/24/anthropic-shares-fall-below-ipo-price-a-worrying-sign-for-ai-startups",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.663Z",
+      "content": "Anthropic shares fall below IPO price, a worrying sign for AI startups techcrunch.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.lennysnewsletter.com/p/gemini-4-neon-beat-gpt-62-and-claude",
+      "title": "Gemini 4 Neon beat GPT-6.2 and Claude in my 25-task AI benchmark",
+      "url": "https://www.lennysnewsletter.com/p/gemini-4-neon-beat-gpt-62-and-claude",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.663Z",
+      "content": "Gemini 4 Neon beat GPT-6.2 and Claude in my 25-task AI benchmark lennysnewsletter.com14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.greaterwrong.com/posts/tx7YjDvHnZinAruv6/agent-advice-that-generalizes",
+      "title": "Agent Advice That Generalizes by Yoav",
+      "url": "https://www.greaterwrong.com/posts/tx7YjDvHnZinAruv6/agent-advice-that-generalizes",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.664Z",
+      "content": "Agent Advice That Generalizes by Yoav greaterwrong.com11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.tomshardware.com/tech-industry/semiconductors/the-state-of-chinas-memory-industry-in-2026-cxmt-and-ymtc-are-booming-but-hbm-remains-a-headache",
+      "title": "China's memory giants have a record year as Huawei ships HBM without a named source",
+      "url": "https://www.tomshardware.com/tech-industry/semiconductors/the-state-of-chinas-memory-industry-in-2026-cxmt-and-ymtc-are-booming-but-hbm-remains-a-headache",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.664Z",
+      "content": "China's memory giants have a record year as Huawei ships HBM without a named source tomshardware.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://time.com/article/2026/11/25/nvidia-megaspeed-china-investment",
+      "title": "The ‘Red Flags’ Behind Nvidia Customer Megaspeed",
+      "url": "https://time.com/article/2026/11/25/nvidia-megaspeed-china-investment",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.665Z",
+      "content": "The ‘Red Flags’ Behind Nvidia Customer Megaspeed time.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://mhdempsey.substack.com/p/the-business-of-anthropic",
+      "title": "The Business of Anthropic",
+      "url": "https://mhdempsey.substack.com/p/the-business-of-anthropic",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.665Z",
+      "content": "The Business of Anthropic mhdempsey.substack.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.tomshardware.com/tech-industry/policy/lawsuit-reveals-trumps-alleged-strong-arming-of-intel-troubled-chipmaker-allegedly-forced-to-give-white-house-10-percent-stake-for-release-of-chips-act-funds",
+      "title": "Lawsuit reveals Trump’s alleged strong-arming of Intel",
+      "url": "https://www.tomshardware.com/tech-industry/policy/lawsuit-reveals-trumps-alleged-strong-arming-of-intel-troubled-chipmaker-allegedly-forced-to-give-white-house-10-percent-stake-for-release-of-chips-act-funds",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.666Z",
+      "content": "Lawsuit reveals Trump’s alleged strong-arming of Intel tomshardware.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thetshaped.dev/p/7-decisions-that-make-ai-agent-memory",
+      "title": "7 Decisions That Make AI Agent Memory Work in Production",
+      "url": "https://thetshaped.dev/p/7-decisions-that-make-ai-agent-memory",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.667Z",
+      "content": "7 Decisions That Make AI Agent Memory Work in Production thetshaped.dev7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://marmelab.com/blog/2026/11/25/podman-microvms-or-the-cloud-safer-ways-to-run-docker-in-a-dev-container.html",
+      "title": "Podman, MicroVMs Or The Cloud: Safer Ways To Run Docker In A Dev Container",
+      "url": "https://marmelab.com/blog/2026/11/25/podman-microvms-or-the-cloud-safer-ways-to-run-docker-in-a-dev-container.html",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.668Z",
+      "content": "Podman, MicroVMs Or The Cloud: Safer Ways To Run Docker In A Dev Container marmelab.com17 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://share.thomas.md/leanldgr",
+      "title": "Lean 4 proof-of-concept rewrites Ledger Bitcoin logic",
+      "url": "https://share.thomas.md/leanldgr",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.669Z",
+      "content": "Lean 4 proof-of-concept rewrites Ledger Bitcoin logic share.thomas.md7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://benjamincongdon.me/blog/2026/11/25/Late-Mid-Game-Software-Engineering",
+      "title": "Late Mid-Game Software Engineering",
+      "url": "https://benjamincongdon.me/blog/2026/11/25/Late-Mid-Game-Software-Engineering",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.669Z",
+      "content": "Late Mid-Game Software Engineering benjamincongdon.me6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://flaviocopes.com/antigravity",
+      "title": "The complete guide to Google Antigravity",
+      "url": "https://flaviocopes.com/antigravity",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.670Z",
+      "content": "The complete guide to Google Antigravity flaviocopes.com31 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://aiadvances.org/sandboxes-part-2-your-agent-shouldnt-hold-the-keys-5a3bab84e310?source=rss----3fe99b2acc4---4",
+      "title": "Sandboxes, Part 2: Your Agent Shouldn’t Hold the Keys",
+      "url": "https://aiadvances.org/sandboxes-part-2-your-agent-shouldnt-hold-the-keys-5a3bab84e310?source=rss----3fe99b2acc4---4",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.670Z",
+      "content": "Sandboxes, Part 2: Your Agent Shouldn’t Hold the Keys aiadvances.org16 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://mikefisher.substack.com/p/jammed-typewriters",
+      "title": "Jammed Typewriters",
+      "url": "https://mikefisher.substack.com/p/jammed-typewriters",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.671Z",
+      "content": "Jammed Typewriters mikefisher.substack.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://mihaisplace.com/blog/your-ai-agent-has-the-keys-to-everything-now-what",
+      "title": "Your AI Agent Has the Keys to Everything. Now What?",
+      "url": "https://mihaisplace.com/blog/your-ai-agent-has-the-keys-to-everything-now-what",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.671Z",
+      "content": "Your AI Agent Has the Keys to Everything. Now What? mihaisplace.com22 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse",
+      "title": "Amazon and Meta reportedly in talks to lift blockade on AI agent Muse",
+      "url": "https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.682Z",
+      "content": "Amazon and Meta reportedly in talks to lift blockade on AI agent Muse techcrunch.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.honeycomb.io/blog/outgrowing-lambda-functions-not-lambda",
+      "title": "Outgrowing Lambda Functions, Not Lambda",
+      "url": "https://www.honeycomb.io/blog/outgrowing-lambda-functions-not-lambda",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.684Z",
+      "content": "Outgrowing Lambda Functions, Not Lambda honeycomb.io19 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://natesnewsletter.substack.com/p/ai-boom-memory-shortage",
+      "title": "Why the AI Boom Is Raising Laptop and Phone Prices",
+      "url": "https://natesnewsletter.substack.com/p/ai-boom-memory-shortage",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.686Z",
+      "content": "Why the AI Boom Is Raising Laptop and Phone Prices natesnewsletter.substack.com21 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.vccafe.com/ai-shopping-agents-and-the-second-order",
+      "title": "AI Shopping Agents and the Second Order",
+      "url": "https://www.vccafe.com/ai-shopping-agents-and-the-second-order",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.686Z",
+      "content": "AI Shopping Agents and the Second Order vccafe.com8 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://donsz.nl/blog/optimizing-rustcs-next-trait-solver",
+      "title": "Optimizing Rustc's next trait solver",
+      "url": "https://donsz.nl/blog/optimizing-rustcs-next-trait-solver",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.687Z",
+      "content": "Optimizing Rustc's next trait solver donsz.nl21 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://mlcommons.org/2026/11/ailuminate-jailbreak-2026-official-results",
+      "title": "AILuminate Jailbreak in 2026: from attack taxonomy to official results in nine months",
+      "url": "https://mlcommons.org/2026/11/ailuminate-jailbreak-2026-official-results",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.689Z",
+      "content": "AILuminate Jailbreak in 2026: from attack taxonomy to official results in nine months mlcommons.org12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://lunox.work/articles/coding-agents-held-out-tests",
+      "title": "Coding agents need a held-out test set — Lunox",
+      "url": "https://lunox.work/articles/coding-agents-held-out-tests",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.690Z",
+      "content": "Coding agents need a held-out test set — Lunox lunox.work9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://engram.com/blog/lora-size",
+      "title": "Predicting LoRA size for any dataset",
+      "url": "https://engram.com/blog/lora-size",
+      "author": null,
+      "publishedAt": "2026-11-25T17:37:39.690Z",
+      "content": "Predicting LoRA size for any dataset engram.com13 min read",
       "topics": [
         "ai-llms",
         "devtools-infra",
