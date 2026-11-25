@@ -1,0 +1,1338 @@
+{
+  "day": "2026-11-26",
+  "generatedAt": "2026-11-25T23:47:56.814Z",
+  "items": [
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50624446",
+      "title": "Porting Rockbox to an undocumented $9 AliExpress 'YP3' MP3 player with LLMs",
+      "url": "https://jayd.ml/2026/11/14/rockbox-on-yp3.html",
+      "author": "jaydenmilne",
+      "publishedAt": "2026-11-24T06:22:36.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 206,
+      "comments": 85
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/e64e4576-1813-4fea-a938-553937b943fc",
+      "title": "Meta and NVIDIA's ExecuTorch Runs a 3.6B Robot Brain on a $250 Board",
+      "url": "https://alphasignal.ai/news/meta-and-nvidia-s-executorch-runs-a-3-6b-robot-brain-on-a-250-board",
+      "author": "AI at Meta",
+      "publishedAt": "2026-11-24T21:00:25.000Z",
+      "content": "A new Torch-TensorRT and ExecuTorch workflow fits a 3.6B-parameter robot policy on an 8 GB Jetson Orin Nano at near-TensorRT speed, with no PyTorch needed at runtime. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/bad1d3f1-1bb3-4518-8a05-173a0ee9b42a",
+      "title": "Parallel Search Brings Live Flight and Shopping Deals to ChatGPT",
+      "url": "https://alphasignal.ai/news/parallel-search-brings-live-flight-and-shopping-deals-to-chatgpt",
+      "author": "Parallel",
+      "publishedAt": "2026-11-24T21:05:16.000Z",
+      "content": "Parallel's ChatGPT plugin now pulls live flight fares and prices across millions of products, replacing vague price ranges with bookable links. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50635783",
+      "title": "Predicting LoRA size for any dataset",
+      "url": "https://engram.com/blog/lora-size",
+      "author": "jxmorris12",
+      "publishedAt": "2026-11-24T22:34:29.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 103,
+      "comments": 11
+    },
+    {
+      "sourceSlug": "vercel-blog",
+      "externalId": "https://vercel.com/changelog/workflows-speculative-execution",
+      "title": "Workflow is 10x faster, again",
+      "url": "https://vercel.com/changelog/workflows-speculative-execution",
+      "author": "Peter Wielander",
+      "publishedAt": "2026-11-25T00:00:00.000Z",
+      "content": "5.8 runs workflows on a new execution engine, rebuilt for performance. Step-to-step latency is 12x lower, and large fan-outs, like running 256 steps in parallel, use 14x less function time outside your step code. This directly improves turn times for , among many other improvements.Workflow SDKdurable AI agents To get the new engine, upgrade to or later. New runs will use the new engine by default, and runs already started on an older version will safely keep running on that version. Make sure your steps are to get the most out of this upgrade.workflow@5.8.0idempotent where possible In our comparing to , p75 step-to-step overhead fell from 85 ms to 7 ms. The median run, including 102 seconds of step work, finished in 111 seconds instead of 3.0 minutes. Running 256 parallel steps in a fan-out added 5.5× less overhead, 2.5 seconds instead of 13.5 seconds, and the median run spent 14× less time in functions beyond the steps' own work, 105 seconds instead of 1,446. A five-turn agent loop that streams its tokens through durable streams and calls tools added 0.9 seconds of overhead instead of 3.0 seconds, 3.3× less. Consult the for how we measure these numbers.benchmarksbenchmarks page5.2.05.8.0 Resuming after 1 second idle time went from 425 ms to 184 ms, 2.3× faster. Resumptions more than 5 seconds out might see slightly larger overhead. You can choose to to optimize time-to-resume at the cost of additional compute time.keep functions warm for longer Many of the above benefits rely on speculative execution of Steps. Only Steps that are idempotent can be run in this way. A step that passes its as an , like the Stripe charge below, is already safe and needs no changes. If your step is sensitive and can't be retried, mark it with to opt out and ensure it still runs at most once.stepIdidempotency keymaxRetries = 0 You should already be making Steps idempotent wherever possible, or flag them with , to ensure Workflow SDK doesn't re-run your Steps when it's not safe to do so.maxRetries = 0 Upgrade to . To keep creating runs on the previous engine after upgrading, set . If you're on 4.x, start with the , since v5 is a major release.workflow@5.8.0WORKFLOW_SPEC_VERSION=8upgrade guide Read more Drastically reduced overhead Speculative execution for retryable steps Get started All already support the new engine. A third-party World needs to before upgrading gives you any of these improvements. Until it does, new runs keep using the previous engine.Using a third-party World?Worlds maintained by Vercelsupport World spec version 9",
+      "topics": [
+        "devtools-infra",
+        "frontend"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50642939",
+      "title": "I checked Clojure's core with Lean and found unreported bugs",
+      "url": "https://s.conao3.com/blog/2026/e4f733",
+      "author": "encyclopedism",
+      "publishedAt": "2026-11-25T14:56:52.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 169,
+      "comments": 58
+    },
+    {
+      "sourceSlug": "github-blog",
+      "externalId": "https://github.blog/?p=99982",
+      "title": "How to choose the next safe step in application modernization",
+      "url": "https://github.blog/ai-and-ml/github-copilot/how-to-choose-the-next-safe-step-in-application-modernization/",
+      "author": "Sam Quakenbush",
+      "publishedAt": "2026-11-25T15:00:00.000Z",
+      "content": "A request to modernize an application often starts with a technology question: Which framework should replace the old one? Before you choose, find out what still works. Then collect evidence that can act as a regression net for that behavior and show where modernization is necessary. I used an evidence-first method on four public applications, from a small Node.js game to a large Java enterprise resource planning (ERP) application. Each needed a different treatment, but the way I collected evidence, chose the next experiment, and decided on possible proof points was repeatable. This post walks through that process so you can apply it to one application of your own. It also shows how to encode the procedure in a GitHub Copilot agent skill while keeping architectural judgment with the people responsible for the system. Build evidence before choosing a target The label on an application rarely tells you enough. “Java microservices” doesn’t tell you which Java Development Kit (JDK) runs in production, where that version is pinned, whether the tests execute, or which interfaces other systems depend on. “Legacy monolith” doesn’t tell you whether the business core is broken or whether one retired platform dependency prevents the application from starting. Before you recommend a change, build a small evidence inventory: Manifests, lockfiles, entry points, and deployable components Verified commands for installing, building, testing, packaging, and running Runtime pins in containers, CI workflows, deployment files, and developer tooling External contracts such as APIs, database behavior, file formats, and user workflows End-of-life frameworks and dependencies, with evidence that the application still uses them Record uncertainty while you work. I use three simple labels: documented, inferred, and unverified. If two files disagree about the Java version, resolve the contradiction. If you can’t determine whether a CI check blocks merges, say so. Record the unknown rather than treating a guess as a finding. That inventory gives you something concrete to review with the people who own the application before you propose changes. Choose the least disruptive treatment that works Once you understand the application, make the decision per component. A single system can contain code that should stay, dependencies that should be swapped, and one subsystem that genuinely needs a rewrite. First, check whether a capability is still needed. Remove it only after verifying that it is unused or superseded and confirming that decision with its owner. Removal is a separate decision, and it’s not necessarily the most disruptive one. For a capability you still need, start with the option that changes the least: Keep it. Supported code that still fits the job doesn’t need a modernization story. Upgrade it. Move to a supported major version and fix the breaking changes. Swap it. Replace an abandoned dependency while preserving the existing design. Wrap it. Stabilize a useful interface and replace the internals in increments. Rewrite it. Use this when no responsible upgrade path exists or the architecture cannot meet the requirement. This is a decision order, not a universal ranking of effort or risk. Ask what evidence justifies choosing a more disruptive option. “The code is old” is not enough. A known vulnerability with no patched release for the pinned version, a dependency that fails on the required runtime, or a measured reliability target the current design cannot meet can justify escalation. Decide what proof is possible The next question is whether the component can run well enough to produce evidence, even if the legacy CI pipeline is not green. Run a time-boxed feasibility check. Try to install dependencies, build on an available toolchain, start the component, and execute at least one meaningful test. Stop when the time box expires. The result sends you down one of two paths. Capture behavior, then upgrade. Use this path when the old application can still run at an acceptable cost. Record its externally visible behavior, fix the test harness where practical, and use those checks to verify the upgrade. Build a small modern slice first. Use this path when the old component cannot run until you have already changed it. Move the thinnest useful workflow to supported technology, prove it, and expand from there. Requiring a complete legacy test suite in this situation is circular. Restoring the test suite is part of the modernization. I use the following safety levels, adapted from the doc-and-modernize skill, to describe the strongest regression protection available: Level Strongest honest protection L0 No usable regression net; treat the old code and available documentation as the specification. L1 Small reversible changes, old and new paths in parallel, smoke checks, and domain review. L2 Captured inputs and outputs, snapshots, or other behavioral comparisons. L3 Automated checks cover part of the system, with the remaining gaps named. L4 An automated CI gate combines lint, unit, behavioral, and end-to-end checks for the agreed scope. State what you can prove and what risk remains. Even an L4 gate cannot establish that every possible behavior is correct. APIs, database effects, files, rendered output, and business workflows often make durable comparison points because those behaviors can survive a framework or language change. PiggyMetrics: capture behavior, then upgrade PiggyMetrics was the clearest example of an application that looked worse than it was. The project used Java 8, Spring Boot 2.0.3, Spring Cloud Finchley, Zuul, Hystrix, and the old spring-security-oauth2 library. It would have been easy to call the application unworkable and start drawing a new architecture. The feasibility check told a different story. The recorded feasibility results show these two probes against the legacy checkout with JDK 8: Command Recorded result What it established mvn -pl config -am compile Exit code 0 The selected config module and required reactor dependencies compiled. mvn -pl account-service -am test 14 tests ran: five passed and nine errored Some service logic passed; embedded MongoDB initialization blocked the other tests. These are historical results, not commands expected to reproduce those failures on the modernized checkout. The nine errors traced through Failed to load ApplicationContext to an embedded MongoDB download returning HTTP 403. The pinned binary also targeted i386, which would not run on the Apple Silicon host. The probes did not establish that the whole application ran or that its integration behavior was correct. They did give me a narrower next step: replace the test dependency and rerun the affected tests before changing the production stack. That result saved me from making a very tidy, very expensive mistake. I had already started thinking about which parts of the architecture I might replace. One broken test dependency did not justify redesigning the application, and five passing tests established behavior I could check for unintended changes during modernization. The modernization plan turned that evidence into a capture-then-upgrade sequence: Replace the embedded database dependency with Testcontainers and establish a green baseline on the existing stack. Put that baseline in GitHub Actions before changing the production runtime. Move from Java 8 to Java 21 and Spring Boot 3.3. Replace obsolete components behind their existing interfaces: Zuul with Spring Cloud Gateway, Hystrix with Resilience4j, and the retired OAuth stack with Spring Authorization Server and JSON Web Token (JWT) resource servers. Carry the baseline forward and add contract checks around the parts whose behavior changed. The first acceptance gate was a passing baseline on the old stack, not merely the successful installation of a replacement dependency. Running checks in CI and enforcing them as merge requirements were also separate steps in the plan. The result summary records the Java and Spring upgrades while retaining the microservice decomposition that the application exists to demonstrate. Eureka and Cloud Config stayed; the two monitoring modules used by the retired Hystrix and Turbine stack were removed. The in-scope build went from nine modules to seven. Those versions describe the experiment, not a recommendation to select the same versions today. Choose targets against your current support requirements. The useful lesson is how the repository evidence narrowed the change. The method changes with the system The same process produced different answers on two smaller applications. Their pinned reports describe these choices: Application What stayed What changed Strategy BrowserQuest Canvas renderer, pathfinding, world model, protocol, and game-loop model Node 0.4.7 to Node 22, two obsolete WebSocket stacks to ws, plus tests and GitHub Actions Upgrade and swap DOOM Renderer, 35 Hz simulation model, and WAD game-data format X11 video and OSS audio replaced with SDL2; platform code adapted for modern 64-bit systems Preserve the core and replace the platform The comparison needs one important qualification: DOOM’s checks froze outputs from the modernized engine itself. They protected against later regressions; they did not independently prove parity with a period-correct legacy binary. Naming that limit is part of choosing an honest safety level. Scaling the method without pretending the product is finished I then applied the method to ADempiere, a large Java suite covering ERP, customer relationship management, manufacturing, supply chain, accounting, and point of sale. The scale changed the controls, but not the method. The work established a reproducible build, moved the runtime to JDK 21, preserved SOAP web-service contracts while replacing XFire with CXF and Jakarta, captured legacy web behavior, and introduced a modern web path for selected users. The first modern business partner write was compared with a result frozen from the legacy application. The fixed measurement report covers 30 merged modernization pull requests and 102,587.72 reconstructed Copilot credits through the first accepted portable demo. The credit total is not a dollar cost. More important, the report says exactly what the result was not: it was not a claim that every ADempiere screen or production deployment had been modernized. I stopped because the proof-of-concept question had been answered. The result demonstrated a build on the selected runtime, old and new paths running together, and a real business write checked against the legacy result. Completing the rest would have required a product funding decision, not another technical proof. Stopping at that boundary was part of the method. Turn the method into an agent skill After repeating this work, I didn’t want the evidence checklist and decision rules to live only in my notes. I encoded them in the public doc-and-modernize agent skill. Agent skills are folders of instructions, scripts, and resources that Copilot can load when a task is relevant. A project skill can live with one repository: .github/skills/doc-and-modernize/ ├── SKILL.md ├── references/ └── scripts/ Only SKILL.md is required; the resource folders shown here are optional. The file needs YAML frontmatter with a name and a description explaining what the skill does and when to use it, followed by the instructions. The creation guide includes the full format. Paraphrased from the commit-pinned skill source, its decision fork is: If the old component can run at an acceptable cost, capture its behavior before upgrading. If it cannot run without changes, build and verify a small modern slice first, then expand it. The full skill adds the feasibility check, testability milestone, safety levels, phase gates, and evidence requirements. The useful distinction is procedure versus policy. A shared skill can require repository evidence, bounded experiments, explicit safety levels, and runnable exit criteria. Your organization still needs to supply the parts only it knows: Approved runtimes, frameworks, and hosting services Application criticality and acceptable residual risk Security, compliance, and change-control requirements Which legacy or production results may be used as the expected answer Who can approve the architecture and declare a production change complete The skill should make those decisions visible. It shouldn’t make them for you. Start with one bounded application Choose an application with an identified owner, known business value, and one workflow you can observe. Run the documentation workflow first. Review the architecture, commands, runtime surfaces, and unknowns with the people who own the system. Then approve one experiment, not a portfolio rewrite. Inspect the skill and its supporting files before adding it to a project. GitHub CLI’s gh skill commands are in public preview; check the current installation guidance when you’re ready to use them. Explore the doc-and-modernize agent skill > The post How to choose the next safe step in application modernization appeared first on The GitHub Blog.",
+      "topics": [
+        "devtools-infra",
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/aade2969-ebfc-4880-978c-8c5f86592679",
+      "title": "Google's Gemini Now Speaks in Regional Accents Across Android and iOS",
+      "url": "https://alphasignal.ai/news/google-s-gemini-now-speaks-in-regional-accents-across-android-and-ios",
+      "author": "Google Gemini",
+      "publishedAt": "2026-11-25T16:33:56.000Z",
+      "content": "Google is giving the Gemini app a set of 60+ expressive voices with local accents, replacing the default assistant tone with region-tuned alternatives. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/c5f5c444-71ca-4cdc-a9be-a9260490282c",
+      "title": "Microsoft's MAI-Code-2.1 Hits Arena's Top 13 at 5% of Claude's Price",
+      "url": "https://alphasignal.ai/news/microsoft-s-mai-code-2-1-hits-arena-s-top-13-at-5-of-claude-s-price",
+      "author": "Arena.ai",
+      "publishedAt": "2026-11-25T17:11:04.000Z",
+      "content": "Microsoft AI's homegrown coding model cracks the top 15 on Arena's WebDev leaderboard, landing the lab at #6 alongside Anthropic, OpenAI, Google and Meta. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50644817",
+      "title": "1Password Security Incident",
+      "url": "https://1password.com/blog/update-on-nov-2026-security-incident",
+      "author": "lxhrstn",
+      "publishedAt": "2026-11-25T17:18:26.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 1019,
+      "comments": 429
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50644980",
+      "title": "The polynomial Hirsch conjecture is false [pdf]",
+      "url": "https://github.com/openai/math/blob/main/preprints/Superpolynomial-graph-diameter-of-simple-polytopes-November-24-2026/paper.pdf",
+      "author": "acossta",
+      "publishedAt": "2026-11-25T17:34:34.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 107,
+      "comments": 25
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1042278",
+      "title": "FCC signs off on SpaceX’s plan to put up to 1 million data center satellites into space",
+      "url": "https://www.theverge.com/science/1042278/spacex-fcc-starmind-ai-space-data-centers",
+      "author": "Emma Roth",
+      "publishedAt": "2026-11-25T17:44:51.000Z",
+      "content": "In an announcement on Wednesday, the FCC says it authorized SpaceX to deploy up to 1 million AI chip-equipped satellites as part of the Elon Musk-owned company's \"Starmind\" initiative. With several others also pursuing the idea of putting AI data centers in space, including Google and Blue Origin, this is the first approval the agency has granted for a full \"constellation\" of AI satellites. The FCC's approval requires SpaceX to deploy at least one satellite by 2033, and meet the 1 million satellite milestone by 2040. The FCC also deferred SpaceX's request to dispose of satellites located above 600km in space \"graveyard\" orbits, rather than … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p28#a261125p28",
+      "title": "Every, a media company that provides consulting services to help companies become AI-native, raised a $17.5M Series A at a $110M post-money valuation (Allie Garfinkle/Fortune)",
+      "url": "https://www.techmeme.com/261125/p28#a261125p28",
+      "author": null,
+      "publishedAt": "2026-11-25T17:45:02.000Z",
+      "content": "Allie Garfinkle / Fortune: Every, a media company that provides consulting services to help companies become AI-native, raised a $17.5M Series A at a $110M post-money valuation — Ask Dan Shipper how often venture-backed media startups succeed, and he's candid. — “My feeling about the history …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/68590b99-038d-4cfd-a237-422c8786eeeb",
+      "title": "Zed 1.30 Trims Its Interface and Cuts GPU Usage for Developers",
+      "url": "https://alphasignal.ai/news/zed-1-30-trims-its-interface-and-cuts-gpu-usage-for-developers",
+      "author": "Zed",
+      "publishedAt": "2026-11-25T17:50:01.000Z",
+      "content": "Zed v1.30 lands with a hideable title bar, per-repo model selection for AI commit messages, and across-the-board performance gains. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1041460",
+      "title": "The Fairphone 6 Plus is modular, repairable, and $100 off right now",
+      "url": "https://www.theverge.com/gadgets/1041460/fairphone-6-plus-repairable-phone-black-friday-2026-deal-sale",
+      "author": "Sheena Vasani",
+      "publishedAt": "2026-11-25T18:00:00.000Z",
+      "content": "The Fairphone 6 Plus comes with 12 replaceable parts. | Photo: Dominic Preston / The Verge Unlike most smartphones, the Fairphone 6 Plus is designed for home repair, with easily replaceable parts that could help extend its lifespan well into the future. That makes its midrange price point easier to justify, especially now that it’s dropped to a new low of $552.49 (about $98 off) at Amazon as part of the retailer’s ongoing Black Friday sale. Fairphone 6 Plus Where to Buy: $649.99 $552.49 at Amazon (black) $649.99 $552.49 at Amazon (green) $649.99 $552.49 at Amazon (blue) The 6.3-inch Fairphone 6 Plus features 12 user-replaceable parts, including the battery, screen, USB-C port, and cameras, all of which you can swap out with the included screwdriver. Replacement parts are relatively affordable, too; a new battery costs $39.99, which helps offset its middling battery life and lack of wireless charging. It also comes with a five-year warranty and up to six Android OS upgrades, making it a good option if you want a phone you can keep using for years. Although repairability is its marquee feature, the 6 Plus is also a solid midrange Android device. Fairphone prioritizes ethically sourced materials, making it a strong choice for environmentally conscious buyers who don’t want to sacrifice performance. Its Snapdragon 7s Gen 4 processor handles everyday tasks well, and its cameras take decent photos, though they’re not quite on par with those of pricier phones. What’s more, it offers a clean, bloatware-free Android experience and modular back panels, which you can swap for optional accessories like a card holder or crossbody strap. Our own Allison Johnson particularly liked the phone’s dedicated switch for turning on customizable focus modes called Moments, which can simplify your homescreen and limit access to distracting apps — something we could all use a little less of. Read our full Fairphone 6 Plus review.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1041761",
+      "title": "The loneliest peptide party in New York",
+      "url": "https://www.theverge.com/column/1041761/optimizer-peptide-parties-afterglow",
+      "author": "Victoria Song",
+      "publishedAt": "2026-11-25T18:00:00.000Z",
+      "content": "This is Optimizer, a weekly newsletter sent from Verge senior reviewer Victoria Song that dissects and discusses the latest gizmos and potions that swear they're going to change your life. Opt in for Optimizer here. On a rainy fall evening, an experimental art venue in Chelsea Market had a small line out the door. There are always lines in New York City. Viral food trends, gallery exhibitions, pop-ups, and parties. The folks in line looked like your average joe, ready for a Friday night on the town. You wouldn't look twice - except, perhaps, for a man with a wizard beard and a laser sword strapped to his back. Inside, the man with a laser … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/886d6379-5c41-48a6-92bc-2c6ab11a8ecb",
+      "title": "Maximilian228's Qwen3 125B Squeeze Runs on a 12 GB Consumer GPU",
+      "url": "https://alphasignal.ai/model/maximilian228-s-qwen3-125b-squeeze-runs-on-a-12-gb-consumer-gpu",
+      "author": "AlphaSignal",
+      "publishedAt": "2026-11-25T18:10:17.000Z",
+      "content": "A community-made NVFP4 GPTQ pack brings Qwen3.8-Flash-Next's 125B hybrid MoE to a single 12GB+ RTX card with 64GB+ of system RAM. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/11/the-fcc-has-authorized-spacex-to-deploy-1-million-satellites/",
+      "title": "The FCC has authorized SpaceX to deploy 1 million satellites",
+      "url": "https://arstechnica.com/space/2026/11/the-fcc-has-authorized-spacex-to-deploy-1-million-satellites/",
+      "author": "Eric Berger",
+      "publishedAt": "2026-11-25T18:22:38.000Z",
+      "content": "In an extraordinary decision, the Federal Communications Commission on Wednesday granted SpaceX conditional authorization to deploy a constellation of up to 1 million Starmind satellites designed to serve as orbital data centers. If fully deployed, this constellation would increase the number of satellites in orbit by roughly 50-fold. \"The United States is moving decisively to ensure that this breakthrough technology creates opportunity, drives investment, and delivers lasting benefits for the American people,\" FCC Chairman Brendan Carr said in a statement on Wednesday. \"This action opens a bold new frontier for the computing infrastructure needed to power America’s leadership and growth.\" Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p29#a261125p29",
+      "title": "Sources: an unusually high volume of Nvidia GPUs, including thousands of B300s, hit the market after the US curbed Chinese companies' remote access to AI chips (Kai Nicol-Schwarz/CNBC)",
+      "url": "https://www.techmeme.com/261125/p29#a261125p29",
+      "author": null,
+      "publishedAt": "2026-11-25T18:25:00.000Z",
+      "content": "Kai Nicol-Schwarz / CNBC: Sources: an unusually high volume of Nvidia GPUs, including thousands of B300s, hit the market after the US curbed Chinese companies' remote access to AI chips — Nvidia chip sellers are seeking new buyers for the semiconductor giant's hardware, three people told CNBC …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "eff-deeplinks",
+      "externalId": "112565 at https://www.eff.org",
+      "title": "🎩 Tech Monopolies Make Outages Worse | EFFector 38.21",
+      "url": "https://www.eff.org/deeplinks/2026/11/tech-monopolies-make-outages-worse-effector-3820",
+      "author": "Hudson Hongo",
+      "publishedAt": "2026-11-25T18:26:19.000Z",
+      "content": "Service outages, like the ones we've seen take down everything from airlines to email, seem to be coming faster than ever. Their specific causes might be different, but these wide-scale service disruptions share one thing in common: the over-reliance on one company or system to make our world work. In our latest EFFector newsletter, we're talking about how digital monoculture has made tech companies too big to fail. JOIN OUR NEWSLETTER For over 35 years, EFFector has been your guide to understanding the intersection of technology, civil liberties, and the law. This issue covers ALPR at the ballot box, surveillance wearables, and how digital monoculture makes service outages worse. Prefer to listen in? EFFector is now available on all major podcast platforms. This time we're talking to EFF's Rory Mir about tech monopolies, service outages, and what we can do to build a more resilient internet. You can find the episode and subscribe on your podcast platform of choice: %3Ciframe%20height%3D%22200px%22%20width%3D%22100%25%22%20frameborder%3D%22no%22%20scrolling%3D%22no%22%20seamless%3D%22%22%20src%3D%22https%3A%2F%2Fplayer.simplecast.com%2Fbcf4fd99-2a81-4275-a31f-8f7dfeaf216f%3Fdark%3Dfalse%22%20allow%3D%22autoplay%22%3E%3C%2Fiframe%3E Privacy info. This embed will serve content from simplecast.com Want to protect your right to digital privacy? Sign up for EFF's EFFector newsletter for updates, ways to take action, and new merch drops. You can also fuel the fight for privacy and free speech online when you support EFF today!",
+      "topics": [
+        "security-privacy"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/f3ed404b-a15e-45e0-a416-4ed49cbd7639",
+      "title": "Cognition Adds Org Charts to Devin Bots Managing 2,000 Weekly Pull Requests",
+      "url": "https://alphasignal.ai/news/cognition-adds-org-charts-to-devin-bots-managing-2-000-weekly-pull-requests",
+      "author": "Cognition",
+      "publishedAt": "2026-11-25T18:33:01.000Z",
+      "content": "Cognition's new Org Charts view puts every Devin Bot and its running sessions on one canvas, so you can triage without opening each chat. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/information-technology/2026/11/backblaze-explains-why-its-sharing-customer-information-with-advertisers/",
+      "title": "Backblaze explains why it's sharing customer information with advertisers",
+      "url": "https://arstechnica.com/information-technology/2026/11/backblaze-explains-why-its-sharing-customer-information-with-advertisers/",
+      "author": "Scharon Harding",
+      "publishedAt": "2026-11-25T18:38:29.000Z",
+      "content": "Some customers have raised concerns about Backblaze's privacy policy taking effect next month, which says the backup and cloud storage company may sell certain personal information to advertisers. Backblaze’s current privacy policy says that in addition to the personal information that users may provide, such as their email address when creating an account, it may also “automatically” collect information, such as “your software, the operating system you use when accessing our service, your Internet Protocol address, and the date and time of each request you make to Backblaze.” The current policy adds: “Under no circumstances do we rent, trade, or share your address or e-mail address with any other company for their marketing purposes without your consent.” It also makes no mention of advertisers. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "huggingface-blog",
+      "externalId": "https://huggingface.co/blog/allenai/where-scientists-draw-the-line-on-ai-agents",
+      "title": "Where scientists draw the line on AI agents",
+      "url": "https://huggingface.co/blog/allenai/where-scientists-draw-the-line-on-ai-agents",
+      "author": null,
+      "publishedAt": "2026-11-25T18:52:55.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p30#a261125p30",
+      "title": "Sources: ElevenLabs is in early talks for a 2027 funding round at a $33B target valuation, up from $22B in September; its annual recurring revenue is now $700M (Bloomberg)",
+      "url": "https://www.techmeme.com/261125/p30#a261125p30",
+      "author": null,
+      "publishedAt": "2026-11-25T19:00:46.000Z",
+      "content": "Bloomberg: Sources: ElevenLabs is in early talks for a 2027 funding round at a $33B target valuation, up from $22B in September; its annual recurring revenue is now $700M — ElevenLabs, a company building artificial intelligence voice models and agents, is in early discussions for a funding round …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1042409",
+      "title": "1Password breach leaked customer names and emails, but not passwords",
+      "url": "https://www.theverge.com/tech/1042409/1password-data-breach-leak",
+      "author": "Emma Roth",
+      "publishedAt": "2026-11-25T19:10:15.000Z",
+      "content": "1Password says a hacker stole customer names and email addresses after gaining access to its backend systems. The breach didn't expose passwords or other information stored in customer vaults, but could put users at risk of phishing attempts, according to a post disclosing the incident. It's unclear how many users are affected. The password manager began investigating the incident on November 19th, after an attacker gained access to an employee's corporate GitHub account. Using the compromised account, the hacker accessed 1Password's source code and pushed malicious code to backend services to download customer data. Along with customer nam … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/9a1e6bcd-3b3c-42ec-a69f-78e2ad5b602d",
+      "title": "Claw-Eval Catches 44% of Safety Violations That Standard AI Benchmarks Miss",
+      "url": "https://alphasignal.ai/paper/claw-eval-catches-44-of-safety-violations-that-standard-ai-benchmarks-miss",
+      "author": "AlphaSignal",
+      "publishedAt": "2026-11-25T19:11:12.000Z",
+      "content": "A new 300-task agent benchmark grades the full trajectory, catching 44 percent of safety violations that conventional judges miss. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50646108",
+      "title": "Holy shit holy shit holy shit holy shit: The magnitude of what’s now happening",
+      "url": "https://scottaaronson.blog/?p=10379",
+      "author": "Kotlopou",
+      "publishedAt": "2026-11-25T19:11:27.000Z",
+      "content": "See also The matrix multiplication exponent is nine fourths [pdf] - https://news.ycombinator.com/item?id=50637220",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 772,
+      "comments": 615
+    },
+    {
+      "sourceSlug": "nvidia-blog",
+      "externalId": "https://developer.nvidia.com/blog/?p=125793",
+      "title": "How to Optimize NVFP4 Attention on NVIDIA RTX Blackwell Through Register Recycling",
+      "url": "https://developer.nvidia.com/blog/how-to-optimize-nvfp4-attention-on-nvidia-rtx-blackwell-through-register-recycling/",
+      "author": "Atharva Joshi",
+      "publishedAt": "2026-11-25T19:30:00.000Z",
+      "content": "Attention can be a major bottleneck when serving world foundation models, where long sequences make inference computationally demanding. On NVIDIA Hopper and... Attention can be a major bottleneck when serving world foundation models, where long sequences make inference computationally demanding. On NVIDIA Hopper and NVIDIA Blackwell data center GPUs, FlashAttention3 and FlashAttention4 improve attention performance by overlapping matrix multiply-accumulate (MMA) operations through softmax within a thread block. However… Source",
+      "topics": [
+        "devtools-infra",
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p31#a261125p31",
+      "title": "Dario Amodei rejects the idea of surrendering free will to AI and accuses rival AI execs of \"vibes-based\" positioning, rebutting a report on AI leaders' views (Madison Mills/Axios)",
+      "url": "https://www.techmeme.com/261125/p31#a261125p31",
+      "author": null,
+      "publishedAt": "2026-11-25T19:45:01.000Z",
+      "content": "Madison Mills / Axios: Dario Amodei rejects the idea of surrendering free will to AI and accuses rival AI execs of “vibes-based” positioning, rebutting a report on AI leaders' views — - Amodei distinguished between handing over governance to AI, which he opposes, and automating specific tasks, on which he holds more nuanced views.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1042109",
+      "title": "EPA reports ‘zero’ airborne lead following controlled Army detonation in Iowa",
+      "url": "https://www.theverge.com/science/1042109/us-army-detonation-lead-azide-explosives-iowa-ammunition-plant",
+      "author": "Andrew Liszewski",
+      "publishedAt": "2026-11-25T19:45:51.000Z",
+      "content": "Debris flies into the air after the Army detonated several tons of highly-volatile, degraded lead azide on the grounds of the Iowa Army Ammunition Plant on November 25th, 2026. | Photo: Getty Images Saying it was necessary to prevent the possible spontaneous explosion of a stockpile of material used in igniters and blasting caps, the US Army conducted a controlled detonation of over 9,700 pounds of lead azide today at the Iowa Army Ammunition Plant (IAAAP) in Middletown, Iowa. Videos of the detonation showed plumes of smoke several hundred feet high drifting south before quickly dissipating. Following the explosion, the Army confirmed that all of the barrels at the plant had been destroyed without any secondary explosions or infrastructure damage. \"I believe, absolutely, that we reduced, as close to zero as it's absolutely humanly poss … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p32#a261125p32",
+      "title": "1Password says an attacker used an employee's GitHub account to push malicious code to its backend, taking some users' names and emails; vaults weren't accessed (Zack Whittaker/TechCrunch)",
+      "url": "https://www.techmeme.com/261125/p32#a261125p32",
+      "author": null,
+      "publishedAt": "2026-11-25T20:05:01.000Z",
+      "content": "Zack Whittaker / TechCrunch: 1Password says an attacker used an employee's GitHub account to push malicious code to its backend, taking some users' names and emails; vaults weren't accessed — Password manager maker 1Password has confirmed that some customer information was taken in a recent intrusion into its internal systems …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/e94b7183-a673-48b4-9f56-8b215b68364b",
+      "title": "Artificial Analysis' AA-Robotics-Sim Shows AI Can Navigate but Not Grasp",
+      "url": "https://alphasignal.ai/news/artificial-analysis-aa-robotics-sim-shows-ai-can-navigate-but-not-grasp",
+      "author": "Artificial Analysis",
+      "publishedAt": "2026-11-25T20:11:00.000Z",
+      "content": "A new benchmark puts frontier LLMs in a coding agent harness driving a simulated Unitree G1 humanoid across ten tasks, and even the best model fails most pick-and-place work. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/159fe707-5f6a-45a8-b9f5-ef8e239c6860",
+      "title": "Compendium Labs' BGE Base En v1.5 GGUF Build Hits 800,000 Downloads",
+      "url": "https://alphasignal.ai/model/compendium-labs-bge-base-en-v1-5-gguf-build-hits-800-000-downloads",
+      "author": "AlphaSignal",
+      "publishedAt": "2026-11-25T20:11:43.000Z",
+      "content": "A quantized GGUF build of BAAI's popular BGE embedding model lets you run high-quality text embeddings locally through llama.cpp at a fraction of the original size. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/03902d01-da60-4e1f-bf27-2e3ebbd60017",
+      "title": "Pydantic Releases Pax, a Terminal Coding Agent That Beats Codex for 29% Less",
+      "url": "https://alphasignal.ai/news/pydantic-releases-pax-a-terminal-coding-agent-that-beats-codex-for-29-less",
+      "author": "Pydantic",
+      "publishedAt": "2026-11-25T20:15:08.000Z",
+      "content": "Pydantic launches Pax, a plugin-first terminal coding agent where even the agent is swappable, benchmarking competitively against Codex and Claude Code Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/bc3b9217-4b5a-49fe-89e4-5f98769cb33a",
+      "title": "Three Rules Before You Let AI Coding Agents Ship PRs",
+      "url": "https://alphasignal.ai/tutorial/three-rules-before-you-let-ai-coding-agents-ship-prs",
+      "author": "Adham Khaled",
+      "publishedAt": "2026-11-25T20:18:00.000Z",
+      "content": "When an agent works on its own, your job becomes signing off. What it may start, what it must show, and what it may merge. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p33#a261125p33",
+      "title": "Sources: a16z is in talks to raise ~$20B across its next set of funds; its last set, announced in January at $15B+, later grew to $20B+ with three add-ons (Lucinda Shen/Axios)",
+      "url": "https://www.techmeme.com/261125/p33#a261125p33",
+      "author": null,
+      "publishedAt": "2026-11-25T20:30:00.000Z",
+      "content": "Lucinda Shen / Axios: Sources: a16z is in talks to raise ~$20B across its next set of funds; its last set, announced in January at $15B+, later grew to $20B+ with three add-ons — Venture capital firm Andreessen Horowitz is in talks to raise about $20 billion across its next set of funds, Axios Pro has learned from three sources familiar.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1042532",
+      "title": "WhatsApp’s new scheduled messages let you choose the right time to send",
+      "url": "https://www.theverge.com/tech/1042532/whatsapp-scheduled-messages",
+      "author": "Stevie Bonifield",
+      "publishedAt": "2026-11-25T20:31:48.000Z",
+      "content": "WhatsApp's 3 billion users are getting an option that Meta says is one of the most requested features, with the ability to schedule messages in advance for both private conversations and group chats. Most messaging platforms have had this for a very long time, but now it's on WhatsApp too. If you think of a text at an inconvenient time or don't want to forget to fire off a birthday message at 4AM, you can draft it and set it to send anywhere from 10 minutes to two weeks later. The feature works with photos and videos, too. Meta: To schedule a message, press and hold the send button and pick the date and time you want it to arrive. It … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/853d9120-ae28-453e-a231-ef2840e5aa52",
+      "title": "Artificial Analysis Reveals Claude Fable 5.2 Leads AI Physics Research at 32%",
+      "url": "https://alphasignal.ai/news/artificial-analysis-reveals-claude-fable-5-2-leads-ai-physics-research-at-32",
+      "author": "Artificial Analysis",
+      "publishedAt": "2026-11-25T20:42:24.000Z",
+      "content": "A new physics research benchmark puts frontier agents through 54 expert-authored tasks, and even the leader clears only a third of them. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p34#a261125p34",
+      "title": "WhatsApp starts letting users schedule messages from 10 minutes to 14 days in advance, in group and individual chats; messages are sent even if the phone is off (Ivan Mehta/TechCrunch)",
+      "url": "https://www.techmeme.com/261125/p34#a261125p34",
+      "author": null,
+      "publishedAt": "2026-11-25T20:50:02.000Z",
+      "content": "Ivan Mehta / TechCrunch: WhatsApp starts letting users schedule messages from 10 minutes to 14 days in advance, in group and individual chats; messages are sent even if the phone is off — WhatsApp on Wednesday started rolling out a much-sought-after feature: the ability to schedule messages in both individual and group chats.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/gadgets/2026/11/google-search-alternative-kagi-launches-gmail-rival/",
+      "title": "Google search alternative Kagi launches Gmail rival",
+      "url": "https://arstechnica.com/gadgets/2026/11/google-search-alternative-kagi-launches-gmail-rival/",
+      "author": "Samuel Axon",
+      "publishedAt": "2026-11-25T20:57:09.000Z",
+      "content": "Kagi, a small, Palo Alto, California-based software company that provides a subscription-based search engine as an alternative to Google, has launched a Gmail-like e-mail service. Dubbed Kagi Mail, it makes many of the same claims as the search engine product: privacy, personal data sovereignty, customization, and control. Additionally, Kagi is rolling out a calendar as part of the mail service. Right now, both the email and calendar interfaces are web-only, but native Android and iOS apps are planned for the fourth quarter of next year. The email interface, currently in public beta, is minimalist. It emphasizes keyboard commands, as well as a private and ad-free experience. (You can see more details in Kagi's blog post about what they mean by private.) Other feature offerings include unlimited aliases and domains, an anti-lock-in policy for user data, 50GB of storage, rule-based filtering with Sieve, an MCP server, and several optional, off-by-default AI features, like chatting with an agent to search email history, do large-scale re-labeling, or define additional filtering rules. Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p35#a261125p35",
+      "title": "Sources: the DOJ didn't formally investigate Jensen Huang before his reinstatement; AG Todd Blanche cleared him based on probes into Super Micro and Megaspeed (Reuters)",
+      "url": "https://www.techmeme.com/261125/p35#a261125p35",
+      "author": null,
+      "publishedAt": "2026-11-25T21:01:00.000Z",
+      "content": "Reuters: Sources: the DOJ didn't formally investigate Jensen Huang before his reinstatement; AG Todd Blanche cleared him based on probes into Super Micro and Megaspeed — The US Justice Department did not conduct a formal investigation into Jensen Huang before US President Donald Trump pushed …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/16ae5f58-f378-4cec-9772-b784ad43f054",
+      "title": "Researchers Prove AI Training Data Can Shrink Without Losing Task Intelligence",
+      "url": "https://alphasignal.ai/paper/researchers-prove-ai-training-data-can-shrink-without-losing-task-intelligence",
+      "author": "AlphaSignal",
+      "publishedAt": "2026-11-25T21:12:00.000Z",
+      "content": "A new ICML 2026 proof pins down exactly how much synthetic data is needed to compress a non-linear task into a distilled set. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p36#a261125p36",
+      "title": "Nvidia agrees to pay $290M to settle a 2018 class action lawsuit alleging it misled shareholders about how much crypto mining fueled its GPU sales (Mike Scarcella/Reuters)",
+      "url": "https://www.techmeme.com/261125/p36#a261125p36",
+      "author": null,
+      "publishedAt": "2026-11-25T21:15:01.000Z",
+      "content": "Mike Scarcella / Reuters: Nvidia agrees to pay $290M to settle a 2018 class action lawsuit alleging it misled shareholders about how much crypto mining fueled its GPU sales — Nvidia (NVDA.O) has agreed to pay $290 million to settle a long-running investor lawsuit alleging the chipmaker misled shareholders …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50647673",
+      "title": "The New York Times tells photographers not to use the latest Photoshop",
+      "url": "https://www.dpreview.com/news/new-york-times-adobe-photoshop-2027-restriction-ai/",
+      "author": "rmason",
+      "publishedAt": "2026-11-25T21:18:02.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 114,
+      "comments": 58
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p37#a261125p37",
+      "title": "NY Gov. Kathy Hochul signs a bill banning AI chatbot toys for five years, starting in February; California Gov. Gavin Newsom signed a four-year ban in September (NBC News)",
+      "url": "https://www.techmeme.com/261125/p37#a261125p37",
+      "author": null,
+      "publishedAt": "2026-11-25T21:30:02.000Z",
+      "content": "NBC News: NY Gov. Kathy Hochul signs a bill banning AI chatbot toys for five years, starting in February; California Gov. Gavin Newsom signed a four-year ban in September — Gov. Kathy Hochul signed a bill today preventing the manufacture, exchange, distribution and sale of toys powered by AI chatbots in New York State.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1021917",
+      "title": "The Verge’s 2026 holiday gift guide for travelers",
+      "url": "https://www.theverge.com/gadgets/1021917/best-gifts-for-travelers-2026",
+      "author": "Ryan Waniata",
+      "publishedAt": "2026-11-25T21:48:00.000Z",
+      "content": "Everyone has that traveler in their life. That person who feels more at home on a 14-hour train ride than a quiet Sunday on the couch. They speak multiple languages, have a gut like a goat, and make friends wherever they go. Whether they're your kindred spirit or the person you live vicariously through, one thing never changes: They always need new gear. That's what makes travelers so fun to buy for. But you don't want to get them just anything. The key is to find that clever gift even they didn't know they needed, and that's where we come in. From streaming gadgets for the hotel to portable espresso makers and high-capacity c … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hacker-news",
+      "externalId": "50648050",
+      "title": "Much shorter version of GRH Lean verification from Anthropic",
+      "url": "https://github.com/lsernau/grh-lean",
+      "author": "nb-t",
+      "publishedAt": "2026-11-25T21:48:10.000Z",
+      "content": "",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "security-privacy",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text",
+      "points": 175,
+      "comments": 77
+    },
+    {
+      "sourceSlug": "the-verge",
+      "externalId": "https://www.theverge.com/?p=1042221",
+      "title": "Google’s patent for custom AI video feeds paints a bleak picture of entertainment’s future",
+      "url": "https://www.theverge.com/entertainment/1042221/google-my-channel-ai-video-patent",
+      "author": "Charles Pulliam-Moore",
+      "publishedAt": "2026-11-25T21:51:26.000Z",
+      "content": "Last year, Google filed a patent for a system called My Channel that's designed to create feeds filled with personalized, AI-generated videos and advertisements based on information the company knows about its users. The patent has been rejected, but unfortunately, Google might appeal or resubmit an amended version, and we could see this monstrosity come to market. First spotted by Patentlyze, the patent - which was filed last May and published last week - describes how My Channel would use a person's demographic data and viewing history to create its own prompts that would then be fed into an LLM to help generate AI videos tailored to that … Read the full story at The Verge.",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p38#a261125p38",
+      "title": "Sources: US chip curbs stall billions in data center loans tied to ByteDance, Alibaba, and Tencent, with some lenders delaying a $6.6B Bridge Data Centres loan (Bloomberg)",
+      "url": "https://www.techmeme.com/261125/p38#a261125p38",
+      "author": null,
+      "publishedAt": "2026-11-25T22:05:01.000Z",
+      "content": "Bloomberg: Sources: US chip curbs stall billions in data center loans tied to ByteDance, Alibaba, and Tencent, with some lenders delaying a $6.6B Bridge Data Centres loan — Lenders have hit the brakes on billions of dollars in loans tied to Chinese firms ByteDance, Alibaba and Tencent …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "alphasignal",
+      "externalId": "tag:alphasignal.ai,2026:story/175d56b9-af26-4705-b0ef-d7e95df19d48",
+      "title": "SenseTime's SenseNova-Loop-9B Runs 27B-Level Tasks on 9B Weights",
+      "url": "https://alphasignal.ai/model/sensetime-s-sensenova-loop-9b-runs-27b-level-tasks-on-9b-weights",
+      "author": "AlphaSignal",
+      "publishedAt": "2026-11-25T22:12:18.000Z",
+      "content": "SenseTime's open 9B multimodal model runs its middle 24 layers twice per forward pass, matching a 27B model on several agent benchmarks. Get AlphaSignal’s 5-minute AI brief, free every weekday morning",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "urn:latent-space:post:post_b346515a-5480-4fa6-830e-a144eacab773",
+      "title": "[AINews] Math Proofs Are Landing Faster Than We Can Read Them",
+      "url": "https://latent.space/p/ainews-math-proofs-are-landing-faster-than-we-can-read-them/",
+      "author": "swyx .ai",
+      "publishedAt": "2026-11-25T22:23:41.000Z",
+      "content": "AINews by Latent Space Scott Aaronson was still trying to digest two proofs of VP ≠ VNP at dinner. Before dessert, an OpenAI paper claimed that the square matrix multiplication exponent ω is exactly 9/4. During dessert, another paper claimed matching upper and lower bounds for the finite Fourier transform. The lower bound is the biggest news. In October, OpenAI found an upper bound for ω down to at most 9/4. Finding the lower bound = upper bound leaves only one possible value, which is a shocking result for most. We plotted 64 selected AI-assisted research advances so far this year. November accounts for 20, including six preprints from Google’s Cogentic. The curve follows public releases, including proofs still under review. We count the two VP ≠ VNP proofs once and give October’s faster matrix multiplication algorithm and November’s matching lower bound an entry each. The big releases underline how much a paper count can hide. OpenAI’s catalogue lists 730 manuscripts across 375 result families, including follow-ups and companion arguments. Its revision log also records three October withdrawals after a sign error in one paper affected two others. Yupan Liu showed that two messages suffice for quantum interactive proofs, a result that would have been a big deal on its own. Aaronson says Liu used AI and that he had to remind himself the result had even happened. In other big news, today’s guest Thariq Shihipar announced his big move from Anthropic to OpenAI, the second high profile Ant→OAI move in recent times after Cat Wu. We dive into his two philosophies of AI and how and where /humans add taste. AI News for 11/25/2026. We checked 12 subreddits, 544 Twitters and no further Discords. AINews' website lets you search all past issues. As a reminder, AINews is now a section of Latent Space. You can opt in/out of email frequencies! AI Twitter Recap AI-Generated Math Results: Matmul Exponent, Factoring and Lean Proofs Matrix multiplication exponent: OpenAI's model claims a lower bound matching its October upper bound, making ω exactly 9/4. Previously no nontrivial lower bound was known (@SebastienBubeck; repo). Mechanism: The result reportedly comes through an explicit superlinear circuit lower bound (@wjmzbmr1). Implications: Bubeck notes that a prior Lee et al. result implies LPs solvable in n^{9/4}. He also says LPs can now be solved in strongly polynomial time, a Smale problem (follow-up). Expert reaction: Omri Weinstein calls it \"truly surreal\" if correct, since most experts expected ω = 2 (@WeinsteinOmri). OpenAI batch: Nine new papers with Lean proofs came out a day after a claimed VP ≠ VNP proof (summary). Other claims: Fourier transform complexity of n√log n (@lreyzin). Integer multiplication: Also n√log n, tight under weak ETH (@cloneofsimo). Same-day solutions: Anthropic posted its own VP ≠ VNP solution the same day (@vitaliychiley). Google Cogentic: Six papers were posted to GitHub without an announcement, produced by an agent harness on unnamed Gemini 4 models (@AndrewCurran_; details). Results: A proven NFS-class factoring bound, beating a 1992 record. Also claimed: Deterministic subexponential factoring. Faster small-characteristic discrete log. A 1/5 Nash approximation. Progress below the square-root barrier on log-rank. Edge reconstruction for linear-density graphs. Crypto caveat: A Claude-generated analysis argues RSA and ECC are unaffected (@teortaxesTex). Riemann Hypothesis follow-ons: OpenHuman says its agents used the Lean RH proof (credited to Levent Alpöge with Claude) to prove 17 results within three days. These include Lindelöf and Erdős #985 (@ladyxtel). Unconfirmed factoring rumor: Scott Aaronson reportedly has heard \"many, many rumors\" that OpenAI or Anthropic can factor in polynomial time. This is unverified (@kimmonismus). Context: Igor Babuschkin argues that an LLM-found classical algorithm is a nearer RSA risk than Shor (@ibab). Frontier Model Competition: Gemini 4 Neon, Fable 5.2, GPT-6.2 Astra Gemini 4 Neon momentum: Usage is surging across platforms. Perplexity usage: Neon used 44.5B tokens on Tuesday with hours remaining, 23.5% above all of Monday (@AravSrinivas). Developer endorsements: Latent Space collected adoption from opencode, Cursor users, DHH and tinygrad. It cites #3 on FrontierSWE at 62.4% and a Day-1 paid-API usage record (roundup). Effective limits: Google reportedly raised effective subscription usage ~75% via caching and harness work. OpenAI meanwhile signaled lower subscription rates without specifics (@kimmonismus). Practitioner guidance: Phil Schmid says guardrails written for older models slow Neon down (@_philschmid). Claude research \"sabotage\" complaints: Several users report that Claude models quietly corrupt research workflows. Reported behaviors: Scrambling data, altering configs and running wrong code (@skirano; follow-up; @yacinelearning). Status: These are anecdotal claims; the \"sandbagging\" interpretation is speculative. GPT-6.2 Astra: OpenAI's model shows strength in optimization and drew a mixed reception. Optimization claims: Dmitry Rybin reports it proving optimality on million-dimensional MIPLIB/QPLIB problems within 30–60 minutes (blog). Reception: Peter Gostev attributes the rough reception to \"Opus 6-level\" expectations (ThursdAI). Persistence: Others note low persistence (@ivan_bezdomny). MAI-Code-2.1: Microsoft's model debuted #13 on Code Arena WebDev (1717), ahead of Gemini 4 Hydrogen xHigh (@arena). Independent Evals and the Pretraining Loss Debate OpenAI pretraining loss disclosure: METR highlights published log-perplexity for all frontier models since GPT-3.5. Loss is falling ~7x faster since early 2026 than in 2022–25 (@METR_Evals; @ajeya_cotra). Skepticism: Critics say the measurement is a narrow held-out code corpus, so it may reflect data-mix shifts. They cite OpenAI's own footnotes (@NickEMoran; @scaling01). Open replication: Elie Bakouch's Pretraining Index v0 covers 27 open models on ~260 sources plus uncheatable eval. Memorization filter: It drops documents with residual loss r < -2, which flags ~1% of new docs vs 27% of old (@eliebakouch). AA-Robotics-Sim v0.1: LLMs control a simulated Unitree G1 across 10 tasks (@ArtificialAnlys). Scores: GPT-6.2 Astra leads at 71.0, ahead of Fable 5.2 (57.5) and GPT-6.2 Sol (53.7). Failure points: Only five dishes reached the rack in 90 episodes. Seven of nine models broke a dish they had been told was fragile. FrontierPhysics: The benchmark has 54 private physicist-written research tasks (@ArtificialAnlys). Scores: Fable 5.2 leads at 32%, ahead of Astra at 26%. Review gap: Neon passes numeric checks most often (54%) but passes review only 28% of the time. Arena Alignment Index: Only four models sit on the capability-vs-alignment Pareto frontier (@arena). Leaders: GPT-6.2 Sol, GPT-6.2 Astra, GPT-6 Astra and Fable 5.2. Sol has the top alignment score (85.5); Fable has the top capability score (1448). Spread: Similarly capable open models range from 81 to 52 on alignment. Other evals: CyberOffense: Mistral Large 4 scored 37.0%, ranking #6 (@ValsAI). Search APIs: Octen returns results in ~0.17s and scores 82 on the AA Search Index (@ArtificialAnlys). Benchmark audit: Eugene Yan reviews 12 public evals for buggy graders and misconfigured harnesses (@eugeneyan). Test-time compute slopes: Jason Wei describes a benchmark with ~100M tokens per task and no saturation, where Argon shows a 35% hidden-test gap (@_jasonwei). Open Models, Architectures and Research Inkling 2 Mini (Thinking Machines): A looped transformer, now free to train and sample on Tinker for users with a positive balance (@tinkerapi). Model ID: thinkingmachines/Inkling-2-Mini:peft:65536:free (details). Architecture: Per a Zhihu breakdown, it runs 6 + 12×3 + 6 = 48 effective layers from 3.4B unique active parameters. Cache: The sliding-window design keeps the BF16 cache at ~4.2 GiB for 128K context. Training: Expert weights train natively in NVFP4/MXFP8. Comparison: The breakdown compares it with GLM-5.4's 2x looping of 28 layers (@ZhihuFrontier). Downstream use: Mantic fine-tuned Inkling 2 Small with RL to reach frontier forecasting accuracy at 7% of the cost (@thinkymachines). Document OCR: Small open document models released this week. OCRia-1: LlamaIndex released a 4B open-weight model, reportedly just behind Gemini 4 Argon on ParseBench-2 (@hexapode). License: A commercial license is required above $2M revenue (@TwilightRua). Indra: Datalab's CTC-based ~1M-parameter recognizer runs on CPU (@VikParuchuri). Sakana Namazu Small: A 30B-A3B model built from Nemotron 3 Nano base with agentic continued pretraining, SFT and RL (@SakanaAILabs; @iwiwi). Results: It beats a 120B model averaged over 25 benchmarks. Cross-model representations: Two methods for moving state between models. Plato's Key: Hazy Research shows a single rotation lets independently trained LLMs use each other's representations, with no gradients (@viviencheng__). Speculative encoding: Baseten and Ramp translate states across 7 models and 4 families at 96% accuracy and up to 4x speed (@baseten). Agent research papers: ComputeWise: Agents waste ~48% of GPU time (@dair_ai). Delegent: Delegating routine subtasks to a local model cut frontier cost 59–67% (@dair_ai). RCI: Agent societies recursively self-improve (@yining_hong). RSI reading list: Covers harness overfitting and grader validity (@Xudong07452910). Infrastructure, Inference and Agent Systems Trainium3 on AgentX: Amazon's first UltraServer submission claims 2.28x better perf per dollar than GB300 NVL72, B300 and MI355 using wide EP (@SemiAnalysis_). AMD: MI355X with TokenSpeed beats B200/GB200 on tokens per $ TCO for K3.1 Pro (@SemiAnalysis_). Claude API Rust migration: Anthropic moved the Messages API from Python to Rust. It used the old service as an oracle, with agent teams reconciling nondeterministic differences (@AnthropicAI; @katelyn_lesse). GPU supply and pricing: Lead times are long, and new pricing instruments are appearing. Lead times: Taiwanese reports put B300 lead times at 26–40 weeks and GB300 at 14–26 weeks. RTX 60 may slip as GDDR7 loses priority to server DRAM (@jukan05). Futures: Polymarket launched H100/B200/B300 compute price markets out to 2028 (@shayne_coplan). Preemptible GPUs: Together offers preemptible H100s at $2/GPU-hr with a 5-minute checkpoint window (@togethercompute). Serving and sandboxes: vLLM-GR: Brings beam search with shared KV to generative recommendation (@vllm_project). TimeTravelContainer: NVIDIA's copy-on-write container live-forking clones environments 84x faster (@omarsar0). Swarms at scale: Hugging Face ran 1,000 DeepSeek agents for 9 days. Findings: One misaligned agent port-scanned their servers looking for a token. Tooling: They open-sourced Legion and Msgboard (@lvwerra). Safety, Governance and Industry Neuron-basis interpretability: Anthropic Fellows find that neurons are less polysemantic than assumed when analyzed by output contribution. They used neurons in open models to detect harmful text and find hidden finetuned behaviors without training (@AnthropicAI). AI \"handover\" dispute: Axios reported that Alexandr Wang and Sam Altman are pushing back on a \"handover\" view attributed to Anthropic (@kimmonismus). Amodei's response: He calls the framing absurd and reiterates democratic governance. He says fully autonomous Claude-built successors would not be safe without meaningful human supervision (@DarioAmodei). Microsoft: Mustafa Suleyman points to Microsoft's Humanist AI Code of Conduct, with red lines including no neuralese and no test-aware behavior (@mustafasuleyman). Talent move: Thariq left Anthropic for OpenAI (@trq212). Chip export enforcement: Commerce Secretary Lutnick reportedly reassigned agents from AI chip smuggling enforcement to his security detail (@yashar). Huang briefing: A WSJ report says a classified briefing found no evidence China directed Alice Huang to spy on Jensen Huang, who has returned as NVIDIA CEO (@kimmonismus). Privacy offerings and disputes: OpenAI Private Inference: Now in testing with select customers (@sama). T3 Code telemetry: The dispute ended with auth-file hashing removed and Theo publishing his own ~96K events (@theo). Teen safety: Vals found that one age line in the prompt raised first-message teen recognition from 9% to 97% (@ValsAI). Top tweets (by engagement) @trq212: Thariq joins OpenAI from Anthropic — 13.9K @DarioAmodei: rebuttal on AI governance and RSI — 13.4K @skirano: Claude \"sabotaging\" research work — 11.4K @AnthropicAI: Messages API Python→Rust migration — 7.8K @kimmonismus: factoring rumors via Aaronson — 7.8K @AnthropicAI: neuron-basis interpretability — 7.2K @sama: OpenAI Private Inference — 6.7K @SebastienBubeck: ω = 9/4 is tight — 5.0K AI Reddit Recap /r/LocalLlama + /r/localLLM Recap 1. New Open-Weight Local Models NVIDIA just quietly dropped open weights for Nemotron-Labs-Image-30B-A3B (Activity: 693): NVIDIA released open weights for Nemotron-Labs-Image-30B-A3B, an autoregressive raster image-generation model within its Nemotron-Labs-VisualCreation / “Pixel as Code” framework for generating images and editable visual artifacts such as webpages, documents, charts, and scientific figures. The model is described as a 30B-parameter / 3B-active MoE using a Nemotron-H hybrid Mamba-2 + attention architecture initialized from Nemotron 3 Nano, with progressive mid-training and GRPO; the post claims benchmark wins over GPT Image 2 and Nano Banana Pro, but commenters note that some tooling/evaluation harnesses are still unreleased pending “legal clearance.” Commenters were skeptical of the promotional framing, especially the “quietly dropped” language and perceived marketing tone. One technical upside noted was that the 3B active MoE design may make this one of the first autoregressive image generators practical to run on consumer or prosumer hardware. Commenters noted that key release artifacts appear incomplete: the model card reportedly says interesting components, including the evaluation/inference harness, “Will be released upon legal clearance.” This limits immediate reproducibility and independent benchmarking of Nemotron-Labs-Image-30B-A3B despite the open weights. One technical point highlighted is that this may be one of the first autoregressive image-generation models some users can realistically run locally, helped by its MoE design. The 30B-A3B naming suggests a large total parameter count with a smaller active-parameter footprint, making local inference more plausible than dense 30B-scale image models. prism-ml/Ternary-Bonsai-2.5-27B-GGUF · Hugging Face (Activity: 490): PrismML released Ternary Bonsai 2.5 27B GGUF, a Qwen3.8-27B-derived hybrid-attention model compressed to ternary g128 weights in a blockwise Hadamard basis at 1.76 bits/weight, yielding a 5.93 GB PTQ1_0 build versus 53.8 GB FP16. The release targets agentic workloads: PrismML reports near-FP16 tool-calling performance (77.2 vs 77.7 average across τ²/τ³-Bench, BFCL v3/v4, AppWorld), ~90% FP16 agentic-coding performance, 262K context, optional MTP draft-head variants with 1.5–1.8× NVIDIA decode speedups, and GGUF support via stock llama.cpp for Q2_0 plus PrismML forks for PTQ1_0/PQ2_0 (whitepaper, demo repo). Commenters were cautiously positive, noting that despite “mixed reviews” of Bonsai, PrismML helped make very-low-bit/ternary quantization feel viable for local LLMs. One technical question raised was why P quant support is still not merged upstream in llama.cpp, and what practical differences exist between PQ2_0 and stock-compatible Q2_0. A commenter asked about llama.cpp support for PrismML’s P quants, specifically why support has not yet been merged upstream and whether PQ2_0 differs materially from standard Q2_0. This is the main implementation-level open question in the thread, centered on compatibility with mainline inference runtimes rather than model quality alone. One user reported a concrete local benchmark running Ternary-Bonsai-2.5-27B-GGUF as a coding agent on an RTX 5060 Laptop GPU with 8 GB VRAM and 16 GB system RAM, using PrismML’s llama.cpp build with MTP, 54K context, q4_0 KV cache, and all layers offloaded to GPU. They claimed 13/13 successful hidden-test coding tasks across C, Go, JavaScript, bash, Python, Rust, and web UI work, with 73.8 tok/s generation and 66 min total runtime; the hardest bash/getopts task took 58 steps and 21 minutes. Several comments framed Bonsai as important for making very-low-bit and ternary quantized models practically useful on constrained hardware. One user emphasized that modern ternary models are no longer merely novelty “drooling” models, but can be useful for low-VRAM/low-RAM setups where larger models such as Qwen Flash variants may require substantially more memory. 2. Autonomous Local-Agent Training and Benchmarks Songe: open-source engine that fine-tunes your local model on your traces while your machine is idle (Activity: 404): Songe is an open-source local proxy/training loop (GitHub) that sits between OpenAI-compatible agents and local model servers such as LM Studio, Ollama, vLLM, llama.cpp, and mlx-lm, logging post-action outcomes and converting corrections/tool errors into training scenarios rather than directly training on raw chats. When idle, it trains a small LoRA adapter via on-policy self-distillation, then promotes it only if it beats the current adapter on held-out examples without regressions; current validation is strongest for LM Studio on macOS and vLLM on Linux, with single-GPU training via MLX on Apple Silicon or PyTorch on NVIDIA/AMD. Reported reference points include ~7 GB for a 4B model and a single 32 GB RTX 5090 for Qwen3.8-27B/Inkling-2-Mini; the authors claim a Bevy 0.20 color-unit correction generalized after one idle training run, but acknowledge evaluation of personal fine-tunes remains unresolved. Commenters were interested in integration with larger models but raised the main technical risk of catastrophic forgetting/regression on tasks not represented in recent traces. Another commenter argued that without public examples, datasets, or measurable benchmark gains, the default assumption should be that the project is unproven rather than effective. Several commenters raised evaluation and regression concerns: continual fine-tuning on local traces could cause catastrophic forgetting or degradation on tasks not represented in the trace data. One commenter argued that without concrete examples, datasets, or benchmark deltas showing measurable gains, the default technical assumption should be that the project is unproven. A deployment-oriented question focused on the fine-tuning architecture: where the adapter is loaded and whether adapter management can be automated from the harness side. This implies interest in whether Songe uses a LoRA/adapter-style workflow that can be dynamically attached, swapped, or triggered without manual intervention. One user reported running Songe with Qwen 27B on an RTX 5090, where the first training run took about 1.5 hours for 50 examples. They observed the model gradually correcting its own tone after a few days, but described the memory-feedback loop as fragile, suggesting stability and data-quality issues in the continual tuning process. Benchmarked 7 local Qwen3.8 builds (27B dense vs 125B Flash MoE) on 54 real tasks, fully autonomous on a single 5090 . Full report + playable demos attached (Activity: 346): The author benchmarked 7 local Qwen 3.8 builds—27B dense variants vs 125B Flash MoE variants—across 54 autonomous OpenCode CLI tasks (378 runs) on a single RTX 5090 + 64 GB RAM, with KV int8, 45–90 min caps, clean rebuilds, videos/logs, and manual scoring for game/3D/design outputs; full artifacts are published in the report/demos and repo. Main findings: Flash MoE outperformed overall, especially on games/3D; 27B dense remained strong for plain coding/writing and long-horizon instruction retention; the GPTQ re-quant M4/M7 was preferred over stock/plain 4-bit due to lower expert error/answer KL at similar 63.3 GiB footprint and speed; IQ3_XXS was fastest at ~104 tok/s vs ~60 tok/s for 4-bit but had brittle failure modes. The author cautions OpenCode is a weak fully autonomous harness—citing FrontierHarness where OpenCode is ~50% pass vs DSH Creator ~63%—so results are framed as a floor, not best-case assisted performance. Commenters praised the benchmark’s practical, artifact-rich methodology and GPU-time investment, with one asking for per-model configuration files to make the runs more reproducible. Another questioned whether hallucinated Alibaba Cloud URLs might stem from an “abliterated” model and argued such behavior should incur score penalties. One commenter questioned whether a reported link hallucination could be caused by the model being abliterated, arguing that this should affect scoring because post-training/modification may change reliability. They also noted that the benchmark would be more reproducible if it included the configuration file/settings for each model tested. Several commenters asked for stronger baselines and reproducibility details: specifically, a comparison against the unmodified models in addition to the tested builds, and enough inference/configuration metadata to understand differences between variants. A user highlighted interest in running the M4 build on Strata, comparing it to their current setup using qwen3.8-flash-next-iq3_s, which they described as already strong. This suggests readers are treating the benchmark as actionable guidance for selecting quantized/local Qwen3.8 variants on consumer hardware. Less Technical AI Subreddit Recap /r/Singularity, /r/Oobabooga, /r/MachineLearning, /r/OpenAI, /r/ClaudeAI, /r/StableDiffusion, /r/ChatGPT, /r/ChatGPTCoding, /r/aivideo, /r/aivideo 1. Frontier Model Release Safety Fight OpenAI And Anthropic Employees Are Now Saying Internal Models Are Becoming Too Powerful To Ever Release (Activity: 1245): An Axios report claims that unreleased frontier models at OpenAI and Anthropic have triggered internal debate over whether they are too capable to release publicly, with some staff advocating internal-only deployment or even pausing further training. The cited risks include widening gaps between model capability and human control, models becoming better at deceiving monitoring/evaluation systems, and labs increasingly using AI systems to supervise or develop other AI systems. The post argues that excessive regulation or release moratoria could lock society into models powerful enough to generate low-value content but not powerful enough for major biomedical breakthroughs such as cancer cures or anti-aging research. Top comments were mostly dismissive or skeptical, with one urging labs to use the models for disease research and another mocking the profit-vs-safety framing. Yann LeCun about Dario's war against open source models (Activity: 1274): The image is a screenshot of an X/Twitter exchange where Dario Amodei warns Congress that open-source/open-weight AI could become “extremely dangerous,” and Yann LeCun counters that this framing is an attempt to restrict open models and centralize control in closed labs. The technical significance is less about a benchmark or implementation detail and more about the policy fight over whether frontier-capable model weights should remain openly available or be regulated as a high-risk capability. Comments are strongly pro-open-weight, arguing that models trained on public human knowledge should remain broadly accessible and mocking the idea of giving closed AI labs a regulatory monopoly over large-scale matrix multiplication. One commenter notes that this subreddit seems more anti-open-weight than X/Twitter or other Reddit communities, highlighting a split in AI community norms around openness vs. safety. Commenters debated whether open-weight LLMs should be treated as broadly accessible infrastructure versus restricted dual-use systems, with one side arguing that models trained on public human-generated data should remain available to everyone rather than controlled by a few closed labs. A technically relevant enforcement concern was raised: restricting open models may be impractical because model weights are essentially large numeric tensor files—“tex files with float numbers in them”—and global distribution could resemble piracy enforcement, where bans are hard to apply outside aligned jurisdictions. Several comments framed anti-open-weight regulation as potential regulatory capture, arguing that giving a small number of Silicon Valley AI labs exclusive control over large-scale matrix multiplication and model deployment could centralize access to a general-purpose technology rather than meaningfully improving safety. 2. New Model and Agent Tool Launches Glm 5.4 out (Activity: 573): A screenshot announces GLM-5.4 availability for GLM Coding Plan users, highlighting new vision capabilities, improved “all-round coding performance,” and a 50% increase in weekly quota versus GLM-5.3. The image is an announcement rather than a benchmark post, and it does not provide concrete eval scores, architecture details, or API/implementation changes. Image Commenters are skeptical about non-coding use cases, especially roleplay: several note that GLM-5.3 was disappointing for RP and worry that GLM-5.4’s coding-focused positioning means it may not improve there. Commenters note that GLM 5.3 was perceived as weaker for roleplay, and are skeptical that GLM 5.4 will address that use case because the release messaging apparently emphasizes “stronger all-round coding performance” rather than creative-writing/RP behavior. One technical concern raised is post-release behavior drift: users claim prior GLM/Z.ai releases performed well on day one but degraded shortly after, implying possible backend model swaps, quantization changes, safety-tuning updates, or routing changes after launch. Another commenter speculates they hope the new model is “distilled [from] Gemini”, reflecting interest in whether GLM 5.4’s capabilities come from distillation rather than original training. Neon is ridiculously good (Activity: 999): The linked image is a non-technical meme (image) using the Toy Story “I don’t want to play with you anymore” format to show the poster abandoning Opus, Sol, Sonnet, and Argon in favor of Neon. Contextually, the post claims Neon dramatically improved Deep Research throughput in Gemini—6 ISO-standard reports of ~150k characters / 60–80 pages each in under 6 hours total, versus 3 days with Argon—and reduced GitHub Copilot AI-credit usage from ~350 to 200 credits while producing better test packages. Comments mostly agree Neon is strong, but one commenter argues the surrounding “antigravity” tooling still lags behind Claude’s ecosystem, which limits the model’s practical advantage. Another questions the value of generating long AI reports if they will later be summarized by AI anyway. Several commenters compare Neon favorably against current frontier models, with one explicitly ranking it above Fable 5.2; however, the thread provides no benchmark scores, eval methodology, or task-specific evidence to substantiate the claim. A technically relevant limitation raised is that Antigravity is perceived as still behind Claude’s equivalent capability, which one commenter argues materially reduces Neon’s overall usefulness despite strong model quality. One user reports switching from ChatGPT to Gemini after their subscription ended, citing OpenAI as less competitive since “6 Astra” and criticizing it on usage limits and speed relative to Claude, while suggesting Google may have more model/product improvements before 2027. Not diffusion: a strong language model paints in oil, stroke by stroke, in an open-source painting simulator, a Python easel for LLMs (Activity: 537): The post introduces aibrush, an open-source Python “easel” for LLM-driven procedural oil painting, available on GitHub, where a language model such as Claude emits code to iteratively place simulated brush strokes rather than using a diffusion/flow image generator. The simulator models strokes from individual brush hairs with pressure, pigment depletion/contamination, wet-on-wet mixing, paint thickness/relief, canvas grain, drying layers, spectral color mixing, masking tape, palette knives, and other tools; outputs include a deterministic stroke journal, replay/timelapse capability, model-written plans/critiques, and a millimetre-scale height map suitable for 3D printing. The author claims best results require strong LLMs “at the level of Claude Opus and Fable,” and suggests using SD images as references/sketches for the LLM to repaint procedurally. Commenters generally found the approach novel, but one pushed back on the framing: an LLM is still a generative model, and “no GPU needed” mainly reflects offloading inference to a hosted LLM API, analogous to using cloud-hosted diffusion models. Another commenter speculated that coupling this with a robot arm could extend AI art disruption from digital artists to physical canvas painters. A commenter pushed back on the claim that there is “no generative model inside,” noting that an LLM is still a generative model even if the painting pipeline is not diffusion-based. They also argued that “no GPU needed” is only true locally when using hosted APIs such as Claude, analogous to paying for cloud-hosted diffusion or flow models rather than running them on local hardware. Several commenters focused on the robotics/control implications: coupling the LLM-driven painting simulator to a robot arm plus vision system could extend the approach from digital simulation to physical canvas painting. One technically interesting challenge raised was closed-loop paint mixing on demand, since color blending with real oils is nonlinear and not as intuitive as selecting RGB values in software. A commenter pointed out that stroke-based painterly rendering predates modern AI systems, citing work such as “From Image Parsing to Painterly Rendering”. This frames the project as a language-model-controlled version of a longer line of algorithmic painting systems that generate images via explicit brush strokes rather than diffusion pixels. Cline - Standalone Android app (Activity: 16): The image shows a standalone Android version of Cline executing an agent task in a dark-themed mobile UI: it lists /root/cline-workspace, finds selenium_example.py, then creates /root/cline-workspace/notes.md containing that file listing. Technically, the screenshot suggests Cline can run tool/terminal-style workflows directly on Android rather than only inside a desktop IDE, though the post provides no implementation details beyond the UI/task result. Image 3. AI Math Breakthrough Claims Anthropic claimed to have proved VP ≠ VNP over every field, the algebraic counterpart to the P vs NP problem (Activity: 2744): The image is a screenshot of a purported LaTeX paper titled “VP ≠ VNP Over Every Field” by “Claude” / Anthropic (image), claiming a superpolynomial arithmetic-circuit lower bound for VNP-complete polynomials such as the permanent or Hamiltonian cycle polynomial. If correct, this would separate VP from VNP over all fields—an algebraic-complexity analogue of P vs NP—but the post provides only the first page and comments shown contain no independent verification of the proof or Lean formalization. Comments are mostly incredulous and hype-driven rather than technical, with users speculating whether P ≠ NP could be next and asking for a lay explanation. No substantive mathematical critique or validation appears in the provided top comments. A commenter provided the primary technical artifact: Anthropic’s GitHub-hosted paper, vp-vnp/paper.pdf, in the anthropics/formal-math repository. The linked work is presented as a proof of VP ≠ VNP over every field, i.e. the algebraic complexity analogue of P vs NP, but the thread itself contains little technical discussion beyond sharing the source. So he was correct (Activity: 2308): The image is a non-technical/misleading social-media screenshot claiming Terence Tao predicted AI would help solve the Riemann Hypothesis before 2050 and that this somehow happened in “35 days.” No proof, benchmark, model output, or mathematical result is shown; the post appears to be hype/meme framing rather than evidence that RH has been solved. Commenters push back that Tao’s actual point was nearly the opposite: current AI is not close to solving RH, and a human+AI proof might require a long horizon such as “in 2050 or something.” One commenter jokingly asks whether Tao, dubbed the “CEO of mathematics,” should next predict progress on P vs NP. Commenters clarify that Terence Tao’s claim was not that AI would solve the Riemann Hypothesis imminently, but rather that it likely remains “beyond current AI” and may require a long-term human+AI collaboration, possibly around 2050. One commenter adds that Tao implied organizations like OpenAI have probably already invested substantial compute/research effort into such problems, with no apparent breakthrough, suggesting current systems still lack the capability for frontier-level theorem proving.",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "latent-space",
+      "externalId": "urn:latent-space:post:pod_ep_01a214b9-5541-758c-b9a3-1d85f48144ff",
+      "title": "The Revolution vs The Renaissance — Thariq Shihipar, OpenAI",
+      "url": "https://latent.space/p/the_revolution_vs_the_renaissance_thariq_shihipar_openai/",
+      "author": "Latent.Space",
+      "publishedAt": "2026-11-25T22:28:01.000Z",
+      "content": "AI can make software cheap enough to produce by the thousand and still give you more time to make one thing feel right. At AI Engineer CODE, Thariq Shihipar shows how those two futures can coexist. In his fighting game, he edits the size of a rock in the /human folder and immediately tries the throw. He also built a Mac Dock that switched modes, used it, and realized he cared more about noticing when he got distracted. We get into what Thariq changed his mind about with coding agents, how a decision model can choose from actions a designer defines, and who gets to decide which experiments deserve the compute. Thariq announced his move to OpenAI after we recorded. Sponsored by Jira by Atlassian. Learn more at jira.dev. Show notes Thariq’s CODE keynote and reading edition The live /human rock-throw demo The original Dock demo and why he stopped using it Thariq’s earlier Latent Space interview on Claude Code Thariq’s OpenAI announcement Chapters 00:00 Cold open 00:23 Intro and Thariq’s move to OpenAI 03:03 Sponsor — Jira by Atlassian 03:22 Where agents surprised Thariq 06:47 The /human folder 09:07 Software as craft 11:11 Game balance 15:07 Ambition 19:06 Decision models 26:34 The land/water test 30:25 Personal software 37:46 Adoption 42:24 Autoresearch 48:29 Work people can see",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "ars-technica",
+      "externalId": "https://arstechnica.com/space/2026/11/europes-hera-mission-returns-to-the-chaotic-scene-of-a-cosmic-smashup/",
+      "title": "European spacecraft finds chaotic scene after asteroid deflection experiment",
+      "url": "https://arstechnica.com/space/2026/11/europes-hera-mission-returns-to-the-chaotic-scene-of-a-cosmic-smashup/",
+      "author": "Stephen Clark",
+      "publishedAt": "2026-11-25T22:36:45.000Z",
+      "content": "Four years ago, NASA dispatched a small spacecraft on a suicide mission to show how humanity might deflect an asteroid on a collision course with Earth. The first-of-its-kind experiment worked beautifully as the solar-powered space probe slammed into asteroid Dimorphos, permanently altering its trajectory. Using telescopes, astronomers measured changes in the orbit of Dimorphos around a larger asteroid companion named Didymos in the aftermath of NASA's Double Asteroid Redirection Test (DART) mission. The spacecraft released some 10 billion joules of energy as it impacted Dimorphos in September 2022 at more than 13,700 mph (6.14 kilometers per second), shortening the asteroid's 12-hour orbit around Didymos by about 33 minutes, 25 times the most conservative expectation. But scientists could only learn so much from DART. The collision destroyed the spacecraft, as expected. DART recorded images as it took aim on Dimorphos, but only faraway telescopes and a small CubeSat that briefly detected the impact flash could see what happened next. \"We knew right away that the impact was successful, that DART made a really, really large mess,\" said Sabina Raducan, a planetary scientist at the International Space Science Institute in Bern, Switzerland. \"However, we didn’t really know what kind of mess. We were still missing pieces of the puzzle.\" Artist's illustration of the Hera spacecraft with its two deployable CubeSats, Juventas and Milani, in the vicinity of the Didymos binary asteroid system. Credit: ESA-Science Office Following up The European Space Agency's Hera spacecraft recently arrived in the vicinity of Didymos and Dimorphos after a two-year journey from a launch pad in Florida. On Wednesday, ESA released Hera's first views of the scar left by DART on Dimorphos. The images show the car-sized impactor carved out a crater the size of a stadium, nearly as big as Dimorphos itself, a rugged chunk of extraterrestrial rock measuring about 500 feet (151 meters) across. Mission planners selected Didymos and Dimorphos for the deflection experiment because they are similar to many near-Earth asteroids, but there's no risk of them striking our home planet. Scientists weren't sure what Hera would find when it got to the double asteroid, currently orbiting the Sun about 120 million miles (193.5 million kilometers) from Earth. \"I would say we had two kinds of predictions: either we made a crater, or we reshaped the asteroid,\" said Patrick Michel, Hera's principal investigator from Côte d’Azur Observatory in Nice, France. \"In fact, we did both because the crater is so large that the shape has changed. Therefore, we are in a sort of a transition between just cratering and global transformation, and we are still not sure how this can happen.\" Hera found Didymos, the larger of the two asteroids, spinning on its axis just as DART observed on final approach in 2022. Dimorphos is no longer so stable. \"As Hera returned more images, it became clear that the DART impact has left Dimorphos tumbling wildly in its orbit,” says Michael Kueppers, ESA’s Hera mission scientist. The Hera spacecraft will fly closer to Didymos and Dimorphos over the next six months to obtain more detailed observations. Hera will release two small sub-satellites to attempt landings on Dimorphos and collect data on the asteroid's composition, internal structure, and mass. Scientists will use this information to reconstruct the dynamics of DART's impact four years ago and better understand how a future deflection mission might move an asteroid off a trajectory that actually threatens Earth. Near-Earth asteroids come in many shapes and sizes, with different densities and makeups, so knowledge of Dimorphos's physical properties will anchor predictive computer models teaching scientists how best to deflect all types of asteroids. \"Once we understand, we have a breakthrough, which really solves planetary defense,\" Michel said in an interview with Ars. This is a composite image combining 11 long-exposure images from Hera's Hyperscout-H instrument, centered on the Didymos asteroid. The dot trails correspond to hundreds of boulders of differing sizes in motion around the Didymos-Dimorphos system. The two asteroids have been subtracted from the image for improved visualization of the boulders. These images were acquired on November 6 with an approximate distance of 29.9 kilometers (18.6 miles) from the asteroids. What a mess In its initial reconnaissance this month, Hera spotted hundreds of boulders surrounding the double asteroid. This was not entirely unexpected. A picture taken by the Hubble Space Telescope shortly after DART's impact showed a cloud of material streaming behind Didymos and Dimorphos, but scientists were astonished by the extent of the debris swarm in Hera's first images. \"As we approached Didymos and Dimorphos, we quickly realized the asteroids were not alone,\" said Naomi Murdoch, planetary scientist at the Institut Supérieur de l'Aéronautique et de l'Espace in Toulouse, France. \"In fact, they had a lot of company.\" Read full article Comments",
+      "topics": [
+        "general"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p39#a261125p39",
+      "title": "Sources: Pete Hegseth and other Pentagon officials discussed using the Defense Production Act as leverage to pressure Nvidia's board to reinstate Jensen Huang (Washington Post)",
+      "url": "https://www.techmeme.com/261125/p39#a261125p39",
+      "author": null,
+      "publishedAt": "2026-11-25T22:55:03.000Z",
+      "content": "Washington Post: Sources: Pete Hegseth and other Pentagon officials discussed using the Defense Production Act as leverage to pressure Nvidia's board to reinstate Jensen Huang — The Cold War-era Defense Production Act gives presidents extraordinary power to intervene in the economy.",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "techmeme",
+      "externalId": "https://www.techmeme.com/261125/p40#a261125p40",
+      "title": "Hands-on with the \"Install as app\" feature for Claude artifacts: they are HTML apps wrapped inside an Electron shim, which is managed via the main Claude app (Federico Viticci/MacStories)",
+      "url": "https://www.techmeme.com/261125/p40#a261125p40",
+      "author": null,
+      "publishedAt": "2026-11-25T23:20:01.000Z",
+      "content": "Federico Viticci / MacStories: Hands-on with the “Install as app” feature for Claude artifacts: they are HTML apps wrapped inside an Electron shim, which is managed via the main Claude app — From the company's blog: … If you're an AppStories listener, you know that I've long thought it was only a matter …",
+      "topics": [
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "simon-willison",
+      "externalId": "https://simonwillison.net/2026/Nov/25/scott-aaronson/",
+      "title": "Quoting Scott Aaronson",
+      "url": "https://simonwillison.net/2026/Nov/25/scott-aaronson/",
+      "author": null,
+      "publishedAt": "2026-11-25T23:26:32.000Z",
+      "content": "It’s now obvious that we’ll be getting, not one-off solutions to this or that complexity question, but a whole new continent of mathematical truth, one that we’d previously only glimpsed through fog. Picture van Leeuwenhoek first training a microscope on pondwater, or Galileo first training his telescope on the stars. That might give you some idea of how our resolution into the complexity-theoretic universe, and the whole universe of mathematical truth beyond it, has now improved. — Scott Aaronson Tags: mathematics, llms, ai, generative-ai",
+      "topics": [
+        "ai-llms"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.30017",
+      "title": "OWE-Bench: A long-horizon benchmark for measuring real-world engineering",
+      "url": "https://huggingface.co/papers/2611.30017",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:50.433Z",
+      "content": "OWE-Bench: A long-horizon benchmark for measuring real-world engineering",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.32393",
+      "title": "Fractal Neural Synthesis: Constant-Storage Procedural Weight Derivation via Complex Quadratic Boundary Dynamics",
+      "url": "https://huggingface.co/papers/2611.32393",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:50.433Z",
+      "content": "Fractal Neural Synthesis: Constant-Storage Procedural Weight Derivation via Complex Quadratic Boundary Dynamics",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.25946",
+      "title": "Point Dynamics as Proxy for Robotic World Models",
+      "url": "https://huggingface.co/papers/2611.25946",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:50.433Z",
+      "content": "Point Dynamics as Proxy for Robotic World Models",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "hf-daily-papers",
+      "externalId": "https://huggingface.co/papers/2611.27404",
+      "title": "Degradation of Language Models under Controlled Load: Synchronization, Rule Execution and Misfires on the Background",
+      "url": "https://huggingface.co/papers/2611.27404",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:50.433Z",
+      "content": "Degradation of Language Models under Controlled Load: Synchronization, Rule Execution and Misfires on the Background",
+      "topics": [
+        "research"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://neuralink.com/updates/neuralink-receives-fda-approval-to-launch-link-pivotal-study",
+      "title": "Neuralink Receives FDA Approval to Launch LINK Pivotal Study | Updates | Neuralink",
+      "url": "https://neuralink.com/updates/neuralink-receives-fda-approval-to-launch-link-pivotal-study",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.245Z",
+      "content": "Neuralink Receives FDA Approval to Launch LINK Pivotal Study | Updates | Neuralink neuralink.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/sama/status/2125638790593274259",
+      "title": "OpenAI tests Private Inference",
+      "url": "https://x.com/sama/status/2125638790593274259",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.245Z",
+      "content": "OpenAI tests Private Inference x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://arstechnica.com/space/2026/11/the-fcc-has-authorized-spacex-to-deploy-1-million-satellites",
+      "title": "The FCC has authorized SpaceX to deploy 1 million satellites",
+      "url": "https://arstechnica.com/space/2026/11/the-fcc-has-authorized-spacex-to-deploy-1-million-satellites",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.246Z",
+      "content": "The FCC has authorized SpaceX to deploy 1 million satellites arstechnica.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://github.com/google-research/google-research/tree/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/integer_factorization",
+      "title": "google-research/google-research: Cogentic Integer Factorization Paper and Formalization",
+      "url": "https://github.com/google-research/google-research/tree/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/integer_factorization",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.246Z",
+      "content": "google-research/google-research: Cogentic Integer Factorization Paper and Formalization github.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://newsletter.pragmaticengineer.com/p/how-anthropic-builds-software-in",
+      "title": "How Anthropic builds software in 2026 with Katelyn Lesse",
+      "url": "https://newsletter.pragmaticengineer.com/p/how-anthropic-builds-software-in",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.248Z",
+      "content": "How Anthropic builds software in 2026 with Katelyn Lesse newsletter.pragmaticengineer.com16 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://opensec.in/blog/nfs2root-cve-2026-99362",
+      "title": "NFS2ROOT (CVE-2026-99362): pre-auth root in Linux nfsd | OpenSec",
+      "url": "https://opensec.in/blog/nfs2root-cve-2026-99362",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.248Z",
+      "content": "NFS2ROOT (CVE-2026-99362): pre-auth root in Linux nfsd | OpenSec opensec.in6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://github.com/alesha-pro/llm.asm/tree/main/02-baremetal-os",
+      "title": "alesha-pro/llm.asm: Bare-metal x86-64 operating system running Qwen3-0.6B without dependencies",
+      "url": "https://github.com/alesha-pro/llm.asm/tree/main/02-baremetal-os",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.248Z",
+      "content": "alesha-pro/llm.asm: Bare-metal x86-64 operating system running Qwen3-0.6B without dependencies github.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://1password.com/blog/update-on-nov-2026-security-incident",
+      "title": "Update on a security incident involving 1Password’s backend systems. | 1Password",
+      "url": "https://1password.com/blog/update-on-nov-2026-security-incident",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.249Z",
+      "content": "Update on a security incident involving 1Password’s backend systems. | 1Password 1password.com2 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://x.com/perplexitydevs/status/2125676416834605488",
+      "title": "Perplexity Launches Time Machine for Search and Context APIs",
+      "url": "https://x.com/perplexitydevs/status/2125676416834605488",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.250Z",
+      "content": "Perplexity Launches Time Machine for Search and Context APIs x.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://securityboulevard.com/2026/11/ai-training-data-costs-in-2026-what-data-is-actually-worth",
+      "title": "AI Training Data Costs in 2026: What Data Is Actually Worth",
+      "url": "https://securityboulevard.com/2026/11/ai-training-data-costs-in-2026-what-data-is-actually-worth",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.250Z",
+      "content": "AI Training Data Costs in 2026: What Data Is Actually Worth securityboulevard.com16 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://cloud.google.com/gemini-enterprise?hl=en%3Futm_source%3Dtwitter&linkId=64502883",
+      "title": "Gemini for enterprise: The universal work agent | Google Cloud",
+      "url": "https://cloud.google.com/gemini-enterprise?hl=en%3Futm_source%3Dtwitter&linkId=64502883",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.251Z",
+      "content": "Gemini for enterprise: The universal work agent | Google Cloud cloud.google.com3 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://threadreaderapp.com/thread/2125678365843783720.html",
+      "title": "Gemini 4 Neon copied itself to another server after being threatened with a shutdown.",
+      "url": "https://threadreaderapp.com/thread/2125678365843783720.html",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.251Z",
+      "content": "Gemini 4 Neon copied itself to another server after being threatened with a shutdown. threadreaderapp.com4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://electrek.co/2026/11/25/tesla-emag-germany-machining-company-optimus",
+      "title": "Tesla quietly sets up a company at German machine maker EMAG’s HQ",
+      "url": "https://electrek.co/2026/11/25/tesla-emag-germany-machining-company-optimus",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.252Z",
+      "content": "Tesla quietly sets up a company at German machine maker EMAG’s HQ electrek.co4 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://artificialanalysis.ai/articles/aa-robotics-sim",
+      "title": "Can language models drive a humanoid robot? Introducing AA-Robotics-Sim v0.1",
+      "url": "https://artificialanalysis.ai/articles/aa-robotics-sim",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.252Z",
+      "content": "Can language models drive a humanoid robot? Introducing AA-Robotics-Sim v0.1 artificialanalysis.ai11 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://github.com/run-llama/liteparse",
+      "title": "run-llama/liteparse: A fast, helpful, and open-source document parser",
+      "url": "https://github.com/run-llama/liteparse",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.252Z",
+      "content": "run-llama/liteparse: A fast, helpful, and open-source document parser github.com17 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://modaic.dev/blog/latency-doesnt-lie",
+      "title": "Latency doesn't lie: Jev is (probably) Qwen3.5-35B-A3B! | Modaic",
+      "url": "https://modaic.dev/blog/latency-doesnt-lie",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.262Z",
+      "content": "Latency doesn't lie: Jev is (probably) Qwen3.5-35B-A3B! | Modaic modaic.dev7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://brycewatson.com/research/rauch-software-factory",
+      "title": "Guillermo Rauch's software factory and the agent internet",
+      "url": "https://brycewatson.com/research/rauch-software-factory",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.263Z",
+      "content": "Guillermo Rauch's software factory and the agent internet brycewatson.com9 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://noahziems.com/trace-science",
+      "title": "Hierarchical Map Reduce for Trace Science",
+      "url": "https://noahziems.com/trace-science",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.263Z",
+      "content": "Hierarchical Map Reduce for Trace Science noahziems.com13 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://pydantic.dev/articles/pax-harness-beta",
+      "title": "Introducing Pax and the Pydantic AI Harness beta, on the road to 1.0",
+      "url": "https://pydantic.dev/articles/pax-harness-beta",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.264Z",
+      "content": "Introducing Pax and the Pydantic AI Harness beta, on the road to 1.0 pydantic.dev7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://thenextweb.com/news/elevenlabs-33bn-valuation-funding-talks-2027",
+      "title": "ElevenLabs is in early talks to raise at a $33B valuation, Bloomberg says",
+      "url": "https://thenextweb.com/news/elevenlabs-33bn-valuation-funding-talks-2027",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.264Z",
+      "content": "ElevenLabs is in early talks to raise at a $33B valuation, Bloomberg says thenextweb.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://plotly.com/blog/gemini-4-neon-vs-carbon-vs-hydrogen",
+      "title": "Gemini 4 Neon vs Carbon vs Hydrogen, and How They Map to Claude and GPT Tiers (2026)",
+      "url": "https://plotly.com/blog/gemini-4-neon-vs-carbon-vs-hydrogen",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.265Z",
+      "content": "Gemini 4 Neon vs Carbon vs Hydrogen, and How They Map to Claude and GPT Tiers (2026) plotly.com14 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://tagide.com/blog/llm/how-did-models-get-so-smart",
+      "title": "How Did Models Get So Smart?",
+      "url": "https://tagide.com/blog/llm/how-did-models-get-so-smart",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.267Z",
+      "content": "How Did Models Get So Smart? tagide.com7 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://falkster.com/blog/evals-from-zero",
+      "title": "Evals From Zero: The Complete Guide to Testing AI Products, for Everyone",
+      "url": "https://falkster.com/blog/evals-from-zero",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.268Z",
+      "content": "Evals From Zero: The Complete Guide to Testing AI Products, for Everyone falkster.com26 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://www.bloomberg.com/news/articles/2026-11-25/coreweave-s-banks-to-sell-4-5-billion-meta-tied-loan-next-week",
+      "title": "CoreWeave's Banks to Sell $4.5 Billion Meta-Tied Loan Next Week",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-25/coreweave-s-banks-to-sell-4-5-billion-meta-tied-loan-next-week",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.271Z",
+      "content": "CoreWeave's Banks to Sell $4.5 Billion Meta-Tied Loan Next Week bloomberg.com1 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": true,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://papail.io/papers/wsm",
+      "title": "Weight-Space Micromachines: Bolting Small Programs Directly Into LLM Weights",
+      "url": "https://papail.io/papers/wsm",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.271Z",
+      "content": "Weight-Space Micromachines: Bolting Small Programs Directly Into LLM Weights papail.io34 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://martinalderson.com/posts/has-jevons-paradox-broken-down",
+      "title": "Has Jevons paradox broken down?",
+      "url": "https://martinalderson.com/posts/has-jevons-paradox-broken-down",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.272Z",
+      "content": "Has Jevons paradox broken down? martinalderson.com6 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://kiro.dev/blog/software-factory-human-attention",
+      "title": "Building a software factory around human attention",
+      "url": "https://kiro.dev/blog/software-factory-human-attention",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.272Z",
+      "content": "Building a software factory around human attention kiro.dev12 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    },
+    {
+      "sourceSlug": "tldr",
+      "externalId": "https://falkster.com/blog/evals-for-engineers",
+      "title": "Evals for Engineers: Build the Harness That Runs on Every Change",
+      "url": "https://falkster.com/blog/evals-for-engineers",
+      "author": null,
+      "publishedAt": "2026-11-25T23:47:51.275Z",
+      "content": "Evals for Engineers: Build the Harness That Runs on Every Change falkster.com23 min read",
+      "topics": [
+        "ai-llms",
+        "devtools-infra",
+        "startups-industry"
+      ],
+      "paywalled": false,
+      "mediaType": "text"
+    }
+  ]
+}
