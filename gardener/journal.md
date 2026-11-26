@@ -6,6 +6,49 @@ merges and closures and never expire.
 
 ## Lessons
 
+- Every gate in this repo checks something a person thought to state, and a
+  typeface's defaults are the part nobody stated. `verify.ts` holds **34
+  carousel rules**: hook length, caption voice, hashtag pool, mark syntax,
+  slide urls against the digest, pm against am. All of them read clean on
+  **32 straight days** while the display face set every number in oldstyle
+  figures, so `1password` shipped as `ıpassword`, `$111.50` as `$ııı.50`,
+  `21 million` as `2ı million`. **185 of the archive's 421 display strings
+  carry a digit and 81 carry a 1, on 30 of 32 days**, and the Karla desc
+  under the same title was setting its numbers lining the whole time, so a
+  single card printed two figure styles. Nothing in the data was wrong and no
+  gate could have caught it, because the defect was in the gap between what
+  the css asked for and what the font does when not asked. AGENTS.md lists
+  "the rendered slide cards" as a signal and this is what that line is for:
+  **the render is the only instrument that reads what nobody wrote down**,
+  and it costs one `Read` of a png. Worth keeping beside it, the fix is the
+  same typeface answering a question it was never asked (`lnum` was in the
+  bundled subset all along), so the pinned design is not what kept this
+  alive; not looking is.
+
+- An `invokedDirectly` guard keyed on a basename guards against a name, not
+  against being imported. `src/slides/render.ts` ends with
+  `process.argv[1]?.endsWith("render.ts")`, and a probe written at
+  `.claude/probe/render.ts` that imported `renderSlides` to pass it a custom
+  launcher fired the module's own CLI block instead, with the default
+  launcher, and failed on the browser path the probe existed to avoid. The
+  stack named `launchChromium` while the call site passed a launcher, which
+  is the tell: **a trace naming a default you overrode means your call never
+  ran**. Renaming the probe fixed it in one move. The repo is fine as it
+  stands (`build.ts` already pairs the check with `.includes("slides")`), so
+  this is a lesson about writing probes, not a diff.
+
+- A test count that moves the wrong way after a purely additive change is a
+  statement about the base, not the change. This clone's working tree sat at
+  11-26 on a detached HEAD while its `origin/main` ref still pointed at
+  **11-23**, three days stale, so `git checkout -b <branch> origin/main` cut
+  the branch from the wrong commit and `npm test` read **310** where main had
+  just read 314 and one test had been added. The expected number was 315, the
+  gap was five, and five is the lead-sentence gate from #405. Nothing warned:
+  the checkout was clean and the suite was green. **`git fetch` before
+  cutting a branch in a clone this routine did not create**, and read the
+  test total as an instrument rather than a formality, because it is the only
+  thing that said the base was wrong.
+
 - A character class is a claim about the locale, not about the characters.
   This container runs `LC_CTYPE="POSIX"`, so a bash regex over non-ASCII
   matches bytes: `grep -oP '[–—]'` over `digests/` named **three days with
@@ -1284,6 +1327,35 @@ merges and closures and never expire.
 
 ## Backlog
 
+- Walked clean on 2026-11-26 alongside #410, recorded so a future run does
+  not re-walk them.
+  **Health**: 314 tests on main, typecheck clean, 33 pages, the last 40
+  workflow runs green, `npm run verify` over 11-20..26 at **0 errors** with
+  its only warnings being #405's re-fire on 11-22 and today's deliberate
+  `openai/math` primary-source link. The last four ingest runs read
+  `sources: 54, failures: []`.
+  **Built-page a11y and semantics**: 0 findings across all 33 pages on
+  duplicate ids, missing alt, empty links, heading-level skips, h1 count,
+  unnamed buttons, `main` count, `target=_blank` without `noopener`, and
+  dangling `aria-labelledby`/`describedby`/`controls`. Nothing to gate.
+  **Section order**: Threads last and Hacker News second to last on **32 of
+  32** days; the lead section varies by the day's biggest story, which is
+  what "order by importance" asks for. `Policy` appears on 3 days (11-04,
+  11-05, 11-06) and is not in AGENTS.md's section list, but the list reads
+  as illustrative and the section is an editorial surface, so this is
+  Yasin's if it is anyone's.
+  **The Hacker News `(discussion)` convention**: AGENTS.md asks a roughly
+  300+ comment story to carry a link to its thread. Measured by matching the
+  section's article hrefs against the day's `hacker-news` items, **2 of 37
+  featured 300+ stories miss it**: 10-27 (`50251344`, exactly 300, so inside
+  "roughly") and 11-10 (`50429068`, **710 comments**, a real miss). Both are
+  older than 16 days and the last 16 days are clean, so by 11-24's rule the
+  archive has **one day** for a gate to act on, which is not enough. Note
+  that ingest's `comments` count is read before the digest window and is
+  therefore a lower bound on what the subagent saw.
+  **The reader signals are still unreachable**: `sift.yasint.dev` and
+  `yasin.goatcounter.com` are both 403 at CONNECT here, so top pages,
+  referrers and entry paths cannot inform a run from this container.
 - Walked clean on 2026-11-25, recorded so a future run does not re-walk them.
   Nothing shipped; twelve probes, each clean or decoration.
   **Health**: 314 tests, typecheck clean, 33 pages, the last 40 workflow runs
@@ -3940,6 +4012,82 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-26
+
+**#410 filed, PR #411 merged as `8cc4864`, `checks` green on `980314b`,
+`pages` 45789966046 green on build and deploy, read the honest way:
+`deploy-pages` passed and the step gated on its failure skipped.** One css
+declaration and 14 lines of test, and the carousel stops printing its
+numbers wrong.
+
+**The signal came from looking, not from a counter.** Health had nothing for
+the third day running: 314 tests, typecheck clean, 33 pages, the last 40
+workflow runs green, and `npm run verify` over 11-20..26 at **0 errors**,
+whose only two warnings are #405's finding re-firing on 11-22 (4 sentences)
+and today's deliberate primary-source link to `openai/math`. A clean sweep
+too: 0 a11y or semantics defects across all 33 built pages (duplicate ids,
+unnamed buttons, heading skips, dangling aria references, missing alt, all
+zero), section order holding on every day with Threads last and Hacker News
+second to last on 32 of 32, and the HN section's `(discussion)` convention
+missing on only **2 of 37** featured 300+ comment stories, both older than
+16 days and one of them at exactly 300. None of it was a day's work.
+
+So the run did what AGENTS.md's Signals list says and rendered the cards.
+**`Cormorant Garamond`'s default figures are oldstyle**: the `1` has no flag
+and sits at x-height, the `4` and `7` descend, `0` is a lowercase o. Today's
+own am cover reads **"ıpassword's backend"** and slide 5 **"2ı million us
+accounts"**. Across 32 days, 63 posts and 421 display strings (358 titles
+plus 63 hooks), **185 carry a digit and 81 carry a `1`, on 30 of the 32
+days**: `$1.25T`, `$111.50`, `1,093 flaws`, `1.3M Android TV boxes`,
+`Voyager 1`, `50.1% of the votes`, all already posted. The Karla desc
+directly under the title sets the same numbers lining, so one card has been
+printing `21 million` and `2.1 million` in two different figure styles.
+
+**The change is `font-variant-numeric:lining-nums` on `.display`.** The
+bundled `cormorant.woff2` subset carries `lnum`, confirmed by rendering a
+test page both ways before a line of the fix was written, so this is the
+same typeface asking for its other figure set rather than a repaint. The
+wordmark (Fraunces), the body copy (Karla) and the chrome (Space Mono) are
+lining already and are left alone, and the test asserts the rule lands on
+`.display` and nowhere else.
+
+**Measured before it was written, across all 484 built cards.** Default
+against lining-nums, in the browser: **0 cards overflow either way** (lowest
+content bottom 1262 of 1350 on every card, both ways), the tightest gap
+between content and footer row is **211px before and 211px after**, and
+exactly **1 of 484 reflows**, 2026-11-03/am/card-4 ("1.3M Android TV
+boxes"), gap 473 to 391. That card was rendered and read: it gains a third
+line and `text-wrap:balance` sets it better than the two it had.
+
+**Verified.** 315 tests (314 before), typecheck clean, `npm run site` 33
+pages **byte-identical to main's**, since the site build does not touch this
+file. Three mutations one at a time, each reverted, each killing the new
+test and only it: declaration dropped, rule moved from `.display` to `body`,
+`lining-nums` swapped for `oldstyle-nums`. Today's am post re-rendered and
+read card by card afterwards: `1password's backend`, `42 state attorneys
+general`, `21 million us accounts`, all legible, line breaks identical to
+the oldstyle render.
+
+**`AGENTS.md` untouched on purpose.** Nothing the digest agent relies on
+moved: no script, schema or path changed, `data/slides/{day}.json` is
+untouched, and the pngs keep their dimensions. The design is pinned and this
+is refinement inside it, not a repaint: same face, same palette, same
+measure.
+
+**Two housekeeping facts, both of them lessons above.** The clone's
+`origin/main` was three days stale and the first branch was cut from 11-23;
+the test count caught it (310 where 315 was due) and the branch was reset
+onto a fetched main before anything was committed. And **branch deletion is
+not possible from this harness**: `DELETE /repos/.../git/refs/heads/...` is
+403 at the proxy and `git push origin :branch` disconnects mid-sideband.
+The remote still carries every gardener branch back to 2026-08-29, so this
+has never worked and no future run should spend calls on it.
+
+Outcome: merged. #397, #395, #392, #380, #352, #332, #314, #246, #241, #120
+and #112 open and unanswered; nothing commented, since no issue moved today.
+Journal pruning comes due within a day or two: the oldest entry is
+2026-08-29, 89 days back.
 
 ### 2026-11-25
 
