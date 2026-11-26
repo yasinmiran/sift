@@ -170,7 +170,16 @@ body{position:relative;background:#0d0c0b;color:#b8b0a3;font-family:Karla,sans-s
 background-image:radial-gradient(circle,rgba(168,159,147,.08) 1.4px,transparent 1.9px);background-size:24px 24px;
 display:flex;flex-direction:column;padding:88px}
 .wordmark{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.02em;color:#e8e2d9}
-.display{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.005em;color:#e8e2d9;text-wrap:balance}
+/* Cormorant's default figures are oldstyle, which on a poster-scale headline
+   is a misread rather than a flourish: the 1 has no flag and sits at
+   x-height, so "1password" ships as "ipassword" and "21 million" as
+   "2i million". 185 of the archive's 421 display strings carry a digit and
+   81 carry a 1, on 30 of 32 days, and the Karla desc under the same title
+   already sets its numbers lining. lnum is in the bundled subset, so this
+   asks the same face for its other figure set. Measured across all 484
+   built cards: 0 overflow either way, tightest footer gap 211px before and
+   after, 1 card reflows. */
+.display{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.005em;color:#e8e2d9;text-wrap:balance;font-variant-numeric:lining-nums}
 /* A title's underline wraps on 17 of the archive's 98 marked cards, one of
    them over three lines, and box-decoration-break starts at "slice": the one
    scribble is laid across the whole inline box and each line gets the piece

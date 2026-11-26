@@ -419,6 +419,20 @@ describe("renderSlideHtml", () => {
     expect(size("OpenAI sat on an Australian government hack for ==five whole weeks==")).toBe("68");
   });
 
+  // Cormorant's default figures are oldstyle: the 1 has no flag and sits at
+  // x-height, so an unqualified display face ships "1password" as
+  // "ipassword". The number is the whole point of most of these cards.
+  it("sets the display face's numerals lining, not oldstyle", () => {
+    const story = renderSlideHtml(cards[1]!, 1, cards.length);
+    expect(story).toMatch(/\.display\{[^}]*font-variant-numeric:lining-nums/);
+    // The cover hook and the cta ride the same class, so one rule covers all
+    // three card shapes.
+    expect(renderSlideHtml(cards[0]!, 0, cards.length)).toMatch(/\.display\{[^}]*font-variant-numeric:lining-nums/);
+    // Karla body copy and the Space Mono chrome are lining already; asking
+    // them too would be a claim no card needs.
+    expect(story.match(/font-variant-numeric/g)?.length).toBe(1);
+  });
+
   it("carries no source hostname on story cards", () => {
     const html = renderSlideHtml(cards[1]!, 1, cards.length);
     expect(html).not.toContain("example.com");
