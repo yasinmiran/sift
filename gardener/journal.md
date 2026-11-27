@@ -4013,6 +4013,96 @@ merges and closures and never expire.
 
 ## Entries
 
+### 2026-11-27
+
+**#414 filed, PR #415 merged as `bf74e44`, `checks` green on `030d389`,
+`pages` 45972409915 green on build and deploy, read the honest way: the
+first `deploy-pages` passed and the retry step gated on its failure
+**skipped**, and the `slides` step (which is `continue-on-error`) read
+`success`.** One css declaration and 29 lines of test, and the day's one
+piece of ink stops being drawn twice.
+
+**Health had nothing, for the fourth day running.** 315 tests on main,
+typecheck clean, 33 pages, the last 40 workflow runs green, `npm run verify`
+over 11-21..27 at **0 errors**, its three warnings being #405's finding
+re-firing on 11-22 (4 sentences) and 11-26's two (83 links, and the
+deliberate primary-source link to `openai/math`). The last four ingest runs
+read `sources: 54, failures: []`, so #401's annotation channel is silent. No
+open gardener PR and no issue carrying a greenlight.
+
+**So the run rendered things again, and this time the site.** Every
+`mark.pen` on all 32 built day pages, at 320, 360, 390, 430, 704 and 1280,
+counted by `getClientRects()`. Six days carry a circle (`((...))`: 10-31,
+11-10, 11-21, 11-22, 11-23, 11-24) and **9 of those 36 day/width checks
+wrap**: 11-10, 11-21, 11-22 and 11-23 all wrap at 320px, 11-22 again at 390,
+and **11-21 wraps at every width up to 1280**, its first oval running 6.4px
+past the measure. `mark.pen` sets `box-decoration-break:clone`, and
+`site.test.ts` says why: sliced, a wrapped mark gets half an ellipse on one
+line and half on the next. Clone fixes that for the scribble and cannot fix
+it for a closed shape, because at `background-size:100% 100%` each fragment
+is given its **own complete ellipse**: "full" circled on one line,
+"confidence" circled on the next, and the print / forced-colors fallback
+drawing the same as two pills.
+
+**The change is `white-space:nowrap` on `.pen-o`.** The phrase moves to the
+next line whole, so clone never has to decide. It rides `.pen-o` and not the
+shared rule on purpose: the underline reads correctly on every line it takes
+and keeps breaking. `slice` was rendered and read before a line was written
+and is worse than either, an open "C" on line one and a squashed oval on
+line two.
+
+**Verified on the same instrument before and after**, all 32 pages at all
+six widths: **9 wrapped circles before, 0 after**, underlines wrapping 48
+times both ways, document overflow 0 at every width including 320. 316 tests
+(315 before), typecheck clean, 33 pages, `npm run verify -- 2026-11-27` ok
+with 0 warnings, three mutations one at a time each killing the new test and
+only it (declaration dropped, declaration moved to `mark.pen`, `nowrap`
+swapped for `normal`) with the total steady at 316. 11-21 and 11-22
+re-rendered at 390 and 704 from the merged build and read: one continuous
+circle, phrase intact.
+
+**The cliff it trades for is named in the comment rather than gated.** A
+nowrapped circle wider than the measure leans into the gutter and then
+scrolls the page, from about **32 visible characters at 320px** (30 = 0
+overflow, 34 = 16px). The archive's longest circled phrase is exactly 30 and
+../AGENTS.md already bounds a mark to "the one number or phrase", never a
+sentence, so 11-24's rule applies: a guard with no day to act on is
+decoration. The number is in the css comment so a later run knows where the
+rail goes if a long circle ever ships.
+
+**`AGENTS.md` untouched on purpose.** No script, schema or path the digest
+agent relies on moved, and the slide cards carry no circle at all (the
+verifier errors on one), so the blast radius is the site's day pages and the
+index.
+
+**Measured on the way past and NOT shipped, so no later run re-opens them as
+new.** **Duplicate urls inside one day's items file**: 122 groups and 124
+extra items across 9,666, **1.28%**, on 30 of 32 days, almost all
+`hacker-news + tldr` (46) or `openai + tldr` (30). Deduping by url would be
+a *loss*: the hn copy carries the `objectID`, points and comments the digest
+agent's thread rule needs, and the other copy usually carries the article
+text (61 of 122 groups have one side empty). Cross-source arrival is what
+the "ONE entry" editorial rule already handles. **Duplicate links inside one
+digest**: 208 repeated urls, 234 extra links, on all 32 days, and every
+pairing is contract-sanctioned once read: lead to its entry **102**, entry
+to Threads **94**, Hacker News back-reference **38**, and **0** that are
+none of those. ../AGENTS.md asks for each of the three by name. **The `slides`
+step's `continue-on-error`**: a failed carousel build would deploy the site
+carousel-less on a green run and silently skip the instagram post, the
+#401 shape exactly, but the step reads `success` on **25 of the last 25**
+pages runs, so there is no day for it. **`sw.js` has no fetch handler**, so
+an evening rewrite cannot be served stale from a cache; there is no caching
+bug to find there. Contrast of the slide cards' `.terms` gloss (`#7a7268` on
+`#0d0c0b`) is **4.07:1** at 28px, inside AA large; `.count` is 2.70 and is
+the page number.
+
+Outcome: merged. #397, #395, #392, #380, #352, #332, #314, #246, #241, #120
+and #112 open and unanswered; nothing commented, since no issue moved today.
+Pruned 2026-08-29, the first entry, now 90 days back; git history keeps it.
+The attribution footer is still server-appended to every issue and PR body
+and a `PATCH` without it gets it back, confirmed once more on #414 and not
+retried.
+
 ### 2026-11-26
 
 **#410 filed, PR #411 merged as `8cc4864`, `checks` green on `980314b`,
@@ -11835,26 +11925,3 @@ HN-permalink and secondary-source pattern, not regressions).
 
 Outcome: no PR by design. #109 pending, #110 pending, #112 filed.
 
-### 2026-08-29
-
-First run. What: swapped the footer disclaimer's text color from
-`--faint` to `--muted` (src/site/page.ts, `.foot-note`), matching the
-color its own inline link already uses. Why: `npm run site` +
-playwright screenshot at 375px showed the note rendering visibly dim;
-computed contrast against the pinned palette's own hex values was
-~2.7:1 (`--faint` on `--bg`), under WCAG AA's 4.5:1 for normal text.
-`--muted` brings it to ~4.1:1, no palette hex touched or added
-(test/contract.test.ts unaffected).
-
-Copilot's automatic review on #109 caught a real regression: with the
-note and its link both `--muted`, the link (global `a` has
-`text-decoration:none`) lost its only non-color signal. Fixed with a
-second push: `.foot-note a` gets back a dotted underline, same
-pattern `.notify-hint` already uses. Copilot also noted `--muted` is
-itself still under AA at 4.1:1; true, but so is every other
-`--muted`-tier chrome element sitewide (`.byline`, `.meta`, `.tag`),
-so that's a bigger, sitewide repaint call, not this PR's, filed as
-issue #110 for Yasin to greenlight. Outcome: pending, PR #109.
-
-Contract written; no run yet. Backlog seeded from the 2026-08-29
-refresh audit (source health probe, digest drift review).
