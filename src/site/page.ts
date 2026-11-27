@@ -150,7 +150,17 @@ a:hover{color:var(--accent-hover)}
    gets the mark, and the off-screen border below closes on each. */
 mark.pen{background-color:transparent;color:var(--bold);-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .pen-u{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8 C 20 4, 38 10, 58 7 S 95 9, 117 5' fill='none' stroke='%23d4976a' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% .5em;background-position:0 103%;padding-bottom:.1em}
-.pen-o{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 44' preserveAspectRatio='none'%3E%3Cpath d='M60 3 C 94 1, 118 11, 117 22 C 116 34, 90 42, 56 41 C 24 40, 2 33, 2 21 C 2 10, 28 2, 76 3' fill='none' stroke='%23d4976a' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% 100%;padding:.28em .65em;margin:0 .1em}
+/* Clone is right for the scribble and wrong for a closed shape: each line
+   fragment gets its own complete ellipse, so one circled phrase reads as two
+   ovals around two half-phrases, and the print border draws two pills. Six of
+   the month's days carry a circle and 4 of them wrap at 320px; 11-21's runs
+   4.7px past the measure at every width up to 1280. Nowrap moves the phrase
+   to the next line whole, so clone never has to decide: 1 rect on all six
+   days at 320/360/390/430/704/1280, no document overflow anywhere. The cliff
+   it trades for: a circle wider than the measure leans into the gutter and
+   then scrolls the page, from about 32 visible characters at 320px (30 = 0,
+   34 = 16px). The longest the archive has circled is 30. */
+.pen-o{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 44' preserveAspectRatio='none'%3E%3Cpath d='M60 3 C 94 1, 118 11, 117 22 C 116 34, 90 42, 56 41 C 24 40, 2 33, 2 21 C 2 10, 28 2, 76 3' fill='none' stroke='%23d4976a' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:100% 100%;padding:.28em .65em;margin:0 .1em;white-space:nowrap}
 .prose code{font-family:"Space Mono",ui-monospace,monospace;font-size:.85em;background:var(--surface);color:var(--accent);padding:.1em .35em;border:1px solid var(--border);border-radius:4px}
 .today-note{margin:0 0 1.5rem;padding:.85rem 1.1rem;border:1px solid var(--border);border-radius:var(--radius);color:var(--body);font-size:.92rem}
 .refresh-note{margin:1.4rem 0 0;position:relative;overflow:hidden}
