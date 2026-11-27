@@ -529,6 +529,35 @@ describe("buildSite", () => {
     }
   });
 
+  // Clone keeps the underline whole on every line it takes, and that is the
+  // wrong answer for a closed shape: a cloned ellipse at background-size
+  // 100% 100% is drawn complete around each fragment, so one circled phrase
+  // reads as two ovals around two half-phrases (and the print fallback as two
+  // pills). 6 archived days carry a circle, 4 of them wrap at 320px and one
+  // at every width up to 1280. The circle is the only mark that cannot
+  // survive a line break, so it is the only one that refuses to take one; the
+  // scribble keeps wrapping, which is why this rides .pen-o and not mark.pen.
+  it("keeps a circled phrase on one line so its ellipse is drawn once", () => {
+    digest("2026-07-04", "a ==big deal== and ((circled)) figure");
+    buildSite(root, out);
+    for (const file of ["index.html", "2026-07-04.html"]) {
+      const html = readFileSync(join(out, file), "utf8");
+      const circle = /\.pen-o\{([^}]*)\}/.exec(html)?.[1];
+      expect(circle, `${file}: no .pen-o rule`).toBeDefined();
+      expect(circle, `${file}: a wrapped circle is drawn twice`).toContain("white-space:nowrap");
+      // The scribble is cloned onto each line and reads right there, so it
+      // keeps breaking: nowrapping it would push a long underline into the
+      // gutter for nothing.
+      const scribble = /\.pen-u\{([^}]*)\}/.exec(html)?.[1];
+      expect(scribble, `${file}: no .pen-u rule`).toBeDefined();
+      expect(scribble, `${file}: the underline should still wrap`).not.toContain("white-space");
+      // And nothing downstream lets the circle break again.
+      expect(html, `${file}: something lets the circle wrap again`).not.toMatch(
+        /\.pen-o\{[^}]*white-space:(?!nowrap)/,
+      );
+    }
+  });
+
   // A pen mark is a background image and nothing else, so both surfaces that
   // drop backgrounds (chrome prints them off by default, forced-colors
   // repaints to the reader's two colours) render the day's one marked phrase
