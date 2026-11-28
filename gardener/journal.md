@@ -6,6 +6,27 @@ merges and closures and never expire.
 
 ## Lessons
 
+- A `Closes #N` closes a question, not a task, and the orient step reads only
+  open issues, so a wrongly closed one is invisible by exactly the mechanism
+  that makes the issue list the audit trail. #110 held the `--muted` contrast
+  decision; PR #282 fixed one corner of it on 10-20 and its reference closed
+  the whole thing as completed at 08:25:37, while that run's own journal entry
+  said in those words "**#110 is not closed and was not meant to be**". The
+  11-14 run noticed the mismatch, wrote it into the backlog, and that is where
+  it stayed: **39 days in which the question drifted, grew a fifth row, and
+  had nowhere to sit**, because a note in a journal section nobody re-reads is
+  not an instrument. This journal already holds the lesson that kills it, that
+  a recurring check living only in a routine's habit has a half-life; the new
+  half is that **the same is true of a finding parked in the backlog, and the
+  fix is one api call the run that found it could have made**. So: reference an
+  issue from a PR only when the PR answers all of it, and when a run finds a
+  closed issue that should be open, reopen it in that run rather than
+  describing it. Worth keeping beside it, the drift was legible from inside the
+  code the whole time: `src/site/build.ts` carries the comment "that gap is
+  #110, open since 08-29", which is how today's run found the issue at all, so
+  **a comment naming an issue is a dangling pointer the moment the issue
+  moves**, and it was the only thing still telling the truth.
+
 - Every gate in this repo checks something a person thought to state, and a
   typeface's defaults are the part nobody stated. `verify.ts` holds **34
   carousel rules**: hook length, caption voice, hashtag pool, mark syntax,
@@ -4012,6 +4033,128 @@ merges and closures and never expire.
   as-is rather than rewriting a closed record.
 
 ## Entries
+
+### 2026-11-28
+
+**#418 filed, PR #419 merged as `37b14e5`, `checks` green on `28374a2`. No
+`pages` run, and that is the correct reading, not a missing one:** the
+workflow is path-filtered to `digests/`, `data/slides/`, `public/`, `src/`
+and its own file, and today's diff is 103 lines of `test/site.test.ts` and
+nothing else. The published site is byte-identical by construction.
+
+**Health had nothing for the fifth day running, with one exception that is
+new.** 316 tests on main before the change, typecheck clean, 33 pages, the
+last 40 workflow runs green, `npm run verify` over 11-22..28 at **0 errors**
+and three warnings, all already named here: #405's finding re-firing on
+11-22 (4 sentences) and 11-26's two (83 links, the deliberate `openai/math`
+primary-source link). No open gardener PR and no issue carrying a
+greenlight.
+
+The exception: **today's 05:37 ingest run read
+`failures:["css-tricks"]`** on `Unexpected close tag / Line: 92` out of
+the feed's xml, and **#401's annotation channel fired for real** for the
+first time since alphasignal recovered: `##[warning]css-tricks stored
+nothing this run` on a run that still concluded `success`. That is exactly
+what #401 was built to do, and it is the whole value of it: the conclusion
+line would have said nothing. The source is not dead. It parsed clean at
+23:44 UTC (its one item is in today's file) and failed five hours later, so
+the feed changed under it rather than went away, and css-tricks lands 1-2
+items a week anyway, 0 to 2 a day over the last fourteen. `css-tricks.com`
+is 403 at CONNECT here so the bad xml cannot be read from this container.
+**One run is not a pattern; a second is.** If 11-29 annotates the same slug,
+that is the day for an issue.
+
+**The change: the site's below-AA colour roles are written down.** #110 has
+held "`--muted` chrome text is below AA" since 08-29 and the repo has been
+answering it one selector at a time, four times now: #109 moved the footer
+note `--faint` -> `--muted` (still under AA), #282 moved the ios install
+path to `--body`, the pager's direction word was written `--body` from the
+start with the reason in a comment, and the bell's hover was lifted to
+`--bold`. Between those runs nothing held the line, and one gardener PR did
+put two more words on `--muted` with only Copilot's review to catch it,
+which this journal recorded at the time as "writing it down settled it". It
+had not.
+
+**The method is the half worth keeping, because it contradicts the sweep
+before it.** 10-20 walked the rendered DOM and reported six below-AA
+elements and "nothing else on the site is under AA". Reading the stylesheet
+instead finds **nine `color:` declarations** under 4.5:1 against `--bg`, and
+**four of them are invisible to a DOM-at-rest sweep**: two `::marker`
+pseudo-elements, the `.notify` block that is `hidden` until js un-hides it,
+and `.notify-btn`'s disabled state. That last one paints real text, the
+"installed" chip and the bell's in-flight label at 14.4px, so #110 is a
+**five**-row question and has been understating itself for 39 days with
+nothing to say so. The other three are named in the test so no later run
+re-opens them: `.notify` is dead for text (the block holds only buttons and
+each declares its own colour), `.prose ol li::marker` has no day (**0 of 32
+digests** uses an ordered list, so the only `<ol>` on the site is the
+install dialog's, outside `.prose`), and `.prose ul li::marker` at `--faint`
+2.70 is the deliberate bullet.
+
+**Pinned, not fixed.** Nine declarations, exact-set equality, one line each
+on why it is there, the `test/contract.test.ts` shape. A sixth role joining
+fails and names itself; a role leaving fails too, which is the point, since
+the fix is #110's to greenlight and not mine: both directions (retune the
+hex in lockstep with yasint.dev's tailwind config, or lift five chrome rows
+to `--body` and accept chrome reading at prose colour) change the pinned
+design. **#110 reopened**, with today's numbers and the 11-14 card-render
+rows that had nowhere else to sit.
+
+**Measured against `--bg` on purpose, the lenient direction.** `--surface`
+is lighter, so a token only ever reads worse on it (`--muted` is 3.74 inside
+the install dialog), and a sweep that cannot produce a false failure is one
+a later run will trust. Verified: 317 tests (316 before), typecheck silent,
+33 pages, `npm run verify -- 2026-11-28` clean. Four mutations one at a
+time, each killing the new test and only it with the total steady at 317:
+`.pager .mono` onto `--muted` (a role joins), `.foot-note` onto `--body`
+(#110's own fix, the set shrinks), `--muted` retuned to a passing hex, and
+`.tag` given a literal `rgb()` the sweep cannot resolve. **One negative
+control**, which is the half that makes the at-rule stripping a claim rather
+than a comment: darkening `--muted` inside `@media print` changes nothing.
+
+**And mutation three found a gap in the contract test.** Retuning the screen
+`--muted` to `#8f867a` left `test/contract.test.ts` **green**, because its
+palette assertion is `expect(index).toContain(hex)` for each of the ten
+hexes and `#7a7268` is also the print block's `--faint`. The palette pin is
+a presence check, not a role check, and two of the ten hexes appear twice.
+The new test is now the thing that would catch that retune. Not fixed today:
+tightening the contract test is a change to how the yasint.dev handshake is
+asserted, which is the contract surface itself.
+
+**`AGENTS.md` untouched, no production code in the diff.** No declaration
+moves, no hex changes, no palette edit, no gate relaxed, neither contract
+file touched, no new dependency.
+
+**Walked past and NOT shipped, so no later run re-opens them as new.**
+**The maskable icon** is a byte-identical copy of `icon-512.png`, which
+reads as a mistake and is not one: the mark is a **disc**, 59.4% of the tile
+wide, and its furthest pixel sits at **29.8% of the width** from centre
+against the maskable safe zone's 40%, so no launcher mask can cut it. The
+other three tiles measure the same. `og.png` is **1200x630**, exactly what
+the head declares, and the three sized favicons match their `sizes`
+attributes. **Markdown artifacts in the rendered prose**: 0 across 32 day
+pages, checked for `**`, `](`, `==`, `((`, `&amp;amp;`, backticks, unconverted
+headings and underscore emphasis in `.prose` text, plus 0 empty links; the
+`==`/`((` that a raw grep finds on every page are javascript in the shell
+script, which is the instrument reading itself again. **`.foot-note`'s
+`max-width:60%`** gives the fine print a **25-character measure at 320px**
+(168px, 3-4 lines) against 50 at 704px and up, which is tight and is not
+broken, and it is the same text the contrast question above is about, so it
+waits for that answer rather than getting its own. **The feed** carries
+`atom:updated` for the evening rewrite, `lastBuildDate` off the newest drop
+rather than the build clock, and `rel="alternate"` on all 34 pages; nothing
+to add. **Reader signals are still unreachable**: `sift.yasint.dev` and
+`yasin.goatcounter.com` are both 000 at CONNECT from this container, as they
+have been every day this month.
+
+Outcome: merged. #110 reopened and carrying the numbers; #397, #395, #392,
+#380, #352, #332, #314, #246, #241, #120 and #112 open and unanswered,
+nothing commented since no issue moved. Pruned 2026-08-30, now 90 days
+back; git history keeps it. Two environment notes for the next run: `gh` is
+present but its token is invalid (`gh auth status` fails), so every github
+call went through the MCP tools, and `git push --delete` of the merged
+branch disconnects mid-sideband, which is why `gardener/2026-11-23` through
+`gardener/2026-11-28` are all still on the remote. Neither is a repo defect.
 
 ### 2026-11-27
 
@@ -11895,33 +12038,3 @@ now. Still not mine to fix — both real options edit ../AGENTS.md.
 
 Outcome: no PR by design. #109 pending (3rd day), #110 pending, #112
 pending and actively biting.
-
-### 2026-08-30
-
-Health sweep found one real thing. `ingest.yml`'s cron (`15 3` /
-`45 15` UTC) stopped landing before the digest windows on 2026-08-27:
-scheduled runs went from a steady +13m..+53m across the prior 24 runs
-to +3h08..+12h02, and today's 03:15 never fired at all (still absent
-at 08:06). Consequence is visible from both sides: seven consecutive
-digest runs since 08-27 each forced their own `workflow_dispatch`
-ingest minutes before drafting, and the digest commit messages say so
-in their own words ("items file was empty (404) at run start, well
-past the 03:15 UTC ingest cron"). Today's items file carries
-`generatedAt 04:37`, the manual dispatch, not the cron. The morning
-margin was only ever ~30 minutes (03:15 cron, 04:34 digest, 36-47m
-typical delay), so it was the first to go.
-
-Filed as issue #112 rather than shipped: the two options that
-actually cover a cron that never fires both edit ../AGENTS.md, the
-digest agent's contract, which is not mine to change. The one option
-I could ship alone (move the crons earlier) only widens a window and
-would have looked like progress without being any.
-
-Rest of the sweep was clean and stays unfiled: `npm test` 158/158,
-typecheck clean, `npm run site` builds 33 pages at 1.2MB, `npm run
-verify` returns ok with zero warnings on 08-27..08-30 (the older
-warnings are all "link not found in the day's items", the known
-HN-permalink and secondary-source pattern, not regressions).
-
-Outcome: no PR by design. #109 pending, #110 pending, #112 filed.
-
