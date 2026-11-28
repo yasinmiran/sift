@@ -77,6 +77,58 @@ function runShell(html: string, denied: string[]) {
   return { registered, remembered, href: link.href };
 }
 
+// WCAG 2.x relative luminance and contrast, over the six-digit hexes the
+// sheet writes its palette in.
+const luminance = (hex: string): number => {
+  const lin = [1, 3, 5]
+    .map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+    .map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * lin[0]! + 0.7152 * lin[1]! + 0.0722 * lin[2]!;
+};
+const contrast = (a: string, b: string): number => {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x) as [number, number];
+  return (hi + 0.05) / (lo + 0.05);
+};
+
+/**
+ * Every `color:` rule in a built page's screen sheet, with its ratio against
+ * --bg. Read off the stylesheet rather than the rendered DOM: the 10-20 sweep
+ * on #110 walked the document at rest, which cannot reach a ::marker, a block
+ * that is `hidden` until js un-hides it, or a button's disabled state, and
+ * three of the site's below-AA roles are exactly those.
+ */
+function colourRoles(html: string): { selector: string; token: string; ratio: number }[] {
+  const sheet = html.split("<style>")[1]!.split("</style>")[0]!.replace(/\/\*[\s\S]*?\*\//g, "");
+  // The first :root is the screen palette; @media print declares the second,
+  // re-inked for paper, and it is stripped with the rest of the at-rules below.
+  const tokens = new Map<string, string>();
+  for (const declaration of /:root\{([^}]*)\}/.exec(sheet)![1]!.split(";")) {
+    const named = /^\s*--([\w-]+):\s*(#[0-9a-f]{6})$/i.exec(declaration);
+    if (named) tokens.set(named[1]!, named[2]!);
+  }
+  // Print re-inks the whole palette and forced-colors hands it to the reader,
+  // so neither answers to a ratio measured against --bg.
+  const screen = sheet
+    .replace(/@(?:media|supports|keyframes)[^{]*\{(?:[^{}]*\{[^}]*\})*[^{}]*\}/g, "")
+    .replace(/@font-face\{[^}]*\}/g, "");
+  const bg = tokens.get("bg")!;
+  const roles: { selector: string; token: string; ratio: number }[] = [];
+  for (const rule of screen.split("}")) {
+    const brace = rule.indexOf("{");
+    if (brace < 0) continue;
+    const selector = rule.slice(0, brace).trim();
+    const colour = /(?:^|;)\s*color:\s*([^;]+)/.exec(rule.slice(brace + 1))?.[1]?.trim();
+    if (!colour) continue;
+    const token = /^var\(--([\w-]+)\)$/.exec(colour)?.[1];
+    const hex = token ? tokens.get(token) : /^#[0-9a-f]{6}$/i.test(colour) ? colour : undefined;
+    // A colour this cannot resolve is a syntax the sweep has gone blind to,
+    // which is a failure and never a quiet skip.
+    expect(hex, `${selector} sets color:${colour}, which this sweep cannot resolve`).toBeDefined();
+    roles.push({ selector, token: token ? `--${token}` : colour, ratio: contrast(hex!, bg) });
+  }
+  return roles;
+}
+
 describe("buildSite", () => {
   it("renders an index newest-first and a page per digest", () => {
     digest("2026-07-03", "## Section\n\n- [story](https://example.com/a) why it matters");
@@ -878,6 +930,57 @@ describe("buildSite", () => {
     expect(index).not.toMatch(/\.notify-hint\{[^}]*color:var\(--muted\)/);
     expect(index).toMatch(/\.install-help\{[^}]*color:var\(--body\)/);
     expect(index).toMatch(/\.help-note\{(?![^}]*color:)[^}]*\}/);
+  });
+
+  // #110 (open since 08-29) holds the decision on --muted chrome text, and the
+  // repo has been answering it one selector at a time: #109 moved the footer
+  // note --faint -> --muted, still under AA; #282 moved the ios install path
+  // --muted -> --body; the pager's direction word was written --body from the
+  // start with the reason in a comment. Between those runs nothing held the
+  // line, and a gardener PR did put two more words on --muted with only a
+  // reviewer to catch it. So the set is pinned here: a sixth role joining it
+  // fails and names itself, and a role leaving it (the fix #110 is waiting on)
+  // fails too, which is the point. Same shape as the palette pin in
+  // test/contract.test.ts.
+  //
+  // Measured against --bg, the lenient direction: --surface is lighter, so the
+  // same token only ever reads worse on it (--muted is 3.74 inside the install
+  // dialog). AA's 4.5 is the threshold for normal-size text, and every role
+  // below is 16px or smaller.
+  it("holds the site's below-AA colour roles to the set #110 is open on", () => {
+    digest("2026-07-04", "body");
+    buildSite(root, out);
+    const roles = colourRoles(readFileSync(join(out, "index.html"), "utf8"));
+    // A parse that stops matching would report an empty set and read as a
+    // clean sweep, so the sweep states its own size first.
+    expect(roles.length, "the colour sweep read almost nothing; check the rule parse").toBeGreaterThan(30);
+    const under = roles
+      .filter((role) => role.ratio < 4.5)
+      .map((role) => `${role.selector} ${role.token} ${role.ratio.toFixed(2)}`)
+      .sort();
+    expect(under).toEqual(
+      [
+        // The four chrome rows #110 names, on every built page; its footer
+        // row is two declarations, the note and the link inside it.
+        ".tag --muted 4.13",
+        ".meta --muted 4.13",
+        ".byline --muted 4.13",
+        ".foot-note --muted 4.13",
+        ".foot-note a --muted 4.13",
+        // The fifth, which the DOM-at-rest sweep could not see: the "installed"
+        // chip and the bell's in-flight label are both visible text.
+        '.notify-btn:disabled,.notify-btn[aria-disabled="true"] --muted 4.13',
+        // Inherited and overridden: the block holds only buttons, and each one
+        // declares its own colour, so nothing paints at 4.13 here.
+        ".notify --muted 4.13",
+        // No day in 32: no digest entry has used an ordered list, so the only
+        // <ol> on the site is the install dialog's, outside .prose.
+        ".prose ol li::marker --muted 4.13",
+        // The bullet, not text: --faint is the quietest token the sheet has and
+        // this is the one place it is asked to draw.
+        ".prose ul li::marker --faint 2.70",
+      ].sort(),
+    );
   });
 
   it("tells today's readers when the evening half lands, in their own time zone", () => {
